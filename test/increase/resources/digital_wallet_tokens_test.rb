@@ -14,7 +14,9 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
       response => {
         id: String,
         card_id: String,
+        cardholder: Increase::Models::DigitalWalletToken::Cardholder,
         created_at: Time,
+        device: Increase::Models::DigitalWalletToken::Device,
         status: Increase::Models::DigitalWalletToken::Status,
         token_requestor: Increase::Models::DigitalWalletToken::TokenRequestor,
         type: Increase::Models::DigitalWalletToken::Type,
@@ -41,7 +43,9 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
       row => {
         id: String,
         card_id: String,
+        cardholder: Increase::Models::DigitalWalletToken::Cardholder,
         created_at: Time,
+        device: Increase::Models::DigitalWalletToken::Device,
         status: Increase::Models::DigitalWalletToken::Status,
         token_requestor: Increase::Models::DigitalWalletToken::TokenRequestor,
         type: Increase::Models::DigitalWalletToken::Type,

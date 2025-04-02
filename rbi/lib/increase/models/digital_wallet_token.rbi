@@ -11,10 +11,24 @@ module Increase
       sig { returns(String) }
       attr_accessor :card_id
 
+      # The cardholder information given when the Digital Wallet Token was created.
+      sig { returns(Increase::Models::DigitalWalletToken::Cardholder) }
+      attr_reader :cardholder
+
+      sig { params(cardholder: T.any(Increase::Models::DigitalWalletToken::Cardholder, Increase::Util::AnyHash)).void }
+      attr_writer :cardholder
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       #   the Digital Wallet Token was created.
       sig { returns(Time) }
       attr_accessor :created_at
+
+      # The device that was used to create the Digital Wallet Token.
+      sig { returns(Increase::Models::DigitalWalletToken::Device) }
+      attr_reader :device
+
+      sig { params(device: T.any(Increase::Models::DigitalWalletToken::Device, Increase::Util::AnyHash)).void }
+      attr_writer :device
 
       # This indicates if payments can be made with the Digital Wallet Token.
       sig { returns(Increase::Models::DigitalWalletToken::Status::TaggedSymbol) }
@@ -40,7 +54,9 @@ module Increase
         params(
           id: String,
           card_id: String,
+          cardholder: T.any(Increase::Models::DigitalWalletToken::Cardholder, Increase::Util::AnyHash),
           created_at: Time,
+          device: T.any(Increase::Models::DigitalWalletToken::Device, Increase::Util::AnyHash),
           status: Increase::Models::DigitalWalletToken::Status::OrSymbol,
           token_requestor: Increase::Models::DigitalWalletToken::TokenRequestor::OrSymbol,
           type: Increase::Models::DigitalWalletToken::Type::OrSymbol,
@@ -48,7 +64,17 @@ module Increase
         )
           .returns(T.attached_class)
       end
-      def self.new(id:, card_id:, created_at:, status:, token_requestor:, type:, updates:)
+      def self.new(
+        id:,
+        card_id:,
+        cardholder:,
+        created_at:,
+        device:,
+        status:,
+        token_requestor:,
+        type:,
+        updates:
+      )
       end
 
       sig do
@@ -57,7 +83,9 @@ module Increase
             {
               id: String,
               card_id: String,
+              cardholder: Increase::Models::DigitalWalletToken::Cardholder,
               created_at: Time,
+              device: Increase::Models::DigitalWalletToken::Device,
               status: Increase::Models::DigitalWalletToken::Status::TaggedSymbol,
               token_requestor: Increase::Models::DigitalWalletToken::TokenRequestor::TaggedSymbol,
               type: Increase::Models::DigitalWalletToken::Type::TaggedSymbol,
@@ -66,6 +94,111 @@ module Increase
           )
       end
       def to_hash
+      end
+
+      class Cardholder < Increase::BaseModel
+        # Name of the cardholder, for example "John Smith".
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The cardholder information given when the Digital Wallet Token was created.
+        sig { params(name: T.nilable(String)).returns(T.attached_class) }
+        def self.new(name:)
+        end
+
+        sig { override.returns({name: T.nilable(String)}) }
+        def to_hash
+        end
+      end
+
+      class Device < Increase::BaseModel
+        # Device type.
+        sig { returns(T.nilable(Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)) }
+        attr_accessor :device_type
+
+        # ID assigned to the device by the digital wallet provider.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :identifier
+
+        # IP address of the device.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ip_address
+
+        # Name of the device, for example "My Work Phone".
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The device that was used to create the Digital Wallet Token.
+        sig do
+          params(
+            device_type: T.nilable(Increase::Models::DigitalWalletToken::Device::DeviceType::OrSymbol),
+            identifier: T.nilable(String),
+            ip_address: T.nilable(String),
+            name: T.nilable(String)
+          )
+            .returns(T.attached_class)
+        end
+        def self.new(device_type:, identifier:, ip_address:, name:)
+        end
+
+        sig do
+          override
+            .returns(
+              {
+                device_type: T.nilable(Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol),
+                identifier: T.nilable(String),
+                ip_address: T.nilable(String),
+                name: T.nilable(String)
+              }
+            )
+        end
+        def to_hash
+        end
+
+        # Device type.
+        module DeviceType
+          extend Increase::Enum
+
+          TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType) }
+          OrSymbol =
+            T.type_alias { T.any(Symbol, String, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol) }
+
+          # Unknown
+          UNKNOWN = T.let(:unknown, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Mobile Phone
+          MOBILE_PHONE =
+            T.let(:mobile_phone, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Tablet
+          TABLET = T.let(:tablet, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Watch
+          WATCH = T.let(:watch, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Mobile Phone or Tablet
+          MOBILEPHONE_OR_TABLET =
+            T.let(:mobilephone_or_tablet, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # PC
+          PC = T.let(:pc, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Household Device
+          HOUSEHOLD_DEVICE =
+            T.let(:household_device, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Wearable Device
+          WEARABLE_DEVICE =
+            T.let(:wearable_device, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          # Automobile Device
+          AUTOMOBILE_DEVICE =
+            T.let(:automobile_device, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
+
+          sig { override.returns(T::Array[Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol]) }
+          def self.values
+          end
+        end
       end
 
       # This indicates if payments can be made with the Digital Wallet Token.

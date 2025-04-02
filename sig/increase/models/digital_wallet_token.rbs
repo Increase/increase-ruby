@@ -4,7 +4,9 @@ module Increase
       {
         id: String,
         card_id: String,
+        cardholder: Increase::Models::DigitalWalletToken::Cardholder,
         created_at: Time,
+        device: Increase::Models::DigitalWalletToken::Device,
         status: Increase::Models::DigitalWalletToken::status,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
@@ -16,7 +18,11 @@ module Increase
 
       attr_accessor card_id: String
 
+      attr_accessor cardholder: Increase::Models::DigitalWalletToken::Cardholder
+
       attr_accessor created_at: Time
+
+      attr_accessor device: Increase::Models::DigitalWalletToken::Device
 
       attr_accessor status: Increase::Models::DigitalWalletToken::status
 
@@ -29,7 +35,9 @@ module Increase
       def initialize: (
         id: String,
         card_id: String,
+        cardholder: Increase::Models::DigitalWalletToken::Cardholder,
         created_at: Time,
+        device: Increase::Models::DigitalWalletToken::Device,
         status: Increase::Models::DigitalWalletToken::status,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
@@ -37,6 +45,87 @@ module Increase
       ) -> void
 
       def to_hash: -> Increase::Models::digital_wallet_token
+
+      type cardholder = { name: String? }
+
+      class Cardholder < Increase::BaseModel
+        attr_accessor name: String?
+
+        def initialize: (name: String?) -> void
+
+        def to_hash: -> Increase::Models::DigitalWalletToken::cardholder
+      end
+
+      type device =
+        {
+          device_type: Increase::Models::DigitalWalletToken::Device::device_type?,
+          identifier: String?,
+          ip_address: String?,
+          name: String?
+        }
+
+      class Device < Increase::BaseModel
+        attr_accessor device_type: Increase::Models::DigitalWalletToken::Device::device_type?
+
+        attr_accessor identifier: String?
+
+        attr_accessor ip_address: String?
+
+        attr_accessor name: String?
+
+        def initialize: (
+          device_type: Increase::Models::DigitalWalletToken::Device::device_type?,
+          identifier: String?,
+          ip_address: String?,
+          name: String?
+        ) -> void
+
+        def to_hash: -> Increase::Models::DigitalWalletToken::device
+
+        type device_type =
+          :unknown
+          | :mobile_phone
+          | :tablet
+          | :watch
+          | :mobilephone_or_tablet
+          | :pc
+          | :household_device
+          | :wearable_device
+          | :automobile_device
+
+        module DeviceType
+          extend Increase::Enum
+
+          # Unknown
+          UNKNOWN: :unknown
+
+          # Mobile Phone
+          MOBILE_PHONE: :mobile_phone
+
+          # Tablet
+          TABLET: :tablet
+
+          # Watch
+          WATCH: :watch
+
+          # Mobile Phone or Tablet
+          MOBILEPHONE_OR_TABLET: :mobilephone_or_tablet
+
+          # PC
+          PC: :pc
+
+          # Household Device
+          HOUSEHOLD_DEVICE: :household_device
+
+          # Wearable Device
+          WEARABLE_DEVICE: :wearable_device
+
+          # Automobile Device
+          AUTOMOBILE_DEVICE: :automobile_device
+
+          def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Device::device_type]
+        end
+      end
 
       type status = :active | :inactive | :suspended | :deactivated
 
