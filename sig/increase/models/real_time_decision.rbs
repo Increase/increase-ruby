@@ -801,6 +801,7 @@ module Increase
           card_id: String,
           card_profile_id: String?,
           decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?,
+          device: Increase::Models::RealTimeDecision::DigitalWalletToken::Device,
           digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet
         }
 
@@ -811,12 +812,15 @@ module Increase
 
         attr_accessor decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?
 
+        attr_accessor device: Increase::Models::RealTimeDecision::DigitalWalletToken::Device
+
         attr_accessor digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet
 
         def initialize: (
           card_id: String,
           card_profile_id: String?,
           decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?,
+          device: Increase::Models::RealTimeDecision::DigitalWalletToken::Device,
           digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet
         ) -> void
 
@@ -834,6 +838,16 @@ module Increase
           DECLINE: :decline
 
           def self?.values: -> ::Array[Increase::Models::RealTimeDecision::DigitalWalletToken::decision]
+        end
+
+        type device = { identifier: String? }
+
+        class Device < Increase::BaseModel
+          attr_accessor identifier: String?
+
+          def initialize: (identifier: String?) -> void
+
+          def to_hash: -> Increase::Models::RealTimeDecision::DigitalWalletToken::device
         end
 
         type digital_wallet = :apple_pay | :google_pay | :samsung_pay | :unknown

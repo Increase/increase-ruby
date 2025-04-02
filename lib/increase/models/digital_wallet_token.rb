@@ -16,12 +16,24 @@ module Increase
       #   @return [String]
       required :card_id, String
 
+      # @!attribute cardholder
+      #   The cardholder information given when the Digital Wallet Token was created.
+      #
+      #   @return [Increase::Models::DigitalWalletToken::Cardholder]
+      required :cardholder, -> { Increase::Models::DigitalWalletToken::Cardholder }
+
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       #     the Digital Wallet Token was created.
       #
       #   @return [Time]
       required :created_at, Time
+
+      # @!attribute device
+      #   The device that was used to create the Digital Wallet Token.
+      #
+      #   @return [Increase::Models::DigitalWalletToken::Device]
+      required :device, -> { Increase::Models::DigitalWalletToken::Device }
 
       # @!attribute status
       #   This indicates if payments can be made with the Digital Wallet Token.
@@ -55,15 +67,114 @@ module Increase
       #   #
       #   # @param id [String]
       #   # @param card_id [String]
+      #   # @param cardholder [Increase::Models::DigitalWalletToken::Cardholder]
       #   # @param created_at [Time]
+      #   # @param device [Increase::Models::DigitalWalletToken::Device]
       #   # @param status [Symbol, Increase::Models::DigitalWalletToken::Status]
       #   # @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
       #   # @param type [Symbol, Increase::Models::DigitalWalletToken::Type]
       #   # @param updates [Array<Increase::Models::DigitalWalletToken::Update>]
       #   #
-      #   def initialize(id:, card_id:, created_at:, status:, token_requestor:, type:, updates:, **) = super
+      #   def initialize(id:, card_id:, cardholder:, created_at:, device:, status:, token_requestor:, type:, updates:, **) = super
 
       # def initialize: (Hash | Increase::BaseModel) -> void
+
+      # @see Increase::Models::DigitalWalletToken#cardholder
+      class Cardholder < Increase::BaseModel
+        # @!attribute name
+        #   Name of the cardholder, for example "John Smith".
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!parse
+        #   # The cardholder information given when the Digital Wallet Token was created.
+        #   #
+        #   # @param name [String, nil]
+        #   #
+        #   def initialize(name:, **) = super
+
+        # def initialize: (Hash | Increase::BaseModel) -> void
+      end
+
+      # @see Increase::Models::DigitalWalletToken#device
+      class Device < Increase::BaseModel
+        # @!attribute device_type
+        #   Device type.
+        #
+        #   @return [Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType, nil]
+        required :device_type, enum: -> { Increase::Models::DigitalWalletToken::Device::DeviceType }, nil?: true
+
+        # @!attribute identifier
+        #   ID assigned to the device by the digital wallet provider.
+        #
+        #   @return [String, nil]
+        required :identifier, String, nil?: true
+
+        # @!attribute ip_address
+        #   IP address of the device.
+        #
+        #   @return [String, nil]
+        required :ip_address, String, nil?: true
+
+        # @!attribute name
+        #   Name of the device, for example "My Work Phone".
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!parse
+        #   # The device that was used to create the Digital Wallet Token.
+        #   #
+        #   # @param device_type [Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType, nil]
+        #   # @param identifier [String, nil]
+        #   # @param ip_address [String, nil]
+        #   # @param name [String, nil]
+        #   #
+        #   def initialize(device_type:, identifier:, ip_address:, name:, **) = super
+
+        # def initialize: (Hash | Increase::BaseModel) -> void
+
+        # Device type.
+        #
+        # @see Increase::Models::DigitalWalletToken::Device#device_type
+        module DeviceType
+          extend Increase::Enum
+
+          # Unknown
+          UNKNOWN = :unknown
+
+          # Mobile Phone
+          MOBILE_PHONE = :mobile_phone
+
+          # Tablet
+          TABLET = :tablet
+
+          # Watch
+          WATCH = :watch
+
+          # Mobile Phone or Tablet
+          MOBILEPHONE_OR_TABLET = :mobilephone_or_tablet
+
+          # PC
+          PC = :pc
+
+          # Household Device
+          HOUSEHOLD_DEVICE = :household_device
+
+          # Wearable Device
+          WEARABLE_DEVICE = :wearable_device
+
+          # Automobile Device
+          AUTOMOBILE_DEVICE = :automobile_device
+
+          finalize!
+
+          # @!parse
+          #   # @return [Array<Symbol>]
+          #   def self.values; end
+        end
+      end
 
       # This indicates if payments can be made with the Digital Wallet Token.
       #

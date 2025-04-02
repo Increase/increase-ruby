@@ -1747,6 +1747,18 @@ module Increase
         sig { returns(T.nilable(Increase::Models::RealTimeDecision::DigitalWalletToken::Decision::TaggedSymbol)) }
         attr_accessor :decision
 
+        # Device that is being used to provision the digital wallet token.
+        sig { returns(Increase::Models::RealTimeDecision::DigitalWalletToken::Device) }
+        attr_reader :device
+
+        sig do
+          params(
+            device: T.any(Increase::Models::RealTimeDecision::DigitalWalletToken::Device, Increase::Util::AnyHash)
+          )
+            .void
+        end
+        attr_writer :device
+
         # The digital wallet app being used.
         sig { returns(Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet::TaggedSymbol) }
         attr_accessor :digital_wallet
@@ -1757,11 +1769,12 @@ module Increase
             card_id: String,
             card_profile_id: T.nilable(String),
             decision: T.nilable(Increase::Models::RealTimeDecision::DigitalWalletToken::Decision::OrSymbol),
+            device: T.any(Increase::Models::RealTimeDecision::DigitalWalletToken::Device, Increase::Util::AnyHash),
             digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet::OrSymbol
           )
             .returns(T.attached_class)
         end
-        def self.new(card_id:, card_profile_id:, decision:, digital_wallet:)
+        def self.new(card_id:, card_profile_id:, decision:, device:, digital_wallet:)
         end
 
         sig do
@@ -1771,6 +1784,7 @@ module Increase
                 card_id: String,
                 card_profile_id: T.nilable(String),
                 decision: T.nilable(Increase::Models::RealTimeDecision::DigitalWalletToken::Decision::TaggedSymbol),
+                device: Increase::Models::RealTimeDecision::DigitalWalletToken::Device,
                 digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet::TaggedSymbol
               }
             )
@@ -1796,6 +1810,21 @@ module Increase
 
           sig { override.returns(T::Array[Increase::Models::RealTimeDecision::DigitalWalletToken::Decision::TaggedSymbol]) }
           def self.values
+          end
+        end
+
+        class Device < Increase::BaseModel
+          # ID assigned to the device by the digital wallet provider.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :identifier
+
+          # Device that is being used to provision the digital wallet token.
+          sig { params(identifier: T.nilable(String)).returns(T.attached_class) }
+          def self.new(identifier:)
+          end
+
+          sig { override.returns({identifier: T.nilable(String)}) }
+          def to_hash
           end
         end
 

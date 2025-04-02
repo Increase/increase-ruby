@@ -1207,6 +1207,12 @@ module Increase
                  enum: -> { Increase::Models::RealTimeDecision::DigitalWalletToken::Decision },
                  nil?: true
 
+        # @!attribute device
+        #   Device that is being used to provision the digital wallet token.
+        #
+        #   @return [Increase::Models::RealTimeDecision::DigitalWalletToken::Device]
+        required :device, -> { Increase::Models::RealTimeDecision::DigitalWalletToken::Device }
+
         # @!attribute digital_wallet
         #   The digital wallet app being used.
         #
@@ -1220,9 +1226,10 @@ module Increase
         #   # @param card_id [String]
         #   # @param card_profile_id [String, nil]
         #   # @param decision [Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::Decision, nil]
+        #   # @param device [Increase::Models::RealTimeDecision::DigitalWalletToken::Device]
         #   # @param digital_wallet [Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet]
         #   #
-        #   def initialize(card_id:, card_profile_id:, decision:, digital_wallet:, **) = super
+        #   def initialize(card_id:, card_profile_id:, decision:, device:, digital_wallet:, **) = super
 
         # def initialize: (Hash | Increase::BaseModel) -> void
 
@@ -1244,6 +1251,24 @@ module Increase
           # @!parse
           #   # @return [Array<Symbol>]
           #   def self.values; end
+        end
+
+        # @see Increase::Models::RealTimeDecision::DigitalWalletToken#device
+        class Device < Increase::BaseModel
+          # @!attribute identifier
+          #   ID assigned to the device by the digital wallet provider.
+          #
+          #   @return [String, nil]
+          required :identifier, String, nil?: true
+
+          # @!parse
+          #   # Device that is being used to provision the digital wallet token.
+          #   #
+          #   # @param identifier [String, nil]
+          #   #
+          #   def initialize(identifier:, **) = super
+
+          # def initialize: (Hash | Increase::BaseModel) -> void
         end
 
         # The digital wallet app being used.
