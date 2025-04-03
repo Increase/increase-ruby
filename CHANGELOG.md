@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-04-03)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### ⚠ BREAKING CHANGES
+
+* bump min supported ruby version to 3.1 (oldest non-EOL) ([#10](https://github.com/Increase/increase-ruby/issues/10))
+* remove top level type aliases to relocated classes ([#9](https://github.com/Increase/increase-ruby/issues/9))
+
+### Features
+
+* bump min supported ruby version to 3.1 (oldest non-EOL) ([#10](https://github.com/Increase/increase-ruby/issues/10)) ([6bdbf40](https://github.com/Increase/increase-ruby/commit/6bdbf40be7f88549fdac9c50958a876b8bc21319))
+* remove top level type aliases to relocated classes ([#9](https://github.com/Increase/increase-ruby/issues/9)) ([21e1d7f](https://github.com/Increase/increase-ruby/commit/21e1d7f50eeca18069b3f32cb7f1872dfc3ca8f6))
+
+
+### Bug Fixes
+
+* pre-release version string should match ruby, not semver conventions ([#12](https://github.com/Increase/increase-ruby/issues/12)) ([fda09d8](https://github.com/Increase/increase-ruby/commit/fda09d8fb2b491f9b893c340ea20d2f1d3f3e21c))
+
+
+### Chores
+
+* demonstrate how to make undocumented requests in README ([#11](https://github.com/Increase/increase-ruby/issues/11)) ([3a4e543](https://github.com/Increase/increase-ruby/commit/3a4e543eeb9b6b72559e4c7193a54f27fe006f49))
+* **internal:** version bump ([#6](https://github.com/Increase/increase-ruby/issues/6)) ([99ee517](https://github.com/Increase/increase-ruby/commit/99ee5170448bca36d7773f7a443c27a4028da439))
+* move private classes into internal module ([#8](https://github.com/Increase/increase-ruby/issues/8)) ([13f35d4](https://github.com/Increase/increase-ruby/commit/13f35d46ee4677f7f034afd91c6a911ec71e1ae7))
+
 ## 0.1.0-alpha.2 (2025-04-02)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
