@@ -7,6 +7,8 @@ module Increase
       #
       # @abstract
       #
+      # @generic Elem
+      #
       # Hash of items of a given type.
       class HashOf
         include Increase::Internal::Type::Converter
@@ -111,7 +113,7 @@ module Increase
 
         # @api private
         #
-        # @return [Increase::Internal::Type::Converter, Class]
+        # @return [generic<Elem>]
         protected def item_type = @item_type_fn.call
 
         # @api private
