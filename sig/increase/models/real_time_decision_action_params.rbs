@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class RealTimeDecisionActionParams < Increase::BaseModel
+    class RealTimeDecisionActionParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -60,7 +60,7 @@ module Increase
           decision: Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision
         }
 
-      class CardAuthentication < Increase::BaseModel
+      class CardAuthentication < Increase::Internal::Type::BaseModel
         attr_accessor decision: Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision
 
         def initialize: (
@@ -72,7 +72,7 @@ module Increase
         type decision = :approve | :challenge | :deny
 
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authentication attempt without triggering a challenge.
           APPROVE: :approve
@@ -92,7 +92,7 @@ module Increase
           result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
         }
 
-      class CardAuthenticationChallenge < Increase::BaseModel
+      class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         attr_accessor result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
 
         def initialize: (
@@ -104,7 +104,7 @@ module Increase
         type result = :success | :failure
 
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time code to the cardholder.
           SUCCESS: :success
@@ -122,7 +122,7 @@ module Increase
           decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
         }
 
-      class CardAuthorization < Increase::BaseModel
+      class CardAuthorization < Increase::Internal::Type::BaseModel
         attr_accessor decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision
 
         attr_reader decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason?
@@ -141,7 +141,7 @@ module Increase
         type decision = :approve | :decline
 
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authorization.
           APPROVE: :approve
@@ -161,7 +161,7 @@ module Increase
           | :other
 
         module DeclineReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
           INSUFFICIENT_FUNDS: :insufficient_funds
@@ -191,7 +191,7 @@ module Increase
           success: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success
         }
 
-      class DigitalWalletAuthentication < Increase::BaseModel
+      class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         attr_accessor result: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::result
 
         attr_reader success: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success?
@@ -210,7 +210,7 @@ module Increase
         type result = :success | :failure
 
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time passcode to the cardholder.
           SUCCESS: :success
@@ -223,7 +223,7 @@ module Increase
 
         type success = { email: String, phone: String }
 
-        class Success < Increase::BaseModel
+        class Success < Increase::Internal::Type::BaseModel
           attr_reader email: String?
 
           def email=: (String) -> String
@@ -244,7 +244,7 @@ module Increase
           decline: Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Decline
         }
 
-      class DigitalWalletToken < Increase::BaseModel
+      class DigitalWalletToken < Increase::Internal::Type::BaseModel
         attr_reader approval: Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Approval?
 
         def approval=: (
@@ -266,7 +266,7 @@ module Increase
 
         type approval = { email: String, phone: String }
 
-        class Approval < Increase::BaseModel
+        class Approval < Increase::Internal::Type::BaseModel
           attr_reader email: String?
 
           def email=: (String) -> String
@@ -282,7 +282,7 @@ module Increase
 
         type decline = { reason: String }
 
-        class Decline < Increase::BaseModel
+        class Decline < Increase::Internal::Type::BaseModel
           attr_reader reason: String?
 
           def reason=: (String) -> String

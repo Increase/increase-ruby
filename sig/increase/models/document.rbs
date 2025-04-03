@@ -10,7 +10,7 @@ module Increase
         type: Increase::Models::Document::type_
       }
 
-    class Document < Increase::BaseModel
+    class Document < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor category: Increase::Models::Document::category
@@ -41,7 +41,7 @@ module Increase
         | :company_information
 
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Internal Revenue Service Form 1099-INT.
         FORM_1099_INT: :form_1099_int
@@ -61,7 +61,7 @@ module Increase
       type type_ = :document
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         DOCUMENT: :document
 

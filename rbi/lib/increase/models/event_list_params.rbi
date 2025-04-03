@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class EventListParams < Increase::BaseModel
+    class EventListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -16,19 +16,13 @@ module Increase
       sig { returns(T.nilable(Increase::Models::EventListParams::Category)) }
       attr_reader :category
 
-      sig do
-        params(category: T.any(Increase::Models::EventListParams::Category, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(category: T.any(Increase::Models::EventListParams::Category, Increase::Internal::AnyHash)).void }
       attr_writer :category
 
       sig { returns(T.nilable(Increase::Models::EventListParams::CreatedAt)) }
       attr_reader :created_at
 
-      sig do
-        params(created_at: T.any(Increase::Models::EventListParams::CreatedAt, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(created_at: T.any(Increase::Models::EventListParams::CreatedAt, Increase::Internal::AnyHash)).void }
       attr_writer :created_at
 
       # Return the page of entries after this one.
@@ -49,11 +43,11 @@ module Increase
       sig do
         params(
           associated_object_id: String,
-          category: T.any(Increase::Models::EventListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::EventListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::EventListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::EventListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -83,7 +77,7 @@ module Increase
       def to_hash
       end
 
-      class Category < Increase::BaseModel
+      class Category < Increase::Internal::Type::BaseModel
         # Filter Events for those with the specified category or categories. For GET
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
@@ -102,7 +96,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventListParams::Category::In) }
           OrSymbol =
@@ -518,7 +512,7 @@ module Increase
         end
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }

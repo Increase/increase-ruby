@@ -4,7 +4,7 @@ module Increase
       { reason: Increase::Models::InboundCheckDepositReturnParams::reason }
       & Increase::Internal::Type::request_parameters
 
-    class InboundCheckDepositReturnParams < Increase::BaseModel
+    class InboundCheckDepositReturnParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -25,7 +25,7 @@ module Increase
         | :endorsement_irregular
 
       module Reason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The check was altered or fictitious.
         ALTERED_OR_FICTITIOUS: :altered_or_fictitious

@@ -10,7 +10,7 @@ module Increase
         verification_code: String
       }
 
-    class CardDetails < Increase::BaseModel
+    class CardDetails < Increase::Internal::Type::BaseModel
       attr_accessor card_id: String
 
       attr_accessor expiration_month: Integer
@@ -37,7 +37,7 @@ module Increase
       type type_ = :card_details
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_DETAILS: :card_details
 

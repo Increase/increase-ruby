@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class CardUpdateParams < Increase::BaseModel
+    class CardUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -60,7 +60,7 @@ module Increase
           :line2 => String
         }
 
-      class BillingAddress < Increase::BaseModel
+      class BillingAddress < Increase::Internal::Type::BaseModel
         attr_accessor city: String
 
         attr_accessor line1: String
@@ -87,7 +87,7 @@ module Increase
       type digital_wallet =
         { digital_card_profile_id: String, email: String, phone: String }
 
-      class DigitalWallet < Increase::BaseModel
+      class DigitalWallet < Increase::Internal::Type::BaseModel
         attr_reader digital_card_profile_id: String?
 
         def digital_card_profile_id=: (String) -> String
@@ -112,7 +112,7 @@ module Increase
       type status = :active | :disabled | :canceled
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The card is active.
         ACTIVE: :active

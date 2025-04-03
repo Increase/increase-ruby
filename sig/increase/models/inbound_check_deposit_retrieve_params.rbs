@@ -3,7 +3,7 @@ module Increase
     type inbound_check_deposit_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class InboundCheckDepositRetrieveParams < Increase::BaseModel
+    class InboundCheckDepositRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

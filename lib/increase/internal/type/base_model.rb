@@ -23,7 +23,7 @@ module Increase
           #
           # @return [Hash{Symbol=>Hash{Symbol=>Object}}]
           def known_fields
-            @known_fields ||= (self < Increase::BaseModel ? superclass.known_fields.dup : {})
+            @known_fields ||= (self < Increase::Internal::Type::BaseModel ? superclass.known_fields.dup : {})
           end
 
           # @api private
@@ -67,10 +67,10 @@ module Increase
             const = if required && !nilable
               info.fetch(
                 :const,
-                Increase::Internal::Util::OMIT
+                Increase::Internal::OMIT
               )
             else
-              Increase::Internal::Util::OMIT
+              Increase::Internal::OMIT
             end
 
             [name_sym, setter].each { undef_method(_1) } if known_fields.key?(name_sym)
@@ -89,7 +89,7 @@ module Increase
 
             define_method(name_sym) do
               target = type_fn.call
-              value = @data.fetch(name_sym) { const == Increase::Internal::Util::OMIT ? nil : const }
+              value = @data.fetch(name_sym) { const == Increase::Internal::OMIT ? nil : const }
               state = {strictness: :strong, exactness: {yes: 0, no: 0, maybe: 0}, branched: 0}
               if (nilable || !required) && value.nil?
                 nil
@@ -105,7 +105,7 @@ module Increase
               # rubocop:disable Layout/LineLength
               message = "Failed to parse #{cls}.#{__method__} from #{value.class} to #{target.inspect}. To get the unparsed API response, use #{cls}[:#{__method__}]."
               # rubocop:enable Layout/LineLength
-              raise Increase::ConversionError.new(message)
+              raise Increase::Errors::ConversionError.new(message)
             end
           end
 
@@ -175,7 +175,7 @@ module Increase
           # @param other [Object]
           #
           # @return [Boolean]
-          def ==(other) = other.is_a?(Class) && other <= Increase::BaseModel && other.fields == fields
+          def ==(other) = other.is_a?(Class) && other <= Increase::Internal::Type::BaseModel && other.fields == fields
         end
 
         # @param other [Object]
@@ -186,7 +186,7 @@ module Increase
         class << self
           # @api private
           #
-          # @param value [Increase::BaseModel, Hash{Object=>Object}, Object]
+          # @param value [Increase::Internal::Type::BaseModel, Hash{Object=>Object}, Object]
           #
           # @param state [Hash{Symbol=>Object}] .
           #
@@ -196,7 +196,7 @@ module Increase
           #
           #   @option state [Integer] :branched
           #
-          # @return [Increase::BaseModel, Object]
+          # @return [Increase::Internal::Type::BaseModel, Object]
           def coerce(value, state:)
             exactness = state.fetch(:exactness)
 
@@ -221,7 +221,7 @@ module Increase
               api_name, nilable, const = field.fetch_values(:api_name, :nilable, :const)
 
               unless val.key?(api_name)
-                if required && mode != :dump && const == Increase::Internal::Util::OMIT
+                if required && mode != :dump && const == Increase::Internal::OMIT
                   exactness[nilable ? :maybe : :no] += 1
                 else
                   exactness[:yes] += 1
@@ -255,7 +255,7 @@ module Increase
 
           # @api private
           #
-          # @param value [Increase::BaseModel, Object]
+          # @param value [Increase::Internal::Type::BaseModel, Object]
           #
           # @return [Hash{Object=>Object}, Object]
           def dump(value)
@@ -284,7 +284,7 @@ module Increase
 
             known_fields.each_value do |field|
               mode, api_name, const = field.fetch_values(:mode, :api_name, :const)
-              next if mode == :coerce || acc.key?(api_name) || const == Increase::Internal::Util::OMIT
+              next if mode == :coerce || acc.key?(api_name) || const == Increase::Internal::OMIT
               acc.store(api_name, const)
             end
 
@@ -351,13 +351,13 @@ module Increase
 
         # Create a new instance of a model.
         #
-        # @param data [Hash{Symbol=>Object}, Increase::BaseModel]
+        # @param data [Hash{Symbol=>Object}, Increase::Internal::Type::BaseModel]
         def initialize(data = {})
           case Increase::Internal::Util.coerce_hash(data)
           in Hash => coerced
             @data = coerced
           else
-            raise ArgumentError.new("Expected a #{Hash} or #{Increase::BaseModel}, got #{data.inspect}")
+            raise ArgumentError.new("Expected a #{Hash} or #{Increase::Internal::Type::BaseModel}, got #{data.inspect}")
           end
         end
 

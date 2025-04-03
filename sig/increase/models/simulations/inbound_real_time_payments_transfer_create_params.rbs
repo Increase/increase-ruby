@@ -13,7 +13,7 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class InboundRealTimePaymentsTransferCreateParams < Increase::BaseModel
+      class InboundRealTimePaymentsTransferCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

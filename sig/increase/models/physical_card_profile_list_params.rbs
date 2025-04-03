@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class PhysicalCardProfileListParams < Increase::BaseModel
+    class PhysicalCardProfileListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -46,7 +46,7 @@ module Increase
           in_: ::Array[Increase::Models::PhysicalCardProfileListParams::Status::in_]
         }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::PhysicalCardProfileListParams::Status::in_]?
 
         def in_=: (
@@ -68,7 +68,7 @@ module Increase
           | :archived
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The Card Profile has not yet been processed by Increase.
           PENDING_CREATING: :pending_creating

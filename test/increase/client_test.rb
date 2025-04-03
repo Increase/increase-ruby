@@ -72,7 +72,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!")
     end
 
@@ -84,7 +84,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!")
     end
 
@@ -96,7 +96,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!", request_options: {max_retries: 3})
     end
 
@@ -108,7 +108,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!", request_options: {max_retries: 4})
     end
 
@@ -120,7 +120,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {"retry-after" => "1.3"}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!")
     end
 
@@ -134,7 +134,7 @@ class IncreaseTest < Minitest::Test
       MockRequester.new(500, {"retry-after" => (Time.now + 10).httpdate}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
       increase.accounts.create(name: "New Account!")
       Thread.current.thread_variable_set(:time_now, nil)
@@ -149,7 +149,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {"retry-after-ms" => "1300"}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!")
     end
 
@@ -162,7 +162,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!")
     end
 
@@ -175,7 +175,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(
         name: "New Account!",
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
@@ -191,7 +191,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(
         name: "New Account!",
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
@@ -273,7 +273,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(name: "New Account!", request_options: {max_retries: 1})
     end
 
@@ -289,7 +289,7 @@ class IncreaseTest < Minitest::Test
     requester = MockRequester.new(500, {}, {"type" => "internal_server_error"})
     increase.requester = requester
 
-    assert_raises(Increase::InternalServerError) do
+    assert_raises(Increase::Errors::InternalServerError) do
       increase.accounts.create(
         name: "New Account!",
         request_options: {max_retries: 1, idempotency_key: "user-supplied-key"}

@@ -11,7 +11,7 @@ module Increase
         type: Increase::Models::OAuthConnection::type_
       }
 
-    class OAuthConnection < Increase::BaseModel
+    class OAuthConnection < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
@@ -41,7 +41,7 @@ module Increase
       type status = :active | :inactive
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The OAuth connection is active.
         ACTIVE: :active
@@ -55,7 +55,7 @@ module Increase
       type type_ = :oauth_connection
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         OAUTH_CONNECTION: :oauth_connection
 

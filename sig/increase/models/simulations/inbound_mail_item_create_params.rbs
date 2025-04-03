@@ -5,7 +5,7 @@ module Increase
         { amount: Integer, lockbox_id: String, contents_file_id: String }
         & Increase::Internal::Type::request_parameters
 
-      class InboundMailItemCreateParams < Increase::BaseModel
+      class InboundMailItemCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

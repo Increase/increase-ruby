@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BookkeepingEntrySetCreateParams < Increase::BaseModel
+    class BookkeepingEntrySetCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -27,10 +27,10 @@ module Increase
 
       sig do
         params(
-          entries: T::Array[T.any(Increase::Models::BookkeepingEntrySetCreateParams::Entry, Increase::Internal::Util::AnyHash)],
+          entries: T::Array[T.any(Increase::Models::BookkeepingEntrySetCreateParams::Entry, Increase::Internal::AnyHash)],
           date: Time,
           transaction_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -51,7 +51,7 @@ module Increase
       def to_hash
       end
 
-      class Entry < Increase::BaseModel
+      class Entry < Increase::Internal::Type::BaseModel
         # The identifier for the Bookkeeping Account impacted by this entry.
         sig { returns(String) }
         attr_accessor :account_id

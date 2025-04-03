@@ -16,7 +16,7 @@ module Increase
         type: Increase::Models::PhysicalCardProfile::type_
       }
 
-    class PhysicalCardProfile < Increase::BaseModel
+    class PhysicalCardProfile < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor back_image_file_id: String?
@@ -61,7 +61,7 @@ module Increase
       type creator = :increase | :user
 
       module Creator
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # This Physical Card Profile was created by Increase.
         INCREASE: :increase
@@ -81,7 +81,7 @@ module Increase
         | :archived
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Card Profile has not yet been processed by Increase.
         PENDING_CREATING: :pending_creating
@@ -107,7 +107,7 @@ module Increase
       type type_ = :physical_card_profile
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PHYSICAL_CARD_PROFILE: :physical_card_profile
 

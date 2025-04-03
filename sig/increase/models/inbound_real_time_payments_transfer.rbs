@@ -20,7 +20,7 @@ module Increase
         type: Increase::Models::InboundRealTimePaymentsTransfer::type_
       }
 
-    class InboundRealTimePaymentsTransfer < Increase::BaseModel
+    class InboundRealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -76,7 +76,7 @@ module Increase
 
       type confirmation = { confirmed_at: Time, transaction_id: String }
 
-      class Confirmation < Increase::BaseModel
+      class Confirmation < Increase::Internal::Type::BaseModel
         attr_accessor confirmed_at: Time
 
         attr_accessor transaction_id: String
@@ -89,7 +89,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -119,7 +119,7 @@ module Increase
           reason: Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason
         }
 
-      class Decline < Increase::BaseModel
+      class Decline < Increase::Internal::Type::BaseModel
         attr_accessor declined_at: Time
 
         attr_accessor declined_transaction_id: String
@@ -143,7 +143,7 @@ module Increase
           | :real_time_payments_not_enabled
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number is canceled.
           ACCOUNT_NUMBER_CANCELED: :account_number_canceled
@@ -170,7 +170,7 @@ module Increase
       type status = :pending_confirming | :timed_out | :confirmed | :declined
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is pending confirmation.
         PENDING_CONFIRMING: :pending_confirming
@@ -190,7 +190,7 @@ module Increase
       type type_ = :inbound_real_time_payments_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_REAL_TIME_PAYMENTS_TRANSFER: :inbound_real_time_payments_transfer
 

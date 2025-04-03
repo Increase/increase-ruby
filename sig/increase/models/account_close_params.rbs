@@ -3,7 +3,7 @@ module Increase
     type account_close_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class AccountCloseParams < Increase::BaseModel
+    class AccountCloseParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

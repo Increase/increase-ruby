@@ -6,7 +6,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class InboundACHTransferTransferReturnParams < Increase::BaseModel
+    class InboundACHTransferTransferReturnParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -32,7 +32,7 @@ module Increase
         | :corporate_customer_advised_not_authorized
 
       module Reason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The customer's account has insufficient funds. This reason is only allowed for debits. The Nacha return code is R01.
         INSUFFICIENT_FUNDS: :insufficient_funds

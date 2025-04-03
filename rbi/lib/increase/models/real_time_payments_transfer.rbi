@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class RealTimePaymentsTransfer < Increase::BaseModel
+    class RealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
       # The Real-Time Payments Transfer's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -18,9 +18,7 @@ module Increase
 
       sig do
         params(
-          acknowledgement: T.nilable(
-            T.any(Increase::Models::RealTimePaymentsTransfer::Acknowledgement, Increase::Internal::Util::AnyHash)
-          )
+          acknowledgement: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Acknowledgement, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -37,7 +35,7 @@ module Increase
 
       sig do
         params(
-          approval: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Approval, Increase::Internal::Util::AnyHash))
+          approval: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Approval, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -50,9 +48,7 @@ module Increase
 
       sig do
         params(
-          cancellation: T.nilable(
-            T.any(Increase::Models::RealTimePaymentsTransfer::Cancellation, Increase::Internal::Util::AnyHash)
-          )
+          cancellation: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Cancellation, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -69,7 +65,7 @@ module Increase
 
       sig do
         params(
-          created_by: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy, Increase::Internal::Util::AnyHash))
+          created_by: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -123,7 +119,7 @@ module Increase
 
       sig do
         params(
-          rejection: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Rejection, Increase::Internal::Util::AnyHash))
+          rejection: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Rejection, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -148,9 +144,7 @@ module Increase
 
       sig do
         params(
-          submission: T.nilable(
-            T.any(Increase::Models::RealTimePaymentsTransfer::Submission, Increase::Internal::Util::AnyHash)
-          )
+          submission: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Submission, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -181,16 +175,12 @@ module Increase
         params(
           id: String,
           account_id: String,
-          acknowledgement: T.nilable(
-            T.any(Increase::Models::RealTimePaymentsTransfer::Acknowledgement, Increase::Internal::Util::AnyHash)
-          ),
+          acknowledgement: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Acknowledgement, Increase::Internal::AnyHash)),
           amount: Integer,
-          approval: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Approval, Increase::Internal::Util::AnyHash)),
-          cancellation: T.nilable(
-            T.any(Increase::Models::RealTimePaymentsTransfer::Cancellation, Increase::Internal::Util::AnyHash)
-          ),
+          approval: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Approval, Increase::Internal::AnyHash)),
+          cancellation: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Cancellation, Increase::Internal::AnyHash)),
           created_at: Time,
-          created_by: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy, Increase::Internal::Util::AnyHash)),
+          created_by: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy, Increase::Internal::AnyHash)),
           creditor_name: String,
           currency: Increase::Models::RealTimePaymentsTransfer::Currency::OrSymbol,
           debtor_name: T.nilable(String),
@@ -199,13 +189,11 @@ module Increase
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           pending_transaction_id: T.nilable(String),
-          rejection: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Rejection, Increase::Internal::Util::AnyHash)),
+          rejection: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Rejection, Increase::Internal::AnyHash)),
           remittance_information: String,
           source_account_number_id: String,
           status: Increase::Models::RealTimePaymentsTransfer::Status::OrSymbol,
-          submission: T.nilable(
-            T.any(Increase::Models::RealTimePaymentsTransfer::Submission, Increase::Internal::Util::AnyHash)
-          ),
+          submission: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::Submission, Increase::Internal::AnyHash)),
           transaction_id: T.nilable(String),
           type: Increase::Models::RealTimePaymentsTransfer::Type::OrSymbol,
           ultimate_creditor_name: T.nilable(String),
@@ -277,7 +265,7 @@ module Increase
       def to_hash
       end
 
-      class Acknowledgement < Increase::BaseModel
+      class Acknowledgement < Increase::Internal::Type::BaseModel
         # When the transfer was acknowledged.
         sig { returns(Time) }
         attr_accessor :acknowledged_at
@@ -293,7 +281,7 @@ module Increase
         end
       end
 
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the transfer was approved.
         sig { returns(Time) }
@@ -315,7 +303,7 @@ module Increase
         end
       end
 
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the Transfer was canceled.
         sig { returns(Time) }
@@ -337,7 +325,7 @@ module Increase
         end
       end
 
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         # If present, details about the API key that created the transfer.
         sig { returns(T.nilable(Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey)) }
         attr_reader :api_key
@@ -345,7 +333,7 @@ module Increase
         sig do
           params(
             api_key: T.nilable(
-              T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -365,7 +353,7 @@ module Increase
             oauth_application: T.nilable(
               T.any(
                 Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
           )
@@ -379,9 +367,7 @@ module Increase
 
         sig do
           params(
-            user: T.nilable(
-              T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, Increase::Internal::Util::AnyHash)
-            )
+            user: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, Increase::Internal::AnyHash))
           )
             .void
         end
@@ -391,18 +377,16 @@ module Increase
         sig do
           params(
             api_key: T.nilable(
-              T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey, Increase::Internal::AnyHash)
             ),
             category: Increase::Models::RealTimePaymentsTransfer::CreatedBy::Category::OrSymbol,
             oauth_application: T.nilable(
               T.any(
                 Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             ),
-            user: T.nilable(
-              T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, Increase::Internal::Util::AnyHash)
-            )
+            user: T.nilable(T.any(Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, Increase::Internal::AnyHash))
           )
             .returns(T.attached_class)
         end
@@ -423,7 +407,7 @@ module Increase
         def to_hash
         end
 
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           # The description set for the API key when it was created.
           sig { returns(T.nilable(String)) }
           attr_accessor :description
@@ -440,7 +424,7 @@ module Increase
 
         # The type of object that created this transfer.
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimePaymentsTransfer::CreatedBy::Category) }
@@ -462,7 +446,7 @@ module Increase
           end
         end
 
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           # The name of the OAuth Application.
           sig { returns(String) }
           attr_accessor :name
@@ -477,7 +461,7 @@ module Increase
           end
         end
 
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           # The email address of the User.
           sig { returns(String) }
           attr_accessor :email
@@ -496,7 +480,7 @@ module Increase
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       #   currency. For real-time payments transfers this is always equal to `USD`.
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RealTimePaymentsTransfer::Currency) }
         OrSymbol =
@@ -525,7 +509,7 @@ module Increase
         end
       end
 
-      class Rejection < Increase::BaseModel
+      class Rejection < Increase::Internal::Type::BaseModel
         # Additional information about the rejection provided by the recipient bank when
         #   the `reject_reason_code` is `NARRATIVE`.
         sig { returns(T.nilable(String)) }
@@ -570,7 +554,7 @@ module Increase
         # The reason the transfer was rejected as provided by the recipient bank or the
         #   Real-Time Payments network.
         module RejectReasonCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimePaymentsTransfer::Rejection::RejectReasonCode) }
@@ -732,7 +716,7 @@ module Increase
 
       # The lifecycle status of the transfer.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RealTimePaymentsTransfer::Status) }
         OrSymbol =
@@ -771,7 +755,7 @@ module Increase
         end
       end
 
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the transfer was submitted to The Clearing House.
         sig { returns(T.nilable(Time)) }
@@ -797,7 +781,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `real_time_payments_transfer`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RealTimePaymentsTransfer::Type) }
         OrSymbol =

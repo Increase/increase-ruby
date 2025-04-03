@@ -13,7 +13,7 @@ class Increase::Test::Resources::ProofOfAuthorizationRequestsTest < Increase::Te
     assert_pattern do
       response => {
         id: String,
-        ach_transfers: ^(Increase::ArrayOf[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer]),
+        ach_transfers: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer]),
         created_at: Time,
         due_on: Time,
         type: Increase::Models::ProofOfAuthorizationRequest::Type,
@@ -39,7 +39,7 @@ class Increase::Test::Resources::ProofOfAuthorizationRequestsTest < Increase::Te
     assert_pattern do
       row => {
         id: String,
-        ach_transfers: ^(Increase::ArrayOf[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer]),
+        ach_transfers: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer]),
         created_at: Time,
         due_on: Time,
         type: Increase::Models::ProofOfAuthorizationRequest::Type,

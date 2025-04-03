@@ -12,7 +12,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class ACHTransferListParams < Increase::BaseModel
+    class ACHTransferListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -64,7 +64,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time
@@ -94,7 +94,7 @@ module Increase
       type status =
         { in_: ::Array[Increase::Models::ACHTransferListParams::Status::in_] }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::ACHTransferListParams::Status::in_]?
 
         def in_=: (
@@ -119,7 +119,7 @@ module Increase
           | :returned
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The transfer is pending approval.
           PENDING_APPROVAL: :pending_approval

@@ -10,10 +10,10 @@ module Increase
           amount: Integer,
           fulfillment_method: Increase::Models::CheckTransferCreateParams::FulfillmentMethod::OrSymbol,
           source_account_number_id: String,
-          physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::Util::AnyHash),
+          physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::AnyHash),
           require_approval: T::Boolean,
-          third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckTransfer)
       end
@@ -45,7 +45,7 @@ module Increase
       sig do
         params(
           check_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckTransfer)
       end
@@ -60,12 +60,12 @@ module Increase
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::CheckTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::CheckTransferListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::CheckTransferListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::CheckTransferListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::CheckTransfer])
       end
@@ -92,7 +92,7 @@ module Increase
       sig do
         params(
           check_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckTransfer)
       end
@@ -107,7 +107,7 @@ module Increase
       sig do
         params(
           check_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckTransfer)
       end
@@ -123,7 +123,7 @@ module Increase
         params(
           check_transfer_id: String,
           reason: Increase::Models::CheckTransferStopPaymentParams::Reason::OrSymbol,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckTransfer)
       end

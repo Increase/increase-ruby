@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class RoutingNumberListParams < Increase::BaseModel
+    class RoutingNumberListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -30,7 +30,7 @@ module Increase
           routing_number: String,
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

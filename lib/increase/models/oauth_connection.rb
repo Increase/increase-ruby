@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::OAuthConnections#retrieve
-    class OAuthConnection < Increase::BaseModel
+    class OAuthConnection < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The OAuth Connection's identifier.
       #
@@ -64,13 +64,13 @@ module Increase
       #   #
       #   def initialize(id:, created_at:, deleted_at:, group_id:, oauth_application_id:, status:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # Whether the connection is active.
       #
       # @see Increase::Models::OAuthConnection#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The OAuth connection is active.
         ACTIVE = :active
@@ -90,7 +90,7 @@ module Increase
       #
       # @see Increase::Models::OAuthConnection#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         OAUTH_CONNECTION = :oauth_connection
 

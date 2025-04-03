@@ -42,7 +42,7 @@ class Increase::Test::UtilDataHandlingTest < Minitest::Test
   def test_omission
     merged = Increase::Internal::Util.deep_merge(
       {b: {b2: 1, b3: {c: 4, d: 5}}},
-      {b: {b2: 1, b3: {c: Increase::Internal::Util::OMIT, d: 5}}}
+      {b: {b2: 1, b3: {c: Increase::Internal::OMIT, d: 5}}}
     )
 
     assert_pattern do

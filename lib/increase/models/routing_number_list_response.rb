@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::RoutingNumbers#list
-    class RoutingNumberListResponse < Increase::BaseModel
+    class RoutingNumberListResponse < Increase::Internal::Type::BaseModel
       # @!attribute ach_transfers
       #   This routing number's support for ACH Transfers.
       #
@@ -54,13 +54,13 @@ module Increase
       #   #
       #   def initialize(ach_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # This routing number's support for ACH Transfers.
       #
       # @see Increase::Models::RoutingNumberListResponse#ach_transfers
       module ACHTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
         SUPPORTED = :supported
@@ -79,7 +79,7 @@ module Increase
       #
       # @see Increase::Models::RoutingNumberListResponse#real_time_payments_transfers
       module RealTimePaymentsTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
         SUPPORTED = :supported
@@ -99,7 +99,7 @@ module Increase
       #
       # @see Increase::Models::RoutingNumberListResponse#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ROUTING_NUMBER = :routing_number
 
@@ -114,7 +114,7 @@ module Increase
       #
       # @see Increase::Models::RoutingNumberListResponse#wire_transfers
       module WireTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
         SUPPORTED = :supported

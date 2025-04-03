@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class ExternalAccountListParams < Increase::BaseModel
+    class ExternalAccountListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -52,7 +52,7 @@ module Increase
           in_: ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
         }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::ExternalAccountListParams::Status::in_]?
 
         def in_=: (
@@ -68,7 +68,7 @@ module Increase
         type in_ = :active | :archived
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The External Account is active.
           ACTIVE: :active

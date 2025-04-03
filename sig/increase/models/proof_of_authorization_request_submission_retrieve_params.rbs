@@ -3,7 +3,7 @@ module Increase
     type proof_of_authorization_request_submission_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class ProofOfAuthorizationRequestSubmissionRetrieveParams < Increase::BaseModel
+    class ProofOfAuthorizationRequestSubmissionRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

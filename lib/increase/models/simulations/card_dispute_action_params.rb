@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::CardDisputes#action
-      class CardDisputeActionParams < Increase::BaseModel
+      class CardDisputeActionParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -32,11 +32,11 @@ module Increase
         #   #
         #   def initialize(status:, explanation: nil, request_options: {}, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The status to move the dispute to.
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Increase has requested more information related to the Card Dispute from you.
           PENDING_USER_INFORMATION = :pending_user_information

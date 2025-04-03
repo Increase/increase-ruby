@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class EventSubscriptionCreateParams < Increase::BaseModel
+    class EventSubscriptionCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -45,7 +45,7 @@ module Increase
           oauth_connection_id: String,
           selected_event_category: Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory::OrSymbol,
           shared_secret: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -76,7 +76,7 @@ module Increase
       # If specified, this subscription will only receive webhooks for Events with the
       #   specified `category`.
       module SelectedEventCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory) }

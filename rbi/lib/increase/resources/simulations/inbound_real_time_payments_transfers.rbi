@@ -16,7 +16,7 @@ module Increase
             debtor_routing_number: String,
             remittance_information: String,
             request_for_payment_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::InboundRealTimePaymentsTransfer)
         end

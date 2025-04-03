@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PhysicalCardProfileListParams < Increase::BaseModel
+    class PhysicalCardProfileListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -36,7 +36,7 @@ module Increase
 
       sig do
         params(
-          status: T.any(Increase::Models::PhysicalCardProfileListParams::Status, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::PhysicalCardProfileListParams::Status, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -47,8 +47,8 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::PhysicalCardProfileListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::PhysicalCardProfileListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -70,7 +70,7 @@ module Increase
       def to_hash
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # Filter Physical Card Profiles for those with the specified statuses. For GET
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
@@ -92,7 +92,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfileListParams::Status::In) }

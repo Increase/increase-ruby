@@ -31,10 +31,10 @@ module Increase
         def dump(value)
           case value
           in Array
-            value.map { Increase::Unknown.dump(_1) }
+            value.map { Increase::Internal::Type::Unknown.dump(_1) }
           in Hash
-            value.transform_values { Increase::Unknown.dump(_1) }
-          in Increase::BaseModel
+            value.transform_values { Increase::Internal::Type::Unknown.dump(_1) }
+          in Increase::Internal::Type::BaseModel
             value.class.dump(value)
           else
             value
@@ -64,7 +64,7 @@ module Increase
             in Hash
               type_info(spec.slice(:const, :enum, :union).first&.last)
             in true | false
-              -> { Increase::BooleanModel }
+              -> { Increase::Internal::Type::BooleanModel }
             in Increase::Internal::Type::Converter | Class | Symbol
               -> { spec }
             in NilClass | Integer | Float
@@ -209,7 +209,7 @@ module Increase
           #
           # @return [Object]
           def dump(target, value)
-            target.is_a?(Increase::Internal::Type::Converter) ? target.dump(value) : Increase::Unknown.dump(value)
+            target.is_a?(Increase::Internal::Type::Converter) ? target.dump(value) : Increase::Internal::Type::Unknown.dump(value)
           end
         end
       end

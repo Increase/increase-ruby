@@ -12,7 +12,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class CheckTransferCreateParams < Increase::BaseModel
+    class CheckTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -56,7 +56,7 @@ module Increase
       type fulfillment_method = :physical_check | :third_party
 
       module FulfillmentMethod
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Increase will print and mail a physical check.
         PHYSICAL_CHECK: :physical_check
@@ -78,7 +78,7 @@ module Increase
           signature_text: String
         }
 
-      class PhysicalCheck < Increase::BaseModel
+      class PhysicalCheck < Increase::Internal::Type::BaseModel
         attr_accessor mailing_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress
 
         attr_accessor memo: String
@@ -124,7 +124,7 @@ module Increase
             :line2 => String
           }
 
-        class MailingAddress < Increase::BaseModel
+        class MailingAddress < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -158,7 +158,7 @@ module Increase
             :line2 => String
           }
 
-        class ReturnAddress < Increase::BaseModel
+        class ReturnAddress < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -188,7 +188,7 @@ module Increase
 
       type third_party = { check_number: String, recipient_name: String }
 
-      class ThirdParty < Increase::BaseModel
+      class ThirdParty < Increase::Internal::Type::BaseModel
         attr_reader check_number: String?
 
         def check_number=: (String) -> String

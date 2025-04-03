@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class WireDrawdownRequestCreateParams < Increase::BaseModel
+    class WireDrawdownRequestCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -102,7 +102,7 @@ module Increase
           recipient_address_line1: String,
           recipient_address_line2: String,
           recipient_address_line3: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

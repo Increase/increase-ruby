@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ProgramListParams < Increase::BaseModel
+    class ProgramListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -25,7 +25,7 @@ module Increase
         params(
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

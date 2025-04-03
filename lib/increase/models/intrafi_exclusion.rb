@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::IntrafiExclusions#create
-    class IntrafiExclusion < Increase::BaseModel
+    class IntrafiExclusion < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The identifier of this exclusion request.
       #
@@ -102,13 +102,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The status of the exclusion request.
       #
       # @see Increase::Models::IntrafiExclusion#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The exclusion is being added to the IntraFi network.
         PENDING = :pending
@@ -131,7 +131,7 @@ module Increase
       #
       # @see Increase::Models::IntrafiExclusion#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INTRAFI_EXCLUSION = :intrafi_exclusion
 

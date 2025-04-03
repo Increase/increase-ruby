@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Entities#update_beneficial_owner_address
-    class EntityUpdateBeneficialOwnerAddressParams < Increase::BaseModel
+    class EntityUpdateBeneficialOwnerAddressParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -29,9 +29,9 @@ module Increase
       #   #
       #   def initialize(address:, beneficial_owner_id:, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         # @!attribute country
         #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
         #
@@ -99,7 +99,7 @@ module Increase
         #   #
         #   def initialize(country:, line1:, city: nil, line2: nil, state: nil, zip: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

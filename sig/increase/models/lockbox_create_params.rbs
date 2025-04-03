@@ -4,7 +4,7 @@ module Increase
       { account_id: String, description: String, recipient_name: String }
       & Increase::Internal::Type::request_parameters
 
-    class LockboxCreateParams < Increase::BaseModel
+    class LockboxCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

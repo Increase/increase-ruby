@@ -3,7 +3,7 @@ module Increase
     type intrafi_exclusion_archive_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class IntrafiExclusionArchiveParams < Increase::BaseModel
+    class IntrafiExclusionArchiveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

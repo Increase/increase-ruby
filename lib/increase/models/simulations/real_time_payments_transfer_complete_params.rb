@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::RealTimePaymentsTransfers#complete
-      class RealTimePaymentsTransferCompleteParams < Increase::BaseModel
+      class RealTimePaymentsTransferCompleteParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -26,9 +26,9 @@ module Increase
         #   #
         #   def initialize(rejection: nil, request_options: {}, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-        class Rejection < Increase::BaseModel
+        class Rejection < Increase::Internal::Type::BaseModel
           # @!attribute reject_reason_code
           #   The reason code that the simulated rejection will have.
           #
@@ -43,13 +43,13 @@ module Increase
           #   #
           #   def initialize(reject_reason_code:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The reason code that the simulated rejection will have.
           #
           # @see Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection#reject_reason_code
           module RejectReasonCode
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The destination account is closed. Corresponds to the Real-Time Payments reason code `AC04`.
             ACCOUNT_CLOSED = :account_closed

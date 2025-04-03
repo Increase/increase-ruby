@@ -4,7 +4,7 @@ module Increase
       { cursor: String, idempotency_key: String, limit: Integer }
       & Increase::Internal::Type::request_parameters
 
-    class BookkeepingAccountListParams < Increase::BaseModel
+    class BookkeepingAccountListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

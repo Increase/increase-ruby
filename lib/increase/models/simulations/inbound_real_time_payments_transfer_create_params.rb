@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::InboundRealTimePaymentsTransfers#create
-      class InboundRealTimePaymentsTransferCreateParams < Increase::BaseModel
+      class InboundRealTimePaymentsTransferCreateParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -96,7 +96,7 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

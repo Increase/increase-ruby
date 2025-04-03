@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class InboundWireTransfer < Increase::BaseModel
+    class InboundWireTransfer < Increase::Internal::Type::BaseModel
       # The inbound wire transfer's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -206,7 +206,7 @@ module Increase
 
       # The status of the transfer.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireTransfer::Status) }
         OrSymbol =
@@ -232,7 +232,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `inbound_wire_transfer`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireTransfer::Type) }
         OrSymbol =

@@ -32,15 +32,15 @@ class Increase::Test::Resources::ProofOfAuthorizationRequestSubmissionsTest < In
         authorizer_ip_address: String | nil,
         authorizer_name: String | nil,
         created_at: Time,
-        customer_has_been_offboarded: Increase::BooleanModel | nil,
+        customer_has_been_offboarded: Increase::Internal::Type::BooleanModel | nil,
         idempotency_key: String | nil,
         proof_of_authorization_request_id: String,
         status: Increase::Models::ProofOfAuthorizationRequestSubmission::Status,
         type: Increase::Models::ProofOfAuthorizationRequestSubmission::Type,
         updated_at: Time,
-        validated_account_ownership_via_credential: Increase::BooleanModel | nil,
-        validated_account_ownership_with_account_statement: Increase::BooleanModel | nil,
-        validated_account_ownership_with_microdeposit: Increase::BooleanModel | nil
+        validated_account_ownership_via_credential: Increase::Internal::Type::BooleanModel | nil,
+        validated_account_ownership_with_account_statement: Increase::Internal::Type::BooleanModel | nil,
+        validated_account_ownership_with_microdeposit: Increase::Internal::Type::BooleanModel | nil
       }
     end
   end
@@ -66,15 +66,15 @@ class Increase::Test::Resources::ProofOfAuthorizationRequestSubmissionsTest < In
         authorizer_ip_address: String | nil,
         authorizer_name: String | nil,
         created_at: Time,
-        customer_has_been_offboarded: Increase::BooleanModel | nil,
+        customer_has_been_offboarded: Increase::Internal::Type::BooleanModel | nil,
         idempotency_key: String | nil,
         proof_of_authorization_request_id: String,
         status: Increase::Models::ProofOfAuthorizationRequestSubmission::Status,
         type: Increase::Models::ProofOfAuthorizationRequestSubmission::Type,
         updated_at: Time,
-        validated_account_ownership_via_credential: Increase::BooleanModel | nil,
-        validated_account_ownership_with_account_statement: Increase::BooleanModel | nil,
-        validated_account_ownership_with_microdeposit: Increase::BooleanModel | nil
+        validated_account_ownership_via_credential: Increase::Internal::Type::BooleanModel | nil,
+        validated_account_ownership_with_account_statement: Increase::Internal::Type::BooleanModel | nil,
+        validated_account_ownership_with_microdeposit: Increase::Internal::Type::BooleanModel | nil
       }
     end
   end
@@ -104,15 +104,15 @@ class Increase::Test::Resources::ProofOfAuthorizationRequestSubmissionsTest < In
         authorizer_ip_address: String | nil,
         authorizer_name: String | nil,
         created_at: Time,
-        customer_has_been_offboarded: Increase::BooleanModel | nil,
+        customer_has_been_offboarded: Increase::Internal::Type::BooleanModel | nil,
         idempotency_key: String | nil,
         proof_of_authorization_request_id: String,
         status: Increase::Models::ProofOfAuthorizationRequestSubmission::Status,
         type: Increase::Models::ProofOfAuthorizationRequestSubmission::Type,
         updated_at: Time,
-        validated_account_ownership_via_credential: Increase::BooleanModel | nil,
-        validated_account_ownership_with_account_statement: Increase::BooleanModel | nil,
-        validated_account_ownership_with_microdeposit: Increase::BooleanModel | nil
+        validated_account_ownership_via_credential: Increase::Internal::Type::BooleanModel | nil,
+        validated_account_ownership_with_account_statement: Increase::Internal::Type::BooleanModel | nil,
+        validated_account_ownership_with_microdeposit: Increase::Internal::Type::BooleanModel | nil
       }
     end
   end

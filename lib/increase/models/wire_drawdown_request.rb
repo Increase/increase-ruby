@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::WireDrawdownRequests#create
-    class WireDrawdownRequest < Increase::BaseModel
+    class WireDrawdownRequest < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Wire drawdown request identifier.
       #
@@ -192,13 +192,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The lifecycle status of the drawdown request.
       #
       # @see Increase::Models::WireDrawdownRequest#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The drawdown request is queued to be submitted to Fedwire.
         PENDING_SUBMISSION = :pending_submission
@@ -220,7 +220,7 @@ module Increase
       end
 
       # @see Increase::Models::WireDrawdownRequest#submission
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         # @!attribute input_message_accountability_data
         #   The input message accountability data (IMAD) uniquely identifying the submission
         #     with Fedwire.
@@ -236,7 +236,7 @@ module Increase
         #   #
         #   def initialize(input_message_accountability_data:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -244,7 +244,7 @@ module Increase
       #
       # @see Increase::Models::WireDrawdownRequest#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         WIRE_DRAWDOWN_REQUEST = :wire_drawdown_request
 

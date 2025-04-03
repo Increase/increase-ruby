@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ProofOfAuthorizationRequestSubmissionCreateParams < Increase::BaseModel
+    class ProofOfAuthorizationRequestSubmissionCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -77,7 +77,7 @@ module Increase
           additional_evidence_file_id: String,
           authorizer_company: String,
           authorizer_ip_address: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

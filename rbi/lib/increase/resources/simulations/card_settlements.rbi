@@ -14,7 +14,7 @@ module Increase
             card_id: String,
             pending_transaction_id: String,
             amount: Integer,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::Transaction)
         end

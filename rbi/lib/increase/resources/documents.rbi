@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           document_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Document)
       end
@@ -21,12 +21,12 @@ module Increase
       # List Documents
       sig do
         params(
-          category: T.any(Increase::Models::DocumentListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::DocumentListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::DocumentListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::DocumentListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           entity_id: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::Document])
       end

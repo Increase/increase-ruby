@@ -68,14 +68,14 @@ module Increase
         # @return [Increase::Internal::Type::Converter, Class, nil]
         private def resolve_variant(value)
           case [@discriminator, value]
-          in [_, Increase::BaseModel]
+          in [_, Increase::Internal::Type::BaseModel]
             value.class
           in [Symbol, Hash]
             key = value.fetch(@discriminator) do
-              value.fetch(@discriminator.to_s, Increase::Internal::Util::OMIT)
+              value.fetch(@discriminator.to_s, Increase::Internal::OMIT)
             end
 
-            return nil if key == Increase::Internal::Util::OMIT
+            return nil if key == Increase::Internal::OMIT
 
             key = key.to_sym if key.is_a?(String)
             known_variants.find { |k,| k == key }&.last&.call
@@ -101,7 +101,7 @@ module Increase
         # @return [Boolean]
         def ==(other)
           # rubocop:disable Layout/LineLength
-          other.is_a?(Module) && other.singleton_class <= Increase::Union && other.derefed_variants == derefed_variants
+          other.is_a?(Module) && other.singleton_class <= Increase::Internal::Type::Union && other.derefed_variants == derefed_variants
           # rubocop:enable Layout/LineLength
         end
 

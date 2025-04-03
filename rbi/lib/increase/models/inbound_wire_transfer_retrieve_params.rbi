@@ -2,12 +2,12 @@
 
 module Increase
   module Models
-    class InboundWireTransferRetrieveParams < Increase::BaseModel
+    class InboundWireTransferRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       sig do
-        params(request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+        params(request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           .returns(T.attached_class)
       end
       def self.new(request_options: {})

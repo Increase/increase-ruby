@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class Event < Increase::BaseModel
+    class Event < Increase::Internal::Type::BaseModel
       # The Event identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -66,7 +66,7 @@ module Increase
       # The category of the Event. We may add additional possible values for this enum
       #   over time; your application should be able to handle such additions gracefully.
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Event::Category) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Event::Category::TaggedSymbol) }
@@ -420,7 +420,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `event`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Event::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Event::Type::TaggedSymbol) }

@@ -10,7 +10,7 @@ module Increase
           oauth_connection_id: String,
           selected_event_category: Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory::OrSymbol,
           shared_secret: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::EventSubscription)
       end
@@ -34,7 +34,7 @@ module Increase
       sig do
         params(
           event_subscription_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::EventSubscription)
       end
@@ -50,7 +50,7 @@ module Increase
         params(
           event_subscription_id: String,
           status: Increase::Models::EventSubscriptionUpdateParams::Status::OrSymbol,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::EventSubscription)
       end
@@ -69,7 +69,7 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::EventSubscription])
       end

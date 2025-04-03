@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::RealTimePaymentsTransfers#list
-    class RealTimePaymentsTransferListParams < Increase::BaseModel
+    class RealTimePaymentsTransferListParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -105,9 +105,9 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # @!attribute [r] after
         #   Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #     timestamp.
@@ -160,17 +160,17 @@ module Increase
         #   #
         #   def initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # @!attribute [r] in_
         #   Return results whose value is in the provided list. For GET requests, this
         #     should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
         #   @return [Array<Symbol, Increase::Models::RealTimePaymentsTransferListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::ArrayOf[enum: Increase::Models::RealTimePaymentsTransferListParams::Status::In] },
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::RealTimePaymentsTransferListParams::Status::In] },
                  api_name: :in
 
         # @!parse
@@ -182,10 +182,10 @@ module Increase
         #   #
         #   def initialize(in_: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The transfer is pending approval.
           PENDING_APPROVAL = :pending_approval

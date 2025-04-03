@@ -4,7 +4,7 @@ module Increase
       { cursor: String, limit: Integer }
       & Increase::Internal::Type::request_parameters
 
-    class InboundWireDrawdownRequestListParams < Increase::BaseModel
+    class InboundWireDrawdownRequestListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

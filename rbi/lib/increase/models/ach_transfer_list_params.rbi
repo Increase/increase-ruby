@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ACHTransferListParams < Increase::BaseModel
+    class ACHTransferListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -17,9 +17,7 @@ module Increase
       attr_reader :created_at
 
       sig do
-        params(
-          created_at: T.any(Increase::Models::ACHTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash)
-        )
+        params(created_at: T.any(Increase::Models::ACHTransferListParams::CreatedAt, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :created_at
@@ -59,22 +57,19 @@ module Increase
       sig { returns(T.nilable(Increase::Models::ACHTransferListParams::Status)) }
       attr_reader :status
 
-      sig do
-        params(status: T.any(Increase::Models::ACHTransferListParams::Status, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(status: T.any(Increase::Models::ACHTransferListParams::Status, Increase::Internal::AnyHash)).void }
       attr_writer :status
 
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::ACHTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::ACHTransferListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           external_account_id: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::ACHTransferListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::ACHTransferListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -108,7 +103,7 @@ module Increase
       def to_hash
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }
@@ -152,7 +147,7 @@ module Increase
         end
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # Return results whose value is in the provided list. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         sig { returns(T.nilable(T::Array[Increase::Models::ACHTransferListParams::Status::In::OrSymbol])) }
@@ -173,7 +168,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ACHTransferListParams::Status::In) }
           OrSymbol =

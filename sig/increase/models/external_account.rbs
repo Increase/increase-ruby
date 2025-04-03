@@ -15,7 +15,7 @@ module Increase
         verification_status: Increase::Models::ExternalAccount::verification_status
       }
 
-    class ExternalAccount < Increase::BaseModel
+    class ExternalAccount < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_holder: Increase::Models::ExternalAccount::account_holder
@@ -57,7 +57,7 @@ module Increase
       type account_holder = :business | :individual | :unknown
 
       module AccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is owned by a business.
         BUSINESS: :business
@@ -74,7 +74,7 @@ module Increase
       type funding = :checking | :savings | :other
 
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A checking account.
         CHECKING: :checking
@@ -91,7 +91,7 @@ module Increase
       type status = :active | :archived
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is active.
         ACTIVE: :active
@@ -105,7 +105,7 @@ module Increase
       type type_ = :external_account
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         EXTERNAL_ACCOUNT: :external_account
 
@@ -115,7 +115,7 @@ module Increase
       type verification_status = :unverified | :pending | :verified
 
       module VerificationStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account has not been verified.
         UNVERIFIED: :unverified

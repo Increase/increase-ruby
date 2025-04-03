@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class ACHTransferCreateNotificationOfChangeParams < Increase::BaseModel
+      class ACHTransferCreateNotificationOfChangeParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -19,7 +19,7 @@ module Increase
           params(
             change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode::OrSymbol,
             corrected_data: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end
@@ -41,7 +41,7 @@ module Increase
 
         # The reason for the notification of change.
         module ChangeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode) }

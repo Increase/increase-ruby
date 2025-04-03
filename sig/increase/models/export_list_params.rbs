@@ -11,7 +11,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class ExportListParams < Increase::BaseModel
+    class ExportListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -60,7 +60,7 @@ module Increase
       type category =
         { in_: ::Array[Increase::Models::ExportListParams::Category::in_] }
 
-      class Category < Increase::BaseModel
+      class Category < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::ExportListParams::Category::in_]?
 
         def in_=: (
@@ -83,7 +83,7 @@ module Increase
           | :dashboard_table_csv
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
           ACCOUNT_STATEMENT_OFX: :account_statement_ofx
@@ -113,7 +113,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time
@@ -143,7 +143,7 @@ module Increase
       type status =
         { in_: ::Array[Increase::Models::ExportListParams::Status::in_] }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::ExportListParams::Status::in_]?
 
         def in_=: (
@@ -159,7 +159,7 @@ module Increase
         type in_ = :pending | :complete | :failed
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Increase is generating the export.
           PENDING: :pending

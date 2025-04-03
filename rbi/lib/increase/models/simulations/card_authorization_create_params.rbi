@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class CardAuthorizationCreateParams < Increase::BaseModel
+      class CardAuthorizationCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -116,7 +116,7 @@ module Increase
           params(
             network_details: T.any(
               Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .void
@@ -163,12 +163,12 @@ module Increase
             merchant_state: String,
             network_details: T.any(
               Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             ),
             network_risk_score: Integer,
             physical_card_id: String,
             terminal_id: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end
@@ -225,7 +225,7 @@ module Increase
         # Forces a card decline with a specific reason. No real time decision will be
         #   sent.
         module DeclineReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::CardAuthorizationCreateParams::DeclineReason) }
@@ -370,7 +370,7 @@ module Increase
         # The direction describes the direction the funds will move, either from the
         #   cardholder to the merchant or from the merchant to the cardholder.
         module Direction
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::CardAuthorizationCreateParams::Direction) }
@@ -399,7 +399,7 @@ module Increase
           end
         end
 
-        class NetworkDetails < Increase::BaseModel
+        class NetworkDetails < Increase::Internal::Type::BaseModel
           # Fields specific to the Visa network.
           sig { returns(Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa) }
           attr_reader :visa
@@ -408,7 +408,7 @@ module Increase
             params(
               visa: T.any(
                 Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .void
@@ -420,7 +420,7 @@ module Increase
             params(
               visa: T.any(
                 Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .returns(T.attached_class)
@@ -435,7 +435,7 @@ module Increase
           def to_hash
           end
 
-          class Visa < Increase::BaseModel
+          class Visa < Increase::Internal::Type::BaseModel
             # The reason code for the stand-in processing.
             sig do
               returns(
@@ -477,7 +477,7 @@ module Increase
 
             # The reason code for the stand-in processing.
             module StandInProcessingReason
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do

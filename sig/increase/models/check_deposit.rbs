@@ -22,7 +22,7 @@ module Increase
         type: Increase::Models::CheckDeposit::type_
       }
 
-    class CheckDeposit < Increase::BaseModel
+    class CheckDeposit < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -93,7 +93,7 @@ module Increase
           serial_number: String?
         }
 
-      class DepositAcceptance < Increase::BaseModel
+      class DepositAcceptance < Increase::Internal::Type::BaseModel
         attr_accessor account_number: String
 
         attr_accessor amount: Integer
@@ -123,7 +123,7 @@ module Increase
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD: :CAD
@@ -157,7 +157,7 @@ module Increase
           rejected_at: Time
         }
 
-      class DepositRejection < Increase::BaseModel
+      class DepositRejection < Increase::Internal::Type::BaseModel
         attr_accessor amount: Integer
 
         attr_accessor check_deposit_id: String
@@ -184,7 +184,7 @@ module Increase
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD: :CAD
@@ -221,7 +221,7 @@ module Increase
           | :unknown
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check's image is incomplete.
           INCOMPLETE_IMAGE: :incomplete_image
@@ -270,7 +270,7 @@ module Increase
           transaction_id: String
         }
 
-      class DepositReturn < Increase::BaseModel
+      class DepositReturn < Increase::Internal::Type::BaseModel
         attr_accessor amount: Integer
 
         attr_accessor check_deposit_id: String
@@ -297,7 +297,7 @@ module Increase
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD: :CAD
@@ -349,7 +349,7 @@ module Increase
           | :branch_or_account_sold
 
         module ReturnReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check doesn't allow ACH conversion.
           ACH_CONVERSION_NOT_SUPPORTED: :ach_conversion_not_supported
@@ -436,7 +436,7 @@ module Increase
       type deposit_submission =
         { back_file_id: String, front_file_id: String, submitted_at: Time }
 
-      class DepositSubmission < Increase::BaseModel
+      class DepositSubmission < Increase::Internal::Type::BaseModel
         attr_accessor back_file_id: String
 
         attr_accessor front_file_id: String
@@ -466,7 +466,7 @@ module Increase
           type: Increase::Models::CheckDeposit::InboundFundsHold::type_
         }
 
-      class InboundFundsHold < Increase::BaseModel
+      class InboundFundsHold < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor amount: Integer
@@ -505,7 +505,7 @@ module Increase
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD: :CAD
@@ -531,7 +531,7 @@ module Increase
         type status = :held | :complete
 
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Funds are still being held.
           HELD: :held
@@ -545,7 +545,7 @@ module Increase
         type type_ = :inbound_funds_hold
 
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
 
@@ -556,7 +556,7 @@ module Increase
       type status = :pending | :submitted | :rejected | :returned
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Check Deposit is pending review.
         PENDING: :pending
@@ -576,7 +576,7 @@ module Increase
       type type_ = :check_deposit
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CHECK_DEPOSIT: :check_deposit
 

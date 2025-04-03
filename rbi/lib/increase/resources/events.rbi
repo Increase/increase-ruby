@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           event_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Event)
       end
@@ -22,11 +22,11 @@ module Increase
       sig do
         params(
           associated_object_id: String,
-          category: T.any(Increase::Models::EventListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::EventListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::EventListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::EventListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::Event])
       end

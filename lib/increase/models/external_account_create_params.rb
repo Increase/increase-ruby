@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ExternalAccounts#create
-    class ExternalAccountCreateParams < Increase::BaseModel
+    class ExternalAccountCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -57,11 +57,11 @@ module Increase
       #   #
       #   def initialize(account_number:, description:, routing_number:, account_holder: nil, funding: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The type of entity that owns the External Account.
       module AccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is owned by a business.
         BUSINESS = :business
@@ -81,7 +81,7 @@ module Increase
 
       # The type of the destination account. Defaults to `checking`.
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A checking account.
         CHECKING = :checking

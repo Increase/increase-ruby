@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BookkeepingEntry < Increase::BaseModel
+    class BookkeepingEntry < Increase::Internal::Type::BaseModel
       # The entry identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -65,7 +65,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_entry`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingEntry::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::BookkeepingEntry::Type::TaggedSymbol) }

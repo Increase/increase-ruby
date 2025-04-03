@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Accounts#create
-    class Account < Increase::BaseModel
+    class Account < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Account identifier.
       #
@@ -147,13 +147,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The bank the Account is with.
       #
       # @see Increase::Models::Account#bank
       module Bank
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Core Bank
         CORE_BANK = :core_bank
@@ -176,7 +176,7 @@ module Increase
       #
       # @see Increase::Models::Account#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -207,7 +207,7 @@ module Increase
       #
       # @see Increase::Models::Account#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Closed Accounts on which no new activity can occur.
         CLOSED = :closed
@@ -227,7 +227,7 @@ module Increase
       #
       # @see Increase::Models::Account#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT = :account
 

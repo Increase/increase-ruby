@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::SupplementalDocuments#create
-    class EntitySupplementalDocument < Increase::BaseModel
+    class EntitySupplementalDocument < Increase::Internal::Type::BaseModel
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
       #     Supplemental Document was created.
@@ -50,14 +50,14 @@ module Increase
       #   #
       #   def initialize(created_at:, entity_id:, file_id:, idempotency_key:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `entity_supplemental_document`.
       #
       # @see Increase::Models::EntitySupplementalDocument#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ENTITY_SUPPLEMENTAL_DOCUMENT = :entity_supplemental_document
 

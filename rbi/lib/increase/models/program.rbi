@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class Program < Increase::BaseModel
+    class Program < Increase::Internal::Type::BaseModel
       # The Program identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -96,7 +96,7 @@ module Increase
 
       # The Bank the Program is with.
       module Bank
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Program::Bank) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Program::Bank::TaggedSymbol) }
@@ -118,7 +118,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `program`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Program::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Program::Type::TaggedSymbol) }

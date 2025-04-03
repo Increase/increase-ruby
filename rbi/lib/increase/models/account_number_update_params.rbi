@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class AccountNumberUpdateParams < Increase::BaseModel
+    class AccountNumberUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -12,7 +12,7 @@ module Increase
 
       sig do
         params(
-          inbound_ach: T.any(Increase::Models::AccountNumberUpdateParams::InboundACH, Increase::Internal::Util::AnyHash)
+          inbound_ach: T.any(Increase::Models::AccountNumberUpdateParams::InboundACH, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -25,7 +25,7 @@ module Increase
 
       sig do
         params(
-          inbound_checks: T.any(Increase::Models::AccountNumberUpdateParams::InboundChecks, Increase::Internal::Util::AnyHash)
+          inbound_checks: T.any(Increase::Models::AccountNumberUpdateParams::InboundChecks, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -47,11 +47,11 @@ module Increase
 
       sig do
         params(
-          inbound_ach: T.any(Increase::Models::AccountNumberUpdateParams::InboundACH, Increase::Internal::Util::AnyHash),
-          inbound_checks: T.any(Increase::Models::AccountNumberUpdateParams::InboundChecks, Increase::Internal::Util::AnyHash),
+          inbound_ach: T.any(Increase::Models::AccountNumberUpdateParams::InboundACH, Increase::Internal::AnyHash),
+          inbound_checks: T.any(Increase::Models::AccountNumberUpdateParams::InboundChecks, Increase::Internal::AnyHash),
           name: String,
           status: Increase::Models::AccountNumberUpdateParams::Status::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -73,7 +73,7 @@ module Increase
       def to_hash
       end
 
-      class InboundACH < Increase::BaseModel
+      class InboundACH < Increase::Internal::Type::BaseModel
         # Whether ACH debits are allowed against this Account Number. Note that ACH debits
         #   will be declined if this is `allowed` but the Account Number is not active.
         sig { returns(T.nilable(Increase::Models::AccountNumberUpdateParams::InboundACH::DebitStatus::OrSymbol)) }
@@ -100,7 +100,7 @@ module Increase
         # Whether ACH debits are allowed against this Account Number. Note that ACH debits
         #   will be declined if this is `allowed` but the Account Number is not active.
         module DebitStatus
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::AccountNumberUpdateParams::InboundACH::DebitStatus) }
@@ -124,7 +124,7 @@ module Increase
         end
       end
 
-      class InboundChecks < Increase::BaseModel
+      class InboundChecks < Increase::Internal::Type::BaseModel
         # How Increase should process checks with this account number printed on them.
         sig { returns(Increase::Models::AccountNumberUpdateParams::InboundChecks::Status::OrSymbol) }
         attr_accessor :status
@@ -144,7 +144,7 @@ module Increase
 
         # How Increase should process checks with this account number printed on them.
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::AccountNumberUpdateParams::InboundChecks::Status) }
@@ -173,7 +173,7 @@ module Increase
 
       # This indicates if transfers can be made to the Account Number.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountNumberUpdateParams::Status) }
         OrSymbol =

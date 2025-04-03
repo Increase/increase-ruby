@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class FileLink < Increase::BaseModel
+    class FileLink < Increase::Internal::Type::BaseModel
       # The File Link identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -74,7 +74,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `file_link`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::FileLink::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::FileLink::Type::TaggedSymbol) }

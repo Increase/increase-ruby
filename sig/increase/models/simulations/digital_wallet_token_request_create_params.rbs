@@ -4,7 +4,7 @@ module Increase
       type digital_wallet_token_request_create_params =
         { card_id: String } & Increase::Internal::Type::request_parameters
 
-      class DigitalWalletTokenRequestCreateParams < Increase::BaseModel
+      class DigitalWalletTokenRequestCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

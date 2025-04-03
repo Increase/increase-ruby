@@ -339,7 +339,7 @@ module Increase
 
           begin
             status, response, stream = @requester.execute(input)
-          rescue Increase::APIConnectionError => e
+          rescue Increase::Errors::APIConnectionError => e
             status = e
           end
 
@@ -361,7 +361,7 @@ module Increase
               retry_count: retry_count,
               send_retry_header: send_retry_header
             )
-          in Increase::APIConnectionError if retry_count >= max_retries
+          in Increase::Errors::APIConnectionError if retry_count >= max_retries
             raise status
           in (400..) if retry_count >= max_retries || !self.class.should_retry?(status, headers: response)
             decoded = Kernel.then do
@@ -421,7 +421,7 @@ module Increase
         # @return [Object]
         def request(req)
           self.class.validate!(req)
-          model = req.fetch(:model) { Increase::Unknown }
+          model = req.fetch(:model) { Increase::Internal::Type::Unknown }
           opts = req[:options].to_h
           Increase::RequestOptions.validate!(opts)
           request = build_request(req.except(:options), opts)

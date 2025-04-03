@@ -4,7 +4,7 @@ module Increase
       { address: Increase::Models::EntityUpdateAddressParams::Address }
       & Increase::Internal::Type::request_parameters
 
-    class EntityUpdateAddressParams < Increase::BaseModel
+    class EntityUpdateAddressParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -26,7 +26,7 @@ module Increase
           :line2 => String
         }
 
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         attr_accessor city: String
 
         attr_accessor line1: String

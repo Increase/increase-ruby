@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::CardSettlements#create
-      class CardSettlementCreateParams < Increase::BaseModel
+      class CardSettlementCreateParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -41,7 +41,7 @@ module Increase
         #   #
         #   def initialize(card_id:, pending_transaction_id:, amount: nil, request_options: {}, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

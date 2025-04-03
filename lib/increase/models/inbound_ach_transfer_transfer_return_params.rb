@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundACHTransfers#transfer_return
-    class InboundACHTransferTransferReturnParams < Increase::BaseModel
+    class InboundACHTransferTransferReturnParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -21,12 +21,12 @@ module Increase
       #   #
       #   def initialize(reason:, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The reason why this transfer will be returned. The most usual return codes are
       #   `payment_stopped` for debits and `credit_entry_refused_by_receiver` for credits.
       module Reason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The customer's account has insufficient funds. This reason is only allowed for debits. The Nacha return code is R01.
         INSUFFICIENT_FUNDS = :insufficient_funds

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Programs#retrieve
-    class Program < Increase::BaseModel
+    class Program < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Program identifier.
       #
@@ -94,13 +94,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The Bank the Program is with.
       #
       # @see Increase::Models::Program#bank
       module Bank
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Core Bank
         CORE_BANK = :core_bank
@@ -123,7 +123,7 @@ module Increase
       #
       # @see Increase::Models::Program#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PROGRAM = :program
 

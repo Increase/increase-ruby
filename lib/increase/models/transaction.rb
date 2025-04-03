@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Transactions#retrieve
-    class Transaction < Increase::BaseModel
+    class Transaction < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Transaction identifier.
       #
@@ -106,7 +106,7 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
       #   Transaction's currency. This will match the currency on the Transaction's
@@ -114,7 +114,7 @@ module Increase
       #
       # @see Increase::Models::Transaction#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -145,7 +145,7 @@ module Increase
       #
       # @see Increase::Models::Transaction#route_type
       module RouteType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An Account Number.
         ACCOUNT_NUMBER = :account_number
@@ -164,7 +164,7 @@ module Increase
       end
 
       # @see Increase::Models::Transaction#source
-      class Source < Increase::BaseModel
+      class Source < Increase::Internal::Type::BaseModel
         # @!attribute account_transfer_intention
         #   An Account Transfer Intention object. This field will be present in the JSON
         #     response if and only if `category` is equal to `account_transfer_intention`. Two
@@ -442,7 +442,7 @@ module Increase
         #     contain an empty object, otherwise it will contain null.
         #
         #   @return [Object, nil]
-        required :other, Increase::Unknown, nil?: true
+        required :other, Increase::Internal::Type::Unknown, nil?: true
 
         # @!attribute real_time_payments_transfer_acknowledgement
         #   A Real-Time Payments Transfer Acknowledgement object. This field will be present
@@ -547,10 +547,10 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::Transaction::Source#account_transfer_intention
-        class AccountTransferIntention < Increase::BaseModel
+        class AccountTransferIntention < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The pending amount in the minor unit of the transaction's currency. For dollars,
           #     for example, this is cents.
@@ -604,14 +604,14 @@ module Increase
           #   #
           #   def initialize(amount:, currency:, description:, destination_account_id:, source_account_id:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
           #   account currency.
           #
           # @see Increase::Models::Transaction::Source::AccountTransferIntention#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -640,7 +640,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#ach_transfer_intention
-        class ACHTransferIntention < Increase::BaseModel
+        class ACHTransferIntention < Increase::Internal::Type::BaseModel
           # @!attribute account_number
           #   The account number for the destination account.
           #
@@ -687,11 +687,11 @@ module Increase
           #   #
           #   def initialize(account_number:, amount:, routing_number:, statement_descriptor:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#ach_transfer_rejection
-        class ACHTransferRejection < Increase::BaseModel
+        class ACHTransferRejection < Increase::Internal::Type::BaseModel
           # @!attribute transfer_id
           #   The identifier of the ACH Transfer that led to this Transaction.
           #
@@ -708,11 +708,11 @@ module Increase
           #   #
           #   def initialize(transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#ach_transfer_return
-        class ACHTransferReturn < Increase::BaseModel
+        class ACHTransferReturn < Increase::Internal::Type::BaseModel
           # @!attribute created_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           #     the transfer was created.
@@ -782,14 +782,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # Why the ACH Transfer was returned. This reason code is sent by the receiving
           #   bank back to Increase.
           #
           # @see Increase::Models::Transaction::Source::ACHTransferReturn#return_reason_code
           module ReturnReasonCode
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
             INSUFFICIENT_FUND = :insufficient_fund
@@ -1013,7 +1013,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#card_dispute_acceptance
-        class CardDisputeAcceptance < Increase::BaseModel
+        class CardDisputeAcceptance < Increase::Internal::Type::BaseModel
           # @!attribute accepted_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           #     the Card Dispute was accepted.
@@ -1045,11 +1045,11 @@ module Increase
           #   #
           #   def initialize(accepted_at:, card_dispute_id:, transaction_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#card_dispute_loss
-        class CardDisputeLoss < Increase::BaseModel
+        class CardDisputeLoss < Increase::Internal::Type::BaseModel
           # @!attribute card_dispute_id
           #   The identifier of the Card Dispute that was lost.
           #
@@ -1088,11 +1088,11 @@ module Increase
           #   #
           #   def initialize(card_dispute_id:, explanation:, lost_at:, transaction_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#card_refund
-        class CardRefund < Increase::BaseModel
+        class CardRefund < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Refund identifier.
           #
@@ -1269,10 +1269,10 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::Transaction::Source::CardRefund#cashback
-          class Cashback < Increase::BaseModel
+          class Cashback < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The cashback amount given as a string containing a decimal number. The amount is
             #     a positive number if it will be credited to you (e.g., settlements) and a
@@ -1296,13 +1296,13 @@ module Increase
             #   #
             #   def initialize(amount:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
             # @see Increase::Models::Transaction::Source::CardRefund::Cashback#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -1335,7 +1335,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::CardRefund#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -1363,7 +1363,7 @@ module Increase
           end
 
           # @see Increase::Models::Transaction::Source::CardRefund#interchange
-          class Interchange < Increase::BaseModel
+          class Interchange < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number. The amount
             #     is a positive number if it is credited to Increase (e.g., settlements) and a
@@ -1394,14 +1394,14 @@ module Increase
             #   #
             #   def initialize(amount:, code:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #   reimbursement.
             #
             # @see Increase::Models::Transaction::Source::CardRefund::Interchange#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -1430,7 +1430,7 @@ module Increase
           end
 
           # @see Increase::Models::Transaction::Source::CardRefund#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute acquirer_business_id
             #   A network assigned business ID that identifies the acquirer that processed this
             #     transaction.
@@ -1460,11 +1460,11 @@ module Increase
             #   #
             #   def initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # @see Increase::Models::Transaction::Source::CardRefund#purchase_details
-          class PurchaseDetails < Increase::BaseModel
+          class PurchaseDetails < Increase::Internal::Type::BaseModel
             # @!attribute car_rental
             #   Fields specific to car rentals.
             #
@@ -1566,10 +1566,10 @@ module Increase
             #     super
             #   end
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#car_rental
-            class CarRental < Increase::BaseModel
+            class CarRental < Increase::Internal::Type::BaseModel
               # @!attribute car_class_code
               #   Code indicating the vehicle's class.
               #
@@ -1720,13 +1720,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -1758,7 +1758,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -1775,7 +1775,7 @@ module Increase
             end
 
             # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#lodging
-            class Lodging < Increase::BaseModel
+            class Lodging < Increase::Internal::Type::BaseModel
               # @!attribute check_in_date
               #   Date the customer checked in.
               #
@@ -1925,13 +1925,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -1966,7 +1966,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -1986,7 +1986,7 @@ module Increase
             #
             # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#purchase_identifier_format
             module PurchaseIdentifierFormat
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Free text
               FREE_TEXT = :free_text
@@ -2011,7 +2011,7 @@ module Increase
             end
 
             # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#travel
-            class Travel < Increase::BaseModel
+            class Travel < Increase::Internal::Type::BaseModel
               # @!attribute ancillary
               #   Ancillary purchases in addition to the airfare.
               #
@@ -2091,7 +2091,7 @@ module Increase
               #
               #   @return [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg>, nil]
               required :trip_legs,
-                       -> { Increase::ArrayOf[Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg] },
+                       -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg] },
                        nil?: true
 
               # @!parse
@@ -2128,10 +2128,10 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel#ancillary
-              class Ancillary < Increase::BaseModel
+              class Ancillary < Increase::Internal::Type::BaseModel
                 # @!attribute connected_ticket_document_number
                 #   If this purchase has a connection or relationship to another purchase, such as a
                 #     baggage fee for a passenger transport ticket, this field should contain the
@@ -2159,7 +2159,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> { Increase::ArrayOf[Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service] }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -2187,13 +2187,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates the reason for a credit to the cardholder.
                 #
                 # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary#credit_reason_indicator
                 module CreditReasonIndicator
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # No credit
                   NO_CREDIT = :no_credit
@@ -2216,7 +2216,7 @@ module Increase
                   #   def self.values; end
                 end
 
-                class Service < Increase::BaseModel
+                class Service < Increase::Internal::Type::BaseModel
                   # @!attribute category
                   #   Category of the ancillary service.
                   #
@@ -2237,13 +2237,13 @@ module Increase
                   #   #
                   #   def initialize(category:, sub_category:, **) = super
 
-                  # def initialize: (Hash | Increase::BaseModel) -> void
+                  # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                   # Category of the ancillary service.
                   #
                   # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service#category
                   module Category
-                    extend Increase::Enum
+                    extend Increase::Internal::Type::Enum
 
                     # None
                     NONE = :none
@@ -2330,7 +2330,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel#credit_reason_indicator
               module CreditReasonIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No credit
                 NO_CREDIT = :no_credit
@@ -2363,7 +2363,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel#restricted_ticket_indicator
               module RestrictedTicketIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No restrictions
                 NO_RESTRICTIONS = :no_restrictions
@@ -2382,7 +2382,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel#ticket_change_indicator
               module TicketChangeIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # None
                 NONE = :none
@@ -2400,7 +2400,7 @@ module Increase
                 #   def self.values; end
               end
 
-              class TripLeg < Increase::BaseModel
+              class TripLeg < Increase::Internal::Type::BaseModel
                 # @!attribute carrier_code
                 #   Carrier code (e.g., United Airlines, Jet Blue, etc.).
                 #
@@ -2459,13 +2459,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
                 # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg#stop_over_code
                 module StopOverCode
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # None
                   NONE = :none
@@ -2491,7 +2491,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::CardRefund#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_REFUND = :card_refund
 
@@ -2504,7 +2504,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#card_revenue_payment
-        class CardRevenuePayment < Increase::BaseModel
+        class CardRevenuePayment < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The amount in the minor unit of the transaction's currency. For dollars, for
           #     example, this is cents.
@@ -2550,14 +2550,14 @@ module Increase
           #   #
           #   def initialize(amount:, currency:, period_end:, period_start:, transacted_on_account_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           #   currency.
           #
           # @see Increase::Models::Transaction::Source::CardRevenuePayment#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -2586,7 +2586,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#card_settlement
-        class CardSettlement < Increase::BaseModel
+        class CardSettlement < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Settlement identifier.
           #
@@ -2782,10 +2782,10 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::Transaction::Source::CardSettlement#cashback
-          class Cashback < Increase::BaseModel
+          class Cashback < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The cashback amount given as a string containing a decimal number. The amount is
             #     a positive number if it will be credited to you (e.g., settlements) and a
@@ -2809,13 +2809,13 @@ module Increase
             #   #
             #   def initialize(amount:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
             # @see Increase::Models::Transaction::Source::CardSettlement::Cashback#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -2848,7 +2848,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::CardSettlement#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -2876,7 +2876,7 @@ module Increase
           end
 
           # @see Increase::Models::Transaction::Source::CardSettlement#interchange
-          class Interchange < Increase::BaseModel
+          class Interchange < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number. The amount
             #     is a positive number if it is credited to Increase (e.g., settlements) and a
@@ -2908,14 +2908,14 @@ module Increase
             #   #
             #   def initialize(amount:, code:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #   reimbursement.
             #
             # @see Increase::Models::Transaction::Source::CardSettlement::Interchange#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -2944,7 +2944,7 @@ module Increase
           end
 
           # @see Increase::Models::Transaction::Source::CardSettlement#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute acquirer_business_id
             #   A network assigned business ID that identifies the acquirer that processed this
             #     transaction.
@@ -2974,11 +2974,11 @@ module Increase
             #   #
             #   def initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # @see Increase::Models::Transaction::Source::CardSettlement#purchase_details
-          class PurchaseDetails < Increase::BaseModel
+          class PurchaseDetails < Increase::Internal::Type::BaseModel
             # @!attribute car_rental
             #   Fields specific to car rentals.
             #
@@ -3080,10 +3080,10 @@ module Increase
             #     super
             #   end
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#car_rental
-            class CarRental < Increase::BaseModel
+            class CarRental < Increase::Internal::Type::BaseModel
               # @!attribute car_class_code
               #   Code indicating the vehicle's class.
               #
@@ -3234,13 +3234,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -3272,7 +3272,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -3289,7 +3289,7 @@ module Increase
             end
 
             # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#lodging
-            class Lodging < Increase::BaseModel
+            class Lodging < Increase::Internal::Type::BaseModel
               # @!attribute check_in_date
               #   Date the customer checked in.
               #
@@ -3439,13 +3439,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -3480,7 +3480,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -3500,7 +3500,7 @@ module Increase
             #
             # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#purchase_identifier_format
             module PurchaseIdentifierFormat
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Free text
               FREE_TEXT = :free_text
@@ -3525,7 +3525,7 @@ module Increase
             end
 
             # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#travel
-            class Travel < Increase::BaseModel
+            class Travel < Increase::Internal::Type::BaseModel
               # @!attribute ancillary
               #   Ancillary purchases in addition to the airfare.
               #
@@ -3605,7 +3605,7 @@ module Increase
               #
               #   @return [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg>, nil]
               required :trip_legs,
-                       -> { Increase::ArrayOf[Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg] },
+                       -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg] },
                        nil?: true
 
               # @!parse
@@ -3642,10 +3642,10 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel#ancillary
-              class Ancillary < Increase::BaseModel
+              class Ancillary < Increase::Internal::Type::BaseModel
                 # @!attribute connected_ticket_document_number
                 #   If this purchase has a connection or relationship to another purchase, such as a
                 #     baggage fee for a passenger transport ticket, this field should contain the
@@ -3673,7 +3673,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> { Increase::ArrayOf[Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service] }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -3701,13 +3701,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates the reason for a credit to the cardholder.
                 #
                 # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary#credit_reason_indicator
                 module CreditReasonIndicator
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # No credit
                   NO_CREDIT = :no_credit
@@ -3730,7 +3730,7 @@ module Increase
                   #   def self.values; end
                 end
 
-                class Service < Increase::BaseModel
+                class Service < Increase::Internal::Type::BaseModel
                   # @!attribute category
                   #   Category of the ancillary service.
                   #
@@ -3751,13 +3751,13 @@ module Increase
                   #   #
                   #   def initialize(category:, sub_category:, **) = super
 
-                  # def initialize: (Hash | Increase::BaseModel) -> void
+                  # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                   # Category of the ancillary service.
                   #
                   # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service#category
                   module Category
-                    extend Increase::Enum
+                    extend Increase::Internal::Type::Enum
 
                     # None
                     NONE = :none
@@ -3844,7 +3844,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel#credit_reason_indicator
               module CreditReasonIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No credit
                 NO_CREDIT = :no_credit
@@ -3877,7 +3877,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel#restricted_ticket_indicator
               module RestrictedTicketIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No restrictions
                 NO_RESTRICTIONS = :no_restrictions
@@ -3896,7 +3896,7 @@ module Increase
               #
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel#ticket_change_indicator
               module TicketChangeIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # None
                 NONE = :none
@@ -3914,7 +3914,7 @@ module Increase
                 #   def self.values; end
               end
 
-              class TripLeg < Increase::BaseModel
+              class TripLeg < Increase::Internal::Type::BaseModel
                 # @!attribute carrier_code
                 #   Carrier code (e.g., United Airlines, Jet Blue, etc.).
                 #
@@ -3973,13 +3973,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
                 # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg#stop_over_code
                 module StopOverCode
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # None
                   NONE = :none
@@ -4005,7 +4005,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::CardSettlement#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_SETTLEMENT = :card_settlement
 
@@ -4018,7 +4018,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#cashback_payment
-        class CashbackPayment < Increase::BaseModel
+        class CashbackPayment < Increase::Internal::Type::BaseModel
           # @!attribute accrued_on_card_id
           #   The card on which the cashback was accrued.
           #
@@ -4065,14 +4065,14 @@ module Increase
           #   #
           #   def initialize(accrued_on_card_id:, amount:, currency:, period_end:, period_start:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           #   currency.
           #
           # @see Increase::Models::Transaction::Source::CashbackPayment#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -4105,7 +4105,7 @@ module Increase
         #
         # @see Increase::Models::Transaction::Source#category
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Account Transfer Intention: details will be under the `account_transfer_intention` object.
           ACCOUNT_TRANSFER_INTENTION = :account_transfer_intention
@@ -4202,7 +4202,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#check_deposit_acceptance
-        class CheckDepositAcceptance < Increase::BaseModel
+        class CheckDepositAcceptance < Increase::Internal::Type::BaseModel
           # @!attribute account_number
           #   The account number printed on the check.
           #
@@ -4277,14 +4277,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           #   transaction's currency.
           #
           # @see Increase::Models::Transaction::Source::CheckDepositAcceptance#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -4313,7 +4313,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#check_deposit_return
-        class CheckDepositReturn < Increase::BaseModel
+        class CheckDepositReturn < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The returned amount in USD cents.
           #
@@ -4372,14 +4372,14 @@ module Increase
           #   #
           #   def initialize(amount:, check_deposit_id:, currency:, return_reason:, returned_at:, transaction_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           #   transaction's currency.
           #
           # @see Increase::Models::Transaction::Source::CheckDepositReturn#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -4411,7 +4411,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::CheckDepositReturn#return_reason
           module ReturnReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The check doesn't allow ACH conversion.
             ACH_CONVERSION_NOT_SUPPORTED = :ach_conversion_not_supported
@@ -4500,7 +4500,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#check_transfer_deposit
-        class CheckTransferDeposit < Increase::BaseModel
+        class CheckTransferDeposit < Increase::Internal::Type::BaseModel
           # @!attribute back_image_file_id
           #   The identifier of the API File object containing an image of the back of the
           #     deposited check.
@@ -4584,14 +4584,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # A constant representing the object's type. For this resource it will always be
           #   `check_transfer_deposit`.
           #
           # @see Increase::Models::Transaction::Source::CheckTransferDeposit#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CHECK_TRANSFER_DEPOSIT = :check_transfer_deposit
 
@@ -4604,7 +4604,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#fee_payment
-        class FeePayment < Increase::BaseModel
+        class FeePayment < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The amount in the minor unit of the transaction's currency. For dollars, for
           #     example, this is cents.
@@ -4643,14 +4643,14 @@ module Increase
           #   #
           #   def initialize(amount:, currency:, fee_period_start:, program_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           #   currency.
           #
           # @see Increase::Models::Transaction::Source::FeePayment#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -4679,7 +4679,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#inbound_ach_transfer
-        class InboundACHTransfer < Increase::BaseModel
+        class InboundACHTransfer < Increase::Internal::Type::BaseModel
           # @!attribute addenda
           #   Additional information sent from the originator.
           #
@@ -4787,10 +4787,10 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::Transaction::Source::InboundACHTransfer#addenda
-          class Addenda < Increase::BaseModel
+          class Addenda < Increase::Internal::Type::BaseModel
             # @!attribute category
             #   The type of addendum.
             #
@@ -4814,13 +4814,13 @@ module Increase
             #   #
             #   def initialize(category:, freeform:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The type of addendum.
             #
             # @see Increase::Models::Transaction::Source::InboundACHTransfer::Addenda#category
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Unstructured addendum.
               FREEFORM = :freeform
@@ -4833,13 +4833,13 @@ module Increase
             end
 
             # @see Increase::Models::Transaction::Source::InboundACHTransfer::Addenda#freeform
-            class Freeform < Increase::BaseModel
+            class Freeform < Increase::Internal::Type::BaseModel
               # @!attribute entries
               #   Each entry represents an addendum received from the originator.
               #
               #   @return [Array<Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry>]
               required :entries,
-                       -> { Increase::ArrayOf[Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry] }
+                       -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry] }
 
               # @!parse
               #   # Unstructured `payment_related_information` passed through by the originator.
@@ -4848,9 +4848,9 @@ module Increase
               #   #
               #   def initialize(entries:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-              class Entry < Increase::BaseModel
+              class Entry < Increase::Internal::Type::BaseModel
                 # @!attribute payment_related_information
                 #   The payment related information passed in the addendum.
                 #
@@ -4862,14 +4862,14 @@ module Increase
                 #   #
                 #   def initialize(payment_related_information:, **) = super
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
               end
             end
           end
         end
 
         # @see Increase::Models::Transaction::Source#inbound_ach_transfer_return_intention
-        class InboundACHTransferReturnIntention < Increase::BaseModel
+        class InboundACHTransferReturnIntention < Increase::Internal::Type::BaseModel
           # @!attribute inbound_ach_transfer_id
           #   The ID of the Inbound ACH Transfer that is being returned.
           #
@@ -4887,11 +4887,11 @@ module Increase
           #   #
           #   def initialize(inbound_ach_transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#inbound_check_adjustment
-        class InboundCheckAdjustment < Increase::BaseModel
+        class InboundCheckAdjustment < Increase::Internal::Type::BaseModel
           # @!attribute adjusted_transaction_id
           #   The ID of the transaction that was adjusted.
           #
@@ -4922,13 +4922,13 @@ module Increase
           #   #
           #   def initialize(adjusted_transaction_id:, amount:, reason:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The reason for the adjustment.
           #
           # @see Increase::Models::Transaction::Source::InboundCheckAdjustment#reason
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
             LATE_RETURN = :late_return
@@ -4951,7 +4951,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#inbound_check_deposit_return_intention
-        class InboundCheckDepositReturnIntention < Increase::BaseModel
+        class InboundCheckDepositReturnIntention < Increase::Internal::Type::BaseModel
           # @!attribute inbound_check_deposit_id
           #   The ID of the Inbound Check Deposit that is being returned.
           #
@@ -4976,11 +4976,11 @@ module Increase
           #   #
           #   def initialize(inbound_check_deposit_id:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#inbound_real_time_payments_transfer_confirmation
-        class InboundRealTimePaymentsTransferConfirmation < Increase::BaseModel
+        class InboundRealTimePaymentsTransferConfirmation < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The amount in the minor unit of the transfer's currency. For dollars, for
           #     example, this is cents.
@@ -5070,14 +5070,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the transfer's
           #   currency. This will always be "USD" for a Real-Time Payments transfer.
           #
           # @see Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -5106,7 +5106,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#inbound_real_time_payments_transfer_decline
-        class InboundRealTimePaymentsTransferDecline < Increase::BaseModel
+        class InboundRealTimePaymentsTransferDecline < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The declined amount in the minor unit of the destination account currency. For
           #     dollars, for example, this is cents.
@@ -5204,7 +5204,7 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
           #   transfer's currency. This will always be "USD" for a Real-Time Payments
@@ -5212,7 +5212,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -5243,7 +5243,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline#reason
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account number is canceled.
             ACCOUNT_NUMBER_CANCELED = :account_number_canceled
@@ -5272,7 +5272,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#inbound_wire_reversal
-        class InboundWireReversal < Increase::BaseModel
+        class InboundWireReversal < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The amount that was reversed in USD cents.
           #
@@ -5428,11 +5428,11 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#inbound_wire_transfer
-        class InboundWireTransfer < Increase::BaseModel
+        class InboundWireTransfer < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The amount in USD cents.
           #
@@ -5601,11 +5601,11 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#inbound_wire_transfer_reversal
-        class InboundWireTransferReversal < Increase::BaseModel
+        class InboundWireTransferReversal < Increase::Internal::Type::BaseModel
           # @!attribute inbound_wire_transfer_id
           #   The ID of the Inbound Wire Transfer that is being reversed.
           #
@@ -5623,11 +5623,11 @@ module Increase
           #   #
           #   def initialize(inbound_wire_transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#interest_payment
-        class InterestPayment < Increase::BaseModel
+        class InterestPayment < Increase::Internal::Type::BaseModel
           # @!attribute accrued_on_account_id
           #   The account on which the interest was accrued.
           #
@@ -5674,14 +5674,14 @@ module Increase
           #   #
           #   def initialize(accrued_on_account_id:, amount:, currency:, period_end:, period_start:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           #   currency.
           #
           # @see Increase::Models::Transaction::Source::InterestPayment#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -5710,7 +5710,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#internal_source
-        class InternalSource < Increase::BaseModel
+        class InternalSource < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The amount in the minor unit of the transaction's currency. For dollars, for
           #     example, this is cents.
@@ -5743,14 +5743,14 @@ module Increase
           #   #
           #   def initialize(amount:, currency:, reason:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           #   currency.
           #
           # @see Increase::Models::Transaction::Source::InternalSource#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -5782,7 +5782,7 @@ module Increase
           #
           # @see Increase::Models::Transaction::Source::InternalSource#reason
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account closure
             ACCOUNT_CLOSURE = :account_closure
@@ -5838,7 +5838,7 @@ module Increase
         end
 
         # @see Increase::Models::Transaction::Source#real_time_payments_transfer_acknowledgement
-        class RealTimePaymentsTransferAcknowledgement < Increase::BaseModel
+        class RealTimePaymentsTransferAcknowledgement < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The transfer amount in USD cents.
           #
@@ -5893,11 +5893,11 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#sample_funds
-        class SampleFunds < Increase::BaseModel
+        class SampleFunds < Increase::Internal::Type::BaseModel
           # @!attribute originator
           #   Where the sample funds came from.
           #
@@ -5913,11 +5913,11 @@ module Increase
           #   #
           #   def initialize(originator:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::Transaction::Source#wire_transfer_intention
-        class WireTransferIntention < Increase::BaseModel
+        class WireTransferIntention < Increase::Internal::Type::BaseModel
           # @!attribute account_number
           #   The destination account number.
           #
@@ -5961,7 +5961,7 @@ module Increase
           #   #
           #   def initialize(account_number:, amount:, message_to_recipient:, routing_number:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
 
@@ -5970,7 +5970,7 @@ module Increase
       #
       # @see Increase::Models::Transaction#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TRANSACTION = :transaction
 

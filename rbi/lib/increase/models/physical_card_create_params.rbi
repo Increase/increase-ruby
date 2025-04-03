@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PhysicalCardCreateParams < Increase::BaseModel
+    class PhysicalCardCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -16,7 +16,7 @@ module Increase
 
       sig do
         params(
-          cardholder: T.any(Increase::Models::PhysicalCardCreateParams::Cardholder, Increase::Internal::Util::AnyHash)
+          cardholder: T.any(Increase::Models::PhysicalCardCreateParams::Cardholder, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -27,9 +27,7 @@ module Increase
       attr_reader :shipment
 
       sig do
-        params(
-          shipment: T.any(Increase::Models::PhysicalCardCreateParams::Shipment, Increase::Internal::Util::AnyHash)
-        )
+        params(shipment: T.any(Increase::Models::PhysicalCardCreateParams::Shipment, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :shipment
@@ -45,10 +43,10 @@ module Increase
       sig do
         params(
           card_id: String,
-          cardholder: T.any(Increase::Models::PhysicalCardCreateParams::Cardholder, Increase::Internal::Util::AnyHash),
-          shipment: T.any(Increase::Models::PhysicalCardCreateParams::Shipment, Increase::Internal::Util::AnyHash),
+          cardholder: T.any(Increase::Models::PhysicalCardCreateParams::Cardholder, Increase::Internal::AnyHash),
+          shipment: T.any(Increase::Models::PhysicalCardCreateParams::Shipment, Increase::Internal::AnyHash),
           physical_card_profile_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -70,7 +68,7 @@ module Increase
       def to_hash
       end
 
-      class Cardholder < Increase::BaseModel
+      class Cardholder < Increase::Internal::Type::BaseModel
         # The cardholder's first name.
         sig { returns(String) }
         attr_accessor :first_name
@@ -89,14 +87,14 @@ module Increase
         end
       end
 
-      class Shipment < Increase::BaseModel
+      class Shipment < Increase::Internal::Type::BaseModel
         # The address to where the card should be shipped.
         sig { returns(Increase::Models::PhysicalCardCreateParams::Shipment::Address) }
         attr_reader :address
 
         sig do
           params(
-            address: T.any(Increase::Models::PhysicalCardCreateParams::Shipment::Address, Increase::Internal::Util::AnyHash)
+            address: T.any(Increase::Models::PhysicalCardCreateParams::Shipment::Address, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -109,7 +107,7 @@ module Increase
         # The details used to ship this physical card.
         sig do
           params(
-            address: T.any(Increase::Models::PhysicalCardCreateParams::Shipment::Address, Increase::Internal::Util::AnyHash),
+            address: T.any(Increase::Models::PhysicalCardCreateParams::Shipment::Address, Increase::Internal::AnyHash),
             method_: Increase::Models::PhysicalCardCreateParams::Shipment::Method::OrSymbol
           )
             .returns(T.attached_class)
@@ -129,7 +127,7 @@ module Increase
         def to_hash
         end
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           # The city of the shipping address.
           sig { returns(String) }
           attr_accessor :city
@@ -209,7 +207,7 @@ module Increase
 
         # The shipping method to use.
         module Method
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Method) }

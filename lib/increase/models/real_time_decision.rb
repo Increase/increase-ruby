@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::RealTimeDecisions#retrieve
-    class RealTimeDecision < Increase::BaseModel
+    class RealTimeDecision < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Real-Time Decision identifier.
       #
@@ -112,10 +112,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::RealTimeDecision#card_authentication
-      class CardAuthentication < Increase::BaseModel
+      class CardAuthentication < Increase::Internal::Type::BaseModel
         # @!attribute account_id
         #   The identifier of the Account the card belongs to.
         #
@@ -153,13 +153,13 @@ module Increase
         #   #
         #   def initialize(account_id:, card_id:, decision:, upcoming_card_payment_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether or not the authentication attempt was approved.
         #
         # @see Increase::Models::RealTimeDecision::CardAuthentication#decision
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authentication attempt without triggering a challenge.
           APPROVE = :approve
@@ -179,7 +179,7 @@ module Increase
       end
 
       # @see Increase::Models::RealTimeDecision#card_authentication_challenge
-      class CardAuthenticationChallenge < Increase::BaseModel
+      class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         # @!attribute account_id
         #   The identifier of the Account the card belongs to.
         #
@@ -224,13 +224,13 @@ module Increase
         #   #
         #   def initialize(account_id:, card_id:, card_payment_id:, one_time_code:, result:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether or not the challenge was delivered to the cardholder.
         #
         # @see Increase::Models::RealTimeDecision::CardAuthenticationChallenge#result
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time code to the cardholder.
           SUCCESS = :success
@@ -247,7 +247,7 @@ module Increase
       end
 
       # @see Increase::Models::RealTimeDecision#card_authorization
-      class CardAuthorization < Increase::BaseModel
+      class CardAuthorization < Increase::Internal::Type::BaseModel
         # @!attribute account_id
         #   The identifier of the Account the authorization will debit.
         #
@@ -477,13 +477,13 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether or not the authorization was approved.
         #
         # @see Increase::Models::RealTimeDecision::CardAuthorization#decision
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authorization.
           APPROVE = :approve
@@ -503,7 +503,7 @@ module Increase
         #
         # @see Increase::Models::RealTimeDecision::CardAuthorization#direction
         module Direction
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A regular card authorization where funds are debited from the cardholder.
           SETTLEMENT = :settlement
@@ -519,7 +519,7 @@ module Increase
         end
 
         # @see Increase::Models::RealTimeDecision::CardAuthorization#network_details
-        class NetworkDetails < Increase::BaseModel
+        class NetworkDetails < Increase::Internal::Type::BaseModel
           # @!attribute category
           #   The payment network used to process this card authorization.
           #
@@ -543,13 +543,13 @@ module Increase
           #   #
           #   def initialize(category:, visa:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The payment network used to process this card authorization.
           #
           # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails#category
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA = :visa
@@ -562,7 +562,7 @@ module Increase
           end
 
           # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails#visa
-          class Visa < Increase::BaseModel
+          class Visa < Increase::Internal::Type::BaseModel
             # @!attribute electronic_commerce_indicator
             #   For electronic commerce transactions, this identifies the level of security used
             #     in obtaining the customer's payment credential. For mail or telephone order
@@ -600,7 +600,7 @@ module Increase
             #   #
             #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # For electronic commerce transactions, this identifies the level of security used
             #   in obtaining the customer's payment credential. For mail or telephone order
@@ -608,7 +608,7 @@ module Increase
             #
             # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa#electronic_commerce_indicator
             module ElectronicCommerceIndicator
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
               MAIL_PHONE_ORDER = :mail_phone_order
@@ -647,7 +647,7 @@ module Increase
             #
             # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa#point_of_service_entry_mode
             module PointOfServiceEntryMode
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Unknown
               UNKNOWN = :unknown
@@ -691,7 +691,7 @@ module Increase
             #
             # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa#stand_in_processing_reason
             module StandInProcessingReason
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Increase failed to process the authorization in a timely manner.
               ISSUER_ERROR = :issuer_error
@@ -726,7 +726,7 @@ module Increase
         end
 
         # @see Increase::Models::RealTimeDecision::CardAuthorization#network_identifiers
-        class NetworkIdentifiers < Increase::BaseModel
+        class NetworkIdentifiers < Increase::Internal::Type::BaseModel
           # @!attribute retrieval_reference_number
           #   A life-cycle identifier used across e.g., an authorization and a reversal.
           #     Expected to be unique per acquirer within a window of time. For some card
@@ -758,7 +758,7 @@ module Increase
           #   #
           #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # The processing category describes the intent behind the authorization, such as
@@ -766,7 +766,7 @@ module Increase
         #
         # @see Increase::Models::RealTimeDecision::CardAuthorization#processing_category
         module ProcessingCategory
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
           ACCOUNT_FUNDING = :account_funding
@@ -794,7 +794,7 @@ module Increase
         end
 
         # @see Increase::Models::RealTimeDecision::CardAuthorization#request_details
-        class RequestDetails < Increase::BaseModel
+        class RequestDetails < Increase::Internal::Type::BaseModel
           # @!attribute category
           #   The type of this request (e.g., an initial authorization or an incremental
           #     authorization).
@@ -815,7 +815,7 @@ module Increase
           #   Fields specific to the category `initial_authorization`.
           #
           #   @return [Object, nil]
-          required :initial_authorization, Increase::Unknown, nil?: true
+          required :initial_authorization, Increase::Internal::Type::Unknown, nil?: true
 
           # @!parse
           #   # Fields specific to the type of request, such as an incremental authorization.
@@ -826,14 +826,14 @@ module Increase
           #   #
           #   def initialize(category:, incremental_authorization:, initial_authorization:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The type of this request (e.g., an initial authorization or an incremental
           #   authorization).
           #
           # @see Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails#category
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular, standalone authorization.
             INITIAL_AUTHORIZATION = :initial_authorization
@@ -849,7 +849,7 @@ module Increase
           end
 
           # @see Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails#incremental_authorization
-          class IncrementalAuthorization < Increase::BaseModel
+          class IncrementalAuthorization < Increase::Internal::Type::BaseModel
             # @!attribute card_payment_id
             #   The card payment for this authorization and increment.
             #
@@ -871,12 +871,12 @@ module Increase
             #   #
             #   def initialize(card_payment_id:, original_card_authorization_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
         end
 
         # @see Increase::Models::RealTimeDecision::CardAuthorization#verification
-        class Verification < Increase::BaseModel
+        class Verification < Increase::Internal::Type::BaseModel
           # @!attribute card_verification_code
           #   Fields related to verification of the Card Verification Code, a 3-digit code on
           #     the back of the card.
@@ -901,10 +901,10 @@ module Increase
           #   #
           #   def initialize(card_verification_code:, cardholder_address:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::RealTimeDecision::CardAuthorization::Verification#card_verification_code
-          class CardVerificationCode < Increase::BaseModel
+          class CardVerificationCode < Increase::Internal::Type::BaseModel
             # @!attribute result
             #   The result of verifying the Card Verification Code.
             #
@@ -920,13 +920,13 @@ module Increase
             #   #
             #   def initialize(result:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The result of verifying the Card Verification Code.
             #
             # @see Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode#result
             module Result
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # No card verification code was provided in the authorization request.
               NOT_CHECKED = :not_checked
@@ -946,7 +946,7 @@ module Increase
           end
 
           # @see Increase::Models::RealTimeDecision::CardAuthorization::Verification#cardholder_address
-          class CardholderAddress < Increase::BaseModel
+          class CardholderAddress < Increase::Internal::Type::BaseModel
             # @!attribute actual_line1
             #   Line 1 of the address on file for the cardholder.
             #
@@ -991,13 +991,13 @@ module Increase
             #   #
             #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The address verification result returned to the card network.
             #
             # @see Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress#result
             module Result
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # No adress was provided in the authorization request.
               NOT_CHECKED = :not_checked
@@ -1031,7 +1031,7 @@ module Increase
       #
       # @see Increase::Models::RealTimeDecision#category
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A card is being authorized.
         CARD_AUTHORIZATION_REQUESTED = :card_authorization_requested
@@ -1056,7 +1056,7 @@ module Increase
       end
 
       # @see Increase::Models::RealTimeDecision#digital_wallet_authentication
-      class DigitalWalletAuthentication < Increase::BaseModel
+      class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         # @!attribute card_id
         #   The identifier of the Card that is being tokenized.
         #
@@ -1116,13 +1116,13 @@ module Increase
         #   #
         #   def initialize(card_id:, channel:, digital_wallet:, email:, one_time_passcode:, phone:, result:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The channel to send the card user their one-time passcode.
         #
         # @see Increase::Models::RealTimeDecision::DigitalWalletAuthentication#channel
         module Channel
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Send one-time passcodes over SMS.
           SMS = :sms
@@ -1141,7 +1141,7 @@ module Increase
         #
         # @see Increase::Models::RealTimeDecision::DigitalWalletAuthentication#digital_wallet
         module DigitalWallet
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Apple Pay
           APPLE_PAY = :apple_pay
@@ -1166,7 +1166,7 @@ module Increase
         #
         # @see Increase::Models::RealTimeDecision::DigitalWalletAuthentication#result
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time passcode to the cardholder.
           SUCCESS = :success
@@ -1183,7 +1183,7 @@ module Increase
       end
 
       # @see Increase::Models::RealTimeDecision#digital_wallet_token
-      class DigitalWalletToken < Increase::BaseModel
+      class DigitalWalletToken < Increase::Internal::Type::BaseModel
         # @!attribute card_id
         #   The identifier of the Card that is being tokenized.
         #
@@ -1231,14 +1231,14 @@ module Increase
         #   #
         #   def initialize(card_id:, card_profile_id:, decision:, device:, digital_wallet:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether or not the provisioning request was approved. This will be null until
         #   the real time decision is responded to.
         #
         # @see Increase::Models::RealTimeDecision::DigitalWalletToken#decision
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the provisioning request.
           APPROVE = :approve
@@ -1254,7 +1254,7 @@ module Increase
         end
 
         # @see Increase::Models::RealTimeDecision::DigitalWalletToken#device
-        class Device < Increase::BaseModel
+        class Device < Increase::Internal::Type::BaseModel
           # @!attribute identifier
           #   ID assigned to the device by the digital wallet provider.
           #
@@ -1268,14 +1268,14 @@ module Increase
           #   #
           #   def initialize(identifier:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # The digital wallet app being used.
         #
         # @see Increase::Models::RealTimeDecision::DigitalWalletToken#digital_wallet
         module DigitalWallet
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Apple Pay
           APPLE_PAY = :apple_pay
@@ -1301,7 +1301,7 @@ module Increase
       #
       # @see Increase::Models::RealTimeDecision#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The decision is pending action via real-time webhook.
         PENDING = :pending
@@ -1324,7 +1324,7 @@ module Increase
       #
       # @see Increase::Models::RealTimeDecision#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         REAL_TIME_DECISION = :real_time_decision
 

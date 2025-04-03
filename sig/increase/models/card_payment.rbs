@@ -13,7 +13,7 @@ module Increase
         type: Increase::Models::CardPayment::type_
       }
 
-    class CardPayment < Increase::BaseModel
+    class CardPayment < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -63,7 +63,7 @@ module Increase
           other: top?
         }
 
-      class Element < Increase::BaseModel
+      class Element < Increase::Internal::Type::BaseModel
         attr_accessor card_authentication: Increase::Models::CardPayment::Element::CardAuthentication?
 
         attr_accessor card_authorization: Increase::Models::CardPayment::Element::CardAuthorization?
@@ -129,7 +129,7 @@ module Increase
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           }
 
-        class CardAuthentication < Increase::BaseModel
+        class CardAuthentication < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor card_id: String
@@ -189,7 +189,7 @@ module Increase
           type category = :payment_authentication | :non_payment_authentication
 
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The authentication attempt is for a payment.
             PAYMENT_AUTHENTICATION: :payment_authentication
@@ -209,7 +209,7 @@ module Increase
               verification_value: String?
             }
 
-          class Challenge < Increase::BaseModel
+          class Challenge < Increase::Internal::Type::BaseModel
             attr_accessor attempts: ::Array[Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt]
 
             attr_accessor created_at: Time
@@ -236,7 +236,7 @@ module Increase
                 outcome: Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::outcome
               }
 
-            class Attempt < Increase::BaseModel
+            class Attempt < Increase::Internal::Type::BaseModel
               attr_accessor created_at: Time
 
               attr_accessor outcome: Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::outcome
@@ -251,7 +251,7 @@ module Increase
               type outcome = :successful | :failed
 
               module Outcome
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # The attempt was successful.
                 SUCCESSFUL: :successful
@@ -266,7 +266,7 @@ module Increase
             type verification_method = :text_message | :email | :none_available
 
             module VerificationMethod
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # The one-time code was sent via text message.
               TEXT_MESSAGE: :text_message
@@ -290,7 +290,7 @@ module Increase
             | :webhook_timed_out
 
           module DenyReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The group was locked.
             GROUP_LOCKED: :group_locked
@@ -316,7 +316,7 @@ module Increase
           type device_channel = :app | :browser | :three_ds_requestor_initiated
 
           module DeviceChannel
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The authentication attempt was made from an app.
             APP: :app
@@ -342,7 +342,7 @@ module Increase
             | :exceeded_attempt_threshold
 
           module Status
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The authentication attempt was denied.
             DENIED: :denied
@@ -377,7 +377,7 @@ module Increase
           type type_ = :card_authentication
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHENTICATION: :card_authentication
 
@@ -416,7 +416,7 @@ module Increase
             verification: Increase::Models::CardPayment::Element::CardAuthorization::Verification
           }
 
-        class CardAuthorization < Increase::BaseModel
+        class CardAuthorization < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::CardPayment::Element::CardAuthorization::actioner
@@ -506,7 +506,7 @@ module Increase
           type actioner = :user | :increase | :network
 
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER: :user
@@ -523,7 +523,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -549,7 +549,7 @@ module Increase
           type direction = :settlement | :refund
 
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT: :settlement
@@ -566,7 +566,7 @@ module Increase
               visa: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             }
 
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category
 
             attr_accessor visa: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
@@ -581,7 +581,7 @@ module Increase
             type category = :visa
 
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
@@ -596,7 +596,7 @@ module Increase
                 stand_in_processing_reason: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::stand_in_processing_reason?
               }
 
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               attr_accessor electronic_commerce_indicator: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::electronic_commerce_indicator?
 
               attr_accessor point_of_service_entry_mode: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::point_of_service_entry_mode?
@@ -622,7 +622,7 @@ module Increase
                 | :non_secure_transaction
 
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER: :mail_phone_order
@@ -664,7 +664,7 @@ module Increase
                 | :integrated_circuit_card_no_cvv
 
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN: :unknown
@@ -709,7 +709,7 @@ module Increase
                 | :other
 
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR: :issuer_error
@@ -744,7 +744,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -769,7 +769,7 @@ module Increase
             | :refund
 
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING: :account_funding
@@ -795,7 +795,7 @@ module Increase
           type type_ = :card_authorization
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHORIZATION: :card_authorization
 
@@ -808,7 +808,7 @@ module Increase
               cardholder_address: Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress
             }
 
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             attr_accessor card_verification_code: Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode
 
             attr_accessor cardholder_address: Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress
@@ -825,7 +825,7 @@ module Increase
                 result: Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::result
               }
 
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               attr_accessor result: Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::result
 
               def initialize: (
@@ -837,7 +837,7 @@ module Increase
               type result = :not_checked | :match | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -861,7 +861,7 @@ module Increase
                 result: Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::result
               }
 
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               attr_accessor actual_line1: String?
 
               attr_accessor actual_postal_code: String?
@@ -891,7 +891,7 @@ module Increase
                 | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -927,7 +927,7 @@ module Increase
             type: Increase::Models::CardPayment::Element::CardAuthorizationExpiration::type_
           }
 
-        class CardAuthorizationExpiration < Increase::BaseModel
+        class CardAuthorizationExpiration < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor card_authorization_id: String
@@ -954,7 +954,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -980,7 +980,7 @@ module Increase
           type network = :visa
 
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
@@ -991,7 +991,7 @@ module Increase
           type type_ = :card_authorization_expiration
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHORIZATION_EXPIRATION: :card_authorization_expiration
 
@@ -1030,7 +1030,7 @@ module Increase
             verification: Increase::Models::CardPayment::Element::CardDecline::Verification
           }
 
-        class CardDecline < Increase::BaseModel
+        class CardDecline < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::CardPayment::Element::CardDecline::actioner
@@ -1120,7 +1120,7 @@ module Increase
           type actioner = :user | :increase | :network
 
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER: :user
@@ -1137,7 +1137,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -1163,7 +1163,7 @@ module Increase
           type direction = :settlement | :refund
 
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT: :settlement
@@ -1180,7 +1180,7 @@ module Increase
               visa: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             }
 
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category
 
             attr_accessor visa: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa?
@@ -1195,7 +1195,7 @@ module Increase
             type category = :visa
 
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
@@ -1210,7 +1210,7 @@ module Increase
                 stand_in_processing_reason: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::stand_in_processing_reason?
               }
 
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               attr_accessor electronic_commerce_indicator: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::electronic_commerce_indicator?
 
               attr_accessor point_of_service_entry_mode: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::point_of_service_entry_mode?
@@ -1236,7 +1236,7 @@ module Increase
                 | :non_secure_transaction
 
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER: :mail_phone_order
@@ -1278,7 +1278,7 @@ module Increase
                 | :integrated_circuit_card_no_cvv
 
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN: :unknown
@@ -1323,7 +1323,7 @@ module Increase
                 | :other
 
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR: :issuer_error
@@ -1358,7 +1358,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -1383,7 +1383,7 @@ module Increase
             | :refund
 
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING: :account_funding
@@ -1415,7 +1415,7 @@ module Increase
             | :other
 
           module RealTimeDecisionReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
             INSUFFICIENT_FUNDS: :insufficient_funds
@@ -1458,7 +1458,7 @@ module Increase
             | :suspected_fraud
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account has been closed.
             ACCOUNT_CLOSED: :account_closed
@@ -1520,7 +1520,7 @@ module Increase
               cardholder_address: Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress
             }
 
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             attr_accessor card_verification_code: Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode
 
             attr_accessor cardholder_address: Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress
@@ -1537,7 +1537,7 @@ module Increase
                 result: Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::result
               }
 
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               attr_accessor result: Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::result
 
               def initialize: (
@@ -1549,7 +1549,7 @@ module Increase
               type result = :not_checked | :match | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -1573,7 +1573,7 @@ module Increase
                 result: Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress::result
               }
 
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               attr_accessor actual_line1: String?
 
               attr_accessor actual_postal_code: String?
@@ -1603,7 +1603,7 @@ module Increase
                 | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -1641,7 +1641,7 @@ module Increase
             updated_authorization_amount: Integer
           }
 
-        class CardFuelConfirmation < Increase::BaseModel
+        class CardFuelConfirmation < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor card_authorization_id: String
@@ -1674,7 +1674,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -1700,7 +1700,7 @@ module Increase
           type network = :visa
 
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
@@ -1715,7 +1715,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -1734,7 +1734,7 @@ module Increase
           type type_ = :card_fuel_confirmation
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_FUEL_CONFIRMATION: :card_fuel_confirmation
 
@@ -1758,7 +1758,7 @@ module Increase
             updated_authorization_amount: Integer
           }
 
-        class CardIncrement < Increase::BaseModel
+        class CardIncrement < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::CardPayment::Element::CardIncrement::actioner
@@ -1803,7 +1803,7 @@ module Increase
           type actioner = :user | :increase | :network
 
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER: :user
@@ -1820,7 +1820,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -1846,7 +1846,7 @@ module Increase
           type network = :visa
 
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
@@ -1861,7 +1861,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -1880,7 +1880,7 @@ module Increase
           type type_ = :card_increment
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_INCREMENT: :card_increment
 
@@ -1911,7 +1911,7 @@ module Increase
             type: Increase::Models::CardPayment::Element::CardRefund::type_
           }
 
-        class CardRefund < Increase::BaseModel
+        class CardRefund < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor amount: Integer
@@ -1980,7 +1980,7 @@ module Increase
               currency: Increase::Models::CardPayment::Element::CardRefund::Cashback::currency
             }
 
-          class Cashback < Increase::BaseModel
+          class Cashback < Increase::Internal::Type::BaseModel
             attr_accessor amount: String
 
             attr_accessor currency: Increase::Models::CardPayment::Element::CardRefund::Cashback::currency
@@ -1995,7 +1995,7 @@ module Increase
             type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD: :CAD
@@ -2022,7 +2022,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -2052,7 +2052,7 @@ module Increase
               currency: Increase::Models::CardPayment::Element::CardRefund::Interchange::currency
             }
 
-          class Interchange < Increase::BaseModel
+          class Interchange < Increase::Internal::Type::BaseModel
             attr_accessor amount: String
 
             attr_accessor code: String?
@@ -2070,7 +2070,7 @@ module Increase
             type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD: :CAD
@@ -2101,7 +2101,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor acquirer_business_id: String
 
             attr_accessor acquirer_reference_number: String
@@ -2131,7 +2131,7 @@ module Increase
               travel: Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel?
             }
 
-          class PurchaseDetails < Increase::BaseModel
+          class PurchaseDetails < Increase::Internal::Type::BaseModel
             attr_accessor car_rental: Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental?
 
             attr_accessor customer_reference_identifier: String?
@@ -2187,7 +2187,7 @@ module Increase
                 weekly_rental_rate_currency: String?
               }
 
-            class CarRental < Increase::BaseModel
+            class CarRental < Increase::Internal::Type::BaseModel
               attr_accessor car_class_code: String?
 
               attr_accessor checkout_date: Date?
@@ -2250,7 +2250,7 @@ module Increase
                 | :parking_violation
 
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE: :no_extra_charge
@@ -2277,7 +2277,7 @@ module Increase
                 :not_applicable | :no_show_for_specialized_vehicle
 
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE: :not_applicable
@@ -2309,7 +2309,7 @@ module Increase
                 total_tax_currency: String?
               }
 
-            class Lodging < Increase::BaseModel
+            class Lodging < Increase::Internal::Type::BaseModel
               attr_accessor check_in_date: Date?
 
               attr_accessor daily_room_rate_amount: Integer?
@@ -2373,7 +2373,7 @@ module Increase
                 | :laundry
 
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE: :no_extra_charge
@@ -2402,7 +2402,7 @@ module Increase
               type no_show_indicator = :not_applicable | :no_show
 
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE: :not_applicable
@@ -2422,7 +2422,7 @@ module Increase
               | :invoice_number
 
             module PurchaseIdentifierFormat
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Free text
               FREE_TEXT: :free_text
@@ -2458,7 +2458,7 @@ module Increase
                 trip_legs: ::Array[Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg]?
               }
 
-            class Travel < Increase::BaseModel
+            class Travel < Increase::Internal::Type::BaseModel
               attr_accessor ancillary: Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary?
 
               attr_accessor computerized_reservation_system: String?
@@ -2509,7 +2509,7 @@ module Increase
                   ticket_document_number: String?
                 }
 
-              class Ancillary < Increase::BaseModel
+              class Ancillary < Increase::Internal::Type::BaseModel
                 attr_accessor connected_ticket_document_number: String?
 
                 attr_accessor credit_reason_indicator: Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::credit_reason_indicator?
@@ -2537,7 +2537,7 @@ module Increase
                   | :other
 
                 module CreditReasonIndicator
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # No credit
                   NO_CREDIT: :no_credit
@@ -2560,7 +2560,7 @@ module Increase
                     sub_category: String?
                   }
 
-                class Service < Increase::BaseModel
+                class Service < Increase::Internal::Type::BaseModel
                   attr_accessor category: Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service::category?
 
                   attr_accessor sub_category: String?
@@ -2599,7 +2599,7 @@ module Increase
                     | :wifi
 
                   module Category
-                    extend Increase::Enum
+                    extend Increase::Internal::Type::Enum
 
                     # None
                     NONE: :none
@@ -2687,7 +2687,7 @@ module Increase
                 | :partial_refund_of_airline_ticket
 
               module CreditReasonIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No credit
                 NO_CREDIT: :no_credit
@@ -2714,7 +2714,7 @@ module Increase
                 :no_restrictions | :restricted_non_refundable_ticket
 
               module RestrictedTicketIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No restrictions
                 NO_RESTRICTIONS: :no_restrictions
@@ -2729,7 +2729,7 @@ module Increase
                 :none | :change_to_existing_ticket | :new_ticket
 
               module TicketChangeIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # None
                 NONE: :none
@@ -2753,7 +2753,7 @@ module Increase
                   stop_over_code: Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg::stop_over_code?
                 }
 
-              class TripLeg < Increase::BaseModel
+              class TripLeg < Increase::Internal::Type::BaseModel
                 attr_accessor carrier_code: String?
 
                 attr_accessor destination_city_airport_code: String?
@@ -2781,7 +2781,7 @@ module Increase
                   :none | :stop_over_allowed | :stop_over_not_allowed
 
                 module StopOverCode
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # None
                   NONE: :none
@@ -2801,7 +2801,7 @@ module Increase
           type type_ = :card_refund
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_REFUND: :card_refund
 
@@ -2831,7 +2831,7 @@ module Increase
             updated_authorization_amount: Integer
           }
 
-        class CardReversal < Increase::BaseModel
+        class CardReversal < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor card_authorization_id: String
@@ -2894,7 +2894,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -2920,7 +2920,7 @@ module Increase
           type network = :visa
 
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
@@ -2935,7 +2935,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -2958,7 +2958,7 @@ module Increase
             | :partial_reversal
 
           module ReversalReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The Card Reversal was initiated at the customer's request.
             REVERSED_BY_CUSTOMER: :reversed_by_customer
@@ -2978,7 +2978,7 @@ module Increase
           type type_ = :card_reversal
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_REVERSAL: :card_reversal
 
@@ -3011,7 +3011,7 @@ module Increase
             type: Increase::Models::CardPayment::Element::CardSettlement::type_
           }
 
-        class CardSettlement < Increase::BaseModel
+        class CardSettlement < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor amount: Integer
@@ -3086,7 +3086,7 @@ module Increase
               currency: Increase::Models::CardPayment::Element::CardSettlement::Cashback::currency
             }
 
-          class Cashback < Increase::BaseModel
+          class Cashback < Increase::Internal::Type::BaseModel
             attr_accessor amount: String
 
             attr_accessor currency: Increase::Models::CardPayment::Element::CardSettlement::Cashback::currency
@@ -3101,7 +3101,7 @@ module Increase
             type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD: :CAD
@@ -3128,7 +3128,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -3158,7 +3158,7 @@ module Increase
               currency: Increase::Models::CardPayment::Element::CardSettlement::Interchange::currency
             }
 
-          class Interchange < Increase::BaseModel
+          class Interchange < Increase::Internal::Type::BaseModel
             attr_accessor amount: String
 
             attr_accessor code: String?
@@ -3176,7 +3176,7 @@ module Increase
             type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD: :CAD
@@ -3207,7 +3207,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor acquirer_business_id: String
 
             attr_accessor acquirer_reference_number: String
@@ -3237,7 +3237,7 @@ module Increase
               travel: Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel?
             }
 
-          class PurchaseDetails < Increase::BaseModel
+          class PurchaseDetails < Increase::Internal::Type::BaseModel
             attr_accessor car_rental: Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental?
 
             attr_accessor customer_reference_identifier: String?
@@ -3293,7 +3293,7 @@ module Increase
                 weekly_rental_rate_currency: String?
               }
 
-            class CarRental < Increase::BaseModel
+            class CarRental < Increase::Internal::Type::BaseModel
               attr_accessor car_class_code: String?
 
               attr_accessor checkout_date: Date?
@@ -3356,7 +3356,7 @@ module Increase
                 | :parking_violation
 
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE: :no_extra_charge
@@ -3383,7 +3383,7 @@ module Increase
                 :not_applicable | :no_show_for_specialized_vehicle
 
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE: :not_applicable
@@ -3415,7 +3415,7 @@ module Increase
                 total_tax_currency: String?
               }
 
-            class Lodging < Increase::BaseModel
+            class Lodging < Increase::Internal::Type::BaseModel
               attr_accessor check_in_date: Date?
 
               attr_accessor daily_room_rate_amount: Integer?
@@ -3479,7 +3479,7 @@ module Increase
                 | :laundry
 
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE: :no_extra_charge
@@ -3508,7 +3508,7 @@ module Increase
               type no_show_indicator = :not_applicable | :no_show
 
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE: :not_applicable
@@ -3528,7 +3528,7 @@ module Increase
               | :invoice_number
 
             module PurchaseIdentifierFormat
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Free text
               FREE_TEXT: :free_text
@@ -3564,7 +3564,7 @@ module Increase
                 trip_legs: ::Array[Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg]?
               }
 
-            class Travel < Increase::BaseModel
+            class Travel < Increase::Internal::Type::BaseModel
               attr_accessor ancillary: Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary?
 
               attr_accessor computerized_reservation_system: String?
@@ -3615,7 +3615,7 @@ module Increase
                   ticket_document_number: String?
                 }
 
-              class Ancillary < Increase::BaseModel
+              class Ancillary < Increase::Internal::Type::BaseModel
                 attr_accessor connected_ticket_document_number: String?
 
                 attr_accessor credit_reason_indicator: Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::credit_reason_indicator?
@@ -3643,7 +3643,7 @@ module Increase
                   | :other
 
                 module CreditReasonIndicator
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # No credit
                   NO_CREDIT: :no_credit
@@ -3666,7 +3666,7 @@ module Increase
                     sub_category: String?
                   }
 
-                class Service < Increase::BaseModel
+                class Service < Increase::Internal::Type::BaseModel
                   attr_accessor category: Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::category?
 
                   attr_accessor sub_category: String?
@@ -3705,7 +3705,7 @@ module Increase
                     | :wifi
 
                   module Category
-                    extend Increase::Enum
+                    extend Increase::Internal::Type::Enum
 
                     # None
                     NONE: :none
@@ -3793,7 +3793,7 @@ module Increase
                 | :partial_refund_of_airline_ticket
 
               module CreditReasonIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No credit
                 NO_CREDIT: :no_credit
@@ -3820,7 +3820,7 @@ module Increase
                 :no_restrictions | :restricted_non_refundable_ticket
 
               module RestrictedTicketIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No restrictions
                 NO_RESTRICTIONS: :no_restrictions
@@ -3835,7 +3835,7 @@ module Increase
                 :none | :change_to_existing_ticket | :new_ticket
 
               module TicketChangeIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # None
                 NONE: :none
@@ -3859,7 +3859,7 @@ module Increase
                   stop_over_code: Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg::stop_over_code?
                 }
 
-              class TripLeg < Increase::BaseModel
+              class TripLeg < Increase::Internal::Type::BaseModel
                 attr_accessor carrier_code: String?
 
                 attr_accessor destination_city_airport_code: String?
@@ -3887,7 +3887,7 @@ module Increase
                   :none | :stop_over_allowed | :stop_over_not_allowed
 
                 module StopOverCode
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # None
                   NONE: :none
@@ -3907,7 +3907,7 @@ module Increase
           type type_ = :card_settlement
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_SETTLEMENT: :card_settlement
 
@@ -3939,7 +3939,7 @@ module Increase
             verification: Increase::Models::CardPayment::Element::CardValidation::Verification
           }
 
-        class CardValidation < Increase::BaseModel
+        class CardValidation < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::CardPayment::Element::CardValidation::actioner
@@ -4008,7 +4008,7 @@ module Increase
           type actioner = :user | :increase | :network
 
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER: :user
@@ -4025,7 +4025,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -4054,7 +4054,7 @@ module Increase
               visa: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             }
 
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category
 
             attr_accessor visa: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa?
@@ -4069,7 +4069,7 @@ module Increase
             type category = :visa
 
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
@@ -4084,7 +4084,7 @@ module Increase
                 stand_in_processing_reason: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::stand_in_processing_reason?
               }
 
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               attr_accessor electronic_commerce_indicator: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::electronic_commerce_indicator?
 
               attr_accessor point_of_service_entry_mode: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::point_of_service_entry_mode?
@@ -4110,7 +4110,7 @@ module Increase
                 | :non_secure_transaction
 
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER: :mail_phone_order
@@ -4152,7 +4152,7 @@ module Increase
                 | :integrated_circuit_card_no_cvv
 
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN: :unknown
@@ -4197,7 +4197,7 @@ module Increase
                 | :other
 
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR: :issuer_error
@@ -4232,7 +4232,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -4251,7 +4251,7 @@ module Increase
           type type_ = :card_validation
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_VALIDATION: :card_validation
 
@@ -4264,7 +4264,7 @@ module Increase
               cardholder_address: Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress
             }
 
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             attr_accessor card_verification_code: Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode
 
             attr_accessor cardholder_address: Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress
@@ -4281,7 +4281,7 @@ module Increase
                 result: Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::result
               }
 
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               attr_accessor result: Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::result
 
               def initialize: (
@@ -4293,7 +4293,7 @@ module Increase
               type result = :not_checked | :match | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -4317,7 +4317,7 @@ module Increase
                 result: Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress::result
               }
 
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               attr_accessor actual_line1: String?
 
               attr_accessor actual_postal_code: String?
@@ -4347,7 +4347,7 @@ module Increase
                 | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -4387,7 +4387,7 @@ module Increase
           | :other
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Card Authorization: details will be under the `card_authorization` object.
           CARD_AUTHORIZATION: :card_authorization
@@ -4435,7 +4435,7 @@ module Increase
           settled_amount: Integer
         }
 
-      class State < Increase::BaseModel
+      class State < Increase::Internal::Type::BaseModel
         attr_accessor authorized_amount: Integer
 
         attr_accessor fuel_confirmed_amount: Integer
@@ -4460,7 +4460,7 @@ module Increase
       type type_ = :card_payment
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_PAYMENT: :card_payment
 

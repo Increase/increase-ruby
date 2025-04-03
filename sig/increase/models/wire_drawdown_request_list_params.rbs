@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class WireDrawdownRequestListParams < Increase::BaseModel
+    class WireDrawdownRequestListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -46,7 +46,7 @@ module Increase
           in_: ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]
         }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]?
 
         def in_=: (
@@ -63,7 +63,7 @@ module Increase
           :pending_submission | :pending_response | :fulfilled | :refused
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The drawdown request is queued to be submitted to Fedwire.
           PENDING_SUBMISSION: :pending_submission

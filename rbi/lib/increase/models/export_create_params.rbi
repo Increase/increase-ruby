@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ExportCreateParams < Increase::BaseModel
+    class ExportCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -17,7 +17,7 @@ module Increase
 
       sig do
         params(
-          account_statement_ofx: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx, Increase::Internal::Util::AnyHash)
+          account_statement_ofx: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -29,9 +29,7 @@ module Increase
       attr_reader :balance_csv
 
       sig do
-        params(
-          balance_csv: T.any(Increase::Models::ExportCreateParams::BalanceCsv, Increase::Internal::Util::AnyHash)
-        )
+        params(balance_csv: T.any(Increase::Models::ExportCreateParams::BalanceCsv, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :balance_csv
@@ -43,10 +41,7 @@ module Increase
 
       sig do
         params(
-          bookkeeping_account_balance_csv: T.any(
-            Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv,
-            Increase::Internal::Util::AnyHash
-          )
+          bookkeeping_account_balance_csv: T.any(Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -57,9 +52,7 @@ module Increase
       attr_reader :entity_csv
 
       sig do
-        params(
-          entity_csv: T.any(Increase::Models::ExportCreateParams::EntityCsv, Increase::Internal::Util::AnyHash)
-        )
+        params(entity_csv: T.any(Increase::Models::ExportCreateParams::EntityCsv, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :entity_csv
@@ -71,7 +64,7 @@ module Increase
 
       sig do
         params(
-          transaction_csv: T.any(Increase::Models::ExportCreateParams::TransactionCsv, Increase::Internal::Util::AnyHash)
+          transaction_csv: T.any(Increase::Models::ExportCreateParams::TransactionCsv, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -87,16 +80,13 @@ module Increase
       sig do
         params(
           category: Increase::Models::ExportCreateParams::Category::OrSymbol,
-          account_statement_ofx: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx, Increase::Internal::Util::AnyHash),
-          balance_csv: T.any(Increase::Models::ExportCreateParams::BalanceCsv, Increase::Internal::Util::AnyHash),
-          bookkeeping_account_balance_csv: T.any(
-            Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv,
-            Increase::Internal::Util::AnyHash
-          ),
-          entity_csv: T.any(Increase::Models::ExportCreateParams::EntityCsv, Increase::Internal::Util::AnyHash),
-          transaction_csv: T.any(Increase::Models::ExportCreateParams::TransactionCsv, Increase::Internal::Util::AnyHash),
+          account_statement_ofx: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx, Increase::Internal::AnyHash),
+          balance_csv: T.any(Increase::Models::ExportCreateParams::BalanceCsv, Increase::Internal::AnyHash),
+          bookkeeping_account_balance_csv: T.any(Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv, Increase::Internal::AnyHash),
+          entity_csv: T.any(Increase::Models::ExportCreateParams::EntityCsv, Increase::Internal::AnyHash),
+          transaction_csv: T.any(Increase::Models::ExportCreateParams::TransactionCsv, Increase::Internal::AnyHash),
           vendor_csv: T.anything,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -132,7 +122,7 @@ module Increase
 
       # The type of Export to create.
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExportCreateParams::Category) }
         OrSymbol =
@@ -163,7 +153,7 @@ module Increase
         end
       end
 
-      class AccountStatementOfx < Increase::BaseModel
+      class AccountStatementOfx < Increase::Internal::Type::BaseModel
         # The Account to create a statement for.
         sig { returns(String) }
         attr_accessor :account_id
@@ -174,10 +164,7 @@ module Increase
 
         sig do
           params(
-            created_at: T.any(
-              Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt,
-              Increase::Internal::Util::AnyHash
-            )
+            created_at: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -188,10 +175,7 @@ module Increase
         sig do
           params(
             account_id: String,
-            created_at: T.any(
-              Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt,
-              Increase::Internal::Util::AnyHash
-            )
+            created_at: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end
@@ -207,7 +191,7 @@ module Increase
         def to_hash
         end
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           #   timestamp.
           sig { returns(T.nilable(Time)) }
@@ -253,7 +237,7 @@ module Increase
         end
       end
 
-      class BalanceCsv < Increase::BaseModel
+      class BalanceCsv < Increase::Internal::Type::BaseModel
         # Filter exported Transactions to the specified Account.
         sig { returns(T.nilable(String)) }
         attr_reader :account_id
@@ -267,7 +251,7 @@ module Increase
 
         sig do
           params(
-            created_at: T.any(Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt, Increase::Internal::Util::AnyHash)
+            created_at: T.any(Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -285,7 +269,7 @@ module Increase
         sig do
           params(
             account_id: String,
-            created_at: T.any(Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt, Increase::Internal::Util::AnyHash),
+            created_at: T.any(Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt, Increase::Internal::AnyHash),
             program_id: String
           )
             .returns(T.attached_class)
@@ -306,7 +290,7 @@ module Increase
         def to_hash
         end
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           #   timestamp.
           sig { returns(T.nilable(Time)) }
@@ -352,7 +336,7 @@ module Increase
         end
       end
 
-      class BookkeepingAccountBalanceCsv < Increase::BaseModel
+      class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
         # Filter exported Transactions to the specified Bookkeeping Account.
         sig { returns(T.nilable(String)) }
         attr_reader :bookkeeping_account_id
@@ -368,7 +352,7 @@ module Increase
           params(
             created_at: T.any(
               Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .void
@@ -382,7 +366,7 @@ module Increase
             bookkeeping_account_id: String,
             created_at: T.any(
               Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .returns(T.attached_class)
@@ -402,7 +386,7 @@ module Increase
         def to_hash
         end
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           #   timestamp.
           sig { returns(T.nilable(Time)) }
@@ -448,14 +432,14 @@ module Increase
         end
       end
 
-      class EntityCsv < Increase::BaseModel
+      class EntityCsv < Increase::Internal::Type::BaseModel
         # Entity statuses to filter by.
         sig { returns(T.nilable(Increase::Models::ExportCreateParams::EntityCsv::Status)) }
         attr_reader :status
 
         sig do
           params(
-            status: T.any(Increase::Models::ExportCreateParams::EntityCsv::Status, Increase::Internal::Util::AnyHash)
+            status: T.any(Increase::Models::ExportCreateParams::EntityCsv::Status, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -464,7 +448,7 @@ module Increase
         # Options for the created export. Required if `category` is equal to `entity_csv`.
         sig do
           params(
-            status: T.any(Increase::Models::ExportCreateParams::EntityCsv::Status, Increase::Internal::Util::AnyHash)
+            status: T.any(Increase::Models::ExportCreateParams::EntityCsv::Status, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end
@@ -475,7 +459,7 @@ module Increase
         def to_hash
         end
 
-        class Status < Increase::BaseModel
+        class Status < Increase::Internal::Type::BaseModel
           # Entity statuses to filter by. For GET requests, this should be encoded as a
           #   comma-delimited string, such as `?in=one,two,three`.
           sig { returns(T::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::In::OrSymbol]) }
@@ -494,7 +478,7 @@ module Increase
           end
 
           module In
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::ExportCreateParams::EntityCsv::Status::In) }
@@ -517,7 +501,7 @@ module Increase
         end
       end
 
-      class TransactionCsv < Increase::BaseModel
+      class TransactionCsv < Increase::Internal::Type::BaseModel
         # Filter exported Transactions to the specified Account.
         sig { returns(T.nilable(String)) }
         attr_reader :account_id
@@ -531,7 +515,7 @@ module Increase
 
         sig do
           params(
-            created_at: T.any(Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt, Increase::Internal::Util::AnyHash)
+            created_at: T.any(Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -549,7 +533,7 @@ module Increase
         sig do
           params(
             account_id: String,
-            created_at: T.any(Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt, Increase::Internal::Util::AnyHash),
+            created_at: T.any(Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt, Increase::Internal::AnyHash),
             program_id: String
           )
             .returns(T.attached_class)
@@ -570,7 +554,7 @@ module Increase
         def to_hash
         end
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           #   timestamp.
           sig { returns(T.nilable(Time)) }

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class CardListParams < Increase::BaseModel
+    class CardListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -16,10 +16,7 @@ module Increase
       sig { returns(T.nilable(Increase::Models::CardListParams::CreatedAt)) }
       attr_reader :created_at
 
-      sig do
-        params(created_at: T.any(Increase::Models::CardListParams::CreatedAt, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(created_at: T.any(Increase::Models::CardListParams::CreatedAt, Increase::Internal::AnyHash)).void }
       attr_writer :created_at
 
       # Return the page of entries after this one.
@@ -50,18 +47,18 @@ module Increase
       sig { returns(T.nilable(Increase::Models::CardListParams::Status)) }
       attr_reader :status
 
-      sig { params(status: T.any(Increase::Models::CardListParams::Status, Increase::Internal::Util::AnyHash)).void }
+      sig { params(status: T.any(Increase::Models::CardListParams::Status, Increase::Internal::AnyHash)).void }
       attr_writer :status
 
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::CardListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::CardListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::CardListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::CardListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -93,7 +90,7 @@ module Increase
       def to_hash
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }
@@ -137,7 +134,7 @@ module Increase
         end
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # Filter Cards by status. For GET requests, this should be encoded as a
         #   comma-delimited string, such as `?in=one,two,three`.
         sig { returns(T.nilable(T::Array[Increase::Models::CardListParams::Status::In::OrSymbol])) }
@@ -155,7 +152,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardListParams::Status::In) }
           OrSymbol =

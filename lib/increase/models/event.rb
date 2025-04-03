@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Events#retrieve
-    class Event < Increase::BaseModel
+    class Event < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Event identifier.
       #
@@ -57,14 +57,14 @@ module Increase
       #   #
       #   def initialize(id:, associated_object_id:, associated_object_type:, category:, created_at:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The category of the Event. We may add additional possible values for this enum
       #   over time; your application should be able to handle such additions gracefully.
       #
       # @see Increase::Models::Event#category
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Occurs whenever an Account is created.
         ACCOUNT_CREATED = :"account.created"
@@ -344,7 +344,7 @@ module Increase
       #
       # @see Increase::Models::Event#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         EVENT = :event
 

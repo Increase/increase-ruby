@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           real_time_decision_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::RealTimeDecision)
       end
@@ -22,27 +22,18 @@ module Increase
       sig do
         params(
           real_time_decision_id: String,
-          card_authentication: T.any(
-            Increase::Models::RealTimeDecisionActionParams::CardAuthentication,
-            Increase::Internal::Util::AnyHash
-          ),
+          card_authentication: T.any(Increase::Models::RealTimeDecisionActionParams::CardAuthentication, Increase::Internal::AnyHash),
           card_authentication_challenge: T.any(
             Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge,
-            Increase::Internal::Util::AnyHash
+            Increase::Internal::AnyHash
           ),
-          card_authorization: T.any(
-            Increase::Models::RealTimeDecisionActionParams::CardAuthorization,
-            Increase::Internal::Util::AnyHash
-          ),
+          card_authorization: T.any(Increase::Models::RealTimeDecisionActionParams::CardAuthorization, Increase::Internal::AnyHash),
           digital_wallet_authentication: T.any(
             Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication,
-            Increase::Internal::Util::AnyHash
+            Increase::Internal::AnyHash
           ),
-          digital_wallet_token: T.any(
-            Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken,
-            Increase::Internal::Util::AnyHash
-          ),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          digital_wallet_token: T.any(Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::RealTimeDecision)
       end

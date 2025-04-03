@@ -12,7 +12,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class ExportCreateParams < Increase::BaseModel
+    class ExportCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -74,7 +74,7 @@ module Increase
         | :vendor_csv
 
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
         ACCOUNT_STATEMENT_OFX: :account_statement_ofx
@@ -103,7 +103,7 @@ module Increase
           created_at: Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt
         }
 
-      class AccountStatementOfx < Increase::BaseModel
+      class AccountStatementOfx < Increase::Internal::Type::BaseModel
         attr_accessor account_id: String
 
         attr_reader created_at: Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt?
@@ -122,7 +122,7 @@ module Increase
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           attr_reader after: Time?
 
           def after=: (Time) -> Time
@@ -157,7 +157,7 @@ module Increase
           program_id: String
         }
 
-      class BalanceCsv < Increase::BaseModel
+      class BalanceCsv < Increase::Internal::Type::BaseModel
         attr_reader account_id: String?
 
         def account_id=: (String) -> String
@@ -183,7 +183,7 @@ module Increase
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           attr_reader after: Time?
 
           def after=: (Time) -> Time
@@ -217,7 +217,7 @@ module Increase
           created_at: Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt
         }
 
-      class BookkeepingAccountBalanceCsv < Increase::BaseModel
+      class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
         attr_reader bookkeeping_account_id: String?
 
         def bookkeeping_account_id=: (String) -> String
@@ -238,7 +238,7 @@ module Increase
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           attr_reader after: Time?
 
           def after=: (Time) -> Time
@@ -269,7 +269,7 @@ module Increase
       type entity_csv =
         { status: Increase::Models::ExportCreateParams::EntityCsv::Status }
 
-      class EntityCsv < Increase::BaseModel
+      class EntityCsv < Increase::Internal::Type::BaseModel
         attr_reader status: Increase::Models::ExportCreateParams::EntityCsv::Status?
 
         def status=: (
@@ -287,7 +287,7 @@ module Increase
             in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
           }
 
-        class Status < Increase::BaseModel
+        class Status < Increase::Internal::Type::BaseModel
           attr_accessor in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
 
           def initialize: (
@@ -299,7 +299,7 @@ module Increase
           type in_ = :active | :archived | :disabled
 
           module In
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The entity is active.
             ACTIVE: :active
@@ -322,7 +322,7 @@ module Increase
           program_id: String
         }
 
-      class TransactionCsv < Increase::BaseModel
+      class TransactionCsv < Increase::Internal::Type::BaseModel
         attr_reader account_id: String?
 
         def account_id=: (String) -> String
@@ -348,7 +348,7 @@ module Increase
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-        class CreatedAt < Increase::BaseModel
+        class CreatedAt < Increase::Internal::Type::BaseModel
           attr_reader after: Time?
 
           def after=: (Time) -> Time

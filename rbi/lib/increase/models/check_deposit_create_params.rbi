@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class CheckDepositCreateParams < Increase::BaseModel
+    class CheckDepositCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -36,7 +36,7 @@ module Increase
           back_image_file_id: String,
           front_image_file_id: String,
           description: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

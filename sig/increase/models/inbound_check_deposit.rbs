@@ -24,7 +24,7 @@ module Increase
         type: Increase::Models::InboundCheckDeposit::type_
       }
 
-    class InboundCheckDeposit < Increase::BaseModel
+    class InboundCheckDeposit < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor accepted_at: Time?
@@ -98,7 +98,7 @@ module Increase
           transaction_id: String
         }
 
-      class Adjustment < Increase::BaseModel
+      class Adjustment < Increase::Internal::Type::BaseModel
         attr_accessor adjusted_at: Time
 
         attr_accessor amount: Integer
@@ -123,7 +123,7 @@ module Increase
           | :non_conforming_item
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
           LATE_RETURN: :late_return
@@ -144,7 +144,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -174,7 +174,7 @@ module Increase
           transaction_id: String
         }
 
-      class DepositReturn < Increase::BaseModel
+      class DepositReturn < Increase::Internal::Type::BaseModel
         attr_accessor reason: Increase::Models::InboundCheckDeposit::DepositReturn::reason
 
         attr_accessor returned_at: Time
@@ -197,7 +197,7 @@ module Increase
           | :endorsement_irregular
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check was altered or fictitious.
           ALTERED_OR_FICTITIOUS: :altered_or_fictitious
@@ -222,7 +222,7 @@ module Increase
         :name_matches | :does_not_match | :not_evaluated
 
       module PayeeNameAnalysis
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The details on the check match the recipient name of the check transfer.
         NAME_MATCHES: :name_matches
@@ -240,7 +240,7 @@ module Increase
         :pending | :accepted | :declined | :returned | :requires_attention
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Inbound Check Deposit is pending.
         PENDING: :pending
@@ -263,7 +263,7 @@ module Increase
       type type_ = :inbound_check_deposit
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_CHECK_DEPOSIT: :inbound_check_deposit
 

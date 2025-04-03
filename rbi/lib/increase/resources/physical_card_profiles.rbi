@@ -10,7 +10,7 @@ module Increase
           contact_phone: String,
           description: String,
           front_image_file_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::PhysicalCardProfile)
       end
@@ -31,7 +31,7 @@ module Increase
       sig do
         params(
           physical_card_profile_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::PhysicalCardProfile)
       end
@@ -48,8 +48,8 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::PhysicalCardProfileListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::PhysicalCardProfileListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::PhysicalCardProfile])
       end
@@ -73,7 +73,7 @@ module Increase
       sig do
         params(
           physical_card_profile_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::PhysicalCardProfile)
       end
@@ -92,8 +92,8 @@ module Increase
           contact_phone: String,
           description: String,
           front_image_file_id: String,
-          front_text: T.any(Increase::Models::PhysicalCardProfileCloneParams::FrontText, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          front_text: T.any(Increase::Models::PhysicalCardProfileCloneParams::FrontText, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::PhysicalCardProfile)
       end

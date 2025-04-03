@@ -21,7 +21,7 @@ module Increase
         type: Increase::Models::AccountTransfer::type_
       }
 
-    class AccountTransfer < Increase::BaseModel
+    class AccountTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -80,7 +80,7 @@ module Increase
 
       type approval = { approved_at: Time, approved_by: String? }
 
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         attr_accessor approved_at: Time
 
         attr_accessor approved_by: String?
@@ -92,7 +92,7 @@ module Increase
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
 
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         attr_accessor canceled_at: Time
 
         attr_accessor canceled_by: String?
@@ -110,7 +110,7 @@ module Increase
           user: Increase::Models::AccountTransfer::CreatedBy::User?
         }
 
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::Models::AccountTransfer::CreatedBy::APIKey?
 
         attr_accessor category: Increase::Models::AccountTransfer::CreatedBy::category
@@ -130,7 +130,7 @@ module Increase
 
         type api_key = { description: String? }
 
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
@@ -141,7 +141,7 @@ module Increase
         type category = :api_key | :oauth_application | :user
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An API key. Details will be under the `api_key` object.
           API_KEY: :api_key
@@ -157,7 +157,7 @@ module Increase
 
         type oauth_application = { name: String }
 
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           attr_accessor name: String
 
           def initialize: (name: String) -> void
@@ -167,7 +167,7 @@ module Increase
 
         type user = { email: String }
 
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           attr_accessor email: String
 
           def initialize: (email: String) -> void
@@ -179,7 +179,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -205,7 +205,7 @@ module Increase
       type network = :account
 
       module Network
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT: :account
 
@@ -215,7 +215,7 @@ module Increase
       type status = :pending_approval | :canceled | :complete
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is pending approval.
         PENDING_APPROVAL: :pending_approval
@@ -232,7 +232,7 @@ module Increase
       type type_ = :account_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT_TRANSFER: :account_transfer
 

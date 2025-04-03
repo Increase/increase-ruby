@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class RoutingNumberListResponse < Increase::BaseModel
+    class RoutingNumberListResponse < Increase::Internal::Type::BaseModel
       # This routing number's support for ACH Transfers.
       sig { returns(Increase::Models::RoutingNumberListResponse::ACHTransfers::TaggedSymbol) }
       attr_accessor :ach_transfers
@@ -68,7 +68,7 @@ module Increase
 
       # This routing number's support for ACH Transfers.
       module ACHTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers) }
         OrSymbol =
@@ -88,7 +88,7 @@ module Increase
 
       # This routing number's support for Real-Time Payments Transfers.
       module RealTimePaymentsTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers) }
@@ -123,7 +123,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `routing_number`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RoutingNumberListResponse::Type) }
         OrSymbol =
@@ -138,7 +138,7 @@ module Increase
 
       # This routing number's support for Wire Transfers.
       module WireTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers) }
         OrSymbol =

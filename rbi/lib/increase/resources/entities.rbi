@@ -7,15 +7,15 @@ module Increase
       sig do
         params(
           structure: Increase::Models::EntityCreateParams::Structure::OrSymbol,
-          corporation: T.any(Increase::Models::EntityCreateParams::Corporation, Increase::Internal::Util::AnyHash),
+          corporation: T.any(Increase::Models::EntityCreateParams::Corporation, Increase::Internal::AnyHash),
           description: String,
-          government_authority: T.any(Increase::Models::EntityCreateParams::GovernmentAuthority, Increase::Internal::Util::AnyHash),
-          joint: T.any(Increase::Models::EntityCreateParams::Joint, Increase::Internal::Util::AnyHash),
-          natural_person: T.any(Increase::Models::EntityCreateParams::NaturalPerson, Increase::Internal::Util::AnyHash),
-          supplemental_documents: T::Array[T.any(Increase::Models::EntityCreateParams::SupplementalDocument, Increase::Internal::Util::AnyHash)],
-          third_party_verification: T.any(Increase::Models::EntityCreateParams::ThirdPartyVerification, Increase::Internal::Util::AnyHash),
-          trust: T.any(Increase::Models::EntityCreateParams::Trust, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          government_authority: T.any(Increase::Models::EntityCreateParams::GovernmentAuthority, Increase::Internal::AnyHash),
+          joint: T.any(Increase::Models::EntityCreateParams::Joint, Increase::Internal::AnyHash),
+          natural_person: T.any(Increase::Models::EntityCreateParams::NaturalPerson, Increase::Internal::AnyHash),
+          supplemental_documents: T::Array[T.any(Increase::Models::EntityCreateParams::SupplementalDocument, Increase::Internal::AnyHash)],
+          third_party_verification: T.any(Increase::Models::EntityCreateParams::ThirdPartyVerification, Increase::Internal::AnyHash),
+          trust: T.any(Increase::Models::EntityCreateParams::Trust, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -54,7 +54,7 @@ module Increase
       sig do
         params(
           entity_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -68,12 +68,12 @@ module Increase
       # List Entities
       sig do
         params(
-          created_at: T.any(Increase::Models::EntityListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::EntityListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::EntityListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::EntityListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::Entity])
       end
@@ -98,7 +98,7 @@ module Increase
       sig do
         params(
           entity_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -115,7 +115,7 @@ module Increase
         params(
           entity_id: String,
           beneficial_owner_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -137,7 +137,7 @@ module Increase
         params(
           entity_id: String,
           confirmed_at: Time,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -155,11 +155,8 @@ module Increase
       sig do
         params(
           entity_id: String,
-          beneficial_owner: T.any(
-            Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner,
-            Increase::Internal::Util::AnyHash
-          ),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          beneficial_owner: T.any(Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -177,8 +174,8 @@ module Increase
       sig do
         params(
           entity_id: String,
-          address: T.any(Increase::Models::EntityUpdateAddressParams::Address, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          address: T.any(Increase::Models::EntityUpdateAddressParams::Address, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -196,12 +193,9 @@ module Increase
       sig do
         params(
           entity_id: String,
-          address: T.any(
-            Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address,
-            Increase::Internal::Util::AnyHash
-          ),
+          address: T.any(Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address, Increase::Internal::AnyHash),
           beneficial_owner_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end
@@ -224,7 +218,7 @@ module Increase
         params(
           entity_id: String,
           industry_code: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Entity)
       end

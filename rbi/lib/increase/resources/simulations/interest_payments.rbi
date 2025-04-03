@@ -13,7 +13,7 @@ module Increase
             accrued_on_account_id: String,
             period_end: Time,
             period_start: Time,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::Transaction)
         end

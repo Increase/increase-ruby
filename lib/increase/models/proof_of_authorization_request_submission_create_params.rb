@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ProofOfAuthorizationRequestSubmissions#create
-    class ProofOfAuthorizationRequestSubmissionCreateParams < Increase::BaseModel
+    class ProofOfAuthorizationRequestSubmissionCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -36,7 +36,7 @@ module Increase
       #   Whether the customer has been offboarded or suspended.
       #
       #   @return [Boolean]
-      required :customer_has_been_offboarded, Increase::BooleanModel
+      required :customer_has_been_offboarded, Increase::Internal::Type::BooleanModel
 
       # @!attribute proof_of_authorization_request_id
       #   ID of the proof of authorization request.
@@ -48,19 +48,19 @@ module Increase
       #   Whether the account ownership was validated via credential (e.g. Plaid).
       #
       #   @return [Boolean]
-      required :validated_account_ownership_via_credential, Increase::BooleanModel
+      required :validated_account_ownership_via_credential, Increase::Internal::Type::BooleanModel
 
       # @!attribute validated_account_ownership_with_account_statement
       #   Whether the account ownership was validated with an account statement.
       #
       #   @return [Boolean]
-      required :validated_account_ownership_with_account_statement, Increase::BooleanModel
+      required :validated_account_ownership_with_account_statement, Increase::Internal::Type::BooleanModel
 
       # @!attribute validated_account_ownership_with_microdeposit
       #   Whether the account ownership was validated with a microdeposit.
       #
       #   @return [Boolean]
-      required :validated_account_ownership_with_microdeposit, Increase::BooleanModel
+      required :validated_account_ownership_with_microdeposit, Increase::Internal::Type::BooleanModel
 
       # @!attribute [r] additional_evidence_file_id
       #   File containing additional evidence.
@@ -126,7 +126,7 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
     end
   end
 end

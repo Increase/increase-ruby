@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ExternalAccountCreateParams < Increase::BaseModel
+    class ExternalAccountCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -40,7 +40,7 @@ module Increase
           routing_number: String,
           account_holder: Increase::Models::ExternalAccountCreateParams::AccountHolder::OrSymbol,
           funding: Increase::Models::ExternalAccountCreateParams::Funding::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -72,7 +72,7 @@ module Increase
 
       # The type of entity that owns the External Account.
       module AccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder) }
@@ -96,7 +96,7 @@ module Increase
 
       # The type of the destination account. Defaults to `checking`.
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountCreateParams::Funding) }
         OrSymbol =

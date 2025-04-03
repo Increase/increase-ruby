@@ -3,7 +3,7 @@ module Increase
     type digital_card_profile_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class DigitalCardProfileRetrieveParams < Increase::BaseModel
+    class DigitalCardProfileRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

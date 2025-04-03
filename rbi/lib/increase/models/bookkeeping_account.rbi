@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BookkeepingAccount < Increase::BaseModel
+    class BookkeepingAccount < Increase::Internal::Type::BaseModel
       # The account identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -71,7 +71,7 @@ module Increase
 
       # The compliance category of the account.
       module ComplianceCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingAccount::ComplianceCategory) }
         OrSymbol =
@@ -93,7 +93,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_account`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingAccount::Type) }
         OrSymbol =

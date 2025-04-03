@@ -18,7 +18,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class ACHPrenotificationCreateParams < Increase::BaseModel
+    class ACHPrenotificationCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -94,7 +94,7 @@ module Increase
       type credit_debit_indicator = :credit | :debit
 
       module CreditDebitIndicator
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Prenotification is for an anticipated credit.
         CREDIT: :credit
@@ -112,7 +112,7 @@ module Increase
         | :internet_initiated
 
       module StandardEntryClassCode
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Corporate Credit and Debit (CCD).
         CORPORATE_CREDIT_OR_DEBIT: :corporate_credit_or_debit

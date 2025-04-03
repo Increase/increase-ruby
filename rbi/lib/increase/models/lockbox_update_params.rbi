@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class LockboxUpdateParams < Increase::BaseModel
+    class LockboxUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -32,7 +32,7 @@ module Increase
           description: String,
           recipient_name: String,
           status: Increase::Models::LockboxUpdateParams::Status::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -55,7 +55,7 @@ module Increase
 
       # This indicates if checks can be sent to the Lockbox.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::LockboxUpdateParams::Status) }
         OrSymbol =

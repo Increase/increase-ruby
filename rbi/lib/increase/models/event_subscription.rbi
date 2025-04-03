@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class EventSubscription < Increase::BaseModel
+    class EventSubscription < Increase::Internal::Type::BaseModel
       # The event subscription identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -92,7 +92,7 @@ module Increase
       # If specified, this subscription will only receive webhooks for Events with the
       #   specified `category`.
       module SelectedEventCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscription::SelectedEventCategory) }
         OrSymbol =
@@ -622,7 +622,7 @@ module Increase
 
       # This indicates if we'll send notifications to this subscription.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscription::Status) }
         OrSymbol =
@@ -649,7 +649,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `event_subscription`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscription::Type) }
         OrSymbol =

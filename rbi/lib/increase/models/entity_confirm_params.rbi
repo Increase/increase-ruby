@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class EntityConfirmParams < Increase::BaseModel
+    class EntityConfirmParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -17,7 +17,7 @@ module Increase
       sig do
         params(
           confirmed_at: Time,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

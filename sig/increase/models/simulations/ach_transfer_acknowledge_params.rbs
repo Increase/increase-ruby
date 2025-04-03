@@ -4,7 +4,7 @@ module Increase
       type ach_transfer_acknowledge_params =
         {  } & Increase::Internal::Type::request_parameters
 
-      class ACHTransferAcknowledgeParams < Increase::BaseModel
+      class ACHTransferAcknowledgeParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

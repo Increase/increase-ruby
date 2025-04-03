@@ -20,7 +20,7 @@ module Increase
         type: Increase::Models::ACHPrenotification::type_
       }
 
-    class ACHPrenotification < Increase::BaseModel
+    class ACHPrenotification < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_number: String
@@ -77,7 +77,7 @@ module Increase
       type credit_debit_indicator = :credit | :debit
 
       module CreditDebitIndicator
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Prenotification is for an anticipated credit.
         CREDIT: :credit
@@ -95,7 +95,7 @@ module Increase
           created_at: Time
         }
 
-      class NotificationsOfChange < Increase::BaseModel
+      class NotificationsOfChange < Increase::Internal::Type::BaseModel
         attr_accessor change_code: Increase::Models::ACHPrenotification::NotificationsOfChange::change_code
 
         attr_accessor corrected_data: String
@@ -132,7 +132,7 @@ module Increase
           | :incorrect_transaction_code_by_originating_depository_financial_institution
 
         module ChangeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number was incorrect.
           INCORRECT_ACCOUNT_NUMBER: :incorrect_account_number
@@ -201,7 +201,7 @@ module Increase
           return_reason_code: Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code
         }
 
-      class PrenotificationReturn < Increase::BaseModel
+      class PrenotificationReturn < Increase::Internal::Type::BaseModel
         attr_accessor created_at: Time
 
         attr_accessor return_reason_code: Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code
@@ -286,7 +286,7 @@ module Increase
           | :untimely_return
 
         module ReturnReasonCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
           INSUFFICIENT_FUND: :insufficient_fund
@@ -506,7 +506,7 @@ module Increase
         :pending_submitting | :requires_attention | :returned | :submitted
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Prenotification is pending submission.
         PENDING_SUBMITTING: :pending_submitting
@@ -526,7 +526,7 @@ module Increase
       type type_ = :ach_prenotification
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACH_PRENOTIFICATION: :ach_prenotification
 

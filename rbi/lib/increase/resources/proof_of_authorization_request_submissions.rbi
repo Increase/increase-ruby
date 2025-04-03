@@ -18,7 +18,7 @@ module Increase
           additional_evidence_file_id: String,
           authorizer_company: String,
           authorizer_ip_address: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::ProofOfAuthorizationRequestSubmission)
       end
@@ -55,7 +55,7 @@ module Increase
       sig do
         params(
           proof_of_authorization_request_submission_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::ProofOfAuthorizationRequestSubmission)
       end
@@ -73,7 +73,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           proof_of_authorization_request_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::ProofOfAuthorizationRequestSubmission])
       end

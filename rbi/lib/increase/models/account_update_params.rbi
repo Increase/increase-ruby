@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class AccountUpdateParams < Increase::BaseModel
+    class AccountUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -14,13 +14,7 @@ module Increase
       attr_writer :name
 
       sig do
-        params(
-          name: String,
-          request_options: T.any(
-            Increase::RequestOptions,
-            Increase::Internal::Util::AnyHash
-          )
-        )
+        params(name: String, request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           .returns(T.attached_class)
       end
       def self.new(name: nil, request_options: {})

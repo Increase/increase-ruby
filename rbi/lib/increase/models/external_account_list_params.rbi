@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ExternalAccountListParams < Increase::BaseModel
+    class ExternalAccountListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -42,9 +42,7 @@ module Increase
       attr_reader :status
 
       sig do
-        params(
-          status: T.any(Increase::Models::ExternalAccountListParams::Status, Increase::Internal::Util::AnyHash)
-        )
+        params(status: T.any(Increase::Models::ExternalAccountListParams::Status, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :status
@@ -55,8 +53,8 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           routing_number: String,
-          status: T.any(Increase::Models::ExternalAccountListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::ExternalAccountListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -86,7 +84,7 @@ module Increase
       def to_hash
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # Filter External Accounts for those with the specified status or statuses. For
         #   GET requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
@@ -108,7 +106,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountListParams::Status::In) }
           OrSymbol =

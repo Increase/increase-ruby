@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::AccountStatements#retrieve
-    class AccountStatement < Increase::BaseModel
+    class AccountStatement < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Account Statement identifier.
       #
@@ -92,14 +92,14 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `account_statement`.
       #
       # @see Increase::Models::AccountStatement#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT_STATEMENT = :account_statement
 

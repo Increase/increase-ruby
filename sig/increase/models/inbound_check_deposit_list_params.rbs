@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class InboundCheckDepositListParams < Increase::BaseModel
+    class InboundCheckDepositListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -50,7 +50,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time

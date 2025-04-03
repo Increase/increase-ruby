@@ -4,7 +4,7 @@ module Increase
       { reason: Increase::Models::CheckTransferStopPaymentParams::reason }
       & Increase::Internal::Type::request_parameters
 
-    class CheckTransferStopPaymentParams < Increase::BaseModel
+    class CheckTransferStopPaymentParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -24,7 +24,7 @@ module Increase
       type reason = :mail_delivery_failed | :not_authorized | :unknown
 
       module Reason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The check could not be delivered.
         MAIL_DELIVERY_FAILED: :mail_delivery_failed

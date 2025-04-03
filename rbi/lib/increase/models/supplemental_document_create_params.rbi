@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class SupplementalDocumentCreateParams < Increase::BaseModel
+    class SupplementalDocumentCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -18,7 +18,7 @@ module Increase
         params(
           entity_id: String,
           file_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

@@ -3,7 +3,7 @@ module Increase
     type inbound_mail_item_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class InboundMailItemRetrieveParams < Increase::BaseModel
+    class InboundMailItemRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

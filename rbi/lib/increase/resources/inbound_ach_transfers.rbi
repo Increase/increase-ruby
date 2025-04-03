@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           inbound_ach_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::InboundACHTransfer)
       end
@@ -23,11 +23,11 @@ module Increase
         params(
           account_id: String,
           account_number_id: String,
-          created_at: T.any(Increase::Models::InboundACHTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::InboundACHTransferListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
-          status: T.any(Increase::Models::InboundACHTransferListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::InboundACHTransferListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::InboundACHTransfer])
       end
@@ -53,7 +53,7 @@ module Increase
           inbound_ach_transfer_id: String,
           updated_account_number: String,
           updated_routing_number: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::InboundACHTransfer)
       end
@@ -74,7 +74,7 @@ module Increase
         params(
           inbound_ach_transfer_id: String,
           reason: Increase::Models::InboundACHTransferDeclineParams::Reason::OrSymbol,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::InboundACHTransfer)
       end
@@ -94,7 +94,7 @@ module Increase
         params(
           inbound_ach_transfer_id: String,
           reason: Increase::Models::InboundACHTransferTransferReturnParams::Reason::OrSymbol,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::InboundACHTransfer)
       end

@@ -12,7 +12,7 @@ module Increase
         type: Increase::Models::Export::type_
       }
 
-    class Export < Increase::BaseModel
+    class Export < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor category: Increase::Models::Export::category
@@ -52,7 +52,7 @@ module Increase
         | :dashboard_table_csv
 
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
         ACCOUNT_STATEMENT_OFX: :account_statement_ofx
@@ -81,7 +81,7 @@ module Increase
       type status = :pending | :complete | :failed
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Increase is generating the export.
         PENDING: :pending
@@ -98,7 +98,7 @@ module Increase
       type type_ = :export
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         EXPORT: :export
 

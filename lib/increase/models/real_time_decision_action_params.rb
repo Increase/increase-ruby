@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::RealTimeDecisions#action
-    class RealTimeDecisionActionParams < Increase::BaseModel
+    class RealTimeDecisionActionParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -85,9 +85,9 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class CardAuthentication < Increase::BaseModel
+      class CardAuthentication < Increase::Internal::Type::BaseModel
         # @!attribute decision
         #   Whether the card authentication attempt should be approved or declined.
         #
@@ -103,13 +103,13 @@ module Increase
         #   #
         #   def initialize(decision:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether the card authentication attempt should be approved or declined.
         #
         # @see Increase::Models::RealTimeDecisionActionParams::CardAuthentication#decision
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authentication attempt without triggering a challenge.
           APPROVE = :approve
@@ -128,7 +128,7 @@ module Increase
         end
       end
 
-      class CardAuthenticationChallenge < Increase::BaseModel
+      class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         # @!attribute result
         #   Whether the card authentication challenge was successfully delivered to the
         #     cardholder.
@@ -145,14 +145,14 @@ module Increase
         #   #
         #   def initialize(result:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether the card authentication challenge was successfully delivered to the
         #   cardholder.
         #
         # @see Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge#result
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time code to the cardholder.
           SUCCESS = :success
@@ -168,7 +168,7 @@ module Increase
         end
       end
 
-      class CardAuthorization < Increase::BaseModel
+      class CardAuthorization < Increase::Internal::Type::BaseModel
         # @!attribute decision
         #   Whether the card authorization should be approved or declined.
         #
@@ -197,13 +197,13 @@ module Increase
         #   #
         #   def initialize(decision:, decline_reason: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether the card authorization should be approved or declined.
         #
         # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization#decision
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authorization.
           APPROVE = :approve
@@ -223,7 +223,7 @@ module Increase
         #
         # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization#decline_reason
         module DeclineReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
           INSUFFICIENT_FUNDS = :insufficient_funds
@@ -251,7 +251,7 @@ module Increase
         end
       end
 
-      class DigitalWalletAuthentication < Increase::BaseModel
+      class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         # @!attribute result
         #   Whether your application was able to deliver the one-time passcode.
         #
@@ -278,13 +278,13 @@ module Increase
         #   #
         #   def initialize(result:, success: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether your application was able to deliver the one-time passcode.
         #
         # @see Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication#result
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time passcode to the cardholder.
           SUCCESS = :success
@@ -300,7 +300,7 @@ module Increase
         end
 
         # @see Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication#success
-        class Success < Increase::BaseModel
+        class Success < Increase::Internal::Type::BaseModel
           # @!attribute [r] email
           #   The email address that was used to verify the cardholder via one-time passcode.
           #
@@ -328,11 +328,11 @@ module Increase
           #   #
           #   def initialize(email: nil, phone: nil, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
 
-      class DigitalWalletToken < Increase::BaseModel
+      class DigitalWalletToken < Increase::Internal::Type::BaseModel
         # @!attribute [r] approval
         #   If your application approves the provisioning attempt, this contains metadata
         #     about the digital wallet token that will be generated.
@@ -364,10 +364,10 @@ module Increase
         #   #
         #   def initialize(approval: nil, decline: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken#approval
-        class Approval < Increase::BaseModel
+        class Approval < Increase::Internal::Type::BaseModel
           # @!attribute [r] email
           #   An email address that can be used to verify the cardholder via one-time
           #     passcode.
@@ -399,11 +399,11 @@ module Increase
           #   #
           #   def initialize(email: nil, phone: nil, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken#decline
-        class Decline < Increase::BaseModel
+        class Decline < Increase::Internal::Type::BaseModel
           # @!attribute [r] reason
           #   Why the tokenization attempt was declined. This is for logging purposes only and
           #     is not displayed to the end-user.
@@ -423,7 +423,7 @@ module Increase
           #   #
           #   def initialize(reason: nil, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
     end

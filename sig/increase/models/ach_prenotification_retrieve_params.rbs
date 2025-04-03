@@ -3,7 +3,7 @@ module Increase
     type ach_prenotification_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class ACHPrenotificationRetrieveParams < Increase::BaseModel
+    class ACHPrenotificationRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::DigitalCardProfiles#create
-    class DigitalCardProfileCreateParams < Increase::BaseModel
+    class DigitalCardProfileCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -106,9 +106,9 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class TextColor < Increase::BaseModel
+      class TextColor < Increase::Internal::Type::BaseModel
         # @!attribute blue
         #   The value of the blue channel in the RGB color.
         #
@@ -136,7 +136,7 @@ module Increase
         #   #
         #   def initialize(blue:, green:, red:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

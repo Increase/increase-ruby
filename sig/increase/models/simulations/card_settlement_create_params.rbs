@@ -5,7 +5,7 @@ module Increase
         { card_id: String, pending_transaction_id: String, amount: Integer }
         & Increase::Internal::Type::request_parameters
 
-      class CardSettlementCreateParams < Increase::BaseModel
+      class CardSettlementCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

@@ -3,7 +3,7 @@ module Increase
     type inbound_ach_transfer_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class InboundACHTransferRetrieveParams < Increase::BaseModel
+    class InboundACHTransferRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

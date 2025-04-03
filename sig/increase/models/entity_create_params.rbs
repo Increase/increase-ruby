@@ -14,7 +14,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class EntityCreateParams < Increase::BaseModel
+    class EntityCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -85,7 +85,7 @@ module Increase
         :corporation | :natural_person | :joint | :trust | :government_authority
 
       module Structure
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A corporation.
         CORPORATION: :corporation
@@ -116,7 +116,7 @@ module Increase
           website: String
         }
 
-      class Corporation < Increase::BaseModel
+      class Corporation < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::Models::EntityCreateParams::Corporation::Address
 
         attr_accessor beneficial_owners: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner]
@@ -158,7 +158,7 @@ module Increase
             :line2 => String
           }
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -189,7 +189,7 @@ module Increase
             company_title: String
           }
 
-        class BeneficialOwner < Increase::BaseModel
+        class BeneficialOwner < Increase::Internal::Type::BaseModel
           attr_accessor individual: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual
 
           attr_accessor prongs: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong]
@@ -215,7 +215,7 @@ module Increase
               confirmed_no_us_tax_id: bool
             }
 
-          class Individual < Increase::BaseModel
+          class Individual < Increase::Internal::Type::BaseModel
             attr_accessor address: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address
 
             attr_accessor date_of_birth: Date
@@ -248,7 +248,7 @@ module Increase
                 zip: String
               }
 
-            class Address < Increase::BaseModel
+            class Address < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor line1: String
@@ -290,7 +290,7 @@ module Increase
                 passport: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
               }
 
-            class Identification < Increase::BaseModel
+            class Identification < Increase::Internal::Type::BaseModel
               attr_accessor method_: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_
 
               attr_accessor number: String
@@ -331,7 +331,7 @@ module Increase
                 | :other
 
               module Method
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER: :social_security_number
@@ -359,7 +359,7 @@ module Increase
                   back_file_id: String
                 }
 
-              class DriversLicense < Increase::BaseModel
+              class DriversLicense < Increase::Internal::Type::BaseModel
                 attr_accessor expiration_date: Date
 
                 attr_accessor file_id: String
@@ -389,7 +389,7 @@ module Increase
                   expiration_date: Date
                 }
 
-              class Other < Increase::BaseModel
+              class Other < Increase::Internal::Type::BaseModel
                 attr_accessor country: String
 
                 attr_accessor description: String
@@ -418,7 +418,7 @@ module Increase
               type passport =
                 { country: String, expiration_date: Date, file_id: String }
 
-              class Passport < Increase::BaseModel
+              class Passport < Increase::Internal::Type::BaseModel
                 attr_accessor country: String
 
                 attr_accessor expiration_date: Date
@@ -439,7 +439,7 @@ module Increase
           type prong = :ownership | :control
 
           module Prong
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A person with 25% or greater direct or indirect ownership of the entity.
             OWNERSHIP: :ownership
@@ -462,7 +462,7 @@ module Increase
           website: String
         }
 
-      class GovernmentAuthority < Increase::BaseModel
+      class GovernmentAuthority < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::Models::EntityCreateParams::GovernmentAuthority::Address
 
         attr_accessor authorized_persons: ::Array[Increase::Models::EntityCreateParams::GovernmentAuthority::AuthorizedPerson]
@@ -497,7 +497,7 @@ module Increase
             :line2 => String
           }
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -523,7 +523,7 @@ module Increase
 
         type authorized_person = { name: String }
 
-        class AuthorizedPerson < Increase::BaseModel
+        class AuthorizedPerson < Increase::Internal::Type::BaseModel
           attr_accessor name: String
 
           def initialize: (name: String) -> void
@@ -534,7 +534,7 @@ module Increase
         type category = :municipality
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The Public Entity is a Municipality.
           MUNICIPALITY: :municipality
@@ -549,7 +549,7 @@ module Increase
           name: String
         }
 
-      class Joint < Increase::BaseModel
+      class Joint < Increase::Internal::Type::BaseModel
         attr_accessor individuals: ::Array[Increase::Models::EntityCreateParams::Joint::Individual]
 
         attr_reader name: String?
@@ -572,7 +572,7 @@ module Increase
             confirmed_no_us_tax_id: bool
           }
 
-        class Individual < Increase::BaseModel
+        class Individual < Increase::Internal::Type::BaseModel
           attr_accessor address: Increase::Models::EntityCreateParams::Joint::Individual::Address
 
           attr_accessor date_of_birth: Date
@@ -604,7 +604,7 @@ module Increase
               :line2 => String
             }
 
-          class Address < Increase::BaseModel
+          class Address < Increase::Internal::Type::BaseModel
             attr_accessor city: String
 
             attr_accessor line1: String
@@ -637,7 +637,7 @@ module Increase
               passport: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport
             }
 
-          class Identification < Increase::BaseModel
+          class Identification < Increase::Internal::Type::BaseModel
             attr_accessor method_: Increase::Models::EntityCreateParams::Joint::Individual::Identification::method_
 
             attr_accessor number: String
@@ -678,7 +678,7 @@ module Increase
               | :other
 
             module Method
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER: :social_security_number
@@ -706,7 +706,7 @@ module Increase
                 back_file_id: String
               }
 
-            class DriversLicense < Increase::BaseModel
+            class DriversLicense < Increase::Internal::Type::BaseModel
               attr_accessor expiration_date: Date
 
               attr_accessor file_id: String
@@ -736,7 +736,7 @@ module Increase
                 expiration_date: Date
               }
 
-            class Other < Increase::BaseModel
+            class Other < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor description: String
@@ -765,7 +765,7 @@ module Increase
             type passport =
               { country: String, expiration_date: Date, file_id: String }
 
-            class Passport < Increase::BaseModel
+            class Passport < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor expiration_date: Date
@@ -793,7 +793,7 @@ module Increase
           confirmed_no_us_tax_id: bool
         }
 
-      class NaturalPerson < Increase::BaseModel
+      class NaturalPerson < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::Models::EntityCreateParams::NaturalPerson::Address
 
         attr_accessor date_of_birth: Date
@@ -825,7 +825,7 @@ module Increase
             :line2 => String
           }
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -858,7 +858,7 @@ module Increase
             passport: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport
           }
 
-        class Identification < Increase::BaseModel
+        class Identification < Increase::Internal::Type::BaseModel
           attr_accessor method_: Increase::Models::EntityCreateParams::NaturalPerson::Identification::method_
 
           attr_accessor number: String
@@ -899,7 +899,7 @@ module Increase
             | :other
 
           module Method
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A social security number.
             SOCIAL_SECURITY_NUMBER: :social_security_number
@@ -927,7 +927,7 @@ module Increase
               back_file_id: String
             }
 
-          class DriversLicense < Increase::BaseModel
+          class DriversLicense < Increase::Internal::Type::BaseModel
             attr_accessor expiration_date: Date
 
             attr_accessor file_id: String
@@ -957,7 +957,7 @@ module Increase
               expiration_date: Date
             }
 
-          class Other < Increase::BaseModel
+          class Other < Increase::Internal::Type::BaseModel
             attr_accessor country: String
 
             attr_accessor description: String
@@ -986,7 +986,7 @@ module Increase
           type passport =
             { country: String, expiration_date: Date, file_id: String }
 
-          class Passport < Increase::BaseModel
+          class Passport < Increase::Internal::Type::BaseModel
             attr_accessor country: String
 
             attr_accessor expiration_date: Date
@@ -1006,7 +1006,7 @@ module Increase
 
       type supplemental_document = { file_id: String }
 
-      class SupplementalDocument < Increase::BaseModel
+      class SupplementalDocument < Increase::Internal::Type::BaseModel
         attr_accessor file_id: String
 
         def initialize: (file_id: String) -> void
@@ -1020,7 +1020,7 @@ module Increase
           vendor: Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor
         }
 
-      class ThirdPartyVerification < Increase::BaseModel
+      class ThirdPartyVerification < Increase::Internal::Type::BaseModel
         attr_accessor reference: String
 
         attr_accessor vendor: Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor
@@ -1035,7 +1035,7 @@ module Increase
         type vendor = :alloy | :middesk
 
         module Vendor
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Alloy. See https://alloy.com for more information.
           ALLOY: :alloy
@@ -1059,7 +1059,7 @@ module Increase
           tax_identifier: String
         }
 
-      class Trust < Increase::BaseModel
+      class Trust < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::Models::EntityCreateParams::Trust::Address
 
         attr_accessor category: Increase::Models::EntityCreateParams::Trust::category
@@ -1108,7 +1108,7 @@ module Increase
             :line2 => String
           }
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -1135,7 +1135,7 @@ module Increase
         type category = :revocable | :irrevocable
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The trust is revocable by the grantor.
           REVOCABLE: :revocable
@@ -1152,7 +1152,7 @@ module Increase
             individual: Increase::Models::EntityCreateParams::Trust::Trustee::Individual
           }
 
-        class Trustee < Increase::BaseModel
+        class Trustee < Increase::Internal::Type::BaseModel
           attr_accessor structure: Increase::Models::EntityCreateParams::Trust::Trustee::structure
 
           attr_reader individual: Increase::Models::EntityCreateParams::Trust::Trustee::Individual?
@@ -1171,7 +1171,7 @@ module Increase
           type structure = :individual
 
           module Structure
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The trustee is an individual.
             INDIVIDUAL: :individual
@@ -1188,7 +1188,7 @@ module Increase
               confirmed_no_us_tax_id: bool
             }
 
-          class Individual < Increase::BaseModel
+          class Individual < Increase::Internal::Type::BaseModel
             attr_accessor address: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Address
 
             attr_accessor date_of_birth: Date
@@ -1220,7 +1220,7 @@ module Increase
                 :line2 => String
               }
 
-            class Address < Increase::BaseModel
+            class Address < Increase::Internal::Type::BaseModel
               attr_accessor city: String
 
               attr_accessor line1: String
@@ -1253,7 +1253,7 @@ module Increase
                 passport: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
               }
 
-            class Identification < Increase::BaseModel
+            class Identification < Increase::Internal::Type::BaseModel
               attr_accessor method_: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::method_
 
               attr_accessor number: String
@@ -1294,7 +1294,7 @@ module Increase
                 | :other
 
               module Method
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER: :social_security_number
@@ -1322,7 +1322,7 @@ module Increase
                   back_file_id: String
                 }
 
-              class DriversLicense < Increase::BaseModel
+              class DriversLicense < Increase::Internal::Type::BaseModel
                 attr_accessor expiration_date: Date
 
                 attr_accessor file_id: String
@@ -1352,7 +1352,7 @@ module Increase
                   expiration_date: Date
                 }
 
-              class Other < Increase::BaseModel
+              class Other < Increase::Internal::Type::BaseModel
                 attr_accessor country: String
 
                 attr_accessor description: String
@@ -1381,7 +1381,7 @@ module Increase
               type passport =
                 { country: String, expiration_date: Date, file_id: String }
 
-              class Passport < Increase::BaseModel
+              class Passport < Increase::Internal::Type::BaseModel
                 attr_accessor country: String
 
                 attr_accessor expiration_date: Date
@@ -1409,7 +1409,7 @@ module Increase
             confirmed_no_us_tax_id: bool
           }
 
-        class Grantor < Increase::BaseModel
+        class Grantor < Increase::Internal::Type::BaseModel
           attr_accessor address: Increase::Models::EntityCreateParams::Trust::Grantor::Address
 
           attr_accessor date_of_birth: Date
@@ -1441,7 +1441,7 @@ module Increase
               :line2 => String
             }
 
-          class Address < Increase::BaseModel
+          class Address < Increase::Internal::Type::BaseModel
             attr_accessor city: String
 
             attr_accessor line1: String
@@ -1474,7 +1474,7 @@ module Increase
               passport: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport
             }
 
-          class Identification < Increase::BaseModel
+          class Identification < Increase::Internal::Type::BaseModel
             attr_accessor method_: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::method_
 
             attr_accessor number: String
@@ -1515,7 +1515,7 @@ module Increase
               | :other
 
             module Method
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER: :social_security_number
@@ -1543,7 +1543,7 @@ module Increase
                 back_file_id: String
               }
 
-            class DriversLicense < Increase::BaseModel
+            class DriversLicense < Increase::Internal::Type::BaseModel
               attr_accessor expiration_date: Date
 
               attr_accessor file_id: String
@@ -1573,7 +1573,7 @@ module Increase
                 expiration_date: Date
               }
 
-            class Other < Increase::BaseModel
+            class Other < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor description: String
@@ -1602,7 +1602,7 @@ module Increase
             type passport =
               { country: String, expiration_date: Date, file_id: String }
 
-            class Passport < Increase::BaseModel
+            class Passport < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor expiration_date: Date

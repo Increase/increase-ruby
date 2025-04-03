@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PhysicalCard < Increase::BaseModel
+    class PhysicalCard < Increase::Internal::Type::BaseModel
       # The physical card identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -15,10 +15,7 @@ module Increase
       sig { returns(Increase::Models::PhysicalCard::Cardholder) }
       attr_reader :cardholder
 
-      sig do
-        params(cardholder: T.any(Increase::Models::PhysicalCard::Cardholder, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(cardholder: T.any(Increase::Models::PhysicalCard::Cardholder, Increase::Internal::AnyHash)).void }
       attr_writer :cardholder
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -40,7 +37,7 @@ module Increase
       sig { returns(Increase::Models::PhysicalCard::Shipment) }
       attr_reader :shipment
 
-      sig { params(shipment: T.any(Increase::Models::PhysicalCard::Shipment, Increase::Internal::Util::AnyHash)).void }
+      sig { params(shipment: T.any(Increase::Models::PhysicalCard::Shipment, Increase::Internal::AnyHash)).void }
       attr_writer :shipment
 
       # The status of the Physical Card.
@@ -61,11 +58,11 @@ module Increase
         params(
           id: String,
           card_id: String,
-          cardholder: T.any(Increase::Models::PhysicalCard::Cardholder, Increase::Internal::Util::AnyHash),
+          cardholder: T.any(Increase::Models::PhysicalCard::Cardholder, Increase::Internal::AnyHash),
           created_at: Time,
           idempotency_key: T.nilable(String),
           physical_card_profile_id: T.nilable(String),
-          shipment: T.any(Increase::Models::PhysicalCard::Shipment, Increase::Internal::Util::AnyHash),
+          shipment: T.any(Increase::Models::PhysicalCard::Shipment, Increase::Internal::AnyHash),
           status: Increase::Models::PhysicalCard::Status::OrSymbol,
           type: Increase::Models::PhysicalCard::Type::OrSymbol
         )
@@ -103,7 +100,7 @@ module Increase
       def to_hash
       end
 
-      class Cardholder < Increase::BaseModel
+      class Cardholder < Increase::Internal::Type::BaseModel
         # The cardholder's first name.
         sig { returns(String) }
         attr_accessor :first_name
@@ -122,17 +119,12 @@ module Increase
         end
       end
 
-      class Shipment < Increase::BaseModel
+      class Shipment < Increase::Internal::Type::BaseModel
         # The location to where the card's packing label is addressed.
         sig { returns(Increase::Models::PhysicalCard::Shipment::Address) }
         attr_reader :address
 
-        sig do
-          params(
-            address: T.any(Increase::Models::PhysicalCard::Shipment::Address, Increase::Internal::Util::AnyHash)
-          )
-            .void
-        end
+        sig { params(address: T.any(Increase::Models::PhysicalCard::Shipment::Address, Increase::Internal::AnyHash)).void }
         attr_writer :address
 
         # The shipping method.
@@ -149,7 +141,7 @@ module Increase
 
         sig do
           params(
-            tracking: T.nilable(T.any(Increase::Models::PhysicalCard::Shipment::Tracking, Increase::Internal::Util::AnyHash))
+            tracking: T.nilable(T.any(Increase::Models::PhysicalCard::Shipment::Tracking, Increase::Internal::AnyHash))
           )
             .void
         end
@@ -158,10 +150,10 @@ module Increase
         # The details used to ship this physical card.
         sig do
           params(
-            address: T.any(Increase::Models::PhysicalCard::Shipment::Address, Increase::Internal::Util::AnyHash),
+            address: T.any(Increase::Models::PhysicalCard::Shipment::Address, Increase::Internal::AnyHash),
             method_: Increase::Models::PhysicalCard::Shipment::Method::OrSymbol,
             status: Increase::Models::PhysicalCard::Shipment::Status::OrSymbol,
-            tracking: T.nilable(T.any(Increase::Models::PhysicalCard::Shipment::Tracking, Increase::Internal::Util::AnyHash))
+            tracking: T.nilable(T.any(Increase::Models::PhysicalCard::Shipment::Tracking, Increase::Internal::AnyHash))
           )
             .returns(T.attached_class)
         end
@@ -182,7 +174,7 @@ module Increase
         def to_hash
         end
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           # The city of the shipping address.
           sig { returns(String) }
           attr_accessor :city
@@ -247,7 +239,7 @@ module Increase
 
         # The shipping method.
         module Method
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Shipment::Method) }
           OrSymbol =
@@ -270,7 +262,7 @@ module Increase
 
         # The status of this shipment.
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Shipment::Status) }
           OrSymbol =
@@ -302,7 +294,7 @@ module Increase
           end
         end
 
-        class Tracking < Increase::BaseModel
+        class Tracking < Increase::Internal::Type::BaseModel
           # The tracking number.
           sig { returns(String) }
           attr_accessor :number
@@ -352,7 +344,7 @@ module Increase
 
       # The status of the Physical Card.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCard::Status::TaggedSymbol) }
@@ -374,7 +366,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `physical_card`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCard::Type::TaggedSymbol) }

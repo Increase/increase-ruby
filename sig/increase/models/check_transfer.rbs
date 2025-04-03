@@ -27,7 +27,7 @@ module Increase
         type: Increase::Models::CheckTransfer::type_
       }
 
-    class CheckTransfer < Increase::BaseModel
+    class CheckTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -104,7 +104,7 @@ module Increase
 
       type approval = { approved_at: Time, approved_by: String? }
 
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         attr_accessor approved_at: Time
 
         attr_accessor approved_by: String?
@@ -116,7 +116,7 @@ module Increase
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
 
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         attr_accessor canceled_at: Time
 
         attr_accessor canceled_by: String?
@@ -134,7 +134,7 @@ module Increase
           user: Increase::Models::CheckTransfer::CreatedBy::User?
         }
 
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::Models::CheckTransfer::CreatedBy::APIKey?
 
         attr_accessor category: Increase::Models::CheckTransfer::CreatedBy::category
@@ -154,7 +154,7 @@ module Increase
 
         type api_key = { description: String? }
 
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
@@ -165,7 +165,7 @@ module Increase
         type category = :api_key | :oauth_application | :user
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An API key. Details will be under the `api_key` object.
           API_KEY: :api_key
@@ -181,7 +181,7 @@ module Increase
 
         type oauth_application = { name: String }
 
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           attr_accessor name: String
 
           def initialize: (name: String) -> void
@@ -191,7 +191,7 @@ module Increase
 
         type user = { email: String }
 
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           attr_accessor email: String
 
           def initialize: (email: String) -> void
@@ -203,7 +203,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -229,7 +229,7 @@ module Increase
       type fulfillment_method = :physical_check | :third_party
 
       module FulfillmentMethod
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Increase will print and mail a physical check.
         PHYSICAL_CHECK: :physical_check
@@ -243,7 +243,7 @@ module Increase
       type mailing =
         { image_id: String?, mailed_at: Time, tracking_number: String? }
 
-      class Mailing < Increase::BaseModel
+      class Mailing < Increase::Internal::Type::BaseModel
         attr_accessor image_id: String?
 
         attr_accessor mailed_at: Time
@@ -271,7 +271,7 @@ module Increase
           tracking_updates: ::Array[Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate]
         }
 
-      class PhysicalCheck < Increase::BaseModel
+      class PhysicalCheck < Increase::Internal::Type::BaseModel
         attr_accessor mailing_address: Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress
 
         attr_accessor memo: String?
@@ -311,7 +311,7 @@ module Increase
             state: String?
           }
 
-        class MailingAddress < Increase::BaseModel
+        class MailingAddress < Increase::Internal::Type::BaseModel
           attr_accessor city: String?
 
           attr_accessor line1: String?
@@ -346,7 +346,7 @@ module Increase
             state: String?
           }
 
-        class ReturnAddress < Increase::BaseModel
+        class ReturnAddress < Increase::Internal::Type::BaseModel
           attr_accessor city: String?
 
           attr_accessor line1: String?
@@ -374,7 +374,7 @@ module Increase
         type shipping_method = :usps_first_class | :fedex_overnight
 
         module ShippingMethod
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # USPS First Class
           USPS_FIRST_CLASS: :usps_first_class
@@ -392,7 +392,7 @@ module Increase
             postal_code: String
           }
 
-        class TrackingUpdate < Increase::BaseModel
+        class TrackingUpdate < Increase::Internal::Type::BaseModel
           attr_accessor category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category
 
           attr_accessor created_at: Time
@@ -414,7 +414,7 @@ module Increase
             | :returned_to_sender
 
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The check is in transit.
             IN_TRANSIT: :in_transit
@@ -446,7 +446,7 @@ module Increase
         | :returned
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is awaiting approval.
         PENDING_APPROVAL: :pending_approval
@@ -489,7 +489,7 @@ module Increase
           type: Increase::Models::CheckTransfer::StopPaymentRequest::type_
         }
 
-      class StopPaymentRequest < Increase::BaseModel
+      class StopPaymentRequest < Increase::Internal::Type::BaseModel
         attr_accessor reason: Increase::Models::CheckTransfer::StopPaymentRequest::reason
 
         attr_accessor requested_at: Time
@@ -514,7 +514,7 @@ module Increase
           | :unknown
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check could not be delivered.
           MAIL_DELIVERY_FAILED: :mail_delivery_failed
@@ -534,7 +534,7 @@ module Increase
         type type_ = :check_transfer_stop_payment_request
 
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           CHECK_TRANSFER_STOP_PAYMENT_REQUEST: :check_transfer_stop_payment_request
 
@@ -544,7 +544,7 @@ module Increase
 
       type submission = { submitted_at: Time }
 
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         attr_accessor submitted_at: Time
 
         def initialize: (submitted_at: Time) -> void
@@ -554,7 +554,7 @@ module Increase
 
       type third_party = { check_number: String?, recipient_name: String? }
 
-      class ThirdParty < Increase::BaseModel
+      class ThirdParty < Increase::Internal::Type::BaseModel
         attr_accessor check_number: String?
 
         attr_accessor recipient_name: String?
@@ -567,7 +567,7 @@ module Increase
       type type_ = :check_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CHECK_TRANSFER: :check_transfer
 

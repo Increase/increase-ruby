@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           bookkeeping_entry_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BookkeepingEntry)
       end
@@ -24,7 +24,7 @@ module Increase
           account_id: String,
           cursor: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::BookkeepingEntry])
       end

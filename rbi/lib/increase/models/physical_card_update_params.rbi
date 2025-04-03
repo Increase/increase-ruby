@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PhysicalCardUpdateParams < Increase::BaseModel
+    class PhysicalCardUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -13,7 +13,7 @@ module Increase
       sig do
         params(
           status: Increase::Models::PhysicalCardUpdateParams::Status::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -34,7 +34,7 @@ module Increase
 
       # The status to update the Physical Card to.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardUpdateParams::Status) }
         OrSymbol =

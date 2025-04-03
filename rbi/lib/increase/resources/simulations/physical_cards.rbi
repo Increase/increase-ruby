@@ -11,7 +11,7 @@ module Increase
           params(
             physical_card_id: String,
             shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus::OrSymbol,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::PhysicalCard)
         end

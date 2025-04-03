@@ -27,7 +27,7 @@ module Increase
         type: Increase::Models::InboundWireDrawdownRequest::type_
       }
 
-    class InboundWireDrawdownRequest < Increase::BaseModel
+    class InboundWireDrawdownRequest < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor amount: Integer
@@ -105,7 +105,7 @@ module Increase
       type type_ = :inbound_wire_drawdown_request
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_WIRE_DRAWDOWN_REQUEST: :inbound_wire_drawdown_request
 

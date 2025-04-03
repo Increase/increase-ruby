@@ -9,7 +9,7 @@ module Increase
         type: Increase::Models::Group::type_
       }
 
-    class Group < Increase::BaseModel
+    class Group < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor ach_debit_status: Increase::Models::Group::ach_debit_status
@@ -33,7 +33,7 @@ module Increase
       type ach_debit_status = :disabled | :enabled
 
       module ACHDebitStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Group cannot make ACH debits.
         DISABLED: :disabled
@@ -47,7 +47,7 @@ module Increase
       type activation_status = :unactivated | :activated
 
       module ActivationStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Group is not activated.
         UNACTIVATED: :unactivated
@@ -61,7 +61,7 @@ module Increase
       type type_ = :group
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         GROUP: :group
 

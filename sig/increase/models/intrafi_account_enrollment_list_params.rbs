@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class IntrafiAccountEnrollmentListParams < Increase::BaseModel
+    class IntrafiAccountEnrollmentListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -52,7 +52,7 @@ module Increase
           in_: ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]
         }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]?
 
         def in_=: (
@@ -73,7 +73,7 @@ module Increase
           | :requires_attention
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account is being added to the IntraFi network.
           PENDING_ENROLLING: :pending_enrolling

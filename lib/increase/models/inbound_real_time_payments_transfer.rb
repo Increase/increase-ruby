@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundRealTimePaymentsTransfers#retrieve
-    class InboundRealTimePaymentsTransfer < Increase::BaseModel
+    class InboundRealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The inbound Real-Time Payments transfer's identifier.
       #
@@ -146,10 +146,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::InboundRealTimePaymentsTransfer#confirmation
-      class Confirmation < Increase::BaseModel
+      class Confirmation < Increase::Internal::Type::BaseModel
         # @!attribute confirmed_at
         #   The time at which the transfer was confirmed.
         #
@@ -170,7 +170,7 @@ module Increase
         #   #
         #   def initialize(confirmed_at:, transaction_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the transfer's
@@ -178,7 +178,7 @@ module Increase
       #
       # @see Increase::Models::InboundRealTimePaymentsTransfer#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -206,7 +206,7 @@ module Increase
       end
 
       # @see Increase::Models::InboundRealTimePaymentsTransfer#decline
-      class Decline < Increase::BaseModel
+      class Decline < Increase::Internal::Type::BaseModel
         # @!attribute declined_at
         #   The time at which the transfer was declined.
         #
@@ -234,13 +234,13 @@ module Increase
         #   #
         #   def initialize(declined_at:, declined_transaction_id:, reason:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason for the transfer decline.
         #
         # @see Increase::Models::InboundRealTimePaymentsTransfer::Decline#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number is canceled.
           ACCOUNT_NUMBER_CANCELED = :account_number_canceled
@@ -272,7 +272,7 @@ module Increase
       #
       # @see Increase::Models::InboundRealTimePaymentsTransfer#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is pending confirmation.
         PENDING_CONFIRMING = :pending_confirming
@@ -298,7 +298,7 @@ module Increase
       #
       # @see Increase::Models::InboundRealTimePaymentsTransfer#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_REAL_TIME_PAYMENTS_TRANSFER = :inbound_real_time_payments_transfer
 

@@ -5,7 +5,7 @@ module Increase
         { card_payment_id: String, amount: Integer }
         & Increase::Internal::Type::request_parameters
 
-      class CardReversalCreateParams < Increase::BaseModel
+      class CardReversalCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

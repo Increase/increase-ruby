@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class InterestPaymentCreateParams < Increase::BaseModel
+      class InterestPaymentCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -43,7 +43,7 @@ module Increase
             accrued_on_account_id: String,
             period_end: Time,
             period_start: Time,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end

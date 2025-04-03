@@ -10,7 +10,7 @@ module Increase
         type: Increase::Models::BookkeepingEntry::type_
       }
 
-    class BookkeepingEntry < Increase::BaseModel
+    class BookkeepingEntry < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -37,7 +37,7 @@ module Increase
       type type_ = :bookkeeping_entry
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_ENTRY: :bookkeeping_entry
 

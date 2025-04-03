@@ -4,7 +4,7 @@ module Increase
       type inbound_funds_hold_release_params =
         {  } & Increase::Internal::Type::request_parameters
 
-      class InboundFundsHoldReleaseParams < Increase::BaseModel
+      class InboundFundsHoldReleaseParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

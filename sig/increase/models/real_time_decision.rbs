@@ -15,7 +15,7 @@ module Increase
         type: Increase::Models::RealTimeDecision::type_
       }
 
-    class RealTimeDecision < Increase::BaseModel
+    class RealTimeDecision < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor card_authentication: Increase::Models::RealTimeDecision::CardAuthentication?
@@ -62,7 +62,7 @@ module Increase
           upcoming_card_payment_id: String
         }
 
-      class CardAuthentication < Increase::BaseModel
+      class CardAuthentication < Increase::Internal::Type::BaseModel
         attr_accessor account_id: String
 
         attr_accessor card_id: String
@@ -83,7 +83,7 @@ module Increase
         type decision = :approve | :challenge | :deny
 
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authentication attempt without triggering a challenge.
           APPROVE: :approve
@@ -107,7 +107,7 @@ module Increase
           result: Increase::Models::RealTimeDecision::CardAuthenticationChallenge::result?
         }
 
-      class CardAuthenticationChallenge < Increase::BaseModel
+      class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         attr_accessor account_id: String
 
         attr_accessor card_id: String
@@ -131,7 +131,7 @@ module Increase
         type result = :success | :failure
 
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time code to the cardholder.
           SUCCESS: :success
@@ -172,7 +172,7 @@ module Increase
           verification: Increase::Models::RealTimeDecision::CardAuthorization::Verification
         }
 
-      class CardAuthorization < Increase::BaseModel
+      class CardAuthorization < Increase::Internal::Type::BaseModel
         attr_accessor account_id: String
 
         attr_accessor card_id: String
@@ -256,7 +256,7 @@ module Increase
         type decision = :approve | :decline
 
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the authorization.
           APPROVE: :approve
@@ -270,7 +270,7 @@ module Increase
         type direction = :settlement | :refund
 
         module Direction
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A regular card authorization where funds are debited from the cardholder.
           SETTLEMENT: :settlement
@@ -287,7 +287,7 @@ module Increase
             visa: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           }
 
-        class NetworkDetails < Increase::BaseModel
+        class NetworkDetails < Increase::Internal::Type::BaseModel
           attr_accessor category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category
 
           attr_accessor visa: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
@@ -302,7 +302,7 @@ module Increase
           type category = :visa
 
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
@@ -317,7 +317,7 @@ module Increase
               stand_in_processing_reason: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::stand_in_processing_reason?
             }
 
-          class Visa < Increase::BaseModel
+          class Visa < Increase::Internal::Type::BaseModel
             attr_accessor electronic_commerce_indicator: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::electronic_commerce_indicator?
 
             attr_accessor point_of_service_entry_mode: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::point_of_service_entry_mode?
@@ -343,7 +343,7 @@ module Increase
               | :non_secure_transaction
 
             module ElectronicCommerceIndicator
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
               MAIL_PHONE_ORDER: :mail_phone_order
@@ -385,7 +385,7 @@ module Increase
               | :integrated_circuit_card_no_cvv
 
             module PointOfServiceEntryMode
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Unknown
               UNKNOWN: :unknown
@@ -430,7 +430,7 @@ module Increase
               | :other
 
             module StandInProcessingReason
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Increase failed to process the authorization in a timely manner.
               ISSUER_ERROR: :issuer_error
@@ -465,7 +465,7 @@ module Increase
             transaction_id: String?
           }
 
-        class NetworkIdentifiers < Increase::BaseModel
+        class NetworkIdentifiers < Increase::Internal::Type::BaseModel
           attr_accessor retrieval_reference_number: String?
 
           attr_accessor trace_number: String?
@@ -490,7 +490,7 @@ module Increase
           | :refund
 
         module ProcessingCategory
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
           ACCOUNT_FUNDING: :account_funding
@@ -520,7 +520,7 @@ module Increase
             initial_authorization: top?
           }
 
-        class RequestDetails < Increase::BaseModel
+        class RequestDetails < Increase::Internal::Type::BaseModel
           attr_accessor category: Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::category
 
           attr_accessor incremental_authorization: Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization?
@@ -538,7 +538,7 @@ module Increase
           type category = :initial_authorization | :incremental_authorization
 
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular, standalone authorization.
             INITIAL_AUTHORIZATION: :initial_authorization
@@ -552,7 +552,7 @@ module Increase
           type incremental_authorization =
             { card_payment_id: String, original_card_authorization_id: String }
 
-          class IncrementalAuthorization < Increase::BaseModel
+          class IncrementalAuthorization < Increase::Internal::Type::BaseModel
             attr_accessor card_payment_id: String
 
             attr_accessor original_card_authorization_id: String
@@ -572,7 +572,7 @@ module Increase
             cardholder_address: Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress
           }
 
-        class Verification < Increase::BaseModel
+        class Verification < Increase::Internal::Type::BaseModel
           attr_accessor card_verification_code: Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode
 
           attr_accessor cardholder_address: Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress
@@ -589,7 +589,7 @@ module Increase
               result: Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode::result
             }
 
-          class CardVerificationCode < Increase::BaseModel
+          class CardVerificationCode < Increase::Internal::Type::BaseModel
             attr_accessor result: Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode::result
 
             def initialize: (
@@ -601,7 +601,7 @@ module Increase
             type result = :not_checked | :match | :no_match
 
             module Result
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # No card verification code was provided in the authorization request.
               NOT_CHECKED: :not_checked
@@ -625,7 +625,7 @@ module Increase
               result: Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::result
             }
 
-          class CardholderAddress < Increase::BaseModel
+          class CardholderAddress < Increase::Internal::Type::BaseModel
             attr_accessor actual_line1: String?
 
             attr_accessor actual_postal_code: String?
@@ -655,7 +655,7 @@ module Increase
               | :no_match
 
             module Result
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # No adress was provided in the authorization request.
               NOT_CHECKED: :not_checked
@@ -689,7 +689,7 @@ module Increase
         | :digital_wallet_authentication_requested
 
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A card is being authorized.
         CARD_AUTHORIZATION_REQUESTED: :card_authorization_requested
@@ -720,7 +720,7 @@ module Increase
           result: Increase::Models::RealTimeDecision::DigitalWalletAuthentication::result?
         }
 
-      class DigitalWalletAuthentication < Increase::BaseModel
+      class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         attr_accessor card_id: String
 
         attr_accessor channel: Increase::Models::RealTimeDecision::DigitalWalletAuthentication::channel
@@ -750,7 +750,7 @@ module Increase
         type channel = :sms | :email
 
         module Channel
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Send one-time passcodes over SMS.
           SMS: :sms
@@ -764,7 +764,7 @@ module Increase
         type digital_wallet = :apple_pay | :google_pay | :samsung_pay | :unknown
 
         module DigitalWallet
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Apple Pay
           APPLE_PAY: :apple_pay
@@ -784,7 +784,7 @@ module Increase
         type result = :success | :failure
 
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Your application successfully delivered the one-time passcode to the cardholder.
           SUCCESS: :success
@@ -805,7 +805,7 @@ module Increase
           digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet
         }
 
-      class DigitalWalletToken < Increase::BaseModel
+      class DigitalWalletToken < Increase::Internal::Type::BaseModel
         attr_accessor card_id: String
 
         attr_accessor card_profile_id: String?
@@ -829,7 +829,7 @@ module Increase
         type decision = :approve | :decline
 
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Approve the provisioning request.
           APPROVE: :approve
@@ -842,7 +842,7 @@ module Increase
 
         type device = { identifier: String? }
 
-        class Device < Increase::BaseModel
+        class Device < Increase::Internal::Type::BaseModel
           attr_accessor identifier: String?
 
           def initialize: (identifier: String?) -> void
@@ -853,7 +853,7 @@ module Increase
         type digital_wallet = :apple_pay | :google_pay | :samsung_pay | :unknown
 
         module DigitalWallet
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Apple Pay
           APPLE_PAY: :apple_pay
@@ -874,7 +874,7 @@ module Increase
       type status = :pending | :responded | :timed_out
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The decision is pending action via real-time webhook.
         PENDING: :pending
@@ -891,7 +891,7 @@ module Increase
       type type_ = :real_time_decision
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         REAL_TIME_DECISION: :real_time_decision
 

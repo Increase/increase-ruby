@@ -24,7 +24,7 @@ module Increase
             originator_to_beneficiary_information_line3: String,
             originator_to_beneficiary_information_line4: String,
             sender_reference: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::InboundWireTransfer)
         end

@@ -39,7 +39,7 @@ module Increase
         type: Increase::Models::ACHTransfer::type_
       }
 
-    class ACHTransfer < Increase::BaseModel
+    class ACHTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -152,7 +152,7 @@ module Increase
 
       type acknowledgement = { acknowledged_at: String }
 
-      class Acknowledgement < Increase::BaseModel
+      class Acknowledgement < Increase::Internal::Type::BaseModel
         attr_accessor acknowledged_at: String
 
         def initialize: (acknowledged_at: String) -> void
@@ -167,7 +167,7 @@ module Increase
           payment_order_remittance_advice: Increase::Models::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice?
         }
 
-      class Addenda < Increase::BaseModel
+      class Addenda < Increase::Internal::Type::BaseModel
         attr_accessor category: Increase::Models::ACHTransfer::Addenda::category
 
         attr_accessor freeform: Increase::Models::ACHTransfer::Addenda::Freeform?
@@ -185,7 +185,7 @@ module Increase
         type category = :freeform | :payment_order_remittance_advice | :other
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Unstructured `payment_related_information` passed through with the transfer.
           FREEFORM: :freeform
@@ -204,7 +204,7 @@ module Increase
             entries: ::Array[Increase::Models::ACHTransfer::Addenda::Freeform::Entry]
           }
 
-        class Freeform < Increase::BaseModel
+        class Freeform < Increase::Internal::Type::BaseModel
           attr_accessor entries: ::Array[Increase::Models::ACHTransfer::Addenda::Freeform::Entry]
 
           def initialize: (
@@ -215,7 +215,7 @@ module Increase
 
           type entry = { payment_related_information: String }
 
-          class Entry < Increase::BaseModel
+          class Entry < Increase::Internal::Type::BaseModel
             attr_accessor payment_related_information: String
 
             def initialize: (payment_related_information: String) -> void
@@ -229,7 +229,7 @@ module Increase
             invoices: ::Array[Increase::Models::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice]
           }
 
-        class PaymentOrderRemittanceAdvice < Increase::BaseModel
+        class PaymentOrderRemittanceAdvice < Increase::Internal::Type::BaseModel
           attr_accessor invoices: ::Array[Increase::Models::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice]
 
           def initialize: (
@@ -240,7 +240,7 @@ module Increase
 
           type invoice = { invoice_number: String, paid_amount: Integer }
 
-          class Invoice < Increase::BaseModel
+          class Invoice < Increase::Internal::Type::BaseModel
             attr_accessor invoice_number: String
 
             attr_accessor paid_amount: Integer
@@ -257,7 +257,7 @@ module Increase
 
       type approval = { approved_at: Time, approved_by: String? }
 
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         attr_accessor approved_at: Time
 
         attr_accessor approved_by: String?
@@ -269,7 +269,7 @@ module Increase
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
 
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         attr_accessor canceled_at: Time
 
         attr_accessor canceled_by: String?
@@ -287,7 +287,7 @@ module Increase
           user: Increase::Models::ACHTransfer::CreatedBy::User?
         }
 
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::Models::ACHTransfer::CreatedBy::APIKey?
 
         attr_accessor category: Increase::Models::ACHTransfer::CreatedBy::category
@@ -307,7 +307,7 @@ module Increase
 
         type api_key = { description: String? }
 
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
@@ -318,7 +318,7 @@ module Increase
         type category = :api_key | :oauth_application | :user
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An API key. Details will be under the `api_key` object.
           API_KEY: :api_key
@@ -334,7 +334,7 @@ module Increase
 
         type oauth_application = { name: String }
 
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           attr_accessor name: String
 
           def initialize: (name: String) -> void
@@ -344,7 +344,7 @@ module Increase
 
         type user = { email: String }
 
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           attr_accessor email: String
 
           def initialize: (email: String) -> void
@@ -356,7 +356,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -382,7 +382,7 @@ module Increase
       type destination_account_holder = :business | :individual | :unknown
 
       module DestinationAccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is owned by a business.
         BUSINESS: :business
@@ -399,7 +399,7 @@ module Increase
       type funding = :checking | :savings
 
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A checking account.
         CHECKING: :checking
@@ -424,7 +424,7 @@ module Increase
           type: Increase::Models::ACHTransfer::InboundFundsHold::type_
         }
 
-      class InboundFundsHold < Increase::BaseModel
+      class InboundFundsHold < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor amount: Integer
@@ -463,7 +463,7 @@ module Increase
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD: :CAD
@@ -489,7 +489,7 @@ module Increase
         type status = :held | :complete
 
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Funds are still being held.
           HELD: :held
@@ -503,7 +503,7 @@ module Increase
         type type_ = :inbound_funds_hold
 
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
 
@@ -514,7 +514,7 @@ module Increase
       type network = :ach
 
       module Network
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACH: :ach
 
@@ -528,7 +528,7 @@ module Increase
           created_at: Time
         }
 
-      class NotificationsOfChange < Increase::BaseModel
+      class NotificationsOfChange < Increase::Internal::Type::BaseModel
         attr_accessor change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code
 
         attr_accessor corrected_data: String
@@ -565,7 +565,7 @@ module Increase
           | :incorrect_transaction_code_by_originating_depository_financial_institution
 
         module ChangeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number was incorrect.
           INCORRECT_ACCOUNT_NUMBER: :incorrect_account_number
@@ -634,7 +634,7 @@ module Increase
           settlement_schedule: Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
         }
 
-      class PreferredEffectiveDate < Increase::BaseModel
+      class PreferredEffectiveDate < Increase::Internal::Type::BaseModel
         attr_accessor date: Date?
 
         attr_accessor settlement_schedule: Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
@@ -649,7 +649,7 @@ module Increase
         type settlement_schedule = :same_day | :future_dated
 
         module SettlementSchedule
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted.
           # This is necessary, but not sufficient for the transfer to be settled same-day:
@@ -674,7 +674,7 @@ module Increase
           transfer_id: String
         }
 
-      class Return < Increase::BaseModel
+      class Return < Increase::Internal::Type::BaseModel
         attr_accessor created_at: Time
 
         attr_accessor raw_return_reason_code: String
@@ -771,7 +771,7 @@ module Increase
           | :untimely_return
 
         module ReturnReasonCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
           INSUFFICIENT_FUND: :insufficient_fund
@@ -989,7 +989,7 @@ module Increase
 
       type settlement = { settled_at: Time }
 
-      class Settlement < Increase::BaseModel
+      class Settlement < Increase::Internal::Type::BaseModel
         attr_accessor settled_at: Time
 
         def initialize: (settled_at: Time) -> void
@@ -1004,7 +1004,7 @@ module Increase
         | :internet_initiated
 
       module StandardEntryClassCode
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Corporate Credit and Debit (CCD).
         CORPORATE_CREDIT_OR_DEBIT: :corporate_credit_or_debit
@@ -1033,7 +1033,7 @@ module Increase
         | :returned
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is pending approval.
         PENDING_APPROVAL: :pending_approval
@@ -1074,7 +1074,7 @@ module Increase
           trace_number: String
         }
 
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         attr_accessor effective_date: Date
 
         attr_accessor expected_funds_settlement_at: Time
@@ -1098,7 +1098,7 @@ module Increase
         type expected_settlement_schedule = :same_day | :future_dated
 
         module ExpectedSettlementSchedule
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The transfer is expected to settle same-day.
           SAME_DAY: :same_day
@@ -1113,7 +1113,7 @@ module Increase
       type type_ = :ach_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACH_TRANSFER: :ach_transfer
 

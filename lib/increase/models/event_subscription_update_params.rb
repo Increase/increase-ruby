@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::EventSubscriptions#update
-    class EventSubscriptionUpdateParams < Increase::BaseModel
+    class EventSubscriptionUpdateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -24,11 +24,11 @@ module Increase
       #   #
       #   def initialize(status: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The status to update the Event Subscription with.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The subscription is active and Events will be delivered normally.
         ACTIVE = :active

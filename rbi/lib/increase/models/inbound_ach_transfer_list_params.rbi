@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class InboundACHTransferListParams < Increase::BaseModel
+    class InboundACHTransferListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -25,7 +25,7 @@ module Increase
 
       sig do
         params(
-          created_at: T.any(Increase::Models::InboundACHTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash)
+          created_at: T.any(Increase::Models::InboundACHTransferListParams::CreatedAt, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -50,9 +50,7 @@ module Increase
       attr_reader :status
 
       sig do
-        params(
-          status: T.any(Increase::Models::InboundACHTransferListParams::Status, Increase::Internal::Util::AnyHash)
-        )
+        params(status: T.any(Increase::Models::InboundACHTransferListParams::Status, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :status
@@ -61,11 +59,11 @@ module Increase
         params(
           account_id: String,
           account_number_id: String,
-          created_at: T.any(Increase::Models::InboundACHTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::InboundACHTransferListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
-          status: T.any(Increase::Models::InboundACHTransferListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::InboundACHTransferListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -97,7 +95,7 @@ module Increase
       def to_hash
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }
@@ -141,7 +139,7 @@ module Increase
         end
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # Filter Inbound ACH Transfers to those with the specified status. For GET
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
@@ -163,7 +161,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundACHTransferListParams::Status::In) }
           OrSymbol =

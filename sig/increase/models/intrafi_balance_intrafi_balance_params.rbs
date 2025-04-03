@@ -3,7 +3,7 @@ module Increase
     type intrafi_balance_intrafi_balance_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class IntrafiBalanceIntrafiBalanceParams < Increase::BaseModel
+    class IntrafiBalanceIntrafiBalanceParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

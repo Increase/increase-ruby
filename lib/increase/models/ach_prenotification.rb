@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ACHPrenotifications#create
-    class ACHPrenotification < Increase::BaseModel
+    class ACHPrenotification < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The ACH Prenotification's identifier.
       #
@@ -81,7 +81,7 @@ module Increase
       #
       #   @return [Array<Increase::Models::ACHPrenotification::NotificationsOfChange>]
       required :notifications_of_change,
-               -> { Increase::ArrayOf[Increase::Models::ACHPrenotification::NotificationsOfChange] }
+               -> { Increase::Internal::Type::ArrayOf[Increase::Models::ACHPrenotification::NotificationsOfChange] }
 
       # @!attribute prenotification_return
       #   If your prenotification is returned, this will contain details of the return.
@@ -153,13 +153,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # If the notification is for a future credit or debit.
       #
       # @see Increase::Models::ACHPrenotification#credit_debit_indicator
       module CreditDebitIndicator
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Prenotification is for an anticipated credit.
         CREDIT = :credit
@@ -174,7 +174,7 @@ module Increase
         #   def self.values; end
       end
 
-      class NotificationsOfChange < Increase::BaseModel
+      class NotificationsOfChange < Increase::Internal::Type::BaseModel
         # @!attribute change_code
         #   The required type of change that is being signaled by the receiving financial
         #     institution.
@@ -207,14 +207,14 @@ module Increase
         #   #
         #   def initialize(change_code:, corrected_data:, created_at:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The required type of change that is being signaled by the receiving financial
         #   institution.
         #
         # @see Increase::Models::ACHPrenotification::NotificationsOfChange#change_code
         module ChangeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number was incorrect.
           INCORRECT_ACCOUNT_NUMBER = :incorrect_account_number
@@ -288,7 +288,7 @@ module Increase
       end
 
       # @see Increase::Models::ACHPrenotification#prenotification_return
-      class PrenotificationReturn < Increase::BaseModel
+      class PrenotificationReturn < Increase::Internal::Type::BaseModel
         # @!attribute created_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #     the Prenotification was returned.
@@ -311,13 +311,13 @@ module Increase
         #   #
         #   def initialize(created_at:, return_reason_code:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Why the Prenotification was returned.
         #
         # @see Increase::Models::ACHPrenotification::PrenotificationReturn#return_reason_code
         module ReturnReasonCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
           INSUFFICIENT_FUND = :insufficient_fund
@@ -544,7 +544,7 @@ module Increase
       #
       # @see Increase::Models::ACHPrenotification#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Prenotification is pending submission.
         PENDING_SUBMITTING = :pending_submitting
@@ -570,7 +570,7 @@ module Increase
       #
       # @see Increase::Models::ACHPrenotification#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACH_PRENOTIFICATION = :ach_prenotification
 

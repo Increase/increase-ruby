@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class DocumentListParams < Increase::BaseModel
+    class DocumentListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -52,7 +52,7 @@ module Increase
       type category =
         { in_: ::Array[Increase::Models::DocumentListParams::Category::in_] }
 
-      class Category < Increase::BaseModel
+      class Category < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::DocumentListParams::Category::in_]?
 
         def in_=: (
@@ -72,7 +72,7 @@ module Increase
           | :company_information
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Internal Revenue Service Form 1099-INT.
           FORM_1099_INT: :form_1099_int
@@ -93,7 +93,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time

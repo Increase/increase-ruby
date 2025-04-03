@@ -4,7 +4,7 @@ module Increase
       type check_deposit_return_params =
         {  } & Increase::Internal::Type::request_parameters
 
-      class CheckDepositReturnParams < Increase::BaseModel
+      class CheckDepositReturnParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class InboundMailItem < Increase::BaseModel
+    class InboundMailItem < Increase::Internal::Type::BaseModel
       # The Inbound Mail Item identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -84,7 +84,7 @@ module Increase
 
       # If the mail item has been rejected, why it was rejected.
       module RejectionReason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundMailItem::RejectionReason) }
         OrSymbol =
@@ -108,7 +108,7 @@ module Increase
 
       # If the mail item has been processed.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundMailItem::Status) }
         OrSymbol =
@@ -131,7 +131,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `inbound_mail_item`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundMailItem::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::InboundMailItem::Type::TaggedSymbol) }

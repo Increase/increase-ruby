@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class CardAuthorizationCreateResponse < Increase::BaseModel
+      class CardAuthorizationCreateResponse < Increase::Internal::Type::BaseModel
         # If the authorization attempt fails, this will contain the resulting
         #   [Declined Transaction](#declined-transactions) object. The Declined
         #   Transaction's `source` will be of `category: card_decline`.
@@ -12,7 +12,7 @@ module Increase
 
         sig do
           params(
-            declined_transaction: T.nilable(T.any(Increase::Models::DeclinedTransaction, Increase::Internal::Util::AnyHash))
+            declined_transaction: T.nilable(T.any(Increase::Models::DeclinedTransaction, Increase::Internal::AnyHash))
           )
             .void
         end
@@ -26,7 +26,7 @@ module Increase
 
         sig do
           params(
-            pending_transaction: T.nilable(T.any(Increase::Models::PendingTransaction, Increase::Internal::Util::AnyHash))
+            pending_transaction: T.nilable(T.any(Increase::Models::PendingTransaction, Increase::Internal::AnyHash))
           )
             .void
         end
@@ -40,8 +40,8 @@ module Increase
         # The results of a Card Authorization simulation.
         sig do
           params(
-            declined_transaction: T.nilable(T.any(Increase::Models::DeclinedTransaction, Increase::Internal::Util::AnyHash)),
-            pending_transaction: T.nilable(T.any(Increase::Models::PendingTransaction, Increase::Internal::Util::AnyHash)),
+            declined_transaction: T.nilable(T.any(Increase::Models::DeclinedTransaction, Increase::Internal::AnyHash)),
+            pending_transaction: T.nilable(T.any(Increase::Models::PendingTransaction, Increase::Internal::AnyHash)),
             type: Increase::Models::Simulations::CardAuthorizationCreateResponse::Type::OrSymbol
           )
             .returns(T.attached_class)
@@ -65,7 +65,7 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         #   `inbound_card_authorization_simulation_result`.
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type) }

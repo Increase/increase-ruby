@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BalanceLookup < Increase::BaseModel
+    class BalanceLookup < Increase::Internal::Type::BaseModel
       # The identifier for the account for which the balance was queried.
       sig { returns(String) }
       attr_accessor :account_id
@@ -53,7 +53,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `balance_lookup`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BalanceLookup::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::BalanceLookup::Type::TaggedSymbol) }

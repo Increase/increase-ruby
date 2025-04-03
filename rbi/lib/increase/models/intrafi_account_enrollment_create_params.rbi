@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class IntrafiAccountEnrollmentCreateParams < Increase::BaseModel
+    class IntrafiAccountEnrollmentCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -18,7 +18,7 @@ module Increase
         params(
           account_id: String,
           email_address: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

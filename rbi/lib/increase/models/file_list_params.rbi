@@ -2,17 +2,14 @@
 
 module Increase
   module Models
-    class FileListParams < Increase::BaseModel
+    class FileListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       sig { returns(T.nilable(Increase::Models::FileListParams::CreatedAt)) }
       attr_reader :created_at
 
-      sig do
-        params(created_at: T.any(Increase::Models::FileListParams::CreatedAt, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(created_at: T.any(Increase::Models::FileListParams::CreatedAt, Increase::Internal::AnyHash)).void }
       attr_writer :created_at
 
       # Return the page of entries after this one.
@@ -43,17 +40,17 @@ module Increase
       sig { returns(T.nilable(Increase::Models::FileListParams::Purpose)) }
       attr_reader :purpose
 
-      sig { params(purpose: T.any(Increase::Models::FileListParams::Purpose, Increase::Internal::Util::AnyHash)).void }
+      sig { params(purpose: T.any(Increase::Models::FileListParams::Purpose, Increase::Internal::AnyHash)).void }
       attr_writer :purpose
 
       sig do
         params(
-          created_at: T.any(Increase::Models::FileListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::FileListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          purpose: T.any(Increase::Models::FileListParams::Purpose, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          purpose: T.any(Increase::Models::FileListParams::Purpose, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -83,7 +80,7 @@ module Increase
       def to_hash
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }
@@ -127,7 +124,7 @@ module Increase
         end
       end
 
-      class Purpose < Increase::BaseModel
+      class Purpose < Increase::Internal::Type::BaseModel
         # Filter Files for those with the specified purpose or purposes. For GET requests,
         #   this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         sig { returns(T.nilable(T::Array[Increase::Models::FileListParams::Purpose::In::OrSymbol])) }
@@ -145,7 +142,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::FileListParams::Purpose::In) }
           OrSymbol =

@@ -23,7 +23,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -51,7 +51,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -86,7 +86,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -114,7 +114,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -146,7 +146,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -174,7 +174,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -214,7 +214,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -246,7 +246,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -279,7 +279,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type
@@ -307,7 +307,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         natural_person: Increase::Models::Entity::NaturalPerson | nil,
         status: Increase::Models::Entity::Status,
         structure: Increase::Models::Entity::Structure,
-        supplemental_documents: ^(Increase::ArrayOf[Increase::Models::EntitySupplementalDocument]),
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::Models::EntitySupplementalDocument]),
         third_party_verification: Increase::Models::Entity::ThirdPartyVerification | nil,
         trust: Increase::Models::Entity::Trust | nil,
         type: Increase::Models::Entity::Type

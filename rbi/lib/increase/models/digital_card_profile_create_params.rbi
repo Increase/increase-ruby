@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class DigitalCardProfileCreateParams < Increase::BaseModel
+    class DigitalCardProfileCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -53,7 +53,7 @@ module Increase
 
       sig do
         params(
-          text_color: T.any(Increase::Models::DigitalCardProfileCreateParams::TextColor, Increase::Internal::Util::AnyHash)
+          text_color: T.any(Increase::Models::DigitalCardProfileCreateParams::TextColor, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -69,8 +69,8 @@ module Increase
           contact_email: String,
           contact_phone: String,
           contact_website: String,
-          text_color: T.any(Increase::Models::DigitalCardProfileCreateParams::TextColor, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          text_color: T.any(Increase::Models::DigitalCardProfileCreateParams::TextColor, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -108,7 +108,7 @@ module Increase
       def to_hash
       end
 
-      class TextColor < Increase::BaseModel
+      class TextColor < Increase::Internal::Type::BaseModel
         # The value of the blue channel in the RGB color.
         sig { returns(Integer) }
         attr_accessor :blue

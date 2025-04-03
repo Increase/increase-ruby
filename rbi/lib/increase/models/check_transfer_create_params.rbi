@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class CheckTransferCreateParams < Increase::BaseModel
+    class CheckTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -31,7 +31,7 @@ module Increase
 
       sig do
         params(
-          physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::Util::AnyHash)
+          physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -52,7 +52,7 @@ module Increase
 
       sig do
         params(
-          third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::Util::AnyHash)
+          third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -64,10 +64,10 @@ module Increase
           amount: Integer,
           fulfillment_method: Increase::Models::CheckTransferCreateParams::FulfillmentMethod::OrSymbol,
           source_account_number_id: String,
-          physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::Util::AnyHash),
+          physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::AnyHash),
           require_approval: T::Boolean,
-          third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -103,7 +103,7 @@ module Increase
 
       # Whether Increase will print and mail the check or if you will do it yourself.
       module FulfillmentMethod
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod) }
@@ -123,7 +123,7 @@ module Increase
         end
       end
 
-      class PhysicalCheck < Increase::BaseModel
+      class PhysicalCheck < Increase::Internal::Type::BaseModel
         # Details for where Increase will mail the check.
         sig { returns(Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress) }
         attr_reader :mailing_address
@@ -132,7 +132,7 @@ module Increase
           params(
             mailing_address: T.any(
               Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .void
@@ -173,7 +173,7 @@ module Increase
           params(
             return_address: T.any(
               Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .void
@@ -195,7 +195,7 @@ module Increase
           params(
             mailing_address: T.any(
               Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             ),
             memo: String,
             recipient_name: String,
@@ -203,7 +203,7 @@ module Increase
             note: String,
             return_address: T.any(
               Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             ),
             signature_text: String
           )
@@ -237,7 +237,7 @@ module Increase
         def to_hash
         end
 
-        class MailingAddress < Increase::BaseModel
+        class MailingAddress < Increase::Internal::Type::BaseModel
           # The city component of the check's destination address.
           sig { returns(String) }
           attr_accessor :city
@@ -276,7 +276,7 @@ module Increase
           end
         end
 
-        class ReturnAddress < Increase::BaseModel
+        class ReturnAddress < Increase::Internal::Type::BaseModel
           # The city of the return address.
           sig { returns(String) }
           attr_accessor :city
@@ -337,7 +337,7 @@ module Increase
         end
       end
 
-      class ThirdParty < Increase::BaseModel
+      class ThirdParty < Increase::Internal::Type::BaseModel
         # The check number you will print on the check. This should not contain leading
         #   zeroes. If this is omitted, Increase will generate a check number for you; you
         #   should inspect the response and use that check number.

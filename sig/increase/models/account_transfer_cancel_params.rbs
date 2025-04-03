@@ -3,7 +3,7 @@ module Increase
     type account_transfer_cancel_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class AccountTransferCancelParams < Increase::BaseModel
+    class AccountTransferCancelParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

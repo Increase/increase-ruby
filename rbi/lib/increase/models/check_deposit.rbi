@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class CheckDeposit < Increase::BaseModel
+    class CheckDeposit < Increase::Internal::Type::BaseModel
       # The deposit's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -31,7 +31,7 @@ module Increase
 
       sig do
         params(
-          deposit_acceptance: T.nilable(T.any(Increase::Models::CheckDeposit::DepositAcceptance, Increase::Internal::Util::AnyHash))
+          deposit_acceptance: T.nilable(T.any(Increase::Models::CheckDeposit::DepositAcceptance, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -44,7 +44,7 @@ module Increase
 
       sig do
         params(
-          deposit_rejection: T.nilable(T.any(Increase::Models::CheckDeposit::DepositRejection, Increase::Internal::Util::AnyHash))
+          deposit_rejection: T.nilable(T.any(Increase::Models::CheckDeposit::DepositRejection, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -57,7 +57,7 @@ module Increase
 
       sig do
         params(
-          deposit_return: T.nilable(T.any(Increase::Models::CheckDeposit::DepositReturn, Increase::Internal::Util::AnyHash))
+          deposit_return: T.nilable(T.any(Increase::Models::CheckDeposit::DepositReturn, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -70,7 +70,7 @@ module Increase
 
       sig do
         params(
-          deposit_submission: T.nilable(T.any(Increase::Models::CheckDeposit::DepositSubmission, Increase::Internal::Util::AnyHash))
+          deposit_submission: T.nilable(T.any(Increase::Models::CheckDeposit::DepositSubmission, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -97,7 +97,7 @@ module Increase
 
       sig do
         params(
-          inbound_funds_hold: T.nilable(T.any(Increase::Models::CheckDeposit::InboundFundsHold, Increase::Internal::Util::AnyHash))
+          inbound_funds_hold: T.nilable(T.any(Increase::Models::CheckDeposit::InboundFundsHold, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -134,14 +134,14 @@ module Increase
           amount: Integer,
           back_image_file_id: T.nilable(String),
           created_at: Time,
-          deposit_acceptance: T.nilable(T.any(Increase::Models::CheckDeposit::DepositAcceptance, Increase::Internal::Util::AnyHash)),
-          deposit_rejection: T.nilable(T.any(Increase::Models::CheckDeposit::DepositRejection, Increase::Internal::Util::AnyHash)),
-          deposit_return: T.nilable(T.any(Increase::Models::CheckDeposit::DepositReturn, Increase::Internal::Util::AnyHash)),
-          deposit_submission: T.nilable(T.any(Increase::Models::CheckDeposit::DepositSubmission, Increase::Internal::Util::AnyHash)),
+          deposit_acceptance: T.nilable(T.any(Increase::Models::CheckDeposit::DepositAcceptance, Increase::Internal::AnyHash)),
+          deposit_rejection: T.nilable(T.any(Increase::Models::CheckDeposit::DepositRejection, Increase::Internal::AnyHash)),
+          deposit_return: T.nilable(T.any(Increase::Models::CheckDeposit::DepositReturn, Increase::Internal::AnyHash)),
+          deposit_submission: T.nilable(T.any(Increase::Models::CheckDeposit::DepositSubmission, Increase::Internal::AnyHash)),
           description: T.nilable(String),
           front_image_file_id: String,
           idempotency_key: T.nilable(String),
-          inbound_funds_hold: T.nilable(T.any(Increase::Models::CheckDeposit::InboundFundsHold, Increase::Internal::Util::AnyHash)),
+          inbound_funds_hold: T.nilable(T.any(Increase::Models::CheckDeposit::InboundFundsHold, Increase::Internal::AnyHash)),
           inbound_mail_item_id: T.nilable(String),
           lockbox_id: T.nilable(String),
           status: Increase::Models::CheckDeposit::Status::OrSymbol,
@@ -200,7 +200,7 @@ module Increase
       def to_hash
       end
 
-      class DepositAcceptance < Increase::BaseModel
+      class DepositAcceptance < Increase::Internal::Type::BaseModel
         # The account number printed on the check.
         sig { returns(String) }
         attr_accessor :account_number
@@ -278,7 +278,7 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         #   transaction's currency.
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::DepositAcceptance::Currency) }
@@ -309,7 +309,7 @@ module Increase
         end
       end
 
-      class DepositRejection < Increase::BaseModel
+      class DepositRejection < Increase::Internal::Type::BaseModel
         # The rejected amount in the minor unit of check's currency. For dollars, for
         #   example, this is cents.
         sig { returns(Integer) }
@@ -372,7 +372,7 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
         #   currency.
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::DepositRejection::Currency) }
           OrSymbol =
@@ -403,7 +403,7 @@ module Increase
 
         # Why the check deposit was rejected.
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::DepositRejection::Reason) }
           OrSymbol =
@@ -463,7 +463,7 @@ module Increase
         end
       end
 
-      class DepositReturn < Increase::BaseModel
+      class DepositReturn < Increase::Internal::Type::BaseModel
         # The returned amount in USD cents.
         sig { returns(Integer) }
         attr_accessor :amount
@@ -527,7 +527,7 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         #   transaction's currency.
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::DepositReturn::Currency) }
           OrSymbol =
@@ -559,7 +559,7 @@ module Increase
         # Why this check was returned by the bank holding the account it was drawn
         #   against.
         module ReturnReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::DepositReturn::ReturnReason) }
@@ -691,7 +691,7 @@ module Increase
         end
       end
 
-      class DepositSubmission < Increase::BaseModel
+      class DepositSubmission < Increase::Internal::Type::BaseModel
         # The ID for the File containing the check back image that was submitted to the
         #   Check21 network.
         sig { returns(String) }
@@ -721,7 +721,7 @@ module Increase
         end
       end
 
-      class InboundFundsHold < Increase::BaseModel
+      class InboundFundsHold < Increase::Internal::Type::BaseModel
         # The Inbound Funds Hold identifier.
         sig { returns(String) }
         attr_accessor :id
@@ -821,7 +821,7 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         #   currency.
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Currency) }
           OrSymbol =
@@ -852,7 +852,7 @@ module Increase
 
         # The status of the hold.
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Status) }
           OrSymbol =
@@ -872,7 +872,7 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         #   `inbound_funds_hold`.
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Type) }
           OrSymbol =
@@ -889,7 +889,7 @@ module Increase
 
       # The status of the Check Deposit.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::CheckDeposit::Status::TaggedSymbol) }
@@ -914,7 +914,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `check_deposit`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckDeposit::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::CheckDeposit::Type::TaggedSymbol) }

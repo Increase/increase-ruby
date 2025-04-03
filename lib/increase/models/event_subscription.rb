@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::EventSubscriptions#create
-    class EventSubscription < Increase::BaseModel
+    class EventSubscription < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The event subscription identifier.
       #
@@ -90,14 +90,14 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # If specified, this subscription will only receive webhooks for Events with the
       #   specified `category`.
       #
       # @see Increase::Models::EventSubscription#selected_event_category
       module SelectedEventCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Occurs whenever an Account is created.
         ACCOUNT_CREATED = :"account.created"
@@ -376,7 +376,7 @@ module Increase
       #
       # @see Increase::Models::EventSubscription#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The subscription is active and Events will be delivered normally.
         ACTIVE = :active
@@ -402,7 +402,7 @@ module Increase
       #
       # @see Increase::Models::EventSubscription#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         EVENT_SUBSCRIPTION = :event_subscription
 

@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class DigitalWalletTokenRequestCreateResponse < Increase::BaseModel
+      class DigitalWalletTokenRequestCreateResponse < Increase::Internal::Type::BaseModel
         # If the simulated tokenization attempt was declined, this field contains details
         #   as to why.
         sig do
@@ -55,7 +55,7 @@ module Increase
         # If the simulated tokenization attempt was declined, this field contains details
         #   as to why.
         module DeclineReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::DeclineReason) }
@@ -109,7 +109,7 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         #   `inbound_digital_wallet_token_request_simulation_result`.
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type) }

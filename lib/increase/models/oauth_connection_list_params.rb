@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::OAuthConnections#list
-    class OAuthConnectionListParams < Increase::BaseModel
+    class OAuthConnectionListParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -58,9 +58,9 @@ module Increase
       #   #
       #   def initialize(cursor: nil, limit: nil, oauth_application_id: nil, status: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # @!attribute [r] in_
         #   Filter to OAuth Connections by their status. By default, return only the
         #     `active` ones. For GET requests, this should be encoded as a comma-delimited
@@ -68,7 +68,7 @@ module Increase
         #
         #   @return [Array<Symbol, Increase::Models::OAuthConnectionListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::ArrayOf[enum: Increase::Models::OAuthConnectionListParams::Status::In] },
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::OAuthConnectionListParams::Status::In] },
                  api_name: :in
 
         # @!parse
@@ -80,10 +80,10 @@ module Increase
         #   #
         #   def initialize(in_: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The OAuth connection is active.
           ACTIVE = :active

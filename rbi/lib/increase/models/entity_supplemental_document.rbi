@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class EntitySupplementalDocument < Increase::BaseModel
+    class EntitySupplementalDocument < Increase::Internal::Type::BaseModel
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
       #   Supplemental Document was created.
       sig { returns(Time) }
@@ -60,7 +60,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `entity_supplemental_document`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EntitySupplementalDocument::Type) }
         OrSymbol =

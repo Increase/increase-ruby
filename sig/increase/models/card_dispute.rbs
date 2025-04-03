@@ -16,7 +16,7 @@ module Increase
         win: Increase::Models::CardDispute::Win?
       }
 
-    class CardDispute < Increase::BaseModel
+    class CardDispute < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor acceptance: Increase::Models::CardDispute::Acceptance?
@@ -61,7 +61,7 @@ module Increase
       type acceptance =
         { accepted_at: Time, card_dispute_id: String, transaction_id: String }
 
-      class Acceptance < Increase::BaseModel
+      class Acceptance < Increase::Internal::Type::BaseModel
         attr_accessor accepted_at: Time
 
         attr_accessor card_dispute_id: String
@@ -85,7 +85,7 @@ module Increase
           transaction_id: String
         }
 
-      class Loss < Increase::BaseModel
+      class Loss < Increase::Internal::Type::BaseModel
         attr_accessor card_dispute_id: String
 
         attr_accessor explanation: String
@@ -107,7 +107,7 @@ module Increase
       type rejection =
         { card_dispute_id: String, explanation: String, rejected_at: Time }
 
-      class Rejection < Increase::BaseModel
+      class Rejection < Increase::Internal::Type::BaseModel
         attr_accessor card_dispute_id: String
 
         attr_accessor explanation: String
@@ -132,7 +132,7 @@ module Increase
         | :won
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Card Dispute is pending review.
         PENDING_REVIEWING: :pending_reviewing
@@ -158,7 +158,7 @@ module Increase
       type type_ = :card_dispute
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_DISPUTE: :card_dispute
 
@@ -167,7 +167,7 @@ module Increase
 
       type win = { card_dispute_id: String, won_at: Time }
 
-      class Win < Increase::BaseModel
+      class Win < Increase::Internal::Type::BaseModel
         attr_accessor card_dispute_id: String
 
         attr_accessor won_at: Time

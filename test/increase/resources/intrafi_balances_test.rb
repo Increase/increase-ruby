@@ -13,7 +13,7 @@ class Increase::Test::Resources::IntrafiBalancesTest < Increase::Test::ResourceT
     assert_pattern do
       response => {
         id: String,
-        balances: ^(Increase::ArrayOf[Increase::Models::IntrafiBalance::Balance]),
+        balances: ^(Increase::Internal::Type::ArrayOf[Increase::Models::IntrafiBalance::Balance]),
         currency: Increase::Models::IntrafiBalance::Currency,
         effective_date: Date,
         total_balance: Integer,

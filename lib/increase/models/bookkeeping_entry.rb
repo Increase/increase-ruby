@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::BookkeepingEntries#retrieve
-    class BookkeepingEntry < Increase::BaseModel
+    class BookkeepingEntry < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The entry identifier.
       #
@@ -56,14 +56,14 @@ module Increase
       #   #
       #   def initialize(id:, account_id:, amount:, created_at:, entry_set_id:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_entry`.
       #
       # @see Increase::Models::BookkeepingEntry#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_ENTRY = :bookkeeping_entry
 

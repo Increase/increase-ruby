@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Lockboxes#create
-    class Lockbox < Increase::BaseModel
+    class Lockbox < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Lockbox identifier.
       #
@@ -92,10 +92,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::Lockbox#address
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         # @!attribute city
         #   The city of the address.
         #
@@ -148,14 +148,14 @@ module Increase
         #   #
         #   def initialize(city:, line1:, line2:, postal_code:, recipient:, state:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # This indicates if mail can be sent to this address.
       #
       # @see Increase::Models::Lockbox#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # This Lockbox is active. Checks mailed to it will be deposited automatically.
         ACTIVE = :active
@@ -175,7 +175,7 @@ module Increase
       #
       # @see Increase::Models::Lockbox#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         LOCKBOX = :lockbox
 

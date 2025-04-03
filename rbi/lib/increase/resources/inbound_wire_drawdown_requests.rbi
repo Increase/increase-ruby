@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           inbound_wire_drawdown_request_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::InboundWireDrawdownRequest)
       end
@@ -23,7 +23,7 @@ module Increase
         params(
           cursor: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::InboundWireDrawdownRequest])
       end

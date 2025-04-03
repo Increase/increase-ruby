@@ -18,7 +18,7 @@ module Increase
         type: Increase::Models::DigitalCardProfile::type_
       }
 
-    class DigitalCardProfile < Increase::BaseModel
+    class DigitalCardProfile < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor app_icon_file_id: String
@@ -69,7 +69,7 @@ module Increase
       type status = :pending | :rejected | :active | :archived
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Card Profile is awaiting review from Increase and/or processing by card networks.
         PENDING: :pending
@@ -88,7 +88,7 @@ module Increase
 
       type text_color = { blue: Integer, green: Integer, red: Integer }
 
-      class TextColor < Increase::BaseModel
+      class TextColor < Increase::Internal::Type::BaseModel
         attr_accessor blue: Integer
 
         attr_accessor green: Integer
@@ -103,7 +103,7 @@ module Increase
       type type_ = :digital_card_profile
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         DIGITAL_CARD_PROFILE: :digital_card_profile
 

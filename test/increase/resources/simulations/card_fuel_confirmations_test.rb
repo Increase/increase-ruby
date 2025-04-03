@@ -21,7 +21,7 @@ class Increase::Test::Resources::Simulations::CardFuelConfirmationsTest < Increa
         card_id: String,
         created_at: Time,
         digital_wallet_token_id: String | nil,
-        elements: ^(Increase::ArrayOf[Increase::Models::CardPayment::Element]),
+        elements: ^(Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element]),
         physical_card_id: String | nil,
         state: Increase::Models::CardPayment::State,
         type: Increase::Models::CardPayment::Type

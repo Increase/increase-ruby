@@ -10,7 +10,7 @@ module Increase
         wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
       }
 
-    class RoutingNumberListResponse < Increase::BaseModel
+    class RoutingNumberListResponse < Increase::Internal::Type::BaseModel
       attr_accessor ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers
 
       attr_accessor name: String
@@ -37,7 +37,7 @@ module Increase
       type ach_transfers = :supported | :not_supported
 
       module ACHTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
         SUPPORTED: :supported
@@ -51,7 +51,7 @@ module Increase
       type real_time_payments_transfers = :supported | :not_supported
 
       module RealTimePaymentsTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
         SUPPORTED: :supported
@@ -65,7 +65,7 @@ module Increase
       type type_ = :routing_number
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ROUTING_NUMBER: :routing_number
 
@@ -75,7 +75,7 @@ module Increase
       type wire_transfers = :supported | :not_supported
 
       module WireTransfers
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
         SUPPORTED: :supported

@@ -4,7 +4,7 @@ module Increase
       { disputed_transaction_id: String, explanation: String, amount: Integer }
       & Increase::Internal::Type::request_parameters
 
-    class CardDisputeCreateParams < Increase::BaseModel
+    class CardDisputeCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

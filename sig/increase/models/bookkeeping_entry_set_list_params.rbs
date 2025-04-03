@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class BookkeepingEntrySetListParams < Increase::BaseModel
+    class BookkeepingEntrySetListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::IntrafiAccountEnrollments#create
-    class IntrafiAccountEnrollment < Increase::BaseModel
+    class IntrafiAccountEnrollment < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The identifier of this enrollment at IntraFi.
       #
@@ -71,14 +71,14 @@ module Increase
       #   #
       #   def initialize(id:, account_id:, created_at:, idempotency_key:, intrafi_id:, status:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The status of the account in the network. An account takes about one business
       #   day to go from `pending_enrolling` to `enrolled`.
       #
       # @see Increase::Models::IntrafiAccountEnrollment#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The account is being added to the IntraFi network.
         PENDING_ENROLLING = :pending_enrolling
@@ -107,7 +107,7 @@ module Increase
       #
       # @see Increase::Models::IntrafiAccountEnrollment#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INTRAFI_ACCOUNT_ENROLLMENT = :intrafi_account_enrollment
 

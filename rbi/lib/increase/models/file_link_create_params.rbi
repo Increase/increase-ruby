@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class FileLinkCreateParams < Increase::BaseModel
+    class FileLinkCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -22,7 +22,7 @@ module Increase
         params(
           file_id: String,
           expires_at: Time,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

@@ -10,7 +10,7 @@ module Increase
         updated_at: Time
       }
 
-    class ProofOfAuthorizationRequest < Increase::BaseModel
+    class ProofOfAuthorizationRequest < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor ach_transfers: ::Array[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer]
@@ -36,7 +36,7 @@ module Increase
 
       type ach_transfer = { id: String }
 
-      class ACHTransfer < Increase::BaseModel
+      class ACHTransfer < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
         def initialize: (id: String) -> void
@@ -47,7 +47,7 @@ module Increase
       type type_ = :proof_of_authorization_request
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PROOF_OF_AUTHORIZATION_REQUEST: :proof_of_authorization_request
 

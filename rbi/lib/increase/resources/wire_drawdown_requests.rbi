@@ -19,7 +19,7 @@ module Increase
           recipient_address_line1: String,
           recipient_address_line2: String,
           recipient_address_line3: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::WireDrawdownRequest)
       end
@@ -66,7 +66,7 @@ module Increase
       sig do
         params(
           wire_drawdown_request_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::WireDrawdownRequest)
       end
@@ -83,8 +83,8 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::WireDrawdownRequestListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::WireDrawdownRequestListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::WireDrawdownRequest])
       end

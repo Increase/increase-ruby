@@ -4,7 +4,7 @@ module Increase
       type document_create_params =
         { account_id: String } & Increase::Internal::Type::request_parameters
 
-      class DocumentCreateParams < Increase::BaseModel
+      class DocumentCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

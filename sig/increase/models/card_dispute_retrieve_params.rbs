@@ -3,7 +3,7 @@ module Increase
     type card_dispute_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class CardDisputeRetrieveParams < Increase::BaseModel
+    class CardDisputeRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class IntrafiExclusion < Increase::BaseModel
+    class IntrafiExclusion < Increase::Internal::Type::BaseModel
       # The identifier of this exclusion request.
       sig { returns(String) }
       attr_accessor :id
@@ -103,7 +103,7 @@ module Increase
 
       # The status of the exclusion request.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::IntrafiExclusion::Status) }
         OrSymbol =
@@ -126,7 +126,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `intrafi_exclusion`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::IntrafiExclusion::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::IntrafiExclusion::Type::TaggedSymbol) }

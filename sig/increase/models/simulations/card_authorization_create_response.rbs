@@ -8,7 +8,7 @@ module Increase
           type: Increase::Models::Simulations::CardAuthorizationCreateResponse::type_
         }
 
-      class CardAuthorizationCreateResponse < Increase::BaseModel
+      class CardAuthorizationCreateResponse < Increase::Internal::Type::BaseModel
         attr_accessor declined_transaction: Increase::Models::DeclinedTransaction?
 
         attr_accessor pending_transaction: Increase::Models::PendingTransaction?
@@ -26,7 +26,7 @@ module Increase
         type type_ = :inbound_card_authorization_simulation_result
 
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_CARD_AUTHORIZATION_SIMULATION_RESULT: :inbound_card_authorization_simulation_result
 

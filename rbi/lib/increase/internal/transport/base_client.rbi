@@ -25,10 +25,10 @@ module Increase
               ),
               body: T.nilable(T.anything),
               unwrap: T.nilable(Symbol),
-              page: T.nilable(T::Class[Increase::Internal::Type::BasePage[Increase::BaseModel]]),
+              page: T.nilable(T::Class[Increase::Internal::Type::BasePage[Increase::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
               model: T.nilable(Increase::Internal::Type::Converter::Input),
-              options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+              options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
             }
           end
 
@@ -136,7 +136,7 @@ module Increase
           overridable
             .params(
               req: Increase::Internal::Transport::BaseClient::RequestComponentsShape,
-              opts: Increase::Internal::Util::AnyHash
+              opts: Increase::Internal::AnyHash
             )
             .returns(Increase::Internal::Transport::BaseClient::RequestInputShape)
         end
@@ -180,10 +180,10 @@ module Increase
             ),
             body: T.nilable(T.anything),
             unwrap: T.nilable(Symbol),
-            page: T.nilable(T::Class[Increase::Internal::Type::BasePage[Increase::BaseModel]]),
+            page: T.nilable(T::Class[Increase::Internal::Type::BasePage[Increase::Internal::Type::BaseModel]]),
             stream: T.nilable(T::Class[T.anything]),
             model: T.nilable(Increase::Internal::Type::Converter::Input),
-            options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(T.anything)
         end
@@ -196,7 +196,7 @@ module Increase
           unwrap: nil,
           page: nil,
           stream: nil,
-          model: Increase::Unknown,
+          model: Increase::Internal::Type::Unknown,
           options: {}
         )
         end

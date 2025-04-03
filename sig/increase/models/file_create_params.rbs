@@ -8,7 +8,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class FileCreateParams < Increase::BaseModel
+    class FileCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -48,7 +48,7 @@ module Increase
         | :proof_of_authorization_request_submission
 
       module Purpose
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An image of the front of a check, used for check deposits.
         CHECK_IMAGE_FRONT: :check_image_front

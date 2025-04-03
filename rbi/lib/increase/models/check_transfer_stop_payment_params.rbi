@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class CheckTransferStopPaymentParams < Increase::BaseModel
+    class CheckTransferStopPaymentParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -16,7 +16,7 @@ module Increase
       sig do
         params(
           reason: Increase::Models::CheckTransferStopPaymentParams::Reason::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -37,7 +37,7 @@ module Increase
 
       # The reason why this transfer should be stopped.
       module Reason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason) }
         OrSymbol =

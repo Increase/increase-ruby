@@ -13,7 +13,7 @@ module Increase
             card_dispute_id: String,
             status: Increase::Models::Simulations::CardDisputeActionParams::Status::OrSymbol,
             explanation: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::CardDispute)
         end

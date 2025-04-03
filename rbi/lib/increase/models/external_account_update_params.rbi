@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ExternalAccountUpdateParams < Increase::BaseModel
+    class ExternalAccountUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -40,7 +40,7 @@ module Increase
           description: String,
           funding: Increase::Models::ExternalAccountUpdateParams::Funding::OrSymbol,
           status: Increase::Models::ExternalAccountUpdateParams::Status::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -64,7 +64,7 @@ module Increase
 
       # The type of entity that owns the External Account.
       module AccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder) }
@@ -85,7 +85,7 @@ module Increase
 
       # The funding type of the External Account.
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountUpdateParams::Funding) }
         OrSymbol =
@@ -107,7 +107,7 @@ module Increase
 
       # The status of the External Account.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountUpdateParams::Status) }
         OrSymbol =

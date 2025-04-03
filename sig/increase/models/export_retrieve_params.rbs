@@ -3,7 +3,7 @@ module Increase
     type export_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class ExportRetrieveParams < Increase::BaseModel
+    class ExportRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

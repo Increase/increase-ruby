@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Cards#details
-    class CardDetails < Increase::BaseModel
+    class CardDetails < Increase::Internal::Type::BaseModel
       # @!attribute card_id
       #   The identifier for the Card for which sensitive details have been returned.
       #
@@ -55,14 +55,14 @@ module Increase
       #   #
       #   def initialize(card_id:, expiration_month:, expiration_year:, primary_account_number:, type:, verification_code:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `card_details`.
       #
       # @see Increase::Models::CardDetails#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_DETAILS = :card_details
 

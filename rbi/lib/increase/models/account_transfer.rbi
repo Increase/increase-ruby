@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class AccountTransfer < Increase::BaseModel
+    class AccountTransfer < Increase::Internal::Type::BaseModel
       # The account transfer's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -23,7 +23,7 @@ module Increase
 
       sig do
         params(
-          approval: T.nilable(T.any(Increase::Models::AccountTransfer::Approval, Increase::Internal::Util::AnyHash))
+          approval: T.nilable(T.any(Increase::Models::AccountTransfer::Approval, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -36,7 +36,7 @@ module Increase
 
       sig do
         params(
-          cancellation: T.nilable(T.any(Increase::Models::AccountTransfer::Cancellation, Increase::Internal::Util::AnyHash))
+          cancellation: T.nilable(T.any(Increase::Models::AccountTransfer::Cancellation, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -53,7 +53,7 @@ module Increase
 
       sig do
         params(
-          created_by: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy, Increase::Internal::Util::AnyHash))
+          created_by: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -112,10 +112,10 @@ module Increase
           id: String,
           account_id: String,
           amount: Integer,
-          approval: T.nilable(T.any(Increase::Models::AccountTransfer::Approval, Increase::Internal::Util::AnyHash)),
-          cancellation: T.nilable(T.any(Increase::Models::AccountTransfer::Cancellation, Increase::Internal::Util::AnyHash)),
+          approval: T.nilable(T.any(Increase::Models::AccountTransfer::Approval, Increase::Internal::AnyHash)),
+          cancellation: T.nilable(T.any(Increase::Models::AccountTransfer::Cancellation, Increase::Internal::AnyHash)),
           created_at: Time,
-          created_by: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy, Increase::Internal::Util::AnyHash)),
+          created_by: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy, Increase::Internal::AnyHash)),
           currency: Increase::Models::AccountTransfer::Currency::OrSymbol,
           description: String,
           destination_account_id: String,
@@ -177,7 +177,7 @@ module Increase
       def to_hash
       end
 
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the transfer was approved.
         sig { returns(Time) }
@@ -199,7 +199,7 @@ module Increase
         end
       end
 
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the Transfer was canceled.
         sig { returns(Time) }
@@ -221,14 +221,14 @@ module Increase
         end
       end
 
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         # If present, details about the API key that created the transfer.
         sig { returns(T.nilable(Increase::Models::AccountTransfer::CreatedBy::APIKey)) }
         attr_reader :api_key
 
         sig do
           params(
-            api_key: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::APIKey, Increase::Internal::Util::AnyHash))
+            api_key: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::APIKey, Increase::Internal::AnyHash))
           )
             .void
         end
@@ -245,7 +245,7 @@ module Increase
         sig do
           params(
             oauth_application: T.nilable(
-              T.any(Increase::Models::AccountTransfer::CreatedBy::OAuthApplication, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::AccountTransfer::CreatedBy::OAuthApplication, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -258,7 +258,7 @@ module Increase
 
         sig do
           params(
-            user: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::User, Increase::Internal::Util::AnyHash))
+            user: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::User, Increase::Internal::AnyHash))
           )
             .void
         end
@@ -267,12 +267,12 @@ module Increase
         # What object created the transfer, either via the API or the dashboard.
         sig do
           params(
-            api_key: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::APIKey, Increase::Internal::Util::AnyHash)),
+            api_key: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::APIKey, Increase::Internal::AnyHash)),
             category: Increase::Models::AccountTransfer::CreatedBy::Category::OrSymbol,
             oauth_application: T.nilable(
-              T.any(Increase::Models::AccountTransfer::CreatedBy::OAuthApplication, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::AccountTransfer::CreatedBy::OAuthApplication, Increase::Internal::AnyHash)
             ),
-            user: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::User, Increase::Internal::Util::AnyHash))
+            user: T.nilable(T.any(Increase::Models::AccountTransfer::CreatedBy::User, Increase::Internal::AnyHash))
           )
             .returns(T.attached_class)
         end
@@ -293,7 +293,7 @@ module Increase
         def to_hash
         end
 
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           # The description set for the API key when it was created.
           sig { returns(T.nilable(String)) }
           attr_accessor :description
@@ -310,7 +310,7 @@ module Increase
 
         # The type of object that created this transfer.
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::CreatedBy::Category) }
           OrSymbol =
@@ -331,7 +331,7 @@ module Increase
           end
         end
 
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           # The name of the OAuth Application.
           sig { returns(String) }
           attr_accessor :name
@@ -346,7 +346,7 @@ module Increase
           end
         end
 
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           # The email address of the User.
           sig { returns(String) }
           attr_accessor :email
@@ -365,7 +365,7 @@ module Increase
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
       #   account currency.
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Currency) }
         OrSymbol =
@@ -396,7 +396,7 @@ module Increase
 
       # The transfer's network.
       module Network
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Network) }
         OrSymbol =
@@ -411,7 +411,7 @@ module Increase
 
       # The lifecycle status of the transfer.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Status) }
         OrSymbol =
@@ -434,7 +434,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `account_transfer`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::AccountTransfer::Type::TaggedSymbol) }

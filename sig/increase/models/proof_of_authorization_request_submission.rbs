@@ -22,7 +22,7 @@ module Increase
         validated_account_ownership_with_microdeposit: bool?
       }
 
-    class ProofOfAuthorizationRequestSubmission < Increase::BaseModel
+    class ProofOfAuthorizationRequestSubmission < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor additional_evidence_file_id: String?
@@ -86,7 +86,7 @@ module Increase
         :pending_review | :rejected | :canceled | :pending_sending | :sent
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The proof of authorization request submission is pending review.
         PENDING_REVIEW: :pending_review
@@ -109,7 +109,7 @@ module Increase
       type type_ = :proof_of_authorization_request_submission
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION: :proof_of_authorization_request_submission
 

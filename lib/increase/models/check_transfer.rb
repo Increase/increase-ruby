@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::CheckTransfers#create
-    class CheckTransfer < Increase::BaseModel
+    class CheckTransfer < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Check transfer's identifier.
       #
@@ -215,10 +215,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::CheckTransfer#approval
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         # @!attribute approved_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #     the transfer was approved.
@@ -242,11 +242,11 @@ module Increase
         #   #
         #   def initialize(approved_at:, approved_by:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::CheckTransfer#cancellation
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         # @!attribute canceled_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #     the Transfer was canceled.
@@ -270,11 +270,11 @@ module Increase
         #   #
         #   def initialize(canceled_at:, canceled_by:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::CheckTransfer#created_by
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         # @!attribute api_key
         #   If present, details about the API key that created the transfer.
         #
@@ -311,10 +311,10 @@ module Increase
         #   #
         #   def initialize(api_key:, category:, oauth_application:, user:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::CheckTransfer::CreatedBy#api_key
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           # @!attribute description
           #   The description set for the API key when it was created.
           #
@@ -328,14 +328,14 @@ module Increase
           #   #
           #   def initialize(description:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # The type of object that created this transfer.
         #
         # @see Increase::Models::CheckTransfer::CreatedBy#category
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An API key. Details will be under the `api_key` object.
           API_KEY = :api_key
@@ -354,7 +354,7 @@ module Increase
         end
 
         # @see Increase::Models::CheckTransfer::CreatedBy#oauth_application
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           # @!attribute name
           #   The name of the OAuth Application.
           #
@@ -368,11 +368,11 @@ module Increase
           #   #
           #   def initialize(name:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::CheckTransfer::CreatedBy#user
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           # @!attribute email
           #   The email address of the User.
           #
@@ -386,7 +386,7 @@ module Increase
           #   #
           #   def initialize(email:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
 
@@ -395,7 +395,7 @@ module Increase
       #
       # @see Increase::Models::CheckTransfer#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -426,7 +426,7 @@ module Increase
       #
       # @see Increase::Models::CheckTransfer#fulfillment_method
       module FulfillmentMethod
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Increase will print and mail a physical check.
         PHYSICAL_CHECK = :physical_check
@@ -442,7 +442,7 @@ module Increase
       end
 
       # @see Increase::Models::CheckTransfer#mailing
-      class Mailing < Increase::BaseModel
+      class Mailing < Increase::Internal::Type::BaseModel
         # @!attribute image_id
         #   The ID of the file corresponding to an image of the check that was mailed, if
         #     available.
@@ -473,11 +473,11 @@ module Increase
         #   #
         #   def initialize(image_id:, mailed_at:, tracking_number:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::CheckTransfer#physical_check
-      class PhysicalCheck < Increase::BaseModel
+      class PhysicalCheck < Increase::Internal::Type::BaseModel
         # @!attribute mailing_address
         #   Details for where Increase will mail the check.
         #
@@ -528,7 +528,7 @@ module Increase
         #
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>]
         required :tracking_updates,
-                 -> { Increase::ArrayOf[Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate] }
+                 -> { Increase::Internal::Type::ArrayOf[Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate] }
 
         # @!parse
         #   # Details relating to the physical check that Increase will print and mail. Will
@@ -557,10 +557,10 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::CheckTransfer::PhysicalCheck#mailing_address
-        class MailingAddress < Increase::BaseModel
+        class MailingAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the check's destination.
           #
@@ -609,11 +609,11 @@ module Increase
           #   #
           #   def initialize(city:, line1:, line2:, name:, postal_code:, state:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::CheckTransfer::PhysicalCheck#return_address
-        class ReturnAddress < Increase::BaseModel
+        class ReturnAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the check's destination.
           #
@@ -662,14 +662,14 @@ module Increase
           #   #
           #   def initialize(city:, line1:, line2:, name:, postal_code:, state:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # The shipping method for the check.
         #
         # @see Increase::Models::CheckTransfer::PhysicalCheck#shipping_method
         module ShippingMethod
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # USPS First Class
           USPS_FIRST_CLASS = :usps_first_class
@@ -684,7 +684,7 @@ module Increase
           #   def self.values; end
         end
 
-        class TrackingUpdate < Increase::BaseModel
+        class TrackingUpdate < Increase::Internal::Type::BaseModel
           # @!attribute category
           #   The type of tracking event.
           #
@@ -711,13 +711,13 @@ module Increase
           #   #
           #   def initialize(category:, created_at:, postal_code:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The type of tracking event.
           #
           # @see Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate#category
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The check is in transit.
             IN_TRANSIT = :in_transit
@@ -744,7 +744,7 @@ module Increase
       #
       # @see Increase::Models::CheckTransfer#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is awaiting approval.
         PENDING_APPROVAL = :pending_approval
@@ -784,7 +784,7 @@ module Increase
       end
 
       # @see Increase::Models::CheckTransfer#stop_payment_request
-      class StopPaymentRequest < Increase::BaseModel
+      class StopPaymentRequest < Increase::Internal::Type::BaseModel
         # @!attribute reason
         #   The reason why this transfer was stopped.
         #
@@ -821,13 +821,13 @@ module Increase
         #   #
         #   def initialize(reason:, requested_at:, transfer_id:, type:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason why this transfer was stopped.
         #
         # @see Increase::Models::CheckTransfer::StopPaymentRequest#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check could not be delivered.
           MAIL_DELIVERY_FAILED = :mail_delivery_failed
@@ -853,7 +853,7 @@ module Increase
         #
         # @see Increase::Models::CheckTransfer::StopPaymentRequest#type
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           CHECK_TRANSFER_STOP_PAYMENT_REQUEST = :check_transfer_stop_payment_request
 
@@ -866,7 +866,7 @@ module Increase
       end
 
       # @see Increase::Models::CheckTransfer#submission
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         # @!attribute submitted_at
         #   When this check transfer was submitted to our check printer.
         #
@@ -880,11 +880,11 @@ module Increase
         #   #
         #   def initialize(submitted_at:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::CheckTransfer#third_party
-      class ThirdParty < Increase::BaseModel
+      class ThirdParty < Increase::Internal::Type::BaseModel
         # @!attribute check_number
         #   The check number that you will print on the check.
         #
@@ -906,7 +906,7 @@ module Increase
         #   #
         #   def initialize(check_number:, recipient_name:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -914,7 +914,7 @@ module Increase
       #
       # @see Increase::Models::CheckTransfer#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CHECK_TRANSFER = :check_transfer
 

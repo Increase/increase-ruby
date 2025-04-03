@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class InboundFundsHoldReleaseResponse < Increase::BaseModel
+      class InboundFundsHoldReleaseResponse < Increase::Internal::Type::BaseModel
         # The Inbound Funds Hold identifier.
         sig { returns(String) }
         attr_accessor :id
@@ -103,7 +103,7 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         #   currency.
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency) }
@@ -144,7 +144,7 @@ module Increase
 
         # The status of the hold.
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status) }
@@ -175,7 +175,7 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         #   `inbound_funds_hold`.
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type) }

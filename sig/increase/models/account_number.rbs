@@ -15,7 +15,7 @@ module Increase
         type: Increase::Models::AccountNumber::type_
       }
 
-    class AccountNumber < Increase::BaseModel
+    class AccountNumber < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -59,7 +59,7 @@ module Increase
           debit_status: Increase::Models::AccountNumber::InboundACH::debit_status
         }
 
-      class InboundACH < Increase::BaseModel
+      class InboundACH < Increase::Internal::Type::BaseModel
         attr_accessor debit_status: Increase::Models::AccountNumber::InboundACH::debit_status
 
         def initialize: (
@@ -71,7 +71,7 @@ module Increase
         type debit_status = :allowed | :blocked
 
         module DebitStatus
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # ACH Debits are allowed.
           ALLOWED: :allowed
@@ -86,7 +86,7 @@ module Increase
       type inbound_checks =
         { status: Increase::Models::AccountNumber::InboundChecks::status }
 
-      class InboundChecks < Increase::BaseModel
+      class InboundChecks < Increase::Internal::Type::BaseModel
         attr_accessor status: Increase::Models::AccountNumber::InboundChecks::status
 
         def initialize: (
@@ -98,7 +98,7 @@ module Increase
         type status = :allowed | :check_transfers_only
 
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
           ALLOWED: :allowed
@@ -113,7 +113,7 @@ module Increase
       type status = :active | :disabled | :canceled
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The account number is active.
         ACTIVE: :active
@@ -130,7 +130,7 @@ module Increase
       type type_ = :account_number
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT_NUMBER: :account_number
 

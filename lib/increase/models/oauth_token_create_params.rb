@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::OAuthTokens#create
-    class OAuthTokenCreateParams < Increase::BaseModel
+    class OAuthTokenCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -70,12 +70,12 @@ module Increase
       #   #
       #   def initialize(grant_type:, client_id: nil, client_secret: nil, code: nil, production_token: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The credential you request in exchange for the code. In Production, this is
       #   always `authorization_code`. In Sandbox, you can pass either enum value.
       module GrantType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An OAuth authorization code.
         AUTHORIZATION_CODE = :authorization_code

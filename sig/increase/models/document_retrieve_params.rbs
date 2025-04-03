@@ -3,7 +3,7 @@ module Increase
     type document_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class DocumentRetrieveParams < Increase::BaseModel
+    class DocumentRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

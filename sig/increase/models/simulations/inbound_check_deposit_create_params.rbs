@@ -5,7 +5,7 @@ module Increase
         { account_number_id: String, amount: Integer, check_number: String }
         & Increase::Internal::Type::request_parameters
 
-      class InboundCheckDepositCreateParams < Increase::BaseModel
+      class InboundCheckDepositCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

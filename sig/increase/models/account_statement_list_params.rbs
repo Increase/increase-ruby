@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class AccountStatementListParams < Increase::BaseModel
+    class AccountStatementListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -44,7 +44,7 @@ module Increase
       type statement_period_start =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class StatementPeriodStart < Increase::BaseModel
+      class StatementPeriodStart < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time

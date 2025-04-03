@@ -8,7 +8,7 @@ module Increase
         params(
           bank_name: String,
           entity_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::IntrafiExclusion)
       end
@@ -25,7 +25,7 @@ module Increase
       sig do
         params(
           intrafi_exclusion_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::IntrafiExclusion)
       end
@@ -43,7 +43,7 @@ module Increase
           entity_id: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::IntrafiExclusion])
       end
@@ -68,7 +68,7 @@ module Increase
       sig do
         params(
           intrafi_exclusion_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::IntrafiExclusion)
       end

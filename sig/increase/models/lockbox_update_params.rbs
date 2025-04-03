@@ -8,7 +8,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class LockboxUpdateParams < Increase::BaseModel
+    class LockboxUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -38,7 +38,7 @@ module Increase
       type status = :active | :inactive
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # This Lockbox is active. Checks mailed to it will be deposited automatically.
         ACTIVE: :active

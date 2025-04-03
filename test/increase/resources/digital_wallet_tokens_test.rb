@@ -20,7 +20,7 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         status: Increase::Models::DigitalWalletToken::Status,
         token_requestor: Increase::Models::DigitalWalletToken::TokenRequestor,
         type: Increase::Models::DigitalWalletToken::Type,
-        updates: ^(Increase::ArrayOf[Increase::Models::DigitalWalletToken::Update])
+        updates: ^(Increase::Internal::Type::ArrayOf[Increase::Models::DigitalWalletToken::Update])
       }
     end
   end
@@ -49,7 +49,7 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         status: Increase::Models::DigitalWalletToken::Status,
         token_requestor: Increase::Models::DigitalWalletToken::TokenRequestor,
         type: Increase::Models::DigitalWalletToken::Type,
-        updates: ^(Increase::ArrayOf[Increase::Models::DigitalWalletToken::Update])
+        updates: ^(Increase::Internal::Type::ArrayOf[Increase::Models::DigitalWalletToken::Update])
       }
     end
   end

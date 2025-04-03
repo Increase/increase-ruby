@@ -11,7 +11,7 @@ module Increase
         type: Increase::Models::BookkeepingEntrySet::type_
       }
 
-    class BookkeepingEntrySet < Increase::BaseModel
+    class BookkeepingEntrySet < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
@@ -40,7 +40,7 @@ module Increase
 
       type entry = { id: String, account_id: String, amount: Integer }
 
-      class Entry < Increase::BaseModel
+      class Entry < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor account_id: String
@@ -59,7 +59,7 @@ module Increase
       type type_ = :bookkeeping_entry_set
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_ENTRY_SET: :bookkeeping_entry_set
 

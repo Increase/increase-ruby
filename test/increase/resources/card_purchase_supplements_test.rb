@@ -15,7 +15,7 @@ class Increase::Test::Resources::CardPurchaseSupplementsTest < Increase::Test::R
         id: String,
         card_payment_id: String | nil,
         invoice: Increase::Models::CardPurchaseSupplement::Invoice | nil,
-        line_items: ^(Increase::ArrayOf[Increase::Models::CardPurchaseSupplement::LineItem]) | nil,
+        line_items: ^(Increase::Internal::Type::ArrayOf[Increase::Models::CardPurchaseSupplement::LineItem]) | nil,
         transaction_id: String,
         type: Increase::Models::CardPurchaseSupplement::Type
       }
@@ -41,7 +41,7 @@ class Increase::Test::Resources::CardPurchaseSupplementsTest < Increase::Test::R
         id: String,
         card_payment_id: String | nil,
         invoice: Increase::Models::CardPurchaseSupplement::Invoice | nil,
-        line_items: ^(Increase::ArrayOf[Increase::Models::CardPurchaseSupplement::LineItem]) | nil,
+        line_items: ^(Increase::Internal::Type::ArrayOf[Increase::Models::CardPurchaseSupplement::LineItem]) | nil,
         transaction_id: String,
         type: Increase::Models::CardPurchaseSupplement::Type
       }

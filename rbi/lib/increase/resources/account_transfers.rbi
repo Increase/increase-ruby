@@ -11,7 +11,7 @@ module Increase
           description: String,
           destination_account_id: String,
           require_approval: T::Boolean,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::AccountTransfer)
       end
@@ -35,7 +35,7 @@ module Increase
       sig do
         params(
           account_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::AccountTransfer)
       end
@@ -50,11 +50,11 @@ module Increase
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::AccountTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::AccountTransferListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::AccountTransfer])
       end
@@ -80,7 +80,7 @@ module Increase
       sig do
         params(
           account_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::AccountTransfer)
       end
@@ -95,7 +95,7 @@ module Increase
       sig do
         params(
           account_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::AccountTransfer)
       end

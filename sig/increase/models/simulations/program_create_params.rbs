@@ -4,7 +4,7 @@ module Increase
       type program_create_params =
         { name: String } & Increase::Internal::Type::request_parameters
 
-      class ProgramCreateParams < Increase::BaseModel
+      class ProgramCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

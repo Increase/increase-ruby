@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::PendingTransactions#retrieve
-    class PendingTransaction < Increase::BaseModel
+    class PendingTransaction < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Pending Transaction identifier.
       #
@@ -123,7 +123,7 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Pending
       #   Transaction's currency. This will match the currency on the Pending
@@ -131,7 +131,7 @@ module Increase
       #
       # @see Increase::Models::PendingTransaction#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -162,7 +162,7 @@ module Increase
       #
       # @see Increase::Models::PendingTransaction#route_type
       module RouteType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An Account Number.
         ACCOUNT_NUMBER = :account_number
@@ -181,7 +181,7 @@ module Increase
       end
 
       # @see Increase::Models::PendingTransaction#source
-      class Source < Increase::BaseModel
+      class Source < Increase::Internal::Type::BaseModel
         # @!attribute account_transfer_instruction
         #   An Account Transfer Instruction object. This field will be present in the JSON
         #     response if and only if `category` is equal to `account_transfer_instruction`.
@@ -263,7 +263,7 @@ module Increase
         #     contain an empty object, otherwise it will contain null.
         #
         #   @return [Object, nil]
-        required :other, Increase::Unknown, nil?: true
+        required :other, Increase::Internal::Type::Unknown, nil?: true
 
         # @!attribute real_time_payments_transfer_instruction
         #   A Real-Time Payments Transfer Instruction object. This field will be present in
@@ -318,10 +318,10 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::PendingTransaction::Source#account_transfer_instruction
-        class AccountTransferInstruction < Increase::BaseModel
+        class AccountTransferInstruction < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The pending amount in the minor unit of the transaction's currency. For dollars,
           #     for example, this is cents.
@@ -353,14 +353,14 @@ module Increase
           #   #
           #   def initialize(amount:, currency:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
           #   account currency.
           #
           # @see Increase::Models::PendingTransaction::Source::AccountTransferInstruction#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -389,7 +389,7 @@ module Increase
         end
 
         # @see Increase::Models::PendingTransaction::Source#ach_transfer_instruction
-        class ACHTransferInstruction < Increase::BaseModel
+        class ACHTransferInstruction < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The pending amount in USD cents.
           #
@@ -411,11 +411,11 @@ module Increase
           #   #
           #   def initialize(amount:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::PendingTransaction::Source#card_authorization
-        class CardAuthorization < Increase::BaseModel
+        class CardAuthorization < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Authorization identifier.
           #
@@ -666,14 +666,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # Whether this authorization was approved by Increase, the card network through
           #   stand-in processing, or the user through a real-time decision.
           #
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#actioner
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER = :user
@@ -696,7 +696,7 @@ module Increase
           #
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -728,7 +728,7 @@ module Increase
           #
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#direction
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT = :settlement
@@ -744,7 +744,7 @@ module Increase
           end
 
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#network_details
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             # @!attribute category
             #   The payment network used to process this card authorization.
             #
@@ -768,13 +768,13 @@ module Increase
             #   #
             #   def initialize(category:, visa:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The payment network used to process this card authorization.
             #
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails#category
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA = :visa
@@ -787,7 +787,7 @@ module Increase
             end
 
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails#visa
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               # @!attribute electronic_commerce_indicator
               #   For electronic commerce transactions, this identifies the level of security used
               #     in obtaining the customer's payment credential. For mail or telephone order
@@ -825,7 +825,7 @@ module Increase
               #   #
               #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # For electronic commerce transactions, this identifies the level of security used
               #   in obtaining the customer's payment credential. For mail or telephone order
@@ -833,7 +833,7 @@ module Increase
               #
               # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa#electronic_commerce_indicator
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER = :mail_phone_order
@@ -872,7 +872,7 @@ module Increase
               #
               # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa#point_of_service_entry_mode
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN = :unknown
@@ -916,7 +916,7 @@ module Increase
               #
               # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa#stand_in_processing_reason
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR = :issuer_error
@@ -951,7 +951,7 @@ module Increase
           end
 
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -983,7 +983,7 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -991,7 +991,7 @@ module Increase
           #
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#processing_category
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING = :account_funding
@@ -1023,7 +1023,7 @@ module Increase
           #
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHORIZATION = :card_authorization
 
@@ -1035,7 +1035,7 @@ module Increase
           end
 
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#verification
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             # @!attribute card_verification_code
             #   Fields related to verification of the Card Verification Code, a 3-digit code on
             #     the back of the card.
@@ -1060,10 +1060,10 @@ module Increase
             #   #
             #   def initialize(card_verification_code:, cardholder_address:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::Verification#card_verification_code
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               # @!attribute result
               #   The result of verifying the Card Verification Code.
               #
@@ -1079,13 +1079,13 @@ module Increase
               #   #
               #   def initialize(result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The result of verifying the Card Verification Code.
               #
               # @see Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -1105,7 +1105,7 @@ module Increase
             end
 
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::Verification#cardholder_address
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               # @!attribute actual_line1
               #   Line 1 of the address on file for the cardholder.
               #
@@ -1150,13 +1150,13 @@ module Increase
               #   #
               #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The address verification result returned to the card network.
               #
               # @see Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -1191,7 +1191,7 @@ module Increase
         #
         # @see Increase::Models::PendingTransaction::Source#category
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
           ACCOUNT_TRANSFER_INSTRUCTION = :account_transfer_instruction
@@ -1231,7 +1231,7 @@ module Increase
         end
 
         # @see Increase::Models::PendingTransaction::Source#check_deposit_instruction
-        class CheckDepositInstruction < Increase::BaseModel
+        class CheckDepositInstruction < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The pending amount in USD cents.
           #
@@ -1278,14 +1278,14 @@ module Increase
           #   #
           #   def initialize(amount:, back_image_file_id:, check_deposit_id:, currency:, front_image_file_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           #   transaction's currency.
           #
           # @see Increase::Models::PendingTransaction::Source::CheckDepositInstruction#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -1314,7 +1314,7 @@ module Increase
         end
 
         # @see Increase::Models::PendingTransaction::Source#check_transfer_instruction
-        class CheckTransferInstruction < Increase::BaseModel
+        class CheckTransferInstruction < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The transfer amount in USD cents.
           #
@@ -1345,14 +1345,14 @@ module Increase
           #   #
           #   def initialize(amount:, currency:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
           #   currency.
           #
           # @see Increase::Models::PendingTransaction::Source::CheckTransferInstruction#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -1381,7 +1381,7 @@ module Increase
         end
 
         # @see Increase::Models::PendingTransaction::Source#inbound_funds_hold
-        class InboundFundsHold < Increase::BaseModel
+        class InboundFundsHold < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Inbound Funds Hold identifier.
           #
@@ -1480,14 +1480,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
           #   currency.
           #
           # @see Increase::Models::PendingTransaction::Source::InboundFundsHold#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -1518,7 +1518,7 @@ module Increase
           #
           # @see Increase::Models::PendingTransaction::Source::InboundFundsHold#status
           module Status
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Funds are still being held.
             HELD = :held
@@ -1538,7 +1538,7 @@ module Increase
           #
           # @see Increase::Models::PendingTransaction::Source::InboundFundsHold#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
@@ -1551,7 +1551,7 @@ module Increase
         end
 
         # @see Increase::Models::PendingTransaction::Source#inbound_wire_transfer_reversal
-        class InboundWireTransferReversal < Increase::BaseModel
+        class InboundWireTransferReversal < Increase::Internal::Type::BaseModel
           # @!attribute inbound_wire_transfer_id
           #   The ID of the Inbound Wire Transfer that is being reversed.
           #
@@ -1568,11 +1568,11 @@ module Increase
           #   #
           #   def initialize(inbound_wire_transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::PendingTransaction::Source#real_time_payments_transfer_instruction
-        class RealTimePaymentsTransferInstruction < Increase::BaseModel
+        class RealTimePaymentsTransferInstruction < Increase::Internal::Type::BaseModel
           # @!attribute amount
           #   The transfer amount in USD cents.
           #
@@ -1596,11 +1596,11 @@ module Increase
           #   #
           #   def initialize(amount:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::PendingTransaction::Source#wire_transfer_instruction
-        class WireTransferInstruction < Increase::BaseModel
+        class WireTransferInstruction < Increase::Internal::Type::BaseModel
           # @!attribute account_number
           #   The account number for the destination account.
           #
@@ -1644,7 +1644,7 @@ module Increase
           #   #
           #   def initialize(account_number:, amount:, message_to_recipient:, routing_number:, transfer_id:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
 
@@ -1653,7 +1653,7 @@ module Increase
       #
       # @see Increase::Models::PendingTransaction#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Pending Transaction is still awaiting confirmation.
         PENDING = :pending
@@ -1673,7 +1673,7 @@ module Increase
       #
       # @see Increase::Models::PendingTransaction#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PENDING_TRANSACTION = :pending_transaction
 

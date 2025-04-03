@@ -24,7 +24,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class ACHTransferCreateParams < Increase::BaseModel
+    class ACHTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -142,7 +142,7 @@ module Increase
           payment_order_remittance_advice: Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice
         }
 
-      class Addenda < Increase::BaseModel
+      class Addenda < Increase::Internal::Type::BaseModel
         attr_accessor category: Increase::Models::ACHTransferCreateParams::Addenda::category
 
         attr_reader freeform: Increase::Models::ACHTransferCreateParams::Addenda::Freeform?
@@ -168,7 +168,7 @@ module Increase
         type category = :freeform | :payment_order_remittance_advice
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Unstructured `payment_related_information` passed through with the transfer.
           FREEFORM: :freeform
@@ -184,7 +184,7 @@ module Increase
             entries: ::Array[Increase::Models::ACHTransferCreateParams::Addenda::Freeform::Entry]
           }
 
-        class Freeform < Increase::BaseModel
+        class Freeform < Increase::Internal::Type::BaseModel
           attr_accessor entries: ::Array[Increase::Models::ACHTransferCreateParams::Addenda::Freeform::Entry]
 
           def initialize: (
@@ -195,7 +195,7 @@ module Increase
 
           type entry = { payment_related_information: String }
 
-          class Entry < Increase::BaseModel
+          class Entry < Increase::Internal::Type::BaseModel
             attr_accessor payment_related_information: String
 
             def initialize: (payment_related_information: String) -> void
@@ -209,7 +209,7 @@ module Increase
             invoices: ::Array[Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice]
           }
 
-        class PaymentOrderRemittanceAdvice < Increase::BaseModel
+        class PaymentOrderRemittanceAdvice < Increase::Internal::Type::BaseModel
           attr_accessor invoices: ::Array[Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice]
 
           def initialize: (
@@ -220,7 +220,7 @@ module Increase
 
           type invoice = { invoice_number: String, paid_amount: Integer }
 
-          class Invoice < Increase::BaseModel
+          class Invoice < Increase::Internal::Type::BaseModel
             attr_accessor invoice_number: String
 
             attr_accessor paid_amount: Integer
@@ -238,7 +238,7 @@ module Increase
       type destination_account_holder = :business | :individual | :unknown
 
       module DestinationAccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is owned by a business.
         BUSINESS: :business
@@ -255,7 +255,7 @@ module Increase
       type funding = :checking | :savings
 
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A checking account.
         CHECKING: :checking
@@ -272,7 +272,7 @@ module Increase
           settlement_schedule: Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate::settlement_schedule
         }
 
-      class PreferredEffectiveDate < Increase::BaseModel
+      class PreferredEffectiveDate < Increase::Internal::Type::BaseModel
         attr_reader date: Date?
 
         def date=: (Date) -> Date
@@ -293,7 +293,7 @@ module Increase
         type settlement_schedule = :same_day | :future_dated
 
         module SettlementSchedule
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted. This is necessary, but not sufficient for the transfer to be settled same-day: it must also be submitted before the last same-day cutoff and be less than or equal to $1,000.000.00.
           SAME_DAY: :same_day
@@ -312,7 +312,7 @@ module Increase
         | :internet_initiated
 
       module StandardEntryClassCode
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Corporate Credit and Debit (CCD).
         CORPORATE_CREDIT_OR_DEBIT: :corporate_credit_or_debit
@@ -332,7 +332,7 @@ module Increase
       type transaction_timing = :synchronous | :asynchronous
 
       module TransactionTiming
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A Transaction will be created immediately.
         SYNCHRONOUS: :synchronous

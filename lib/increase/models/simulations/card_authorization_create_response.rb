@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::CardAuthorizations#create
-      class CardAuthorizationCreateResponse < Increase::BaseModel
+      class CardAuthorizationCreateResponse < Increase::Internal::Type::BaseModel
         # @!attribute declined_transaction
         #   If the authorization attempt fails, this will contain the resulting
         #     [Declined Transaction](#declined-transactions) object. The Declined
@@ -37,14 +37,14 @@ module Increase
         #   #
         #   def initialize(declined_transaction:, pending_transaction:, type:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # A constant representing the object's type. For this resource it will always be
         #   `inbound_card_authorization_simulation_result`.
         #
         # @see Increase::Models::Simulations::CardAuthorizationCreateResponse#type
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_CARD_AUTHORIZATION_SIMULATION_RESULT = :inbound_card_authorization_simulation_result
 

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PhysicalCardProfileCreateParams < Increase::BaseModel
+    class PhysicalCardProfileCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -28,7 +28,7 @@ module Increase
           contact_phone: String,
           description: String,
           front_image_file_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

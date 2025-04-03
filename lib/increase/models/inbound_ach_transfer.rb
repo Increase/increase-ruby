@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundACHTransfers#retrieve
-    class InboundACHTransfer < Increase::BaseModel
+    class InboundACHTransfer < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The inbound ACH transfer's identifier.
       #
@@ -246,10 +246,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::InboundACHTransfer#acceptance
-      class Acceptance < Increase::BaseModel
+      class Acceptance < Increase::Internal::Type::BaseModel
         # @!attribute accepted_at
         #   The time at which the transfer was accepted.
         #
@@ -270,11 +270,11 @@ module Increase
         #   #
         #   def initialize(accepted_at:, transaction_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::InboundACHTransfer#addenda
-      class Addenda < Increase::BaseModel
+      class Addenda < Increase::Internal::Type::BaseModel
         # @!attribute category
         #   The type of addendum.
         #
@@ -295,13 +295,13 @@ module Increase
         #   #
         #   def initialize(category:, freeform:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The type of addendum.
         #
         # @see Increase::Models::InboundACHTransfer::Addenda#category
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Unstructured addendum.
           FREEFORM = :freeform
@@ -314,13 +314,13 @@ module Increase
         end
 
         # @see Increase::Models::InboundACHTransfer::Addenda#freeform
-        class Freeform < Increase::BaseModel
+        class Freeform < Increase::Internal::Type::BaseModel
           # @!attribute entries
           #   Each entry represents an addendum received from the originator.
           #
           #   @return [Array<Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry>]
           required :entries,
-                   -> { Increase::ArrayOf[Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry] }
+                   -> { Increase::Internal::Type::ArrayOf[Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry] }
 
           # @!parse
           #   # Unstructured `payment_related_information` passed through by the originator.
@@ -329,9 +329,9 @@ module Increase
           #   #
           #   def initialize(entries:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-          class Entry < Increase::BaseModel
+          class Entry < Increase::Internal::Type::BaseModel
             # @!attribute payment_related_information
             #   The payment related information passed in the addendum.
             #
@@ -343,13 +343,13 @@ module Increase
             #   #
             #   def initialize(payment_related_information:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
         end
       end
 
       # @see Increase::Models::InboundACHTransfer#decline
-      class Decline < Increase::BaseModel
+      class Decline < Increase::Internal::Type::BaseModel
         # @!attribute declined_at
         #   The time at which the transfer was declined.
         #
@@ -377,13 +377,13 @@ module Increase
         #   #
         #   def initialize(declined_at:, declined_transaction_id:, reason:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason for the transfer decline.
         #
         # @see Increase::Models::InboundACHTransfer::Decline#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number is canceled.
           ACH_ROUTE_CANCELED = :ach_route_canceled
@@ -450,7 +450,7 @@ module Increase
       #
       # @see Increase::Models::InboundACHTransfer#direction
       module Direction
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Credit
         CREDIT = :credit
@@ -469,7 +469,7 @@ module Increase
       #
       # @see Increase::Models::InboundACHTransfer#expected_settlement_schedule
       module ExpectedSettlementSchedule
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is expected to settle same-day.
         SAME_DAY = :same_day
@@ -485,7 +485,7 @@ module Increase
       end
 
       # @see Increase::Models::InboundACHTransfer#international_addenda
-      class InternationalAddenda < Increase::BaseModel
+      class InternationalAddenda < Increase::Internal::Type::BaseModel
         # @!attribute destination_country_code
         #   The [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), Alpha-2
         #     country code of the destination country.
@@ -786,13 +786,13 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # A description of how the foreign exchange rate was calculated.
         #
         # @see Increase::Models::InboundACHTransfer::InternationalAddenda#foreign_exchange_indicator
         module ForeignExchangeIndicator
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The originator chose an amount in their own currency. The settled amount in USD was converted using the exchange rate.
           FIXED_TO_VARIABLE = :fixed_to_variable
@@ -815,7 +815,7 @@ module Increase
         #
         # @see Increase::Models::InboundACHTransfer::InternationalAddenda#foreign_exchange_reference_indicator
         module ForeignExchangeReferenceIndicator
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The ACH file contains a foreign exchange rate.
           FOREIGN_EXCHANGE_RATE = :foreign_exchange_rate
@@ -837,7 +837,7 @@ module Increase
         #
         # @see Increase::Models::InboundACHTransfer::InternationalAddenda#international_transaction_type_code
         module InternationalTransactionTypeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Sent as `ANN` in the Nacha file.
           ANNUITY = :annuity
@@ -911,7 +911,7 @@ module Increase
         #
         # @see Increase::Models::InboundACHTransfer::InternationalAddenda#originating_depository_financial_institution_id_qualifier
         module OriginatingDepositoryFinancialInstitutionIDQualifier
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER = :national_clearing_system_number
@@ -934,7 +934,7 @@ module Increase
         #
         # @see Increase::Models::InboundACHTransfer::InternationalAddenda#receiving_depository_financial_institution_id_qualifier
         module ReceivingDepositoryFinancialInstitutionIDQualifier
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER = :national_clearing_system_number
@@ -954,7 +954,7 @@ module Increase
       end
 
       # @see Increase::Models::InboundACHTransfer#notification_of_change
-      class NotificationOfChange < Increase::BaseModel
+      class NotificationOfChange < Increase::Internal::Type::BaseModel
         # @!attribute updated_account_number
         #   The new account number provided in the notification of change.
         #
@@ -976,14 +976,14 @@ module Increase
         #   #
         #   def initialize(updated_account_number:, updated_routing_number:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # The Standard Entry Class (SEC) code of the transfer.
       #
       # @see Increase::Models::InboundACHTransfer#standard_entry_class_code
       module StandardEntryClassCode
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Corporate Credit and Debit (CCD).
         CORPORATE_CREDIT_OR_DEBIT = :corporate_credit_or_debit
@@ -1044,7 +1044,7 @@ module Increase
       #
       # @see Increase::Models::InboundACHTransfer#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Inbound ACH Transfer is awaiting action, will transition automatically if no action is taken.
         PENDING = :pending
@@ -1066,7 +1066,7 @@ module Increase
       end
 
       # @see Increase::Models::InboundACHTransfer#transfer_return
-      class TransferReturn < Increase::BaseModel
+      class TransferReturn < Increase::Internal::Type::BaseModel
         # @!attribute reason
         #   The reason for the transfer return.
         #
@@ -1094,13 +1094,13 @@ module Increase
         #   #
         #   def initialize(reason:, returned_at:, transaction_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason for the transfer return.
         #
         # @see Increase::Models::InboundACHTransfer::TransferReturn#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The customer's account has insufficient funds. This reason is only allowed for debits. The Nacha return code is R01.
           INSUFFICIENT_FUNDS = :insufficient_funds
@@ -1147,7 +1147,7 @@ module Increase
       #
       # @see Increase::Models::InboundACHTransfer#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_ACH_TRANSFER = :inbound_ach_transfer
 

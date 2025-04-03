@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Entities#create_beneficial_owner
-    class EntityCreateBeneficialOwnerParams < Increase::BaseModel
+    class EntityCreateBeneficialOwnerParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -21,9 +21,9 @@ module Increase
       #   #
       #   def initialize(beneficial_owner:, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class BeneficialOwner < Increase::BaseModel
+      class BeneficialOwner < Increase::Internal::Type::BaseModel
         # @!attribute individual
         #   Personal details for the beneficial owner.
         #
@@ -38,7 +38,7 @@ module Increase
         #
         #   @return [Array<Symbol, Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong>]
         required :prongs,
-                 -> { Increase::ArrayOf[enum: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong] }
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong] }
 
         # @!attribute [r] company_title
         #   This person's role or title within the entity.
@@ -60,10 +60,10 @@ module Increase
         #   #
         #   def initialize(individual:, prongs:, company_title: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner#individual
-        class Individual < Increase::BaseModel
+        class Individual < Increase::Internal::Type::BaseModel
           # @!attribute address
           #   The individual's physical address. Mail receiving locations like PO Boxes and
           #     PMB's are disallowed.
@@ -98,7 +98,7 @@ module Increase
           #     Number).
           #
           #   @return [Boolean, nil]
-          optional :confirmed_no_us_tax_id, Increase::BooleanModel
+          optional :confirmed_no_us_tax_id, Increase::Internal::Type::BooleanModel
 
           # @!parse
           #   # @return [Boolean]
@@ -115,10 +115,10 @@ module Increase
           #   #
           #   def initialize(address:, date_of_birth:, identification:, name:, confirmed_no_us_tax_id: nil, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual#address
-          class Address < Increase::BaseModel
+          class Address < Increase::Internal::Type::BaseModel
             # @!attribute country
             #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
@@ -186,11 +186,11 @@ module Increase
             #   #
             #   def initialize(country:, line1:, city: nil, line2: nil, state: nil, zip: nil, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual#identification
-          class Identification < Increase::BaseModel
+          class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
             #   A method that can be used to verify the individual's identity.
             #
@@ -253,13 +253,13 @@ module Increase
             #   #
             #   def initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # A method that can be used to verify the individual's identity.
             #
             # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#method_
             module Method
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
@@ -284,7 +284,7 @@ module Increase
             end
 
             # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#drivers_license
-            class DriversLicense < Increase::BaseModel
+            class DriversLicense < Increase::Internal::Type::BaseModel
               # @!attribute expiration_date
               #   The driver's license's expiration date in YYYY-MM-DD format.
               #
@@ -324,11 +324,11 @@ module Increase
               #   #
               #   def initialize(expiration_date:, file_id:, state:, back_file_id: nil, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
             end
 
             # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#other
-            class Other < Increase::BaseModel
+            class Other < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The two-character ISO 3166-1 code representing the country that issued the
               #     document.
@@ -381,11 +381,11 @@ module Increase
               #   #
               #   def initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
             end
 
             # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#passport
-            class Passport < Increase::BaseModel
+            class Passport < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The country that issued the passport.
               #
@@ -414,13 +414,13 @@ module Increase
               #   #
               #   def initialize(country:, expiration_date:, file_id:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
             end
           end
         end
 
         module Prong
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A person with 25% or greater direct or indirect ownership of the entity.
           OWNERSHIP = :ownership

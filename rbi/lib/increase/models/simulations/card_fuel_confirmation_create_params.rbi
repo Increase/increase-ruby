@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class CardFuelConfirmationCreateParams < Increase::BaseModel
+      class CardFuelConfirmationCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -20,7 +20,7 @@ module Increase
           params(
             amount: Integer,
             card_payment_id: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end

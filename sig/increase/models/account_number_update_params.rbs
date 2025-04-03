@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class AccountNumberUpdateParams < Increase::BaseModel
+    class AccountNumberUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -50,7 +50,7 @@ module Increase
           debit_status: Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status
         }
 
-      class InboundACH < Increase::BaseModel
+      class InboundACH < Increase::Internal::Type::BaseModel
         attr_reader debit_status: Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status?
 
         def debit_status=: (
@@ -66,7 +66,7 @@ module Increase
         type debit_status = :allowed | :blocked
 
         module DebitStatus
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # ACH Debits are allowed.
           ALLOWED: :allowed
@@ -83,7 +83,7 @@ module Increase
           status: Increase::Models::AccountNumberUpdateParams::InboundChecks::status
         }
 
-      class InboundChecks < Increase::BaseModel
+      class InboundChecks < Increase::Internal::Type::BaseModel
         attr_accessor status: Increase::Models::AccountNumberUpdateParams::InboundChecks::status
 
         def initialize: (
@@ -95,7 +95,7 @@ module Increase
         type status = :allowed | :check_transfers_only
 
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
           ALLOWED: :allowed
@@ -110,7 +110,7 @@ module Increase
       type status = :active | :disabled | :canceled
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The account number is active.
         ACTIVE: :active

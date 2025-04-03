@@ -4,7 +4,7 @@ module Increase
       { routing_number: String, cursor: String, limit: Integer }
       & Increase::Internal::Type::request_parameters
 
-    class RoutingNumberListParams < Increase::BaseModel
+    class RoutingNumberListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

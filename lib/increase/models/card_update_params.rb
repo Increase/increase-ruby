@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Cards#update
-    class CardUpdateParams < Increase::BaseModel
+    class CardUpdateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -81,9 +81,9 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class BillingAddress < Increase::BaseModel
+      class BillingAddress < Increase::Internal::Type::BaseModel
         # @!attribute city
         #   The city of the billing address.
         #
@@ -129,10 +129,10 @@ module Increase
         #   #
         #   def initialize(city:, line1:, postal_code:, state:, line2: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
-      class DigitalWallet < Increase::BaseModel
+      class DigitalWallet < Increase::Internal::Type::BaseModel
         # @!attribute [r] digital_card_profile_id
         #   The digital card profile assigned to this digital card.
         #
@@ -176,12 +176,12 @@ module Increase
         #   #
         #   def initialize(digital_card_profile_id: nil, email: nil, phone: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # The status to update the Card with.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The card is active.
         ACTIVE = :active

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ExternalAccounts#list
-    class ExternalAccountListParams < Increase::BaseModel
+    class ExternalAccountListParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -71,9 +71,9 @@ module Increase
       #   #
       #   def initialize(cursor: nil, idempotency_key: nil, limit: nil, routing_number: nil, status: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # @!attribute [r] in_
         #   Filter External Accounts for those with the specified status or statuses. For
         #     GET requests, this should be encoded as a comma-delimited string, such as
@@ -81,7 +81,7 @@ module Increase
         #
         #   @return [Array<Symbol, Increase::Models::ExternalAccountListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::ArrayOf[enum: Increase::Models::ExternalAccountListParams::Status::In] },
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::ExternalAccountListParams::Status::In] },
                  api_name: :in
 
         # @!parse
@@ -93,10 +93,10 @@ module Increase
         #   #
         #   def initialize(in_: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The External Account is active.
           ACTIVE = :active

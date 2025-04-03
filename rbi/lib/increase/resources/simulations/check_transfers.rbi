@@ -11,7 +11,7 @@ module Increase
         sig do
           params(
             check_transfer_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::CheckTransfer)
         end

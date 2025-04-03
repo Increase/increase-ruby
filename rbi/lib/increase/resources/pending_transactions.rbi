@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           pending_transaction_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::PendingTransaction)
       end
@@ -22,13 +22,13 @@ module Increase
       sig do
         params(
           account_id: String,
-          category: T.any(Increase::Models::PendingTransactionListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::PendingTransactionListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::PendingTransactionListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::PendingTransactionListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
           route_id: String,
-          status: T.any(Increase::Models::PendingTransactionListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::PendingTransactionListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::PendingTransaction])
       end

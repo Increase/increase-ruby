@@ -21,7 +21,7 @@ class Increase::Test::Resources::Simulations::InboundCheckDepositsTest < Increas
         accepted_at: Time | nil,
         account_id: String,
         account_number_id: String | nil,
-        adjustments: ^(Increase::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment]),
+        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment]),
         amount: Integer,
         back_image_file_id: String | nil,
         bank_of_first_deposit_routing_number: String | nil,

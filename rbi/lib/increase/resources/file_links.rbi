@@ -8,7 +8,7 @@ module Increase
         params(
           file_id: String,
           expires_at: Time,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::FileLink)
       end

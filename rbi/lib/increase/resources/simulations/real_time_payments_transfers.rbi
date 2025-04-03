@@ -13,9 +13,9 @@ module Increase
             real_time_payments_transfer_id: String,
             rejection: T.any(
               Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             ),
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::RealTimePaymentsTransfer)
         end

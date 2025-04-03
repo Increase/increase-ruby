@@ -13,7 +13,7 @@ module Increase
         type: Increase::Models::AccountStatement::type_
       }
 
-    class AccountStatement < Increase::BaseModel
+    class AccountStatement < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -49,7 +49,7 @@ module Increase
       type type_ = :account_statement
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT_STATEMENT: :account_statement
 

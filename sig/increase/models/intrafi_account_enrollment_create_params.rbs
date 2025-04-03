@@ -4,7 +4,7 @@ module Increase
       { account_id: String, email_address: String }
       & Increase::Internal::Type::request_parameters
 
-    class IntrafiAccountEnrollmentCreateParams < Increase::BaseModel
+    class IntrafiAccountEnrollmentCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

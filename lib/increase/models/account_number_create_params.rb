@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::AccountNumbers#create
-    class AccountNumberCreateParams < Increase::BaseModel
+    class AccountNumberCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -50,9 +50,9 @@ module Increase
       #   #
       #   def initialize(account_id:, name:, inbound_ach: nil, inbound_checks: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class InboundACH < Increase::BaseModel
+      class InboundACH < Increase::Internal::Type::BaseModel
         # @!attribute debit_status
         #   Whether ACH debits are allowed against this Account Number. Note that ACH debits
         #     will be declined if this is `allowed` but the Account Number is not active. If
@@ -68,7 +68,7 @@ module Increase
         #   #
         #   def initialize(debit_status:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Whether ACH debits are allowed against this Account Number. Note that ACH debits
         #   will be declined if this is `allowed` but the Account Number is not active. If
@@ -76,7 +76,7 @@ module Increase
         #
         # @see Increase::Models::AccountNumberCreateParams::InboundACH#debit_status
         module DebitStatus
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # ACH Debits are allowed.
           ALLOWED = :allowed
@@ -92,7 +92,7 @@ module Increase
         end
       end
 
-      class InboundChecks < Increase::BaseModel
+      class InboundChecks < Increase::Internal::Type::BaseModel
         # @!attribute status
         #   How Increase should process checks with this account number printed on them. If
         #     you do not specify this field, the default is `check_transfers_only`.
@@ -108,14 +108,14 @@ module Increase
         #   #
         #   def initialize(status:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # How Increase should process checks with this account number printed on them. If
         #   you do not specify this field, the default is `check_transfers_only`.
         #
         # @see Increase::Models::AccountNumberCreateParams::InboundChecks#status
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
           ALLOWED = :allowed

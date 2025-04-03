@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::CardPurchaseSupplements#retrieve
-    class CardPurchaseSupplement < Increase::BaseModel
+    class CardPurchaseSupplement < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Card Purchase Supplement identifier.
       #
@@ -27,7 +27,7 @@ module Increase
       #
       #   @return [Array<Increase::Models::CardPurchaseSupplement::LineItem>, nil]
       required :line_items,
-               -> { Increase::ArrayOf[Increase::Models::CardPurchaseSupplement::LineItem] },
+               -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPurchaseSupplement::LineItem] },
                nil?: true
 
       # @!attribute transaction_id
@@ -56,10 +56,10 @@ module Increase
       #   #
       #   def initialize(id:, card_payment_id:, invoice:, line_items:, transaction_id:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::CardPurchaseSupplement#invoice
-      class Invoice < Increase::BaseModel
+      class Invoice < Increase::Internal::Type::BaseModel
         # @!attribute discount_amount
         #   Discount given to cardholder.
         #
@@ -204,13 +204,13 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Indicates how the merchant applied the discount.
         #
         # @see Increase::Models::CardPurchaseSupplement::Invoice#discount_treatment_code
         module DiscountTreatmentCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # No invoice level discount provided
           NO_INVOICE_LEVEL_DISCOUNT_PROVIDED = :no_invoice_level_discount_provided
@@ -232,7 +232,7 @@ module Increase
         #
         # @see Increase::Models::CardPurchaseSupplement::Invoice#tax_treatments
         module TaxTreatments
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # No tax applies
           NO_TAX_APPLIES = :no_tax_applies
@@ -257,7 +257,7 @@ module Increase
         end
       end
 
-      class LineItem < Increase::BaseModel
+      class LineItem < Increase::Internal::Type::BaseModel
         # @!attribute id
         #   The Card Purchase Supplement Line Item identifier.
         #
@@ -408,13 +408,13 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Indicates the type of line item.
         #
         # @see Increase::Models::CardPurchaseSupplement::LineItem#detail_indicator
         module DetailIndicator
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Normal
           NORMAL = :normal
@@ -436,7 +436,7 @@ module Increase
         #
         # @see Increase::Models::CardPurchaseSupplement::LineItem#discount_treatment_code
         module DiscountTreatmentCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # No line item level discount provided
           NO_LINE_ITEM_LEVEL_DISCOUNT_PROVIDED = :no_line_item_level_discount_provided
@@ -460,7 +460,7 @@ module Increase
       #
       # @see Increase::Models::CardPurchaseSupplement#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_PURCHASE_SUPPLEMENT = :card_purchase_supplement
 

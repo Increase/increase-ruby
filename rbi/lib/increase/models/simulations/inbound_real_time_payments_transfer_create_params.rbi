@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class InboundRealTimePaymentsTransferCreateParams < Increase::BaseModel
+      class InboundRealTimePaymentsTransferCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -60,7 +60,7 @@ module Increase
             debtor_routing_number: String,
             remittance_information: String,
             request_for_payment_id: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end

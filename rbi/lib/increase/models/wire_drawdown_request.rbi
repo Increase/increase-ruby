@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class WireDrawdownRequest < Increase::BaseModel
+    class WireDrawdownRequest < Increase::Internal::Type::BaseModel
       # The Wire drawdown request identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -92,7 +92,7 @@ module Increase
 
       sig do
         params(
-          submission: T.nilable(T.any(Increase::Models::WireDrawdownRequest::Submission, Increase::Internal::Util::AnyHash))
+          submission: T.nilable(T.any(Increase::Models::WireDrawdownRequest::Submission, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -127,7 +127,7 @@ module Increase
           recipient_name: T.nilable(String),
           recipient_routing_number: String,
           status: Increase::Models::WireDrawdownRequest::Status::OrSymbol,
-          submission: T.nilable(T.any(Increase::Models::WireDrawdownRequest::Submission, Increase::Internal::Util::AnyHash)),
+          submission: T.nilable(T.any(Increase::Models::WireDrawdownRequest::Submission, Increase::Internal::AnyHash)),
           type: Increase::Models::WireDrawdownRequest::Type::OrSymbol
         )
           .returns(T.attached_class)
@@ -190,7 +190,7 @@ module Increase
 
       # The lifecycle status of the drawdown request.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireDrawdownRequest::Status) }
         OrSymbol =
@@ -214,7 +214,7 @@ module Increase
         end
       end
 
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         # The input message accountability data (IMAD) uniquely identifying the submission
         #   with Fedwire.
         sig { returns(String) }
@@ -234,7 +234,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `wire_drawdown_request`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireDrawdownRequest::Type) }
         OrSymbol =

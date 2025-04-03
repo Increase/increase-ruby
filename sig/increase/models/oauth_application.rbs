@@ -11,7 +11,7 @@ module Increase
         type: Increase::Models::OAuthApplication::type_
       }
 
-    class OAuthApplication < Increase::BaseModel
+    class OAuthApplication < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor client_id: String
@@ -41,7 +41,7 @@ module Increase
       type status = :active | :deleted
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The application is active and can be used by your users.
         ACTIVE: :active
@@ -55,7 +55,7 @@ module Increase
       type type_ = :oauth_application
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         OAUTH_APPLICATION: :oauth_application
 

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Entities#update_address
-    class EntityUpdateAddressParams < Increase::BaseModel
+    class EntityUpdateAddressParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -21,9 +21,9 @@ module Increase
       #   #
       #   def initialize(address:, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         # @!attribute city
         #   The city of the address.
         #
@@ -71,7 +71,7 @@ module Increase
         #   #
         #   def initialize(city:, line1:, state:, zip:, line2: nil, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

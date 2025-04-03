@@ -19,7 +19,7 @@ module Increase
         type: Increase::Models::Account::type_
       }
 
-    class Account < Increase::BaseModel
+    class Account < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor bank: Increase::Models::Account::bank
@@ -73,7 +73,7 @@ module Increase
       type bank = :core_bank | :first_internet_bank | :grasshopper_bank
 
       module Bank
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Core Bank
         CORE_BANK: :core_bank
@@ -90,7 +90,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -116,7 +116,7 @@ module Increase
       type status = :closed | :open
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Closed Accounts on which no new activity can occur.
         CLOSED: :closed
@@ -130,7 +130,7 @@ module Increase
       type type_ = :account
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ACCOUNT: :account
 

@@ -3,7 +3,7 @@ module Increase
     type declined_transaction_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class DeclinedTransactionRetrieveParams < Increase::BaseModel
+    class DeclinedTransactionRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

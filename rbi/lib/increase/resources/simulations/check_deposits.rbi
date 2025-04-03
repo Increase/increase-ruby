@@ -10,7 +10,7 @@ module Increase
         sig do
           params(
             check_deposit_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::CheckDeposit)
         end
@@ -26,7 +26,7 @@ module Increase
         sig do
           params(
             check_deposit_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::CheckDeposit)
         end
@@ -42,7 +42,7 @@ module Increase
         sig do
           params(
             check_deposit_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::CheckDeposit)
         end

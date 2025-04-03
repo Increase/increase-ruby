@@ -31,7 +31,7 @@ module Increase
         type: Increase::Models::InboundACHTransfer::type_
       }
 
-    class InboundACHTransfer < Increase::BaseModel
+    class InboundACHTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor acceptance: Increase::Models::InboundACHTransfer::Acceptance?
@@ -120,7 +120,7 @@ module Increase
 
       type acceptance = { accepted_at: Time, transaction_id: String }
 
-      class Acceptance < Increase::BaseModel
+      class Acceptance < Increase::Internal::Type::BaseModel
         attr_accessor accepted_at: Time
 
         attr_accessor transaction_id: String
@@ -136,7 +136,7 @@ module Increase
           freeform: Increase::Models::InboundACHTransfer::Addenda::Freeform?
         }
 
-      class Addenda < Increase::BaseModel
+      class Addenda < Increase::Internal::Type::BaseModel
         attr_accessor category: Increase::Models::InboundACHTransfer::Addenda::category
 
         attr_accessor freeform: Increase::Models::InboundACHTransfer::Addenda::Freeform?
@@ -151,7 +151,7 @@ module Increase
         type category = :freeform
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Unstructured addendum.
           FREEFORM: :freeform
@@ -164,7 +164,7 @@ module Increase
             entries: ::Array[Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry]
           }
 
-        class Freeform < Increase::BaseModel
+        class Freeform < Increase::Internal::Type::BaseModel
           attr_accessor entries: ::Array[Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry]
 
           def initialize: (
@@ -175,7 +175,7 @@ module Increase
 
           type entry = { payment_related_information: String }
 
-          class Entry < Increase::BaseModel
+          class Entry < Increase::Internal::Type::BaseModel
             attr_accessor payment_related_information: String
 
             def initialize: (payment_related_information: String) -> void
@@ -192,7 +192,7 @@ module Increase
           reason: Increase::Models::InboundACHTransfer::Decline::reason
         }
 
-      class Decline < Increase::BaseModel
+      class Decline < Increase::Internal::Type::BaseModel
         attr_accessor declined_at: Time
 
         attr_accessor declined_transaction_id: String
@@ -227,7 +227,7 @@ module Increase
           | :corporate_customer_advised_not_authorized
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number is canceled.
           ACH_ROUTE_CANCELED: :ach_route_canceled
@@ -287,7 +287,7 @@ module Increase
       type direction = :credit | :debit
 
       module Direction
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Credit
         CREDIT: :credit
@@ -301,7 +301,7 @@ module Increase
       type expected_settlement_schedule = :same_day | :future_dated
 
       module ExpectedSettlementSchedule
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is expected to settle same-day.
         SAME_DAY: :same_day
@@ -349,7 +349,7 @@ module Increase
           receiving_depository_financial_institution_name: String
         }
 
-      class InternationalAddenda < Increase::BaseModel
+      class InternationalAddenda < Increase::Internal::Type::BaseModel
         attr_accessor destination_country_code: String
 
         attr_accessor destination_currency_code: String
@@ -458,7 +458,7 @@ module Increase
           :fixed_to_variable | :variable_to_fixed | :fixed_to_fixed
 
         module ForeignExchangeIndicator
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The originator chose an amount in their own currency. The settled amount in USD was converted using the exchange rate.
           FIXED_TO_VARIABLE: :fixed_to_variable
@@ -476,7 +476,7 @@ module Increase
           :foreign_exchange_rate | :foreign_exchange_reference_number | :blank
 
         module ForeignExchangeReferenceIndicator
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The ACH file contains a foreign exchange rate.
           FOREIGN_EXCHANGE_RATE: :foreign_exchange_rate
@@ -513,7 +513,7 @@ module Increase
           | :internet_initiated
 
         module InternationalTransactionTypeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Sent as `ANN` in the Nacha file.
           ANNUITY: :annuity
@@ -582,7 +582,7 @@ module Increase
           :national_clearing_system_number | :bic_code | :iban
 
         module OriginatingDepositoryFinancialInstitutionIDQualifier
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER: :national_clearing_system_number
@@ -600,7 +600,7 @@ module Increase
           :national_clearing_system_number | :bic_code | :iban
 
         module ReceivingDepositoryFinancialInstitutionIDQualifier
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER: :national_clearing_system_number
@@ -618,7 +618,7 @@ module Increase
       type notification_of_change =
         { updated_account_number: String?, updated_routing_number: String? }
 
-      class NotificationOfChange < Increase::BaseModel
+      class NotificationOfChange < Increase::Internal::Type::BaseModel
         attr_accessor updated_account_number: String?
 
         attr_accessor updated_routing_number: String?
@@ -650,7 +650,7 @@ module Increase
         | :international_ach_transaction
 
       module StandardEntryClassCode
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Corporate Credit and Debit (CCD).
         CORPORATE_CREDIT_OR_DEBIT: :corporate_credit_or_debit
@@ -706,7 +706,7 @@ module Increase
       type status = :pending | :declined | :accepted | :returned
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Inbound ACH Transfer is awaiting action, will transition automatically if no action is taken.
         PENDING: :pending
@@ -730,7 +730,7 @@ module Increase
           transaction_id: String
         }
 
-      class TransferReturn < Increase::BaseModel
+      class TransferReturn < Increase::Internal::Type::BaseModel
         attr_accessor reason: Increase::Models::InboundACHTransfer::TransferReturn::reason
 
         attr_accessor returned_at: Time
@@ -758,7 +758,7 @@ module Increase
           | :corporate_customer_advised_not_authorized
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The customer's account has insufficient funds. This reason is only allowed for debits. The Nacha return code is R01.
           INSUFFICIENT_FUNDS: :insufficient_funds
@@ -797,7 +797,7 @@ module Increase
       type type_ = :inbound_ach_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_ACH_TRANSFER: :inbound_ach_transfer
 

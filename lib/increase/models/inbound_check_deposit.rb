@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundCheckDeposits#retrieve
-    class InboundCheckDeposit < Increase::BaseModel
+    class InboundCheckDeposit < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The deposit's identifier.
       #
@@ -35,7 +35,8 @@ module Increase
       #     contain details of the adjustments.
       #
       #   @return [Array<Increase::Models::InboundCheckDeposit::Adjustment>]
-      required :adjustments, -> { Increase::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment] }
+      required :adjustments,
+               -> { Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment] }
 
       # @!attribute amount
       #   The deposited amount in USD cents.
@@ -189,9 +190,9 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Adjustment < Increase::BaseModel
+      class Adjustment < Increase::Internal::Type::BaseModel
         # @!attribute adjusted_at
         #   The time at which the return adjustment was received.
         #
@@ -224,13 +225,13 @@ module Increase
         #   #
         #   def initialize(adjusted_at:, amount:, reason:, transaction_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason for the adjustment.
         #
         # @see Increase::Models::InboundCheckDeposit::Adjustment#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
           LATE_RETURN = :late_return
@@ -256,7 +257,7 @@ module Increase
       #
       # @see Increase::Models::InboundCheckDeposit#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -284,7 +285,7 @@ module Increase
       end
 
       # @see Increase::Models::InboundCheckDeposit#deposit_return
-      class DepositReturn < Increase::BaseModel
+      class DepositReturn < Increase::Internal::Type::BaseModel
         # @!attribute reason
         #   The reason the deposit was returned.
         #
@@ -313,13 +314,13 @@ module Increase
         #   #
         #   def initialize(reason:, returned_at:, transaction_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason the deposit was returned.
         #
         # @see Increase::Models::InboundCheckDeposit::DepositReturn#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check was altered or fictitious.
           ALTERED_OR_FICTITIOUS = :altered_or_fictitious
@@ -349,7 +350,7 @@ module Increase
       #
       # @see Increase::Models::InboundCheckDeposit#payee_name_analysis
       module PayeeNameAnalysis
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The details on the check match the recipient name of the check transfer.
         NAME_MATCHES = :name_matches
@@ -371,7 +372,7 @@ module Increase
       #
       # @see Increase::Models::InboundCheckDeposit#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Inbound Check Deposit is pending.
         PENDING = :pending
@@ -400,7 +401,7 @@ module Increase
       #
       # @see Increase::Models::InboundCheckDeposit#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_CHECK_DEPOSIT = :inbound_check_deposit
 

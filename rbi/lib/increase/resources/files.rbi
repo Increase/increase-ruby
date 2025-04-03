@@ -11,7 +11,7 @@ module Increase
           file: T.any(IO, StringIO),
           purpose: Increase::Models::FileCreateParams::Purpose::OrSymbol,
           description: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::File)
       end
@@ -32,7 +32,7 @@ module Increase
       sig do
         params(
           file_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::File)
       end
@@ -46,12 +46,12 @@ module Increase
       # List Files
       sig do
         params(
-          created_at: T.any(Increase::Models::FileListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::FileListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          purpose: T.any(Increase::Models::FileListParams::Purpose, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          purpose: T.any(Increase::Models::FileListParams::Purpose, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::File])
       end

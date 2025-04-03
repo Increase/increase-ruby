@@ -17,7 +17,7 @@ module Increase
           require_approval: T::Boolean,
           ultimate_creditor_name: String,
           ultimate_debtor_name: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::RealTimePaymentsTransfer)
       end
@@ -59,7 +59,7 @@ module Increase
       sig do
         params(
           real_time_payments_transfer_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::RealTimePaymentsTransfer)
       end
@@ -74,13 +74,13 @@ module Increase
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::RealTimePaymentsTransferListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::RealTimePaymentsTransferListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           external_account_id: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::RealTimePaymentsTransferListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::RealTimePaymentsTransferListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::RealTimePaymentsTransfer])
       end

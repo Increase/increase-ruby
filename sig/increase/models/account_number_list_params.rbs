@@ -12,7 +12,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class AccountNumberListParams < Increase::BaseModel
+    class AccountNumberListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -68,7 +68,7 @@ module Increase
           in_: ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
         }
 
-      class ACHDebitStatus < Increase::BaseModel
+      class ACHDebitStatus < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]?
 
         def in_=: (
@@ -84,7 +84,7 @@ module Increase
         type in_ = :allowed | :blocked
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # ACH Debits are allowed.
           ALLOWED: :allowed
@@ -99,7 +99,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time
@@ -129,7 +129,7 @@ module Increase
       type status =
         { in_: ::Array[Increase::Models::AccountNumberListParams::Status::in_] }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::AccountNumberListParams::Status::in_]?
 
         def in_=: (
@@ -145,7 +145,7 @@ module Increase
         type in_ = :active | :disabled | :canceled
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number is active.
           ACTIVE: :active

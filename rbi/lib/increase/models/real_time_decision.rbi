@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class RealTimeDecision < Increase::BaseModel
+    class RealTimeDecision < Increase::Internal::Type::BaseModel
       # The Real-Time Decision identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -13,9 +13,7 @@ module Increase
 
       sig do
         params(
-          card_authentication: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::CardAuthentication, Increase::Internal::Util::AnyHash)
-          )
+          card_authentication: T.nilable(T.any(Increase::Models::RealTimeDecision::CardAuthentication, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -28,7 +26,7 @@ module Increase
       sig do
         params(
           card_authentication_challenge: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::CardAuthenticationChallenge, Increase::Internal::Util::AnyHash)
+            T.any(Increase::Models::RealTimeDecision::CardAuthenticationChallenge, Increase::Internal::AnyHash)
           )
         )
           .void
@@ -41,7 +39,7 @@ module Increase
 
       sig do
         params(
-          card_authorization: T.nilable(T.any(Increase::Models::RealTimeDecision::CardAuthorization, Increase::Internal::Util::AnyHash))
+          card_authorization: T.nilable(T.any(Increase::Models::RealTimeDecision::CardAuthorization, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -63,7 +61,7 @@ module Increase
       sig do
         params(
           digital_wallet_authentication: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::DigitalWalletAuthentication, Increase::Internal::Util::AnyHash)
+            T.any(Increase::Models::RealTimeDecision::DigitalWalletAuthentication, Increase::Internal::AnyHash)
           )
         )
           .void
@@ -76,9 +74,7 @@ module Increase
 
       sig do
         params(
-          digital_wallet_token: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::DigitalWalletToken, Increase::Internal::Util::AnyHash)
-          )
+          digital_wallet_token: T.nilable(T.any(Increase::Models::RealTimeDecision::DigitalWalletToken, Increase::Internal::AnyHash))
         )
           .void
       end
@@ -105,21 +101,17 @@ module Increase
       sig do
         params(
           id: String,
-          card_authentication: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::CardAuthentication, Increase::Internal::Util::AnyHash)
-          ),
+          card_authentication: T.nilable(T.any(Increase::Models::RealTimeDecision::CardAuthentication, Increase::Internal::AnyHash)),
           card_authentication_challenge: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::CardAuthenticationChallenge, Increase::Internal::Util::AnyHash)
+            T.any(Increase::Models::RealTimeDecision::CardAuthenticationChallenge, Increase::Internal::AnyHash)
           ),
-          card_authorization: T.nilable(T.any(Increase::Models::RealTimeDecision::CardAuthorization, Increase::Internal::Util::AnyHash)),
+          card_authorization: T.nilable(T.any(Increase::Models::RealTimeDecision::CardAuthorization, Increase::Internal::AnyHash)),
           category: Increase::Models::RealTimeDecision::Category::OrSymbol,
           created_at: Time,
           digital_wallet_authentication: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::DigitalWalletAuthentication, Increase::Internal::Util::AnyHash)
+            T.any(Increase::Models::RealTimeDecision::DigitalWalletAuthentication, Increase::Internal::AnyHash)
           ),
-          digital_wallet_token: T.nilable(
-            T.any(Increase::Models::RealTimeDecision::DigitalWalletToken, Increase::Internal::Util::AnyHash)
-          ),
+          digital_wallet_token: T.nilable(T.any(Increase::Models::RealTimeDecision::DigitalWalletToken, Increase::Internal::AnyHash)),
           status: Increase::Models::RealTimeDecision::Status::OrSymbol,
           timeout_at: Time,
           type: Increase::Models::RealTimeDecision::Type::OrSymbol
@@ -162,7 +154,7 @@ module Increase
       def to_hash
       end
 
-      class CardAuthentication < Increase::BaseModel
+      class CardAuthentication < Increase::Internal::Type::BaseModel
         # The identifier of the Account the card belongs to.
         sig { returns(String) }
         attr_accessor :account_id
@@ -209,7 +201,7 @@ module Increase
 
         # Whether or not the authentication attempt was approved.
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthentication::Decision) }
@@ -232,7 +224,7 @@ module Increase
         end
       end
 
-      class CardAuthenticationChallenge < Increase::BaseModel
+      class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         # The identifier of the Account the card belongs to.
         sig { returns(String) }
         attr_accessor :account_id
@@ -285,7 +277,7 @@ module Increase
 
         # Whether or not the challenge was delivered to the cardholder.
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthenticationChallenge::Result) }
@@ -315,7 +307,7 @@ module Increase
         end
       end
 
-      class CardAuthorization < Increase::BaseModel
+      class CardAuthorization < Increase::Internal::Type::BaseModel
         # The identifier of the Account the authorization will debit.
         sig { returns(String) }
         attr_accessor :account_id
@@ -375,10 +367,7 @@ module Increase
 
         sig do
           params(
-            network_details: T.any(
-              Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails,
-              Increase::Internal::Util::AnyHash
-            )
+            network_details: T.any(Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -392,7 +381,7 @@ module Increase
           params(
             network_identifiers: T.any(
               Increase::Models::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .void
@@ -431,10 +420,7 @@ module Increase
 
         sig do
           params(
-            request_details: T.any(
-              Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails,
-              Increase::Internal::Util::AnyHash
-            )
+            request_details: T.any(Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -466,10 +452,7 @@ module Increase
 
         sig do
           params(
-            verification: T.any(
-              Increase::Models::RealTimeDecision::CardAuthorization::Verification,
-              Increase::Internal::Util::AnyHash
-            )
+            verification: T.any(Increase::Models::RealTimeDecision::CardAuthorization::Verification, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -490,31 +473,22 @@ module Increase
             merchant_descriptor: String,
             merchant_postal_code: T.nilable(String),
             merchant_state: T.nilable(String),
-            network_details: T.any(
-              Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails,
-              Increase::Internal::Util::AnyHash
-            ),
+            network_details: T.any(Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails, Increase::Internal::AnyHash),
             network_identifiers: T.any(
               Increase::Models::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             ),
             network_risk_score: T.nilable(Integer),
             physical_card_id: T.nilable(String),
             presentment_amount: Integer,
             presentment_currency: String,
             processing_category: Increase::Models::RealTimeDecision::CardAuthorization::ProcessingCategory::OrSymbol,
-            request_details: T.any(
-              Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails,
-              Increase::Internal::Util::AnyHash
-            ),
+            request_details: T.any(Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails, Increase::Internal::AnyHash),
             settlement_amount: Integer,
             settlement_currency: String,
             terminal_id: T.nilable(String),
             upcoming_card_payment_id: String,
-            verification: T.any(
-              Increase::Models::RealTimeDecision::CardAuthorization::Verification,
-              Increase::Internal::Util::AnyHash
-            )
+            verification: T.any(Increase::Models::RealTimeDecision::CardAuthorization::Verification, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end
@@ -584,7 +558,7 @@ module Increase
 
         # Whether or not the authorization was approved.
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthorization::Decision) }
@@ -605,7 +579,7 @@ module Increase
         # The direction describes the direction the funds will move, either from the
         #   cardholder to the merchant or from the merchant to the cardholder.
         module Direction
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthorization::Direction) }
@@ -624,7 +598,7 @@ module Increase
           end
         end
 
-        class NetworkDetails < Increase::BaseModel
+        class NetworkDetails < Increase::Internal::Type::BaseModel
           # The payment network used to process this card authorization.
           sig { returns(Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Category::TaggedSymbol) }
           attr_accessor :category
@@ -638,7 +612,7 @@ module Increase
               visa: T.nilable(
                 T.any(
                   Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               )
             )
@@ -653,7 +627,7 @@ module Increase
               visa: T.nilable(
                 T.any(
                   Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               )
             )
@@ -676,7 +650,7 @@ module Increase
 
           # The payment network used to process this card authorization.
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Category) }
@@ -706,7 +680,7 @@ module Increase
             end
           end
 
-          class Visa < Increase::BaseModel
+          class Visa < Increase::Internal::Type::BaseModel
             # For electronic commerce transactions, this identifies the level of security used
             #   in obtaining the customer's payment credential. For mail or telephone order
             #   transactions, identifies the type of mail or telephone order.
@@ -786,7 +760,7 @@ module Increase
             #   in obtaining the customer's payment credential. For mail or telephone order
             #   transactions, identifies the type of mail or telephone order.
             module ElectronicCommerceIndicator
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
@@ -872,7 +846,7 @@ module Increase
             # The method used to enter the cardholder's primary account number and card
             #   expiration date.
             module PointOfServiceEntryMode
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
@@ -972,7 +946,7 @@ module Increase
             # Only present when `actioner: network`. Describes why a card authorization was
             #   approved or declined by Visa through stand-in processing.
             module StandInProcessingReason
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
@@ -1050,7 +1024,7 @@ module Increase
           end
         end
 
-        class NetworkIdentifiers < Increase::BaseModel
+        class NetworkIdentifiers < Increase::Internal::Type::BaseModel
           # A life-cycle identifier used across e.g., an authorization and a reversal.
           #   Expected to be unique per acquirer within a window of time. For some card
           #   networks the retrieval reference number includes the trace counter.
@@ -1096,7 +1070,7 @@ module Increase
         # The processing category describes the intent behind the authorization, such as
         #   whether it was used for bill payments or an automatic fuel dispenser.
         module ProcessingCategory
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthorization::ProcessingCategory) }
@@ -1153,7 +1127,7 @@ module Increase
           end
         end
 
-        class RequestDetails < Increase::BaseModel
+        class RequestDetails < Increase::Internal::Type::BaseModel
           # The type of this request (e.g., an initial authorization or an incremental
           #   authorization).
           sig { returns(Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::Category::TaggedSymbol) }
@@ -1172,7 +1146,7 @@ module Increase
               incremental_authorization: T.nilable(
                 T.any(
                   Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               )
             )
@@ -1191,7 +1165,7 @@ module Increase
               incremental_authorization: T.nilable(
                 T.any(
                   Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               ),
               initial_authorization: T.nilable(T.anything)
@@ -1217,7 +1191,7 @@ module Increase
           # The type of this request (e.g., an initial authorization or an incremental
           #   authorization).
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::Category) }
@@ -1254,7 +1228,7 @@ module Increase
             end
           end
 
-          class IncrementalAuthorization < Increase::BaseModel
+          class IncrementalAuthorization < Increase::Internal::Type::BaseModel
             # The card payment for this authorization and increment.
             sig { returns(String) }
             attr_accessor :card_payment_id
@@ -1280,7 +1254,7 @@ module Increase
           end
         end
 
-        class Verification < Increase::BaseModel
+        class Verification < Increase::Internal::Type::BaseModel
           # Fields related to verification of the Card Verification Code, a 3-digit code on
           #   the back of the card.
           sig { returns(Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode) }
@@ -1290,7 +1264,7 @@ module Increase
             params(
               card_verification_code: T.any(
                 Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .void
@@ -1306,7 +1280,7 @@ module Increase
             params(
               cardholder_address: T.any(
                 Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .void
@@ -1318,11 +1292,11 @@ module Increase
             params(
               card_verification_code: T.any(
                 Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               ),
               cardholder_address: T.any(
                 Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .returns(T.attached_class)
@@ -1342,7 +1316,7 @@ module Increase
           def to_hash
           end
 
-          class CardVerificationCode < Increase::BaseModel
+          class CardVerificationCode < Increase::Internal::Type::BaseModel
             # The result of verifying the Card Verification Code.
             sig do
               returns(
@@ -1375,7 +1349,7 @@ module Increase
 
             # The result of verifying the Card Verification Code.
             module Result
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
@@ -1424,7 +1398,7 @@ module Increase
             end
           end
 
-          class CardholderAddress < Increase::BaseModel
+          class CardholderAddress < Increase::Internal::Type::BaseModel
             # Line 1 of the address on file for the cardholder.
             sig { returns(T.nilable(String)) }
             attr_accessor :actual_line1
@@ -1482,7 +1456,7 @@ module Increase
 
             # The address verification result returned to the card network.
             module Result
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
@@ -1556,7 +1530,7 @@ module Increase
 
       # The category of the Real-Time Decision.
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::Category) }
         OrSymbol =
@@ -1593,7 +1567,7 @@ module Increase
         end
       end
 
-      class DigitalWalletAuthentication < Increase::BaseModel
+      class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         # The identifier of the Card that is being tokenized.
         sig { returns(String) }
         attr_accessor :card_id
@@ -1658,7 +1632,7 @@ module Increase
 
         # The channel to send the card user their one-time passcode.
         module Channel
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::DigitalWalletAuthentication::Channel) }
@@ -1688,7 +1662,7 @@ module Increase
 
         # The digital wallet app being used.
         module DigitalWallet
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::DigitalWalletAuthentication::DigitalWallet) }
@@ -1741,7 +1715,7 @@ module Increase
 
         # Whether your application successfully delivered the one-time passcode.
         module Result
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::DigitalWalletAuthentication::Result) }
@@ -1771,7 +1745,7 @@ module Increase
         end
       end
 
-      class DigitalWalletToken < Increase::BaseModel
+      class DigitalWalletToken < Increase::Internal::Type::BaseModel
         # The identifier of the Card that is being tokenized.
         sig { returns(String) }
         attr_accessor :card_id
@@ -1793,7 +1767,7 @@ module Increase
 
         sig do
           params(
-            device: T.any(Increase::Models::RealTimeDecision::DigitalWalletToken::Device, Increase::Internal::Util::AnyHash)
+            device: T.any(Increase::Models::RealTimeDecision::DigitalWalletToken::Device, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -1809,7 +1783,7 @@ module Increase
             card_id: String,
             card_profile_id: T.nilable(String),
             decision: T.nilable(Increase::Models::RealTimeDecision::DigitalWalletToken::Decision::OrSymbol),
-            device: T.any(Increase::Models::RealTimeDecision::DigitalWalletToken::Device, Increase::Internal::Util::AnyHash),
+            device: T.any(Increase::Models::RealTimeDecision::DigitalWalletToken::Device, Increase::Internal::AnyHash),
             digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet::OrSymbol
           )
             .returns(T.attached_class)
@@ -1835,7 +1809,7 @@ module Increase
         # Whether or not the provisioning request was approved. This will be null until
         #   the real time decision is responded to.
         module Decision
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::Decision) }
@@ -1853,7 +1827,7 @@ module Increase
           end
         end
 
-        class Device < Increase::BaseModel
+        class Device < Increase::Internal::Type::BaseModel
           # ID assigned to the device by the digital wallet provider.
           sig { returns(T.nilable(String)) }
           attr_accessor :identifier
@@ -1870,7 +1844,7 @@ module Increase
 
         # The digital wallet app being used.
         module DigitalWallet
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet) }
@@ -1904,7 +1878,7 @@ module Increase
 
       # The status of the Real-Time Decision.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::Status) }
         OrSymbol =
@@ -1927,7 +1901,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `real_time_decision`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecision::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::RealTimeDecision::Type::TaggedSymbol) }

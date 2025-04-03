@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class OAuthTokenCreateParams < Increase::BaseModel
+    class OAuthTokenCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -51,7 +51,7 @@ module Increase
           client_secret: String,
           code: String,
           production_token: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -84,7 +84,7 @@ module Increase
       # The credential you request in exchange for the code. In Production, this is
       #   always `authorization_code`. In Sandbox, you can pass either enum value.
       module GrantType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthTokenCreateParams::GrantType) }
         OrSymbol =

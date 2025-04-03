@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ProofOfAuthorizationRequestSubmissions#create
-    class ProofOfAuthorizationRequestSubmission < Increase::BaseModel
+    class ProofOfAuthorizationRequestSubmission < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Proof of Authorization Request Submission identifier.
       #
@@ -62,7 +62,7 @@ module Increase
       #   Whether the customer has been offboarded.
       #
       #   @return [Boolean, nil]
-      required :customer_has_been_offboarded, Increase::BooleanModel, nil?: true
+      required :customer_has_been_offboarded, Increase::Internal::Type::BooleanModel, nil?: true
 
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
@@ -101,19 +101,23 @@ module Increase
       #   Whether account ownership was validated via credential (for instance, Plaid).
       #
       #   @return [Boolean, nil]
-      required :validated_account_ownership_via_credential, Increase::BooleanModel, nil?: true
+      required :validated_account_ownership_via_credential, Increase::Internal::Type::BooleanModel, nil?: true
 
       # @!attribute validated_account_ownership_with_account_statement
       #   Whether account ownership was validated with an account statement.
       #
       #   @return [Boolean, nil]
-      required :validated_account_ownership_with_account_statement, Increase::BooleanModel, nil?: true
+      required :validated_account_ownership_with_account_statement,
+               Increase::Internal::Type::BooleanModel,
+               nil?: true
 
       # @!attribute validated_account_ownership_with_microdeposit
       #   Whether account ownership was validated with microdeposit.
       #
       #   @return [Boolean, nil]
-      required :validated_account_ownership_with_microdeposit, Increase::BooleanModel, nil?: true
+      required :validated_account_ownership_with_microdeposit,
+               Increase::Internal::Type::BooleanModel,
+               nil?: true
 
       # @!parse
       #   # Information submitted in response to a proof of authorization request. Per
@@ -165,13 +169,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # Status of the proof of authorization request submission.
       #
       # @see Increase::Models::ProofOfAuthorizationRequestSubmission#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The proof of authorization request submission is pending review.
         PENDING_REVIEW = :pending_review
@@ -200,7 +204,7 @@ module Increase
       #
       # @see Increase::Models::ProofOfAuthorizationRequestSubmission#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION = :proof_of_authorization_request_submission
 

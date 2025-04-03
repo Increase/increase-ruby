@@ -12,7 +12,7 @@ module Increase
         url: String
       }
 
-    class EventSubscription < Increase::BaseModel
+    class EventSubscription < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
@@ -133,7 +133,7 @@ module Increase
         | :"wire_transfer.updated"
 
       module SelectedEventCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Occurs whenever an Account is created.
         ACCOUNT_CREATED: :"account.created"
@@ -405,7 +405,7 @@ module Increase
       type status = :active | :disabled | :deleted | :requires_attention
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The subscription is active and Events will be delivered normally.
         ACTIVE: :active
@@ -425,7 +425,7 @@ module Increase
       type type_ = :event_subscription
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         EVENT_SUBSCRIPTION: :event_subscription
 

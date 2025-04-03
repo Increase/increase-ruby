@@ -4,7 +4,7 @@ module Increase
       { beneficial_owner_id: String }
       & Increase::Internal::Type::request_parameters
 
-    class EntityArchiveBeneficialOwnerParams < Increase::BaseModel
+    class EntityArchiveBeneficialOwnerParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

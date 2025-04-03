@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::CheckDeposits#create
-    class CheckDeposit < Increase::BaseModel
+    class CheckDeposit < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The deposit's identifier.
       #
@@ -169,10 +169,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::CheckDeposit#deposit_acceptance
-      class DepositAcceptance < Increase::BaseModel
+      class DepositAcceptance < Increase::Internal::Type::BaseModel
         # @!attribute account_number
         #   The account number printed on the check.
         #
@@ -244,14 +244,14 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         #   transaction's currency.
         #
         # @see Increase::Models::CheckDeposit::DepositAcceptance#currency
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD = :CAD
@@ -280,7 +280,7 @@ module Increase
       end
 
       # @see Increase::Models::CheckDeposit#deposit_rejection
-      class DepositRejection < Increase::BaseModel
+      class DepositRejection < Increase::Internal::Type::BaseModel
         # @!attribute amount
         #   The rejected amount in the minor unit of check's currency. For dollars, for
         #     example, this is cents.
@@ -333,14 +333,14 @@ module Increase
         #   #
         #   def initialize(amount:, check_deposit_id:, currency:, declined_transaction_id:, reason:, rejected_at:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
         #   currency.
         #
         # @see Increase::Models::CheckDeposit::DepositRejection#currency
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD = :CAD
@@ -371,7 +371,7 @@ module Increase
         #
         # @see Increase::Models::CheckDeposit::DepositRejection#reason
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check's image is incomplete.
           INCOMPLETE_IMAGE = :incomplete_image
@@ -415,7 +415,7 @@ module Increase
       end
 
       # @see Increase::Models::CheckDeposit#deposit_return
-      class DepositReturn < Increase::BaseModel
+      class DepositReturn < Increase::Internal::Type::BaseModel
         # @!attribute amount
         #   The returned amount in USD cents.
         #
@@ -469,14 +469,14 @@ module Increase
         #   #
         #   def initialize(amount:, check_deposit_id:, currency:, return_reason:, returned_at:, transaction_id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         #   transaction's currency.
         #
         # @see Increase::Models::CheckDeposit::DepositReturn#currency
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD = :CAD
@@ -508,7 +508,7 @@ module Increase
         #
         # @see Increase::Models::CheckDeposit::DepositReturn#return_reason
         module ReturnReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The check doesn't allow ACH conversion.
           ACH_CONVERSION_NOT_SUPPORTED = :ach_conversion_not_supported
@@ -597,7 +597,7 @@ module Increase
       end
 
       # @see Increase::Models::CheckDeposit#deposit_submission
-      class DepositSubmission < Increase::BaseModel
+      class DepositSubmission < Increase::Internal::Type::BaseModel
         # @!attribute back_file_id
         #   The ID for the File containing the check back image that was submitted to the
         #     Check21 network.
@@ -630,11 +630,11 @@ module Increase
         #   #
         #   def initialize(back_file_id:, front_file_id:, submitted_at:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::CheckDeposit#inbound_funds_hold
-      class InboundFundsHold < Increase::BaseModel
+      class InboundFundsHold < Increase::Internal::Type::BaseModel
         # @!attribute id
         #   The Inbound Funds Hold identifier.
         #
@@ -731,14 +731,14 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         #   currency.
         #
         # @see Increase::Models::CheckDeposit::InboundFundsHold#currency
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD = :CAD
@@ -769,7 +769,7 @@ module Increase
         #
         # @see Increase::Models::CheckDeposit::InboundFundsHold#status
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Funds are still being held.
           HELD = :held
@@ -789,7 +789,7 @@ module Increase
         #
         # @see Increase::Models::CheckDeposit::InboundFundsHold#type
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
@@ -805,7 +805,7 @@ module Increase
       #
       # @see Increase::Models::CheckDeposit#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Check Deposit is pending review.
         PENDING = :pending
@@ -831,7 +831,7 @@ module Increase
       #
       # @see Increase::Models::CheckDeposit#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CHECK_DEPOSIT = :check_deposit
 

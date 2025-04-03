@@ -13,7 +13,7 @@ module Increase
         updated_at: Time
       }
 
-    class Program < Increase::BaseModel
+    class Program < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor bank: Increase::Models::Program::bank
@@ -49,7 +49,7 @@ module Increase
       type bank = :core_bank | :first_internet_bank | :grasshopper_bank
 
       module Bank
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Core Bank
         CORE_BANK: :core_bank
@@ -66,7 +66,7 @@ module Increase
       type type_ = :program
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PROGRAM: :program
 

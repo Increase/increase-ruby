@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class AccountCreateParams < Increase::BaseModel
+    class AccountCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -39,7 +39,7 @@ module Increase
           entity_id: String,
           informational_entity_id: String,
           program_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

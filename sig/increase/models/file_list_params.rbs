@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class FileListParams < Increase::BaseModel
+    class FileListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -52,7 +52,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time
@@ -82,7 +82,7 @@ module Increase
       type purpose =
         { in_: ::Array[Increase::Models::FileListParams::Purpose::in_] }
 
-      class Purpose < Increase::BaseModel
+      class Purpose < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::FileListParams::Purpose::in_]?
 
         def in_=: (
@@ -123,7 +123,7 @@ module Increase
           | :proof_of_authorization_request_submission
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An image of the front of a check, used for check deposits.
           CHECK_IMAGE_FRONT: :check_image_front

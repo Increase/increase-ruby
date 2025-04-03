@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::IntrafiBalances#intrafi_balance
-    class IntrafiBalance < Increase::BaseModel
+    class IntrafiBalance < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The identifier of this balance.
       #
@@ -15,7 +15,7 @@ module Increase
       #     total balance across many participating banks in the network.
       #
       #   @return [Array<Increase::Models::IntrafiBalance::Balance>]
-      required :balances, -> { Increase::ArrayOf[Increase::Models::IntrafiBalance::Balance] }
+      required :balances, -> { Increase::Internal::Type::ArrayOf[Increase::Models::IntrafiBalance::Balance] }
 
       # @!attribute currency
       #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the account
@@ -58,9 +58,9 @@ module Increase
       #   #
       #   def initialize(id:, balances:, currency:, effective_date:, total_balance:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Balance < Increase::BaseModel
+      class Balance < Increase::Internal::Type::BaseModel
         # @!attribute id
         #   The identifier of this balance.
         #
@@ -102,10 +102,10 @@ module Increase
         #   #
         #   def initialize(id:, balance:, bank:, bank_location:, fdic_certificate_number:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::IntrafiBalance::Balance#bank_location
-        class BankLocation < Increase::BaseModel
+        class BankLocation < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The bank's city.
           #
@@ -126,7 +126,7 @@ module Increase
           #   #
           #   def initialize(city:, state:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
 
@@ -135,7 +135,7 @@ module Increase
       #
       # @see Increase::Models::IntrafiBalance#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -167,7 +167,7 @@ module Increase
       #
       # @see Increase::Models::IntrafiBalance#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INTRAFI_BALANCE = :intrafi_balance
 

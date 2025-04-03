@@ -3,7 +3,7 @@ module Increase
     type check_transfer_approve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class CheckTransferApproveParams < Increase::BaseModel
+    class CheckTransferApproveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

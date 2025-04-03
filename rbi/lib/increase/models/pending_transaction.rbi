@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PendingTransaction < Increase::BaseModel
+    class PendingTransaction < Increase::Internal::Type::BaseModel
       # The Pending Transaction identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -53,7 +53,7 @@ module Increase
       sig { returns(Increase::Models::PendingTransaction::Source) }
       attr_reader :source
 
-      sig { params(source: T.any(Increase::Models::PendingTransaction::Source, Increase::Internal::Util::AnyHash)).void }
+      sig { params(source: T.any(Increase::Models::PendingTransaction::Source, Increase::Internal::AnyHash)).void }
       attr_writer :source
 
       # Whether the Pending Transaction has been confirmed and has an associated
@@ -79,7 +79,7 @@ module Increase
           description: String,
           route_id: T.nilable(String),
           route_type: T.nilable(Increase::Models::PendingTransaction::RouteType::OrSymbol),
-          source: T.any(Increase::Models::PendingTransaction::Source, Increase::Internal::Util::AnyHash),
+          source: T.any(Increase::Models::PendingTransaction::Source, Increase::Internal::AnyHash),
           status: Increase::Models::PendingTransaction::Status::OrSymbol,
           type: Increase::Models::PendingTransaction::Type::OrSymbol
         )
@@ -127,7 +127,7 @@ module Increase
       #   Transaction's currency. This will match the currency on the Pending
       #   Transaction's Account.
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Currency) }
         OrSymbol =
@@ -158,7 +158,7 @@ module Increase
 
       # The type of the route this Pending Transaction came through.
       module RouteType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::RouteType) }
         OrSymbol =
@@ -178,7 +178,7 @@ module Increase
         end
       end
 
-      class Source < Increase::BaseModel
+      class Source < Increase::Internal::Type::BaseModel
         # An Account Transfer Instruction object. This field will be present in the JSON
         #   response if and only if `category` is equal to `account_transfer_instruction`.
         sig { returns(T.nilable(Increase::Models::PendingTransaction::Source::AccountTransferInstruction)) }
@@ -189,7 +189,7 @@ module Increase
             account_transfer_instruction: T.nilable(
               T.any(
                 Increase::Models::PendingTransaction::Source::AccountTransferInstruction,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
           )
@@ -205,10 +205,7 @@ module Increase
         sig do
           params(
             ach_transfer_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::ACHTransferInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::ACHTransferInstruction, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -225,7 +222,7 @@ module Increase
         sig do
           params(
             card_authorization: T.nilable(
-              T.any(Increase::Models::PendingTransaction::Source::CardAuthorization, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::PendingTransaction::Source::CardAuthorization, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -245,10 +242,7 @@ module Increase
         sig do
           params(
             check_deposit_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::CheckDepositInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::CheckDepositInstruction, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -263,10 +257,7 @@ module Increase
         sig do
           params(
             check_transfer_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::CheckTransferInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::CheckTransferInstruction, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -283,7 +274,7 @@ module Increase
         sig do
           params(
             inbound_funds_hold: T.nilable(
-              T.any(Increase::Models::PendingTransaction::Source::InboundFundsHold, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::PendingTransaction::Source::InboundFundsHold, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -302,7 +293,7 @@ module Increase
             inbound_wire_transfer_reversal: T.nilable(
               T.any(
                 Increase::Models::PendingTransaction::Source::InboundWireTransferReversal,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
           )
@@ -326,7 +317,7 @@ module Increase
             real_time_payments_transfer_instruction: T.nilable(
               T.any(
                 Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
           )
@@ -342,10 +333,7 @@ module Increase
         sig do
           params(
             wire_transfer_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::WireTransferInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::WireTransferInstruction, Increase::Internal::AnyHash)
             )
           )
             .void
@@ -360,52 +348,40 @@ module Increase
             account_transfer_instruction: T.nilable(
               T.any(
                 Increase::Models::PendingTransaction::Source::AccountTransferInstruction,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             ),
             ach_transfer_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::ACHTransferInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::ACHTransferInstruction, Increase::Internal::AnyHash)
             ),
             card_authorization: T.nilable(
-              T.any(Increase::Models::PendingTransaction::Source::CardAuthorization, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::PendingTransaction::Source::CardAuthorization, Increase::Internal::AnyHash)
             ),
             category: Increase::Models::PendingTransaction::Source::Category::OrSymbol,
             check_deposit_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::CheckDepositInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::CheckDepositInstruction, Increase::Internal::AnyHash)
             ),
             check_transfer_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::CheckTransferInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::CheckTransferInstruction, Increase::Internal::AnyHash)
             ),
             inbound_funds_hold: T.nilable(
-              T.any(Increase::Models::PendingTransaction::Source::InboundFundsHold, Increase::Internal::Util::AnyHash)
+              T.any(Increase::Models::PendingTransaction::Source::InboundFundsHold, Increase::Internal::AnyHash)
             ),
             inbound_wire_transfer_reversal: T.nilable(
               T.any(
                 Increase::Models::PendingTransaction::Source::InboundWireTransferReversal,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             ),
             other: T.nilable(T.anything),
             real_time_payments_transfer_instruction: T.nilable(
               T.any(
                 Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             ),
             wire_transfer_instruction: T.nilable(
-              T.any(
-                Increase::Models::PendingTransaction::Source::WireTransferInstruction,
-                Increase::Internal::Util::AnyHash
-              )
+              T.any(Increase::Models::PendingTransaction::Source::WireTransferInstruction, Increase::Internal::AnyHash)
             )
           )
             .returns(T.attached_class)
@@ -446,7 +422,7 @@ module Increase
         def to_hash
         end
 
-        class AccountTransferInstruction < Increase::BaseModel
+        class AccountTransferInstruction < Increase::Internal::Type::BaseModel
           # The pending amount in the minor unit of the transaction's currency. For dollars,
           #   for example, this is cents.
           sig { returns(Integer) }
@@ -490,7 +466,7 @@ module Increase
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
           #   account currency.
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::AccountTransferInstruction::Currency) }
@@ -556,7 +532,7 @@ module Increase
           end
         end
 
-        class ACHTransferInstruction < Increase::BaseModel
+        class ACHTransferInstruction < Increase::Internal::Type::BaseModel
           # The pending amount in USD cents.
           sig { returns(Integer) }
           attr_accessor :amount
@@ -576,7 +552,7 @@ module Increase
           end
         end
 
-        class CardAuthorization < Increase::BaseModel
+        class CardAuthorization < Increase::Internal::Type::BaseModel
           # The Card Authorization identifier.
           sig { returns(String) }
           attr_accessor :id
@@ -654,7 +630,7 @@ module Increase
             params(
               network_details: T.any(
                 Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .void
@@ -669,7 +645,7 @@ module Increase
             params(
               network_identifiers: T.any(
                 Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .void
@@ -727,7 +703,7 @@ module Increase
             params(
               verification: T.any(
                 Increase::Models::PendingTransaction::Source::CardAuthorization::Verification,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .void
@@ -757,11 +733,11 @@ module Increase
               merchant_state: T.nilable(String),
               network_details: T.any(
                 Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               ),
               network_identifiers: T.any(
                 Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               ),
               network_risk_score: T.nilable(Integer),
               pending_transaction_id: T.nilable(String),
@@ -774,7 +750,7 @@ module Increase
               type: Increase::Models::PendingTransaction::Source::CardAuthorization::Type::OrSymbol,
               verification: T.any(
                 Increase::Models::PendingTransaction::Source::CardAuthorization::Verification,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
             )
               .returns(T.attached_class)
@@ -850,7 +826,7 @@ module Increase
           # Whether this authorization was approved by Increase, the card network through
           #   stand-in processing, or the user through a real-time decision.
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Actioner) }
@@ -886,7 +862,7 @@ module Increase
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           #   transaction's currency.
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Currency) }
@@ -934,7 +910,7 @@ module Increase
           # The direction describes the direction the funds will move, either from the
           #   cardholder to the merchant or from the merchant to the cardholder.
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Direction) }
@@ -968,7 +944,7 @@ module Increase
             end
           end
 
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             # The payment network used to process this card authorization.
             sig do
               returns(
@@ -986,7 +962,7 @@ module Increase
                 visa: T.nilable(
                   T.any(
                     Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa,
-                    Increase::Internal::Util::AnyHash
+                    Increase::Internal::AnyHash
                   )
                 )
               )
@@ -1001,7 +977,7 @@ module Increase
                 visa: T.nilable(
                   T.any(
                     Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa,
-                    Increase::Internal::Util::AnyHash
+                    Increase::Internal::AnyHash
                   )
                 )
               )
@@ -1024,7 +1000,7 @@ module Increase
 
             # The payment network used to process this card authorization.
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Category) }
@@ -1054,7 +1030,7 @@ module Increase
               end
             end
 
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               # For electronic commerce transactions, this identifies the level of security used
               #   in obtaining the customer's payment credential. For mail or telephone order
               #   transactions, identifies the type of mail or telephone order.
@@ -1134,7 +1110,7 @@ module Increase
               #   in obtaining the customer's payment credential. For mail or telephone order
               #   transactions, identifies the type of mail or telephone order.
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 TaggedSymbol =
                   T.type_alias do
@@ -1220,7 +1196,7 @@ module Increase
               # The method used to enter the cardholder's primary account number and card
               #   expiration date.
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 TaggedSymbol =
                   T.type_alias do
@@ -1320,7 +1296,7 @@ module Increase
               # Only present when `actioner: network`. Describes why a card authorization was
               #   approved or declined by Visa through stand-in processing.
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 TaggedSymbol =
                   T.type_alias do
@@ -1398,7 +1374,7 @@ module Increase
             end
           end
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
             #   networks the retrieval reference number includes the trace counter.
@@ -1444,7 +1420,7 @@ module Increase
           # The processing category describes the intent behind the authorization, such as
           #   whether it was used for bill payments or an automatic fuel dispenser.
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::ProcessingCategory) }
@@ -1512,7 +1488,7 @@ module Increase
           # A constant representing the object's type. For this resource it will always be
           #   `card_authorization`.
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Type) }
@@ -1533,7 +1509,7 @@ module Increase
             end
           end
 
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             # Fields related to verification of the Card Verification Code, a 3-digit code on
             #   the back of the card.
             sig do
@@ -1547,7 +1523,7 @@ module Increase
               params(
                 card_verification_code: T.any(
                   Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               )
                 .void
@@ -1563,7 +1539,7 @@ module Increase
               params(
                 cardholder_address: T.any(
                   Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               )
                 .void
@@ -1575,11 +1551,11 @@ module Increase
               params(
                 card_verification_code: T.any(
                   Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 ),
                 cardholder_address: T.any(
                   Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress,
-                  Increase::Internal::Util::AnyHash
+                  Increase::Internal::AnyHash
                 )
               )
                 .returns(T.attached_class)
@@ -1599,7 +1575,7 @@ module Increase
             def to_hash
             end
 
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               # The result of verifying the Card Verification Code.
               sig do
                 returns(
@@ -1632,7 +1608,7 @@ module Increase
 
               # The result of verifying the Card Verification Code.
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 TaggedSymbol =
                   T.type_alias do
@@ -1681,7 +1657,7 @@ module Increase
               end
             end
 
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               # Line 1 of the address on file for the cardholder.
               sig { returns(T.nilable(String)) }
               attr_accessor :actual_line1
@@ -1745,7 +1721,7 @@ module Increase
 
               # The address verification result returned to the card network.
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 TaggedSymbol =
                   T.type_alias do
@@ -1820,7 +1796,7 @@ module Increase
         # The type of the resource. We may add additional possible values for this enum
         #   over time; your application should be able to handle such additions gracefully.
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::Category) }
           OrSymbol =
@@ -1876,7 +1852,7 @@ module Increase
           end
         end
 
-        class CheckDepositInstruction < Increase::BaseModel
+        class CheckDepositInstruction < Increase::Internal::Type::BaseModel
           # The pending amount in USD cents.
           sig { returns(Integer) }
           attr_accessor :amount
@@ -1933,7 +1909,7 @@ module Increase
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           #   transaction's currency.
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CheckDepositInstruction::Currency) }
@@ -1981,7 +1957,7 @@ module Increase
           end
         end
 
-        class CheckTransferInstruction < Increase::BaseModel
+        class CheckTransferInstruction < Increase::Internal::Type::BaseModel
           # The transfer amount in USD cents.
           sig { returns(Integer) }
           attr_accessor :amount
@@ -2024,7 +2000,7 @@ module Increase
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
           #   currency.
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::CheckTransferInstruction::Currency) }
@@ -2090,7 +2066,7 @@ module Increase
           end
         end
 
-        class InboundFundsHold < Increase::BaseModel
+        class InboundFundsHold < Increase::Internal::Type::BaseModel
           # The Inbound Funds Hold identifier.
           sig { returns(String) }
           attr_accessor :id
@@ -2192,7 +2168,7 @@ module Increase
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
           #   currency.
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Currency) }
@@ -2233,7 +2209,7 @@ module Increase
 
           # The status of the hold.
           module Status
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Status) }
@@ -2264,7 +2240,7 @@ module Increase
           # A constant representing the object's type. For this resource it will always be
           #   `inbound_funds_hold`.
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Type) }
@@ -2286,7 +2262,7 @@ module Increase
           end
         end
 
-        class InboundWireTransferReversal < Increase::BaseModel
+        class InboundWireTransferReversal < Increase::Internal::Type::BaseModel
           # The ID of the Inbound Wire Transfer that is being reversed.
           sig { returns(String) }
           attr_accessor :inbound_wire_transfer_id
@@ -2304,7 +2280,7 @@ module Increase
           end
         end
 
-        class RealTimePaymentsTransferInstruction < Increase::BaseModel
+        class RealTimePaymentsTransferInstruction < Increase::Internal::Type::BaseModel
           # The transfer amount in USD cents.
           sig { returns(Integer) }
           attr_accessor :amount
@@ -2326,7 +2302,7 @@ module Increase
           end
         end
 
-        class WireTransferInstruction < Increase::BaseModel
+        class WireTransferInstruction < Increase::Internal::Type::BaseModel
           # The account number for the destination account.
           sig { returns(String) }
           attr_accessor :account_number
@@ -2383,7 +2359,7 @@ module Increase
       # Whether the Pending Transaction has been confirmed and has an associated
       #   Transaction.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Status) }
         OrSymbol =
@@ -2403,7 +2379,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `pending_transaction`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PendingTransaction::Type) }
         OrSymbol =

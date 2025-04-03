@@ -4,7 +4,7 @@ module Increase
       { status: Increase::Models::PhysicalCardUpdateParams::status }
       & Increase::Internal::Type::request_parameters
 
-    class PhysicalCardUpdateParams < Increase::BaseModel
+    class PhysicalCardUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -20,7 +20,7 @@ module Increase
       type status = :active | :disabled | :canceled
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The physical card is active.
         ACTIVE: :active

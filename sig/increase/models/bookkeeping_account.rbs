@@ -11,7 +11,7 @@ module Increase
         type: Increase::Models::BookkeepingAccount::type_
       }
 
-    class BookkeepingAccount < Increase::BaseModel
+    class BookkeepingAccount < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String?
@@ -41,7 +41,7 @@ module Increase
       type compliance_category = :commingled_cash | :customer_balance
 
       module ComplianceCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A cash in an commingled Increase Account.
         COMMINGLED_CASH: :commingled_cash
@@ -55,7 +55,7 @@ module Increase
       type type_ = :bookkeeping_account
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_ACCOUNT: :bookkeeping_account
 

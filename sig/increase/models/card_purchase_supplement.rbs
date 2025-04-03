@@ -10,7 +10,7 @@ module Increase
         type: Increase::Models::CardPurchaseSupplement::type_
       }
 
-    class CardPurchaseSupplement < Increase::BaseModel
+    class CardPurchaseSupplement < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor card_payment_id: String?
@@ -54,7 +54,7 @@ module Increase
           unique_value_added_tax_invoice_reference: String?
         }
 
-      class Invoice < Increase::BaseModel
+      class Invoice < Increase::Internal::Type::BaseModel
         attr_accessor discount_amount: Integer?
 
         attr_accessor discount_currency: String?
@@ -114,7 +114,7 @@ module Increase
           | :tax_calculated_on_pre_discount_invoice_total
 
         module DiscountTreatmentCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # No invoice level discount provided
           NO_INVOICE_LEVEL_DISCOUNT_PROVIDED: :no_invoice_level_discount_provided
@@ -136,7 +136,7 @@ module Increase
           | :gross_price_invoice_level
 
         module TaxTreatments
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # No tax applies
           NO_TAX_APPLIES: :no_tax_applies
@@ -178,7 +178,7 @@ module Increase
           unit_of_measure_code: String?
         }
 
-      class LineItem < Increase::BaseModel
+      class LineItem < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor detail_indicator: Increase::Models::CardPurchaseSupplement::LineItem::detail_indicator?
@@ -238,7 +238,7 @@ module Increase
         type detail_indicator = :normal | :credit | :payment
 
         module DetailIndicator
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Normal
           NORMAL: :normal
@@ -258,7 +258,7 @@ module Increase
           | :tax_calculated_on_pre_discount_line_item_total
 
         module DiscountTreatmentCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # No line item level discount provided
           NO_LINE_ITEM_LEVEL_DISCOUNT_PROVIDED: :no_line_item_level_discount_provided
@@ -276,7 +276,7 @@ module Increase
       type type_ = :card_purchase_supplement
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_PURCHASE_SUPPLEMENT: :card_purchase_supplement
 

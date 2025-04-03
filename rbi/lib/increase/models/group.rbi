@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class Group < Increase::BaseModel
+    class Group < Increase::Internal::Type::BaseModel
       # The Group identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -59,7 +59,7 @@ module Increase
 
       # If the Group is allowed to create ACH debits.
       module ACHDebitStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Group::ACHDebitStatus) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Group::ACHDebitStatus::TaggedSymbol) }
@@ -77,7 +77,7 @@ module Increase
 
       # If the Group is activated or not.
       module ActivationStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Group::ActivationStatus) }
         OrSymbol =
@@ -97,7 +97,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `group`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Group::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Group::Type::TaggedSymbol) }

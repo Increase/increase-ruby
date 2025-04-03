@@ -11,7 +11,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class TransactionListParams < Increase::BaseModel
+    class TransactionListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -58,7 +58,7 @@ module Increase
       type category =
         { in_: ::Array[Increase::Models::TransactionListParams::Category::in_] }
 
-      class Category < Increase::BaseModel
+      class Category < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::TransactionListParams::Category::in_]?
 
         def in_=: (
@@ -103,7 +103,7 @@ module Increase
           | :other
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Account Transfer Intention: details will be under the `account_transfer_intention` object.
           ACCOUNT_TRANSFER_INTENTION: :account_transfer_intention
@@ -199,7 +199,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time

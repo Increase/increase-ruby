@@ -6,7 +6,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class EntityCreateBeneficialOwnerParams < Increase::BaseModel
+    class EntityCreateBeneficialOwnerParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -26,7 +26,7 @@ module Increase
           company_title: String
         }
 
-      class BeneficialOwner < Increase::BaseModel
+      class BeneficialOwner < Increase::Internal::Type::BaseModel
         attr_accessor individual: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual
 
         attr_accessor prongs: ::Array[Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::prong]
@@ -52,7 +52,7 @@ module Increase
             confirmed_no_us_tax_id: bool
           }
 
-        class Individual < Increase::BaseModel
+        class Individual < Increase::Internal::Type::BaseModel
           attr_accessor address: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address
 
           attr_accessor date_of_birth: Date
@@ -85,7 +85,7 @@ module Increase
               zip: String
             }
 
-          class Address < Increase::BaseModel
+          class Address < Increase::Internal::Type::BaseModel
             attr_accessor country: String
 
             attr_accessor line1: String
@@ -127,7 +127,7 @@ module Increase
               passport: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport
             }
 
-          class Identification < Increase::BaseModel
+          class Identification < Increase::Internal::Type::BaseModel
             attr_accessor method_: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::method_
 
             attr_accessor number: String
@@ -168,7 +168,7 @@ module Increase
               | :other
 
             module Method
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER: :social_security_number
@@ -196,7 +196,7 @@ module Increase
                 back_file_id: String
               }
 
-            class DriversLicense < Increase::BaseModel
+            class DriversLicense < Increase::Internal::Type::BaseModel
               attr_accessor expiration_date: Date
 
               attr_accessor file_id: String
@@ -226,7 +226,7 @@ module Increase
                 expiration_date: Date
               }
 
-            class Other < Increase::BaseModel
+            class Other < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor description: String
@@ -255,7 +255,7 @@ module Increase
             type passport =
               { country: String, expiration_date: Date, file_id: String }
 
-            class Passport < Increase::BaseModel
+            class Passport < Increase::Internal::Type::BaseModel
               attr_accessor country: String
 
               attr_accessor expiration_date: Date
@@ -276,7 +276,7 @@ module Increase
         type prong = :ownership | :control
 
         module Prong
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # A person with 25% or greater direct or indirect ownership of the entity.
           OWNERSHIP: :ownership

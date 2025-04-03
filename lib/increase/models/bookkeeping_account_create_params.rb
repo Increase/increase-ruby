@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::BookkeepingAccounts#create
-    class BookkeepingAccountCreateParams < Increase::BaseModel
+    class BookkeepingAccountCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -54,11 +54,11 @@ module Increase
       #   #
       #   def initialize(name:, account_id: nil, compliance_category: nil, entity_id: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The account compliance category.
       module ComplianceCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A cash in an commingled Increase Account.
         COMMINGLED_CASH = :commingled_cash

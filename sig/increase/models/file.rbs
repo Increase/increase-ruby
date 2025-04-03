@@ -13,7 +13,7 @@ module Increase
         type: Increase::Models::File::type_
       }
 
-    class File < Increase::BaseModel
+    class File < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
@@ -49,7 +49,7 @@ module Increase
       type direction = :to_increase | :from_increase
 
       module Direction
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # This File was sent by you to Increase.
         TO_INCREASE: :to_increase
@@ -88,7 +88,7 @@ module Increase
         | :proof_of_authorization_request_submission
 
       module Purpose
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An image of the front of a check, used for check deposits.
         CHECK_IMAGE_FRONT: :check_image_front
@@ -171,7 +171,7 @@ module Increase
       type type_ = :file
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         FILE: :file
 

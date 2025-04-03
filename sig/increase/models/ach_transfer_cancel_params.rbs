@@ -3,7 +3,7 @@ module Increase
     type ach_transfer_cancel_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class ACHTransferCancelParams < Increase::BaseModel
+    class ACHTransferCancelParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

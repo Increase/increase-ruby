@@ -12,7 +12,7 @@ module Increase
         type: Increase::Models::InboundMailItem::type_
       }
 
-    class InboundMailItem < Increase::BaseModel
+    class InboundMailItem < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
@@ -46,7 +46,7 @@ module Increase
         :no_matching_lockbox | :no_check | :lockbox_not_active
 
       module RejectionReason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The mail item does not match any lockbox.
         NO_MATCHING_LOCKBOX: :no_matching_lockbox
@@ -63,7 +63,7 @@ module Increase
       type status = :pending | :processed | :rejected
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The mail item is pending processing.
         PENDING: :pending
@@ -80,7 +80,7 @@ module Increase
       type type_ = :inbound_mail_item
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_MAIL_ITEM: :inbound_mail_item
 

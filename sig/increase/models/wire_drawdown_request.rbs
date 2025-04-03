@@ -25,7 +25,7 @@ module Increase
         type: Increase::Models::WireDrawdownRequest::type_
       }
 
-    class WireDrawdownRequest < Increase::BaseModel
+    class WireDrawdownRequest < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_number_id: String
@@ -98,7 +98,7 @@ module Increase
         :pending_submission | :pending_response | :fulfilled | :refused
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The drawdown request is queued to be submitted to Fedwire.
         PENDING_SUBMISSION: :pending_submission
@@ -117,7 +117,7 @@ module Increase
 
       type submission = { input_message_accountability_data: String }
 
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         attr_accessor input_message_accountability_data: String
 
         def initialize: (input_message_accountability_data: String) -> void
@@ -128,7 +128,7 @@ module Increase
       type type_ = :wire_drawdown_request
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         WIRE_DRAWDOWN_REQUEST: :wire_drawdown_request
 

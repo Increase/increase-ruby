@@ -7,7 +7,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class EntityUpdateBeneficialOwnerAddressParams < Increase::BaseModel
+    class EntityUpdateBeneficialOwnerAddressParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -33,7 +33,7 @@ module Increase
           zip: String
         }
 
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         attr_accessor country: String
 
         attr_accessor line1: String

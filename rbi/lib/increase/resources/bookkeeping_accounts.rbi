@@ -10,7 +10,7 @@ module Increase
           account_id: String,
           compliance_category: Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory::OrSymbol,
           entity_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BookkeepingAccount)
       end
@@ -32,7 +32,7 @@ module Increase
         params(
           bookkeeping_account_id: String,
           name: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BookkeepingAccount)
       end
@@ -51,7 +51,7 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::BookkeepingAccount])
       end
@@ -75,7 +75,7 @@ module Increase
         params(
           bookkeeping_account_id: String,
           at_time: Time,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BookkeepingBalanceLookup)
       end

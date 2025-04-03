@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::WireTransfers#create
-    class WireTransfer < Increase::BaseModel
+    class WireTransfer < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The wire transfer's identifier.
       #
@@ -258,10 +258,10 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::WireTransfer#approval
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         # @!attribute approved_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #     the transfer was approved.
@@ -285,11 +285,11 @@ module Increase
         #   #
         #   def initialize(approved_at:, approved_by:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::WireTransfer#cancellation
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         # @!attribute canceled_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #     the Transfer was canceled.
@@ -313,11 +313,11 @@ module Increase
         #   #
         #   def initialize(canceled_at:, canceled_by:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::WireTransfer#created_by
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         # @!attribute api_key
         #   If present, details about the API key that created the transfer.
         #
@@ -354,10 +354,10 @@ module Increase
         #   #
         #   def initialize(api_key:, category:, oauth_application:, user:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::WireTransfer::CreatedBy#api_key
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           # @!attribute description
           #   The description set for the API key when it was created.
           #
@@ -371,14 +371,14 @@ module Increase
           #   #
           #   def initialize(description:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # The type of object that created this transfer.
         #
         # @see Increase::Models::WireTransfer::CreatedBy#category
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An API key. Details will be under the `api_key` object.
           API_KEY = :api_key
@@ -397,7 +397,7 @@ module Increase
         end
 
         # @see Increase::Models::WireTransfer::CreatedBy#oauth_application
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           # @!attribute name
           #   The name of the OAuth Application.
           #
@@ -411,11 +411,11 @@ module Increase
           #   #
           #   def initialize(name:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
 
         # @see Increase::Models::WireTransfer::CreatedBy#user
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           # @!attribute email
           #   The email address of the User.
           #
@@ -429,7 +429,7 @@ module Increase
           #   #
           #   def initialize(email:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
         end
       end
 
@@ -438,7 +438,7 @@ module Increase
       #
       # @see Increase::Models::WireTransfer#currency
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD = :CAD
@@ -469,7 +469,7 @@ module Increase
       #
       # @see Increase::Models::WireTransfer#network
       module Network
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         WIRE = :wire
 
@@ -481,7 +481,7 @@ module Increase
       end
 
       # @see Increase::Models::WireTransfer#reversal
-      class Reversal < Increase::BaseModel
+      class Reversal < Increase::Internal::Type::BaseModel
         # @!attribute amount
         #   The amount that was reversed in USD cents.
         #
@@ -633,14 +633,14 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # The lifecycle status of the transfer.
       #
       # @see Increase::Models::WireTransfer#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is pending approval.
         PENDING_APPROVAL = :pending_approval
@@ -677,7 +677,7 @@ module Increase
       end
 
       # @see Increase::Models::WireTransfer#submission
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         # @!attribute input_message_accountability_data
         #   The accountability data for the submission.
         #
@@ -699,7 +699,7 @@ module Increase
         #   #
         #   def initialize(input_message_accountability_data:, submitted_at:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -707,7 +707,7 @@ module Increase
       #
       # @see Increase::Models::WireTransfer#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         WIRE_TRANSFER = :wire_transfer
 

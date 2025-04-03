@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class OAuthTokenCreateParams < Increase::BaseModel
+    class OAuthTokenCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -46,7 +46,7 @@ module Increase
       type grant_type = :authorization_code | :production_token
 
       module GrantType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An OAuth authorization code.
         AUTHORIZATION_CODE: :authorization_code

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ProofOfAuthorizationRequestListParams < Increase::BaseModel
+    class ProofOfAuthorizationRequestListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -11,10 +11,7 @@ module Increase
 
       sig do
         params(
-          created_at: T.any(
-            Increase::Models::ProofOfAuthorizationRequestListParams::CreatedAt,
-            Increase::Internal::Util::AnyHash
-          )
+          created_at: T.any(Increase::Models::ProofOfAuthorizationRequestListParams::CreatedAt, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -37,13 +34,10 @@ module Increase
 
       sig do
         params(
-          created_at: T.any(
-            Increase::Models::ProofOfAuthorizationRequestListParams::CreatedAt,
-            Increase::Internal::Util::AnyHash
-          ),
+          created_at: T.any(Increase::Models::ProofOfAuthorizationRequestListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -64,7 +58,7 @@ module Increase
       def to_hash
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }

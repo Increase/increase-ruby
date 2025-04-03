@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class DigitalCardProfileListParams < Increase::BaseModel
+    class DigitalCardProfileListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -46,7 +46,7 @@ module Increase
           in_: ::Array[Increase::Models::DigitalCardProfileListParams::Status::in_]
         }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::DigitalCardProfileListParams::Status::in_]?
 
         def in_=: (
@@ -62,7 +62,7 @@ module Increase
         type in_ = :pending | :rejected | :active | :archived
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The Card Profile is awaiting review from Increase and/or processing by card networks.
           PENDING: :pending

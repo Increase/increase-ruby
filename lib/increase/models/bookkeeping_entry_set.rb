@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::BookkeepingEntrySets#create
-    class BookkeepingEntrySet < Increase::BaseModel
+    class BookkeepingEntrySet < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The entry set identifier.
       #
@@ -26,7 +26,7 @@ module Increase
       #   The entries.
       #
       #   @return [Array<Increase::Models::BookkeepingEntrySet::Entry>]
-      required :entries, -> { Increase::ArrayOf[Increase::Models::BookkeepingEntrySet::Entry] }
+      required :entries, -> { Increase::Internal::Type::ArrayOf[Increase::Models::BookkeepingEntrySet::Entry] }
 
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
@@ -65,9 +65,9 @@ module Increase
       #   #
       #   def initialize(id:, created_at:, date:, entries:, idempotency_key:, transaction_id:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Entry < Increase::BaseModel
+      class Entry < Increase::Internal::Type::BaseModel
         # @!attribute id
         #   The entry identifier.
         #
@@ -93,7 +93,7 @@ module Increase
         #   #
         #   def initialize(id:, account_id:, amount:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -101,7 +101,7 @@ module Increase
       #
       # @see Increase::Models::BookkeepingEntrySet#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_ENTRY_SET = :bookkeeping_entry_set
 

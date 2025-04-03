@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ExternalAccounts#create
-    class ExternalAccount < Increase::BaseModel
+    class ExternalAccount < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The External Account's identifier.
       #
@@ -107,13 +107,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The type of entity that owns the External Account.
       #
       # @see Increase::Models::ExternalAccount#account_holder
       module AccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is owned by a business.
         BUSINESS = :business
@@ -135,7 +135,7 @@ module Increase
       #
       # @see Increase::Models::ExternalAccount#funding
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A checking account.
         CHECKING = :checking
@@ -157,7 +157,7 @@ module Increase
       #
       # @see Increase::Models::ExternalAccount#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account is active.
         ACTIVE = :active
@@ -177,7 +177,7 @@ module Increase
       #
       # @see Increase::Models::ExternalAccount#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         EXTERNAL_ACCOUNT = :external_account
 
@@ -192,7 +192,7 @@ module Increase
       #
       # @see Increase::Models::ExternalAccount#verification_status
       module VerificationStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The External Account has not been verified.
         UNVERIFIED = :unverified

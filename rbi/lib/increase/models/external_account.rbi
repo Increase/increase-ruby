@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ExternalAccount < Increase::BaseModel
+    class ExternalAccount < Increase::Internal::Type::BaseModel
       # The External Account's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -107,7 +107,7 @@ module Increase
 
       # The type of entity that owns the External Account.
       module AccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccount::AccountHolder) }
         OrSymbol =
@@ -129,7 +129,7 @@ module Increase
 
       # The type of the account to which the transfer will be sent.
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccount::Funding) }
         OrSymbol =
@@ -151,7 +151,7 @@ module Increase
 
       # The External Account's status.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccount::Status) }
         OrSymbol =
@@ -171,7 +171,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `external_account`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccount::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::ExternalAccount::Type::TaggedSymbol) }
@@ -185,7 +185,7 @@ module Increase
 
       # If you have verified ownership of the External Account.
       module VerificationStatus
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccount::VerificationStatus) }
         OrSymbol =

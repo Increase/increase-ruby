@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           card_purchase_supplement_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CardPurchaseSupplement)
       end
@@ -22,10 +22,10 @@ module Increase
       sig do
         params(
           card_payment_id: String,
-          created_at: T.any(Increase::Models::CardPurchaseSupplementListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::CardPurchaseSupplementListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::CardPurchaseSupplement])
       end

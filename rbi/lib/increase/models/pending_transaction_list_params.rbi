@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PendingTransactionListParams < Increase::BaseModel
+    class PendingTransactionListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -18,7 +18,7 @@ module Increase
 
       sig do
         params(
-          category: T.any(Increase::Models::PendingTransactionListParams::Category, Increase::Internal::Util::AnyHash)
+          category: T.any(Increase::Models::PendingTransactionListParams::Category, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -29,7 +29,7 @@ module Increase
 
       sig do
         params(
-          created_at: T.any(Increase::Models::PendingTransactionListParams::CreatedAt, Increase::Internal::Util::AnyHash)
+          created_at: T.any(Increase::Models::PendingTransactionListParams::CreatedAt, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -61,9 +61,7 @@ module Increase
       attr_reader :status
 
       sig do
-        params(
-          status: T.any(Increase::Models::PendingTransactionListParams::Status, Increase::Internal::Util::AnyHash)
-        )
+        params(status: T.any(Increase::Models::PendingTransactionListParams::Status, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :status
@@ -71,13 +69,13 @@ module Increase
       sig do
         params(
           account_id: String,
-          category: T.any(Increase::Models::PendingTransactionListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::PendingTransactionListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::PendingTransactionListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::PendingTransactionListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
           route_id: String,
-          status: T.any(Increase::Models::PendingTransactionListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          status: T.any(Increase::Models::PendingTransactionListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -111,7 +109,7 @@ module Increase
       def to_hash
       end
 
-      class Category < Increase::BaseModel
+      class Category < Increase::Internal::Type::BaseModel
         # Return results whose value is in the provided list. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         sig { returns(T.nilable(T::Array[Increase::Models::PendingTransactionListParams::Category::In::OrSymbol])) }
@@ -132,7 +130,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::PendingTransactionListParams::Category::In) }
@@ -205,7 +203,7 @@ module Increase
         end
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }
@@ -249,7 +247,7 @@ module Increase
         end
       end
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         # Filter Pending Transactions for those with the specified status. By default only
         #   Pending Transactions in with status `pending` will be returned. For GET
         #   requests, this should be encoded as a comma-delimited string, such as
@@ -272,7 +270,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PendingTransactionListParams::Status::In) }
           OrSymbol =

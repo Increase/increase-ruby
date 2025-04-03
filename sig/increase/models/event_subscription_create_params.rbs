@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class EventSubscriptionCreateParams < Increase::BaseModel
+    class EventSubscriptionCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -130,7 +130,7 @@ module Increase
         | :"wire_transfer.updated"
 
       module SelectedEventCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Occurs whenever an Account is created.
         ACCOUNT_CREATED: :"account.created"

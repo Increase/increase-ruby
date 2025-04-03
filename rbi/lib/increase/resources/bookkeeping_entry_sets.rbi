@@ -6,10 +6,10 @@ module Increase
       # Create a Bookkeeping Entry Set
       sig do
         params(
-          entries: T::Array[T.any(Increase::Models::BookkeepingEntrySetCreateParams::Entry, Increase::Internal::Util::AnyHash)],
+          entries: T::Array[T.any(Increase::Models::BookkeepingEntrySetCreateParams::Entry, Increase::Internal::AnyHash)],
           date: Time,
           transaction_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BookkeepingEntrySet)
       end
@@ -29,7 +29,7 @@ module Increase
       sig do
         params(
           bookkeeping_entry_set_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BookkeepingEntrySet)
       end
@@ -47,7 +47,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           transaction_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::BookkeepingEntrySet])
       end

@@ -2,26 +2,21 @@
 
 module Increase
   module Models
-    class DocumentListParams < Increase::BaseModel
+    class DocumentListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       sig { returns(T.nilable(Increase::Models::DocumentListParams::Category)) }
       attr_reader :category
 
-      sig do
-        params(category: T.any(Increase::Models::DocumentListParams::Category, Increase::Internal::Util::AnyHash))
-          .void
-      end
+      sig { params(category: T.any(Increase::Models::DocumentListParams::Category, Increase::Internal::AnyHash)).void }
       attr_writer :category
 
       sig { returns(T.nilable(Increase::Models::DocumentListParams::CreatedAt)) }
       attr_reader :created_at
 
       sig do
-        params(
-          created_at: T.any(Increase::Models::DocumentListParams::CreatedAt, Increase::Internal::Util::AnyHash)
-        )
+        params(created_at: T.any(Increase::Models::DocumentListParams::CreatedAt, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :created_at
@@ -50,12 +45,12 @@ module Increase
 
       sig do
         params(
-          category: T.any(Increase::Models::DocumentListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::DocumentListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::DocumentListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::DocumentListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           entity_id: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -85,7 +80,7 @@ module Increase
       def to_hash
       end
 
-      class Category < Increase::BaseModel
+      class Category < Increase::Internal::Type::BaseModel
         # Filter Documents for those with the specified category or categories. For GET
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
@@ -107,7 +102,7 @@ module Increase
         end
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DocumentListParams::Category::In) }
           OrSymbol =
@@ -133,7 +128,7 @@ module Increase
         end
       end
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         sig { returns(T.nilable(Time)) }

@@ -3,7 +3,7 @@ module Increase
     type real_time_decision_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class RealTimeDecisionRetrieveParams < Increase::BaseModel
+    class RealTimeDecisionRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

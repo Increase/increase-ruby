@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class Export < Increase::BaseModel
+    class Export < Increase::Internal::Type::BaseModel
       # The Export identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -92,7 +92,7 @@ module Increase
       # The category of the Export. We may add additional possible values for this enum
       #   over time; your application should be able to handle that gracefully.
       module Category
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Export::Category) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Export::Category::TaggedSymbol) }
@@ -126,7 +126,7 @@ module Increase
 
       # The status of the Export.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Export::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Export::Status::TaggedSymbol) }
@@ -148,7 +148,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `export`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Export::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Export::Type::TaggedSymbol) }

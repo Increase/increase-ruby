@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class DigitalWalletTokenRequestCreateParams < Increase::BaseModel
+      class DigitalWalletTokenRequestCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -14,7 +14,10 @@ module Increase
         sig do
           params(
             card_id: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(
+              Increase::RequestOptions,
+              Increase::Internal::AnyHash
+            )
           )
             .returns(T.attached_class)
         end

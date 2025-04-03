@@ -10,7 +10,7 @@ module Increase
         type: Increase::Models::IntrafiBalance::type_
       }
 
-    class IntrafiBalance < Increase::BaseModel
+    class IntrafiBalance < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor balances: ::Array[Increase::Models::IntrafiBalance::Balance]
@@ -43,7 +43,7 @@ module Increase
           fdic_certificate_number: String
         }
 
-      class Balance < Increase::BaseModel
+      class Balance < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor balance: Integer
@@ -66,7 +66,7 @@ module Increase
 
         type bank_location = { city: String, state: String }
 
-        class BankLocation < Increase::BaseModel
+        class BankLocation < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor state: String
@@ -80,7 +80,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -106,7 +106,7 @@ module Increase
       type type_ = :intrafi_balance
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INTRAFI_BALANCE: :intrafi_balance
 

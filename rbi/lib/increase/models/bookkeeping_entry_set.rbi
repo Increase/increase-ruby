@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BookkeepingEntrySet < Increase::BaseModel
+    class BookkeepingEntrySet < Increase::Internal::Type::BaseModel
       # The entry set identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -43,7 +43,7 @@ module Increase
           id: String,
           created_at: Time,
           date: Time,
-          entries: T::Array[T.any(Increase::Models::BookkeepingEntrySet::Entry, Increase::Internal::Util::AnyHash)],
+          entries: T::Array[T.any(Increase::Models::BookkeepingEntrySet::Entry, Increase::Internal::AnyHash)],
           idempotency_key: T.nilable(String),
           transaction_id: T.nilable(String),
           type: Increase::Models::BookkeepingEntrySet::Type::OrSymbol
@@ -70,7 +70,7 @@ module Increase
       def to_hash
       end
 
-      class Entry < Increase::BaseModel
+      class Entry < Increase::Internal::Type::BaseModel
         # The entry identifier.
         sig { returns(String) }
         attr_accessor :id
@@ -95,7 +95,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_entry_set`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingEntrySet::Type) }
         OrSymbol =

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Lockboxes#update
-    class LockboxUpdateParams < Increase::BaseModel
+    class LockboxUpdateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -46,11 +46,11 @@ module Increase
       #   #
       #   def initialize(description: nil, recipient_name: nil, status: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # This indicates if checks can be sent to the Lockbox.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # This Lockbox is active. Checks mailed to it will be deposited automatically.
         ACTIVE = :active

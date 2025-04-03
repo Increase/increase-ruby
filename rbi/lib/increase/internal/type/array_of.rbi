@@ -17,11 +17,11 @@ module Increase
         sig(:final) do
           params(
             type_info: T.any(
-              Increase::Internal::Util::AnyHash,
+              Increase::Internal::AnyHash,
               T.proc.returns(Increase::Internal::Type::Converter::Input),
               Increase::Internal::Type::Converter::Input
             ),
-            spec: Increase::Internal::Util::AnyHash
+            spec: Increase::Internal::AnyHash
           )
             .returns(T.attached_class)
         end
@@ -72,11 +72,11 @@ module Increase
         sig(:final) do
           params(
             type_info: T.any(
-              Increase::Internal::Util::AnyHash,
+              Increase::Internal::AnyHash,
               T.proc.returns(Increase::Internal::Type::Converter::Input),
               Increase::Internal::Type::Converter::Input
             ),
-            spec: Increase::Internal::Util::AnyHash
+            spec: Increase::Internal::AnyHash
           )
             .void
         end

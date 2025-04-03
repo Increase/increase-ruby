@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ProofOfAuthorizationRequestSubmissionListParams < Increase::BaseModel
+    class ProofOfAuthorizationRequestSubmissionListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -44,7 +44,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           proof_of_authorization_request_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

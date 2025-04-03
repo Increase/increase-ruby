@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class InboundWireTransferCreateParams < Increase::BaseModel
+      class InboundWireTransferCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -154,7 +154,7 @@ module Increase
             originator_to_beneficiary_information_line3: String,
             originator_to_beneficiary_information_line4: String,
             sender_reference: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end

@@ -15,7 +15,7 @@ module Increase
             account_number_id: String,
             amount: Integer,
             check_number: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::InboundCheckDeposit)
         end

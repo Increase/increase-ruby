@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::CheckDeposits#create
-    class CheckDepositCreateParams < Increase::BaseModel
+    class CheckDepositCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -52,7 +52,7 @@ module Increase
       #   #
       #   def initialize(account_id:, amount:, back_image_file_id:, front_image_file_id:, description: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
     end
   end
 end

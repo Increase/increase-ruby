@@ -3,7 +3,7 @@ module Increase
     type external_account_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class ExternalAccountRetrieveParams < Increase::BaseModel
+    class ExternalAccountRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

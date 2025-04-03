@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class CardIncrementCreateParams < Increase::BaseModel
+      class CardIncrementCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -30,7 +30,7 @@ module Increase
             amount: Integer,
             card_payment_id: String,
             event_subscription_id: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end

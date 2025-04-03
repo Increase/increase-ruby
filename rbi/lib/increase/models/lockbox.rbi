@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class Lockbox < Increase::BaseModel
+    class Lockbox < Increase::Internal::Type::BaseModel
       # The Lockbox identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -16,7 +16,7 @@ module Increase
       sig { returns(Increase::Models::Lockbox::Address) }
       attr_reader :address
 
-      sig { params(address: T.any(Increase::Models::Lockbox::Address, Increase::Internal::Util::AnyHash)).void }
+      sig { params(address: T.any(Increase::Models::Lockbox::Address, Increase::Internal::AnyHash)).void }
       attr_writer :address
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
@@ -53,7 +53,7 @@ module Increase
         params(
           id: String,
           account_id: String,
-          address: T.any(Increase::Models::Lockbox::Address, Increase::Internal::Util::AnyHash),
+          address: T.any(Increase::Models::Lockbox::Address, Increase::Internal::AnyHash),
           created_at: Time,
           description: T.nilable(String),
           idempotency_key: T.nilable(String),
@@ -95,7 +95,7 @@ module Increase
       def to_hash
       end
 
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         # The city of the address.
         sig { returns(String) }
         attr_accessor :city
@@ -158,7 +158,7 @@ module Increase
 
       # This indicates if mail can be sent to this address.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Lockbox::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Lockbox::Status::TaggedSymbol) }
@@ -177,7 +177,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `lockbox`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Lockbox::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Lockbox::Type::TaggedSymbol) }

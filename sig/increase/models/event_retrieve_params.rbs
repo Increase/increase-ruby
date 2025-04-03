@@ -3,7 +3,7 @@ module Increase
     type event_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class EventRetrieveParams < Increase::BaseModel
+    class EventRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

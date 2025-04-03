@@ -5,7 +5,7 @@ module Increase
         { card_payment_id: String }
         & Increase::Internal::Type::request_parameters
 
-      class CardAuthorizationExpirationCreateParams < Increase::BaseModel
+      class CardAuthorizationExpirationCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

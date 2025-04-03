@@ -27,7 +27,7 @@ module Increase
             receiver_name: String,
             resolve_at: Time,
             standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::InboundACHTransfer)
         end

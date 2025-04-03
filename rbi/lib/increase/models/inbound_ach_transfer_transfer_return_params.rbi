@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class InboundACHTransferTransferReturnParams < Increase::BaseModel
+    class InboundACHTransferTransferReturnParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -14,7 +14,7 @@ module Increase
       sig do
         params(
           reason: Increase::Models::InboundACHTransferTransferReturnParams::Reason::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -36,7 +36,7 @@ module Increase
       # The reason why this transfer will be returned. The most usual return codes are
       #   `payment_stopped` for debits and `credit_entry_refused_by_receiver` for credits.
       module Reason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::InboundACHTransferTransferReturnParams::Reason) }

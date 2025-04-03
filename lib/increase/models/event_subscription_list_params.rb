@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::EventSubscriptions#list
-    class EventSubscriptionListParams < Increase::BaseModel
+    class EventSubscriptionListParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -50,7 +50,7 @@ module Increase
       #   #
       #   def initialize(cursor: nil, idempotency_key: nil, limit: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
     end
   end
 end

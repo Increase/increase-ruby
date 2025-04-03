@@ -8,7 +8,7 @@ module Increase
           type: Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::type_
         }
 
-      class DigitalWalletTokenRequestCreateResponse < Increase::BaseModel
+      class DigitalWalletTokenRequestCreateResponse < Increase::Internal::Type::BaseModel
         attr_accessor decline_reason: Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::decline_reason?
 
         attr_accessor digital_wallet_token_id: String?
@@ -30,7 +30,7 @@ module Increase
           | :webhook_declined
 
         module DeclineReason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The card is not active.
           CARD_NOT_ACTIVE: :card_not_active
@@ -50,7 +50,7 @@ module Increase
         type type_ = :inbound_digital_wallet_token_request_simulation_result
 
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_DIGITAL_WALLET_TOKEN_REQUEST_SIMULATION_RESULT: :inbound_digital_wallet_token_request_simulation_result
 

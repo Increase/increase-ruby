@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::BookkeepingAccounts#balance
-    class BookkeepingBalanceLookup < Increase::BaseModel
+    class BookkeepingBalanceLookup < Increase::Internal::Type::BaseModel
       # @!attribute balance
       #   The Bookkeeping Account's current balance, representing the sum of all
       #     Bookkeeping Entries on the Bookkeeping Account.
@@ -34,14 +34,14 @@ module Increase
       #   #
       #   def initialize(balance:, bookkeeping_account_id:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_balance_lookup`.
       #
       # @see Increase::Models::BookkeepingBalanceLookup#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_BALANCE_LOOKUP = :bookkeeping_balance_lookup
 

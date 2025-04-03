@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BookkeepingEntryListParams < Increase::BaseModel
+    class BookkeepingEntryListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -33,7 +33,7 @@ module Increase
           account_id: String,
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

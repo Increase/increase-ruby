@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::ACHTransfers#create_notification_of_change
-      class ACHTransferCreateNotificationOfChangeParams < Increase::BaseModel
+      class ACHTransferCreateNotificationOfChangeParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -29,11 +29,11 @@ module Increase
         #   #
         #   def initialize(change_code:, corrected_data:, request_options: {}, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The reason for the notification of change.
         module ChangeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number was incorrect.
           INCORRECT_ACCOUNT_NUMBER = :incorrect_account_number

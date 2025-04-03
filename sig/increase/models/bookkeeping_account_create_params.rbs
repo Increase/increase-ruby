@@ -9,7 +9,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class BookkeepingAccountCreateParams < Increase::BaseModel
+    class BookkeepingAccountCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -42,7 +42,7 @@ module Increase
       type compliance_category = :commingled_cash | :customer_balance
 
       module ComplianceCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A cash in an commingled Increase Account.
         COMMINGLED_CASH: :commingled_cash

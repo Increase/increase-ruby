@@ -9,7 +9,7 @@ module Increase
         type: Increase::Models::EntitySupplementalDocument::type_
       }
 
-    class EntitySupplementalDocument < Increase::BaseModel
+    class EntitySupplementalDocument < Increase::Internal::Type::BaseModel
       attr_accessor created_at: Time
 
       attr_accessor entity_id: String
@@ -33,7 +33,7 @@ module Increase
       type type_ = :entity_supplemental_document
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         ENTITY_SUPPLEMENTAL_DOCUMENT: :entity_supplemental_document
 

@@ -8,7 +8,7 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class ACHTransferCreateNotificationOfChangeParams < Increase::BaseModel
+      class ACHTransferCreateNotificationOfChangeParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -46,7 +46,7 @@ module Increase
           | :incorrect_transaction_code_by_originating_depository_financial_institution
 
         module ChangeCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The account number was incorrect.
           INCORRECT_ACCOUNT_NUMBER: :incorrect_account_number

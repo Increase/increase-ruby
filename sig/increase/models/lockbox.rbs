@@ -13,7 +13,7 @@ module Increase
         type: Increase::Models::Lockbox::type_
       }
 
-    class Lockbox < Increase::BaseModel
+    class Lockbox < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -56,7 +56,7 @@ module Increase
           state: String
         }
 
-      class Address < Increase::BaseModel
+      class Address < Increase::Internal::Type::BaseModel
         attr_accessor city: String
 
         attr_accessor line1: String
@@ -84,7 +84,7 @@ module Increase
       type status = :active | :inactive
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # This Lockbox is active. Checks mailed to it will be deposited automatically.
         ACTIVE: :active
@@ -98,7 +98,7 @@ module Increase
       type type_ = :lockbox
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         LOCKBOX: :lockbox
 

@@ -11,7 +11,7 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class InterestPaymentCreateParams < Increase::BaseModel
+      class InterestPaymentCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

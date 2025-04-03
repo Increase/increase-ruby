@@ -11,7 +11,7 @@ module Increase
           client_secret: String,
           code: String,
           production_token: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::OAuthToken)
       end

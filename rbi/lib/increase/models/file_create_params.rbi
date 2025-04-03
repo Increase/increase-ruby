@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class FileCreateParams < Increase::BaseModel
+    class FileCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -28,7 +28,7 @@ module Increase
           file: T.any(IO, StringIO),
           purpose: Increase::Models::FileCreateParams::Purpose::OrSymbol,
           description: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -51,7 +51,7 @@ module Increase
 
       # What the File will be used for in Increase's systems.
       module Purpose
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::FileCreateParams::Purpose) }
         OrSymbol =

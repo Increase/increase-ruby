@@ -4,7 +4,7 @@ module Increase
       type wire_transfer_submit_params =
         {  } & Increase::Internal::Type::request_parameters
 
-      class WireTransferSubmitParams < Increase::BaseModel
+      class WireTransferSubmitParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 

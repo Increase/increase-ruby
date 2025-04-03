@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::InboundFundsHolds#release
-      class InboundFundsHoldReleaseResponse < Increase::BaseModel
+      class InboundFundsHoldReleaseResponse < Increase::Internal::Type::BaseModel
         # @!attribute id
         #   The Inbound Funds Hold identifier.
         #
@@ -101,14 +101,14 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         #   currency.
         #
         # @see Increase::Models::Simulations::InboundFundsHoldReleaseResponse#currency
         module Currency
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Canadian Dollar (CAD)
           CAD = :CAD
@@ -139,7 +139,7 @@ module Increase
         #
         # @see Increase::Models::Simulations::InboundFundsHoldReleaseResponse#status
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Funds are still being held.
           HELD = :held
@@ -159,7 +159,7 @@ module Increase
         #
         # @see Increase::Models::Simulations::InboundFundsHoldReleaseResponse#type
         module Type
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 

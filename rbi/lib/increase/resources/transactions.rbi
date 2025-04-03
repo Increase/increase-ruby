@@ -7,7 +7,7 @@ module Increase
       sig do
         params(
           transaction_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Transaction)
       end
@@ -22,12 +22,12 @@ module Increase
       sig do
         params(
           account_id: String,
-          category: T.any(Increase::Models::TransactionListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::TransactionListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::TransactionListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::TransactionListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           limit: Integer,
           route_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::Transaction])
       end

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class AccountBalanceParams < Increase::BaseModel
+    class AccountBalanceParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -14,13 +14,7 @@ module Increase
       attr_writer :at_time
 
       sig do
-        params(
-          at_time: Time,
-          request_options: T.any(
-            Increase::RequestOptions,
-            Increase::Internal::Util::AnyHash
-          )
-        )
+        params(at_time: Time, request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           .returns(T.attached_class)
       end
       def self.new(at_time: nil, request_options: {})

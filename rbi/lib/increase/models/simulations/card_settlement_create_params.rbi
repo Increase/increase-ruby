@@ -3,7 +3,7 @@
 module Increase
   module Models
     module Simulations
-      class CardSettlementCreateParams < Increase::BaseModel
+      class CardSettlementCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -29,7 +29,7 @@ module Increase
             card_id: String,
             pending_transaction_id: String,
             amount: Integer,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
           )
             .returns(T.attached_class)
         end

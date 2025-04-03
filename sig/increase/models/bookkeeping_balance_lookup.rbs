@@ -7,7 +7,7 @@ module Increase
         type: Increase::Models::BookkeepingBalanceLookup::type_
       }
 
-    class BookkeepingBalanceLookup < Increase::BaseModel
+    class BookkeepingBalanceLookup < Increase::Internal::Type::BaseModel
       attr_accessor balance: Integer
 
       attr_accessor bookkeeping_account_id: String
@@ -25,7 +25,7 @@ module Increase
       type type_ = :bookkeeping_balance_lookup
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_BALANCE_LOOKUP: :bookkeeping_balance_lookup
 

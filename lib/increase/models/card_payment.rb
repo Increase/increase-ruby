@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::CardPayments#retrieve
-    class CardPayment < Increase::BaseModel
+    class CardPayment < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Card Payment identifier.
       #
@@ -39,7 +39,7 @@ module Increase
       #   The interactions related to this card payment.
       #
       #   @return [Array<Increase::Models::CardPayment::Element>]
-      required :elements, -> { Increase::ArrayOf[Increase::Models::CardPayment::Element] }
+      required :elements, -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element] }
 
       # @!attribute physical_card_id
       #   The Physical Card identifier for this payment.
@@ -89,9 +89,9 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class Element < Increase::BaseModel
+      class Element < Increase::Internal::Type::BaseModel
         # @!attribute card_authentication
         #   A Card Authentication object. This field will be present in the JSON response if
         #     and only if `category` is equal to `card_authentication`. Card Authentications
@@ -204,7 +204,7 @@ module Increase
         #     contain an empty object, otherwise it will contain null.
         #
         #   @return [Object, nil]
-        required :other, Increase::Unknown, nil?: true
+        required :other, Increase::Internal::Type::Unknown, nil?: true
 
         # @!parse
         #   # @param card_authentication [Increase::Models::CardPayment::Element::CardAuthentication, nil]
@@ -240,10 +240,10 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # @see Increase::Models::CardPayment::Element#card_authentication
-        class CardAuthentication < Increase::BaseModel
+        class CardAuthentication < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Authentication identifier.
           #
@@ -406,13 +406,13 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The category of the card authentication attempt.
           #
           # @see Increase::Models::CardPayment::Element::CardAuthentication#category
           module Category
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The authentication attempt is for a payment.
             PAYMENT_AUTHENTICATION = :payment_authentication
@@ -428,13 +428,13 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardAuthentication#challenge
-          class Challenge < Increase::BaseModel
+          class Challenge < Increase::Internal::Type::BaseModel
             # @!attribute attempts
             #   Details about the challenge verification attempts, if any happened.
             #
             #   @return [Array<Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt>]
             required :attempts,
-                     -> { Increase::ArrayOf[Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt] }
+                     -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt] }
 
             # @!attribute created_at
             #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card
@@ -474,9 +474,9 @@ module Increase
             #   #
             #   def initialize(attempts:, created_at:, one_time_code:, verification_method:, verification_value:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-            class Attempt < Increase::BaseModel
+            class Attempt < Increase::Internal::Type::BaseModel
               # @!attribute created_at
               #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time of the Card
               #     Authentication Challenge Attempt.
@@ -497,13 +497,13 @@ module Increase
               #   #
               #   def initialize(created_at:, outcome:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The outcome of the Card Authentication Challenge Attempt.
               #
               # @see Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt#outcome
               module Outcome
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # The attempt was successful.
                 SUCCESSFUL = :successful
@@ -523,7 +523,7 @@ module Increase
             #
             # @see Increase::Models::CardPayment::Element::CardAuthentication::Challenge#verification_method
             module VerificationMethod
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # The one-time code was sent via text message.
               TEXT_MESSAGE = :text_message
@@ -546,7 +546,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthentication#deny_reason
           module DenyReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The group was locked.
             GROUP_LOCKED = :group_locked
@@ -577,7 +577,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthentication#device_channel
           module DeviceChannel
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The authentication attempt was made from an app.
             APP = :app
@@ -599,7 +599,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthentication#status
           module Status
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The authentication attempt was denied.
             DENIED = :denied
@@ -640,7 +640,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthentication#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHENTICATION = :card_authentication
 
@@ -653,7 +653,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_authorization
-        class CardAuthorization < Increase::BaseModel
+        class CardAuthorization < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Authorization identifier.
           #
@@ -902,14 +902,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # Whether this authorization was approved by Increase, the card network through
           #   stand-in processing, or the user through a real-time decision.
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorization#actioner
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER = :user
@@ -932,7 +932,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorization#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -964,7 +964,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorization#direction
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT = :settlement
@@ -980,7 +980,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardAuthorization#network_details
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             # @!attribute category
             #   The payment network used to process this card authorization.
             #
@@ -1004,13 +1004,13 @@ module Increase
             #   #
             #   def initialize(category:, visa:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The payment network used to process this card authorization.
             #
             # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails#category
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA = :visa
@@ -1023,7 +1023,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails#visa
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               # @!attribute electronic_commerce_indicator
               #   For electronic commerce transactions, this identifies the level of security used
               #     in obtaining the customer's payment credential. For mail or telephone order
@@ -1061,7 +1061,7 @@ module Increase
               #   #
               #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # For electronic commerce transactions, this identifies the level of security used
               #   in obtaining the customer's payment credential. For mail or telephone order
@@ -1069,7 +1069,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa#electronic_commerce_indicator
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER = :mail_phone_order
@@ -1108,7 +1108,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa#point_of_service_entry_mode
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN = :unknown
@@ -1152,7 +1152,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa#stand_in_processing_reason
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR = :issuer_error
@@ -1187,7 +1187,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardAuthorization#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -1219,7 +1219,7 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -1227,7 +1227,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorization#processing_category
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING = :account_funding
@@ -1259,7 +1259,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorization#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHORIZATION = :card_authorization
 
@@ -1271,7 +1271,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardAuthorization#verification
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             # @!attribute card_verification_code
             #   Fields related to verification of the Card Verification Code, a 3-digit code on
             #     the back of the card.
@@ -1296,10 +1296,10 @@ module Increase
             #   #
             #   def initialize(card_verification_code:, cardholder_address:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification#card_verification_code
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               # @!attribute result
               #   The result of verifying the Card Verification Code.
               #
@@ -1315,13 +1315,13 @@ module Increase
               #   #
               #   def initialize(result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The result of verifying the Card Verification Code.
               #
               # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -1341,7 +1341,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification#cardholder_address
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               # @!attribute actual_line1
               #   Line 1 of the address on file for the cardholder.
               #
@@ -1386,13 +1386,13 @@ module Increase
               #   #
               #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The address verification result returned to the card network.
               #
               # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -1423,7 +1423,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_authorization_expiration
-        class CardAuthorizationExpiration < Increase::BaseModel
+        class CardAuthorizationExpiration < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Authorization Expiration identifier.
           #
@@ -1480,14 +1480,14 @@ module Increase
           #   #
           #   def initialize(id:, card_authorization_id:, currency:, expired_amount:, network:, type:, **) = super
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
           #   currency.
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorizationExpiration#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -1518,7 +1518,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorizationExpiration#network
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA = :visa
@@ -1535,7 +1535,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardAuthorizationExpiration#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHORIZATION_EXPIRATION = :card_authorization_expiration
 
@@ -1548,7 +1548,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_decline
-        class CardDecline < Increase::BaseModel
+        class CardDecline < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Decline identifier.
           #
@@ -1795,14 +1795,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # Whether this authorization was approved by Increase, the card network through
           #   stand-in processing, or the user through a real-time decision.
           #
           # @see Increase::Models::CardPayment::Element::CardDecline#actioner
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER = :user
@@ -1825,7 +1825,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardDecline#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -1857,7 +1857,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardDecline#direction
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT = :settlement
@@ -1873,7 +1873,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardDecline#network_details
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             # @!attribute category
             #   The payment network used to process this card authorization.
             #
@@ -1897,13 +1897,13 @@ module Increase
             #   #
             #   def initialize(category:, visa:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The payment network used to process this card authorization.
             #
             # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails#category
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA = :visa
@@ -1916,7 +1916,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails#visa
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               # @!attribute electronic_commerce_indicator
               #   For electronic commerce transactions, this identifies the level of security used
               #     in obtaining the customer's payment credential. For mail or telephone order
@@ -1954,7 +1954,7 @@ module Increase
               #   #
               #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # For electronic commerce transactions, this identifies the level of security used
               #   in obtaining the customer's payment credential. For mail or telephone order
@@ -1962,7 +1962,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa#electronic_commerce_indicator
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER = :mail_phone_order
@@ -2001,7 +2001,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa#point_of_service_entry_mode
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN = :unknown
@@ -2045,7 +2045,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa#stand_in_processing_reason
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR = :issuer_error
@@ -2080,7 +2080,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardDecline#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -2112,7 +2112,7 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -2120,7 +2120,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardDecline#processing_category
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING = :account_funding
@@ -2152,7 +2152,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardDecline#real_time_decision_reason
           module RealTimeDecisionReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
             INSUFFICIENT_FUNDS = :insufficient_funds
@@ -2183,7 +2183,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardDecline#reason
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account has been closed.
             ACCOUNT_CLOSED = :account_closed
@@ -2244,7 +2244,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardDecline#verification
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             # @!attribute card_verification_code
             #   Fields related to verification of the Card Verification Code, a 3-digit code on
             #     the back of the card.
@@ -2269,10 +2269,10 @@ module Increase
             #   #
             #   def initialize(card_verification_code:, cardholder_address:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::CardPayment::Element::CardDecline::Verification#card_verification_code
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               # @!attribute result
               #   The result of verifying the Card Verification Code.
               #
@@ -2288,13 +2288,13 @@ module Increase
               #   #
               #   def initialize(result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The result of verifying the Card Verification Code.
               #
               # @see Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -2314,7 +2314,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::Verification#cardholder_address
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               # @!attribute actual_line1
               #   Line 1 of the address on file for the cardholder.
               #
@@ -2359,13 +2359,13 @@ module Increase
               #   #
               #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The address verification result returned to the card network.
               #
               # @see Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -2396,7 +2396,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_fuel_confirmation
-        class CardFuelConfirmation < Increase::BaseModel
+        class CardFuelConfirmation < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Fuel Confirmation identifier.
           #
@@ -2479,14 +2479,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the increment's
           #   currency.
           #
           # @see Increase::Models::CardPayment::Element::CardFuelConfirmation#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -2517,7 +2517,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardFuelConfirmation#network
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA = :visa
@@ -2530,7 +2530,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardFuelConfirmation#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -2562,7 +2562,7 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -2570,7 +2570,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardFuelConfirmation#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_FUEL_CONFIRMATION = :card_fuel_confirmation
 
@@ -2583,7 +2583,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_increment
-        class CardIncrement < Increase::BaseModel
+        class CardIncrement < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Increment identifier.
           #
@@ -2700,14 +2700,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # Whether this authorization was approved by Increase, the card network through
           #   stand-in processing, or the user through a real-time decision.
           #
           # @see Increase::Models::CardPayment::Element::CardIncrement#actioner
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER = :user
@@ -2730,7 +2730,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardIncrement#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -2761,7 +2761,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardIncrement#network
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA = :visa
@@ -2774,7 +2774,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardIncrement#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -2806,7 +2806,7 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -2814,7 +2814,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardIncrement#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_INCREMENT = :card_increment
 
@@ -2827,7 +2827,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_refund
-        class CardRefund < Increase::BaseModel
+        class CardRefund < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Refund identifier.
           #
@@ -3004,10 +3004,10 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::CardPayment::Element::CardRefund#cashback
-          class Cashback < Increase::BaseModel
+          class Cashback < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The cashback amount given as a string containing a decimal number. The amount is
             #     a positive number if it will be credited to you (e.g., settlements) and a
@@ -3031,13 +3031,13 @@ module Increase
             #   #
             #   def initialize(amount:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
             # @see Increase::Models::CardPayment::Element::CardRefund::Cashback#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -3070,7 +3070,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardRefund#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -3098,7 +3098,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardRefund#interchange
-          class Interchange < Increase::BaseModel
+          class Interchange < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number. The amount
             #     is a positive number if it is credited to Increase (e.g., settlements) and a
@@ -3129,14 +3129,14 @@ module Increase
             #   #
             #   def initialize(amount:, code:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #   reimbursement.
             #
             # @see Increase::Models::CardPayment::Element::CardRefund::Interchange#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -3165,7 +3165,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardRefund#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute acquirer_business_id
             #   A network assigned business ID that identifies the acquirer that processed this
             #     transaction.
@@ -3195,11 +3195,11 @@ module Increase
             #   #
             #   def initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # @see Increase::Models::CardPayment::Element::CardRefund#purchase_details
-          class PurchaseDetails < Increase::BaseModel
+          class PurchaseDetails < Increase::Internal::Type::BaseModel
             # @!attribute car_rental
             #   Fields specific to car rentals.
             #
@@ -3301,10 +3301,10 @@ module Increase
             #     super
             #   end
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails#car_rental
-            class CarRental < Increase::BaseModel
+            class CarRental < Increase::Internal::Type::BaseModel
               # @!attribute car_class_code
               #   Code indicating the vehicle's class.
               #
@@ -3455,13 +3455,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -3493,7 +3493,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -3510,7 +3510,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails#lodging
-            class Lodging < Increase::BaseModel
+            class Lodging < Increase::Internal::Type::BaseModel
               # @!attribute check_in_date
               #   Date the customer checked in.
               #
@@ -3660,13 +3660,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -3701,7 +3701,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -3721,7 +3721,7 @@ module Increase
             #
             # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails#purchase_identifier_format
             module PurchaseIdentifierFormat
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Free text
               FREE_TEXT = :free_text
@@ -3746,7 +3746,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails#travel
-            class Travel < Increase::BaseModel
+            class Travel < Increase::Internal::Type::BaseModel
               # @!attribute ancillary
               #   Ancillary purchases in addition to the airfare.
               #
@@ -3826,7 +3826,7 @@ module Increase
               #
               #   @return [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg>, nil]
               required :trip_legs,
-                       -> { Increase::ArrayOf[Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg] },
+                       -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg] },
                        nil?: true
 
               # @!parse
@@ -3863,10 +3863,10 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel#ancillary
-              class Ancillary < Increase::BaseModel
+              class Ancillary < Increase::Internal::Type::BaseModel
                 # @!attribute connected_ticket_document_number
                 #   If this purchase has a connection or relationship to another purchase, such as a
                 #     baggage fee for a passenger transport ticket, this field should contain the
@@ -3894,7 +3894,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> { Increase::ArrayOf[Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service] }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -3922,13 +3922,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates the reason for a credit to the cardholder.
                 #
                 # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary#credit_reason_indicator
                 module CreditReasonIndicator
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # No credit
                   NO_CREDIT = :no_credit
@@ -3951,7 +3951,7 @@ module Increase
                   #   def self.values; end
                 end
 
-                class Service < Increase::BaseModel
+                class Service < Increase::Internal::Type::BaseModel
                   # @!attribute category
                   #   Category of the ancillary service.
                   #
@@ -3972,13 +3972,13 @@ module Increase
                   #   #
                   #   def initialize(category:, sub_category:, **) = super
 
-                  # def initialize: (Hash | Increase::BaseModel) -> void
+                  # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                   # Category of the ancillary service.
                   #
                   # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service#category
                   module Category
-                    extend Increase::Enum
+                    extend Increase::Internal::Type::Enum
 
                     # None
                     NONE = :none
@@ -4065,7 +4065,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel#credit_reason_indicator
               module CreditReasonIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No credit
                 NO_CREDIT = :no_credit
@@ -4098,7 +4098,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel#restricted_ticket_indicator
               module RestrictedTicketIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No restrictions
                 NO_RESTRICTIONS = :no_restrictions
@@ -4117,7 +4117,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel#ticket_change_indicator
               module TicketChangeIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # None
                 NONE = :none
@@ -4135,7 +4135,7 @@ module Increase
                 #   def self.values; end
               end
 
-              class TripLeg < Increase::BaseModel
+              class TripLeg < Increase::Internal::Type::BaseModel
                 # @!attribute carrier_code
                 #   Carrier code (e.g., United Airlines, Jet Blue, etc.).
                 #
@@ -4194,13 +4194,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
                 # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg#stop_over_code
                 module StopOverCode
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # None
                   NONE = :none
@@ -4226,7 +4226,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardRefund#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_REFUND = :card_refund
 
@@ -4239,7 +4239,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_reversal
-        class CardReversal < Increase::BaseModel
+        class CardReversal < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Reversal identifier.
           #
@@ -4407,14 +4407,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
           #   currency.
           #
           # @see Increase::Models::CardPayment::Element::CardReversal#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -4445,7 +4445,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardReversal#network
           module Network
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Visa
             VISA = :visa
@@ -4458,7 +4458,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardReversal#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -4490,14 +4490,14 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # Why this reversal was initiated.
           #
           # @see Increase::Models::CardPayment::Element::CardReversal#reversal_reason
           module ReversalReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The Card Reversal was initiated at the customer's request.
             REVERSED_BY_CUSTOMER = :reversed_by_customer
@@ -4523,7 +4523,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardReversal#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_REVERSAL = :card_reversal
 
@@ -4536,7 +4536,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_settlement
-        class CardSettlement < Increase::BaseModel
+        class CardSettlement < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Settlement identifier.
           #
@@ -4732,10 +4732,10 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#cashback
-          class Cashback < Increase::BaseModel
+          class Cashback < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The cashback amount given as a string containing a decimal number. The amount is
             #     a positive number if it will be credited to you (e.g., settlements) and a
@@ -4760,13 +4760,13 @@ module Increase
             #   #
             #   def initialize(amount:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
             # @see Increase::Models::CardPayment::Element::CardSettlement::Cashback#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -4799,7 +4799,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardSettlement#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -4827,7 +4827,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#interchange
-          class Interchange < Increase::BaseModel
+          class Interchange < Increase::Internal::Type::BaseModel
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number. The amount
             #     is a positive number if it is credited to Increase (e.g., settlements) and a
@@ -4859,14 +4859,14 @@ module Increase
             #   #
             #   def initialize(amount:, code:, currency:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #   reimbursement.
             #
             # @see Increase::Models::CardPayment::Element::CardSettlement::Interchange#currency
             module Currency
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Canadian Dollar (CAD)
               CAD = :CAD
@@ -4895,7 +4895,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute acquirer_business_id
             #   A network assigned business ID that identifies the acquirer that processed this
             #     transaction.
@@ -4925,11 +4925,11 @@ module Increase
             #   #
             #   def initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#purchase_details
-          class PurchaseDetails < Increase::BaseModel
+          class PurchaseDetails < Increase::Internal::Type::BaseModel
             # @!attribute car_rental
             #   Fields specific to car rentals.
             #
@@ -5031,10 +5031,10 @@ module Increase
             #     super
             #   end
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails#car_rental
-            class CarRental < Increase::BaseModel
+            class CarRental < Increase::Internal::Type::BaseModel
               # @!attribute car_class_code
               #   Code indicating the vehicle's class.
               #
@@ -5185,13 +5185,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -5223,7 +5223,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -5240,7 +5240,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails#lodging
-            class Lodging < Increase::BaseModel
+            class Lodging < Increase::Internal::Type::BaseModel
               # @!attribute check_in_date
               #   Date the customer checked in.
               #
@@ -5390,13 +5390,13 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging#extra_charges
               module ExtraCharges
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No extra charge
                 NO_EXTRA_CHARGE = :no_extra_charge
@@ -5431,7 +5431,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging#no_show_indicator
               module NoShowIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Not applicable
                 NOT_APPLICABLE = :not_applicable
@@ -5451,7 +5451,7 @@ module Increase
             #
             # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails#purchase_identifier_format
             module PurchaseIdentifierFormat
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Free text
               FREE_TEXT = :free_text
@@ -5476,7 +5476,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails#travel
-            class Travel < Increase::BaseModel
+            class Travel < Increase::Internal::Type::BaseModel
               # @!attribute ancillary
               #   Ancillary purchases in addition to the airfare.
               #
@@ -5556,7 +5556,7 @@ module Increase
               #
               #   @return [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg>, nil]
               required :trip_legs,
-                       -> { Increase::ArrayOf[Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg] },
+                       -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg] },
                        nil?: true
 
               # @!parse
@@ -5593,10 +5593,10 @@ module Increase
               #     super
               #   end
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel#ancillary
-              class Ancillary < Increase::BaseModel
+              class Ancillary < Increase::Internal::Type::BaseModel
                 # @!attribute connected_ticket_document_number
                 #   If this purchase has a connection or relationship to another purchase, such as a
                 #     baggage fee for a passenger transport ticket, this field should contain the
@@ -5624,7 +5624,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> { Increase::ArrayOf[Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service] }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -5652,13 +5652,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates the reason for a credit to the cardholder.
                 #
                 # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary#credit_reason_indicator
                 module CreditReasonIndicator
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # No credit
                   NO_CREDIT = :no_credit
@@ -5681,7 +5681,7 @@ module Increase
                   #   def self.values; end
                 end
 
-                class Service < Increase::BaseModel
+                class Service < Increase::Internal::Type::BaseModel
                   # @!attribute category
                   #   Category of the ancillary service.
                   #
@@ -5702,13 +5702,13 @@ module Increase
                   #   #
                   #   def initialize(category:, sub_category:, **) = super
 
-                  # def initialize: (Hash | Increase::BaseModel) -> void
+                  # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                   # Category of the ancillary service.
                   #
                   # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service#category
                   module Category
-                    extend Increase::Enum
+                    extend Increase::Internal::Type::Enum
 
                     # None
                     NONE = :none
@@ -5795,7 +5795,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel#credit_reason_indicator
               module CreditReasonIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No credit
                 NO_CREDIT = :no_credit
@@ -5828,7 +5828,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel#restricted_ticket_indicator
               module RestrictedTicketIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No restrictions
                 NO_RESTRICTIONS = :no_restrictions
@@ -5847,7 +5847,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel#ticket_change_indicator
               module TicketChangeIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # None
                 NONE = :none
@@ -5865,7 +5865,7 @@ module Increase
                 #   def self.values; end
               end
 
-              class TripLeg < Increase::BaseModel
+              class TripLeg < Increase::Internal::Type::BaseModel
                 # @!attribute carrier_code
                 #   Carrier code (e.g., United Airlines, Jet Blue, etc.).
                 #
@@ -5924,13 +5924,13 @@ module Increase
                 #     super
                 #   end
 
-                # def initialize: (Hash | Increase::BaseModel) -> void
+                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
                 # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg#stop_over_code
                 module StopOverCode
-                  extend Increase::Enum
+                  extend Increase::Internal::Type::Enum
 
                   # None
                   NONE = :none
@@ -5956,7 +5956,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardSettlement#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_SETTLEMENT = :card_settlement
 
@@ -5969,7 +5969,7 @@ module Increase
         end
 
         # @see Increase::Models::CardPayment::Element#card_validation
-        class CardValidation < Increase::BaseModel
+        class CardValidation < Increase::Internal::Type::BaseModel
           # @!attribute id
           #   The Card Validation identifier.
           #
@@ -6155,14 +6155,14 @@ module Increase
           #     super
           #   end
 
-          # def initialize: (Hash | Increase::BaseModel) -> void
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
           # Whether this authorization was approved by Increase, the card network through
           #   stand-in processing, or the user through a real-time decision.
           #
           # @see Increase::Models::CardPayment::Element::CardValidation#actioner
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER = :user
@@ -6185,7 +6185,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardValidation#currency
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD = :CAD
@@ -6213,7 +6213,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardValidation#network_details
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             # @!attribute category
             #   The payment network used to process this card authorization.
             #
@@ -6237,13 +6237,13 @@ module Increase
             #   #
             #   def initialize(category:, visa:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # The payment network used to process this card authorization.
             #
             # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails#category
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA = :visa
@@ -6256,7 +6256,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails#visa
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               # @!attribute electronic_commerce_indicator
               #   For electronic commerce transactions, this identifies the level of security used
               #     in obtaining the customer's payment credential. For mail or telephone order
@@ -6294,7 +6294,7 @@ module Increase
               #   #
               #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # For electronic commerce transactions, this identifies the level of security used
               #   in obtaining the customer's payment credential. For mail or telephone order
@@ -6302,7 +6302,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa#electronic_commerce_indicator
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER = :mail_phone_order
@@ -6341,7 +6341,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa#point_of_service_entry_mode
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN = :unknown
@@ -6385,7 +6385,7 @@ module Increase
               #
               # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa#stand_in_processing_reason
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR = :issuer_error
@@ -6420,7 +6420,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardValidation#network_identifiers
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #     Expected to be unique per acquirer within a window of time. For some card
@@ -6452,7 +6452,7 @@ module Increase
             #   #
             #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -6460,7 +6460,7 @@ module Increase
           #
           # @see Increase::Models::CardPayment::Element::CardValidation#type
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_VALIDATION = :card_validation
 
@@ -6472,7 +6472,7 @@ module Increase
           end
 
           # @see Increase::Models::CardPayment::Element::CardValidation#verification
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             # @!attribute card_verification_code
             #   Fields related to verification of the Card Verification Code, a 3-digit code on
             #     the back of the card.
@@ -6497,10 +6497,10 @@ module Increase
             #   #
             #   def initialize(card_verification_code:, cardholder_address:, **) = super
 
-            # def initialize: (Hash | Increase::BaseModel) -> void
+            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
             # @see Increase::Models::CardPayment::Element::CardValidation::Verification#card_verification_code
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               # @!attribute result
               #   The result of verifying the Card Verification Code.
               #
@@ -6516,13 +6516,13 @@ module Increase
               #   #
               #   def initialize(result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The result of verifying the Card Verification Code.
               #
               # @see Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -6542,7 +6542,7 @@ module Increase
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::Verification#cardholder_address
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               # @!attribute actual_line1
               #   Line 1 of the address on file for the cardholder.
               #
@@ -6587,13 +6587,13 @@ module Increase
               #   #
               #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
 
-              # def initialize: (Hash | Increase::BaseModel) -> void
+              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
               # The address verification result returned to the card network.
               #
               # @see Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress#result
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED = :not_checked
@@ -6628,7 +6628,7 @@ module Increase
         #
         # @see Increase::Models::CardPayment::Element#category
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Card Authorization: details will be under the `card_authorization` object.
           CARD_AUTHORIZATION = :card_authorization
@@ -6672,7 +6672,7 @@ module Increase
       end
 
       # @see Increase::Models::CardPayment#state
-      class State < Increase::BaseModel
+      class State < Increase::Internal::Type::BaseModel
         # @!attribute authorized_amount
         #   The total authorized amount in the minor unit of the transaction's currency. For
         #     dollars, for example, this is cents.
@@ -6719,7 +6719,7 @@ module Increase
         #   #
         #   def initialize(authorized_amount:, fuel_confirmed_amount:, incremented_amount:, reversed_amount:, settled_amount:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -6727,7 +6727,7 @@ module Increase
       #
       # @see Increase::Models::CardPayment#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD_PAYMENT = :card_payment
 

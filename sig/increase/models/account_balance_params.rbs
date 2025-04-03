@@ -3,7 +3,7 @@ module Increase
     type account_balance_params =
       { at_time: Time } & Increase::Internal::Type::request_parameters
 
-    class AccountBalanceParams < Increase::BaseModel
+    class AccountBalanceParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

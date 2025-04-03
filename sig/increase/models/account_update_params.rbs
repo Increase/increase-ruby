@@ -3,7 +3,7 @@ module Increase
     type account_update_params =
       { name: String } & Increase::Internal::Type::request_parameters
 
-    class AccountUpdateParams < Increase::BaseModel
+    class AccountUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

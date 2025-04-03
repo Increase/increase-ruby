@@ -3,7 +3,7 @@ module Increase
     type inbound_wire_drawdown_request_retrieve_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class InboundWireDrawdownRequestRetrieveParams < Increase::BaseModel
+    class InboundWireDrawdownRequestRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

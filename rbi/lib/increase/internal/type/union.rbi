@@ -34,8 +34,8 @@ module Increase
         # @api private
         sig do
           params(
-            key: T.any(Symbol, Increase::Internal::Util::AnyHash, T.proc.returns(T.anything), T.anything),
-            spec: T.any(Increase::Internal::Util::AnyHash, T.proc.returns(T.anything), T.anything)
+            key: T.any(Symbol, Increase::Internal::AnyHash, T.proc.returns(T.anything), T.anything),
+            spec: T.any(Increase::Internal::AnyHash, T.proc.returns(T.anything), T.anything)
           )
             .void
         end

@@ -13,7 +13,7 @@ module Increase
         type: Increase::Models::PhysicalCard::type_
       }
 
-    class PhysicalCard < Increase::BaseModel
+    class PhysicalCard < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor card_id: String
@@ -48,7 +48,7 @@ module Increase
 
       type cardholder = { first_name: String, last_name: String }
 
-      class Cardholder < Increase::BaseModel
+      class Cardholder < Increase::Internal::Type::BaseModel
         attr_accessor first_name: String
 
         attr_accessor last_name: String
@@ -66,7 +66,7 @@ module Increase
           tracking: Increase::Models::PhysicalCard::Shipment::Tracking?
         }
 
-      class Shipment < Increase::BaseModel
+      class Shipment < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::Models::PhysicalCard::Shipment::Address
 
         attr_accessor method_: Increase::Models::PhysicalCard::Shipment::method_
@@ -95,7 +95,7 @@ module Increase
             state: String
           }
 
-        class Address < Increase::BaseModel
+        class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
           attr_accessor line1: String
@@ -126,7 +126,7 @@ module Increase
         type method_ = :usps | :fedex_priority_overnight | :fedex_2_day
 
         module Method
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # USPS Post with tracking.
           USPS: :usps
@@ -150,7 +150,7 @@ module Increase
           | :returned
 
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The physical card has not yet been shipped.
           PENDING: :pending
@@ -184,7 +184,7 @@ module Increase
             shipped_at: Time
           }
 
-        class Tracking < Increase::BaseModel
+        class Tracking < Increase::Internal::Type::BaseModel
           attr_accessor number: String
 
           attr_accessor return_number: String?
@@ -207,7 +207,7 @@ module Increase
       type status = :active | :disabled | :canceled
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The physical card is active.
         ACTIVE: :active
@@ -224,7 +224,7 @@ module Increase
       type type_ = :physical_card
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PHYSICAL_CARD: :physical_card
 

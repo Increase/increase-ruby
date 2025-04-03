@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::InboundACHTransfers#create
-      class InboundACHTransferCreateParams < Increase::BaseModel
+      class InboundACHTransferCreateParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -147,11 +147,11 @@ module Increase
         #     super
         #   end
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The standard entry class code for the transfer.
         module StandardEntryClassCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Corporate Credit and Debit (CCD).
           CORPORATE_CREDIT_OR_DEBIT = :corporate_credit_or_debit

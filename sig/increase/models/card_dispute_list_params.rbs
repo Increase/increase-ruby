@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class CardDisputeListParams < Increase::BaseModel
+    class CardDisputeListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -52,7 +52,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time
@@ -82,7 +82,7 @@ module Increase
       type status =
         { in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_] }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]?
 
         def in_=: (
@@ -104,7 +104,7 @@ module Increase
           | :won
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The Card Dispute is pending review.
           PENDING_REVIEWING: :pending_reviewing

@@ -13,7 +13,7 @@ module Increase
         sig do
           params(
             ach_transfer_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::ACHTransfer)
         end
@@ -31,7 +31,7 @@ module Increase
             ach_transfer_id: String,
             change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode::OrSymbol,
             corrected_data: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::ACHTransfer)
         end
@@ -54,7 +54,7 @@ module Increase
           params(
             ach_transfer_id: String,
             reason: Increase::Models::Simulations::ACHTransferReturnParams::Reason::OrSymbol,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::ACHTransfer)
         end
@@ -77,7 +77,7 @@ module Increase
         sig do
           params(
             ach_transfer_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::ACHTransfer)
         end
@@ -97,7 +97,7 @@ module Increase
         sig do
           params(
             ach_transfer_id: String,
-            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+            request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
           )
             .returns(Increase::Models::ACHTransfer)
         end

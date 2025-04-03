@@ -11,7 +11,7 @@ module Increase
         unauthenticated_url: String
       }
 
-    class FileLink < Increase::BaseModel
+    class FileLink < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
@@ -41,7 +41,7 @@ module Increase
       type type_ = :file_link
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         FILE_LINK: :file_link
 

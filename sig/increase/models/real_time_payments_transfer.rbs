@@ -29,7 +29,7 @@ module Increase
         ultimate_debtor_name: String?
       }
 
-    class RealTimePaymentsTransfer < Increase::BaseModel
+    class RealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -112,7 +112,7 @@ module Increase
 
       type acknowledgement = { acknowledged_at: Time }
 
-      class Acknowledgement < Increase::BaseModel
+      class Acknowledgement < Increase::Internal::Type::BaseModel
         attr_accessor acknowledged_at: Time
 
         def initialize: (acknowledged_at: Time) -> void
@@ -122,7 +122,7 @@ module Increase
 
       type approval = { approved_at: Time, approved_by: String? }
 
-      class Approval < Increase::BaseModel
+      class Approval < Increase::Internal::Type::BaseModel
         attr_accessor approved_at: Time
 
         attr_accessor approved_by: String?
@@ -134,7 +134,7 @@ module Increase
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
 
-      class Cancellation < Increase::BaseModel
+      class Cancellation < Increase::Internal::Type::BaseModel
         attr_accessor canceled_at: Time
 
         attr_accessor canceled_by: String?
@@ -152,7 +152,7 @@ module Increase
           user: Increase::Models::RealTimePaymentsTransfer::CreatedBy::User?
         }
 
-      class CreatedBy < Increase::BaseModel
+      class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey?
 
         attr_accessor category: Increase::Models::RealTimePaymentsTransfer::CreatedBy::category
@@ -172,7 +172,7 @@ module Increase
 
         type api_key = { description: String? }
 
-        class APIKey < Increase::BaseModel
+        class APIKey < Increase::Internal::Type::BaseModel
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
@@ -183,7 +183,7 @@ module Increase
         type category = :api_key | :oauth_application | :user
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # An API key. Details will be under the `api_key` object.
           API_KEY: :api_key
@@ -199,7 +199,7 @@ module Increase
 
         type oauth_application = { name: String }
 
-        class OAuthApplication < Increase::BaseModel
+        class OAuthApplication < Increase::Internal::Type::BaseModel
           attr_accessor name: String
 
           def initialize: (name: String) -> void
@@ -209,7 +209,7 @@ module Increase
 
         type user = { email: String }
 
-        class User < Increase::BaseModel
+        class User < Increase::Internal::Type::BaseModel
           attr_accessor email: String
 
           def initialize: (email: String) -> void
@@ -221,7 +221,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -251,7 +251,7 @@ module Increase
           rejected_at: Time?
         }
 
-      class Rejection < Increase::BaseModel
+      class Rejection < Increase::Internal::Type::BaseModel
         attr_accessor reject_reason_additional_information: String?
 
         attr_accessor reject_reason_code: Increase::Models::RealTimePaymentsTransfer::Rejection::reject_reason_code
@@ -290,7 +290,7 @@ module Increase
           | :other
 
         module RejectReasonCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The destination account is closed. Corresponds to the Real-Time Payments reason code `AC04`.
           ACCOUNT_CLOSED: :account_closed
@@ -370,7 +370,7 @@ module Increase
         | :complete
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The transfer is pending approval.
         PENDING_APPROVAL: :pending_approval
@@ -402,7 +402,7 @@ module Increase
       type submission =
         { submitted_at: Time?, transaction_identification: String }
 
-      class Submission < Increase::BaseModel
+      class Submission < Increase::Internal::Type::BaseModel
         attr_accessor submitted_at: Time?
 
         attr_accessor transaction_identification: String
@@ -418,7 +418,7 @@ module Increase
       type type_ = :real_time_payments_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         REAL_TIME_PAYMENTS_TRANSFER: :real_time_payments_transfer
 

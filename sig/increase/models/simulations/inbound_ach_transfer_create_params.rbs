@@ -17,7 +17,7 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class InboundACHTransferCreateParams < Increase::BaseModel
+      class InboundACHTransferCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -99,7 +99,7 @@ module Increase
           | :international_ach_transaction
 
         module StandardEntryClassCode
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Corporate Credit and Debit (CCD).
           CORPORATE_CREDIT_OR_DEBIT: :corporate_credit_or_debit

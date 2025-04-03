@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundWireDrawdownRequests#retrieve
-    class InboundWireDrawdownRequest < Increase::BaseModel
+    class InboundWireDrawdownRequest < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Wire drawdown request identifier.
       #
@@ -208,14 +208,14 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `inbound_wire_drawdown_request`.
       #
       # @see Increase::Models::InboundWireDrawdownRequest#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_WIRE_DRAWDOWN_REQUEST = :inbound_wire_drawdown_request
 

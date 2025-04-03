@@ -8,7 +8,7 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class CardDisputeActionParams < Increase::BaseModel
+      class CardDisputeActionParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -30,7 +30,7 @@ module Increase
           :pending_user_information | :accepted | :rejected | :lost | :won
 
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Increase has requested more information related to the Card Dispute from you.
           PENDING_USER_INFORMATION: :pending_user_information

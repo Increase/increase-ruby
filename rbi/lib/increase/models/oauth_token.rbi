@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class OAuthToken < Increase::BaseModel
+    class OAuthToken < Increase::Internal::Type::BaseModel
       # You may use this token in place of an API key to make OAuth requests on a user's
       #   behalf.
       sig { returns(String) }
@@ -46,7 +46,7 @@ module Increase
 
       # The type of OAuth token.
       module TokenType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthToken::TokenType) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::OAuthToken::TokenType::TaggedSymbol) }
@@ -61,7 +61,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `oauth_token`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthToken::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::OAuthToken::Type::TaggedSymbol) }

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundMailItems#retrieve
-    class InboundMailItem < Increase::BaseModel
+    class InboundMailItem < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Inbound Mail Item identifier.
       #
@@ -69,13 +69,13 @@ module Increase
       #   #
       #   def initialize(id:, created_at:, file_id:, lockbox_id:, recipient_name:, rejection_reason:, status:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # If the mail item has been rejected, why it was rejected.
       #
       # @see Increase::Models::InboundMailItem#rejection_reason
       module RejectionReason
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The mail item does not match any lockbox.
         NO_MATCHING_LOCKBOX = :no_matching_lockbox
@@ -97,7 +97,7 @@ module Increase
       #
       # @see Increase::Models::InboundMailItem#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The mail item is pending processing.
         PENDING = :pending
@@ -120,7 +120,7 @@ module Increase
       #
       # @see Increase::Models::InboundMailItem#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_MAIL_ITEM = :inbound_mail_item
 

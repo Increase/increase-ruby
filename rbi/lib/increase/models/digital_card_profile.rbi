@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class DigitalCardProfile < Increase::BaseModel
+    class DigitalCardProfile < Increase::Internal::Type::BaseModel
       # The Card Profile identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -59,9 +59,7 @@ module Increase
       attr_reader :text_color
 
       sig do
-        params(
-          text_color: T.any(Increase::Models::DigitalCardProfile::TextColor, Increase::Internal::Util::AnyHash)
-        )
+        params(text_color: T.any(Increase::Models::DigitalCardProfile::TextColor, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :text_color
@@ -88,7 +86,7 @@ module Increase
           idempotency_key: T.nilable(String),
           issuer_name: String,
           status: Increase::Models::DigitalCardProfile::Status::OrSymbol,
-          text_color: T.any(Increase::Models::DigitalCardProfile::TextColor, Increase::Internal::Util::AnyHash),
+          text_color: T.any(Increase::Models::DigitalCardProfile::TextColor, Increase::Internal::AnyHash),
           type: Increase::Models::DigitalCardProfile::Type::OrSymbol
         )
           .returns(T.attached_class)
@@ -137,7 +135,7 @@ module Increase
 
       # The status of the Card Profile.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalCardProfile::Status) }
         OrSymbol =
@@ -160,7 +158,7 @@ module Increase
         end
       end
 
-      class TextColor < Increase::BaseModel
+      class TextColor < Increase::Internal::Type::BaseModel
         # The value of the blue channel in the RGB color.
         sig { returns(Integer) }
         attr_accessor :blue
@@ -186,7 +184,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `digital_card_profile`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalCardProfile::Type) }
         OrSymbol =

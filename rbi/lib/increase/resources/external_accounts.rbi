@@ -11,7 +11,7 @@ module Increase
           routing_number: String,
           account_holder: Increase::Models::ExternalAccountCreateParams::AccountHolder::OrSymbol,
           funding: Increase::Models::ExternalAccountCreateParams::Funding::OrSymbol,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::ExternalAccount)
       end
@@ -35,7 +35,7 @@ module Increase
       sig do
         params(
           external_account_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::ExternalAccount)
       end
@@ -54,7 +54,7 @@ module Increase
           description: String,
           funding: Increase::Models::ExternalAccountUpdateParams::Funding::OrSymbol,
           status: Increase::Models::ExternalAccountUpdateParams::Status::OrSymbol,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::ExternalAccount)
       end
@@ -80,8 +80,8 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           routing_number: String,
-          status: T.any(Increase::Models::ExternalAccountListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::ExternalAccountListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::ExternalAccount])
       end

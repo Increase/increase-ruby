@@ -16,7 +16,7 @@ module Increase
         type: Increase::Models::PendingTransaction::type_
       }
 
-    class PendingTransaction < Increase::BaseModel
+    class PendingTransaction < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -61,7 +61,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -87,7 +87,7 @@ module Increase
       type route_type = :account_number | :card | :lockbox
 
       module RouteType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An Account Number.
         ACCOUNT_NUMBER: :account_number
@@ -116,7 +116,7 @@ module Increase
           wire_transfer_instruction: Increase::Models::PendingTransaction::Source::WireTransferInstruction?
         }
 
-      class Source < Increase::BaseModel
+      class Source < Increase::Internal::Type::BaseModel
         attr_accessor account_transfer_instruction: Increase::Models::PendingTransaction::Source::AccountTransferInstruction?
 
         attr_accessor ach_transfer_instruction: Increase::Models::PendingTransaction::Source::ACHTransferInstruction?
@@ -162,7 +162,7 @@ module Increase
             transfer_id: String
           }
 
-        class AccountTransferInstruction < Increase::BaseModel
+        class AccountTransferInstruction < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor currency: Increase::Models::PendingTransaction::Source::AccountTransferInstruction::currency
@@ -180,7 +180,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -206,7 +206,7 @@ module Increase
 
         type ach_transfer_instruction = { amount: Integer, transfer_id: String }
 
-        class ACHTransferInstruction < Increase::BaseModel
+        class ACHTransferInstruction < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor transfer_id: String
@@ -247,7 +247,7 @@ module Increase
             verification: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification
           }
 
-        class CardAuthorization < Increase::BaseModel
+        class CardAuthorization < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::PendingTransaction::Source::CardAuthorization::actioner
@@ -337,7 +337,7 @@ module Increase
           type actioner = :user | :increase | :network
 
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER: :user
@@ -354,7 +354,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -380,7 +380,7 @@ module Increase
           type direction = :settlement | :refund
 
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT: :settlement
@@ -397,7 +397,7 @@ module Increase
               visa: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa?
             }
 
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::category
 
             attr_accessor visa: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa?
@@ -412,7 +412,7 @@ module Increase
             type category = :visa
 
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
@@ -427,7 +427,7 @@ module Increase
                 stand_in_processing_reason: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::stand_in_processing_reason?
               }
 
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               attr_accessor electronic_commerce_indicator: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::electronic_commerce_indicator?
 
               attr_accessor point_of_service_entry_mode: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::point_of_service_entry_mode?
@@ -453,7 +453,7 @@ module Increase
                 | :non_secure_transaction
 
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER: :mail_phone_order
@@ -495,7 +495,7 @@ module Increase
                 | :integrated_circuit_card_no_cvv
 
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN: :unknown
@@ -540,7 +540,7 @@ module Increase
                 | :other
 
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR: :issuer_error
@@ -575,7 +575,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -600,7 +600,7 @@ module Increase
             | :refund
 
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING: :account_funding
@@ -626,7 +626,7 @@ module Increase
           type type_ = :card_authorization
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             CARD_AUTHORIZATION: :card_authorization
 
@@ -639,7 +639,7 @@ module Increase
               cardholder_address: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress
             }
 
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             attr_accessor card_verification_code: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode
 
             attr_accessor cardholder_address: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress
@@ -656,7 +656,7 @@ module Increase
                 result: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode::result
               }
 
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               attr_accessor result: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode::result
 
               def initialize: (
@@ -668,7 +668,7 @@ module Increase
               type result = :not_checked | :match | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -692,7 +692,7 @@ module Increase
                 result: Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::result
               }
 
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               attr_accessor actual_line1: String?
 
               attr_accessor actual_postal_code: String?
@@ -722,7 +722,7 @@ module Increase
                 | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -761,7 +761,7 @@ module Increase
           | :other
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
           ACCOUNT_TRANSFER_INSTRUCTION: :account_transfer_instruction
@@ -805,7 +805,7 @@ module Increase
             front_image_file_id: String
           }
 
-        class CheckDepositInstruction < Increase::BaseModel
+        class CheckDepositInstruction < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor back_image_file_id: String?
@@ -829,7 +829,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -860,7 +860,7 @@ module Increase
             transfer_id: String
           }
 
-        class CheckTransferInstruction < Increase::BaseModel
+        class CheckTransferInstruction < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor currency: Increase::Models::PendingTransaction::Source::CheckTransferInstruction::currency
@@ -878,7 +878,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -916,7 +916,7 @@ module Increase
             type: Increase::Models::PendingTransaction::Source::InboundFundsHold::type_
           }
 
-        class InboundFundsHold < Increase::BaseModel
+        class InboundFundsHold < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor amount: Integer
@@ -955,7 +955,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -981,7 +981,7 @@ module Increase
           type status = :held | :complete
 
           module Status
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Funds are still being held.
             HELD: :held
@@ -995,7 +995,7 @@ module Increase
           type type_ = :inbound_funds_hold
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             INBOUND_FUNDS_HOLD: :inbound_funds_hold
 
@@ -1006,7 +1006,7 @@ module Increase
         type inbound_wire_transfer_reversal =
           { inbound_wire_transfer_id: String }
 
-        class InboundWireTransferReversal < Increase::BaseModel
+        class InboundWireTransferReversal < Increase::Internal::Type::BaseModel
           attr_accessor inbound_wire_transfer_id: String
 
           def initialize: (inbound_wire_transfer_id: String) -> void
@@ -1017,7 +1017,7 @@ module Increase
         type real_time_payments_transfer_instruction =
           { amount: Integer, transfer_id: String }
 
-        class RealTimePaymentsTransferInstruction < Increase::BaseModel
+        class RealTimePaymentsTransferInstruction < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor transfer_id: String
@@ -1036,7 +1036,7 @@ module Increase
             transfer_id: String
           }
 
-        class WireTransferInstruction < Increase::BaseModel
+        class WireTransferInstruction < Increase::Internal::Type::BaseModel
           attr_accessor account_number: String
 
           attr_accessor amount: Integer
@@ -1062,7 +1062,7 @@ module Increase
       type status = :pending | :complete
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Pending Transaction is still awaiting confirmation.
         PENDING: :pending
@@ -1076,7 +1076,7 @@ module Increase
       type type_ = :pending_transaction
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PENDING_TRANSACTION: :pending_transaction
 

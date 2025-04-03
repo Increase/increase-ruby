@@ -10,7 +10,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class PhysicalCardProfileCloneParams < Increase::BaseModel
+    class PhysicalCardProfileCloneParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -49,7 +49,7 @@ module Increase
 
       type front_text = { :line1 => String, :line2 => String }
 
-      class FrontText < Increase::BaseModel
+      class FrontText < Increase::Internal::Type::BaseModel
         attr_accessor line1: String
 
         attr_reader line2: String?

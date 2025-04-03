@@ -7,16 +7,13 @@ module Increase
       sig do
         params(
           category: Increase::Models::ExportCreateParams::Category::OrSymbol,
-          account_statement_ofx: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx, Increase::Internal::Util::AnyHash),
-          balance_csv: T.any(Increase::Models::ExportCreateParams::BalanceCsv, Increase::Internal::Util::AnyHash),
-          bookkeeping_account_balance_csv: T.any(
-            Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv,
-            Increase::Internal::Util::AnyHash
-          ),
-          entity_csv: T.any(Increase::Models::ExportCreateParams::EntityCsv, Increase::Internal::Util::AnyHash),
-          transaction_csv: T.any(Increase::Models::ExportCreateParams::TransactionCsv, Increase::Internal::Util::AnyHash),
+          account_statement_ofx: T.any(Increase::Models::ExportCreateParams::AccountStatementOfx, Increase::Internal::AnyHash),
+          balance_csv: T.any(Increase::Models::ExportCreateParams::BalanceCsv, Increase::Internal::AnyHash),
+          bookkeeping_account_balance_csv: T.any(Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv, Increase::Internal::AnyHash),
+          entity_csv: T.any(Increase::Models::ExportCreateParams::EntityCsv, Increase::Internal::AnyHash),
+          transaction_csv: T.any(Increase::Models::ExportCreateParams::TransactionCsv, Increase::Internal::AnyHash),
           vendor_csv: T.anything,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Export)
       end
@@ -47,7 +44,7 @@ module Increase
       sig do
         params(
           export_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Export)
       end
@@ -61,13 +58,13 @@ module Increase
       # List Exports
       sig do
         params(
-          category: T.any(Increase::Models::ExportListParams::Category, Increase::Internal::Util::AnyHash),
-          created_at: T.any(Increase::Models::ExportListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          category: T.any(Increase::Models::ExportListParams::Category, Increase::Internal::AnyHash),
+          created_at: T.any(Increase::Models::ExportListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::ExportListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::ExportListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::Export])
       end

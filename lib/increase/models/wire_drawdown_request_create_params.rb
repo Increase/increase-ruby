@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::WireDrawdownRequests#create
-    class WireDrawdownRequestCreateParams < Increase::BaseModel
+    class WireDrawdownRequestCreateParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -158,7 +158,7 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
     end
   end
 end

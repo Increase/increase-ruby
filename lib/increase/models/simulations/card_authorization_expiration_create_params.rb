@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::CardAuthorizationExpirations#create
-      class CardAuthorizationExpirationCreateParams < Increase::BaseModel
+      class CardAuthorizationExpirationCreateParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -21,7 +21,7 @@ module Increase
         #   #
         #   def initialize(card_payment_id:, request_options: {}, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

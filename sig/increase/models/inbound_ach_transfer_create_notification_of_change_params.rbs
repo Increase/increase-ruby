@@ -4,7 +4,7 @@ module Increase
       { updated_account_number: String, updated_routing_number: String }
       & Increase::Internal::Type::request_parameters
 
-    class InboundACHTransferCreateNotificationOfChangeParams < Increase::BaseModel
+    class InboundACHTransferCreateNotificationOfChangeParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class AccountTransferCreateParams < Increase::BaseModel
+    class AccountTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -37,7 +37,7 @@ module Increase
           description: String,
           destination_account_id: String,
           require_approval: T::Boolean,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

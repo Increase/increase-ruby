@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class BookkeepingBalanceLookup < Increase::BaseModel
+    class BookkeepingBalanceLookup < Increase::Internal::Type::BaseModel
       # The Bookkeeping Account's current balance, representing the sum of all
       #   Bookkeeping Entries on the Bookkeeping Account.
       sig { returns(Integer) }
@@ -46,7 +46,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_balance_lookup`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingBalanceLookup::Type) }
         OrSymbol =

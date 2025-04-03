@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::InboundWireTransfers#retrieve
-    class InboundWireTransfer < Increase::BaseModel
+    class InboundWireTransfer < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The inbound wire transfer's identifier.
       #
@@ -220,13 +220,13 @@ module Increase
       #     super
       #   end
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The status of the transfer.
       #
       # @see Increase::Models::InboundWireTransfer#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Inbound Wire Transfer is awaiting action, will transition automatically if no action is taken.
         PENDING = :pending
@@ -252,7 +252,7 @@ module Increase
       #
       # @see Increase::Models::InboundWireTransfer#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_WIRE_TRANSFER = :inbound_wire_transfer
 

@@ -14,7 +14,7 @@ module Increase
         type: Increase::Models::DeclinedTransaction::type_
       }
 
-    class DeclinedTransaction < Increase::BaseModel
+    class DeclinedTransaction < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -53,7 +53,7 @@ module Increase
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Canadian Dollar (CAD)
         CAD: :CAD
@@ -79,7 +79,7 @@ module Increase
       type route_type = :account_number | :card | :lockbox
 
       module RouteType
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # An Account Number.
         ACCOUNT_NUMBER: :account_number
@@ -105,7 +105,7 @@ module Increase
           wire_decline: Increase::Models::DeclinedTransaction::Source::WireDecline?
         }
 
-      class Source < Increase::BaseModel
+      class Source < Increase::Internal::Type::BaseModel
         attr_accessor ach_decline: Increase::Models::DeclinedTransaction::Source::ACHDecline?
 
         attr_accessor card_decline: Increase::Models::DeclinedTransaction::Source::CardDecline?
@@ -151,7 +151,7 @@ module Increase
             type: Increase::Models::DeclinedTransaction::Source::ACHDecline::type_
           }
 
-        class ACHDecline < Increase::BaseModel
+        class ACHDecline < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor amount: Integer
@@ -213,7 +213,7 @@ module Increase
             | :corporate_customer_advised_not_authorized
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account number is canceled.
             ACH_ROUTE_CANCELED: :ach_route_canceled
@@ -272,7 +272,7 @@ module Increase
           type type_ = :ach_decline
 
           module Type
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             ACH_DECLINE: :ach_decline
 
@@ -311,7 +311,7 @@ module Increase
             verification: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification
           }
 
-        class CardDecline < Increase::BaseModel
+        class CardDecline < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::DeclinedTransaction::Source::CardDecline::actioner
@@ -401,7 +401,7 @@ module Increase
           type actioner = :user | :increase | :network
 
           module Actioner
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # This object was actioned by the user through a real-time decision.
             USER: :user
@@ -418,7 +418,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -444,7 +444,7 @@ module Increase
           type direction = :settlement | :refund
 
           module Direction
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT: :settlement
@@ -461,7 +461,7 @@ module Increase
               visa: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa?
             }
 
-          class NetworkDetails < Increase::BaseModel
+          class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::category
 
             attr_accessor visa: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa?
@@ -476,7 +476,7 @@ module Increase
             type category = :visa
 
             module Category
-              extend Increase::Enum
+              extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
@@ -491,7 +491,7 @@ module Increase
                 stand_in_processing_reason: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::stand_in_processing_reason?
               }
 
-            class Visa < Increase::BaseModel
+            class Visa < Increase::Internal::Type::BaseModel
               attr_accessor electronic_commerce_indicator: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::electronic_commerce_indicator?
 
               attr_accessor point_of_service_entry_mode: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::point_of_service_entry_mode?
@@ -517,7 +517,7 @@ module Increase
                 | :non_secure_transaction
 
               module ElectronicCommerceIndicator
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER: :mail_phone_order
@@ -559,7 +559,7 @@ module Increase
                 | :integrated_circuit_card_no_cvv
 
               module PointOfServiceEntryMode
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Unknown
                 UNKNOWN: :unknown
@@ -604,7 +604,7 @@ module Increase
                 | :other
 
               module StandInProcessingReason
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR: :issuer_error
@@ -639,7 +639,7 @@ module Increase
               transaction_id: String?
             }
 
-          class NetworkIdentifiers < Increase::BaseModel
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             attr_accessor retrieval_reference_number: String?
 
             attr_accessor trace_number: String?
@@ -664,7 +664,7 @@ module Increase
             | :refund
 
           module ProcessingCategory
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING: :account_funding
@@ -696,7 +696,7 @@ module Increase
             | :other
 
           module RealTimeDecisionReason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
             INSUFFICIENT_FUNDS: :insufficient_funds
@@ -739,7 +739,7 @@ module Increase
             | :suspected_fraud
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account has been closed.
             ACCOUNT_CLOSED: :account_closed
@@ -801,7 +801,7 @@ module Increase
               cardholder_address: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress
             }
 
-          class Verification < Increase::BaseModel
+          class Verification < Increase::Internal::Type::BaseModel
             attr_accessor card_verification_code: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode
 
             attr_accessor cardholder_address: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress
@@ -818,7 +818,7 @@ module Increase
                 result: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::result
               }
 
-            class CardVerificationCode < Increase::BaseModel
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
               attr_accessor result: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::result
 
               def initialize: (
@@ -830,7 +830,7 @@ module Increase
               type result = :not_checked | :match | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -854,7 +854,7 @@ module Increase
                 result: Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::result
               }
 
-            class CardholderAddress < Increase::BaseModel
+            class CardholderAddress < Increase::Internal::Type::BaseModel
               attr_accessor actual_line1: String?
 
               attr_accessor actual_postal_code: String?
@@ -884,7 +884,7 @@ module Increase
                 | :no_match
 
               module Result
-                extend Increase::Enum
+                extend Increase::Internal::Type::Enum
 
                 # No adress was provided in the authorization request.
                 NOT_CHECKED: :not_checked
@@ -920,7 +920,7 @@ module Increase
           | :other
 
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # ACH Decline: details will be under the `ach_decline` object.
           ACH_DECLINE: :ach_decline
@@ -957,7 +957,7 @@ module Increase
             reason: Increase::Models::DeclinedTransaction::Source::CheckDecline::reason
           }
 
-        class CheckDecline < Increase::BaseModel
+        class CheckDecline < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor auxiliary_on_us: String?
@@ -1004,7 +1004,7 @@ module Increase
             | :user_initiated
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account number is disabled.
             ACH_ROUTE_DISABLED: :ach_route_disabled
@@ -1071,7 +1071,7 @@ module Increase
             rejected_at: Time
           }
 
-        class CheckDepositRejection < Increase::BaseModel
+        class CheckDepositRejection < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor check_deposit_id: String
@@ -1098,7 +1098,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -1135,7 +1135,7 @@ module Increase
             | :unknown
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The check's image is incomplete.
             INCOMPLETE_IMAGE: :incomplete_image
@@ -1188,7 +1188,7 @@ module Increase
             transfer_id: String
           }
 
-        class InboundRealTimePaymentsTransferDecline < Increase::BaseModel
+        class InboundRealTimePaymentsTransferDecline < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
           attr_accessor creditor_name: String
@@ -1227,7 +1227,7 @@ module Increase
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
           module Currency
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # Canadian Dollar (CAD)
             CAD: :CAD
@@ -1259,7 +1259,7 @@ module Increase
             | :real_time_payments_not_enabled
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account number is canceled.
             ACCOUNT_NUMBER_CANCELED: :account_number_canceled
@@ -1289,7 +1289,7 @@ module Increase
             reason: Increase::Models::DeclinedTransaction::Source::WireDecline::reason
           }
 
-        class WireDecline < Increase::BaseModel
+        class WireDecline < Increase::Internal::Type::BaseModel
           attr_accessor inbound_wire_transfer_id: String
 
           attr_accessor reason: Increase::Models::DeclinedTransaction::Source::WireDecline::reason
@@ -1310,7 +1310,7 @@ module Increase
             | :transaction_not_allowed
 
           module Reason
-            extend Increase::Enum
+            extend Increase::Internal::Type::Enum
 
             # The account number is canceled.
             ACCOUNT_NUMBER_CANCELED: :account_number_canceled
@@ -1338,7 +1338,7 @@ module Increase
       type type_ = :declined_transaction
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         DECLINED_TRANSACTION: :declined_transaction
 

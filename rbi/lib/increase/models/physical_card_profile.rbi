@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class PhysicalCardProfile < Increase::BaseModel
+    class PhysicalCardProfile < Increase::Internal::Type::BaseModel
       # The Card Profile identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -116,7 +116,7 @@ module Increase
 
       # The creator of this Physical Card Profile.
       module Creator
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfile::Creator) }
         OrSymbol =
@@ -135,7 +135,7 @@ module Increase
 
       # The status of the Physical Card Profile.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfile::Status) }
         OrSymbol =
@@ -169,7 +169,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `physical_card_profile`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfile::Type) }
         OrSymbol =

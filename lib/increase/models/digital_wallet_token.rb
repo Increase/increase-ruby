@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::DigitalWalletTokens#retrieve
-    class DigitalWalletToken < Increase::BaseModel
+    class DigitalWalletToken < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Digital Wallet Token identifier.
       #
@@ -58,7 +58,7 @@ module Increase
       #   Updates to the Digital Wallet Token.
       #
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
-      required :updates, -> { Increase::ArrayOf[Increase::Models::DigitalWalletToken::Update] }
+      required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::Models::DigitalWalletToken::Update] }
 
       # @!parse
       #   # A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
@@ -77,10 +77,10 @@ module Increase
       #   #
       #   def initialize(id:, card_id:, cardholder:, created_at:, device:, status:, token_requestor:, type:, updates:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # @see Increase::Models::DigitalWalletToken#cardholder
-      class Cardholder < Increase::BaseModel
+      class Cardholder < Increase::Internal::Type::BaseModel
         # @!attribute name
         #   Name of the cardholder, for example "John Smith".
         #
@@ -94,11 +94,11 @@ module Increase
         #   #
         #   def initialize(name:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # @see Increase::Models::DigitalWalletToken#device
-      class Device < Increase::BaseModel
+      class Device < Increase::Internal::Type::BaseModel
         # @!attribute device_type
         #   Device type.
         #
@@ -133,13 +133,13 @@ module Increase
         #   #
         #   def initialize(device_type:, identifier:, ip_address:, name:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # Device type.
         #
         # @see Increase::Models::DigitalWalletToken::Device#device_type
         module DeviceType
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Unknown
           UNKNOWN = :unknown
@@ -180,7 +180,7 @@ module Increase
       #
       # @see Increase::Models::DigitalWalletToken#status
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The digital wallet token is active.
         ACTIVE = :active
@@ -205,7 +205,7 @@ module Increase
       #
       # @see Increase::Models::DigitalWalletToken#token_requestor
       module TokenRequestor
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # Apple Pay
         APPLE_PAY = :apple_pay
@@ -231,7 +231,7 @@ module Increase
       #
       # @see Increase::Models::DigitalWalletToken#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         DIGITAL_WALLET_TOKEN = :digital_wallet_token
 
@@ -242,7 +242,7 @@ module Increase
         #   def self.values; end
       end
 
-      class Update < Increase::BaseModel
+      class Update < Increase::Internal::Type::BaseModel
         # @!attribute status
         #   The status the update changed this Digital Wallet Token to.
         #
@@ -262,13 +262,13 @@ module Increase
         #   #
         #   def initialize(status:, timestamp:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
         # The status the update changed this Digital Wallet Token to.
         #
         # @see Increase::Models::DigitalWalletToken::Update#status
         module Status
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # The digital wallet token is active.
           ACTIVE = :active

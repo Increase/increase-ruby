@@ -13,7 +13,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class AccountListParams < Increase::BaseModel
+    class AccountListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -70,7 +70,7 @@ module Increase
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
-      class CreatedAt < Increase::BaseModel
+      class CreatedAt < Increase::Internal::Type::BaseModel
         attr_reader after: Time?
 
         def after=: (Time) -> Time
@@ -100,7 +100,7 @@ module Increase
       type status =
         { in_: ::Array[Increase::Models::AccountListParams::Status::in_] }
 
-      class Status < Increase::BaseModel
+      class Status < Increase::Internal::Type::BaseModel
         attr_reader in_: ::Array[Increase::Models::AccountListParams::Status::in_]?
 
         def in_=: (
@@ -116,7 +116,7 @@ module Increase
         type in_ = :closed | :open
 
         module In
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Closed Accounts on which no new activity can occur.
           CLOSED: :closed

@@ -17,7 +17,7 @@ module Increase
         type: Increase::Models::Card::type_
       }
 
-    class Card < Increase::BaseModel
+    class Card < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -71,7 +71,7 @@ module Increase
           state: String?
         }
 
-      class BillingAddress < Increase::BaseModel
+      class BillingAddress < Increase::Internal::Type::BaseModel
         attr_accessor city: String?
 
         attr_accessor line1: String?
@@ -96,7 +96,7 @@ module Increase
       type digital_wallet =
         { digital_card_profile_id: String?, email: String?, phone: String? }
 
-      class DigitalWallet < Increase::BaseModel
+      class DigitalWallet < Increase::Internal::Type::BaseModel
         attr_accessor digital_card_profile_id: String?
 
         attr_accessor email: String?
@@ -115,7 +115,7 @@ module Increase
       type status = :active | :disabled | :canceled
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The card is active.
         ACTIVE: :active
@@ -132,7 +132,7 @@ module Increase
       type type_ = :card
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         CARD: :card
 

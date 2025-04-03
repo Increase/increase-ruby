@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::Entities#confirm
-    class EntityConfirmParams < Increase::BaseModel
+    class EntityConfirmParams < Increase::Internal::Type::BaseModel
       # @!parse
       #   extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
@@ -25,7 +25,7 @@ module Increase
       #   #
       #   def initialize(confirmed_at: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
     end
   end
 end

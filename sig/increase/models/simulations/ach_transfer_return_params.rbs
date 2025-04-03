@@ -7,7 +7,7 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class ACHTransferReturnParams < Increase::BaseModel
+      class ACHTransferReturnParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -97,7 +97,7 @@ module Increase
           | :untimely_return
 
         module Reason
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
           INSUFFICIENT_FUND: :insufficient_fund

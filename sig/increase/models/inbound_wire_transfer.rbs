@@ -29,7 +29,7 @@ module Increase
         type: Increase::Models::InboundWireTransfer::type_
       }
 
-    class InboundWireTransfer < Increase::BaseModel
+    class InboundWireTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
@@ -113,7 +113,7 @@ module Increase
       type status = :pending | :accepted | :declined | :reversed
 
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # The Inbound Wire Transfer is awaiting action, will transition automatically if no action is taken.
         PENDING: :pending
@@ -133,7 +133,7 @@ module Increase
       type type_ = :inbound_wire_transfer
 
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         INBOUND_WIRE_TRANSFER: :inbound_wire_transfer
 

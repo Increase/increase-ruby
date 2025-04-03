@@ -11,7 +11,7 @@ module Increase
           back_image_file_id: String,
           front_image_file_id: String,
           description: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckDeposit)
       end
@@ -34,7 +34,7 @@ module Increase
       sig do
         params(
           check_deposit_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::CheckDeposit)
       end
@@ -49,11 +49,11 @@ module Increase
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::CheckDepositListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::CheckDepositListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::CheckDeposit])
       end

@@ -14,7 +14,7 @@ module Increase
       }
       & Increase::Internal::Type::request_parameters
 
-    class DigitalCardProfileCloneParams < Increase::BaseModel
+    class DigitalCardProfileCloneParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -73,7 +73,7 @@ module Increase
 
       type text_color = { blue: Integer, green: Integer, red: Integer }
 
-      class TextColor < Increase::BaseModel
+      class TextColor < Increase::Internal::Type::BaseModel
         attr_accessor blue: Integer
 
         attr_accessor green: Integer

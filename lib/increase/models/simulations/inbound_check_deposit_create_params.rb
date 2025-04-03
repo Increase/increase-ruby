@@ -4,7 +4,7 @@ module Increase
   module Models
     module Simulations
       # @see Increase::Resources::Simulations::InboundCheckDeposits#create
-      class InboundCheckDepositCreateParams < Increase::BaseModel
+      class InboundCheckDepositCreateParams < Increase::Internal::Type::BaseModel
         # @!parse
         #   extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
@@ -35,7 +35,7 @@ module Increase
         #   #
         #   def initialize(account_number_id:, amount:, check_number:, request_options: {}, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
     end
   end

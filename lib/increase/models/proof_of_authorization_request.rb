@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::ProofOfAuthorizationRequests#retrieve
-    class ProofOfAuthorizationRequest < Increase::BaseModel
+    class ProofOfAuthorizationRequest < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Proof of Authorization Request identifier.
       #
@@ -15,7 +15,7 @@ module Increase
       #
       #   @return [Array<Increase::Models::ProofOfAuthorizationRequest::ACHTransfer>]
       required :ach_transfers,
-               -> { Increase::ArrayOf[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer] }
+               -> { Increase::Internal::Type::ArrayOf[Increase::Models::ProofOfAuthorizationRequest::ACHTransfer] }
 
       # @!attribute created_at
       #   The time the Proof of Authorization Request was created.
@@ -54,9 +54,9 @@ module Increase
       #   #
       #   def initialize(id:, ach_transfers:, created_at:, due_on:, type:, updated_at:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
-      class ACHTransfer < Increase::BaseModel
+      class ACHTransfer < Increase::Internal::Type::BaseModel
         # @!attribute id
         #   The ACH Transfer identifier.
         #
@@ -68,7 +68,7 @@ module Increase
         #   #
         #   def initialize(id:, **) = super
 
-        # def initialize: (Hash | Increase::BaseModel) -> void
+        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -76,7 +76,7 @@ module Increase
       #
       # @see Increase::Models::ProofOfAuthorizationRequest#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         PROOF_OF_AUTHORIZATION_REQUEST = :proof_of_authorization_request
 

@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::FileLinks#create
-    class FileLink < Increase::BaseModel
+    class FileLink < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The File Link identifier.
       #
@@ -66,14 +66,14 @@ module Increase
       #   #
       #   def initialize(id:, created_at:, expires_at:, file_id:, idempotency_key:, type:, unauthenticated_url:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # A constant representing the object's type. For this resource it will always be
       #   `file_link`.
       #
       # @see Increase::Models::FileLink#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         FILE_LINK = :file_link
 

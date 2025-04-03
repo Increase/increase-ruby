@@ -3,7 +3,7 @@
 module Increase
   module Models
     # @see Increase::Resources::BookkeepingAccounts#create
-    class BookkeepingAccount < Increase::BaseModel
+    class BookkeepingAccount < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The account identifier.
       #
@@ -66,13 +66,13 @@ module Increase
       #   #
       #   def initialize(id:, account_id:, compliance_category:, entity_id:, idempotency_key:, name:, type:, **) = super
 
-      # def initialize: (Hash | Increase::BaseModel) -> void
+      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
 
       # The compliance category of the account.
       #
       # @see Increase::Models::BookkeepingAccount#compliance_category
       module ComplianceCategory
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         # A cash in an commingled Increase Account.
         COMMINGLED_CASH = :commingled_cash
@@ -92,7 +92,7 @@ module Increase
       #
       # @see Increase::Models::BookkeepingAccount#type
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         BOOKKEEPING_ACCOUNT = :bookkeeping_account
 

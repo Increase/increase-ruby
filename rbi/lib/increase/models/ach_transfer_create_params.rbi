@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class ACHTransferCreateParams < Increase::BaseModel
+    class ACHTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -38,9 +38,7 @@ module Increase
       attr_reader :addenda
 
       sig do
-        params(
-          addenda: T.any(Increase::Models::ACHTransferCreateParams::Addenda, Increase::Internal::Util::AnyHash)
-        )
+        params(addenda: T.any(Increase::Models::ACHTransferCreateParams::Addenda, Increase::Internal::AnyHash))
           .void
       end
       attr_writer :addenda
@@ -129,10 +127,7 @@ module Increase
 
       sig do
         params(
-          preferred_effective_date: T.any(
-            Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate,
-            Increase::Internal::Util::AnyHash
-          )
+          preferred_effective_date: T.any(Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate, Increase::Internal::AnyHash)
         )
           .void
       end
@@ -178,7 +173,7 @@ module Increase
           amount: Integer,
           statement_descriptor: String,
           account_number: String,
-          addenda: T.any(Increase::Models::ACHTransferCreateParams::Addenda, Increase::Internal::Util::AnyHash),
+          addenda: T.any(Increase::Models::ACHTransferCreateParams::Addenda, Increase::Internal::AnyHash),
           company_descriptive_date: String,
           company_discretionary_data: String,
           company_entry_description: String,
@@ -188,15 +183,12 @@ module Increase
           funding: Increase::Models::ACHTransferCreateParams::Funding::OrSymbol,
           individual_id: String,
           individual_name: String,
-          preferred_effective_date: T.any(
-            Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate,
-            Increase::Internal::Util::AnyHash
-          ),
+          preferred_effective_date: T.any(Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate, Increase::Internal::AnyHash),
           require_approval: T::Boolean,
           routing_number: String,
           standard_entry_class_code: Increase::Models::ACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
           transaction_timing: Increase::Models::ACHTransferCreateParams::TransactionTiming::OrSymbol,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash)
+          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -254,7 +246,7 @@ module Increase
       def to_hash
       end
 
-      class Addenda < Increase::BaseModel
+      class Addenda < Increase::Internal::Type::BaseModel
         # The type of addenda to pass with the transfer.
         sig { returns(Increase::Models::ACHTransferCreateParams::Addenda::Category::OrSymbol) }
         attr_accessor :category
@@ -265,7 +257,7 @@ module Increase
 
         sig do
           params(
-            freeform: T.any(Increase::Models::ACHTransferCreateParams::Addenda::Freeform, Increase::Internal::Util::AnyHash)
+            freeform: T.any(Increase::Models::ACHTransferCreateParams::Addenda::Freeform, Increase::Internal::AnyHash)
           )
             .void
         end
@@ -280,7 +272,7 @@ module Increase
           params(
             payment_order_remittance_advice: T.any(
               Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .void
@@ -292,10 +284,10 @@ module Increase
         sig do
           params(
             category: Increase::Models::ACHTransferCreateParams::Addenda::Category::OrSymbol,
-            freeform: T.any(Increase::Models::ACHTransferCreateParams::Addenda::Freeform, Increase::Internal::Util::AnyHash),
+            freeform: T.any(Increase::Models::ACHTransferCreateParams::Addenda::Freeform, Increase::Internal::AnyHash),
             payment_order_remittance_advice: T.any(
               Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice,
-              Increase::Internal::Util::AnyHash
+              Increase::Internal::AnyHash
             )
           )
             .returns(T.attached_class)
@@ -318,7 +310,7 @@ module Increase
 
         # The type of addenda to pass with the transfer.
         module Category
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::ACHTransferCreateParams::Addenda::Category) }
@@ -340,7 +332,7 @@ module Increase
           end
         end
 
-        class Freeform < Increase::BaseModel
+        class Freeform < Increase::Internal::Type::BaseModel
           # Each entry represents an addendum sent with the transfer. Please reach out to
           #   [support@increase.com](mailto:support@increase.com) to send more than one
           #   addendum.
@@ -350,12 +342,7 @@ module Increase
           # Unstructured `payment_related_information` passed through with the transfer.
           sig do
             params(
-              entries: T::Array[
-              T.any(
-                Increase::Models::ACHTransferCreateParams::Addenda::Freeform::Entry,
-                Increase::Internal::Util::AnyHash
-              )
-              ]
+              entries: T::Array[T.any(Increase::Models::ACHTransferCreateParams::Addenda::Freeform::Entry, Increase::Internal::AnyHash)]
             )
               .returns(T.attached_class)
           end
@@ -366,7 +353,7 @@ module Increase
           def to_hash
           end
 
-          class Entry < Increase::BaseModel
+          class Entry < Increase::Internal::Type::BaseModel
             # The payment related information passed in the addendum.
             sig { returns(String) }
             attr_accessor :payment_related_information
@@ -381,7 +368,7 @@ module Increase
           end
         end
 
-        class PaymentOrderRemittanceAdvice < Increase::BaseModel
+        class PaymentOrderRemittanceAdvice < Increase::Internal::Type::BaseModel
           # ASC X12 RMR records for this specific transfer.
           sig do
             returns(
@@ -397,7 +384,7 @@ module Increase
               invoices: T::Array[
               T.any(
                 Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice,
-                Increase::Internal::Util::AnyHash
+                Increase::Internal::AnyHash
               )
               ]
             )
@@ -417,7 +404,7 @@ module Increase
           def to_hash
           end
 
-          class Invoice < Increase::BaseModel
+          class Invoice < Increase::Internal::Type::BaseModel
             # The invoice number for this reference, determined in advance with the receiver.
             sig { returns(String) }
             attr_accessor :invoice_number
@@ -441,7 +428,7 @@ module Increase
       # The type of entity that owns the account to which the ACH Transfer is being
       #   sent.
       module DestinationAccountHolder
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder) }
@@ -470,7 +457,7 @@ module Increase
 
       # The type of the account to which the transfer will be sent.
       module Funding
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ACHTransferCreateParams::Funding) }
         OrSymbol =
@@ -487,7 +474,7 @@ module Increase
         end
       end
 
-      class PreferredEffectiveDate < Increase::BaseModel
+      class PreferredEffectiveDate < Increase::Internal::Type::BaseModel
         # A specific date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format to
         #   use as the effective date when submitting this transfer.
         sig { returns(T.nilable(Date)) }
@@ -540,7 +527,7 @@ module Increase
 
         # A schedule by which Increase will choose an effective date for the transfer.
         module SettlementSchedule
-          extend Increase::Enum
+          extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate::SettlementSchedule) }
@@ -580,7 +567,7 @@ module Increase
 
       # The Standard Entry Class (SEC) code to use for the transfer.
       module StandardEntryClassCode
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode) }
@@ -624,7 +611,7 @@ module Increase
 
       # The timing of the transaction.
       module TransactionTiming
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ACHTransferCreateParams::TransactionTiming) }

@@ -10,7 +10,7 @@ module Increase
           entity_id: String,
           informational_entity_id: String,
           program_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Account)
       end
@@ -33,7 +33,7 @@ module Increase
       sig do
         params(
           account_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Account)
       end
@@ -49,7 +49,7 @@ module Increase
         params(
           account_id: String,
           name: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Account)
       end
@@ -65,15 +65,15 @@ module Increase
       # List Accounts
       sig do
         params(
-          created_at: T.any(Increase::Models::AccountListParams::CreatedAt, Increase::Internal::Util::AnyHash),
+          created_at: T.any(Increase::Models::AccountListParams::CreatedAt, Increase::Internal::AnyHash),
           cursor: String,
           entity_id: String,
           idempotency_key: String,
           informational_entity_id: String,
           limit: Integer,
           program_id: String,
-          status: T.any(Increase::Models::AccountListParams::Status, Increase::Internal::Util::AnyHash),
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          status: T.any(Increase::Models::AccountListParams::Status, Increase::Internal::AnyHash),
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Internal::Page[Increase::Models::Account])
       end
@@ -106,7 +106,7 @@ module Increase
         params(
           account_id: String,
           at_time: Time,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::BalanceLookup)
       end
@@ -123,7 +123,7 @@ module Increase
       sig do
         params(
           account_id: String,
-          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::Util::AnyHash))
+          request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::Account)
       end

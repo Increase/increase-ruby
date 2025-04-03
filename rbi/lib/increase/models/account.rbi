@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class Account < Increase::BaseModel
+    class Account < Increase::Internal::Type::BaseModel
       # The Account identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -143,7 +143,7 @@ module Increase
 
       # The bank the Account is with.
       module Bank
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Bank) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Bank::TaggedSymbol) }
@@ -165,7 +165,7 @@ module Increase
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account
       #   currency.
       module Currency
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Currency) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Currency::TaggedSymbol) }
@@ -195,7 +195,7 @@ module Increase
 
       # The status of the Account.
       module Status
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Status::TaggedSymbol) }
@@ -214,7 +214,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `account`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Type::TaggedSymbol) }

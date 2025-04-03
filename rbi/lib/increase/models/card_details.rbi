@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    class CardDetails < Increase::BaseModel
+    class CardDetails < Increase::Internal::Type::BaseModel
       # The identifier for the Card for which sensitive details have been returned.
       sig { returns(String) }
       attr_accessor :card_id
@@ -71,7 +71,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       #   `card_details`.
       module Type
-        extend Increase::Enum
+        extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardDetails::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::CardDetails::Type::TaggedSymbol) }
