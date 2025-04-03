@@ -11,18 +11,6 @@ module Increase
     #   page.auto_paging_each do |account|
     #     puts(account)
     #   end
-    #
-    # @example
-    #   accounts =
-    #     page
-    #     .to_enum
-    #     .lazy
-    #     .select { _1.object_id.even? }
-    #     .map(&:itself)
-    #     .take(2)
-    #     .to_a
-    #
-    #   accounts => Array
     class Page
       include Increase::Internal::Type::BasePage
 

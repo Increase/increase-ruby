@@ -1,4 +1,5 @@
 module Increase
   module Internal
+    OMIT: top
   end
 end
