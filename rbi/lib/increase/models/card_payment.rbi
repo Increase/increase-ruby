@@ -682,7 +682,7 @@ module Increase
                   Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::TaggedSymbol
                 )
 
-              # The one-time code was not successfully delievered.
+              # The one-time code was not successfully delivered.
               NONE_AVAILABLE =
                 T.let(
                   :none_available,
@@ -2032,7 +2032,7 @@ module Increase
                     )
                   end
 
-                # No adress was provided in the authorization request.
+                # No address was provided in the authorization request.
                 NOT_CHECKED =
                   T.let(
                     :not_checked,
@@ -3505,7 +3505,7 @@ module Increase
                     )
                   end
 
-                # No adress was provided in the authorization request.
+                # No address was provided in the authorization request.
                 NOT_CHECKED =
                   T.let(
                     :not_checked,
@@ -9546,7 +9546,7 @@ module Increase
                     )
                   end
 
-                # No adress was provided in the authorization request.
+                # No address was provided in the authorization request.
                 NOT_CHECKED =
                   T.let(
                     :not_checked,

@@ -531,7 +531,7 @@ module Increase
               # The one-time code was sent via email.
               EMAIL = :email
 
-              # The one-time code was not successfully delievered.
+              # The one-time code was not successfully delivered.
               NONE_AVAILABLE = :none_available
 
               finalize!
@@ -1394,7 +1394,7 @@ module Increase
               module Result
                 extend Increase::Internal::Type::Enum
 
-                # No adress was provided in the authorization request.
+                # No address was provided in the authorization request.
                 NOT_CHECKED = :not_checked
 
                 # Postal code matches, but the street address was not verified.
@@ -2367,7 +2367,7 @@ module Increase
               module Result
                 extend Increase::Internal::Type::Enum
 
-                # No adress was provided in the authorization request.
+                # No address was provided in the authorization request.
                 NOT_CHECKED = :not_checked
 
                 # Postal code matches, but the street address was not verified.
@@ -6595,7 +6595,7 @@ module Increase
               module Result
                 extend Increase::Internal::Type::Enum
 
-                # No adress was provided in the authorization request.
+                # No address was provided in the authorization request.
                 NOT_CHECKED = :not_checked
 
                 # Postal code matches, but the street address was not verified.

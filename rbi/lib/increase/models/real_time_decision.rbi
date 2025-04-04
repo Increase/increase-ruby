@@ -1471,7 +1471,7 @@ module Increase
                   )
                 end
 
-              # No adress was provided in the authorization request.
+              # No address was provided in the authorization request.
               NOT_CHECKED =
                 T.let(
                   :not_checked,

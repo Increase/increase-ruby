@@ -999,7 +999,7 @@ module Increase
             module Result
               extend Increase::Internal::Type::Enum
 
-              # No adress was provided in the authorization request.
+              # No address was provided in the authorization request.
               NOT_CHECKED = :not_checked
 
               # Postal code matches, but the street address was not verified.
