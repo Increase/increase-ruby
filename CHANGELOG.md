@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-04-04)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** api update ([#17](https://github.com/Increase/increase-ruby/issues/17)) ([a3f4158](https://github.com/Increase/increase-ruby/commit/a3f415870ca066d5a5554351d4aebffdefe6535e))
+* support solargraph generics ([#15](https://github.com/Increase/increase-ruby/issues/15)) ([8555967](https://github.com/Increase/increase-ruby/commit/8555967605a0c2fdc50660beb8e6bea1d3434cf8))
+
+
+### Chores
+
+* do not use literals for version in type definitions ([#18](https://github.com/Increase/increase-ruby/issues/18)) ([d88128c](https://github.com/Increase/increase-ruby/commit/d88128c03e8171ba2803eeb53548ddd5db4ecc0d))
+* **internal:** version bump ([#13](https://github.com/Increase/increase-ruby/issues/13)) ([2a3a20f](https://github.com/Increase/increase-ruby/commit/2a3a20f1966c32215616997de572c2e3ef9c743d))
+
 ## 0.1.0-alpha.3 (2025-04-03)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
