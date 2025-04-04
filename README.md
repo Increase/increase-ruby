@@ -153,13 +153,13 @@ Due to limitations with the Sorbet type system, where a method otherwise can tak
 Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
 
 ```ruby
-model = Increase::Models::AccountCreateParams.new(
+params = Increase::Models::AccountCreateParams.new(
   name: "New Account!",
   entity_id: "entity_n8y8tnk2p9339ti393yi",
   program_id: "program_i2v2os4mwza1oetokh9i"
 )
 
-increase.accounts.create(**model)
+increase.accounts.create(**params)
 ```
 
 ## Advanced
