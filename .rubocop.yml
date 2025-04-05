@@ -39,7 +39,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "Increase::(Models|Resources)::"
+    - "Increase::Internal::Type::BaseModel$"
+    - "^\\s*[A-Z0-9_]+ = :"
+    - "Increase::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:
@@ -109,8 +111,7 @@ Metrics/MethodLength:
   Enabled: false
 
 Metrics/ModuleLength:
-  Exclude:
-    - "**/*.rbi"
+  Enabled: false
 
 Metrics/ParameterLists:
   Enabled: false
@@ -122,9 +123,9 @@ Metrics/PerceivedComplexity:
 Naming/BlockForwarding:
   Enabled: false
 
+# Underscores are generally useful for disambiguation.
 Naming/ClassAndModuleCamelCase:
-  Exclude:
-    - "**/*.rbi"
+  Enabled: false
 
 Naming/MethodParameterName:
   Enabled: false

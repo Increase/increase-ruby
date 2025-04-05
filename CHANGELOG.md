@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-04-05)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Chores
+
+* **internal:** misc small improvements ([#31](https://github.com/Increase/increase-ruby/issues/31)) ([51871b0](https://github.com/Increase/increase-ruby/commit/51871b0593ca9ba889978c1cbbf06410fca2251b))
+* **internal:** rubocop rules ([#33](https://github.com/Increase/increase-ruby/issues/33)) ([fdf49af](https://github.com/Increase/increase-ruby/commit/fdf49aff062233facde7a19e85e988d097c83d9f))
+* **internal:** run rubocop linter in parallel ([#32](https://github.com/Increase/increase-ruby/issues/32)) ([f28a7d0](https://github.com/Increase/increase-ruby/commit/f28a7d0c3cff243b6bb81a4383883326384b2bf3))
+* **internal:** version bump ([#29](https://github.com/Increase/increase-ruby/issues/29)) ([131900e](https://github.com/Increase/increase-ruby/commit/131900e26a21f7d708358735f239b50011f0abaa))
+
 ## 0.1.0-alpha.5 (2025-04-05)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)

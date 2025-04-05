@@ -2,8 +2,6 @@
 
 module Increase
   module Internal
-    # rubocop:disable Metrics/ModuleLength
-
     # @api private
     module Util
       # @api private
@@ -694,7 +692,5 @@ module Increase
         end
       end
     end
-
-    # rubocop:enable Metrics/ModuleLength
   end
 end
