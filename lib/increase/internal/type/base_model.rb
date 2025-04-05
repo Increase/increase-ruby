@@ -265,6 +265,7 @@ module Increase
               return super
             end
 
+            is_param = singleton_class <= Increase::Internal::Type::RequestParameters::Converter
             acc = {}
 
             coerced.each do |key, val|
@@ -273,19 +274,21 @@ module Increase
               in nil
                 acc.store(name, super(val))
               else
-                mode, api_name, type_fn = field.fetch_values(:mode, :api_name, :type_fn)
+                mode, type_fn = field.fetch_values(:mode, :type_fn)
                 case mode
                 in :coerce
                   next
                 else
                   target = type_fn.call
+                  api_name = is_param ? name : field.fetch(:api_name)
                   acc.store(api_name, Increase::Internal::Type::Converter.dump(target, val))
                 end
               end
             end
 
-            known_fields.each_value do |field|
-              mode, api_name, const = field.fetch_values(:mode, :api_name, :const)
+            known_fields.each do |name, field|
+              mode, const = field.fetch_values(:mode, :const)
+              api_name = is_param ? name : field.fetch(:api_name)
               next if mode == :coerce || acc.key?(api_name) || const == Increase::Internal::OMIT
               acc.store(api_name, const)
             end
