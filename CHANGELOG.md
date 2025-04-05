@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-04-05)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* allow all valid `JSON` types to be encoded ([#26](https://github.com/Increase/increase-ruby/issues/26)) ([92760b3](https://github.com/Increase/increase-ruby/commit/92760b3aba92abca8c6b4d6550d75b94c1a8fbc2))
+* support query, header, and body params that have identical names ([#25](https://github.com/Increase/increase-ruby/issues/25)) ([def73dd](https://github.com/Increase/increase-ruby/commit/def73dd349fa2aec3074e16bdfa2a165bf4fc1e1))
+
+
+### Bug Fixes
+
+* converter should transform stringio into string where applicable ([#28](https://github.com/Increase/increase-ruby/issues/28)) ([68e4e9d](https://github.com/Increase/increase-ruby/commit/68e4e9df4a5938442eb890da6f1918f04d34e333))
+
+
+### Chores
+
+* document LSP support in read me ([#24](https://github.com/Increase/increase-ruby/issues/24)) ([778538d](https://github.com/Increase/increase-ruby/commit/778538da18c49156d45c68c9370c3628fd7e594a))
+* **internal:** version bump ([#19](https://github.com/Increase/increase-ruby/issues/19)) ([fd9e8ad](https://github.com/Increase/increase-ruby/commit/fd9e8ada315a49377dbb2aa8ec6af48a180fb651))
+* misc sdk polish ([#23](https://github.com/Increase/increase-ruby/issues/23)) ([e056d8a](https://github.com/Increase/increase-ruby/commit/e056d8a96d3da4568daf30d68f980a81c69ab5dc))
+* rename confusing `Type::BooleanModel` to `Type::Boolean` ([#27](https://github.com/Increase/increase-ruby/issues/27)) ([ae0a5ee](https://github.com/Increase/increase-ruby/commit/ae0a5ee0e1c0177ab6aa08032f29655b5412b37d))
+* simplify internal utils ([#22](https://github.com/Increase/increase-ruby/issues/22)) ([da6ec29](https://github.com/Increase/increase-ruby/commit/da6ec29d5dd5ad6bfea0f3461221f3a80259738d))
+
 ## 0.1.0-alpha.4 (2025-04-04)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
