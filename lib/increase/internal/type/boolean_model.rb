@@ -8,7 +8,7 @@ module Increase
       # @abstract
       #
       # Ruby has no Boolean class; this is something for models to refer to.
-      class BooleanModel
+      class Boolean
         extend Increase::Internal::Type::Converter
 
         # @param other [Object]
@@ -19,7 +19,7 @@ module Increase
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= Increase::Internal::Type::BooleanModel
+        def self.==(other) = other.is_a?(Class) && other <= Increase::Internal::Type::Boolean
 
         class << self
           # @api private

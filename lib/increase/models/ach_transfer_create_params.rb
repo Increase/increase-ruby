@@ -170,7 +170,7 @@ module Increase
       #   Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @return [Boolean, nil]
-      optional :require_approval, Increase::Internal::Type::BooleanModel
+      optional :require_approval, Increase::Internal::Type::Boolean
 
       # @!parse
       #   # @return [Boolean]

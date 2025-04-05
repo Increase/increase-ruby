@@ -27,7 +27,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
-        is_default: Increase::Internal::Type::BooleanModel,
+        is_default: Increase::Internal::Type::Boolean,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -52,7 +52,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
-        is_default: Increase::Internal::Type::BooleanModel,
+        is_default: Increase::Internal::Type::Boolean,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -84,7 +84,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
-        is_default: Increase::Internal::Type::BooleanModel,
+        is_default: Increase::Internal::Type::Boolean,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -109,7 +109,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
-        is_default: Increase::Internal::Type::BooleanModel,
+        is_default: Increase::Internal::Type::Boolean,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -134,7 +134,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
-        is_default: Increase::Internal::Type::BooleanModel,
+        is_default: Increase::Internal::Type::Boolean,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }

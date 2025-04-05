@@ -1,7 +1,7 @@
 module Increase
   module Internal
     module Type
-      class BooleanModel
+      class Boolean
         extend Increase::Internal::Type::Converter
 
         def self.===: (top other) -> bool

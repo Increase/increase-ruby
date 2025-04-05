@@ -62,7 +62,7 @@ module Increase
       #   Whether the customer has been offboarded.
       #
       #   @return [Boolean, nil]
-      required :customer_has_been_offboarded, Increase::Internal::Type::BooleanModel, nil?: true
+      required :customer_has_been_offboarded, Increase::Internal::Type::Boolean, nil?: true
 
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
@@ -101,23 +101,21 @@ module Increase
       #   Whether account ownership was validated via credential (for instance, Plaid).
       #
       #   @return [Boolean, nil]
-      required :validated_account_ownership_via_credential, Increase::Internal::Type::BooleanModel, nil?: true
+      required :validated_account_ownership_via_credential, Increase::Internal::Type::Boolean, nil?: true
 
       # @!attribute validated_account_ownership_with_account_statement
       #   Whether account ownership was validated with an account statement.
       #
       #   @return [Boolean, nil]
       required :validated_account_ownership_with_account_statement,
-               Increase::Internal::Type::BooleanModel,
+               Increase::Internal::Type::Boolean,
                nil?: true
 
       # @!attribute validated_account_ownership_with_microdeposit
       #   Whether account ownership was validated with microdeposit.
       #
       #   @return [Boolean, nil]
-      required :validated_account_ownership_with_microdeposit,
-               Increase::Internal::Type::BooleanModel,
-               nil?: true
+      required :validated_account_ownership_with_microdeposit, Increase::Internal::Type::Boolean, nil?: true
 
       # @!parse
       #   # Information submitted in response to a proof of authorization request. Per

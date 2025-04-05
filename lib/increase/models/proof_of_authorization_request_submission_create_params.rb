@@ -36,7 +36,7 @@ module Increase
       #   Whether the customer has been offboarded or suspended.
       #
       #   @return [Boolean]
-      required :customer_has_been_offboarded, Increase::Internal::Type::BooleanModel
+      required :customer_has_been_offboarded, Increase::Internal::Type::Boolean
 
       # @!attribute proof_of_authorization_request_id
       #   ID of the proof of authorization request.
@@ -48,19 +48,19 @@ module Increase
       #   Whether the account ownership was validated via credential (e.g. Plaid).
       #
       #   @return [Boolean]
-      required :validated_account_ownership_via_credential, Increase::Internal::Type::BooleanModel
+      required :validated_account_ownership_via_credential, Increase::Internal::Type::Boolean
 
       # @!attribute validated_account_ownership_with_account_statement
       #   Whether the account ownership was validated with an account statement.
       #
       #   @return [Boolean]
-      required :validated_account_ownership_with_account_statement, Increase::Internal::Type::BooleanModel
+      required :validated_account_ownership_with_account_statement, Increase::Internal::Type::Boolean
 
       # @!attribute validated_account_ownership_with_microdeposit
       #   Whether the account ownership was validated with a microdeposit.
       #
       #   @return [Boolean]
-      required :validated_account_ownership_with_microdeposit, Increase::Internal::Type::BooleanModel
+      required :validated_account_ownership_with_microdeposit, Increase::Internal::Type::Boolean
 
       # @!attribute [r] additional_evidence_file_id
       #   File containing additional evidence.

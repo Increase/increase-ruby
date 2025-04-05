@@ -98,7 +98,7 @@ module Increase
           #     Number).
           #
           #   @return [Boolean, nil]
-          optional :confirmed_no_us_tax_id, Increase::Internal::Type::BooleanModel
+          optional :confirmed_no_us_tax_id, Increase::Internal::Type::Boolean
 
           # @!parse
           #   # @return [Boolean]

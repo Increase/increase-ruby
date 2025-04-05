@@ -64,7 +64,7 @@ module Increase
             in Hash
               type_info(spec.slice(:const, :enum, :union).first&.last)
             in true | false
-              -> { Increase::Internal::Type::BooleanModel }
+              -> { Increase::Internal::Type::Boolean }
             in Increase::Internal::Type::Converter | Class | Symbol
               -> { spec }
             in NilClass | Integer | Float

@@ -66,7 +66,7 @@ module Increase
       #     group.
       #
       #   @return [Boolean]
-      required :is_default, Increase::Internal::Type::BooleanModel
+      required :is_default, Increase::Internal::Type::Boolean
 
       # @!attribute status
       #   The status of the Physical Card Profile.
