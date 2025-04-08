@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-04-08)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** api update ([#42](https://github.com/Increase/increase-ruby/issues/42)) ([20108ce](https://github.com/Increase/increase-ruby/commit/20108ce07794eaec00dd89e66c5bea8a16c91f2f))
+* use Pathname alongside raw IO handles for file uploads ([#41](https://github.com/Increase/increase-ruby/issues/41)) ([b7e2430](https://github.com/Increase/increase-ruby/commit/b7e2430aab96fb90550164b521aec7108282d35f))
+
+
+### Chores
+
+* add README docs for using solargraph when installing gem from git ([#40](https://github.com/Increase/increase-ruby/issues/40)) ([d68da15](https://github.com/Increase/increase-ruby/commit/d68da15415f8a0e76cb0f6befcb8c18b358f11c4))
+* always fold up method bodies in sorbet type definitions ([#34](https://github.com/Increase/increase-ruby/issues/34)) ([1d073b1](https://github.com/Increase/increase-ruby/commit/1d073b100ba23d28304bfa5fbcb6b021dccbeaf9))
+* easier to read examples in README.md ([#37](https://github.com/Increase/increase-ruby/issues/37)) ([b7e210a](https://github.com/Increase/increase-ruby/commit/b7e210a2b4abc745579b9f688b7c207a6ad9a25f))
+* **internal:** misc small improvements ([#31](https://github.com/Increase/increase-ruby/issues/31)) ([51871b0](https://github.com/Increase/increase-ruby/commit/51871b0593ca9ba889978c1cbbf06410fca2251b))
+* **internal:** more concise handling of parameter naming conflicts ([#36](https://github.com/Increase/increase-ruby/issues/36)) ([1eb565b](https://github.com/Increase/increase-ruby/commit/1eb565bab5b01fb9a4f306b697e6b8148b444dbb))
+* **internal:** rubocop rules ([#33](https://github.com/Increase/increase-ruby/issues/33)) ([fdf49af](https://github.com/Increase/increase-ruby/commit/fdf49aff062233facde7a19e85e988d097c83d9f))
+* **internal:** run rubocop linter in parallel ([#32](https://github.com/Increase/increase-ruby/issues/32)) ([f28a7d0](https://github.com/Increase/increase-ruby/commit/f28a7d0c3cff243b6bb81a4383883326384b2bf3))
+* **internal:** version bump ([#29](https://github.com/Increase/increase-ruby/issues/29)) ([131900e](https://github.com/Increase/increase-ruby/commit/131900e26a21f7d708358735f239b50011f0abaa))
+* make client tests look prettier ([#39](https://github.com/Increase/increase-ruby/issues/39)) ([39145e0](https://github.com/Increase/increase-ruby/commit/39145e0032a6b3a316b522fa4458d7ceebd78384))
+* **tests:** improve enum examples ([#38](https://github.com/Increase/increase-ruby/issues/38)) ([0d69f9f](https://github.com/Increase/increase-ruby/commit/0d69f9f79636c51dd8445b5b9d91d486d7051569))
+* update yard comment formatting ([#35](https://github.com/Increase/increase-ruby/issues/35)) ([dc047f3](https://github.com/Increase/increase-ruby/commit/dc047f399cc11b6d58f295f5c8a8856ca3c30acb))
+
 ## 0.1.0-alpha.5 (2025-04-05)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
