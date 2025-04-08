@@ -8,7 +8,7 @@ module Increase
       # upload, as well as the parameters for creating a file.
       sig do
         params(
-          file: T.any(IO, StringIO),
+          file: T.any(Pathname, StringIO),
           purpose: Increase::Models::FileCreateParams::Purpose::OrSymbol,
           description: String,
           request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))

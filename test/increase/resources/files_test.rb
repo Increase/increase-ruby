@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
   def test_create_required_params
-    response = @increase.files.create(file: StringIO.new("some file contents"), purpose: :check_image_front)
+    response = @increase.files.create(file: Pathname(__FILE__), purpose: :check_image_front)
 
     assert_pattern do
       response => Increase::Models::File

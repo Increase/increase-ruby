@@ -2,7 +2,7 @@ module Increase
   module Models
     type file_create_params =
       {
-        file: (IO | StringIO),
+        file: (Pathname | StringIO),
         purpose: Increase::Models::FileCreateParams::purpose,
         description: String
       }
@@ -12,7 +12,7 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_accessor file: IO | StringIO
+      attr_accessor file: Pathname | StringIO
 
       attr_accessor purpose: Increase::Models::FileCreateParams::purpose
 
@@ -21,7 +21,7 @@ module Increase
       def description=: (String) -> String
 
       def initialize: (
-        file: IO | StringIO,
+        file: Pathname | StringIO,
         purpose: Increase::Models::FileCreateParams::purpose,
         ?description: String,
         ?request_options: Increase::request_opts

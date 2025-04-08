@@ -9,7 +9,7 @@ module Increase
       #
       # @overload create(file:, purpose:, description: nil, request_options: {})
       #
-      # @param file [IO, StringIO]
+      # @param file [Pathname, StringIO]
       # @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose]
       # @param description [String]
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]

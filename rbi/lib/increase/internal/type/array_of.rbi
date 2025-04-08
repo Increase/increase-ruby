@@ -36,11 +36,10 @@ module Increase
         # @api private
         sig(:final) do
           override
-            .params(value: T.any(
-              T::Array[T.anything],
-              T.anything
-            ),
-                    state: Increase::Internal::Type::Converter::State)
+            .params(
+              value: T.any(T::Array[T.anything], T.anything),
+              state: Increase::Internal::Type::Converter::CoerceState
+            )
             .returns(T.any(T::Array[T.anything], T.anything))
         end
         def coerce(value, state:); end
@@ -48,10 +47,13 @@ module Increase
         # @api private
         sig(:final) do
           override
-            .params(value: T.any(T::Array[T.anything], T.anything))
+            .params(
+              value: T.any(T::Array[T.anything], T.anything),
+              state: Increase::Internal::Type::Converter::DumpState
+            )
             .returns(T.any(T::Array[T.anything], T.anything))
         end
-        def dump(value); end
+        def dump(value, state:); end
 
         # @api private
         sig(:final) { returns(Elem) }
