@@ -37,11 +37,12 @@ increase = Increase::Client.new(
   environment: "sandbox" # defaults to "production"
 )
 
-account = increase.accounts.create(
-  name: "New Account!",
-  entity_id: "entity_n8y8tnk2p9339ti393yi",
-  program_id: "program_i2v2os4mwza1oetokh9i"
-)
+account =
+  increase.accounts.create(
+    name: "New Account!",
+    entity_id: "entity_n8y8tnk2p9339ti393yi",
+    program_id: "program_i2v2os4mwza1oetokh9i"
+  )
 
 puts(account.id)
 ```
@@ -167,11 +168,12 @@ Due to limitations with the Sorbet type system, where a method otherwise can tak
 Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
 
 ```ruby
-params = Increase::Models::AccountCreateParams.new(
-  name: "New Account!",
-  entity_id: "entity_n8y8tnk2p9339ti393yi",
-  program_id: "program_i2v2os4mwza1oetokh9i"
-)
+params =
+  Increase::Models::AccountCreateParams.new(
+    name: "New Account!",
+    entity_id: "entity_n8y8tnk2p9339ti393yi",
+    program_id: "program_i2v2os4mwza1oetokh9i"
+  )
 
 increase.accounts.create(**params)
 ```
