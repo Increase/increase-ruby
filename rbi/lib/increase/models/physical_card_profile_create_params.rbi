@@ -22,12 +22,17 @@ module Increase
       sig { returns(String) }
       attr_accessor :front_image_file_id
 
+      # The identifier for the Program that this Physical Card Profile falls under.
+      sig { returns(String) }
+      attr_accessor :program_id
+
       sig do
         params(
           carrier_image_file_id: String,
           contact_phone: String,
           description: String,
           front_image_file_id: String,
+          program_id: String,
           request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
         )
           .returns(T.attached_class)
@@ -37,10 +42,9 @@ module Increase
         contact_phone:,
         description:,
         front_image_file_id:,
+        program_id:,
         request_options: {}
-      )
-      end
-
+      ); end
       sig do
         override
           .returns(
@@ -49,6 +53,7 @@ module Increase
               contact_phone: String,
               description: String,
               front_image_file_id: String,
+              program_id: String,
               request_options: Increase::RequestOptions
             }
           )

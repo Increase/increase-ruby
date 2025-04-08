@@ -9,7 +9,8 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         carrier_image_file_id: "file_h6v7mtipe119os47ehlu",
         contact_phone: "+16505046304",
         description: "My Card Profile",
-        front_image_file_id: "file_o6aex13wm1jcc36sgcj1"
+        front_image_file_id: "file_o6aex13wm1jcc36sgcj1",
+        program_id: "program_i2v2os4mwza1oetokh9i"
       )
 
     assert_pattern do

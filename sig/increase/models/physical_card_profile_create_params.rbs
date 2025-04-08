@@ -5,7 +5,8 @@ module Increase
         carrier_image_file_id: String,
         contact_phone: String,
         description: String,
-        front_image_file_id: String
+        front_image_file_id: String,
+        program_id: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -21,11 +22,14 @@ module Increase
 
       attr_accessor front_image_file_id: String
 
+      attr_accessor program_id: String
+
       def initialize: (
         carrier_image_file_id: String,
         contact_phone: String,
         description: String,
         front_image_file_id: String,
+        program_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
