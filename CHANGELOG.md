@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-04-08)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Bug Fixes
+
+* raise connection error for errors that result from HTTP transports ([#46](https://github.com/Increase/increase-ruby/issues/46)) ([222ee88](https://github.com/Increase/increase-ruby/commit/222ee88fee656b29fe650a58a67976356071d716))
+
+
+### Chores
+
+* **internal:** version bump ([6dbed32](https://github.com/Increase/increase-ruby/commit/6dbed32e0dd9dc6b16377f2663f1e3332687cd86))
+
 ## 0.1.0-alpha.7 (2025-04-08)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
