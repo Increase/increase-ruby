@@ -6,6 +6,7 @@ module Increase
         contact_phone: String,
         description: String,
         front_image_file_id: String,
+        program_id: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Models::PhysicalCardProfile
 

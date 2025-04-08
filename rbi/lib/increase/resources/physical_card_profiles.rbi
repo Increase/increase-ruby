@@ -10,6 +10,7 @@ module Increase
           contact_phone: String,
           description: String,
           front_image_file_id: String,
+          program_id: String,
           request_options: T.nilable(T.any(Increase::RequestOptions, Increase::Internal::AnyHash))
         )
           .returns(Increase::Models::PhysicalCardProfile)
@@ -23,6 +24,8 @@ module Increase
         description:,
         # The identifier of the File containing the physical card's front image.
         front_image_file_id:,
+        # The identifier for the Program that this Physical Card Profile falls under.
+        program_id:,
         request_options: {}
       ); end
       # Retrieve a Card Profile
