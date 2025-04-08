@@ -2,7 +2,7 @@ module Increase
   module Resources
     class Files
       def create: (
-        file: IO | StringIO,
+        file: Pathname | StringIO,
         purpose: Increase::Models::FileCreateParams::purpose,
         ?description: String,
         ?request_options: Increase::request_opts
