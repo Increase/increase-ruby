@@ -867,6 +867,23 @@ module Increase
 
       # @see Increase::Models::CheckTransfer#submission
       class Submission < Increase::Internal::Type::BaseModel
+        # @!attribute address_correction_action
+        #   Per USPS requirements, Increase will standardize the address to USPS standards
+        #   and check it against the USPS National Change of Address (NCOA) database before
+        #   mailing it. This indicates what modifications, if any, were made to the address
+        #   before printing and mailing the check.
+        #
+        #   @return [Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction]
+        required :address_correction_action,
+                 enum: -> { Increase::Models::CheckTransfer::Submission::AddressCorrectionAction }
+
+        # @!attribute submitted_address
+        #   The address we submitted to the printer. This is what is physically printed on
+        #   the check.
+        #
+        #   @return [Increase::Models::CheckTransfer::Submission::SubmittedAddress]
+        required :submitted_address, -> { Increase::Models::CheckTransfer::Submission::SubmittedAddress }
+
         # @!attribute submitted_at
         #   When this check transfer was submitted to our check printer.
         #
@@ -876,11 +893,95 @@ module Increase
         # @!parse
         #   # After the transfer is submitted, this will contain supplemental details.
         #   #
+        #   # @param address_correction_action [Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction]
+        #   # @param submitted_address [Increase::Models::CheckTransfer::Submission::SubmittedAddress]
         #   # @param submitted_at [Time]
         #   #
-        #   def initialize(submitted_at:, **) = super
+        #   def initialize(address_correction_action:, submitted_address:, submitted_at:, **) = super
 
         # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+
+        # Per USPS requirements, Increase will standardize the address to USPS standards
+        # and check it against the USPS National Change of Address (NCOA) database before
+        # mailing it. This indicates what modifications, if any, were made to the address
+        # before printing and mailing the check.
+        #
+        # @see Increase::Models::CheckTransfer::Submission#address_correction_action
+        module AddressCorrectionAction
+          extend Increase::Internal::Type::Enum
+
+          # No address correction took place.
+          NONE = :none
+
+          # The address was standardized.
+          STANDARDIZATION = :standardization
+
+          # The address was first standardized and then changed because the recipient moved.
+          STANDARDIZATION_WITH_ADDRESS_CHANGE = :standardization_with_address_change
+
+          # An error occurred while correcting the address. This typically means the USPS could not find that address. The address was not changed.
+          ERROR = :error
+
+          finalize!
+
+          # @!parse
+          #   # @return [Array<Symbol>]
+          #   def self.values; end
+        end
+
+        # @see Increase::Models::CheckTransfer::Submission#submitted_address
+        class SubmittedAddress < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The submitted address city.
+          #
+          #   @return [String]
+          required :city, String
+
+          # @!attribute line1
+          #   The submitted address line 1.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute line2
+          #   The submitted address line 2.
+          #
+          #   @return [String, nil]
+          required :line2, String, nil?: true
+
+          # @!attribute recipient_name
+          #   The submitted recipient name.
+          #
+          #   @return [String]
+          required :recipient_name, String
+
+          # @!attribute state
+          #   The submitted address state.
+          #
+          #   @return [String]
+          required :state, String
+
+          # @!attribute zip
+          #   The submitted address zip.
+          #
+          #   @return [String]
+          required :zip, String
+
+          # @!parse
+          #   # The address we submitted to the printer. This is what is physically printed on
+          #   # the check.
+          #   #
+          #   # @param city [String]
+          #   # @param line1 [String]
+          #   # @param line2 [String, nil]
+          #   # @param recipient_name [String]
+          #   # @param state [String]
+          #   # @param zip [String]
+          #   #
+          #   def initialize(city:, line1:, line2:, recipient_name:, state:, zip:, **) = super
+
+          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        end
       end
 
       # @see Increase::Models::CheckTransfer#third_party
