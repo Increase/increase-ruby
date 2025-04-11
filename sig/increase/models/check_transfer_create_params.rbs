@@ -72,9 +72,11 @@ module Increase
           mailing_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
           recipient_name: String,
+          attachment_file_id: String,
           check_number: String,
           note: String,
           return_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
+          shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           signature_text: String
         }
 
@@ -84,6 +86,10 @@ module Increase
         attr_accessor memo: String
 
         attr_accessor recipient_name: String
+
+        attr_reader attachment_file_id: String?
+
+        def attachment_file_id=: (String) -> String
 
         attr_reader check_number: String?
 
@@ -99,6 +105,12 @@ module Increase
           Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress
         ) -> Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress
 
+        attr_reader shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method?
+
+        def shipping_method=: (
+          Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method
+        ) -> Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method
+
         attr_reader signature_text: String?
 
         def signature_text=: (String) -> String
@@ -107,9 +119,11 @@ module Increase
           mailing_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
           recipient_name: String,
+          ?attachment_file_id: String,
           ?check_number: String,
           ?note: String,
           ?return_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
+          ?shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           ?signature_text: String
         ) -> void
 
@@ -183,6 +197,20 @@ module Increase
           ) -> void
 
           def to_hash: -> Increase::Models::CheckTransferCreateParams::PhysicalCheck::return_address
+        end
+
+        type shipping_method = :usps_first_class | :fedex_overnight
+
+        module ShippingMethod
+          extend Increase::Internal::Type::Enum
+
+          # USPS First Class
+          USPS_FIRST_CLASS: :usps_first_class
+
+          # FedEx Overnight
+          FEDEX_OVERNIGHT: :fedex_overnight
+
+          def self?.values: -> ::Array[Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method]
         end
       end
 

@@ -143,6 +143,15 @@ module Increase
         sig { returns(String) }
         attr_accessor :recipient_name
 
+        # The ID of a File to be attached to the check. This must have
+        # `purpose: check_attachment`. For details on pricing and restrictions, see
+        # https://increase.com/documentation/originating-checks#printing-checks .
+        sig { returns(T.nilable(String)) }
+        attr_reader :attachment_file_id
+
+        sig { params(attachment_file_id: String).void }
+        attr_writer :attachment_file_id
+
         # The check number Increase should print on the check. This should not contain
         # leading zeroes and must be unique across the `source_account_number`. If this is
         # omitted, Increase will generate a check number for you.
@@ -176,6 +185,19 @@ module Increase
         end
         attr_writer :return_address
 
+        # How to ship the check. For details on pricing, timing, and restrictions, see
+        # https://increase.com/documentation/originating-checks#printing-checks .
+        sig { returns(T.nilable(Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol)) }
+        attr_reader :shipping_method
+
+        sig do
+          params(
+            shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol
+          )
+            .void
+        end
+        attr_writer :shipping_method
+
         # The text that will appear as the signature on the check in cursive font. If not
         # provided, the check will be printed with 'No signature required'.
         sig { returns(T.nilable(String)) }
@@ -195,12 +217,14 @@ module Increase
             ),
             memo: String,
             recipient_name: String,
+            attachment_file_id: String,
             check_number: String,
             note: String,
             return_address: T.any(
               Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
               Increase::Internal::AnyHash
             ),
+            shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol,
             signature_text: String
           )
             .returns(T.attached_class)
@@ -209,9 +233,11 @@ module Increase
           mailing_address:,
           memo:,
           recipient_name:,
+          attachment_file_id: nil,
           check_number: nil,
           note: nil,
           return_address: nil,
+          shipping_method: nil,
           signature_text: nil
         ); end
         sig do
@@ -221,9 +247,11 @@ module Increase
                 mailing_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
                 memo: String,
                 recipient_name: String,
+                attachment_file_id: String,
                 check_number: String,
                 note: String,
                 return_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
+                shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol,
                 signature_text: String
               }
             )
@@ -323,6 +351,45 @@ module Increase
                        })
           end
           def to_hash; end
+        end
+
+        # How to ship the check. For details on pricing, timing, and restrictions, see
+        # https://increase.com/documentation/originating-checks#printing-checks .
+        module ShippingMethod
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod) }
+          OrSymbol =
+            T.type_alias do
+              T.any(
+                Symbol,
+                String,
+                Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::TaggedSymbol
+              )
+            end
+
+          # USPS First Class
+          USPS_FIRST_CLASS =
+            T.let(
+              :usps_first_class,
+              Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::TaggedSymbol
+            )
+
+          # FedEx Overnight
+          FEDEX_OVERNIGHT =
+            T.let(
+              :fedex_overnight,
+              Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::TaggedSymbol
+            )
+
+          sig do
+            override
+              .returns(
+                T::Array[Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::TaggedSymbol]
+              )
+          end
+          def self.values; end
         end
       end
 
