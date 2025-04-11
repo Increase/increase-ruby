@@ -1365,9 +1365,10 @@ module Increase
           # @see Increase::Models::Transaction::Source::CardRefund#interchange
           class Interchange < Increase::Internal::Type::BaseModel
             # @!attribute amount
-            #   The interchange amount given as a string containing a decimal number. The amount
-            #   is a positive number if it is credited to Increase (e.g., settlements) and a
-            #   negative number if it is debited (e.g., refunds).
+            #   The interchange amount given as a string containing a decimal number in major
+            #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+            #   credited to Increase (e.g., settlements) and a negative number if it is debited
+            #   (e.g., refunds).
             #
             #   @return [String]
             required :amount, String
@@ -2878,9 +2879,10 @@ module Increase
           # @see Increase::Models::Transaction::Source::CardSettlement#interchange
           class Interchange < Increase::Internal::Type::BaseModel
             # @!attribute amount
-            #   The interchange amount given as a string containing a decimal number. The amount
-            #   is a positive number if it is credited to Increase (e.g., settlements) and a
-            #   negative number if it is debited (e.g., refunds).
+            #   The interchange amount given as a string containing a decimal number in major
+            #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+            #   credited to Increase (e.g., settlements) and a negative number if it is debited
+            #   (e.g., refunds).
             #
             #   @return [String]
             required :amount, String
