@@ -130,6 +130,18 @@ module Increase
         #   @return [String]
         required :recipient_name, String
 
+        # @!attribute [r] attachment_file_id
+        #   The ID of a File to be attached to the check. This must have
+        #   `purpose: check_attachment`. For details on pricing and restrictions, see
+        #   https://increase.com/documentation/originating-checks#printing-checks .
+        #
+        #   @return [String, nil]
+        optional :attachment_file_id, String
+
+        # @!parse
+        #   # @return [String]
+        #   attr_writer :attachment_file_id
+
         # @!attribute [r] check_number
         #   The check number Increase should print on the check. This should not contain
         #   leading zeroes and must be unique across the `source_account_number`. If this is
@@ -164,6 +176,18 @@ module Increase
         #   # @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress]
         #   attr_writer :return_address
 
+        # @!attribute [r] shipping_method
+        #   How to ship the check. For details on pricing, timing, and restrictions, see
+        #   https://increase.com/documentation/originating-checks#printing-checks .
+        #
+        #   @return [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod, nil]
+        optional :shipping_method,
+                 enum: -> { Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod }
+
+        # @!parse
+        #   # @return [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod]
+        #   attr_writer :shipping_method
+
         # @!attribute [r] signature_text
         #   The text that will appear as the signature on the check in cursive font. If not
         #   provided, the check will be printed with 'No signature required'.
@@ -183,18 +207,22 @@ module Increase
         #   # @param mailing_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress]
         #   # @param memo [String]
         #   # @param recipient_name [String]
+        #   # @param attachment_file_id [String]
         #   # @param check_number [String]
         #   # @param note [String]
         #   # @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress]
+        #   # @param shipping_method [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod]
         #   # @param signature_text [String]
         #   #
         #   def initialize(
         #     mailing_address:,
         #     memo:,
         #     recipient_name:,
+        #     attachment_file_id: nil,
         #     check_number: nil,
         #     note: nil,
         #     return_address: nil,
+        #     shipping_method: nil,
         #     signature_text: nil,
         #     **
         #   )
@@ -310,6 +338,26 @@ module Increase
           #   def initialize(city:, line1:, name:, postal_code:, state:, line2: nil, **) = super
 
           # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        end
+
+        # How to ship the check. For details on pricing, timing, and restrictions, see
+        # https://increase.com/documentation/originating-checks#printing-checks .
+        #
+        # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#shipping_method
+        module ShippingMethod
+          extend Increase::Internal::Type::Enum
+
+          # USPS First Class
+          USPS_FIRST_CLASS = :usps_first_class
+
+          # FedEx Overnight
+          FEDEX_OVERNIGHT = :fedex_overnight
+
+          finalize!
+
+          # @!parse
+          #   # @return [Array<Symbol>]
+          #   def self.values; end
         end
       end
 
