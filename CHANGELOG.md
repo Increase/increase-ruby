@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-04-12)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** api update ([5a4e9ba](https://github.com/Increase/increase-ruby/commit/5a4e9bacb00277a52798301a3c9c5e38ceb6e5d9))
+* **api:** api update ([f79ff29](https://github.com/Increase/increase-ruby/commit/f79ff298e7be0c13803b9b2f4575f75f1550a286))
+* **api:** api update ([327f605](https://github.com/Increase/increase-ruby/commit/327f605b8456aa8b0761989c863839c83dc1482d))
+* **api:** api update ([55e7b4c](https://github.com/Increase/increase-ruby/commit/55e7b4c83502d2adf46d473b8d0bc7367ad5d0dc))
+* **api:** api update ([e53e9d7](https://github.com/Increase/increase-ruby/commit/e53e9d7a656b9c5de1a8b977282e09f7630b8faa))
+
+
+### Bug Fixes
+
+* inaccuracies in the README.md ([1c01f71](https://github.com/Increase/increase-ruby/commit/1c01f711875bb2ea64fede9350d916c2a942dbc7))
+* **internal:** update release-please to use ruby strategy for README.md ([#50](https://github.com/Increase/increase-ruby/issues/50)) ([3bd9441](https://github.com/Increase/increase-ruby/commit/3bd9441cafc861e86bed22b903f5a1d4ffa66d43))
+
+
+### Chores
+
+* ensure readme.md is bumped when release please updates versions ([#49](https://github.com/Increase/increase-ruby/issues/49)) ([b524b98](https://github.com/Increase/increase-ruby/commit/b524b987ed001e01ee3ca2a6cce4afa6521573f9))
+* fix readme typo ([#52](https://github.com/Increase/increase-ruby/issues/52)) ([b2d7d10](https://github.com/Increase/increase-ruby/commit/b2d7d1006be912f2009aab5da9f0121696b83485))
+* **internal:** expand CI branch coverage ([#51](https://github.com/Increase/increase-ruby/issues/51)) ([46c1641](https://github.com/Increase/increase-ruby/commit/46c1641d60271c5dd068704973db35446c6b1ae3))
+* **internal:** reduce CI branch coverage ([ebda740](https://github.com/Increase/increase-ruby/commit/ebda740837d8c68da8a5526178bf62b1ba059d7e))
+* **internal:** version bump ([ad35cfd](https://github.com/Increase/increase-ruby/commit/ad35cfd373e451b0c1d0b063229e731c139c4b3b))
+* loosen const and integer coercion rules ([#48](https://github.com/Increase/increase-ruby/issues/48)) ([ef3dc18](https://github.com/Increase/increase-ruby/commit/ef3dc18eac859aa3e37dd829c93ae2d337e2524c))
+
 ## 0.1.0-alpha.8 (2025-04-08)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
