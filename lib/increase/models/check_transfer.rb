@@ -478,6 +478,12 @@ module Increase
 
       # @see Increase::Models::CheckTransfer#physical_check
       class PhysicalCheck < Increase::Internal::Type::BaseModel
+        # @!attribute attachment_file_id
+        #   The ID of the file for the check attachment.
+        #
+        #   @return [String, nil]
+        required :attachment_file_id, String, nil?: true
+
         # @!attribute mailing_address
         #   Details for where Increase will mail the check.
         #
@@ -534,6 +540,7 @@ module Increase
         #   # Details relating to the physical check that Increase will print and mail. Will
         #   # be present if and only if `fulfillment_method` is equal to `physical_check`.
         #   #
+        #   # @param attachment_file_id [String, nil]
         #   # @param mailing_address [Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress]
         #   # @param memo [String, nil]
         #   # @param note [String, nil]
@@ -544,6 +551,7 @@ module Increase
         #   # @param tracking_updates [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>]
         #   #
         #   def initialize(
+        #     attachment_file_id:,
         #     mailing_address:,
         #     memo:,
         #     note:,

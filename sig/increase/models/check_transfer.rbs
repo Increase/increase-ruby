@@ -261,6 +261,7 @@ module Increase
 
       type physical_check =
         {
+          attachment_file_id: String?,
           mailing_address: Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
@@ -272,6 +273,8 @@ module Increase
         }
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
+        attr_accessor attachment_file_id: String?
+
         attr_accessor mailing_address: Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress
 
         attr_accessor memo: String?
@@ -289,6 +292,7 @@ module Increase
         attr_accessor tracking_updates: ::Array[Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate]
 
         def initialize: (
+          attachment_file_id: String?,
           mailing_address: Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,

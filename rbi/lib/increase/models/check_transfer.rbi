@@ -509,6 +509,10 @@ module Increase
       end
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
+        # The ID of the file for the check attachment.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :attachment_file_id
+
         # Details for where Increase will mail the check.
         sig { returns(Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress) }
         attr_reader :mailing_address
@@ -564,6 +568,7 @@ module Increase
         # be present if and only if `fulfillment_method` is equal to `physical_check`.
         sig do
           params(
+            attachment_file_id: T.nilable(String),
             mailing_address: T.any(Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress, Increase::Internal::AnyHash),
             memo: T.nilable(String),
             note: T.nilable(String),
@@ -578,6 +583,7 @@ module Increase
             .returns(T.attached_class)
         end
         def self.new(
+          attachment_file_id:,
           mailing_address:,
           memo:,
           note:,
@@ -591,6 +597,7 @@ module Increase
           override
             .returns(
               {
+                attachment_file_id: T.nilable(String),
                 mailing_address: Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress,
                 memo: T.nilable(String),
                 note: T.nilable(String),
