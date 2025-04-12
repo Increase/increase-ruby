@@ -29,6 +29,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -54,6 +55,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -86,6 +88,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -111,6 +114,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }
@@ -136,6 +140,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::Status,
         type: Increase::Models::PhysicalCardProfile::Type
       }

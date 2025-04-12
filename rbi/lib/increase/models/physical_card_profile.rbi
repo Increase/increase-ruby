@@ -47,6 +47,10 @@ module Increase
       sig { returns(T::Boolean) }
       attr_accessor :is_default
 
+      # The identifier for the Program this Physical Card Profile belongs to.
+      sig { returns(String) }
+      attr_accessor :program_id
+
       # The status of the Physical Card Profile.
       sig { returns(Increase::Models::PhysicalCardProfile::Status::TaggedSymbol) }
       attr_accessor :status
@@ -71,6 +75,7 @@ module Increase
           front_image_file_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           is_default: T::Boolean,
+          program_id: String,
           status: Increase::Models::PhysicalCardProfile::Status::OrSymbol,
           type: Increase::Models::PhysicalCardProfile::Type::OrSymbol
         )
@@ -87,6 +92,7 @@ module Increase
         front_image_file_id:,
         idempotency_key:,
         is_default:,
+        program_id:,
         status:,
         type:
       ); end
@@ -104,6 +110,7 @@ module Increase
               front_image_file_id: T.nilable(String),
               idempotency_key: T.nilable(String),
               is_default: T::Boolean,
+              program_id: String,
               status: Increase::Models::PhysicalCardProfile::Status::TaggedSymbol,
               type: Increase::Models::PhysicalCardProfile::Type::TaggedSymbol
             }

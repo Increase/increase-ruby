@@ -68,6 +68,12 @@ module Increase
       #   @return [Boolean]
       required :is_default, Increase::Internal::Type::Boolean
 
+      # @!attribute program_id
+      #   The identifier for the Program this Physical Card Profile belongs to.
+      #
+      #   @return [String]
+      required :program_id, String
+
       # @!attribute status
       #   The status of the Physical Card Profile.
       #
@@ -96,6 +102,7 @@ module Increase
       #   # @param front_image_file_id [String, nil]
       #   # @param idempotency_key [String, nil]
       #   # @param is_default [Boolean]
+      #   # @param program_id [String]
       #   # @param status [Symbol, Increase::Models::PhysicalCardProfile::Status]
       #   # @param type [Symbol, Increase::Models::PhysicalCardProfile::Type]
       #   #
@@ -110,6 +117,7 @@ module Increase
       #     front_image_file_id:,
       #     idempotency_key:,
       #     is_default:,
+      #     program_id:,
       #     status:,
       #     type:,
       #     **

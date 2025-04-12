@@ -12,6 +12,7 @@ module Increase
         front_image_file_id: String?,
         idempotency_key: String?,
         is_default: bool,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::status,
         type: Increase::Models::PhysicalCardProfile::type_
       }
@@ -37,6 +38,8 @@ module Increase
 
       attr_accessor is_default: bool
 
+      attr_accessor program_id: String
+
       attr_accessor status: Increase::Models::PhysicalCardProfile::status
 
       attr_accessor type: Increase::Models::PhysicalCardProfile::type_
@@ -52,6 +55,7 @@ module Increase
         front_image_file_id: String?,
         idempotency_key: String?,
         is_default: bool,
+        program_id: String,
         status: Increase::Models::PhysicalCardProfile::status,
         type: Increase::Models::PhysicalCardProfile::type_
       ) -> void
