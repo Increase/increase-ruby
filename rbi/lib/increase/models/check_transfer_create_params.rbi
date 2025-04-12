@@ -394,15 +394,6 @@ module Increase
       end
 
       class ThirdParty < Increase::Internal::Type::BaseModel
-        # The check number you will print on the check. This should not contain leading
-        # zeroes. If this is omitted, Increase will generate a check number for you; you
-        # should inspect the response and use that check number.
-        sig { returns(T.nilable(String)) }
-        attr_reader :check_number
-
-        sig { params(check_number: String).void }
-        attr_writer :check_number
-
         # The pay-to name you will print on the check. If provided, this is used for
         # [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will
         # be unable to validate the payee name when the check is deposited.
@@ -415,10 +406,10 @@ module Increase
         # Details relating to the custom fulfillment you will perform. This is required if
         # `fulfillment_method` is equal to `third_party`. It must not be included if any
         # other `fulfillment_method` is provided.
-        sig { params(check_number: String, recipient_name: String).returns(T.attached_class) }
-        def self.new(check_number: nil, recipient_name: nil); end
+        sig { params(recipient_name: String).returns(T.attached_class) }
+        def self.new(recipient_name: nil); end
 
-        sig { override.returns({check_number: String, recipient_name: String}) }
+        sig { override.returns({recipient_name: String}) }
         def to_hash; end
       end
     end

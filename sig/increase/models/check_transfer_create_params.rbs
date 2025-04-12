@@ -214,18 +214,14 @@ module Increase
         end
       end
 
-      type third_party = { check_number: String, recipient_name: String }
+      type third_party = { recipient_name: String }
 
       class ThirdParty < Increase::Internal::Type::BaseModel
-        attr_reader check_number: String?
-
-        def check_number=: (String) -> String
-
         attr_reader recipient_name: String?
 
         def recipient_name=: (String) -> String
 
-        def initialize: (?check_number: String, ?recipient_name: String) -> void
+        def initialize: (?recipient_name: String) -> void
 
         def to_hash: -> Increase::Models::CheckTransferCreateParams::third_party
       end

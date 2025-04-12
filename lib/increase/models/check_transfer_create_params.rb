@@ -362,18 +362,6 @@ module Increase
       end
 
       class ThirdParty < Increase::Internal::Type::BaseModel
-        # @!attribute [r] check_number
-        #   The check number you will print on the check. This should not contain leading
-        #   zeroes. If this is omitted, Increase will generate a check number for you; you
-        #   should inspect the response and use that check number.
-        #
-        #   @return [String, nil]
-        optional :check_number, String
-
-        # @!parse
-        #   # @return [String]
-        #   attr_writer :check_number
-
         # @!attribute [r] recipient_name
         #   The pay-to name you will print on the check. If provided, this is used for
         #   [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will
@@ -391,10 +379,9 @@ module Increase
         #   # `fulfillment_method` is equal to `third_party`. It must not be included if any
         #   # other `fulfillment_method` is provided.
         #   #
-        #   # @param check_number [String]
         #   # @param recipient_name [String]
         #   #
-        #   def initialize(check_number: nil, recipient_name: nil, **) = super
+        #   def initialize(recipient_name: nil, **) = super
 
         # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
       end
