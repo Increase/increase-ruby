@@ -4,7 +4,7 @@ The Increase Ruby library provides convenient access to the Increase REST API fr
 
 ## Documentation
 
-Documentation for released of this gem can be found [on RubyDoc](https://gemdocs.org/gems/increase).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/increase).
 
 The underlying REST API documentation can be found on [increase.com](https://increase.com/documentation).
 
