@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-04-15)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** api update ([f6c5568](https://github.com/Increase/increase-ruby/commit/f6c5568f67ff3b44fa3c27569cafbb99e48cc71d))
+
+
+### Chores
+
+* **internal:** always run post-processing when formatting when syntax_tree ([0ee8912](https://github.com/Increase/increase-ruby/commit/0ee8912f81636d5f74a736e4c8d1707b204e395a))
+* **internal:** loosen internal type restrictions ([56e169c](https://github.com/Increase/increase-ruby/commit/56e169c9fcc2a898d8671e591dec0c606f4ce24c))
+* **internal:** minor touch ups on sdk internals ([ed29ff6](https://github.com/Increase/increase-ruby/commit/ed29ff6868a89b11bea12c07b6cd834b6769cb41))
+* **internal:** mostly README touch ups ([23519d3](https://github.com/Increase/increase-ruby/commit/23519d3197bf59ba73812fda30d28101a6c5f40f))
+* make internal types pretty print ([18c33c5](https://github.com/Increase/increase-ruby/commit/18c33c5f6fe4bb1a0e0fac9083dac8b1f063fdd1))
+
+
+### Documentation
+
+* update documentation links to be more uniform ([b1f42d9](https://github.com/Increase/increase-ruby/commit/b1f42d9ef89f3a8d3db9f97e9267690e49826d2e))
+
 ## 0.1.0-alpha.9 (2025-04-12)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
