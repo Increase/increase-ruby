@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-04-19)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Features
+
+* **api:** api update ([ae80e4b](https://github.com/Increase/increase-ruby/commit/ae80e4b0f18695b8056770456cb1e95cc3eae719))
+* **api:** api update ([7983dd2](https://github.com/Increase/increase-ruby/commit/7983dd2191954ebccf1e547cc78a4bd2f47e279d))
+* **api:** api update ([084fafd](https://github.com/Increase/increase-ruby/commit/084fafd7be0db3b6a1b04b54163a2d38aebacfd5))
+* **api:** api update ([b0dcacf](https://github.com/Increase/increase-ruby/commit/b0dcacfc8219d7ae549a79a40f57c1af5a94b208))
+* **client:** enable setting base URL from environment variable ([eecc22b](https://github.com/Increase/increase-ruby/commit/eecc22b9c93398f185f15bfe9f435df94c3c6f6f))
+* implement `#hash` for data containers ([68c733d](https://github.com/Increase/increase-ruby/commit/68c733d16baadd5f069a1fc13760bb6d1f22dfa7))
+
+
+### Bug Fixes
+
+* always send idempotency header when specified as a request option ([fda1fee](https://github.com/Increase/increase-ruby/commit/fda1fee2190a625869e4fd512c0174c904bdf90d))
+* **client:** send correct HTTP path ([5bec964](https://github.com/Increase/increase-ruby/commit/5bec9649252fed72bbca45f1c692552419b1813f))
+* restore ability to configure server environment as string during client construction ([e4764d3](https://github.com/Increase/increase-ruby/commit/e4764d326a2ffee3c344cd63d805a47bfbb0829f))
+
+
+### Chores
+
+* documentation improvements ([e6dfa3b](https://github.com/Increase/increase-ruby/commit/e6dfa3b4b14575590012703b80fe03e4f1f5d15e))
+* explicitly mark apis public under `Internal` module ([9f0a5dd](https://github.com/Increase/increase-ruby/commit/9f0a5dd4027d4d9a88f6b390e30fbda0820a262b))
+* **internal:** contribute.md and contributor QoL improvements ([314324d](https://github.com/Increase/increase-ruby/commit/314324d41279d0d25657d0fc8d962c2d66341537))
+* **internal:** protect SSE parsing pipeline from broken UTF-8 characters ([5a94369](https://github.com/Increase/increase-ruby/commit/5a943694f406e0fcb99497eb587dd4d3cd0452cf))
+* make sorbet enums easier to read ([e819d32](https://github.com/Increase/increase-ruby/commit/e819d322bc12b2e83396965dbd600d2ed2cf9a76))
+* refine `#inspect` and `#to_s` for model classes ([f19c447](https://github.com/Increase/increase-ruby/commit/f19c4478427850bbe790c8735ffeb1ee7bc5b562))
+* simplify yard annotations by removing most `@!parse` directives ([f02e474](https://github.com/Increase/increase-ruby/commit/f02e474bb85778b66357450e5b0c2c0d6d34ca8c))
+* update README with recommended editor plugins ([3c7848c](https://github.com/Increase/increase-ruby/commit/3c7848ce9d097c79e47204029b1c916f0cb864e2))
+* use `@!method` instead of `@!parse` for virtual method type definitions ([214dd6b](https://github.com/Increase/increase-ruby/commit/214dd6bc8aaef7e3a5aab216d6a22be1001beb54))
+
 ## 0.1.0-alpha.10 (2025-04-15)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
