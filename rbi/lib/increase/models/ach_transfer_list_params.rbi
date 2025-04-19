@@ -164,8 +164,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ACHTransferListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::ACHTransferListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The transfer is pending approval.
           PENDING_APPROVAL =

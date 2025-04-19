@@ -157,8 +157,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransferListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransferListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The transfer is awaiting approval.
           PENDING_APPROVAL =

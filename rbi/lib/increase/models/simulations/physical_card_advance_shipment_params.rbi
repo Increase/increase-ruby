@@ -37,14 +37,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The physical card has not yet been shipped.
           PENDING =

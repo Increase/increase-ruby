@@ -148,8 +148,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Structure) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::EntityCreateParams::Structure::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # A corporation.
         CORPORATION = T.let(:corporation, Increase::Models::EntityCreateParams::Structure::TaggedSymbol)
@@ -185,8 +184,9 @@ module Increase
         end
         attr_writer :address
 
-        # The identifying details of anyone controlling or owning 25% or more of the
-        # corporation.
+        # The identifying details of each person who owns 25% or more of the business and
+        # one control person, like the CEO, CFO, or other executive. You can submit
+        # between 1 and 5 people to this list.
         sig { returns(T::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner]) }
         attr_accessor :beneficial_owners
 
@@ -197,6 +197,24 @@ module Increase
         # The Employer Identification Number (EIN) for the corporation.
         sig { returns(String) }
         attr_accessor :tax_identifier
+
+        # If the entity is exempt from the requirement to submit beneficial owners,
+        # provide the justification. If a reason is provided, you do not need to submit a
+        # list of beneficial owners.
+        sig do
+          returns(
+            T.nilable(Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol)
+          )
+        end
+        attr_reader :beneficial_ownership_exemption_reason
+
+        sig do
+          params(
+            beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol
+          )
+            .void
+        end
+        attr_writer :beneficial_ownership_exemption_reason
 
         # The two-letter United States Postal Service (USPS) abbreviation for the
         # corporation's state of incorporation.
@@ -231,6 +249,7 @@ module Increase
             beneficial_owners: T::Array[T.any(Increase::Models::EntityCreateParams::Corporation::BeneficialOwner, Increase::Internal::AnyHash)],
             name: String,
             tax_identifier: String,
+            beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol,
             incorporation_state: String,
             industry_code: String,
             website: String
@@ -242,6 +261,7 @@ module Increase
           beneficial_owners:,
           name:,
           tax_identifier:,
+          beneficial_ownership_exemption_reason: nil,
           incorporation_state: nil,
           industry_code: nil,
           website: nil
@@ -254,6 +274,7 @@ module Increase
                 beneficial_owners: T::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner],
                 name: String,
                 tax_identifier: String,
+                beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol,
                 incorporation_state: String,
                 industry_code: String,
                 website: String
@@ -634,14 +655,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Method)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Method::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER =
@@ -819,14 +833,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Prong) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Prong::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # A person with 25% or greater direct or indirect ownership of the entity.
             OWNERSHIP =
@@ -842,6 +849,46 @@ module Increase
             end
             def self.values; end
           end
+        end
+
+        # If the entity is exempt from the requirement to submit beneficial owners,
+        # provide the justification. If a reason is provided, you do not need to submit a
+        # list of beneficial owners.
+        module BeneficialOwnershipExemptionReason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # A regulated financial institution.
+          REGULATED_FINANCIAL_INSTITUTION =
+            T.let(
+              :regulated_financial_institution,
+              Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          # A publicly traded company.
+          PUBLICLY_TRADED_COMPANY =
+            T.let(
+              :publicly_traded_company,
+              Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          # A public entity acting on behalf of the federal or a state government.
+          PUBLIC_ENTITY =
+            T.let(
+              :public_entity,
+              Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          sig do
+            override
+              .returns(
+                T::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol]
+              )
+          end
+          def self.values; end
         end
       end
 
@@ -977,8 +1024,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::GovernmentAuthority::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::EntityCreateParams::GovernmentAuthority::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The Public Entity is a Municipality.
           MUNICIPALITY =
@@ -1243,14 +1289,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Joint::Individual::Identification::Method) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::EntityCreateParams::Joint::Individual::Identification::Method::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER =
@@ -1638,14 +1677,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::NaturalPerson::Identification::Method) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::EntityCreateParams::NaturalPerson::Identification::Method::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # A social security number.
             SOCIAL_SECURITY_NUMBER =
@@ -1850,8 +1882,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::ThirdPartyVerification::Vendor) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Alloy. See https://alloy.com for more information.
           ALLOY = T.let(:alloy, Increase::Models::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol)
@@ -2018,8 +2049,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Trust::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::EntityCreateParams::Trust::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The trust is revocable by the grantor.
           REVOCABLE = T.let(:revocable, Increase::Models::EntityCreateParams::Trust::Category::TaggedSymbol)
@@ -2075,8 +2105,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Trust::Trustee::Structure) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::EntityCreateParams::Trust::Trustee::Structure::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The trustee is an individual.
             INDIVIDUAL =
@@ -2332,14 +2361,7 @@ module Increase
 
                 TaggedSymbol =
                   T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Method) }
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Method::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER =
@@ -2724,14 +2746,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Method) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Method::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER =

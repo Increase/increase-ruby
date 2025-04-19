@@ -43,20 +43,16 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPurchaseSupplement::Type]
       required :type, enum: -> { Increase::Models::CardPurchaseSupplement::Type }
 
-      # @!parse
-      #   # Additional information about a card purchase (e.g., settlement or refund), such
-      #   # as level 3 line item data.
-      #   #
-      #   # @param id [String]
-      #   # @param card_payment_id [String, nil]
-      #   # @param invoice [Increase::Models::CardPurchaseSupplement::Invoice, nil]
-      #   # @param line_items [Array<Increase::Models::CardPurchaseSupplement::LineItem>, nil]
-      #   # @param transaction_id [String]
-      #   # @param type [Symbol, Increase::Models::CardPurchaseSupplement::Type]
-      #   #
-      #   def initialize(id:, card_payment_id:, invoice:, line_items:, transaction_id:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, card_payment_id:, invoice:, line_items:, transaction_id:, type:)
+      #   Additional information about a card purchase (e.g., settlement or refund), such
+      #   as level 3 line item data.
+      #
+      #   @param id [String]
+      #   @param card_payment_id [String, nil]
+      #   @param invoice [Increase::Models::CardPurchaseSupplement::Invoice, nil]
+      #   @param line_items [Array<Increase::Models::CardPurchaseSupplement::LineItem>, nil]
+      #   @param transaction_id [String]
+      #   @param type [Symbol, Increase::Models::CardPurchaseSupplement::Type]
 
       # @see Increase::Models::CardPurchaseSupplement#invoice
       class Invoice < Increase::Internal::Type::BaseModel
@@ -162,49 +158,25 @@ module Increase
         #   @return [String, nil]
         required :unique_value_added_tax_invoice_reference, String, nil?: true
 
-        # @!parse
-        #   # Invoice-level information about the payment.
-        #   #
-        #   # @param discount_amount [Integer, nil]
-        #   # @param discount_currency [String, nil]
-        #   # @param discount_treatment_code [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::DiscountTreatmentCode, nil]
-        #   # @param duty_tax_amount [Integer, nil]
-        #   # @param duty_tax_currency [String, nil]
-        #   # @param order_date [Date, nil]
-        #   # @param shipping_amount [Integer, nil]
-        #   # @param shipping_currency [String, nil]
-        #   # @param shipping_destination_country_code [String, nil]
-        #   # @param shipping_destination_postal_code [String, nil]
-        #   # @param shipping_source_postal_code [String, nil]
-        #   # @param shipping_tax_amount [Integer, nil]
-        #   # @param shipping_tax_currency [String, nil]
-        #   # @param shipping_tax_rate [String, nil]
-        #   # @param tax_treatments [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::TaxTreatments, nil]
-        #   # @param unique_value_added_tax_invoice_reference [String, nil]
-        #   #
-        #   def initialize(
-        #     discount_amount:,
-        #     discount_currency:,
-        #     discount_treatment_code:,
-        #     duty_tax_amount:,
-        #     duty_tax_currency:,
-        #     order_date:,
-        #     shipping_amount:,
-        #     shipping_currency:,
-        #     shipping_destination_country_code:,
-        #     shipping_destination_postal_code:,
-        #     shipping_source_postal_code:,
-        #     shipping_tax_amount:,
-        #     shipping_tax_currency:,
-        #     shipping_tax_rate:,
-        #     tax_treatments:,
-        #     unique_value_added_tax_invoice_reference:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(discount_amount:, discount_currency:, discount_treatment_code:, duty_tax_amount:, duty_tax_currency:, order_date:, shipping_amount:, shipping_currency:, shipping_destination_country_code:, shipping_destination_postal_code:, shipping_source_postal_code:, shipping_tax_amount:, shipping_tax_currency:, shipping_tax_rate:, tax_treatments:, unique_value_added_tax_invoice_reference:)
+        #   Invoice-level information about the payment.
+        #
+        #   @param discount_amount [Integer, nil]
+        #   @param discount_currency [String, nil]
+        #   @param discount_treatment_code [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::DiscountTreatmentCode, nil]
+        #   @param duty_tax_amount [Integer, nil]
+        #   @param duty_tax_currency [String, nil]
+        #   @param order_date [Date, nil]
+        #   @param shipping_amount [Integer, nil]
+        #   @param shipping_currency [String, nil]
+        #   @param shipping_destination_country_code [String, nil]
+        #   @param shipping_destination_postal_code [String, nil]
+        #   @param shipping_source_postal_code [String, nil]
+        #   @param shipping_tax_amount [Integer, nil]
+        #   @param shipping_tax_currency [String, nil]
+        #   @param shipping_tax_rate [String, nil]
+        #   @param tax_treatments [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::TaxTreatments, nil]
+        #   @param unique_value_added_tax_invoice_reference [String, nil]
 
         # Indicates how the merchant applied the discount.
         #
@@ -221,11 +193,8 @@ module Increase
           # Tax calculated on pre discount invoice total
           TAX_CALCULATED_ON_PRE_DISCOUNT_INVOICE_TOTAL = :tax_calculated_on_pre_discount_invoice_total
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # Indicates how the merchant applied taxes.
@@ -249,11 +218,8 @@ module Increase
           # Gross price invoice level
           GROSS_PRICE_INVOICE_LEVEL = :gross_price_invoice_level
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -366,49 +332,24 @@ module Increase
         #   @return [String, nil]
         required :unit_of_measure_code, String, nil?: true
 
-        # @!parse
-        #   # @param id [String]
-        #   # @param detail_indicator [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DetailIndicator, nil]
-        #   # @param discount_amount [Integer, nil]
-        #   # @param discount_currency [String, nil]
-        #   # @param discount_treatment_code [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DiscountTreatmentCode, nil]
-        #   # @param item_commodity_code [String, nil]
-        #   # @param item_descriptor [String, nil]
-        #   # @param item_quantity [String, nil]
-        #   # @param product_code [String, nil]
-        #   # @param sales_tax_amount [Integer, nil]
-        #   # @param sales_tax_currency [String, nil]
-        #   # @param sales_tax_rate [String, nil]
-        #   # @param total_amount [Integer, nil]
-        #   # @param total_amount_currency [String, nil]
-        #   # @param unit_cost [String, nil]
-        #   # @param unit_cost_currency [String, nil]
-        #   # @param unit_of_measure_code [String, nil]
-        #   #
-        #   def initialize(
-        #     id:,
-        #     detail_indicator:,
-        #     discount_amount:,
-        #     discount_currency:,
-        #     discount_treatment_code:,
-        #     item_commodity_code:,
-        #     item_descriptor:,
-        #     item_quantity:,
-        #     product_code:,
-        #     sales_tax_amount:,
-        #     sales_tax_currency:,
-        #     sales_tax_rate:,
-        #     total_amount:,
-        #     total_amount_currency:,
-        #     unit_cost:,
-        #     unit_cost_currency:,
-        #     unit_of_measure_code:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(id:, detail_indicator:, discount_amount:, discount_currency:, discount_treatment_code:, item_commodity_code:, item_descriptor:, item_quantity:, product_code:, sales_tax_amount:, sales_tax_currency:, sales_tax_rate:, total_amount:, total_amount_currency:, unit_cost:, unit_cost_currency:, unit_of_measure_code:)
+        #   @param id [String]
+        #   @param detail_indicator [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DetailIndicator, nil]
+        #   @param discount_amount [Integer, nil]
+        #   @param discount_currency [String, nil]
+        #   @param discount_treatment_code [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DiscountTreatmentCode, nil]
+        #   @param item_commodity_code [String, nil]
+        #   @param item_descriptor [String, nil]
+        #   @param item_quantity [String, nil]
+        #   @param product_code [String, nil]
+        #   @param sales_tax_amount [Integer, nil]
+        #   @param sales_tax_currency [String, nil]
+        #   @param sales_tax_rate [String, nil]
+        #   @param total_amount [Integer, nil]
+        #   @param total_amount_currency [String, nil]
+        #   @param unit_cost [String, nil]
+        #   @param unit_cost_currency [String, nil]
+        #   @param unit_of_measure_code [String, nil]
 
         # Indicates the type of line item.
         #
@@ -425,11 +366,8 @@ module Increase
           # Purchase
           PAYMENT = :payment
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # Indicates how the merchant applied the discount for this specific line item.
@@ -447,11 +385,8 @@ module Increase
           # Tax calculated on pre discount line item total
           TAX_CALCULATED_ON_PRE_DISCOUNT_LINE_ITEM_TOTAL = :tax_calculated_on_pre_discount_line_item_total
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -464,11 +399,8 @@ module Increase
 
         CARD_PURCHASE_SUPPLEMENT = :card_purchase_supplement
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

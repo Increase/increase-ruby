@@ -42,21 +42,17 @@ module Increase
       #   @return [Symbol, Increase::Models::BookkeepingEntry::Type]
       required :type, enum: -> { Increase::Models::BookkeepingEntry::Type }
 
-      # @!parse
-      #   # Entries are T-account entries recording debits and credits. Your compliance
-      #   # setup might require annotating money movements using this API. Learn more in our
-      #   # [guide to Bookkeeping](https://increase.com/documentation/bookkeeping#bookkeeping).
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param created_at [Time]
-      #   # @param entry_set_id [String]
-      #   # @param type [Symbol, Increase::Models::BookkeepingEntry::Type]
-      #   #
-      #   def initialize(id:, account_id:, amount:, created_at:, entry_set_id:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, amount:, created_at:, entry_set_id:, type:)
+      #   Entries are T-account entries recording debits and credits. Your compliance
+      #   setup might require annotating money movements using this API. Learn more in our
+      #   [guide to Bookkeeping](https://increase.com/documentation/bookkeeping#bookkeeping).
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param created_at [Time]
+      #   @param entry_set_id [String]
+      #   @param type [Symbol, Increase::Models::BookkeepingEntry::Type]
 
       # A constant representing the object's type. For this resource it will always be
       # `bookkeeping_entry`.
@@ -67,11 +63,8 @@ module Increase
 
         BOOKKEEPING_ENTRY = :bookkeeping_entry
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

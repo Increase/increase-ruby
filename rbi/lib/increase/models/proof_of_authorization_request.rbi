@@ -75,8 +75,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ProofOfAuthorizationRequest::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ProofOfAuthorizationRequest::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PROOF_OF_AUTHORIZATION_REQUEST =
           T.let(:proof_of_authorization_request, Increase::Models::ProofOfAuthorizationRequest::Type::TaggedSymbol)

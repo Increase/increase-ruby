@@ -94,8 +94,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscription::SelectedEventCategory) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::EventSubscription::SelectedEventCategory::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Occurs whenever an Account is created.
         ACCOUNT_CREATED =
@@ -623,8 +622,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscription::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::EventSubscription::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The subscription is active and Events will be delivered normally.
         ACTIVE = T.let(:active, Increase::Models::EventSubscription::Status::TaggedSymbol)
@@ -649,8 +647,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscription::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::EventSubscription::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         EVENT_SUBSCRIPTION = T.let(:event_subscription, Increase::Models::EventSubscription::Type::TaggedSymbol)
 

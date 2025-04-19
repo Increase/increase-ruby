@@ -67,7 +67,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Event::Category) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Event::Category::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Occurs whenever an Account is created.
         ACCOUNT_CREATED = T.let(:"account.created", Increase::Models::Event::Category::TaggedSymbol)
@@ -420,7 +420,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Event::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Event::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         EVENT = T.let(:event, Increase::Models::Event::Type::TaggedSymbol)
 

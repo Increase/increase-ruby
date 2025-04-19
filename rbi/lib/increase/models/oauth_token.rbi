@@ -47,7 +47,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthToken::TokenType) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::OAuthToken::TokenType::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         BEARER = T.let(:bearer, Increase::Models::OAuthToken::TokenType::TaggedSymbol)
 
@@ -61,7 +61,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthToken::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::OAuthToken::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         OAUTH_TOKEN = T.let(:oauth_token, Increase::Models::OAuthToken::Type::TaggedSymbol)
 

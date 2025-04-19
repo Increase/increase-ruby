@@ -111,6 +111,7 @@ module Increase
           beneficial_owners: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner],
           name: String,
           tax_identifier: String,
+          beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           incorporation_state: String,
           industry_code: String,
           website: String
@@ -124,6 +125,12 @@ module Increase
         attr_accessor name: String
 
         attr_accessor tax_identifier: String
+
+        attr_reader beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason?
+
+        def beneficial_ownership_exemption_reason=: (
+          Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
+        ) -> Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
 
         attr_reader incorporation_state: String?
 
@@ -142,6 +149,7 @@ module Increase
           beneficial_owners: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner],
           name: String,
           tax_identifier: String,
+          ?beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           ?incorporation_state: String,
           ?industry_code: String,
           ?website: String
@@ -449,6 +457,26 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong]
           end
+        end
+
+        type beneficial_ownership_exemption_reason =
+          :regulated_financial_institution
+          | :publicly_traded_company
+          | :public_entity
+
+        module BeneficialOwnershipExemptionReason
+          extend Increase::Internal::Type::Enum
+
+          # A regulated financial institution.
+          REGULATED_FINANCIAL_INSTITUTION: :regulated_financial_institution
+
+          # A publicly traded company.
+          PUBLICLY_TRADED_COMPANY: :publicly_traded_company
+
+          # A public entity acting on behalf of the federal or a state government.
+          PUBLIC_ENTITY: :public_entity
+
+          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason]
         end
       end
 

@@ -52,26 +52,22 @@ module Increase
       #   @return [Symbol, Increase::Models::IntrafiAccountEnrollment::Type]
       required :type, enum: -> { Increase::Models::IntrafiAccountEnrollment::Type }
 
-      # @!parse
-      #   # IntraFi is a
-      #   # [network of financial institutions](https://www.intrafi.com/network-banks) that
-      #   # allows Increase users to sweep funds to multiple banks, in addition to
-      #   # Increase's main bank partners. This enables accounts to become eligible for
-      #   # additional Federal Deposit Insurance Corporation (FDIC) insurance. An IntraFi
-      #   # Account Enrollment object represents the status of an account in the network.
-      #   # Sweeping an account to IntraFi doesn't affect funds availability.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param created_at [Time]
-      #   # @param idempotency_key [String, nil]
-      #   # @param intrafi_id [String]
-      #   # @param status [Symbol, Increase::Models::IntrafiAccountEnrollment::Status]
-      #   # @param type [Symbol, Increase::Models::IntrafiAccountEnrollment::Type]
-      #   #
-      #   def initialize(id:, account_id:, created_at:, idempotency_key:, intrafi_id:, status:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, created_at:, idempotency_key:, intrafi_id:, status:, type:)
+      #   IntraFi is a
+      #   [network of financial institutions](https://www.intrafi.com/network-banks) that
+      #   allows Increase users to sweep funds to multiple banks, in addition to
+      #   Increase's main bank partners. This enables accounts to become eligible for
+      #   additional Federal Deposit Insurance Corporation (FDIC) insurance. An IntraFi
+      #   Account Enrollment object represents the status of an account in the network.
+      #   Sweeping an account to IntraFi doesn't affect funds availability.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param created_at [Time]
+      #   @param idempotency_key [String, nil]
+      #   @param intrafi_id [String]
+      #   @param status [Symbol, Increase::Models::IntrafiAccountEnrollment::Status]
+      #   @param type [Symbol, Increase::Models::IntrafiAccountEnrollment::Type]
 
       # The status of the account in the network. An account takes about one business
       # day to go from `pending_enrolling` to `enrolled`.
@@ -95,11 +91,8 @@ module Increase
         # Something unexpected happened with this account. Contact Increase support.
         REQUIRES_ATTENTION = :requires_attention
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -111,11 +104,8 @@ module Increase
 
         INTRAFI_ACCOUNT_ENROLLMENT = :intrafi_account_enrollment
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

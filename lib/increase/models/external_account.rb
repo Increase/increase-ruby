@@ -74,40 +74,21 @@ module Increase
       #   @return [Symbol, Increase::Models::ExternalAccount::VerificationStatus]
       required :verification_status, enum: -> { Increase::Models::ExternalAccount::VerificationStatus }
 
-      # @!parse
-      #   # External Accounts represent accounts at financial institutions other than
-      #   # Increase. You can use this API to store their details for reuse.
-      #   #
-      #   # @param id [String]
-      #   # @param account_holder [Symbol, Increase::Models::ExternalAccount::AccountHolder]
-      #   # @param account_number [String]
-      #   # @param created_at [Time]
-      #   # @param description [String]
-      #   # @param funding [Symbol, Increase::Models::ExternalAccount::Funding]
-      #   # @param idempotency_key [String, nil]
-      #   # @param routing_number [String]
-      #   # @param status [Symbol, Increase::Models::ExternalAccount::Status]
-      #   # @param type [Symbol, Increase::Models::ExternalAccount::Type]
-      #   # @param verification_status [Symbol, Increase::Models::ExternalAccount::VerificationStatus]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_holder:,
-      #     account_number:,
-      #     created_at:,
-      #     description:,
-      #     funding:,
-      #     idempotency_key:,
-      #     routing_number:,
-      #     status:,
-      #     type:,
-      #     verification_status:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_holder:, account_number:, created_at:, description:, funding:, idempotency_key:, routing_number:, status:, type:, verification_status:)
+      #   External Accounts represent accounts at financial institutions other than
+      #   Increase. You can use this API to store their details for reuse.
+      #
+      #   @param id [String]
+      #   @param account_holder [Symbol, Increase::Models::ExternalAccount::AccountHolder]
+      #   @param account_number [String]
+      #   @param created_at [Time]
+      #   @param description [String]
+      #   @param funding [Symbol, Increase::Models::ExternalAccount::Funding]
+      #   @param idempotency_key [String, nil]
+      #   @param routing_number [String]
+      #   @param status [Symbol, Increase::Models::ExternalAccount::Status]
+      #   @param type [Symbol, Increase::Models::ExternalAccount::Type]
+      #   @param verification_status [Symbol, Increase::Models::ExternalAccount::VerificationStatus]
 
       # The type of entity that owns the External Account.
       #
@@ -124,11 +105,8 @@ module Increase
         # It's unknown what kind of entity owns the External Account.
         UNKNOWN = :unknown
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The type of the account to which the transfer will be sent.
@@ -146,11 +124,8 @@ module Increase
         # A different type of account.
         OTHER = :other
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The External Account's status.
@@ -165,11 +140,8 @@ module Increase
         # The External Account is archived and won't appear in the dashboard.
         ARCHIVED = :archived
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -181,11 +153,8 @@ module Increase
 
         EXTERNAL_ACCOUNT = :external_account
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # If you have verified ownership of the External Account.
@@ -203,11 +172,8 @@ module Increase
         # The External Account is verified.
         VERIFIED = :verified
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

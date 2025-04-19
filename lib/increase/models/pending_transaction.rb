@@ -88,42 +88,22 @@ module Increase
       #   @return [Symbol, Increase::Models::PendingTransaction::Type]
       required :type, enum: -> { Increase::Models::PendingTransaction::Type }
 
-      # @!parse
-      #   # Pending Transactions are potential future additions and removals of money from
-      #   # your bank account.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param completed_at [Time, nil]
-      #   # @param created_at [Time]
-      #   # @param currency [Symbol, Increase::Models::PendingTransaction::Currency]
-      #   # @param description [String]
-      #   # @param route_id [String, nil]
-      #   # @param route_type [Symbol, Increase::Models::PendingTransaction::RouteType, nil]
-      #   # @param source [Increase::Models::PendingTransaction::Source]
-      #   # @param status [Symbol, Increase::Models::PendingTransaction::Status]
-      #   # @param type [Symbol, Increase::Models::PendingTransaction::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     amount:,
-      #     completed_at:,
-      #     created_at:,
-      #     currency:,
-      #     description:,
-      #     route_id:,
-      #     route_type:,
-      #     source:,
-      #     status:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, amount:, completed_at:, created_at:, currency:, description:, route_id:, route_type:, source:, status:, type:)
+      #   Pending Transactions are potential future additions and removals of money from
+      #   your bank account.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param completed_at [Time, nil]
+      #   @param created_at [Time]
+      #   @param currency [Symbol, Increase::Models::PendingTransaction::Currency]
+      #   @param description [String]
+      #   @param route_id [String, nil]
+      #   @param route_type [Symbol, Increase::Models::PendingTransaction::RouteType, nil]
+      #   @param source [Increase::Models::PendingTransaction::Source]
+      #   @param status [Symbol, Increase::Models::PendingTransaction::Status]
+      #   @param type [Symbol, Increase::Models::PendingTransaction::Type]
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Pending
       # Transaction's currency. This will match the currency on the Pending
@@ -151,11 +131,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The type of the route this Pending Transaction came through.
@@ -173,11 +150,8 @@ module Increase
         # A Lockbox.
         LOCKBOX = :lockbox
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::PendingTransaction#source
@@ -284,41 +258,22 @@ module Increase
                  -> { Increase::Models::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!parse
-        #   # This is an object giving more details on the network-level event that caused the
-        #   # Pending Transaction. For example, for a card transaction this lists the
-        #   # merchant's industry and location.
-        #   #
-        #   # @param account_transfer_instruction [Increase::Models::PendingTransaction::Source::AccountTransferInstruction, nil]
-        #   # @param ach_transfer_instruction [Increase::Models::PendingTransaction::Source::ACHTransferInstruction, nil]
-        #   # @param card_authorization [Increase::Models::PendingTransaction::Source::CardAuthorization, nil]
-        #   # @param category [Symbol, Increase::Models::PendingTransaction::Source::Category]
-        #   # @param check_deposit_instruction [Increase::Models::PendingTransaction::Source::CheckDepositInstruction, nil]
-        #   # @param check_transfer_instruction [Increase::Models::PendingTransaction::Source::CheckTransferInstruction, nil]
-        #   # @param inbound_funds_hold [Increase::Models::PendingTransaction::Source::InboundFundsHold, nil]
-        #   # @param inbound_wire_transfer_reversal [Increase::Models::PendingTransaction::Source::InboundWireTransferReversal, nil]
-        #   # @param other [Object, nil]
-        #   # @param real_time_payments_transfer_instruction [Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction, nil]
-        #   # @param wire_transfer_instruction [Increase::Models::PendingTransaction::Source::WireTransferInstruction, nil]
-        #   #
-        #   def initialize(
-        #     account_transfer_instruction:,
-        #     ach_transfer_instruction:,
-        #     card_authorization:,
-        #     category:,
-        #     check_deposit_instruction:,
-        #     check_transfer_instruction:,
-        #     inbound_funds_hold:,
-        #     inbound_wire_transfer_reversal:,
-        #     other:,
-        #     real_time_payments_transfer_instruction:,
-        #     wire_transfer_instruction:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, category:, check_deposit_instruction:, check_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, real_time_payments_transfer_instruction:, wire_transfer_instruction:)
+        #   This is an object giving more details on the network-level event that caused the
+        #   Pending Transaction. For example, for a card transaction this lists the
+        #   merchant's industry and location.
+        #
+        #   @param account_transfer_instruction [Increase::Models::PendingTransaction::Source::AccountTransferInstruction, nil]
+        #   @param ach_transfer_instruction [Increase::Models::PendingTransaction::Source::ACHTransferInstruction, nil]
+        #   @param card_authorization [Increase::Models::PendingTransaction::Source::CardAuthorization, nil]
+        #   @param category [Symbol, Increase::Models::PendingTransaction::Source::Category]
+        #   @param check_deposit_instruction [Increase::Models::PendingTransaction::Source::CheckDepositInstruction, nil]
+        #   @param check_transfer_instruction [Increase::Models::PendingTransaction::Source::CheckTransferInstruction, nil]
+        #   @param inbound_funds_hold [Increase::Models::PendingTransaction::Source::InboundFundsHold, nil]
+        #   @param inbound_wire_transfer_reversal [Increase::Models::PendingTransaction::Source::InboundWireTransferReversal, nil]
+        #   @param other [Object, nil]
+        #   @param real_time_payments_transfer_instruction [Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction, nil]
+        #   @param wire_transfer_instruction [Increase::Models::PendingTransaction::Source::WireTransferInstruction, nil]
 
         # @see Increase::Models::PendingTransaction::Source#account_transfer_instruction
         class AccountTransferInstruction < Increase::Internal::Type::BaseModel
@@ -343,17 +298,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Account Transfer Instruction object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `account_transfer_instruction`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::PendingTransaction::Source::AccountTransferInstruction::Currency]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(amount:, currency:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, currency:, transfer_id:)
+          #   An Account Transfer Instruction object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `account_transfer_instruction`.
+          #
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::PendingTransaction::Source::AccountTransferInstruction::Currency]
+          #   @param transfer_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
           # account currency.
@@ -380,11 +331,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -402,16 +350,12 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An ACH Transfer Instruction object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `ach_transfer_instruction`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(amount:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, transfer_id:)
+          #   An ACH Transfer Instruction object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `ach_transfer_instruction`.
+          #
+          #   @param amount [Integer]
+          #   @param transfer_id [String]
         end
 
         # @see Increase::Models::PendingTransaction::Source#card_authorization
@@ -599,74 +543,39 @@ module Increase
           required :verification,
                    -> { Increase::Models::PendingTransaction::Source::CardAuthorization::Verification }
 
-          # @!parse
-          #   # A Card Authorization object. This field will be present in the JSON response if
-          #   # and only if `category` is equal to `card_authorization`. Card Authorizations are
-          #   # temporary holds placed on a customers funds with the intent to later clear a
-          #   # transaction.
-          #   #
-          #   # @param id [String]
-          #   # @param actioner [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Actioner]
-          #   # @param amount [Integer]
-          #   # @param card_payment_id [String]
-          #   # @param currency [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Currency]
-          #   # @param digital_wallet_token_id [String, nil]
-          #   # @param direction [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Direction]
-          #   # @param expires_at [Time]
-          #   # @param merchant_acceptor_id [String]
-          #   # @param merchant_category_code [String]
-          #   # @param merchant_city [String, nil]
-          #   # @param merchant_country [String]
-          #   # @param merchant_descriptor [String]
-          #   # @param merchant_postal_code [String, nil]
-          #   # @param merchant_state [String, nil]
-          #   # @param network_details [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails]
-          #   # @param network_identifiers [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers]
-          #   # @param network_risk_score [Integer, nil]
-          #   # @param pending_transaction_id [String, nil]
-          #   # @param physical_card_id [String, nil]
-          #   # @param presentment_amount [Integer]
-          #   # @param presentment_currency [String]
-          #   # @param processing_category [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::ProcessingCategory]
-          #   # @param real_time_decision_id [String, nil]
-          #   # @param terminal_id [String, nil]
-          #   # @param type [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Type]
-          #   # @param verification [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification]
-          #   #
-          #   def initialize(
-          #     id:,
-          #     actioner:,
-          #     amount:,
-          #     card_payment_id:,
-          #     currency:,
-          #     digital_wallet_token_id:,
-          #     direction:,
-          #     expires_at:,
-          #     merchant_acceptor_id:,
-          #     merchant_category_code:,
-          #     merchant_city:,
-          #     merchant_country:,
-          #     merchant_descriptor:,
-          #     merchant_postal_code:,
-          #     merchant_state:,
-          #     network_details:,
-          #     network_identifiers:,
-          #     network_risk_score:,
-          #     pending_transaction_id:,
-          #     physical_card_id:,
-          #     presentment_amount:,
-          #     presentment_currency:,
-          #     processing_category:,
-          #     real_time_decision_id:,
-          #     terminal_id:,
-          #     type:,
-          #     verification:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(id:, actioner:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, expires_at:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, pending_transaction_id:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, terminal_id:, type:, verification:)
+          #   A Card Authorization object. This field will be present in the JSON response if
+          #   and only if `category` is equal to `card_authorization`. Card Authorizations are
+          #   temporary holds placed on a customers funds with the intent to later clear a
+          #   transaction.
+          #
+          #   @param id [String]
+          #   @param actioner [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Actioner]
+          #   @param amount [Integer]
+          #   @param card_payment_id [String]
+          #   @param currency [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Currency]
+          #   @param digital_wallet_token_id [String, nil]
+          #   @param direction [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Direction]
+          #   @param expires_at [Time]
+          #   @param merchant_acceptor_id [String]
+          #   @param merchant_category_code [String]
+          #   @param merchant_city [String, nil]
+          #   @param merchant_country [String]
+          #   @param merchant_descriptor [String]
+          #   @param merchant_postal_code [String, nil]
+          #   @param merchant_state [String, nil]
+          #   @param network_details [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails]
+          #   @param network_identifiers [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers]
+          #   @param network_risk_score [Integer, nil]
+          #   @param pending_transaction_id [String, nil]
+          #   @param physical_card_id [String, nil]
+          #   @param presentment_amount [Integer]
+          #   @param presentment_currency [String]
+          #   @param processing_category [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::ProcessingCategory]
+          #   @param real_time_decision_id [String, nil]
+          #   @param terminal_id [String, nil]
+          #   @param type [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Type]
+          #   @param verification [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification]
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -684,11 +593,8 @@ module Increase
             # This object was actioned by the network, through stand-in processing.
             NETWORK = :network
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
@@ -716,11 +622,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # The direction describes the direction the funds will move, either from the
@@ -736,11 +639,8 @@ module Increase
             # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
             REFUND = :refund
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#network_details
@@ -760,15 +660,11 @@ module Increase
                      -> { Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa },
                      nil?: true
 
-            # @!parse
-            #   # Fields specific to the `network`.
-            #   #
-            #   # @param category [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Category]
-            #   # @param visa [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa, nil]
-            #   #
-            #   def initialize(category:, visa:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(category:, visa:)
+            #   Fields specific to the `network`.
+            #
+            #   @param category [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Category]
+            #   @param visa [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa, nil]
 
             # The payment network used to process this card authorization.
             #
@@ -779,11 +675,8 @@ module Increase
               # Visa
               VISA = :visa
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
 
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails#visa
@@ -816,16 +709,12 @@ module Increase
                        enum: -> { Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason },
                        nil?: true
 
-              # @!parse
-              #   # Fields specific to the `visa` network.
-              #   #
-              #   # @param electronic_commerce_indicator [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
-              #   # @param point_of_service_entry_mode [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
-              #   # @param stand_in_processing_reason [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason, nil]
-              #   #
-              #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:)
+              #   Fields specific to the `visa` network.
+              #
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason, nil]
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -860,11 +749,8 @@ module Increase
                 # Non-secure transaction: Use to identify an electronic commerce transaction that has no data protection.
                 NON_SECURE_TRANSACTION = :non_secure_transaction
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # The method used to enter the cardholder's primary account number and card
@@ -904,11 +790,8 @@ module Increase
                 # Contact chip card, without card verification value
                 INTEGRATED_CIRCUIT_CARD_NO_CVV = :integrated_circuit_card_no_cvv
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Only present when `actioner: network`. Describes why a card authorization was
@@ -941,11 +824,8 @@ module Increase
                 # An unspecific reason for stand-in processing.
                 OTHER = :other
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
           end
@@ -974,16 +854,12 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!parse
-            #   # Network-specific identifiers for a specific request or transaction.
-            #   #
-            #   # @param retrieval_reference_number [String, nil]
-            #   # @param trace_number [String, nil]
-            #   # @param transaction_id [String, nil]
-            #   #
-            #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param retrieval_reference_number [String, nil]
+            #   @param trace_number [String, nil]
+            #   @param transaction_id [String, nil]
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -1011,11 +887,8 @@ module Increase
             # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
             REFUND = :refund
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -1027,11 +900,8 @@ module Increase
 
             CARD_AUTHORIZATION = :card_authorization
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#verification
@@ -1052,15 +922,11 @@ module Increase
             required :cardholder_address,
                      -> { Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress }
 
-            # @!parse
-            #   # Fields related to verification of cardholder-provided values.
-            #   #
-            #   # @param card_verification_code [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode]
-            #   # @param cardholder_address [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress]
-            #   #
-            #   def initialize(card_verification_code:, cardholder_address:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(card_verification_code:, cardholder_address:)
+            #   Fields related to verification of cardholder-provided values.
+            #
+            #   @param card_verification_code [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode]
+            #   @param cardholder_address [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress]
 
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -1071,15 +937,11 @@ module Increase
               required :result,
                        enum: -> { Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode::Result }
 
-              # @!parse
-              #   # Fields related to verification of the Card Verification Code, a 3-digit code on
-              #   # the back of the card.
-              #   #
-              #   # @param result [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode::Result]
-              #   #
-              #   def initialize(result:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(result:)
+              #   Fields related to verification of the Card Verification Code, a 3-digit code on
+              #   the back of the card.
+              #
+              #   @param result [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode::Result]
 
               # The result of verifying the Card Verification Code.
               #
@@ -1096,11 +958,8 @@ module Increase
                 # The card verification code did not match the one on file.
                 NO_MATCH = :no_match
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
 
@@ -1138,19 +997,15 @@ module Increase
               required :result,
                        enum: -> { Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result }
 
-              # @!parse
-              #   # Cardholder address provided in the authorization request and the address on file
-              #   # we verified it against.
-              #   #
-              #   # @param actual_line1 [String, nil]
-              #   # @param actual_postal_code [String, nil]
-              #   # @param provided_line1 [String, nil]
-              #   # @param provided_postal_code [String, nil]
-              #   # @param result [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result]
-              #   #
-              #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
+              #   Cardholder address provided in the authorization request and the address on file
+              #   we verified it against.
+              #
+              #   @param actual_line1 [String, nil]
+              #   @param actual_postal_code [String, nil]
+              #   @param provided_line1 [String, nil]
+              #   @param provided_postal_code [String, nil]
+              #   @param result [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result]
 
               # The address verification result returned to the card network.
               #
@@ -1176,11 +1031,8 @@ module Increase
                 # Postal code and street address do not match.
                 NO_MATCH = :no_match
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
           end
@@ -1223,11 +1075,8 @@ module Increase
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::PendingTransaction::Source#check_deposit_instruction
@@ -1266,19 +1115,15 @@ module Increase
           #   @return [String]
           required :front_image_file_id, String
 
-          # @!parse
-          #   # A Check Deposit Instruction object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `check_deposit_instruction`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param back_image_file_id [String, nil]
-          #   # @param check_deposit_id [String, nil]
-          #   # @param currency [Symbol, Increase::Models::PendingTransaction::Source::CheckDepositInstruction::Currency]
-          #   # @param front_image_file_id [String]
-          #   #
-          #   def initialize(amount:, back_image_file_id:, check_deposit_id:, currency:, front_image_file_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, back_image_file_id:, check_deposit_id:, currency:, front_image_file_id:)
+          #   A Check Deposit Instruction object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `check_deposit_instruction`.
+          #
+          #   @param amount [Integer]
+          #   @param back_image_file_id [String, nil]
+          #   @param check_deposit_id [String, nil]
+          #   @param currency [Symbol, Increase::Models::PendingTransaction::Source::CheckDepositInstruction::Currency]
+          #   @param front_image_file_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           # transaction's currency.
@@ -1305,11 +1150,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1335,17 +1177,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # A Check Transfer Instruction object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `check_transfer_instruction`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::PendingTransaction::Source::CheckTransferInstruction::Currency]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(amount:, currency:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, currency:, transfer_id:)
+          #   A Check Transfer Instruction object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `check_transfer_instruction`.
+          #
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::PendingTransaction::Source::CheckTransferInstruction::Currency]
+          #   @param transfer_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
           # currency.
@@ -1372,11 +1210,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1447,40 +1282,22 @@ module Increase
           #   @return [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Type]
           required :type, enum: -> { Increase::Models::PendingTransaction::Source::InboundFundsHold::Type }
 
-          # @!parse
-          #   # An Inbound Funds Hold object. This field will be present in the JSON response if
-          #   # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
-          #   # certain transaction types to account for return windows where funds might still
-          #   # be clawed back by the sending institution.
-          #   #
-          #   # @param id [String]
-          #   # @param amount [Integer]
-          #   # @param automatically_releases_at [Time]
-          #   # @param created_at [Time]
-          #   # @param currency [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Currency]
-          #   # @param held_transaction_id [String, nil]
-          #   # @param pending_transaction_id [String, nil]
-          #   # @param released_at [Time, nil]
-          #   # @param status [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Status]
-          #   # @param type [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Type]
-          #   #
-          #   def initialize(
-          #     id:,
-          #     amount:,
-          #     automatically_releases_at:,
-          #     created_at:,
-          #     currency:,
-          #     held_transaction_id:,
-          #     pending_transaction_id:,
-          #     released_at:,
-          #     status:,
-          #     type:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(id:, amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
+          #   An Inbound Funds Hold object. This field will be present in the JSON response if
+          #   and only if `category` is equal to `inbound_funds_hold`. We hold funds for
+          #   certain transaction types to account for return windows where funds might still
+          #   be clawed back by the sending institution.
+          #
+          #   @param id [String]
+          #   @param amount [Integer]
+          #   @param automatically_releases_at [Time]
+          #   @param created_at [Time]
+          #   @param currency [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Currency]
+          #   @param held_transaction_id [String, nil]
+          #   @param pending_transaction_id [String, nil]
+          #   @param released_at [Time, nil]
+          #   @param status [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Status]
+          #   @param type [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Type]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
           # currency.
@@ -1507,11 +1324,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # The status of the hold.
@@ -1526,11 +1340,8 @@ module Increase
             # Funds have been released.
             COMPLETE = :complete
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -1542,11 +1353,8 @@ module Increase
 
             INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1558,17 +1366,13 @@ module Increase
           #   @return [String]
           required :inbound_wire_transfer_id, String
 
-          # @!parse
-          #   # An Inbound Wire Transfer Reversal object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `inbound_wire_transfer_reversal`.
-          #   # An Inbound Wire Transfer Reversal is created when Increase has received a wire
-          #   # and the User requests that it be reversed.
-          #   #
-          #   # @param inbound_wire_transfer_id [String]
-          #   #
-          #   def initialize(inbound_wire_transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(inbound_wire_transfer_id:)
+          #   An Inbound Wire Transfer Reversal object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `inbound_wire_transfer_reversal`.
+          #   An Inbound Wire Transfer Reversal is created when Increase has received a wire
+          #   and the User requests that it be reversed.
+          #
+          #   @param inbound_wire_transfer_id [String]
         end
 
         # @see Increase::Models::PendingTransaction::Source#real_time_payments_transfer_instruction
@@ -1586,17 +1390,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # A Real-Time Payments Transfer Instruction object. This field will be present in
-          #   # the JSON response if and only if `category` is equal to
-          #   # `real_time_payments_transfer_instruction`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(amount:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, transfer_id:)
+          #   A Real-Time Payments Transfer Instruction object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `real_time_payments_transfer_instruction`.
+          #
+          #   @param amount [Integer]
+          #   @param transfer_id [String]
         end
 
         # @see Increase::Models::PendingTransaction::Source#wire_transfer_instruction
@@ -1632,19 +1432,15 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # A Wire Transfer Instruction object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `wire_transfer_instruction`.
-          #   #
-          #   # @param account_number [String]
-          #   # @param amount [Integer]
-          #   # @param message_to_recipient [String]
-          #   # @param routing_number [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(account_number:, amount:, message_to_recipient:, routing_number:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(account_number:, amount:, message_to_recipient:, routing_number:, transfer_id:)
+          #   A Wire Transfer Instruction object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `wire_transfer_instruction`.
+          #
+          #   @param account_number [String]
+          #   @param amount [Integer]
+          #   @param message_to_recipient [String]
+          #   @param routing_number [String]
+          #   @param transfer_id [String]
         end
       end
 
@@ -1661,11 +1457,8 @@ module Increase
         # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc.
         COMPLETE = :complete
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -1677,11 +1470,8 @@ module Increase
 
         PENDING_TRANSACTION = :pending_transaction
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

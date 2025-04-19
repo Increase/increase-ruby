@@ -43,19 +43,15 @@ module Increase
       #   @return [String]
       required :verification_code, String
 
-      # @!parse
-      #   # An object containing the sensitive details (card number, cvc, etc) for a Card.
-      #   #
-      #   # @param card_id [String]
-      #   # @param expiration_month [Integer]
-      #   # @param expiration_year [Integer]
-      #   # @param primary_account_number [String]
-      #   # @param type [Symbol, Increase::Models::CardDetails::Type]
-      #   # @param verification_code [String]
-      #   #
-      #   def initialize(card_id:, expiration_month:, expiration_year:, primary_account_number:, type:, verification_code:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(card_id:, expiration_month:, expiration_year:, primary_account_number:, type:, verification_code:)
+      #   An object containing the sensitive details (card number, cvc, etc) for a Card.
+      #
+      #   @param card_id [String]
+      #   @param expiration_month [Integer]
+      #   @param expiration_year [Integer]
+      #   @param primary_account_number [String]
+      #   @param type [Symbol, Increase::Models::CardDetails::Type]
+      #   @param verification_code [String]
 
       # A constant representing the object's type. For this resource it will always be
       # `card_details`.
@@ -66,11 +62,8 @@ module Increase
 
         CARD_DETAILS = :card_details
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

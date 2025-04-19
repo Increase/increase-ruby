@@ -147,8 +147,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardDisputeListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CardDisputeListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The Card Dispute is pending review.
           PENDING_REVIEWING =

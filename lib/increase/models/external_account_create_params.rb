@@ -4,8 +4,7 @@ module Increase
   module Models
     # @see Increase::Resources::ExternalAccounts#create
     class ExternalAccountCreateParams < Increase::Internal::Type::BaseModel
-      # @!parse
-      #   extend Increase::Internal::Type::RequestParameters::Converter
+      extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_number
@@ -27,37 +26,25 @@ module Increase
       #   @return [String]
       required :routing_number, String
 
-      # @!attribute [r] account_holder
+      # @!attribute account_holder
       #   The type of entity that owns the External Account.
       #
       #   @return [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder, nil]
       optional :account_holder, enum: -> { Increase::Models::ExternalAccountCreateParams::AccountHolder }
 
-      # @!parse
-      #   # @return [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder]
-      #   attr_writer :account_holder
-
-      # @!attribute [r] funding
+      # @!attribute funding
       #   The type of the destination account. Defaults to `checking`.
       #
       #   @return [Symbol, Increase::Models::ExternalAccountCreateParams::Funding, nil]
       optional :funding, enum: -> { Increase::Models::ExternalAccountCreateParams::Funding }
 
-      # @!parse
-      #   # @return [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
-      #   attr_writer :funding
-
-      # @!parse
-      #   # @param account_number [String]
-      #   # @param description [String]
-      #   # @param routing_number [String]
-      #   # @param account_holder [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder]
-      #   # @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
-      #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(account_number:, description:, routing_number:, account_holder: nil, funding: nil, request_options: {}, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(account_number:, description:, routing_number:, account_holder: nil, funding: nil, request_options: {})
+      #   @param account_number [String]
+      #   @param description [String]
+      #   @param routing_number [String]
+      #   @param account_holder [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder]
+      #   @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
+      #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       # The type of entity that owns the External Account.
       module AccountHolder
@@ -72,11 +59,8 @@ module Increase
         # It's unknown what kind of entity owns the External Account.
         UNKNOWN = :unknown
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The type of the destination account. Defaults to `checking`.
@@ -92,11 +76,8 @@ module Increase
         # A different type of account.
         OTHER = :other
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

@@ -106,48 +106,25 @@ module Increase
       #   @return [Symbol, Increase::Models::Account::Type]
       required :type, enum: -> { Increase::Models::Account::Type }
 
-      # @!parse
-      #   # Accounts are your bank accounts with Increase. They store money, receive
-      #   # transfers, and send payments. They earn interest and have depository insurance.
-      #   #
-      #   # @param id [String]
-      #   # @param bank [Symbol, Increase::Models::Account::Bank]
-      #   # @param closed_at [Time, nil]
-      #   # @param created_at [Time]
-      #   # @param currency [Symbol, Increase::Models::Account::Currency]
-      #   # @param entity_id [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param informational_entity_id [String, nil]
-      #   # @param interest_accrued [String]
-      #   # @param interest_accrued_at [Date, nil]
-      #   # @param interest_rate [String]
-      #   # @param name [String]
-      #   # @param program_id [String]
-      #   # @param status [Symbol, Increase::Models::Account::Status]
-      #   # @param type [Symbol, Increase::Models::Account::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     bank:,
-      #     closed_at:,
-      #     created_at:,
-      #     currency:,
-      #     entity_id:,
-      #     idempotency_key:,
-      #     informational_entity_id:,
-      #     interest_accrued:,
-      #     interest_accrued_at:,
-      #     interest_rate:,
-      #     name:,
-      #     program_id:,
-      #     status:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, bank:, closed_at:, created_at:, currency:, entity_id:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, name:, program_id:, status:, type:)
+      #   Accounts are your bank accounts with Increase. They store money, receive
+      #   transfers, and send payments. They earn interest and have depository insurance.
+      #
+      #   @param id [String]
+      #   @param bank [Symbol, Increase::Models::Account::Bank]
+      #   @param closed_at [Time, nil]
+      #   @param created_at [Time]
+      #   @param currency [Symbol, Increase::Models::Account::Currency]
+      #   @param entity_id [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param informational_entity_id [String, nil]
+      #   @param interest_accrued [String]
+      #   @param interest_accrued_at [Date, nil]
+      #   @param interest_rate [String]
+      #   @param name [String]
+      #   @param program_id [String]
+      #   @param status [Symbol, Increase::Models::Account::Status]
+      #   @param type [Symbol, Increase::Models::Account::Type]
 
       # The bank the Account is with.
       #
@@ -164,11 +141,8 @@ module Increase
         # Grasshopper Bank
         GRASSHOPPER_BANK = :grasshopper_bank
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account
@@ -196,11 +170,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The status of the Account.
@@ -215,11 +186,8 @@ module Increase
         # Open Accounts that are ready to use.
         OPEN = :open
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -231,11 +199,8 @@ module Increase
 
         ACCOUNT = :account
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

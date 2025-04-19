@@ -86,8 +86,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundMailItem::RejectionReason) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::InboundMailItem::RejectionReason::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The mail item does not match any lockbox.
         NO_MATCHING_LOCKBOX =
@@ -109,8 +108,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundMailItem::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::InboundMailItem::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The mail item is pending processing.
         PENDING = T.let(:pending, Increase::Models::InboundMailItem::Status::TaggedSymbol)
@@ -131,7 +129,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundMailItem::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::InboundMailItem::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INBOUND_MAIL_ITEM = T.let(:inbound_mail_item, Increase::Models::InboundMailItem::Type::TaggedSymbol)
 

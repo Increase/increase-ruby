@@ -170,8 +170,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::AccountListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Closed Accounts on which no new activity can occur.
           CLOSED = T.let(:closed, Increase::Models::AccountListParams::Status::In::TaggedSymbol)

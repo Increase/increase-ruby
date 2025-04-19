@@ -148,14 +148,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Corporate Credit and Debit (CCD).
           CORPORATE_CREDIT_OR_DEBIT =

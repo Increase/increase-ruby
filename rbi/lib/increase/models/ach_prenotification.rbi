@@ -151,8 +151,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ACHPrenotification::CreditDebitIndicator) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ACHPrenotification::CreditDebitIndicator::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The Prenotification is for an anticipated credit.
         CREDIT = T.let(:credit, Increase::Models::ACHPrenotification::CreditDebitIndicator::TaggedSymbol)
@@ -212,14 +211,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::ChangeCode) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::ACHPrenotification::NotificationsOfChange::ChangeCode::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The account number was incorrect.
           INCORRECT_ACCOUNT_NUMBER =
@@ -399,14 +391,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
           INSUFFICIENT_FUND =
@@ -913,8 +898,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ACHPrenotification::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ACHPrenotification::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The Prenotification is pending submission.
         PENDING_SUBMITTING =
@@ -940,8 +924,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ACHPrenotification::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ACHPrenotification::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         ACH_PRENOTIFICATION =
           T.let(:ach_prenotification, Increase::Models::ACHPrenotification::Type::TaggedSymbol)

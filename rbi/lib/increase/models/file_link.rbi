@@ -76,7 +76,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::FileLink::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::FileLink::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         FILE_LINK = T.let(:file_link, Increase::Models::FileLink::Type::TaggedSymbol)
 

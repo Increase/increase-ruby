@@ -129,8 +129,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::AccountNumberListParams::ACHDebitStatus::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::AccountNumberListParams::ACHDebitStatus::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # ACH Debits are allowed.
           ALLOWED = T.let(:allowed, Increase::Models::AccountNumberListParams::ACHDebitStatus::In::TaggedSymbol)
@@ -207,8 +206,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountNumberListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::AccountNumberListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The account number is active.
           ACTIVE = T.let(:active, Increase::Models::AccountNumberListParams::Status::In::TaggedSymbol)

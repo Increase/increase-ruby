@@ -75,8 +75,8 @@ module Increase
       # @!attribute originator_account_number
       #   The drawdown request's originator's account number.
       #
-      #   @return [String]
-      required :originator_account_number, String
+      #   @return [String, nil]
+      required :originator_account_number, String, nil?: true
 
       # @!attribute originator_address_line1
       #   Line 1 of the drawdown request's originator's address.
@@ -150,65 +150,34 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundWireDrawdownRequest::Type]
       required :type, enum: -> { Increase::Models::InboundWireDrawdownRequest::Type }
 
-      # @!parse
-      #   # Inbound wire drawdown requests are requests from someone else to send them a
-      #   # wire. This feature is in beta; reach out to
-      #   # [support@increase.com](mailto:support@increase.com) to learn more.
-      #   #
-      #   # @param id [String]
-      #   # @param amount [Integer]
-      #   # @param beneficiary_account_number [String]
-      #   # @param beneficiary_address_line1 [String, nil]
-      #   # @param beneficiary_address_line2 [String, nil]
-      #   # @param beneficiary_address_line3 [String, nil]
-      #   # @param beneficiary_name [String, nil]
-      #   # @param beneficiary_routing_number [String]
-      #   # @param created_at [Time]
-      #   # @param currency [String]
-      #   # @param message_to_recipient [String, nil]
-      #   # @param originator_account_number [String]
-      #   # @param originator_address_line1 [String, nil]
-      #   # @param originator_address_line2 [String, nil]
-      #   # @param originator_address_line3 [String, nil]
-      #   # @param originator_name [String, nil]
-      #   # @param originator_routing_number [String]
-      #   # @param originator_to_beneficiary_information_line1 [String, nil]
-      #   # @param originator_to_beneficiary_information_line2 [String, nil]
-      #   # @param originator_to_beneficiary_information_line3 [String, nil]
-      #   # @param originator_to_beneficiary_information_line4 [String, nil]
-      #   # @param recipient_account_number_id [String]
-      #   # @param type [Symbol, Increase::Models::InboundWireDrawdownRequest::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     amount:,
-      #     beneficiary_account_number:,
-      #     beneficiary_address_line1:,
-      #     beneficiary_address_line2:,
-      #     beneficiary_address_line3:,
-      #     beneficiary_name:,
-      #     beneficiary_routing_number:,
-      #     created_at:,
-      #     currency:,
-      #     message_to_recipient:,
-      #     originator_account_number:,
-      #     originator_address_line1:,
-      #     originator_address_line2:,
-      #     originator_address_line3:,
-      #     originator_name:,
-      #     originator_routing_number:,
-      #     originator_to_beneficiary_information_line1:,
-      #     originator_to_beneficiary_information_line2:,
-      #     originator_to_beneficiary_information_line3:,
-      #     originator_to_beneficiary_information_line4:,
-      #     recipient_account_number_id:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, amount:, beneficiary_account_number:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_routing_number:, created_at:, currency:, message_to_recipient:, originator_account_number:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, recipient_account_number_id:, type:)
+      #   Inbound wire drawdown requests are requests from someone else to send them a
+      #   wire. This feature is in beta; reach out to
+      #   [support@increase.com](mailto:support@increase.com) to learn more.
+      #
+      #   @param id [String]
+      #   @param amount [Integer]
+      #   @param beneficiary_account_number [String]
+      #   @param beneficiary_address_line1 [String, nil]
+      #   @param beneficiary_address_line2 [String, nil]
+      #   @param beneficiary_address_line3 [String, nil]
+      #   @param beneficiary_name [String, nil]
+      #   @param beneficiary_routing_number [String]
+      #   @param created_at [Time]
+      #   @param currency [String]
+      #   @param message_to_recipient [String, nil]
+      #   @param originator_account_number [String, nil]
+      #   @param originator_address_line1 [String, nil]
+      #   @param originator_address_line2 [String, nil]
+      #   @param originator_address_line3 [String, nil]
+      #   @param originator_name [String, nil]
+      #   @param originator_routing_number [String]
+      #   @param originator_to_beneficiary_information_line1 [String, nil]
+      #   @param originator_to_beneficiary_information_line2 [String, nil]
+      #   @param originator_to_beneficiary_information_line3 [String, nil]
+      #   @param originator_to_beneficiary_information_line4 [String, nil]
+      #   @param recipient_account_number_id [String]
+      #   @param type [Symbol, Increase::Models::InboundWireDrawdownRequest::Type]
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_wire_drawdown_request`.
@@ -219,11 +188,8 @@ module Increase
 
         INBOUND_WIRE_DRAWDOWN_REQUEST = :inbound_wire_drawdown_request
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

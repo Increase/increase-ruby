@@ -88,46 +88,25 @@ module Increase
       #   @return [Symbol, Increase::Models::Card::Type]
       required :type, enum: -> { Increase::Models::Card::Type }
 
-      # @!parse
-      #   # Cards are commercial credit cards. They'll immediately work for online purchases
-      #   # after you create them. All cards maintain a credit limit of 100% of the
-      #   # Account’s available balance at the time of transaction. Funds are deducted from
-      #   # the Account upon transaction settlement.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param billing_address [Increase::Models::Card::BillingAddress]
-      #   # @param created_at [Time]
-      #   # @param description [String, nil]
-      #   # @param digital_wallet [Increase::Models::Card::DigitalWallet, nil]
-      #   # @param entity_id [String, nil]
-      #   # @param expiration_month [Integer]
-      #   # @param expiration_year [Integer]
-      #   # @param idempotency_key [String, nil]
-      #   # @param last4 [String]
-      #   # @param status [Symbol, Increase::Models::Card::Status]
-      #   # @param type [Symbol, Increase::Models::Card::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     billing_address:,
-      #     created_at:,
-      #     description:,
-      #     digital_wallet:,
-      #     entity_id:,
-      #     expiration_month:,
-      #     expiration_year:,
-      #     idempotency_key:,
-      #     last4:,
-      #     status:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, billing_address:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
+      #   Cards are commercial credit cards. They'll immediately work for online purchases
+      #   after you create them. All cards maintain a credit limit of 100% of the
+      #   Account’s available balance at the time of transaction. Funds are deducted from
+      #   the Account upon transaction settlement.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param billing_address [Increase::Models::Card::BillingAddress]
+      #   @param created_at [Time]
+      #   @param description [String, nil]
+      #   @param digital_wallet [Increase::Models::Card::DigitalWallet, nil]
+      #   @param entity_id [String, nil]
+      #   @param expiration_month [Integer]
+      #   @param expiration_year [Integer]
+      #   @param idempotency_key [String, nil]
+      #   @param last4 [String]
+      #   @param status [Symbol, Increase::Models::Card::Status]
+      #   @param type [Symbol, Increase::Models::Card::Type]
 
       # @see Increase::Models::Card#billing_address
       class BillingAddress < Increase::Internal::Type::BaseModel
@@ -161,18 +140,14 @@ module Increase
         #   @return [String, nil]
         required :state, String, nil?: true
 
-        # @!parse
-        #   # The Card's billing address.
-        #   #
-        #   # @param city [String, nil]
-        #   # @param line1 [String, nil]
-        #   # @param line2 [String, nil]
-        #   # @param postal_code [String, nil]
-        #   # @param state [String, nil]
-        #   #
-        #   def initialize(city:, line1:, line2:, postal_code:, state:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(city:, line1:, line2:, postal_code:, state:)
+        #   The Card's billing address.
+        #
+        #   @param city [String, nil]
+        #   @param line1 [String, nil]
+        #   @param line2 [String, nil]
+        #   @param postal_code [String, nil]
+        #   @param state [String, nil]
       end
 
       # @see Increase::Models::Card#digital_wallet
@@ -198,18 +173,14 @@ module Increase
         #   @return [String, nil]
         required :phone, String, nil?: true
 
-        # @!parse
-        #   # The contact information used in the two-factor steps for digital wallet card
-        #   # creation. At least one field must be present to complete the digital wallet
-        #   # steps.
-        #   #
-        #   # @param digital_card_profile_id [String, nil]
-        #   # @param email [String, nil]
-        #   # @param phone [String, nil]
-        #   #
-        #   def initialize(digital_card_profile_id:, email:, phone:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(digital_card_profile_id:, email:, phone:)
+        #   The contact information used in the two-factor steps for digital wallet card
+        #   creation. At least one field must be present to complete the digital wallet
+        #   steps.
+        #
+        #   @param digital_card_profile_id [String, nil]
+        #   @param email [String, nil]
+        #   @param phone [String, nil]
       end
 
       # This indicates if payments can be made with the card.
@@ -227,11 +198,8 @@ module Increase
         # The card is permanently canceled.
         CANCELED = :canceled
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -243,11 +211,8 @@ module Increase
 
         CARD = :card
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

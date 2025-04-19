@@ -138,61 +138,32 @@ module Increase
       #   @return [Symbol, Increase::Models::WireDrawdownRequest::Type]
       required :type, enum: -> { Increase::Models::WireDrawdownRequest::Type }
 
-      # @!parse
-      #   # Wire drawdown requests enable you to request that someone else send you a wire.
-      #   # This feature is in beta; reach out to
-      #   # [support@increase.com](mailto:support@increase.com) to learn more.
-      #   #
-      #   # @param id [String]
-      #   # @param account_number_id [String]
-      #   # @param amount [Integer]
-      #   # @param created_at [Time]
-      #   # @param currency [String]
-      #   # @param fulfillment_inbound_wire_transfer_id [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param message_to_recipient [String]
-      #   # @param originator_address_line1 [String, nil]
-      #   # @param originator_address_line2 [String, nil]
-      #   # @param originator_address_line3 [String, nil]
-      #   # @param originator_name [String, nil]
-      #   # @param recipient_account_number [String]
-      #   # @param recipient_address_line1 [String, nil]
-      #   # @param recipient_address_line2 [String, nil]
-      #   # @param recipient_address_line3 [String, nil]
-      #   # @param recipient_name [String, nil]
-      #   # @param recipient_routing_number [String]
-      #   # @param status [Symbol, Increase::Models::WireDrawdownRequest::Status]
-      #   # @param submission [Increase::Models::WireDrawdownRequest::Submission, nil]
-      #   # @param type [Symbol, Increase::Models::WireDrawdownRequest::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_number_id:,
-      #     amount:,
-      #     created_at:,
-      #     currency:,
-      #     fulfillment_inbound_wire_transfer_id:,
-      #     idempotency_key:,
-      #     message_to_recipient:,
-      #     originator_address_line1:,
-      #     originator_address_line2:,
-      #     originator_address_line3:,
-      #     originator_name:,
-      #     recipient_account_number:,
-      #     recipient_address_line1:,
-      #     recipient_address_line2:,
-      #     recipient_address_line3:,
-      #     recipient_name:,
-      #     recipient_routing_number:,
-      #     status:,
-      #     submission:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_number_id:, amount:, created_at:, currency:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, message_to_recipient:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, recipient_account_number:, recipient_address_line1:, recipient_address_line2:, recipient_address_line3:, recipient_name:, recipient_routing_number:, status:, submission:, type:)
+      #   Wire drawdown requests enable you to request that someone else send you a wire.
+      #   This feature is in beta; reach out to
+      #   [support@increase.com](mailto:support@increase.com) to learn more.
+      #
+      #   @param id [String]
+      #   @param account_number_id [String]
+      #   @param amount [Integer]
+      #   @param created_at [Time]
+      #   @param currency [String]
+      #   @param fulfillment_inbound_wire_transfer_id [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param message_to_recipient [String]
+      #   @param originator_address_line1 [String, nil]
+      #   @param originator_address_line2 [String, nil]
+      #   @param originator_address_line3 [String, nil]
+      #   @param originator_name [String, nil]
+      #   @param recipient_account_number [String]
+      #   @param recipient_address_line1 [String, nil]
+      #   @param recipient_address_line2 [String, nil]
+      #   @param recipient_address_line3 [String, nil]
+      #   @param recipient_name [String, nil]
+      #   @param recipient_routing_number [String]
+      #   @param status [Symbol, Increase::Models::WireDrawdownRequest::Status]
+      #   @param submission [Increase::Models::WireDrawdownRequest::Submission, nil]
+      #   @param type [Symbol, Increase::Models::WireDrawdownRequest::Type]
 
       # The lifecycle status of the drawdown request.
       #
@@ -212,11 +183,8 @@ module Increase
         # The drawdown request has been refused by the recipient.
         REFUSED = :refused
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::WireDrawdownRequest#submission
@@ -228,15 +196,11 @@ module Increase
         #   @return [String]
         required :input_message_accountability_data, String
 
-        # @!parse
-        #   # After the drawdown request is submitted to Fedwire, this will contain
-        #   # supplemental details.
-        #   #
-        #   # @param input_message_accountability_data [String]
-        #   #
-        #   def initialize(input_message_accountability_data:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(input_message_accountability_data:)
+        #   After the drawdown request is submitted to Fedwire, this will contain
+        #   supplemental details.
+        #
+        #   @param input_message_accountability_data [String]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -248,11 +212,8 @@ module Increase
 
         WIRE_DRAWDOWN_REQUEST = :wire_drawdown_request
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

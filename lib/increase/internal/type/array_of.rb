@@ -30,11 +30,15 @@ module Increase
         #   @option spec [Boolean] :"nil?"
         def self.[](...) = new(...)
 
+        # @api public
+        #
         # @param other [Object]
         #
         # @return [Boolean]
         def ===(other) = other.is_a?(Array) && other.all?(item_type)
 
+        # @api public
+        #
         # @param other [Object]
         #
         # @return [Boolean]
@@ -43,6 +47,11 @@ module Increase
           other.is_a?(Increase::Internal::Type::ArrayOf) && other.nilable? == nilable? && other.item_type == item_type
           # rubocop:enable Layout/LineLength
         end
+
+        # @api public
+        #
+        # @return [Integer]
+        def hash = [self.class, item_type].hash
 
         # @api private
         #

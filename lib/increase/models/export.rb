@@ -58,25 +58,21 @@ module Increase
       #   @return [Symbol, Increase::Models::Export::Type]
       required :type, enum: -> { Increase::Models::Export::Type }
 
-      # @!parse
-      #   # Exports are batch summaries of your Increase data. You can make them from the
-      #   # API or dashboard. Since they can take a while, they are generated
-      #   # asynchronously. We send a webhook when they are ready. For more information,
-      #   # please read our
-      #   # [Exports documentation](https://increase.com/documentation/exports).
-      #   #
-      #   # @param id [String]
-      #   # @param category [Symbol, Increase::Models::Export::Category]
-      #   # @param created_at [Time]
-      #   # @param file_download_url [String, nil]
-      #   # @param file_id [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param status [Symbol, Increase::Models::Export::Status]
-      #   # @param type [Symbol, Increase::Models::Export::Type]
-      #   #
-      #   def initialize(id:, category:, created_at:, file_download_url:, file_id:, idempotency_key:, status:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, category:, created_at:, file_download_url:, file_id:, idempotency_key:, status:, type:)
+      #   Exports are batch summaries of your Increase data. You can make them from the
+      #   API or dashboard. Since they can take a while, they are generated
+      #   asynchronously. We send a webhook when they are ready. For more information,
+      #   please read our
+      #   [Exports documentation](https://increase.com/documentation/exports).
+      #
+      #   @param id [String]
+      #   @param category [Symbol, Increase::Models::Export::Category]
+      #   @param created_at [Time]
+      #   @param file_download_url [String, nil]
+      #   @param file_id [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param status [Symbol, Increase::Models::Export::Status]
+      #   @param type [Symbol, Increase::Models::Export::Type]
 
       # The category of the Export. We may add additional possible values for this enum
       # over time; your application should be able to handle that gracefully.
@@ -106,11 +102,8 @@ module Increase
         # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
         DASHBOARD_TABLE_CSV = :dashboard_table_csv
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The status of the Export.
@@ -128,11 +121,8 @@ module Increase
         # The export failed to generate. Increase will reach out to you to resolve the issue.
         FAILED = :failed
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -144,11 +134,8 @@ module Increase
 
         EXPORT = :export
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

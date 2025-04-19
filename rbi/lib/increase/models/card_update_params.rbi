@@ -166,8 +166,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardUpdateParams::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::CardUpdateParams::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The card is active.
         ACTIVE = T.let(:active, Increase::Models::CardUpdateParams::Status::TaggedSymbol)

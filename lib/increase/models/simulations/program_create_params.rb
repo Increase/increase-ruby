@@ -5,8 +5,7 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::Programs#create
       class ProgramCreateParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute name
@@ -15,13 +14,9 @@ module Increase
         #   @return [String]
         required :name, String
 
-        # @!parse
-        #   # @param name [String]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(name:, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(name:, request_options: {})
+        #   @param name [String]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

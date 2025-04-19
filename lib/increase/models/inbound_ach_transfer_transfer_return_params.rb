@@ -4,8 +4,7 @@ module Increase
   module Models
     # @see Increase::Resources::InboundACHTransfers#transfer_return
     class InboundACHTransferTransferReturnParams < Increase::Internal::Type::BaseModel
-      # @!parse
-      #   extend Increase::Internal::Type::RequestParameters::Converter
+      extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute reason
@@ -15,13 +14,9 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundACHTransferTransferReturnParams::Reason]
       required :reason, enum: -> { Increase::Models::InboundACHTransferTransferReturnParams::Reason }
 
-      # @!parse
-      #   # @param reason [Symbol, Increase::Models::InboundACHTransferTransferReturnParams::Reason]
-      #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(reason:, request_options: {}, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(reason:, request_options: {})
+      #   @param reason [Symbol, Increase::Models::InboundACHTransferTransferReturnParams::Reason]
+      #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       # The reason why this transfer will be returned. The most usual return codes are
       # `payment_stopped` for debits and `credit_entry_refused_by_receiver` for credits.
@@ -60,11 +55,8 @@ module Increase
         # The corporate customer no longer authorizes this transaction. The Nacha return code is R29.
         CORPORATE_CUSTOMER_ADVISED_NOT_AUTHORIZED = :corporate_customer_advised_not_authorized
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

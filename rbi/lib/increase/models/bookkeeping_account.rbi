@@ -72,8 +72,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingAccount::ComplianceCategory) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::BookkeepingAccount::ComplianceCategory::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # A cash in an commingled Increase Account.
         COMMINGLED_CASH =
@@ -93,8 +92,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingAccount::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::BookkeepingAccount::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         BOOKKEEPING_ACCOUNT =
           T.let(:bookkeeping_account, Increase::Models::BookkeepingAccount::Type::TaggedSymbol)

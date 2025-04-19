@@ -72,8 +72,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthConnection::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::OAuthConnection::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The OAuth connection is active.
         ACTIVE = T.let(:active, Increase::Models::OAuthConnection::Status::TaggedSymbol)
@@ -91,7 +90,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthConnection::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::OAuthConnection::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         OAUTH_CONNECTION = T.let(:oauth_connection, Increase::Models::OAuthConnection::Type::TaggedSymbol)
 

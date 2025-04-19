@@ -111,10 +111,16 @@ module Increase
 
           sig { params(other: T.anything).returns(T::Boolean) }
           def ==(other); end
+
+          sig { returns(Integer) }
+          def hash; end
         end
 
         sig { params(other: T.anything).returns(T::Boolean) }
         def ==(other); end
+
+        sig { returns(Integer) }
+        def hash; end
 
         class << self
           # @api private
@@ -179,6 +185,12 @@ module Increase
         sig { params(keys: T.nilable(T::Array[Symbol])).returns(Increase::Internal::AnyHash) }
         def deconstruct_keys(keys); end
 
+        class << self
+          # @api private
+          sig { params(model: Increase::Internal::Type::BaseModel).returns(Increase::Internal::AnyHash) }
+          def walk(model); end
+        end
+
         sig { params(a: T.anything).returns(String) }
         def to_json(*a); end
 
@@ -194,6 +206,9 @@ module Increase
           sig { params(depth: Integer).returns(String) }
           def inspect(depth: 0); end
         end
+
+        sig { returns(String) }
+        def to_s; end
 
         # @api private
         sig { returns(String) }

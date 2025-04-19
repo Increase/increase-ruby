@@ -70,38 +70,20 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type]
         required :type, enum: -> { Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type }
 
-        # @!parse
-        #   # We hold funds for certain transaction types to account for return windows where
-        #   # funds might still be clawed back by the sending institution.
-        #   #
-        #   # @param id [String]
-        #   # @param amount [Integer]
-        #   # @param automatically_releases_at [Time]
-        #   # @param created_at [Time]
-        #   # @param currency [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency]
-        #   # @param held_transaction_id [String, nil]
-        #   # @param pending_transaction_id [String, nil]
-        #   # @param released_at [Time, nil]
-        #   # @param status [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status]
-        #   # @param type [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type]
-        #   #
-        #   def initialize(
-        #     id:,
-        #     amount:,
-        #     automatically_releases_at:,
-        #     created_at:,
-        #     currency:,
-        #     held_transaction_id:,
-        #     pending_transaction_id:,
-        #     released_at:,
-        #     status:,
-        #     type:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(id:, amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
+        #   We hold funds for certain transaction types to account for return windows where
+        #   funds might still be clawed back by the sending institution.
+        #
+        #   @param id [String]
+        #   @param amount [Integer]
+        #   @param automatically_releases_at [Time]
+        #   @param created_at [Time]
+        #   @param currency [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency]
+        #   @param held_transaction_id [String, nil]
+        #   @param pending_transaction_id [String, nil]
+        #   @param released_at [Time, nil]
+        #   @param status [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status]
+        #   @param type [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type]
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         # currency.
@@ -128,11 +110,8 @@ module Increase
           # US Dollar (USD)
           USD = :USD
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # The status of the hold.
@@ -147,11 +126,8 @@ module Increase
           # Funds have been released.
           COMPLETE = :complete
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # A constant representing the object's type. For this resource it will always be
@@ -163,11 +139,8 @@ module Increase
 
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

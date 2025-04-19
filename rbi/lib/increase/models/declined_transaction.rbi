@@ -114,8 +114,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Currency) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Currency::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
         CAD = T.let(:CAD, Increase::Models::DeclinedTransaction::Currency::TaggedSymbol)
@@ -144,8 +143,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::RouteType) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::RouteType::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # An Account Number.
         ACCOUNT_NUMBER = T.let(:account_number, Increase::Models::DeclinedTransaction::RouteType::TaggedSymbol)
@@ -419,8 +417,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Reason) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::ACHDecline::Reason::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The account number is canceled.
             ACH_ROUTE_CANCELED =
@@ -536,8 +533,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             ACH_DECLINE =
               T.let(:ach_decline, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type::TaggedSymbol)
@@ -827,8 +823,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # This object was actioned by the user through a real-time decision.
             USER = T.let(:user, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner::TaggedSymbol)
@@ -855,8 +850,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency::TaggedSymbol)
@@ -890,8 +884,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Direction) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::CardDecline::Direction::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT =
@@ -966,14 +959,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Visa
               VISA =
@@ -1076,14 +1062,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER =
@@ -1161,14 +1140,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Unknown
                 UNKNOWN =
@@ -1260,14 +1232,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR =
@@ -1379,14 +1344,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::ProcessingCategory) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING =
@@ -1446,14 +1404,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
             INSUFFICIENT_FUNDS =
@@ -1512,8 +1463,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Reason) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::CardDecline::Reason::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The account has been closed.
             ACCOUNT_CLOSED =
@@ -1603,6 +1553,13 @@ module Increase
             MISSING_ORIGINAL_AUTHORIZATION =
               T.let(
                 :missing_original_authorization,
+                Increase::Models::DeclinedTransaction::Source::CardDecline::Reason::TaggedSymbol
+              )
+
+            # The transaction was declined because the 3DS authentication failed.
+            FAILED_3DS_AUTHENTICATION =
+              T.let(
+                :failed_3ds_authentication,
                 Increase::Models::DeclinedTransaction::Source::CardDecline::Reason::TaggedSymbol
               )
 
@@ -1714,14 +1671,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED =
@@ -1825,14 +1775,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No address was provided in the authorization request.
                 NOT_CHECKED =
@@ -1896,8 +1839,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # ACH Decline: details will be under the `ach_decline` object.
           ACH_DECLINE = T.let(:ach_decline, Increase::Models::DeclinedTransaction::Source::Category::TaggedSymbol)
@@ -2010,8 +1952,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The account number is disabled.
             ACH_ROUTE_DISABLED =
@@ -2192,14 +2133,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Currency) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Currency::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD =
@@ -2240,14 +2174,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Reason) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Reason::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The check's image is incomplete.
             INCOMPLETE_IMAGE =
@@ -2447,14 +2374,7 @@ module Increase
               T.type_alias do
                 T.all(Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Currency)
               end
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD =
@@ -2517,14 +2437,7 @@ module Increase
               T.type_alias do
                 T.all(Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason)
               end
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The account number is canceled.
             ACCOUNT_NUMBER_CANCELED =
@@ -2617,8 +2530,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The account number is canceled.
             ACCOUNT_NUMBER_CANCELED =
@@ -2674,8 +2586,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DeclinedTransaction::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::DeclinedTransaction::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         DECLINED_TRANSACTION =
           T.let(:declined_transaction, Increase::Models::DeclinedTransaction::Type::TaggedSymbol)

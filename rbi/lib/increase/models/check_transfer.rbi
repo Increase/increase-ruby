@@ -386,8 +386,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::CreatedBy::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::CreatedBy::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # An API key. Details will be under the `api_key` object.
           API_KEY = T.let(:api_key, Increase::Models::CheckTransfer::CreatedBy::Category::TaggedSymbol)
@@ -436,8 +435,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::Currency) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::Currency::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
         CAD = T.let(:CAD, Increase::Models::CheckTransfer::Currency::TaggedSymbol)
@@ -466,8 +464,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::FulfillmentMethod) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::FulfillmentMethod::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Increase will print and mail a physical check.
         PHYSICAL_CHECK = T.let(:physical_check, Increase::Models::CheckTransfer::FulfillmentMethod::TaggedSymbol)
@@ -727,8 +724,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # USPS First Class
           USPS_FIRST_CLASS =
@@ -784,14 +780,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The check is in transit.
             IN_TRANSIT =
@@ -829,7 +818,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The transfer is awaiting approval.
         PENDING_APPROVAL = T.let(:pending_approval, Increase::Models::CheckTransfer::Status::TaggedSymbol)
@@ -915,8 +904,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::StopPaymentRequest::Reason) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::StopPaymentRequest::Reason::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The check could not be delivered.
           MAIL_DELIVERY_FAILED =
@@ -943,8 +931,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::StopPaymentRequest::Type) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::StopPaymentRequest::Type::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           CHECK_TRANSFER_STOP_PAYMENT_REQUEST =
             T.let(
@@ -1014,8 +1001,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # No address correction took place.
           NONE = T.let(:none, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol)
@@ -1121,7 +1107,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CheckTransfer::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::CheckTransfer::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         CHECK_TRANSFER = T.let(:check_transfer, Increase::Models::CheckTransfer::Type::TaggedSymbol)
 

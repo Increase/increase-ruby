@@ -89,8 +89,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalCardProfileListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::DigitalCardProfileListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The Card Profile is awaiting review from Increase and/or processing by card networks.
           PENDING = T.let(:pending, Increase::Models::DigitalCardProfileListParams::Status::In::TaggedSymbol)

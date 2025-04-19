@@ -38,8 +38,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::EventSubscriptionUpdateParams::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::EventSubscriptionUpdateParams::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The subscription is active and Events will be delivered normally.
         ACTIVE = T.let(:active, Increase::Models::EventSubscriptionUpdateParams::Status::TaggedSymbol)

@@ -28,16 +28,12 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type]
         required :type, enum: -> { Increase::Models::Simulations::CardAuthorizationCreateResponse::Type }
 
-        # @!parse
-        #   # The results of a Card Authorization simulation.
-        #   #
-        #   # @param declined_transaction [Increase::Models::DeclinedTransaction, nil]
-        #   # @param pending_transaction [Increase::Models::PendingTransaction, nil]
-        #   # @param type [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type]
-        #   #
-        #   def initialize(declined_transaction:, pending_transaction:, type:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(declined_transaction:, pending_transaction:, type:)
+        #   The results of a Card Authorization simulation.
+        #
+        #   @param declined_transaction [Increase::Models::DeclinedTransaction, nil]
+        #   @param pending_transaction [Increase::Models::PendingTransaction, nil]
+        #   @param type [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type]
 
         # A constant representing the object's type. For this resource it will always be
         # `inbound_card_authorization_simulation_result`.
@@ -48,11 +44,8 @@ module Increase
 
           INBOUND_CARD_AUTHORIZATION_SIMULATION_RESULT = :inbound_card_authorization_simulation_result
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

@@ -42,8 +42,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::Simulations::ACHTransferReturnParams::Reason::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
           INSUFFICIENT_FUND =

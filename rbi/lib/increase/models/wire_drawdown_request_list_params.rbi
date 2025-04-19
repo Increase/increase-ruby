@@ -92,8 +92,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::WireDrawdownRequestListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::WireDrawdownRequestListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The drawdown request is queued to be submitted to Fedwire.
           PENDING_SUBMISSION =

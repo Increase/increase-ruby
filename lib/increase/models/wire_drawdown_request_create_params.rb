@@ -4,8 +4,7 @@ module Increase
   module Models
     # @see Increase::Resources::WireDrawdownRequests#create
     class WireDrawdownRequestCreateParams < Increase::Internal::Type::BaseModel
-      # @!parse
-      #   extend Increase::Internal::Type::RequestParameters::Converter
+      extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_number_id
@@ -44,7 +43,7 @@ module Increase
       #   @return [String]
       required :recipient_routing_number, String
 
-      # @!attribute [r] originator_address_line1
+      # @!attribute originator_address_line1
       #   The drawdown request originator's address line 1. This is only necessary if
       #   you're requesting a payment to a commingled account. Otherwise, we'll use the
       #   associated entity's details.
@@ -52,11 +51,7 @@ module Increase
       #   @return [String, nil]
       optional :originator_address_line1, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :originator_address_line1
-
-      # @!attribute [r] originator_address_line2
+      # @!attribute originator_address_line2
       #   The drawdown request originator's address line 2. This is only necessary if
       #   you're requesting a payment to a commingled account. Otherwise, we'll use the
       #   associated entity's details.
@@ -64,11 +59,7 @@ module Increase
       #   @return [String, nil]
       optional :originator_address_line2, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :originator_address_line2
-
-      # @!attribute [r] originator_address_line3
+      # @!attribute originator_address_line3
       #   The drawdown request originator's address line 3. This is only necessary if
       #   you're requesting a payment to a commingled account. Otherwise, we'll use the
       #   associated entity's details.
@@ -76,11 +67,7 @@ module Increase
       #   @return [String, nil]
       optional :originator_address_line3, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :originator_address_line3
-
-      # @!attribute [r] originator_name
+      # @!attribute originator_name
       #   The drawdown request originator's name. This is only necessary if you're
       #   requesting a payment to a commingled account. Otherwise, we'll use the
       #   associated entity's details.
@@ -88,77 +75,39 @@ module Increase
       #   @return [String, nil]
       optional :originator_name, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :originator_name
-
-      # @!attribute [r] recipient_address_line1
+      # @!attribute recipient_address_line1
       #   Line 1 of the drawdown request's recipient's address.
       #
       #   @return [String, nil]
       optional :recipient_address_line1, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :recipient_address_line1
-
-      # @!attribute [r] recipient_address_line2
+      # @!attribute recipient_address_line2
       #   Line 2 of the drawdown request's recipient's address.
       #
       #   @return [String, nil]
       optional :recipient_address_line2, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :recipient_address_line2
-
-      # @!attribute [r] recipient_address_line3
+      # @!attribute recipient_address_line3
       #   Line 3 of the drawdown request's recipient's address.
       #
       #   @return [String, nil]
       optional :recipient_address_line3, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :recipient_address_line3
-
-      # @!parse
-      #   # @param account_number_id [String]
-      #   # @param amount [Integer]
-      #   # @param message_to_recipient [String]
-      #   # @param recipient_account_number [String]
-      #   # @param recipient_name [String]
-      #   # @param recipient_routing_number [String]
-      #   # @param originator_address_line1 [String]
-      #   # @param originator_address_line2 [String]
-      #   # @param originator_address_line3 [String]
-      #   # @param originator_name [String]
-      #   # @param recipient_address_line1 [String]
-      #   # @param recipient_address_line2 [String]
-      #   # @param recipient_address_line3 [String]
-      #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(
-      #     account_number_id:,
-      #     amount:,
-      #     message_to_recipient:,
-      #     recipient_account_number:,
-      #     recipient_name:,
-      #     recipient_routing_number:,
-      #     originator_address_line1: nil,
-      #     originator_address_line2: nil,
-      #     originator_address_line3: nil,
-      #     originator_name: nil,
-      #     recipient_address_line1: nil,
-      #     recipient_address_line2: nil,
-      #     recipient_address_line3: nil,
-      #     request_options: {},
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(account_number_id:, amount:, message_to_recipient:, recipient_account_number:, recipient_name:, recipient_routing_number:, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, recipient_address_line1: nil, recipient_address_line2: nil, recipient_address_line3: nil, request_options: {})
+      #   @param account_number_id [String]
+      #   @param amount [Integer]
+      #   @param message_to_recipient [String]
+      #   @param recipient_account_number [String]
+      #   @param recipient_name [String]
+      #   @param recipient_routing_number [String]
+      #   @param originator_address_line1 [String]
+      #   @param originator_address_line2 [String]
+      #   @param originator_address_line3 [String]
+      #   @param originator_name [String]
+      #   @param recipient_address_line1 [String]
+      #   @param recipient_address_line2 [String]
+      #   @param recipient_address_line3 [String]
+      #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

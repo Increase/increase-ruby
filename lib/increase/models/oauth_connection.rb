@@ -49,22 +49,18 @@ module Increase
       #   @return [Symbol, Increase::Models::OAuthConnection::Type]
       required :type, enum: -> { Increase::Models::OAuthConnection::Type }
 
-      # @!parse
-      #   # When a user authorizes your OAuth application, an OAuth Connection object is
-      #   # created. Learn more about OAuth
-      #   # [here](https://increase.com/documentation/oauth).
-      #   #
-      #   # @param id [String]
-      #   # @param created_at [Time]
-      #   # @param deleted_at [Time, nil]
-      #   # @param group_id [String]
-      #   # @param oauth_application_id [String]
-      #   # @param status [Symbol, Increase::Models::OAuthConnection::Status]
-      #   # @param type [Symbol, Increase::Models::OAuthConnection::Type]
-      #   #
-      #   def initialize(id:, created_at:, deleted_at:, group_id:, oauth_application_id:, status:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, created_at:, deleted_at:, group_id:, oauth_application_id:, status:, type:)
+      #   When a user authorizes your OAuth application, an OAuth Connection object is
+      #   created. Learn more about OAuth
+      #   [here](https://increase.com/documentation/oauth).
+      #
+      #   @param id [String]
+      #   @param created_at [Time]
+      #   @param deleted_at [Time, nil]
+      #   @param group_id [String]
+      #   @param oauth_application_id [String]
+      #   @param status [Symbol, Increase::Models::OAuthConnection::Status]
+      #   @param type [Symbol, Increase::Models::OAuthConnection::Type]
 
       # Whether the connection is active.
       #
@@ -78,11 +74,8 @@ module Increase
         # The OAuth connection is permanently deactivated.
         INACTIVE = :inactive
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -94,11 +87,8 @@ module Increase
 
         OAUTH_CONNECTION = :oauth_connection
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

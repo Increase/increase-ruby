@@ -143,8 +143,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::IntrafiBalance::Currency) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::IntrafiBalance::Currency::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
         CAD = T.let(:CAD, Increase::Models::IntrafiBalance::Currency::TaggedSymbol)
@@ -174,7 +173,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::IntrafiBalance::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::IntrafiBalance::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INTRAFI_BALANCE = T.let(:intrafi_balance, Increase::Models::IntrafiBalance::Type::TaggedSymbol)
 

@@ -69,40 +69,22 @@ module Increase
       #   @return [Symbol, Increase::Models::IntrafiExclusion::Type]
       required :type, enum: -> { Increase::Models::IntrafiExclusion::Type }
 
-      # @!parse
-      #   # Certain institutions may be excluded per Entity when sweeping funds into the
-      #   # IntraFi network. This is useful when an Entity already has deposits at a
-      #   # particular bank, and does not want to sweep additional funds to it. It may take
-      #   # 5 business days for an exclusion to be processed.
-      #   #
-      #   # @param id [String]
-      #   # @param bank_name [String]
-      #   # @param created_at [Time]
-      #   # @param entity_id [String]
-      #   # @param excluded_at [Time, nil]
-      #   # @param fdic_certificate_number [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param status [Symbol, Increase::Models::IntrafiExclusion::Status]
-      #   # @param submitted_at [Time, nil]
-      #   # @param type [Symbol, Increase::Models::IntrafiExclusion::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     bank_name:,
-      #     created_at:,
-      #     entity_id:,
-      #     excluded_at:,
-      #     fdic_certificate_number:,
-      #     idempotency_key:,
-      #     status:,
-      #     submitted_at:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, bank_name:, created_at:, entity_id:, excluded_at:, fdic_certificate_number:, idempotency_key:, status:, submitted_at:, type:)
+      #   Certain institutions may be excluded per Entity when sweeping funds into the
+      #   IntraFi network. This is useful when an Entity already has deposits at a
+      #   particular bank, and does not want to sweep additional funds to it. It may take
+      #   5 business days for an exclusion to be processed.
+      #
+      #   @param id [String]
+      #   @param bank_name [String]
+      #   @param created_at [Time]
+      #   @param entity_id [String]
+      #   @param excluded_at [Time, nil]
+      #   @param fdic_certificate_number [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param status [Symbol, Increase::Models::IntrafiExclusion::Status]
+      #   @param submitted_at [Time, nil]
+      #   @param type [Symbol, Increase::Models::IntrafiExclusion::Type]
 
       # The status of the exclusion request.
       #
@@ -119,11 +101,8 @@ module Increase
         # The exclusion has been removed from the IntraFi network.
         ARCHIVED = :archived
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -135,11 +114,8 @@ module Increase
 
         INTRAFI_EXCLUSION = :intrafi_exclusion
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

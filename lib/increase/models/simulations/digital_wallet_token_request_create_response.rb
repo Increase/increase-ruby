@@ -28,16 +28,12 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type]
         required :type, enum: -> { Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type }
 
-        # @!parse
-        #   # The results of a Digital Wallet Token simulation.
-        #   #
-        #   # @param decline_reason [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::DeclineReason, nil]
-        #   # @param digital_wallet_token_id [String, nil]
-        #   # @param type [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type]
-        #   #
-        #   def initialize(decline_reason:, digital_wallet_token_id:, type:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(decline_reason:, digital_wallet_token_id:, type:)
+        #   The results of a Digital Wallet Token simulation.
+        #
+        #   @param decline_reason [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::DeclineReason, nil]
+        #   @param digital_wallet_token_id [String, nil]
+        #   @param type [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type]
 
         # If the simulated tokenization attempt was declined, this field contains details
         # as to why.
@@ -58,11 +54,8 @@ module Increase
           # Your webhook declined the token provisioning attempt.
           WEBHOOK_DECLINED = :webhook_declined
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # A constant representing the object's type. For this resource it will always be
@@ -75,11 +68,8 @@ module Increase
           INBOUND_DIGITAL_WALLET_TOKEN_REQUEST_SIMULATION_RESULT =
             :inbound_digital_wallet_token_request_simulation_result
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

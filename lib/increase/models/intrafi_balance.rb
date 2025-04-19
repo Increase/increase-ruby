@@ -44,21 +44,17 @@ module Increase
       #   @return [Symbol, Increase::Models::IntrafiBalance::Type]
       required :type, enum: -> { Increase::Models::IntrafiBalance::Type }
 
-      # @!parse
-      #   # When using IntraFi, each account's balance over the standard FDIC insurance
-      #   # amount are swept to various other institutions. Funds are rebalanced across
-      #   # banks as needed once per business day.
-      #   #
-      #   # @param id [String]
-      #   # @param balances [Array<Increase::Models::IntrafiBalance::Balance>]
-      #   # @param currency [Symbol, Increase::Models::IntrafiBalance::Currency]
-      #   # @param effective_date [Date]
-      #   # @param total_balance [Integer]
-      #   # @param type [Symbol, Increase::Models::IntrafiBalance::Type]
-      #   #
-      #   def initialize(id:, balances:, currency:, effective_date:, total_balance:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, balances:, currency:, effective_date:, total_balance:, type:)
+      #   When using IntraFi, each account's balance over the standard FDIC insurance
+      #   amount are swept to various other institutions. Funds are rebalanced across
+      #   banks as needed once per business day.
+      #
+      #   @param id [String]
+      #   @param balances [Array<Increase::Models::IntrafiBalance::Balance>]
+      #   @param currency [Symbol, Increase::Models::IntrafiBalance::Currency]
+      #   @param effective_date [Date]
+      #   @param total_balance [Integer]
+      #   @param type [Symbol, Increase::Models::IntrafiBalance::Type]
 
       class Balance < Increase::Internal::Type::BaseModel
         # @!attribute id
@@ -93,16 +89,12 @@ module Increase
         #   @return [String]
         required :fdic_certificate_number, String
 
-        # @!parse
-        #   # @param id [String]
-        #   # @param balance [Integer]
-        #   # @param bank [String]
-        #   # @param bank_location [Increase::Models::IntrafiBalance::Balance::BankLocation, nil]
-        #   # @param fdic_certificate_number [String]
-        #   #
-        #   def initialize(id:, balance:, bank:, bank_location:, fdic_certificate_number:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(id:, balance:, bank:, bank_location:, fdic_certificate_number:)
+        #   @param id [String]
+        #   @param balance [Integer]
+        #   @param bank [String]
+        #   @param bank_location [Increase::Models::IntrafiBalance::Balance::BankLocation, nil]
+        #   @param fdic_certificate_number [String]
 
         # @see Increase::Models::IntrafiBalance::Balance#bank_location
         class BankLocation < Increase::Internal::Type::BaseModel
@@ -118,15 +110,11 @@ module Increase
           #   @return [String]
           required :state, String
 
-          # @!parse
-          #   # The primary location of the bank.
-          #   #
-          #   # @param city [String]
-          #   # @param state [String]
-          #   #
-          #   def initialize(city:, state:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(city:, state:)
+          #   The primary location of the bank.
+          #
+          #   @param city [String]
+          #   @param state [String]
         end
       end
 
@@ -155,11 +143,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -171,11 +156,8 @@ module Increase
 
         INTRAFI_BALANCE = :intrafi_balance
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

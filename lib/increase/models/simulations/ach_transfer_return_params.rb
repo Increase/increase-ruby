@@ -5,28 +5,19 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::ACHTransfers#return_
       class ACHTransferReturnParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        # @!attribute [r] reason
+        # @!attribute reason
         #   The reason why the Federal Reserve or destination bank returned this transfer.
         #   Defaults to `no_account`.
         #
         #   @return [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason, nil]
         optional :reason, enum: -> { Increase::Models::Simulations::ACHTransferReturnParams::Reason }
 
-        # @!parse
-        #   # @return [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
-        #   attr_writer :reason
-
-        # @!parse
-        #   # @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(reason: nil, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(reason: nil, request_options: {})
+        #   @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
         # The reason why the Federal Reserve or destination bank returned this transfer.
         # Defaults to `no_account`.
@@ -246,11 +237,8 @@ module Increase
           # Code R68. A rare return reason. The return was sent too late.
           UNTIMELY_RETURN = :untimely_return
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

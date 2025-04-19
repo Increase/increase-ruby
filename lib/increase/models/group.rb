@@ -36,21 +36,17 @@ module Increase
       #   @return [Symbol, Increase::Models::Group::Type]
       required :type, enum: -> { Increase::Models::Group::Type }
 
-      # @!parse
-      #   # Groups represent organizations using Increase. You can retrieve information
-      #   # about your own organization via the API. More commonly, OAuth platforms can
-      #   # retrieve information about the organizations that have granted them access.
-      #   # Learn more about OAuth [here](https://increase.com/documentation/oauth).
-      #   #
-      #   # @param id [String]
-      #   # @param ach_debit_status [Symbol, Increase::Models::Group::ACHDebitStatus]
-      #   # @param activation_status [Symbol, Increase::Models::Group::ActivationStatus]
-      #   # @param created_at [Time]
-      #   # @param type [Symbol, Increase::Models::Group::Type]
-      #   #
-      #   def initialize(id:, ach_debit_status:, activation_status:, created_at:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, ach_debit_status:, activation_status:, created_at:, type:)
+      #   Groups represent organizations using Increase. You can retrieve information
+      #   about your own organization via the API. More commonly, OAuth platforms can
+      #   retrieve information about the organizations that have granted them access.
+      #   Learn more about OAuth [here](https://increase.com/documentation/oauth).
+      #
+      #   @param id [String]
+      #   @param ach_debit_status [Symbol, Increase::Models::Group::ACHDebitStatus]
+      #   @param activation_status [Symbol, Increase::Models::Group::ActivationStatus]
+      #   @param created_at [Time]
+      #   @param type [Symbol, Increase::Models::Group::Type]
 
       # If the Group is allowed to create ACH debits.
       #
@@ -64,11 +60,8 @@ module Increase
         # The Group can make ACH debits.
         ENABLED = :enabled
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # If the Group is activated or not.
@@ -83,11 +76,8 @@ module Increase
         # The Group is activated.
         ACTIVATED = :activated
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -99,11 +89,8 @@ module Increase
 
         GROUP = :group
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

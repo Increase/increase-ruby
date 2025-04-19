@@ -302,8 +302,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::CreatedBy::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::AccountTransfer::CreatedBy::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # An API key. Details will be under the `api_key` object.
           API_KEY = T.let(:api_key, Increase::Models::AccountTransfer::CreatedBy::Category::TaggedSymbol)
@@ -352,8 +351,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Currency) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::AccountTransfer::Currency::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
         CAD = T.let(:CAD, Increase::Models::AccountTransfer::Currency::TaggedSymbol)
@@ -382,8 +380,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Network) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::AccountTransfer::Network::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         ACCOUNT = T.let(:account, Increase::Models::AccountTransfer::Network::TaggedSymbol)
 
@@ -396,8 +393,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::AccountTransfer::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The transfer is pending approval.
         PENDING_APPROVAL = T.let(:pending_approval, Increase::Models::AccountTransfer::Status::TaggedSymbol)
@@ -418,7 +414,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::AccountTransfer::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::AccountTransfer::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         ACCOUNT_TRANSFER = T.let(:account_transfer, Increase::Models::AccountTransfer::Type::TaggedSymbol)
 

@@ -4,30 +4,21 @@ module Increase
   module Models
     # @see Increase::Resources::Files#list
     class FileListParams < Increase::Internal::Type::BaseModel
-      # @!parse
-      #   extend Increase::Internal::Type::RequestParameters::Converter
+      extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!attribute [r] created_at
+      # @!attribute created_at
       #
       #   @return [Increase::Models::FileListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::Models::FileListParams::CreatedAt }
 
-      # @!parse
-      #   # @return [Increase::Models::FileListParams::CreatedAt]
-      #   attr_writer :created_at
-
-      # @!attribute [r] cursor
+      # @!attribute cursor
       #   Return the page of entries after this one.
       #
       #   @return [String, nil]
       optional :cursor, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :cursor
-
-      # @!attribute [r] idempotency_key
+      # @!attribute idempotency_key
       #   Filter records to the one with the specified `idempotency_key` you chose for
       #   that object. This value is unique across Increase and is used to ensure that a
       #   request is only processed once. Learn more about
@@ -36,100 +27,64 @@ module Increase
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :idempotency_key
-
-      # @!attribute [r] limit
+      # @!attribute limit
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :limit
-
-      # @!attribute [r] purpose
+      # @!attribute purpose
       #
       #   @return [Increase::Models::FileListParams::Purpose, nil]
       optional :purpose, -> { Increase::Models::FileListParams::Purpose }
 
-      # @!parse
-      #   # @return [Increase::Models::FileListParams::Purpose]
-      #   attr_writer :purpose
-
-      # @!parse
-      #   # @param created_at [Increase::Models::FileListParams::CreatedAt]
-      #   # @param cursor [String]
-      #   # @param idempotency_key [String]
-      #   # @param limit [Integer]
-      #   # @param purpose [Increase::Models::FileListParams::Purpose]
-      #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, purpose: nil, request_options: {}, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, purpose: nil, request_options: {})
+      #   @param created_at [Increase::Models::FileListParams::CreatedAt]
+      #   @param cursor [String]
+      #   @param idempotency_key [String]
+      #   @param limit [Integer]
+      #   @param purpose [Increase::Models::FileListParams::Purpose]
+      #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       class CreatedAt < Increase::Internal::Type::BaseModel
-        # @!attribute [r] after
+        # @!attribute after
         #   Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         #
         #   @return [Time, nil]
         optional :after, Time
 
-        # @!parse
-        #   # @return [Time]
-        #   attr_writer :after
-
-        # @!attribute [r] before
+        # @!attribute before
         #   Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         #   timestamp.
         #
         #   @return [Time, nil]
         optional :before, Time
 
-        # @!parse
-        #   # @return [Time]
-        #   attr_writer :before
-
-        # @!attribute [r] on_or_after
+        # @!attribute on_or_after
         #   Return results on or after this
         #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         #
         #   @return [Time, nil]
         optional :on_or_after, Time
 
-        # @!parse
-        #   # @return [Time]
-        #   attr_writer :on_or_after
-
-        # @!attribute [r] on_or_before
+        # @!attribute on_or_before
         #   Return results on or before this
         #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         #
         #   @return [Time, nil]
         optional :on_or_before, Time
 
-        # @!parse
-        #   # @return [Time]
-        #   attr_writer :on_or_before
-
-        # @!parse
-        #   # @param after [Time]
-        #   # @param before [Time]
-        #   # @param on_or_after [Time]
-        #   # @param on_or_before [Time]
-        #   #
-        #   def initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
+        #   @param after [Time]
+        #   @param before [Time]
+        #   @param on_or_after [Time]
+        #   @param on_or_before [Time]
       end
 
       class Purpose < Increase::Internal::Type::BaseModel
-        # @!attribute [r] in_
+        # @!attribute in_
         #   Filter Files for those with the specified purpose or purposes. For GET requests,
         #   this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
@@ -138,16 +93,8 @@ module Increase
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::FileListParams::Purpose::In] },
                  api_name: :in
 
-        # @!parse
-        #   # @return [Array<Symbol, Increase::Models::FileListParams::Purpose::In>]
-        #   attr_writer :in_
-
-        # @!parse
-        #   # @param in_ [Array<Symbol, Increase::Models::FileListParams::Purpose::In>]
-        #   #
-        #   def initialize(in_: nil, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(in_: nil)
+        #   @param in_ [Array<Symbol, Increase::Models::FileListParams::Purpose::In>]
 
         module In
           extend Increase::Internal::Type::Enum
@@ -227,11 +174,8 @@ module Increase
           # A file containing additional evidence for a Proof of Authorization Request Submission.
           PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION = :proof_of_authorization_request_submission
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

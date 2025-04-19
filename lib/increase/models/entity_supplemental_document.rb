@@ -38,19 +38,15 @@ module Increase
       #   @return [Symbol, Increase::Models::EntitySupplementalDocument::Type]
       required :type, enum: -> { Increase::Models::EntitySupplementalDocument::Type }
 
-      # @!parse
-      #   # Supplemental Documents are uploaded files connected to an Entity during
-      #   # onboarding.
-      #   #
-      #   # @param created_at [Time]
-      #   # @param entity_id [String]
-      #   # @param file_id [String]
-      #   # @param idempotency_key [String, nil]
-      #   # @param type [Symbol, Increase::Models::EntitySupplementalDocument::Type]
-      #   #
-      #   def initialize(created_at:, entity_id:, file_id:, idempotency_key:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(created_at:, entity_id:, file_id:, idempotency_key:, type:)
+      #   Supplemental Documents are uploaded files connected to an Entity during
+      #   onboarding.
+      #
+      #   @param created_at [Time]
+      #   @param entity_id [String]
+      #   @param file_id [String]
+      #   @param idempotency_key [String, nil]
+      #   @param type [Symbol, Increase::Models::EntitySupplementalDocument::Type]
 
       # A constant representing the object's type. For this resource it will always be
       # `entity_supplemental_document`.
@@ -61,11 +57,8 @@ module Increase
 
         ENTITY_SUPPLEMENTAL_DOCUMENT = :entity_supplemental_document
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

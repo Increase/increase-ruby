@@ -81,14 +81,7 @@ module Increase
               T.type_alias do
                 T.all(Symbol, Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::RejectReasonCode)
               end
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::RejectReasonCode::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The destination account is closed. Corresponds to the Real-Time Payments reason code `AC04`.
             ACCOUNT_CLOSED =

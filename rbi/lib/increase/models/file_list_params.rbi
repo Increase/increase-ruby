@@ -140,8 +140,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::FileListParams::Purpose::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::FileListParams::Purpose::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # An image of the front of a check, used for check deposits.
           CHECK_IMAGE_FRONT =

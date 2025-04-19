@@ -59,38 +59,22 @@ module Increase
       #   @return [String]
       required :url, String
 
-      # @!parse
-      #   # Webhooks are event notifications we send to you by HTTPS POST requests. Event
-      #   # Subscriptions are how you configure your application to listen for them. You can
-      #   # create an Event Subscription through your
-      #   # [developer dashboard](https://dashboard.increase.com/developers/webhooks) or the
-      #   # API. For more information, see our
-      #   # [webhooks guide](https://increase.com/documentation/webhooks).
-      #   #
-      #   # @param id [String]
-      #   # @param created_at [Time]
-      #   # @param idempotency_key [String, nil]
-      #   # @param oauth_connection_id [String, nil]
-      #   # @param selected_event_category [Symbol, Increase::Models::EventSubscription::SelectedEventCategory, nil]
-      #   # @param status [Symbol, Increase::Models::EventSubscription::Status]
-      #   # @param type [Symbol, Increase::Models::EventSubscription::Type]
-      #   # @param url [String]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     created_at:,
-      #     idempotency_key:,
-      #     oauth_connection_id:,
-      #     selected_event_category:,
-      #     status:,
-      #     type:,
-      #     url:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, created_at:, idempotency_key:, oauth_connection_id:, selected_event_category:, status:, type:, url:)
+      #   Webhooks are event notifications we send to you by HTTPS POST requests. Event
+      #   Subscriptions are how you configure your application to listen for them. You can
+      #   create an Event Subscription through your
+      #   [developer dashboard](https://dashboard.increase.com/developers/webhooks) or the
+      #   API. For more information, see our
+      #   [webhooks guide](https://increase.com/documentation/webhooks).
+      #
+      #   @param id [String]
+      #   @param created_at [Time]
+      #   @param idempotency_key [String, nil]
+      #   @param oauth_connection_id [String, nil]
+      #   @param selected_event_category [Symbol, Increase::Models::EventSubscription::SelectedEventCategory, nil]
+      #   @param status [Symbol, Increase::Models::EventSubscription::Status]
+      #   @param type [Symbol, Increase::Models::EventSubscription::Type]
+      #   @param url [String]
 
       # If specified, this subscription will only receive webhooks for Events with the
       # specified `category`.
@@ -365,11 +349,8 @@ module Increase
         # Occurs whenever a Wire Transfer is updated.
         WIRE_TRANSFER_UPDATED = :"wire_transfer.updated"
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # This indicates if we'll send notifications to this subscription.
@@ -390,11 +371,8 @@ module Increase
         # The subscription is temporarily disabled due to delivery errors and Events will not be delivered.
         REQUIRES_ATTENTION = :requires_attention
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -406,11 +384,8 @@ module Increase
 
         EVENT_SUBSCRIPTION = :event_subscription
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

@@ -33,7 +33,7 @@ class Increase::Test::Resources::Simulations::InboundWireDrawdownRequestsTest < 
         created_at: Time,
         currency: String,
         message_to_recipient: String | nil,
-        originator_account_number: String,
+        originator_account_number: String | nil,
         originator_address_line1: String | nil,
         originator_address_line2: String | nil,
         originator_address_line3: String | nil,

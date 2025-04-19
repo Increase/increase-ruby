@@ -158,8 +158,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Unknown
           UNKNOWN = T.let(:unknown, Increase::Models::DigitalWalletToken::Device::DeviceType::TaggedSymbol)
@@ -203,8 +202,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalWalletToken::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::DigitalWalletToken::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The digital wallet token is active.
         ACTIVE = T.let(:active, Increase::Models::DigitalWalletToken::Status::TaggedSymbol)
@@ -227,8 +225,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalWalletToken::TokenRequestor) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::DigitalWalletToken::TokenRequestor::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Apple Pay
         APPLE_PAY = T.let(:apple_pay, Increase::Models::DigitalWalletToken::TokenRequestor::TaggedSymbol)
@@ -252,8 +249,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalWalletToken::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::DigitalWalletToken::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         DIGITAL_WALLET_TOKEN =
           T.let(:digital_wallet_token, Increase::Models::DigitalWalletToken::Type::TaggedSymbol)
@@ -289,8 +285,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::DigitalWalletToken::Update::Status) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::DigitalWalletToken::Update::Status::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The digital wallet token is active.
           ACTIVE = T.let(:active, Increase::Models::DigitalWalletToken::Update::Status::TaggedSymbol)

@@ -60,24 +60,20 @@ module Increase
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::Models::DigitalWalletToken::Update] }
 
-      # @!parse
-      #   # A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
-      #   # Google Pay app. The Digital Wallet Token can be used for purchases just like a
-      #   # Card.
-      #   #
-      #   # @param id [String]
-      #   # @param card_id [String]
-      #   # @param cardholder [Increase::Models::DigitalWalletToken::Cardholder]
-      #   # @param created_at [Time]
-      #   # @param device [Increase::Models::DigitalWalletToken::Device]
-      #   # @param status [Symbol, Increase::Models::DigitalWalletToken::Status]
-      #   # @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
-      #   # @param type [Symbol, Increase::Models::DigitalWalletToken::Type]
-      #   # @param updates [Array<Increase::Models::DigitalWalletToken::Update>]
-      #   #
-      #   def initialize(id:, card_id:, cardholder:, created_at:, device:, status:, token_requestor:, type:, updates:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, card_id:, cardholder:, created_at:, device:, status:, token_requestor:, type:, updates:)
+      #   A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
+      #   Google Pay app. The Digital Wallet Token can be used for purchases just like a
+      #   Card.
+      #
+      #   @param id [String]
+      #   @param card_id [String]
+      #   @param cardholder [Increase::Models::DigitalWalletToken::Cardholder]
+      #   @param created_at [Time]
+      #   @param device [Increase::Models::DigitalWalletToken::Device]
+      #   @param status [Symbol, Increase::Models::DigitalWalletToken::Status]
+      #   @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
+      #   @param type [Symbol, Increase::Models::DigitalWalletToken::Type]
+      #   @param updates [Array<Increase::Models::DigitalWalletToken::Update>]
 
       # @see Increase::Models::DigitalWalletToken#cardholder
       class Cardholder < Increase::Internal::Type::BaseModel
@@ -87,14 +83,10 @@ module Increase
         #   @return [String, nil]
         required :name, String, nil?: true
 
-        # @!parse
-        #   # The cardholder information given when the Digital Wallet Token was created.
-        #   #
-        #   # @param name [String, nil]
-        #   #
-        #   def initialize(name:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(name:)
+        #   The cardholder information given when the Digital Wallet Token was created.
+        #
+        #   @param name [String, nil]
       end
 
       # @see Increase::Models::DigitalWalletToken#device
@@ -123,17 +115,13 @@ module Increase
         #   @return [String, nil]
         required :name, String, nil?: true
 
-        # @!parse
-        #   # The device that was used to create the Digital Wallet Token.
-        #   #
-        #   # @param device_type [Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType, nil]
-        #   # @param identifier [String, nil]
-        #   # @param ip_address [String, nil]
-        #   # @param name [String, nil]
-        #   #
-        #   def initialize(device_type:, identifier:, ip_address:, name:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(device_type:, identifier:, ip_address:, name:)
+        #   The device that was used to create the Digital Wallet Token.
+        #
+        #   @param device_type [Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType, nil]
+        #   @param identifier [String, nil]
+        #   @param ip_address [String, nil]
+        #   @param name [String, nil]
 
         # Device type.
         #
@@ -168,11 +156,8 @@ module Increase
           # Automobile Device
           AUTOMOBILE_DEVICE = :automobile_device
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -194,11 +179,8 @@ module Increase
         # The digital wallet token has been permanently canceled.
         DEACTIVATED = :deactivated
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The digital wallet app being used.
@@ -219,11 +201,8 @@ module Increase
         # Unknown
         UNKNOWN = :unknown
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -235,11 +214,8 @@ module Increase
 
         DIGITAL_WALLET_TOKEN = :digital_wallet_token
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       class Update < Increase::Internal::Type::BaseModel
@@ -256,13 +232,9 @@ module Increase
         #   @return [Time]
         required :timestamp, Time
 
-        # @!parse
-        #   # @param status [Symbol, Increase::Models::DigitalWalletToken::Update::Status]
-        #   # @param timestamp [Time]
-        #   #
-        #   def initialize(status:, timestamp:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(status:, timestamp:)
+        #   @param status [Symbol, Increase::Models::DigitalWalletToken::Update::Status]
+        #   @param timestamp [Time]
 
         # The status the update changed this Digital Wallet Token to.
         #
@@ -282,11 +254,8 @@ module Increase
           # The digital wallet token has been permanently canceled.
           DEACTIVATED = :deactivated
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

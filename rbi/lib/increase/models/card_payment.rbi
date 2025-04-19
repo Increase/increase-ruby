@@ -482,8 +482,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Category) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthentication::Category::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The authentication attempt is for a payment.
             PAYMENT_AUTHENTICATION =
@@ -606,14 +605,7 @@ module Increase
 
                 TaggedSymbol =
                   T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome) }
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # The attempt was successful.
                 SUCCESSFUL =
@@ -645,14 +637,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # The one-time code was sent via text message.
               TEXT_MESSAGE =
@@ -691,14 +676,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DenyReason) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardAuthentication::DenyReason::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The group was locked.
             GROUP_LOCKED =
@@ -752,14 +730,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The authentication attempt was made from an app.
             APP =
@@ -789,8 +760,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthentication::Status::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The authentication attempt was denied.
             DENIED = T.let(:denied, Increase::Models::CardPayment::Element::CardAuthentication::Status::TaggedSymbol)
@@ -859,8 +829,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthentication::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_AUTHENTICATION =
               T.let(
@@ -1148,8 +1117,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Actioner) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthorization::Actioner::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # This object was actioned by the user through a real-time decision.
             USER = T.let(:user, Increase::Models::CardPayment::Element::CardAuthorization::Actioner::TaggedSymbol)
@@ -1176,8 +1144,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol)
@@ -1211,8 +1178,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Direction) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthorization::Direction::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT =
@@ -1283,14 +1249,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Category) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Category::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Visa
               VISA =
@@ -1393,14 +1352,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::ElectronicCommerceIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER =
@@ -1478,14 +1430,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Unknown
                 UNKNOWN =
@@ -1577,14 +1522,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR =
@@ -1696,14 +1634,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::ProcessingCategory) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING =
@@ -1763,8 +1694,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardAuthorization::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_AUTHORIZATION =
               T.let(:card_authorization, Increase::Models::CardPayment::Element::CardAuthorization::Type::TaggedSymbol)
@@ -1870,14 +1800,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED =
@@ -1981,14 +1904,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No address was provided in the authorization request.
                 NOT_CHECKED =
@@ -2113,14 +2029,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Currency) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Currency::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD =
@@ -2161,14 +2070,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Network) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Network::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Visa
             VISA =
@@ -2190,14 +2092,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Type) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Type::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_AUTHORIZATION_EXPIRATION =
               T.let(
@@ -2477,8 +2372,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::Actioner) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardDecline::Actioner::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # This object was actioned by the user through a real-time decision.
             USER = T.let(:user, Increase::Models::CardPayment::Element::CardDecline::Actioner::TaggedSymbol)
@@ -2500,8 +2394,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardDecline::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardDecline::Currency::TaggedSymbol)
@@ -2532,8 +2425,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::Direction) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardDecline::Direction::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # A regular card authorization where funds are debited from the cardholder.
             SETTLEMENT =
@@ -2600,14 +2492,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Category) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Category::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Visa
               VISA =
@@ -2707,14 +2592,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER =
@@ -2792,14 +2670,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Unknown
                 UNKNOWN =
@@ -2891,14 +2762,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR =
@@ -3010,14 +2874,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::ProcessingCategory) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
             ACCOUNT_FUNDING =
@@ -3066,14 +2923,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::RealTimeDecisionReason) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardDecline::RealTimeDecisionReason::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
             INSUFFICIENT_FUNDS =
@@ -3129,8 +2979,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::Reason) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardDecline::Reason::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The account has been closed.
             ACCOUNT_CLOSED =
@@ -3205,6 +3054,13 @@ module Increase
             MISSING_ORIGINAL_AUTHORIZATION =
               T.let(
                 :missing_original_authorization,
+                Increase::Models::CardPayment::Element::CardDecline::Reason::TaggedSymbol
+              )
+
+            # The transaction was declined because the 3DS authentication failed.
+            FAILED_3DS_AUTHENTICATION =
+              T.let(
+                :failed_3ds_authentication,
                 Increase::Models::CardPayment::Element::CardDecline::Reason::TaggedSymbol
               )
 
@@ -3313,14 +3169,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED =
@@ -3424,14 +3273,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No address was provided in the authorization request.
                 NOT_CHECKED =
@@ -3589,14 +3431,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Currency) }
-            OrSymbol =
-              T.type_alias do
-                T.any(
-                  Symbol,
-                  String,
-                  Increase::Models::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol
-                )
-              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol)
@@ -3629,8 +3464,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Network) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardFuelConfirmation::Network::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Visa
             VISA = T.let(:visa, Increase::Models::CardPayment::Element::CardFuelConfirmation::Network::TaggedSymbol)
@@ -3690,8 +3524,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardFuelConfirmation::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_FUEL_CONFIRMATION =
               T.let(
@@ -3839,8 +3672,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardIncrement::Actioner) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardIncrement::Actioner::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # This object was actioned by the user through a real-time decision.
             USER = T.let(:user, Increase::Models::CardPayment::Element::CardIncrement::Actioner::TaggedSymbol)
@@ -3863,8 +3695,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardIncrement::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardIncrement::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardIncrement::Currency::TaggedSymbol)
@@ -3894,8 +3725,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardIncrement::Network) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardIncrement::Network::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Visa
             VISA = T.let(:visa, Increase::Models::CardPayment::Element::CardIncrement::Network::TaggedSymbol)
@@ -3952,8 +3782,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardIncrement::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardIncrement::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_INCREMENT =
               T.let(:card_increment, Increase::Models::CardPayment::Element::CardIncrement::Type::TaggedSymbol)
@@ -4208,14 +4037,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::Cashback::Currency) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Canadian Dollar (CAD)
               CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol)
@@ -4250,8 +4072,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardRefund::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardRefund::Currency::TaggedSymbol)
@@ -4322,14 +4143,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::Interchange::Currency) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardRefund::Interchange::Currency::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Canadian Dollar (CAD)
               CAD =
@@ -4723,14 +4537,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::ExtraCharges)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::ExtraCharges::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No extra charge
                 NO_EXTRA_CHARGE =
@@ -4792,14 +4599,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::NoShowIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::NoShowIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Not applicable
                 NOT_APPLICABLE =
@@ -4990,14 +4790,7 @@ module Increase
 
                 TaggedSymbol =
                   T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::ExtraCharges) }
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::ExtraCharges::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No extra charge
                 NO_EXTRA_CHARGE =
@@ -5066,14 +4859,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::NoShowIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::NoShowIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Not applicable
                 NOT_APPLICABLE =
@@ -5109,14 +4895,7 @@ module Increase
                 T.type_alias do
                   T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat)
                 end
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Free text
               FREE_TEXT =
@@ -5407,14 +5186,7 @@ module Increase
                     T.type_alias do
                       T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator)
                     end
-                  OrSymbol =
-                    T.type_alias do
-                      T.any(
-                        Symbol,
-                        String,
-                        Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator::TaggedSymbol
-                      )
-                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                   # No credit
                   NO_CREDIT =
@@ -5502,14 +5274,7 @@ module Increase
                       T.type_alias do
                         T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service::Category)
                       end
-                    OrSymbol =
-                      T.type_alias do
-                        T.any(
-                          Symbol,
-                          String,
-                          Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service::Category::TaggedSymbol
-                        )
-                      end
+                    OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                     # None
                     NONE =
@@ -5700,14 +5465,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::CreditReasonIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::CreditReasonIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No credit
                 NO_CREDIT =
@@ -5770,14 +5528,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::RestrictedTicketIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::RestrictedTicketIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No restrictions
                 NO_RESTRICTIONS =
@@ -5812,14 +5563,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TicketChangeIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TicketChangeIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # None
                 NONE =
@@ -5930,14 +5674,7 @@ module Increase
                     T.type_alias do
                       T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode)
                     end
-                  OrSymbol =
-                    T.type_alias do
-                      T.any(
-                        Symbol,
-                        String,
-                        Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode::TaggedSymbol
-                      )
-                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                   # None
                   NONE =
@@ -5980,8 +5717,7 @@ module Increase
             extend Increase::Internal::Type::Enum
 
             TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardRefund::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardRefund::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_REFUND = T.let(:card_refund, Increase::Models::CardPayment::Element::CardRefund::Type::TaggedSymbol)
 
@@ -6165,8 +5901,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardReversal::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardReversal::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardReversal::Currency::TaggedSymbol)
@@ -6196,8 +5931,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardReversal::Network) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardReversal::Network::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Visa
             VISA = T.let(:visa, Increase::Models::CardPayment::Element::CardReversal::Network::TaggedSymbol)
@@ -6253,8 +5987,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardReversal::ReversalReason) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardReversal::ReversalReason::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # The Card Reversal was initiated at the customer's request.
             REVERSED_BY_CUSTOMER =
@@ -6297,8 +6030,7 @@ module Increase
             extend Increase::Internal::Type::Enum
 
             TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardReversal::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardReversal::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_REVERSAL =
               T.let(:card_reversal, Increase::Models::CardPayment::Element::CardReversal::Type::TaggedSymbol)
@@ -6580,14 +6312,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::Cashback::Currency) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardSettlement::Cashback::Currency::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Canadian Dollar (CAD)
               CAD =
@@ -6630,8 +6355,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardSettlement::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardSettlement::Currency::TaggedSymbol)
@@ -6702,14 +6426,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::Interchange::Currency) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardSettlement::Interchange::Currency::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Canadian Dollar (CAD)
               CAD =
@@ -7105,14 +6822,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::ExtraCharges)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::ExtraCharges::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No extra charge
                 NO_EXTRA_CHARGE =
@@ -7176,14 +6886,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Not applicable
                 NOT_APPLICABLE =
@@ -7376,14 +7079,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::ExtraCharges)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::ExtraCharges::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No extra charge
                 NO_EXTRA_CHARGE =
@@ -7454,14 +7150,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::NoShowIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::NoShowIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Not applicable
                 NOT_APPLICABLE =
@@ -7497,14 +7186,7 @@ module Increase
                 T.type_alias do
                   T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat)
                 end
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Free text
               FREE_TEXT =
@@ -7803,14 +7485,7 @@ module Increase
                     T.type_alias do
                       T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator)
                     end
-                  OrSymbol =
-                    T.type_alias do
-                      T.any(
-                        Symbol,
-                        String,
-                        Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator::TaggedSymbol
-                      )
-                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                   # No credit
                   NO_CREDIT =
@@ -7898,14 +7573,7 @@ module Increase
                       T.type_alias do
                         T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::Category)
                       end
-                    OrSymbol =
-                      T.type_alias do
-                        T.any(
-                          Symbol,
-                          String,
-                          Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::Category::TaggedSymbol
-                        )
-                      end
+                    OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                     # None
                     NONE =
@@ -8096,14 +7764,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::CreditReasonIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::CreditReasonIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No credit
                 NO_CREDIT =
@@ -8166,14 +7827,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::RestrictedTicketIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::RestrictedTicketIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No restrictions
                 NO_RESTRICTIONS =
@@ -8208,14 +7862,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TicketChangeIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TicketChangeIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # None
                 NONE =
@@ -8326,14 +7973,7 @@ module Increase
                     T.type_alias do
                       T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode)
                     end
-                  OrSymbol =
-                    T.type_alias do
-                      T.any(
-                        Symbol,
-                        String,
-                        Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode::TaggedSymbol
-                      )
-                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                   # None
                   NONE =
@@ -8377,8 +8017,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardSettlement::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardSettlement::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_SETTLEMENT =
               T.let(:card_settlement, Increase::Models::CardPayment::Element::CardSettlement::Type::TaggedSymbol)
@@ -8597,8 +8236,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::Actioner) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardValidation::Actioner::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # This object was actioned by the user through a real-time decision.
             USER = T.let(:user, Increase::Models::CardPayment::Element::CardValidation::Actioner::TaggedSymbol)
@@ -8621,8 +8259,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::Currency) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardValidation::Currency::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             # Canadian Dollar (CAD)
             CAD = T.let(:CAD, Increase::Models::CardPayment::Element::CardValidation::Currency::TaggedSymbol)
@@ -8700,14 +8337,7 @@ module Increase
 
               TaggedSymbol =
                 T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Category) }
-              OrSymbol =
-                T.type_alias do
-                  T.any(
-                    Symbol,
-                    String,
-                    Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Category::TaggedSymbol
-                  )
-                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
               # Visa
               VISA =
@@ -8810,14 +8440,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::ElectronicCommerceIndicator)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
                 MAIL_PHONE_ORDER =
@@ -8895,14 +8518,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::PointOfServiceEntryMode)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Unknown
                 UNKNOWN =
@@ -8994,14 +8610,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR =
@@ -9113,8 +8722,7 @@ module Increase
 
             TaggedSymbol =
               T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::Type) }
-            OrSymbol =
-              T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::CardValidation::Type::TaggedSymbol) }
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             CARD_VALIDATION =
               T.let(:card_validation, Increase::Models::CardPayment::Element::CardValidation::Type::TaggedSymbol)
@@ -9220,14 +8828,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No card verification code was provided in the authorization request.
                 NOT_CHECKED =
@@ -9331,14 +8932,7 @@ module Increase
                   T.type_alias do
                     T.all(Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result)
                   end
-                OrSymbol =
-                  T.type_alias do
-                    T.any(
-                      Symbol,
-                      String,
-                      Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result::TaggedSymbol
-                    )
-                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
 
                 # No address was provided in the authorization request.
                 NOT_CHECKED =
@@ -9402,8 +8996,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Element::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Element::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Card Authorization: details will be under the `card_authorization` object.
           CARD_AUTHORIZATION =
@@ -9514,7 +9107,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::CardPayment::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::CardPayment::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         CARD_PAYMENT = T.let(:card_payment, Increase::Models::CardPayment::Type::TaggedSymbol)
 

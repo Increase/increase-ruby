@@ -172,68 +172,35 @@ module Increase
       #   @return [String, nil]
       required :ultimate_debtor_name, String, nil?: true
 
-      # @!parse
-      #   # Real-Time Payments transfers move funds, within seconds, between your Increase
-      #   # account and any other account on the Real-Time Payments network.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param acknowledgement [Increase::Models::RealTimePaymentsTransfer::Acknowledgement, nil]
-      #   # @param amount [Integer]
-      #   # @param approval [Increase::Models::RealTimePaymentsTransfer::Approval, nil]
-      #   # @param cancellation [Increase::Models::RealTimePaymentsTransfer::Cancellation, nil]
-      #   # @param created_at [Time]
-      #   # @param created_by [Increase::Models::RealTimePaymentsTransfer::CreatedBy, nil]
-      #   # @param creditor_name [String]
-      #   # @param currency [Symbol, Increase::Models::RealTimePaymentsTransfer::Currency]
-      #   # @param debtor_name [String, nil]
-      #   # @param destination_account_number [String]
-      #   # @param destination_routing_number [String]
-      #   # @param external_account_id [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param pending_transaction_id [String, nil]
-      #   # @param rejection [Increase::Models::RealTimePaymentsTransfer::Rejection, nil]
-      #   # @param remittance_information [String]
-      #   # @param source_account_number_id [String]
-      #   # @param status [Symbol, Increase::Models::RealTimePaymentsTransfer::Status]
-      #   # @param submission [Increase::Models::RealTimePaymentsTransfer::Submission, nil]
-      #   # @param transaction_id [String, nil]
-      #   # @param type [Symbol, Increase::Models::RealTimePaymentsTransfer::Type]
-      #   # @param ultimate_creditor_name [String, nil]
-      #   # @param ultimate_debtor_name [String, nil]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     acknowledgement:,
-      #     amount:,
-      #     approval:,
-      #     cancellation:,
-      #     created_at:,
-      #     created_by:,
-      #     creditor_name:,
-      #     currency:,
-      #     debtor_name:,
-      #     destination_account_number:,
-      #     destination_routing_number:,
-      #     external_account_id:,
-      #     idempotency_key:,
-      #     pending_transaction_id:,
-      #     rejection:,
-      #     remittance_information:,
-      #     source_account_number_id:,
-      #     status:,
-      #     submission:,
-      #     transaction_id:,
-      #     type:,
-      #     ultimate_creditor_name:,
-      #     ultimate_debtor_name:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, destination_account_number:, destination_routing_number:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, remittance_information:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:)
+      #   Real-Time Payments transfers move funds, within seconds, between your Increase
+      #   account and any other account on the Real-Time Payments network.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param acknowledgement [Increase::Models::RealTimePaymentsTransfer::Acknowledgement, nil]
+      #   @param amount [Integer]
+      #   @param approval [Increase::Models::RealTimePaymentsTransfer::Approval, nil]
+      #   @param cancellation [Increase::Models::RealTimePaymentsTransfer::Cancellation, nil]
+      #   @param created_at [Time]
+      #   @param created_by [Increase::Models::RealTimePaymentsTransfer::CreatedBy, nil]
+      #   @param creditor_name [String]
+      #   @param currency [Symbol, Increase::Models::RealTimePaymentsTransfer::Currency]
+      #   @param debtor_name [String, nil]
+      #   @param destination_account_number [String]
+      #   @param destination_routing_number [String]
+      #   @param external_account_id [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param pending_transaction_id [String, nil]
+      #   @param rejection [Increase::Models::RealTimePaymentsTransfer::Rejection, nil]
+      #   @param remittance_information [String]
+      #   @param source_account_number_id [String]
+      #   @param status [Symbol, Increase::Models::RealTimePaymentsTransfer::Status]
+      #   @param submission [Increase::Models::RealTimePaymentsTransfer::Submission, nil]
+      #   @param transaction_id [String, nil]
+      #   @param type [Symbol, Increase::Models::RealTimePaymentsTransfer::Type]
+      #   @param ultimate_creditor_name [String, nil]
+      #   @param ultimate_debtor_name [String, nil]
 
       # @see Increase::Models::RealTimePaymentsTransfer#acknowledgement
       class Acknowledgement < Increase::Internal::Type::BaseModel
@@ -243,15 +210,11 @@ module Increase
         #   @return [Time]
         required :acknowledged_at, Time
 
-        # @!parse
-        #   # If the transfer is acknowledged by the recipient bank, this will contain
-        #   # supplemental details.
-        #   #
-        #   # @param acknowledged_at [Time]
-        #   #
-        #   def initialize(acknowledged_at:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(acknowledged_at:)
+        #   If the transfer is acknowledged by the recipient bank, this will contain
+        #   supplemental details.
+        #
+        #   @param acknowledged_at [Time]
       end
 
       # @see Increase::Models::RealTimePaymentsTransfer#approval
@@ -270,16 +233,12 @@ module Increase
         #   @return [String, nil]
         required :approved_by, String, nil?: true
 
-        # @!parse
-        #   # If your account requires approvals for transfers and the transfer was approved,
-        #   # this will contain details of the approval.
-        #   #
-        #   # @param approved_at [Time]
-        #   # @param approved_by [String, nil]
-        #   #
-        #   def initialize(approved_at:, approved_by:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(approved_at:, approved_by:)
+        #   If your account requires approvals for transfers and the transfer was approved,
+        #   this will contain details of the approval.
+        #
+        #   @param approved_at [Time]
+        #   @param approved_by [String, nil]
       end
 
       # @see Increase::Models::RealTimePaymentsTransfer#cancellation
@@ -298,16 +257,12 @@ module Increase
         #   @return [String, nil]
         required :canceled_by, String, nil?: true
 
-        # @!parse
-        #   # If your account requires approvals for transfers and the transfer was not
-        #   # approved, this will contain details of the cancellation.
-        #   #
-        #   # @param canceled_at [Time]
-        #   # @param canceled_by [String, nil]
-        #   #
-        #   def initialize(canceled_at:, canceled_by:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(canceled_at:, canceled_by:)
+        #   If your account requires approvals for transfers and the transfer was not
+        #   approved, this will contain details of the cancellation.
+        #
+        #   @param canceled_at [Time]
+        #   @param canceled_by [String, nil]
       end
 
       # @see Increase::Models::RealTimePaymentsTransfer#created_by
@@ -338,17 +293,13 @@ module Increase
         #   @return [Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, nil]
         required :user, -> { Increase::Models::RealTimePaymentsTransfer::CreatedBy::User }, nil?: true
 
-        # @!parse
-        #   # What object created the transfer, either via the API or the dashboard.
-        #   #
-        #   # @param api_key [Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey, nil]
-        #   # @param category [Symbol, Increase::Models::RealTimePaymentsTransfer::CreatedBy::Category]
-        #   # @param oauth_application [Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication, nil]
-        #   # @param user [Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, nil]
-        #   #
-        #   def initialize(api_key:, category:, oauth_application:, user:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(api_key:, category:, oauth_application:, user:)
+        #   What object created the transfer, either via the API or the dashboard.
+        #
+        #   @param api_key [Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey, nil]
+        #   @param category [Symbol, Increase::Models::RealTimePaymentsTransfer::CreatedBy::Category]
+        #   @param oauth_application [Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication, nil]
+        #   @param user [Increase::Models::RealTimePaymentsTransfer::CreatedBy::User, nil]
 
         # @see Increase::Models::RealTimePaymentsTransfer::CreatedBy#api_key
         class APIKey < Increase::Internal::Type::BaseModel
@@ -358,14 +309,10 @@ module Increase
           #   @return [String, nil]
           required :description, String, nil?: true
 
-          # @!parse
-          #   # If present, details about the API key that created the transfer.
-          #   #
-          #   # @param description [String, nil]
-          #   #
-          #   def initialize(description:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(description:)
+          #   If present, details about the API key that created the transfer.
+          #
+          #   @param description [String, nil]
         end
 
         # The type of object that created this transfer.
@@ -383,11 +330,8 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER = :user
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::RealTimePaymentsTransfer::CreatedBy#oauth_application
@@ -398,14 +342,10 @@ module Increase
           #   @return [String]
           required :name, String
 
-          # @!parse
-          #   # If present, details about the OAuth Application that created the transfer.
-          #   #
-          #   # @param name [String]
-          #   #
-          #   def initialize(name:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(name:)
+          #   If present, details about the OAuth Application that created the transfer.
+          #
+          #   @param name [String]
         end
 
         # @see Increase::Models::RealTimePaymentsTransfer::CreatedBy#user
@@ -416,14 +356,10 @@ module Increase
           #   @return [String]
           required :email, String
 
-          # @!parse
-          #   # If present, details about the User that created the transfer.
-          #   #
-          #   # @param email [String]
-          #   #
-          #   def initialize(email:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(email:)
+          #   If present, details about the User that created the transfer.
+          #
+          #   @param email [String]
         end
       end
 
@@ -452,11 +388,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::RealTimePaymentsTransfer#rejection
@@ -483,17 +416,13 @@ module Increase
         #   @return [Time, nil]
         required :rejected_at, Time, nil?: true
 
-        # @!parse
-        #   # If the transfer is rejected by Real-Time Payments or the destination financial
-        #   # institution, this will contain supplemental details.
-        #   #
-        #   # @param reject_reason_additional_information [String, nil]
-        #   # @param reject_reason_code [Symbol, Increase::Models::RealTimePaymentsTransfer::Rejection::RejectReasonCode]
-        #   # @param rejected_at [Time, nil]
-        #   #
-        #   def initialize(reject_reason_additional_information:, reject_reason_code:, rejected_at:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(reject_reason_additional_information:, reject_reason_code:, rejected_at:)
+        #   If the transfer is rejected by Real-Time Payments or the destination financial
+        #   institution, this will contain supplemental details.
+        #
+        #   @param reject_reason_additional_information [String, nil]
+        #   @param reject_reason_code [Symbol, Increase::Models::RealTimePaymentsTransfer::Rejection::RejectReasonCode]
+        #   @param rejected_at [Time, nil]
 
         # The reason the transfer was rejected as provided by the recipient bank or the
         # Real-Time Payments network.
@@ -565,11 +494,8 @@ module Increase
           # Some other error or issue has occurred.
           OTHER = :other
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -603,11 +529,8 @@ module Increase
         # The transfer has been sent successfully and is complete.
         COMPLETE = :complete
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::RealTimePaymentsTransfer#submission
@@ -625,16 +548,12 @@ module Increase
         #   @return [String]
         required :transaction_identification, String
 
-        # @!parse
-        #   # After the transfer is submitted to Real-Time Payments, this will contain
-        #   # supplemental details.
-        #   #
-        #   # @param submitted_at [Time, nil]
-        #   # @param transaction_identification [String]
-        #   #
-        #   def initialize(submitted_at:, transaction_identification:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(submitted_at:, transaction_identification:)
+        #   After the transfer is submitted to Real-Time Payments, this will contain
+        #   supplemental details.
+        #
+        #   @param submitted_at [Time, nil]
+        #   @param transaction_identification [String]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -646,11 +565,8 @@ module Increase
 
         REAL_TIME_PAYMENTS_TRANSFER = :real_time_payments_transfer
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

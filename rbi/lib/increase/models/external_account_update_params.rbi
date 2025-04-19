@@ -66,8 +66,7 @@ module Increase
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ExternalAccountUpdateParams::AccountHolder::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The External Account is owned by a business.
         BUSINESS = T.let(:business, Increase::Models::ExternalAccountUpdateParams::AccountHolder::TaggedSymbol)
@@ -85,8 +84,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountUpdateParams::Funding) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ExternalAccountUpdateParams::Funding::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # A checking account.
         CHECKING = T.let(:checking, Increase::Models::ExternalAccountUpdateParams::Funding::TaggedSymbol)
@@ -106,8 +104,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountUpdateParams::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ExternalAccountUpdateParams::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The External Account is active.
         ACTIVE = T.let(:active, Increase::Models::ExternalAccountUpdateParams::Status::TaggedSymbol)

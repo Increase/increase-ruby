@@ -110,50 +110,26 @@ module Increase
       #   @return [Symbol, Increase::Models::ACHPrenotification::Type]
       required :type, enum: -> { Increase::Models::ACHPrenotification::Type }
 
-      # @!parse
-      #   # ACH Prenotifications are one way you can verify account and routing numbers by
-      #   # Automated Clearing House (ACH).
-      #   #
-      #   # @param id [String]
-      #   # @param account_number [String]
-      #   # @param addendum [String, nil]
-      #   # @param company_descriptive_date [String, nil]
-      #   # @param company_discretionary_data [String, nil]
-      #   # @param company_entry_description [String, nil]
-      #   # @param company_name [String, nil]
-      #   # @param created_at [Time]
-      #   # @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotification::CreditDebitIndicator, nil]
-      #   # @param effective_date [Time, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param notifications_of_change [Array<Increase::Models::ACHPrenotification::NotificationsOfChange>]
-      #   # @param prenotification_return [Increase::Models::ACHPrenotification::PrenotificationReturn, nil]
-      #   # @param routing_number [String]
-      #   # @param status [Symbol, Increase::Models::ACHPrenotification::Status]
-      #   # @param type [Symbol, Increase::Models::ACHPrenotification::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_number:,
-      #     addendum:,
-      #     company_descriptive_date:,
-      #     company_discretionary_data:,
-      #     company_entry_description:,
-      #     company_name:,
-      #     created_at:,
-      #     credit_debit_indicator:,
-      #     effective_date:,
-      #     idempotency_key:,
-      #     notifications_of_change:,
-      #     prenotification_return:,
-      #     routing_number:,
-      #     status:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_number:, addendum:, company_descriptive_date:, company_discretionary_data:, company_entry_description:, company_name:, created_at:, credit_debit_indicator:, effective_date:, idempotency_key:, notifications_of_change:, prenotification_return:, routing_number:, status:, type:)
+      #   ACH Prenotifications are one way you can verify account and routing numbers by
+      #   Automated Clearing House (ACH).
+      #
+      #   @param id [String]
+      #   @param account_number [String]
+      #   @param addendum [String, nil]
+      #   @param company_descriptive_date [String, nil]
+      #   @param company_discretionary_data [String, nil]
+      #   @param company_entry_description [String, nil]
+      #   @param company_name [String, nil]
+      #   @param created_at [Time]
+      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotification::CreditDebitIndicator, nil]
+      #   @param effective_date [Time, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param notifications_of_change [Array<Increase::Models::ACHPrenotification::NotificationsOfChange>]
+      #   @param prenotification_return [Increase::Models::ACHPrenotification::PrenotificationReturn, nil]
+      #   @param routing_number [String]
+      #   @param status [Symbol, Increase::Models::ACHPrenotification::Status]
+      #   @param type [Symbol, Increase::Models::ACHPrenotification::Type]
 
       # If the notification is for a future credit or debit.
       #
@@ -167,11 +143,8 @@ module Increase
         # The Prenotification is for an anticipated debit.
         DEBIT = :debit
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       class NotificationsOfChange < Increase::Internal::Type::BaseModel
@@ -200,14 +173,10 @@ module Increase
         #   @return [Time]
         required :created_at, Time
 
-        # @!parse
-        #   # @param change_code [Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::ChangeCode]
-        #   # @param corrected_data [String]
-        #   # @param created_at [Time]
-        #   #
-        #   def initialize(change_code:, corrected_data:, created_at:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(change_code:, corrected_data:, created_at:)
+        #   @param change_code [Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::ChangeCode]
+        #   @param corrected_data [String]
+        #   @param created_at [Time]
 
         # The required type of change that is being signaled by the receiving financial
         # institution.
@@ -279,11 +248,8 @@ module Increase
           INCORRECT_TRANSACTION_CODE_BY_ORIGINATING_DEPOSITORY_FINANCIAL_INSTITUTION =
             :incorrect_transaction_code_by_originating_depository_financial_institution
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -303,15 +269,11 @@ module Increase
         required :return_reason_code,
                  enum: -> { Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode }
 
-        # @!parse
-        #   # If your prenotification is returned, this will contain details of the return.
-        #   #
-        #   # @param created_at [Time]
-        #   # @param return_reason_code [Symbol, Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode]
-        #   #
-        #   def initialize(created_at:, return_reason_code:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(created_at:, return_reason_code:)
+        #   If your prenotification is returned, this will contain details of the return.
+        #
+        #   @param created_at [Time]
+        #   @param return_reason_code [Symbol, Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode]
 
         # Why the Prenotification was returned.
         #
@@ -532,11 +494,8 @@ module Increase
           # Code R68. A rare return reason. The return was sent too late.
           UNTIMELY_RETURN = :untimely_return
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -558,11 +517,8 @@ module Increase
         # The Prenotification is complete.
         SUBMITTED = :submitted
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -574,11 +530,8 @@ module Increase
 
         ACH_PRENOTIFICATION = :ach_prenotification
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

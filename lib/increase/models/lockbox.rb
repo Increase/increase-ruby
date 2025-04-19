@@ -63,36 +63,19 @@ module Increase
       #   @return [Symbol, Increase::Models::Lockbox::Type]
       required :type, enum: -> { Increase::Models::Lockbox::Type }
 
-      # @!parse
-      #   # Lockboxes are physical locations that can receive mail containing paper checks.
-      #   # Increase will automatically create a Check Deposit for checks received this way.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param address [Increase::Models::Lockbox::Address]
-      #   # @param created_at [Time]
-      #   # @param description [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param recipient_name [String, nil]
-      #   # @param status [Symbol, Increase::Models::Lockbox::Status]
-      #   # @param type [Symbol, Increase::Models::Lockbox::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     address:,
-      #     created_at:,
-      #     description:,
-      #     idempotency_key:,
-      #     recipient_name:,
-      #     status:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, address:, created_at:, description:, idempotency_key:, recipient_name:, status:, type:)
+      #   Lockboxes are physical locations that can receive mail containing paper checks.
+      #   Increase will automatically create a Check Deposit for checks received this way.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param address [Increase::Models::Lockbox::Address]
+      #   @param created_at [Time]
+      #   @param description [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param recipient_name [String, nil]
+      #   @param status [Symbol, Increase::Models::Lockbox::Status]
+      #   @param type [Symbol, Increase::Models::Lockbox::Type]
 
       # @see Increase::Models::Lockbox#address
       class Address < Increase::Internal::Type::BaseModel
@@ -136,19 +119,15 @@ module Increase
         #   @return [String]
         required :state, String
 
-        # @!parse
-        #   # The mailing address for the Lockbox.
-        #   #
-        #   # @param city [String]
-        #   # @param line1 [String]
-        #   # @param line2 [String]
-        #   # @param postal_code [String]
-        #   # @param recipient [String, nil]
-        #   # @param state [String]
-        #   #
-        #   def initialize(city:, line1:, line2:, postal_code:, recipient:, state:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(city:, line1:, line2:, postal_code:, recipient:, state:)
+        #   The mailing address for the Lockbox.
+        #
+        #   @param city [String]
+        #   @param line1 [String]
+        #   @param line2 [String]
+        #   @param postal_code [String]
+        #   @param recipient [String, nil]
+        #   @param state [String]
       end
 
       # This indicates if mail can be sent to this address.
@@ -163,11 +142,8 @@ module Increase
         # This Lockbox is inactive. Checks mailed to it will not be deposited.
         INACTIVE = :inactive
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -179,11 +155,8 @@ module Increase
 
         LOCKBOX = :lockbox
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

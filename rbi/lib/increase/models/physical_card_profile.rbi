@@ -123,8 +123,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfile::Creator) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCardProfile::Creator::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # This Physical Card Profile was created by Increase.
         INCREASE = T.let(:increase, Increase::Models::PhysicalCardProfile::Creator::TaggedSymbol)
@@ -141,8 +140,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfile::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCardProfile::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The Card Profile has not yet been processed by Increase.
         PENDING_CREATING = T.let(:pending_creating, Increase::Models::PhysicalCardProfile::Status::TaggedSymbol)
@@ -174,8 +172,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCardProfile::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCardProfile::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PHYSICAL_CARD_PROFILE =
           T.let(:physical_card_profile, Increase::Models::PhysicalCardProfile::Type::TaggedSymbol)

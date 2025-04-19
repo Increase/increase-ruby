@@ -1455,6 +1455,7 @@ module Increase
             | :declined_by_stand_in_processing
             | :invalid_physical_card
             | :missing_original_authorization
+            | :failed_3ds_authentication
             | :suspected_fraud
 
           module Reason
@@ -1507,6 +1508,9 @@ module Increase
 
             # The original card authorization for this incremental authorization does not exist.
             MISSING_ORIGINAL_AUTHORIZATION: :missing_original_authorization
+
+            # The transaction was declined because the 3DS authentication failed.
+            FAILED_3DS_AUTHENTICATION: :failed_3ds_authentication
 
             # The transaction was suspected to be fraudulent. Please reach out to support@increase.com for more information.
             SUSPECTED_FRAUD: :suspected_fraud

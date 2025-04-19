@@ -5,8 +5,7 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::CardReversals#create
       class CardReversalCreateParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute card_payment_id
@@ -15,25 +14,17 @@ module Increase
         #   @return [String]
         required :card_payment_id, String
 
-        # @!attribute [r] amount
+        # @!attribute amount
         #   The amount of the reversal in minor units in the card authorization's currency.
         #   This defaults to the authorization amount.
         #
         #   @return [Integer, nil]
         optional :amount, Integer
 
-        # @!parse
-        #   # @return [Integer]
-        #   attr_writer :amount
-
-        # @!parse
-        #   # @param card_payment_id [String]
-        #   # @param amount [Integer]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(card_payment_id:, amount: nil, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(card_payment_id:, amount: nil, request_options: {})
+        #   @param card_payment_id [String]
+        #   @param amount [Integer]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

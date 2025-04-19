@@ -205,7 +205,8 @@ module Increase
     # - `production` corresponds to `https://api.increase.com`
     # - `sandbox` corresponds to `https://sandbox.increase.com`
     #
-    # @param base_url [String, nil] Override the default base URL for the API, e.g., `"https://api.example.com/v2/"`
+    # @param base_url [String, nil] Override the default base URL for the API, e.g.,
+    # `"https://api.example.com/v2/"`. Defaults to `ENV["INCREASE_BASE_URL"]`
     #
     # @param max_retries [Integer] Max number of retries to attempt after a failed retryable request.
     #
@@ -219,22 +220,16 @@ module Increase
     def initialize(
       api_key: ENV["INCREASE_API_KEY"],
       environment: nil,
-      base_url: nil,
-      max_retries: DEFAULT_MAX_RETRIES,
-      timeout: DEFAULT_TIMEOUT_IN_SECONDS,
-      initial_retry_delay: DEFAULT_INITIAL_RETRY_DELAY,
-      max_retry_delay: DEFAULT_MAX_RETRY_DELAY,
+      base_url: ENV["INCREASE_BASE_URL"],
+      max_retries: Increase::Client::DEFAULT_MAX_RETRIES,
+      timeout: Increase::Client::DEFAULT_TIMEOUT_IN_SECONDS,
+      initial_retry_delay: Increase::Client::DEFAULT_INITIAL_RETRY_DELAY,
+      max_retry_delay: Increase::Client::DEFAULT_MAX_RETRY_DELAY,
       idempotency_header: "Idempotency-Key"
     )
-      case [environment, base_url]
-      in [Symbol | String, String]
-        raise ArgumentError.new("both environment and base_url given, expected only one")
-      in [Symbol | String, nil]
-        base_url = ENVIRONMENTS.fetch(environment.to_sym) do
-          raise ArgumentError.new("environment must be one of #{ENVIRONMENTS.keys}, got #{environment}")
-        end
-      else
-        base_url ||= ENVIRONMENTS.fetch(:production)
+      base_url ||= Increase::Client::ENVIRONMENTS.fetch(environment&.to_sym || :production) do
+        message = "environment must be one of #{Increase::Client::ENVIRONMENTS.keys}, got #{environment}"
+        raise ArgumentError.new(message)
       end
 
       if api_key.nil?

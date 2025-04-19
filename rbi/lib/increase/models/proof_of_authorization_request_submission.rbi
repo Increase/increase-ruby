@@ -7,9 +7,9 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
-      # File containing additional evidence.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :additional_evidence_file_id
+      # Files containing additional evidence.
+      sig { returns(T::Array[Increase::Models::ProofOfAuthorizationRequestSubmission::AdditionalEvidenceFile]) }
+      attr_accessor :additional_evidence_files
 
       # Terms of authorization.
       sig { returns(String) }
@@ -86,7 +86,12 @@ module Increase
       sig do
         params(
           id: String,
-          additional_evidence_file_id: T.nilable(String),
+          additional_evidence_files: T::Array[
+            T.any(
+              Increase::Models::ProofOfAuthorizationRequestSubmission::AdditionalEvidenceFile,
+              Increase::Internal::AnyHash
+            )
+          ],
           authorization_terms: String,
           authorized_at: Time,
           authorizer_company: T.nilable(String),
@@ -108,7 +113,7 @@ module Increase
       end
       def self.new(
         id:,
-        additional_evidence_file_id:,
+        additional_evidence_files:,
         authorization_terms:,
         authorized_at:,
         authorizer_company:,
@@ -131,7 +136,7 @@ module Increase
           .returns(
             {
               id: String,
-              additional_evidence_file_id: T.nilable(String),
+              additional_evidence_files: T::Array[Increase::Models::ProofOfAuthorizationRequestSubmission::AdditionalEvidenceFile],
               authorization_terms: String,
               authorized_at: Time,
               authorizer_company: T.nilable(String),
@@ -153,14 +158,25 @@ module Increase
       end
       def to_hash; end
 
+      class AdditionalEvidenceFile < Increase::Internal::Type::BaseModel
+        # The File identifier.
+        sig { returns(String) }
+        attr_accessor :file_id
+
+        sig { params(file_id: String).returns(T.attached_class) }
+        def self.new(file_id:); end
+
+        sig { override.returns({file_id: String}) }
+        def to_hash; end
+      end
+
       # Status of the proof of authorization request submission.
       module Status
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ProofOfAuthorizationRequestSubmission::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ProofOfAuthorizationRequestSubmission::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The proof of authorization request submission is pending review.
         PENDING_REVIEW =
@@ -192,8 +208,7 @@ module Increase
 
         TaggedSymbol =
           T.type_alias { T.all(Symbol, Increase::Models::ProofOfAuthorizationRequestSubmission::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::ProofOfAuthorizationRequestSubmission::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION =
           T.let(

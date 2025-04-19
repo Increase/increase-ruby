@@ -62,37 +62,20 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountStatement::Type]
       required :type, enum: -> { Increase::Models::AccountStatement::Type }
 
-      # @!parse
-      #   # Account Statements are generated monthly for every active Account. You can
-      #   # access the statement's data via the API or retrieve a PDF with its details via
-      #   # its associated File.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param created_at [Time]
-      #   # @param ending_balance [Integer]
-      #   # @param file_id [String]
-      #   # @param starting_balance [Integer]
-      #   # @param statement_period_end [Time]
-      #   # @param statement_period_start [Time]
-      #   # @param type [Symbol, Increase::Models::AccountStatement::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     created_at:,
-      #     ending_balance:,
-      #     file_id:,
-      #     starting_balance:,
-      #     statement_period_end:,
-      #     statement_period_start:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, created_at:, ending_balance:, file_id:, starting_balance:, statement_period_end:, statement_period_start:, type:)
+      #   Account Statements are generated monthly for every active Account. You can
+      #   access the statement's data via the API or retrieve a PDF with its details via
+      #   its associated File.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param created_at [Time]
+      #   @param ending_balance [Integer]
+      #   @param file_id [String]
+      #   @param starting_balance [Integer]
+      #   @param statement_period_end [Time]
+      #   @param statement_period_start [Time]
+      #   @param type [Symbol, Increase::Models::AccountStatement::Type]
 
       # A constant representing the object's type. For this resource it will always be
       # `account_statement`.
@@ -103,11 +86,8 @@ module Increase
 
         ACCOUNT_STATEMENT = :account_statement
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

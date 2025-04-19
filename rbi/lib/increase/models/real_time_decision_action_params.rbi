@@ -144,14 +144,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthentication::Decision) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::RealTimeDecisionActionParams::CardAuthentication::Decision::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Approve the authentication attempt without triggering a challenge.
           APPROVE =
@@ -212,14 +205,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Your application successfully delivered the one-time code to the cardholder.
           SUCCESS =
@@ -295,14 +281,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decision) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decision::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Approve the authorization.
           APPROVE =
@@ -328,14 +307,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::DeclineReason) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
           INSUFFICIENT_FUNDS =
@@ -439,14 +411,7 @@ module Increase
 
           TaggedSymbol =
             T.type_alias { T.all(Symbol, Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result) }
-          OrSymbol =
-            T.type_alias do
-              T.any(
-                Symbol,
-                String,
-                Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result::TaggedSymbol
-              )
-            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Your application successfully delivered the one-time passcode to the cardholder.
           SUCCESS =

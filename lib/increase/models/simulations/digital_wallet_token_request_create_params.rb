@@ -5,8 +5,7 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::DigitalWalletTokenRequests#create
       class DigitalWalletTokenRequestCreateParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute card_id
@@ -15,13 +14,9 @@ module Increase
         #   @return [String]
         required :card_id, String
 
-        # @!parse
-        #   # @param card_id [String]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(card_id:, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(card_id:, request_options: {})
+        #   @param card_id [String]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

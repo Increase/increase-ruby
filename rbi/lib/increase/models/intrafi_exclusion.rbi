@@ -103,8 +103,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::IntrafiExclusion::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::IntrafiExclusion::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The exclusion is being added to the IntraFi network.
         PENDING = T.let(:pending, Increase::Models::IntrafiExclusion::Status::TaggedSymbol)
@@ -125,7 +124,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::IntrafiExclusion::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::IntrafiExclusion::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INTRAFI_EXCLUSION = T.let(:intrafi_exclusion, Increase::Models::IntrafiExclusion::Type::TaggedSymbol)
 

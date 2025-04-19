@@ -75,38 +75,20 @@ module Increase
       #   @return [Symbol, Increase::Models::Transaction::Type]
       required :type, enum: -> { Increase::Models::Transaction::Type }
 
-      # @!parse
-      #   # Transactions are the immutable additions and removals of money from your bank
-      #   # account. They're the equivalent of line items on your bank statement.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param created_at [Time]
-      #   # @param currency [Symbol, Increase::Models::Transaction::Currency]
-      #   # @param description [String]
-      #   # @param route_id [String, nil]
-      #   # @param route_type [Symbol, Increase::Models::Transaction::RouteType, nil]
-      #   # @param source [Increase::Models::Transaction::Source]
-      #   # @param type [Symbol, Increase::Models::Transaction::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     amount:,
-      #     created_at:,
-      #     currency:,
-      #     description:,
-      #     route_id:,
-      #     route_type:,
-      #     source:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, amount:, created_at:, currency:, description:, route_id:, route_type:, source:, type:)
+      #   Transactions are the immutable additions and removals of money from your bank
+      #   account. They're the equivalent of line items on your bank statement.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param created_at [Time]
+      #   @param currency [Symbol, Increase::Models::Transaction::Currency]
+      #   @param description [String]
+      #   @param route_id [String, nil]
+      #   @param route_type [Symbol, Increase::Models::Transaction::RouteType, nil]
+      #   @param source [Increase::Models::Transaction::Source]
+      #   @param type [Symbol, Increase::Models::Transaction::Type]
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
       # Transaction's currency. This will match the currency on the Transaction's
@@ -134,11 +116,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The type of the route this Transaction came through.
@@ -156,11 +135,8 @@ module Increase
         # A Lockbox.
         LOCKBOX = :lockbox
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::Transaction#source
@@ -474,80 +450,42 @@ module Increase
                  -> { Increase::Models::Transaction::Source::WireTransferIntention },
                  nil?: true
 
-        # @!parse
-        #   # This is an object giving more details on the network-level event that caused the
-        #   # Transaction. Note that for backwards compatibility reasons, additional
-        #   # undocumented keys may appear in this object. These should be treated as
-        #   # deprecated and will be removed in the future.
-        #   #
-        #   # @param account_transfer_intention [Increase::Models::Transaction::Source::AccountTransferIntention, nil]
-        #   # @param ach_transfer_intention [Increase::Models::Transaction::Source::ACHTransferIntention, nil]
-        #   # @param ach_transfer_rejection [Increase::Models::Transaction::Source::ACHTransferRejection, nil]
-        #   # @param ach_transfer_return [Increase::Models::Transaction::Source::ACHTransferReturn, nil]
-        #   # @param card_dispute_acceptance [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil]
-        #   # @param card_dispute_loss [Increase::Models::Transaction::Source::CardDisputeLoss, nil]
-        #   # @param card_refund [Increase::Models::Transaction::Source::CardRefund, nil]
-        #   # @param card_revenue_payment [Increase::Models::Transaction::Source::CardRevenuePayment, nil]
-        #   # @param card_settlement [Increase::Models::Transaction::Source::CardSettlement, nil]
-        #   # @param cashback_payment [Increase::Models::Transaction::Source::CashbackPayment, nil]
-        #   # @param category [Symbol, Increase::Models::Transaction::Source::Category]
-        #   # @param check_deposit_acceptance [Increase::Models::Transaction::Source::CheckDepositAcceptance, nil]
-        #   # @param check_deposit_return [Increase::Models::Transaction::Source::CheckDepositReturn, nil]
-        #   # @param check_transfer_deposit [Increase::Models::Transaction::Source::CheckTransferDeposit, nil]
-        #   # @param fee_payment [Increase::Models::Transaction::Source::FeePayment, nil]
-        #   # @param inbound_ach_transfer [Increase::Models::Transaction::Source::InboundACHTransfer, nil]
-        #   # @param inbound_ach_transfer_return_intention [Increase::Models::Transaction::Source::InboundACHTransferReturnIntention, nil]
-        #   # @param inbound_check_adjustment [Increase::Models::Transaction::Source::InboundCheckAdjustment, nil]
-        #   # @param inbound_check_deposit_return_intention [Increase::Models::Transaction::Source::InboundCheckDepositReturnIntention, nil]
-        #   # @param inbound_real_time_payments_transfer_confirmation [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation, nil]
-        #   # @param inbound_real_time_payments_transfer_decline [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline, nil]
-        #   # @param inbound_wire_reversal [Increase::Models::Transaction::Source::InboundWireReversal, nil]
-        #   # @param inbound_wire_transfer [Increase::Models::Transaction::Source::InboundWireTransfer, nil]
-        #   # @param inbound_wire_transfer_reversal [Increase::Models::Transaction::Source::InboundWireTransferReversal, nil]
-        #   # @param interest_payment [Increase::Models::Transaction::Source::InterestPayment, nil]
-        #   # @param internal_source [Increase::Models::Transaction::Source::InternalSource, nil]
-        #   # @param other [Object, nil]
-        #   # @param real_time_payments_transfer_acknowledgement [Increase::Models::Transaction::Source::RealTimePaymentsTransferAcknowledgement, nil]
-        #   # @param sample_funds [Increase::Models::Transaction::Source::SampleFunds, nil]
-        #   # @param wire_transfer_intention [Increase::Models::Transaction::Source::WireTransferIntention, nil]
-        #   #
-        #   def initialize(
-        #     account_transfer_intention:,
-        #     ach_transfer_intention:,
-        #     ach_transfer_rejection:,
-        #     ach_transfer_return:,
-        #     card_dispute_acceptance:,
-        #     card_dispute_loss:,
-        #     card_refund:,
-        #     card_revenue_payment:,
-        #     card_settlement:,
-        #     cashback_payment:,
-        #     category:,
-        #     check_deposit_acceptance:,
-        #     check_deposit_return:,
-        #     check_transfer_deposit:,
-        #     fee_payment:,
-        #     inbound_ach_transfer:,
-        #     inbound_ach_transfer_return_intention:,
-        #     inbound_check_adjustment:,
-        #     inbound_check_deposit_return_intention:,
-        #     inbound_real_time_payments_transfer_confirmation:,
-        #     inbound_real_time_payments_transfer_decline:,
-        #     inbound_wire_reversal:,
-        #     inbound_wire_transfer:,
-        #     inbound_wire_transfer_reversal:,
-        #     interest_payment:,
-        #     internal_source:,
-        #     other:,
-        #     real_time_payments_transfer_acknowledgement:,
-        #     sample_funds:,
-        #     wire_transfer_intention:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_loss:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, wire_transfer_intention:)
+        #   This is an object giving more details on the network-level event that caused the
+        #   Transaction. Note that for backwards compatibility reasons, additional
+        #   undocumented keys may appear in this object. These should be treated as
+        #   deprecated and will be removed in the future.
+        #
+        #   @param account_transfer_intention [Increase::Models::Transaction::Source::AccountTransferIntention, nil]
+        #   @param ach_transfer_intention [Increase::Models::Transaction::Source::ACHTransferIntention, nil]
+        #   @param ach_transfer_rejection [Increase::Models::Transaction::Source::ACHTransferRejection, nil]
+        #   @param ach_transfer_return [Increase::Models::Transaction::Source::ACHTransferReturn, nil]
+        #   @param card_dispute_acceptance [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil]
+        #   @param card_dispute_loss [Increase::Models::Transaction::Source::CardDisputeLoss, nil]
+        #   @param card_refund [Increase::Models::Transaction::Source::CardRefund, nil]
+        #   @param card_revenue_payment [Increase::Models::Transaction::Source::CardRevenuePayment, nil]
+        #   @param card_settlement [Increase::Models::Transaction::Source::CardSettlement, nil]
+        #   @param cashback_payment [Increase::Models::Transaction::Source::CashbackPayment, nil]
+        #   @param category [Symbol, Increase::Models::Transaction::Source::Category]
+        #   @param check_deposit_acceptance [Increase::Models::Transaction::Source::CheckDepositAcceptance, nil]
+        #   @param check_deposit_return [Increase::Models::Transaction::Source::CheckDepositReturn, nil]
+        #   @param check_transfer_deposit [Increase::Models::Transaction::Source::CheckTransferDeposit, nil]
+        #   @param fee_payment [Increase::Models::Transaction::Source::FeePayment, nil]
+        #   @param inbound_ach_transfer [Increase::Models::Transaction::Source::InboundACHTransfer, nil]
+        #   @param inbound_ach_transfer_return_intention [Increase::Models::Transaction::Source::InboundACHTransferReturnIntention, nil]
+        #   @param inbound_check_adjustment [Increase::Models::Transaction::Source::InboundCheckAdjustment, nil]
+        #   @param inbound_check_deposit_return_intention [Increase::Models::Transaction::Source::InboundCheckDepositReturnIntention, nil]
+        #   @param inbound_real_time_payments_transfer_confirmation [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation, nil]
+        #   @param inbound_real_time_payments_transfer_decline [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline, nil]
+        #   @param inbound_wire_reversal [Increase::Models::Transaction::Source::InboundWireReversal, nil]
+        #   @param inbound_wire_transfer [Increase::Models::Transaction::Source::InboundWireTransfer, nil]
+        #   @param inbound_wire_transfer_reversal [Increase::Models::Transaction::Source::InboundWireTransferReversal, nil]
+        #   @param interest_payment [Increase::Models::Transaction::Source::InterestPayment, nil]
+        #   @param internal_source [Increase::Models::Transaction::Source::InternalSource, nil]
+        #   @param other [Object, nil]
+        #   @param real_time_payments_transfer_acknowledgement [Increase::Models::Transaction::Source::RealTimePaymentsTransferAcknowledgement, nil]
+        #   @param sample_funds [Increase::Models::Transaction::Source::SampleFunds, nil]
+        #   @param wire_transfer_intention [Increase::Models::Transaction::Source::WireTransferIntention, nil]
 
         # @see Increase::Models::Transaction::Source#account_transfer_intention
         class AccountTransferIntention < Increase::Internal::Type::BaseModel
@@ -589,22 +527,18 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Account Transfer Intention object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `account_transfer_intention`. Two
-          #   # Account Transfer Intentions are created from each Account Transfer. One
-          #   # decrements the source account, and the other increments the destination account.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::AccountTransferIntention::Currency]
-          #   # @param description [String]
-          #   # @param destination_account_id [String]
-          #   # @param source_account_id [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(amount:, currency:, description:, destination_account_id:, source_account_id:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, currency:, description:, destination_account_id:, source_account_id:, transfer_id:)
+          #   An Account Transfer Intention object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `account_transfer_intention`. Two
+          #   Account Transfer Intentions are created from each Account Transfer. One
+          #   decrements the source account, and the other increments the destination account.
+          #
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::AccountTransferIntention::Currency]
+          #   @param description [String]
+          #   @param destination_account_id [String]
+          #   @param source_account_id [String]
+          #   @param transfer_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
           # account currency.
@@ -631,11 +565,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -673,21 +604,17 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An ACH Transfer Intention object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `ach_transfer_intention`. An ACH
-          #   # Transfer Intention is created from an ACH Transfer. It reflects the intention to
-          #   # move money into or out of an Increase account via the ACH network.
-          #   #
-          #   # @param account_number [String]
-          #   # @param amount [Integer]
-          #   # @param routing_number [String]
-          #   # @param statement_descriptor [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(account_number:, amount:, routing_number:, statement_descriptor:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(account_number:, amount:, routing_number:, statement_descriptor:, transfer_id:)
+          #   An ACH Transfer Intention object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `ach_transfer_intention`. An ACH
+          #   Transfer Intention is created from an ACH Transfer. It reflects the intention to
+          #   move money into or out of an Increase account via the ACH network.
+          #
+          #   @param account_number [String]
+          #   @param amount [Integer]
+          #   @param routing_number [String]
+          #   @param statement_descriptor [String]
+          #   @param transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#ach_transfer_rejection
@@ -698,17 +625,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An ACH Transfer Rejection object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `ach_transfer_rejection`. An ACH
-          #   # Transfer Rejection is created when an ACH Transfer is rejected by Increase. It
-          #   # offsets the ACH Transfer Intention. These rejections are rare.
-          #   #
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(transfer_id:)
+          #   An ACH Transfer Rejection object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `ach_transfer_rejection`. An ACH
+          #   Transfer Rejection is created when an ACH Transfer is rejected by Increase. It
+          #   offsets the ACH Transfer Intention. These rejections are rare.
+          #
+          #   @param transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#ach_transfer_return
@@ -755,34 +678,20 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An ACH Transfer Return object. This field will be present in the JSON response
-          #   # if and only if `category` is equal to `ach_transfer_return`. An ACH Transfer
-          #   # Return is created when an ACH Transfer is returned by the receiving bank. It
-          #   # offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
-          #   # the first two business days after the transfer is initiated, but can occur much
-          #   # later.
-          #   #
-          #   # @param created_at [Time]
-          #   # @param raw_return_reason_code [String]
-          #   # @param return_reason_code [Symbol, Increase::Models::Transaction::Source::ACHTransferReturn::ReturnReasonCode]
-          #   # @param trace_number [String]
-          #   # @param transaction_id [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     created_at:,
-          #     raw_return_reason_code:,
-          #     return_reason_code:,
-          #     trace_number:,
-          #     transaction_id:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(created_at:, raw_return_reason_code:, return_reason_code:, trace_number:, transaction_id:, transfer_id:)
+          #   An ACH Transfer Return object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `ach_transfer_return`. An ACH Transfer
+          #   Return is created when an ACH Transfer is returned by the receiving bank. It
+          #   offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
+          #   the first two business days after the transfer is initiated, but can occur much
+          #   later.
+          #
+          #   @param created_at [Time]
+          #   @param raw_return_reason_code [String]
+          #   @param return_reason_code [Symbol, Increase::Models::Transaction::Source::ACHTransferReturn::ReturnReasonCode]
+          #   @param trace_number [String]
+          #   @param transaction_id [String]
+          #   @param transfer_id [String]
 
           # Why the ACH Transfer was returned. This reason code is sent by the receiving
           # bank back to Increase.
@@ -1004,11 +913,8 @@ module Increase
             # Code R68. A rare return reason. The return was sent too late.
             UNTIMELY_RETURN = :untimely_return
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1034,18 +940,14 @@ module Increase
           #   @return [String]
           required :transaction_id, String
 
-          # @!parse
-          #   # A Card Dispute Acceptance object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `card_dispute_acceptance`.
-          #   # Contains the details of a successful Card Dispute.
-          #   #
-          #   # @param accepted_at [Time]
-          #   # @param card_dispute_id [String]
-          #   # @param transaction_id [String]
-          #   #
-          #   def initialize(accepted_at:, card_dispute_id:, transaction_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(accepted_at:, card_dispute_id:, transaction_id:)
+          #   A Card Dispute Acceptance object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `card_dispute_acceptance`.
+          #   Contains the details of a successful Card Dispute.
+          #
+          #   @param accepted_at [Time]
+          #   @param card_dispute_id [String]
+          #   @param transaction_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#card_dispute_loss
@@ -1076,19 +978,15 @@ module Increase
           #   @return [String]
           required :transaction_id, String
 
-          # @!parse
-          #   # A Card Dispute Loss object. This field will be present in the JSON response if
-          #   # and only if `category` is equal to `card_dispute_loss`. Contains the details of
-          #   # a lost Card Dispute.
-          #   #
-          #   # @param card_dispute_id [String]
-          #   # @param explanation [String]
-          #   # @param lost_at [Time]
-          #   # @param transaction_id [String]
-          #   #
-          #   def initialize(card_dispute_id:, explanation:, lost_at:, transaction_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(card_dispute_id:, explanation:, lost_at:, transaction_id:)
+          #   A Card Dispute Loss object. This field will be present in the JSON response if
+          #   and only if `category` is equal to `card_dispute_loss`. Contains the details of
+          #   a lost Card Dispute.
+          #
+          #   @param card_dispute_id [String]
+          #   @param explanation [String]
+          #   @param lost_at [Time]
+          #   @param transaction_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#card_refund
@@ -1217,59 +1115,32 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::Type]
           required :type, enum: -> { Increase::Models::Transaction::Source::CardRefund::Type }
 
-          # @!parse
-          #   # A Card Refund object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `card_refund`. Card Refunds move money back to
-          #   # the cardholder. While they are usually connected to a Card Settlement an
-          #   # acquirer can also refund money directly to a card without relation to a
-          #   # transaction.
-          #   #
-          #   # @param id [String]
-          #   # @param amount [Integer]
-          #   # @param card_payment_id [String]
-          #   # @param cashback [Increase::Models::Transaction::Source::CardRefund::Cashback, nil]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Currency]
-          #   # @param interchange [Increase::Models::Transaction::Source::CardRefund::Interchange, nil]
-          #   # @param merchant_acceptor_id [String]
-          #   # @param merchant_category_code [String]
-          #   # @param merchant_city [String]
-          #   # @param merchant_country [String]
-          #   # @param merchant_name [String]
-          #   # @param merchant_postal_code [String, nil]
-          #   # @param merchant_state [String, nil]
-          #   # @param network_identifiers [Increase::Models::Transaction::Source::CardRefund::NetworkIdentifiers]
-          #   # @param presentment_amount [Integer]
-          #   # @param presentment_currency [String]
-          #   # @param purchase_details [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails, nil]
-          #   # @param transaction_id [String]
-          #   # @param type [Symbol, Increase::Models::Transaction::Source::CardRefund::Type]
-          #   #
-          #   def initialize(
-          #     id:,
-          #     amount:,
-          #     card_payment_id:,
-          #     cashback:,
-          #     currency:,
-          #     interchange:,
-          #     merchant_acceptor_id:,
-          #     merchant_category_code:,
-          #     merchant_city:,
-          #     merchant_country:,
-          #     merchant_name:,
-          #     merchant_postal_code:,
-          #     merchant_state:,
-          #     network_identifiers:,
-          #     presentment_amount:,
-          #     presentment_currency:,
-          #     purchase_details:,
-          #     transaction_id:,
-          #     type:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(id:, amount:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network_identifiers:, presentment_amount:, presentment_currency:, purchase_details:, transaction_id:, type:)
+          #   A Card Refund object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `card_refund`. Card Refunds move money back to
+          #   the cardholder. While they are usually connected to a Card Settlement an
+          #   acquirer can also refund money directly to a card without relation to a
+          #   transaction.
+          #
+          #   @param id [String]
+          #   @param amount [Integer]
+          #   @param card_payment_id [String]
+          #   @param cashback [Increase::Models::Transaction::Source::CardRefund::Cashback, nil]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Currency]
+          #   @param interchange [Increase::Models::Transaction::Source::CardRefund::Interchange, nil]
+          #   @param merchant_acceptor_id [String]
+          #   @param merchant_category_code [String]
+          #   @param merchant_city [String]
+          #   @param merchant_country [String]
+          #   @param merchant_name [String]
+          #   @param merchant_postal_code [String, nil]
+          #   @param merchant_state [String, nil]
+          #   @param network_identifiers [Increase::Models::Transaction::Source::CardRefund::NetworkIdentifiers]
+          #   @param presentment_amount [Integer]
+          #   @param presentment_currency [String]
+          #   @param purchase_details [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails, nil]
+          #   @param transaction_id [String]
+          #   @param type [Symbol, Increase::Models::Transaction::Source::CardRefund::Type]
 
           # @see Increase::Models::Transaction::Source::CardRefund#cashback
           class Cashback < Increase::Internal::Type::BaseModel
@@ -1287,16 +1158,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::Cashback::Currency]
             required :currency, enum: -> { Increase::Models::Transaction::Source::CardRefund::Cashback::Currency }
 
-            # @!parse
-            #   # Cashback debited for this transaction, if eligible. Cashback is paid out in
-            #   # aggregate, monthly.
-            #   #
-            #   # @param amount [String]
-            #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Cashback::Currency]
-            #   #
-            #   def initialize(amount:, currency:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(amount:, currency:)
+            #   Cashback debited for this transaction, if eligible. Cashback is paid out in
+            #   aggregate, monthly.
+            #
+            #   @param amount [String]
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Cashback::Currency]
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
@@ -1322,11 +1189,8 @@ module Increase
               # US Dollar (USD)
               USD = :USD
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
           end
 
@@ -1355,11 +1219,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::Transaction::Source::CardRefund#interchange
@@ -1386,16 +1247,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
             required :currency, enum: -> { Increase::Models::Transaction::Source::CardRefund::Interchange::Currency }
 
-            # @!parse
-            #   # Interchange assessed as a part of this transaciton.
-            #   #
-            #   # @param amount [String]
-            #   # @param code [String, nil]
-            #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
-            #   #
-            #   def initialize(amount:, code:, currency:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(amount:, code:, currency:)
+            #   Interchange assessed as a part of this transaciton.
+            #
+            #   @param amount [String]
+            #   @param code [String, nil]
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -1422,11 +1279,8 @@ module Increase
               # US Dollar (USD)
               USD = :USD
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
           end
 
@@ -1452,16 +1306,12 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!parse
-            #   # Network-specific identifiers for this refund.
-            #   #
-            #   # @param acquirer_business_id [String]
-            #   # @param acquirer_reference_number [String]
-            #   # @param transaction_id [String, nil]
-            #   #
-            #   def initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:)
+            #   Network-specific identifiers for this refund.
+            #
+            #   @param acquirer_business_id [String]
+            #   @param acquirer_reference_number [String]
+            #   @param transaction_id [String, nil]
           end
 
           # @see Increase::Models::Transaction::Source::CardRefund#purchase_details
@@ -1536,38 +1386,20 @@ module Increase
                      -> { Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel },
                      nil?: true
 
-            # @!parse
-            #   # Additional details about the card purchase, such as tax and industry-specific
-            #   # fields.
-            #   #
-            #   # @param car_rental [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental, nil]
-            #   # @param customer_reference_identifier [String, nil]
-            #   # @param local_tax_amount [Integer, nil]
-            #   # @param local_tax_currency [String, nil]
-            #   # @param lodging [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging, nil]
-            #   # @param national_tax_amount [Integer, nil]
-            #   # @param national_tax_currency [String, nil]
-            #   # @param purchase_identifier [String, nil]
-            #   # @param purchase_identifier_format [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::PurchaseIdentifierFormat, nil]
-            #   # @param travel [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel, nil]
-            #   #
-            #   def initialize(
-            #     car_rental:,
-            #     customer_reference_identifier:,
-            #     local_tax_amount:,
-            #     local_tax_currency:,
-            #     lodging:,
-            #     national_tax_amount:,
-            #     national_tax_currency:,
-            #     purchase_identifier:,
-            #     purchase_identifier_format:,
-            #     travel:,
-            #     **
-            #   )
-            #     super
-            #   end
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(car_rental:, customer_reference_identifier:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
+            #   Additional details about the card purchase, such as tax and industry-specific
+            #   fields.
+            #
+            #   @param car_rental [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental, nil]
+            #   @param customer_reference_identifier [String, nil]
+            #   @param local_tax_amount [Integer, nil]
+            #   @param local_tax_currency [String, nil]
+            #   @param lodging [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging, nil]
+            #   @param national_tax_amount [Integer, nil]
+            #   @param national_tax_currency [String, nil]
+            #   @param purchase_identifier [String, nil]
+            #   @param purchase_identifier_format [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::PurchaseIdentifierFormat, nil]
+            #   @param travel [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel, nil]
 
             # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#car_rental
             class CarRental < Increase::Internal::Type::BaseModel
@@ -1679,49 +1511,25 @@ module Increase
               #   @return [String, nil]
               required :weekly_rental_rate_currency, String, nil?: true
 
-              # @!parse
-              #   # Fields specific to car rentals.
-              #   #
-              #   # @param car_class_code [String, nil]
-              #   # @param checkout_date [Date, nil]
-              #   # @param daily_rental_rate_amount [Integer, nil]
-              #   # @param daily_rental_rate_currency [String, nil]
-              #   # @param days_rented [Integer, nil]
-              #   # @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental::ExtraCharges, nil]
-              #   # @param fuel_charges_amount [Integer, nil]
-              #   # @param fuel_charges_currency [String, nil]
-              #   # @param insurance_charges_amount [Integer, nil]
-              #   # @param insurance_charges_currency [String, nil]
-              #   # @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental::NoShowIndicator, nil]
-              #   # @param one_way_drop_off_charges_amount [Integer, nil]
-              #   # @param one_way_drop_off_charges_currency [String, nil]
-              #   # @param renter_name [String, nil]
-              #   # @param weekly_rental_rate_amount [Integer, nil]
-              #   # @param weekly_rental_rate_currency [String, nil]
-              #   #
-              #   def initialize(
-              #     car_class_code:,
-              #     checkout_date:,
-              #     daily_rental_rate_amount:,
-              #     daily_rental_rate_currency:,
-              #     days_rented:,
-              #     extra_charges:,
-              #     fuel_charges_amount:,
-              #     fuel_charges_currency:,
-              #     insurance_charges_amount:,
-              #     insurance_charges_currency:,
-              #     no_show_indicator:,
-              #     one_way_drop_off_charges_amount:,
-              #     one_way_drop_off_charges_currency:,
-              #     renter_name:,
-              #     weekly_rental_rate_amount:,
-              #     weekly_rental_rate_currency:,
-              #     **
-              #   )
-              #     super
-              #   end
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(car_class_code:, checkout_date:, daily_rental_rate_amount:, daily_rental_rate_currency:, days_rented:, extra_charges:, fuel_charges_amount:, fuel_charges_currency:, insurance_charges_amount:, insurance_charges_currency:, no_show_indicator:, one_way_drop_off_charges_amount:, one_way_drop_off_charges_currency:, renter_name:, weekly_rental_rate_amount:, weekly_rental_rate_currency:)
+              #   Fields specific to car rentals.
+              #
+              #   @param car_class_code [String, nil]
+              #   @param checkout_date [Date, nil]
+              #   @param daily_rental_rate_amount [Integer, nil]
+              #   @param daily_rental_rate_currency [String, nil]
+              #   @param days_rented [Integer, nil]
+              #   @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental::ExtraCharges, nil]
+              #   @param fuel_charges_amount [Integer, nil]
+              #   @param fuel_charges_currency [String, nil]
+              #   @param insurance_charges_amount [Integer, nil]
+              #   @param insurance_charges_currency [String, nil]
+              #   @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::CarRental::NoShowIndicator, nil]
+              #   @param one_way_drop_off_charges_amount [Integer, nil]
+              #   @param one_way_drop_off_charges_currency [String, nil]
+              #   @param renter_name [String, nil]
+              #   @param weekly_rental_rate_amount [Integer, nil]
+              #   @param weekly_rental_rate_currency [String, nil]
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
@@ -1747,11 +1555,8 @@ module Increase
                 # Parking violation
                 PARKING_VIOLATION = :parking_violation
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # An indicator that the cardholder is being billed for a reserved vehicle that was
@@ -1767,11 +1572,8 @@ module Increase
                 # No show for specialized vehicle
                 NO_SHOW_FOR_SPECIALIZED_VEHICLE = :no_show_for_specialized_vehicle
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
 
@@ -1884,49 +1686,25 @@ module Increase
               #   @return [String, nil]
               required :total_tax_currency, String, nil?: true
 
-              # @!parse
-              #   # Fields specific to lodging.
-              #   #
-              #   # @param check_in_date [Date, nil]
-              #   # @param daily_room_rate_amount [Integer, nil]
-              #   # @param daily_room_rate_currency [String, nil]
-              #   # @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging::ExtraCharges, nil]
-              #   # @param folio_cash_advances_amount [Integer, nil]
-              #   # @param folio_cash_advances_currency [String, nil]
-              #   # @param food_beverage_charges_amount [Integer, nil]
-              #   # @param food_beverage_charges_currency [String, nil]
-              #   # @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging::NoShowIndicator, nil]
-              #   # @param prepaid_expenses_amount [Integer, nil]
-              #   # @param prepaid_expenses_currency [String, nil]
-              #   # @param room_nights [Integer, nil]
-              #   # @param total_room_tax_amount [Integer, nil]
-              #   # @param total_room_tax_currency [String, nil]
-              #   # @param total_tax_amount [Integer, nil]
-              #   # @param total_tax_currency [String, nil]
-              #   #
-              #   def initialize(
-              #     check_in_date:,
-              #     daily_room_rate_amount:,
-              #     daily_room_rate_currency:,
-              #     extra_charges:,
-              #     folio_cash_advances_amount:,
-              #     folio_cash_advances_currency:,
-              #     food_beverage_charges_amount:,
-              #     food_beverage_charges_currency:,
-              #     no_show_indicator:,
-              #     prepaid_expenses_amount:,
-              #     prepaid_expenses_currency:,
-              #     room_nights:,
-              #     total_room_tax_amount:,
-              #     total_room_tax_currency:,
-              #     total_tax_amount:,
-              #     total_tax_currency:,
-              #     **
-              #   )
-              #     super
-              #   end
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(check_in_date:, daily_room_rate_amount:, daily_room_rate_currency:, extra_charges:, folio_cash_advances_amount:, folio_cash_advances_currency:, food_beverage_charges_amount:, food_beverage_charges_currency:, no_show_indicator:, prepaid_expenses_amount:, prepaid_expenses_currency:, room_nights:, total_room_tax_amount:, total_room_tax_currency:, total_tax_amount:, total_tax_currency:)
+              #   Fields specific to lodging.
+              #
+              #   @param check_in_date [Date, nil]
+              #   @param daily_room_rate_amount [Integer, nil]
+              #   @param daily_room_rate_currency [String, nil]
+              #   @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging::ExtraCharges, nil]
+              #   @param folio_cash_advances_amount [Integer, nil]
+              #   @param folio_cash_advances_currency [String, nil]
+              #   @param food_beverage_charges_amount [Integer, nil]
+              #   @param food_beverage_charges_currency [String, nil]
+              #   @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Lodging::NoShowIndicator, nil]
+              #   @param prepaid_expenses_amount [Integer, nil]
+              #   @param prepaid_expenses_currency [String, nil]
+              #   @param room_nights [Integer, nil]
+              #   @param total_room_tax_amount [Integer, nil]
+              #   @param total_room_tax_currency [String, nil]
+              #   @param total_tax_amount [Integer, nil]
+              #   @param total_tax_currency [String, nil]
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
@@ -1955,11 +1733,8 @@ module Increase
                 # Laundry
                 LAUNDRY = :laundry
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Indicator that the cardholder is being billed for a reserved room that was not
@@ -1975,11 +1750,8 @@ module Increase
                 # No show
                 NO_SHOW = :no_show
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
 
@@ -2004,11 +1776,8 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
 
             # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#travel
@@ -2095,41 +1864,21 @@ module Increase
                        -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg] },
                        nil?: true
 
-              # @!parse
-              #   # Fields specific to travel.
-              #   #
-              #   # @param ancillary [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary, nil]
-              #   # @param computerized_reservation_system [String, nil]
-              #   # @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::CreditReasonIndicator, nil]
-              #   # @param departure_date [Date, nil]
-              #   # @param origination_city_airport_code [String, nil]
-              #   # @param passenger_name [String, nil]
-              #   # @param restricted_ticket_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::RestrictedTicketIndicator, nil]
-              #   # @param ticket_change_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TicketChangeIndicator, nil]
-              #   # @param ticket_number [String, nil]
-              #   # @param travel_agency_code [String, nil]
-              #   # @param travel_agency_name [String, nil]
-              #   # @param trip_legs [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg>, nil]
-              #   #
-              #   def initialize(
-              #     ancillary:,
-              #     computerized_reservation_system:,
-              #     credit_reason_indicator:,
-              #     departure_date:,
-              #     origination_city_airport_code:,
-              #     passenger_name:,
-              #     restricted_ticket_indicator:,
-              #     ticket_change_indicator:,
-              #     ticket_number:,
-              #     travel_agency_code:,
-              #     travel_agency_name:,
-              #     trip_legs:,
-              #     **
-              #   )
-              #     super
-              #   end
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(ancillary:, computerized_reservation_system:, credit_reason_indicator:, departure_date:, origination_city_airport_code:, passenger_name:, restricted_ticket_indicator:, ticket_change_indicator:, ticket_number:, travel_agency_code:, travel_agency_name:, trip_legs:)
+              #   Fields specific to travel.
+              #
+              #   @param ancillary [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary, nil]
+              #   @param computerized_reservation_system [String, nil]
+              #   @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::CreditReasonIndicator, nil]
+              #   @param departure_date [Date, nil]
+              #   @param origination_city_airport_code [String, nil]
+              #   @param passenger_name [String, nil]
+              #   @param restricted_ticket_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::RestrictedTicketIndicator, nil]
+              #   @param ticket_change_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TicketChangeIndicator, nil]
+              #   @param ticket_number [String, nil]
+              #   @param travel_agency_code [String, nil]
+              #   @param travel_agency_name [String, nil]
+              #   @param trip_legs [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg>, nil]
 
               # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel#ancillary
               class Ancillary < Increase::Internal::Type::BaseModel
@@ -2168,27 +1917,14 @@ module Increase
                 #   @return [String, nil]
                 required :ticket_document_number, String, nil?: true
 
-                # @!parse
-                #   # Ancillary purchases in addition to the airfare.
-                #   #
-                #   # @param connected_ticket_document_number [String, nil]
-                #   # @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil]
-                #   # @param passenger_name_or_description [String, nil]
-                #   # @param services [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
-                #   # @param ticket_document_number [String, nil]
-                #   #
-                #   def initialize(
-                #     connected_ticket_document_number:,
-                #     credit_reason_indicator:,
-                #     passenger_name_or_description:,
-                #     services:,
-                #     ticket_document_number:,
-                #     **
-                #   )
-                #     super
-                #   end
-
-                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                # @!method initialize(connected_ticket_document_number:, credit_reason_indicator:, passenger_name_or_description:, services:, ticket_document_number:)
+                #   Ancillary purchases in addition to the airfare.
+                #
+                #   @param connected_ticket_document_number [String, nil]
+                #   @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil]
+                #   @param passenger_name_or_description [String, nil]
+                #   @param services [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
+                #   @param ticket_document_number [String, nil]
 
                 # Indicates the reason for a credit to the cardholder.
                 #
@@ -2210,11 +1946,8 @@ module Increase
                   # Other
                   OTHER = :other
 
-                  finalize!
-
-                  # @!parse
-                  #   # @return [Array<Symbol>]
-                  #   def self.values; end
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
                 end
 
                 class Service < Increase::Internal::Type::BaseModel
@@ -2232,13 +1965,9 @@ module Increase
                   #   @return [String, nil]
                   required :sub_category, String, nil?: true
 
-                  # @!parse
-                  #   # @param category [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service::Category, nil]
-                  #   # @param sub_category [String, nil]
-                  #   #
-                  #   def initialize(category:, sub_category:, **) = super
-
-                  # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                  # @!method initialize(category:, sub_category:)
+                  #   @param category [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service::Category, nil]
+                  #   @param sub_category [String, nil]
 
                   # Category of the ancillary service.
                   #
@@ -2318,11 +2047,8 @@ module Increase
                     # Wi-fi
                     WIFI = :wifi
 
-                    finalize!
-
-                    # @!parse
-                    #   # @return [Array<Symbol>]
-                    #   def self.values; end
+                    # @!method self.values
+                    #   @return [Array<Symbol>]
                   end
                 end
               end
@@ -2353,11 +2079,8 @@ module Increase
                 # Partial refund of airline ticket
                 PARTIAL_REFUND_OF_AIRLINE_TICKET = :partial_refund_of_airline_ticket
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Indicates whether this ticket is non-refundable.
@@ -2372,11 +2095,8 @@ module Increase
                 # Restricted non-refundable ticket
                 RESTRICTED_NON_REFUNDABLE_TICKET = :restricted_non_refundable_ticket
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Indicates why a ticket was changed.
@@ -2394,11 +2114,8 @@ module Increase
                 # New ticket
                 NEW_TICKET = :new_ticket
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               class TripLeg < Increase::Internal::Type::BaseModel
@@ -2440,27 +2157,13 @@ module Increase
                          enum: -> { Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode },
                          nil?: true
 
-                # @!parse
-                #   # @param carrier_code [String, nil]
-                #   # @param destination_city_airport_code [String, nil]
-                #   # @param fare_basis_code [String, nil]
-                #   # @param flight_number [String, nil]
-                #   # @param service_class [String, nil]
-                #   # @param stop_over_code [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode, nil]
-                #   #
-                #   def initialize(
-                #     carrier_code:,
-                #     destination_city_airport_code:,
-                #     fare_basis_code:,
-                #     flight_number:,
-                #     service_class:,
-                #     stop_over_code:,
-                #     **
-                #   )
-                #     super
-                #   end
-
-                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                # @!method initialize(carrier_code:, destination_city_airport_code:, fare_basis_code:, flight_number:, service_class:, stop_over_code:)
+                #   @param carrier_code [String, nil]
+                #   @param destination_city_airport_code [String, nil]
+                #   @param fare_basis_code [String, nil]
+                #   @param flight_number [String, nil]
+                #   @param service_class [String, nil]
+                #   @param stop_over_code [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode, nil]
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
@@ -2477,11 +2180,8 @@ module Increase
                   # Stop over not allowed
                   STOP_OVER_NOT_ALLOWED = :stop_over_not_allowed
 
-                  finalize!
-
-                  # @!parse
-                  #   # @return [Array<Symbol>]
-                  #   def self.values; end
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
                 end
               end
             end
@@ -2496,11 +2196,8 @@ module Increase
 
             CARD_REFUND = :card_refund
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -2538,20 +2235,16 @@ module Increase
           #   @return [String, nil]
           required :transacted_on_account_id, String, nil?: true
 
-          # @!parse
-          #   # A Card Revenue Payment object. This field will be present in the JSON response
-          #   # if and only if `category` is equal to `card_revenue_payment`. Card Revenue
-          #   # Payments reflect earnings from fees on card transactions.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardRevenuePayment::Currency]
-          #   # @param period_end [Time]
-          #   # @param period_start [Time]
-          #   # @param transacted_on_account_id [String, nil]
-          #   #
-          #   def initialize(amount:, currency:, period_end:, period_start:, transacted_on_account_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, currency:, period_end:, period_start:, transacted_on_account_id:)
+          #   A Card Revenue Payment object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `card_revenue_payment`. Card Revenue
+          #   Payments reflect earnings from fees on card transactions.
+          #
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRevenuePayment::Currency]
+          #   @param period_end [Time]
+          #   @param period_start [Time]
+          #   @param transacted_on_account_id [String, nil]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           # currency.
@@ -2578,11 +2271,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -2727,63 +2417,34 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Type]
           required :type, enum: -> { Increase::Models::Transaction::Source::CardSettlement::Type }
 
-          # @!parse
-          #   # A Card Settlement object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `card_settlement`. Card Settlements are card
-          #   # transactions that have cleared and settled. While a settlement is usually
-          #   # preceded by an authorization, an acquirer can also directly clear a transaction
-          #   # without first authorizing it.
-          #   #
-          #   # @param id [String]
-          #   # @param amount [Integer]
-          #   # @param card_authorization [String, nil]
-          #   # @param card_payment_id [String]
-          #   # @param cashback [Increase::Models::Transaction::Source::CardSettlement::Cashback, nil]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Currency]
-          #   # @param interchange [Increase::Models::Transaction::Source::CardSettlement::Interchange, nil]
-          #   # @param merchant_acceptor_id [String]
-          #   # @param merchant_category_code [String]
-          #   # @param merchant_city [String]
-          #   # @param merchant_country [String]
-          #   # @param merchant_name [String]
-          #   # @param merchant_postal_code [String, nil]
-          #   # @param merchant_state [String, nil]
-          #   # @param network_identifiers [Increase::Models::Transaction::Source::CardSettlement::NetworkIdentifiers]
-          #   # @param pending_transaction_id [String, nil]
-          #   # @param presentment_amount [Integer]
-          #   # @param presentment_currency [String]
-          #   # @param purchase_details [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails, nil]
-          #   # @param transaction_id [String]
-          #   # @param type [Symbol, Increase::Models::Transaction::Source::CardSettlement::Type]
-          #   #
-          #   def initialize(
-          #     id:,
-          #     amount:,
-          #     card_authorization:,
-          #     card_payment_id:,
-          #     cashback:,
-          #     currency:,
-          #     interchange:,
-          #     merchant_acceptor_id:,
-          #     merchant_category_code:,
-          #     merchant_city:,
-          #     merchant_country:,
-          #     merchant_name:,
-          #     merchant_postal_code:,
-          #     merchant_state:,
-          #     network_identifiers:,
-          #     pending_transaction_id:,
-          #     presentment_amount:,
-          #     presentment_currency:,
-          #     purchase_details:,
-          #     transaction_id:,
-          #     type:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, transaction_id:, type:)
+          #   A Card Settlement object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `card_settlement`. Card Settlements are card
+          #   transactions that have cleared and settled. While a settlement is usually
+          #   preceded by an authorization, an acquirer can also directly clear a transaction
+          #   without first authorizing it.
+          #
+          #   @param id [String]
+          #   @param amount [Integer]
+          #   @param card_authorization [String, nil]
+          #   @param card_payment_id [String]
+          #   @param cashback [Increase::Models::Transaction::Source::CardSettlement::Cashback, nil]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Currency]
+          #   @param interchange [Increase::Models::Transaction::Source::CardSettlement::Interchange, nil]
+          #   @param merchant_acceptor_id [String]
+          #   @param merchant_category_code [String]
+          #   @param merchant_city [String]
+          #   @param merchant_country [String]
+          #   @param merchant_name [String]
+          #   @param merchant_postal_code [String, nil]
+          #   @param merchant_state [String, nil]
+          #   @param network_identifiers [Increase::Models::Transaction::Source::CardSettlement::NetworkIdentifiers]
+          #   @param pending_transaction_id [String, nil]
+          #   @param presentment_amount [Integer]
+          #   @param presentment_currency [String]
+          #   @param purchase_details [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails, nil]
+          #   @param transaction_id [String]
+          #   @param type [Symbol, Increase::Models::Transaction::Source::CardSettlement::Type]
 
           # @see Increase::Models::Transaction::Source::CardSettlement#cashback
           class Cashback < Increase::Internal::Type::BaseModel
@@ -2801,16 +2462,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Cashback::Currency]
             required :currency, enum: -> { Increase::Models::Transaction::Source::CardSettlement::Cashback::Currency }
 
-            # @!parse
-            #   # Cashback earned on this transaction, if eligible. Cashback is paid out in
-            #   # aggregate, monthly.
-            #   #
-            #   # @param amount [String]
-            #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Cashback::Currency]
-            #   #
-            #   def initialize(amount:, currency:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(amount:, currency:)
+            #   Cashback earned on this transaction, if eligible. Cashback is paid out in
+            #   aggregate, monthly.
+            #
+            #   @param amount [String]
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Cashback::Currency]
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
@@ -2836,11 +2493,8 @@ module Increase
               # US Dollar (USD)
               USD = :USD
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
           end
 
@@ -2869,11 +2523,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::Transaction::Source::CardSettlement#interchange
@@ -2901,16 +2552,12 @@ module Increase
             required :currency,
                      enum: -> { Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency }
 
-            # @!parse
-            #   # Interchange assessed as a part of this transaction.
-            #   #
-            #   # @param amount [String]
-            #   # @param code [String, nil]
-            #   # @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
-            #   #
-            #   def initialize(amount:, code:, currency:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(amount:, code:, currency:)
+            #   Interchange assessed as a part of this transaction.
+            #
+            #   @param amount [String]
+            #   @param code [String, nil]
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -2937,11 +2584,8 @@ module Increase
               # US Dollar (USD)
               USD = :USD
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
           end
 
@@ -2967,16 +2611,12 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!parse
-            #   # Network-specific identifiers for this refund.
-            #   #
-            #   # @param acquirer_business_id [String]
-            #   # @param acquirer_reference_number [String]
-            #   # @param transaction_id [String, nil]
-            #   #
-            #   def initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:)
+            #   Network-specific identifiers for this refund.
+            #
+            #   @param acquirer_business_id [String]
+            #   @param acquirer_reference_number [String]
+            #   @param transaction_id [String, nil]
           end
 
           # @see Increase::Models::Transaction::Source::CardSettlement#purchase_details
@@ -3051,38 +2691,20 @@ module Increase
                      -> { Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel },
                      nil?: true
 
-            # @!parse
-            #   # Additional details about the card purchase, such as tax and industry-specific
-            #   # fields.
-            #   #
-            #   # @param car_rental [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental, nil]
-            #   # @param customer_reference_identifier [String, nil]
-            #   # @param local_tax_amount [Integer, nil]
-            #   # @param local_tax_currency [String, nil]
-            #   # @param lodging [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging, nil]
-            #   # @param national_tax_amount [Integer, nil]
-            #   # @param national_tax_currency [String, nil]
-            #   # @param purchase_identifier [String, nil]
-            #   # @param purchase_identifier_format [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat, nil]
-            #   # @param travel [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel, nil]
-            #   #
-            #   def initialize(
-            #     car_rental:,
-            #     customer_reference_identifier:,
-            #     local_tax_amount:,
-            #     local_tax_currency:,
-            #     lodging:,
-            #     national_tax_amount:,
-            #     national_tax_currency:,
-            #     purchase_identifier:,
-            #     purchase_identifier_format:,
-            #     travel:,
-            #     **
-            #   )
-            #     super
-            #   end
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(car_rental:, customer_reference_identifier:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
+            #   Additional details about the card purchase, such as tax and industry-specific
+            #   fields.
+            #
+            #   @param car_rental [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental, nil]
+            #   @param customer_reference_identifier [String, nil]
+            #   @param local_tax_amount [Integer, nil]
+            #   @param local_tax_currency [String, nil]
+            #   @param lodging [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging, nil]
+            #   @param national_tax_amount [Integer, nil]
+            #   @param national_tax_currency [String, nil]
+            #   @param purchase_identifier [String, nil]
+            #   @param purchase_identifier_format [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat, nil]
+            #   @param travel [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel, nil]
 
             # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#car_rental
             class CarRental < Increase::Internal::Type::BaseModel
@@ -3194,49 +2816,25 @@ module Increase
               #   @return [String, nil]
               required :weekly_rental_rate_currency, String, nil?: true
 
-              # @!parse
-              #   # Fields specific to car rentals.
-              #   #
-              #   # @param car_class_code [String, nil]
-              #   # @param checkout_date [Date, nil]
-              #   # @param daily_rental_rate_amount [Integer, nil]
-              #   # @param daily_rental_rate_currency [String, nil]
-              #   # @param days_rented [Integer, nil]
-              #   # @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental::ExtraCharges, nil]
-              #   # @param fuel_charges_amount [Integer, nil]
-              #   # @param fuel_charges_currency [String, nil]
-              #   # @param insurance_charges_amount [Integer, nil]
-              #   # @param insurance_charges_currency [String, nil]
-              #   # @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator, nil]
-              #   # @param one_way_drop_off_charges_amount [Integer, nil]
-              #   # @param one_way_drop_off_charges_currency [String, nil]
-              #   # @param renter_name [String, nil]
-              #   # @param weekly_rental_rate_amount [Integer, nil]
-              #   # @param weekly_rental_rate_currency [String, nil]
-              #   #
-              #   def initialize(
-              #     car_class_code:,
-              #     checkout_date:,
-              #     daily_rental_rate_amount:,
-              #     daily_rental_rate_currency:,
-              #     days_rented:,
-              #     extra_charges:,
-              #     fuel_charges_amount:,
-              #     fuel_charges_currency:,
-              #     insurance_charges_amount:,
-              #     insurance_charges_currency:,
-              #     no_show_indicator:,
-              #     one_way_drop_off_charges_amount:,
-              #     one_way_drop_off_charges_currency:,
-              #     renter_name:,
-              #     weekly_rental_rate_amount:,
-              #     weekly_rental_rate_currency:,
-              #     **
-              #   )
-              #     super
-              #   end
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(car_class_code:, checkout_date:, daily_rental_rate_amount:, daily_rental_rate_currency:, days_rented:, extra_charges:, fuel_charges_amount:, fuel_charges_currency:, insurance_charges_amount:, insurance_charges_currency:, no_show_indicator:, one_way_drop_off_charges_amount:, one_way_drop_off_charges_currency:, renter_name:, weekly_rental_rate_amount:, weekly_rental_rate_currency:)
+              #   Fields specific to car rentals.
+              #
+              #   @param car_class_code [String, nil]
+              #   @param checkout_date [Date, nil]
+              #   @param daily_rental_rate_amount [Integer, nil]
+              #   @param daily_rental_rate_currency [String, nil]
+              #   @param days_rented [Integer, nil]
+              #   @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental::ExtraCharges, nil]
+              #   @param fuel_charges_amount [Integer, nil]
+              #   @param fuel_charges_currency [String, nil]
+              #   @param insurance_charges_amount [Integer, nil]
+              #   @param insurance_charges_currency [String, nil]
+              #   @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator, nil]
+              #   @param one_way_drop_off_charges_amount [Integer, nil]
+              #   @param one_way_drop_off_charges_currency [String, nil]
+              #   @param renter_name [String, nil]
+              #   @param weekly_rental_rate_amount [Integer, nil]
+              #   @param weekly_rental_rate_currency [String, nil]
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
@@ -3262,11 +2860,8 @@ module Increase
                 # Parking violation
                 PARKING_VIOLATION = :parking_violation
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # An indicator that the cardholder is being billed for a reserved vehicle that was
@@ -3282,11 +2877,8 @@ module Increase
                 # No show for specialized vehicle
                 NO_SHOW_FOR_SPECIALIZED_VEHICLE = :no_show_for_specialized_vehicle
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
 
@@ -3399,49 +2991,25 @@ module Increase
               #   @return [String, nil]
               required :total_tax_currency, String, nil?: true
 
-              # @!parse
-              #   # Fields specific to lodging.
-              #   #
-              #   # @param check_in_date [Date, nil]
-              #   # @param daily_room_rate_amount [Integer, nil]
-              #   # @param daily_room_rate_currency [String, nil]
-              #   # @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging::ExtraCharges, nil]
-              #   # @param folio_cash_advances_amount [Integer, nil]
-              #   # @param folio_cash_advances_currency [String, nil]
-              #   # @param food_beverage_charges_amount [Integer, nil]
-              #   # @param food_beverage_charges_currency [String, nil]
-              #   # @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging::NoShowIndicator, nil]
-              #   # @param prepaid_expenses_amount [Integer, nil]
-              #   # @param prepaid_expenses_currency [String, nil]
-              #   # @param room_nights [Integer, nil]
-              #   # @param total_room_tax_amount [Integer, nil]
-              #   # @param total_room_tax_currency [String, nil]
-              #   # @param total_tax_amount [Integer, nil]
-              #   # @param total_tax_currency [String, nil]
-              #   #
-              #   def initialize(
-              #     check_in_date:,
-              #     daily_room_rate_amount:,
-              #     daily_room_rate_currency:,
-              #     extra_charges:,
-              #     folio_cash_advances_amount:,
-              #     folio_cash_advances_currency:,
-              #     food_beverage_charges_amount:,
-              #     food_beverage_charges_currency:,
-              #     no_show_indicator:,
-              #     prepaid_expenses_amount:,
-              #     prepaid_expenses_currency:,
-              #     room_nights:,
-              #     total_room_tax_amount:,
-              #     total_room_tax_currency:,
-              #     total_tax_amount:,
-              #     total_tax_currency:,
-              #     **
-              #   )
-              #     super
-              #   end
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(check_in_date:, daily_room_rate_amount:, daily_room_rate_currency:, extra_charges:, folio_cash_advances_amount:, folio_cash_advances_currency:, food_beverage_charges_amount:, food_beverage_charges_currency:, no_show_indicator:, prepaid_expenses_amount:, prepaid_expenses_currency:, room_nights:, total_room_tax_amount:, total_room_tax_currency:, total_tax_amount:, total_tax_currency:)
+              #   Fields specific to lodging.
+              #
+              #   @param check_in_date [Date, nil]
+              #   @param daily_room_rate_amount [Integer, nil]
+              #   @param daily_room_rate_currency [String, nil]
+              #   @param extra_charges [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging::ExtraCharges, nil]
+              #   @param folio_cash_advances_amount [Integer, nil]
+              #   @param folio_cash_advances_currency [String, nil]
+              #   @param food_beverage_charges_amount [Integer, nil]
+              #   @param food_beverage_charges_currency [String, nil]
+              #   @param no_show_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Lodging::NoShowIndicator, nil]
+              #   @param prepaid_expenses_amount [Integer, nil]
+              #   @param prepaid_expenses_currency [String, nil]
+              #   @param room_nights [Integer, nil]
+              #   @param total_room_tax_amount [Integer, nil]
+              #   @param total_room_tax_currency [String, nil]
+              #   @param total_tax_amount [Integer, nil]
+              #   @param total_tax_currency [String, nil]
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
@@ -3470,11 +3038,8 @@ module Increase
                 # Laundry
                 LAUNDRY = :laundry
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Indicator that the cardholder is being billed for a reserved room that was not
@@ -3490,11 +3055,8 @@ module Increase
                 # No show
                 NO_SHOW = :no_show
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
 
@@ -3519,11 +3081,8 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
 
             # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#travel
@@ -3610,41 +3169,21 @@ module Increase
                        -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg] },
                        nil?: true
 
-              # @!parse
-              #   # Fields specific to travel.
-              #   #
-              #   # @param ancillary [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary, nil]
-              #   # @param computerized_reservation_system [String, nil]
-              #   # @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::CreditReasonIndicator, nil]
-              #   # @param departure_date [Date, nil]
-              #   # @param origination_city_airport_code [String, nil]
-              #   # @param passenger_name [String, nil]
-              #   # @param restricted_ticket_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::RestrictedTicketIndicator, nil]
-              #   # @param ticket_change_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TicketChangeIndicator, nil]
-              #   # @param ticket_number [String, nil]
-              #   # @param travel_agency_code [String, nil]
-              #   # @param travel_agency_name [String, nil]
-              #   # @param trip_legs [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg>, nil]
-              #   #
-              #   def initialize(
-              #     ancillary:,
-              #     computerized_reservation_system:,
-              #     credit_reason_indicator:,
-              #     departure_date:,
-              #     origination_city_airport_code:,
-              #     passenger_name:,
-              #     restricted_ticket_indicator:,
-              #     ticket_change_indicator:,
-              #     ticket_number:,
-              #     travel_agency_code:,
-              #     travel_agency_name:,
-              #     trip_legs:,
-              #     **
-              #   )
-              #     super
-              #   end
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(ancillary:, computerized_reservation_system:, credit_reason_indicator:, departure_date:, origination_city_airport_code:, passenger_name:, restricted_ticket_indicator:, ticket_change_indicator:, ticket_number:, travel_agency_code:, travel_agency_name:, trip_legs:)
+              #   Fields specific to travel.
+              #
+              #   @param ancillary [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary, nil]
+              #   @param computerized_reservation_system [String, nil]
+              #   @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::CreditReasonIndicator, nil]
+              #   @param departure_date [Date, nil]
+              #   @param origination_city_airport_code [String, nil]
+              #   @param passenger_name [String, nil]
+              #   @param restricted_ticket_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::RestrictedTicketIndicator, nil]
+              #   @param ticket_change_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TicketChangeIndicator, nil]
+              #   @param ticket_number [String, nil]
+              #   @param travel_agency_code [String, nil]
+              #   @param travel_agency_name [String, nil]
+              #   @param trip_legs [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg>, nil]
 
               # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel#ancillary
               class Ancillary < Increase::Internal::Type::BaseModel
@@ -3683,27 +3222,14 @@ module Increase
                 #   @return [String, nil]
                 required :ticket_document_number, String, nil?: true
 
-                # @!parse
-                #   # Ancillary purchases in addition to the airfare.
-                #   #
-                #   # @param connected_ticket_document_number [String, nil]
-                #   # @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil]
-                #   # @param passenger_name_or_description [String, nil]
-                #   # @param services [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
-                #   # @param ticket_document_number [String, nil]
-                #   #
-                #   def initialize(
-                #     connected_ticket_document_number:,
-                #     credit_reason_indicator:,
-                #     passenger_name_or_description:,
-                #     services:,
-                #     ticket_document_number:,
-                #     **
-                #   )
-                #     super
-                #   end
-
-                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                # @!method initialize(connected_ticket_document_number:, credit_reason_indicator:, passenger_name_or_description:, services:, ticket_document_number:)
+                #   Ancillary purchases in addition to the airfare.
+                #
+                #   @param connected_ticket_document_number [String, nil]
+                #   @param credit_reason_indicator [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil]
+                #   @param passenger_name_or_description [String, nil]
+                #   @param services [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
+                #   @param ticket_document_number [String, nil]
 
                 # Indicates the reason for a credit to the cardholder.
                 #
@@ -3725,11 +3251,8 @@ module Increase
                   # Other
                   OTHER = :other
 
-                  finalize!
-
-                  # @!parse
-                  #   # @return [Array<Symbol>]
-                  #   def self.values; end
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
                 end
 
                 class Service < Increase::Internal::Type::BaseModel
@@ -3747,13 +3270,9 @@ module Increase
                   #   @return [String, nil]
                   required :sub_category, String, nil?: true
 
-                  # @!parse
-                  #   # @param category [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::Category, nil]
-                  #   # @param sub_category [String, nil]
-                  #   #
-                  #   def initialize(category:, sub_category:, **) = super
-
-                  # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                  # @!method initialize(category:, sub_category:)
+                  #   @param category [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::Category, nil]
+                  #   @param sub_category [String, nil]
 
                   # Category of the ancillary service.
                   #
@@ -3833,11 +3352,8 @@ module Increase
                     # Wi-fi
                     WIFI = :wifi
 
-                    finalize!
-
-                    # @!parse
-                    #   # @return [Array<Symbol>]
-                    #   def self.values; end
+                    # @!method self.values
+                    #   @return [Array<Symbol>]
                   end
                 end
               end
@@ -3868,11 +3384,8 @@ module Increase
                 # Partial refund of airline ticket
                 PARTIAL_REFUND_OF_AIRLINE_TICKET = :partial_refund_of_airline_ticket
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Indicates whether this ticket is non-refundable.
@@ -3887,11 +3400,8 @@ module Increase
                 # Restricted non-refundable ticket
                 RESTRICTED_NON_REFUNDABLE_TICKET = :restricted_non_refundable_ticket
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Indicates why a ticket was changed.
@@ -3909,11 +3419,8 @@ module Increase
                 # New ticket
                 NEW_TICKET = :new_ticket
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               class TripLeg < Increase::Internal::Type::BaseModel
@@ -3955,27 +3462,13 @@ module Increase
                          enum: -> { Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode },
                          nil?: true
 
-                # @!parse
-                #   # @param carrier_code [String, nil]
-                #   # @param destination_city_airport_code [String, nil]
-                #   # @param fare_basis_code [String, nil]
-                #   # @param flight_number [String, nil]
-                #   # @param service_class [String, nil]
-                #   # @param stop_over_code [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode, nil]
-                #   #
-                #   def initialize(
-                #     carrier_code:,
-                #     destination_city_airport_code:,
-                #     fare_basis_code:,
-                #     flight_number:,
-                #     service_class:,
-                #     stop_over_code:,
-                #     **
-                #   )
-                #     super
-                #   end
-
-                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                # @!method initialize(carrier_code:, destination_city_airport_code:, fare_basis_code:, flight_number:, service_class:, stop_over_code:)
+                #   @param carrier_code [String, nil]
+                #   @param destination_city_airport_code [String, nil]
+                #   @param fare_basis_code [String, nil]
+                #   @param flight_number [String, nil]
+                #   @param service_class [String, nil]
+                #   @param stop_over_code [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode, nil]
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
@@ -3992,11 +3485,8 @@ module Increase
                   # Stop over not allowed
                   STOP_OVER_NOT_ALLOWED = :stop_over_not_allowed
 
-                  finalize!
-
-                  # @!parse
-                  #   # @return [Array<Symbol>]
-                  #   def self.values; end
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
                 end
               end
             end
@@ -4011,11 +3501,8 @@ module Increase
 
             CARD_SETTLEMENT = :card_settlement
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4053,21 +3540,17 @@ module Increase
           #   @return [Time]
           required :period_start, Time
 
-          # @!parse
-          #   # A Cashback Payment object. This field will be present in the JSON response if
-          #   # and only if `category` is equal to `cashback_payment`. A Cashback Payment
-          #   # represents the cashback paid to a cardholder for a given period. Cashback is
-          #   # usually paid monthly for the prior month's transactions.
-          #   #
-          #   # @param accrued_on_card_id [String, nil]
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::CashbackPayment::Currency]
-          #   # @param period_end [Time]
-          #   # @param period_start [Time]
-          #   #
-          #   def initialize(accrued_on_card_id:, amount:, currency:, period_end:, period_start:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(accrued_on_card_id:, amount:, currency:, period_end:, period_start:)
+          #   A Cashback Payment object. This field will be present in the JSON response if
+          #   and only if `category` is equal to `cashback_payment`. A Cashback Payment
+          #   represents the cashback paid to a cardholder for a given period. Cashback is
+          #   usually paid monthly for the prior month's transactions.
+          #
+          #   @param accrued_on_card_id [String, nil]
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::CashbackPayment::Currency]
+          #   @param period_end [Time]
+          #   @param period_start [Time]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           # currency.
@@ -4094,11 +3577,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4196,11 +3676,8 @@ module Increase
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::Transaction::Source#check_deposit_acceptance
@@ -4251,35 +3728,20 @@ module Increase
           #   @return [String, nil]
           required :serial_number, String, nil?: true
 
-          # @!parse
-          #   # A Check Deposit Acceptance object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `check_deposit_acceptance`. A
-          #   # Check Deposit Acceptance is created when a Check Deposit is processed and its
-          #   # details confirmed. Check Deposits may be returned by the receiving bank, which
-          #   # will appear as a Check Deposit Return.
-          #   #
-          #   # @param account_number [String]
-          #   # @param amount [Integer]
-          #   # @param auxiliary_on_us [String, nil]
-          #   # @param check_deposit_id [String]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::CheckDepositAcceptance::Currency]
-          #   # @param routing_number [String]
-          #   # @param serial_number [String, nil]
-          #   #
-          #   def initialize(
-          #     account_number:,
-          #     amount:,
-          #     auxiliary_on_us:,
-          #     check_deposit_id:,
-          #     currency:,
-          #     routing_number:,
-          #     serial_number:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(account_number:, amount:, auxiliary_on_us:, check_deposit_id:, currency:, routing_number:, serial_number:)
+          #   A Check Deposit Acceptance object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `check_deposit_acceptance`. A
+          #   Check Deposit Acceptance is created when a Check Deposit is processed and its
+          #   details confirmed. Check Deposits may be returned by the receiving bank, which
+          #   will appear as a Check Deposit Return.
+          #
+          #   @param account_number [String]
+          #   @param amount [Integer]
+          #   @param auxiliary_on_us [String, nil]
+          #   @param check_deposit_id [String]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::CheckDepositAcceptance::Currency]
+          #   @param routing_number [String]
+          #   @param serial_number [String, nil]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           # transaction's currency.
@@ -4306,11 +3768,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4357,24 +3816,20 @@ module Increase
           #   @return [String]
           required :transaction_id, String
 
-          # @!parse
-          #   # A Check Deposit Return object. This field will be present in the JSON response
-          #   # if and only if `category` is equal to `check_deposit_return`. A Check Deposit
-          #   # Return is created when a Check Deposit is returned by the bank holding the
-          #   # account it was drawn against. Check Deposits may be returned for a variety of
-          #   # reasons, including insufficient funds or a mismatched account number. Usually,
-          #   # checks are returned within the first 7 days after the deposit is made.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param check_deposit_id [String]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::CheckDepositReturn::Currency]
-          #   # @param return_reason [Symbol, Increase::Models::Transaction::Source::CheckDepositReturn::ReturnReason]
-          #   # @param returned_at [Time]
-          #   # @param transaction_id [String]
-          #   #
-          #   def initialize(amount:, check_deposit_id:, currency:, return_reason:, returned_at:, transaction_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, check_deposit_id:, currency:, return_reason:, returned_at:, transaction_id:)
+          #   A Check Deposit Return object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `check_deposit_return`. A Check Deposit
+          #   Return is created when a Check Deposit is returned by the bank holding the
+          #   account it was drawn against. Check Deposits may be returned for a variety of
+          #   reasons, including insufficient funds or a mismatched account number. Usually,
+          #   checks are returned within the first 7 days after the deposit is made.
+          #
+          #   @param amount [Integer]
+          #   @param check_deposit_id [String]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::CheckDepositReturn::Currency]
+          #   @param return_reason [Symbol, Increase::Models::Transaction::Source::CheckDepositReturn::ReturnReason]
+          #   @param returned_at [Time]
+          #   @param transaction_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           # transaction's currency.
@@ -4401,11 +3856,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # Why this check was returned by the bank holding the account it was drawn
@@ -4493,11 +3945,8 @@ module Increase
             # The bank sold this account and no longer services this customer.
             BRANCH_OR_ACCOUNT_SOLD = :branch_or_account_sold
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4557,36 +4006,20 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CheckTransferDeposit::Type]
           required :type, enum: -> { Increase::Models::Transaction::Source::CheckTransferDeposit::Type }
 
-          # @!parse
-          #   # A Check Transfer Deposit object. This field will be present in the JSON response
-          #   # if and only if `category` is equal to `check_transfer_deposit`. An Inbound Check
-          #   # is a check drawn on an Increase account that has been deposited by an external
-          #   # bank account. These types of checks are not pre-registered.
-          #   #
-          #   # @param back_image_file_id [String, nil]
-          #   # @param bank_of_first_deposit_routing_number [String, nil]
-          #   # @param deposited_at [Time]
-          #   # @param front_image_file_id [String, nil]
-          #   # @param inbound_check_deposit_id [String, nil]
-          #   # @param transaction_id [String, nil]
-          #   # @param transfer_id [String, nil]
-          #   # @param type [Symbol, Increase::Models::Transaction::Source::CheckTransferDeposit::Type]
-          #   #
-          #   def initialize(
-          #     back_image_file_id:,
-          #     bank_of_first_deposit_routing_number:,
-          #     deposited_at:,
-          #     front_image_file_id:,
-          #     inbound_check_deposit_id:,
-          #     transaction_id:,
-          #     transfer_id:,
-          #     type:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(back_image_file_id:, bank_of_first_deposit_routing_number:, deposited_at:, front_image_file_id:, inbound_check_deposit_id:, transaction_id:, transfer_id:, type:)
+          #   A Check Transfer Deposit object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `check_transfer_deposit`. An Inbound Check
+          #   is a check drawn on an Increase account that has been deposited by an external
+          #   bank account. These types of checks are not pre-registered.
+          #
+          #   @param back_image_file_id [String, nil]
+          #   @param bank_of_first_deposit_routing_number [String, nil]
+          #   @param deposited_at [Time]
+          #   @param front_image_file_id [String, nil]
+          #   @param inbound_check_deposit_id [String, nil]
+          #   @param transaction_id [String, nil]
+          #   @param transfer_id [String, nil]
+          #   @param type [Symbol, Increase::Models::Transaction::Source::CheckTransferDeposit::Type]
 
           # A constant representing the object's type. For this resource it will always be
           # `check_transfer_deposit`.
@@ -4597,11 +4030,8 @@ module Increase
 
             CHECK_TRANSFER_DEPOSIT = :check_transfer_deposit
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4633,19 +4063,15 @@ module Increase
           #   @return [String, nil]
           required :program_id, String, nil?: true
 
-          # @!parse
-          #   # A Fee Payment object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
-          #   # made to Increase.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::FeePayment::Currency]
-          #   # @param fee_period_start [Date]
-          #   # @param program_id [String, nil]
-          #   #
-          #   def initialize(amount:, currency:, fee_period_start:, program_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, currency:, fee_period_start:, program_id:)
+          #   A Fee Payment object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
+          #   made to Increase.
+          #
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::FeePayment::Currency]
+          #   @param fee_period_start [Date]
+          #   @param program_id [String, nil]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           # currency.
@@ -4672,11 +4098,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4754,42 +4177,23 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Inbound ACH Transfer Intention object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `inbound_ach_transfer`. An
-          #   # Inbound ACH Transfer Intention is created when an ACH transfer is initiated at
-          #   # another bank and received by Increase.
-          #   #
-          #   # @param addenda [Increase::Models::Transaction::Source::InboundACHTransfer::Addenda, nil]
-          #   # @param amount [Integer]
-          #   # @param originator_company_descriptive_date [String, nil]
-          #   # @param originator_company_discretionary_data [String, nil]
-          #   # @param originator_company_entry_description [String]
-          #   # @param originator_company_id [String]
-          #   # @param originator_company_name [String]
-          #   # @param receiver_id_number [String, nil]
-          #   # @param receiver_name [String, nil]
-          #   # @param trace_number [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     addenda:,
-          #     amount:,
-          #     originator_company_descriptive_date:,
-          #     originator_company_discretionary_data:,
-          #     originator_company_entry_description:,
-          #     originator_company_id:,
-          #     originator_company_name:,
-          #     receiver_id_number:,
-          #     receiver_name:,
-          #     trace_number:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(addenda:, amount:, originator_company_descriptive_date:, originator_company_discretionary_data:, originator_company_entry_description:, originator_company_id:, originator_company_name:, receiver_id_number:, receiver_name:, trace_number:, transfer_id:)
+          #   An Inbound ACH Transfer Intention object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `inbound_ach_transfer`. An
+          #   Inbound ACH Transfer Intention is created when an ACH transfer is initiated at
+          #   another bank and received by Increase.
+          #
+          #   @param addenda [Increase::Models::Transaction::Source::InboundACHTransfer::Addenda, nil]
+          #   @param amount [Integer]
+          #   @param originator_company_descriptive_date [String, nil]
+          #   @param originator_company_discretionary_data [String, nil]
+          #   @param originator_company_entry_description [String]
+          #   @param originator_company_id [String]
+          #   @param originator_company_name [String]
+          #   @param receiver_id_number [String, nil]
+          #   @param receiver_name [String, nil]
+          #   @param trace_number [String]
+          #   @param transfer_id [String]
 
           # @see Increase::Models::Transaction::Source::InboundACHTransfer#addenda
           class Addenda < Increase::Internal::Type::BaseModel
@@ -4808,15 +4212,11 @@ module Increase
                      -> { Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform },
                      nil?: true
 
-            # @!parse
-            #   # Additional information sent from the originator.
-            #   #
-            #   # @param category [Symbol, Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Category]
-            #   # @param freeform [Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform, nil]
-            #   #
-            #   def initialize(category:, freeform:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(category:, freeform:)
+            #   Additional information sent from the originator.
+            #
+            #   @param category [Symbol, Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Category]
+            #   @param freeform [Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform, nil]
 
             # The type of addendum.
             #
@@ -4827,11 +4227,8 @@ module Increase
               # Unstructured addendum.
               FREEFORM = :freeform
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
 
             # @see Increase::Models::Transaction::Source::InboundACHTransfer::Addenda#freeform
@@ -4843,14 +4240,10 @@ module Increase
               required :entries,
                        -> { Increase::Internal::Type::ArrayOf[Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry] }
 
-              # @!parse
-              #   # Unstructured `payment_related_information` passed through by the originator.
-              #   #
-              #   # @param entries [Array<Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry>]
-              #   #
-              #   def initialize(entries:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(entries:)
+              #   Unstructured `payment_related_information` passed through by the originator.
+              #
+              #   @param entries [Array<Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry>]
 
               class Entry < Increase::Internal::Type::BaseModel
                 # @!attribute payment_related_information
@@ -4859,12 +4252,8 @@ module Increase
                 #   @return [String]
                 required :payment_related_information, String
 
-                # @!parse
-                #   # @param payment_related_information [String]
-                #   #
-                #   def initialize(payment_related_information:, **) = super
-
-                # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+                # @!method initialize(payment_related_information:)
+                #   @param payment_related_information [String]
               end
             end
           end
@@ -4878,18 +4267,14 @@ module Increase
           #   @return [String]
           required :inbound_ach_transfer_id, String
 
-          # @!parse
-          #   # An Inbound ACH Transfer Return Intention object. This field will be present in
-          #   # the JSON response if and only if `category` is equal to
-          #   # `inbound_ach_transfer_return_intention`. An Inbound ACH Transfer Return
-          #   # Intention is created when an ACH transfer is initiated at another bank and
-          #   # returned by Increase.
-          #   #
-          #   # @param inbound_ach_transfer_id [String]
-          #   #
-          #   def initialize(inbound_ach_transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(inbound_ach_transfer_id:)
+          #   An Inbound ACH Transfer Return Intention object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `inbound_ach_transfer_return_intention`. An Inbound ACH Transfer Return
+          #   Intention is created when an ACH transfer is initiated at another bank and
+          #   returned by Increase.
+          #
+          #   @param inbound_ach_transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#inbound_check_adjustment
@@ -4912,19 +4297,15 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::InboundCheckAdjustment::Reason]
           required :reason, enum: -> { Increase::Models::Transaction::Source::InboundCheckAdjustment::Reason }
 
-          # @!parse
-          #   # An Inbound Check Adjustment object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `inbound_check_adjustment`. An
-          #   # Inbound Check Adjustment is created when Increase receives an adjustment for a
-          #   # check or return deposited through Check21.
-          #   #
-          #   # @param adjusted_transaction_id [String]
-          #   # @param amount [Integer]
-          #   # @param reason [Symbol, Increase::Models::Transaction::Source::InboundCheckAdjustment::Reason]
-          #   #
-          #   def initialize(adjusted_transaction_id:, amount:, reason:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(adjusted_transaction_id:, amount:, reason:)
+          #   An Inbound Check Adjustment object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `inbound_check_adjustment`. An
+          #   Inbound Check Adjustment is created when Increase receives an adjustment for a
+          #   check or return deposited through Check21.
+          #
+          #   @param adjusted_transaction_id [String]
+          #   @param amount [Integer]
+          #   @param reason [Symbol, Increase::Models::Transaction::Source::InboundCheckAdjustment::Reason]
 
           # The reason for the adjustment.
           #
@@ -4944,11 +4325,8 @@ module Increase
             # The recipient was not able to process the check. This usually happens for e.g., low quality images.
             NON_CONFORMING_ITEM = :non_conforming_item
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -4966,19 +4344,15 @@ module Increase
           #   @return [String, nil]
           required :transfer_id, String, nil?: true
 
-          # @!parse
-          #   # An Inbound Check Deposit Return Intention object. This field will be present in
-          #   # the JSON response if and only if `category` is equal to
-          #   # `inbound_check_deposit_return_intention`. An Inbound Check Deposit Return
-          #   # Intention is created when Increase receives an Inbound Check and the User
-          #   # requests that it be returned.
-          #   #
-          #   # @param inbound_check_deposit_id [String]
-          #   # @param transfer_id [String, nil]
-          #   #
-          #   def initialize(inbound_check_deposit_id:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(inbound_check_deposit_id:, transfer_id:)
+          #   An Inbound Check Deposit Return Intention object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `inbound_check_deposit_return_intention`. An Inbound Check Deposit Return
+          #   Intention is created when Increase receives an Inbound Check and the User
+          #   requests that it be returned.
+          #
+          #   @param inbound_check_deposit_id [String]
+          #   @param transfer_id [String, nil]
         end
 
         # @see Increase::Models::Transaction::Source#inbound_real_time_payments_transfer_confirmation
@@ -5040,39 +4414,22 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
-          #   # present in the JSON response if and only if `category` is equal to
-          #   # `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
-          #   # Payments Transfer Confirmation is created when a Real-Time Payments transfer is
-          #   # initiated at another bank and received by Increase.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param creditor_name [String]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::Currency]
-          #   # @param debtor_account_number [String]
-          #   # @param debtor_name [String]
-          #   # @param debtor_routing_number [String]
-          #   # @param remittance_information [String, nil]
-          #   # @param transaction_identification [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     creditor_name:,
-          #     currency:,
-          #     debtor_account_number:,
-          #     debtor_name:,
-          #     debtor_routing_number:,
-          #     remittance_information:,
-          #     transaction_identification:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, remittance_information:, transaction_identification:, transfer_id:)
+          #   An Inbound Real-Time Payments Transfer Confirmation object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
+          #   Payments Transfer Confirmation is created when a Real-Time Payments transfer is
+          #   initiated at another bank and received by Increase.
+          #
+          #   @param amount [Integer]
+          #   @param creditor_name [String]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::Currency]
+          #   @param debtor_account_number [String]
+          #   @param debtor_name [String]
+          #   @param debtor_routing_number [String]
+          #   @param remittance_information [String, nil]
+          #   @param transaction_identification [String]
+          #   @param transfer_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the transfer's
           # currency. This will always be "USD" for a Real-Time Payments transfer.
@@ -5099,11 +4456,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -5174,39 +4528,21 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Inbound Real-Time Payments Transfer Decline object. This field will be
-          #   # present in the JSON response if and only if `category` is equal to
-          #   # `inbound_real_time_payments_transfer_decline`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param creditor_name [String]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
-          #   # @param debtor_account_number [String]
-          #   # @param debtor_name [String]
-          #   # @param debtor_routing_number [String]
-          #   # @param reason [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason]
-          #   # @param remittance_information [String, nil]
-          #   # @param transaction_identification [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     creditor_name:,
-          #     currency:,
-          #     debtor_account_number:,
-          #     debtor_name:,
-          #     debtor_routing_number:,
-          #     reason:,
-          #     remittance_information:,
-          #     transaction_identification:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, reason:, remittance_information:, transaction_identification:, transfer_id:)
+          #   An Inbound Real-Time Payments Transfer Decline object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `inbound_real_time_payments_transfer_decline`.
+          #
+          #   @param amount [Integer]
+          #   @param creditor_name [String]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
+          #   @param debtor_account_number [String]
+          #   @param debtor_name [String]
+          #   @param debtor_routing_number [String]
+          #   @param reason [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason]
+          #   @param remittance_information [String, nil]
+          #   @param transaction_identification [String]
+          #   @param transfer_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
           # transfer's currency. This will always be "USD" for a Real-Time Payments
@@ -5234,11 +4570,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # Why the transfer was declined.
@@ -5265,11 +4598,8 @@ module Increase
             # Your account is not enabled to receive Real-Time Payments transfers.
             REAL_TIME_PAYMENTS_NOT_ENABLED = :real_time_payments_not_enabled
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -5382,55 +4712,30 @@ module Increase
           #   @return [String]
           required :wire_transfer_id, String
 
-          # @!parse
-          #   # An Inbound Wire Reversal object. This field will be present in the JSON response
-          #   # if and only if `category` is equal to `inbound_wire_reversal`. An Inbound Wire
-          #   # Reversal represents a reversal of a wire transfer that was initiated via
-          #   # Increase. The other bank is sending the money back. This most often happens when
-          #   # the original destination account details were incorrect.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param created_at [Time]
-          #   # @param description [String]
-          #   # @param financial_institution_to_financial_institution_information [String, nil]
-          #   # @param input_cycle_date [Date]
-          #   # @param input_message_accountability_data [String]
-          #   # @param input_sequence_number [String]
-          #   # @param input_source [String]
-          #   # @param originator_routing_number [String, nil]
-          #   # @param previous_message_input_cycle_date [Date]
-          #   # @param previous_message_input_message_accountability_data [String]
-          #   # @param previous_message_input_sequence_number [String]
-          #   # @param previous_message_input_source [String]
-          #   # @param receiver_financial_institution_information [String, nil]
-          #   # @param sender_reference [String, nil]
-          #   # @param transaction_id [String]
-          #   # @param wire_transfer_id [String]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     created_at:,
-          #     description:,
-          #     financial_institution_to_financial_institution_information:,
-          #     input_cycle_date:,
-          #     input_message_accountability_data:,
-          #     input_sequence_number:,
-          #     input_source:,
-          #     originator_routing_number:,
-          #     previous_message_input_cycle_date:,
-          #     previous_message_input_message_accountability_data:,
-          #     previous_message_input_sequence_number:,
-          #     previous_message_input_source:,
-          #     receiver_financial_institution_information:,
-          #     sender_reference:,
-          #     transaction_id:,
-          #     wire_transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, created_at:, description:, financial_institution_to_financial_institution_information:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, originator_routing_number:, previous_message_input_cycle_date:, previous_message_input_message_accountability_data:, previous_message_input_sequence_number:, previous_message_input_source:, receiver_financial_institution_information:, sender_reference:, transaction_id:, wire_transfer_id:)
+          #   An Inbound Wire Reversal object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `inbound_wire_reversal`. An Inbound Wire
+          #   Reversal represents a reversal of a wire transfer that was initiated via
+          #   Increase. The other bank is sending the money back. This most often happens when
+          #   the original destination account details were incorrect.
+          #
+          #   @param amount [Integer]
+          #   @param created_at [Time]
+          #   @param description [String]
+          #   @param financial_institution_to_financial_institution_information [String, nil]
+          #   @param input_cycle_date [Date]
+          #   @param input_message_accountability_data [String]
+          #   @param input_sequence_number [String]
+          #   @param input_source [String]
+          #   @param originator_routing_number [String, nil]
+          #   @param previous_message_input_cycle_date [Date]
+          #   @param previous_message_input_message_accountability_data [String]
+          #   @param previous_message_input_sequence_number [String]
+          #   @param previous_message_input_source [String]
+          #   @param receiver_financial_institution_information [String, nil]
+          #   @param sender_reference [String, nil]
+          #   @param transaction_id [String]
+          #   @param wire_transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#inbound_wire_transfer
@@ -5552,58 +4857,31 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Inbound Wire Transfer Intention object. This field will be present in the
-          #   # JSON response if and only if `category` is equal to `inbound_wire_transfer`. An
-          #   # Inbound Wire Transfer Intention is created when a wire transfer is initiated at
-          #   # another bank and received by Increase.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param beneficiary_address_line1 [String, nil]
-          #   # @param beneficiary_address_line2 [String, nil]
-          #   # @param beneficiary_address_line3 [String, nil]
-          #   # @param beneficiary_name [String, nil]
-          #   # @param beneficiary_reference [String, nil]
-          #   # @param description [String]
-          #   # @param input_message_accountability_data [String, nil]
-          #   # @param originator_address_line1 [String, nil]
-          #   # @param originator_address_line2 [String, nil]
-          #   # @param originator_address_line3 [String, nil]
-          #   # @param originator_name [String, nil]
-          #   # @param originator_routing_number [String, nil]
-          #   # @param originator_to_beneficiary_information [String, nil]
-          #   # @param originator_to_beneficiary_information_line1 [String, nil]
-          #   # @param originator_to_beneficiary_information_line2 [String, nil]
-          #   # @param originator_to_beneficiary_information_line3 [String, nil]
-          #   # @param originator_to_beneficiary_information_line4 [String, nil]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     beneficiary_address_line1:,
-          #     beneficiary_address_line2:,
-          #     beneficiary_address_line3:,
-          #     beneficiary_name:,
-          #     beneficiary_reference:,
-          #     description:,
-          #     input_message_accountability_data:,
-          #     originator_address_line1:,
-          #     originator_address_line2:,
-          #     originator_address_line3:,
-          #     originator_name:,
-          #     originator_routing_number:,
-          #     originator_to_beneficiary_information:,
-          #     originator_to_beneficiary_information_line1:,
-          #     originator_to_beneficiary_information_line2:,
-          #     originator_to_beneficiary_information_line3:,
-          #     originator_to_beneficiary_information_line4:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_reference:, description:, input_message_accountability_data:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, transfer_id:)
+          #   An Inbound Wire Transfer Intention object. This field will be present in the
+          #   JSON response if and only if `category` is equal to `inbound_wire_transfer`. An
+          #   Inbound Wire Transfer Intention is created when a wire transfer is initiated at
+          #   another bank and received by Increase.
+          #
+          #   @param amount [Integer]
+          #   @param beneficiary_address_line1 [String, nil]
+          #   @param beneficiary_address_line2 [String, nil]
+          #   @param beneficiary_address_line3 [String, nil]
+          #   @param beneficiary_name [String, nil]
+          #   @param beneficiary_reference [String, nil]
+          #   @param description [String]
+          #   @param input_message_accountability_data [String, nil]
+          #   @param originator_address_line1 [String, nil]
+          #   @param originator_address_line2 [String, nil]
+          #   @param originator_address_line3 [String, nil]
+          #   @param originator_name [String, nil]
+          #   @param originator_routing_number [String, nil]
+          #   @param originator_to_beneficiary_information [String, nil]
+          #   @param originator_to_beneficiary_information_line1 [String, nil]
+          #   @param originator_to_beneficiary_information_line2 [String, nil]
+          #   @param originator_to_beneficiary_information_line3 [String, nil]
+          #   @param originator_to_beneficiary_information_line4 [String, nil]
+          #   @param transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#inbound_wire_transfer_reversal
@@ -5614,18 +4892,14 @@ module Increase
           #   @return [String]
           required :inbound_wire_transfer_id, String
 
-          # @!parse
-          #   # An Inbound Wire Transfer Reversal Intention object. This field will be present
-          #   # in the JSON response if and only if `category` is equal to
-          #   # `inbound_wire_transfer_reversal`. An Inbound Wire Transfer Reversal Intention is
-          #   # created when Increase has received a wire and the User requests that it be
-          #   # reversed.
-          #   #
-          #   # @param inbound_wire_transfer_id [String]
-          #   #
-          #   def initialize(inbound_wire_transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(inbound_wire_transfer_id:)
+          #   An Inbound Wire Transfer Reversal Intention object. This field will be present
+          #   in the JSON response if and only if `category` is equal to
+          #   `inbound_wire_transfer_reversal`. An Inbound Wire Transfer Reversal Intention is
+          #   created when Increase has received a wire and the User requests that it be
+          #   reversed.
+          #
+          #   @param inbound_wire_transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#interest_payment
@@ -5662,21 +4936,17 @@ module Increase
           #   @return [Time]
           required :period_start, Time
 
-          # @!parse
-          #   # An Interest Payment object. This field will be present in the JSON response if
-          #   # and only if `category` is equal to `interest_payment`. An Interest Payment
-          #   # represents a payment of interest on an account. Interest is usually paid
-          #   # monthly.
-          #   #
-          #   # @param accrued_on_account_id [String]
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::InterestPayment::Currency]
-          #   # @param period_end [Time]
-          #   # @param period_start [Time]
-          #   #
-          #   def initialize(accrued_on_account_id:, amount:, currency:, period_end:, period_start:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(accrued_on_account_id:, amount:, currency:, period_end:, period_start:)
+          #   An Interest Payment object. This field will be present in the JSON response if
+          #   and only if `category` is equal to `interest_payment`. An Interest Payment
+          #   represents a payment of interest on an account. Interest is usually paid
+          #   monthly.
+          #
+          #   @param accrued_on_account_id [String]
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::InterestPayment::Currency]
+          #   @param period_end [Time]
+          #   @param period_start [Time]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           # currency.
@@ -5703,11 +4973,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -5734,18 +5001,14 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::InternalSource::Reason]
           required :reason, enum: -> { Increase::Models::Transaction::Source::InternalSource::Reason }
 
-          # @!parse
-          #   # An Internal Source object. This field will be present in the JSON response if
-          #   # and only if `category` is equal to `internal_source`. A transaction between the
-          #   # user and Increase. See the `reason` attribute for more information.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param currency [Symbol, Increase::Models::Transaction::Source::InternalSource::Currency]
-          #   # @param reason [Symbol, Increase::Models::Transaction::Source::InternalSource::Reason]
-          #   #
-          #   def initialize(amount:, currency:, reason:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, currency:, reason:)
+          #   An Internal Source object. This field will be present in the JSON response if
+          #   and only if `category` is equal to `internal_source`. A transaction between the
+          #   user and Increase. See the `reason` attribute for more information.
+          #
+          #   @param amount [Integer]
+          #   @param currency [Symbol, Increase::Models::Transaction::Source::InternalSource::Currency]
+          #   @param reason [Symbol, Increase::Models::Transaction::Source::InternalSource::Reason]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction
           # currency.
@@ -5772,11 +5035,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # An Internal Source is a transaction between you and Increase. This describes the
@@ -5831,11 +5091,8 @@ module Increase
             # Sample funds return
             SAMPLE_FUNDS_RETURN = :sample_funds_return
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -5871,31 +5128,18 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # A Real-Time Payments Transfer Acknowledgement object. This field will be present
-          #   # in the JSON response if and only if `category` is equal to
-          #   # `real_time_payments_transfer_acknowledgement`. A Real-Time Payments Transfer
-          #   # Acknowledgement is created when a Real-Time Payments Transfer sent from Increase
-          #   # is acknowledged by the receiving bank.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param destination_account_number [String]
-          #   # @param destination_routing_number [String]
-          #   # @param remittance_information [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     destination_account_number:,
-          #     destination_routing_number:,
-          #     remittance_information:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, destination_account_number:, destination_routing_number:, remittance_information:, transfer_id:)
+          #   A Real-Time Payments Transfer Acknowledgement object. This field will be present
+          #   in the JSON response if and only if `category` is equal to
+          #   `real_time_payments_transfer_acknowledgement`. A Real-Time Payments Transfer
+          #   Acknowledgement is created when a Real-Time Payments Transfer sent from Increase
+          #   is acknowledged by the receiving bank.
+          #
+          #   @param amount [Integer]
+          #   @param destination_account_number [String]
+          #   @param destination_routing_number [String]
+          #   @param remittance_information [String]
+          #   @param transfer_id [String]
         end
 
         # @see Increase::Models::Transaction::Source#sample_funds
@@ -5906,16 +5150,12 @@ module Increase
           #   @return [String]
           required :originator, String
 
-          # @!parse
-          #   # A Sample Funds object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `sample_funds`. Sample funds for testing
-          #   # purposes.
-          #   #
-          #   # @param originator [String]
-          #   #
-          #   def initialize(originator:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(originator:)
+          #   A Sample Funds object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `sample_funds`. Sample funds for testing
+          #   purposes.
+          #
+          #   @param originator [String]
         end
 
         # @see Increase::Models::Transaction::Source#wire_transfer_intention
@@ -5950,20 +5190,16 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # A Wire Transfer Intention object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `wire_transfer_intention`. A Wire
-          #   # Transfer initiated via Increase and sent to a different bank.
-          #   #
-          #   # @param account_number [String]
-          #   # @param amount [Integer]
-          #   # @param message_to_recipient [String]
-          #   # @param routing_number [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(account_number:, amount:, message_to_recipient:, routing_number:, transfer_id:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(account_number:, amount:, message_to_recipient:, routing_number:, transfer_id:)
+          #   A Wire Transfer Intention object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `wire_transfer_intention`. A Wire
+          #   Transfer initiated via Increase and sent to a different bank.
+          #
+          #   @param account_number [String]
+          #   @param amount [Integer]
+          #   @param message_to_recipient [String]
+          #   @param routing_number [String]
+          #   @param transfer_id [String]
         end
       end
 
@@ -5976,11 +5212,8 @@ module Increase
 
         TRANSACTION = :transaction
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

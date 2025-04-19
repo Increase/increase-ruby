@@ -94,8 +94,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::BookkeepingEntrySet::Type) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::BookkeepingEntrySet::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         BOOKKEEPING_ENTRY_SET =
           T.let(:bookkeeping_entry_set, Increase::Models::BookkeepingEntrySet::Type::TaggedSymbol)

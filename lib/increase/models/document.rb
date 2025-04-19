@@ -42,20 +42,16 @@ module Increase
       #   @return [Symbol, Increase::Models::Document::Type]
       required :type, enum: -> { Increase::Models::Document::Type }
 
-      # @!parse
-      #   # Increase generates certain documents / forms automatically for your application;
-      #   # they can be listed here.
-      #   #
-      #   # @param id [String]
-      #   # @param category [Symbol, Increase::Models::Document::Category]
-      #   # @param created_at [Time]
-      #   # @param entity_id [String, nil]
-      #   # @param file_id [String]
-      #   # @param type [Symbol, Increase::Models::Document::Type]
-      #   #
-      #   def initialize(id:, category:, created_at:, entity_id:, file_id:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, category:, created_at:, entity_id:, file_id:, type:)
+      #   Increase generates certain documents / forms automatically for your application;
+      #   they can be listed here.
+      #
+      #   @param id [String]
+      #   @param category [Symbol, Increase::Models::Document::Category]
+      #   @param created_at [Time]
+      #   @param entity_id [String, nil]
+      #   @param file_id [String]
+      #   @param type [Symbol, Increase::Models::Document::Type]
 
       # The type of document.
       #
@@ -75,11 +71,8 @@ module Increase
         # Company information, such a policies or procedures, typically submitted during our due diligence process.
         COMPANY_INFORMATION = :company_information
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -91,11 +84,8 @@ module Increase
 
         DOCUMENT = :document
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

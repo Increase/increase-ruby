@@ -96,7 +96,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Program::Bank) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Program::Bank::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Core Bank
         CORE_BANK = T.let(:core_bank, Increase::Models::Program::Bank::TaggedSymbol)
@@ -117,7 +117,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Program::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Program::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PROGRAM = T.let(:program, Increase::Models::Program::Type::TaggedSymbol)
 

@@ -64,7 +64,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Document::Category) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Document::Category::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Internal Revenue Service Form 1099-INT.
         FORM_1099_INT = T.let(:form_1099_int, Increase::Models::Document::Category::TaggedSymbol)
@@ -89,7 +89,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Document::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Document::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         DOCUMENT = T.let(:document, Increase::Models::Document::Type::TaggedSymbol)
 

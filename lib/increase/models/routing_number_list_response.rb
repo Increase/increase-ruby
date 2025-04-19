@@ -42,19 +42,15 @@ module Increase
       #   @return [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers]
       required :wire_transfers, enum: -> { Increase::Models::RoutingNumberListResponse::WireTransfers }
 
-      # @!parse
-      #   # Routing numbers are used to identify your bank in a financial transaction.
-      #   #
-      #   # @param ach_transfers [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers]
-      #   # @param name [String]
-      #   # @param real_time_payments_transfers [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers]
-      #   # @param routing_number [String]
-      #   # @param type [Symbol, Increase::Models::RoutingNumberListResponse::Type]
-      #   # @param wire_transfers [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers]
-      #   #
-      #   def initialize(ach_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(ach_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:)
+      #   Routing numbers are used to identify your bank in a financial transaction.
+      #
+      #   @param ach_transfers [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers]
+      #   @param name [String]
+      #   @param real_time_payments_transfers [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers]
+      #   @param routing_number [String]
+      #   @param type [Symbol, Increase::Models::RoutingNumberListResponse::Type]
+      #   @param wire_transfers [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers]
 
       # This routing number's support for ACH Transfers.
       #
@@ -68,11 +64,8 @@ module Increase
         # The routing number cannot receive this transfer type.
         NOT_SUPPORTED = :not_supported
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # This routing number's support for Real-Time Payments Transfers.
@@ -87,11 +80,8 @@ module Increase
         # The routing number cannot receive this transfer type.
         NOT_SUPPORTED = :not_supported
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -103,11 +93,8 @@ module Increase
 
         ROUTING_NUMBER = :routing_number
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # This routing number's support for Wire Transfers.
@@ -122,11 +109,8 @@ module Increase
         # The routing number cannot receive this transfer type.
         NOT_SUPPORTED = :not_supported
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

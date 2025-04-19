@@ -4,21 +4,16 @@ module Increase
   module Models
     # @see Increase::Resources::DigitalCardProfiles#list
     class DigitalCardProfileListParams < Increase::Internal::Type::BaseModel
-      # @!parse
-      #   extend Increase::Internal::Type::RequestParameters::Converter
+      extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!attribute [r] cursor
+      # @!attribute cursor
       #   Return the page of entries after this one.
       #
       #   @return [String, nil]
       optional :cursor, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :cursor
-
-      # @!attribute [r] idempotency_key
+      # @!attribute idempotency_key
       #   Filter records to the one with the specified `idempotency_key` you chose for
       #   that object. This value is unique across Increase and is used to ensure that a
       #   request is only processed once. Learn more about
@@ -27,43 +22,27 @@ module Increase
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :idempotency_key
-
-      # @!attribute [r] limit
+      # @!attribute limit
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :limit
-
-      # @!attribute [r] status
+      # @!attribute status
       #
       #   @return [Increase::Models::DigitalCardProfileListParams::Status, nil]
       optional :status, -> { Increase::Models::DigitalCardProfileListParams::Status }
 
-      # @!parse
-      #   # @return [Increase::Models::DigitalCardProfileListParams::Status]
-      #   attr_writer :status
-
-      # @!parse
-      #   # @param cursor [String]
-      #   # @param idempotency_key [String]
-      #   # @param limit [Integer]
-      #   # @param status [Increase::Models::DigitalCardProfileListParams::Status]
-      #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {}, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
+      #   @param cursor [String]
+      #   @param idempotency_key [String]
+      #   @param limit [Integer]
+      #   @param status [Increase::Models::DigitalCardProfileListParams::Status]
+      #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       class Status < Increase::Internal::Type::BaseModel
-        # @!attribute [r] in_
+        # @!attribute in_
         #   Filter Digital Card Profiles for those with the specified digital wallet status
         #   or statuses. For GET requests, this should be encoded as a comma-delimited
         #   string, such as `?in=one,two,three`.
@@ -73,16 +52,8 @@ module Increase
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::DigitalCardProfileListParams::Status::In] },
                  api_name: :in
 
-        # @!parse
-        #   # @return [Array<Symbol, Increase::Models::DigitalCardProfileListParams::Status::In>]
-        #   attr_writer :in_
-
-        # @!parse
-        #   # @param in_ [Array<Symbol, Increase::Models::DigitalCardProfileListParams::Status::In>]
-        #   #
-        #   def initialize(in_: nil, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(in_: nil)
+        #   @param in_ [Array<Symbol, Increase::Models::DigitalCardProfileListParams::Status::In>]
 
         module In
           extend Increase::Internal::Type::Enum
@@ -99,11 +70,8 @@ module Increase
           # The Card Profile is no longer in use.
           ARCHIVED = :archived
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

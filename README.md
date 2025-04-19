@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "increase", "~> 0.1.0.pre.alpha.10"
+gem "increase", "~> 0.1.0.pre.alpha.11"
 ```
 
 <!-- x-release-please-end -->
@@ -38,6 +38,20 @@ account = increase.accounts.create(
 )
 
 puts(account.id)
+```
+
+## Sorbet
+
+This library is written with [Sorbet type definitions](https://sorbet.org/docs/rbi). However, there is no runtime dependency on the `sorbet-runtime`.
+
+When using sorbet, it is recommended to use model classes as below. This provides stronger type checking and tooling integration.
+
+```ruby
+increase.accounts.create(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+)
 ```
 
 ### Pagination
@@ -67,11 +81,11 @@ Request parameters that correspond to file uploads can be passed as `StringIO`, 
 require "pathname"
 
 # using `Pathname`, the file will be lazily read, without reading everything in to memory
-file = increase.files.create(file: Pathname("my/file.txt"), purpose: "check_image_front")
+file = increase.files.create(file: Pathname("my/file.txt"), purpose: :check_image_front)
 
 file = File.read("my/file.txt")
 # using `StringIO`, useful if you already have the data in memory
-file = increase.files.create(file: StringIO.new(file), purpose: "check_image_front")
+file = increase.files.create(file: StringIO.new(file), purpose: :check_image_front)
 
 puts(file.id)
 ```
@@ -149,64 +163,37 @@ increase.accounts.create(
 )
 ```
 
-## LSP Support
+## Model DSL
 
-### Solargraph
+This library uses a simple DSL to represent request parameters and response shapes in `lib/increase/models`.
 
-This library includes [Solargraph](https://solargraph.org) support for both auto completion and go to definition.
+With the right [editor plugins](https://shopify.github.io/ruby-lsp), you can ctrl-click on elements of the DSL to navigate around and explore the library.
 
-```ruby
-gem "solargraph", group: :development
-```
-
-After Solargraph is installed, **you must populate its index** either via the provided editor command, or by running the following in your terminal:
-
-```sh
-bundle exec solargraph gems
-```
-
-Note: if you had installed the gem either using a `git:` or `github:` URL, or had vendored the gem using bundler, you will need to set up your [`.solargraph.yml`](https://solargraph.org/guides/configuration) to include the path to the gem's `lib` directory.
-
-```yaml
-include:
-  - 'vendor/bundle/ruby/*/gems/increase-*/lib/**/*.rb'
-```
-
-Otherwise Solargraph will not be able to provide type information or auto-completion for any non-indexed libraries.
-
-### Sorbet
-
-This library is written with [Sorbet type definitions](https://sorbet.org/docs/rbi). However, there is no runtime dependency on the `sorbet-runtime`.
-
-What this means is that while you can use Sorbet to type check your code statically, and benefit from the [Sorbet Language Server](https://sorbet.org/docs/lsp) in your editor, there is no runtime type checking and execution overhead from Sorbet itself.
-
-Due to limitations with the Sorbet type system, where a method otherwise can take an instance of `Increase::BaseModel` class, you will need to use the `**` splat operator to pass the arguments:
-
-Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
+In all places where a `BaseModel` type is specified, vanilla Ruby `Hash` can also be used. For example, the following are interchangeable as arguments:
 
 ```ruby
+# This has tooling readability, for auto-completion, static analysis, and goto definition with supported language services
 params = Increase::Models::AccountCreateParams.new(
   name: "New Account!",
   entity_id: "entity_n8y8tnk2p9339ti393yi",
   program_id: "program_i2v2os4mwza1oetokh9i"
 )
 
-increase.accounts.create(**params)
+# This also works
+params = {
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+}
 ```
 
-Note: **This library emits an intentional warning under the [`tapioca` toolchain](https://github.com/Shopify/tapioca)**. This is normal, and does not impact functionality.
+## Editor support
 
-### Ruby LSP
+A combination of [Shopify LSP](https://shopify.github.io/ruby-lsp) and [Solargraph](https://solargraph.org/) is recommended for non-[Sorbet](https://sorbet.org) users. The former is especially good at go to definition, while the latter has much better auto-completion support.
 
-The Ruby LSP has [best effort support](https://shopify.github.io/ruby-lsp/#guessed-types) for inferring type information from Ruby code, and as such it may not always be able to provide accurate type information.
-
-## Advanced
+## Advanced concepts
 
 ### Making custom/undocumented requests
-
-This library is typed for convenient access to the documented API.
-
-If you need to access undocumented endpoints, params, or response properties, the library can still be used.
 
 #### Undocumented request params
 
@@ -218,15 +205,15 @@ To make requests to undocumented endpoints, you can make requests using `client.
 
 ```ruby
 response = client.request(
-    method: :post,
-    path: '/undocumented/endpoint',
-    query: {"dog": "woof"},
-    headers: {"useful-header": "interesting-value"},
-    body: {"he": "llo"},
-  )
+  method: :post,
+  path: '/undocumented/endpoint',
+  query: {"dog": "woof"},
+  headers: {"useful-header": "interesting-value"},
+  body: {"he": "llo"},
+)
 ```
 
-### Concurrency & Connection Pooling
+### Concurrency & connection pooling
 
 The `Increase::Client` instances are thread-safe, and should be re-used across multiple threads. By default, each `Client` have their own HTTP connection pool, with a maximum number of connections equal to thread count.
 
@@ -235,6 +222,21 @@ When the maximum number of connections has been checked out from the connection 
 Unless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.
 
 Currently, `Increase::Client` instances are only fork-safe if there are no in-flight HTTP requests.
+
+### Sorbet
+
+#### Argument passing trick
+
+It is possible to pass a compatible model / parameter class to a method that expects keyword arguments by using the `**` splat operator.
+
+```ruby
+params = Increase::Models::AccountCreateParams.new(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+)
+increase.accounts.create(**params)
+```
 
 ## Versioning
 
@@ -245,3 +247,7 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 ## Requirements
 
 Ruby 3.1.0 or higher.
+
+## Contributing
+
+See [the contributing documentation](https://github.com/Increase/increase-ruby/tree/main/CONTRIBUTING.md).

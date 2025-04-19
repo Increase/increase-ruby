@@ -5,8 +5,7 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::Documents#create
       class DocumentCreateParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute account_id
@@ -15,13 +14,9 @@ module Increase
         #   @return [String]
         required :account_id, String
 
-        # @!parse
-        #   # @param account_id [String]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(account_id:, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(account_id:, request_options: {})
+        #   @param account_id [String]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

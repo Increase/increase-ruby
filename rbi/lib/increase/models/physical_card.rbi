@@ -235,8 +235,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Shipment::Method) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCard::Shipment::Method::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # USPS Post with tracking.
           USPS = T.let(:usps, Increase::Models::PhysicalCard::Shipment::Method::TaggedSymbol)
@@ -257,8 +256,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Shipment::Status) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCard::Shipment::Status::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The physical card has not yet been shipped.
           PENDING = T.let(:pending, Increase::Models::PhysicalCard::Shipment::Status::TaggedSymbol)
@@ -336,7 +334,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCard::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The physical card is active.
         ACTIVE = T.let(:active, Increase::Models::PhysicalCard::Status::TaggedSymbol)
@@ -357,7 +355,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::PhysicalCard::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::PhysicalCard::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PHYSICAL_CARD = T.let(:physical_card, Increase::Models::PhysicalCard::Type::TaggedSymbol)
 

@@ -4,8 +4,7 @@ module Increase
   module Models
     # @see Increase::Resources::AccountTransfers#create
     class AccountTransferCreateParams < Increase::Internal::Type::BaseModel
-      # @!parse
-      #   extend Increase::Internal::Type::RequestParameters::Converter
+      extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_id
@@ -33,37 +32,19 @@ module Increase
       #   @return [String]
       required :destination_account_id, String
 
-      # @!attribute [r] require_approval
+      # @!attribute require_approval
       #   Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @return [Boolean, nil]
       optional :require_approval, Increase::Internal::Type::Boolean
 
-      # @!parse
-      #   # @return [Boolean]
-      #   attr_writer :require_approval
-
-      # @!parse
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param description [String]
-      #   # @param destination_account_id [String]
-      #   # @param require_approval [Boolean]
-      #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(
-      #     account_id:,
-      #     amount:,
-      #     description:,
-      #     destination_account_id:,
-      #     require_approval: nil,
-      #     request_options: {},
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(account_id:, amount:, description:, destination_account_id:, require_approval: nil, request_options: {})
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param description [String]
+      #   @param destination_account_id [String]
+      #   @param require_approval [Boolean]
+      #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

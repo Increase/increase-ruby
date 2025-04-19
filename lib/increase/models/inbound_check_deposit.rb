@@ -139,58 +139,30 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundCheckDeposit::Type]
       required :type, enum: -> { Increase::Models::InboundCheckDeposit::Type }
 
-      # @!parse
-      #   # Inbound Check Deposits are records of third-parties attempting to deposit checks
-      #   # against your account.
-      #   #
-      #   # @param id [String]
-      #   # @param accepted_at [Time, nil]
-      #   # @param account_id [String]
-      #   # @param account_number_id [String, nil]
-      #   # @param adjustments [Array<Increase::Models::InboundCheckDeposit::Adjustment>]
-      #   # @param amount [Integer]
-      #   # @param back_image_file_id [String, nil]
-      #   # @param bank_of_first_deposit_routing_number [String, nil]
-      #   # @param check_number [String, nil]
-      #   # @param check_transfer_id [String, nil]
-      #   # @param created_at [Time]
-      #   # @param currency [Symbol, Increase::Models::InboundCheckDeposit::Currency]
-      #   # @param declined_at [Time, nil]
-      #   # @param declined_transaction_id [String, nil]
-      #   # @param deposit_return [Increase::Models::InboundCheckDeposit::DepositReturn, nil]
-      #   # @param front_image_file_id [String, nil]
-      #   # @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
-      #   # @param status [Symbol, Increase::Models::InboundCheckDeposit::Status]
-      #   # @param transaction_id [String, nil]
-      #   # @param type [Symbol, Increase::Models::InboundCheckDeposit::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     accepted_at:,
-      #     account_id:,
-      #     account_number_id:,
-      #     adjustments:,
-      #     amount:,
-      #     back_image_file_id:,
-      #     bank_of_first_deposit_routing_number:,
-      #     check_number:,
-      #     check_transfer_id:,
-      #     created_at:,
-      #     currency:,
-      #     declined_at:,
-      #     declined_transaction_id:,
-      #     deposit_return:,
-      #     front_image_file_id:,
-      #     payee_name_analysis:,
-      #     status:,
-      #     transaction_id:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, accepted_at:, account_id:, account_number_id:, adjustments:, amount:, back_image_file_id:, bank_of_first_deposit_routing_number:, check_number:, check_transfer_id:, created_at:, currency:, declined_at:, declined_transaction_id:, deposit_return:, front_image_file_id:, payee_name_analysis:, status:, transaction_id:, type:)
+      #   Inbound Check Deposits are records of third-parties attempting to deposit checks
+      #   against your account.
+      #
+      #   @param id [String]
+      #   @param accepted_at [Time, nil]
+      #   @param account_id [String]
+      #   @param account_number_id [String, nil]
+      #   @param adjustments [Array<Increase::Models::InboundCheckDeposit::Adjustment>]
+      #   @param amount [Integer]
+      #   @param back_image_file_id [String, nil]
+      #   @param bank_of_first_deposit_routing_number [String, nil]
+      #   @param check_number [String, nil]
+      #   @param check_transfer_id [String, nil]
+      #   @param created_at [Time]
+      #   @param currency [Symbol, Increase::Models::InboundCheckDeposit::Currency]
+      #   @param declined_at [Time, nil]
+      #   @param declined_transaction_id [String, nil]
+      #   @param deposit_return [Increase::Models::InboundCheckDeposit::DepositReturn, nil]
+      #   @param front_image_file_id [String, nil]
+      #   @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
+      #   @param status [Symbol, Increase::Models::InboundCheckDeposit::Status]
+      #   @param transaction_id [String, nil]
+      #   @param type [Symbol, Increase::Models::InboundCheckDeposit::Type]
 
       class Adjustment < Increase::Internal::Type::BaseModel
         # @!attribute adjusted_at
@@ -217,15 +189,11 @@ module Increase
         #   @return [String]
         required :transaction_id, String
 
-        # @!parse
-        #   # @param adjusted_at [Time]
-        #   # @param amount [Integer]
-        #   # @param reason [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason]
-        #   # @param transaction_id [String]
-        #   #
-        #   def initialize(adjusted_at:, amount:, reason:, transaction_id:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(adjusted_at:, amount:, reason:, transaction_id:)
+        #   @param adjusted_at [Time]
+        #   @param amount [Integer]
+        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason]
+        #   @param transaction_id [String]
 
         # The reason for the adjustment.
         #
@@ -245,11 +213,8 @@ module Increase
           # The recipient was not able to process the check. This usually happens for e.g., low quality images.
           NON_CONFORMING_ITEM = :non_conforming_item
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -277,11 +242,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::InboundCheckDeposit#deposit_return
@@ -304,17 +266,13 @@ module Increase
         #   @return [String]
         required :transaction_id, String
 
-        # @!parse
-        #   # If you requested a return of this deposit, this will contain details of the
-        #   # return.
-        #   #
-        #   # @param reason [Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason]
-        #   # @param returned_at [Time]
-        #   # @param transaction_id [String]
-        #   #
-        #   def initialize(reason:, returned_at:, transaction_id:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(reason:, returned_at:, transaction_id:)
+        #   If you requested a return of this deposit, this will contain details of the
+        #   return.
+        #
+        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason]
+        #   @param returned_at [Time]
+        #   @param transaction_id [String]
 
         # The reason the deposit was returned.
         #
@@ -337,11 +295,8 @@ module Increase
           # The check was not endorsed by the payee.
           ENDORSEMENT_IRREGULAR = :endorsement_irregular
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -361,11 +316,8 @@ module Increase
         # The payee name analysis was not evaluated.
         NOT_EVALUATED = :not_evaluated
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The status of the Inbound Check Deposit.
@@ -389,11 +341,8 @@ module Increase
         # The Inbound Check Deposit requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -405,11 +354,8 @@ module Increase
 
         INBOUND_CHECK_DEPOSIT = :inbound_check_deposit
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

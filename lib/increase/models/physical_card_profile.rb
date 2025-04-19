@@ -87,45 +87,24 @@ module Increase
       #   @return [Symbol, Increase::Models::PhysicalCardProfile::Type]
       required :type, enum: -> { Increase::Models::PhysicalCardProfile::Type }
 
-      # @!parse
-      #   # This contains artwork and metadata relating to a Physical Card's appearance. For
-      #   # more information, see our guide on
-      #   # [physical card artwork](https://increase.com/documentation/card-art-physical-cards).
-      #   #
-      #   # @param id [String]
-      #   # @param back_image_file_id [String, nil]
-      #   # @param carrier_image_file_id [String, nil]
-      #   # @param contact_phone [String, nil]
-      #   # @param created_at [Time]
-      #   # @param creator [Symbol, Increase::Models::PhysicalCardProfile::Creator]
-      #   # @param description [String]
-      #   # @param front_image_file_id [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param is_default [Boolean]
-      #   # @param program_id [String]
-      #   # @param status [Symbol, Increase::Models::PhysicalCardProfile::Status]
-      #   # @param type [Symbol, Increase::Models::PhysicalCardProfile::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     back_image_file_id:,
-      #     carrier_image_file_id:,
-      #     contact_phone:,
-      #     created_at:,
-      #     creator:,
-      #     description:,
-      #     front_image_file_id:,
-      #     idempotency_key:,
-      #     is_default:,
-      #     program_id:,
-      #     status:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, back_image_file_id:, carrier_image_file_id:, contact_phone:, created_at:, creator:, description:, front_image_file_id:, idempotency_key:, is_default:, program_id:, status:, type:)
+      #   This contains artwork and metadata relating to a Physical Card's appearance. For
+      #   more information, see our guide on
+      #   [physical card artwork](https://increase.com/documentation/card-art-physical-cards).
+      #
+      #   @param id [String]
+      #   @param back_image_file_id [String, nil]
+      #   @param carrier_image_file_id [String, nil]
+      #   @param contact_phone [String, nil]
+      #   @param created_at [Time]
+      #   @param creator [Symbol, Increase::Models::PhysicalCardProfile::Creator]
+      #   @param description [String]
+      #   @param front_image_file_id [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param is_default [Boolean]
+      #   @param program_id [String]
+      #   @param status [Symbol, Increase::Models::PhysicalCardProfile::Status]
+      #   @param type [Symbol, Increase::Models::PhysicalCardProfile::Type]
 
       # The creator of this Physical Card Profile.
       #
@@ -139,11 +118,8 @@ module Increase
         # This Physical Card Profile was created by you.
         USER = :user
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The status of the Physical Card Profile.
@@ -170,11 +146,8 @@ module Increase
         # The Physical Card Profile has been archived.
         ARCHIVED = :archived
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -186,11 +159,8 @@ module Increase
 
         PHYSICAL_CARD_PROFILE = :physical_card_profile
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

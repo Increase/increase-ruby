@@ -117,51 +117,26 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountTransfer::Type]
       required :type, enum: -> { Increase::Models::AccountTransfer::Type }
 
-      # @!parse
-      #   # Account transfers move funds between your own accounts at Increase.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param approval [Increase::Models::AccountTransfer::Approval, nil]
-      #   # @param cancellation [Increase::Models::AccountTransfer::Cancellation, nil]
-      #   # @param created_at [Time]
-      #   # @param created_by [Increase::Models::AccountTransfer::CreatedBy, nil]
-      #   # @param currency [Symbol, Increase::Models::AccountTransfer::Currency]
-      #   # @param description [String]
-      #   # @param destination_account_id [String]
-      #   # @param destination_transaction_id [String, nil]
-      #   # @param idempotency_key [String, nil]
-      #   # @param network [Symbol, Increase::Models::AccountTransfer::Network]
-      #   # @param pending_transaction_id [String, nil]
-      #   # @param status [Symbol, Increase::Models::AccountTransfer::Status]
-      #   # @param transaction_id [String, nil]
-      #   # @param type [Symbol, Increase::Models::AccountTransfer::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     amount:,
-      #     approval:,
-      #     cancellation:,
-      #     created_at:,
-      #     created_by:,
-      #     currency:,
-      #     description:,
-      #     destination_account_id:,
-      #     destination_transaction_id:,
-      #     idempotency_key:,
-      #     network:,
-      #     pending_transaction_id:,
-      #     status:,
-      #     transaction_id:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, amount:, approval:, cancellation:, created_at:, created_by:, currency:, description:, destination_account_id:, destination_transaction_id:, idempotency_key:, network:, pending_transaction_id:, status:, transaction_id:, type:)
+      #   Account transfers move funds between your own accounts at Increase.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param approval [Increase::Models::AccountTransfer::Approval, nil]
+      #   @param cancellation [Increase::Models::AccountTransfer::Cancellation, nil]
+      #   @param created_at [Time]
+      #   @param created_by [Increase::Models::AccountTransfer::CreatedBy, nil]
+      #   @param currency [Symbol, Increase::Models::AccountTransfer::Currency]
+      #   @param description [String]
+      #   @param destination_account_id [String]
+      #   @param destination_transaction_id [String, nil]
+      #   @param idempotency_key [String, nil]
+      #   @param network [Symbol, Increase::Models::AccountTransfer::Network]
+      #   @param pending_transaction_id [String, nil]
+      #   @param status [Symbol, Increase::Models::AccountTransfer::Status]
+      #   @param transaction_id [String, nil]
+      #   @param type [Symbol, Increase::Models::AccountTransfer::Type]
 
       # @see Increase::Models::AccountTransfer#approval
       class Approval < Increase::Internal::Type::BaseModel
@@ -179,16 +154,12 @@ module Increase
         #   @return [String, nil]
         required :approved_by, String, nil?: true
 
-        # @!parse
-        #   # If your account requires approvals for transfers and the transfer was approved,
-        #   # this will contain details of the approval.
-        #   #
-        #   # @param approved_at [Time]
-        #   # @param approved_by [String, nil]
-        #   #
-        #   def initialize(approved_at:, approved_by:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(approved_at:, approved_by:)
+        #   If your account requires approvals for transfers and the transfer was approved,
+        #   this will contain details of the approval.
+        #
+        #   @param approved_at [Time]
+        #   @param approved_by [String, nil]
       end
 
       # @see Increase::Models::AccountTransfer#cancellation
@@ -207,16 +178,12 @@ module Increase
         #   @return [String, nil]
         required :canceled_by, String, nil?: true
 
-        # @!parse
-        #   # If your account requires approvals for transfers and the transfer was not
-        #   # approved, this will contain details of the cancellation.
-        #   #
-        #   # @param canceled_at [Time]
-        #   # @param canceled_by [String, nil]
-        #   #
-        #   def initialize(canceled_at:, canceled_by:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(canceled_at:, canceled_by:)
+        #   If your account requires approvals for transfers and the transfer was not
+        #   approved, this will contain details of the cancellation.
+        #
+        #   @param canceled_at [Time]
+        #   @param canceled_by [String, nil]
       end
 
       # @see Increase::Models::AccountTransfer#created_by
@@ -247,17 +214,13 @@ module Increase
         #   @return [Increase::Models::AccountTransfer::CreatedBy::User, nil]
         required :user, -> { Increase::Models::AccountTransfer::CreatedBy::User }, nil?: true
 
-        # @!parse
-        #   # What object created the transfer, either via the API or the dashboard.
-        #   #
-        #   # @param api_key [Increase::Models::AccountTransfer::CreatedBy::APIKey, nil]
-        #   # @param category [Symbol, Increase::Models::AccountTransfer::CreatedBy::Category]
-        #   # @param oauth_application [Increase::Models::AccountTransfer::CreatedBy::OAuthApplication, nil]
-        #   # @param user [Increase::Models::AccountTransfer::CreatedBy::User, nil]
-        #   #
-        #   def initialize(api_key:, category:, oauth_application:, user:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(api_key:, category:, oauth_application:, user:)
+        #   What object created the transfer, either via the API or the dashboard.
+        #
+        #   @param api_key [Increase::Models::AccountTransfer::CreatedBy::APIKey, nil]
+        #   @param category [Symbol, Increase::Models::AccountTransfer::CreatedBy::Category]
+        #   @param oauth_application [Increase::Models::AccountTransfer::CreatedBy::OAuthApplication, nil]
+        #   @param user [Increase::Models::AccountTransfer::CreatedBy::User, nil]
 
         # @see Increase::Models::AccountTransfer::CreatedBy#api_key
         class APIKey < Increase::Internal::Type::BaseModel
@@ -267,14 +230,10 @@ module Increase
           #   @return [String, nil]
           required :description, String, nil?: true
 
-          # @!parse
-          #   # If present, details about the API key that created the transfer.
-          #   #
-          #   # @param description [String, nil]
-          #   #
-          #   def initialize(description:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(description:)
+          #   If present, details about the API key that created the transfer.
+          #
+          #   @param description [String, nil]
         end
 
         # The type of object that created this transfer.
@@ -292,11 +251,8 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER = :user
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::AccountTransfer::CreatedBy#oauth_application
@@ -307,14 +263,10 @@ module Increase
           #   @return [String]
           required :name, String
 
-          # @!parse
-          #   # If present, details about the OAuth Application that created the transfer.
-          #   #
-          #   # @param name [String]
-          #   #
-          #   def initialize(name:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(name:)
+          #   If present, details about the OAuth Application that created the transfer.
+          #
+          #   @param name [String]
         end
 
         # @see Increase::Models::AccountTransfer::CreatedBy#user
@@ -325,14 +277,10 @@ module Increase
           #   @return [String]
           required :email, String
 
-          # @!parse
-          #   # If present, details about the User that created the transfer.
-          #   #
-          #   # @param email [String]
-          #   #
-          #   def initialize(email:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(email:)
+          #   If present, details about the User that created the transfer.
+          #
+          #   @param email [String]
         end
       end
 
@@ -361,11 +309,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The transfer's network.
@@ -376,11 +321,8 @@ module Increase
 
         ACCOUNT = :account
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The lifecycle status of the transfer.
@@ -398,11 +340,8 @@ module Increase
         # The transfer has been completed.
         COMPLETE = :complete
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -414,11 +353,8 @@ module Increase
 
         ACCOUNT_TRANSFER = :account_transfer
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

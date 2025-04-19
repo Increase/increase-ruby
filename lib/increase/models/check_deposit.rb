@@ -123,53 +123,27 @@ module Increase
       #   @return [Symbol, Increase::Models::CheckDeposit::Type]
       required :type, enum: -> { Increase::Models::CheckDeposit::Type }
 
-      # @!parse
-      #   # Check Deposits allow you to deposit images of paper checks into your account.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param back_image_file_id [String, nil]
-      #   # @param created_at [Time]
-      #   # @param deposit_acceptance [Increase::Models::CheckDeposit::DepositAcceptance, nil]
-      #   # @param deposit_rejection [Increase::Models::CheckDeposit::DepositRejection, nil]
-      #   # @param deposit_return [Increase::Models::CheckDeposit::DepositReturn, nil]
-      #   # @param deposit_submission [Increase::Models::CheckDeposit::DepositSubmission, nil]
-      #   # @param description [String, nil]
-      #   # @param front_image_file_id [String]
-      #   # @param idempotency_key [String, nil]
-      #   # @param inbound_funds_hold [Increase::Models::CheckDeposit::InboundFundsHold, nil]
-      #   # @param inbound_mail_item_id [String, nil]
-      #   # @param lockbox_id [String, nil]
-      #   # @param status [Symbol, Increase::Models::CheckDeposit::Status]
-      #   # @param transaction_id [String, nil]
-      #   # @param type [Symbol, Increase::Models::CheckDeposit::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     amount:,
-      #     back_image_file_id:,
-      #     created_at:,
-      #     deposit_acceptance:,
-      #     deposit_rejection:,
-      #     deposit_return:,
-      #     deposit_submission:,
-      #     description:,
-      #     front_image_file_id:,
-      #     idempotency_key:,
-      #     inbound_funds_hold:,
-      #     inbound_mail_item_id:,
-      #     lockbox_id:,
-      #     status:,
-      #     transaction_id:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, amount:, back_image_file_id:, created_at:, deposit_acceptance:, deposit_rejection:, deposit_return:, deposit_submission:, description:, front_image_file_id:, idempotency_key:, inbound_funds_hold:, inbound_mail_item_id:, lockbox_id:, status:, transaction_id:, type:)
+      #   Check Deposits allow you to deposit images of paper checks into your account.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param back_image_file_id [String, nil]
+      #   @param created_at [Time]
+      #   @param deposit_acceptance [Increase::Models::CheckDeposit::DepositAcceptance, nil]
+      #   @param deposit_rejection [Increase::Models::CheckDeposit::DepositRejection, nil]
+      #   @param deposit_return [Increase::Models::CheckDeposit::DepositReturn, nil]
+      #   @param deposit_submission [Increase::Models::CheckDeposit::DepositSubmission, nil]
+      #   @param description [String, nil]
+      #   @param front_image_file_id [String]
+      #   @param idempotency_key [String, nil]
+      #   @param inbound_funds_hold [Increase::Models::CheckDeposit::InboundFundsHold, nil]
+      #   @param inbound_mail_item_id [String, nil]
+      #   @param lockbox_id [String, nil]
+      #   @param status [Symbol, Increase::Models::CheckDeposit::Status]
+      #   @param transaction_id [String, nil]
+      #   @param type [Symbol, Increase::Models::CheckDeposit::Type]
 
       # @see Increase::Models::CheckDeposit#deposit_acceptance
       class DepositAcceptance < Increase::Internal::Type::BaseModel
@@ -219,32 +193,17 @@ module Increase
         #   @return [String, nil]
         required :serial_number, String, nil?: true
 
-        # @!parse
-        #   # If your deposit is successfully parsed and accepted by Increase, this will
-        #   # contain details of the parsed check.
-        #   #
-        #   # @param account_number [String]
-        #   # @param amount [Integer]
-        #   # @param auxiliary_on_us [String, nil]
-        #   # @param check_deposit_id [String]
-        #   # @param currency [Symbol, Increase::Models::CheckDeposit::DepositAcceptance::Currency]
-        #   # @param routing_number [String]
-        #   # @param serial_number [String, nil]
-        #   #
-        #   def initialize(
-        #     account_number:,
-        #     amount:,
-        #     auxiliary_on_us:,
-        #     check_deposit_id:,
-        #     currency:,
-        #     routing_number:,
-        #     serial_number:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(account_number:, amount:, auxiliary_on_us:, check_deposit_id:, currency:, routing_number:, serial_number:)
+        #   If your deposit is successfully parsed and accepted by Increase, this will
+        #   contain details of the parsed check.
+        #
+        #   @param account_number [String]
+        #   @param amount [Integer]
+        #   @param auxiliary_on_us [String, nil]
+        #   @param check_deposit_id [String]
+        #   @param currency [Symbol, Increase::Models::CheckDeposit::DepositAcceptance::Currency]
+        #   @param routing_number [String]
+        #   @param serial_number [String, nil]
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         # transaction's currency.
@@ -271,11 +230,8 @@ module Increase
           # US Dollar (USD)
           USD = :USD
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -320,20 +276,16 @@ module Increase
         #   @return [Time]
         required :rejected_at, Time
 
-        # @!parse
-        #   # If your deposit is rejected by Increase, this will contain details as to why it
-        #   # was rejected.
-        #   #
-        #   # @param amount [Integer]
-        #   # @param check_deposit_id [String]
-        #   # @param currency [Symbol, Increase::Models::CheckDeposit::DepositRejection::Currency]
-        #   # @param declined_transaction_id [String]
-        #   # @param reason [Symbol, Increase::Models::CheckDeposit::DepositRejection::Reason]
-        #   # @param rejected_at [Time]
-        #   #
-        #   def initialize(amount:, check_deposit_id:, currency:, declined_transaction_id:, reason:, rejected_at:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(amount:, check_deposit_id:, currency:, declined_transaction_id:, reason:, rejected_at:)
+        #   If your deposit is rejected by Increase, this will contain details as to why it
+        #   was rejected.
+        #
+        #   @param amount [Integer]
+        #   @param check_deposit_id [String]
+        #   @param currency [Symbol, Increase::Models::CheckDeposit::DepositRejection::Currency]
+        #   @param declined_transaction_id [String]
+        #   @param reason [Symbol, Increase::Models::CheckDeposit::DepositRejection::Reason]
+        #   @param rejected_at [Time]
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
         # currency.
@@ -360,11 +312,8 @@ module Increase
           # US Dollar (USD)
           USD = :USD
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # Why the check deposit was rejected.
@@ -406,11 +355,8 @@ module Increase
           # The check was rejected for an unknown reason.
           UNKNOWN = :unknown
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -456,20 +402,16 @@ module Increase
         #   @return [String]
         required :transaction_id, String
 
-        # @!parse
-        #   # If your deposit is returned, this will contain details as to why it was
-        #   # returned.
-        #   #
-        #   # @param amount [Integer]
-        #   # @param check_deposit_id [String]
-        #   # @param currency [Symbol, Increase::Models::CheckDeposit::DepositReturn::Currency]
-        #   # @param return_reason [Symbol, Increase::Models::CheckDeposit::DepositReturn::ReturnReason]
-        #   # @param returned_at [Time]
-        #   # @param transaction_id [String]
-        #   #
-        #   def initialize(amount:, check_deposit_id:, currency:, return_reason:, returned_at:, transaction_id:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(amount:, check_deposit_id:, currency:, return_reason:, returned_at:, transaction_id:)
+        #   If your deposit is returned, this will contain details as to why it was
+        #   returned.
+        #
+        #   @param amount [Integer]
+        #   @param check_deposit_id [String]
+        #   @param currency [Symbol, Increase::Models::CheckDeposit::DepositReturn::Currency]
+        #   @param return_reason [Symbol, Increase::Models::CheckDeposit::DepositReturn::ReturnReason]
+        #   @param returned_at [Time]
+        #   @param transaction_id [String]
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         # transaction's currency.
@@ -496,11 +438,8 @@ module Increase
           # US Dollar (USD)
           USD = :USD
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # Why this check was returned by the bank holding the account it was drawn
@@ -588,11 +527,8 @@ module Increase
           # The bank sold this account and no longer services this customer.
           BRANCH_OR_ACCOUNT_SOLD = :branch_or_account_sold
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -620,17 +556,13 @@ module Increase
         #   @return [Time]
         required :submitted_at, Time
 
-        # @!parse
-        #   # After the check is parsed, it is submitted to the Check21 network for
-        #   # processing. This will contain details of the submission.
-        #   #
-        #   # @param back_file_id [String]
-        #   # @param front_file_id [String]
-        #   # @param submitted_at [Time]
-        #   #
-        #   def initialize(back_file_id:, front_file_id:, submitted_at:, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(back_file_id:, front_file_id:, submitted_at:)
+        #   After the check is parsed, it is submitted to the Check21 network for
+        #   processing. This will contain details of the submission.
+        #
+        #   @param back_file_id [String]
+        #   @param front_file_id [String]
+        #   @param submitted_at [Time]
       end
 
       # @see Increase::Models::CheckDeposit#inbound_funds_hold
@@ -700,38 +632,20 @@ module Increase
         #   @return [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Type]
         required :type, enum: -> { Increase::Models::CheckDeposit::InboundFundsHold::Type }
 
-        # @!parse
-        #   # Increase will sometimes hold the funds for Check Deposits. If funds are held,
-        #   # this sub-object will contain details of the hold.
-        #   #
-        #   # @param id [String]
-        #   # @param amount [Integer]
-        #   # @param automatically_releases_at [Time]
-        #   # @param created_at [Time]
-        #   # @param currency [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Currency]
-        #   # @param held_transaction_id [String, nil]
-        #   # @param pending_transaction_id [String, nil]
-        #   # @param released_at [Time, nil]
-        #   # @param status [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Status]
-        #   # @param type [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Type]
-        #   #
-        #   def initialize(
-        #     id:,
-        #     amount:,
-        #     automatically_releases_at:,
-        #     created_at:,
-        #     currency:,
-        #     held_transaction_id:,
-        #     pending_transaction_id:,
-        #     released_at:,
-        #     status:,
-        #     type:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(id:, amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
+        #   Increase will sometimes hold the funds for Check Deposits. If funds are held,
+        #   this sub-object will contain details of the hold.
+        #
+        #   @param id [String]
+        #   @param amount [Integer]
+        #   @param automatically_releases_at [Time]
+        #   @param created_at [Time]
+        #   @param currency [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Currency]
+        #   @param held_transaction_id [String, nil]
+        #   @param pending_transaction_id [String, nil]
+        #   @param released_at [Time, nil]
+        #   @param status [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Status]
+        #   @param type [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Type]
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         # currency.
@@ -758,11 +672,8 @@ module Increase
           # US Dollar (USD)
           USD = :USD
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # The status of the hold.
@@ -777,11 +688,8 @@ module Increase
           # Funds have been released.
           COMPLETE = :complete
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # A constant representing the object's type. For this resource it will always be
@@ -793,11 +701,8 @@ module Increase
 
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -819,11 +724,8 @@ module Increase
         # The Check Deposit has been returned.
         RETURNED = :returned
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -835,11 +737,8 @@ module Increase
 
         CHECK_DEPOSIT = :check_deposit
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

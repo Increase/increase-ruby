@@ -98,7 +98,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::File::Direction) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::File::Direction::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # This File was sent by you to Increase.
         TO_INCREASE = T.let(:to_increase, Increase::Models::File::Direction::TaggedSymbol)
@@ -117,7 +117,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::File::Purpose) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::File::Purpose::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # An image of the front of a check, used for check deposits.
         CHECK_IMAGE_FRONT = T.let(:check_image_front, Increase::Models::File::Purpose::TaggedSymbol)
@@ -211,7 +211,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::File::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::File::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         FILE = T.let(:file, Increase::Models::File::Type::TaggedSymbol)
 

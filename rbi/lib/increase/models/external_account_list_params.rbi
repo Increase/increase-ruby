@@ -106,8 +106,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::ExternalAccountListParams::Status::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::ExternalAccountListParams::Status::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The External Account is active.
           ACTIVE = T.let(:active, Increase::Models::ExternalAccountListParams::Status::In::TaggedSymbol)

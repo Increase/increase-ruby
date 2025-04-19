@@ -74,39 +74,21 @@ module Increase
       #   @return [Symbol, Increase::Models::DeclinedTransaction::Type]
       required :type, enum: -> { Increase::Models::DeclinedTransaction::Type }
 
-      # @!parse
-      #   # Declined Transactions are refused additions and removals of money from your bank
-      #   # account. For example, Declined Transactions are caused when your Account has an
-      #   # insufficient balance or your Limits are triggered.
-      #   #
-      #   # @param id [String]
-      #   # @param account_id [String]
-      #   # @param amount [Integer]
-      #   # @param created_at [Time]
-      #   # @param currency [Symbol, Increase::Models::DeclinedTransaction::Currency]
-      #   # @param description [String]
-      #   # @param route_id [String, nil]
-      #   # @param route_type [Symbol, Increase::Models::DeclinedTransaction::RouteType, nil]
-      #   # @param source [Increase::Models::DeclinedTransaction::Source]
-      #   # @param type [Symbol, Increase::Models::DeclinedTransaction::Type]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     account_id:,
-      #     amount:,
-      #     created_at:,
-      #     currency:,
-      #     description:,
-      #     route_id:,
-      #     route_type:,
-      #     source:,
-      #     type:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, account_id:, amount:, created_at:, currency:, description:, route_id:, route_type:, source:, type:)
+      #   Declined Transactions are refused additions and removals of money from your bank
+      #   account. For example, Declined Transactions are caused when your Account has an
+      #   insufficient balance or your Limits are triggered.
+      #
+      #   @param id [String]
+      #   @param account_id [String]
+      #   @param amount [Integer]
+      #   @param created_at [Time]
+      #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Currency]
+      #   @param description [String]
+      #   @param route_id [String, nil]
+      #   @param route_type [Symbol, Increase::Models::DeclinedTransaction::RouteType, nil]
+      #   @param source [Increase::Models::DeclinedTransaction::Source]
+      #   @param type [Symbol, Increase::Models::DeclinedTransaction::Type]
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Declined
       # Transaction's currency. This will match the currency on the Declined
@@ -134,11 +116,8 @@ module Increase
         # US Dollar (USD)
         USD = :USD
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The type of the route this Declined Transaction came through.
@@ -156,11 +135,8 @@ module Increase
         # A Lockbox.
         LOCKBOX = :lockbox
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::DeclinedTransaction#source
@@ -226,37 +202,21 @@ module Increase
         #   @return [Increase::Models::DeclinedTransaction::Source::WireDecline, nil]
         required :wire_decline, -> { Increase::Models::DeclinedTransaction::Source::WireDecline }, nil?: true
 
-        # @!parse
-        #   # This is an object giving more details on the network-level event that caused the
-        #   # Declined Transaction. For example, for a card transaction this lists the
-        #   # merchant's industry and location. Note that for backwards compatibility reasons,
-        #   # additional undocumented keys may appear in this object. These should be treated
-        #   # as deprecated and will be removed in the future.
-        #   #
-        #   # @param ach_decline [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil]
-        #   # @param card_decline [Increase::Models::DeclinedTransaction::Source::CardDecline, nil]
-        #   # @param category [Symbol, Increase::Models::DeclinedTransaction::Source::Category]
-        #   # @param check_decline [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil]
-        #   # @param check_deposit_rejection [Increase::Models::DeclinedTransaction::Source::CheckDepositRejection, nil]
-        #   # @param inbound_real_time_payments_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil]
-        #   # @param other [Object, nil]
-        #   # @param wire_decline [Increase::Models::DeclinedTransaction::Source::WireDecline, nil]
-        #   #
-        #   def initialize(
-        #     ach_decline:,
-        #     card_decline:,
-        #     category:,
-        #     check_decline:,
-        #     check_deposit_rejection:,
-        #     inbound_real_time_payments_transfer_decline:,
-        #     other:,
-        #     wire_decline:,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(ach_decline:, card_decline:, category:, check_decline:, check_deposit_rejection:, inbound_real_time_payments_transfer_decline:, other:, wire_decline:)
+        #   This is an object giving more details on the network-level event that caused the
+        #   Declined Transaction. For example, for a card transaction this lists the
+        #   merchant's industry and location. Note that for backwards compatibility reasons,
+        #   additional undocumented keys may appear in this object. These should be treated
+        #   as deprecated and will be removed in the future.
+        #
+        #   @param ach_decline [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil]
+        #   @param card_decline [Increase::Models::DeclinedTransaction::Source::CardDecline, nil]
+        #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::Category]
+        #   @param check_decline [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil]
+        #   @param check_deposit_rejection [Increase::Models::DeclinedTransaction::Source::CheckDepositRejection, nil]
+        #   @param inbound_real_time_payments_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil]
+        #   @param other [Object, nil]
+        #   @param wire_decline [Increase::Models::DeclinedTransaction::Source::WireDecline, nil]
 
         # @see Increase::Models::DeclinedTransaction::Source#ach_decline
         class ACHDecline < Increase::Internal::Type::BaseModel
@@ -333,42 +293,22 @@ module Increase
           #   @return [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type]
           required :type, enum: -> { Increase::Models::DeclinedTransaction::Source::ACHDecline::Type }
 
-          # @!parse
-          #   # An ACH Decline object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `ach_decline`.
-          #   #
-          #   # @param id [String]
-          #   # @param amount [Integer]
-          #   # @param inbound_ach_transfer_id [String]
-          #   # @param originator_company_descriptive_date [String, nil]
-          #   # @param originator_company_discretionary_data [String, nil]
-          #   # @param originator_company_id [String]
-          #   # @param originator_company_name [String]
-          #   # @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Reason]
-          #   # @param receiver_id_number [String, nil]
-          #   # @param receiver_name [String, nil]
-          #   # @param trace_number [String]
-          #   # @param type [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type]
-          #   #
-          #   def initialize(
-          #     id:,
-          #     amount:,
-          #     inbound_ach_transfer_id:,
-          #     originator_company_descriptive_date:,
-          #     originator_company_discretionary_data:,
-          #     originator_company_id:,
-          #     originator_company_name:,
-          #     reason:,
-          #     receiver_id_number:,
-          #     receiver_name:,
-          #     trace_number:,
-          #     type:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(id:, amount:, inbound_ach_transfer_id:, originator_company_descriptive_date:, originator_company_discretionary_data:, originator_company_id:, originator_company_name:, reason:, receiver_id_number:, receiver_name:, trace_number:, type:)
+          #   An ACH Decline object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `ach_decline`.
+          #
+          #   @param id [String]
+          #   @param amount [Integer]
+          #   @param inbound_ach_transfer_id [String]
+          #   @param originator_company_descriptive_date [String, nil]
+          #   @param originator_company_discretionary_data [String, nil]
+          #   @param originator_company_id [String]
+          #   @param originator_company_name [String]
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Reason]
+          #   @param receiver_id_number [String, nil]
+          #   @param receiver_name [String, nil]
+          #   @param trace_number [String]
+          #   @param type [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type]
 
           # Why the ACH transfer was declined.
           #
@@ -429,11 +369,8 @@ module Increase
             # The corporate customer no longer authorizes this transaction.
             CORPORATE_CUSTOMER_ADVISED_NOT_AUTHORIZED = :corporate_customer_advised_not_authorized
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -445,11 +382,8 @@ module Increase
 
             ACH_DECLINE = :ach_decline
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -637,72 +571,37 @@ module Increase
           #   @return [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification]
           required :verification, -> { Increase::Models::DeclinedTransaction::Source::CardDecline::Verification }
 
-          # @!parse
-          #   # A Card Decline object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `card_decline`.
-          #   #
-          #   # @param id [String]
-          #   # @param actioner [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner]
-          #   # @param amount [Integer]
-          #   # @param card_payment_id [String]
-          #   # @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency]
-          #   # @param declined_transaction_id [String]
-          #   # @param digital_wallet_token_id [String, nil]
-          #   # @param direction [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Direction]
-          #   # @param merchant_acceptor_id [String]
-          #   # @param merchant_category_code [String]
-          #   # @param merchant_city [String, nil]
-          #   # @param merchant_country [String]
-          #   # @param merchant_descriptor [String]
-          #   # @param merchant_postal_code [String, nil]
-          #   # @param merchant_state [String, nil]
-          #   # @param network_details [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails]
-          #   # @param network_identifiers [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkIdentifiers]
-          #   # @param network_risk_score [Integer, nil]
-          #   # @param physical_card_id [String, nil]
-          #   # @param presentment_amount [Integer]
-          #   # @param presentment_currency [String]
-          #   # @param processing_category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::ProcessingCategory]
-          #   # @param real_time_decision_id [String, nil]
-          #   # @param real_time_decision_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason, nil]
-          #   # @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Reason]
-          #   # @param terminal_id [String, nil]
-          #   # @param verification [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification]
-          #   #
-          #   def initialize(
-          #     id:,
-          #     actioner:,
-          #     amount:,
-          #     card_payment_id:,
-          #     currency:,
-          #     declined_transaction_id:,
-          #     digital_wallet_token_id:,
-          #     direction:,
-          #     merchant_acceptor_id:,
-          #     merchant_category_code:,
-          #     merchant_city:,
-          #     merchant_country:,
-          #     merchant_descriptor:,
-          #     merchant_postal_code:,
-          #     merchant_state:,
-          #     network_details:,
-          #     network_identifiers:,
-          #     network_risk_score:,
-          #     physical_card_id:,
-          #     presentment_amount:,
-          #     presentment_currency:,
-          #     processing_category:,
-          #     real_time_decision_id:,
-          #     real_time_decision_reason:,
-          #     reason:,
-          #     terminal_id:,
-          #     verification:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(id:, actioner:, amount:, card_payment_id:, currency:, declined_transaction_id:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, real_time_decision_reason:, reason:, terminal_id:, verification:)
+          #   A Card Decline object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `card_decline`.
+          #
+          #   @param id [String]
+          #   @param actioner [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner]
+          #   @param amount [Integer]
+          #   @param card_payment_id [String]
+          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency]
+          #   @param declined_transaction_id [String]
+          #   @param digital_wallet_token_id [String, nil]
+          #   @param direction [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Direction]
+          #   @param merchant_acceptor_id [String]
+          #   @param merchant_category_code [String]
+          #   @param merchant_city [String, nil]
+          #   @param merchant_country [String]
+          #   @param merchant_descriptor [String]
+          #   @param merchant_postal_code [String, nil]
+          #   @param merchant_state [String, nil]
+          #   @param network_details [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails]
+          #   @param network_identifiers [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkIdentifiers]
+          #   @param network_risk_score [Integer, nil]
+          #   @param physical_card_id [String, nil]
+          #   @param presentment_amount [Integer]
+          #   @param presentment_currency [String]
+          #   @param processing_category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::ProcessingCategory]
+          #   @param real_time_decision_id [String, nil]
+          #   @param real_time_decision_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason, nil]
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Reason]
+          #   @param terminal_id [String, nil]
+          #   @param verification [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification]
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -720,11 +619,8 @@ module Increase
             # This object was actioned by the network, through stand-in processing.
             NETWORK = :network
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
@@ -752,11 +648,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # The direction describes the direction the funds will move, either from the
@@ -772,11 +665,8 @@ module Increase
             # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
             REFUND = :refund
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::DeclinedTransaction::Source::CardDecline#network_details
@@ -796,15 +686,11 @@ module Increase
                      -> { Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa },
                      nil?: true
 
-            # @!parse
-            #   # Fields specific to the `network`.
-            #   #
-            #   # @param category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category]
-            #   # @param visa [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa, nil]
-            #   #
-            #   def initialize(category:, visa:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(category:, visa:)
+            #   Fields specific to the `network`.
+            #
+            #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category]
+            #   @param visa [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa, nil]
 
             # The payment network used to process this card authorization.
             #
@@ -815,11 +701,8 @@ module Increase
               # Visa
               VISA = :visa
 
-              finalize!
-
-              # @!parse
-              #   # @return [Array<Symbol>]
-              #   def self.values; end
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails#visa
@@ -852,16 +735,12 @@ module Increase
                        enum: -> { Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason },
                        nil?: true
 
-              # @!parse
-              #   # Fields specific to the `visa` network.
-              #   #
-              #   # @param electronic_commerce_indicator [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
-              #   # @param point_of_service_entry_mode [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
-              #   # @param stand_in_processing_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason, nil]
-              #   #
-              #   def initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:)
+              #   Fields specific to the `visa` network.
+              #
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason, nil]
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -896,11 +775,8 @@ module Increase
                 # Non-secure transaction: Use to identify an electronic commerce transaction that has no data protection.
                 NON_SECURE_TRANSACTION = :non_secure_transaction
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # The method used to enter the cardholder's primary account number and card
@@ -940,11 +816,8 @@ module Increase
                 # Contact chip card, without card verification value
                 INTEGRATED_CIRCUIT_CARD_NO_CVV = :integrated_circuit_card_no_cvv
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
 
               # Only present when `actioner: network`. Describes why a card authorization was
@@ -977,11 +850,8 @@ module Increase
                 # An unspecific reason for stand-in processing.
                 OTHER = :other
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
           end
@@ -1010,16 +880,12 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!parse
-            #   # Network-specific identifiers for a specific request or transaction.
-            #   #
-            #   # @param retrieval_reference_number [String, nil]
-            #   # @param trace_number [String, nil]
-            #   # @param transaction_id [String, nil]
-            #   #
-            #   def initialize(retrieval_reference_number:, trace_number:, transaction_id:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param retrieval_reference_number [String, nil]
+            #   @param trace_number [String, nil]
+            #   @param transaction_id [String, nil]
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -1047,11 +913,8 @@ module Increase
             # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
             REFUND = :refund
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # This is present if a specific decline reason was given in the real-time
@@ -1079,11 +942,8 @@ module Increase
             # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
             OTHER = :other
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # Why the transaction was declined.
@@ -1140,14 +1000,14 @@ module Increase
             # The original card authorization for this incremental authorization does not exist.
             MISSING_ORIGINAL_AUTHORIZATION = :missing_original_authorization
 
+            # The transaction was declined because the 3DS authentication failed.
+            FAILED_3DS_AUTHENTICATION = :failed_3ds_authentication
+
             # The transaction was suspected to be fraudulent. Please reach out to support@increase.com for more information.
             SUSPECTED_FRAUD = :suspected_fraud
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::DeclinedTransaction::Source::CardDecline#verification
@@ -1168,15 +1028,11 @@ module Increase
             required :cardholder_address,
                      -> { Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress }
 
-            # @!parse
-            #   # Fields related to verification of cardholder-provided values.
-            #   #
-            #   # @param card_verification_code [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode]
-            #   # @param cardholder_address [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress]
-            #   #
-            #   def initialize(card_verification_code:, cardholder_address:, **) = super
-
-            # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+            # @!method initialize(card_verification_code:, cardholder_address:)
+            #   Fields related to verification of cardholder-provided values.
+            #
+            #   @param card_verification_code [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode]
+            #   @param cardholder_address [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress]
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -1187,15 +1043,11 @@ module Increase
               required :result,
                        enum: -> { Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result }
 
-              # @!parse
-              #   # Fields related to verification of the Card Verification Code, a 3-digit code on
-              #   # the back of the card.
-              #   #
-              #   # @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result]
-              #   #
-              #   def initialize(result:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(result:)
+              #   Fields related to verification of the Card Verification Code, a 3-digit code on
+              #   the back of the card.
+              #
+              #   @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result]
 
               # The result of verifying the Card Verification Code.
               #
@@ -1212,11 +1064,8 @@ module Increase
                 # The card verification code did not match the one on file.
                 NO_MATCH = :no_match
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
 
@@ -1254,19 +1103,15 @@ module Increase
               required :result,
                        enum: -> { Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result }
 
-              # @!parse
-              #   # Cardholder address provided in the authorization request and the address on file
-              #   # we verified it against.
-              #   #
-              #   # @param actual_line1 [String, nil]
-              #   # @param actual_postal_code [String, nil]
-              #   # @param provided_line1 [String, nil]
-              #   # @param provided_postal_code [String, nil]
-              #   # @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result]
-              #   #
-              #   def initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:, **) = super
-
-              # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+              # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
+              #   Cardholder address provided in the authorization request and the address on file
+              #   we verified it against.
+              #
+              #   @param actual_line1 [String, nil]
+              #   @param actual_postal_code [String, nil]
+              #   @param provided_line1 [String, nil]
+              #   @param provided_postal_code [String, nil]
+              #   @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result]
 
               # The address verification result returned to the card network.
               #
@@ -1292,11 +1137,8 @@ module Increase
                 # Postal code and street address do not match.
                 NO_MATCH = :no_match
 
-                finalize!
-
-                # @!parse
-                #   # @return [Array<Symbol>]
-                #   def self.values; end
+                # @!method self.values
+                #   @return [Array<Symbol>]
               end
             end
           end
@@ -1330,11 +1172,8 @@ module Increase
           # The Declined Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::DeclinedTransaction::Source#check_decline
@@ -1385,32 +1224,17 @@ module Increase
           #   @return [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason]
           required :reason, enum: -> { Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason }
 
-          # @!parse
-          #   # A Check Decline object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `check_decline`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param auxiliary_on_us [String, nil]
-          #   # @param back_image_file_id [String, nil]
-          #   # @param check_transfer_id [String, nil]
-          #   # @param front_image_file_id [String, nil]
-          #   # @param inbound_check_deposit_id [String, nil]
-          #   # @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     auxiliary_on_us:,
-          #     back_image_file_id:,
-          #     check_transfer_id:,
-          #     front_image_file_id:,
-          #     inbound_check_deposit_id:,
-          #     reason:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, auxiliary_on_us:, back_image_file_id:, check_transfer_id:, front_image_file_id:, inbound_check_deposit_id:, reason:)
+          #   A Check Decline object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `check_decline`.
+          #
+          #   @param amount [Integer]
+          #   @param auxiliary_on_us [String, nil]
+          #   @param back_image_file_id [String, nil]
+          #   @param check_transfer_id [String, nil]
+          #   @param front_image_file_id [String, nil]
+          #   @param inbound_check_deposit_id [String, nil]
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason]
 
           # Why the check was declined.
           #
@@ -1469,11 +1293,8 @@ module Increase
             # Your integration declined this check via the API.
             USER_INITIATED = :user_initiated
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1520,20 +1341,16 @@ module Increase
           #   @return [Time]
           required :rejected_at, Time
 
-          # @!parse
-          #   # A Check Deposit Rejection object. This field will be present in the JSON
-          #   # response if and only if `category` is equal to `check_deposit_rejection`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param check_deposit_id [String]
-          #   # @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Currency]
-          #   # @param declined_transaction_id [String]
-          #   # @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Reason]
-          #   # @param rejected_at [Time]
-          #   #
-          #   def initialize(amount:, check_deposit_id:, currency:, declined_transaction_id:, reason:, rejected_at:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, check_deposit_id:, currency:, declined_transaction_id:, reason:, rejected_at:)
+          #   A Check Deposit Rejection object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `check_deposit_rejection`.
+          #
+          #   @param amount [Integer]
+          #   @param check_deposit_id [String]
+          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Currency]
+          #   @param declined_transaction_id [String]
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Reason]
+          #   @param rejected_at [Time]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
           # currency.
@@ -1560,11 +1377,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # Why the check deposit was rejected.
@@ -1606,11 +1420,8 @@ module Increase
             # The check was rejected for an unknown reason.
             UNKNOWN = :unknown
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1681,39 +1492,21 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!parse
-          #   # An Inbound Real-Time Payments Transfer Decline object. This field will be
-          #   # present in the JSON response if and only if `category` is equal to
-          #   # `inbound_real_time_payments_transfer_decline`.
-          #   #
-          #   # @param amount [Integer]
-          #   # @param creditor_name [String]
-          #   # @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
-          #   # @param debtor_account_number [String]
-          #   # @param debtor_name [String]
-          #   # @param debtor_routing_number [String]
-          #   # @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason]
-          #   # @param remittance_information [String, nil]
-          #   # @param transaction_identification [String]
-          #   # @param transfer_id [String]
-          #   #
-          #   def initialize(
-          #     amount:,
-          #     creditor_name:,
-          #     currency:,
-          #     debtor_account_number:,
-          #     debtor_name:,
-          #     debtor_routing_number:,
-          #     reason:,
-          #     remittance_information:,
-          #     transaction_identification:,
-          #     transfer_id:,
-          #     **
-          #   )
-          #     super
-          #   end
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, reason:, remittance_information:, transaction_identification:, transfer_id:)
+          #   An Inbound Real-Time Payments Transfer Decline object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `inbound_real_time_payments_transfer_decline`.
+          #
+          #   @param amount [Integer]
+          #   @param creditor_name [String]
+          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
+          #   @param debtor_account_number [String]
+          #   @param debtor_name [String]
+          #   @param debtor_routing_number [String]
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason]
+          #   @param remittance_information [String, nil]
+          #   @param transaction_identification [String]
+          #   @param transfer_id [String]
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
           # transfer's currency. This will always be "USD" for a Real-Time Payments
@@ -1741,11 +1534,8 @@ module Increase
             # US Dollar (USD)
             USD = :USD
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # Why the transfer was declined.
@@ -1772,11 +1562,8 @@ module Increase
             # Your account is not enabled to receive Real-Time Payments transfers.
             REAL_TIME_PAYMENTS_NOT_ENABLED = :real_time_payments_not_enabled
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1794,16 +1581,12 @@ module Increase
           #   @return [Symbol, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason]
           required :reason, enum: -> { Increase::Models::DeclinedTransaction::Source::WireDecline::Reason }
 
-          # @!parse
-          #   # A Wire Decline object. This field will be present in the JSON response if and
-          #   # only if `category` is equal to `wire_decline`.
-          #   #
-          #   # @param inbound_wire_transfer_id [String]
-          #   # @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason]
-          #   #
-          #   def initialize(inbound_wire_transfer_id:, reason:, **) = super
-
-          # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+          # @!method initialize(inbound_wire_transfer_id:, reason:)
+          #   A Wire Decline object. This field will be present in the JSON response if and
+          #   only if `category` is equal to `wire_decline`.
+          #
+          #   @param inbound_wire_transfer_id [String]
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason]
 
           # Why the wire transfer was declined.
           #
@@ -1829,11 +1612,8 @@ module Increase
             # The transaction is not allowed per Increase's terms.
             TRANSACTION_NOT_ALLOWED = :transaction_not_allowed
 
-            finalize!
-
-            # @!parse
-            #   # @return [Array<Symbol>]
-            #   def self.values; end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
       end
@@ -1847,11 +1627,8 @@ module Increase
 
         DECLINED_TRANSACTION = :declined_transaction
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

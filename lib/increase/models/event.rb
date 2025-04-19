@@ -42,22 +42,18 @@ module Increase
       #   @return [Symbol, Increase::Models::Event::Type]
       required :type, enum: -> { Increase::Models::Event::Type }
 
-      # @!parse
-      #   # Events are records of things that happened to objects at Increase. Events are
-      #   # accessible via the List Events endpoint and can be delivered to your application
-      #   # via webhooks. For more information, see our
-      #   # [webhooks guide](https://increase.com/documentation/webhooks).
-      #   #
-      #   # @param id [String]
-      #   # @param associated_object_id [String]
-      #   # @param associated_object_type [String]
-      #   # @param category [Symbol, Increase::Models::Event::Category]
-      #   # @param created_at [Time]
-      #   # @param type [Symbol, Increase::Models::Event::Type]
-      #   #
-      #   def initialize(id:, associated_object_id:, associated_object_type:, category:, created_at:, type:, **) = super
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, associated_object_id:, associated_object_type:, category:, created_at:, type:)
+      #   Events are records of things that happened to objects at Increase. Events are
+      #   accessible via the List Events endpoint and can be delivered to your application
+      #   via webhooks. For more information, see our
+      #   [webhooks guide](https://increase.com/documentation/webhooks).
+      #
+      #   @param id [String]
+      #   @param associated_object_id [String]
+      #   @param associated_object_type [String]
+      #   @param category [Symbol, Increase::Models::Event::Category]
+      #   @param created_at [Time]
+      #   @param type [Symbol, Increase::Models::Event::Type]
 
       # The category of the Event. We may add additional possible values for this enum
       # over time; your application should be able to handle such additions gracefully.
@@ -332,11 +328,8 @@ module Increase
         # Occurs whenever a Wire Transfer is updated.
         WIRE_TRANSFER_UPDATED = :"wire_transfer.updated"
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -348,11 +341,8 @@ module Increase
 
         EVENT = :event
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

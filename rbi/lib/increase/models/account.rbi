@@ -143,7 +143,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Bank) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Bank::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Core Bank
         CORE_BANK = T.let(:core_bank, Increase::Models::Account::Bank::TaggedSymbol)
@@ -164,7 +164,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Currency) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Currency::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
         CAD = T.let(:CAD, Increase::Models::Account::Currency::TaggedSymbol)
@@ -193,7 +193,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Closed Accounts on which no new activity can occur.
         CLOSED = T.let(:closed, Increase::Models::Account::Status::TaggedSymbol)
@@ -211,7 +211,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Account::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::Account::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         ACCOUNT = T.let(:account, Increase::Models::Account::Type::TaggedSymbol)
 

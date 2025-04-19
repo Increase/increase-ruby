@@ -63,38 +63,21 @@ module Increase
       #   @return [Time]
       required :updated_at, Time
 
-      # @!parse
-      #   # Programs determine the compliance and commercial terms of Accounts. By default,
-      #   # you have a Commercial Banking program for managing your own funds. If you are
-      #   # lending or managing funds on behalf of your customers, or otherwise engaged in
-      #   # regulated activity, we will work together to create additional Programs for you.
-      #   #
-      #   # @param id [String]
-      #   # @param bank [Symbol, Increase::Models::Program::Bank]
-      #   # @param billing_account_id [String, nil]
-      #   # @param created_at [Time]
-      #   # @param default_digital_card_profile_id [String, nil]
-      #   # @param interest_rate [String]
-      #   # @param name [String]
-      #   # @param type [Symbol, Increase::Models::Program::Type]
-      #   # @param updated_at [Time]
-      #   #
-      #   def initialize(
-      #     id:,
-      #     bank:,
-      #     billing_account_id:,
-      #     created_at:,
-      #     default_digital_card_profile_id:,
-      #     interest_rate:,
-      #     name:,
-      #     type:,
-      #     updated_at:,
-      #     **
-      #   )
-      #     super
-      #   end
-
-      # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+      # @!method initialize(id:, bank:, billing_account_id:, created_at:, default_digital_card_profile_id:, interest_rate:, name:, type:, updated_at:)
+      #   Programs determine the compliance and commercial terms of Accounts. By default,
+      #   you have a Commercial Banking program for managing your own funds. If you are
+      #   lending or managing funds on behalf of your customers, or otherwise engaged in
+      #   regulated activity, we will work together to create additional Programs for you.
+      #
+      #   @param id [String]
+      #   @param bank [Symbol, Increase::Models::Program::Bank]
+      #   @param billing_account_id [String, nil]
+      #   @param created_at [Time]
+      #   @param default_digital_card_profile_id [String, nil]
+      #   @param interest_rate [String]
+      #   @param name [String]
+      #   @param type [Symbol, Increase::Models::Program::Type]
+      #   @param updated_at [Time]
 
       # The Bank the Program is with.
       #
@@ -111,11 +94,8 @@ module Increase
         # Grasshopper Bank
         GRASSHOPPER_BANK = :grasshopper_bank
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -127,11 +107,8 @@ module Increase
 
         PROGRAM = :program
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

@@ -113,8 +113,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::TransactionListParams::Category::In) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::TransactionListParams::Category::In::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Account Transfer Intention: details will be under the `account_transfer_intention` object.
           ACCOUNT_TRANSFER_INTENTION =

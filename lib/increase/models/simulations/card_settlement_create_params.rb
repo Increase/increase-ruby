@@ -5,8 +5,7 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::CardSettlements#create
       class CardSettlementCreateParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute card_id
@@ -22,26 +21,18 @@ module Increase
         #   @return [String]
         required :pending_transaction_id, String
 
-        # @!attribute [r] amount
+        # @!attribute amount
         #   The amount to be settled. This defaults to the amount of the Pending Transaction
         #   being settled.
         #
         #   @return [Integer, nil]
         optional :amount, Integer
 
-        # @!parse
-        #   # @return [Integer]
-        #   attr_writer :amount
-
-        # @!parse
-        #   # @param card_id [String]
-        #   # @param pending_transaction_id [String]
-        #   # @param amount [Integer]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(card_id:, pending_transaction_id:, amount: nil, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(card_id:, pending_transaction_id:, amount: nil, request_options: {})
+        #   @param card_id [String]
+        #   @param pending_transaction_id [String]
+        #   @param amount [Integer]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

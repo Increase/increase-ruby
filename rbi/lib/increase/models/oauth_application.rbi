@@ -74,8 +74,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthApplication::Status) }
-        OrSymbol =
-          T.type_alias { T.any(Symbol, String, Increase::Models::OAuthApplication::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The application is active and can be used by your users.
         ACTIVE = T.let(:active, Increase::Models::OAuthApplication::Status::TaggedSymbol)
@@ -93,7 +92,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::OAuthApplication::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::OAuthApplication::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         OAUTH_APPLICATION = T.let(:oauth_application, Increase::Models::OAuthApplication::Type::TaggedSymbol)
 

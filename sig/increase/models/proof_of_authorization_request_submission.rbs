@@ -3,7 +3,7 @@ module Increase
     type proof_of_authorization_request_submission =
       {
         id: String,
-        additional_evidence_file_id: String?,
+        additional_evidence_files: ::Array[Increase::Models::ProofOfAuthorizationRequestSubmission::AdditionalEvidenceFile],
         authorization_terms: String,
         authorized_at: Time,
         authorizer_company: String?,
@@ -25,7 +25,7 @@ module Increase
     class ProofOfAuthorizationRequestSubmission < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor additional_evidence_file_id: String?
+      attr_accessor additional_evidence_files: ::Array[Increase::Models::ProofOfAuthorizationRequestSubmission::AdditionalEvidenceFile]
 
       attr_accessor authorization_terms: String
 
@@ -61,7 +61,7 @@ module Increase
 
       def initialize: (
         id: String,
-        additional_evidence_file_id: String?,
+        additional_evidence_files: ::Array[Increase::Models::ProofOfAuthorizationRequestSubmission::AdditionalEvidenceFile],
         authorization_terms: String,
         authorized_at: Time,
         authorizer_company: String?,
@@ -81,6 +81,16 @@ module Increase
       ) -> void
 
       def to_hash: -> Increase::Models::proof_of_authorization_request_submission
+
+      type additional_evidence_file = { file_id: String }
+
+      class AdditionalEvidenceFile < Increase::Internal::Type::BaseModel
+        attr_accessor file_id: String
+
+        def initialize: (file_id: String) -> void
+
+        def to_hash: -> Increase::Models::ProofOfAuthorizationRequestSubmission::additional_evidence_file
+      end
 
       type status =
         :pending_review | :rejected | :canceled | :pending_sending | :sent

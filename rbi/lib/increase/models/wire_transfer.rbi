@@ -395,8 +395,7 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireTransfer::CreatedBy::Category) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, Increase::Models::WireTransfer::CreatedBy::Category::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # An API key. Details will be under the `api_key` object.
           API_KEY = T.let(:api_key, Increase::Models::WireTransfer::CreatedBy::Category::TaggedSymbol)
@@ -445,7 +444,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireTransfer::Currency) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::WireTransfer::Currency::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
         CAD = T.let(:CAD, Increase::Models::WireTransfer::Currency::TaggedSymbol)
@@ -474,7 +473,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireTransfer::Network) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::WireTransfer::Network::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         WIRE = T.let(:wire, Increase::Models::WireTransfer::Network::TaggedSymbol)
 
@@ -630,7 +629,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireTransfer::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::WireTransfer::Status::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The transfer is pending approval.
         PENDING_APPROVAL = T.let(:pending_approval, Increase::Models::WireTransfer::Status::TaggedSymbol)
@@ -689,7 +688,7 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireTransfer::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String, Increase::Models::WireTransfer::Type::TaggedSymbol) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         WIRE_TRANSFER = T.let(:wire_transfer, Increase::Models::WireTransfer::Type::TaggedSymbol)
 

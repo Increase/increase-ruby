@@ -5,8 +5,7 @@ module Increase
     module Simulations
       # @see Increase::Resources::Simulations::CardDisputes#action
       class CardDisputeActionParams < Increase::Internal::Type::BaseModel
-        # @!parse
-        #   extend Increase::Internal::Type::RequestParameters::Converter
+        extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute status
@@ -15,24 +14,16 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Status]
         required :status, enum: -> { Increase::Models::Simulations::CardDisputeActionParams::Status }
 
-        # @!attribute [r] explanation
+        # @!attribute explanation
         #   Why the dispute was rejected. Not required for accepting disputes.
         #
         #   @return [String, nil]
         optional :explanation, String
 
-        # @!parse
-        #   # @return [String]
-        #   attr_writer :explanation
-
-        # @!parse
-        #   # @param status [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Status]
-        #   # @param explanation [String]
-        #   # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
-        #   #
-        #   def initialize(status:, explanation: nil, request_options: {}, **) = super
-
-        # def initialize: (Hash | Increase::Internal::Type::BaseModel) -> void
+        # @!method initialize(status:, explanation: nil, request_options: {})
+        #   @param status [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Status]
+        #   @param explanation [String]
+        #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
         # The status to move the dispute to.
         module Status
@@ -53,11 +44,8 @@ module Increase
           # The Card Dispute has been won and no further action can be taken.
           WON = :won
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end
