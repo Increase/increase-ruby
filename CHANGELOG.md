@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-04-25)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* **api:** api update ([666183d](https://github.com/Increase/increase-ruby/commit/666183d2e524186260dcca5505a794c545840183))
+* **api:** api update ([f7348dc](https://github.com/Increase/increase-ruby/commit/f7348dc4328a7e2111a67be09dc77843c83b2e49))
+* **api:** api update ([7d7ab72](https://github.com/Increase/increase-ruby/commit/7d7ab72a46faa7274855639846a130f2a9e0ad41))
+* support specifying content-type with FilePart class ([05afd72](https://github.com/Increase/increase-ruby/commit/05afd7274f7881cdef4bc4292d9c7eb8104f0c27))
+* support webmock for testing ([995c8ba](https://github.com/Increase/increase-ruby/commit/995c8baa67995d921ea02054f120e9bdaebe01ad))
+
+
+### Bug Fixes
+
+* ensure gem release is unaffected by renaming ([c0a0fb7](https://github.com/Increase/increase-ruby/commit/c0a0fb79e9b89a36d3dfbcb0dac08919e4eea8c4))
+* make a typo for `FilePart.content` ([a080024](https://github.com/Increase/increase-ruby/commit/a080024a471808e2fb1cf1eade231d93c652e411))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([6ce04be](https://github.com/Increase/increase-ruby/commit/6ce04be506ecb273342936ed47e4996cd2173fef))
+* **ci:** only use depot for staging repos ([0ab95d5](https://github.com/Increase/increase-ruby/commit/0ab95d54a80ef309144a61b51543bfb298f44f22))
+* **ci:** run on more branches and use depot runners ([81e1f3a](https://github.com/Increase/increase-ruby/commit/81e1f3ac48fe1e256ae0f203b902a1b3e87901f9))
+* consistently use string in examples, even for enums ([e87d2db](https://github.com/Increase/increase-ruby/commit/e87d2db29255f5f9372f82a2e9ecd5da02cc2ca6))
+* **internal:** codegen related update ([79b309d](https://github.com/Increase/increase-ruby/commit/79b309d21bf855bdd27c7822cf6735e83d3cb484))
+* **internal:** improve response envelope unwrap functionality ([b3f18d4](https://github.com/Increase/increase-ruby/commit/b3f18d4820ff1d2a1f3b4b551f3abd0530a5b77c))
+* show truncated parameter docs in yard ([294b347](https://github.com/Increase/increase-ruby/commit/294b3473dff35162a9f5e64552579261b1babed6))
+
 ## 0.1.0-alpha.11 (2025-04-21)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
