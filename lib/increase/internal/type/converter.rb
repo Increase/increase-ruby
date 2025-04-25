@@ -44,6 +44,9 @@ module Increase
           in Pathname | IO
             state[:can_retry] = false if value.is_a?(IO)
             Increase::FilePart.new(value)
+          in Increase::FilePart
+            state[:can_retry] = false if value.content.is_a?(IO)
+            value
           else
             value
           end
