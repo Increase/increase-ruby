@@ -32,6 +32,14 @@ module Increase
       #   @return [String]
       required :source_account_number_id, String
 
+      # @!attribute check_number
+      #   The check number Increase should use for the check. This should not contain
+      #   leading zeroes and must be unique across the `source_account_number`. If this is
+      #   omitted, Increase will generate a check number for you.
+      #
+      #   @return [String, nil]
+      optional :check_number, String
+
       # @!attribute physical_check
       #   Details relating to the physical check that Increase will print and mail. This
       #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
@@ -54,7 +62,7 @@ module Increase
       #   @return [Increase::Models::CheckTransferCreateParams::ThirdParty, nil]
       optional :third_party, -> { Increase::Models::CheckTransferCreateParams::ThirdParty }
 
-      # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
+      # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckTransferCreateParams} for more details.
       #
@@ -65,6 +73,9 @@ module Increase
       #   @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
       #
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
+      #   ...
+      #
+      #   @param check_number [String] The check number Increase should use for the check. This should not contain lead
       #   ...
       #
       #   @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck] Details relating to the physical check that Increase will print and mail. This i
@@ -119,14 +130,6 @@ module Increase
         #   @return [String, nil]
         optional :attachment_file_id, String
 
-        # @!attribute check_number
-        #   The check number Increase should print on the check. This should not contain
-        #   leading zeroes and must be unique across the `source_account_number`. If this is
-        #   omitted, Increase will generate a check number for you.
-        #
-        #   @return [String, nil]
-        optional :check_number, String
-
         # @!attribute note
         #   The descriptor that will be printed on the letter included with the check.
         #
@@ -156,7 +159,7 @@ module Increase
         #   @return [String, nil]
         optional :signature_text, String
 
-        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, check_number: nil, note: nil, return_address: nil, shipping_method: nil, signature_text: nil)
+        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, return_address: nil, shipping_method: nil, signature_text: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
         #
@@ -171,9 +174,6 @@ module Increase
         #   @param recipient_name [String] The name that will be printed on the check in the 'To:' field.
         #
         #   @param attachment_file_id [String] The ID of a File to be attached to the check. This must have `purpose: check_att
-        #   ...
-        #
-        #   @param check_number [String] The check number Increase should print on the check. This should not contain lea
         #   ...
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.

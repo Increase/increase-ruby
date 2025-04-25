@@ -23,6 +23,15 @@ module Increase
       sig { returns(String) }
       attr_accessor :source_account_number_id
 
+      # The check number Increase should use for the check. This should not contain
+      # leading zeroes and must be unique across the `source_account_number`. If this is
+      # omitted, Increase will generate a check number for you.
+      sig { returns(T.nilable(String)) }
+      attr_reader :check_number
+
+      sig { params(check_number: String).void }
+      attr_writer :check_number
+
       # Details relating to the physical check that Increase will print and mail. This
       # is required if `fulfillment_method` is equal to `physical_check`. It must not be
       # included if any other `fulfillment_method` is provided.
@@ -64,6 +73,7 @@ module Increase
           amount: Integer,
           fulfillment_method: Increase::Models::CheckTransferCreateParams::FulfillmentMethod::OrSymbol,
           source_account_number_id: String,
+          check_number: String,
           physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::AnyHash),
           require_approval: T::Boolean,
           third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::AnyHash),
@@ -81,6 +91,10 @@ module Increase
         # The identifier of the Account Number from which to send the transfer and print
         # on the check.
         source_account_number_id:,
+        # The check number Increase should use for the check. This should not contain
+        # leading zeroes and must be unique across the `source_account_number`. If this is
+        # omitted, Increase will generate a check number for you.
+        check_number: nil,
         # Details relating to the physical check that Increase will print and mail. This
         # is required if `fulfillment_method` is equal to `physical_check`. It must not be
         # included if any other `fulfillment_method` is provided.
@@ -101,6 +115,7 @@ module Increase
               amount: Integer,
               fulfillment_method: Increase::Models::CheckTransferCreateParams::FulfillmentMethod::OrSymbol,
               source_account_number_id: String,
+              check_number: String,
               physical_check: Increase::Models::CheckTransferCreateParams::PhysicalCheck,
               require_approval: T::Boolean,
               third_party: Increase::Models::CheckTransferCreateParams::ThirdParty,
@@ -163,15 +178,6 @@ module Increase
         sig { params(attachment_file_id: String).void }
         attr_writer :attachment_file_id
 
-        # The check number Increase should print on the check. This should not contain
-        # leading zeroes and must be unique across the `source_account_number`. If this is
-        # omitted, Increase will generate a check number for you.
-        sig { returns(T.nilable(String)) }
-        attr_reader :check_number
-
-        sig { params(check_number: String).void }
-        attr_writer :check_number
-
         # The descriptor that will be printed on the letter included with the check.
         sig { returns(T.nilable(String)) }
         attr_reader :note
@@ -229,7 +235,6 @@ module Increase
             memo: String,
             recipient_name: String,
             attachment_file_id: String,
-            check_number: String,
             note: String,
             return_address: T.any(
               Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
@@ -251,10 +256,6 @@ module Increase
           # `purpose: check_attachment`. For details on pricing and restrictions, see
           # https://increase.com/documentation/originating-checks#printing-checks .
           attachment_file_id: nil,
-          # The check number Increase should print on the check. This should not contain
-          # leading zeroes and must be unique across the `source_account_number`. If this is
-          # omitted, Increase will generate a check number for you.
-          check_number: nil,
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
           # The return address to be printed on the check. If omitted this will default to
@@ -276,7 +277,6 @@ module Increase
                 memo: String,
                 recipient_name: String,
                 attachment_file_id: String,
-                check_number: String,
                 note: String,
                 return_address: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
                 shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol,

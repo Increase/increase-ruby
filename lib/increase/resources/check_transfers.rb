@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Check Transfer
       #
-      # @overload create(account_id:, amount:, fulfillment_method:, source_account_number_id:, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
+      # @overload create(account_id:, amount:, fulfillment_method:, source_account_number_id:, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
       #
       # @param account_id [String] The identifier for the account that will send the transfer.
       #
@@ -17,6 +17,9 @@ module Increase
       # @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
       #
       # @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
+      # ...
+      #
+      # @param check_number [String] The check number Increase should use for the check. This should not contain lead
       # ...
       #
       # @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck] Details relating to the physical check that Increase will print and mail. This i

@@ -6,6 +6,7 @@ module Increase
         amount: Integer,
         fulfillment_method: Increase::Models::CheckTransferCreateParams::fulfillment_method,
         source_account_number_id: String,
+        ?check_number: String,
         ?physical_check: Increase::Models::CheckTransferCreateParams::PhysicalCheck,
         ?require_approval: bool,
         ?third_party: Increase::Models::CheckTransferCreateParams::ThirdParty,

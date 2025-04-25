@@ -10,6 +10,7 @@ module Increase
           amount: Integer,
           fulfillment_method: Increase::Models::CheckTransferCreateParams::FulfillmentMethod::OrSymbol,
           source_account_number_id: String,
+          check_number: String,
           physical_check: T.any(Increase::Models::CheckTransferCreateParams::PhysicalCheck, Increase::Internal::AnyHash),
           require_approval: T::Boolean,
           third_party: T.any(Increase::Models::CheckTransferCreateParams::ThirdParty, Increase::Internal::AnyHash),
@@ -27,6 +28,10 @@ module Increase
         # The identifier of the Account Number from which to send the transfer and print
         # on the check.
         source_account_number_id:,
+        # The check number Increase should use for the check. This should not contain
+        # leading zeroes and must be unique across the `source_account_number`. If this is
+        # omitted, Increase will generate a check number for you.
+        check_number: nil,
         # Details relating to the physical check that Increase will print and mail. This
         # is required if `fulfillment_method` is equal to `physical_check`. It must not be
         # included if any other `fulfillment_method` is provided.
