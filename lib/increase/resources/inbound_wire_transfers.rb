@@ -61,6 +61,30 @@ module Increase
         )
       end
 
+      # Reverse an Inbound Wire Transfer
+      #
+      # @overload reverse(inbound_wire_transfer_id, reason:, request_options: {})
+      #
+      # @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
+      #
+      # @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::InboundWireTransfer]
+      #
+      # @see Increase::Models::InboundWireTransferReverseParams
+      def reverse(inbound_wire_transfer_id, params)
+        parsed, options = Increase::Models::InboundWireTransferReverseParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["inbound_wire_transfers/%1$s/reverse", inbound_wire_transfer_id],
+          body: parsed,
+          model: Increase::Models::InboundWireTransfer,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Increase::Client]

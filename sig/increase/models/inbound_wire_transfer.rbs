@@ -24,6 +24,7 @@ module Increase
         :originator_to_beneficiary_information_line2 => String?,
         :originator_to_beneficiary_information_line3 => String?,
         :originator_to_beneficiary_information_line4 => String?,
+        reversal: Increase::Models::InboundWireTransfer::Reversal?,
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_
@@ -74,6 +75,8 @@ module Increase
 
       attr_accessor originator_to_beneficiary_information_line4: String?
 
+      attr_accessor reversal: Increase::Models::InboundWireTransfer::Reversal?
+
       attr_accessor sender_reference: String?
 
       attr_accessor status: Increase::Models::InboundWireTransfer::status
@@ -103,12 +106,46 @@ module Increase
         originator_to_beneficiary_information_line2: String?,
         originator_to_beneficiary_information_line3: String?,
         originator_to_beneficiary_information_line4: String?,
+        reversal: Increase::Models::InboundWireTransfer::Reversal?,
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_
       ) -> void
 
       def to_hash: -> Increase::Models::inbound_wire_transfer
+
+      type reversal =
+        {
+          reason: Increase::Models::InboundWireTransfer::Reversal::reason,
+          reversed_at: Time
+        }
+
+      class Reversal < Increase::Internal::Type::BaseModel
+        attr_accessor reason: Increase::Models::InboundWireTransfer::Reversal::reason
+
+        attr_accessor reversed_at: Time
+
+        def initialize: (
+          reason: Increase::Models::InboundWireTransfer::Reversal::reason,
+          reversed_at: Time
+        ) -> void
+
+        def to_hash: -> Increase::Models::InboundWireTransfer::reversal
+
+        type reason = :duplicate | :creditor_request
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The inbound wire transfer was a duplicate.
+          DUPLICATE: :duplicate
+
+          # The recipient of the wire transfer requested the funds be returned to the sender.
+          CREDITOR_REQUEST: :creditor_request
+
+          def self?.values: -> ::Array[Increase::Models::InboundWireTransfer::Reversal::reason]
+        end
+      end
 
       type status = :pending | :accepted | :declined | :reversed
 

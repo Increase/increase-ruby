@@ -38,6 +38,7 @@ class Increase::Test::Resources::Simulations::InboundWireTransfersTest < Increas
         originator_to_beneficiary_information_line2: String | nil,
         originator_to_beneficiary_information_line3: String | nil,
         originator_to_beneficiary_information_line4: String | nil,
+        reversal: Increase::Models::InboundWireTransfer::Reversal | nil,
         sender_reference: String | nil,
         status: Increase::Models::InboundWireTransfer::Status,
         type: Increase::Models::InboundWireTransfer::Type

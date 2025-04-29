@@ -140,6 +140,13 @@ module Increase
       #   @return [String, nil]
       required :originator_to_beneficiary_information_line4, String, nil?: true
 
+      # @!attribute reversal
+      #   Information about the reversal of the inbound wire transfer if it has been
+      #   reversed.
+      #
+      #   @return [Increase::Models::InboundWireTransfer::Reversal, nil]
+      required :reversal, -> { Increase::Models::InboundWireTransfer::Reversal }, nil?: true
+
       # @!attribute sender_reference
       #   The sending bank's reference number for the wire transfer.
       #
@@ -159,7 +166,7 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundWireTransfer::Type]
       required :type, enum: -> { Increase::Models::InboundWireTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_reference:, created_at:, description:, input_message_accountability_data:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, sender_reference:, status:, type:)
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_reference:, created_at:, description:, input_message_accountability_data:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, reversal:, sender_reference:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundWireTransfer} for more details.
       #
@@ -213,12 +220,59 @@ module Increase
       #
       #   @param originator_to_beneficiary_information_line4 [String, nil] A free-form message set by the wire originator.
       #
+      #   @param reversal [Increase::Models::InboundWireTransfer::Reversal, nil] Information about the reversal of the inbound wire transfer if it has been rever
+      #   ...
+      #
       #   @param sender_reference [String, nil] The sending bank's reference number for the wire transfer.
       #
       #   @param status [Symbol, Increase::Models::InboundWireTransfer::Status] The status of the transfer.
       #
       #   @param type [Symbol, Increase::Models::InboundWireTransfer::Type] A constant representing the object's type. For this resource it will always be `
       #   ...
+
+      # @see Increase::Models::InboundWireTransfer#reversal
+      class Reversal < Increase::Internal::Type::BaseModel
+        # @!attribute reason
+        #   The reason for the reversal.
+        #
+        #   @return [Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason]
+        required :reason, enum: -> { Increase::Models::InboundWireTransfer::Reversal::Reason }
+
+        # @!attribute reversed_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the transfer was reversed.
+        #
+        #   @return [Time]
+        required :reversed_at, Time
+
+        # @!method initialize(reason:, reversed_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::InboundWireTransfer::Reversal} for more details.
+        #
+        #   Information about the reversal of the inbound wire transfer if it has been
+        #   reversed.
+        #
+        #   @param reason [Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason] The reason for the reversal.
+        #
+        #   @param reversed_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   ...
+
+        # The reason for the reversal.
+        #
+        # @see Increase::Models::InboundWireTransfer::Reversal#reason
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The inbound wire transfer was a duplicate.
+          DUPLICATE = :duplicate
+
+          # The recipient of the wire transfer requested the funds be returned to the sender.
+          CREDITOR_REQUEST = :creditor_request
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
 
       # The status of the transfer.
       #

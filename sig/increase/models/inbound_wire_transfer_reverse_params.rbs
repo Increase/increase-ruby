@@ -1,0 +1,35 @@
+module Increase
+  module Models
+    type inbound_wire_transfer_reverse_params =
+      { reason: Increase::Models::InboundWireTransferReverseParams::reason }
+      & Increase::Internal::Type::request_parameters
+
+    class InboundWireTransferReverseParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor reason: Increase::Models::InboundWireTransferReverseParams::reason
+
+      def initialize: (
+        reason: Increase::Models::InboundWireTransferReverseParams::reason,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> Increase::Models::inbound_wire_transfer_reverse_params
+
+      type reason = :duplicate | :creditor_request
+
+      module Reason
+        extend Increase::Internal::Type::Enum
+
+        # The inbound wire transfer was a duplicate.
+        DUPLICATE: :duplicate
+
+        # The recipient of the wire transfer requested the funds be returned to the sender.
+        CREDITOR_REQUEST: :creditor_request
+
+        def self?.values: -> ::Array[Increase::Models::InboundWireTransferReverseParams::reason]
+      end
+    end
+  end
+end

@@ -16,6 +16,12 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::Models::InboundWireTransfer]
 
+      def reverse: (
+        String inbound_wire_transfer_id,
+        reason: Increase::Models::InboundWireTransferReverseParams::reason,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Models::InboundWireTransfer
+
       def initialize: (client: Increase::Client) -> void
     end
   end

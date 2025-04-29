@@ -40,6 +40,22 @@ module Increase
         status: nil,
         request_options: {}
       ); end
+      # Reverse an Inbound Wire Transfer
+      sig do
+        params(
+          inbound_wire_transfer_id: String,
+          reason: Increase::Models::InboundWireTransferReverseParams::Reason::OrSymbol,
+          request_options: Increase::RequestOpts
+        )
+          .returns(Increase::Models::InboundWireTransfer)
+      end
+      def reverse(
+        # The identifier of the Inbound Wire Transfer to reverse.
+        inbound_wire_transfer_id,
+        # Reason for the reversal.
+        reason:,
+        request_options: {}
+      ); end
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:); end

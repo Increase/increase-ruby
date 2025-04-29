@@ -95,6 +95,19 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :originator_to_beneficiary_information_line4
 
+      # Information about the reversal of the inbound wire transfer if it has been
+      # reversed.
+      sig { returns(T.nilable(Increase::Models::InboundWireTransfer::Reversal)) }
+      attr_reader :reversal
+
+      sig do
+        params(
+          reversal: T.nilable(T.any(Increase::Models::InboundWireTransfer::Reversal, Increase::Internal::AnyHash))
+        )
+          .void
+      end
+      attr_writer :reversal
+
       # The sending bank's reference number for the wire transfer.
       sig { returns(T.nilable(String)) }
       attr_accessor :sender_reference
@@ -134,6 +147,7 @@ module Increase
           originator_to_beneficiary_information_line2: T.nilable(String),
           originator_to_beneficiary_information_line3: T.nilable(String),
           originator_to_beneficiary_information_line4: T.nilable(String),
+          reversal: T.nilable(T.any(Increase::Models::InboundWireTransfer::Reversal, Increase::Internal::AnyHash)),
           sender_reference: T.nilable(String),
           status: Increase::Models::InboundWireTransfer::Status::OrSymbol,
           type: Increase::Models::InboundWireTransfer::Type::OrSymbol
@@ -189,6 +203,9 @@ module Increase
         originator_to_beneficiary_information_line3:,
         # A free-form message set by the wire originator.
         originator_to_beneficiary_information_line4:,
+        # Information about the reversal of the inbound wire transfer if it has been
+        # reversed.
+        reversal:,
         # The sending bank's reference number for the wire transfer.
         sender_reference:,
         # The status of the transfer.
@@ -223,6 +240,7 @@ module Increase
               originator_to_beneficiary_information_line2: T.nilable(String),
               originator_to_beneficiary_information_line3: T.nilable(String),
               originator_to_beneficiary_information_line4: T.nilable(String),
+              reversal: T.nilable(Increase::Models::InboundWireTransfer::Reversal),
               sender_reference: T.nilable(String),
               status: Increase::Models::InboundWireTransfer::Status::TaggedSymbol,
               type: Increase::Models::InboundWireTransfer::Type::TaggedSymbol
@@ -230,6 +248,56 @@ module Increase
           )
       end
       def to_hash; end
+
+      class Reversal < Increase::Internal::Type::BaseModel
+        # The reason for the reversal.
+        sig { returns(Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol) }
+        attr_accessor :reason
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the transfer was reversed.
+        sig { returns(Time) }
+        attr_accessor :reversed_at
+
+        # Information about the reversal of the inbound wire transfer if it has been
+        # reversed.
+        sig do
+          params(reason: Increase::Models::InboundWireTransfer::Reversal::Reason::OrSymbol, reversed_at: Time)
+            .returns(T.attached_class)
+        end
+        def self.new(
+          # The reason for the reversal.
+          reason:,
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the transfer was reversed.
+          reversed_at:
+        ); end
+        sig do
+          override
+            .returns(
+              {reason: Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol, reversed_at: Time}
+            )
+        end
+        def to_hash; end
+
+        # The reason for the reversal.
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The inbound wire transfer was a duplicate.
+          DUPLICATE = T.let(:duplicate, Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol)
+
+          # The recipient of the wire transfer requested the funds be returned to the sender.
+          CREDITOR_REQUEST =
+            T.let(:creditor_request, Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol)
+
+          sig { override.returns(T::Array[Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol]) }
+          def self.values; end
+        end
+      end
 
       # The status of the transfer.
       module Status
