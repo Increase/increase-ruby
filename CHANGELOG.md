@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2025-04-29)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Features
+
+* **api:** api update ([0cd0cfd](https://github.com/Increase/increase-ruby/commit/0cd0cfdcbdbe39c7e9c530d8cfa4f5ccf523fef9))
+
+
+### Chores
+
+* loosen rubocop rules that don't always make sense ([1823b91](https://github.com/Increase/increase-ruby/commit/1823b91f3a55222a2b78c2df10b73e1949f134e4))
+
 ## 0.1.0-alpha.13 (2025-04-28)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
