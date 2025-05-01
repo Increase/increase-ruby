@@ -128,6 +128,22 @@ module Increase
             input.respond_to?(:to_h) ? input.to_h : input
           end
         end
+
+        # @api private
+        #
+        # @param input [Object]
+        #
+        # @raise [ArgumentError]
+        # @return [Hash{Object=>Object}, nil]
+        def coerce_hash!(input)
+          case coerce_hash(input)
+          in Hash | nil => coerced
+            coerced
+          else
+            message = "Expected a #{Hash} or #{Increase::Internal::Type::BaseModel}, got #{data.inspect}"
+            raise ArgumentError.new(message)
+          end
+        end
       end
 
       class << self
