@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-05-04)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **api:** api update ([89abf48](https://github.com/Increase/increase-ruby/commit/89abf48eead7502727530d6f705dea0a1e564b99))
+
+
+### Chores
+
+* always check if current page is empty in `next_page?` ([1d2d192](https://github.com/Increase/increase-ruby/commit/1d2d19232fa43a2db751e4e2f325c5c16b17d342))
+* **internal:** codegen related update ([88c79df](https://github.com/Increase/increase-ruby/commit/88c79dfce934bf6b6a3d010b1f8bfd6f4b546501))
+* migrate away from deprecated `JSON#fast_generate` ([4156e8b](https://github.com/Increase/increase-ruby/commit/4156e8bf730abbfcf84030b622c934642f0d6e38))
+* re-export top level models under library namespace ([f94cbdc](https://github.com/Increase/increase-ruby/commit/f94cbdc60fd5457005558261e852b576720048d5))
+* remove Gemfile.lock during bootstrap ([9dc594a](https://github.com/Increase/increase-ruby/commit/9dc594a282783ca34d713df072c6e06712a92e57))
+* validate request option coercion correctness ([210a5b1](https://github.com/Increase/increase-ruby/commit/210a5b1890bc8ccedf959085a2e18f745d8850bc))
+
+
+### Documentation
+
+* **readme:** fix typo ([e6db2fe](https://github.com/Increase/increase-ruby/commit/e6db2fe4055f4d2bbd1b93a090aa34bc200264d7))
+
 ## 0.1.0-alpha.14 (2025-04-29)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
