@@ -389,39 +389,55 @@ module Increase
             sig { returns(Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category::TaggedSymbol) }
             attr_accessor :category
 
+            # The city where the event took place.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :city
+
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             # the tracking event took place.
             sig { returns(Time) }
             attr_accessor :created_at
 
             # The postal code where the event took place.
-            sig { returns(String) }
+            sig { returns(T.nilable(String)) }
             attr_accessor :postal_code
+
+            # The state where the event took place.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :state
 
             sig do
               params(
                 category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category::OrSymbol,
+                city: T.nilable(String),
                 created_at: Time,
-                postal_code: String
+                postal_code: T.nilable(String),
+                state: T.nilable(String)
               )
                 .returns(T.attached_class)
             end
             def self.new(
               # The type of tracking event.
               category:,
+              # The city where the event took place.
+              city:,
               # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
               # the tracking event took place.
               created_at:,
               # The postal code where the event took place.
-              postal_code:
+              postal_code:,
+              # The state where the event took place.
+              state:
             ); end
             sig do
               override
                 .returns(
                   {
                     category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category::TaggedSymbol,
+                    city: T.nilable(String),
                     created_at: Time,
-                    postal_code: String
+                    postal_code: T.nilable(String),
+                    state: T.nilable(String)
                   }
                 )
             end

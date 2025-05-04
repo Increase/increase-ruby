@@ -209,21 +209,29 @@ module Increase
           type update =
             {
               category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category,
+              city: String?,
               created_at: Time,
-              postal_code: String
+              postal_code: String?,
+              state: String?
             }
 
           class Update < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category
 
+            attr_accessor city: String?
+
             attr_accessor created_at: Time
 
-            attr_accessor postal_code: String
+            attr_accessor postal_code: String?
+
+            attr_accessor state: String?
 
             def initialize: (
               category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category,
+              city: String?,
               created_at: Time,
-              postal_code: String
+              postal_code: String?,
+              state: String?
             ) -> void
 
             def to_hash: -> Increase::Models::PhysicalCard::Shipment::Tracking::update

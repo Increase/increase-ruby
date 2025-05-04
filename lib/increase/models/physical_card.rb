@@ -323,6 +323,12 @@ module Increase
             #   @return [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category]
             required :category, enum: -> { Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category }
 
+            # @!attribute city
+            #   The city where the event took place.
+            #
+            #   @return [String, nil]
+            required :city, String, nil?: true
+
             # @!attribute created_at
             #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             #   the tracking event took place.
@@ -333,19 +339,29 @@ module Increase
             # @!attribute postal_code
             #   The postal code where the event took place.
             #
-            #   @return [String]
-            required :postal_code, String
+            #   @return [String, nil]
+            required :postal_code, String, nil?: true
 
-            # @!method initialize(category:, created_at:, postal_code:)
+            # @!attribute state
+            #   The state where the event took place.
+            #
+            #   @return [String, nil]
+            required :state, String, nil?: true
+
+            # @!method initialize(category:, city:, created_at:, postal_code:, state:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::PhysicalCard::Shipment::Tracking::Update} for more details.
             #
             #   @param category [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category] The type of tracking event.
             #
+            #   @param city [String, nil] The city where the event took place.
+            #
             #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
             #   ...
             #
-            #   @param postal_code [String] The postal code where the event took place.
+            #   @param postal_code [String, nil] The postal code where the event took place.
+            #
+            #   @param state [String, nil] The state where the event took place.
 
             # The type of tracking event.
             #
