@@ -27,7 +27,7 @@ require "bundler/setup"
 require "increase"
 
 increase = Increase::Client.new(
-  api_key: "My API Key", # defaults to ENV["INCREASE_API_KEY"]
+  api_key: ENV["INCREASE_API_KEY"], # This is the default and can be omitted
   environment: "sandbox" # defaults to "production"
 )
 
