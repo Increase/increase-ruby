@@ -49,8 +49,8 @@ module Increase
       #   {Increase::Models::IntrafiBalance} for more details.
       #
       #   When using IntraFi, each account's balance over the standard FDIC insurance
-      #   amount are swept to various other institutions. Funds are rebalanced across
-      #   banks as needed once per business day.
+      #   amount is swept to various other institutions. Funds are rebalanced across banks
+      #   as needed once per business day.
       #
       #   @param id [String] The identifier of this balance.
       #

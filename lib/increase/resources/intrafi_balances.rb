@@ -3,7 +3,9 @@
 module Increase
   module Resources
     class IntrafiBalances
-      # Get IntraFi balances by bank
+      # Returns the IntraFi balance for the given account. IntraFi may sweep funds to
+      # multiple banks. This endpoint will include both the total balance and the amount
+      # swept to each institution.
       #
       # @overload intrafi_balance(account_id, request_options: {})
       #

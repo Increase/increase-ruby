@@ -32,8 +32,8 @@ module Increase
       attr_accessor :type
 
       # When using IntraFi, each account's balance over the standard FDIC insurance
-      # amount are swept to various other institutions. Funds are rebalanced across
-      # banks as needed once per business day.
+      # amount is swept to various other institutions. Funds are rebalanced across banks
+      # as needed once per business day.
       sig do
         params(
           id: String,
