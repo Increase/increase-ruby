@@ -172,6 +172,22 @@ class Increase::Test::RegexMatchTest < Minitest::Test
       end
     end
   end
+
+  def test_jsonl_content
+    cases = {
+      "application/x-ndjson" => true,
+      "application/x-ldjson" => true,
+      "application/jsonl" => true,
+      "application/x-jsonl" => true,
+      "application/json" => false,
+      "application/vnd.api+json" => false
+    }
+    cases.each do |header, verdict|
+      assert_pattern do
+        Increase::Internal::Util::JSONL_CONTENT.match?(header) => ^verdict
+      end
+    end
+  end
 end
 
 class Increase::Test::UtilFormDataEncodingTest < Minitest::Test

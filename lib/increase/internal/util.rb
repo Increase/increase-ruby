@@ -470,7 +470,7 @@ module Increase
       # @type [Regexp]
       JSON_CONTENT = %r{^application/(?:vnd(?:\.[^.]+)*\+)?json(?!l)}
       # @type [Regexp]
-      JSONL_CONTENT = %r{^application/(?:x-)?jsonl}
+      JSONL_CONTENT = %r{^application/(:?x-(?:n|l)djson)|(:?(?:x-)?jsonl)}
 
       class << self
         # @api private
