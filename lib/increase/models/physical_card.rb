@@ -317,6 +317,13 @@ module Increase
           #   @param updates [Array<Increase::Models::PhysicalCard::Shipment::Tracking::Update>] Tracking updates relating to the physical card's delivery.
 
           class Update < Increase::Internal::Type::BaseModel
+            # @!attribute carrier_estimated_delivery_at
+            #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+            #   carrier expects the card to be delivered.
+            #
+            #   @return [Time, nil]
+            required :carrier_estimated_delivery_at, Time, nil?: true
+
             # @!attribute category
             #   The type of tracking event.
             #
@@ -348,9 +355,12 @@ module Increase
             #   @return [String, nil]
             required :state, String, nil?: true
 
-            # @!method initialize(category:, city:, created_at:, postal_code:, state:)
+            # @!method initialize(carrier_estimated_delivery_at:, category:, city:, created_at:, postal_code:, state:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::PhysicalCard::Shipment::Tracking::Update} for more details.
+            #
+            #   @param carrier_estimated_delivery_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
+            #   ...
             #
             #   @param category [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category] The type of tracking event.
             #

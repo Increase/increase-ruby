@@ -385,6 +385,11 @@ module Increase
           def to_hash; end
 
           class Update < Increase::Internal::Type::BaseModel
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+            # carrier expects the card to be delivered.
+            sig { returns(T.nilable(Time)) }
+            attr_accessor :carrier_estimated_delivery_at
+
             # The type of tracking event.
             sig { returns(Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category::TaggedSymbol) }
             attr_accessor :category
@@ -408,6 +413,7 @@ module Increase
 
             sig do
               params(
+                carrier_estimated_delivery_at: T.nilable(Time),
                 category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category::OrSymbol,
                 city: T.nilable(String),
                 created_at: Time,
@@ -417,6 +423,9 @@ module Increase
                 .returns(T.attached_class)
             end
             def self.new(
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+              # carrier expects the card to be delivered.
+              carrier_estimated_delivery_at:,
               # The type of tracking event.
               category:,
               # The city where the event took place.
@@ -433,6 +442,7 @@ module Increase
               override
                 .returns(
                   {
+                    carrier_estimated_delivery_at: T.nilable(Time),
                     category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category::TaggedSymbol,
                     city: T.nilable(String),
                     created_at: Time,
