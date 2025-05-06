@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-05-06)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Features
+
+* **api:** api update ([33dfc93](https://github.com/Increase/increase-ruby/commit/33dfc9358d19c889fb6170b0edebe6e2017d4bd8))
+* **api:** api update ([62c70eb](https://github.com/Increase/increase-ruby/commit/62c70eb08625d9a4396b58cd0dea4cf99e2deac6))
+
+
+### Chores
+
+* accept all nd-json mimetype variants ([a95607e](https://github.com/Increase/increase-ruby/commit/a95607ee17b41cf983cb98de4a12500aeb9a5924))
+* **internal:** codegen related update ([bc632be](https://github.com/Increase/increase-ruby/commit/bc632bed68cf33328523a222c51d400b359a8912))
+
+
+### Documentation
+
+* illustrate environmental defaults for auth variables ([9373e3c](https://github.com/Increase/increase-ruby/commit/9373e3cac9df6b3838d036a8c495bcd737c66d50))
+
 ## 0.1.0-alpha.15 (2025-05-04)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
