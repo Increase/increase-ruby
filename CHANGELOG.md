@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2025-05-06)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Bug Fixes
+
+* **internal:** fix formatting script for macos ([f2e55ff](https://github.com/Increase/increase-ruby/commit/f2e55ff7c3829a5f95209b4f5b6d1c69d8310e1d))
+
 ## 0.1.0-alpha.17 (2025-05-06)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
