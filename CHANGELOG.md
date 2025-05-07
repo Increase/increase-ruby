@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2025-05-07)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Bug Fixes
+
+* **internal:** ensure formatting always uses c.utf-8 locale ([9b69402](https://github.com/Increase/increase-ruby/commit/9b6940250bbe4cac50ac5acf1028c8019c8cf17f))
+
+
+### Chores
+
+* revert ignoring Gemfile.lock ([a73e4a5](https://github.com/Increase/increase-ruby/commit/a73e4a5c4a6b85016baee8259e8cea95acc01d7d))
+
 ## 0.1.0-alpha.18 (2025-05-06)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
