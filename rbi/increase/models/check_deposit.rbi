@@ -817,49 +817,49 @@ module Increase
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The account is closed.
+          # The account is closed. (Check21 return code `D`)
           CLOSED_ACCOUNT =
             T.let(
               :closed_account,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check has already been deposited.
+          # The check has already been deposited. (Check21 return code `Y`)
           DUPLICATE_SUBMISSION =
             T.let(
               :duplicate_submission,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # Insufficient funds
+          # Insufficient funds (Check21 return code `A`)
           INSUFFICIENT_FUNDS =
             T.let(
               :insufficient_funds,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # No account was found matching the check details.
+          # No account was found matching the check details. (Check21 return code `E`)
           NO_ACCOUNT =
             T.let(
               :no_account,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check was not authorized.
+          # The check was not authorized. (Check21 return code `Q`)
           NOT_AUTHORIZED =
             T.let(
               :not_authorized,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check is too old.
+          # The check is too old. (Check21 return code `G`)
           STALE_DATED =
             T.let(
               :stale_dated,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The payment has been stopped by the account holder.
+          # The payment has been stopped by the account holder. (Check21 return code `C`)
           STOP_PAYMENT =
             T.let(
               :stop_payment,
@@ -880,112 +880,112 @@ module Increase
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The image could not be read.
+          # The image could not be read. (Check21 return code `U`)
           UNREADABLE_IMAGE =
             T.let(
               :unreadable_image,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check endorsement was irregular.
+          # The check endorsement was irregular. (Check21 return code `J`)
           ENDORSEMENT_IRREGULAR =
             T.let(
               :endorsement_irregular,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check present was either altered or fake.
+          # The check present was either altered or fake. (Check21 return code `N`)
           ALTERED_OR_FICTITIOUS_ITEM =
             T.let(
               :altered_or_fictitious_item,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The account this check is drawn on is frozen.
+          # The account this check is drawn on is frozen. (Check21 return code `F`)
           FROZEN_OR_BLOCKED_ACCOUNT =
             T.let(
               :frozen_or_blocked_account,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check is post dated.
+          # The check is post dated. (Check21 return code `H`)
           POST_DATED =
             T.let(
               :post_dated,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The endorsement was missing.
+          # The endorsement was missing. (Check21 return code `I`)
           ENDORSEMENT_MISSING =
             T.let(
               :endorsement_missing,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check signature was missing.
+          # The check signature was missing. (Check21 return code `K`)
           SIGNATURE_MISSING =
             T.let(
               :signature_missing,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The bank suspects a stop payment will be placed.
+          # The bank suspects a stop payment will be placed. (Check21 return code `T`)
           STOP_PAYMENT_SUSPECT =
             T.let(
               :stop_payment_suspect,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The bank cannot read the image.
+          # The bank cannot read the image. (Check21 return code `U`)
           UNUSABLE_IMAGE =
             T.let(
               :unusable_image,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check image fails the bank's security check.
+          # The check image fails the bank's security check. (Check21 return code `V`)
           IMAGE_FAILS_SECURITY_CHECK =
             T.let(
               :image_fails_security_check,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The bank cannot determine the amount.
+          # The bank cannot determine the amount. (Check21 return code `W`)
           CANNOT_DETERMINE_AMOUNT =
             T.let(
               :cannot_determine_amount,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The signature is inconsistent with prior signatures.
+          # The signature is inconsistent with prior signatures. (Check21 return code `L`)
           SIGNATURE_IRREGULAR =
             T.let(
               :signature_irregular,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check is a non-cash item and cannot be drawn against the account.
+          # The check is a non-cash item and cannot be drawn against the account. (Check21 return code `M`)
           NON_CASH_ITEM =
             T.let(
               :non_cash_item,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The bank is unable to process this check.
+          # The bank is unable to process this check. (Check21 return code `O`)
           UNABLE_TO_PROCESS =
             T.let(
               :unable_to_process,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The check exceeds the bank or customer's limit.
+          # The check exceeds the bank or customer's limit. (Check21 return code `P`)
           ITEM_EXCEEDS_DOLLAR_LIMIT =
             T.let(
               :item_exceeds_dollar_limit,
               Increase::CheckDeposit::DepositReturn::ReturnReason::TaggedSymbol
             )
 
-          # The bank sold this account and no longer services this customer.
+          # The bank sold this account and no longer services this customer. (Check21 return code `R`)
           BRANCH_OR_ACCOUNT_SOLD =
             T.let(
               :branch_or_account_sold,
