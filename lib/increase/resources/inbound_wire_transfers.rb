@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundWireTransfer]
+      # @return [Increase::InboundWireTransfer]
       #
       # @see Increase::Models::InboundWireTransferRetrieveParams
       def retrieve(inbound_wire_transfer_id, params = {})
         @client.request(
           method: :get,
           path: ["inbound_wire_transfers/%1$s", inbound_wire_transfer_id],
-          model: Increase::Models::InboundWireTransfer,
+          model: Increase::InboundWireTransfer,
           options: params[:request_options]
         )
       end
@@ -33,30 +33,28 @@ module Increase
       # @param account_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Account.
       #
       # @param account_number_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Account Number.
-      # ...
       #
-      # @param created_at [Increase::Models::InboundWireTransferListParams::CreatedAt]
+      # @param created_at [Increase::InboundWireTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param status [Increase::Models::InboundWireTransferListParams::Status]
+      # @param status [Increase::InboundWireTransferListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::InboundWireTransfer>]
+      # @return [Increase::Internal::Page<Increase::InboundWireTransfer>]
       #
       # @see Increase::Models::InboundWireTransferListParams
       def list(params = {})
-        parsed, options = Increase::Models::InboundWireTransferListParams.dump_request(params)
+        parsed, options = Increase::InboundWireTransferListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "inbound_wire_transfers",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::InboundWireTransfer,
+          model: Increase::InboundWireTransfer,
           options: options
         )
       end
@@ -67,20 +65,20 @@ module Increase
       #
       # @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
       #
-      # @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
+      # @param reason [Symbol, Increase::InboundWireTransferReverseParams::Reason] Reason for the reversal.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundWireTransfer]
+      # @return [Increase::InboundWireTransfer]
       #
       # @see Increase::Models::InboundWireTransferReverseParams
       def reverse(inbound_wire_transfer_id, params)
-        parsed, options = Increase::Models::InboundWireTransferReverseParams.dump_request(params)
+        parsed, options = Increase::InboundWireTransferReverseParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["inbound_wire_transfers/%1$s/reverse", inbound_wire_transfer_id],
           body: parsed,
-          model: Increase::Models::InboundWireTransfer,
+          model: Increase::InboundWireTransfer,
           options: options
         )
       end

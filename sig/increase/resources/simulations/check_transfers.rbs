@@ -5,7 +5,7 @@ module Increase
         def mail: (
           String check_transfer_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::CheckTransfer
+        ) -> Increase::CheckTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

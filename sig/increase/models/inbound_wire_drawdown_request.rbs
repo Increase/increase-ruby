@@ -24,7 +24,7 @@ module Increase
         :originator_to_beneficiary_information_line3 => String?,
         :originator_to_beneficiary_information_line4 => String?,
         recipient_account_number_id: String,
-        type: Increase::Models::InboundWireDrawdownRequest::type_
+        type: Increase::InboundWireDrawdownRequest::type_
       }
 
     class InboundWireDrawdownRequest < Increase::Internal::Type::BaseModel
@@ -72,7 +72,7 @@ module Increase
 
       attr_accessor recipient_account_number_id: String
 
-      attr_accessor type: Increase::Models::InboundWireDrawdownRequest::type_
+      attr_accessor type: Increase::InboundWireDrawdownRequest::type_
 
       def initialize: (
         id: String,
@@ -97,10 +97,8 @@ module Increase
         originator_to_beneficiary_information_line3: String?,
         originator_to_beneficiary_information_line4: String?,
         recipient_account_number_id: String,
-        type: Increase::Models::InboundWireDrawdownRequest::type_
+        type: Increase::InboundWireDrawdownRequest::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::inbound_wire_drawdown_request
 
       type type_ = :inbound_wire_drawdown_request
 
@@ -109,7 +107,7 @@ module Increase
 
         INBOUND_WIRE_DRAWDOWN_REQUEST: :inbound_wire_drawdown_request
 
-        def self?.values: -> ::Array[Increase::Models::InboundWireDrawdownRequest::type_]
+        def self?.values: -> ::Array[Increase::InboundWireDrawdownRequest::type_]
       end
     end
   end

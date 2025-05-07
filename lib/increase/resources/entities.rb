@@ -10,42 +10,36 @@ module Increase
       #
       # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
-      # @param structure [Symbol, Increase::Models::EntityCreateParams::Structure] The type of Entity to create.
+      # @param structure [Symbol, Increase::EntityCreateParams::Structure] The type of Entity to create.
       #
-      # @param corporation [Increase::Models::EntityCreateParams::Corporation] Details of the corporation entity to create. Required if `structure` is equal to
-      # ...
+      # @param corporation [Increase::EntityCreateParams::Corporation] Details of the corporation entity to create. Required if `structure` is equal to
       #
       # @param description [String] The description you choose to give the entity.
       #
-      # @param government_authority [Increase::Models::EntityCreateParams::GovernmentAuthority] Details of the Government Authority entity to create. Required if `structure` is
-      # ...
+      # @param government_authority [Increase::EntityCreateParams::GovernmentAuthority] Details of the Government Authority entity to create. Required if `structure` is
       #
-      # @param joint [Increase::Models::EntityCreateParams::Joint] Details of the joint entity to create. Required if `structure` is equal to `join
-      # ...
+      # @param joint [Increase::EntityCreateParams::Joint] Details of the joint entity to create. Required if `structure` is equal to `join
       #
-      # @param natural_person [Increase::Models::EntityCreateParams::NaturalPerson] Details of the natural person entity to create. Required if `structure` is equal
-      # ...
+      # @param natural_person [Increase::EntityCreateParams::NaturalPerson] Details of the natural person entity to create. Required if `structure` is equal
       #
-      # @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
+      # @param supplemental_documents [Array<Increase::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
       #
-      # @param third_party_verification [Increase::Models::EntityCreateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
-      # ...
+      # @param third_party_verification [Increase::EntityCreateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
       #
-      # @param trust [Increase::Models::EntityCreateParams::Trust] Details of the trust entity to create. Required if `structure` is equal to `trus
-      # ...
+      # @param trust [Increase::EntityCreateParams::Trust] Details of the trust entity to create. Required if `structure` is equal to `trus
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityCreateParams
       def create(params)
-        parsed, options = Increase::Models::EntityCreateParams.dump_request(params)
+        parsed, options = Increase::EntityCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "entities",
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -58,14 +52,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityRetrieveParams
       def retrieve(entity_id, params = {})
         @client.request(
           method: :get,
           path: ["entities/%1$s", entity_id],
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: params[:request_options]
         )
       end
@@ -77,31 +71,29 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
-      # @param created_at [Increase::Models::EntityListParams::CreatedAt]
+      # @param created_at [Increase::EntityListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param status [Increase::Models::EntityListParams::Status]
+      # @param status [Increase::EntityListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::Entity>]
+      # @return [Increase::Internal::Page<Increase::Entity>]
       #
       # @see Increase::Models::EntityListParams
       def list(params = {})
-        parsed, options = Increase::Models::EntityListParams.dump_request(params)
+        parsed, options = Increase::EntityListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "entities",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -114,18 +106,17 @@ module Increase
       # @overload archive(entity_id, request_options: {})
       #
       # @param entity_id [String] The identifier of the Entity to archive. Any accounts associated with an entity
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityArchiveParams
       def archive(entity_id, params = {})
         @client.request(
           method: :post,
           path: ["entities/%1$s/archive", entity_id],
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: params[:request_options]
         )
       end
@@ -138,23 +129,21 @@ module Increase
       # @overload archive_beneficial_owner(entity_id, beneficial_owner_id:, request_options: {})
       #
       # @param entity_id [String] The identifier of the Entity associated with the Beneficial Owner that is being
-      # ...
       #
       # @param beneficial_owner_id [String] The identifying details of anyone controlling or owning 25% or more of the corpo
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityArchiveBeneficialOwnerParams
       def archive_beneficial_owner(entity_id, params)
-        parsed, options = Increase::Models::EntityArchiveBeneficialOwnerParams.dump_request(params)
+        parsed, options = Increase::EntityArchiveBeneficialOwnerParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["entities/%1$s/archive_beneficial_owner", entity_id],
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -171,20 +160,19 @@ module Increase
       # @param entity_id [String] The identifier of the Entity to confirm the details of.
       #
       # @param confirmed_at [Time] When your user confirmed the Entity's details. If not provided, the current time
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityConfirmParams
       def confirm(entity_id, params = {})
-        parsed, options = Increase::Models::EntityConfirmParams.dump_request(params)
+        parsed, options = Increase::EntityConfirmParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["entities/%1$s/confirm", entity_id],
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -198,21 +186,20 @@ module Increase
       #
       # @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner.
       #
-      # @param beneficial_owner [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner] The identifying details of anyone controlling or owning 25% or more of the corpo
-      # ...
+      # @param beneficial_owner [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner] The identifying details of anyone controlling or owning 25% or more of the corpo
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityCreateBeneficialOwnerParams
       def create_beneficial_owner(entity_id, params)
-        parsed, options = Increase::Models::EntityCreateBeneficialOwnerParams.dump_request(params)
+        parsed, options = Increase::EntityCreateBeneficialOwnerParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["entities/%1$s/create_beneficial_owner", entity_id],
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -226,21 +213,20 @@ module Increase
       #
       # @param entity_id [String] The identifier of the Entity whose address is being updated.
       #
-      # @param address [Increase::Models::EntityUpdateAddressParams::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
-      # ...
+      # @param address [Increase::EntityUpdateAddressParams::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityUpdateAddressParams
       def update_address(entity_id, params)
-        parsed, options = Increase::Models::EntityUpdateAddressParams.dump_request(params)
+        parsed, options = Increase::EntityUpdateAddressParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["entities/%1$s/update_address", entity_id],
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -253,26 +239,23 @@ module Increase
       # @overload update_beneficial_owner_address(entity_id, address:, beneficial_owner_id:, request_options: {})
       #
       # @param entity_id [String] The identifier of the Entity associated with the Beneficial Owner whose address
-      # ...
       #
-      # @param address [Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
-      # ...
+      # @param address [Increase::EntityUpdateBeneficialOwnerAddressParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
       #
       # @param beneficial_owner_id [String] The identifying details of anyone controlling or owning 25% or more of the corpo
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityUpdateBeneficialOwnerAddressParams
       def update_beneficial_owner_address(entity_id, params)
-        parsed, options = Increase::Models::EntityUpdateBeneficialOwnerAddressParams.dump_request(params)
+        parsed, options = Increase::EntityUpdateBeneficialOwnerAddressParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["entities/%1$s/update_beneficial_owner_address", entity_id],
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end
@@ -285,23 +268,21 @@ module Increase
       # @overload update_industry_code(entity_id, industry_code:, request_options: {})
       #
       # @param entity_id [String] The identifier of the Entity to update. This endpoint only accepts `corporation`
-      # ...
       #
       # @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Entity]
+      # @return [Increase::Entity]
       #
       # @see Increase::Models::EntityUpdateIndustryCodeParams
       def update_industry_code(entity_id, params)
-        parsed, options = Increase::Models::EntityUpdateIndustryCodeParams.dump_request(params)
+        parsed, options = Increase::EntityUpdateIndustryCodeParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["entities/%1$s/update_industry_code", entity_id],
           body: parsed,
-          model: Increase::Models::Entity,
+          model: Increase::Entity,
           options: options
         )
       end

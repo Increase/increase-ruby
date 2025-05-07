@@ -13,16 +13,16 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::IntrafiAccountEnrollment]
+      # @return [Increase::IntrafiAccountEnrollment]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentCreateParams
       def create(params)
-        parsed, options = Increase::Models::IntrafiAccountEnrollmentCreateParams.dump_request(params)
+        parsed, options = Increase::IntrafiAccountEnrollmentCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "intrafi_account_enrollments",
           body: parsed,
-          model: Increase::Models::IntrafiAccountEnrollment,
+          model: Increase::IntrafiAccountEnrollment,
           options: options
         )
       end
@@ -35,14 +35,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::IntrafiAccountEnrollment]
+      # @return [Increase::IntrafiAccountEnrollment]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentRetrieveParams
       def retrieve(intrafi_account_enrollment_id, params = {})
         @client.request(
           method: :get,
           path: ["intrafi_account_enrollments/%1$s", intrafi_account_enrollment_id],
-          model: Increase::Models::IntrafiAccountEnrollment,
+          model: Increase::IntrafiAccountEnrollment,
           options: params[:request_options]
         )
       end
@@ -59,26 +59,24 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param status [Increase::Models::IntrafiAccountEnrollmentListParams::Status]
+      # @param status [Increase::IntrafiAccountEnrollmentListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::IntrafiAccountEnrollment>]
+      # @return [Increase::Internal::Page<Increase::IntrafiAccountEnrollment>]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentListParams
       def list(params = {})
-        parsed, options = Increase::Models::IntrafiAccountEnrollmentListParams.dump_request(params)
+        parsed, options = Increase::IntrafiAccountEnrollmentListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "intrafi_account_enrollments",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::IntrafiAccountEnrollment,
+          model: Increase::IntrafiAccountEnrollment,
           options: options
         )
       end
@@ -91,14 +89,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::IntrafiAccountEnrollment]
+      # @return [Increase::IntrafiAccountEnrollment]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentUnenrollParams
       def unenroll(intrafi_account_enrollment_id, params = {})
         @client.request(
           method: :post,
           path: ["intrafi_account_enrollments/%1$s/unenroll", intrafi_account_enrollment_id],
-          model: Increase::Models::IntrafiAccountEnrollment,
+          model: Increase::IntrafiAccountEnrollment,
           options: params[:request_options]
         )
       end

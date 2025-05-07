@@ -4,14 +4,14 @@ module Increase
       def retrieve: (
         String bookkeeping_entry_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::BookkeepingEntry
+      ) -> Increase::BookkeepingEntry
 
       def list: (
         ?account_id: String,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::BookkeepingEntry]
+      ) -> Increase::Internal::Page[Increase::BookkeepingEntry]
 
       def initialize: (client: Increase::Client) -> void
     end

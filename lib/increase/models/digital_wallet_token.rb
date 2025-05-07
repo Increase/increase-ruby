@@ -19,8 +19,8 @@ module Increase
       # @!attribute cardholder
       #   The cardholder information given when the Digital Wallet Token was created.
       #
-      #   @return [Increase::Models::DigitalWalletToken::Cardholder]
-      required :cardholder, -> { Increase::Models::DigitalWalletToken::Cardholder }
+      #   @return [Increase::DigitalWalletToken::Cardholder]
+      required :cardholder, -> { Increase::DigitalWalletToken::Cardholder }
 
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -32,37 +32,37 @@ module Increase
       # @!attribute device
       #   The device that was used to create the Digital Wallet Token.
       #
-      #   @return [Increase::Models::DigitalWalletToken::Device]
-      required :device, -> { Increase::Models::DigitalWalletToken::Device }
+      #   @return [Increase::DigitalWalletToken::Device]
+      required :device, -> { Increase::DigitalWalletToken::Device }
 
       # @!attribute status
       #   This indicates if payments can be made with the Digital Wallet Token.
       #
-      #   @return [Symbol, Increase::Models::DigitalWalletToken::Status]
-      required :status, enum: -> { Increase::Models::DigitalWalletToken::Status }
+      #   @return [Symbol, Increase::DigitalWalletToken::Status]
+      required :status, enum: -> { Increase::DigitalWalletToken::Status }
 
       # @!attribute token_requestor
       #   The digital wallet app being used.
       #
-      #   @return [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
-      required :token_requestor, enum: -> { Increase::Models::DigitalWalletToken::TokenRequestor }
+      #   @return [Symbol, Increase::DigitalWalletToken::TokenRequestor]
+      required :token_requestor, enum: -> { Increase::DigitalWalletToken::TokenRequestor }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `digital_wallet_token`.
       #
-      #   @return [Symbol, Increase::Models::DigitalWalletToken::Type]
-      required :type, enum: -> { Increase::Models::DigitalWalletToken::Type }
+      #   @return [Symbol, Increase::DigitalWalletToken::Type]
+      required :type, enum: -> { Increase::DigitalWalletToken::Type }
 
       # @!attribute updates
       #   Updates to the Digital Wallet Token.
       #
-      #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
-      required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::Models::DigitalWalletToken::Update] }
+      #   @return [Array<Increase::DigitalWalletToken::Update>]
+      required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
       # @!method initialize(id:, card_id:, cardholder:, created_at:, device:, status:, token_requestor:, type:, updates:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::DigitalWalletToken} for more details.
+      #   {Increase::DigitalWalletToken} for more details.
       #
       #   A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
       #   Google Pay app. The Digital Wallet Token can be used for purchases just like a
@@ -72,23 +72,21 @@ module Increase
       #
       #   @param card_id [String] The identifier for the Card this Digital Wallet Token belongs to.
       #
-      #   @param cardholder [Increase::Models::DigitalWalletToken::Cardholder] The cardholder information given when the Digital Wallet Token was created.
+      #   @param cardholder [Increase::DigitalWalletToken::Cardholder] The cardholder information given when the Digital Wallet Token was created.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-      #   ...
       #
-      #   @param device [Increase::Models::DigitalWalletToken::Device] The device that was used to create the Digital Wallet Token.
+      #   @param device [Increase::DigitalWalletToken::Device] The device that was used to create the Digital Wallet Token.
       #
-      #   @param status [Symbol, Increase::Models::DigitalWalletToken::Status] This indicates if payments can be made with the Digital Wallet Token.
+      #   @param status [Symbol, Increase::DigitalWalletToken::Status] This indicates if payments can be made with the Digital Wallet Token.
       #
-      #   @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor] The digital wallet app being used.
+      #   @param token_requestor [Symbol, Increase::DigitalWalletToken::TokenRequestor] The digital wallet app being used.
       #
-      #   @param type [Symbol, Increase::Models::DigitalWalletToken::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::DigitalWalletToken::Type] A constant representing the object's type. For this resource it will always be `
       #
-      #   @param updates [Array<Increase::Models::DigitalWalletToken::Update>] Updates to the Digital Wallet Token.
+      #   @param updates [Array<Increase::DigitalWalletToken::Update>] Updates to the Digital Wallet Token.
 
-      # @see Increase::Models::DigitalWalletToken#cardholder
+      # @see Increase::DigitalWalletToken#cardholder
       class Cardholder < Increase::Internal::Type::BaseModel
         # @!attribute name
         #   Name of the cardholder, for example "John Smith".
@@ -102,13 +100,13 @@ module Increase
         #   @param name [String, nil] Name of the cardholder, for example "John Smith".
       end
 
-      # @see Increase::Models::DigitalWalletToken#device
+      # @see Increase::DigitalWalletToken#device
       class Device < Increase::Internal::Type::BaseModel
         # @!attribute device_type
         #   Device type.
         #
-        #   @return [Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType, nil]
-        required :device_type, enum: -> { Increase::Models::DigitalWalletToken::Device::DeviceType }, nil?: true
+        #   @return [Symbol, Increase::DigitalWalletToken::Device::DeviceType, nil]
+        required :device_type, enum: -> { Increase::DigitalWalletToken::Device::DeviceType }, nil?: true
 
         # @!attribute identifier
         #   ID assigned to the device by the digital wallet provider.
@@ -131,7 +129,7 @@ module Increase
         # @!method initialize(device_type:, identifier:, ip_address:, name:)
         #   The device that was used to create the Digital Wallet Token.
         #
-        #   @param device_type [Symbol, Increase::Models::DigitalWalletToken::Device::DeviceType, nil] Device type.
+        #   @param device_type [Symbol, Increase::DigitalWalletToken::Device::DeviceType, nil] Device type.
         #
         #   @param identifier [String, nil] ID assigned to the device by the digital wallet provider.
         #
@@ -141,7 +139,7 @@ module Increase
 
         # Device type.
         #
-        # @see Increase::Models::DigitalWalletToken::Device#device_type
+        # @see Increase::DigitalWalletToken::Device#device_type
         module DeviceType
           extend Increase::Internal::Type::Enum
 
@@ -179,7 +177,7 @@ module Increase
 
       # This indicates if payments can be made with the Digital Wallet Token.
       #
-      # @see Increase::Models::DigitalWalletToken#status
+      # @see Increase::DigitalWalletToken#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -201,7 +199,7 @@ module Increase
 
       # The digital wallet app being used.
       #
-      # @see Increase::Models::DigitalWalletToken#token_requestor
+      # @see Increase::DigitalWalletToken#token_requestor
       module TokenRequestor
         extend Increase::Internal::Type::Enum
 
@@ -224,7 +222,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `digital_wallet_token`.
       #
-      # @see Increase::Models::DigitalWalletToken#type
+      # @see Increase::DigitalWalletToken#type
       module Type
         extend Increase::Internal::Type::Enum
 
@@ -238,8 +236,8 @@ module Increase
         # @!attribute status
         #   The status the update changed this Digital Wallet Token to.
         #
-        #   @return [Symbol, Increase::Models::DigitalWalletToken::Update::Status]
-        required :status, enum: -> { Increase::Models::DigitalWalletToken::Update::Status }
+        #   @return [Symbol, Increase::DigitalWalletToken::Update::Status]
+        required :status, enum: -> { Increase::DigitalWalletToken::Update::Status }
 
         # @!attribute timestamp
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -250,16 +248,15 @@ module Increase
 
         # @!method initialize(status:, timestamp:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::DigitalWalletToken::Update} for more details.
+        #   {Increase::DigitalWalletToken::Update} for more details.
         #
-        #   @param status [Symbol, Increase::Models::DigitalWalletToken::Update::Status] The status the update changed this Digital Wallet Token to.
+        #   @param status [Symbol, Increase::DigitalWalletToken::Update::Status] The status the update changed this Digital Wallet Token to.
         #
         #   @param timestamp [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
 
         # The status the update changed this Digital Wallet Token to.
         #
-        # @see Increase::Models::DigitalWalletToken::Update#status
+        # @see Increase::DigitalWalletToken::Update#status
         module Status
           extend Increase::Internal::Type::Enum
 

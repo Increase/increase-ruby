@@ -15,14 +15,14 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::CheckTransfer]
+        # @return [Increase::CheckTransfer]
         #
         # @see Increase::Models::Simulations::CheckTransferMailParams
         def mail(check_transfer_id, params = {})
           @client.request(
             method: :post,
             path: ["simulations/check_transfers/%1$s/mail", check_transfer_id],
-            model: Increase::Models::CheckTransfer,
+            model: Increase::CheckTransfer,
             options: params[:request_options]
           )
         end

@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # Filter Inbound Check Deposits to those belonging to the specified Account.
       sig { returns(T.nilable(String)) }
       attr_reader :account_id
@@ -21,14 +23,15 @@ module Increase
       sig { params(check_transfer_id: String).void }
       attr_writer :check_transfer_id
 
-      sig { returns(T.nilable(Increase::Models::InboundCheckDepositListParams::CreatedAt)) }
+      sig do
+        returns(T.nilable(Increase::InboundCheckDepositListParams::CreatedAt))
+      end
       attr_reader :created_at
 
       sig do
         params(
-          created_at: T.any(Increase::Models::InboundCheckDepositListParams::CreatedAt, Increase::Internal::AnyHash)
-        )
-          .void
+          created_at: Increase::InboundCheckDepositListParams::CreatedAt::OrHash
+        ).void
       end
       attr_writer :created_at
 
@@ -51,12 +54,12 @@ module Increase
         params(
           account_id: String,
           check_transfer_id: String,
-          created_at: T.any(Increase::Models::InboundCheckDepositListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at:
+            Increase::InboundCheckDepositListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # Filter Inbound Check Deposits to those belonging to the specified Account.
@@ -71,23 +74,28 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              account_id: String,
-              check_transfer_id: String,
-              created_at: Increase::Models::InboundCheckDepositListParams::CreatedAt,
-              cursor: String,
-              limit: Integer,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            account_id: String,
+            check_transfer_id: String,
+            created_at: Increase::InboundCheckDepositListParams::CreatedAt,
+            cursor: String,
+            limit: Integer,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
 
       class CreatedAt < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         # timestamp.
         sig { returns(T.nilable(Time)) }
@@ -121,7 +129,12 @@ module Increase
         attr_writer :on_or_before
 
         sig do
-          params(after: Time, before: Time, on_or_after: Time, on_or_before: Time).returns(T.attached_class)
+          params(
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          ).returns(T.attached_class)
         end
         def self.new(
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -136,9 +149,16 @@ module Increase
           # Return results on or before this
           # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
           on_or_before: nil
-        ); end
-        sig { override.returns({after: Time, before: Time, on_or_after: Time, on_or_before: Time}) }
-        def to_hash; end
+        )
+        end
+
+        sig do
+          override.returns(
+            { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

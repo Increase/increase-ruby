@@ -17,20 +17,19 @@ module Increase
         # @param lockbox_id [String] The identifier of the Lockbox to simulate inbound mail to.
         #
         # @param contents_file_id [String] The file containing the PDF contents. If not present, a default check image file
-        # ...
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::InboundMailItem]
+        # @return [Increase::InboundMailItem]
         #
         # @see Increase::Models::Simulations::InboundMailItemCreateParams
         def create(params)
-          parsed, options = Increase::Models::Simulations::InboundMailItemCreateParams.dump_request(params)
+          parsed, options = Increase::Simulations::InboundMailItemCreateParams.dump_request(params)
           @client.request(
             method: :post,
             path: "simulations/inbound_mail_items",
             body: parsed,
-            model: Increase::Models::InboundMailItem,
+            model: Increase::InboundMailItem,
             options: options
           )
         end

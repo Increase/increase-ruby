@@ -7,7 +7,7 @@ class Increase::Test::Resources::OAuthApplicationsTest < Increase::Test::Resourc
     response = @increase.oauth_applications.retrieve("oauth_application_id")
 
     assert_pattern do
-      response => Increase::Models::OAuthApplication
+      response => Increase::OAuthApplication
     end
 
     assert_pattern do
@@ -17,8 +17,8 @@ class Increase::Test::Resources::OAuthApplicationsTest < Increase::Test::Resourc
         created_at: Time,
         deleted_at: Time | nil,
         name: String | nil,
-        status: Increase::Models::OAuthApplication::Status,
-        type: Increase::Models::OAuthApplication::Type
+        status: Increase::OAuthApplication::Status,
+        type: Increase::OAuthApplication::Type
       }
     end
   end
@@ -34,7 +34,7 @@ class Increase::Test::Resources::OAuthApplicationsTest < Increase::Test::Resourc
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::OAuthApplication
+      row => Increase::OAuthApplication
     end
 
     assert_pattern do
@@ -44,8 +44,8 @@ class Increase::Test::Resources::OAuthApplicationsTest < Increase::Test::Resourc
         created_at: Time,
         deleted_at: Time | nil,
         name: String | nil,
-        status: Increase::Models::OAuthApplication::Status,
-        type: Increase::Models::OAuthApplication::Type
+        status: Increase::OAuthApplication::Status,
+        type: Increase::OAuthApplication::Type
       }
     end
   end

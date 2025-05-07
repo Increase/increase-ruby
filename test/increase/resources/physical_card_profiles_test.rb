@@ -14,7 +14,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
       )
 
     assert_pattern do
-      response => Increase::Models::PhysicalCardProfile
+      response => Increase::PhysicalCardProfile
     end
 
     assert_pattern do
@@ -24,14 +24,14 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         carrier_image_file_id: String | nil,
         contact_phone: String | nil,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::Creator,
+        creator: Increase::PhysicalCardProfile::Creator,
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::Status,
-        type: Increase::Models::PhysicalCardProfile::Type
+        status: Increase::PhysicalCardProfile::Status,
+        type: Increase::PhysicalCardProfile::Type
       }
     end
   end
@@ -40,7 +40,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
     response = @increase.physical_card_profiles.retrieve("physical_card_profile_id")
 
     assert_pattern do
-      response => Increase::Models::PhysicalCardProfile
+      response => Increase::PhysicalCardProfile
     end
 
     assert_pattern do
@@ -50,14 +50,14 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         carrier_image_file_id: String | nil,
         contact_phone: String | nil,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::Creator,
+        creator: Increase::PhysicalCardProfile::Creator,
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::Status,
-        type: Increase::Models::PhysicalCardProfile::Type
+        status: Increase::PhysicalCardProfile::Status,
+        type: Increase::PhysicalCardProfile::Type
       }
     end
   end
@@ -73,7 +73,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::PhysicalCardProfile
+      row => Increase::PhysicalCardProfile
     end
 
     assert_pattern do
@@ -83,14 +83,14 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         carrier_image_file_id: String | nil,
         contact_phone: String | nil,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::Creator,
+        creator: Increase::PhysicalCardProfile::Creator,
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::Status,
-        type: Increase::Models::PhysicalCardProfile::Type
+        status: Increase::PhysicalCardProfile::Status,
+        type: Increase::PhysicalCardProfile::Type
       }
     end
   end
@@ -99,7 +99,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
     response = @increase.physical_card_profiles.archive("physical_card_profile_id")
 
     assert_pattern do
-      response => Increase::Models::PhysicalCardProfile
+      response => Increase::PhysicalCardProfile
     end
 
     assert_pattern do
@@ -109,14 +109,14 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         carrier_image_file_id: String | nil,
         contact_phone: String | nil,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::Creator,
+        creator: Increase::PhysicalCardProfile::Creator,
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::Status,
-        type: Increase::Models::PhysicalCardProfile::Type
+        status: Increase::PhysicalCardProfile::Status,
+        type: Increase::PhysicalCardProfile::Type
       }
     end
   end
@@ -125,7 +125,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
     response = @increase.physical_card_profiles.clone_("physical_card_profile_id")
 
     assert_pattern do
-      response => Increase::Models::PhysicalCardProfile
+      response => Increase::PhysicalCardProfile
     end
 
     assert_pattern do
@@ -135,14 +135,14 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
         carrier_image_file_id: String | nil,
         contact_phone: String | nil,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::Creator,
+        creator: Increase::PhysicalCardProfile::Creator,
         description: String,
         front_image_file_id: String | nil,
         idempotency_key: String | nil,
         is_default: Increase::Internal::Type::Boolean,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::Status,
-        type: Increase::Models::PhysicalCardProfile::Type
+        status: Increase::PhysicalCardProfile::Status,
+        type: Increase::PhysicalCardProfile::Type
       }
     end
   end

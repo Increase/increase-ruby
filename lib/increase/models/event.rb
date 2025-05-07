@@ -26,8 +26,8 @@ module Increase
       #   The category of the Event. We may add additional possible values for this enum
       #   over time; your application should be able to handle such additions gracefully.
       #
-      #   @return [Symbol, Increase::Models::Event::Category]
-      required :category, enum: -> { Increase::Models::Event::Category }
+      #   @return [Symbol, Increase::Event::Category]
+      required :category, enum: -> { Increase::Event::Category }
 
       # @!attribute created_at
       #   The time the Event was created.
@@ -39,12 +39,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `event`.
       #
-      #   @return [Symbol, Increase::Models::Event::Type]
-      required :type, enum: -> { Increase::Models::Event::Type }
+      #   @return [Symbol, Increase::Event::Type]
+      required :type, enum: -> { Increase::Event::Type }
 
       # @!method initialize(id:, associated_object_id:, associated_object_type:, category:, created_at:, type:)
-      #   Some parameter documentations has been truncated, see {Increase::Models::Event}
-      #   for more details.
+      #   Some parameter documentations has been truncated, see {Increase::Event} for more
+      #   details.
       #
       #   Events are records of things that happened to objects at Increase. Events are
       #   accessible via the List Events endpoint and can be delivered to your application
@@ -57,18 +57,16 @@ module Increase
       #
       #   @param associated_object_type [String] The type of the object that generated this Event.
       #
-      #   @param category [Symbol, Increase::Models::Event::Category] The category of the Event. We may add additional possible values for this enum o
-      #   ...
+      #   @param category [Symbol, Increase::Event::Category] The category of the Event. We may add additional possible values for this enum o
       #
       #   @param created_at [Time] The time the Event was created.
       #
-      #   @param type [Symbol, Increase::Models::Event::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::Event::Type] A constant representing the object's type. For this resource it will always be `
 
       # The category of the Event. We may add additional possible values for this enum
       # over time; your application should be able to handle such additions gracefully.
       #
-      # @see Increase::Models::Event#category
+      # @see Increase::Event#category
       module Category
         extend Increase::Internal::Type::Enum
 
@@ -339,7 +337,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `event`.
       #
-      # @see Increase::Models::Event#type
+      # @see Increase::Event#type
       module Type
         extend Increase::Internal::Type::Enum
 

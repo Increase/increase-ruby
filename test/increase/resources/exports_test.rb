@@ -7,19 +7,19 @@ class Increase::Test::Resources::ExportsTest < Increase::Test::ResourceTest
     response = @increase.exports.create(category: :transaction_csv)
 
     assert_pattern do
-      response => Increase::Models::Export
+      response => Increase::Export
     end
 
     assert_pattern do
       response => {
         id: String,
-        category: Increase::Models::Export::Category,
+        category: Increase::Export::Category,
         created_at: Time,
         file_download_url: String | nil,
         file_id: String | nil,
         idempotency_key: String | nil,
-        status: Increase::Models::Export::Status,
-        type: Increase::Models::Export::Type
+        status: Increase::Export::Status,
+        type: Increase::Export::Type
       }
     end
   end
@@ -28,19 +28,19 @@ class Increase::Test::Resources::ExportsTest < Increase::Test::ResourceTest
     response = @increase.exports.retrieve("export_id")
 
     assert_pattern do
-      response => Increase::Models::Export
+      response => Increase::Export
     end
 
     assert_pattern do
       response => {
         id: String,
-        category: Increase::Models::Export::Category,
+        category: Increase::Export::Category,
         created_at: Time,
         file_download_url: String | nil,
         file_id: String | nil,
         idempotency_key: String | nil,
-        status: Increase::Models::Export::Status,
-        type: Increase::Models::Export::Type
+        status: Increase::Export::Status,
+        type: Increase::Export::Type
       }
     end
   end
@@ -56,19 +56,19 @@ class Increase::Test::Resources::ExportsTest < Increase::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::Export
+      row => Increase::Export
     end
 
     assert_pattern do
       row => {
         id: String,
-        category: Increase::Models::Export::Category,
+        category: Increase::Export::Category,
         created_at: Time,
         file_download_url: String | nil,
         file_id: String | nil,
         idempotency_key: String | nil,
-        status: Increase::Models::Export::Status,
-        type: Increase::Models::Export::Type
+        status: Increase::Export::Status,
+        type: Increase::Export::Type
       }
     end
   end

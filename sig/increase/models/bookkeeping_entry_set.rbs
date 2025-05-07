@@ -5,10 +5,10 @@ module Increase
         id: String,
         created_at: Time,
         date: Time,
-        entries: ::Array[Increase::Models::BookkeepingEntrySet::Entry],
+        entries: ::Array[Increase::BookkeepingEntrySet::Entry],
         idempotency_key: String?,
         transaction_id: String?,
-        type: Increase::Models::BookkeepingEntrySet::type_
+        type: Increase::BookkeepingEntrySet::type_
       }
 
     class BookkeepingEntrySet < Increase::Internal::Type::BaseModel
@@ -18,25 +18,23 @@ module Increase
 
       attr_accessor date: Time
 
-      attr_accessor entries: ::Array[Increase::Models::BookkeepingEntrySet::Entry]
+      attr_accessor entries: ::Array[Increase::BookkeepingEntrySet::Entry]
 
       attr_accessor idempotency_key: String?
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::Models::BookkeepingEntrySet::type_
+      attr_accessor type: Increase::BookkeepingEntrySet::type_
 
       def initialize: (
         id: String,
         created_at: Time,
         date: Time,
-        entries: ::Array[Increase::Models::BookkeepingEntrySet::Entry],
+        entries: ::Array[Increase::BookkeepingEntrySet::Entry],
         idempotency_key: String?,
         transaction_id: String?,
-        type: Increase::Models::BookkeepingEntrySet::type_
+        type: Increase::BookkeepingEntrySet::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::bookkeeping_entry_set
 
       type entry = { id: String, account_id: String, amount: Integer }
 
@@ -52,8 +50,6 @@ module Increase
           account_id: String,
           amount: Integer
         ) -> void
-
-        def to_hash: -> Increase::Models::BookkeepingEntrySet::entry
       end
 
       type type_ = :bookkeeping_entry_set
@@ -63,7 +59,7 @@ module Increase
 
         BOOKKEEPING_ENTRY_SET: :bookkeeping_entry_set
 
-        def self?.values: -> ::Array[Increase::Models::BookkeepingEntrySet::type_]
+        def self?.values: -> ::Array[Increase::BookkeepingEntrySet::type_]
       end
     end
   end

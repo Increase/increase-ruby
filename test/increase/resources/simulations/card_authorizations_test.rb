@@ -12,8 +12,8 @@ class Increase::Test::Resources::Simulations::CardAuthorizationsTest < Increase:
 
     assert_pattern do
       response => {
-        declined_transaction: Increase::Models::DeclinedTransaction | nil,
-        pending_transaction: Increase::Models::PendingTransaction | nil,
+        declined_transaction: Increase::DeclinedTransaction | nil,
+        pending_transaction: Increase::PendingTransaction | nil,
         type: Increase::Models::Simulations::CardAuthorizationCreateResponse::Type
       }
     end

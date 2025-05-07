@@ -6,7 +6,7 @@ module Increase
         expiration_month: Integer,
         expiration_year: Integer,
         primary_account_number: String,
-        type: Increase::Models::CardDetails::type_,
+        type: Increase::CardDetails::type_,
         verification_code: String
       }
 
@@ -19,7 +19,7 @@ module Increase
 
       attr_accessor primary_account_number: String
 
-      attr_accessor type: Increase::Models::CardDetails::type_
+      attr_accessor type: Increase::CardDetails::type_
 
       attr_accessor verification_code: String
 
@@ -28,11 +28,9 @@ module Increase
         expiration_month: Integer,
         expiration_year: Integer,
         primary_account_number: String,
-        type: Increase::Models::CardDetails::type_,
+        type: Increase::CardDetails::type_,
         verification_code: String
       ) -> void
-
-      def to_hash: -> Increase::Models::card_details
 
       type type_ = :card_details
 
@@ -41,7 +39,7 @@ module Increase
 
         CARD_DETAILS: :card_details
 
-        def self?.values: -> ::Array[Increase::Models::CardDetails::type_]
+        def self?.values: -> ::Array[Increase::CardDetails::type_]
       end
     end
   end

@@ -89,8 +89,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::ach_prenotification_create_params
-
       type credit_debit_indicator = :credit | :debit
 
       module CreditDebitIndicator

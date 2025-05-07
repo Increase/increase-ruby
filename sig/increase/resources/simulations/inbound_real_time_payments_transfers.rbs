@@ -11,7 +11,7 @@ module Increase
           ?remittance_information: String,
           ?request_for_payment_id: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::InboundRealTimePaymentsTransfer
+        ) -> Increase::InboundRealTimePaymentsTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

@@ -11,22 +11,22 @@ module Increase
       #
       # @param account_id [String] The entity, if `compliance_category` is `commingled_cash`.
       #
-      # @param compliance_category [Symbol, Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
+      # @param compliance_category [Symbol, Increase::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
       #
       # @param entity_id [String] The entity, if `compliance_category` is `customer_balance`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::BookkeepingAccount]
+      # @return [Increase::BookkeepingAccount]
       #
       # @see Increase::Models::BookkeepingAccountCreateParams
       def create(params)
-        parsed, options = Increase::Models::BookkeepingAccountCreateParams.dump_request(params)
+        parsed, options = Increase::BookkeepingAccountCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "bookkeeping_accounts",
           body: parsed,
-          model: Increase::Models::BookkeepingAccount,
+          model: Increase::BookkeepingAccount,
           options: options
         )
       end
@@ -41,16 +41,16 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::BookkeepingAccount]
+      # @return [Increase::BookkeepingAccount]
       #
       # @see Increase::Models::BookkeepingAccountUpdateParams
       def update(bookkeeping_account_id, params)
-        parsed, options = Increase::Models::BookkeepingAccountUpdateParams.dump_request(params)
+        parsed, options = Increase::BookkeepingAccountUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["bookkeeping_accounts/%1$s", bookkeeping_account_id],
           body: parsed,
-          model: Increase::Models::BookkeepingAccount,
+          model: Increase::BookkeepingAccount,
           options: options
         )
       end
@@ -65,24 +65,22 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::BookkeepingAccount>]
+      # @return [Increase::Internal::Page<Increase::BookkeepingAccount>]
       #
       # @see Increase::Models::BookkeepingAccountListParams
       def list(params = {})
-        parsed, options = Increase::Models::BookkeepingAccountListParams.dump_request(params)
+        parsed, options = Increase::BookkeepingAccountListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "bookkeeping_accounts",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::BookkeepingAccount,
+          model: Increase::BookkeepingAccount,
           options: options
         )
       end
@@ -97,16 +95,16 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::BookkeepingBalanceLookup]
+      # @return [Increase::BookkeepingBalanceLookup]
       #
       # @see Increase::Models::BookkeepingAccountBalanceParams
       def balance(bookkeeping_account_id, params = {})
-        parsed, options = Increase::Models::BookkeepingAccountBalanceParams.dump_request(params)
+        parsed, options = Increase::BookkeepingAccountBalanceParams.dump_request(params)
         @client.request(
           method: :get,
           path: ["bookkeeping_accounts/%1$s/balance", bookkeeping_account_id],
           query: parsed,
-          model: Increase::Models::BookkeepingBalanceLookup,
+          model: Increase::BookkeepingBalanceLookup,
           options: options
         )
       end

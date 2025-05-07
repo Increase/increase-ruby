@@ -8,7 +8,7 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
       @increase.inbound_real_time_payments_transfers.retrieve("inbound_real_time_payments_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::InboundRealTimePaymentsTransfer
+      response => Increase::InboundRealTimePaymentsTransfer
     end
 
     assert_pattern do
@@ -17,18 +17,18 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
         account_id: String,
         account_number_id: String,
         amount: Integer,
-        confirmation: Increase::Models::InboundRealTimePaymentsTransfer::Confirmation | nil,
+        confirmation: Increase::InboundRealTimePaymentsTransfer::Confirmation | nil,
         created_at: Time,
         creditor_name: String,
-        currency: Increase::Models::InboundRealTimePaymentsTransfer::Currency,
+        currency: Increase::InboundRealTimePaymentsTransfer::Currency,
         debtor_account_number: String,
         debtor_name: String,
         debtor_routing_number: String,
-        decline: Increase::Models::InboundRealTimePaymentsTransfer::Decline | nil,
+        decline: Increase::InboundRealTimePaymentsTransfer::Decline | nil,
         remittance_information: String | nil,
-        status: Increase::Models::InboundRealTimePaymentsTransfer::Status,
+        status: Increase::InboundRealTimePaymentsTransfer::Status,
         transaction_identification: String,
-        type: Increase::Models::InboundRealTimePaymentsTransfer::Type
+        type: Increase::InboundRealTimePaymentsTransfer::Type
       }
     end
   end
@@ -44,7 +44,7 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::InboundRealTimePaymentsTransfer
+      row => Increase::InboundRealTimePaymentsTransfer
     end
 
     assert_pattern do
@@ -53,18 +53,18 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
         account_id: String,
         account_number_id: String,
         amount: Integer,
-        confirmation: Increase::Models::InboundRealTimePaymentsTransfer::Confirmation | nil,
+        confirmation: Increase::InboundRealTimePaymentsTransfer::Confirmation | nil,
         created_at: Time,
         creditor_name: String,
-        currency: Increase::Models::InboundRealTimePaymentsTransfer::Currency,
+        currency: Increase::InboundRealTimePaymentsTransfer::Currency,
         debtor_account_number: String,
         debtor_name: String,
         debtor_routing_number: String,
-        decline: Increase::Models::InboundRealTimePaymentsTransfer::Decline | nil,
+        decline: Increase::InboundRealTimePaymentsTransfer::Decline | nil,
         remittance_information: String | nil,
-        status: Increase::Models::InboundRealTimePaymentsTransfer::Status,
+        status: Increase::InboundRealTimePaymentsTransfer::Status,
         transaction_identification: String,
-        type: Increase::Models::InboundRealTimePaymentsTransfer::Type
+        type: Increase::InboundRealTimePaymentsTransfer::Type
       }
     end
   end

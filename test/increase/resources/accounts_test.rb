@@ -7,16 +7,16 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     response = @increase.accounts.create(name: "New Account!")
 
     assert_pattern do
-      response => Increase::Models::Account
+      response => Increase::Account
     end
 
     assert_pattern do
       response => {
         id: String,
-        bank: Increase::Models::Account::Bank,
+        bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::Account::Currency,
+        currency: Increase::Account::Currency,
         entity_id: String | nil,
         idempotency_key: String | nil,
         informational_entity_id: String | nil,
@@ -25,8 +25,8 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
         interest_rate: String,
         name: String,
         program_id: String,
-        status: Increase::Models::Account::Status,
-        type: Increase::Models::Account::Type
+        status: Increase::Account::Status,
+        type: Increase::Account::Type
       }
     end
   end
@@ -35,16 +35,16 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     response = @increase.accounts.retrieve("account_id")
 
     assert_pattern do
-      response => Increase::Models::Account
+      response => Increase::Account
     end
 
     assert_pattern do
       response => {
         id: String,
-        bank: Increase::Models::Account::Bank,
+        bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::Account::Currency,
+        currency: Increase::Account::Currency,
         entity_id: String | nil,
         idempotency_key: String | nil,
         informational_entity_id: String | nil,
@@ -53,8 +53,8 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
         interest_rate: String,
         name: String,
         program_id: String,
-        status: Increase::Models::Account::Status,
-        type: Increase::Models::Account::Type
+        status: Increase::Account::Status,
+        type: Increase::Account::Type
       }
     end
   end
@@ -63,16 +63,16 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     response = @increase.accounts.update("account_id")
 
     assert_pattern do
-      response => Increase::Models::Account
+      response => Increase::Account
     end
 
     assert_pattern do
       response => {
         id: String,
-        bank: Increase::Models::Account::Bank,
+        bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::Account::Currency,
+        currency: Increase::Account::Currency,
         entity_id: String | nil,
         idempotency_key: String | nil,
         informational_entity_id: String | nil,
@@ -81,8 +81,8 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
         interest_rate: String,
         name: String,
         program_id: String,
-        status: Increase::Models::Account::Status,
-        type: Increase::Models::Account::Type
+        status: Increase::Account::Status,
+        type: Increase::Account::Type
       }
     end
   end
@@ -98,16 +98,16 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::Account
+      row => Increase::Account
     end
 
     assert_pattern do
       row => {
         id: String,
-        bank: Increase::Models::Account::Bank,
+        bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::Account::Currency,
+        currency: Increase::Account::Currency,
         entity_id: String | nil,
         idempotency_key: String | nil,
         informational_entity_id: String | nil,
@@ -116,8 +116,8 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
         interest_rate: String,
         name: String,
         program_id: String,
-        status: Increase::Models::Account::Status,
-        type: Increase::Models::Account::Type
+        status: Increase::Account::Status,
+        type: Increase::Account::Type
       }
     end
   end
@@ -126,7 +126,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     response = @increase.accounts.balance("account_id")
 
     assert_pattern do
-      response => Increase::Models::BalanceLookup
+      response => Increase::BalanceLookup
     end
 
     assert_pattern do
@@ -134,7 +134,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
         account_id: String,
         available_balance: Integer,
         current_balance: Integer,
-        type: Increase::Models::BalanceLookup::Type
+        type: Increase::BalanceLookup::Type
       }
     end
   end
@@ -143,16 +143,16 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     response = @increase.accounts.close("account_id")
 
     assert_pattern do
-      response => Increase::Models::Account
+      response => Increase::Account
     end
 
     assert_pattern do
       response => {
         id: String,
-        bank: Increase::Models::Account::Bank,
+        bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::Account::Currency,
+        currency: Increase::Account::Currency,
         entity_id: String | nil,
         idempotency_key: String | nil,
         informational_entity_id: String | nil,
@@ -161,8 +161,8 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
         interest_rate: String,
         name: String,
         program_id: String,
-        status: Increase::Models::Account::Status,
-        type: Increase::Models::Account::Type
+        status: Increase::Account::Status,
+        type: Increase::Account::Type
       }
     end
   end

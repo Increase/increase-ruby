@@ -34,12 +34,10 @@ module Increase
       #   {Increase::Models::CardDisputeCreateParams} for more details.
       #
       #   @param disputed_transaction_id [String] The Transaction you wish to dispute. This Transaction must have a `source_type`
-      #   ...
       #
       #   @param explanation [String] Why you are disputing this Transaction.
       #
       #   @param amount [Integer] The monetary amount of the part of the transaction that is being disputed. This
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -5,12 +5,12 @@ module Increase
         def reverse: (
           String wire_transfer_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::WireTransfer
+        ) -> Increase::WireTransfer
 
         def submit: (
           String wire_transfer_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::WireTransfer
+        ) -> Increase::WireTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

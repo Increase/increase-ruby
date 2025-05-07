@@ -19,20 +19,19 @@ module Increase
       # @param front_image_file_id [String] The File containing the check's front image.
       #
       # @param description [String] The description you choose to give the Check Deposit, for display purposes only.
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::CheckDeposit]
+      # @return [Increase::CheckDeposit]
       #
       # @see Increase::Models::CheckDepositCreateParams
       def create(params)
-        parsed, options = Increase::Models::CheckDepositCreateParams.dump_request(params)
+        parsed, options = Increase::CheckDepositCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "check_deposits",
           body: parsed,
-          model: Increase::Models::CheckDeposit,
+          model: Increase::CheckDeposit,
           options: options
         )
       end
@@ -45,14 +44,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::CheckDeposit]
+      # @return [Increase::CheckDeposit]
       #
       # @see Increase::Models::CheckDepositRetrieveParams
       def retrieve(check_deposit_id, params = {})
         @client.request(
           method: :get,
           path: ["check_deposits/%1$s", check_deposit_id],
-          model: Increase::Models::CheckDeposit,
+          model: Increase::CheckDeposit,
           options: params[:request_options]
         )
       end
@@ -66,29 +65,27 @@ module Increase
       #
       # @param account_id [String] Filter Check Deposits to those belonging to the specified Account.
       #
-      # @param created_at [Increase::Models::CheckDepositListParams::CreatedAt]
+      # @param created_at [Increase::CheckDepositListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::CheckDeposit>]
+      # @return [Increase::Internal::Page<Increase::CheckDeposit>]
       #
       # @see Increase::Models::CheckDepositListParams
       def list(params = {})
-        parsed, options = Increase::Models::CheckDepositListParams.dump_request(params)
+        parsed, options = Increase::CheckDepositListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "check_deposits",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::CheckDeposit,
+          model: Increase::CheckDeposit,
           options: options
         )
       end

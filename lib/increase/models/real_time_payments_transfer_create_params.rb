@@ -85,7 +85,6 @@ module Increase
       #   {Increase::Models::RealTimePaymentsTransferCreateParams} for more details.
       #
       #   @param amount [Integer] The transfer amount in USD cents. For Real-Time Payments transfers, must be posi
-      #   ...
       #
       #   @param creditor_name [String] The name of the transfer's recipient.
       #
@@ -94,23 +93,18 @@ module Increase
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer.
       #
       #   @param debtor_name [String] The name of the transfer's sender. If not provided, defaults to the name of the
-      #   ...
       #
       #   @param destination_account_number [String] The destination account number.
       #
       #   @param destination_routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
-      #   ...
       #
       #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
-      #   ...
       #
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @param ultimate_creditor_name [String] The name of the ultimate recipient of the transfer. Set this if the creditor is
-      #   ...
       #
       #   @param ultimate_debtor_name [String] The name of the ultimate sender of the transfer. Set this if the funds are being
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

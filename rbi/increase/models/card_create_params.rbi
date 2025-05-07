@@ -6,19 +6,20 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The Account the card should belong to.
       sig { returns(String) }
       attr_accessor :account_id
 
       # The card's billing address.
-      sig { returns(T.nilable(Increase::Models::CardCreateParams::BillingAddress)) }
+      sig { returns(T.nilable(Increase::CardCreateParams::BillingAddress)) }
       attr_reader :billing_address
 
       sig do
         params(
-          billing_address: T.any(Increase::Models::CardCreateParams::BillingAddress, Increase::Internal::AnyHash)
-        )
-          .void
+          billing_address: Increase::CardCreateParams::BillingAddress::OrHash
+        ).void
       end
       attr_writer :billing_address
 
@@ -34,14 +35,13 @@ module Increase
       # number with this request. Otherwise, subscribe and then action a Real Time
       # Decision with the category `digital_wallet_token_requested` or
       # `digital_wallet_authentication_requested`.
-      sig { returns(T.nilable(Increase::Models::CardCreateParams::DigitalWallet)) }
+      sig { returns(T.nilable(Increase::CardCreateParams::DigitalWallet)) }
       attr_reader :digital_wallet
 
       sig do
         params(
-          digital_wallet: T.any(Increase::Models::CardCreateParams::DigitalWallet, Increase::Internal::AnyHash)
-        )
-          .void
+          digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash
+        ).void
       end
       attr_writer :digital_wallet
 
@@ -56,13 +56,12 @@ module Increase
       sig do
         params(
           account_id: String,
-          billing_address: T.any(Increase::Models::CardCreateParams::BillingAddress, Increase::Internal::AnyHash),
+          billing_address: Increase::CardCreateParams::BillingAddress::OrHash,
           description: String,
-          digital_wallet: T.any(Increase::Models::CardCreateParams::DigitalWallet, Increase::Internal::AnyHash),
+          digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash,
           entity_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # The Account the card should belong to.
@@ -81,23 +80,28 @@ module Increase
         # when the card is not for the Account holder.
         entity_id: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              account_id: String,
-              billing_address: Increase::Models::CardCreateParams::BillingAddress,
-              description: String,
-              digital_wallet: Increase::Models::CardCreateParams::DigitalWallet,
-              entity_id: String,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            account_id: String,
+            billing_address: Increase::CardCreateParams::BillingAddress,
+            description: String,
+            digital_wallet: Increase::CardCreateParams::DigitalWallet,
+            entity_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
 
       class BillingAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The city of the billing address.
         sig { returns(String) }
         attr_accessor :city
@@ -123,8 +127,13 @@ module Increase
 
         # The card's billing address.
         sig do
-          params(city: String, line1: String, postal_code: String, state: String, line2: String)
-            .returns(T.attached_class)
+          params(
+            city: String,
+            line1: String,
+            postal_code: String,
+            state: String,
+            line2: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The city of the billing address.
@@ -137,14 +146,28 @@ module Increase
           state:,
           # The second line of the billing address.
           line2: nil
-        ); end
-        sig do
-          override.returns({city: String, line1: String, postal_code: String, state: String, line2: String})
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              city: String,
+              line1: String,
+              postal_code: String,
+              state: String,
+              line2: String
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       class DigitalWallet < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The digital card profile assigned to this digital card.
         sig { returns(T.nilable(String)) }
         attr_reader :digital_card_profile_id
@@ -174,7 +197,11 @@ module Increase
         # Decision with the category `digital_wallet_token_requested` or
         # `digital_wallet_authentication_requested`.
         sig do
-          params(digital_card_profile_id: String, email: String, phone: String).returns(T.attached_class)
+          params(
+            digital_card_profile_id: String,
+            email: String,
+            phone: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The digital card profile assigned to this digital card.
@@ -185,9 +212,16 @@ module Increase
           # A phone number that can be used to contact and verify the cardholder via
           # one-time passcode over SMS.
           phone: nil
-        ); end
-        sig { override.returns({digital_card_profile_id: String, email: String, phone: String}) }
-        def to_hash; end
+        )
+        end
+
+        sig do
+          override.returns(
+            { digital_card_profile_id: String, email: String, phone: String }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

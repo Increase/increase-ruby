@@ -13,8 +13,8 @@ module Increase
       # @!attribute category
       #   The type of document.
       #
-      #   @return [Symbol, Increase::Models::Document::Category]
-      required :category, enum: -> { Increase::Models::Document::Category }
+      #   @return [Symbol, Increase::Document::Category]
+      required :category, enum: -> { Increase::Document::Category }
 
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
@@ -39,33 +39,31 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `document`.
       #
-      #   @return [Symbol, Increase::Models::Document::Type]
-      required :type, enum: -> { Increase::Models::Document::Type }
+      #   @return [Symbol, Increase::Document::Type]
+      required :type, enum: -> { Increase::Document::Type }
 
       # @!method initialize(id:, category:, created_at:, entity_id:, file_id:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::Document} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::Document} for
+      #   more details.
       #
       #   Increase generates certain documents / forms automatically for your application;
       #   they can be listed here.
       #
       #   @param id [String] The Document identifier.
       #
-      #   @param category [Symbol, Increase::Models::Document::Category] The type of document.
+      #   @param category [Symbol, Increase::Document::Category] The type of document.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Documen
-      #   ...
       #
       #   @param entity_id [String, nil] The identifier of the Entity the document was generated for.
       #
       #   @param file_id [String] The identifier of the File containing the Document's contents.
       #
-      #   @param type [Symbol, Increase::Models::Document::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::Document::Type] A constant representing the object's type. For this resource it will always be `
 
       # The type of document.
       #
-      # @see Increase::Models::Document#category
+      # @see Increase::Document#category
       module Category
         extend Increase::Internal::Type::Enum
 
@@ -88,7 +86,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `document`.
       #
-      # @see Increase::Models::Document#type
+      # @see Increase::Document#type
       module Type
         extend Increase::Internal::Type::Enum
 

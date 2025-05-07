@@ -9,17 +9,22 @@ module Increase
         # This transfer must first have a `status` of `pending_approval` or
         # `pending_submission`.
         sig do
-          params(check_transfer_id: String, request_options: Increase::RequestOpts)
-            .returns(Increase::Models::CheckTransfer)
+          params(
+            check_transfer_id: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::CheckTransfer)
         end
         def mail(
           # The identifier of the Check Transfer you wish to mail.
           check_transfer_id,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

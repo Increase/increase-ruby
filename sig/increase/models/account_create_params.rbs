@@ -34,8 +34,6 @@ module Increase
         ?program_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::account_create_params
     end
   end
 end

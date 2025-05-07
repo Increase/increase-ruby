@@ -117,8 +117,6 @@ module Increase
           ?originator_to_beneficiary_information_line4: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::inbound_wire_drawdown_request_create_params
       end
     end
   end

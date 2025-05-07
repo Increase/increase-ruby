@@ -3,14 +3,14 @@ module Increase
     type entity_create_params =
       {
         structure: Increase::Models::EntityCreateParams::structure,
-        corporation: Increase::Models::EntityCreateParams::Corporation,
+        corporation: Increase::EntityCreateParams::Corporation,
         description: String,
-        government_authority: Increase::Models::EntityCreateParams::GovernmentAuthority,
-        joint: Increase::Models::EntityCreateParams::Joint,
-        natural_person: Increase::Models::EntityCreateParams::NaturalPerson,
-        supplemental_documents: ::Array[Increase::Models::EntityCreateParams::SupplementalDocument],
-        third_party_verification: Increase::Models::EntityCreateParams::ThirdPartyVerification,
-        trust: Increase::Models::EntityCreateParams::Trust
+        government_authority: Increase::EntityCreateParams::GovernmentAuthority,
+        joint: Increase::EntityCreateParams::Joint,
+        natural_person: Increase::EntityCreateParams::NaturalPerson,
+        supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
+        third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
+        trust: Increase::EntityCreateParams::Trust
       }
       & Increase::Internal::Type::request_parameters
 
@@ -20,66 +20,64 @@ module Increase
 
       attr_accessor structure: Increase::Models::EntityCreateParams::structure
 
-      attr_reader corporation: Increase::Models::EntityCreateParams::Corporation?
+      attr_reader corporation: Increase::EntityCreateParams::Corporation?
 
       def corporation=: (
-        Increase::Models::EntityCreateParams::Corporation
-      ) -> Increase::Models::EntityCreateParams::Corporation
+        Increase::EntityCreateParams::Corporation
+      ) -> Increase::EntityCreateParams::Corporation
 
       attr_reader description: String?
 
       def description=: (String) -> String
 
-      attr_reader government_authority: Increase::Models::EntityCreateParams::GovernmentAuthority?
+      attr_reader government_authority: Increase::EntityCreateParams::GovernmentAuthority?
 
       def government_authority=: (
-        Increase::Models::EntityCreateParams::GovernmentAuthority
-      ) -> Increase::Models::EntityCreateParams::GovernmentAuthority
+        Increase::EntityCreateParams::GovernmentAuthority
+      ) -> Increase::EntityCreateParams::GovernmentAuthority
 
-      attr_reader joint: Increase::Models::EntityCreateParams::Joint?
+      attr_reader joint: Increase::EntityCreateParams::Joint?
 
       def joint=: (
-        Increase::Models::EntityCreateParams::Joint
-      ) -> Increase::Models::EntityCreateParams::Joint
+        Increase::EntityCreateParams::Joint
+      ) -> Increase::EntityCreateParams::Joint
 
-      attr_reader natural_person: Increase::Models::EntityCreateParams::NaturalPerson?
+      attr_reader natural_person: Increase::EntityCreateParams::NaturalPerson?
 
       def natural_person=: (
-        Increase::Models::EntityCreateParams::NaturalPerson
-      ) -> Increase::Models::EntityCreateParams::NaturalPerson
+        Increase::EntityCreateParams::NaturalPerson
+      ) -> Increase::EntityCreateParams::NaturalPerson
 
-      attr_reader supplemental_documents: ::Array[Increase::Models::EntityCreateParams::SupplementalDocument]?
+      attr_reader supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument]?
 
       def supplemental_documents=: (
-        ::Array[Increase::Models::EntityCreateParams::SupplementalDocument]
-      ) -> ::Array[Increase::Models::EntityCreateParams::SupplementalDocument]
+        ::Array[Increase::EntityCreateParams::SupplementalDocument]
+      ) -> ::Array[Increase::EntityCreateParams::SupplementalDocument]
 
-      attr_reader third_party_verification: Increase::Models::EntityCreateParams::ThirdPartyVerification?
+      attr_reader third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification?
 
       def third_party_verification=: (
-        Increase::Models::EntityCreateParams::ThirdPartyVerification
-      ) -> Increase::Models::EntityCreateParams::ThirdPartyVerification
+        Increase::EntityCreateParams::ThirdPartyVerification
+      ) -> Increase::EntityCreateParams::ThirdPartyVerification
 
-      attr_reader trust: Increase::Models::EntityCreateParams::Trust?
+      attr_reader trust: Increase::EntityCreateParams::Trust?
 
       def trust=: (
-        Increase::Models::EntityCreateParams::Trust
-      ) -> Increase::Models::EntityCreateParams::Trust
+        Increase::EntityCreateParams::Trust
+      ) -> Increase::EntityCreateParams::Trust
 
       def initialize: (
         structure: Increase::Models::EntityCreateParams::structure,
-        ?corporation: Increase::Models::EntityCreateParams::Corporation,
+        ?corporation: Increase::EntityCreateParams::Corporation,
         ?description: String,
-        ?government_authority: Increase::Models::EntityCreateParams::GovernmentAuthority,
-        ?joint: Increase::Models::EntityCreateParams::Joint,
-        ?natural_person: Increase::Models::EntityCreateParams::NaturalPerson,
-        ?supplemental_documents: ::Array[Increase::Models::EntityCreateParams::SupplementalDocument],
-        ?third_party_verification: Increase::Models::EntityCreateParams::ThirdPartyVerification,
-        ?trust: Increase::Models::EntityCreateParams::Trust,
+        ?government_authority: Increase::EntityCreateParams::GovernmentAuthority,
+        ?joint: Increase::EntityCreateParams::Joint,
+        ?natural_person: Increase::EntityCreateParams::NaturalPerson,
+        ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
+        ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
+        ?trust: Increase::EntityCreateParams::Trust,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_create_params
 
       type structure =
         :corporation | :natural_person | :joint | :trust | :government_authority
@@ -107,30 +105,30 @@ module Increase
 
       type corporation =
         {
-          address: Increase::Models::EntityCreateParams::Corporation::Address,
-          beneficial_owners: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner],
+          address: Increase::EntityCreateParams::Corporation::Address,
+          beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner],
           name: String,
           tax_identifier: String,
-          beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
+          beneficial_ownership_exemption_reason: Increase::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           incorporation_state: String,
           industry_code: String,
           website: String
         }
 
       class Corporation < Increase::Internal::Type::BaseModel
-        attr_accessor address: Increase::Models::EntityCreateParams::Corporation::Address
+        attr_accessor address: Increase::EntityCreateParams::Corporation::Address
 
-        attr_accessor beneficial_owners: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner]
+        attr_accessor beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner]
 
         attr_accessor name: String
 
         attr_accessor tax_identifier: String
 
-        attr_reader beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason?
+        attr_reader beneficial_ownership_exemption_reason: Increase::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason?
 
         def beneficial_ownership_exemption_reason=: (
-          Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
-        ) -> Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
+          Increase::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
+        ) -> Increase::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
 
         attr_reader incorporation_state: String?
 
@@ -145,17 +143,15 @@ module Increase
         def website=: (String) -> String
 
         def initialize: (
-          address: Increase::Models::EntityCreateParams::Corporation::Address,
-          beneficial_owners: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner],
+          address: Increase::EntityCreateParams::Corporation::Address,
+          beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner],
           name: String,
           tax_identifier: String,
-          ?beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
+          ?beneficial_ownership_exemption_reason: Increase::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           ?incorporation_state: String,
           ?industry_code: String,
           ?website: String
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityCreateParams::corporation
 
         type address =
           {
@@ -186,49 +182,45 @@ module Increase
             zip: String,
             ?line2: String
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::Corporation::address
         end
 
         type beneficial_owner =
           {
-            individual: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual,
-            prongs: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong],
+            individual: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual,
+            prongs: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner::prong],
             company_title: String
           }
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
-          attr_accessor individual: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual
+          attr_accessor individual: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual
 
-          attr_accessor prongs: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong]
+          attr_accessor prongs: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner::prong]
 
           attr_reader company_title: String?
 
           def company_title=: (String) -> String
 
           def initialize: (
-            individual: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual,
-            prongs: ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong],
+            individual: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual,
+            prongs: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner::prong],
             ?company_title: String
           ) -> void
 
-          def to_hash: -> Increase::Models::EntityCreateParams::Corporation::beneficial_owner
-
           type individual =
             {
-              address: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address,
+              address: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification,
+              identification: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification,
               name: String,
               confirmed_no_us_tax_id: bool
             }
 
           class Individual < Increase::Internal::Type::BaseModel
-            attr_accessor address: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address
+            attr_accessor address: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address
 
             attr_accessor date_of_birth: Date
 
-            attr_accessor identification: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification
+            attr_accessor identification: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification
 
             attr_accessor name: String
 
@@ -237,14 +229,12 @@ module Increase
             def confirmed_no_us_tax_id=: (bool) -> bool
 
             def initialize: (
-              address: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address,
+              address: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification,
+              identification: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification,
               name: String,
               ?confirmed_no_us_tax_id: bool
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::individual
 
             type address =
               {
@@ -285,51 +275,47 @@ module Increase
                 ?state: String,
                 ?zip: String
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::address
             end
 
             type identification =
               {
-                method_: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_,
+                method_: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_,
                 number: String,
-                drivers_license: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense,
-                other: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other,
-                passport: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
+                drivers_license: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense,
+                other: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other,
+                passport: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
               }
 
             class Identification < Increase::Internal::Type::BaseModel
-              attr_accessor method_: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_
+              attr_accessor method_: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_
 
               attr_accessor number: String
 
-              attr_reader drivers_license: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense?
+              attr_reader drivers_license: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense?
 
               def drivers_license=: (
-                Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense
-              ) -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense
+                Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense
+              ) -> Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense
 
-              attr_reader other: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other?
+              attr_reader other: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other?
 
               def other=: (
-                Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other
-              ) -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other
+                Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other
+              ) -> Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other
 
-              attr_reader passport: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport?
+              attr_reader passport: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport?
 
               def passport=: (
-                Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
-              ) -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
+                Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
+              ) -> Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
 
               def initialize: (
-                method_: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_,
+                method_: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_,
                 number: String,
-                ?drivers_license: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense,
-                ?other: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other,
-                ?passport: Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
+                ?drivers_license: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense,
+                ?other: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other,
+                ?passport: Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::identification
 
               type method_ =
                 :social_security_number
@@ -356,7 +342,7 @@ module Increase
                 # Another identifying document.
                 OTHER: :other
 
-                def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_]
+                def self?.values: -> ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::method_]
               end
 
               type drivers_license =
@@ -384,8 +370,6 @@ module Increase
                   state: String,
                   ?back_file_id: String
                 ) -> void
-
-                def to_hash: -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::drivers_license
               end
 
               type other =
@@ -419,8 +403,6 @@ module Increase
                   ?back_file_id: String,
                   ?expiration_date: Date
                 ) -> void
-
-                def to_hash: -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::other
               end
 
               type passport =
@@ -438,8 +420,6 @@ module Increase
                   expiration_date: Date,
                   file_id: String
                 ) -> void
-
-                def to_hash: -> Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::passport
               end
             end
           end
@@ -455,7 +435,7 @@ module Increase
             # A person who manages, directs, or has significant control of the entity.
             CONTROL: :control
 
-            def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong]
+            def self?.values: -> ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner::prong]
           end
         end
 
@@ -476,26 +456,26 @@ module Increase
           # A public entity acting on behalf of the federal or a state government.
           PUBLIC_ENTITY: :public_entity
 
-          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason]
+          def self?.values: -> ::Array[Increase::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason]
         end
       end
 
       type government_authority =
         {
-          address: Increase::Models::EntityCreateParams::GovernmentAuthority::Address,
-          authorized_persons: ::Array[Increase::Models::EntityCreateParams::GovernmentAuthority::AuthorizedPerson],
-          category: Increase::Models::EntityCreateParams::GovernmentAuthority::category,
+          address: Increase::EntityCreateParams::GovernmentAuthority::Address,
+          authorized_persons: ::Array[Increase::EntityCreateParams::GovernmentAuthority::AuthorizedPerson],
+          category: Increase::EntityCreateParams::GovernmentAuthority::category,
           name: String,
           tax_identifier: String,
           website: String
         }
 
       class GovernmentAuthority < Increase::Internal::Type::BaseModel
-        attr_accessor address: Increase::Models::EntityCreateParams::GovernmentAuthority::Address
+        attr_accessor address: Increase::EntityCreateParams::GovernmentAuthority::Address
 
-        attr_accessor authorized_persons: ::Array[Increase::Models::EntityCreateParams::GovernmentAuthority::AuthorizedPerson]
+        attr_accessor authorized_persons: ::Array[Increase::EntityCreateParams::GovernmentAuthority::AuthorizedPerson]
 
-        attr_accessor category: Increase::Models::EntityCreateParams::GovernmentAuthority::category
+        attr_accessor category: Increase::EntityCreateParams::GovernmentAuthority::category
 
         attr_accessor name: String
 
@@ -506,15 +486,13 @@ module Increase
         def website=: (String) -> String
 
         def initialize: (
-          address: Increase::Models::EntityCreateParams::GovernmentAuthority::Address,
-          authorized_persons: ::Array[Increase::Models::EntityCreateParams::GovernmentAuthority::AuthorizedPerson],
-          category: Increase::Models::EntityCreateParams::GovernmentAuthority::category,
+          address: Increase::EntityCreateParams::GovernmentAuthority::Address,
+          authorized_persons: ::Array[Increase::EntityCreateParams::GovernmentAuthority::AuthorizedPerson],
+          category: Increase::EntityCreateParams::GovernmentAuthority::category,
           name: String,
           tax_identifier: String,
           ?website: String
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityCreateParams::government_authority
 
         type address =
           {
@@ -545,8 +523,6 @@ module Increase
             zip: String,
             ?line2: String
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::GovernmentAuthority::address
         end
 
         type authorized_person = { name: String }
@@ -555,8 +531,6 @@ module Increase
           attr_accessor name: String
 
           def initialize: (name: String) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::GovernmentAuthority::authorized_person
         end
 
         type category = :municipality
@@ -567,45 +541,43 @@ module Increase
           # The Public Entity is a Municipality.
           MUNICIPALITY: :municipality
 
-          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::GovernmentAuthority::category]
+          def self?.values: -> ::Array[Increase::EntityCreateParams::GovernmentAuthority::category]
         end
       end
 
       type joint =
         {
-          individuals: ::Array[Increase::Models::EntityCreateParams::Joint::Individual],
+          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual],
           name: String
         }
 
       class Joint < Increase::Internal::Type::BaseModel
-        attr_accessor individuals: ::Array[Increase::Models::EntityCreateParams::Joint::Individual]
+        attr_accessor individuals: ::Array[Increase::EntityCreateParams::Joint::Individual]
 
         attr_reader name: String?
 
         def name=: (String) -> String
 
         def initialize: (
-          individuals: ::Array[Increase::Models::EntityCreateParams::Joint::Individual],
+          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual],
           ?name: String
         ) -> void
 
-        def to_hash: -> Increase::Models::EntityCreateParams::joint
-
         type individual =
           {
-            address: Increase::Models::EntityCreateParams::Joint::Individual::Address,
+            address: Increase::EntityCreateParams::Joint::Individual::Address,
             date_of_birth: Date,
-            identification: Increase::Models::EntityCreateParams::Joint::Individual::Identification,
+            identification: Increase::EntityCreateParams::Joint::Individual::Identification,
             name: String,
             confirmed_no_us_tax_id: bool
           }
 
         class Individual < Increase::Internal::Type::BaseModel
-          attr_accessor address: Increase::Models::EntityCreateParams::Joint::Individual::Address
+          attr_accessor address: Increase::EntityCreateParams::Joint::Individual::Address
 
           attr_accessor date_of_birth: Date
 
-          attr_accessor identification: Increase::Models::EntityCreateParams::Joint::Individual::Identification
+          attr_accessor identification: Increase::EntityCreateParams::Joint::Individual::Identification
 
           attr_accessor name: String
 
@@ -614,14 +586,12 @@ module Increase
           def confirmed_no_us_tax_id=: (bool) -> bool
 
           def initialize: (
-            address: Increase::Models::EntityCreateParams::Joint::Individual::Address,
+            address: Increase::EntityCreateParams::Joint::Individual::Address,
             date_of_birth: Date,
-            identification: Increase::Models::EntityCreateParams::Joint::Individual::Identification,
+            identification: Increase::EntityCreateParams::Joint::Individual::Identification,
             name: String,
             ?confirmed_no_us_tax_id: bool
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::Joint::individual
 
           type address =
             {
@@ -652,51 +622,47 @@ module Increase
               zip: String,
               ?line2: String
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::Joint::Individual::address
           end
 
           type identification =
             {
-              method_: Increase::Models::EntityCreateParams::Joint::Individual::Identification::method_,
+              method_: Increase::EntityCreateParams::Joint::Individual::Identification::method_,
               number: String,
-              drivers_license: Increase::Models::EntityCreateParams::Joint::Individual::Identification::DriversLicense,
-              other: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Other,
-              passport: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport
+              drivers_license: Increase::EntityCreateParams::Joint::Individual::Identification::DriversLicense,
+              other: Increase::EntityCreateParams::Joint::Individual::Identification::Other,
+              passport: Increase::EntityCreateParams::Joint::Individual::Identification::Passport
             }
 
           class Identification < Increase::Internal::Type::BaseModel
-            attr_accessor method_: Increase::Models::EntityCreateParams::Joint::Individual::Identification::method_
+            attr_accessor method_: Increase::EntityCreateParams::Joint::Individual::Identification::method_
 
             attr_accessor number: String
 
-            attr_reader drivers_license: Increase::Models::EntityCreateParams::Joint::Individual::Identification::DriversLicense?
+            attr_reader drivers_license: Increase::EntityCreateParams::Joint::Individual::Identification::DriversLicense?
 
             def drivers_license=: (
-              Increase::Models::EntityCreateParams::Joint::Individual::Identification::DriversLicense
-            ) -> Increase::Models::EntityCreateParams::Joint::Individual::Identification::DriversLicense
+              Increase::EntityCreateParams::Joint::Individual::Identification::DriversLicense
+            ) -> Increase::EntityCreateParams::Joint::Individual::Identification::DriversLicense
 
-            attr_reader other: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Other?
+            attr_reader other: Increase::EntityCreateParams::Joint::Individual::Identification::Other?
 
             def other=: (
-              Increase::Models::EntityCreateParams::Joint::Individual::Identification::Other
-            ) -> Increase::Models::EntityCreateParams::Joint::Individual::Identification::Other
+              Increase::EntityCreateParams::Joint::Individual::Identification::Other
+            ) -> Increase::EntityCreateParams::Joint::Individual::Identification::Other
 
-            attr_reader passport: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport?
+            attr_reader passport: Increase::EntityCreateParams::Joint::Individual::Identification::Passport?
 
             def passport=: (
-              Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport
-            ) -> Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport
+              Increase::EntityCreateParams::Joint::Individual::Identification::Passport
+            ) -> Increase::EntityCreateParams::Joint::Individual::Identification::Passport
 
             def initialize: (
-              method_: Increase::Models::EntityCreateParams::Joint::Individual::Identification::method_,
+              method_: Increase::EntityCreateParams::Joint::Individual::Identification::method_,
               number: String,
-              ?drivers_license: Increase::Models::EntityCreateParams::Joint::Individual::Identification::DriversLicense,
-              ?other: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Other,
-              ?passport: Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport
+              ?drivers_license: Increase::EntityCreateParams::Joint::Individual::Identification::DriversLicense,
+              ?other: Increase::EntityCreateParams::Joint::Individual::Identification::Other,
+              ?passport: Increase::EntityCreateParams::Joint::Individual::Identification::Passport
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::Joint::Individual::identification
 
             type method_ =
               :social_security_number
@@ -723,7 +689,7 @@ module Increase
               # Another identifying document.
               OTHER: :other
 
-              def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Joint::Individual::Identification::method_]
+              def self?.values: -> ::Array[Increase::EntityCreateParams::Joint::Individual::Identification::method_]
             end
 
             type drivers_license =
@@ -751,8 +717,6 @@ module Increase
                 state: String,
                 ?back_file_id: String
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Joint::Individual::Identification::drivers_license
             end
 
             type other =
@@ -786,8 +750,6 @@ module Increase
                 ?back_file_id: String,
                 ?expiration_date: Date
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Joint::Individual::Identification::other
             end
 
             type passport =
@@ -805,8 +767,6 @@ module Increase
                 expiration_date: Date,
                 file_id: String
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Joint::Individual::Identification::passport
             end
           end
         end
@@ -814,19 +774,19 @@ module Increase
 
       type natural_person =
         {
-          address: Increase::Models::EntityCreateParams::NaturalPerson::Address,
+          address: Increase::EntityCreateParams::NaturalPerson::Address,
           date_of_birth: Date,
-          identification: Increase::Models::EntityCreateParams::NaturalPerson::Identification,
+          identification: Increase::EntityCreateParams::NaturalPerson::Identification,
           name: String,
           confirmed_no_us_tax_id: bool
         }
 
       class NaturalPerson < Increase::Internal::Type::BaseModel
-        attr_accessor address: Increase::Models::EntityCreateParams::NaturalPerson::Address
+        attr_accessor address: Increase::EntityCreateParams::NaturalPerson::Address
 
         attr_accessor date_of_birth: Date
 
-        attr_accessor identification: Increase::Models::EntityCreateParams::NaturalPerson::Identification
+        attr_accessor identification: Increase::EntityCreateParams::NaturalPerson::Identification
 
         attr_accessor name: String
 
@@ -835,14 +795,12 @@ module Increase
         def confirmed_no_us_tax_id=: (bool) -> bool
 
         def initialize: (
-          address: Increase::Models::EntityCreateParams::NaturalPerson::Address,
+          address: Increase::EntityCreateParams::NaturalPerson::Address,
           date_of_birth: Date,
-          identification: Increase::Models::EntityCreateParams::NaturalPerson::Identification,
+          identification: Increase::EntityCreateParams::NaturalPerson::Identification,
           name: String,
           ?confirmed_no_us_tax_id: bool
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityCreateParams::natural_person
 
         type address =
           {
@@ -873,51 +831,47 @@ module Increase
             zip: String,
             ?line2: String
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::NaturalPerson::address
         end
 
         type identification =
           {
-            method_: Increase::Models::EntityCreateParams::NaturalPerson::Identification::method_,
+            method_: Increase::EntityCreateParams::NaturalPerson::Identification::method_,
             number: String,
-            drivers_license: Increase::Models::EntityCreateParams::NaturalPerson::Identification::DriversLicense,
-            other: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Other,
-            passport: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport
+            drivers_license: Increase::EntityCreateParams::NaturalPerson::Identification::DriversLicense,
+            other: Increase::EntityCreateParams::NaturalPerson::Identification::Other,
+            passport: Increase::EntityCreateParams::NaturalPerson::Identification::Passport
           }
 
         class Identification < Increase::Internal::Type::BaseModel
-          attr_accessor method_: Increase::Models::EntityCreateParams::NaturalPerson::Identification::method_
+          attr_accessor method_: Increase::EntityCreateParams::NaturalPerson::Identification::method_
 
           attr_accessor number: String
 
-          attr_reader drivers_license: Increase::Models::EntityCreateParams::NaturalPerson::Identification::DriversLicense?
+          attr_reader drivers_license: Increase::EntityCreateParams::NaturalPerson::Identification::DriversLicense?
 
           def drivers_license=: (
-            Increase::Models::EntityCreateParams::NaturalPerson::Identification::DriversLicense
-          ) -> Increase::Models::EntityCreateParams::NaturalPerson::Identification::DriversLicense
+            Increase::EntityCreateParams::NaturalPerson::Identification::DriversLicense
+          ) -> Increase::EntityCreateParams::NaturalPerson::Identification::DriversLicense
 
-          attr_reader other: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Other?
+          attr_reader other: Increase::EntityCreateParams::NaturalPerson::Identification::Other?
 
           def other=: (
-            Increase::Models::EntityCreateParams::NaturalPerson::Identification::Other
-          ) -> Increase::Models::EntityCreateParams::NaturalPerson::Identification::Other
+            Increase::EntityCreateParams::NaturalPerson::Identification::Other
+          ) -> Increase::EntityCreateParams::NaturalPerson::Identification::Other
 
-          attr_reader passport: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport?
+          attr_reader passport: Increase::EntityCreateParams::NaturalPerson::Identification::Passport?
 
           def passport=: (
-            Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport
-          ) -> Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport
+            Increase::EntityCreateParams::NaturalPerson::Identification::Passport
+          ) -> Increase::EntityCreateParams::NaturalPerson::Identification::Passport
 
           def initialize: (
-            method_: Increase::Models::EntityCreateParams::NaturalPerson::Identification::method_,
+            method_: Increase::EntityCreateParams::NaturalPerson::Identification::method_,
             number: String,
-            ?drivers_license: Increase::Models::EntityCreateParams::NaturalPerson::Identification::DriversLicense,
-            ?other: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Other,
-            ?passport: Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport
+            ?drivers_license: Increase::EntityCreateParams::NaturalPerson::Identification::DriversLicense,
+            ?other: Increase::EntityCreateParams::NaturalPerson::Identification::Other,
+            ?passport: Increase::EntityCreateParams::NaturalPerson::Identification::Passport
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::NaturalPerson::identification
 
           type method_ =
             :social_security_number
@@ -944,7 +898,7 @@ module Increase
             # Another identifying document.
             OTHER: :other
 
-            def self?.values: -> ::Array[Increase::Models::EntityCreateParams::NaturalPerson::Identification::method_]
+            def self?.values: -> ::Array[Increase::EntityCreateParams::NaturalPerson::Identification::method_]
           end
 
           type drivers_license =
@@ -972,8 +926,6 @@ module Increase
               state: String,
               ?back_file_id: String
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::NaturalPerson::Identification::drivers_license
           end
 
           type other =
@@ -1007,8 +959,6 @@ module Increase
               ?back_file_id: String,
               ?expiration_date: Date
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::NaturalPerson::Identification::other
           end
 
           type passport =
@@ -1026,8 +976,6 @@ module Increase
               expiration_date: Date,
               file_id: String
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::NaturalPerson::Identification::passport
           end
         end
       end
@@ -1038,27 +986,23 @@ module Increase
         attr_accessor file_id: String
 
         def initialize: (file_id: String) -> void
-
-        def to_hash: -> Increase::Models::EntityCreateParams::supplemental_document
       end
 
       type third_party_verification =
         {
           reference: String,
-          vendor: Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor
+          vendor: Increase::EntityCreateParams::ThirdPartyVerification::vendor
         }
 
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
         attr_accessor reference: String
 
-        attr_accessor vendor: Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor
+        attr_accessor vendor: Increase::EntityCreateParams::ThirdPartyVerification::vendor
 
         def initialize: (
           reference: String,
-          vendor: Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor
+          vendor: Increase::EntityCreateParams::ThirdPartyVerification::vendor
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityCreateParams::third_party_verification
 
         type vendor = :alloy | :middesk
 
@@ -1071,30 +1015,30 @@ module Increase
           # Middesk. See https://middesk.com for more information.
           MIDDESK: :middesk
 
-          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor]
+          def self?.values: -> ::Array[Increase::EntityCreateParams::ThirdPartyVerification::vendor]
         end
       end
 
       type trust =
         {
-          address: Increase::Models::EntityCreateParams::Trust::Address,
-          category: Increase::Models::EntityCreateParams::Trust::category,
+          address: Increase::EntityCreateParams::Trust::Address,
+          category: Increase::EntityCreateParams::Trust::category,
           name: String,
-          trustees: ::Array[Increase::Models::EntityCreateParams::Trust::Trustee],
+          trustees: ::Array[Increase::EntityCreateParams::Trust::Trustee],
           formation_document_file_id: String,
           formation_state: String,
-          grantor: Increase::Models::EntityCreateParams::Trust::Grantor,
+          grantor: Increase::EntityCreateParams::Trust::Grantor,
           tax_identifier: String
         }
 
       class Trust < Increase::Internal::Type::BaseModel
-        attr_accessor address: Increase::Models::EntityCreateParams::Trust::Address
+        attr_accessor address: Increase::EntityCreateParams::Trust::Address
 
-        attr_accessor category: Increase::Models::EntityCreateParams::Trust::category
+        attr_accessor category: Increase::EntityCreateParams::Trust::category
 
         attr_accessor name: String
 
-        attr_accessor trustees: ::Array[Increase::Models::EntityCreateParams::Trust::Trustee]
+        attr_accessor trustees: ::Array[Increase::EntityCreateParams::Trust::Trustee]
 
         attr_reader formation_document_file_id: String?
 
@@ -1104,28 +1048,26 @@ module Increase
 
         def formation_state=: (String) -> String
 
-        attr_reader grantor: Increase::Models::EntityCreateParams::Trust::Grantor?
+        attr_reader grantor: Increase::EntityCreateParams::Trust::Grantor?
 
         def grantor=: (
-          Increase::Models::EntityCreateParams::Trust::Grantor
-        ) -> Increase::Models::EntityCreateParams::Trust::Grantor
+          Increase::EntityCreateParams::Trust::Grantor
+        ) -> Increase::EntityCreateParams::Trust::Grantor
 
         attr_reader tax_identifier: String?
 
         def tax_identifier=: (String) -> String
 
         def initialize: (
-          address: Increase::Models::EntityCreateParams::Trust::Address,
-          category: Increase::Models::EntityCreateParams::Trust::category,
+          address: Increase::EntityCreateParams::Trust::Address,
+          category: Increase::EntityCreateParams::Trust::category,
           name: String,
-          trustees: ::Array[Increase::Models::EntityCreateParams::Trust::Trustee],
+          trustees: ::Array[Increase::EntityCreateParams::Trust::Trustee],
           ?formation_document_file_id: String,
           ?formation_state: String,
-          ?grantor: Increase::Models::EntityCreateParams::Trust::Grantor,
+          ?grantor: Increase::EntityCreateParams::Trust::Grantor,
           ?tax_identifier: String
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityCreateParams::trust
 
         type address =
           {
@@ -1156,8 +1098,6 @@ module Increase
             zip: String,
             ?line2: String
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::Trust::address
         end
 
         type category = :revocable | :irrevocable
@@ -1171,30 +1111,28 @@ module Increase
           # The trust cannot be revoked.
           IRREVOCABLE: :irrevocable
 
-          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Trust::category]
+          def self?.values: -> ::Array[Increase::EntityCreateParams::Trust::category]
         end
 
         type trustee =
           {
-            structure: Increase::Models::EntityCreateParams::Trust::Trustee::structure,
-            individual: Increase::Models::EntityCreateParams::Trust::Trustee::Individual
+            structure: Increase::EntityCreateParams::Trust::Trustee::structure,
+            individual: Increase::EntityCreateParams::Trust::Trustee::Individual
           }
 
         class Trustee < Increase::Internal::Type::BaseModel
-          attr_accessor structure: Increase::Models::EntityCreateParams::Trust::Trustee::structure
+          attr_accessor structure: Increase::EntityCreateParams::Trust::Trustee::structure
 
-          attr_reader individual: Increase::Models::EntityCreateParams::Trust::Trustee::Individual?
+          attr_reader individual: Increase::EntityCreateParams::Trust::Trustee::Individual?
 
           def individual=: (
-            Increase::Models::EntityCreateParams::Trust::Trustee::Individual
-          ) -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual
+            Increase::EntityCreateParams::Trust::Trustee::Individual
+          ) -> Increase::EntityCreateParams::Trust::Trustee::Individual
 
           def initialize: (
-            structure: Increase::Models::EntityCreateParams::Trust::Trustee::structure,
-            ?individual: Increase::Models::EntityCreateParams::Trust::Trustee::Individual
+            structure: Increase::EntityCreateParams::Trust::Trustee::structure,
+            ?individual: Increase::EntityCreateParams::Trust::Trustee::Individual
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::Trust::trustee
 
           type structure = :individual
 
@@ -1204,24 +1142,24 @@ module Increase
             # The trustee is an individual.
             INDIVIDUAL: :individual
 
-            def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Trust::Trustee::structure]
+            def self?.values: -> ::Array[Increase::EntityCreateParams::Trust::Trustee::structure]
           end
 
           type individual =
             {
-              address: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Address,
+              address: Increase::EntityCreateParams::Trust::Trustee::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification,
+              identification: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification,
               name: String,
               confirmed_no_us_tax_id: bool
             }
 
           class Individual < Increase::Internal::Type::BaseModel
-            attr_accessor address: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Address
+            attr_accessor address: Increase::EntityCreateParams::Trust::Trustee::Individual::Address
 
             attr_accessor date_of_birth: Date
 
-            attr_accessor identification: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification
+            attr_accessor identification: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification
 
             attr_accessor name: String
 
@@ -1230,14 +1168,12 @@ module Increase
             def confirmed_no_us_tax_id=: (bool) -> bool
 
             def initialize: (
-              address: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Address,
+              address: Increase::EntityCreateParams::Trust::Trustee::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification,
+              identification: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification,
               name: String,
               ?confirmed_no_us_tax_id: bool
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::Trust::Trustee::individual
 
             type address =
               {
@@ -1268,51 +1204,47 @@ module Increase
                 zip: String,
                 ?line2: String
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::address
             end
 
             type identification =
               {
-                method_: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::method_,
+                method_: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::method_,
                 number: String,
-                drivers_license: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense,
-                other: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Other,
-                passport: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
+                drivers_license: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense,
+                other: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Other,
+                passport: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
               }
 
             class Identification < Increase::Internal::Type::BaseModel
-              attr_accessor method_: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::method_
+              attr_accessor method_: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::method_
 
               attr_accessor number: String
 
-              attr_reader drivers_license: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense?
+              attr_reader drivers_license: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense?
 
               def drivers_license=: (
-                Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense
-              ) -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense
+                Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense
+              ) -> Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense
 
-              attr_reader other: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Other?
+              attr_reader other: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Other?
 
               def other=: (
-                Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Other
-              ) -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Other
+                Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Other
+              ) -> Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Other
 
-              attr_reader passport: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport?
+              attr_reader passport: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport?
 
               def passport=: (
-                Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
-              ) -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
+                Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
+              ) -> Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
 
               def initialize: (
-                method_: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::method_,
+                method_: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::method_,
                 number: String,
-                ?drivers_license: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense,
-                ?other: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Other,
-                ?passport: Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
+                ?drivers_license: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense,
+                ?other: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Other,
+                ?passport: Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::identification
 
               type method_ =
                 :social_security_number
@@ -1339,7 +1271,7 @@ module Increase
                 # Another identifying document.
                 OTHER: :other
 
-                def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::method_]
+                def self?.values: -> ::Array[Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::method_]
               end
 
               type drivers_license =
@@ -1367,8 +1299,6 @@ module Increase
                   state: String,
                   ?back_file_id: String
                 ) -> void
-
-                def to_hash: -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::drivers_license
               end
 
               type other =
@@ -1402,8 +1332,6 @@ module Increase
                   ?back_file_id: String,
                   ?expiration_date: Date
                 ) -> void
-
-                def to_hash: -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::other
               end
 
               type passport =
@@ -1421,8 +1349,6 @@ module Increase
                   expiration_date: Date,
                   file_id: String
                 ) -> void
-
-                def to_hash: -> Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::passport
               end
             end
           end
@@ -1430,19 +1356,19 @@ module Increase
 
         type grantor =
           {
-            address: Increase::Models::EntityCreateParams::Trust::Grantor::Address,
+            address: Increase::EntityCreateParams::Trust::Grantor::Address,
             date_of_birth: Date,
-            identification: Increase::Models::EntityCreateParams::Trust::Grantor::Identification,
+            identification: Increase::EntityCreateParams::Trust::Grantor::Identification,
             name: String,
             confirmed_no_us_tax_id: bool
           }
 
         class Grantor < Increase::Internal::Type::BaseModel
-          attr_accessor address: Increase::Models::EntityCreateParams::Trust::Grantor::Address
+          attr_accessor address: Increase::EntityCreateParams::Trust::Grantor::Address
 
           attr_accessor date_of_birth: Date
 
-          attr_accessor identification: Increase::Models::EntityCreateParams::Trust::Grantor::Identification
+          attr_accessor identification: Increase::EntityCreateParams::Trust::Grantor::Identification
 
           attr_accessor name: String
 
@@ -1451,14 +1377,12 @@ module Increase
           def confirmed_no_us_tax_id=: (bool) -> bool
 
           def initialize: (
-            address: Increase::Models::EntityCreateParams::Trust::Grantor::Address,
+            address: Increase::EntityCreateParams::Trust::Grantor::Address,
             date_of_birth: Date,
-            identification: Increase::Models::EntityCreateParams::Trust::Grantor::Identification,
+            identification: Increase::EntityCreateParams::Trust::Grantor::Identification,
             name: String,
             ?confirmed_no_us_tax_id: bool
           ) -> void
-
-          def to_hash: -> Increase::Models::EntityCreateParams::Trust::grantor
 
           type address =
             {
@@ -1489,51 +1413,47 @@ module Increase
               zip: String,
               ?line2: String
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::Trust::Grantor::address
           end
 
           type identification =
             {
-              method_: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::method_,
+              method_: Increase::EntityCreateParams::Trust::Grantor::Identification::method_,
               number: String,
-              drivers_license: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::DriversLicense,
-              other: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Other,
-              passport: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport
+              drivers_license: Increase::EntityCreateParams::Trust::Grantor::Identification::DriversLicense,
+              other: Increase::EntityCreateParams::Trust::Grantor::Identification::Other,
+              passport: Increase::EntityCreateParams::Trust::Grantor::Identification::Passport
             }
 
           class Identification < Increase::Internal::Type::BaseModel
-            attr_accessor method_: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::method_
+            attr_accessor method_: Increase::EntityCreateParams::Trust::Grantor::Identification::method_
 
             attr_accessor number: String
 
-            attr_reader drivers_license: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::DriversLicense?
+            attr_reader drivers_license: Increase::EntityCreateParams::Trust::Grantor::Identification::DriversLicense?
 
             def drivers_license=: (
-              Increase::Models::EntityCreateParams::Trust::Grantor::Identification::DriversLicense
-            ) -> Increase::Models::EntityCreateParams::Trust::Grantor::Identification::DriversLicense
+              Increase::EntityCreateParams::Trust::Grantor::Identification::DriversLicense
+            ) -> Increase::EntityCreateParams::Trust::Grantor::Identification::DriversLicense
 
-            attr_reader other: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Other?
+            attr_reader other: Increase::EntityCreateParams::Trust::Grantor::Identification::Other?
 
             def other=: (
-              Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Other
-            ) -> Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Other
+              Increase::EntityCreateParams::Trust::Grantor::Identification::Other
+            ) -> Increase::EntityCreateParams::Trust::Grantor::Identification::Other
 
-            attr_reader passport: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport?
+            attr_reader passport: Increase::EntityCreateParams::Trust::Grantor::Identification::Passport?
 
             def passport=: (
-              Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport
-            ) -> Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport
+              Increase::EntityCreateParams::Trust::Grantor::Identification::Passport
+            ) -> Increase::EntityCreateParams::Trust::Grantor::Identification::Passport
 
             def initialize: (
-              method_: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::method_,
+              method_: Increase::EntityCreateParams::Trust::Grantor::Identification::method_,
               number: String,
-              ?drivers_license: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::DriversLicense,
-              ?other: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Other,
-              ?passport: Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport
+              ?drivers_license: Increase::EntityCreateParams::Trust::Grantor::Identification::DriversLicense,
+              ?other: Increase::EntityCreateParams::Trust::Grantor::Identification::Other,
+              ?passport: Increase::EntityCreateParams::Trust::Grantor::Identification::Passport
             ) -> void
-
-            def to_hash: -> Increase::Models::EntityCreateParams::Trust::Grantor::identification
 
             type method_ =
               :social_security_number
@@ -1560,7 +1480,7 @@ module Increase
               # Another identifying document.
               OTHER: :other
 
-              def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Trust::Grantor::Identification::method_]
+              def self?.values: -> ::Array[Increase::EntityCreateParams::Trust::Grantor::Identification::method_]
             end
 
             type drivers_license =
@@ -1588,8 +1508,6 @@ module Increase
                 state: String,
                 ?back_file_id: String
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Trust::Grantor::Identification::drivers_license
             end
 
             type other =
@@ -1623,8 +1541,6 @@ module Increase
                 ?back_file_id: String,
                 ?expiration_date: Date
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Trust::Grantor::Identification::other
             end
 
             type passport =
@@ -1642,8 +1558,6 @@ module Increase
                 expiration_date: Date,
                 file_id: String
               ) -> void
-
-              def to_hash: -> Increase::Models::EntityCreateParams::Trust::Grantor::Identification::passport
             end
           end
         end

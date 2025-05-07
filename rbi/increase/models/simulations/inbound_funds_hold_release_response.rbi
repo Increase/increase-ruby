@@ -4,6 +4,9 @@ module Increase
   module Models
     module Simulations
       class InboundFundsHoldReleaseResponse < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The Inbound Funds Hold identifier.
         sig { returns(String) }
         attr_accessor :id
@@ -25,7 +28,11 @@ module Increase
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         # currency.
-        sig { returns(Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol) }
+        sig do
+          returns(
+            Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+          )
+        end
         attr_accessor :currency
 
         # The ID of the Transaction for which funds were held.
@@ -41,12 +48,20 @@ module Increase
         attr_accessor :released_at
 
         # The status of the hold.
-        sig { returns(Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol) }
+        sig do
+          returns(
+            Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol
+          )
+        end
         attr_accessor :status
 
         # A constant representing the object's type. For this resource it will always be
         # `inbound_funds_hold`.
-        sig { returns(Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::TaggedSymbol) }
+        sig do
+          returns(
+            Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::TaggedSymbol
+          )
+        end
         attr_accessor :type
 
         # We hold funds for certain transaction types to account for return windows where
@@ -57,14 +72,16 @@ module Increase
             amount: Integer,
             automatically_releases_at: Time,
             created_at: Time,
-            currency: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::OrSymbol,
+            currency:
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::OrSymbol,
             held_transaction_id: T.nilable(String),
             pending_transaction_id: T.nilable(String),
             released_at: T.nilable(Time),
-            status: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::OrSymbol,
-            type: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::OrSymbol
-          )
-            .returns(T.attached_class)
+            status:
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::OrSymbol,
+            type:
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::OrSymbol
+          ).returns(T.attached_class)
         end
         def self.new(
           # The Inbound Funds Hold identifier.
@@ -92,25 +109,30 @@ module Increase
           # A constant representing the object's type. For this resource it will always be
           # `inbound_funds_hold`.
           type:
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                id: String,
-                amount: Integer,
-                automatically_releases_at: Time,
-                created_at: Time,
-                currency: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol,
-                held_transaction_id: T.nilable(String),
-                pending_transaction_id: T.nilable(String),
-                released_at: T.nilable(Time),
-                status: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol,
-                type: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::TaggedSymbol
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              amount: Integer,
+              automatically_releases_at: Time,
+              created_at: Time,
+              currency:
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol,
+              held_transaction_id: T.nilable(String),
+              pending_transaction_id: T.nilable(String),
+              released_at: T.nilable(Time),
+              status:
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol,
+              type:
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         # currency.
@@ -118,32 +140,65 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency) }
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Canadian Dollar (CAD)
-          CAD = T.let(:CAD, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol)
+          CAD =
+            T.let(
+              :CAD,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+            )
 
           # Swiss Franc (CHF)
-          CHF = T.let(:CHF, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol)
+          CHF =
+            T.let(
+              :CHF,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+            )
 
           # Euro (EUR)
-          EUR = T.let(:EUR, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol)
+          EUR =
+            T.let(
+              :EUR,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+            )
 
           # British Pound (GBP)
-          GBP = T.let(:GBP, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol)
+          GBP =
+            T.let(
+              :GBP,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+            )
 
           # Japanese Yen (JPY)
-          JPY = T.let(:JPY, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol)
+          JPY =
+            T.let(
+              :JPY,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+            )
 
           # US Dollar (USD)
-          USD = T.let(:USD, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol)
+          USD =
+            T.let(
+              :USD,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+            )
 
           sig do
-            override
-              .returns(T::Array[Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol])
+            override.returns(
+              T::Array[
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency::TaggedSymbol
+              ]
+            )
           end
-          def self.values; end
+          def self.values
+          end
         end
 
         # The status of the hold.
@@ -151,21 +206,37 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status) }
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Funds are still being held.
-          HELD = T.let(:held, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol)
+          HELD =
+            T.let(
+              :held,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol
+            )
 
           # Funds have been released.
           COMPLETE =
-            T.let(:complete, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol)
+            T.let(
+              :complete,
+              Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol
+            )
 
           sig do
-            override
-              .returns(T::Array[Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol])
+            override.returns(
+              T::Array[
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status::TaggedSymbol
+              ]
+            )
           end
-          def self.values; end
+          def self.values
+          end
         end
 
         # A constant representing the object's type. For this resource it will always be
@@ -174,7 +245,12 @@ module Increase
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type) }
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           INBOUND_FUNDS_HOLD =
@@ -184,10 +260,14 @@ module Increase
             )
 
           sig do
-            override
-              .returns(T::Array[Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::TaggedSymbol])
+            override.returns(
+              T::Array[
+                Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type::TaggedSymbol
+              ]
+            )
           end
-          def self.values; end
+          def self.values
+          end
         end
       end
     end

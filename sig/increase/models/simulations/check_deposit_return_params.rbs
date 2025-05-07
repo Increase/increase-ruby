@@ -9,8 +9,6 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         def initialize: (?request_options: Increase::request_opts) -> void
-
-        def to_hash: -> Increase::Models::Simulations::check_deposit_return_params
       end
     end
   end

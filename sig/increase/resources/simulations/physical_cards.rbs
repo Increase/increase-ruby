@@ -6,7 +6,7 @@ module Increase
           String physical_card_id,
           shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::shipment_status,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::PhysicalCard
+        ) -> Increase::PhysicalCard
 
         def initialize: (client: Increase::Client) -> void
       end

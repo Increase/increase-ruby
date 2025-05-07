@@ -14,8 +14,6 @@ module Increase
           card_id: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::digital_wallet_token_request_create_params
       end
     end
   end

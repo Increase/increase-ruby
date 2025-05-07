@@ -6,21 +6,21 @@ module Increase
         purpose: Increase::Models::FileCreateParams::purpose,
         ?description: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::File
+      ) -> Increase::File
 
       def retrieve: (
         String file_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::File
+      ) -> Increase::File
 
       def list: (
-        ?created_at: Increase::Models::FileListParams::CreatedAt,
+        ?created_at: Increase::FileListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?purpose: Increase::Models::FileListParams::Purpose,
+        ?purpose: Increase::FileListParams::Purpose,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::File]
+      ) -> Increase::Internal::Page[Increase::File]
 
       def initialize: (client: Increase::Client) -> void
     end

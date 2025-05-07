@@ -7,7 +7,7 @@ module Increase
         expires_at: Time,
         file_id: String,
         idempotency_key: String?,
-        type: Increase::Models::FileLink::type_,
+        type: Increase::FileLink::type_,
         unauthenticated_url: String
       }
 
@@ -22,7 +22,7 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor type: Increase::Models::FileLink::type_
+      attr_accessor type: Increase::FileLink::type_
 
       attr_accessor unauthenticated_url: String
 
@@ -32,11 +32,9 @@ module Increase
         expires_at: Time,
         file_id: String,
         idempotency_key: String?,
-        type: Increase::Models::FileLink::type_,
+        type: Increase::FileLink::type_,
         unauthenticated_url: String
       ) -> void
-
-      def to_hash: -> Increase::Models::file_link
 
       type type_ = :file_link
 
@@ -45,7 +43,7 @@ module Increase
 
         FILE_LINK: :file_link
 
-        def self?.values: -> ::Array[Increase::Models::FileLink::type_]
+        def self?.values: -> ::Array[Increase::FileLink::type_]
       end
     end
   end

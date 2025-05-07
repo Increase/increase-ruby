@@ -111,8 +111,6 @@ module Increase
           ?sender_reference: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::inbound_wire_transfer_create_params
       end
     end
   end

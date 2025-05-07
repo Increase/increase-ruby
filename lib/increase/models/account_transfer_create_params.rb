@@ -45,7 +45,6 @@ module Increase
       #   @param account_id [String] The identifier for the account that will send the transfer.
       #
       #   @param amount [Integer] The transfer amount in the minor unit of the account currency. For dollars, for
-      #   ...
       #
       #   @param description [String] The description you choose to give the transfer.
       #

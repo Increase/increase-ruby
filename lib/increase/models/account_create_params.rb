@@ -42,10 +42,8 @@ module Increase
       #   @param entity_id [String] The identifier for the Entity that will own the Account.
       #
       #   @param informational_entity_id [String] The identifier of an Entity that, while not owning the Account, is associated wi
-      #   ...
       #
       #   @param program_id [String] The identifier for the Program that this Account falls under. Required if you op
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -12,7 +12,10 @@ module Increase
 
     ENVIRONMENTS =
       T.let(
-        {production: "https://api.increase.com", sandbox: "https://sandbox.increase.com"},
+        {
+          production: "https://api.increase.com",
+          sandbox: "https://sandbox.increase.com"
+        },
         T::Hash[Symbol, String]
       )
 
@@ -177,7 +180,8 @@ module Increase
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }
-    private def auth_headers; end
+    private def auth_headers
+    end
 
     # Creates and returns a new client for interacting with the API.
     sig do
@@ -190,8 +194,7 @@ module Increase
         initial_retry_delay: Float,
         max_retry_delay: Float,
         idempotency_header: String
-      )
-        .returns(T.attached_class)
+      ).returns(T.attached_class)
     end
     def self.new(
       # Defaults to `ENV["INCREASE_API_KEY"]`
@@ -212,6 +215,7 @@ module Increase
       initial_retry_delay: Increase::Client::DEFAULT_INITIAL_RETRY_DELAY,
       max_retry_delay: Increase::Client::DEFAULT_MAX_RETRY_DELAY,
       idempotency_header: "Idempotency-Key"
-    ); end
+    )
+    end
   end
 end

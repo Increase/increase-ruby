@@ -28,7 +28,6 @@ module Increase
         #   @param card_payment_id [String] The identifier of the Card Payment to create a reversal on.
         #
         #   @param amount [Integer] The amount of the reversal in minor units in the card authorization's currency.
-        #   ...
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

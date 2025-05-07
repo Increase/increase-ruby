@@ -7,7 +7,7 @@ class Increase::Test::Resources::OAuthConnectionsTest < Increase::Test::Resource
     response = @increase.oauth_connections.retrieve("x")
 
     assert_pattern do
-      response => Increase::Models::OAuthConnection
+      response => Increase::OAuthConnection
     end
 
     assert_pattern do
@@ -17,8 +17,8 @@ class Increase::Test::Resources::OAuthConnectionsTest < Increase::Test::Resource
         deleted_at: Time | nil,
         group_id: String,
         oauth_application_id: String,
-        status: Increase::Models::OAuthConnection::Status,
-        type: Increase::Models::OAuthConnection::Type
+        status: Increase::OAuthConnection::Status,
+        type: Increase::OAuthConnection::Type
       }
     end
   end
@@ -34,7 +34,7 @@ class Increase::Test::Resources::OAuthConnectionsTest < Increase::Test::Resource
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::OAuthConnection
+      row => Increase::OAuthConnection
     end
 
     assert_pattern do
@@ -44,8 +44,8 @@ class Increase::Test::Resources::OAuthConnectionsTest < Increase::Test::Resource
         deleted_at: Time | nil,
         group_id: String,
         oauth_application_id: String,
-        status: Increase::Models::OAuthConnection::Status,
-        type: Increase::Models::OAuthConnection::Type
+        status: Increase::OAuthConnection::Status,
+        type: Increase::OAuthConnection::Type
       }
     end
   end

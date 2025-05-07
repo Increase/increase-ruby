@@ -2,7 +2,7 @@ module Increase
   module Models
     type entity_update_beneficial_owner_address_params =
       {
-        address: Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address,
+        address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
         beneficial_owner_id: String
       }
       & Increase::Internal::Type::request_parameters
@@ -11,17 +11,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_accessor address: Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address
+      attr_accessor address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address
 
       attr_accessor beneficial_owner_id: String
 
       def initialize: (
-        address: Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address,
+        address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
         beneficial_owner_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_update_beneficial_owner_address_params
 
       type address =
         {
@@ -62,8 +60,6 @@ module Increase
           ?state: String,
           ?zip: String
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityUpdateBeneficialOwnerAddressParams::address
       end
     end
   end

@@ -12,22 +12,22 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
       )
 
     assert_pattern do
-      response => Increase::Models::ExternalAccount
+      response => Increase::ExternalAccount
     end
 
     assert_pattern do
       response => {
         id: String,
-        account_holder: Increase::Models::ExternalAccount::AccountHolder,
+        account_holder: Increase::ExternalAccount::AccountHolder,
         account_number: String,
         created_at: Time,
         description: String,
-        funding: Increase::Models::ExternalAccount::Funding,
+        funding: Increase::ExternalAccount::Funding,
         idempotency_key: String | nil,
         routing_number: String,
-        status: Increase::Models::ExternalAccount::Status,
-        type: Increase::Models::ExternalAccount::Type,
-        verification_status: Increase::Models::ExternalAccount::VerificationStatus
+        status: Increase::ExternalAccount::Status,
+        type: Increase::ExternalAccount::Type,
+        verification_status: Increase::ExternalAccount::VerificationStatus
       }
     end
   end
@@ -36,22 +36,22 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
     response = @increase.external_accounts.retrieve("external_account_id")
 
     assert_pattern do
-      response => Increase::Models::ExternalAccount
+      response => Increase::ExternalAccount
     end
 
     assert_pattern do
       response => {
         id: String,
-        account_holder: Increase::Models::ExternalAccount::AccountHolder,
+        account_holder: Increase::ExternalAccount::AccountHolder,
         account_number: String,
         created_at: Time,
         description: String,
-        funding: Increase::Models::ExternalAccount::Funding,
+        funding: Increase::ExternalAccount::Funding,
         idempotency_key: String | nil,
         routing_number: String,
-        status: Increase::Models::ExternalAccount::Status,
-        type: Increase::Models::ExternalAccount::Type,
-        verification_status: Increase::Models::ExternalAccount::VerificationStatus
+        status: Increase::ExternalAccount::Status,
+        type: Increase::ExternalAccount::Type,
+        verification_status: Increase::ExternalAccount::VerificationStatus
       }
     end
   end
@@ -60,22 +60,22 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
     response = @increase.external_accounts.update("external_account_id")
 
     assert_pattern do
-      response => Increase::Models::ExternalAccount
+      response => Increase::ExternalAccount
     end
 
     assert_pattern do
       response => {
         id: String,
-        account_holder: Increase::Models::ExternalAccount::AccountHolder,
+        account_holder: Increase::ExternalAccount::AccountHolder,
         account_number: String,
         created_at: Time,
         description: String,
-        funding: Increase::Models::ExternalAccount::Funding,
+        funding: Increase::ExternalAccount::Funding,
         idempotency_key: String | nil,
         routing_number: String,
-        status: Increase::Models::ExternalAccount::Status,
-        type: Increase::Models::ExternalAccount::Type,
-        verification_status: Increase::Models::ExternalAccount::VerificationStatus
+        status: Increase::ExternalAccount::Status,
+        type: Increase::ExternalAccount::Type,
+        verification_status: Increase::ExternalAccount::VerificationStatus
       }
     end
   end
@@ -91,22 +91,22 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::ExternalAccount
+      row => Increase::ExternalAccount
     end
 
     assert_pattern do
       row => {
         id: String,
-        account_holder: Increase::Models::ExternalAccount::AccountHolder,
+        account_holder: Increase::ExternalAccount::AccountHolder,
         account_number: String,
         created_at: Time,
         description: String,
-        funding: Increase::Models::ExternalAccount::Funding,
+        funding: Increase::ExternalAccount::Funding,
         idempotency_key: String | nil,
         routing_number: String,
-        status: Increase::Models::ExternalAccount::Status,
-        type: Increase::Models::ExternalAccount::Type,
-        verification_status: Increase::Models::ExternalAccount::VerificationStatus
+        status: Increase::ExternalAccount::Status,
+        type: Increase::ExternalAccount::Type,
+        verification_status: Increase::ExternalAccount::VerificationStatus
       }
     end
   end

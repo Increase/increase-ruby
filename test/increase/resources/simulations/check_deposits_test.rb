@@ -7,7 +7,7 @@ class Increase::Test::Resources::Simulations::CheckDepositsTest < Increase::Test
     response = @increase.simulations.check_deposits.reject("check_deposit_id")
 
     assert_pattern do
-      response => Increase::Models::CheckDeposit
+      response => Increase::CheckDeposit
     end
 
     assert_pattern do
@@ -17,19 +17,19 @@ class Increase::Test::Resources::Simulations::CheckDepositsTest < Increase::Test
         amount: Integer,
         back_image_file_id: String | nil,
         created_at: Time,
-        deposit_acceptance: Increase::Models::CheckDeposit::DepositAcceptance | nil,
-        deposit_rejection: Increase::Models::CheckDeposit::DepositRejection | nil,
-        deposit_return: Increase::Models::CheckDeposit::DepositReturn | nil,
-        deposit_submission: Increase::Models::CheckDeposit::DepositSubmission | nil,
+        deposit_acceptance: Increase::CheckDeposit::DepositAcceptance | nil,
+        deposit_rejection: Increase::CheckDeposit::DepositRejection | nil,
+        deposit_return: Increase::CheckDeposit::DepositReturn | nil,
+        deposit_submission: Increase::CheckDeposit::DepositSubmission | nil,
         description: String | nil,
         front_image_file_id: String,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::CheckDeposit::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold | nil,
         inbound_mail_item_id: String | nil,
         lockbox_id: String | nil,
-        status: Increase::Models::CheckDeposit::Status,
+        status: Increase::CheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::CheckDeposit::Type
+        type: Increase::CheckDeposit::Type
       }
     end
   end
@@ -38,7 +38,7 @@ class Increase::Test::Resources::Simulations::CheckDepositsTest < Increase::Test
     response = @increase.simulations.check_deposits.return_("check_deposit_id")
 
     assert_pattern do
-      response => Increase::Models::CheckDeposit
+      response => Increase::CheckDeposit
     end
 
     assert_pattern do
@@ -48,19 +48,19 @@ class Increase::Test::Resources::Simulations::CheckDepositsTest < Increase::Test
         amount: Integer,
         back_image_file_id: String | nil,
         created_at: Time,
-        deposit_acceptance: Increase::Models::CheckDeposit::DepositAcceptance | nil,
-        deposit_rejection: Increase::Models::CheckDeposit::DepositRejection | nil,
-        deposit_return: Increase::Models::CheckDeposit::DepositReturn | nil,
-        deposit_submission: Increase::Models::CheckDeposit::DepositSubmission | nil,
+        deposit_acceptance: Increase::CheckDeposit::DepositAcceptance | nil,
+        deposit_rejection: Increase::CheckDeposit::DepositRejection | nil,
+        deposit_return: Increase::CheckDeposit::DepositReturn | nil,
+        deposit_submission: Increase::CheckDeposit::DepositSubmission | nil,
         description: String | nil,
         front_image_file_id: String,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::CheckDeposit::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold | nil,
         inbound_mail_item_id: String | nil,
         lockbox_id: String | nil,
-        status: Increase::Models::CheckDeposit::Status,
+        status: Increase::CheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::CheckDeposit::Type
+        type: Increase::CheckDeposit::Type
       }
     end
   end
@@ -69,7 +69,7 @@ class Increase::Test::Resources::Simulations::CheckDepositsTest < Increase::Test
     response = @increase.simulations.check_deposits.submit("check_deposit_id")
 
     assert_pattern do
-      response => Increase::Models::CheckDeposit
+      response => Increase::CheckDeposit
     end
 
     assert_pattern do
@@ -79,19 +79,19 @@ class Increase::Test::Resources::Simulations::CheckDepositsTest < Increase::Test
         amount: Integer,
         back_image_file_id: String | nil,
         created_at: Time,
-        deposit_acceptance: Increase::Models::CheckDeposit::DepositAcceptance | nil,
-        deposit_rejection: Increase::Models::CheckDeposit::DepositRejection | nil,
-        deposit_return: Increase::Models::CheckDeposit::DepositReturn | nil,
-        deposit_submission: Increase::Models::CheckDeposit::DepositSubmission | nil,
+        deposit_acceptance: Increase::CheckDeposit::DepositAcceptance | nil,
+        deposit_rejection: Increase::CheckDeposit::DepositRejection | nil,
+        deposit_return: Increase::CheckDeposit::DepositReturn | nil,
+        deposit_submission: Increase::CheckDeposit::DepositSubmission | nil,
         description: String | nil,
         front_image_file_id: String,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::CheckDeposit::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold | nil,
         inbound_mail_item_id: String | nil,
         lockbox_id: String | nil,
-        status: Increase::Models::CheckDeposit::Status,
+        status: Increase::CheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::CheckDeposit::Type
+        type: Increase::CheckDeposit::Type
       }
     end
   end

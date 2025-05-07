@@ -5,7 +5,7 @@ module Increase
         account_id: String,
         available_balance: Integer,
         current_balance: Integer,
-        type: Increase::Models::BalanceLookup::type_
+        type: Increase::BalanceLookup::type_
       }
 
     class BalanceLookup < Increase::Internal::Type::BaseModel
@@ -15,16 +15,14 @@ module Increase
 
       attr_accessor current_balance: Integer
 
-      attr_accessor type: Increase::Models::BalanceLookup::type_
+      attr_accessor type: Increase::BalanceLookup::type_
 
       def initialize: (
         account_id: String,
         available_balance: Integer,
         current_balance: Integer,
-        type: Increase::Models::BalanceLookup::type_
+        type: Increase::BalanceLookup::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::balance_lookup
 
       type type_ = :balance_lookup
 
@@ -33,7 +31,7 @@ module Increase
 
         BALANCE_LOOKUP: :balance_lookup
 
-        def self?.values: -> ::Array[Increase::Models::BalanceLookup::type_]
+        def self?.values: -> ::Array[Increase::BalanceLookup::type_]
       end
     end
   end

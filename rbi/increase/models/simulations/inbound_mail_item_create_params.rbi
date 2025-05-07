@@ -7,6 +7,9 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The amount of the check to be simulated, in cents.
         sig { returns(Integer) }
         attr_accessor :amount
@@ -28,9 +31,8 @@ module Increase
             amount: Integer,
             lockbox_id: String,
             contents_file_id: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-          )
-            .returns(T.attached_class)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(T.attached_class)
         end
         def self.new(
           # The amount of the check to be simulated, in cents.
@@ -41,19 +43,21 @@ module Increase
           # will be used.
           contents_file_id: nil,
           request_options: {}
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                amount: Integer,
-                lockbox_id: String,
-                contents_file_id: String,
-                request_options: Increase::RequestOptions
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              amount: Integer,
+              lockbox_id: String,
+              contents_file_id: String,
+              request_options: Increase::RequestOptions
+            }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

@@ -5,7 +5,7 @@ module Increase
         file_id: String,
         ?expires_at: Time,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::FileLink
+      ) -> Increase::FileLink
 
       def initialize: (client: Increase::Client) -> void
     end

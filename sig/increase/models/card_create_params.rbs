@@ -3,9 +3,9 @@ module Increase
     type card_create_params =
       {
         account_id: String,
-        billing_address: Increase::Models::CardCreateParams::BillingAddress,
+        billing_address: Increase::CardCreateParams::BillingAddress,
         description: String,
-        digital_wallet: Increase::Models::CardCreateParams::DigitalWallet,
+        digital_wallet: Increase::CardCreateParams::DigitalWallet,
         entity_id: String
       }
       & Increase::Internal::Type::request_parameters
@@ -16,21 +16,21 @@ module Increase
 
       attr_accessor account_id: String
 
-      attr_reader billing_address: Increase::Models::CardCreateParams::BillingAddress?
+      attr_reader billing_address: Increase::CardCreateParams::BillingAddress?
 
       def billing_address=: (
-        Increase::Models::CardCreateParams::BillingAddress
-      ) -> Increase::Models::CardCreateParams::BillingAddress
+        Increase::CardCreateParams::BillingAddress
+      ) -> Increase::CardCreateParams::BillingAddress
 
       attr_reader description: String?
 
       def description=: (String) -> String
 
-      attr_reader digital_wallet: Increase::Models::CardCreateParams::DigitalWallet?
+      attr_reader digital_wallet: Increase::CardCreateParams::DigitalWallet?
 
       def digital_wallet=: (
-        Increase::Models::CardCreateParams::DigitalWallet
-      ) -> Increase::Models::CardCreateParams::DigitalWallet
+        Increase::CardCreateParams::DigitalWallet
+      ) -> Increase::CardCreateParams::DigitalWallet
 
       attr_reader entity_id: String?
 
@@ -38,14 +38,12 @@ module Increase
 
       def initialize: (
         account_id: String,
-        ?billing_address: Increase::Models::CardCreateParams::BillingAddress,
+        ?billing_address: Increase::CardCreateParams::BillingAddress,
         ?description: String,
-        ?digital_wallet: Increase::Models::CardCreateParams::DigitalWallet,
+        ?digital_wallet: Increase::CardCreateParams::DigitalWallet,
         ?entity_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::card_create_params
 
       type billing_address =
         {
@@ -76,8 +74,6 @@ module Increase
           state: String,
           ?line2: String
         ) -> void
-
-        def to_hash: -> Increase::Models::CardCreateParams::billing_address
       end
 
       type digital_wallet =
@@ -101,8 +97,6 @@ module Increase
           ?email: String,
           ?phone: String
         ) -> void
-
-        def to_hash: -> Increase::Models::CardCreateParams::digital_wallet
       end
     end
   end

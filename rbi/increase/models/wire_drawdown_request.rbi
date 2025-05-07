@@ -3,6 +3,8 @@
 module Increase
   module Models
     class WireDrawdownRequest < Increase::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The Wire drawdown request identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -82,25 +84,25 @@ module Increase
       attr_accessor :recipient_routing_number
 
       # The lifecycle status of the drawdown request.
-      sig { returns(Increase::Models::WireDrawdownRequest::Status::TaggedSymbol) }
+      sig { returns(Increase::WireDrawdownRequest::Status::TaggedSymbol) }
       attr_accessor :status
 
       # After the drawdown request is submitted to Fedwire, this will contain
       # supplemental details.
-      sig { returns(T.nilable(Increase::Models::WireDrawdownRequest::Submission)) }
+      sig { returns(T.nilable(Increase::WireDrawdownRequest::Submission)) }
       attr_reader :submission
 
       sig do
         params(
-          submission: T.nilable(T.any(Increase::Models::WireDrawdownRequest::Submission, Increase::Internal::AnyHash))
-        )
-          .void
+          submission:
+            T.nilable(Increase::WireDrawdownRequest::Submission::OrHash)
+        ).void
       end
       attr_writer :submission
 
       # A constant representing the object's type. For this resource it will always be
       # `wire_drawdown_request`.
-      sig { returns(Increase::Models::WireDrawdownRequest::Type::TaggedSymbol) }
+      sig { returns(Increase::WireDrawdownRequest::Type::TaggedSymbol) }
       attr_accessor :type
 
       # Wire drawdown requests enable you to request that someone else send you a wire.
@@ -126,11 +128,11 @@ module Increase
           recipient_address_line3: T.nilable(String),
           recipient_name: T.nilable(String),
           recipient_routing_number: String,
-          status: Increase::Models::WireDrawdownRequest::Status::OrSymbol,
-          submission: T.nilable(T.any(Increase::Models::WireDrawdownRequest::Submission, Increase::Internal::AnyHash)),
-          type: Increase::Models::WireDrawdownRequest::Type::OrSymbol
-        )
-          .returns(T.attached_class)
+          status: Increase::WireDrawdownRequest::Status::OrSymbol,
+          submission:
+            T.nilable(Increase::WireDrawdownRequest::Submission::OrHash),
+          type: Increase::WireDrawdownRequest::Type::OrSymbol
+        ).returns(T.attached_class)
       end
       def self.new(
         # The Wire drawdown request identifier.
@@ -183,62 +185,82 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `wire_drawdown_request`.
         type:
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              id: String,
-              account_number_id: String,
-              amount: Integer,
-              created_at: Time,
-              currency: String,
-              fulfillment_inbound_wire_transfer_id: T.nilable(String),
-              idempotency_key: T.nilable(String),
-              message_to_recipient: String,
-              originator_address_line1: T.nilable(String),
-              originator_address_line2: T.nilable(String),
-              originator_address_line3: T.nilable(String),
-              originator_name: T.nilable(String),
-              recipient_account_number: String,
-              recipient_address_line1: T.nilable(String),
-              recipient_address_line2: T.nilable(String),
-              recipient_address_line3: T.nilable(String),
-              recipient_name: T.nilable(String),
-              recipient_routing_number: String,
-              status: Increase::Models::WireDrawdownRequest::Status::TaggedSymbol,
-              submission: T.nilable(Increase::Models::WireDrawdownRequest::Submission),
-              type: Increase::Models::WireDrawdownRequest::Type::TaggedSymbol
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            account_number_id: String,
+            amount: Integer,
+            created_at: Time,
+            currency: String,
+            fulfillment_inbound_wire_transfer_id: T.nilable(String),
+            idempotency_key: T.nilable(String),
+            message_to_recipient: String,
+            originator_address_line1: T.nilable(String),
+            originator_address_line2: T.nilable(String),
+            originator_address_line3: T.nilable(String),
+            originator_name: T.nilable(String),
+            recipient_account_number: String,
+            recipient_address_line1: T.nilable(String),
+            recipient_address_line2: T.nilable(String),
+            recipient_address_line3: T.nilable(String),
+            recipient_name: T.nilable(String),
+            recipient_routing_number: String,
+            status: Increase::WireDrawdownRequest::Status::TaggedSymbol,
+            submission: T.nilable(Increase::WireDrawdownRequest::Submission),
+            type: Increase::WireDrawdownRequest::Type::TaggedSymbol
+          }
+        )
+      end
+      def to_hash
+      end
 
       # The lifecycle status of the drawdown request.
       module Status
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireDrawdownRequest::Status) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::WireDrawdownRequest::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The drawdown request is queued to be submitted to Fedwire.
         PENDING_SUBMISSION =
-          T.let(:pending_submission, Increase::Models::WireDrawdownRequest::Status::TaggedSymbol)
+          T.let(
+            :pending_submission,
+            Increase::WireDrawdownRequest::Status::TaggedSymbol
+          )
 
         # The drawdown request has been sent and the recipient should respond in some way.
-        PENDING_RESPONSE = T.let(:pending_response, Increase::Models::WireDrawdownRequest::Status::TaggedSymbol)
+        PENDING_RESPONSE =
+          T.let(
+            :pending_response,
+            Increase::WireDrawdownRequest::Status::TaggedSymbol
+          )
 
         # The drawdown request has been fulfilled by the recipient.
-        FULFILLED = T.let(:fulfilled, Increase::Models::WireDrawdownRequest::Status::TaggedSymbol)
+        FULFILLED =
+          T.let(:fulfilled, Increase::WireDrawdownRequest::Status::TaggedSymbol)
 
         # The drawdown request has been refused by the recipient.
-        REFUSED = T.let(:refused, Increase::Models::WireDrawdownRequest::Status::TaggedSymbol)
+        REFUSED =
+          T.let(:refused, Increase::WireDrawdownRequest::Status::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::WireDrawdownRequest::Status::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::WireDrawdownRequest::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class Submission < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The input message accountability data (IMAD) uniquely identifying the submission
         # with Fedwire.
         sig { returns(String) }
@@ -246,14 +268,21 @@ module Increase
 
         # After the drawdown request is submitted to Fedwire, this will contain
         # supplemental details.
-        sig { params(input_message_accountability_data: String).returns(T.attached_class) }
+        sig do
+          params(input_message_accountability_data: String).returns(
+            T.attached_class
+          )
+        end
         def self.new(
           # The input message accountability data (IMAD) uniquely identifying the submission
           # with Fedwire.
           input_message_accountability_data:
-        ); end
-        sig { override.returns({input_message_accountability_data: String}) }
-        def to_hash; end
+        )
+        end
+
+        sig { override.returns({ input_message_accountability_data: String }) }
+        def to_hash
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -261,14 +290,23 @@ module Increase
       module Type
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::WireDrawdownRequest::Type) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::WireDrawdownRequest::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         WIRE_DRAWDOWN_REQUEST =
-          T.let(:wire_drawdown_request, Increase::Models::WireDrawdownRequest::Type::TaggedSymbol)
+          T.let(
+            :wire_drawdown_request,
+            Increase::WireDrawdownRequest::Type::TaggedSymbol
+          )
 
-        sig { override.returns(T::Array[Increase::Models::WireDrawdownRequest::Type::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::WireDrawdownRequest::Type::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

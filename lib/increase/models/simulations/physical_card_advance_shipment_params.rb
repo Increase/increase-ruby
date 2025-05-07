@@ -11,12 +11,12 @@ module Increase
         # @!attribute shipment_status
         #   The shipment status to move the Physical Card to.
         #
-        #   @return [Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus]
+        #   @return [Symbol, Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus]
         required :shipment_status,
-                 enum: -> { Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus }
+                 enum: -> { Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus }
 
         # @!method initialize(shipment_status:, request_options: {})
-        #   @param shipment_status [Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus] The shipment status to move the Physical Card to.
+        #   @param shipment_status [Symbol, Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus] The shipment status to move the Physical Card to.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

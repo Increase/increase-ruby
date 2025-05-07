@@ -2,14 +2,14 @@ module Increase
   module Models
     type account_list_params =
       {
-        created_at: Increase::Models::AccountListParams::CreatedAt,
+        created_at: Increase::AccountListParams::CreatedAt,
         cursor: String,
         entity_id: String,
         idempotency_key: String,
         informational_entity_id: String,
         limit: Integer,
         program_id: String,
-        status: Increase::Models::AccountListParams::Status
+        status: Increase::AccountListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -17,11 +17,11 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader created_at: Increase::Models::AccountListParams::CreatedAt?
+      attr_reader created_at: Increase::AccountListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::AccountListParams::CreatedAt
-      ) -> Increase::Models::AccountListParams::CreatedAt
+        Increase::AccountListParams::CreatedAt
+      ) -> Increase::AccountListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -47,25 +47,23 @@ module Increase
 
       def program_id=: (String) -> String
 
-      attr_reader status: Increase::Models::AccountListParams::Status?
+      attr_reader status: Increase::AccountListParams::Status?
 
       def status=: (
-        Increase::Models::AccountListParams::Status
-      ) -> Increase::Models::AccountListParams::Status
+        Increase::AccountListParams::Status
+      ) -> Increase::AccountListParams::Status
 
       def initialize: (
-        ?created_at: Increase::Models::AccountListParams::CreatedAt,
+        ?created_at: Increase::AccountListParams::CreatedAt,
         ?cursor: String,
         ?entity_id: String,
         ?idempotency_key: String,
         ?informational_entity_id: String,
         ?limit: Integer,
         ?program_id: String,
-        ?status: Increase::Models::AccountListParams::Status,
+        ?status: Increase::AccountListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::account_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -93,25 +91,20 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::AccountListParams::created_at
       end
 
-      type status =
-        { in_: ::Array[Increase::Models::AccountListParams::Status::in_] }
+      type status = { in_: ::Array[Increase::AccountListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::AccountListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::AccountListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::AccountListParams::Status::in_]
-        ) -> ::Array[Increase::Models::AccountListParams::Status::in_]
+          ::Array[Increase::AccountListParams::Status::in_]
+        ) -> ::Array[Increase::AccountListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::AccountListParams::Status::in_]
+          ?in_: ::Array[Increase::AccountListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::AccountListParams::status
 
         type in_ = :closed | :open
 
@@ -124,7 +117,7 @@ module Increase
           # Open Accounts that are ready to use.
           OPEN: :open
 
-          def self?.values: -> ::Array[Increase::Models::AccountListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::AccountListParams::Status::in_]
         end
       end
     end

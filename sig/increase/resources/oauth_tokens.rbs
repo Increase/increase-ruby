@@ -8,7 +8,7 @@ module Increase
         ?code: String,
         ?production_token: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::OAuthToken
+      ) -> Increase::OAuthToken
 
       def initialize: (client: Increase::Client) -> void
     end

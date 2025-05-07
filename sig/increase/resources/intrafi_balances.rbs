@@ -4,7 +4,7 @@ module Increase
       def intrafi_balance: (
         String account_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::IntrafiBalance
+      ) -> Increase::IntrafiBalance
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -53,8 +53,8 @@ module Increase
       # @!attribute status
       #   The status of the exclusion request.
       #
-      #   @return [Symbol, Increase::Models::IntrafiExclusion::Status]
-      required :status, enum: -> { Increase::Models::IntrafiExclusion::Status }
+      #   @return [Symbol, Increase::IntrafiExclusion::Status]
+      required :status, enum: -> { Increase::IntrafiExclusion::Status }
 
       # @!attribute submitted_at
       #   When this was exclusion was submitted to IntraFi by Increase.
@@ -66,12 +66,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `intrafi_exclusion`.
       #
-      #   @return [Symbol, Increase::Models::IntrafiExclusion::Type]
-      required :type, enum: -> { Increase::Models::IntrafiExclusion::Type }
+      #   @return [Symbol, Increase::IntrafiExclusion::Type]
+      required :type, enum: -> { Increase::IntrafiExclusion::Type }
 
       # @!method initialize(id:, bank_name:, created_at:, entity_id:, excluded_at:, fdic_certificate_number:, idempotency_key:, status:, submitted_at:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::IntrafiExclusion} for more details.
+      #   {Increase::IntrafiExclusion} for more details.
       #
       #   Certain institutions may be excluded per Entity when sweeping funds into the
       #   IntraFi network. This is useful when an Entity already has deposits at a
@@ -83,28 +83,24 @@ module Increase
       #   @param bank_name [String] The name of the excluded institution.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-      #   ...
       #
       #   @param entity_id [String] The entity for which this institution is excluded.
       #
       #   @param excluded_at [Time, nil] When this was exclusion was confirmed by IntraFi.
       #
       #   @param fdic_certificate_number [String, nil] The Federal Deposit Insurance Corporation's certificate number for the instituti
-      #   ...
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
-      #   ...
       #
-      #   @param status [Symbol, Increase::Models::IntrafiExclusion::Status] The status of the exclusion request.
+      #   @param status [Symbol, Increase::IntrafiExclusion::Status] The status of the exclusion request.
       #
       #   @param submitted_at [Time, nil] When this was exclusion was submitted to IntraFi by Increase.
       #
-      #   @param type [Symbol, Increase::Models::IntrafiExclusion::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::IntrafiExclusion::Type] A constant representing the object's type. For this resource it will always be `
 
       # The status of the exclusion request.
       #
-      # @see Increase::Models::IntrafiExclusion#status
+      # @see Increase::IntrafiExclusion#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -124,7 +120,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `intrafi_exclusion`.
       #
-      # @see Increase::Models::IntrafiExclusion#type
+      # @see Increase::IntrafiExclusion#type
       module Type
         extend Increase::Internal::Type::Enum
 

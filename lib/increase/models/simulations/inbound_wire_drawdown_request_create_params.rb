@@ -146,7 +146,6 @@ module Increase
         #   @param beneficiary_routing_number [String] The drawdown request's beneficiary's routing number.
         #
         #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
-        #   ...
         #
         #   @param message_to_recipient [String] A message from the drawdown request's originator.
         #
@@ -155,7 +154,6 @@ module Increase
         #   @param originator_routing_number [String] The drawdown request's originator's routing number.
         #
         #   @param recipient_account_number_id [String] The Account Number to which the recipient of this request is being requested to
-        #   ...
         #
         #   @param beneficiary_address_line1 [String] Line 1 of the drawdown request's beneficiary's address.
         #
@@ -174,16 +172,12 @@ module Increase
         #   @param originator_name [String] The drawdown request's originator's name.
         #
         #   @param originator_to_beneficiary_information_line1 [String] Line 1 of the information conveyed from the originator of the message to the ben
-        #   ...
         #
         #   @param originator_to_beneficiary_information_line2 [String] Line 2 of the information conveyed from the originator of the message to the ben
-        #   ...
         #
         #   @param originator_to_beneficiary_information_line3 [String] Line 3 of the information conveyed from the originator of the message to the ben
-        #   ...
         #
         #   @param originator_to_beneficiary_information_line4 [String] Line 4 of the information conveyed from the originator of the message to the ben
-        #   ...
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

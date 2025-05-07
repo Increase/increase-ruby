@@ -34,8 +34,6 @@ module Increase
         ?require_approval: bool,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::account_transfer_create_params
     end
   end
 end

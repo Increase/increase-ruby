@@ -9,8 +9,8 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::Models::OAuthApplicationListParams::CreatedAt, nil]
-      optional :created_at, -> { Increase::Models::OAuthApplicationListParams::CreatedAt }
+      #   @return [Increase::OAuthApplicationListParams::CreatedAt, nil]
+      optional :created_at, -> { Increase::OAuthApplicationListParams::CreatedAt }
 
       # @!attribute cursor
       #   Return the page of entries after this one.
@@ -27,21 +27,20 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::Models::OAuthApplicationListParams::Status, nil]
-      optional :status, -> { Increase::Models::OAuthApplicationListParams::Status }
+      #   @return [Increase::OAuthApplicationListParams::Status, nil]
+      optional :status, -> { Increase::OAuthApplicationListParams::Status }
 
       # @!method initialize(created_at: nil, cursor: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::OAuthApplicationListParams} for more details.
       #
-      #   @param created_at [Increase::Models::OAuthApplicationListParams::CreatedAt]
+      #   @param created_at [Increase::OAuthApplicationListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
-      #   @param status [Increase::Models::OAuthApplicationListParams::Status]
+      #   @param status [Increase::OAuthApplicationListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -76,19 +75,15 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::OAuthApplicationListParams::CreatedAt} for more details.
+        #   {Increase::OAuthApplicationListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
-        #   ...
         #
         #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
-        #   ...
         #
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #   ...
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
-        #   ...
       end
 
       class Status < Increase::Internal::Type::BaseModel
@@ -96,17 +91,18 @@ module Increase
         #   Return results whose value is in the provided list. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::OAuthApplicationListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::OAuthApplicationListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::OAuthApplicationListParams::Status::In] },
+                 -> {
+                   Increase::Internal::Type::ArrayOf[enum: Increase::OAuthApplicationListParams::Status::In]
+                 },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::OAuthApplicationListParams::Status} for more details.
+        #   {Increase::OAuthApplicationListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::OAuthApplicationListParams::Status::In>] Return results whose value is in the provided list. For GET requests, this shoul
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::OAuthApplicationListParams::Status::In>] Return results whose value is in the provided list. For GET requests, this shoul
 
         module In
           extend Increase::Internal::Type::Enum

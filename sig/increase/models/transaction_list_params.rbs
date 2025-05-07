@@ -3,8 +3,8 @@ module Increase
     type transaction_list_params =
       {
         account_id: String,
-        category: Increase::Models::TransactionListParams::Category,
-        created_at: Increase::Models::TransactionListParams::CreatedAt,
+        category: Increase::TransactionListParams::Category,
+        created_at: Increase::TransactionListParams::CreatedAt,
         cursor: String,
         limit: Integer,
         route_id: String
@@ -19,17 +19,17 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader category: Increase::Models::TransactionListParams::Category?
+      attr_reader category: Increase::TransactionListParams::Category?
 
       def category=: (
-        Increase::Models::TransactionListParams::Category
-      ) -> Increase::Models::TransactionListParams::Category
+        Increase::TransactionListParams::Category
+      ) -> Increase::TransactionListParams::Category
 
-      attr_reader created_at: Increase::Models::TransactionListParams::CreatedAt?
+      attr_reader created_at: Increase::TransactionListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::TransactionListParams::CreatedAt
-      ) -> Increase::Models::TransactionListParams::CreatedAt
+        Increase::TransactionListParams::CreatedAt
+      ) -> Increase::TransactionListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -45,31 +45,27 @@ module Increase
 
       def initialize: (
         ?account_id: String,
-        ?category: Increase::Models::TransactionListParams::Category,
-        ?created_at: Increase::Models::TransactionListParams::CreatedAt,
+        ?category: Increase::TransactionListParams::Category,
+        ?created_at: Increase::TransactionListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?route_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::transaction_list_params
-
       type category =
-        { in_: ::Array[Increase::Models::TransactionListParams::Category::in_] }
+        { in_: ::Array[Increase::TransactionListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::TransactionListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::TransactionListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::TransactionListParams::Category::in_]
-        ) -> ::Array[Increase::Models::TransactionListParams::Category::in_]
+          ::Array[Increase::TransactionListParams::Category::in_]
+        ) -> ::Array[Increase::TransactionListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::TransactionListParams::Category::in_]
+          ?in_: ::Array[Increase::TransactionListParams::Category::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::TransactionListParams::category
 
         type in_ =
           :account_transfer_intention
@@ -196,7 +192,7 @@ module Increase
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::Models::TransactionListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::TransactionListParams::Category::in_]
         end
       end
 
@@ -226,8 +222,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::TransactionListParams::created_at
       end
     end
   end

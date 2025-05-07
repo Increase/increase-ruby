@@ -9,8 +9,11 @@ module Increase
         # Marks the pending transaction as complete if the authorization is fully
         # reversed.
         sig do
-          params(card_payment_id: String, amount: Integer, request_options: Increase::RequestOpts)
-            .returns(Increase::Models::CardPayment)
+          params(
+            card_payment_id: String,
+            amount: Integer,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::CardPayment)
         end
         def create(
           # The identifier of the Card Payment to create a reversal on.
@@ -19,10 +22,13 @@ module Increase
           # This defaults to the authorization amount.
           amount: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

@@ -3,12 +3,12 @@ module Increase
     type pending_transaction_list_params =
       {
         account_id: String,
-        category: Increase::Models::PendingTransactionListParams::Category,
-        created_at: Increase::Models::PendingTransactionListParams::CreatedAt,
+        category: Increase::PendingTransactionListParams::Category,
+        created_at: Increase::PendingTransactionListParams::CreatedAt,
         cursor: String,
         limit: Integer,
         route_id: String,
-        status: Increase::Models::PendingTransactionListParams::Status
+        status: Increase::PendingTransactionListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -20,17 +20,17 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader category: Increase::Models::PendingTransactionListParams::Category?
+      attr_reader category: Increase::PendingTransactionListParams::Category?
 
       def category=: (
-        Increase::Models::PendingTransactionListParams::Category
-      ) -> Increase::Models::PendingTransactionListParams::Category
+        Increase::PendingTransactionListParams::Category
+      ) -> Increase::PendingTransactionListParams::Category
 
-      attr_reader created_at: Increase::Models::PendingTransactionListParams::CreatedAt?
+      attr_reader created_at: Increase::PendingTransactionListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::PendingTransactionListParams::CreatedAt
-      ) -> Increase::Models::PendingTransactionListParams::CreatedAt
+        Increase::PendingTransactionListParams::CreatedAt
+      ) -> Increase::PendingTransactionListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -44,42 +44,36 @@ module Increase
 
       def route_id=: (String) -> String
 
-      attr_reader status: Increase::Models::PendingTransactionListParams::Status?
+      attr_reader status: Increase::PendingTransactionListParams::Status?
 
       def status=: (
-        Increase::Models::PendingTransactionListParams::Status
-      ) -> Increase::Models::PendingTransactionListParams::Status
+        Increase::PendingTransactionListParams::Status
+      ) -> Increase::PendingTransactionListParams::Status
 
       def initialize: (
         ?account_id: String,
-        ?category: Increase::Models::PendingTransactionListParams::Category,
-        ?created_at: Increase::Models::PendingTransactionListParams::CreatedAt,
+        ?category: Increase::PendingTransactionListParams::Category,
+        ?created_at: Increase::PendingTransactionListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?route_id: String,
-        ?status: Increase::Models::PendingTransactionListParams::Status,
+        ?status: Increase::PendingTransactionListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::pending_transaction_list_params
-
       type category =
-        {
-          in_: ::Array[Increase::Models::PendingTransactionListParams::Category::in_]
-        }
+        { in_: ::Array[Increase::PendingTransactionListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::PendingTransactionListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::PendingTransactionListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::PendingTransactionListParams::Category::in_]
-        ) -> ::Array[Increase::Models::PendingTransactionListParams::Category::in_]
+          ::Array[Increase::PendingTransactionListParams::Category::in_]
+        ) -> ::Array[Increase::PendingTransactionListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::PendingTransactionListParams::Category::in_]
+          ?in_: ::Array[Increase::PendingTransactionListParams::Category::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::PendingTransactionListParams::category
 
         type in_ =
           :account_transfer_instruction
@@ -130,7 +124,7 @@ module Increase
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::Models::PendingTransactionListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::PendingTransactionListParams::Category::in_]
         end
       end
 
@@ -160,27 +154,21 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::PendingTransactionListParams::created_at
       end
 
       type status =
-        {
-          in_: ::Array[Increase::Models::PendingTransactionListParams::Status::in_]
-        }
+        { in_: ::Array[Increase::PendingTransactionListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::PendingTransactionListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::PendingTransactionListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::PendingTransactionListParams::Status::in_]
-        ) -> ::Array[Increase::Models::PendingTransactionListParams::Status::in_]
+          ::Array[Increase::PendingTransactionListParams::Status::in_]
+        ) -> ::Array[Increase::PendingTransactionListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::PendingTransactionListParams::Status::in_]
+          ?in_: ::Array[Increase::PendingTransactionListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::PendingTransactionListParams::status
 
         type in_ = :pending | :complete
 
@@ -193,7 +181,7 @@ module Increase
           # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc.
           COMPLETE: :complete
 
-          def self?.values: -> ::Array[Increase::Models::PendingTransactionListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::PendingTransactionListParams::Status::in_]
         end
       end
     end

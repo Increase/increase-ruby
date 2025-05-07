@@ -3,11 +3,11 @@ module Increase
     type card_list_params =
       {
         account_id: String,
-        created_at: Increase::Models::CardListParams::CreatedAt,
+        created_at: Increase::CardListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        status: Increase::Models::CardListParams::Status
+        status: Increase::CardListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -19,11 +19,11 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader created_at: Increase::Models::CardListParams::CreatedAt?
+      attr_reader created_at: Increase::CardListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::CardListParams::CreatedAt
-      ) -> Increase::Models::CardListParams::CreatedAt
+        Increase::CardListParams::CreatedAt
+      ) -> Increase::CardListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -37,23 +37,21 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Increase::Models::CardListParams::Status?
+      attr_reader status: Increase::CardListParams::Status?
 
       def status=: (
-        Increase::Models::CardListParams::Status
-      ) -> Increase::Models::CardListParams::Status
+        Increase::CardListParams::Status
+      ) -> Increase::CardListParams::Status
 
       def initialize: (
         ?account_id: String,
-        ?created_at: Increase::Models::CardListParams::CreatedAt,
+        ?created_at: Increase::CardListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::CardListParams::Status,
+        ?status: Increase::CardListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::card_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -81,25 +79,20 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::CardListParams::created_at
       end
 
-      type status =
-        { in_: ::Array[Increase::Models::CardListParams::Status::in_] }
+      type status = { in_: ::Array[Increase::CardListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::CardListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::CardListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::CardListParams::Status::in_]
-        ) -> ::Array[Increase::Models::CardListParams::Status::in_]
+          ::Array[Increase::CardListParams::Status::in_]
+        ) -> ::Array[Increase::CardListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::CardListParams::Status::in_]
+          ?in_: ::Array[Increase::CardListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::CardListParams::status
 
         type in_ = :active | :disabled | :canceled
 
@@ -115,7 +108,7 @@ module Increase
           # The card is permanently canceled.
           CANCELED: :canceled
 
-          def self?.values: -> ::Array[Increase::Models::CardListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::CardListParams::Status::in_]
         end
       end
     end

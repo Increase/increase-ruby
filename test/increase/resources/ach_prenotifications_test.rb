@@ -12,7 +12,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
       )
 
     assert_pattern do
-      response => Increase::Models::ACHPrenotification
+      response => Increase::ACHPrenotification
     end
 
     assert_pattern do
@@ -25,14 +25,14 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
         company_entry_description: String | nil,
         company_name: String | nil,
         created_at: Time,
-        credit_debit_indicator: Increase::Models::ACHPrenotification::CreditDebitIndicator | nil,
+        credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
         effective_date: Time | nil,
         idempotency_key: String | nil,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHPrenotification::NotificationsOfChange]),
-        prenotification_return: Increase::Models::ACHPrenotification::PrenotificationReturn | nil,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
+        prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
         routing_number: String,
-        status: Increase::Models::ACHPrenotification::Status,
-        type: Increase::Models::ACHPrenotification::Type
+        status: Increase::ACHPrenotification::Status,
+        type: Increase::ACHPrenotification::Type
       }
     end
   end
@@ -41,7 +41,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
     response = @increase.ach_prenotifications.retrieve("ach_prenotification_id")
 
     assert_pattern do
-      response => Increase::Models::ACHPrenotification
+      response => Increase::ACHPrenotification
     end
 
     assert_pattern do
@@ -54,14 +54,14 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
         company_entry_description: String | nil,
         company_name: String | nil,
         created_at: Time,
-        credit_debit_indicator: Increase::Models::ACHPrenotification::CreditDebitIndicator | nil,
+        credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
         effective_date: Time | nil,
         idempotency_key: String | nil,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHPrenotification::NotificationsOfChange]),
-        prenotification_return: Increase::Models::ACHPrenotification::PrenotificationReturn | nil,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
+        prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
         routing_number: String,
-        status: Increase::Models::ACHPrenotification::Status,
-        type: Increase::Models::ACHPrenotification::Type
+        status: Increase::ACHPrenotification::Status,
+        type: Increase::ACHPrenotification::Type
       }
     end
   end
@@ -77,7 +77,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::ACHPrenotification
+      row => Increase::ACHPrenotification
     end
 
     assert_pattern do
@@ -90,14 +90,14 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
         company_entry_description: String | nil,
         company_name: String | nil,
         created_at: Time,
-        credit_debit_indicator: Increase::Models::ACHPrenotification::CreditDebitIndicator | nil,
+        credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
         effective_date: Time | nil,
         idempotency_key: String | nil,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHPrenotification::NotificationsOfChange]),
-        prenotification_return: Increase::Models::ACHPrenotification::PrenotificationReturn | nil,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
+        prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
         routing_number: String,
-        status: Increase::Models::ACHPrenotification::Status,
-        type: Increase::Models::ACHPrenotification::Type
+        status: Increase::ACHPrenotification::Status,
+        type: Increase::ACHPrenotification::Type
       }
     end
   end

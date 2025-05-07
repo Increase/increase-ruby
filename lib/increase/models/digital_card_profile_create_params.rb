@@ -58,8 +58,8 @@ module Increase
       # @!attribute text_color
       #   The Card's text color, specified as an RGB triple. The default is white.
       #
-      #   @return [Increase::Models::DigitalCardProfileCreateParams::TextColor, nil]
-      optional :text_color, -> { Increase::Models::DigitalCardProfileCreateParams::TextColor }
+      #   @return [Increase::DigitalCardProfileCreateParams::TextColor, nil]
+      optional :text_color, -> { Increase::DigitalCardProfileCreateParams::TextColor }
 
       # @!method initialize(app_icon_file_id:, background_image_file_id:, card_description:, description:, issuer_name:, contact_email: nil, contact_phone: nil, contact_website: nil, text_color: nil, request_options: {})
       #   @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
@@ -78,7 +78,7 @@ module Increase
       #
       #   @param contact_website [String] A website the user can visit to view and receive support for their card.
       #
-      #   @param text_color [Increase::Models::DigitalCardProfileCreateParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      #   @param text_color [Increase::DigitalCardProfileCreateParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -8,12 +8,12 @@ module Increase
         ?account_holder: Increase::Models::ExternalAccountCreateParams::account_holder,
         ?funding: Increase::Models::ExternalAccountCreateParams::funding,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::ExternalAccount
+      ) -> Increase::ExternalAccount
 
       def retrieve: (
         String external_account_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::ExternalAccount
+      ) -> Increase::ExternalAccount
 
       def update: (
         String external_account_id,
@@ -22,16 +22,16 @@ module Increase
         ?funding: Increase::Models::ExternalAccountUpdateParams::funding,
         ?status: Increase::Models::ExternalAccountUpdateParams::status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::ExternalAccount
+      ) -> Increase::ExternalAccount
 
       def list: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?routing_number: String,
-        ?status: Increase::Models::ExternalAccountListParams::Status,
+        ?status: Increase::ExternalAccountListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::ExternalAccount]
+      ) -> Increase::Internal::Page[Increase::ExternalAccount]
 
       def initialize: (client: Increase::Client) -> void
     end

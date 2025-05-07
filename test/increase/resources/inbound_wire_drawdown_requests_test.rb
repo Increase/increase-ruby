@@ -7,7 +7,7 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
     response = @increase.inbound_wire_drawdown_requests.retrieve("inbound_wire_drawdown_request_id")
 
     assert_pattern do
-      response => Increase::Models::InboundWireDrawdownRequest
+      response => Increase::InboundWireDrawdownRequest
     end
 
     assert_pattern do
@@ -34,7 +34,7 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
         originator_to_beneficiary_information_line3: String | nil,
         originator_to_beneficiary_information_line4: String | nil,
         recipient_account_number_id: String,
-        type: Increase::Models::InboundWireDrawdownRequest::Type
+        type: Increase::InboundWireDrawdownRequest::Type
       }
     end
   end
@@ -50,7 +50,7 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::InboundWireDrawdownRequest
+      row => Increase::InboundWireDrawdownRequest
     end
 
     assert_pattern do
@@ -77,7 +77,7 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
         originator_to_beneficiary_information_line3: String | nil,
         originator_to_beneficiary_information_line4: String | nil,
         recipient_account_number_id: String,
-        type: Increase::Models::InboundWireDrawdownRequest::Type
+        type: Increase::InboundWireDrawdownRequest::Type
       }
     end
   end

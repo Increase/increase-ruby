@@ -21,8 +21,6 @@ module Increase
           check_number: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::inbound_check_deposit_create_params
       end
     end
   end

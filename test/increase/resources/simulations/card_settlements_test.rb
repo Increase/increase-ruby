@@ -11,7 +11,7 @@ class Increase::Test::Resources::Simulations::CardSettlementsTest < Increase::Te
       )
 
     assert_pattern do
-      response => Increase::Models::Transaction
+      response => Increase::Transaction
     end
 
     assert_pattern do
@@ -20,12 +20,12 @@ class Increase::Test::Resources::Simulations::CardSettlementsTest < Increase::Te
         account_id: String,
         amount: Integer,
         created_at: Time,
-        currency: Increase::Models::Transaction::Currency,
+        currency: Increase::Transaction::Currency,
         description: String,
         route_id: String | nil,
-        route_type: Increase::Models::Transaction::RouteType | nil,
-        source: Increase::Models::Transaction::Source,
-        type: Increase::Models::Transaction::Type
+        route_type: Increase::Transaction::RouteType | nil,
+        source: Increase::Transaction::Source,
+        type: Increase::Transaction::Type
       }
     end
   end

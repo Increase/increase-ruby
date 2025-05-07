@@ -4,36 +4,36 @@ module Increase
       def retrieve: (
         String inbound_ach_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundACHTransfer
+      ) -> Increase::InboundACHTransfer
 
       def list: (
         ?account_id: String,
         ?account_number_id: String,
-        ?created_at: Increase::Models::InboundACHTransferListParams::CreatedAt,
+        ?created_at: Increase::InboundACHTransferListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
-        ?status: Increase::Models::InboundACHTransferListParams::Status,
+        ?status: Increase::InboundACHTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::InboundACHTransfer]
+      ) -> Increase::Internal::Page[Increase::InboundACHTransfer]
 
       def create_notification_of_change: (
         String inbound_ach_transfer_id,
         ?updated_account_number: String,
         ?updated_routing_number: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundACHTransfer
+      ) -> Increase::InboundACHTransfer
 
       def decline: (
         String inbound_ach_transfer_id,
         ?reason: Increase::Models::InboundACHTransferDeclineParams::reason,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundACHTransfer
+      ) -> Increase::InboundACHTransfer
 
       def transfer_return: (
         String inbound_ach_transfer_id,
         reason: Increase::Models::InboundACHTransferTransferReturnParams::reason,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundACHTransfer
+      ) -> Increase::InboundACHTransfer
 
       def initialize: (client: Increase::Client) -> void
     end

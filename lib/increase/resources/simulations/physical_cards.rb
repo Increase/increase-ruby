@@ -12,20 +12,20 @@ module Increase
         #
         # @param physical_card_id [String] The Physical Card you would like to action.
         #
-        # @param shipment_status [Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus] The shipment status to move the Physical Card to.
+        # @param shipment_status [Symbol, Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus] The shipment status to move the Physical Card to.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::PhysicalCard]
+        # @return [Increase::PhysicalCard]
         #
         # @see Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams
         def advance_shipment(physical_card_id, params)
-          parsed, options = Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams.dump_request(params)
+          parsed, options = Increase::Simulations::PhysicalCardAdvanceShipmentParams.dump_request(params)
           @client.request(
             method: :post,
             path: ["simulations/physical_cards/%1$s/advance_shipment", physical_card_id],
             body: parsed,
-            model: Increase::Models::PhysicalCard,
+            model: Increase::PhysicalCard,
             options: options
           )
         end

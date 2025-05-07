@@ -70,8 +70,6 @@ module Increase
         ?ultimate_debtor_name: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::real_time_payments_transfer_create_params
     end
   end
 end

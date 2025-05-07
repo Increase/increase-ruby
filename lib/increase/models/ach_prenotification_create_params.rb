@@ -59,9 +59,9 @@ module Increase
       # @!attribute credit_debit_indicator
       #   Whether the Prenotification is for a future debit or credit.
       #
-      #   @return [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator, nil]
+      #   @return [Symbol, Increase::ACHPrenotificationCreateParams::CreditDebitIndicator, nil]
       optional :credit_debit_indicator,
-               enum: -> { Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator }
+               enum: -> { Increase::ACHPrenotificationCreateParams::CreditDebitIndicator }
 
       # @!attribute effective_date
       #   The transfer effective date in
@@ -86,9 +86,9 @@ module Increase
       # @!attribute standard_entry_class_code
       #   The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #
-      #   @return [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode, nil]
+      #   @return [Symbol, Increase::ACHPrenotificationCreateParams::StandardEntryClassCode, nil]
       optional :standard_entry_class_code,
-               enum: -> { Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode }
+               enum: -> { Increase::ACHPrenotificationCreateParams::StandardEntryClassCode }
 
       # @!method initialize(account_id:, account_number:, routing_number:, addendum: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, credit_debit_indicator: nil, effective_date: nil, individual_id: nil, individual_name: nil, standard_entry_class_code: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -99,7 +99,6 @@ module Increase
       #   @param account_number [String] The account number for the destination account.
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
-      #   ...
       #
       #   @param addendum [String] Additional information that will be sent to the recipient.
       #
@@ -111,17 +110,15 @@ module Increase
       #
       #   @param company_name [String] The name by which the recipient knows you.
       #
-      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
+      #   @param credit_debit_indicator [Symbol, Increase::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
       #
       #   @param effective_date [Date] The transfer effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601
-      #   ...
       #
       #   @param individual_id [String] Your identifier for the transfer recipient.
       #
       #   @param individual_name [String] The name of the transfer recipient. This value is information and not verified b
-      #   ...
       #
-      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      #   @param standard_entry_class_code [Symbol, Increase::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

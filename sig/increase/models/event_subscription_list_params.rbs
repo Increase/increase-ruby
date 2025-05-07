@@ -26,8 +26,6 @@ module Increase
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::event_subscription_list_params
     end
   end
 end

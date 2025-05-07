@@ -35,23 +35,23 @@ module Increase
       #   If specified, this subscription will only receive webhooks for Events with the
       #   specified `category`.
       #
-      #   @return [Symbol, Increase::Models::EventSubscription::SelectedEventCategory, nil]
+      #   @return [Symbol, Increase::EventSubscription::SelectedEventCategory, nil]
       required :selected_event_category,
-               enum: -> { Increase::Models::EventSubscription::SelectedEventCategory },
+               enum: -> { Increase::EventSubscription::SelectedEventCategory },
                nil?: true
 
       # @!attribute status
       #   This indicates if we'll send notifications to this subscription.
       #
-      #   @return [Symbol, Increase::Models::EventSubscription::Status]
-      required :status, enum: -> { Increase::Models::EventSubscription::Status }
+      #   @return [Symbol, Increase::EventSubscription::Status]
+      required :status, enum: -> { Increase::EventSubscription::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `event_subscription`.
       #
-      #   @return [Symbol, Increase::Models::EventSubscription::Type]
-      required :type, enum: -> { Increase::Models::EventSubscription::Type }
+      #   @return [Symbol, Increase::EventSubscription::Type]
+      required :type, enum: -> { Increase::EventSubscription::Type }
 
       # @!attribute url
       #   The webhook url where we'll send notifications.
@@ -61,7 +61,7 @@ module Increase
 
       # @!method initialize(id:, created_at:, idempotency_key:, oauth_connection_id:, selected_event_category:, status:, type:, url:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EventSubscription} for more details.
+      #   {Increase::EventSubscription} for more details.
       #
       #   Webhooks are event notifications we send to you by HTTPS POST requests. Event
       #   Subscriptions are how you configure your application to listen for them. You can
@@ -75,25 +75,21 @@ module Increase
       #   @param created_at [Time] The time the event subscription was created.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
-      #   ...
       #
       #   @param oauth_connection_id [String, nil] If specified, this subscription will only receive webhooks for Events associated
-      #   ...
       #
-      #   @param selected_event_category [Symbol, Increase::Models::EventSubscription::SelectedEventCategory, nil] If specified, this subscription will only receive webhooks for Events with the s
-      #   ...
+      #   @param selected_event_category [Symbol, Increase::EventSubscription::SelectedEventCategory, nil] If specified, this subscription will only receive webhooks for Events with the s
       #
-      #   @param status [Symbol, Increase::Models::EventSubscription::Status] This indicates if we'll send notifications to this subscription.
+      #   @param status [Symbol, Increase::EventSubscription::Status] This indicates if we'll send notifications to this subscription.
       #
-      #   @param type [Symbol, Increase::Models::EventSubscription::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::EventSubscription::Type] A constant representing the object's type. For this resource it will always be `
       #
       #   @param url [String] The webhook url where we'll send notifications.
 
       # If specified, this subscription will only receive webhooks for Events with the
       # specified `category`.
       #
-      # @see Increase::Models::EventSubscription#selected_event_category
+      # @see Increase::EventSubscription#selected_event_category
       module SelectedEventCategory
         extend Increase::Internal::Type::Enum
 
@@ -363,7 +359,7 @@ module Increase
 
       # This indicates if we'll send notifications to this subscription.
       #
-      # @see Increase::Models::EventSubscription#status
+      # @see Increase::EventSubscription#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -386,7 +382,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `event_subscription`.
       #
-      # @see Increase::Models::EventSubscription#type
+      # @see Increase::EventSubscription#type
       module Type
         extend Increase::Internal::Type::Enum
 

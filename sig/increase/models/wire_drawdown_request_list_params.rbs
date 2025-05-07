@@ -5,7 +5,7 @@ module Increase
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        status: Increase::Models::WireDrawdownRequestListParams::Status
+        status: Increase::WireDrawdownRequestListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -25,39 +25,33 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Increase::Models::WireDrawdownRequestListParams::Status?
+      attr_reader status: Increase::WireDrawdownRequestListParams::Status?
 
       def status=: (
-        Increase::Models::WireDrawdownRequestListParams::Status
-      ) -> Increase::Models::WireDrawdownRequestListParams::Status
+        Increase::WireDrawdownRequestListParams::Status
+      ) -> Increase::WireDrawdownRequestListParams::Status
 
       def initialize: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::WireDrawdownRequestListParams::Status,
+        ?status: Increase::WireDrawdownRequestListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::wire_drawdown_request_list_params
-
       type status =
-        {
-          in_: ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]
-        }
+        { in_: ::Array[Increase::WireDrawdownRequestListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::WireDrawdownRequestListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]
-        ) -> ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]
+          ::Array[Increase::WireDrawdownRequestListParams::Status::in_]
+        ) -> ::Array[Increase::WireDrawdownRequestListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]
+          ?in_: ::Array[Increase::WireDrawdownRequestListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::WireDrawdownRequestListParams::status
 
         type in_ =
           :pending_submission | :pending_response | :fulfilled | :refused
@@ -77,7 +71,7 @@ module Increase
           # The drawdown request has been refused by the recipient.
           REFUSED: :refused
 
-          def self?.values: -> ::Array[Increase::Models::WireDrawdownRequestListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::WireDrawdownRequestListParams::Status::in_]
         end
       end
     end

@@ -15,8 +15,6 @@ module Increase
         ?at_time: Time,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::account_balance_params
     end
   end
 end

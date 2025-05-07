@@ -8,8 +8,14 @@ module Increase
       # identify a bank, this will always return 0 or 1 entry. In Sandbox, the only
       # valid routing number for this method is 110000000.
       sig do
-        params(routing_number: String, cursor: String, limit: Integer, request_options: Increase::RequestOpts)
-          .returns(Increase::Internal::Page[Increase::Models::RoutingNumberListResponse])
+        params(
+          routing_number: String,
+          cursor: String,
+          limit: Integer,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(
+          Increase::Internal::Page[Increase::Models::RoutingNumberListResponse]
+        )
       end
       def list(
         # Filter financial institutions by routing number.
@@ -20,10 +26,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

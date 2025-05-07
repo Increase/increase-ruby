@@ -18,8 +18,8 @@ module Increase
       # @!attribute purpose
       #   What the File will be used for in Increase's systems.
       #
-      #   @return [Symbol, Increase::Models::FileCreateParams::Purpose]
-      required :purpose, enum: -> { Increase::Models::FileCreateParams::Purpose }
+      #   @return [Symbol, Increase::FileCreateParams::Purpose]
+      required :purpose, enum: -> { Increase::FileCreateParams::Purpose }
 
       # @!attribute description
       #   The description you choose to give the File.
@@ -32,9 +32,8 @@ module Increase
       #   {Increase::Models::FileCreateParams} for more details.
       #
       #   @param file [Pathname, StringIO, IO, Increase::FilePart] The file contents. This should follow the specifications of [RFC 7578](https://d
-      #   ...
       #
-      #   @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
+      #   @param purpose [Symbol, Increase::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
       #
       #   @param description [String] The description you choose to give the File.
       #

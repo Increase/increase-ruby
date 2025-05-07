@@ -14,7 +14,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       )
 
     assert_pattern do
-      response => Increase::Models::DigitalCardProfile
+      response => Increase::DigitalCardProfile
     end
 
     assert_pattern do
@@ -30,9 +30,9 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
         description: String,
         idempotency_key: String | nil,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::Status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::Type
+        status: Increase::DigitalCardProfile::Status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::Type
       }
     end
   end
@@ -41,7 +41,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
     response = @increase.digital_card_profiles.retrieve("digital_card_profile_id")
 
     assert_pattern do
-      response => Increase::Models::DigitalCardProfile
+      response => Increase::DigitalCardProfile
     end
 
     assert_pattern do
@@ -57,9 +57,9 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
         description: String,
         idempotency_key: String | nil,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::Status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::Type
+        status: Increase::DigitalCardProfile::Status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::Type
       }
     end
   end
@@ -75,7 +75,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::DigitalCardProfile
+      row => Increase::DigitalCardProfile
     end
 
     assert_pattern do
@@ -91,9 +91,9 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
         description: String,
         idempotency_key: String | nil,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::Status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::Type
+        status: Increase::DigitalCardProfile::Status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::Type
       }
     end
   end
@@ -102,7 +102,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
     response = @increase.digital_card_profiles.archive("digital_card_profile_id")
 
     assert_pattern do
-      response => Increase::Models::DigitalCardProfile
+      response => Increase::DigitalCardProfile
     end
 
     assert_pattern do
@@ -118,9 +118,9 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
         description: String,
         idempotency_key: String | nil,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::Status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::Type
+        status: Increase::DigitalCardProfile::Status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::Type
       }
     end
   end
@@ -129,7 +129,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
     response = @increase.digital_card_profiles.clone_("digital_card_profile_id")
 
     assert_pattern do
-      response => Increase::Models::DigitalCardProfile
+      response => Increase::DigitalCardProfile
     end
 
     assert_pattern do
@@ -145,9 +145,9 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
         description: String,
         idempotency_key: String | nil,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::Status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::Type
+        status: Increase::DigitalCardProfile::Status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::Type
       }
     end
   end

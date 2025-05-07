@@ -13,7 +13,7 @@ module Increase
     }
 
   class RequestOptions < Increase::Internal::Type::BaseModel
-    def self.validate!: (self | ::Hash[Symbol, top] opts) -> void
+    def self.validate!: (Increase::request_opts opts) -> void
 
     attr_accessor idempotency_key: String?
 

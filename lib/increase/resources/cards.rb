@@ -12,30 +12,22 @@ module Increase
       #
       # @param account_id [String] The Account the card should belong to.
       #
-      # @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
+      # @param billing_address [Increase::CardCreateParams::BillingAddress] The card's billing address.
       #
       # @param description [String] The description you choose to give the card.
       #
-      # @param digital_wallet [Increase::Models::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
-      # ...
+      # @param digital_wallet [Increase::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       # @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Card]
+      # @return [Increase::Card]
       #
       # @see Increase::Models::CardCreateParams
       def create(params)
-        parsed, options = Increase::Models::CardCreateParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "cards",
-          body: parsed,
-          model: Increase::Models::Card,
-          options: options
-        )
+        parsed, options = Increase::CardCreateParams.dump_request(params)
+        @client.request(method: :post, path: "cards", body: parsed, model: Increase::Card, options: options)
       end
 
       # Retrieve a Card
@@ -46,14 +38,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Card]
+      # @return [Increase::Card]
       #
       # @see Increase::Models::CardRetrieveParams
       def retrieve(card_id, params = {})
         @client.request(
           method: :get,
           path: ["cards/%1$s", card_id],
-          model: Increase::Models::Card,
+          model: Increase::Card,
           options: params[:request_options]
         )
       end
@@ -67,30 +59,28 @@ module Increase
       #
       # @param card_id [String] The card identifier.
       #
-      # @param billing_address [Increase::Models::CardUpdateParams::BillingAddress] The card's updated billing address.
+      # @param billing_address [Increase::CardUpdateParams::BillingAddress] The card's updated billing address.
       #
       # @param description [String] The description you choose to give the card.
       #
-      # @param digital_wallet [Increase::Models::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
-      # ...
+      # @param digital_wallet [Increase::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       # @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
-      # ...
       #
-      # @param status [Symbol, Increase::Models::CardUpdateParams::Status] The status to update the Card with.
+      # @param status [Symbol, Increase::CardUpdateParams::Status] The status to update the Card with.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Card]
+      # @return [Increase::Card]
       #
       # @see Increase::Models::CardUpdateParams
       def update(card_id, params = {})
-        parsed, options = Increase::Models::CardUpdateParams.dump_request(params)
+        parsed, options = Increase::CardUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["cards/%1$s", card_id],
           body: parsed,
-          model: Increase::Models::Card,
+          model: Increase::Card,
           options: options
         )
       end
@@ -104,31 +94,29 @@ module Increase
       #
       # @param account_id [String] Filter Cards to ones belonging to the specified Account.
       #
-      # @param created_at [Increase::Models::CardListParams::CreatedAt]
+      # @param created_at [Increase::CardListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param status [Increase::Models::CardListParams::Status]
+      # @param status [Increase::CardListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::Card>]
+      # @return [Increase::Internal::Page<Increase::Card>]
       #
       # @see Increase::Models::CardListParams
       def list(params = {})
-        parsed, options = Increase::Models::CardListParams.dump_request(params)
+        parsed, options = Increase::CardListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "cards",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::Card,
+          model: Increase::Card,
           options: options
         )
       end
@@ -141,14 +129,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::CardDetails]
+      # @return [Increase::CardDetails]
       #
       # @see Increase::Models::CardDetailsParams
       def details(card_id, params = {})
         @client.request(
           method: :get,
           path: ["cards/%1$s/details", card_id],
-          model: Increase::Models::CardDetails,
+          model: Increase::CardDetails,
           options: params[:request_options]
         )
       end

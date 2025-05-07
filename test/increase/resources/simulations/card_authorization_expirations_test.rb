@@ -10,7 +10,7 @@ class Increase::Test::Resources::Simulations::CardAuthorizationExpirationsTest <
       )
 
     assert_pattern do
-      response => Increase::Models::CardPayment
+      response => Increase::CardPayment
     end
 
     assert_pattern do
@@ -20,10 +20,10 @@ class Increase::Test::Resources::Simulations::CardAuthorizationExpirationsTest <
         card_id: String,
         created_at: Time,
         digital_wallet_token_id: String | nil,
-        elements: ^(Increase::Internal::Type::ArrayOf[Increase::Models::CardPayment::Element]),
+        elements: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element]),
         physical_card_id: String | nil,
-        state: Increase::Models::CardPayment::State,
-        type: Increase::Models::CardPayment::Type
+        state: Increase::CardPayment::State,
+        type: Increase::CardPayment::Type
       }
     end
   end

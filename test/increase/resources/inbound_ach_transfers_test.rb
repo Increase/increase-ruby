@@ -7,25 +7,25 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
     response = @increase.inbound_ach_transfers.retrieve("inbound_ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::InboundACHTransfer
+      response => Increase::InboundACHTransfer
     end
 
     assert_pattern do
       response => {
         id: String,
-        acceptance: Increase::Models::InboundACHTransfer::Acceptance | nil,
+        acceptance: Increase::InboundACHTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
-        addenda: Increase::Models::InboundACHTransfer::Addenda | nil,
+        addenda: Increase::InboundACHTransfer::Addenda | nil,
         amount: Integer,
         automatically_resolves_at: Time,
         created_at: Time,
-        decline: Increase::Models::InboundACHTransfer::Decline | nil,
-        direction: Increase::Models::InboundACHTransfer::Direction,
+        decline: Increase::InboundACHTransfer::Decline | nil,
+        direction: Increase::InboundACHTransfer::Direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule,
-        international_addenda: Increase::Models::InboundACHTransfer::InternationalAddenda | nil,
-        notification_of_change: Increase::Models::InboundACHTransfer::NotificationOfChange | nil,
+        expected_settlement_schedule: Increase::InboundACHTransfer::ExpectedSettlementSchedule,
+        international_addenda: Increase::InboundACHTransfer::InternationalAddenda | nil,
+        notification_of_change: Increase::InboundACHTransfer::NotificationOfChange | nil,
         originator_company_descriptive_date: String | nil,
         originator_company_discretionary_data: String | nil,
         originator_company_entry_description: String,
@@ -34,11 +34,11 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
         originator_routing_number: String,
         receiver_id_number: String | nil,
         receiver_name: String | nil,
-        standard_entry_class_code: Increase::Models::InboundACHTransfer::StandardEntryClassCode,
-        status: Increase::Models::InboundACHTransfer::Status,
+        standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
+        status: Increase::InboundACHTransfer::Status,
         trace_number: String,
-        transfer_return: Increase::Models::InboundACHTransfer::TransferReturn | nil,
-        type: Increase::Models::InboundACHTransfer::Type
+        transfer_return: Increase::InboundACHTransfer::TransferReturn | nil,
+        type: Increase::InboundACHTransfer::Type
       }
     end
   end
@@ -54,25 +54,25 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::InboundACHTransfer
+      row => Increase::InboundACHTransfer
     end
 
     assert_pattern do
       row => {
         id: String,
-        acceptance: Increase::Models::InboundACHTransfer::Acceptance | nil,
+        acceptance: Increase::InboundACHTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
-        addenda: Increase::Models::InboundACHTransfer::Addenda | nil,
+        addenda: Increase::InboundACHTransfer::Addenda | nil,
         amount: Integer,
         automatically_resolves_at: Time,
         created_at: Time,
-        decline: Increase::Models::InboundACHTransfer::Decline | nil,
-        direction: Increase::Models::InboundACHTransfer::Direction,
+        decline: Increase::InboundACHTransfer::Decline | nil,
+        direction: Increase::InboundACHTransfer::Direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule,
-        international_addenda: Increase::Models::InboundACHTransfer::InternationalAddenda | nil,
-        notification_of_change: Increase::Models::InboundACHTransfer::NotificationOfChange | nil,
+        expected_settlement_schedule: Increase::InboundACHTransfer::ExpectedSettlementSchedule,
+        international_addenda: Increase::InboundACHTransfer::InternationalAddenda | nil,
+        notification_of_change: Increase::InboundACHTransfer::NotificationOfChange | nil,
         originator_company_descriptive_date: String | nil,
         originator_company_discretionary_data: String | nil,
         originator_company_entry_description: String,
@@ -81,11 +81,11 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
         originator_routing_number: String,
         receiver_id_number: String | nil,
         receiver_name: String | nil,
-        standard_entry_class_code: Increase::Models::InboundACHTransfer::StandardEntryClassCode,
-        status: Increase::Models::InboundACHTransfer::Status,
+        standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
+        status: Increase::InboundACHTransfer::Status,
         trace_number: String,
-        transfer_return: Increase::Models::InboundACHTransfer::TransferReturn | nil,
-        type: Increase::Models::InboundACHTransfer::Type
+        transfer_return: Increase::InboundACHTransfer::TransferReturn | nil,
+        type: Increase::InboundACHTransfer::Type
       }
     end
   end
@@ -94,25 +94,25 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
     response = @increase.inbound_ach_transfers.create_notification_of_change("inbound_ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::InboundACHTransfer
+      response => Increase::InboundACHTransfer
     end
 
     assert_pattern do
       response => {
         id: String,
-        acceptance: Increase::Models::InboundACHTransfer::Acceptance | nil,
+        acceptance: Increase::InboundACHTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
-        addenda: Increase::Models::InboundACHTransfer::Addenda | nil,
+        addenda: Increase::InboundACHTransfer::Addenda | nil,
         amount: Integer,
         automatically_resolves_at: Time,
         created_at: Time,
-        decline: Increase::Models::InboundACHTransfer::Decline | nil,
-        direction: Increase::Models::InboundACHTransfer::Direction,
+        decline: Increase::InboundACHTransfer::Decline | nil,
+        direction: Increase::InboundACHTransfer::Direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule,
-        international_addenda: Increase::Models::InboundACHTransfer::InternationalAddenda | nil,
-        notification_of_change: Increase::Models::InboundACHTransfer::NotificationOfChange | nil,
+        expected_settlement_schedule: Increase::InboundACHTransfer::ExpectedSettlementSchedule,
+        international_addenda: Increase::InboundACHTransfer::InternationalAddenda | nil,
+        notification_of_change: Increase::InboundACHTransfer::NotificationOfChange | nil,
         originator_company_descriptive_date: String | nil,
         originator_company_discretionary_data: String | nil,
         originator_company_entry_description: String,
@@ -121,11 +121,11 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
         originator_routing_number: String,
         receiver_id_number: String | nil,
         receiver_name: String | nil,
-        standard_entry_class_code: Increase::Models::InboundACHTransfer::StandardEntryClassCode,
-        status: Increase::Models::InboundACHTransfer::Status,
+        standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
+        status: Increase::InboundACHTransfer::Status,
         trace_number: String,
-        transfer_return: Increase::Models::InboundACHTransfer::TransferReturn | nil,
-        type: Increase::Models::InboundACHTransfer::Type
+        transfer_return: Increase::InboundACHTransfer::TransferReturn | nil,
+        type: Increase::InboundACHTransfer::Type
       }
     end
   end
@@ -134,25 +134,25 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
     response = @increase.inbound_ach_transfers.decline("inbound_ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::InboundACHTransfer
+      response => Increase::InboundACHTransfer
     end
 
     assert_pattern do
       response => {
         id: String,
-        acceptance: Increase::Models::InboundACHTransfer::Acceptance | nil,
+        acceptance: Increase::InboundACHTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
-        addenda: Increase::Models::InboundACHTransfer::Addenda | nil,
+        addenda: Increase::InboundACHTransfer::Addenda | nil,
         amount: Integer,
         automatically_resolves_at: Time,
         created_at: Time,
-        decline: Increase::Models::InboundACHTransfer::Decline | nil,
-        direction: Increase::Models::InboundACHTransfer::Direction,
+        decline: Increase::InboundACHTransfer::Decline | nil,
+        direction: Increase::InboundACHTransfer::Direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule,
-        international_addenda: Increase::Models::InboundACHTransfer::InternationalAddenda | nil,
-        notification_of_change: Increase::Models::InboundACHTransfer::NotificationOfChange | nil,
+        expected_settlement_schedule: Increase::InboundACHTransfer::ExpectedSettlementSchedule,
+        international_addenda: Increase::InboundACHTransfer::InternationalAddenda | nil,
+        notification_of_change: Increase::InboundACHTransfer::NotificationOfChange | nil,
         originator_company_descriptive_date: String | nil,
         originator_company_discretionary_data: String | nil,
         originator_company_entry_description: String,
@@ -161,11 +161,11 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
         originator_routing_number: String,
         receiver_id_number: String | nil,
         receiver_name: String | nil,
-        standard_entry_class_code: Increase::Models::InboundACHTransfer::StandardEntryClassCode,
-        status: Increase::Models::InboundACHTransfer::Status,
+        standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
+        status: Increase::InboundACHTransfer::Status,
         trace_number: String,
-        transfer_return: Increase::Models::InboundACHTransfer::TransferReturn | nil,
-        type: Increase::Models::InboundACHTransfer::Type
+        transfer_return: Increase::InboundACHTransfer::TransferReturn | nil,
+        type: Increase::InboundACHTransfer::Type
       }
     end
   end
@@ -175,25 +175,25 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
       @increase.inbound_ach_transfers.transfer_return("inbound_ach_transfer_id", reason: :payment_stopped)
 
     assert_pattern do
-      response => Increase::Models::InboundACHTransfer
+      response => Increase::InboundACHTransfer
     end
 
     assert_pattern do
       response => {
         id: String,
-        acceptance: Increase::Models::InboundACHTransfer::Acceptance | nil,
+        acceptance: Increase::InboundACHTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
-        addenda: Increase::Models::InboundACHTransfer::Addenda | nil,
+        addenda: Increase::InboundACHTransfer::Addenda | nil,
         amount: Integer,
         automatically_resolves_at: Time,
         created_at: Time,
-        decline: Increase::Models::InboundACHTransfer::Decline | nil,
-        direction: Increase::Models::InboundACHTransfer::Direction,
+        decline: Increase::InboundACHTransfer::Decline | nil,
+        direction: Increase::InboundACHTransfer::Direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule,
-        international_addenda: Increase::Models::InboundACHTransfer::InternationalAddenda | nil,
-        notification_of_change: Increase::Models::InboundACHTransfer::NotificationOfChange | nil,
+        expected_settlement_schedule: Increase::InboundACHTransfer::ExpectedSettlementSchedule,
+        international_addenda: Increase::InboundACHTransfer::InternationalAddenda | nil,
+        notification_of_change: Increase::InboundACHTransfer::NotificationOfChange | nil,
         originator_company_descriptive_date: String | nil,
         originator_company_discretionary_data: String | nil,
         originator_company_entry_description: String,
@@ -202,11 +202,11 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
         originator_routing_number: String,
         receiver_id_number: String | nil,
         receiver_name: String | nil,
-        standard_entry_class_code: Increase::Models::InboundACHTransfer::StandardEntryClassCode,
-        status: Increase::Models::InboundACHTransfer::Status,
+        standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
+        status: Increase::InboundACHTransfer::Status,
         trace_number: String,
-        transfer_return: Increase::Models::InboundACHTransfer::TransferReturn | nil,
-        type: Increase::Models::InboundACHTransfer::Type
+        transfer_return: Increase::InboundACHTransfer::TransferReturn | nil,
+        type: Increase::InboundACHTransfer::Type
       }
     end
   end

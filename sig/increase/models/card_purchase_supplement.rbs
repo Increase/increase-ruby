@@ -4,10 +4,10 @@ module Increase
       {
         id: String,
         card_payment_id: String?,
-        invoice: Increase::Models::CardPurchaseSupplement::Invoice?,
-        line_items: ::Array[Increase::Models::CardPurchaseSupplement::LineItem]?,
+        invoice: Increase::CardPurchaseSupplement::Invoice?,
+        line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
         transaction_id: String,
-        type: Increase::Models::CardPurchaseSupplement::type_
+        type: Increase::CardPurchaseSupplement::type_
       }
 
     class CardPurchaseSupplement < Increase::Internal::Type::BaseModel
@@ -15,30 +15,28 @@ module Increase
 
       attr_accessor card_payment_id: String?
 
-      attr_accessor invoice: Increase::Models::CardPurchaseSupplement::Invoice?
+      attr_accessor invoice: Increase::CardPurchaseSupplement::Invoice?
 
-      attr_accessor line_items: ::Array[Increase::Models::CardPurchaseSupplement::LineItem]?
+      attr_accessor line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?
 
       attr_accessor transaction_id: String
 
-      attr_accessor type: Increase::Models::CardPurchaseSupplement::type_
+      attr_accessor type: Increase::CardPurchaseSupplement::type_
 
       def initialize: (
         id: String,
         card_payment_id: String?,
-        invoice: Increase::Models::CardPurchaseSupplement::Invoice?,
-        line_items: ::Array[Increase::Models::CardPurchaseSupplement::LineItem]?,
+        invoice: Increase::CardPurchaseSupplement::Invoice?,
+        line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
         transaction_id: String,
-        type: Increase::Models::CardPurchaseSupplement::type_
+        type: Increase::CardPurchaseSupplement::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::card_purchase_supplement
 
       type invoice =
         {
           discount_amount: Integer?,
           discount_currency: String?,
-          discount_treatment_code: Increase::Models::CardPurchaseSupplement::Invoice::discount_treatment_code?,
+          discount_treatment_code: Increase::CardPurchaseSupplement::Invoice::discount_treatment_code?,
           duty_tax_amount: Integer?,
           duty_tax_currency: String?,
           order_date: Date?,
@@ -50,7 +48,7 @@ module Increase
           shipping_tax_amount: Integer?,
           shipping_tax_currency: String?,
           shipping_tax_rate: String?,
-          tax_treatments: Increase::Models::CardPurchaseSupplement::Invoice::tax_treatments?,
+          tax_treatments: Increase::CardPurchaseSupplement::Invoice::tax_treatments?,
           unique_value_added_tax_invoice_reference: String?
         }
 
@@ -59,7 +57,7 @@ module Increase
 
         attr_accessor discount_currency: String?
 
-        attr_accessor discount_treatment_code: Increase::Models::CardPurchaseSupplement::Invoice::discount_treatment_code?
+        attr_accessor discount_treatment_code: Increase::CardPurchaseSupplement::Invoice::discount_treatment_code?
 
         attr_accessor duty_tax_amount: Integer?
 
@@ -83,14 +81,14 @@ module Increase
 
         attr_accessor shipping_tax_rate: String?
 
-        attr_accessor tax_treatments: Increase::Models::CardPurchaseSupplement::Invoice::tax_treatments?
+        attr_accessor tax_treatments: Increase::CardPurchaseSupplement::Invoice::tax_treatments?
 
         attr_accessor unique_value_added_tax_invoice_reference: String?
 
         def initialize: (
           discount_amount: Integer?,
           discount_currency: String?,
-          discount_treatment_code: Increase::Models::CardPurchaseSupplement::Invoice::discount_treatment_code?,
+          discount_treatment_code: Increase::CardPurchaseSupplement::Invoice::discount_treatment_code?,
           duty_tax_amount: Integer?,
           duty_tax_currency: String?,
           order_date: Date?,
@@ -102,11 +100,9 @@ module Increase
           shipping_tax_amount: Integer?,
           shipping_tax_currency: String?,
           shipping_tax_rate: String?,
-          tax_treatments: Increase::Models::CardPurchaseSupplement::Invoice::tax_treatments?,
+          tax_treatments: Increase::CardPurchaseSupplement::Invoice::tax_treatments?,
           unique_value_added_tax_invoice_reference: String?
         ) -> void
-
-        def to_hash: -> Increase::Models::CardPurchaseSupplement::invoice
 
         type discount_treatment_code =
           :no_invoice_level_discount_provided
@@ -125,7 +121,7 @@ module Increase
           # Tax calculated on pre discount invoice total
           TAX_CALCULATED_ON_PRE_DISCOUNT_INVOICE_TOTAL: :tax_calculated_on_pre_discount_invoice_total
 
-          def self?.values: -> ::Array[Increase::Models::CardPurchaseSupplement::Invoice::discount_treatment_code]
+          def self?.values: -> ::Array[Increase::CardPurchaseSupplement::Invoice::discount_treatment_code]
         end
 
         type tax_treatments =
@@ -153,17 +149,17 @@ module Increase
           # Gross price invoice level
           GROSS_PRICE_INVOICE_LEVEL: :gross_price_invoice_level
 
-          def self?.values: -> ::Array[Increase::Models::CardPurchaseSupplement::Invoice::tax_treatments]
+          def self?.values: -> ::Array[Increase::CardPurchaseSupplement::Invoice::tax_treatments]
         end
       end
 
       type line_item =
         {
           id: String,
-          detail_indicator: Increase::Models::CardPurchaseSupplement::LineItem::detail_indicator?,
+          detail_indicator: Increase::CardPurchaseSupplement::LineItem::detail_indicator?,
           discount_amount: Integer?,
           discount_currency: String?,
-          discount_treatment_code: Increase::Models::CardPurchaseSupplement::LineItem::discount_treatment_code?,
+          discount_treatment_code: Increase::CardPurchaseSupplement::LineItem::discount_treatment_code?,
           item_commodity_code: String?,
           item_descriptor: String?,
           item_quantity: String?,
@@ -181,13 +177,13 @@ module Increase
       class LineItem < Increase::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor detail_indicator: Increase::Models::CardPurchaseSupplement::LineItem::detail_indicator?
+        attr_accessor detail_indicator: Increase::CardPurchaseSupplement::LineItem::detail_indicator?
 
         attr_accessor discount_amount: Integer?
 
         attr_accessor discount_currency: String?
 
-        attr_accessor discount_treatment_code: Increase::Models::CardPurchaseSupplement::LineItem::discount_treatment_code?
+        attr_accessor discount_treatment_code: Increase::CardPurchaseSupplement::LineItem::discount_treatment_code?
 
         attr_accessor item_commodity_code: String?
 
@@ -215,10 +211,10 @@ module Increase
 
         def initialize: (
           id: String,
-          detail_indicator: Increase::Models::CardPurchaseSupplement::LineItem::detail_indicator?,
+          detail_indicator: Increase::CardPurchaseSupplement::LineItem::detail_indicator?,
           discount_amount: Integer?,
           discount_currency: String?,
-          discount_treatment_code: Increase::Models::CardPurchaseSupplement::LineItem::discount_treatment_code?,
+          discount_treatment_code: Increase::CardPurchaseSupplement::LineItem::discount_treatment_code?,
           item_commodity_code: String?,
           item_descriptor: String?,
           item_quantity: String?,
@@ -232,8 +228,6 @@ module Increase
           unit_cost_currency: String?,
           unit_of_measure_code: String?
         ) -> void
-
-        def to_hash: -> Increase::Models::CardPurchaseSupplement::line_item
 
         type detail_indicator = :normal | :credit | :payment
 
@@ -249,7 +243,7 @@ module Increase
           # Purchase
           PAYMENT: :payment
 
-          def self?.values: -> ::Array[Increase::Models::CardPurchaseSupplement::LineItem::detail_indicator]
+          def self?.values: -> ::Array[Increase::CardPurchaseSupplement::LineItem::detail_indicator]
         end
 
         type discount_treatment_code =
@@ -269,7 +263,7 @@ module Increase
           # Tax calculated on pre discount line item total
           TAX_CALCULATED_ON_PRE_DISCOUNT_LINE_ITEM_TOTAL: :tax_calculated_on_pre_discount_line_item_total
 
-          def self?.values: -> ::Array[Increase::Models::CardPurchaseSupplement::LineItem::discount_treatment_code]
+          def self?.values: -> ::Array[Increase::CardPurchaseSupplement::LineItem::discount_treatment_code]
         end
       end
 
@@ -280,7 +274,7 @@ module Increase
 
         CARD_PURCHASE_SUPPLEMENT: :card_purchase_supplement
 
-        def self?.values: -> ::Array[Increase::Models::CardPurchaseSupplement::type_]
+        def self?.values: -> ::Array[Increase::CardPurchaseSupplement::type_]
       end
     end
   end

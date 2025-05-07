@@ -16,9 +16,8 @@ module Increase
             debtor_routing_number: String,
             remittance_information: String,
             request_for_payment_id: String,
-            request_options: Increase::RequestOpts
-          )
-            .returns(Increase::Models::InboundRealTimePaymentsTransfer)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::InboundRealTimePaymentsTransfer)
         end
         def create(
           # The identifier of the Account Number the inbound Real-Time Payments Transfer is
@@ -37,10 +36,13 @@ module Increase
           # The identifier of a pending Request for Payment that this transfer will fulfill.
           request_for_payment_id: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

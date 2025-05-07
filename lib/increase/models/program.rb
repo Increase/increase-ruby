@@ -13,8 +13,8 @@ module Increase
       # @!attribute bank
       #   The Bank the Program is with.
       #
-      #   @return [Symbol, Increase::Models::Program::Bank]
-      required :bank, enum: -> { Increase::Models::Program::Bank }
+      #   @return [Symbol, Increase::Program::Bank]
+      required :bank, enum: -> { Increase::Program::Bank }
 
       # @!attribute billing_account_id
       #   The Program billing account.
@@ -53,8 +53,8 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `program`.
       #
-      #   @return [Symbol, Increase::Models::Program::Type]
-      required :type, enum: -> { Increase::Models::Program::Type }
+      #   @return [Symbol, Increase::Program::Type]
+      required :type, enum: -> { Increase::Program::Type }
 
       # @!attribute updated_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
@@ -64,8 +64,8 @@ module Increase
       required :updated_at, Time
 
       # @!method initialize(id:, bank:, billing_account_id:, created_at:, default_digital_card_profile_id:, interest_rate:, name:, type:, updated_at:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::Program} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::Program} for
+      #   more details.
       #
       #   Programs determine the compliance and commercial terms of Accounts. By default,
       #   you have a Commercial Banking program for managing your own funds. If you are
@@ -74,29 +74,25 @@ module Increase
       #
       #   @param id [String] The Program identifier.
       #
-      #   @param bank [Symbol, Increase::Models::Program::Bank] The Bank the Program is with.
+      #   @param bank [Symbol, Increase::Program::Bank] The Bank the Program is with.
       #
       #   @param billing_account_id [String, nil] The Program billing account.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
-      #   ...
       #
       #   @param default_digital_card_profile_id [String, nil] The default configuration for digital cards attached to this Program.
       #
       #   @param interest_rate [String] The Interest Rate currently being earned on the accounts in this program, as a s
-      #   ...
       #
       #   @param name [String] The name of the Program.
       #
-      #   @param type [Symbol, Increase::Models::Program::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::Program::Type] A constant representing the object's type. For this resource it will always be `
       #
       #   @param updated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
-      #   ...
 
       # The Bank the Program is with.
       #
-      # @see Increase::Models::Program#bank
+      # @see Increase::Program#bank
       module Bank
         extend Increase::Internal::Type::Enum
 
@@ -116,7 +112,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `program`.
       #
-      # @see Increase::Models::Program#type
+      # @see Increase::Program#type
       module Type
         extend Increase::Internal::Type::Enum
 

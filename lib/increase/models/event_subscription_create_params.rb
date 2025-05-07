@@ -24,9 +24,9 @@ module Increase
       #   If specified, this subscription will only receive webhooks for Events with the
       #   specified `category`.
       #
-      #   @return [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory, nil]
+      #   @return [Symbol, Increase::EventSubscriptionCreateParams::SelectedEventCategory, nil]
       optional :selected_event_category,
-               enum: -> { Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory }
+               enum: -> { Increase::EventSubscriptionCreateParams::SelectedEventCategory }
 
       # @!attribute shared_secret
       #   The key that will be used to sign webhooks. If no value is passed, a random
@@ -42,13 +42,10 @@ module Increase
       #   @param url [String] The URL you'd like us to send webhooks to.
       #
       #   @param oauth_connection_id [String] If specified, this subscription will only receive webhooks for Events associated
-      #   ...
       #
-      #   @param selected_event_category [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory] If specified, this subscription will only receive webhooks for Events with the s
-      #   ...
+      #   @param selected_event_category [Symbol, Increase::EventSubscriptionCreateParams::SelectedEventCategory] If specified, this subscription will only receive webhooks for Events with the s
       #
       #   @param shared_secret [String] The key that will be used to sign webhooks. If no value is passed, a random stri
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

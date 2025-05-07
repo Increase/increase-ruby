@@ -6,7 +6,7 @@ module Increase
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        status: Increase::Models::IntrafiAccountEnrollmentListParams::Status
+        status: Increase::IntrafiAccountEnrollmentListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -30,40 +30,36 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Increase::Models::IntrafiAccountEnrollmentListParams::Status?
+      attr_reader status: Increase::IntrafiAccountEnrollmentListParams::Status?
 
       def status=: (
-        Increase::Models::IntrafiAccountEnrollmentListParams::Status
-      ) -> Increase::Models::IntrafiAccountEnrollmentListParams::Status
+        Increase::IntrafiAccountEnrollmentListParams::Status
+      ) -> Increase::IntrafiAccountEnrollmentListParams::Status
 
       def initialize: (
         ?account_id: String,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::IntrafiAccountEnrollmentListParams::Status,
+        ?status: Increase::IntrafiAccountEnrollmentListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::intrafi_account_enrollment_list_params
-
       type status =
         {
-          in_: ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]
+          in_: ::Array[Increase::IntrafiAccountEnrollmentListParams::Status::in_]
         }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::IntrafiAccountEnrollmentListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]
-        ) -> ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]
+          ::Array[Increase::IntrafiAccountEnrollmentListParams::Status::in_]
+        ) -> ::Array[Increase::IntrafiAccountEnrollmentListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]
+          ?in_: ::Array[Increase::IntrafiAccountEnrollmentListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::IntrafiAccountEnrollmentListParams::status
 
         type in_ =
           :pending_enrolling
@@ -90,7 +86,7 @@ module Increase
           # Something unexpected happened with this account. Contact Increase support.
           REQUIRES_ATTENTION: :requires_attention
 
-          def self?.values: -> ::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::IntrafiAccountEnrollmentListParams::Status::in_]
         end
       end
     end

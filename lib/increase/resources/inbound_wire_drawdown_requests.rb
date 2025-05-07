@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundWireDrawdownRequest]
+      # @return [Increase::InboundWireDrawdownRequest]
       #
       # @see Increase::Models::InboundWireDrawdownRequestRetrieveParams
       def retrieve(inbound_wire_drawdown_request_id, params = {})
         @client.request(
           method: :get,
           path: ["inbound_wire_drawdown_requests/%1$s", inbound_wire_drawdown_request_id],
-          model: Increase::Models::InboundWireDrawdownRequest,
+          model: Increase::InboundWireDrawdownRequest,
           options: params[:request_options]
         )
       end
@@ -33,21 +33,20 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::InboundWireDrawdownRequest>]
+      # @return [Increase::Internal::Page<Increase::InboundWireDrawdownRequest>]
       #
       # @see Increase::Models::InboundWireDrawdownRequestListParams
       def list(params = {})
-        parsed, options = Increase::Models::InboundWireDrawdownRequestListParams.dump_request(params)
+        parsed, options = Increase::InboundWireDrawdownRequestListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "inbound_wire_drawdown_requests",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::InboundWireDrawdownRequest,
+          model: Increase::InboundWireDrawdownRequest,
           options: options
         )
       end

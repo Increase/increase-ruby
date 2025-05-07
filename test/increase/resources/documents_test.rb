@@ -7,17 +7,17 @@ class Increase::Test::Resources::DocumentsTest < Increase::Test::ResourceTest
     response = @increase.documents.retrieve("document_id")
 
     assert_pattern do
-      response => Increase::Models::Document
+      response => Increase::Document
     end
 
     assert_pattern do
       response => {
         id: String,
-        category: Increase::Models::Document::Category,
+        category: Increase::Document::Category,
         created_at: Time,
         entity_id: String | nil,
         file_id: String,
-        type: Increase::Models::Document::Type
+        type: Increase::Document::Type
       }
     end
   end
@@ -33,17 +33,17 @@ class Increase::Test::Resources::DocumentsTest < Increase::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::Document
+      row => Increase::Document
     end
 
     assert_pattern do
       row => {
         id: String,
-        category: Increase::Models::Document::Category,
+        category: Increase::Document::Category,
         created_at: Time,
         entity_id: String | nil,
         file_id: String,
-        type: Increase::Models::Document::Type
+        type: Increase::Document::Type
       }
     end
   end

@@ -32,8 +32,8 @@ module Increase
       #   If your account requires approvals for transfers and the transfer was approved,
       #   this will contain details of the approval.
       #
-      #   @return [Increase::Models::CheckTransfer::Approval, nil]
-      required :approval, -> { Increase::Models::CheckTransfer::Approval }, nil?: true
+      #   @return [Increase::CheckTransfer::Approval, nil]
+      required :approval, -> { Increase::CheckTransfer::Approval }, nil?: true
 
       # @!attribute approved_inbound_check_deposit_id
       #   If the Check Transfer was successfully deposited, this will contain the
@@ -46,8 +46,8 @@ module Increase
       #   If your account requires approvals for transfers and the transfer was not
       #   approved, this will contain details of the cancellation.
       #
-      #   @return [Increase::Models::CheckTransfer::Cancellation, nil]
-      required :cancellation, -> { Increase::Models::CheckTransfer::Cancellation }, nil?: true
+      #   @return [Increase::CheckTransfer::Cancellation, nil]
+      required :cancellation, -> { Increase::CheckTransfer::Cancellation }, nil?: true
 
       # @!attribute check_number
       #   The check number printed on the check.
@@ -65,21 +65,21 @@ module Increase
       # @!attribute created_by
       #   What object created the transfer, either via the API or the dashboard.
       #
-      #   @return [Increase::Models::CheckTransfer::CreatedBy, nil]
-      required :created_by, -> { Increase::Models::CheckTransfer::CreatedBy }, nil?: true
+      #   @return [Increase::CheckTransfer::CreatedBy, nil]
+      required :created_by, -> { Increase::CheckTransfer::CreatedBy }, nil?: true
 
       # @!attribute currency
       #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
       #   currency.
       #
-      #   @return [Symbol, Increase::Models::CheckTransfer::Currency]
-      required :currency, enum: -> { Increase::Models::CheckTransfer::Currency }
+      #   @return [Symbol, Increase::CheckTransfer::Currency]
+      required :currency, enum: -> { Increase::CheckTransfer::Currency }
 
       # @!attribute fulfillment_method
       #   Whether Increase will print and mail the check or if you will do it yourself.
       #
-      #   @return [Symbol, Increase::Models::CheckTransfer::FulfillmentMethod]
-      required :fulfillment_method, enum: -> { Increase::Models::CheckTransfer::FulfillmentMethod }
+      #   @return [Symbol, Increase::CheckTransfer::FulfillmentMethod]
+      required :fulfillment_method, enum: -> { Increase::CheckTransfer::FulfillmentMethod }
 
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
@@ -93,8 +93,8 @@ module Increase
       #   If the check has been mailed by Increase, this will contain details of the
       #   shipment.
       #
-      #   @return [Increase::Models::CheckTransfer::Mailing, nil]
-      required :mailing, -> { Increase::Models::CheckTransfer::Mailing }, nil?: true
+      #   @return [Increase::CheckTransfer::Mailing, nil]
+      required :mailing, -> { Increase::CheckTransfer::Mailing }, nil?: true
 
       # @!attribute pending_transaction_id
       #   The ID for the pending transaction representing the transfer. A pending
@@ -109,8 +109,8 @@ module Increase
       #   Details relating to the physical check that Increase will print and mail. Will
       #   be present if and only if `fulfillment_method` is equal to `physical_check`.
       #
-      #   @return [Increase::Models::CheckTransfer::PhysicalCheck, nil]
-      required :physical_check, -> { Increase::Models::CheckTransfer::PhysicalCheck }, nil?: true
+      #   @return [Increase::CheckTransfer::PhysicalCheck, nil]
+      required :physical_check, -> { Increase::CheckTransfer::PhysicalCheck }, nil?: true
 
       # @!attribute routing_number
       #   The routing number printed on the check.
@@ -128,39 +128,39 @@ module Increase
       # @!attribute status
       #   The lifecycle status of the transfer.
       #
-      #   @return [Symbol, Increase::Models::CheckTransfer::Status]
-      required :status, enum: -> { Increase::Models::CheckTransfer::Status }
+      #   @return [Symbol, Increase::CheckTransfer::Status]
+      required :status, enum: -> { Increase::CheckTransfer::Status }
 
       # @!attribute stop_payment_request
       #   After a stop-payment is requested on the check, this will contain supplemental
       #   details.
       #
-      #   @return [Increase::Models::CheckTransfer::StopPaymentRequest, nil]
-      required :stop_payment_request, -> { Increase::Models::CheckTransfer::StopPaymentRequest }, nil?: true
+      #   @return [Increase::CheckTransfer::StopPaymentRequest, nil]
+      required :stop_payment_request, -> { Increase::CheckTransfer::StopPaymentRequest }, nil?: true
 
       # @!attribute submission
       #   After the transfer is submitted, this will contain supplemental details.
       #
-      #   @return [Increase::Models::CheckTransfer::Submission, nil]
-      required :submission, -> { Increase::Models::CheckTransfer::Submission }, nil?: true
+      #   @return [Increase::CheckTransfer::Submission, nil]
+      required :submission, -> { Increase::CheckTransfer::Submission }, nil?: true
 
       # @!attribute third_party
       #   Details relating to the custom fulfillment you will perform. Will be present if
       #   and only if `fulfillment_method` is equal to `third_party`.
       #
-      #   @return [Increase::Models::CheckTransfer::ThirdParty, nil]
-      required :third_party, -> { Increase::Models::CheckTransfer::ThirdParty }, nil?: true
+      #   @return [Increase::CheckTransfer::ThirdParty, nil]
+      required :third_party, -> { Increase::CheckTransfer::ThirdParty }, nil?: true
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `check_transfer`.
       #
-      #   @return [Symbol, Increase::Models::CheckTransfer::Type]
-      required :type, enum: -> { Increase::Models::CheckTransfer::Type }
+      #   @return [Symbol, Increase::CheckTransfer::Type]
+      required :type, enum: -> { Increase::CheckTransfer::Type }
 
       # @!method initialize(id:, account_id:, account_number:, amount:, approval:, approved_inbound_check_deposit_id:, cancellation:, check_number:, created_at:, created_by:, currency:, fulfillment_method:, idempotency_key:, mailing:, pending_transaction_id:, physical_check:, routing_number:, source_account_number_id:, status:, stop_payment_request:, submission:, third_party:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CheckTransfer} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::CheckTransfer}
+      #   for more details.
       #
       #   Check Transfers move funds from your Increase account by mailing a physical
       #   check.
@@ -173,58 +173,45 @@ module Increase
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param approval [Increase::Models::CheckTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
-      #   ...
+      #   @param approval [Increase::CheckTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
       #
       #   @param approved_inbound_check_deposit_id [String, nil] If the Check Transfer was successfully deposited, this will contain the identifi
-      #   ...
       #
-      #   @param cancellation [Increase::Models::CheckTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
-      #   ...
+      #   @param cancellation [Increase::CheckTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
       #
       #   @param check_number [String] The check number printed on the check.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-      #   ...
       #
-      #   @param created_by [Increase::Models::CheckTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
+      #   @param created_by [Increase::CheckTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
       #
-      #   @param currency [Symbol, Increase::Models::CheckTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's curr
-      #   ...
+      #   @param currency [Symbol, Increase::CheckTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's curr
       #
-      #   @param fulfillment_method [Symbol, Increase::Models::CheckTransfer::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
+      #   @param fulfillment_method [Symbol, Increase::CheckTransfer::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
-      #   ...
       #
-      #   @param mailing [Increase::Models::CheckTransfer::Mailing, nil] If the check has been mailed by Increase, this will contain details of the shipm
-      #   ...
+      #   @param mailing [Increase::CheckTransfer::Mailing, nil] If the check has been mailed by Increase, this will contain details of the shipm
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer. A pending transact
-      #   ...
       #
-      #   @param physical_check [Increase::Models::CheckTransfer::PhysicalCheck, nil] Details relating to the physical check that Increase will print and mail. Will b
-      #   ...
+      #   @param physical_check [Increase::CheckTransfer::PhysicalCheck, nil] Details relating to the physical check that Increase will print and mail. Will b
       #
       #   @param routing_number [String] The routing number printed on the check.
       #
       #   @param source_account_number_id [String, nil] The identifier of the Account Number from which to send the transfer and print o
-      #   ...
       #
-      #   @param status [Symbol, Increase::Models::CheckTransfer::Status] The lifecycle status of the transfer.
+      #   @param status [Symbol, Increase::CheckTransfer::Status] The lifecycle status of the transfer.
       #
-      #   @param stop_payment_request [Increase::Models::CheckTransfer::StopPaymentRequest, nil] After a stop-payment is requested on the check, this will contain supplemental d
-      #   ...
+      #   @param stop_payment_request [Increase::CheckTransfer::StopPaymentRequest, nil] After a stop-payment is requested on the check, this will contain supplemental d
       #
-      #   @param submission [Increase::Models::CheckTransfer::Submission, nil] After the transfer is submitted, this will contain supplemental details.
+      #   @param submission [Increase::CheckTransfer::Submission, nil] After the transfer is submitted, this will contain supplemental details.
       #
-      #   @param third_party [Increase::Models::CheckTransfer::ThirdParty, nil] Details relating to the custom fulfillment you will perform. Will be present if
-      #   ...
+      #   @param third_party [Increase::CheckTransfer::ThirdParty, nil] Details relating to the custom fulfillment you will perform. Will be present if
       #
-      #   @param type [Symbol, Increase::Models::CheckTransfer::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::CheckTransfer::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::Models::CheckTransfer#approval
+      # @see Increase::CheckTransfer#approval
       class Approval < Increase::Internal::Type::BaseModel
         # @!attribute approved_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -242,19 +229,17 @@ module Increase
 
         # @!method initialize(approved_at:, approved_by:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransfer::Approval} for more details.
+        #   {Increase::CheckTransfer::Approval} for more details.
         #
         #   If your account requires approvals for transfers and the transfer was approved,
         #   this will contain details of the approval.
         #
         #   @param approved_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
         #
         #   @param approved_by [String, nil] If the Transfer was approved by a user in the dashboard, the email address of th
-        #   ...
       end
 
-      # @see Increase::Models::CheckTransfer#cancellation
+      # @see Increase::CheckTransfer#cancellation
       class Cancellation < Increase::Internal::Type::BaseModel
         # @!attribute canceled_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -272,58 +257,54 @@ module Increase
 
         # @!method initialize(canceled_at:, canceled_by:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransfer::Cancellation} for more details.
+        #   {Increase::CheckTransfer::Cancellation} for more details.
         #
         #   If your account requires approvals for transfers and the transfer was not
         #   approved, this will contain details of the cancellation.
         #
         #   @param canceled_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
         #
         #   @param canceled_by [String, nil] If the Transfer was canceled by a user in the dashboard, the email address of th
-        #   ...
       end
 
-      # @see Increase::Models::CheckTransfer#created_by
+      # @see Increase::CheckTransfer#created_by
       class CreatedBy < Increase::Internal::Type::BaseModel
         # @!attribute api_key
         #   If present, details about the API key that created the transfer.
         #
-        #   @return [Increase::Models::CheckTransfer::CreatedBy::APIKey, nil]
-        required :api_key, -> { Increase::Models::CheckTransfer::CreatedBy::APIKey }, nil?: true
+        #   @return [Increase::CheckTransfer::CreatedBy::APIKey, nil]
+        required :api_key, -> { Increase::CheckTransfer::CreatedBy::APIKey }, nil?: true
 
         # @!attribute category
         #   The type of object that created this transfer.
         #
-        #   @return [Symbol, Increase::Models::CheckTransfer::CreatedBy::Category]
-        required :category, enum: -> { Increase::Models::CheckTransfer::CreatedBy::Category }
+        #   @return [Symbol, Increase::CheckTransfer::CreatedBy::Category]
+        required :category, enum: -> { Increase::CheckTransfer::CreatedBy::Category }
 
         # @!attribute oauth_application
         #   If present, details about the OAuth Application that created the transfer.
         #
-        #   @return [Increase::Models::CheckTransfer::CreatedBy::OAuthApplication, nil]
-        required :oauth_application,
-                 -> { Increase::Models::CheckTransfer::CreatedBy::OAuthApplication },
-                 nil?: true
+        #   @return [Increase::CheckTransfer::CreatedBy::OAuthApplication, nil]
+        required :oauth_application, -> { Increase::CheckTransfer::CreatedBy::OAuthApplication }, nil?: true
 
         # @!attribute user
         #   If present, details about the User that created the transfer.
         #
-        #   @return [Increase::Models::CheckTransfer::CreatedBy::User, nil]
-        required :user, -> { Increase::Models::CheckTransfer::CreatedBy::User }, nil?: true
+        #   @return [Increase::CheckTransfer::CreatedBy::User, nil]
+        required :user, -> { Increase::CheckTransfer::CreatedBy::User }, nil?: true
 
         # @!method initialize(api_key:, category:, oauth_application:, user:)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param api_key [Increase::Models::CheckTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
+        #   @param api_key [Increase::CheckTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
         #
-        #   @param category [Symbol, Increase::Models::CheckTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #   @param category [Symbol, Increase::CheckTransfer::CreatedBy::Category] The type of object that created this transfer.
         #
-        #   @param oauth_application [Increase::Models::CheckTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
+        #   @param oauth_application [Increase::CheckTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
         #
-        #   @param user [Increase::Models::CheckTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
+        #   @param user [Increase::CheckTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
 
-        # @see Increase::Models::CheckTransfer::CreatedBy#api_key
+        # @see Increase::CheckTransfer::CreatedBy#api_key
         class APIKey < Increase::Internal::Type::BaseModel
           # @!attribute description
           #   The description set for the API key when it was created.
@@ -339,7 +320,7 @@ module Increase
 
         # The type of object that created this transfer.
         #
-        # @see Increase::Models::CheckTransfer::CreatedBy#category
+        # @see Increase::CheckTransfer::CreatedBy#category
         module Category
           extend Increase::Internal::Type::Enum
 
@@ -356,7 +337,7 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
-        # @see Increase::Models::CheckTransfer::CreatedBy#oauth_application
+        # @see Increase::CheckTransfer::CreatedBy#oauth_application
         class OAuthApplication < Increase::Internal::Type::BaseModel
           # @!attribute name
           #   The name of the OAuth Application.
@@ -370,7 +351,7 @@ module Increase
           #   @param name [String] The name of the OAuth Application.
         end
 
-        # @see Increase::Models::CheckTransfer::CreatedBy#user
+        # @see Increase::CheckTransfer::CreatedBy#user
         class User < Increase::Internal::Type::BaseModel
           # @!attribute email
           #   The email address of the User.
@@ -388,7 +369,7 @@ module Increase
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
       # currency.
       #
-      # @see Increase::Models::CheckTransfer#currency
+      # @see Increase::CheckTransfer#currency
       module Currency
         extend Increase::Internal::Type::Enum
 
@@ -416,7 +397,7 @@ module Increase
 
       # Whether Increase will print and mail the check or if you will do it yourself.
       #
-      # @see Increase::Models::CheckTransfer#fulfillment_method
+      # @see Increase::CheckTransfer#fulfillment_method
       module FulfillmentMethod
         extend Increase::Internal::Type::Enum
 
@@ -430,7 +411,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::Models::CheckTransfer#mailing
+      # @see Increase::CheckTransfer#mailing
       class Mailing < Increase::Internal::Type::BaseModel
         # @!attribute image_id
         #   The ID of the file corresponding to an image of the check that was mailed, if
@@ -454,21 +435,19 @@ module Increase
 
         # @!method initialize(image_id:, mailed_at:, tracking_number:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransfer::Mailing} for more details.
+        #   {Increase::CheckTransfer::Mailing} for more details.
         #
         #   If the check has been mailed by Increase, this will contain details of the
         #   shipment.
         #
         #   @param image_id [String, nil] The ID of the file corresponding to an image of the check that was mailed, if av
-        #   ...
         #
         #   @param mailed_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
         #
         #   @param tracking_number [String, nil] The tracking number of the shipment, if available for the shipping method.
       end
 
-      # @see Increase::Models::CheckTransfer#physical_check
+      # @see Increase::CheckTransfer#physical_check
       class PhysicalCheck < Increase::Internal::Type::BaseModel
         # @!attribute attachment_file_id
         #   The ID of the file for the check attachment.
@@ -479,8 +458,8 @@ module Increase
         # @!attribute mailing_address
         #   Details for where Increase will mail the check.
         #
-        #   @return [Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress]
-        required :mailing_address, -> { Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress }
+        #   @return [Increase::CheckTransfer::PhysicalCheck::MailingAddress]
+        required :mailing_address, -> { Increase::CheckTransfer::PhysicalCheck::MailingAddress }
 
         # @!attribute memo
         #   The descriptor that will be printed on the memo field on the check.
@@ -503,15 +482,17 @@ module Increase
         # @!attribute return_address
         #   The return address to be printed on the check.
         #
-        #   @return [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress, nil]
-        required :return_address, -> { Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress }, nil?: true
+        #   @return [Increase::CheckTransfer::PhysicalCheck::ReturnAddress, nil]
+        required :return_address, -> { Increase::CheckTransfer::PhysicalCheck::ReturnAddress }, nil?: true
 
         # @!attribute shipping_method
         #   The shipping method for the check.
         #
-        #   @return [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod, nil]
+        #   @return [Symbol, Increase::CheckTransfer::PhysicalCheck::ShippingMethod, nil]
         required :shipping_method,
-                 enum: -> { Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod },
+                 enum: -> {
+                   Increase::CheckTransfer::PhysicalCheck::ShippingMethod
+                 },
                  nil?: true
 
         # @!attribute signature_text
@@ -524,20 +505,22 @@ module Increase
         # @!attribute tracking_updates
         #   Tracking updates relating to the physical check's delivery.
         #
-        #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>]
+        #   @return [Array<Increase::CheckTransfer::PhysicalCheck::TrackingUpdate>]
         required :tracking_updates,
-                 -> { Increase::Internal::Type::ArrayOf[Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate] }
+                 -> {
+                   Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
+                 }
 
         # @!method initialize(attachment_file_id:, mailing_address:, memo:, note:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransfer::PhysicalCheck} for more details.
+        #   {Increase::CheckTransfer::PhysicalCheck} for more details.
         #
         #   Details relating to the physical check that Increase will print and mail. Will
         #   be present if and only if `fulfillment_method` is equal to `physical_check`.
         #
         #   @param attachment_file_id [String, nil] The ID of the file for the check attachment.
         #
-        #   @param mailing_address [Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress] Details for where Increase will mail the check.
+        #   @param mailing_address [Increase::CheckTransfer::PhysicalCheck::MailingAddress] Details for where Increase will mail the check.
         #
         #   @param memo [String, nil] The descriptor that will be printed on the memo field on the check.
         #
@@ -545,16 +528,15 @@ module Increase
         #
         #   @param recipient_name [String] The name that will be printed on the check.
         #
-        #   @param return_address [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress, nil] The return address to be printed on the check.
+        #   @param return_address [Increase::CheckTransfer::PhysicalCheck::ReturnAddress, nil] The return address to be printed on the check.
         #
-        #   @param shipping_method [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod, nil] The shipping method for the check.
+        #   @param shipping_method [Symbol, Increase::CheckTransfer::PhysicalCheck::ShippingMethod, nil] The shipping method for the check.
         #
         #   @param signature_text [String, nil] The text that will appear as the signature on the check in cursive font. If blan
-        #   ...
         #
-        #   @param tracking_updates [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>] Tracking updates relating to the physical check's delivery.
+        #   @param tracking_updates [Array<Increase::CheckTransfer::PhysicalCheck::TrackingUpdate>] Tracking updates relating to the physical check's delivery.
 
-        # @see Increase::Models::CheckTransfer::PhysicalCheck#mailing_address
+        # @see Increase::CheckTransfer::PhysicalCheck#mailing_address
         class MailingAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the check's destination.
@@ -608,7 +590,7 @@ module Increase
           #   @param state [String, nil] The state of the check's destination.
         end
 
-        # @see Increase::Models::CheckTransfer::PhysicalCheck#return_address
+        # @see Increase::CheckTransfer::PhysicalCheck#return_address
         class ReturnAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the check's destination.
@@ -664,7 +646,7 @@ module Increase
 
         # The shipping method for the check.
         #
-        # @see Increase::Models::CheckTransfer::PhysicalCheck#shipping_method
+        # @see Increase::CheckTransfer::PhysicalCheck#shipping_method
         module ShippingMethod
           extend Increase::Internal::Type::Enum
 
@@ -682,8 +664,8 @@ module Increase
           # @!attribute category
           #   The type of tracking event.
           #
-          #   @return [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category]
-          required :category, enum: -> { Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category }
+          #   @return [Symbol, Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category]
+          required :category, enum: -> { Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category }
 
           # @!attribute created_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -700,19 +682,17 @@ module Increase
 
           # @!method initialize(category:, created_at:, postal_code:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate} for more
-          #   details.
+          #   {Increase::CheckTransfer::PhysicalCheck::TrackingUpdate} for more details.
           #
-          #   @param category [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category] The type of tracking event.
+          #   @param category [Symbol, Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category] The type of tracking event.
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-          #   ...
           #
           #   @param postal_code [String] The postal code where the event took place.
 
           # The type of tracking event.
           #
-          # @see Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate#category
+          # @see Increase::CheckTransfer::PhysicalCheck::TrackingUpdate#category
           module Category
             extend Increase::Internal::Type::Enum
 
@@ -736,7 +716,7 @@ module Increase
 
       # The lifecycle status of the transfer.
       #
-      # @see Increase::Models::CheckTransfer#status
+      # @see Increase::CheckTransfer#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -774,13 +754,13 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::Models::CheckTransfer#stop_payment_request
+      # @see Increase::CheckTransfer#stop_payment_request
       class StopPaymentRequest < Increase::Internal::Type::BaseModel
         # @!attribute reason
         #   The reason why this transfer was stopped.
         #
-        #   @return [Symbol, Increase::Models::CheckTransfer::StopPaymentRequest::Reason]
-        required :reason, enum: -> { Increase::Models::CheckTransfer::StopPaymentRequest::Reason }
+        #   @return [Symbol, Increase::CheckTransfer::StopPaymentRequest::Reason]
+        required :reason, enum: -> { Increase::CheckTransfer::StopPaymentRequest::Reason }
 
         # @!attribute requested_at
         #   The time the stop-payment was requested.
@@ -798,28 +778,27 @@ module Increase
         #   A constant representing the object's type. For this resource it will always be
         #   `check_transfer_stop_payment_request`.
         #
-        #   @return [Symbol, Increase::Models::CheckTransfer::StopPaymentRequest::Type]
-        required :type, enum: -> { Increase::Models::CheckTransfer::StopPaymentRequest::Type }
+        #   @return [Symbol, Increase::CheckTransfer::StopPaymentRequest::Type]
+        required :type, enum: -> { Increase::CheckTransfer::StopPaymentRequest::Type }
 
         # @!method initialize(reason:, requested_at:, transfer_id:, type:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransfer::StopPaymentRequest} for more details.
+        #   {Increase::CheckTransfer::StopPaymentRequest} for more details.
         #
         #   After a stop-payment is requested on the check, this will contain supplemental
         #   details.
         #
-        #   @param reason [Symbol, Increase::Models::CheckTransfer::StopPaymentRequest::Reason] The reason why this transfer was stopped.
+        #   @param reason [Symbol, Increase::CheckTransfer::StopPaymentRequest::Reason] The reason why this transfer was stopped.
         #
         #   @param requested_at [Time] The time the stop-payment was requested.
         #
         #   @param transfer_id [String] The ID of the check transfer that was stopped.
         #
-        #   @param type [Symbol, Increase::Models::CheckTransfer::StopPaymentRequest::Type] A constant representing the object's type. For this resource it will always be `
-        #   ...
+        #   @param type [Symbol, Increase::CheckTransfer::StopPaymentRequest::Type] A constant representing the object's type. For this resource it will always be `
 
         # The reason why this transfer was stopped.
         #
-        # @see Increase::Models::CheckTransfer::StopPaymentRequest#reason
+        # @see Increase::CheckTransfer::StopPaymentRequest#reason
         module Reason
           extend Increase::Internal::Type::Enum
 
@@ -842,7 +821,7 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `check_transfer_stop_payment_request`.
         #
-        # @see Increase::Models::CheckTransfer::StopPaymentRequest#type
+        # @see Increase::CheckTransfer::StopPaymentRequest#type
         module Type
           extend Increase::Internal::Type::Enum
 
@@ -853,7 +832,7 @@ module Increase
         end
       end
 
-      # @see Increase::Models::CheckTransfer#submission
+      # @see Increase::CheckTransfer#submission
       class Submission < Increase::Internal::Type::BaseModel
         # @!attribute address_correction_action
         #   Per USPS requirements, Increase will standardize the address to USPS standards
@@ -861,16 +840,16 @@ module Increase
         #   mailing it. This indicates what modifications, if any, were made to the address
         #   before printing and mailing the check.
         #
-        #   @return [Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction]
+        #   @return [Symbol, Increase::CheckTransfer::Submission::AddressCorrectionAction]
         required :address_correction_action,
-                 enum: -> { Increase::Models::CheckTransfer::Submission::AddressCorrectionAction }
+                 enum: -> { Increase::CheckTransfer::Submission::AddressCorrectionAction }
 
         # @!attribute submitted_address
         #   The address we submitted to the printer. This is what is physically printed on
         #   the check.
         #
-        #   @return [Increase::Models::CheckTransfer::Submission::SubmittedAddress]
-        required :submitted_address, -> { Increase::Models::CheckTransfer::Submission::SubmittedAddress }
+        #   @return [Increase::CheckTransfer::Submission::SubmittedAddress]
+        required :submitted_address, -> { Increase::CheckTransfer::Submission::SubmittedAddress }
 
         # @!attribute submitted_at
         #   When this check transfer was submitted to our check printer.
@@ -880,15 +859,13 @@ module Increase
 
         # @!method initialize(address_correction_action:, submitted_address:, submitted_at:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransfer::Submission} for more details.
+        #   {Increase::CheckTransfer::Submission} for more details.
         #
         #   After the transfer is submitted, this will contain supplemental details.
         #
-        #   @param address_correction_action [Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction] Per USPS requirements, Increase will standardize the address to USPS standards a
-        #   ...
+        #   @param address_correction_action [Symbol, Increase::CheckTransfer::Submission::AddressCorrectionAction] Per USPS requirements, Increase will standardize the address to USPS standards a
         #
-        #   @param submitted_address [Increase::Models::CheckTransfer::Submission::SubmittedAddress] The address we submitted to the printer. This is what is physically printed on t
-        #   ...
+        #   @param submitted_address [Increase::CheckTransfer::Submission::SubmittedAddress] The address we submitted to the printer. This is what is physically printed on t
         #
         #   @param submitted_at [Time] When this check transfer was submitted to our check printer.
 
@@ -897,7 +874,7 @@ module Increase
         # mailing it. This indicates what modifications, if any, were made to the address
         # before printing and mailing the check.
         #
-        # @see Increase::Models::CheckTransfer::Submission#address_correction_action
+        # @see Increase::CheckTransfer::Submission#address_correction_action
         module AddressCorrectionAction
           extend Increase::Internal::Type::Enum
 
@@ -917,7 +894,7 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
-        # @see Increase::Models::CheckTransfer::Submission#submitted_address
+        # @see Increase::CheckTransfer::Submission#submitted_address
         class SubmittedAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The submitted address city.
@@ -973,7 +950,7 @@ module Increase
         end
       end
 
-      # @see Increase::Models::CheckTransfer#third_party
+      # @see Increase::CheckTransfer#third_party
       class ThirdParty < Increase::Internal::Type::BaseModel
         # @!attribute recipient_name
         #   The name that you will print on the check.
@@ -991,7 +968,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `check_transfer`.
       #
-      # @see Increase::Models::CheckTransfer#type
+      # @see Increase::CheckTransfer#type
       module Type
         extend Increase::Internal::Type::Enum
 

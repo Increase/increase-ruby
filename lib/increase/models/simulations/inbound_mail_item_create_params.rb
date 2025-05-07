@@ -36,7 +36,6 @@ module Increase
         #   @param lockbox_id [String] The identifier of the Lockbox to simulate inbound mail to.
         #
         #   @param contents_file_id [String] The file containing the PDF contents. If not present, a default check image file
-        #   ...
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

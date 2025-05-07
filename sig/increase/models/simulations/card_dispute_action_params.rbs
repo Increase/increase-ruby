@@ -24,8 +24,6 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> void
 
-        def to_hash: -> Increase::Models::Simulations::card_dispute_action_params
-
         type status =
           :pending_user_information | :accepted | :rejected | :lost | :won
 

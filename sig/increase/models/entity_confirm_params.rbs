@@ -15,8 +15,6 @@ module Increase
         ?confirmed_at: Time,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_confirm_params
     end
   end
 end

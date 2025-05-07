@@ -11,23 +11,23 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Increase::Models::CardDispute
+      response => Increase::CardDispute
     end
 
     assert_pattern do
       response => {
         id: String,
-        acceptance: Increase::Models::CardDispute::Acceptance | nil,
+        acceptance: Increase::CardDispute::Acceptance | nil,
         amount: Integer | nil,
         created_at: Time,
         disputed_transaction_id: String,
         explanation: String,
         idempotency_key: String | nil,
-        loss: Increase::Models::CardDispute::Loss | nil,
-        rejection: Increase::Models::CardDispute::Rejection | nil,
-        status: Increase::Models::CardDispute::Status,
-        type: Increase::Models::CardDispute::Type,
-        win: Increase::Models::CardDispute::Win | nil
+        loss: Increase::CardDispute::Loss | nil,
+        rejection: Increase::CardDispute::Rejection | nil,
+        status: Increase::CardDispute::Status,
+        type: Increase::CardDispute::Type,
+        win: Increase::CardDispute::Win | nil
       }
     end
   end
@@ -36,23 +36,23 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     response = @increase.card_disputes.retrieve("card_dispute_id")
 
     assert_pattern do
-      response => Increase::Models::CardDispute
+      response => Increase::CardDispute
     end
 
     assert_pattern do
       response => {
         id: String,
-        acceptance: Increase::Models::CardDispute::Acceptance | nil,
+        acceptance: Increase::CardDispute::Acceptance | nil,
         amount: Integer | nil,
         created_at: Time,
         disputed_transaction_id: String,
         explanation: String,
         idempotency_key: String | nil,
-        loss: Increase::Models::CardDispute::Loss | nil,
-        rejection: Increase::Models::CardDispute::Rejection | nil,
-        status: Increase::Models::CardDispute::Status,
-        type: Increase::Models::CardDispute::Type,
-        win: Increase::Models::CardDispute::Win | nil
+        loss: Increase::CardDispute::Loss | nil,
+        rejection: Increase::CardDispute::Rejection | nil,
+        status: Increase::CardDispute::Status,
+        type: Increase::CardDispute::Type,
+        win: Increase::CardDispute::Win | nil
       }
     end
   end
@@ -68,23 +68,23 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::CardDispute
+      row => Increase::CardDispute
     end
 
     assert_pattern do
       row => {
         id: String,
-        acceptance: Increase::Models::CardDispute::Acceptance | nil,
+        acceptance: Increase::CardDispute::Acceptance | nil,
         amount: Integer | nil,
         created_at: Time,
         disputed_transaction_id: String,
         explanation: String,
         idempotency_key: String | nil,
-        loss: Increase::Models::CardDispute::Loss | nil,
-        rejection: Increase::Models::CardDispute::Rejection | nil,
-        status: Increase::Models::CardDispute::Status,
-        type: Increase::Models::CardDispute::Type,
-        win: Increase::Models::CardDispute::Win | nil
+        loss: Increase::CardDispute::Loss | nil,
+        rejection: Increase::CardDispute::Rejection | nil,
+        status: Increase::CardDispute::Status,
+        type: Increase::CardDispute::Type,
+        win: Increase::CardDispute::Win | nil
       }
     end
   end

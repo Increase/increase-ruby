@@ -5,30 +5,30 @@ module Increase
         def acknowledge: (
           String ach_transfer_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::ACHTransfer
+        ) -> Increase::ACHTransfer
 
         def create_notification_of_change: (
           String ach_transfer_id,
           change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::change_code,
           corrected_data: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::ACHTransfer
+        ) -> Increase::ACHTransfer
 
         def return_: (
           String ach_transfer_id,
           ?reason: Increase::Models::Simulations::ACHTransferReturnParams::reason,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::ACHTransfer
+        ) -> Increase::ACHTransfer
 
         def settle: (
           String ach_transfer_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::ACHTransfer
+        ) -> Increase::ACHTransfer
 
         def submit: (
           String ach_transfer_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::ACHTransfer
+        ) -> Increase::ACHTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

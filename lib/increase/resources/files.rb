@@ -13,25 +13,24 @@ module Increase
       # @overload create(file:, purpose:, description: nil, request_options: {})
       #
       # @param file [Pathname, StringIO, IO, Increase::FilePart] The file contents. This should follow the specifications of [RFC 7578](https://d
-      # ...
       #
-      # @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
+      # @param purpose [Symbol, Increase::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
       #
       # @param description [String] The description you choose to give the File.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::File]
+      # @return [Increase::File]
       #
       # @see Increase::Models::FileCreateParams
       def create(params)
-        parsed, options = Increase::Models::FileCreateParams.dump_request(params)
+        parsed, options = Increase::FileCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "files",
           headers: {"content-type" => "multipart/form-data"},
           body: parsed,
-          model: Increase::Models::File,
+          model: Increase::File,
           options: options
         )
       end
@@ -44,14 +43,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::File]
+      # @return [Increase::File]
       #
       # @see Increase::Models::FileRetrieveParams
       def retrieve(file_id, params = {})
         @client.request(
           method: :get,
           path: ["files/%1$s", file_id],
-          model: Increase::Models::File,
+          model: Increase::File,
           options: params[:request_options]
         )
       end
@@ -63,31 +62,29 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, purpose: nil, request_options: {})
       #
-      # @param created_at [Increase::Models::FileListParams::CreatedAt]
+      # @param created_at [Increase::FileListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param purpose [Increase::Models::FileListParams::Purpose]
+      # @param purpose [Increase::FileListParams::Purpose]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::File>]
+      # @return [Increase::Internal::Page<Increase::File>]
       #
       # @see Increase::Models::FileListParams
       def list(params = {})
-        parsed, options = Increase::Models::FileListParams.dump_request(params)
+        parsed, options = Increase::FileListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "files",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::File,
+          model: Increase::File,
           options: options
         )
       end

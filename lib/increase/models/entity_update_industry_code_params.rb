@@ -21,7 +21,6 @@ module Increase
       #   {Increase::Models::EntityUpdateIndustryCodeParams} for more details.
       #
       #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

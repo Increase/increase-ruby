@@ -23,16 +23,12 @@ module Increase
       # @param recipient_routing_number [String] The drawdown request's recipient's routing number.
       #
       # @param originator_address_line1 [String] The drawdown request originator's address line 1. This is only necessary if you'
-      # ...
       #
       # @param originator_address_line2 [String] The drawdown request originator's address line 2. This is only necessary if you'
-      # ...
       #
       # @param originator_address_line3 [String] The drawdown request originator's address line 3. This is only necessary if you'
-      # ...
       #
       # @param originator_name [String] The drawdown request originator's name. This is only necessary if you're request
-      # ...
       #
       # @param recipient_address_line1 [String] Line 1 of the drawdown request's recipient's address.
       #
@@ -42,16 +38,16 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::WireDrawdownRequest]
+      # @return [Increase::WireDrawdownRequest]
       #
       # @see Increase::Models::WireDrawdownRequestCreateParams
       def create(params)
-        parsed, options = Increase::Models::WireDrawdownRequestCreateParams.dump_request(params)
+        parsed, options = Increase::WireDrawdownRequestCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "wire_drawdown_requests",
           body: parsed,
-          model: Increase::Models::WireDrawdownRequest,
+          model: Increase::WireDrawdownRequest,
           options: options
         )
       end
@@ -64,14 +60,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::WireDrawdownRequest]
+      # @return [Increase::WireDrawdownRequest]
       #
       # @see Increase::Models::WireDrawdownRequestRetrieveParams
       def retrieve(wire_drawdown_request_id, params = {})
         @client.request(
           method: :get,
           path: ["wire_drawdown_requests/%1$s", wire_drawdown_request_id],
-          model: Increase::Models::WireDrawdownRequest,
+          model: Increase::WireDrawdownRequest,
           options: params[:request_options]
         )
       end
@@ -86,26 +82,24 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param status [Increase::Models::WireDrawdownRequestListParams::Status]
+      # @param status [Increase::WireDrawdownRequestListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::WireDrawdownRequest>]
+      # @return [Increase::Internal::Page<Increase::WireDrawdownRequest>]
       #
       # @see Increase::Models::WireDrawdownRequestListParams
       def list(params = {})
-        parsed, options = Increase::Models::WireDrawdownRequestListParams.dump_request(params)
+        parsed, options = Increase::WireDrawdownRequestListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "wire_drawdown_requests",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::WireDrawdownRequest,
+          model: Increase::WireDrawdownRequest,
           options: options
         )
       end

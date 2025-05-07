@@ -21,7 +21,7 @@ module Increase
           ?originator_to_beneficiary_information_line4: String,
           ?sender_reference: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::InboundWireTransfer
+        ) -> Increase::InboundWireTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

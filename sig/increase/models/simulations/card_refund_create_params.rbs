@@ -15,8 +15,6 @@ module Increase
           transaction_id: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::card_refund_create_params
       end
     end
   end

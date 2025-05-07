@@ -7,25 +7,25 @@ module Increase
         ?selected_event_category: Increase::Models::EventSubscriptionCreateParams::selected_event_category,
         ?shared_secret: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::EventSubscription
+      ) -> Increase::EventSubscription
 
       def retrieve: (
         String event_subscription_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::EventSubscription
+      ) -> Increase::EventSubscription
 
       def update: (
         String event_subscription_id,
         ?status: Increase::Models::EventSubscriptionUpdateParams::status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::EventSubscription
+      ) -> Increase::EventSubscription
 
       def list: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::EventSubscription]
+      ) -> Increase::Internal::Page[Increase::EventSubscription]
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -7,7 +7,7 @@ module Increase
           lockbox_id: String,
           ?contents_file_id: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::InboundMailItem
+        ) -> Increase::InboundMailItem
 
         def initialize: (client: Increase::Client) -> void
       end

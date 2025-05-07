@@ -3,20 +3,20 @@ module Increase
     type program =
       {
         id: String,
-        bank: Increase::Models::Program::bank,
+        bank: Increase::Program::bank,
         billing_account_id: String?,
         created_at: Time,
         default_digital_card_profile_id: String?,
         interest_rate: String,
         name: String,
-        type: Increase::Models::Program::type_,
+        type: Increase::Program::type_,
         updated_at: Time
       }
 
     class Program < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor bank: Increase::Models::Program::bank
+      attr_accessor bank: Increase::Program::bank
 
       attr_accessor billing_account_id: String?
 
@@ -28,23 +28,21 @@ module Increase
 
       attr_accessor name: String
 
-      attr_accessor type: Increase::Models::Program::type_
+      attr_accessor type: Increase::Program::type_
 
       attr_accessor updated_at: Time
 
       def initialize: (
         id: String,
-        bank: Increase::Models::Program::bank,
+        bank: Increase::Program::bank,
         billing_account_id: String?,
         created_at: Time,
         default_digital_card_profile_id: String?,
         interest_rate: String,
         name: String,
-        type: Increase::Models::Program::type_,
+        type: Increase::Program::type_,
         updated_at: Time
       ) -> void
-
-      def to_hash: -> Increase::Models::program
 
       type bank = :core_bank | :first_internet_bank | :grasshopper_bank
 
@@ -60,7 +58,7 @@ module Increase
         # Grasshopper Bank
         GRASSHOPPER_BANK: :grasshopper_bank
 
-        def self?.values: -> ::Array[Increase::Models::Program::bank]
+        def self?.values: -> ::Array[Increase::Program::bank]
       end
 
       type type_ = :program
@@ -70,7 +68,7 @@ module Increase
 
         PROGRAM: :program
 
-        def self?.values: -> ::Array[Increase::Models::Program::type_]
+        def self?.values: -> ::Array[Increase::Program::type_]
       end
     end
   end

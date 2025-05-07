@@ -27,8 +27,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::file_create_params
-
       type purpose =
         :check_image_front
         | :check_image_back

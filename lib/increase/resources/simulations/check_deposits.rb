@@ -14,14 +14,14 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::CheckDeposit]
+        # @return [Increase::CheckDeposit]
         #
         # @see Increase::Models::Simulations::CheckDepositRejectParams
         def reject(check_deposit_id, params = {})
           @client.request(
             method: :post,
             path: ["simulations/check_deposits/%1$s/reject", check_deposit_id],
-            model: Increase::Models::CheckDeposit,
+            model: Increase::CheckDeposit,
             options: params[:request_options]
           )
         end
@@ -35,14 +35,14 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::CheckDeposit]
+        # @return [Increase::CheckDeposit]
         #
         # @see Increase::Models::Simulations::CheckDepositReturnParams
         def return_(check_deposit_id, params = {})
           @client.request(
             method: :post,
             path: ["simulations/check_deposits/%1$s/return", check_deposit_id],
-            model: Increase::Models::CheckDeposit,
+            model: Increase::CheckDeposit,
             options: params[:request_options]
           )
         end
@@ -56,14 +56,14 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::CheckDeposit]
+        # @return [Increase::CheckDeposit]
         #
         # @see Increase::Models::Simulations::CheckDepositSubmitParams
         def submit(check_deposit_id, params = {})
           @client.request(
             method: :post,
             path: ["simulations/check_deposits/%1$s/submit", check_deposit_id],
-            model: Increase::Models::CheckDeposit,
+            model: Increase::CheckDeposit,
             options: params[:request_options]
           )
         end

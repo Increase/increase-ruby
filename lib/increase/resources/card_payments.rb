@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::CardPayment]
+      # @return [Increase::CardPayment]
       #
       # @see Increase::Models::CardPaymentRetrieveParams
       def retrieve(card_payment_id, params = {})
         @client.request(
           method: :get,
           path: ["card_payments/%1$s", card_payment_id],
-          model: Increase::Models::CardPayment,
+          model: Increase::CardPayment,
           options: params[:request_options]
         )
       end
@@ -34,26 +34,25 @@ module Increase
       #
       # @param card_id [String] Filter Card Payments to ones belonging to the specified Card.
       #
-      # @param created_at [Increase::Models::CardPaymentListParams::CreatedAt]
+      # @param created_at [Increase::CardPaymentListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::CardPayment>]
+      # @return [Increase::Internal::Page<Increase::CardPayment>]
       #
       # @see Increase::Models::CardPaymentListParams
       def list(params = {})
-        parsed, options = Increase::Models::CardPaymentListParams.dump_request(params)
+        parsed, options = Increase::CardPaymentListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "card_payments",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::CardPayment,
+          model: Increase::CardPayment,
           options: options
         )
       end

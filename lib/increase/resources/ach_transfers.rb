@@ -13,65 +13,53 @@ module Increase
       # @param account_id [String] The Increase identifier for the account that will send the transfer.
       #
       # @param amount [Integer] The transfer amount in USD cents. A positive amount originates a credit transfer
-      # ...
       #
       # @param statement_descriptor [String] A description you choose to give the transfer. This will be saved with the trans
-      # ...
       #
       # @param account_number [String] The account number for the destination account.
       #
-      # @param addenda [Increase::Models::ACHTransferCreateParams::Addenda] Additional information that will be sent to the recipient. This is included in t
-      # ...
+      # @param addenda [Increase::ACHTransferCreateParams::Addenda] Additional information that will be sent to the recipient. This is included in t
       #
       # @param company_descriptive_date [String] The description of the date of the transfer, usually in the format `YYMMDD`. Thi
-      # ...
       #
       # @param company_discretionary_data [String] The data you choose to associate with the transfer. This is included in the tran
-      # ...
       #
       # @param company_entry_description [String] A description of the transfer. This is included in the transfer data sent to the
-      # ...
       #
       # @param company_name [String] The name by which the recipient knows you. This is included in the transfer data
-      # ...
       #
-      # @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder] The type of entity that owns the account to which the ACH Transfer is being sent
-      # ...
+      # @param destination_account_holder [Symbol, Increase::ACHTransferCreateParams::DestinationAccountHolder] The type of entity that owns the account to which the ACH Transfer is being sent
       #
       # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
-      # ...
       #
-      # @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding] The type of the account to which the transfer will be sent.
+      # @param funding [Symbol, Increase::ACHTransferCreateParams::Funding] The type of the account to which the transfer will be sent.
       #
       # @param individual_id [String] Your identifier for the transfer recipient.
       #
       # @param individual_name [String] The name of the transfer recipient. This value is informational and not verified
-      # ...
       #
-      # @param preferred_effective_date [Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate] Configuration for how the effective date of the transfer will be set. This deter
-      # ...
+      # @param preferred_effective_date [Increase::ACHTransferCreateParams::PreferredEffectiveDate] Configuration for how the effective date of the transfer will be set. This deter
       #
       # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
       # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
-      # ...
       #
-      # @param standard_entry_class_code [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the transfer.
+      # @param standard_entry_class_code [Symbol, Increase::ACHTransferCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the transfer.
       #
-      # @param transaction_timing [Symbol, Increase::Models::ACHTransferCreateParams::TransactionTiming] The timing of the transaction.
+      # @param transaction_timing [Symbol, Increase::ACHTransferCreateParams::TransactionTiming] The timing of the transaction.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::ACHTransfer]
+      # @return [Increase::ACHTransfer]
       #
       # @see Increase::Models::ACHTransferCreateParams
       def create(params)
-        parsed, options = Increase::Models::ACHTransferCreateParams.dump_request(params)
+        parsed, options = Increase::ACHTransferCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "ach_transfers",
           body: parsed,
-          model: Increase::Models::ACHTransfer,
+          model: Increase::ACHTransfer,
           options: options
         )
       end
@@ -84,14 +72,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::ACHTransfer]
+      # @return [Increase::ACHTransfer]
       #
       # @see Increase::Models::ACHTransferRetrieveParams
       def retrieve(ach_transfer_id, params = {})
         @client.request(
           method: :get,
           path: ["ach_transfers/%1$s", ach_transfer_id],
-          model: Increase::Models::ACHTransfer,
+          model: Increase::ACHTransfer,
           options: params[:request_options]
         )
       end
@@ -105,33 +93,31 @@ module Increase
       #
       # @param account_id [String] Filter ACH Transfers to those that originated from the specified Account.
       #
-      # @param created_at [Increase::Models::ACHTransferListParams::CreatedAt]
+      # @param created_at [Increase::ACHTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param external_account_id [String] Filter ACH Transfers to those made to the specified External Account.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
-      # @param status [Increase::Models::ACHTransferListParams::Status]
+      # @param status [Increase::ACHTransferListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::ACHTransfer>]
+      # @return [Increase::Internal::Page<Increase::ACHTransfer>]
       #
       # @see Increase::Models::ACHTransferListParams
       def list(params = {})
-        parsed, options = Increase::Models::ACHTransferListParams.dump_request(params)
+        parsed, options = Increase::ACHTransferListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "ach_transfers",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::ACHTransfer,
+          model: Increase::ACHTransfer,
           options: options
         )
       end
@@ -144,14 +130,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::ACHTransfer]
+      # @return [Increase::ACHTransfer]
       #
       # @see Increase::Models::ACHTransferApproveParams
       def approve(ach_transfer_id, params = {})
         @client.request(
           method: :post,
           path: ["ach_transfers/%1$s/approve", ach_transfer_id],
-          model: Increase::Models::ACHTransfer,
+          model: Increase::ACHTransfer,
           options: params[:request_options]
         )
       end
@@ -164,14 +150,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::ACHTransfer]
+      # @return [Increase::ACHTransfer]
       #
       # @see Increase::Models::ACHTransferCancelParams
       def cancel(ach_transfer_id, params = {})
         @client.request(
           method: :post,
           path: ["ach_transfers/%1$s/cancel", ach_transfer_id],
-          model: Increase::Models::ACHTransfer,
+          model: Increase::ACHTransfer,
           options: params[:request_options]
         )
       end

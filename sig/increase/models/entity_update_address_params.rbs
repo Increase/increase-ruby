@@ -1,21 +1,19 @@
 module Increase
   module Models
     type entity_update_address_params =
-      { address: Increase::Models::EntityUpdateAddressParams::Address }
+      { address: Increase::EntityUpdateAddressParams::Address }
       & Increase::Internal::Type::request_parameters
 
     class EntityUpdateAddressParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_accessor address: Increase::Models::EntityUpdateAddressParams::Address
+      attr_accessor address: Increase::EntityUpdateAddressParams::Address
 
       def initialize: (
-        address: Increase::Models::EntityUpdateAddressParams::Address,
+        address: Increase::EntityUpdateAddressParams::Address,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_update_address_params
 
       type address =
         {
@@ -46,8 +44,6 @@ module Increase
           zip: String,
           ?line2: String
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityUpdateAddressParams::address
       end
     end
   end

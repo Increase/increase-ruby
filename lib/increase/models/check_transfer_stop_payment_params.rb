@@ -10,11 +10,11 @@ module Increase
       # @!attribute reason
       #   The reason why this transfer should be stopped.
       #
-      #   @return [Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason, nil]
-      optional :reason, enum: -> { Increase::Models::CheckTransferStopPaymentParams::Reason }
+      #   @return [Symbol, Increase::CheckTransferStopPaymentParams::Reason, nil]
+      optional :reason, enum: -> { Increase::CheckTransferStopPaymentParams::Reason }
 
       # @!method initialize(reason: nil, request_options: {})
-      #   @param reason [Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason] The reason why this transfer should be stopped.
+      #   @param reason [Symbol, Increase::CheckTransferStopPaymentParams::Reason] The reason why this transfer should be stopped.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

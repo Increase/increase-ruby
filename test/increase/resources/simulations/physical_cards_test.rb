@@ -8,20 +8,20 @@ class Increase::Test::Resources::Simulations::PhysicalCardsTest < Increase::Test
       @increase.simulations.physical_cards.advance_shipment("physical_card_id", shipment_status: :shipped)
 
     assert_pattern do
-      response => Increase::Models::PhysicalCard
+      response => Increase::PhysicalCard
     end
 
     assert_pattern do
       response => {
         id: String,
         card_id: String,
-        cardholder: Increase::Models::PhysicalCard::Cardholder,
+        cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
         idempotency_key: String | nil,
         physical_card_profile_id: String | nil,
-        shipment: Increase::Models::PhysicalCard::Shipment,
-        status: Increase::Models::PhysicalCard::Status,
-        type: Increase::Models::PhysicalCard::Type
+        shipment: Increase::PhysicalCard::Shipment,
+        status: Increase::PhysicalCard::Status,
+        type: Increase::PhysicalCard::Type
       }
     end
   end

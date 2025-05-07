@@ -13,9 +13,9 @@ module Increase
         description: String,
         idempotency_key: String?,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::type_
+        status: Increase::DigitalCardProfile::status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::type_
       }
 
     class DigitalCardProfile < Increase::Internal::Type::BaseModel
@@ -41,11 +41,11 @@ module Increase
 
       attr_accessor issuer_name: String
 
-      attr_accessor status: Increase::Models::DigitalCardProfile::status
+      attr_accessor status: Increase::DigitalCardProfile::status
 
-      attr_accessor text_color: Increase::Models::DigitalCardProfile::TextColor
+      attr_accessor text_color: Increase::DigitalCardProfile::TextColor
 
-      attr_accessor type: Increase::Models::DigitalCardProfile::type_
+      attr_accessor type: Increase::DigitalCardProfile::type_
 
       def initialize: (
         id: String,
@@ -59,12 +59,10 @@ module Increase
         description: String,
         idempotency_key: String?,
         issuer_name: String,
-        status: Increase::Models::DigitalCardProfile::status,
-        text_color: Increase::Models::DigitalCardProfile::TextColor,
-        type: Increase::Models::DigitalCardProfile::type_
+        status: Increase::DigitalCardProfile::status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::digital_card_profile
 
       type status = :pending | :rejected | :active | :archived
 
@@ -83,7 +81,7 @@ module Increase
         # The Card Profile is no longer in use.
         ARCHIVED: :archived
 
-        def self?.values: -> ::Array[Increase::Models::DigitalCardProfile::status]
+        def self?.values: -> ::Array[Increase::DigitalCardProfile::status]
       end
 
       type text_color = { blue: Integer, green: Integer, red: Integer }
@@ -96,8 +94,6 @@ module Increase
         attr_accessor red: Integer
 
         def initialize: (blue: Integer, green: Integer, red: Integer) -> void
-
-        def to_hash: -> Increase::Models::DigitalCardProfile::text_color
       end
 
       type type_ = :digital_card_profile
@@ -107,7 +103,7 @@ module Increase
 
         DIGITAL_CARD_PROFILE: :digital_card_profile
 
-        def self?.values: -> ::Array[Increase::Models::DigitalCardProfile::type_]
+        def self?.values: -> ::Array[Increase::DigitalCardProfile::type_]
       end
     end
   end

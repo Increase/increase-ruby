@@ -6,7 +6,7 @@ module Increase
         entity_id: String,
         file_id: String,
         idempotency_key: String?,
-        type: Increase::Models::EntitySupplementalDocument::type_
+        type: Increase::EntitySupplementalDocument::type_
       }
 
     class EntitySupplementalDocument < Increase::Internal::Type::BaseModel
@@ -18,17 +18,15 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor type: Increase::Models::EntitySupplementalDocument::type_
+      attr_accessor type: Increase::EntitySupplementalDocument::type_
 
       def initialize: (
         created_at: Time,
         entity_id: String,
         file_id: String,
         idempotency_key: String?,
-        type: Increase::Models::EntitySupplementalDocument::type_
+        type: Increase::EntitySupplementalDocument::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_supplemental_document
 
       type type_ = :entity_supplemental_document
 
@@ -37,7 +35,7 @@ module Increase
 
         ENTITY_SUPPLEMENTAL_DOCUMENT: :entity_supplemental_document
 
-        def self?.values: -> ::Array[Increase::Models::EntitySupplementalDocument::type_]
+        def self?.values: -> ::Array[Increase::EntitySupplementalDocument::type_]
       end
     end
   end

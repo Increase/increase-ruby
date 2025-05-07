@@ -36,8 +36,6 @@ module Increase
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::intrafi_exclusion_list_params
     end
   end
 end

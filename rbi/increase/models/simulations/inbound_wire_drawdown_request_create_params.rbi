@@ -7,6 +7,9 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The amount being requested in cents.
         sig { returns(Integer) }
         attr_accessor :amount
@@ -151,9 +154,8 @@ module Increase
             originator_to_beneficiary_information_line2: String,
             originator_to_beneficiary_information_line3: String,
             originator_to_beneficiary_information_line4: String,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-          )
-            .returns(T.attached_class)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(T.attached_class)
         end
         def self.new(
           # The amount being requested in cents.
@@ -203,36 +205,38 @@ module Increase
           # beneficiary.
           originator_to_beneficiary_information_line4: nil,
           request_options: {}
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                amount: Integer,
-                beneficiary_account_number: String,
-                beneficiary_routing_number: String,
-                currency: String,
-                message_to_recipient: String,
-                originator_account_number: String,
-                originator_routing_number: String,
-                recipient_account_number_id: String,
-                beneficiary_address_line1: String,
-                beneficiary_address_line2: String,
-                beneficiary_address_line3: String,
-                beneficiary_name: String,
-                originator_address_line1: String,
-                originator_address_line2: String,
-                originator_address_line3: String,
-                originator_name: String,
-                originator_to_beneficiary_information_line1: String,
-                originator_to_beneficiary_information_line2: String,
-                originator_to_beneficiary_information_line3: String,
-                originator_to_beneficiary_information_line4: String,
-                request_options: Increase::RequestOptions
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              amount: Integer,
+              beneficiary_account_number: String,
+              beneficiary_routing_number: String,
+              currency: String,
+              message_to_recipient: String,
+              originator_account_number: String,
+              originator_routing_number: String,
+              recipient_account_number_id: String,
+              beneficiary_address_line1: String,
+              beneficiary_address_line2: String,
+              beneficiary_address_line3: String,
+              beneficiary_name: String,
+              originator_address_line1: String,
+              originator_address_line2: String,
+              originator_address_line3: String,
+              originator_name: String,
+              originator_to_beneficiary_information_line1: String,
+              originator_to_beneficiary_information_line2: String,
+              originator_to_beneficiary_information_line3: String,
+              originator_to_beneficiary_information_line4: String,
+              request_options: Increase::RequestOptions
+            }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

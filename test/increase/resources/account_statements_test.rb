@@ -7,7 +7,7 @@ class Increase::Test::Resources::AccountStatementsTest < Increase::Test::Resourc
     response = @increase.account_statements.retrieve("account_statement_id")
 
     assert_pattern do
-      response => Increase::Models::AccountStatement
+      response => Increase::AccountStatement
     end
 
     assert_pattern do
@@ -20,7 +20,7 @@ class Increase::Test::Resources::AccountStatementsTest < Increase::Test::Resourc
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
-        type: Increase::Models::AccountStatement::Type
+        type: Increase::AccountStatement::Type
       }
     end
   end
@@ -36,7 +36,7 @@ class Increase::Test::Resources::AccountStatementsTest < Increase::Test::Resourc
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::AccountStatement
+      row => Increase::AccountStatement
     end
 
     assert_pattern do
@@ -49,7 +49,7 @@ class Increase::Test::Resources::AccountStatementsTest < Increase::Test::Resourc
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
-        type: Increase::Models::AccountStatement::Type
+        type: Increase::AccountStatement::Type
       }
     end
   end

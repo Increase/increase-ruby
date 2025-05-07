@@ -36,8 +36,6 @@ module Increase
         ?transaction_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::bookkeeping_entry_set_list_params
     end
   end
 end

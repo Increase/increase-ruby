@@ -10,27 +10,27 @@ module Increase
         ?contact_email: String,
         ?contact_phone: String,
         ?contact_website: String,
-        ?text_color: Increase::Models::DigitalCardProfileCreateParams::TextColor,
+        ?text_color: Increase::DigitalCardProfileCreateParams::TextColor,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::DigitalCardProfile
+      ) -> Increase::DigitalCardProfile
 
       def retrieve: (
         String digital_card_profile_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::DigitalCardProfile
+      ) -> Increase::DigitalCardProfile
 
       def list: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::DigitalCardProfileListParams::Status,
+        ?status: Increase::DigitalCardProfileListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::DigitalCardProfile]
+      ) -> Increase::Internal::Page[Increase::DigitalCardProfile]
 
       def archive: (
         String digital_card_profile_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::DigitalCardProfile
+      ) -> Increase::DigitalCardProfile
 
       def clone_: (
         String digital_card_profile_id,
@@ -42,9 +42,9 @@ module Increase
         ?contact_website: String,
         ?description: String,
         ?issuer_name: String,
-        ?text_color: Increase::Models::DigitalCardProfileCloneParams::TextColor,
+        ?text_color: Increase::DigitalCardProfileCloneParams::TextColor,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::DigitalCardProfile
+      ) -> Increase::DigitalCardProfile
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -22,8 +22,6 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> void
 
-        def to_hash: -> Increase::Models::Simulations::ach_transfer_create_notification_of_change_params
-
         type change_code =
           :incorrect_account_number
           | :incorrect_routing_number

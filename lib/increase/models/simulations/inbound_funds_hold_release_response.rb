@@ -81,16 +81,12 @@ module Increase
         #   @param id [String] The Inbound Funds Hold identifier.
         #
         #   @param amount [Integer] The held amount in the minor unit of the account's currency. For dollars, for ex
-        #   ...
         #
         #   @param automatically_releases_at [Time] When the hold will be released automatically. Certain conditions may cause it to
-        #   ...
         #
         #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the hold wa
-        #   ...
         #
         #   @param currency [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's curre
-        #   ...
         #
         #   @param held_transaction_id [String, nil] The ID of the Transaction for which funds were held.
         #
@@ -101,7 +97,6 @@ module Increase
         #   @param status [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Status] The status of the hold.
         #
         #   @param type [Symbol, Increase::Models::Simulations::InboundFundsHoldReleaseResponse::Type] A constant representing the object's type. For this resource it will always be `
-        #   ...
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the hold's
         # currency.

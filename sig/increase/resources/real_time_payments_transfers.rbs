@@ -14,23 +14,23 @@ module Increase
         ?ultimate_creditor_name: String,
         ?ultimate_debtor_name: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::RealTimePaymentsTransfer
+      ) -> Increase::RealTimePaymentsTransfer
 
       def retrieve: (
         String real_time_payments_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::RealTimePaymentsTransfer
+      ) -> Increase::RealTimePaymentsTransfer
 
       def list: (
         ?account_id: String,
-        ?created_at: Increase::Models::RealTimePaymentsTransferListParams::CreatedAt,
+        ?created_at: Increase::RealTimePaymentsTransferListParams::CreatedAt,
         ?cursor: String,
         ?external_account_id: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::RealTimePaymentsTransferListParams::Status,
+        ?status: Increase::RealTimePaymentsTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::RealTimePaymentsTransfer]
+      ) -> Increase::Internal::Page[Increase::RealTimePaymentsTransfer]
 
       def initialize: (client: Increase::Client) -> void
     end

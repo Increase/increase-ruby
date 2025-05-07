@@ -4,17 +4,17 @@ module Increase
       def retrieve: (
         String declined_transaction_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::DeclinedTransaction
+      ) -> Increase::DeclinedTransaction
 
       def list: (
         ?account_id: String,
-        ?category: Increase::Models::DeclinedTransactionListParams::Category,
-        ?created_at: Increase::Models::DeclinedTransactionListParams::CreatedAt,
+        ?category: Increase::DeclinedTransactionListParams::Category,
+        ?created_at: Increase::DeclinedTransactionListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?route_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::DeclinedTransaction]
+      ) -> Increase::Internal::Page[Increase::DeclinedTransaction]
 
       def initialize: (client: Increase::Client) -> void
     end

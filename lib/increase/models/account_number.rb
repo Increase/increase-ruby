@@ -40,15 +40,15 @@ module Increase
       # @!attribute inbound_ach
       #   Properties related to how this Account Number handles inbound ACH transfers.
       #
-      #   @return [Increase::Models::AccountNumber::InboundACH]
-      required :inbound_ach, -> { Increase::Models::AccountNumber::InboundACH }
+      #   @return [Increase::AccountNumber::InboundACH]
+      required :inbound_ach, -> { Increase::AccountNumber::InboundACH }
 
       # @!attribute inbound_checks
       #   Properties related to how this Account Number should handle inbound check
       #   withdrawals.
       #
-      #   @return [Increase::Models::AccountNumber::InboundChecks]
-      required :inbound_checks, -> { Increase::Models::AccountNumber::InboundChecks }
+      #   @return [Increase::AccountNumber::InboundChecks]
+      required :inbound_checks, -> { Increase::AccountNumber::InboundChecks }
 
       # @!attribute name
       #   The name you choose for the Account Number.
@@ -65,19 +65,19 @@ module Increase
       # @!attribute status
       #   This indicates if payments can be made to the Account Number.
       #
-      #   @return [Symbol, Increase::Models::AccountNumber::Status]
-      required :status, enum: -> { Increase::Models::AccountNumber::Status }
+      #   @return [Symbol, Increase::AccountNumber::Status]
+      required :status, enum: -> { Increase::AccountNumber::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `account_number`.
       #
-      #   @return [Symbol, Increase::Models::AccountNumber::Type]
-      required :type, enum: -> { Increase::Models::AccountNumber::Type }
+      #   @return [Symbol, Increase::AccountNumber::Type]
+      required :type, enum: -> { Increase::AccountNumber::Type }
 
       # @!method initialize(id:, account_id:, account_number:, created_at:, idempotency_key:, inbound_ach:, inbound_checks:, name:, routing_number:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::AccountNumber} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::AccountNumber}
+      #   for more details.
       #
       #   Each account can have multiple account and routing numbers. We recommend that
       #   you use a set per vendor. This is similar to how you use different passwords for
@@ -92,47 +92,42 @@ module Increase
       #   @param account_number [String] The account number.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
-      #   ...
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
-      #   ...
       #
-      #   @param inbound_ach [Increase::Models::AccountNumber::InboundACH] Properties related to how this Account Number handles inbound ACH transfers.
+      #   @param inbound_ach [Increase::AccountNumber::InboundACH] Properties related to how this Account Number handles inbound ACH transfers.
       #
-      #   @param inbound_checks [Increase::Models::AccountNumber::InboundChecks] Properties related to how this Account Number should handle inbound check withdr
-      #   ...
+      #   @param inbound_checks [Increase::AccountNumber::InboundChecks] Properties related to how this Account Number should handle inbound check withdr
       #
       #   @param name [String] The name you choose for the Account Number.
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
       #
-      #   @param status [Symbol, Increase::Models::AccountNumber::Status] This indicates if payments can be made to the Account Number.
+      #   @param status [Symbol, Increase::AccountNumber::Status] This indicates if payments can be made to the Account Number.
       #
-      #   @param type [Symbol, Increase::Models::AccountNumber::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::AccountNumber::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::Models::AccountNumber#inbound_ach
+      # @see Increase::AccountNumber#inbound_ach
       class InboundACH < Increase::Internal::Type::BaseModel
         # @!attribute debit_status
         #   Whether ACH debits are allowed against this Account Number. Note that they will
         #   still be declined if this is `allowed` if the Account Number is not active.
         #
-        #   @return [Symbol, Increase::Models::AccountNumber::InboundACH::DebitStatus]
-        required :debit_status, enum: -> { Increase::Models::AccountNumber::InboundACH::DebitStatus }
+        #   @return [Symbol, Increase::AccountNumber::InboundACH::DebitStatus]
+        required :debit_status, enum: -> { Increase::AccountNumber::InboundACH::DebitStatus }
 
         # @!method initialize(debit_status:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::AccountNumber::InboundACH} for more details.
+        #   {Increase::AccountNumber::InboundACH} for more details.
         #
         #   Properties related to how this Account Number handles inbound ACH transfers.
         #
-        #   @param debit_status [Symbol, Increase::Models::AccountNumber::InboundACH::DebitStatus] Whether ACH debits are allowed against this Account Number. Note that they will
-        #   ...
+        #   @param debit_status [Symbol, Increase::AccountNumber::InboundACH::DebitStatus] Whether ACH debits are allowed against this Account Number. Note that they will
 
         # Whether ACH debits are allowed against this Account Number. Note that they will
         # still be declined if this is `allowed` if the Account Number is not active.
         #
-        # @see Increase::Models::AccountNumber::InboundACH#debit_status
+        # @see Increase::AccountNumber::InboundACH#debit_status
         module DebitStatus
           extend Increase::Internal::Type::Enum
 
@@ -147,23 +142,23 @@ module Increase
         end
       end
 
-      # @see Increase::Models::AccountNumber#inbound_checks
+      # @see Increase::AccountNumber#inbound_checks
       class InboundChecks < Increase::Internal::Type::BaseModel
         # @!attribute status
         #   How Increase should process checks with this account number printed on them.
         #
-        #   @return [Symbol, Increase::Models::AccountNumber::InboundChecks::Status]
-        required :status, enum: -> { Increase::Models::AccountNumber::InboundChecks::Status }
+        #   @return [Symbol, Increase::AccountNumber::InboundChecks::Status]
+        required :status, enum: -> { Increase::AccountNumber::InboundChecks::Status }
 
         # @!method initialize(status:)
         #   Properties related to how this Account Number should handle inbound check
         #   withdrawals.
         #
-        #   @param status [Symbol, Increase::Models::AccountNumber::InboundChecks::Status] How Increase should process checks with this account number printed on them.
+        #   @param status [Symbol, Increase::AccountNumber::InboundChecks::Status] How Increase should process checks with this account number printed on them.
 
         # How Increase should process checks with this account number printed on them.
         #
-        # @see Increase::Models::AccountNumber::InboundChecks#status
+        # @see Increase::AccountNumber::InboundChecks#status
         module Status
           extend Increase::Internal::Type::Enum
 
@@ -180,7 +175,7 @@ module Increase
 
       # This indicates if payments can be made to the Account Number.
       #
-      # @see Increase::Models::AccountNumber#status
+      # @see Increase::AccountNumber#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -200,7 +195,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `account_number`.
       #
-      # @see Increase::Models::AccountNumber#type
+      # @see Increase::AccountNumber#type
       module Type
         extend Increase::Internal::Type::Enum
 

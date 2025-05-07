@@ -13,9 +13,8 @@ module Increase
             accrued_on_account_id: String,
             period_end: Time,
             period_start: Time,
-            request_options: Increase::RequestOpts
-          )
-            .returns(Increase::Models::Transaction)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::Transaction)
         end
         def create(
           # The identifier of the Account the Interest Payment should be paid to is for.
@@ -29,10 +28,13 @@ module Increase
           # The start of the interest period. If not provided, defaults to the current time.
           period_start: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

@@ -11,15 +11,14 @@ module Increase
       #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
       #   are disallowed.
       #
-      #   @return [Increase::Models::EntityUpdateAddressParams::Address]
-      required :address, -> { Increase::Models::EntityUpdateAddressParams::Address }
+      #   @return [Increase::EntityUpdateAddressParams::Address]
+      required :address, -> { Increase::EntityUpdateAddressParams::Address }
 
       # @!method initialize(address:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityUpdateAddressParams} for more details.
       #
-      #   @param address [Increase::Models::EntityUpdateAddressParams::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
-      #   ...
+      #   @param address [Increase::EntityUpdateAddressParams::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -57,7 +56,7 @@ module Increase
 
         # @!method initialize(city:, line1:, state:, zip:, line2: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateAddressParams::Address} for more details.
+        #   {Increase::EntityUpdateAddressParams::Address} for more details.
         #
         #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
         #   are disallowed.
@@ -67,7 +66,6 @@ module Increase
         #   @param line1 [String] The first line of the address. This is usually the street number and street.
         #
         #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
-        #   ...
         #
         #   @param zip [String] The ZIP code of the address.
         #

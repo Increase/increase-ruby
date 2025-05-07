@@ -7,7 +7,7 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
     response = @increase.event_subscriptions.create(url: "https://website.com/webhooks")
 
     assert_pattern do
-      response => Increase::Models::EventSubscription
+      response => Increase::EventSubscription
     end
 
     assert_pattern do
@@ -16,9 +16,9 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         created_at: Time,
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
-        selected_event_category: Increase::Models::EventSubscription::SelectedEventCategory | nil,
-        status: Increase::Models::EventSubscription::Status,
-        type: Increase::Models::EventSubscription::Type,
+        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
+        status: Increase::EventSubscription::Status,
+        type: Increase::EventSubscription::Type,
         url: String
       }
     end
@@ -28,7 +28,7 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
     response = @increase.event_subscriptions.retrieve("event_subscription_id")
 
     assert_pattern do
-      response => Increase::Models::EventSubscription
+      response => Increase::EventSubscription
     end
 
     assert_pattern do
@@ -37,9 +37,9 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         created_at: Time,
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
-        selected_event_category: Increase::Models::EventSubscription::SelectedEventCategory | nil,
-        status: Increase::Models::EventSubscription::Status,
-        type: Increase::Models::EventSubscription::Type,
+        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
+        status: Increase::EventSubscription::Status,
+        type: Increase::EventSubscription::Type,
         url: String
       }
     end
@@ -49,7 +49,7 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
     response = @increase.event_subscriptions.update("event_subscription_id")
 
     assert_pattern do
-      response => Increase::Models::EventSubscription
+      response => Increase::EventSubscription
     end
 
     assert_pattern do
@@ -58,9 +58,9 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         created_at: Time,
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
-        selected_event_category: Increase::Models::EventSubscription::SelectedEventCategory | nil,
-        status: Increase::Models::EventSubscription::Status,
-        type: Increase::Models::EventSubscription::Type,
+        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
+        status: Increase::EventSubscription::Status,
+        type: Increase::EventSubscription::Type,
         url: String
       }
     end
@@ -77,7 +77,7 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::EventSubscription
+      row => Increase::EventSubscription
     end
 
     assert_pattern do
@@ -86,9 +86,9 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         created_at: Time,
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
-        selected_event_category: Increase::Models::EventSubscription::SelectedEventCategory | nil,
-        status: Increase::Models::EventSubscription::Status,
-        type: Increase::Models::EventSubscription::Type,
+        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
+        status: Increase::EventSubscription::Status,
+        type: Increase::EventSubscription::Type,
         url: String
       }
     end

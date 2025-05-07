@@ -7,8 +7,8 @@ module Increase
         deleted_at: Time?,
         group_id: String,
         oauth_application_id: String,
-        status: Increase::Models::OAuthConnection::status,
-        type: Increase::Models::OAuthConnection::type_
+        status: Increase::OAuthConnection::status,
+        type: Increase::OAuthConnection::type_
       }
 
     class OAuthConnection < Increase::Internal::Type::BaseModel
@@ -22,9 +22,9 @@ module Increase
 
       attr_accessor oauth_application_id: String
 
-      attr_accessor status: Increase::Models::OAuthConnection::status
+      attr_accessor status: Increase::OAuthConnection::status
 
-      attr_accessor type: Increase::Models::OAuthConnection::type_
+      attr_accessor type: Increase::OAuthConnection::type_
 
       def initialize: (
         id: String,
@@ -32,11 +32,9 @@ module Increase
         deleted_at: Time?,
         group_id: String,
         oauth_application_id: String,
-        status: Increase::Models::OAuthConnection::status,
-        type: Increase::Models::OAuthConnection::type_
+        status: Increase::OAuthConnection::status,
+        type: Increase::OAuthConnection::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::oauth_connection
 
       type status = :active | :inactive
 
@@ -49,7 +47,7 @@ module Increase
         # The OAuth connection is permanently deactivated.
         INACTIVE: :inactive
 
-        def self?.values: -> ::Array[Increase::Models::OAuthConnection::status]
+        def self?.values: -> ::Array[Increase::OAuthConnection::status]
       end
 
       type type_ = :oauth_connection
@@ -59,7 +57,7 @@ module Increase
 
         OAUTH_CONNECTION: :oauth_connection
 
-        def self?.values: -> ::Array[Increase::Models::OAuthConnection::type_]
+        def self?.values: -> ::Array[Increase::OAuthConnection::type_]
       end
     end
   end

@@ -7,16 +7,16 @@ class Increase::Test::Resources::GroupsTest < Increase::Test::ResourceTest
     response = @increase.groups.retrieve
 
     assert_pattern do
-      response => Increase::Models::Group
+      response => Increase::Group
     end
 
     assert_pattern do
       response => {
         id: String,
-        ach_debit_status: Increase::Models::Group::ACHDebitStatus,
-        activation_status: Increase::Models::Group::ActivationStatus,
+        ach_debit_status: Increase::Group::ACHDebitStatus,
+        activation_status: Increase::Group::ActivationStatus,
         created_at: Time,
-        type: Increase::Models::Group::Type
+        type: Increase::Group::Type
       }
     end
   end

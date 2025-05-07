@@ -7,7 +7,7 @@ module Increase
           amount: Integer,
           check_number: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::InboundCheckDeposit
+        ) -> Increase::InboundCheckDeposit
 
         def initialize: (client: Increase::Client) -> void
       end

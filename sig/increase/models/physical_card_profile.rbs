@@ -7,14 +7,14 @@ module Increase
         carrier_image_file_id: String?,
         contact_phone: String?,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::creator,
+        creator: Increase::PhysicalCardProfile::creator,
         description: String,
         front_image_file_id: String?,
         idempotency_key: String?,
         is_default: bool,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::status,
-        type: Increase::Models::PhysicalCardProfile::type_
+        status: Increase::PhysicalCardProfile::status,
+        type: Increase::PhysicalCardProfile::type_
       }
 
     class PhysicalCardProfile < Increase::Internal::Type::BaseModel
@@ -28,7 +28,7 @@ module Increase
 
       attr_accessor created_at: Time
 
-      attr_accessor creator: Increase::Models::PhysicalCardProfile::creator
+      attr_accessor creator: Increase::PhysicalCardProfile::creator
 
       attr_accessor description: String
 
@@ -40,9 +40,9 @@ module Increase
 
       attr_accessor program_id: String
 
-      attr_accessor status: Increase::Models::PhysicalCardProfile::status
+      attr_accessor status: Increase::PhysicalCardProfile::status
 
-      attr_accessor type: Increase::Models::PhysicalCardProfile::type_
+      attr_accessor type: Increase::PhysicalCardProfile::type_
 
       def initialize: (
         id: String,
@@ -50,17 +50,15 @@ module Increase
         carrier_image_file_id: String?,
         contact_phone: String?,
         created_at: Time,
-        creator: Increase::Models::PhysicalCardProfile::creator,
+        creator: Increase::PhysicalCardProfile::creator,
         description: String,
         front_image_file_id: String?,
         idempotency_key: String?,
         is_default: bool,
         program_id: String,
-        status: Increase::Models::PhysicalCardProfile::status,
-        type: Increase::Models::PhysicalCardProfile::type_
+        status: Increase::PhysicalCardProfile::status,
+        type: Increase::PhysicalCardProfile::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::physical_card_profile
 
       type creator = :increase | :user
 
@@ -73,7 +71,7 @@ module Increase
         # This Physical Card Profile was created by you.
         USER: :user
 
-        def self?.values: -> ::Array[Increase::Models::PhysicalCardProfile::creator]
+        def self?.values: -> ::Array[Increase::PhysicalCardProfile::creator]
       end
 
       type status =
@@ -105,7 +103,7 @@ module Increase
         # The Physical Card Profile has been archived.
         ARCHIVED: :archived
 
-        def self?.values: -> ::Array[Increase::Models::PhysicalCardProfile::status]
+        def self?.values: -> ::Array[Increase::PhysicalCardProfile::status]
       end
 
       type type_ = :physical_card_profile
@@ -115,7 +113,7 @@ module Increase
 
         PHYSICAL_CARD_PROFILE: :physical_card_profile
 
-        def self?.values: -> ::Array[Increase::Models::PhysicalCardProfile::type_]
+        def self?.values: -> ::Array[Increase::PhysicalCardProfile::type_]
       end
     end
   end

@@ -3,6 +3,8 @@
 module Increase
   module Models
     class InboundCheckDeposit < Increase::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The deposit's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -23,7 +25,7 @@ module Increase
 
       # If the deposit or the return was adjusted by the sending institution, this will
       # contain details of the adjustments.
-      sig { returns(T::Array[Increase::Models::InboundCheckDeposit::Adjustment]) }
+      sig { returns(T::Array[Increase::InboundCheckDeposit::Adjustment]) }
       attr_accessor :adjustments
 
       # The deposited amount in USD cents.
@@ -55,7 +57,7 @@ module Increase
       attr_accessor :created_at
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
-      sig { returns(Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol) }
+      sig { returns(Increase::InboundCheckDeposit::Currency::TaggedSymbol) }
       attr_accessor :currency
 
       # If the Inbound Check Deposit was declined, the
@@ -71,14 +73,14 @@ module Increase
 
       # If you requested a return of this deposit, this will contain details of the
       # return.
-      sig { returns(T.nilable(Increase::Models::InboundCheckDeposit::DepositReturn)) }
+      sig { returns(T.nilable(Increase::InboundCheckDeposit::DepositReturn)) }
       attr_reader :deposit_return
 
       sig do
         params(
-          deposit_return: T.nilable(T.any(Increase::Models::InboundCheckDeposit::DepositReturn, Increase::Internal::AnyHash))
-        )
-          .void
+          deposit_return:
+            T.nilable(Increase::InboundCheckDeposit::DepositReturn::OrHash)
+        ).void
       end
       attr_writer :deposit_return
 
@@ -88,11 +90,13 @@ module Increase
 
       # Whether the details on the check match the recipient name of the check transfer.
       # This is an optional feature, contact sales to enable.
-      sig { returns(Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol) }
+      sig do
+        returns(Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol)
+      end
       attr_accessor :payee_name_analysis
 
       # The status of the Inbound Check Deposit.
-      sig { returns(Increase::Models::InboundCheckDeposit::Status::TaggedSymbol) }
+      sig { returns(Increase::InboundCheckDeposit::Status::TaggedSymbol) }
       attr_accessor :status
 
       # If the deposit attempt has been accepted, the identifier of the Transaction
@@ -102,7 +106,7 @@ module Increase
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_check_deposit`.
-      sig { returns(Increase::Models::InboundCheckDeposit::Type::TaggedSymbol) }
+      sig { returns(Increase::InboundCheckDeposit::Type::TaggedSymbol) }
       attr_accessor :type
 
       # Inbound Check Deposits are records of third-parties attempting to deposit checks
@@ -113,24 +117,26 @@ module Increase
           accepted_at: T.nilable(Time),
           account_id: String,
           account_number_id: T.nilable(String),
-          adjustments: T::Array[T.any(Increase::Models::InboundCheckDeposit::Adjustment, Increase::Internal::AnyHash)],
+          adjustments:
+            T::Array[Increase::InboundCheckDeposit::Adjustment::OrHash],
           amount: Integer,
           back_image_file_id: T.nilable(String),
           bank_of_first_deposit_routing_number: T.nilable(String),
           check_number: T.nilable(String),
           check_transfer_id: T.nilable(String),
           created_at: Time,
-          currency: Increase::Models::InboundCheckDeposit::Currency::OrSymbol,
+          currency: Increase::InboundCheckDeposit::Currency::OrSymbol,
           declined_at: T.nilable(Time),
           declined_transaction_id: T.nilable(String),
-          deposit_return: T.nilable(T.any(Increase::Models::InboundCheckDeposit::DepositReturn, Increase::Internal::AnyHash)),
+          deposit_return:
+            T.nilable(Increase::InboundCheckDeposit::DepositReturn::OrHash),
           front_image_file_id: T.nilable(String),
-          payee_name_analysis: Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::OrSymbol,
-          status: Increase::Models::InboundCheckDeposit::Status::OrSymbol,
+          payee_name_analysis:
+            Increase::InboundCheckDeposit::PayeeNameAnalysis::OrSymbol,
+          status: Increase::InboundCheckDeposit::Status::OrSymbol,
           transaction_id: T.nilable(String),
-          type: Increase::Models::InboundCheckDeposit::Type::OrSymbol
-        )
-          .returns(T.attached_class)
+          type: Increase::InboundCheckDeposit::Type::OrSymbol
+        ).returns(T.attached_class)
       end
       def self.new(
         # The deposit's identifier.
@@ -187,37 +193,44 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `inbound_check_deposit`.
         type:
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              id: String,
-              accepted_at: T.nilable(Time),
-              account_id: String,
-              account_number_id: T.nilable(String),
-              adjustments: T::Array[Increase::Models::InboundCheckDeposit::Adjustment],
-              amount: Integer,
-              back_image_file_id: T.nilable(String),
-              bank_of_first_deposit_routing_number: T.nilable(String),
-              check_number: T.nilable(String),
-              check_transfer_id: T.nilable(String),
-              created_at: Time,
-              currency: Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol,
-              declined_at: T.nilable(Time),
-              declined_transaction_id: T.nilable(String),
-              deposit_return: T.nilable(Increase::Models::InboundCheckDeposit::DepositReturn),
-              front_image_file_id: T.nilable(String),
-              payee_name_analysis: Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol,
-              status: Increase::Models::InboundCheckDeposit::Status::TaggedSymbol,
-              transaction_id: T.nilable(String),
-              type: Increase::Models::InboundCheckDeposit::Type::TaggedSymbol
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            accepted_at: T.nilable(Time),
+            account_id: String,
+            account_number_id: T.nilable(String),
+            adjustments: T::Array[Increase::InboundCheckDeposit::Adjustment],
+            amount: Integer,
+            back_image_file_id: T.nilable(String),
+            bank_of_first_deposit_routing_number: T.nilable(String),
+            check_number: T.nilable(String),
+            check_transfer_id: T.nilable(String),
+            created_at: Time,
+            currency: Increase::InboundCheckDeposit::Currency::TaggedSymbol,
+            declined_at: T.nilable(Time),
+            declined_transaction_id: T.nilable(String),
+            deposit_return:
+              T.nilable(Increase::InboundCheckDeposit::DepositReturn),
+            front_image_file_id: T.nilable(String),
+            payee_name_analysis:
+              Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol,
+            status: Increase::InboundCheckDeposit::Status::TaggedSymbol,
+            transaction_id: T.nilable(String),
+            type: Increase::InboundCheckDeposit::Type::TaggedSymbol
+          }
+        )
+      end
+      def to_hash
+      end
 
       class Adjustment < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The time at which the return adjustment was received.
         sig { returns(Time) }
         attr_accessor :adjusted_at
@@ -227,7 +240,11 @@ module Increase
         attr_accessor :amount
 
         # The reason for the adjustment.
-        sig { returns(Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol) }
+        sig do
+          returns(
+            Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+          )
+        end
         attr_accessor :reason
 
         # The id of the transaction for the adjustment.
@@ -238,10 +255,9 @@ module Increase
           params(
             adjusted_at: Time,
             amount: Integer,
-            reason: Increase::Models::InboundCheckDeposit::Adjustment::Reason::OrSymbol,
+            reason: Increase::InboundCheckDeposit::Adjustment::Reason::OrSymbol,
             transaction_id: String
-          )
-            .returns(T.attached_class)
+          ).returns(T.attached_class)
         end
         def self.new(
           # The time at which the return adjustment was received.
@@ -252,45 +268,70 @@ module Increase
           reason:,
           # The id of the transaction for the adjustment.
           transaction_id:
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                adjusted_at: Time,
-                amount: Integer,
-                reason: Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol,
-                transaction_id: String
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              adjusted_at: Time,
+              amount: Integer,
+              reason:
+                Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol,
+              transaction_id: String
+            }
+          )
+        end
+        def to_hash
+        end
 
         # The reason for the adjustment.
         module Reason
           extend Increase::Internal::Type::Enum
 
-          TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason) }
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::InboundCheckDeposit::Adjustment::Reason)
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
           LATE_RETURN =
-            T.let(:late_return, Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol)
+            T.let(
+              :late_return,
+              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+            )
 
           # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
           WRONG_PAYEE_CREDIT =
-            T.let(:wrong_payee_credit, Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol)
+            T.let(
+              :wrong_payee_credit,
+              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+            )
 
           # The check was deposited with a different amount than what was written on the check.
           ADJUSTED_AMOUNT =
-            T.let(:adjusted_amount, Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol)
+            T.let(
+              :adjusted_amount,
+              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+            )
 
           # The recipient was not able to process the check. This usually happens for e.g., low quality images.
           NON_CONFORMING_ITEM =
-            T.let(:non_conforming_item, Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol)
+            T.let(
+              :non_conforming_item,
+              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+            )
 
-          sig { override.returns(T::Array[Increase::Models::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol]) }
-          def self.values; end
+          sig do
+            override.returns(
+              T::Array[
+                Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 
@@ -298,34 +339,49 @@ module Increase
       module Currency
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundCheckDeposit::Currency) }
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::InboundCheckDeposit::Currency)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Canadian Dollar (CAD)
-        CAD = T.let(:CAD, Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol)
+        CAD = T.let(:CAD, Increase::InboundCheckDeposit::Currency::TaggedSymbol)
 
         # Swiss Franc (CHF)
-        CHF = T.let(:CHF, Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol)
+        CHF = T.let(:CHF, Increase::InboundCheckDeposit::Currency::TaggedSymbol)
 
         # Euro (EUR)
-        EUR = T.let(:EUR, Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol)
+        EUR = T.let(:EUR, Increase::InboundCheckDeposit::Currency::TaggedSymbol)
 
         # British Pound (GBP)
-        GBP = T.let(:GBP, Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol)
+        GBP = T.let(:GBP, Increase::InboundCheckDeposit::Currency::TaggedSymbol)
 
         # Japanese Yen (JPY)
-        JPY = T.let(:JPY, Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol)
+        JPY = T.let(:JPY, Increase::InboundCheckDeposit::Currency::TaggedSymbol)
 
         # US Dollar (USD)
-        USD = T.let(:USD, Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol)
+        USD = T.let(:USD, Increase::InboundCheckDeposit::Currency::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::InboundCheckDeposit::Currency::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::InboundCheckDeposit::Currency::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class DepositReturn < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The reason the deposit was returned.
-        sig { returns(Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol) }
+        sig do
+          returns(
+            Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+          )
+        end
         attr_accessor :reason
 
         # The time at which the deposit was returned.
@@ -340,11 +396,11 @@ module Increase
         # return.
         sig do
           params(
-            reason: Increase::Models::InboundCheckDeposit::DepositReturn::Reason::OrSymbol,
+            reason:
+              Increase::InboundCheckDeposit::DepositReturn::Reason::OrSymbol,
             returned_at: Time,
             transaction_id: String
-          )
-            .returns(T.attached_class)
+          ).returns(T.attached_class)
         end
         def self.new(
           # The reason the deposit was returned.
@@ -353,49 +409,79 @@ module Increase
           returned_at:,
           # The id of the transaction for the returned deposit.
           transaction_id:
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                reason: Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol,
-                returned_at: Time,
-                transaction_id: String
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              reason:
+                Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol,
+              returned_at: Time,
+              transaction_id: String
+            }
+          )
+        end
+        def to_hash
+        end
 
         # The reason the deposit was returned.
         module Reason
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason) }
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::InboundCheckDeposit::DepositReturn::Reason
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The check was altered or fictitious.
           ALTERED_OR_FICTITIOUS =
-            T.let(:altered_or_fictitious, Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol)
+            T.let(
+              :altered_or_fictitious,
+              Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+            )
 
           # The check was not authorized.
           NOT_AUTHORIZED =
-            T.let(:not_authorized, Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol)
+            T.let(
+              :not_authorized,
+              Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+            )
 
           # The check was a duplicate presentment.
           DUPLICATE_PRESENTMENT =
-            T.let(:duplicate_presentment, Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol)
+            T.let(
+              :duplicate_presentment,
+              Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+            )
 
           # The check was not endorsed.
           ENDORSEMENT_MISSING =
-            T.let(:endorsement_missing, Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol)
+            T.let(
+              :endorsement_missing,
+              Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+            )
 
           # The check was not endorsed by the payee.
           ENDORSEMENT_IRREGULAR =
-            T.let(:endorsement_irregular, Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol)
+            T.let(
+              :endorsement_irregular,
+              Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+            )
 
-          sig { override.returns(T::Array[Increase::Models::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol]) }
-          def self.values; end
+          sig do
+            override.returns(
+              T::Array[
+                Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 
@@ -404,50 +490,82 @@ module Increase
       module PayeeNameAnalysis
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis) }
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::InboundCheckDeposit::PayeeNameAnalysis)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The details on the check match the recipient name of the check transfer.
         NAME_MATCHES =
-          T.let(:name_matches, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol)
+          T.let(
+            :name_matches,
+            Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol
+          )
 
         # The details on the check do not match the recipient name of the check transfer.
         DOES_NOT_MATCH =
-          T.let(:does_not_match, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol)
+          T.let(
+            :does_not_match,
+            Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol
+          )
 
         # The payee name analysis was not evaluated.
         NOT_EVALUATED =
-          T.let(:not_evaluated, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol)
+          T.let(
+            :not_evaluated,
+            Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol
+          )
 
-        sig { override.returns(T::Array[Increase::Models::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[
+              Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
 
       # The status of the Inbound Check Deposit.
       module Status
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundCheckDeposit::Status) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::InboundCheckDeposit::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The Inbound Check Deposit is pending.
-        PENDING = T.let(:pending, Increase::Models::InboundCheckDeposit::Status::TaggedSymbol)
+        PENDING =
+          T.let(:pending, Increase::InboundCheckDeposit::Status::TaggedSymbol)
 
         # The Inbound Check Deposit was accepted.
-        ACCEPTED = T.let(:accepted, Increase::Models::InboundCheckDeposit::Status::TaggedSymbol)
+        ACCEPTED =
+          T.let(:accepted, Increase::InboundCheckDeposit::Status::TaggedSymbol)
 
         # The Inbound Check Deposit was rejected.
-        DECLINED = T.let(:declined, Increase::Models::InboundCheckDeposit::Status::TaggedSymbol)
+        DECLINED =
+          T.let(:declined, Increase::InboundCheckDeposit::Status::TaggedSymbol)
 
         # The Inbound Check Deposit was returned.
-        RETURNED = T.let(:returned, Increase::Models::InboundCheckDeposit::Status::TaggedSymbol)
+        RETURNED =
+          T.let(:returned, Increase::InboundCheckDeposit::Status::TaggedSymbol)
 
         # The Inbound Check Deposit requires attention from an Increase operator.
         REQUIRES_ATTENTION =
-          T.let(:requires_attention, Increase::Models::InboundCheckDeposit::Status::TaggedSymbol)
+          T.let(
+            :requires_attention,
+            Increase::InboundCheckDeposit::Status::TaggedSymbol
+          )
 
-        sig { override.returns(T::Array[Increase::Models::InboundCheckDeposit::Status::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::InboundCheckDeposit::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -455,14 +573,23 @@ module Increase
       module Type
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundCheckDeposit::Type) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::InboundCheckDeposit::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INBOUND_CHECK_DEPOSIT =
-          T.let(:inbound_check_deposit, Increase::Models::InboundCheckDeposit::Type::TaggedSymbol)
+          T.let(
+            :inbound_check_deposit,
+            Increase::InboundCheckDeposit::Type::TaggedSymbol
+          )
 
-        sig { override.returns(T::Array[Increase::Models::InboundCheckDeposit::Type::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::InboundCheckDeposit::Type::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

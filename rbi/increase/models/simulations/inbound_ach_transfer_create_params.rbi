@@ -7,6 +7,9 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The identifier of the Account Number the inbound ACH Transfer is for.
         sig { returns(String) }
         attr_accessor :account_number_id
@@ -77,16 +80,18 @@ module Increase
         # The standard entry class code for the transfer.
         sig do
           returns(
-            T.nilable(Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol)
+            T.nilable(
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol
+            )
           )
         end
         attr_reader :standard_entry_class_code
 
         sig do
           params(
-            standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol
-          )
-            .void
+            standard_entry_class_code:
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol
+          ).void
         end
         attr_writer :standard_entry_class_code
 
@@ -102,10 +107,10 @@ module Increase
             receiver_id_number: String,
             receiver_name: String,
             resolve_at: Time,
-            standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-          )
-            .returns(T.attached_class)
+            standard_entry_class_code:
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(T.attached_class)
         end
         def self.new(
           # The identifier of the Account Number the inbound ACH Transfer is for.
@@ -134,155 +139,165 @@ module Increase
           # The standard entry class code for the transfer.
           standard_entry_class_code: nil,
           request_options: {}
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                account_number_id: String,
-                amount: Integer,
-                company_descriptive_date: String,
-                company_discretionary_data: String,
-                company_entry_description: String,
-                company_id: String,
-                company_name: String,
-                receiver_id_number: String,
-                receiver_name: String,
-                resolve_at: Time,
-                standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-                request_options: Increase::RequestOptions
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              account_number_id: String,
+              amount: Integer,
+              company_descriptive_date: String,
+              company_discretionary_data: String,
+              company_entry_description: String,
+              company_id: String,
+              company_name: String,
+              receiver_id_number: String,
+              receiver_name: String,
+              resolve_at: Time,
+              standard_entry_class_code:
+                Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
+              request_options: Increase::RequestOptions
+            }
+          )
+        end
+        def to_hash
+        end
 
         # The standard entry class code for the transfer.
         module StandardEntryClassCode
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode) }
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # Corporate Credit and Debit (CCD).
           CORPORATE_CREDIT_OR_DEBIT =
             T.let(
               :corporate_credit_or_debit,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Corporate Trade Exchange (CTX).
           CORPORATE_TRADE_EXCHANGE =
             T.let(
               :corporate_trade_exchange,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Prearranged Payments and Deposits (PPD).
           PREARRANGED_PAYMENTS_AND_DEPOSIT =
             T.let(
               :prearranged_payments_and_deposit,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Internet Initiated (WEB).
           INTERNET_INITIATED =
             T.let(
               :internet_initiated,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Point of Sale (POS).
           POINT_OF_SALE =
             T.let(
               :point_of_sale,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Telephone Initiated (TEL).
           TELEPHONE_INITIATED =
             T.let(
               :telephone_initiated,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Customer Initiated (CIE).
           CUSTOMER_INITIATED =
             T.let(
               :customer_initiated,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Accounts Receivable (ARC).
           ACCOUNTS_RECEIVABLE =
             T.let(
               :accounts_receivable,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Machine Transfer (MTE).
           MACHINE_TRANSFER =
             T.let(
               :machine_transfer,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Shared Network Transaction (SHR).
           SHARED_NETWORK_TRANSACTION =
             T.let(
               :shared_network_transaction,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Represented Check (RCK).
           REPRESENTED_CHECK =
             T.let(
               :represented_check,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Back Office Conversion (BOC).
           BACK_OFFICE_CONVERSION =
             T.let(
               :back_office_conversion,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Point of Purchase (POP).
           POINT_OF_PURCHASE =
             T.let(
               :point_of_purchase,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Check Truncation (TRC).
           CHECK_TRUNCATION =
             T.let(
               :check_truncation,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # Destroyed Check (XCK).
           DESTROYED_CHECK =
             T.let(
               :destroyed_check,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           # International ACH Transaction (IAT).
           INTERNATIONAL_ACH_TRANSACTION =
             T.let(
               :international_ach_transaction,
-              Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
             )
 
           sig do
-            override
-              .returns(
-                T::Array[Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol]
-              )
+            override.returns(
+              T::Array[
+                Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
+              ]
+            )
           end
-          def self.values; end
+          def self.values
+          end
         end
       end
     end

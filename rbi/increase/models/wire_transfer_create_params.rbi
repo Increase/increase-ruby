@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The identifier for the account that will send the transfer.
       sig { returns(String) }
       attr_accessor :account_id
@@ -130,9 +132,8 @@ module Increase
           require_approval: T::Boolean,
           routing_number: String,
           source_account_number_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # The identifier for the account that will send the transfer.
@@ -174,32 +175,34 @@ module Increase
         # The ID of an Account Number that will be passed to the wire's recipient
         source_account_number_id: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              account_id: String,
-              amount: Integer,
-              beneficiary_name: String,
-              message_to_recipient: String,
-              account_number: String,
-              beneficiary_address_line1: String,
-              beneficiary_address_line2: String,
-              beneficiary_address_line3: String,
-              external_account_id: String,
-              originator_address_line1: String,
-              originator_address_line2: String,
-              originator_address_line3: String,
-              originator_name: String,
-              require_approval: T::Boolean,
-              routing_number: String,
-              source_account_number_id: String,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            account_id: String,
+            amount: Integer,
+            beneficiary_name: String,
+            message_to_recipient: String,
+            account_number: String,
+            beneficiary_address_line1: String,
+            beneficiary_address_line2: String,
+            beneficiary_address_line3: String,
+            external_account_id: String,
+            originator_address_line1: String,
+            originator_address_line2: String,
+            originator_address_line3: String,
+            originator_name: String,
+            require_approval: T::Boolean,
+            routing_number: String,
+            source_account_number_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
     end
   end
 end

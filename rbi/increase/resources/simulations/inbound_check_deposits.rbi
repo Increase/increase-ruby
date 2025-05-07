@@ -15,9 +15,8 @@ module Increase
             account_number_id: String,
             amount: Integer,
             check_number: String,
-            request_options: Increase::RequestOpts
-          )
-            .returns(Increase::Models::InboundCheckDeposit)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::InboundCheckDeposit)
         end
         def create(
           # The identifier of the Account Number the Inbound Check Deposit will be against.
@@ -27,10 +26,13 @@ module Increase
           # The check number on the check to be deposited.
           check_number:,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

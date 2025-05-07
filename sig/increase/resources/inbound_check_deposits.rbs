@@ -4,27 +4,27 @@ module Increase
       def retrieve: (
         String inbound_check_deposit_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundCheckDeposit
+      ) -> Increase::InboundCheckDeposit
 
       def list: (
         ?account_id: String,
         ?check_transfer_id: String,
-        ?created_at: Increase::Models::InboundCheckDepositListParams::CreatedAt,
+        ?created_at: Increase::InboundCheckDepositListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::InboundCheckDeposit]
+      ) -> Increase::Internal::Page[Increase::InboundCheckDeposit]
 
       def decline: (
         String inbound_check_deposit_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundCheckDeposit
+      ) -> Increase::InboundCheckDeposit
 
       def return_: (
         String inbound_check_deposit_id,
         reason: Increase::Models::InboundCheckDepositReturnParams::reason,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundCheckDeposit
+      ) -> Increase::InboundCheckDeposit
 
       def initialize: (client: Increase::Client) -> void
     end

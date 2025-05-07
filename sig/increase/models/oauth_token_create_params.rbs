@@ -41,8 +41,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::oauth_token_create_params
-
       type grant_type = :authorization_code | :production_token
 
       module GrantType

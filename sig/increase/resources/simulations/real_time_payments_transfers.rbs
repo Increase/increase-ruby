@@ -4,9 +4,9 @@ module Increase
       class RealTimePaymentsTransfers
         def complete: (
           String real_time_payments_transfer_id,
-          ?rejection: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
+          ?rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::RealTimePaymentsTransfer
+        ) -> Increase::RealTimePaymentsTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

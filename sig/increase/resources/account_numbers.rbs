@@ -4,35 +4,35 @@ module Increase
       def create: (
         account_id: String,
         name: String,
-        ?inbound_ach: Increase::Models::AccountNumberCreateParams::InboundACH,
-        ?inbound_checks: Increase::Models::AccountNumberCreateParams::InboundChecks,
+        ?inbound_ach: Increase::AccountNumberCreateParams::InboundACH,
+        ?inbound_checks: Increase::AccountNumberCreateParams::InboundChecks,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountNumber
+      ) -> Increase::AccountNumber
 
       def retrieve: (
         String account_number_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountNumber
+      ) -> Increase::AccountNumber
 
       def update: (
         String account_number_id,
-        ?inbound_ach: Increase::Models::AccountNumberUpdateParams::InboundACH,
-        ?inbound_checks: Increase::Models::AccountNumberUpdateParams::InboundChecks,
+        ?inbound_ach: Increase::AccountNumberUpdateParams::InboundACH,
+        ?inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks,
         ?name: String,
         ?status: Increase::Models::AccountNumberUpdateParams::status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountNumber
+      ) -> Increase::AccountNumber
 
       def list: (
         ?account_id: String,
-        ?ach_debit_status: Increase::Models::AccountNumberListParams::ACHDebitStatus,
-        ?created_at: Increase::Models::AccountNumberListParams::CreatedAt,
+        ?ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus,
+        ?created_at: Increase::AccountNumberListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::AccountNumberListParams::Status,
+        ?status: Increase::AccountNumberListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::AccountNumber]
+      ) -> Increase::Internal::Page[Increase::AccountNumber]
 
       def initialize: (client: Increase::Client) -> void
     end

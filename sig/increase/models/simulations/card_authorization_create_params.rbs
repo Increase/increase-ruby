@@ -16,7 +16,7 @@ module Increase
           merchant_country: String,
           merchant_descriptor: String,
           merchant_state: String,
-          network_details: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails,
+          network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
           network_risk_score: Integer,
           physical_card_id: String,
           terminal_id: String
@@ -81,11 +81,11 @@ module Increase
 
         def merchant_state=: (String) -> String
 
-        attr_reader network_details: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails?
+        attr_reader network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails?
 
         def network_details=: (
-          Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails
-        ) -> Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails
+          Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails
+        ) -> Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails
 
         attr_reader network_risk_score: Integer?
 
@@ -113,14 +113,12 @@ module Increase
           ?merchant_country: String,
           ?merchant_descriptor: String,
           ?merchant_state: String,
-          ?network_details: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails,
+          ?network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
           ?network_risk_score: Integer,
           ?physical_card_id: String,
           ?terminal_id: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::card_authorization_create_params
 
         type decline_reason =
           :account_closed
@@ -218,35 +216,31 @@ module Increase
 
         type network_details =
           {
-            visa: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
+            visa: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
           }
 
         class NetworkDetails < Increase::Internal::Type::BaseModel
-          attr_accessor visa: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
+          attr_accessor visa: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
 
           def initialize: (
-            visa: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
+            visa: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
           ) -> void
-
-          def to_hash: -> Increase::Models::Simulations::CardAuthorizationCreateParams::network_details
 
           type visa =
             {
-              stand_in_processing_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+              stand_in_processing_reason: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
             }
 
           class Visa < Increase::Internal::Type::BaseModel
-            attr_reader stand_in_processing_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason?
+            attr_reader stand_in_processing_reason: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason?
 
             def stand_in_processing_reason=: (
-              Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
-            ) -> Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+              Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+            ) -> Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
 
             def initialize: (
-              ?stand_in_processing_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+              ?stand_in_processing_reason: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason
             ) -> void
-
-            def to_hash: -> Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::visa
 
             type stand_in_processing_reason =
               :issuer_error
@@ -281,7 +275,7 @@ module Increase
               # An unspecific reason for stand-in processing.
               OTHER: :other
 
-              def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason]
+              def self?.values: -> ::Array[Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason]
             end
           end
         end

@@ -8,8 +8,6 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       def initialize: (?request_options: Increase::request_opts) -> void
-
-      def to_hash: -> Increase::Models::account_transfer_approve_params
     end
   end
 end

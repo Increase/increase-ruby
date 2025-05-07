@@ -10,7 +10,7 @@ module Increase
         contact_website: String,
         description: String,
         issuer_name: String,
-        text_color: Increase::Models::DigitalCardProfileCloneParams::TextColor
+        text_color: Increase::DigitalCardProfileCloneParams::TextColor
       }
       & Increase::Internal::Type::request_parameters
 
@@ -50,11 +50,11 @@ module Increase
 
       def issuer_name=: (String) -> String
 
-      attr_reader text_color: Increase::Models::DigitalCardProfileCloneParams::TextColor?
+      attr_reader text_color: Increase::DigitalCardProfileCloneParams::TextColor?
 
       def text_color=: (
-        Increase::Models::DigitalCardProfileCloneParams::TextColor
-      ) -> Increase::Models::DigitalCardProfileCloneParams::TextColor
+        Increase::DigitalCardProfileCloneParams::TextColor
+      ) -> Increase::DigitalCardProfileCloneParams::TextColor
 
       def initialize: (
         ?app_icon_file_id: String,
@@ -65,11 +65,9 @@ module Increase
         ?contact_website: String,
         ?description: String,
         ?issuer_name: String,
-        ?text_color: Increase::Models::DigitalCardProfileCloneParams::TextColor,
+        ?text_color: Increase::DigitalCardProfileCloneParams::TextColor,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::digital_card_profile_clone_params
 
       type text_color = { blue: Integer, green: Integer, red: Integer }
 
@@ -81,8 +79,6 @@ module Increase
         attr_accessor red: Integer
 
         def initialize: (blue: Integer, green: Integer, red: Integer) -> void
-
-        def to_hash: -> Increase::Models::DigitalCardProfileCloneParams::text_color
       end
     end
   end

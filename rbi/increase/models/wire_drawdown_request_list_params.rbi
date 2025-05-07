@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # Return the page of entries after this one.
       sig { returns(T.nilable(String)) }
       attr_reader :cursor
@@ -31,14 +33,15 @@ module Increase
       sig { params(limit: Integer).void }
       attr_writer :limit
 
-      sig { returns(T.nilable(Increase::Models::WireDrawdownRequestListParams::Status)) }
+      sig do
+        returns(T.nilable(Increase::WireDrawdownRequestListParams::Status))
+      end
       attr_reader :status
 
       sig do
         params(
-          status: T.any(Increase::Models::WireDrawdownRequestListParams::Status, Increase::Internal::AnyHash)
-        )
-          .void
+          status: Increase::WireDrawdownRequestListParams::Status::OrHash
+        ).void
       end
       attr_writer :status
 
@@ -47,10 +50,9 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::WireDrawdownRequestListParams::Status, Increase::Internal::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          status: Increase::WireDrawdownRequestListParams::Status::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # Return the page of entries after this one.
@@ -65,67 +67,126 @@ module Increase
         limit: nil,
         status: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              cursor: String,
-              idempotency_key: String,
-              limit: Integer,
-              status: Increase::Models::WireDrawdownRequestListParams::Status,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            cursor: String,
+            idempotency_key: String,
+            limit: Integer,
+            status: Increase::WireDrawdownRequestListParams::Status,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
 
       class Status < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # Filter Wire Drawdown Requests for those with the specified status. For GET
         # requests, this should be encoded as a comma-delimited string, such as
         # `?in=one,two,three`.
-        sig { returns(T.nilable(T::Array[Increase::Models::WireDrawdownRequestListParams::Status::In::OrSymbol])) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::WireDrawdownRequestListParams::Status::In::OrSymbol
+              ]
+            )
+          )
+        end
         attr_reader :in_
 
-        sig { params(in_: T::Array[Increase::Models::WireDrawdownRequestListParams::Status::In::OrSymbol]).void }
+        sig do
+          params(
+            in_:
+              T::Array[
+                Increase::WireDrawdownRequestListParams::Status::In::OrSymbol
+              ]
+          ).void
+        end
         attr_writer :in_
 
         sig do
-          params(in_: T::Array[Increase::Models::WireDrawdownRequestListParams::Status::In::OrSymbol])
-            .returns(T.attached_class)
+          params(
+            in_:
+              T::Array[
+                Increase::WireDrawdownRequestListParams::Status::In::OrSymbol
+              ]
+          ).returns(T.attached_class)
         end
         def self.new(
           # Filter Wire Drawdown Requests for those with the specified status. For GET
           # requests, this should be encoded as a comma-delimited string, such as
           # `?in=one,two,three`.
           in_: nil
-        ); end
-        sig { override.returns({in_: T::Array[Increase::Models::WireDrawdownRequestListParams::Status::In::OrSymbol]}) }
-        def to_hash; end
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              in_:
+                T::Array[
+                  Increase::WireDrawdownRequestListParams::Status::In::OrSymbol
+                ]
+            }
+          )
+        end
+        def to_hash
+        end
 
         module In
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::WireDrawdownRequestListParams::Status::In) }
+            T.type_alias do
+              T.all(Symbol, Increase::WireDrawdownRequestListParams::Status::In)
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The drawdown request is queued to be submitted to Fedwire.
           PENDING_SUBMISSION =
-            T.let(:pending_submission, Increase::Models::WireDrawdownRequestListParams::Status::In::TaggedSymbol)
+            T.let(
+              :pending_submission,
+              Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
+            )
 
           # The drawdown request has been sent and the recipient should respond in some way.
           PENDING_RESPONSE =
-            T.let(:pending_response, Increase::Models::WireDrawdownRequestListParams::Status::In::TaggedSymbol)
+            T.let(
+              :pending_response,
+              Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
+            )
 
           # The drawdown request has been fulfilled by the recipient.
-          FULFILLED = T.let(:fulfilled, Increase::Models::WireDrawdownRequestListParams::Status::In::TaggedSymbol)
+          FULFILLED =
+            T.let(
+              :fulfilled,
+              Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
+            )
 
           # The drawdown request has been refused by the recipient.
-          REFUSED = T.let(:refused, Increase::Models::WireDrawdownRequestListParams::Status::In::TaggedSymbol)
+          REFUSED =
+            T.let(
+              :refused,
+              Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
+            )
 
-          sig { override.returns(T::Array[Increase::Models::WireDrawdownRequestListParams::Status::In::TaggedSymbol]) }
-          def self.values; end
+          sig do
+            override.returns(
+              T::Array[
+                Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

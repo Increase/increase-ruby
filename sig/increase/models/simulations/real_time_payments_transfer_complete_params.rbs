@@ -3,7 +3,7 @@ module Increase
     module Simulations
       type real_time_payments_transfer_complete_params =
         {
-          rejection: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
+          rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
         }
         & Increase::Internal::Type::request_parameters
 
@@ -11,32 +11,28 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        attr_reader rejection: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection?
+        attr_reader rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection?
 
         def rejection=: (
-          Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
-        ) -> Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
+          Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
+        ) -> Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
 
         def initialize: (
-          ?rejection: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
+          ?rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
           ?request_options: Increase::request_opts
         ) -> void
 
-        def to_hash: -> Increase::Models::Simulations::real_time_payments_transfer_complete_params
-
         type rejection =
           {
-            reject_reason_code: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code
+            reject_reason_code: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code
           }
 
         class Rejection < Increase::Internal::Type::BaseModel
-          attr_accessor reject_reason_code: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code
+          attr_accessor reject_reason_code: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code
 
           def initialize: (
-            reject_reason_code: Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code
+            reject_reason_code: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code
           ) -> void
-
-          def to_hash: -> Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::rejection
 
           type reject_reason_code =
             :account_closed
@@ -127,7 +123,7 @@ module Increase
             # Some other error or issue has occurred.
             OTHER: :other
 
-            def self?.values: -> ::Array[Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code]
+            def self?.values: -> ::Array[Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::reject_reason_code]
           end
         end
       end

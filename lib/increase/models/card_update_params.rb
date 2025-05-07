@@ -10,8 +10,8 @@ module Increase
       # @!attribute billing_address
       #   The card's updated billing address.
       #
-      #   @return [Increase::Models::CardUpdateParams::BillingAddress, nil]
-      optional :billing_address, -> { Increase::Models::CardUpdateParams::BillingAddress }
+      #   @return [Increase::CardUpdateParams::BillingAddress, nil]
+      optional :billing_address, -> { Increase::CardUpdateParams::BillingAddress }
 
       # @!attribute description
       #   The description you choose to give the card.
@@ -24,8 +24,8 @@ module Increase
       #   creation. At least one field must be present to complete the digital wallet
       #   steps.
       #
-      #   @return [Increase::Models::CardUpdateParams::DigitalWallet, nil]
-      optional :digital_wallet, -> { Increase::Models::CardUpdateParams::DigitalWallet }
+      #   @return [Increase::CardUpdateParams::DigitalWallet, nil]
+      optional :digital_wallet, -> { Increase::CardUpdateParams::DigitalWallet }
 
       # @!attribute entity_id
       #   The Entity the card belongs to. You only need to supply this in rare situations
@@ -37,24 +37,22 @@ module Increase
       # @!attribute status
       #   The status to update the Card with.
       #
-      #   @return [Symbol, Increase::Models::CardUpdateParams::Status, nil]
-      optional :status, enum: -> { Increase::Models::CardUpdateParams::Status }
+      #   @return [Symbol, Increase::CardUpdateParams::Status, nil]
+      optional :status, enum: -> { Increase::CardUpdateParams::Status }
 
       # @!method initialize(billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardUpdateParams} for more details.
       #
-      #   @param billing_address [Increase::Models::CardUpdateParams::BillingAddress] The card's updated billing address.
+      #   @param billing_address [Increase::CardUpdateParams::BillingAddress] The card's updated billing address.
       #
       #   @param description [String] The description you choose to give the card.
       #
-      #   @param digital_wallet [Increase::Models::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
-      #   ...
+      #   @param digital_wallet [Increase::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       #   @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
-      #   ...
       #
-      #   @param status [Symbol, Increase::Models::CardUpdateParams::Status] The status to update the Card with.
+      #   @param status [Symbol, Increase::CardUpdateParams::Status] The status to update the Card with.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -126,7 +124,7 @@ module Increase
 
         # @!method initialize(digital_card_profile_id: nil, email: nil, phone: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardUpdateParams::DigitalWallet} for more details.
+        #   {Increase::CardUpdateParams::DigitalWallet} for more details.
         #
         #   The contact information used in the two-factor steps for digital wallet card
         #   creation. At least one field must be present to complete the digital wallet
@@ -135,10 +133,8 @@ module Increase
         #   @param digital_card_profile_id [String] The digital card profile assigned to this digital card.
         #
         #   @param email [String] An email address that can be used to verify the cardholder via one-time passcode
-        #   ...
         #
         #   @param phone [String] A phone number that can be used to verify the cardholder via one-time passcode o
-        #   ...
       end
 
       # The status to update the Card with.

@@ -57,7 +57,6 @@ module Increase
       #   @param routing_number [String] The nine digit routing number identifier.
       #
       #   @param type [Symbol, Increase::Models::RoutingNumberListResponse::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
       #
       #   @param wire_transfers [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers] This routing number's support for Wire Transfers.
 

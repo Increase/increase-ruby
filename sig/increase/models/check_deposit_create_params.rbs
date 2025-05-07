@@ -34,8 +34,6 @@ module Increase
         ?description: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::check_deposit_create_params
     end
   end
 end

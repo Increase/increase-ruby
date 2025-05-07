@@ -7,12 +7,11 @@ module Increase
       sig do
         params(
           card_id: String,
-          cardholder: T.any(Increase::Models::PhysicalCardCreateParams::Cardholder, Increase::Internal::AnyHash),
-          shipment: T.any(Increase::Models::PhysicalCardCreateParams::Shipment, Increase::Internal::AnyHash),
+          cardholder: Increase::PhysicalCardCreateParams::Cardholder::OrHash,
+          shipment: Increase::PhysicalCardCreateParams::Shipment::OrHash,
           physical_card_profile_id: String,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::PhysicalCard)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::PhysicalCard)
       end
       def create(
         # The underlying card representing this physical card.
@@ -25,25 +24,30 @@ module Increase
         # physical card profile will be used if not provided.
         physical_card_profile_id: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve a Physical Card
       sig do
-        params(physical_card_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::PhysicalCard)
+        params(
+          physical_card_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::PhysicalCard)
       end
       def retrieve(
         # The identifier of the Physical Card.
         physical_card_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # Update a Physical Card
       sig do
         params(
           physical_card_id: String,
-          status: Increase::Models::PhysicalCardUpdateParams::Status::OrSymbol,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::PhysicalCard)
+          status: Increase::PhysicalCardUpdateParams::Status::OrSymbol,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::PhysicalCard)
       end
       def update(
         # The Physical Card identifier.
@@ -51,18 +55,19 @@ module Increase
         # The status to update the Physical Card to.
         status:,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Physical Cards
       sig do
         params(
           card_id: String,
-          created_at: T.any(Increase::Models::PhysicalCardListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at: Increase::PhysicalCardListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::PhysicalCard])
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::PhysicalCard])
       end
       def list(
         # Filter Physical Cards to ones belonging to the specified Card.
@@ -79,10 +84,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

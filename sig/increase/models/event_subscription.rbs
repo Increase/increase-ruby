@@ -6,9 +6,9 @@ module Increase
         created_at: Time,
         idempotency_key: String?,
         oauth_connection_id: String?,
-        selected_event_category: Increase::Models::EventSubscription::selected_event_category?,
-        status: Increase::Models::EventSubscription::status,
-        type: Increase::Models::EventSubscription::type_,
+        selected_event_category: Increase::EventSubscription::selected_event_category?,
+        status: Increase::EventSubscription::status,
+        type: Increase::EventSubscription::type_,
         url: String
       }
 
@@ -21,11 +21,11 @@ module Increase
 
       attr_accessor oauth_connection_id: String?
 
-      attr_accessor selected_event_category: Increase::Models::EventSubscription::selected_event_category?
+      attr_accessor selected_event_category: Increase::EventSubscription::selected_event_category?
 
-      attr_accessor status: Increase::Models::EventSubscription::status
+      attr_accessor status: Increase::EventSubscription::status
 
-      attr_accessor type: Increase::Models::EventSubscription::type_
+      attr_accessor type: Increase::EventSubscription::type_
 
       attr_accessor url: String
 
@@ -34,13 +34,11 @@ module Increase
         created_at: Time,
         idempotency_key: String?,
         oauth_connection_id: String?,
-        selected_event_category: Increase::Models::EventSubscription::selected_event_category?,
-        status: Increase::Models::EventSubscription::status,
-        type: Increase::Models::EventSubscription::type_,
+        selected_event_category: Increase::EventSubscription::selected_event_category?,
+        status: Increase::EventSubscription::status,
+        type: Increase::EventSubscription::type_,
         url: String
       ) -> void
-
-      def to_hash: -> Increase::Models::event_subscription
 
       type selected_event_category =
         :"account.created"
@@ -391,7 +389,7 @@ module Increase
         # Occurs whenever a Wire Transfer is updated.
         WIRE_TRANSFER_UPDATED: :"wire_transfer.updated"
 
-        def self?.values: -> ::Array[Increase::Models::EventSubscription::selected_event_category]
+        def self?.values: -> ::Array[Increase::EventSubscription::selected_event_category]
       end
 
       type status = :active | :disabled | :deleted | :requires_attention
@@ -411,7 +409,7 @@ module Increase
         # The subscription is temporarily disabled due to delivery errors and Events will not be delivered.
         REQUIRES_ATTENTION: :requires_attention
 
-        def self?.values: -> ::Array[Increase::Models::EventSubscription::status]
+        def self?.values: -> ::Array[Increase::EventSubscription::status]
       end
 
       type type_ = :event_subscription
@@ -421,7 +419,7 @@ module Increase
 
         EVENT_SUBSCRIPTION: :event_subscription
 
-        def self?.values: -> ::Array[Increase::Models::EventSubscription::type_]
+        def self?.values: -> ::Array[Increase::EventSubscription::type_]
       end
     end
   end

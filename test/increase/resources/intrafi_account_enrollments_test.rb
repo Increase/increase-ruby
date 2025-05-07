@@ -11,7 +11,7 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
       )
 
     assert_pattern do
-      response => Increase::Models::IntrafiAccountEnrollment
+      response => Increase::IntrafiAccountEnrollment
     end
 
     assert_pattern do
@@ -21,8 +21,8 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
         created_at: Time,
         idempotency_key: String | nil,
         intrafi_id: String,
-        status: Increase::Models::IntrafiAccountEnrollment::Status,
-        type: Increase::Models::IntrafiAccountEnrollment::Type
+        status: Increase::IntrafiAccountEnrollment::Status,
+        type: Increase::IntrafiAccountEnrollment::Type
       }
     end
   end
@@ -31,7 +31,7 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
     response = @increase.intrafi_account_enrollments.retrieve("intrafi_account_enrollment_id")
 
     assert_pattern do
-      response => Increase::Models::IntrafiAccountEnrollment
+      response => Increase::IntrafiAccountEnrollment
     end
 
     assert_pattern do
@@ -41,8 +41,8 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
         created_at: Time,
         idempotency_key: String | nil,
         intrafi_id: String,
-        status: Increase::Models::IntrafiAccountEnrollment::Status,
-        type: Increase::Models::IntrafiAccountEnrollment::Type
+        status: Increase::IntrafiAccountEnrollment::Status,
+        type: Increase::IntrafiAccountEnrollment::Type
       }
     end
   end
@@ -58,7 +58,7 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::IntrafiAccountEnrollment
+      row => Increase::IntrafiAccountEnrollment
     end
 
     assert_pattern do
@@ -68,8 +68,8 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
         created_at: Time,
         idempotency_key: String | nil,
         intrafi_id: String,
-        status: Increase::Models::IntrafiAccountEnrollment::Status,
-        type: Increase::Models::IntrafiAccountEnrollment::Type
+        status: Increase::IntrafiAccountEnrollment::Status,
+        type: Increase::IntrafiAccountEnrollment::Type
       }
     end
   end
@@ -78,7 +78,7 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
     response = @increase.intrafi_account_enrollments.unenroll("intrafi_account_enrollment_id")
 
     assert_pattern do
-      response => Increase::Models::IntrafiAccountEnrollment
+      response => Increase::IntrafiAccountEnrollment
     end
 
     assert_pattern do
@@ -88,8 +88,8 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
         created_at: Time,
         idempotency_key: String | nil,
         intrafi_id: String,
-        status: Increase::Models::IntrafiAccountEnrollment::Status,
-        type: Increase::Models::IntrafiAccountEnrollment::Type
+        status: Increase::IntrafiAccountEnrollment::Status,
+        type: Increase::IntrafiAccountEnrollment::Type
       }
     end
   end

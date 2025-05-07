@@ -100,8 +100,6 @@ module Increase
         ?source_account_number_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::wire_transfer_create_params
     end
   end
 end

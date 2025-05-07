@@ -19,8 +19,6 @@ module Increase
         ?expires_at: Time,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::file_link_create_params
     end
   end
 end

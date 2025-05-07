@@ -37,8 +37,8 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::Models::IntrafiAccountEnrollmentListParams::Status, nil]
-      optional :status, -> { Increase::Models::IntrafiAccountEnrollmentListParams::Status }
+      #   @return [Increase::IntrafiAccountEnrollmentListParams::Status, nil]
+      optional :status, -> { Increase::IntrafiAccountEnrollmentListParams::Status }
 
       # @!method initialize(account_id: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -49,12 +49,10 @@ module Increase
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      #   ...
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
-      #   @param status [Increase::Models::IntrafiAccountEnrollmentListParams::Status]
+      #   @param status [Increase::IntrafiAccountEnrollmentListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -64,17 +62,18 @@ module Increase
         #   statuses. For GET requests, this should be encoded as a comma-delimited string,
         #   such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::IntrafiAccountEnrollmentListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::IntrafiAccountEnrollmentListParams::Status::In] },
+                 -> {
+                   Increase::Internal::Type::ArrayOf[enum: Increase::IntrafiAccountEnrollmentListParams::Status::In]
+                 },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::IntrafiAccountEnrollmentListParams::Status} for more details.
+        #   {Increase::IntrafiAccountEnrollmentListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In>] Filter IntraFi Account Enrollments for those with the specified status or status
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::IntrafiAccountEnrollmentListParams::Status::In>] Filter IntraFi Account Enrollments for those with the specified status or status
 
         module In
           extend Increase::Internal::Type::Enum

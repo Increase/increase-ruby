@@ -3,7 +3,7 @@ module Increase
     type wire_transfer_list_params =
       {
         account_id: String,
-        created_at: Increase::Models::WireTransferListParams::CreatedAt,
+        created_at: Increase::WireTransferListParams::CreatedAt,
         cursor: String,
         external_account_id: String,
         idempotency_key: String,
@@ -19,11 +19,11 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader created_at: Increase::Models::WireTransferListParams::CreatedAt?
+      attr_reader created_at: Increase::WireTransferListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::WireTransferListParams::CreatedAt
-      ) -> Increase::Models::WireTransferListParams::CreatedAt
+        Increase::WireTransferListParams::CreatedAt
+      ) -> Increase::WireTransferListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -43,15 +43,13 @@ module Increase
 
       def initialize: (
         ?account_id: String,
-        ?created_at: Increase::Models::WireTransferListParams::CreatedAt,
+        ?created_at: Increase::WireTransferListParams::CreatedAt,
         ?cursor: String,
         ?external_account_id: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::wire_transfer_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -79,8 +77,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::WireTransferListParams::created_at
       end
     end
   end

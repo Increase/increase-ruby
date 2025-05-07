@@ -43,8 +43,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::external_account_update_params
-
       type account_holder = :business | :individual
 
       module AccountHolder

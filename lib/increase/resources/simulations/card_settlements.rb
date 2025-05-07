@@ -18,23 +18,21 @@ module Increase
         # @param card_id [String] The identifier of the Card to create a settlement on.
         #
         # @param pending_transaction_id [String] The identifier of the Pending Transaction for the Card Authorization you wish to
-        # ...
         #
         # @param amount [Integer] The amount to be settled. This defaults to the amount of the Pending Transaction
-        # ...
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::Transaction]
+        # @return [Increase::Transaction]
         #
         # @see Increase::Models::Simulations::CardSettlementCreateParams
         def create(params)
-          parsed, options = Increase::Models::Simulations::CardSettlementCreateParams.dump_request(params)
+          parsed, options = Increase::Simulations::CardSettlementCreateParams.dump_request(params)
           @client.request(
             method: :post,
             path: "simulations/card_settlements",
             body: parsed,
-            model: Increase::Models::Transaction,
+            model: Increase::Transaction,
             options: options
           )
         end

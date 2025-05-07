@@ -10,14 +10,14 @@ module Increase
         company_entry_description: String?,
         company_name: String?,
         created_at: Time,
-        credit_debit_indicator: Increase::Models::ACHPrenotification::credit_debit_indicator?,
+        credit_debit_indicator: Increase::ACHPrenotification::credit_debit_indicator?,
         effective_date: Time?,
         idempotency_key: String?,
-        notifications_of_change: ::Array[Increase::Models::ACHPrenotification::NotificationsOfChange],
-        prenotification_return: Increase::Models::ACHPrenotification::PrenotificationReturn?,
+        notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange],
+        prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?,
         routing_number: String,
-        status: Increase::Models::ACHPrenotification::status,
-        type: Increase::Models::ACHPrenotification::type_
+        status: Increase::ACHPrenotification::status,
+        type: Increase::ACHPrenotification::type_
       }
 
     class ACHPrenotification < Increase::Internal::Type::BaseModel
@@ -37,21 +37,21 @@ module Increase
 
       attr_accessor created_at: Time
 
-      attr_accessor credit_debit_indicator: Increase::Models::ACHPrenotification::credit_debit_indicator?
+      attr_accessor credit_debit_indicator: Increase::ACHPrenotification::credit_debit_indicator?
 
       attr_accessor effective_date: Time?
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor notifications_of_change: ::Array[Increase::Models::ACHPrenotification::NotificationsOfChange]
+      attr_accessor notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange]
 
-      attr_accessor prenotification_return: Increase::Models::ACHPrenotification::PrenotificationReturn?
+      attr_accessor prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?
 
       attr_accessor routing_number: String
 
-      attr_accessor status: Increase::Models::ACHPrenotification::status
+      attr_accessor status: Increase::ACHPrenotification::status
 
-      attr_accessor type: Increase::Models::ACHPrenotification::type_
+      attr_accessor type: Increase::ACHPrenotification::type_
 
       def initialize: (
         id: String,
@@ -62,17 +62,15 @@ module Increase
         company_entry_description: String?,
         company_name: String?,
         created_at: Time,
-        credit_debit_indicator: Increase::Models::ACHPrenotification::credit_debit_indicator?,
+        credit_debit_indicator: Increase::ACHPrenotification::credit_debit_indicator?,
         effective_date: Time?,
         idempotency_key: String?,
-        notifications_of_change: ::Array[Increase::Models::ACHPrenotification::NotificationsOfChange],
-        prenotification_return: Increase::Models::ACHPrenotification::PrenotificationReturn?,
+        notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange],
+        prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?,
         routing_number: String,
-        status: Increase::Models::ACHPrenotification::status,
-        type: Increase::Models::ACHPrenotification::type_
+        status: Increase::ACHPrenotification::status,
+        type: Increase::ACHPrenotification::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::ach_prenotification
 
       type credit_debit_indicator = :credit | :debit
 
@@ -85,30 +83,28 @@ module Increase
         # The Prenotification is for an anticipated debit.
         DEBIT: :debit
 
-        def self?.values: -> ::Array[Increase::Models::ACHPrenotification::credit_debit_indicator]
+        def self?.values: -> ::Array[Increase::ACHPrenotification::credit_debit_indicator]
       end
 
       type notifications_of_change =
         {
-          change_code: Increase::Models::ACHPrenotification::NotificationsOfChange::change_code,
+          change_code: Increase::ACHPrenotification::NotificationsOfChange::change_code,
           corrected_data: String,
           created_at: Time
         }
 
       class NotificationsOfChange < Increase::Internal::Type::BaseModel
-        attr_accessor change_code: Increase::Models::ACHPrenotification::NotificationsOfChange::change_code
+        attr_accessor change_code: Increase::ACHPrenotification::NotificationsOfChange::change_code
 
         attr_accessor corrected_data: String
 
         attr_accessor created_at: Time
 
         def initialize: (
-          change_code: Increase::Models::ACHPrenotification::NotificationsOfChange::change_code,
+          change_code: Increase::ACHPrenotification::NotificationsOfChange::change_code,
           corrected_data: String,
           created_at: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::ACHPrenotification::notifications_of_change
 
         type change_code =
           :incorrect_account_number
@@ -191,27 +187,25 @@ module Increase
           # The transaction code was incorrect, initiated by the originating depository financial institution.
           INCORRECT_TRANSACTION_CODE_BY_ORIGINATING_DEPOSITORY_FINANCIAL_INSTITUTION: :incorrect_transaction_code_by_originating_depository_financial_institution
 
-          def self?.values: -> ::Array[Increase::Models::ACHPrenotification::NotificationsOfChange::change_code]
+          def self?.values: -> ::Array[Increase::ACHPrenotification::NotificationsOfChange::change_code]
         end
       end
 
       type prenotification_return =
         {
           created_at: Time,
-          return_reason_code: Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code
+          return_reason_code: Increase::ACHPrenotification::PrenotificationReturn::return_reason_code
         }
 
       class PrenotificationReturn < Increase::Internal::Type::BaseModel
         attr_accessor created_at: Time
 
-        attr_accessor return_reason_code: Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code
+        attr_accessor return_reason_code: Increase::ACHPrenotification::PrenotificationReturn::return_reason_code
 
         def initialize: (
           created_at: Time,
-          return_reason_code: Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code
+          return_reason_code: Increase::ACHPrenotification::PrenotificationReturn::return_reason_code
         ) -> void
-
-        def to_hash: -> Increase::Models::ACHPrenotification::prenotification_return
 
         type return_reason_code =
           :insufficient_fund
@@ -498,7 +492,7 @@ module Increase
           # Code R68. A rare return reason. The return was sent too late.
           UNTIMELY_RETURN: :untimely_return
 
-          def self?.values: -> ::Array[Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code]
+          def self?.values: -> ::Array[Increase::ACHPrenotification::PrenotificationReturn::return_reason_code]
         end
       end
 
@@ -520,7 +514,7 @@ module Increase
         # The Prenotification is complete.
         SUBMITTED: :submitted
 
-        def self?.values: -> ::Array[Increase::Models::ACHPrenotification::status]
+        def self?.values: -> ::Array[Increase::ACHPrenotification::status]
       end
 
       type type_ = :ach_prenotification
@@ -530,7 +524,7 @@ module Increase
 
         ACH_PRENOTIFICATION: :ach_prenotification
 
-        def self?.values: -> ::Array[Increase::Models::ACHPrenotification::type_]
+        def self?.values: -> ::Array[Increase::ACHPrenotification::type_]
       end
     end
   end

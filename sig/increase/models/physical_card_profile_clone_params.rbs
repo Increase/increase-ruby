@@ -6,7 +6,7 @@ module Increase
         contact_phone: String,
         description: String,
         front_image_file_id: String,
-        front_text: Increase::Models::PhysicalCardProfileCloneParams::FrontText
+        front_text: Increase::PhysicalCardProfileCloneParams::FrontText
       }
       & Increase::Internal::Type::request_parameters
 
@@ -30,22 +30,20 @@ module Increase
 
       def front_image_file_id=: (String) -> String
 
-      attr_reader front_text: Increase::Models::PhysicalCardProfileCloneParams::FrontText?
+      attr_reader front_text: Increase::PhysicalCardProfileCloneParams::FrontText?
 
       def front_text=: (
-        Increase::Models::PhysicalCardProfileCloneParams::FrontText
-      ) -> Increase::Models::PhysicalCardProfileCloneParams::FrontText
+        Increase::PhysicalCardProfileCloneParams::FrontText
+      ) -> Increase::PhysicalCardProfileCloneParams::FrontText
 
       def initialize: (
         ?carrier_image_file_id: String,
         ?contact_phone: String,
         ?description: String,
         ?front_image_file_id: String,
-        ?front_text: Increase::Models::PhysicalCardProfileCloneParams::FrontText,
+        ?front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::physical_card_profile_clone_params
 
       type front_text = { :line1 => String, :line2 => String }
 
@@ -57,8 +55,6 @@ module Increase
         def line2=: (String) -> String
 
         def initialize: (line1: String, ?line2: String) -> void
-
-        def to_hash: -> Increase::Models::PhysicalCardProfileCloneParams::front_text
       end
     end
   end

@@ -4,7 +4,7 @@ module Increase
       {
         account_id: String,
         check_transfer_id: String,
-        created_at: Increase::Models::InboundCheckDepositListParams::CreatedAt,
+        created_at: Increase::InboundCheckDepositListParams::CreatedAt,
         cursor: String,
         limit: Integer
       }
@@ -22,11 +22,11 @@ module Increase
 
       def check_transfer_id=: (String) -> String
 
-      attr_reader created_at: Increase::Models::InboundCheckDepositListParams::CreatedAt?
+      attr_reader created_at: Increase::InboundCheckDepositListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::InboundCheckDepositListParams::CreatedAt
-      ) -> Increase::Models::InboundCheckDepositListParams::CreatedAt
+        Increase::InboundCheckDepositListParams::CreatedAt
+      ) -> Increase::InboundCheckDepositListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -39,13 +39,11 @@ module Increase
       def initialize: (
         ?account_id: String,
         ?check_transfer_id: String,
-        ?created_at: Increase::Models::InboundCheckDepositListParams::CreatedAt,
+        ?created_at: Increase::InboundCheckDepositListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::inbound_check_deposit_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -73,8 +71,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::InboundCheckDepositListParams::created_at
       end
     end
   end

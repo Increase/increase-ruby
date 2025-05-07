@@ -13,14 +13,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::IntrafiBalance]
+      # @return [Increase::IntrafiBalance]
       #
       # @see Increase::Models::IntrafiBalanceIntrafiBalanceParams
       def intrafi_balance(account_id, params = {})
         @client.request(
           method: :get,
           path: ["accounts/%1$s/intrafi_balance", account_id],
-          model: Increase::Models::IntrafiBalance,
+          model: Increase::IntrafiBalance,
           options: params[:request_options]
         )
       end

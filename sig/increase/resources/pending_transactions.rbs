@@ -4,18 +4,18 @@ module Increase
       def retrieve: (
         String pending_transaction_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PendingTransaction
+      ) -> Increase::PendingTransaction
 
       def list: (
         ?account_id: String,
-        ?category: Increase::Models::PendingTransactionListParams::Category,
-        ?created_at: Increase::Models::PendingTransactionListParams::CreatedAt,
+        ?category: Increase::PendingTransactionListParams::Category,
+        ?created_at: Increase::PendingTransactionListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?route_id: String,
-        ?status: Increase::Models::PendingTransactionListParams::Status,
+        ?status: Increase::PendingTransactionListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::PendingTransaction]
+      ) -> Increase::Internal::Page[Increase::PendingTransaction]
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -14,14 +14,15 @@ module Increase
           company_discretionary_data: String,
           company_entry_description: String,
           company_name: String,
-          credit_debit_indicator: Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator::OrSymbol,
+          credit_debit_indicator:
+            Increase::ACHPrenotificationCreateParams::CreditDebitIndicator::OrSymbol,
           effective_date: Date,
           individual_id: String,
           individual_name: String,
-          standard_entry_class_code: Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode::OrSymbol,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::ACHPrenotification)
+          standard_entry_class_code:
+            Increase::ACHPrenotificationCreateParams::StandardEntryClassCode::OrSymbol,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::ACHPrenotification)
       end
       def create(
         # The Increase identifier for the account that will send the transfer.
@@ -54,27 +55,32 @@ module Increase
         # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
         standard_entry_class_code: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve an ACH Prenotification
       sig do
-        params(ach_prenotification_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::ACHPrenotification)
+        params(
+          ach_prenotification_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::ACHPrenotification)
       end
       def retrieve(
         # The identifier of the ACH Prenotification to retrieve.
         ach_prenotification_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List ACH Prenotifications
       sig do
         params(
-          created_at: T.any(Increase::Models::ACHPrenotificationListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at: Increase::ACHPrenotificationListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::ACHPrenotification])
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::ACHPrenotification])
       end
       def list(
         created_at: nil,
@@ -89,10 +95,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

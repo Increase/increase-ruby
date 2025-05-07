@@ -22,8 +22,8 @@ module Increase
       # @!attribute fulfillment_method
       #   Whether Increase will print and mail the check or if you will do it yourself.
       #
-      #   @return [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod]
-      required :fulfillment_method, enum: -> { Increase::Models::CheckTransferCreateParams::FulfillmentMethod }
+      #   @return [Symbol, Increase::CheckTransferCreateParams::FulfillmentMethod]
+      required :fulfillment_method, enum: -> { Increase::CheckTransferCreateParams::FulfillmentMethod }
 
       # @!attribute source_account_number_id
       #   The identifier of the Account Number from which to send the transfer and print
@@ -45,8 +45,8 @@ module Increase
       #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
       #   included if any other `fulfillment_method` is provided.
       #
-      #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck, nil]
-      optional :physical_check, -> { Increase::Models::CheckTransferCreateParams::PhysicalCheck }
+      #   @return [Increase::CheckTransferCreateParams::PhysicalCheck, nil]
+      optional :physical_check, -> { Increase::CheckTransferCreateParams::PhysicalCheck }
 
       # @!attribute require_approval
       #   Whether the transfer requires explicit approval via the dashboard or API.
@@ -59,8 +59,8 @@ module Increase
       #   `fulfillment_method` is equal to `third_party`. It must not be included if any
       #   other `fulfillment_method` is provided.
       #
-      #   @return [Increase::Models::CheckTransferCreateParams::ThirdParty, nil]
-      optional :third_party, -> { Increase::Models::CheckTransferCreateParams::ThirdParty }
+      #   @return [Increase::CheckTransferCreateParams::ThirdParty, nil]
+      optional :third_party, -> { Increase::CheckTransferCreateParams::ThirdParty }
 
       # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -70,21 +70,17 @@ module Increase
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
+      #   @param fulfillment_method [Symbol, Increase::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
       #
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
-      #   ...
       #
       #   @param check_number [String] The check number Increase should use for the check. This should not contain lead
-      #   ...
       #
-      #   @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck] Details relating to the physical check that Increase will print and mail. This i
-      #   ...
+      #   @param physical_check [Increase::CheckTransferCreateParams::PhysicalCheck] Details relating to the physical check that Increase will print and mail. This i
       #
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
-      #   @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty] Details relating to the custom fulfillment you will perform. This is required if
-      #   ...
+      #   @param third_party [Increase::CheckTransferCreateParams::ThirdParty] Details relating to the custom fulfillment you will perform. This is required if
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -106,9 +102,8 @@ module Increase
         # @!attribute mailing_address
         #   Details for where Increase will mail the check.
         #
-        #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress]
-        required :mailing_address,
-                 -> { Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress }
+        #   @return [Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress]
+        required :mailing_address, -> { Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress }
 
         # @!attribute memo
         #   The descriptor that will be printed on the memo field on the check.
@@ -141,16 +136,18 @@ module Increase
         #   an Increase-owned address that will mark checks as delivery failed and shred
         #   them.
         #
-        #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress, nil]
-        optional :return_address, -> { Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress }
+        #   @return [Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress, nil]
+        optional :return_address, -> { Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress }
 
         # @!attribute shipping_method
         #   How to ship the check. For details on pricing, timing, and restrictions, see
         #   https://increase.com/documentation/originating-checks#printing-checks .
         #
-        #   @return [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod, nil]
+        #   @return [Symbol, Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod, nil]
         optional :shipping_method,
-                 enum: -> { Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod }
+                 enum: -> {
+                   Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod
+                 }
 
         # @!attribute signature_text
         #   The text that will appear as the signature on the check in cursive font. If not
@@ -161,33 +158,29 @@ module Increase
 
         # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, return_address: nil, shipping_method: nil, signature_text: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
+        #   {Increase::CheckTransferCreateParams::PhysicalCheck} for more details.
         #
         #   Details relating to the physical check that Increase will print and mail. This
         #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
         #   included if any other `fulfillment_method` is provided.
         #
-        #   @param mailing_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress] Details for where Increase will mail the check.
+        #   @param mailing_address [Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress] Details for where Increase will mail the check.
         #
         #   @param memo [String] The descriptor that will be printed on the memo field on the check.
         #
         #   @param recipient_name [String] The name that will be printed on the check in the 'To:' field.
         #
         #   @param attachment_file_id [String] The ID of a File to be attached to the check. This must have `purpose: check_att
-        #   ...
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.
         #
-        #   @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress] The return address to be printed on the check. If omitted this will default to a
-        #   ...
+        #   @param return_address [Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress] The return address to be printed on the check. If omitted this will default to a
         #
-        #   @param shipping_method [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod] How to ship the check. For details on pricing, timing, and restrictions, see htt
-        #   ...
+        #   @param shipping_method [Symbol, Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod] How to ship the check. For details on pricing, timing, and restrictions, see htt
         #
         #   @param signature_text [String] The text that will appear as the signature on the check in cursive font. If not
-        #   ...
 
-        # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#mailing_address
+        # @see Increase::CheckTransferCreateParams::PhysicalCheck#mailing_address
         class MailingAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city component of the check's destination address.
@@ -233,7 +226,7 @@ module Increase
           #   @param line2 [String] The second line of the address component of the check's destination address.
         end
 
-        # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#return_address
+        # @see Increase::CheckTransferCreateParams::PhysicalCheck#return_address
         class ReturnAddress < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the return address.
@@ -292,7 +285,7 @@ module Increase
         # How to ship the check. For details on pricing, timing, and restrictions, see
         # https://increase.com/documentation/originating-checks#printing-checks .
         #
-        # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#shipping_method
+        # @see Increase::CheckTransferCreateParams::PhysicalCheck#shipping_method
         module ShippingMethod
           extend Increase::Internal::Type::Enum
 
@@ -318,14 +311,13 @@ module Increase
 
         # @!method initialize(recipient_name: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransferCreateParams::ThirdParty} for more details.
+        #   {Increase::CheckTransferCreateParams::ThirdParty} for more details.
         #
         #   Details relating to the custom fulfillment you will perform. This is required if
         #   `fulfillment_method` is equal to `third_party`. It must not be included if any
         #   other `fulfillment_method` is provided.
         #
         #   @param recipient_name [String] The pay-to name you will print on the check. If provided, this is used for [Posi
-        #   ...
       end
     end
   end

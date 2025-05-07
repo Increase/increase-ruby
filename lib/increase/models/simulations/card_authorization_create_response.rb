@@ -10,16 +10,16 @@ module Increase
         #   [Declined Transaction](#declined-transactions) object. The Declined
         #   Transaction's `source` will be of `category: card_decline`.
         #
-        #   @return [Increase::Models::DeclinedTransaction, nil]
-        required :declined_transaction, -> { Increase::Models::DeclinedTransaction }, nil?: true
+        #   @return [Increase::DeclinedTransaction, nil]
+        required :declined_transaction, -> { Increase::DeclinedTransaction }, nil?: true
 
         # @!attribute pending_transaction
         #   If the authorization attempt succeeds, this will contain the resulting Pending
         #   Transaction object. The Pending Transaction's `source` will be of
         #   `category: card_authorization`.
         #
-        #   @return [Increase::Models::PendingTransaction, nil]
-        required :pending_transaction, -> { Increase::Models::PendingTransaction }, nil?: true
+        #   @return [Increase::PendingTransaction, nil]
+        required :pending_transaction, -> { Increase::PendingTransaction }, nil?: true
 
         # @!attribute type
         #   A constant representing the object's type. For this resource it will always be
@@ -35,14 +35,11 @@ module Increase
         #
         #   The results of a Card Authorization simulation.
         #
-        #   @param declined_transaction [Increase::Models::DeclinedTransaction, nil] If the authorization attempt fails, this will contain the resulting [Declined Tr
-        #   ...
+        #   @param declined_transaction [Increase::DeclinedTransaction, nil] If the authorization attempt fails, this will contain the resulting [Declined Tr
         #
-        #   @param pending_transaction [Increase::Models::PendingTransaction, nil] If the authorization attempt succeeds, this will contain the resulting Pending T
-        #   ...
+        #   @param pending_transaction [Increase::PendingTransaction, nil] If the authorization attempt succeeds, this will contain the resulting Pending T
         #
         #   @param type [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type] A constant representing the object's type. For this resource it will always be `
-        #   ...
 
         # A constant representing the object's type. For this resource it will always be
         # `inbound_card_authorization_simulation_result`.

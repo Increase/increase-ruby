@@ -3,11 +3,11 @@ module Increase
     type check_transfer_list_params =
       {
         account_id: String,
-        created_at: Increase::Models::CheckTransferListParams::CreatedAt,
+        created_at: Increase::CheckTransferListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        status: Increase::Models::CheckTransferListParams::Status
+        status: Increase::CheckTransferListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -19,11 +19,11 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader created_at: Increase::Models::CheckTransferListParams::CreatedAt?
+      attr_reader created_at: Increase::CheckTransferListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::CheckTransferListParams::CreatedAt
-      ) -> Increase::Models::CheckTransferListParams::CreatedAt
+        Increase::CheckTransferListParams::CreatedAt
+      ) -> Increase::CheckTransferListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -37,23 +37,21 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Increase::Models::CheckTransferListParams::Status?
+      attr_reader status: Increase::CheckTransferListParams::Status?
 
       def status=: (
-        Increase::Models::CheckTransferListParams::Status
-      ) -> Increase::Models::CheckTransferListParams::Status
+        Increase::CheckTransferListParams::Status
+      ) -> Increase::CheckTransferListParams::Status
 
       def initialize: (
         ?account_id: String,
-        ?created_at: Increase::Models::CheckTransferListParams::CreatedAt,
+        ?created_at: Increase::CheckTransferListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::CheckTransferListParams::Status,
+        ?status: Increase::CheckTransferListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::check_transfer_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -81,25 +79,21 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckTransferListParams::created_at
       end
 
       type status =
-        { in_: ::Array[Increase::Models::CheckTransferListParams::Status::in_] }
+        { in_: ::Array[Increase::CheckTransferListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::CheckTransferListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::CheckTransferListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::CheckTransferListParams::Status::in_]
-        ) -> ::Array[Increase::Models::CheckTransferListParams::Status::in_]
+          ::Array[Increase::CheckTransferListParams::Status::in_]
+        ) -> ::Array[Increase::CheckTransferListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::CheckTransferListParams::Status::in_]
+          ?in_: ::Array[Increase::CheckTransferListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckTransferListParams::status
 
         type in_ =
           :pending_approval
@@ -146,7 +140,7 @@ module Increase
           # The transfer has been returned.
           RETURNED: :returned
 
-          def self?.values: -> ::Array[Increase::Models::CheckTransferListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::CheckTransferListParams::Status::in_]
         end
       end
     end

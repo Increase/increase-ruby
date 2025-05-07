@@ -4,15 +4,15 @@ module Increase
       def retrieve: (
         String card_purchase_supplement_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CardPurchaseSupplement
+      ) -> Increase::CardPurchaseSupplement
 
       def list: (
         ?card_payment_id: String,
-        ?created_at: Increase::Models::CardPurchaseSupplementListParams::CreatedAt,
+        ?created_at: Increase::CardPurchaseSupplementListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::CardPurchaseSupplement]
+      ) -> Increase::Internal::Page[Increase::CardPurchaseSupplement]
 
       def initialize: (client: Increase::Client) -> void
     end

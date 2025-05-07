@@ -9,13 +9,13 @@ module Increase
 
       # @!attribute category
       #
-      #   @return [Increase::Models::DocumentListParams::Category, nil]
-      optional :category, -> { Increase::Models::DocumentListParams::Category }
+      #   @return [Increase::DocumentListParams::Category, nil]
+      optional :category, -> { Increase::DocumentListParams::Category }
 
       # @!attribute created_at
       #
-      #   @return [Increase::Models::DocumentListParams::CreatedAt, nil]
-      optional :created_at, -> { Increase::Models::DocumentListParams::CreatedAt }
+      #   @return [Increase::DocumentListParams::CreatedAt, nil]
+      optional :created_at, -> { Increase::DocumentListParams::CreatedAt }
 
       # @!attribute cursor
       #   Return the page of entries after this one.
@@ -40,16 +40,15 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::DocumentListParams} for more details.
       #
-      #   @param category [Increase::Models::DocumentListParams::Category]
+      #   @param category [Increase::DocumentListParams::Category]
       #
-      #   @param created_at [Increase::Models::DocumentListParams::CreatedAt]
+      #   @param created_at [Increase::DocumentListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param entity_id [String] Filter Documents to ones belonging to the specified Entity.
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -59,17 +58,16 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::DocumentListParams::Category::In>, nil]
+        #   @return [Array<Symbol, Increase::DocumentListParams::Category::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::DocumentListParams::Category::In] },
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::DocumentListParams::Category::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::DocumentListParams::Category} for more details.
+        #   {Increase::DocumentListParams::Category} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::DocumentListParams::Category::In>] Filter Documents for those with the specified category or categories. For GET re
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::DocumentListParams::Category::In>] Filter Documents for those with the specified category or categories. For GET re
 
         module In
           extend Increase::Internal::Type::Enum
@@ -122,19 +120,15 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::DocumentListParams::CreatedAt} for more details.
+        #   {Increase::DocumentListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
-        #   ...
         #
         #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
-        #   ...
         #
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #   ...
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
-        #   ...
       end
     end
   end

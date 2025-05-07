@@ -9,9 +9,9 @@ module Increase
         excluded_at: Time?,
         fdic_certificate_number: String?,
         idempotency_key: String?,
-        status: Increase::Models::IntrafiExclusion::status,
+        status: Increase::IntrafiExclusion::status,
         submitted_at: Time?,
-        type: Increase::Models::IntrafiExclusion::type_
+        type: Increase::IntrafiExclusion::type_
       }
 
     class IntrafiExclusion < Increase::Internal::Type::BaseModel
@@ -29,11 +29,11 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor status: Increase::Models::IntrafiExclusion::status
+      attr_accessor status: Increase::IntrafiExclusion::status
 
       attr_accessor submitted_at: Time?
 
-      attr_accessor type: Increase::Models::IntrafiExclusion::type_
+      attr_accessor type: Increase::IntrafiExclusion::type_
 
       def initialize: (
         id: String,
@@ -43,12 +43,10 @@ module Increase
         excluded_at: Time?,
         fdic_certificate_number: String?,
         idempotency_key: String?,
-        status: Increase::Models::IntrafiExclusion::status,
+        status: Increase::IntrafiExclusion::status,
         submitted_at: Time?,
-        type: Increase::Models::IntrafiExclusion::type_
+        type: Increase::IntrafiExclusion::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::intrafi_exclusion
 
       type status = :pending | :completed | :archived
 
@@ -64,7 +62,7 @@ module Increase
         # The exclusion has been removed from the IntraFi network.
         ARCHIVED: :archived
 
-        def self?.values: -> ::Array[Increase::Models::IntrafiExclusion::status]
+        def self?.values: -> ::Array[Increase::IntrafiExclusion::status]
       end
 
       type type_ = :intrafi_exclusion
@@ -74,7 +72,7 @@ module Increase
 
         INTRAFI_EXCLUSION: :intrafi_exclusion
 
-        def self?.values: -> ::Array[Increase::Models::IntrafiExclusion::type_]
+        def self?.values: -> ::Array[Increase::IntrafiExclusion::type_]
       end
     end
   end

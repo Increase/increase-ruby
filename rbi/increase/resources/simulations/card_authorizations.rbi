@@ -16,9 +16,11 @@ module Increase
             amount: Integer,
             authenticated_card_payment_id: String,
             card_id: String,
-            decline_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::DeclineReason::OrSymbol,
+            decline_reason:
+              Increase::Simulations::CardAuthorizationCreateParams::DeclineReason::OrSymbol,
             digital_wallet_token_id: String,
-            direction: Increase::Models::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol,
+            direction:
+              Increase::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol,
             event_subscription_id: String,
             merchant_acceptor_id: String,
             merchant_category_code: String,
@@ -26,16 +28,15 @@ module Increase
             merchant_country: String,
             merchant_descriptor: String,
             merchant_state: String,
-            network_details: T.any(
-              Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails,
-              Increase::Internal::AnyHash
-            ),
+            network_details:
+              Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::OrHash,
             network_risk_score: Integer,
             physical_card_id: String,
             terminal_id: String,
-            request_options: Increase::RequestOpts
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(
+            Increase::Models::Simulations::CardAuthorizationCreateResponse
           )
-            .returns(Increase::Models::Simulations::CardAuthorizationCreateResponse)
         end
         def create(
           # The authorization amount in cents.
@@ -83,10 +84,13 @@ module Increase
           # is transacting with.
           terminal_id: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

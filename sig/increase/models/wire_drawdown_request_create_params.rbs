@@ -78,8 +78,6 @@ module Increase
         ?recipient_address_line3: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::wire_drawdown_request_create_params
     end
   end
 end

@@ -3,6 +3,8 @@
 module Increase
   module Models
     class InboundWireDrawdownRequest < Increase::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The Wire drawdown request identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -100,7 +102,7 @@ module Increase
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_wire_drawdown_request`.
-      sig { returns(Increase::Models::InboundWireDrawdownRequest::Type::TaggedSymbol) }
+      sig { returns(Increase::InboundWireDrawdownRequest::Type::TaggedSymbol) }
       attr_accessor :type
 
       # Inbound wire drawdown requests are requests from someone else to send them a
@@ -130,9 +132,8 @@ module Increase
           originator_to_beneficiary_information_line3: T.nilable(String),
           originator_to_beneficiary_information_line4: T.nilable(String),
           recipient_account_number_id: String,
-          type: Increase::Models::InboundWireDrawdownRequest::Type::OrSymbol
-        )
-          .returns(T.attached_class)
+          type: Increase::InboundWireDrawdownRequest::Type::OrSymbol
+        ).returns(T.attached_class)
       end
       def self.new(
         # The Wire drawdown request identifier.
@@ -189,52 +190,65 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `inbound_wire_drawdown_request`.
         type:
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              id: String,
-              amount: Integer,
-              beneficiary_account_number: String,
-              beneficiary_address_line1: T.nilable(String),
-              beneficiary_address_line2: T.nilable(String),
-              beneficiary_address_line3: T.nilable(String),
-              beneficiary_name: T.nilable(String),
-              beneficiary_routing_number: String,
-              created_at: Time,
-              currency: String,
-              message_to_recipient: T.nilable(String),
-              originator_account_number: T.nilable(String),
-              originator_address_line1: T.nilable(String),
-              originator_address_line2: T.nilable(String),
-              originator_address_line3: T.nilable(String),
-              originator_name: T.nilable(String),
-              originator_routing_number: String,
-              originator_to_beneficiary_information_line1: T.nilable(String),
-              originator_to_beneficiary_information_line2: T.nilable(String),
-              originator_to_beneficiary_information_line3: T.nilable(String),
-              originator_to_beneficiary_information_line4: T.nilable(String),
-              recipient_account_number_id: String,
-              type: Increase::Models::InboundWireDrawdownRequest::Type::TaggedSymbol
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            amount: Integer,
+            beneficiary_account_number: String,
+            beneficiary_address_line1: T.nilable(String),
+            beneficiary_address_line2: T.nilable(String),
+            beneficiary_address_line3: T.nilable(String),
+            beneficiary_name: T.nilable(String),
+            beneficiary_routing_number: String,
+            created_at: Time,
+            currency: String,
+            message_to_recipient: T.nilable(String),
+            originator_account_number: T.nilable(String),
+            originator_address_line1: T.nilable(String),
+            originator_address_line2: T.nilable(String),
+            originator_address_line3: T.nilable(String),
+            originator_name: T.nilable(String),
+            originator_routing_number: String,
+            originator_to_beneficiary_information_line1: T.nilable(String),
+            originator_to_beneficiary_information_line2: T.nilable(String),
+            originator_to_beneficiary_information_line3: T.nilable(String),
+            originator_to_beneficiary_information_line4: T.nilable(String),
+            recipient_account_number_id: String,
+            type: Increase::InboundWireDrawdownRequest::Type::TaggedSymbol
+          }
+        )
+      end
+      def to_hash
+      end
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_wire_drawdown_request`.
       module Type
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireDrawdownRequest::Type) }
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::InboundWireDrawdownRequest::Type)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INBOUND_WIRE_DRAWDOWN_REQUEST =
-          T.let(:inbound_wire_drawdown_request, Increase::Models::InboundWireDrawdownRequest::Type::TaggedSymbol)
+          T.let(
+            :inbound_wire_drawdown_request,
+            Increase::InboundWireDrawdownRequest::Type::TaggedSymbol
+          )
 
-        sig { override.returns(T::Array[Increase::Models::InboundWireDrawdownRequest::Type::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::InboundWireDrawdownRequest::Type::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

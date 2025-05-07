@@ -2,11 +2,11 @@ module Increase
   module Models
     type entity_list_params =
       {
-        created_at: Increase::Models::EntityListParams::CreatedAt,
+        created_at: Increase::EntityListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        status: Increase::Models::EntityListParams::Status
+        status: Increase::EntityListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -14,11 +14,11 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader created_at: Increase::Models::EntityListParams::CreatedAt?
+      attr_reader created_at: Increase::EntityListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::EntityListParams::CreatedAt
-      ) -> Increase::Models::EntityListParams::CreatedAt
+        Increase::EntityListParams::CreatedAt
+      ) -> Increase::EntityListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -32,22 +32,20 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Increase::Models::EntityListParams::Status?
+      attr_reader status: Increase::EntityListParams::Status?
 
       def status=: (
-        Increase::Models::EntityListParams::Status
-      ) -> Increase::Models::EntityListParams::Status
+        Increase::EntityListParams::Status
+      ) -> Increase::EntityListParams::Status
 
       def initialize: (
-        ?created_at: Increase::Models::EntityListParams::CreatedAt,
+        ?created_at: Increase::EntityListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::EntityListParams::Status,
+        ?status: Increase::EntityListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -75,25 +73,20 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityListParams::created_at
       end
 
-      type status =
-        { in_: ::Array[Increase::Models::EntityListParams::Status::in_] }
+      type status = { in_: ::Array[Increase::EntityListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::EntityListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::EntityListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::EntityListParams::Status::in_]
-        ) -> ::Array[Increase::Models::EntityListParams::Status::in_]
+          ::Array[Increase::EntityListParams::Status::in_]
+        ) -> ::Array[Increase::EntityListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::EntityListParams::Status::in_]
+          ?in_: ::Array[Increase::EntityListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::EntityListParams::status
 
         type in_ = :active | :archived | :disabled
 
@@ -109,7 +102,7 @@ module Increase
           # The entity is temporarily disabled and cannot be used for financial activity.
           DISABLED: :disabled
 
-          def self?.values: -> ::Array[Increase::Models::EntityListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::EntityListParams::Status::in_]
         end
       end
     end

@@ -2,7 +2,7 @@ module Increase
   module Models
     type bookkeeping_entry_set_create_params =
       {
-        entries: ::Array[Increase::Models::BookkeepingEntrySetCreateParams::Entry],
+        entries: ::Array[Increase::BookkeepingEntrySetCreateParams::Entry],
         date: Time,
         transaction_id: String
       }
@@ -12,7 +12,7 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_accessor entries: ::Array[Increase::Models::BookkeepingEntrySetCreateParams::Entry]
+      attr_accessor entries: ::Array[Increase::BookkeepingEntrySetCreateParams::Entry]
 
       attr_reader date: Time?
 
@@ -23,13 +23,11 @@ module Increase
       def transaction_id=: (String) -> String
 
       def initialize: (
-        entries: ::Array[Increase::Models::BookkeepingEntrySetCreateParams::Entry],
+        entries: ::Array[Increase::BookkeepingEntrySetCreateParams::Entry],
         ?date: Time,
         ?transaction_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::bookkeeping_entry_set_create_params
 
       type entry = { account_id: String, amount: Integer }
 
@@ -39,8 +37,6 @@ module Increase
         attr_accessor amount: Integer
 
         def initialize: (account_id: String, amount: Integer) -> void
-
-        def to_hash: -> Increase::Models::BookkeepingEntrySetCreateParams::entry
       end
     end
   end

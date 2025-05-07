@@ -4,13 +4,13 @@ module Increase
       {
         id: String,
         card_id: String,
-        cardholder: Increase::Models::DigitalWalletToken::Cardholder,
+        cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
-        device: Increase::Models::DigitalWalletToken::Device,
-        status: Increase::Models::DigitalWalletToken::status,
-        token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
-        type: Increase::Models::DigitalWalletToken::type_,
-        updates: ::Array[Increase::Models::DigitalWalletToken::Update]
+        device: Increase::DigitalWalletToken::Device,
+        status: Increase::DigitalWalletToken::status,
+        token_requestor: Increase::DigitalWalletToken::token_requestor,
+        type: Increase::DigitalWalletToken::type_,
+        updates: ::Array[Increase::DigitalWalletToken::Update]
       }
 
     class DigitalWalletToken < Increase::Internal::Type::BaseModel
@@ -18,33 +18,31 @@ module Increase
 
       attr_accessor card_id: String
 
-      attr_accessor cardholder: Increase::Models::DigitalWalletToken::Cardholder
+      attr_accessor cardholder: Increase::DigitalWalletToken::Cardholder
 
       attr_accessor created_at: Time
 
-      attr_accessor device: Increase::Models::DigitalWalletToken::Device
+      attr_accessor device: Increase::DigitalWalletToken::Device
 
-      attr_accessor status: Increase::Models::DigitalWalletToken::status
+      attr_accessor status: Increase::DigitalWalletToken::status
 
-      attr_accessor token_requestor: Increase::Models::DigitalWalletToken::token_requestor
+      attr_accessor token_requestor: Increase::DigitalWalletToken::token_requestor
 
-      attr_accessor type: Increase::Models::DigitalWalletToken::type_
+      attr_accessor type: Increase::DigitalWalletToken::type_
 
-      attr_accessor updates: ::Array[Increase::Models::DigitalWalletToken::Update]
+      attr_accessor updates: ::Array[Increase::DigitalWalletToken::Update]
 
       def initialize: (
         id: String,
         card_id: String,
-        cardholder: Increase::Models::DigitalWalletToken::Cardholder,
+        cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
-        device: Increase::Models::DigitalWalletToken::Device,
-        status: Increase::Models::DigitalWalletToken::status,
-        token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
-        type: Increase::Models::DigitalWalletToken::type_,
-        updates: ::Array[Increase::Models::DigitalWalletToken::Update]
+        device: Increase::DigitalWalletToken::Device,
+        status: Increase::DigitalWalletToken::status,
+        token_requestor: Increase::DigitalWalletToken::token_requestor,
+        type: Increase::DigitalWalletToken::type_,
+        updates: ::Array[Increase::DigitalWalletToken::Update]
       ) -> void
-
-      def to_hash: -> Increase::Models::digital_wallet_token
 
       type cardholder = { name: String? }
 
@@ -52,20 +50,18 @@ module Increase
         attr_accessor name: String?
 
         def initialize: (name: String?) -> void
-
-        def to_hash: -> Increase::Models::DigitalWalletToken::cardholder
       end
 
       type device =
         {
-          device_type: Increase::Models::DigitalWalletToken::Device::device_type?,
+          device_type: Increase::DigitalWalletToken::Device::device_type?,
           identifier: String?,
           ip_address: String?,
           name: String?
         }
 
       class Device < Increase::Internal::Type::BaseModel
-        attr_accessor device_type: Increase::Models::DigitalWalletToken::Device::device_type?
+        attr_accessor device_type: Increase::DigitalWalletToken::Device::device_type?
 
         attr_accessor identifier: String?
 
@@ -74,13 +70,11 @@ module Increase
         attr_accessor name: String?
 
         def initialize: (
-          device_type: Increase::Models::DigitalWalletToken::Device::device_type?,
+          device_type: Increase::DigitalWalletToken::Device::device_type?,
           identifier: String?,
           ip_address: String?,
           name: String?
         ) -> void
-
-        def to_hash: -> Increase::Models::DigitalWalletToken::device
 
         type device_type =
           :unknown
@@ -123,7 +117,7 @@ module Increase
           # Automobile Device
           AUTOMOBILE_DEVICE: :automobile_device
 
-          def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Device::device_type]
+          def self?.values: -> ::Array[Increase::DigitalWalletToken::Device::device_type]
         end
       end
 
@@ -144,7 +138,7 @@ module Increase
         # The digital wallet token has been permanently canceled.
         DEACTIVATED: :deactivated
 
-        def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::status]
+        def self?.values: -> ::Array[Increase::DigitalWalletToken::status]
       end
 
       type token_requestor = :apple_pay | :google_pay | :samsung_pay | :unknown
@@ -164,7 +158,7 @@ module Increase
         # Unknown
         UNKNOWN: :unknown
 
-        def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::token_requestor]
+        def self?.values: -> ::Array[Increase::DigitalWalletToken::token_requestor]
       end
 
       type type_ = :digital_wallet_token
@@ -174,26 +168,24 @@ module Increase
 
         DIGITAL_WALLET_TOKEN: :digital_wallet_token
 
-        def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::type_]
+        def self?.values: -> ::Array[Increase::DigitalWalletToken::type_]
       end
 
       type update =
         {
-          status: Increase::Models::DigitalWalletToken::Update::status,
+          status: Increase::DigitalWalletToken::Update::status,
           timestamp: Time
         }
 
       class Update < Increase::Internal::Type::BaseModel
-        attr_accessor status: Increase::Models::DigitalWalletToken::Update::status
+        attr_accessor status: Increase::DigitalWalletToken::Update::status
 
         attr_accessor timestamp: Time
 
         def initialize: (
-          status: Increase::Models::DigitalWalletToken::Update::status,
+          status: Increase::DigitalWalletToken::Update::status,
           timestamp: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::DigitalWalletToken::update
 
         type status = :active | :inactive | :suspended | :deactivated
 
@@ -212,7 +204,7 @@ module Increase
           # The digital wallet token has been permanently canceled.
           DEACTIVATED: :deactivated
 
-          def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Update::status]
+          def self?.values: -> ::Array[Increase::DigitalWalletToken::Update::status]
         end
       end
     end

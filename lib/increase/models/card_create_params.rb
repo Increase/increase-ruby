@@ -16,8 +16,8 @@ module Increase
       # @!attribute billing_address
       #   The card's billing address.
       #
-      #   @return [Increase::Models::CardCreateParams::BillingAddress, nil]
-      optional :billing_address, -> { Increase::Models::CardCreateParams::BillingAddress }
+      #   @return [Increase::CardCreateParams::BillingAddress, nil]
+      optional :billing_address, -> { Increase::CardCreateParams::BillingAddress }
 
       # @!attribute description
       #   The description you choose to give the card.
@@ -32,8 +32,8 @@ module Increase
       #   Decision with the category `digital_wallet_token_requested` or
       #   `digital_wallet_authentication_requested`.
       #
-      #   @return [Increase::Models::CardCreateParams::DigitalWallet, nil]
-      optional :digital_wallet, -> { Increase::Models::CardCreateParams::DigitalWallet }
+      #   @return [Increase::CardCreateParams::DigitalWallet, nil]
+      optional :digital_wallet, -> { Increase::CardCreateParams::DigitalWallet }
 
       # @!attribute entity_id
       #   The Entity the card belongs to. You only need to supply this in rare situations
@@ -48,15 +48,13 @@ module Increase
       #
       #   @param account_id [String] The Account the card should belong to.
       #
-      #   @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
+      #   @param billing_address [Increase::CardCreateParams::BillingAddress] The card's billing address.
       #
       #   @param description [String] The description you choose to give the card.
       #
-      #   @param digital_wallet [Increase::Models::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
-      #   ...
+      #   @param digital_wallet [Increase::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       #   @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -128,7 +126,7 @@ module Increase
 
         # @!method initialize(digital_card_profile_id: nil, email: nil, phone: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardCreateParams::DigitalWallet} for more details.
+        #   {Increase::CardCreateParams::DigitalWallet} for more details.
         #
         #   The contact information used in the two-factor steps for digital wallet card
         #   creation. To add the card to a digital wallet, you may supply an email or phone
@@ -139,10 +137,8 @@ module Increase
         #   @param digital_card_profile_id [String] The digital card profile assigned to this digital card.
         #
         #   @param email [String] An email address that can be used to contact and verify the cardholder via one-t
-        #   ...
         #
         #   @param phone [String] A phone number that can be used to contact and verify the cardholder via one-tim
-        #   ...
       end
     end
   end

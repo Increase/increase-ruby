@@ -7,7 +7,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
     response = @increase.simulations.ach_transfers.acknowledge("ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::ACHTransfer
+      response => Increase::ACHTransfer
     end
 
     assert_pattern do
@@ -15,39 +15,39 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
         id: String,
         account_id: String,
         account_number: String,
-        acknowledgement: Increase::Models::ACHTransfer::Acknowledgement | nil,
-        addenda: Increase::Models::ACHTransfer::Addenda | nil,
+        acknowledgement: Increase::ACHTransfer::Acknowledgement | nil,
+        addenda: Increase::ACHTransfer::Addenda | nil,
         amount: Integer,
-        approval: Increase::Models::ACHTransfer::Approval | nil,
-        cancellation: Increase::Models::ACHTransfer::Cancellation | nil,
+        approval: Increase::ACHTransfer::Approval | nil,
+        cancellation: Increase::ACHTransfer::Cancellation | nil,
         company_descriptive_date: String | nil,
         company_discretionary_data: String | nil,
         company_entry_description: String | nil,
         company_id: String,
         company_name: String | nil,
         created_at: Time,
-        created_by: Increase::Models::ACHTransfer::CreatedBy | nil,
-        currency: Increase::Models::ACHTransfer::Currency,
-        destination_account_holder: Increase::Models::ACHTransfer::DestinationAccountHolder,
+        created_by: Increase::ACHTransfer::CreatedBy | nil,
+        currency: Increase::ACHTransfer::Currency,
+        destination_account_holder: Increase::ACHTransfer::DestinationAccountHolder,
         external_account_id: String | nil,
-        funding: Increase::Models::ACHTransfer::Funding,
+        funding: Increase::ACHTransfer::Funding,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::ACHTransfer::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold | nil,
         individual_id: String | nil,
         individual_name: String | nil,
-        network: Increase::Models::ACHTransfer::Network,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHTransfer::NotificationsOfChange]),
+        network: Increase::ACHTransfer::Network,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::NotificationsOfChange]),
         pending_transaction_id: String | nil,
-        preferred_effective_date: Increase::Models::ACHTransfer::PreferredEffectiveDate,
-        return_: Increase::Models::ACHTransfer::Return | nil,
+        preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
+        return_: Increase::ACHTransfer::Return | nil,
         routing_number: String,
-        settlement: Increase::Models::ACHTransfer::Settlement | nil,
-        standard_entry_class_code: Increase::Models::ACHTransfer::StandardEntryClassCode,
+        settlement: Increase::ACHTransfer::Settlement | nil,
+        standard_entry_class_code: Increase::ACHTransfer::StandardEntryClassCode,
         statement_descriptor: String,
-        status: Increase::Models::ACHTransfer::Status,
-        submission: Increase::Models::ACHTransfer::Submission | nil,
+        status: Increase::ACHTransfer::Status,
+        submission: Increase::ACHTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::Models::ACHTransfer::Type
+        type: Increase::ACHTransfer::Type
       }
     end
   end
@@ -61,7 +61,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
       )
 
     assert_pattern do
-      response => Increase::Models::ACHTransfer
+      response => Increase::ACHTransfer
     end
 
     assert_pattern do
@@ -69,39 +69,39 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
         id: String,
         account_id: String,
         account_number: String,
-        acknowledgement: Increase::Models::ACHTransfer::Acknowledgement | nil,
-        addenda: Increase::Models::ACHTransfer::Addenda | nil,
+        acknowledgement: Increase::ACHTransfer::Acknowledgement | nil,
+        addenda: Increase::ACHTransfer::Addenda | nil,
         amount: Integer,
-        approval: Increase::Models::ACHTransfer::Approval | nil,
-        cancellation: Increase::Models::ACHTransfer::Cancellation | nil,
+        approval: Increase::ACHTransfer::Approval | nil,
+        cancellation: Increase::ACHTransfer::Cancellation | nil,
         company_descriptive_date: String | nil,
         company_discretionary_data: String | nil,
         company_entry_description: String | nil,
         company_id: String,
         company_name: String | nil,
         created_at: Time,
-        created_by: Increase::Models::ACHTransfer::CreatedBy | nil,
-        currency: Increase::Models::ACHTransfer::Currency,
-        destination_account_holder: Increase::Models::ACHTransfer::DestinationAccountHolder,
+        created_by: Increase::ACHTransfer::CreatedBy | nil,
+        currency: Increase::ACHTransfer::Currency,
+        destination_account_holder: Increase::ACHTransfer::DestinationAccountHolder,
         external_account_id: String | nil,
-        funding: Increase::Models::ACHTransfer::Funding,
+        funding: Increase::ACHTransfer::Funding,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::ACHTransfer::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold | nil,
         individual_id: String | nil,
         individual_name: String | nil,
-        network: Increase::Models::ACHTransfer::Network,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHTransfer::NotificationsOfChange]),
+        network: Increase::ACHTransfer::Network,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::NotificationsOfChange]),
         pending_transaction_id: String | nil,
-        preferred_effective_date: Increase::Models::ACHTransfer::PreferredEffectiveDate,
-        return_: Increase::Models::ACHTransfer::Return | nil,
+        preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
+        return_: Increase::ACHTransfer::Return | nil,
         routing_number: String,
-        settlement: Increase::Models::ACHTransfer::Settlement | nil,
-        standard_entry_class_code: Increase::Models::ACHTransfer::StandardEntryClassCode,
+        settlement: Increase::ACHTransfer::Settlement | nil,
+        standard_entry_class_code: Increase::ACHTransfer::StandardEntryClassCode,
         statement_descriptor: String,
-        status: Increase::Models::ACHTransfer::Status,
-        submission: Increase::Models::ACHTransfer::Submission | nil,
+        status: Increase::ACHTransfer::Status,
+        submission: Increase::ACHTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::Models::ACHTransfer::Type
+        type: Increase::ACHTransfer::Type
       }
     end
   end
@@ -110,7 +110,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
     response = @increase.simulations.ach_transfers.return_("ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::ACHTransfer
+      response => Increase::ACHTransfer
     end
 
     assert_pattern do
@@ -118,39 +118,39 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
         id: String,
         account_id: String,
         account_number: String,
-        acknowledgement: Increase::Models::ACHTransfer::Acknowledgement | nil,
-        addenda: Increase::Models::ACHTransfer::Addenda | nil,
+        acknowledgement: Increase::ACHTransfer::Acknowledgement | nil,
+        addenda: Increase::ACHTransfer::Addenda | nil,
         amount: Integer,
-        approval: Increase::Models::ACHTransfer::Approval | nil,
-        cancellation: Increase::Models::ACHTransfer::Cancellation | nil,
+        approval: Increase::ACHTransfer::Approval | nil,
+        cancellation: Increase::ACHTransfer::Cancellation | nil,
         company_descriptive_date: String | nil,
         company_discretionary_data: String | nil,
         company_entry_description: String | nil,
         company_id: String,
         company_name: String | nil,
         created_at: Time,
-        created_by: Increase::Models::ACHTransfer::CreatedBy | nil,
-        currency: Increase::Models::ACHTransfer::Currency,
-        destination_account_holder: Increase::Models::ACHTransfer::DestinationAccountHolder,
+        created_by: Increase::ACHTransfer::CreatedBy | nil,
+        currency: Increase::ACHTransfer::Currency,
+        destination_account_holder: Increase::ACHTransfer::DestinationAccountHolder,
         external_account_id: String | nil,
-        funding: Increase::Models::ACHTransfer::Funding,
+        funding: Increase::ACHTransfer::Funding,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::ACHTransfer::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold | nil,
         individual_id: String | nil,
         individual_name: String | nil,
-        network: Increase::Models::ACHTransfer::Network,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHTransfer::NotificationsOfChange]),
+        network: Increase::ACHTransfer::Network,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::NotificationsOfChange]),
         pending_transaction_id: String | nil,
-        preferred_effective_date: Increase::Models::ACHTransfer::PreferredEffectiveDate,
-        return_: Increase::Models::ACHTransfer::Return | nil,
+        preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
+        return_: Increase::ACHTransfer::Return | nil,
         routing_number: String,
-        settlement: Increase::Models::ACHTransfer::Settlement | nil,
-        standard_entry_class_code: Increase::Models::ACHTransfer::StandardEntryClassCode,
+        settlement: Increase::ACHTransfer::Settlement | nil,
+        standard_entry_class_code: Increase::ACHTransfer::StandardEntryClassCode,
         statement_descriptor: String,
-        status: Increase::Models::ACHTransfer::Status,
-        submission: Increase::Models::ACHTransfer::Submission | nil,
+        status: Increase::ACHTransfer::Status,
+        submission: Increase::ACHTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::Models::ACHTransfer::Type
+        type: Increase::ACHTransfer::Type
       }
     end
   end
@@ -159,7 +159,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
     response = @increase.simulations.ach_transfers.settle("ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::ACHTransfer
+      response => Increase::ACHTransfer
     end
 
     assert_pattern do
@@ -167,39 +167,39 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
         id: String,
         account_id: String,
         account_number: String,
-        acknowledgement: Increase::Models::ACHTransfer::Acknowledgement | nil,
-        addenda: Increase::Models::ACHTransfer::Addenda | nil,
+        acknowledgement: Increase::ACHTransfer::Acknowledgement | nil,
+        addenda: Increase::ACHTransfer::Addenda | nil,
         amount: Integer,
-        approval: Increase::Models::ACHTransfer::Approval | nil,
-        cancellation: Increase::Models::ACHTransfer::Cancellation | nil,
+        approval: Increase::ACHTransfer::Approval | nil,
+        cancellation: Increase::ACHTransfer::Cancellation | nil,
         company_descriptive_date: String | nil,
         company_discretionary_data: String | nil,
         company_entry_description: String | nil,
         company_id: String,
         company_name: String | nil,
         created_at: Time,
-        created_by: Increase::Models::ACHTransfer::CreatedBy | nil,
-        currency: Increase::Models::ACHTransfer::Currency,
-        destination_account_holder: Increase::Models::ACHTransfer::DestinationAccountHolder,
+        created_by: Increase::ACHTransfer::CreatedBy | nil,
+        currency: Increase::ACHTransfer::Currency,
+        destination_account_holder: Increase::ACHTransfer::DestinationAccountHolder,
         external_account_id: String | nil,
-        funding: Increase::Models::ACHTransfer::Funding,
+        funding: Increase::ACHTransfer::Funding,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::ACHTransfer::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold | nil,
         individual_id: String | nil,
         individual_name: String | nil,
-        network: Increase::Models::ACHTransfer::Network,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHTransfer::NotificationsOfChange]),
+        network: Increase::ACHTransfer::Network,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::NotificationsOfChange]),
         pending_transaction_id: String | nil,
-        preferred_effective_date: Increase::Models::ACHTransfer::PreferredEffectiveDate,
-        return_: Increase::Models::ACHTransfer::Return | nil,
+        preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
+        return_: Increase::ACHTransfer::Return | nil,
         routing_number: String,
-        settlement: Increase::Models::ACHTransfer::Settlement | nil,
-        standard_entry_class_code: Increase::Models::ACHTransfer::StandardEntryClassCode,
+        settlement: Increase::ACHTransfer::Settlement | nil,
+        standard_entry_class_code: Increase::ACHTransfer::StandardEntryClassCode,
         statement_descriptor: String,
-        status: Increase::Models::ACHTransfer::Status,
-        submission: Increase::Models::ACHTransfer::Submission | nil,
+        status: Increase::ACHTransfer::Status,
+        submission: Increase::ACHTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::Models::ACHTransfer::Type
+        type: Increase::ACHTransfer::Type
       }
     end
   end
@@ -208,7 +208,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
     response = @increase.simulations.ach_transfers.submit("ach_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::ACHTransfer
+      response => Increase::ACHTransfer
     end
 
     assert_pattern do
@@ -216,39 +216,39 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
         id: String,
         account_id: String,
         account_number: String,
-        acknowledgement: Increase::Models::ACHTransfer::Acknowledgement | nil,
-        addenda: Increase::Models::ACHTransfer::Addenda | nil,
+        acknowledgement: Increase::ACHTransfer::Acknowledgement | nil,
+        addenda: Increase::ACHTransfer::Addenda | nil,
         amount: Integer,
-        approval: Increase::Models::ACHTransfer::Approval | nil,
-        cancellation: Increase::Models::ACHTransfer::Cancellation | nil,
+        approval: Increase::ACHTransfer::Approval | nil,
+        cancellation: Increase::ACHTransfer::Cancellation | nil,
         company_descriptive_date: String | nil,
         company_discretionary_data: String | nil,
         company_entry_description: String | nil,
         company_id: String,
         company_name: String | nil,
         created_at: Time,
-        created_by: Increase::Models::ACHTransfer::CreatedBy | nil,
-        currency: Increase::Models::ACHTransfer::Currency,
-        destination_account_holder: Increase::Models::ACHTransfer::DestinationAccountHolder,
+        created_by: Increase::ACHTransfer::CreatedBy | nil,
+        currency: Increase::ACHTransfer::Currency,
+        destination_account_holder: Increase::ACHTransfer::DestinationAccountHolder,
         external_account_id: String | nil,
-        funding: Increase::Models::ACHTransfer::Funding,
+        funding: Increase::ACHTransfer::Funding,
         idempotency_key: String | nil,
-        inbound_funds_hold: Increase::Models::ACHTransfer::InboundFundsHold | nil,
+        inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold | nil,
         individual_id: String | nil,
         individual_name: String | nil,
-        network: Increase::Models::ACHTransfer::Network,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::Models::ACHTransfer::NotificationsOfChange]),
+        network: Increase::ACHTransfer::Network,
+        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::NotificationsOfChange]),
         pending_transaction_id: String | nil,
-        preferred_effective_date: Increase::Models::ACHTransfer::PreferredEffectiveDate,
-        return_: Increase::Models::ACHTransfer::Return | nil,
+        preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
+        return_: Increase::ACHTransfer::Return | nil,
         routing_number: String,
-        settlement: Increase::Models::ACHTransfer::Settlement | nil,
-        standard_entry_class_code: Increase::Models::ACHTransfer::StandardEntryClassCode,
+        settlement: Increase::ACHTransfer::Settlement | nil,
+        standard_entry_class_code: Increase::ACHTransfer::StandardEntryClassCode,
         statement_descriptor: String,
-        status: Increase::Models::ACHTransfer::Status,
-        submission: Increase::Models::ACHTransfer::Submission | nil,
+        status: Increase::ACHTransfer::Status,
+        submission: Increase::ACHTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::Models::ACHTransfer::Type
+        type: Increase::ACHTransfer::Type
       }
     end
   end

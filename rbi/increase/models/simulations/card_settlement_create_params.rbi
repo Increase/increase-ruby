@@ -7,6 +7,9 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The identifier of the Card to create a settlement on.
         sig { returns(String) }
         attr_accessor :card_id
@@ -29,9 +32,8 @@ module Increase
             card_id: String,
             pending_transaction_id: String,
             amount: Integer,
-            request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-          )
-            .returns(T.attached_class)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(T.attached_class)
         end
         def self.new(
           # The identifier of the Card to create a settlement on.
@@ -43,19 +45,21 @@ module Increase
           # being settled.
           amount: nil,
           request_options: {}
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                card_id: String,
-                pending_transaction_id: String,
-                amount: Integer,
-                request_options: Increase::RequestOptions
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              card_id: String,
+              pending_transaction_id: String,
+              amount: Integer,
+              request_options: Increase::RequestOptions
+            }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

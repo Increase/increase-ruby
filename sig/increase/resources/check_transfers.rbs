@@ -7,42 +7,42 @@ module Increase
         fulfillment_method: Increase::Models::CheckTransferCreateParams::fulfillment_method,
         source_account_number_id: String,
         ?check_number: String,
-        ?physical_check: Increase::Models::CheckTransferCreateParams::PhysicalCheck,
+        ?physical_check: Increase::CheckTransferCreateParams::PhysicalCheck,
         ?require_approval: bool,
-        ?third_party: Increase::Models::CheckTransferCreateParams::ThirdParty,
+        ?third_party: Increase::CheckTransferCreateParams::ThirdParty,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CheckTransfer
+      ) -> Increase::CheckTransfer
 
       def retrieve: (
         String check_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CheckTransfer
+      ) -> Increase::CheckTransfer
 
       def list: (
         ?account_id: String,
-        ?created_at: Increase::Models::CheckTransferListParams::CreatedAt,
+        ?created_at: Increase::CheckTransferListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::CheckTransferListParams::Status,
+        ?status: Increase::CheckTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::CheckTransfer]
+      ) -> Increase::Internal::Page[Increase::CheckTransfer]
 
       def approve: (
         String check_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CheckTransfer
+      ) -> Increase::CheckTransfer
 
       def cancel: (
         String check_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CheckTransfer
+      ) -> Increase::CheckTransfer
 
       def stop_payment: (
         String check_transfer_id,
         ?reason: Increase::Models::CheckTransferStopPaymentParams::reason,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CheckTransfer
+      ) -> Increase::CheckTransfer
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -58,8 +58,8 @@ module Increase
       # @!attribute text_color
       #   The Card's text color, specified as an RGB triple. The default is white.
       #
-      #   @return [Increase::Models::DigitalCardProfileCloneParams::TextColor, nil]
-      optional :text_color, -> { Increase::Models::DigitalCardProfileCloneParams::TextColor }
+      #   @return [Increase::DigitalCardProfileCloneParams::TextColor, nil]
+      optional :text_color, -> { Increase::DigitalCardProfileCloneParams::TextColor }
 
       # @!method initialize(app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_phone: nil, contact_website: nil, description: nil, issuer_name: nil, text_color: nil, request_options: {})
       #   @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
@@ -78,7 +78,7 @@ module Increase
       #
       #   @param issuer_name [String] A user-facing description for whoever is issuing the card.
       #
-      #   @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      #   @param text_color [Increase::DigitalCardProfileCloneParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -39,19 +39,19 @@ module Increase
       # @!attribute status
       #   Whether the connection is active.
       #
-      #   @return [Symbol, Increase::Models::OAuthConnection::Status]
-      required :status, enum: -> { Increase::Models::OAuthConnection::Status }
+      #   @return [Symbol, Increase::OAuthConnection::Status]
+      required :status, enum: -> { Increase::OAuthConnection::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `oauth_connection`.
       #
-      #   @return [Symbol, Increase::Models::OAuthConnection::Type]
-      required :type, enum: -> { Increase::Models::OAuthConnection::Type }
+      #   @return [Symbol, Increase::OAuthConnection::Type]
+      required :type, enum: -> { Increase::OAuthConnection::Type }
 
       # @!method initialize(id:, created_at:, deleted_at:, group_id:, oauth_application_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::OAuthConnection} for more details.
+      #   {Increase::OAuthConnection} for more details.
       #
       #   When a user authorizes your OAuth application, an OAuth Connection object is
       #   created. Learn more about OAuth
@@ -60,23 +60,20 @@ module Increase
       #   @param id [String] The OAuth Connection's identifier.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp when the OAuth
-      #   ...
       #
       #   @param deleted_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp when the OAuth
-      #   ...
       #
       #   @param group_id [String] The identifier of the Group that has authorized your OAuth application.
       #
       #   @param oauth_application_id [String] The identifier of the OAuth application this connection is for.
       #
-      #   @param status [Symbol, Increase::Models::OAuthConnection::Status] Whether the connection is active.
+      #   @param status [Symbol, Increase::OAuthConnection::Status] Whether the connection is active.
       #
-      #   @param type [Symbol, Increase::Models::OAuthConnection::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::OAuthConnection::Type] A constant representing the object's type. For this resource it will always be `
 
       # Whether the connection is active.
       #
-      # @see Increase::Models::OAuthConnection#status
+      # @see Increase::OAuthConnection#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -93,7 +90,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `oauth_connection`.
       #
-      # @see Increase::Models::OAuthConnection#type
+      # @see Increase::OAuthConnection#type
       module Type
         extend Increase::Internal::Type::Enum
 

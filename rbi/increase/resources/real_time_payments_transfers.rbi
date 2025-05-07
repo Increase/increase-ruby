@@ -17,9 +17,8 @@ module Increase
           require_approval: T::Boolean,
           ultimate_creditor_name: String,
           ultimate_debtor_name: String,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::RealTimePaymentsTransfer)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::RealTimePaymentsTransfer)
       end
       def create(
         # The transfer amount in USD cents. For Real-Time Payments transfers, must be
@@ -52,30 +51,36 @@ module Increase
         # sent on behalf of someone who is not the account holder at Increase.
         ultimate_debtor_name: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve a Real-Time Payments Transfer
       sig do
-        params(real_time_payments_transfer_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::RealTimePaymentsTransfer)
+        params(
+          real_time_payments_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::RealTimePaymentsTransfer)
       end
       def retrieve(
         # The identifier of the Real-Time Payments Transfer.
         real_time_payments_transfer_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Real-Time Payments Transfers
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::RealTimePaymentsTransferListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at:
+            Increase::RealTimePaymentsTransferListParams::CreatedAt::OrHash,
           cursor: String,
           external_account_id: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::RealTimePaymentsTransferListParams::Status, Increase::Internal::AnyHash),
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::RealTimePaymentsTransfer])
+          status: Increase::RealTimePaymentsTransferListParams::Status::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::RealTimePaymentsTransfer])
       end
       def list(
         # Filter Real-Time Payments Transfers to those belonging to the specified Account.
@@ -96,10 +101,13 @@ module Increase
         limit: nil,
         status: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

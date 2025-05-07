@@ -10,8 +10,8 @@ module Increase
       # @!attribute account_holder
       #   The type of entity that owns the External Account.
       #
-      #   @return [Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder, nil]
-      optional :account_holder, enum: -> { Increase::Models::ExternalAccountUpdateParams::AccountHolder }
+      #   @return [Symbol, Increase::ExternalAccountUpdateParams::AccountHolder, nil]
+      optional :account_holder, enum: -> { Increase::ExternalAccountUpdateParams::AccountHolder }
 
       # @!attribute description
       #   The description you choose to give the external account.
@@ -22,23 +22,23 @@ module Increase
       # @!attribute funding
       #   The funding type of the External Account.
       #
-      #   @return [Symbol, Increase::Models::ExternalAccountUpdateParams::Funding, nil]
-      optional :funding, enum: -> { Increase::Models::ExternalAccountUpdateParams::Funding }
+      #   @return [Symbol, Increase::ExternalAccountUpdateParams::Funding, nil]
+      optional :funding, enum: -> { Increase::ExternalAccountUpdateParams::Funding }
 
       # @!attribute status
       #   The status of the External Account.
       #
-      #   @return [Symbol, Increase::Models::ExternalAccountUpdateParams::Status, nil]
-      optional :status, enum: -> { Increase::Models::ExternalAccountUpdateParams::Status }
+      #   @return [Symbol, Increase::ExternalAccountUpdateParams::Status, nil]
+      optional :status, enum: -> { Increase::ExternalAccountUpdateParams::Status }
 
       # @!method initialize(account_holder: nil, description: nil, funding: nil, status: nil, request_options: {})
-      #   @param account_holder [Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder] The type of entity that owns the External Account.
+      #   @param account_holder [Symbol, Increase::ExternalAccountUpdateParams::AccountHolder] The type of entity that owns the External Account.
       #
       #   @param description [String] The description you choose to give the external account.
       #
-      #   @param funding [Symbol, Increase::Models::ExternalAccountUpdateParams::Funding] The funding type of the External Account.
+      #   @param funding [Symbol, Increase::ExternalAccountUpdateParams::Funding] The funding type of the External Account.
       #
-      #   @param status [Symbol, Increase::Models::ExternalAccountUpdateParams::Status] The status of the External Account.
+      #   @param status [Symbol, Increase::ExternalAccountUpdateParams::Status] The status of the External Account.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

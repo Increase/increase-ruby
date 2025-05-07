@@ -16,7 +16,7 @@ module Increase
           ?merchant_country: String,
           ?merchant_descriptor: String,
           ?merchant_state: String,
-          ?network_details: Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails,
+          ?network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
           ?network_risk_score: Integer,
           ?physical_card_id: String,
           ?terminal_id: String,

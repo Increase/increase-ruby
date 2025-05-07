@@ -20,7 +20,6 @@ module Increase
         #   {Increase::Models::Simulations::CardRefundCreateParams} for more details.
         #
         #   @param transaction_id [String] The identifier for the Transaction to refund. The Transaction's source must have
-        #   ...
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

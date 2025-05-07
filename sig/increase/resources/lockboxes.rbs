@@ -6,12 +6,12 @@ module Increase
         ?description: String,
         ?recipient_name: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Lockbox
+      ) -> Increase::Lockbox
 
       def retrieve: (
         String lockbox_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Lockbox
+      ) -> Increase::Lockbox
 
       def update: (
         String lockbox_id,
@@ -19,16 +19,16 @@ module Increase
         ?recipient_name: String,
         ?status: Increase::Models::LockboxUpdateParams::status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Lockbox
+      ) -> Increase::Lockbox
 
       def list: (
         ?account_id: String,
-        ?created_at: Increase::Models::LockboxListParams::CreatedAt,
+        ?created_at: Increase::LockboxListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::Lockbox]
+      ) -> Increase::Internal::Page[Increase::Lockbox]
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -3,22 +3,22 @@ module Increase
     type external_account =
       {
         id: String,
-        account_holder: Increase::Models::ExternalAccount::account_holder,
+        account_holder: Increase::ExternalAccount::account_holder,
         account_number: String,
         created_at: Time,
         description: String,
-        funding: Increase::Models::ExternalAccount::funding,
+        funding: Increase::ExternalAccount::funding,
         idempotency_key: String?,
         routing_number: String,
-        status: Increase::Models::ExternalAccount::status,
-        type: Increase::Models::ExternalAccount::type_,
-        verification_status: Increase::Models::ExternalAccount::verification_status
+        status: Increase::ExternalAccount::status,
+        type: Increase::ExternalAccount::type_,
+        verification_status: Increase::ExternalAccount::verification_status
       }
 
     class ExternalAccount < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor account_holder: Increase::Models::ExternalAccount::account_holder
+      attr_accessor account_holder: Increase::ExternalAccount::account_holder
 
       attr_accessor account_number: String
 
@@ -26,33 +26,31 @@ module Increase
 
       attr_accessor description: String
 
-      attr_accessor funding: Increase::Models::ExternalAccount::funding
+      attr_accessor funding: Increase::ExternalAccount::funding
 
       attr_accessor idempotency_key: String?
 
       attr_accessor routing_number: String
 
-      attr_accessor status: Increase::Models::ExternalAccount::status
+      attr_accessor status: Increase::ExternalAccount::status
 
-      attr_accessor type: Increase::Models::ExternalAccount::type_
+      attr_accessor type: Increase::ExternalAccount::type_
 
-      attr_accessor verification_status: Increase::Models::ExternalAccount::verification_status
+      attr_accessor verification_status: Increase::ExternalAccount::verification_status
 
       def initialize: (
         id: String,
-        account_holder: Increase::Models::ExternalAccount::account_holder,
+        account_holder: Increase::ExternalAccount::account_holder,
         account_number: String,
         created_at: Time,
         description: String,
-        funding: Increase::Models::ExternalAccount::funding,
+        funding: Increase::ExternalAccount::funding,
         idempotency_key: String?,
         routing_number: String,
-        status: Increase::Models::ExternalAccount::status,
-        type: Increase::Models::ExternalAccount::type_,
-        verification_status: Increase::Models::ExternalAccount::verification_status
+        status: Increase::ExternalAccount::status,
+        type: Increase::ExternalAccount::type_,
+        verification_status: Increase::ExternalAccount::verification_status
       ) -> void
-
-      def to_hash: -> Increase::Models::external_account
 
       type account_holder = :business | :individual | :unknown
 
@@ -68,7 +66,7 @@ module Increase
         # It's unknown what kind of entity owns the External Account.
         UNKNOWN: :unknown
 
-        def self?.values: -> ::Array[Increase::Models::ExternalAccount::account_holder]
+        def self?.values: -> ::Array[Increase::ExternalAccount::account_holder]
       end
 
       type funding = :checking | :savings | :other
@@ -85,7 +83,7 @@ module Increase
         # A different type of account.
         OTHER: :other
 
-        def self?.values: -> ::Array[Increase::Models::ExternalAccount::funding]
+        def self?.values: -> ::Array[Increase::ExternalAccount::funding]
       end
 
       type status = :active | :archived
@@ -99,7 +97,7 @@ module Increase
         # The External Account is archived and won't appear in the dashboard.
         ARCHIVED: :archived
 
-        def self?.values: -> ::Array[Increase::Models::ExternalAccount::status]
+        def self?.values: -> ::Array[Increase::ExternalAccount::status]
       end
 
       type type_ = :external_account
@@ -109,7 +107,7 @@ module Increase
 
         EXTERNAL_ACCOUNT: :external_account
 
-        def self?.values: -> ::Array[Increase::Models::ExternalAccount::type_]
+        def self?.values: -> ::Array[Increase::ExternalAccount::type_]
       end
 
       type verification_status = :unverified | :pending | :verified
@@ -126,7 +124,7 @@ module Increase
         # The External Account is verified.
         VERIFIED: :verified
 
-        def self?.values: -> ::Array[Increase::Models::ExternalAccount::verification_status]
+        def self?.values: -> ::Array[Increase::ExternalAccount::verification_status]
       end
     end
   end

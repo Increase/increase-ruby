@@ -17,8 +17,6 @@ module Increase
         email_address: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::intrafi_account_enrollment_create_params
     end
   end
 end

@@ -2,7 +2,7 @@ module Increase
   module Models
     type inbound_mail_item_list_params =
       {
-        created_at: Increase::Models::InboundMailItemListParams::CreatedAt,
+        created_at: Increase::InboundMailItemListParams::CreatedAt,
         cursor: String,
         limit: Integer,
         lockbox_id: String
@@ -13,11 +13,11 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader created_at: Increase::Models::InboundMailItemListParams::CreatedAt?
+      attr_reader created_at: Increase::InboundMailItemListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::InboundMailItemListParams::CreatedAt
-      ) -> Increase::Models::InboundMailItemListParams::CreatedAt
+        Increase::InboundMailItemListParams::CreatedAt
+      ) -> Increase::InboundMailItemListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -32,14 +32,12 @@ module Increase
       def lockbox_id=: (String) -> String
 
       def initialize: (
-        ?created_at: Increase::Models::InboundMailItemListParams::CreatedAt,
+        ?created_at: Increase::InboundMailItemListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?lockbox_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::inbound_mail_item_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -67,8 +65,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::InboundMailItemListParams::created_at
       end
     end
   end

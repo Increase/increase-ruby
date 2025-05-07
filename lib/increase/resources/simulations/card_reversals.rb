@@ -17,20 +17,19 @@ module Increase
         # @param card_payment_id [String] The identifier of the Card Payment to create a reversal on.
         #
         # @param amount [Integer] The amount of the reversal in minor units in the card authorization's currency.
-        # ...
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::CardPayment]
+        # @return [Increase::CardPayment]
         #
         # @see Increase::Models::Simulations::CardReversalCreateParams
         def create(params)
-          parsed, options = Increase::Models::Simulations::CardReversalCreateParams.dump_request(params)
+          parsed, options = Increase::Simulations::CardReversalCreateParams.dump_request(params)
           @client.request(
             method: :post,
             path: "simulations/card_reversals",
             body: parsed,
-            model: Increase::Models::CardPayment,
+            model: Increase::CardPayment,
             options: options
           )
         end

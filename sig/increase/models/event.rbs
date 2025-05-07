@@ -5,9 +5,9 @@ module Increase
         id: String,
         associated_object_id: String,
         associated_object_type: String,
-        category: Increase::Models::Event::category,
+        category: Increase::Event::category,
         created_at: Time,
-        type: Increase::Models::Event::type_
+        type: Increase::Event::type_
       }
 
     class Event < Increase::Internal::Type::BaseModel
@@ -17,22 +17,20 @@ module Increase
 
       attr_accessor associated_object_type: String
 
-      attr_accessor category: Increase::Models::Event::category
+      attr_accessor category: Increase::Event::category
 
       attr_accessor created_at: Time
 
-      attr_accessor type: Increase::Models::Event::type_
+      attr_accessor type: Increase::Event::type_
 
       def initialize: (
         id: String,
         associated_object_id: String,
         associated_object_type: String,
-        category: Increase::Models::Event::category,
+        category: Increase::Event::category,
         created_at: Time,
-        type: Increase::Models::Event::type_
+        type: Increase::Event::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::event
 
       type category =
         :"account.created"
@@ -383,7 +381,7 @@ module Increase
         # Occurs whenever a Wire Transfer is updated.
         WIRE_TRANSFER_UPDATED: :"wire_transfer.updated"
 
-        def self?.values: -> ::Array[Increase::Models::Event::category]
+        def self?.values: -> ::Array[Increase::Event::category]
       end
 
       type type_ = :event
@@ -393,7 +391,7 @@ module Increase
 
         EVENT: :event
 
-        def self?.values: -> ::Array[Increase::Models::Event::type_]
+        def self?.values: -> ::Array[Increase::Event::type_]
       end
     end
   end

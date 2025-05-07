@@ -34,9 +34,11 @@ module Increase
       #   If the deposit or the return was adjusted by the sending institution, this will
       #   contain details of the adjustments.
       #
-      #   @return [Array<Increase::Models::InboundCheckDeposit::Adjustment>]
+      #   @return [Array<Increase::InboundCheckDeposit::Adjustment>]
       required :adjustments,
-               -> { Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment] }
+               -> {
+                 Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]
+               }
 
       # @!attribute amount
       #   The deposited amount in USD cents.
@@ -81,8 +83,8 @@ module Increase
       # @!attribute currency
       #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
       #
-      #   @return [Symbol, Increase::Models::InboundCheckDeposit::Currency]
-      required :currency, enum: -> { Increase::Models::InboundCheckDeposit::Currency }
+      #   @return [Symbol, Increase::InboundCheckDeposit::Currency]
+      required :currency, enum: -> { Increase::InboundCheckDeposit::Currency }
 
       # @!attribute declined_at
       #   If the Inbound Check Deposit was declined, the
@@ -103,8 +105,8 @@ module Increase
       #   If you requested a return of this deposit, this will contain details of the
       #   return.
       #
-      #   @return [Increase::Models::InboundCheckDeposit::DepositReturn, nil]
-      required :deposit_return, -> { Increase::Models::InboundCheckDeposit::DepositReturn }, nil?: true
+      #   @return [Increase::InboundCheckDeposit::DepositReturn, nil]
+      required :deposit_return, -> { Increase::InboundCheckDeposit::DepositReturn }, nil?: true
 
       # @!attribute front_image_file_id
       #   The ID for the File containing the image of the front of the check.
@@ -116,14 +118,14 @@ module Increase
       #   Whether the details on the check match the recipient name of the check transfer.
       #   This is an optional feature, contact sales to enable.
       #
-      #   @return [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
-      required :payee_name_analysis, enum: -> { Increase::Models::InboundCheckDeposit::PayeeNameAnalysis }
+      #   @return [Symbol, Increase::InboundCheckDeposit::PayeeNameAnalysis]
+      required :payee_name_analysis, enum: -> { Increase::InboundCheckDeposit::PayeeNameAnalysis }
 
       # @!attribute status
       #   The status of the Inbound Check Deposit.
       #
-      #   @return [Symbol, Increase::Models::InboundCheckDeposit::Status]
-      required :status, enum: -> { Increase::Models::InboundCheckDeposit::Status }
+      #   @return [Symbol, Increase::InboundCheckDeposit::Status]
+      required :status, enum: -> { Increase::InboundCheckDeposit::Status }
 
       # @!attribute transaction_id
       #   If the deposit attempt has been accepted, the identifier of the Transaction
@@ -136,12 +138,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `inbound_check_deposit`.
       #
-      #   @return [Symbol, Increase::Models::InboundCheckDeposit::Type]
-      required :type, enum: -> { Increase::Models::InboundCheckDeposit::Type }
+      #   @return [Symbol, Increase::InboundCheckDeposit::Type]
+      required :type, enum: -> { Increase::InboundCheckDeposit::Type }
 
       # @!method initialize(id:, accepted_at:, account_id:, account_number_id:, adjustments:, amount:, back_image_file_id:, bank_of_first_deposit_routing_number:, check_number:, check_transfer_id:, created_at:, currency:, declined_at:, declined_transaction_id:, deposit_return:, front_image_file_id:, payee_name_analysis:, status:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundCheckDeposit} for more details.
+      #   {Increase::InboundCheckDeposit} for more details.
       #
       #   Inbound Check Deposits are records of third-parties attempting to deposit checks
       #   against your account.
@@ -149,53 +151,42 @@ module Increase
       #   @param id [String] The deposit's identifier.
       #
       #   @param accepted_at [Time, nil] If the Inbound Check Deposit was accepted, the [ISO 8601](https://en.wikipedia.o
-      #   ...
       #
       #   @param account_id [String] The Account the check is being deposited against.
       #
       #   @param account_number_id [String, nil] The Account Number the check is being deposited against.
       #
-      #   @param adjustments [Array<Increase::Models::InboundCheckDeposit::Adjustment>] If the deposit or the return was adjusted by the sending institution, this will
-      #   ...
+      #   @param adjustments [Array<Increase::InboundCheckDeposit::Adjustment>] If the deposit or the return was adjusted by the sending institution, this will
       #
       #   @param amount [Integer] The deposited amount in USD cents.
       #
       #   @param back_image_file_id [String, nil] The ID for the File containing the image of the back of the check.
       #
       #   @param bank_of_first_deposit_routing_number [String, nil] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the ban
-      #   ...
       #
       #   @param check_number [String, nil] The check number printed on the check being deposited.
       #
       #   @param check_transfer_id [String, nil] If this deposit is for an existing Check Transfer, the identifier of that Check
-      #   ...
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-      #   ...
       #
-      #   @param currency [Symbol, Increase::Models::InboundCheckDeposit::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
+      #   @param currency [Symbol, Increase::InboundCheckDeposit::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
       #
       #   @param declined_at [Time, nil] If the Inbound Check Deposit was declined, the [ISO 8601](https://en.wikipedia.o
-      #   ...
       #
       #   @param declined_transaction_id [String, nil] If the deposit attempt has been rejected, the identifier of the Declined Transac
-      #   ...
       #
-      #   @param deposit_return [Increase::Models::InboundCheckDeposit::DepositReturn, nil] If you requested a return of this deposit, this will contain details of the retu
-      #   ...
+      #   @param deposit_return [Increase::InboundCheckDeposit::DepositReturn, nil] If you requested a return of this deposit, this will contain details of the retu
       #
       #   @param front_image_file_id [String, nil] The ID for the File containing the image of the front of the check.
       #
-      #   @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis] Whether the details on the check match the recipient name of the check transfer.
-      #   ...
+      #   @param payee_name_analysis [Symbol, Increase::InboundCheckDeposit::PayeeNameAnalysis] Whether the details on the check match the recipient name of the check transfer.
       #
-      #   @param status [Symbol, Increase::Models::InboundCheckDeposit::Status] The status of the Inbound Check Deposit.
+      #   @param status [Symbol, Increase::InboundCheckDeposit::Status] The status of the Inbound Check Deposit.
       #
       #   @param transaction_id [String, nil] If the deposit attempt has been accepted, the identifier of the Transaction obje
-      #   ...
       #
-      #   @param type [Symbol, Increase::Models::InboundCheckDeposit::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::InboundCheckDeposit::Type] A constant representing the object's type. For this resource it will always be `
 
       class Adjustment < Increase::Internal::Type::BaseModel
         # @!attribute adjusted_at
@@ -213,8 +204,8 @@ module Increase
         # @!attribute reason
         #   The reason for the adjustment.
         #
-        #   @return [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason]
-        required :reason, enum: -> { Increase::Models::InboundCheckDeposit::Adjustment::Reason }
+        #   @return [Symbol, Increase::InboundCheckDeposit::Adjustment::Reason]
+        required :reason, enum: -> { Increase::InboundCheckDeposit::Adjustment::Reason }
 
         # @!attribute transaction_id
         #   The id of the transaction for the adjustment.
@@ -227,13 +218,13 @@ module Increase
         #
         #   @param amount [Integer] The amount of the adjustment.
         #
-        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason] The reason for the adjustment.
+        #   @param reason [Symbol, Increase::InboundCheckDeposit::Adjustment::Reason] The reason for the adjustment.
         #
         #   @param transaction_id [String] The id of the transaction for the adjustment.
 
         # The reason for the adjustment.
         #
-        # @see Increase::Models::InboundCheckDeposit::Adjustment#reason
+        # @see Increase::InboundCheckDeposit::Adjustment#reason
         module Reason
           extend Increase::Internal::Type::Enum
 
@@ -256,7 +247,7 @@ module Increase
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
       #
-      # @see Increase::Models::InboundCheckDeposit#currency
+      # @see Increase::InboundCheckDeposit#currency
       module Currency
         extend Increase::Internal::Type::Enum
 
@@ -282,13 +273,13 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::Models::InboundCheckDeposit#deposit_return
+      # @see Increase::InboundCheckDeposit#deposit_return
       class DepositReturn < Increase::Internal::Type::BaseModel
         # @!attribute reason
         #   The reason the deposit was returned.
         #
-        #   @return [Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason]
-        required :reason, enum: -> { Increase::Models::InboundCheckDeposit::DepositReturn::Reason }
+        #   @return [Symbol, Increase::InboundCheckDeposit::DepositReturn::Reason]
+        required :reason, enum: -> { Increase::InboundCheckDeposit::DepositReturn::Reason }
 
         # @!attribute returned_at
         #   The time at which the deposit was returned.
@@ -306,7 +297,7 @@ module Increase
         #   If you requested a return of this deposit, this will contain details of the
         #   return.
         #
-        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason] The reason the deposit was returned.
+        #   @param reason [Symbol, Increase::InboundCheckDeposit::DepositReturn::Reason] The reason the deposit was returned.
         #
         #   @param returned_at [Time] The time at which the deposit was returned.
         #
@@ -314,7 +305,7 @@ module Increase
 
         # The reason the deposit was returned.
         #
-        # @see Increase::Models::InboundCheckDeposit::DepositReturn#reason
+        # @see Increase::InboundCheckDeposit::DepositReturn#reason
         module Reason
           extend Increase::Internal::Type::Enum
 
@@ -341,7 +332,7 @@ module Increase
       # Whether the details on the check match the recipient name of the check transfer.
       # This is an optional feature, contact sales to enable.
       #
-      # @see Increase::Models::InboundCheckDeposit#payee_name_analysis
+      # @see Increase::InboundCheckDeposit#payee_name_analysis
       module PayeeNameAnalysis
         extend Increase::Internal::Type::Enum
 
@@ -360,7 +351,7 @@ module Increase
 
       # The status of the Inbound Check Deposit.
       #
-      # @see Increase::Models::InboundCheckDeposit#status
+      # @see Increase::InboundCheckDeposit#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -386,7 +377,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `inbound_check_deposit`.
       #
-      # @see Increase::Models::InboundCheckDeposit#type
+      # @see Increase::InboundCheckDeposit#type
       module Type
         extend Increase::Internal::Type::Enum
 

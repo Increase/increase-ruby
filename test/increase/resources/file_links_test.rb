@@ -7,7 +7,7 @@ class Increase::Test::Resources::FileLinksTest < Increase::Test::ResourceTest
     response = @increase.file_links.create(file_id: "file_makxrc67oh9l6sg7w9yc")
 
     assert_pattern do
-      response => Increase::Models::FileLink
+      response => Increase::FileLink
     end
 
     assert_pattern do
@@ -17,7 +17,7 @@ class Increase::Test::Resources::FileLinksTest < Increase::Test::ResourceTest
         expires_at: Time,
         file_id: String,
         idempotency_key: String | nil,
-        type: Increase::Models::FileLink::Type,
+        type: Increase::FileLink::Type,
         unauthenticated_url: String
       }
     end

@@ -2,11 +2,11 @@ module Increase
   module Models
     type file_list_params =
       {
-        created_at: Increase::Models::FileListParams::CreatedAt,
+        created_at: Increase::FileListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        purpose: Increase::Models::FileListParams::Purpose
+        purpose: Increase::FileListParams::Purpose
       }
       & Increase::Internal::Type::request_parameters
 
@@ -14,11 +14,11 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader created_at: Increase::Models::FileListParams::CreatedAt?
+      attr_reader created_at: Increase::FileListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::FileListParams::CreatedAt
-      ) -> Increase::Models::FileListParams::CreatedAt
+        Increase::FileListParams::CreatedAt
+      ) -> Increase::FileListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -32,22 +32,20 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader purpose: Increase::Models::FileListParams::Purpose?
+      attr_reader purpose: Increase::FileListParams::Purpose?
 
       def purpose=: (
-        Increase::Models::FileListParams::Purpose
-      ) -> Increase::Models::FileListParams::Purpose
+        Increase::FileListParams::Purpose
+      ) -> Increase::FileListParams::Purpose
 
       def initialize: (
-        ?created_at: Increase::Models::FileListParams::CreatedAt,
+        ?created_at: Increase::FileListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?purpose: Increase::Models::FileListParams::Purpose,
+        ?purpose: Increase::FileListParams::Purpose,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::file_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -75,25 +73,20 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::FileListParams::created_at
       end
 
-      type purpose =
-        { in_: ::Array[Increase::Models::FileListParams::Purpose::in_] }
+      type purpose = { in_: ::Array[Increase::FileListParams::Purpose::in_] }
 
       class Purpose < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::FileListParams::Purpose::in_]?
+        attr_reader in_: ::Array[Increase::FileListParams::Purpose::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::FileListParams::Purpose::in_]
-        ) -> ::Array[Increase::Models::FileListParams::Purpose::in_]
+          ::Array[Increase::FileListParams::Purpose::in_]
+        ) -> ::Array[Increase::FileListParams::Purpose::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::FileListParams::Purpose::in_]
+          ?in_: ::Array[Increase::FileListParams::Purpose::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::FileListParams::purpose
 
         type in_ =
           :check_image_front
@@ -200,7 +193,7 @@ module Increase
           # A file containing additional evidence for a Proof of Authorization Request Submission.
           PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION: :proof_of_authorization_request_submission
 
-          def self?.values: -> ::Array[Increase::Models::FileListParams::Purpose::in_]
+          def self?.values: -> ::Array[Increase::FileListParams::Purpose::in_]
         end
       end
     end

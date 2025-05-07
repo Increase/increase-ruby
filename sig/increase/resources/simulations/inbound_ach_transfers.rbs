@@ -15,7 +15,7 @@ module Increase
           ?resolve_at: Time,
           ?standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::standard_entry_class_code,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::InboundACHTransfer
+        ) -> Increase::InboundACHTransfer
 
         def initialize: (client: Increase::Client) -> void
       end

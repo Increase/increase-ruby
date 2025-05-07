@@ -5,18 +5,26 @@ module Increase
     class BookkeepingEntries
       # Retrieve a Bookkeeping Entry
       sig do
-        params(bookkeeping_entry_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::BookkeepingEntry)
+        params(
+          bookkeeping_entry_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::BookkeepingEntry)
       end
       def retrieve(
         # The identifier of the Bookkeeping Entry.
         bookkeeping_entry_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Bookkeeping Entries
       sig do
-        params(account_id: String, cursor: String, limit: Integer, request_options: Increase::RequestOpts)
-          .returns(Increase::Internal::Page[Increase::Models::BookkeepingEntry])
+        params(
+          account_id: String,
+          cursor: String,
+          limit: Integer,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::BookkeepingEntry])
       end
       def list(
         # The identifier for the Bookkeeping Account to filter by.
@@ -27,10 +35,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

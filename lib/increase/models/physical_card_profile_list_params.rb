@@ -31,8 +31,8 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::Models::PhysicalCardProfileListParams::Status, nil]
-      optional :status, -> { Increase::Models::PhysicalCardProfileListParams::Status }
+      #   @return [Increase::PhysicalCardProfileListParams::Status, nil]
+      optional :status, -> { Increase::PhysicalCardProfileListParams::Status }
 
       # @!method initialize(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -41,12 +41,10 @@ module Increase
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      #   ...
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
-      #   @param status [Increase::Models::PhysicalCardProfileListParams::Status]
+      #   @param status [Increase::PhysicalCardProfileListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -56,17 +54,18 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::PhysicalCardProfileListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::PhysicalCardProfileListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::PhysicalCardProfileListParams::Status::In] },
+                 -> {
+                   Increase::Internal::Type::ArrayOf[enum: Increase::PhysicalCardProfileListParams::Status::In]
+                 },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::PhysicalCardProfileListParams::Status} for more details.
+        #   {Increase::PhysicalCardProfileListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::PhysicalCardProfileListParams::Status::In>] Filter Physical Card Profiles for those with the specified statuses. For GET req
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::PhysicalCardProfileListParams::Status::In>] Filter Physical Card Profiles for those with the specified statuses. For GET req
 
         module In
           extend Increase::Internal::Type::Enum

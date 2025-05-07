@@ -10,24 +10,27 @@ module Increase
           amount: Integer,
           statement_descriptor: String,
           account_number: String,
-          addenda: T.any(Increase::Models::ACHTransferCreateParams::Addenda, Increase::Internal::AnyHash),
+          addenda: Increase::ACHTransferCreateParams::Addenda::OrHash,
           company_descriptive_date: String,
           company_discretionary_data: String,
           company_entry_description: String,
           company_name: String,
-          destination_account_holder: Increase::Models::ACHTransferCreateParams::DestinationAccountHolder::OrSymbol,
+          destination_account_holder:
+            Increase::ACHTransferCreateParams::DestinationAccountHolder::OrSymbol,
           external_account_id: String,
-          funding: Increase::Models::ACHTransferCreateParams::Funding::OrSymbol,
+          funding: Increase::ACHTransferCreateParams::Funding::OrSymbol,
           individual_id: String,
           individual_name: String,
-          preferred_effective_date: T.any(Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate, Increase::Internal::AnyHash),
+          preferred_effective_date:
+            Increase::ACHTransferCreateParams::PreferredEffectiveDate::OrHash,
           require_approval: T::Boolean,
           routing_number: String,
-          standard_entry_class_code: Increase::Models::ACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-          transaction_timing: Increase::Models::ACHTransferCreateParams::TransactionTiming::OrSymbol,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::ACHTransfer)
+          standard_entry_class_code:
+            Increase::ACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
+          transaction_timing:
+            Increase::ACHTransferCreateParams::TransactionTiming::OrSymbol,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::ACHTransfer)
       end
       def create(
         # The Increase identifier for the account that will send the transfer.
@@ -88,30 +91,35 @@ module Increase
         # The timing of the transaction.
         transaction_timing: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve an ACH Transfer
       sig do
-        params(ach_transfer_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::ACHTransfer)
+        params(
+          ach_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::ACHTransfer)
       end
       def retrieve(
         # The identifier of the ACH Transfer.
         ach_transfer_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List ACH Transfers
       sig do
         params(
           account_id: String,
-          created_at: T.any(Increase::Models::ACHTransferListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at: Increase::ACHTransferListParams::CreatedAt::OrHash,
           cursor: String,
           external_account_id: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::ACHTransferListParams::Status, Increase::Internal::AnyHash),
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::ACHTransfer])
+          status: Increase::ACHTransferListParams::Status::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::ACHTransfer])
       end
       def list(
         # Filter ACH Transfers to those that originated from the specified Account.
@@ -131,30 +139,41 @@ module Increase
         limit: nil,
         status: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Approves an ACH Transfer in a pending_approval state.
       sig do
-        params(ach_transfer_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::ACHTransfer)
+        params(
+          ach_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::ACHTransfer)
       end
       def approve(
         # The identifier of the ACH Transfer to approve.
         ach_transfer_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # Cancels an ACH Transfer in a pending_approval state.
       sig do
-        params(ach_transfer_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::ACHTransfer)
+        params(
+          ach_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::ACHTransfer)
       end
       def cancel(
         # The identifier of the pending ACH Transfer to cancel.
         ach_transfer_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

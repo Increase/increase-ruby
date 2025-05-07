@@ -5,7 +5,7 @@ module Increase
         account_id: String,
         cursor: String,
         limit: Integer,
-        statement_period_start: Increase::Models::AccountStatementListParams::StatementPeriodStart
+        statement_period_start: Increase::AccountStatementListParams::StatementPeriodStart
       }
       & Increase::Internal::Type::request_parameters
 
@@ -25,21 +25,19 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader statement_period_start: Increase::Models::AccountStatementListParams::StatementPeriodStart?
+      attr_reader statement_period_start: Increase::AccountStatementListParams::StatementPeriodStart?
 
       def statement_period_start=: (
-        Increase::Models::AccountStatementListParams::StatementPeriodStart
-      ) -> Increase::Models::AccountStatementListParams::StatementPeriodStart
+        Increase::AccountStatementListParams::StatementPeriodStart
+      ) -> Increase::AccountStatementListParams::StatementPeriodStart
 
       def initialize: (
         ?account_id: String,
         ?cursor: String,
         ?limit: Integer,
-        ?statement_period_start: Increase::Models::AccountStatementListParams::StatementPeriodStart,
+        ?statement_period_start: Increase::AccountStatementListParams::StatementPeriodStart,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::account_statement_list_params
 
       type statement_period_start =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -67,8 +65,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::AccountStatementListParams::statement_period_start
       end
     end
   end

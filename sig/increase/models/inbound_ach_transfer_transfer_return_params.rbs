@@ -17,8 +17,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::inbound_ach_transfer_transfer_return_params
-
       type reason =
         :insufficient_funds
         | :returned_per_odfi_request

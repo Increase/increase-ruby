@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The identifier for the account to be added to IntraFi.
       sig { returns(String) }
       attr_accessor :account_id
@@ -18,9 +20,8 @@ module Increase
         params(
           account_id: String,
           email_address: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # The identifier for the account to be added to IntraFi.
@@ -28,7 +29,9 @@ module Increase
         # The contact email for the account owner, to be shared with IntraFi.
         email_address:,
         request_options: {}
-      ); end
+      )
+      end
+
       sig do
         override.returns(
           {
@@ -38,7 +41,8 @@ module Increase
           }
         )
       end
-      def to_hash; end
+      def to_hash
+      end
     end
   end
 end

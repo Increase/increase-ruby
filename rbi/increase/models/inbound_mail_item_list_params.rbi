@@ -6,14 +6,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      sig { returns(T.nilable(Increase::Models::InboundMailItemListParams::CreatedAt)) }
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
+      sig { returns(T.nilable(Increase::InboundMailItemListParams::CreatedAt)) }
       attr_reader :created_at
 
       sig do
         params(
-          created_at: T.any(Increase::Models::InboundMailItemListParams::CreatedAt, Increase::Internal::AnyHash)
-        )
-          .void
+          created_at: Increase::InboundMailItemListParams::CreatedAt::OrHash
+        ).void
       end
       attr_writer :created_at
 
@@ -41,13 +42,12 @@ module Increase
 
       sig do
         params(
-          created_at: T.any(Increase::Models::InboundMailItemListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at: Increase::InboundMailItemListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
           lockbox_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         created_at: nil,
@@ -59,22 +59,27 @@ module Increase
         # Filter Inbound Mail Items to ones sent to the provided Lockbox.
         lockbox_id: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              created_at: Increase::Models::InboundMailItemListParams::CreatedAt,
-              cursor: String,
-              limit: Integer,
-              lockbox_id: String,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            created_at: Increase::InboundMailItemListParams::CreatedAt,
+            cursor: String,
+            limit: Integer,
+            lockbox_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
 
       class CreatedAt < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         # timestamp.
         sig { returns(T.nilable(Time)) }
@@ -108,7 +113,12 @@ module Increase
         attr_writer :on_or_before
 
         sig do
-          params(after: Time, before: Time, on_or_after: Time, on_or_before: Time).returns(T.attached_class)
+          params(
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          ).returns(T.attached_class)
         end
         def self.new(
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -123,9 +133,16 @@ module Increase
           # Return results on or before this
           # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
           on_or_before: nil
-        ); end
-        sig { override.returns({after: Time, before: Time, on_or_after: Time, on_or_before: Time}) }
-        def to_hash; end
+        )
+        end
+
+        sig do
+          override.returns(
+            { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

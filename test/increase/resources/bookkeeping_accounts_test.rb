@@ -7,18 +7,18 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
     response = @increase.bookkeeping_accounts.create(name: "New Account!")
 
     assert_pattern do
-      response => Increase::Models::BookkeepingAccount
+      response => Increase::BookkeepingAccount
     end
 
     assert_pattern do
       response => {
         id: String,
         account_id: String | nil,
-        compliance_category: Increase::Models::BookkeepingAccount::ComplianceCategory | nil,
+        compliance_category: Increase::BookkeepingAccount::ComplianceCategory | nil,
         entity_id: String | nil,
         idempotency_key: String | nil,
         name: String,
-        type: Increase::Models::BookkeepingAccount::Type
+        type: Increase::BookkeepingAccount::Type
       }
     end
   end
@@ -27,18 +27,18 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
     response = @increase.bookkeeping_accounts.update("bookkeeping_account_id", name: "Deprecated Account")
 
     assert_pattern do
-      response => Increase::Models::BookkeepingAccount
+      response => Increase::BookkeepingAccount
     end
 
     assert_pattern do
       response => {
         id: String,
         account_id: String | nil,
-        compliance_category: Increase::Models::BookkeepingAccount::ComplianceCategory | nil,
+        compliance_category: Increase::BookkeepingAccount::ComplianceCategory | nil,
         entity_id: String | nil,
         idempotency_key: String | nil,
         name: String,
-        type: Increase::Models::BookkeepingAccount::Type
+        type: Increase::BookkeepingAccount::Type
       }
     end
   end
@@ -54,18 +54,18 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::BookkeepingAccount
+      row => Increase::BookkeepingAccount
     end
 
     assert_pattern do
       row => {
         id: String,
         account_id: String | nil,
-        compliance_category: Increase::Models::BookkeepingAccount::ComplianceCategory | nil,
+        compliance_category: Increase::BookkeepingAccount::ComplianceCategory | nil,
         entity_id: String | nil,
         idempotency_key: String | nil,
         name: String,
-        type: Increase::Models::BookkeepingAccount::Type
+        type: Increase::BookkeepingAccount::Type
       }
     end
   end
@@ -74,14 +74,14 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
     response = @increase.bookkeeping_accounts.balance("bookkeeping_account_id")
 
     assert_pattern do
-      response => Increase::Models::BookkeepingBalanceLookup
+      response => Increase::BookkeepingBalanceLookup
     end
 
     assert_pattern do
       response => {
         balance: Integer,
         bookkeeping_account_id: String,
-        type: Increase::Models::BookkeepingBalanceLookup::Type
+        type: Increase::BookkeepingBalanceLookup::Type
       }
     end
   end

@@ -51,8 +51,6 @@ module Increase
           ?request_for_payment_id: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::inbound_real_time_payments_transfer_create_params
       end
     end
   end

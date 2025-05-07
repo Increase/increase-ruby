@@ -7,7 +7,7 @@ module Increase
           card_payment_id: String,
           ?event_subscription_id: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::CardPayment
+        ) -> Increase::CardPayment
 
         def initialize: (client: Increase::Client) -> void
       end

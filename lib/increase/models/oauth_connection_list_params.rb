@@ -29,8 +29,8 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::Models::OAuthConnectionListParams::Status, nil]
-      optional :status, -> { Increase::Models::OAuthConnectionListParams::Status }
+      #   @return [Increase::OAuthConnectionListParams::Status, nil]
+      optional :status, -> { Increase::OAuthConnectionListParams::Status }
 
       # @!method initialize(cursor: nil, limit: nil, oauth_application_id: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -39,12 +39,10 @@ module Increase
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
       #   @param oauth_application_id [String] Filter results to only include OAuth Connections for a specific OAuth Applicatio
-      #   ...
       #
-      #   @param status [Increase::Models::OAuthConnectionListParams::Status]
+      #   @param status [Increase::OAuthConnectionListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -54,17 +52,18 @@ module Increase
         #   `active` ones. For GET requests, this should be encoded as a comma-delimited
         #   string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::OAuthConnectionListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::OAuthConnectionListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::OAuthConnectionListParams::Status::In] },
+                 -> {
+                   Increase::Internal::Type::ArrayOf[enum: Increase::OAuthConnectionListParams::Status::In]
+                 },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::OAuthConnectionListParams::Status} for more details.
+        #   {Increase::OAuthConnectionListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::OAuthConnectionListParams::Status::In>] Filter to OAuth Connections by their status. By default, return only the `active
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::OAuthConnectionListParams::Status::In>] Filter to OAuth Connections by their status. By default, return only the `active
 
         module In
           extend Increase::Internal::Type::Enum

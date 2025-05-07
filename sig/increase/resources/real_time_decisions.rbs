@@ -4,17 +4,17 @@ module Increase
       def retrieve: (
         String real_time_decision_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::RealTimeDecision
+      ) -> Increase::RealTimeDecision
 
       def action: (
         String real_time_decision_id,
-        ?card_authentication: Increase::Models::RealTimeDecisionActionParams::CardAuthentication,
-        ?card_authentication_challenge: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge,
-        ?card_authorization: Increase::Models::RealTimeDecisionActionParams::CardAuthorization,
-        ?digital_wallet_authentication: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication,
-        ?digital_wallet_token: Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken,
+        ?card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
+        ?card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
+        ?card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
+        ?digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
+        ?digital_wallet_token: Increase::RealTimeDecisionActionParams::DigitalWalletToken,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::RealTimeDecision
+      ) -> Increase::RealTimeDecision
 
       def initialize: (client: Increase::Client) -> void
     end

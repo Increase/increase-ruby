@@ -8,7 +8,7 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
       @increase.account_numbers.create(account_id: "account_in71c4amph0vgo2qllky", name: "Rent payments")
 
     assert_pattern do
-      response => Increase::Models::AccountNumber
+      response => Increase::AccountNumber
     end
 
     assert_pattern do
@@ -18,12 +18,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::Models::AccountNumber::InboundACH,
-        inbound_checks: Increase::Models::AccountNumber::InboundChecks,
+        inbound_ach: Increase::AccountNumber::InboundACH,
+        inbound_checks: Increase::AccountNumber::InboundChecks,
         name: String,
         routing_number: String,
-        status: Increase::Models::AccountNumber::Status,
-        type: Increase::Models::AccountNumber::Type
+        status: Increase::AccountNumber::Status,
+        type: Increase::AccountNumber::Type
       }
     end
   end
@@ -32,7 +32,7 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
     response = @increase.account_numbers.retrieve("account_number_id")
 
     assert_pattern do
-      response => Increase::Models::AccountNumber
+      response => Increase::AccountNumber
     end
 
     assert_pattern do
@@ -42,12 +42,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::Models::AccountNumber::InboundACH,
-        inbound_checks: Increase::Models::AccountNumber::InboundChecks,
+        inbound_ach: Increase::AccountNumber::InboundACH,
+        inbound_checks: Increase::AccountNumber::InboundChecks,
         name: String,
         routing_number: String,
-        status: Increase::Models::AccountNumber::Status,
-        type: Increase::Models::AccountNumber::Type
+        status: Increase::AccountNumber::Status,
+        type: Increase::AccountNumber::Type
       }
     end
   end
@@ -56,7 +56,7 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
     response = @increase.account_numbers.update("account_number_id")
 
     assert_pattern do
-      response => Increase::Models::AccountNumber
+      response => Increase::AccountNumber
     end
 
     assert_pattern do
@@ -66,12 +66,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::Models::AccountNumber::InboundACH,
-        inbound_checks: Increase::Models::AccountNumber::InboundChecks,
+        inbound_ach: Increase::AccountNumber::InboundACH,
+        inbound_checks: Increase::AccountNumber::InboundChecks,
         name: String,
         routing_number: String,
-        status: Increase::Models::AccountNumber::Status,
-        type: Increase::Models::AccountNumber::Type
+        status: Increase::AccountNumber::Status,
+        type: Increase::AccountNumber::Type
       }
     end
   end
@@ -87,7 +87,7 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::AccountNumber
+      row => Increase::AccountNumber
     end
 
     assert_pattern do
@@ -97,12 +97,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::Models::AccountNumber::InboundACH,
-        inbound_checks: Increase::Models::AccountNumber::InboundChecks,
+        inbound_ach: Increase::AccountNumber::InboundACH,
+        inbound_checks: Increase::AccountNumber::InboundChecks,
         name: String,
         routing_number: String,
-        status: Increase::Models::AccountNumber::Status,
-        type: Increase::Models::AccountNumber::Type
+        status: Increase::AccountNumber::Status,
+        type: Increase::AccountNumber::Type
       }
     end
   end

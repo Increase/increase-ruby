@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The identifying details of anyone controlling or owning 25% or more of the
       # corporation.
       sig { returns(String) }
@@ -14,18 +16,27 @@ module Increase
       sig do
         params(
           beneficial_owner_id: String,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # The identifying details of anyone controlling or owning 25% or more of the
         # corporation.
         beneficial_owner_id:,
         request_options: {}
-      ); end
-      sig { override.returns({beneficial_owner_id: String, request_options: Increase::RequestOptions}) }
-      def to_hash; end
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            beneficial_owner_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
     end
   end
 end

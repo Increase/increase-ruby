@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Event]
+      # @return [Increase::Event]
       #
       # @see Increase::Models::EventRetrieveParams
       def retrieve(event_id, params = {})
         @client.request(
           method: :get,
           path: ["events/%1$s", event_id],
-          model: Increase::Models::Event,
+          model: Increase::Event,
           options: params[:request_options]
         )
       end
@@ -32,28 +32,27 @@ module Increase
       #
       # @param associated_object_id [String] Filter Events to those belonging to the object with the provided identifier.
       #
-      # @param category [Increase::Models::EventListParams::Category]
+      # @param category [Increase::EventListParams::Category]
       #
-      # @param created_at [Increase::Models::EventListParams::CreatedAt]
+      # @param created_at [Increase::EventListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::Event>]
+      # @return [Increase::Internal::Page<Increase::Event>]
       #
       # @see Increase::Models::EventListParams
       def list(params = {})
-        parsed, options = Increase::Models::EventListParams.dump_request(params)
+        parsed, options = Increase::EventListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "events",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::Event,
+          model: Increase::Event,
           options: options
         )
       end

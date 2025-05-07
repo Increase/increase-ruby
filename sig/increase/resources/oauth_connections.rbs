@@ -4,15 +4,15 @@ module Increase
       def retrieve: (
         String oauth_connection_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::OAuthConnection
+      ) -> Increase::OAuthConnection
 
       def list: (
         ?cursor: String,
         ?limit: Integer,
         ?oauth_application_id: String,
-        ?status: Increase::Models::OAuthConnectionListParams::Status,
+        ?status: Increase::OAuthConnectionListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::OAuthConnection]
+      ) -> Increase::Internal::Page[Increase::OAuthConnection]
 
       def initialize: (client: Increase::Client) -> void
     end

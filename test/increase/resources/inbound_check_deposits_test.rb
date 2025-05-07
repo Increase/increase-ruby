@@ -7,7 +7,7 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
     response = @increase.inbound_check_deposits.retrieve("inbound_check_deposit_id")
 
     assert_pattern do
-      response => Increase::Models::InboundCheckDeposit
+      response => Increase::InboundCheckDeposit
     end
 
     assert_pattern do
@@ -16,22 +16,22 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
         accepted_at: Time | nil,
         account_id: String,
         account_number_id: String | nil,
-        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment]),
+        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]),
         amount: Integer,
         back_image_file_id: String | nil,
         bank_of_first_deposit_routing_number: String | nil,
         check_number: String | nil,
         check_transfer_id: String | nil,
         created_at: Time,
-        currency: Increase::Models::InboundCheckDeposit::Currency,
+        currency: Increase::InboundCheckDeposit::Currency,
         declined_at: Time | nil,
         declined_transaction_id: String | nil,
-        deposit_return: Increase::Models::InboundCheckDeposit::DepositReturn | nil,
+        deposit_return: Increase::InboundCheckDeposit::DepositReturn | nil,
         front_image_file_id: String | nil,
-        payee_name_analysis: Increase::Models::InboundCheckDeposit::PayeeNameAnalysis,
-        status: Increase::Models::InboundCheckDeposit::Status,
+        payee_name_analysis: Increase::InboundCheckDeposit::PayeeNameAnalysis,
+        status: Increase::InboundCheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::InboundCheckDeposit::Type
+        type: Increase::InboundCheckDeposit::Type
       }
     end
   end
@@ -47,7 +47,7 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::InboundCheckDeposit
+      row => Increase::InboundCheckDeposit
     end
 
     assert_pattern do
@@ -56,22 +56,22 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
         accepted_at: Time | nil,
         account_id: String,
         account_number_id: String | nil,
-        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment]),
+        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]),
         amount: Integer,
         back_image_file_id: String | nil,
         bank_of_first_deposit_routing_number: String | nil,
         check_number: String | nil,
         check_transfer_id: String | nil,
         created_at: Time,
-        currency: Increase::Models::InboundCheckDeposit::Currency,
+        currency: Increase::InboundCheckDeposit::Currency,
         declined_at: Time | nil,
         declined_transaction_id: String | nil,
-        deposit_return: Increase::Models::InboundCheckDeposit::DepositReturn | nil,
+        deposit_return: Increase::InboundCheckDeposit::DepositReturn | nil,
         front_image_file_id: String | nil,
-        payee_name_analysis: Increase::Models::InboundCheckDeposit::PayeeNameAnalysis,
-        status: Increase::Models::InboundCheckDeposit::Status,
+        payee_name_analysis: Increase::InboundCheckDeposit::PayeeNameAnalysis,
+        status: Increase::InboundCheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::InboundCheckDeposit::Type
+        type: Increase::InboundCheckDeposit::Type
       }
     end
   end
@@ -80,7 +80,7 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
     response = @increase.inbound_check_deposits.decline("inbound_check_deposit_id")
 
     assert_pattern do
-      response => Increase::Models::InboundCheckDeposit
+      response => Increase::InboundCheckDeposit
     end
 
     assert_pattern do
@@ -89,22 +89,22 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
         accepted_at: Time | nil,
         account_id: String,
         account_number_id: String | nil,
-        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment]),
+        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]),
         amount: Integer,
         back_image_file_id: String | nil,
         bank_of_first_deposit_routing_number: String | nil,
         check_number: String | nil,
         check_transfer_id: String | nil,
         created_at: Time,
-        currency: Increase::Models::InboundCheckDeposit::Currency,
+        currency: Increase::InboundCheckDeposit::Currency,
         declined_at: Time | nil,
         declined_transaction_id: String | nil,
-        deposit_return: Increase::Models::InboundCheckDeposit::DepositReturn | nil,
+        deposit_return: Increase::InboundCheckDeposit::DepositReturn | nil,
         front_image_file_id: String | nil,
-        payee_name_analysis: Increase::Models::InboundCheckDeposit::PayeeNameAnalysis,
-        status: Increase::Models::InboundCheckDeposit::Status,
+        payee_name_analysis: Increase::InboundCheckDeposit::PayeeNameAnalysis,
+        status: Increase::InboundCheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::InboundCheckDeposit::Type
+        type: Increase::InboundCheckDeposit::Type
       }
     end
   end
@@ -114,7 +114,7 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
       @increase.inbound_check_deposits.return_("inbound_check_deposit_id", reason: :altered_or_fictitious)
 
     assert_pattern do
-      response => Increase::Models::InboundCheckDeposit
+      response => Increase::InboundCheckDeposit
     end
 
     assert_pattern do
@@ -123,22 +123,22 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
         accepted_at: Time | nil,
         account_id: String,
         account_number_id: String | nil,
-        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::Models::InboundCheckDeposit::Adjustment]),
+        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]),
         amount: Integer,
         back_image_file_id: String | nil,
         bank_of_first_deposit_routing_number: String | nil,
         check_number: String | nil,
         check_transfer_id: String | nil,
         created_at: Time,
-        currency: Increase::Models::InboundCheckDeposit::Currency,
+        currency: Increase::InboundCheckDeposit::Currency,
         declined_at: Time | nil,
         declined_transaction_id: String | nil,
-        deposit_return: Increase::Models::InboundCheckDeposit::DepositReturn | nil,
+        deposit_return: Increase::InboundCheckDeposit::DepositReturn | nil,
         front_image_file_id: String | nil,
-        payee_name_analysis: Increase::Models::InboundCheckDeposit::PayeeNameAnalysis,
-        status: Increase::Models::InboundCheckDeposit::Status,
+        payee_name_analysis: Increase::InboundCheckDeposit::PayeeNameAnalysis,
+        status: Increase::InboundCheckDeposit::Status,
         transaction_id: String | nil,
-        type: Increase::Models::InboundCheckDeposit::Type
+        type: Increase::InboundCheckDeposit::Type
       }
     end
   end

@@ -74,9 +74,9 @@ module Increase
         # @!attribute standard_entry_class_code
         #   The standard entry class code for the transfer.
         #
-        #   @return [Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode, nil]
+        #   @return [Symbol, Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode, nil]
         optional :standard_entry_class_code,
-                 enum: -> { Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode }
+                 enum: -> { Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode }
 
         # @!method initialize(account_number_id:, amount:, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_id: nil, company_name: nil, receiver_id_number: nil, receiver_name: nil, resolve_at: nil, standard_entry_class_code: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
@@ -86,7 +86,6 @@ module Increase
         #   @param account_number_id [String] The identifier of the Account Number the inbound ACH Transfer is for.
         #
         #   @param amount [Integer] The transfer amount in cents. A positive amount originates a credit transfer pus
-        #   ...
         #
         #   @param company_descriptive_date [String] The description of the date of the transfer.
         #
@@ -103,9 +102,8 @@ module Increase
         #   @param receiver_name [String] The name of the receiver of the transfer.
         #
         #   @param resolve_at [Time] The time at which the transfer should be resolved. If not provided will resolve
-        #   ...
         #
-        #   @param standard_entry_class_code [Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode] The standard entry class code for the transfer.
+        #   @param standard_entry_class_code [Symbol, Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode] The standard entry class code for the transfer.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

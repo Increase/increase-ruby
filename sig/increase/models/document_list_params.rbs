@@ -2,8 +2,8 @@ module Increase
   module Models
     type document_list_params =
       {
-        category: Increase::Models::DocumentListParams::Category,
-        created_at: Increase::Models::DocumentListParams::CreatedAt,
+        category: Increase::DocumentListParams::Category,
+        created_at: Increase::DocumentListParams::CreatedAt,
         cursor: String,
         entity_id: String,
         limit: Integer
@@ -14,17 +14,17 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader category: Increase::Models::DocumentListParams::Category?
+      attr_reader category: Increase::DocumentListParams::Category?
 
       def category=: (
-        Increase::Models::DocumentListParams::Category
-      ) -> Increase::Models::DocumentListParams::Category
+        Increase::DocumentListParams::Category
+      ) -> Increase::DocumentListParams::Category
 
-      attr_reader created_at: Increase::Models::DocumentListParams::CreatedAt?
+      attr_reader created_at: Increase::DocumentListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::DocumentListParams::CreatedAt
-      ) -> Increase::Models::DocumentListParams::CreatedAt
+        Increase::DocumentListParams::CreatedAt
+      ) -> Increase::DocumentListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -39,31 +39,27 @@ module Increase
       def limit=: (Integer) -> Integer
 
       def initialize: (
-        ?category: Increase::Models::DocumentListParams::Category,
-        ?created_at: Increase::Models::DocumentListParams::CreatedAt,
+        ?category: Increase::DocumentListParams::Category,
+        ?created_at: Increase::DocumentListParams::CreatedAt,
         ?cursor: String,
         ?entity_id: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::document_list_params
-
       type category =
-        { in_: ::Array[Increase::Models::DocumentListParams::Category::in_] }
+        { in_: ::Array[Increase::DocumentListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::DocumentListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::DocumentListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::DocumentListParams::Category::in_]
-        ) -> ::Array[Increase::Models::DocumentListParams::Category::in_]
+          ::Array[Increase::DocumentListParams::Category::in_]
+        ) -> ::Array[Increase::DocumentListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::DocumentListParams::Category::in_]
+          ?in_: ::Array[Increase::DocumentListParams::Category::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::DocumentListParams::category
 
         type in_ =
           :form_1099_int
@@ -86,7 +82,7 @@ module Increase
           # Company information, such a policies or procedures, typically submitted during our due diligence process.
           COMPANY_INFORMATION: :company_information
 
-          def self?.values: -> ::Array[Increase::Models::DocumentListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::DocumentListParams::Category::in_]
         end
       end
 
@@ -116,8 +112,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::DocumentListParams::created_at
       end
     end
   end

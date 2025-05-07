@@ -4,15 +4,15 @@ module Increase
       def retrieve: (
         String account_statement_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountStatement
+      ) -> Increase::AccountStatement
 
       def list: (
         ?account_id: String,
         ?cursor: String,
         ?limit: Integer,
-        ?statement_period_start: Increase::Models::AccountStatementListParams::StatementPeriodStart,
+        ?statement_period_start: Increase::AccountStatementListParams::StatementPeriodStart,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::AccountStatement]
+      ) -> Increase::Internal::Page[Increase::AccountStatement]
 
       def initialize: (client: Increase::Client) -> void
     end

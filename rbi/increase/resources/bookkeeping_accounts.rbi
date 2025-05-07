@@ -8,11 +8,11 @@ module Increase
         params(
           name: String,
           account_id: String,
-          compliance_category: Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory::OrSymbol,
+          compliance_category:
+            Increase::BookkeepingAccountCreateParams::ComplianceCategory::OrSymbol,
           entity_id: String,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::BookkeepingAccount)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::BookkeepingAccount)
       end
       def create(
         # The name you choose for the account.
@@ -24,11 +24,16 @@ module Increase
         # The entity, if `compliance_category` is `customer_balance`.
         entity_id: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Update a Bookkeeping Account
       sig do
-        params(bookkeeping_account_id: String, name: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::BookkeepingAccount)
+        params(
+          bookkeeping_account_id: String,
+          name: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::BookkeepingAccount)
       end
       def update(
         # The bookkeeping account you would like to update.
@@ -36,16 +41,17 @@ module Increase
         # The name you choose for the account.
         name:,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Bookkeeping Accounts
       sig do
         params(
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::BookkeepingAccount])
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::BookkeepingAccount])
       end
       def list(
         # Return the page of entries after this one.
@@ -59,11 +65,16 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve a Bookkeeping Account Balance
       sig do
-        params(bookkeeping_account_id: String, at_time: Time, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::BookkeepingBalanceLookup)
+        params(
+          bookkeeping_account_id: String,
+          at_time: Time,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::BookkeepingBalanceLookup)
       end
       def balance(
         # The identifier of the Bookkeeping Account to retrieve.
@@ -71,10 +82,13 @@ module Increase
         # The moment to query the balance at. If not set, returns the current balances.
         at_time: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

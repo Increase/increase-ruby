@@ -7,19 +7,19 @@ module Increase
         amount: Integer,
         back_image_file_id: String?,
         created_at: Time,
-        deposit_acceptance: Increase::Models::CheckDeposit::DepositAcceptance?,
-        deposit_rejection: Increase::Models::CheckDeposit::DepositRejection?,
-        deposit_return: Increase::Models::CheckDeposit::DepositReturn?,
-        deposit_submission: Increase::Models::CheckDeposit::DepositSubmission?,
+        deposit_acceptance: Increase::CheckDeposit::DepositAcceptance?,
+        deposit_rejection: Increase::CheckDeposit::DepositRejection?,
+        deposit_return: Increase::CheckDeposit::DepositReturn?,
+        deposit_submission: Increase::CheckDeposit::DepositSubmission?,
         description: String?,
         front_image_file_id: String,
         idempotency_key: String?,
-        inbound_funds_hold: Increase::Models::CheckDeposit::InboundFundsHold?,
+        inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold?,
         inbound_mail_item_id: String?,
         lockbox_id: String?,
-        status: Increase::Models::CheckDeposit::status,
+        status: Increase::CheckDeposit::status,
         transaction_id: String?,
-        type: Increase::Models::CheckDeposit::type_
+        type: Increase::CheckDeposit::type_
       }
 
     class CheckDeposit < Increase::Internal::Type::BaseModel
@@ -33,13 +33,13 @@ module Increase
 
       attr_accessor created_at: Time
 
-      attr_accessor deposit_acceptance: Increase::Models::CheckDeposit::DepositAcceptance?
+      attr_accessor deposit_acceptance: Increase::CheckDeposit::DepositAcceptance?
 
-      attr_accessor deposit_rejection: Increase::Models::CheckDeposit::DepositRejection?
+      attr_accessor deposit_rejection: Increase::CheckDeposit::DepositRejection?
 
-      attr_accessor deposit_return: Increase::Models::CheckDeposit::DepositReturn?
+      attr_accessor deposit_return: Increase::CheckDeposit::DepositReturn?
 
-      attr_accessor deposit_submission: Increase::Models::CheckDeposit::DepositSubmission?
+      attr_accessor deposit_submission: Increase::CheckDeposit::DepositSubmission?
 
       attr_accessor description: String?
 
@@ -47,17 +47,17 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor inbound_funds_hold: Increase::Models::CheckDeposit::InboundFundsHold?
+      attr_accessor inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold?
 
       attr_accessor inbound_mail_item_id: String?
 
       attr_accessor lockbox_id: String?
 
-      attr_accessor status: Increase::Models::CheckDeposit::status
+      attr_accessor status: Increase::CheckDeposit::status
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::Models::CheckDeposit::type_
+      attr_accessor type: Increase::CheckDeposit::type_
 
       def initialize: (
         id: String,
@@ -65,22 +65,20 @@ module Increase
         amount: Integer,
         back_image_file_id: String?,
         created_at: Time,
-        deposit_acceptance: Increase::Models::CheckDeposit::DepositAcceptance?,
-        deposit_rejection: Increase::Models::CheckDeposit::DepositRejection?,
-        deposit_return: Increase::Models::CheckDeposit::DepositReturn?,
-        deposit_submission: Increase::Models::CheckDeposit::DepositSubmission?,
+        deposit_acceptance: Increase::CheckDeposit::DepositAcceptance?,
+        deposit_rejection: Increase::CheckDeposit::DepositRejection?,
+        deposit_return: Increase::CheckDeposit::DepositReturn?,
+        deposit_submission: Increase::CheckDeposit::DepositSubmission?,
         description: String?,
         front_image_file_id: String,
         idempotency_key: String?,
-        inbound_funds_hold: Increase::Models::CheckDeposit::InboundFundsHold?,
+        inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold?,
         inbound_mail_item_id: String?,
         lockbox_id: String?,
-        status: Increase::Models::CheckDeposit::status,
+        status: Increase::CheckDeposit::status,
         transaction_id: String?,
-        type: Increase::Models::CheckDeposit::type_
+        type: Increase::CheckDeposit::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::check_deposit
 
       type deposit_acceptance =
         {
@@ -88,7 +86,7 @@ module Increase
           amount: Integer,
           auxiliary_on_us: String?,
           check_deposit_id: String,
-          currency: Increase::Models::CheckDeposit::DepositAcceptance::currency,
+          currency: Increase::CheckDeposit::DepositAcceptance::currency,
           routing_number: String,
           serial_number: String?
         }
@@ -102,7 +100,7 @@ module Increase
 
         attr_accessor check_deposit_id: String
 
-        attr_accessor currency: Increase::Models::CheckDeposit::DepositAcceptance::currency
+        attr_accessor currency: Increase::CheckDeposit::DepositAcceptance::currency
 
         attr_accessor routing_number: String
 
@@ -113,12 +111,10 @@ module Increase
           amount: Integer,
           auxiliary_on_us: String?,
           check_deposit_id: String,
-          currency: Increase::Models::CheckDeposit::DepositAcceptance::currency,
+          currency: Increase::CheckDeposit::DepositAcceptance::currency,
           routing_number: String,
           serial_number: String?
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckDeposit::deposit_acceptance
 
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
@@ -143,7 +139,7 @@ module Increase
           # US Dollar (USD)
           USD: :USD
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::DepositAcceptance::currency]
+          def self?.values: -> ::Array[Increase::CheckDeposit::DepositAcceptance::currency]
         end
       end
 
@@ -151,9 +147,9 @@ module Increase
         {
           amount: Integer,
           check_deposit_id: String,
-          currency: Increase::Models::CheckDeposit::DepositRejection::currency,
+          currency: Increase::CheckDeposit::DepositRejection::currency,
           declined_transaction_id: String,
-          reason: Increase::Models::CheckDeposit::DepositRejection::reason,
+          reason: Increase::CheckDeposit::DepositRejection::reason,
           rejected_at: Time
         }
 
@@ -162,24 +158,22 @@ module Increase
 
         attr_accessor check_deposit_id: String
 
-        attr_accessor currency: Increase::Models::CheckDeposit::DepositRejection::currency
+        attr_accessor currency: Increase::CheckDeposit::DepositRejection::currency
 
         attr_accessor declined_transaction_id: String
 
-        attr_accessor reason: Increase::Models::CheckDeposit::DepositRejection::reason
+        attr_accessor reason: Increase::CheckDeposit::DepositRejection::reason
 
         attr_accessor rejected_at: Time
 
         def initialize: (
           amount: Integer,
           check_deposit_id: String,
-          currency: Increase::Models::CheckDeposit::DepositRejection::currency,
+          currency: Increase::CheckDeposit::DepositRejection::currency,
           declined_transaction_id: String,
-          reason: Increase::Models::CheckDeposit::DepositRejection::reason,
+          reason: Increase::CheckDeposit::DepositRejection::reason,
           rejected_at: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckDeposit::deposit_rejection
 
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
@@ -204,7 +198,7 @@ module Increase
           # US Dollar (USD)
           USD: :USD
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::DepositRejection::currency]
+          def self?.values: -> ::Array[Increase::CheckDeposit::DepositRejection::currency]
         end
 
         type reason =
@@ -256,7 +250,7 @@ module Increase
           # The check was rejected for an unknown reason.
           UNKNOWN: :unknown
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::DepositRejection::reason]
+          def self?.values: -> ::Array[Increase::CheckDeposit::DepositRejection::reason]
         end
       end
 
@@ -264,8 +258,8 @@ module Increase
         {
           amount: Integer,
           check_deposit_id: String,
-          currency: Increase::Models::CheckDeposit::DepositReturn::currency,
-          return_reason: Increase::Models::CheckDeposit::DepositReturn::return_reason,
+          currency: Increase::CheckDeposit::DepositReturn::currency,
+          return_reason: Increase::CheckDeposit::DepositReturn::return_reason,
           returned_at: Time,
           transaction_id: String
         }
@@ -275,9 +269,9 @@ module Increase
 
         attr_accessor check_deposit_id: String
 
-        attr_accessor currency: Increase::Models::CheckDeposit::DepositReturn::currency
+        attr_accessor currency: Increase::CheckDeposit::DepositReturn::currency
 
-        attr_accessor return_reason: Increase::Models::CheckDeposit::DepositReturn::return_reason
+        attr_accessor return_reason: Increase::CheckDeposit::DepositReturn::return_reason
 
         attr_accessor returned_at: Time
 
@@ -286,13 +280,11 @@ module Increase
         def initialize: (
           amount: Integer,
           check_deposit_id: String,
-          currency: Increase::Models::CheckDeposit::DepositReturn::currency,
-          return_reason: Increase::Models::CheckDeposit::DepositReturn::return_reason,
+          currency: Increase::CheckDeposit::DepositReturn::currency,
+          return_reason: Increase::CheckDeposit::DepositReturn::return_reason,
           returned_at: Time,
           transaction_id: String
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckDeposit::deposit_return
 
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
@@ -317,7 +309,7 @@ module Increase
           # US Dollar (USD)
           USD: :USD
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::DepositReturn::currency]
+          def self?.values: -> ::Array[Increase::CheckDeposit::DepositReturn::currency]
         end
 
         type return_reason =
@@ -429,7 +421,7 @@ module Increase
           # The bank sold this account and no longer services this customer.
           BRANCH_OR_ACCOUNT_SOLD: :branch_or_account_sold
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::DepositReturn::return_reason]
+          def self?.values: -> ::Array[Increase::CheckDeposit::DepositReturn::return_reason]
         end
       end
 
@@ -448,8 +440,6 @@ module Increase
           front_file_id: String,
           submitted_at: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckDeposit::deposit_submission
       end
 
       type inbound_funds_hold =
@@ -458,12 +448,12 @@ module Increase
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
-          currency: Increase::Models::CheckDeposit::InboundFundsHold::currency,
+          currency: Increase::CheckDeposit::InboundFundsHold::currency,
           held_transaction_id: String?,
           pending_transaction_id: String?,
           released_at: Time?,
-          status: Increase::Models::CheckDeposit::InboundFundsHold::status,
-          type: Increase::Models::CheckDeposit::InboundFundsHold::type_
+          status: Increase::CheckDeposit::InboundFundsHold::status,
+          type: Increase::CheckDeposit::InboundFundsHold::type_
         }
 
       class InboundFundsHold < Increase::Internal::Type::BaseModel
@@ -475,7 +465,7 @@ module Increase
 
         attr_accessor created_at: Time
 
-        attr_accessor currency: Increase::Models::CheckDeposit::InboundFundsHold::currency
+        attr_accessor currency: Increase::CheckDeposit::InboundFundsHold::currency
 
         attr_accessor held_transaction_id: String?
 
@@ -483,24 +473,22 @@ module Increase
 
         attr_accessor released_at: Time?
 
-        attr_accessor status: Increase::Models::CheckDeposit::InboundFundsHold::status
+        attr_accessor status: Increase::CheckDeposit::InboundFundsHold::status
 
-        attr_accessor type: Increase::Models::CheckDeposit::InboundFundsHold::type_
+        attr_accessor type: Increase::CheckDeposit::InboundFundsHold::type_
 
         def initialize: (
           id: String,
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
-          currency: Increase::Models::CheckDeposit::InboundFundsHold::currency,
+          currency: Increase::CheckDeposit::InboundFundsHold::currency,
           held_transaction_id: String?,
           pending_transaction_id: String?,
           released_at: Time?,
-          status: Increase::Models::CheckDeposit::InboundFundsHold::status,
-          type: Increase::Models::CheckDeposit::InboundFundsHold::type_
+          status: Increase::CheckDeposit::InboundFundsHold::status,
+          type: Increase::CheckDeposit::InboundFundsHold::type_
         ) -> void
-
-        def to_hash: -> Increase::Models::CheckDeposit::inbound_funds_hold
 
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
@@ -525,7 +513,7 @@ module Increase
           # US Dollar (USD)
           USD: :USD
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::InboundFundsHold::currency]
+          def self?.values: -> ::Array[Increase::CheckDeposit::InboundFundsHold::currency]
         end
 
         type status = :held | :complete
@@ -539,7 +527,7 @@ module Increase
           # Funds have been released.
           COMPLETE: :complete
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::InboundFundsHold::status]
+          def self?.values: -> ::Array[Increase::CheckDeposit::InboundFundsHold::status]
         end
 
         type type_ = :inbound_funds_hold
@@ -549,7 +537,7 @@ module Increase
 
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
 
-          def self?.values: -> ::Array[Increase::Models::CheckDeposit::InboundFundsHold::type_]
+          def self?.values: -> ::Array[Increase::CheckDeposit::InboundFundsHold::type_]
         end
       end
 
@@ -570,7 +558,7 @@ module Increase
         # The Check Deposit has been returned.
         RETURNED: :returned
 
-        def self?.values: -> ::Array[Increase::Models::CheckDeposit::status]
+        def self?.values: -> ::Array[Increase::CheckDeposit::status]
       end
 
       type type_ = :check_deposit
@@ -580,7 +568,7 @@ module Increase
 
         CHECK_DEPOSIT: :check_deposit
 
-        def self?.values: -> ::Array[Increase::Models::CheckDeposit::type_]
+        def self?.values: -> ::Array[Increase::CheckDeposit::type_]
       end
     end
   end

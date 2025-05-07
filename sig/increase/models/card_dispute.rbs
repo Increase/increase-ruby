@@ -3,23 +3,23 @@ module Increase
     type card_dispute =
       {
         id: String,
-        acceptance: Increase::Models::CardDispute::Acceptance?,
+        acceptance: Increase::CardDispute::Acceptance?,
         amount: Integer?,
         created_at: Time,
         disputed_transaction_id: String,
         explanation: String,
         idempotency_key: String?,
-        loss: Increase::Models::CardDispute::Loss?,
-        rejection: Increase::Models::CardDispute::Rejection?,
-        status: Increase::Models::CardDispute::status,
-        type: Increase::Models::CardDispute::type_,
-        win: Increase::Models::CardDispute::Win?
+        loss: Increase::CardDispute::Loss?,
+        rejection: Increase::CardDispute::Rejection?,
+        status: Increase::CardDispute::status,
+        type: Increase::CardDispute::type_,
+        win: Increase::CardDispute::Win?
       }
 
     class CardDispute < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor acceptance: Increase::Models::CardDispute::Acceptance?
+      attr_accessor acceptance: Increase::CardDispute::Acceptance?
 
       attr_accessor amount: Integer?
 
@@ -31,32 +31,30 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor loss: Increase::Models::CardDispute::Loss?
+      attr_accessor loss: Increase::CardDispute::Loss?
 
-      attr_accessor rejection: Increase::Models::CardDispute::Rejection?
+      attr_accessor rejection: Increase::CardDispute::Rejection?
 
-      attr_accessor status: Increase::Models::CardDispute::status
+      attr_accessor status: Increase::CardDispute::status
 
-      attr_accessor type: Increase::Models::CardDispute::type_
+      attr_accessor type: Increase::CardDispute::type_
 
-      attr_accessor win: Increase::Models::CardDispute::Win?
+      attr_accessor win: Increase::CardDispute::Win?
 
       def initialize: (
         id: String,
-        acceptance: Increase::Models::CardDispute::Acceptance?,
+        acceptance: Increase::CardDispute::Acceptance?,
         amount: Integer?,
         created_at: Time,
         disputed_transaction_id: String,
         explanation: String,
         idempotency_key: String?,
-        loss: Increase::Models::CardDispute::Loss?,
-        rejection: Increase::Models::CardDispute::Rejection?,
-        status: Increase::Models::CardDispute::status,
-        type: Increase::Models::CardDispute::type_,
-        win: Increase::Models::CardDispute::Win?
+        loss: Increase::CardDispute::Loss?,
+        rejection: Increase::CardDispute::Rejection?,
+        status: Increase::CardDispute::status,
+        type: Increase::CardDispute::type_,
+        win: Increase::CardDispute::Win?
       ) -> void
-
-      def to_hash: -> Increase::Models::card_dispute
 
       type acceptance =
         { accepted_at: Time, card_dispute_id: String, transaction_id: String }
@@ -73,8 +71,6 @@ module Increase
           card_dispute_id: String,
           transaction_id: String
         ) -> void
-
-        def to_hash: -> Increase::Models::CardDispute::acceptance
       end
 
       type loss =
@@ -100,8 +96,6 @@ module Increase
           lost_at: Time,
           transaction_id: String
         ) -> void
-
-        def to_hash: -> Increase::Models::CardDispute::loss
       end
 
       type rejection =
@@ -119,8 +113,6 @@ module Increase
           explanation: String,
           rejected_at: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::CardDispute::rejection
       end
 
       type status =
@@ -152,7 +144,7 @@ module Increase
         # The Card Dispute has been won and no further action can be taken.
         WON: :won
 
-        def self?.values: -> ::Array[Increase::Models::CardDispute::status]
+        def self?.values: -> ::Array[Increase::CardDispute::status]
       end
 
       type type_ = :card_dispute
@@ -162,7 +154,7 @@ module Increase
 
         CARD_DISPUTE: :card_dispute
 
-        def self?.values: -> ::Array[Increase::Models::CardDispute::type_]
+        def self?.values: -> ::Array[Increase::CardDispute::type_]
       end
 
       type win = { card_dispute_id: String, won_at: Time }
@@ -173,8 +165,6 @@ module Increase
         attr_accessor won_at: Time
 
         def initialize: (card_dispute_id: String, won_at: Time) -> void
-
-        def to_hash: -> Increase::Models::CardDispute::win
       end
     end
   end

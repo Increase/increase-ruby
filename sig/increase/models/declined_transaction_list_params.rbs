@@ -3,8 +3,8 @@ module Increase
     type declined_transaction_list_params =
       {
         account_id: String,
-        category: Increase::Models::DeclinedTransactionListParams::Category,
-        created_at: Increase::Models::DeclinedTransactionListParams::CreatedAt,
+        category: Increase::DeclinedTransactionListParams::Category,
+        created_at: Increase::DeclinedTransactionListParams::CreatedAt,
         cursor: String,
         limit: Integer,
         route_id: String
@@ -19,17 +19,17 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader category: Increase::Models::DeclinedTransactionListParams::Category?
+      attr_reader category: Increase::DeclinedTransactionListParams::Category?
 
       def category=: (
-        Increase::Models::DeclinedTransactionListParams::Category
-      ) -> Increase::Models::DeclinedTransactionListParams::Category
+        Increase::DeclinedTransactionListParams::Category
+      ) -> Increase::DeclinedTransactionListParams::Category
 
-      attr_reader created_at: Increase::Models::DeclinedTransactionListParams::CreatedAt?
+      attr_reader created_at: Increase::DeclinedTransactionListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::DeclinedTransactionListParams::CreatedAt
-      ) -> Increase::Models::DeclinedTransactionListParams::CreatedAt
+        Increase::DeclinedTransactionListParams::CreatedAt
+      ) -> Increase::DeclinedTransactionListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -45,33 +45,27 @@ module Increase
 
       def initialize: (
         ?account_id: String,
-        ?category: Increase::Models::DeclinedTransactionListParams::Category,
-        ?created_at: Increase::Models::DeclinedTransactionListParams::CreatedAt,
+        ?category: Increase::DeclinedTransactionListParams::Category,
+        ?created_at: Increase::DeclinedTransactionListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?route_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::declined_transaction_list_params
-
       type category =
-        {
-          in_: ::Array[Increase::Models::DeclinedTransactionListParams::Category::in_]
-        }
+        { in_: ::Array[Increase::DeclinedTransactionListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::DeclinedTransactionListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::DeclinedTransactionListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::DeclinedTransactionListParams::Category::in_]
-        ) -> ::Array[Increase::Models::DeclinedTransactionListParams::Category::in_]
+          ::Array[Increase::DeclinedTransactionListParams::Category::in_]
+        ) -> ::Array[Increase::DeclinedTransactionListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::DeclinedTransactionListParams::Category::in_]
+          ?in_: ::Array[Increase::DeclinedTransactionListParams::Category::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::DeclinedTransactionListParams::category
 
         type in_ =
           :ach_decline
@@ -106,7 +100,7 @@ module Increase
           # The Declined Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::Models::DeclinedTransactionListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::DeclinedTransactionListParams::Category::in_]
         end
       end
 
@@ -136,8 +130,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::DeclinedTransactionListParams::created_at
       end
     end
   end

@@ -5,17 +5,17 @@ module Increase
         def reject: (
           String check_deposit_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::CheckDeposit
+        ) -> Increase::CheckDeposit
 
         def return_: (
           String check_deposit_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::CheckDeposit
+        ) -> Increase::CheckDeposit
 
         def submit: (
           String check_deposit_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::CheckDeposit
+        ) -> Increase::CheckDeposit
 
         def initialize: (client: Increase::Client) -> void
       end

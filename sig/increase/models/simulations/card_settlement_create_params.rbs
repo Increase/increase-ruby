@@ -23,8 +23,6 @@ module Increase
           ?amount: Integer,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::card_settlement_create_params
       end
     end
   end

@@ -32,8 +32,8 @@ module Increase
       #   If your account requires approvals for transfers and the transfer was approved,
       #   this will contain details of the approval.
       #
-      #   @return [Increase::Models::WireTransfer::Approval, nil]
-      required :approval, -> { Increase::Models::WireTransfer::Approval }, nil?: true
+      #   @return [Increase::WireTransfer::Approval, nil]
+      required :approval, -> { Increase::WireTransfer::Approval }, nil?: true
 
       # @!attribute beneficiary_address_line1
       #   The beneficiary's address line 1.
@@ -63,8 +63,8 @@ module Increase
       #   If your account requires approvals for transfers and the transfer was not
       #   approved, this will contain details of the cancellation.
       #
-      #   @return [Increase::Models::WireTransfer::Cancellation, nil]
-      required :cancellation, -> { Increase::Models::WireTransfer::Cancellation }, nil?: true
+      #   @return [Increase::WireTransfer::Cancellation, nil]
+      required :cancellation, -> { Increase::WireTransfer::Cancellation }, nil?: true
 
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -76,15 +76,15 @@ module Increase
       # @!attribute created_by
       #   What object created the transfer, either via the API or the dashboard.
       #
-      #   @return [Increase::Models::WireTransfer::CreatedBy, nil]
-      required :created_by, -> { Increase::Models::WireTransfer::CreatedBy }, nil?: true
+      #   @return [Increase::WireTransfer::CreatedBy, nil]
+      required :created_by, -> { Increase::WireTransfer::CreatedBy }, nil?: true
 
       # @!attribute currency
       #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       #   currency. For wire transfers this is always equal to `usd`.
       #
-      #   @return [Symbol, Increase::Models::WireTransfer::Currency]
-      required :currency, enum: -> { Increase::Models::WireTransfer::Currency }
+      #   @return [Symbol, Increase::WireTransfer::Currency]
+      required :currency, enum: -> { Increase::WireTransfer::Currency }
 
       # @!attribute external_account_id
       #   The identifier of the External Account the transfer was made to, if any.
@@ -109,8 +109,8 @@ module Increase
       # @!attribute network
       #   The transfer's network.
       #
-      #   @return [Symbol, Increase::Models::WireTransfer::Network]
-      required :network, enum: -> { Increase::Models::WireTransfer::Network }
+      #   @return [Symbol, Increase::WireTransfer::Network]
+      required :network, enum: -> { Increase::WireTransfer::Network }
 
       # @!attribute originator_address_line1
       #   The originator's address line 1.
@@ -148,8 +148,8 @@ module Increase
       # @!attribute reversal
       #   If your transfer is reversed, this will contain details of the reversal.
       #
-      #   @return [Increase::Models::WireTransfer::Reversal, nil]
-      required :reversal, -> { Increase::Models::WireTransfer::Reversal }, nil?: true
+      #   @return [Increase::WireTransfer::Reversal, nil]
+      required :reversal, -> { Increase::WireTransfer::Reversal }, nil?: true
 
       # @!attribute routing_number
       #   The American Bankers' Association (ABA) Routing Transit Number (RTN).
@@ -166,15 +166,15 @@ module Increase
       # @!attribute status
       #   The lifecycle status of the transfer.
       #
-      #   @return [Symbol, Increase::Models::WireTransfer::Status]
-      required :status, enum: -> { Increase::Models::WireTransfer::Status }
+      #   @return [Symbol, Increase::WireTransfer::Status]
+      required :status, enum: -> { Increase::WireTransfer::Status }
 
       # @!attribute submission
       #   After the transfer is submitted to Fedwire, this will contain supplemental
       #   details.
       #
-      #   @return [Increase::Models::WireTransfer::Submission, nil]
-      required :submission, -> { Increase::Models::WireTransfer::Submission }, nil?: true
+      #   @return [Increase::WireTransfer::Submission, nil]
+      required :submission, -> { Increase::WireTransfer::Submission }, nil?: true
 
       # @!attribute transaction_id
       #   The ID for the transaction funding the transfer.
@@ -186,12 +186,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `wire_transfer`.
       #
-      #   @return [Symbol, Increase::Models::WireTransfer::Type]
-      required :type, enum: -> { Increase::Models::WireTransfer::Type }
+      #   @return [Symbol, Increase::WireTransfer::Type]
+      required :type, enum: -> { Increase::WireTransfer::Type }
 
       # @!method initialize(id:, account_id:, account_number:, amount:, approval:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, cancellation:, created_at:, created_by:, currency:, external_account_id:, idempotency_key:, message_to_recipient:, network:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, pending_transaction_id:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::WireTransfer} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::WireTransfer}
+      #   for more details.
       #
       #   Wire transfers move funds between your Increase account and any other account
       #   accessible by Fedwire.
@@ -204,8 +204,7 @@ module Increase
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param approval [Increase::Models::WireTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
-      #   ...
+      #   @param approval [Increase::WireTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
       #
       #   @param beneficiary_address_line1 [String, nil] The beneficiary's address line 1.
       #
@@ -215,25 +214,21 @@ module Increase
       #
       #   @param beneficiary_name [String, nil] The beneficiary's name.
       #
-      #   @param cancellation [Increase::Models::WireTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
-      #   ...
+      #   @param cancellation [Increase::WireTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-      #   ...
       #
-      #   @param created_by [Increase::Models::WireTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
+      #   @param created_by [Increase::WireTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
       #
-      #   @param currency [Symbol, Increase::Models::WireTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's c
-      #   ...
+      #   @param currency [Symbol, Increase::WireTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's c
       #
       #   @param external_account_id [String, nil] The identifier of the External Account the transfer was made to, if any.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
-      #   ...
       #
       #   @param message_to_recipient [String, nil] The message that will show on the recipient's bank statement.
       #
-      #   @param network [Symbol, Increase::Models::WireTransfer::Network] The transfer's network.
+      #   @param network [Symbol, Increase::WireTransfer::Network] The transfer's network.
       #
       #   @param originator_address_line1 [String, nil] The originator's address line 1.
       #
@@ -244,25 +239,22 @@ module Increase
       #   @param originator_name [String, nil] The originator's name.
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer. A pending transact
-      #   ...
       #
-      #   @param reversal [Increase::Models::WireTransfer::Reversal, nil] If your transfer is reversed, this will contain details of the reversal.
+      #   @param reversal [Increase::WireTransfer::Reversal, nil] If your transfer is reversed, this will contain details of the reversal.
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
       #
       #   @param source_account_number_id [String, nil] The Account Number that was passed to the wire's recipient.
       #
-      #   @param status [Symbol, Increase::Models::WireTransfer::Status] The lifecycle status of the transfer.
+      #   @param status [Symbol, Increase::WireTransfer::Status] The lifecycle status of the transfer.
       #
-      #   @param submission [Increase::Models::WireTransfer::Submission, nil] After the transfer is submitted to Fedwire, this will contain supplemental detai
-      #   ...
+      #   @param submission [Increase::WireTransfer::Submission, nil] After the transfer is submitted to Fedwire, this will contain supplemental detai
       #
       #   @param transaction_id [String, nil] The ID for the transaction funding the transfer.
       #
-      #   @param type [Symbol, Increase::Models::WireTransfer::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::WireTransfer::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::Models::WireTransfer#approval
+      # @see Increase::WireTransfer#approval
       class Approval < Increase::Internal::Type::BaseModel
         # @!attribute approved_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -280,19 +272,17 @@ module Increase
 
         # @!method initialize(approved_at:, approved_by:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireTransfer::Approval} for more details.
+        #   {Increase::WireTransfer::Approval} for more details.
         #
         #   If your account requires approvals for transfers and the transfer was approved,
         #   this will contain details of the approval.
         #
         #   @param approved_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
         #
         #   @param approved_by [String, nil] If the Transfer was approved by a user in the dashboard, the email address of th
-        #   ...
       end
 
-      # @see Increase::Models::WireTransfer#cancellation
+      # @see Increase::WireTransfer#cancellation
       class Cancellation < Increase::Internal::Type::BaseModel
         # @!attribute canceled_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -310,58 +300,54 @@ module Increase
 
         # @!method initialize(canceled_at:, canceled_by:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireTransfer::Cancellation} for more details.
+        #   {Increase::WireTransfer::Cancellation} for more details.
         #
         #   If your account requires approvals for transfers and the transfer was not
         #   approved, this will contain details of the cancellation.
         #
         #   @param canceled_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
         #
         #   @param canceled_by [String, nil] If the Transfer was canceled by a user in the dashboard, the email address of th
-        #   ...
       end
 
-      # @see Increase::Models::WireTransfer#created_by
+      # @see Increase::WireTransfer#created_by
       class CreatedBy < Increase::Internal::Type::BaseModel
         # @!attribute api_key
         #   If present, details about the API key that created the transfer.
         #
-        #   @return [Increase::Models::WireTransfer::CreatedBy::APIKey, nil]
-        required :api_key, -> { Increase::Models::WireTransfer::CreatedBy::APIKey }, nil?: true
+        #   @return [Increase::WireTransfer::CreatedBy::APIKey, nil]
+        required :api_key, -> { Increase::WireTransfer::CreatedBy::APIKey }, nil?: true
 
         # @!attribute category
         #   The type of object that created this transfer.
         #
-        #   @return [Symbol, Increase::Models::WireTransfer::CreatedBy::Category]
-        required :category, enum: -> { Increase::Models::WireTransfer::CreatedBy::Category }
+        #   @return [Symbol, Increase::WireTransfer::CreatedBy::Category]
+        required :category, enum: -> { Increase::WireTransfer::CreatedBy::Category }
 
         # @!attribute oauth_application
         #   If present, details about the OAuth Application that created the transfer.
         #
-        #   @return [Increase::Models::WireTransfer::CreatedBy::OAuthApplication, nil]
-        required :oauth_application,
-                 -> { Increase::Models::WireTransfer::CreatedBy::OAuthApplication },
-                 nil?: true
+        #   @return [Increase::WireTransfer::CreatedBy::OAuthApplication, nil]
+        required :oauth_application, -> { Increase::WireTransfer::CreatedBy::OAuthApplication }, nil?: true
 
         # @!attribute user
         #   If present, details about the User that created the transfer.
         #
-        #   @return [Increase::Models::WireTransfer::CreatedBy::User, nil]
-        required :user, -> { Increase::Models::WireTransfer::CreatedBy::User }, nil?: true
+        #   @return [Increase::WireTransfer::CreatedBy::User, nil]
+        required :user, -> { Increase::WireTransfer::CreatedBy::User }, nil?: true
 
         # @!method initialize(api_key:, category:, oauth_application:, user:)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param api_key [Increase::Models::WireTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
+        #   @param api_key [Increase::WireTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
         #
-        #   @param category [Symbol, Increase::Models::WireTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #   @param category [Symbol, Increase::WireTransfer::CreatedBy::Category] The type of object that created this transfer.
         #
-        #   @param oauth_application [Increase::Models::WireTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
+        #   @param oauth_application [Increase::WireTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
         #
-        #   @param user [Increase::Models::WireTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
+        #   @param user [Increase::WireTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
 
-        # @see Increase::Models::WireTransfer::CreatedBy#api_key
+        # @see Increase::WireTransfer::CreatedBy#api_key
         class APIKey < Increase::Internal::Type::BaseModel
           # @!attribute description
           #   The description set for the API key when it was created.
@@ -377,7 +363,7 @@ module Increase
 
         # The type of object that created this transfer.
         #
-        # @see Increase::Models::WireTransfer::CreatedBy#category
+        # @see Increase::WireTransfer::CreatedBy#category
         module Category
           extend Increase::Internal::Type::Enum
 
@@ -394,7 +380,7 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
-        # @see Increase::Models::WireTransfer::CreatedBy#oauth_application
+        # @see Increase::WireTransfer::CreatedBy#oauth_application
         class OAuthApplication < Increase::Internal::Type::BaseModel
           # @!attribute name
           #   The name of the OAuth Application.
@@ -408,7 +394,7 @@ module Increase
           #   @param name [String] The name of the OAuth Application.
         end
 
-        # @see Increase::Models::WireTransfer::CreatedBy#user
+        # @see Increase::WireTransfer::CreatedBy#user
         class User < Increase::Internal::Type::BaseModel
           # @!attribute email
           #   The email address of the User.
@@ -426,7 +412,7 @@ module Increase
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       # currency. For wire transfers this is always equal to `usd`.
       #
-      # @see Increase::Models::WireTransfer#currency
+      # @see Increase::WireTransfer#currency
       module Currency
         extend Increase::Internal::Type::Enum
 
@@ -454,7 +440,7 @@ module Increase
 
       # The transfer's network.
       #
-      # @see Increase::Models::WireTransfer#network
+      # @see Increase::WireTransfer#network
       module Network
         extend Increase::Internal::Type::Enum
 
@@ -464,7 +450,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::Models::WireTransfer#reversal
+      # @see Increase::WireTransfer#reversal
       class Reversal < Increase::Internal::Type::BaseModel
         # @!attribute amount
         #   The amount that was reversed in USD cents.
@@ -575,22 +561,19 @@ module Increase
 
         # @!method initialize(amount:, created_at:, description:, financial_institution_to_financial_institution_information:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, originator_routing_number:, previous_message_input_cycle_date:, previous_message_input_message_accountability_data:, previous_message_input_sequence_number:, previous_message_input_source:, receiver_financial_institution_information:, sender_reference:, transaction_id:, wire_transfer_id:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireTransfer::Reversal} for more details.
+        #   {Increase::WireTransfer::Reversal} for more details.
         #
         #   If your transfer is reversed, this will contain details of the reversal.
         #
         #   @param amount [Integer] The amount that was reversed in USD cents.
         #
         #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #   ...
         #
         #   @param description [String] The description on the reversal message from Fedwire, set by the reversing bank.
-        #   ...
         #
         #   @param financial_institution_to_financial_institution_information [String, nil] Additional financial institution information included in the wire reversal.
         #
         #   @param input_cycle_date [Date] The Fedwire cycle date for the wire reversal. The "Fedwire day" begins at 9:00 P
-        #   ...
         #
         #   @param input_message_accountability_data [String] The Fedwire transaction identifier.
         #
@@ -599,10 +582,8 @@ module Increase
         #   @param input_source [String] The Fedwire input source identifier.
         #
         #   @param originator_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank originating th
-        #   ...
         #
         #   @param previous_message_input_cycle_date [Date] The Fedwire cycle date for the wire transfer that is being reversed by this mess
-        #   ...
         #
         #   @param previous_message_input_message_accountability_data [String] The Fedwire transaction identifier for the wire transfer that was reversed.
         #
@@ -611,7 +592,6 @@ module Increase
         #   @param previous_message_input_source [String] The Fedwire input source identifier for the wire transfer that was reversed.
         #
         #   @param receiver_financial_institution_information [String, nil] Information included in the wire reversal for the receiving financial institutio
-        #   ...
         #
         #   @param sender_reference [String, nil] The sending bank's reference number for the wire reversal.
         #
@@ -622,7 +602,7 @@ module Increase
 
       # The lifecycle status of the transfer.
       #
-      # @see Increase::Models::WireTransfer#status
+      # @see Increase::WireTransfer#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -657,7 +637,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::Models::WireTransfer#submission
+      # @see Increase::WireTransfer#submission
       class Submission < Increase::Internal::Type::BaseModel
         # @!attribute input_message_accountability_data
         #   The accountability data for the submission.
@@ -683,7 +663,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `wire_transfer`.
       #
-      # @see Increase::Models::WireTransfer#type
+      # @see Increase::WireTransfer#type
       module Type
         extend Increase::Internal::Type::Enum
 

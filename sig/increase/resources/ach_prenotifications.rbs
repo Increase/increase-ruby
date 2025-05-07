@@ -16,20 +16,20 @@ module Increase
         ?individual_name: String,
         ?standard_entry_class_code: Increase::Models::ACHPrenotificationCreateParams::standard_entry_class_code,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::ACHPrenotification
+      ) -> Increase::ACHPrenotification
 
       def retrieve: (
         String ach_prenotification_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::ACHPrenotification
+      ) -> Increase::ACHPrenotification
 
       def list: (
-        ?created_at: Increase::Models::ACHPrenotificationListParams::CreatedAt,
+        ?created_at: Increase::ACHPrenotificationListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::ACHPrenotification]
+      ) -> Increase::Internal::Page[Increase::ACHPrenotification]
 
       def initialize: (client: Increase::Client) -> void
     end

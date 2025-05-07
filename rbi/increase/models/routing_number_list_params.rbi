@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # Filter financial institutions by routing number.
       sig { returns(String) }
       attr_accessor :routing_number
@@ -30,9 +32,8 @@ module Increase
           routing_number: String,
           cursor: String,
           limit: Integer,
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # Filter financial institutions by routing number.
@@ -43,19 +44,21 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              routing_number: String,
-              cursor: String,
-              limit: Integer,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            routing_number: String,
+            cursor: String,
+            limit: Integer,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
     end
   end
 end

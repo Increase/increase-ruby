@@ -10,11 +10,11 @@ module Increase
       # @!attribute status
       #   The status to update the Physical Card to.
       #
-      #   @return [Symbol, Increase::Models::PhysicalCardUpdateParams::Status]
-      required :status, enum: -> { Increase::Models::PhysicalCardUpdateParams::Status }
+      #   @return [Symbol, Increase::PhysicalCardUpdateParams::Status]
+      required :status, enum: -> { Increase::PhysicalCardUpdateParams::Status }
 
       # @!method initialize(status:, request_options: {})
-      #   @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
+      #   @param status [Symbol, Increase::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

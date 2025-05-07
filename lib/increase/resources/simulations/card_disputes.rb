@@ -13,22 +13,22 @@ module Increase
         #
         # @param card_dispute_id [String] The dispute you would like to action.
         #
-        # @param status [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Status] The status to move the dispute to.
+        # @param status [Symbol, Increase::Simulations::CardDisputeActionParams::Status] The status to move the dispute to.
         #
         # @param explanation [String] Why the dispute was rejected. Not required for accepting disputes.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::CardDispute]
+        # @return [Increase::CardDispute]
         #
         # @see Increase::Models::Simulations::CardDisputeActionParams
         def action(card_dispute_id, params)
-          parsed, options = Increase::Models::Simulations::CardDisputeActionParams.dump_request(params)
+          parsed, options = Increase::Simulations::CardDisputeActionParams.dump_request(params)
           @client.request(
             method: :post,
             path: ["simulations/card_disputes/%1$s/action", card_dispute_id],
             body: parsed,
-            model: Increase::Models::CardDispute,
+            model: Increase::CardDispute,
             options: options
           )
         end

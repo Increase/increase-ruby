@@ -7,7 +7,7 @@ class Increase::Test::Resources::DeclinedTransactionsTest < Increase::Test::Reso
     response = @increase.declined_transactions.retrieve("declined_transaction_id")
 
     assert_pattern do
-      response => Increase::Models::DeclinedTransaction
+      response => Increase::DeclinedTransaction
     end
 
     assert_pattern do
@@ -16,12 +16,12 @@ class Increase::Test::Resources::DeclinedTransactionsTest < Increase::Test::Reso
         account_id: String,
         amount: Integer,
         created_at: Time,
-        currency: Increase::Models::DeclinedTransaction::Currency,
+        currency: Increase::DeclinedTransaction::Currency,
         description: String,
         route_id: String | nil,
-        route_type: Increase::Models::DeclinedTransaction::RouteType | nil,
-        source: Increase::Models::DeclinedTransaction::Source,
-        type: Increase::Models::DeclinedTransaction::Type
+        route_type: Increase::DeclinedTransaction::RouteType | nil,
+        source: Increase::DeclinedTransaction::Source,
+        type: Increase::DeclinedTransaction::Type
       }
     end
   end
@@ -37,7 +37,7 @@ class Increase::Test::Resources::DeclinedTransactionsTest < Increase::Test::Reso
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::DeclinedTransaction
+      row => Increase::DeclinedTransaction
     end
 
     assert_pattern do
@@ -46,12 +46,12 @@ class Increase::Test::Resources::DeclinedTransactionsTest < Increase::Test::Reso
         account_id: String,
         amount: Integer,
         created_at: Time,
-        currency: Increase::Models::DeclinedTransaction::Currency,
+        currency: Increase::DeclinedTransaction::Currency,
         description: String,
         route_id: String | nil,
-        route_type: Increase::Models::DeclinedTransaction::RouteType | nil,
-        source: Increase::Models::DeclinedTransaction::Source,
-        type: Increase::Models::DeclinedTransaction::Type
+        route_type: Increase::DeclinedTransaction::RouteType | nil,
+        source: Increase::DeclinedTransaction::Source,
+        type: Increase::DeclinedTransaction::Type
       }
     end
   end

@@ -3,31 +3,31 @@ module Increase
     class PhysicalCards
       def create: (
         card_id: String,
-        cardholder: Increase::Models::PhysicalCardCreateParams::Cardholder,
-        shipment: Increase::Models::PhysicalCardCreateParams::Shipment,
+        cardholder: Increase::PhysicalCardCreateParams::Cardholder,
+        shipment: Increase::PhysicalCardCreateParams::Shipment,
         ?physical_card_profile_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCard
+      ) -> Increase::PhysicalCard
 
       def retrieve: (
         String physical_card_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCard
+      ) -> Increase::PhysicalCard
 
       def update: (
         String physical_card_id,
         status: Increase::Models::PhysicalCardUpdateParams::status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCard
+      ) -> Increase::PhysicalCard
 
       def list: (
         ?card_id: String,
-        ?created_at: Increase::Models::PhysicalCardListParams::CreatedAt,
+        ?created_at: Increase::PhysicalCardListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::PhysicalCard]
+      ) -> Increase::Internal::Page[Increase::PhysicalCard]
 
       def initialize: (client: Increase::Client) -> void
     end

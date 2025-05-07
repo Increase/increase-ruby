@@ -7,7 +7,7 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
     response = @increase.pending_transactions.retrieve("pending_transaction_id")
 
     assert_pattern do
-      response => Increase::Models::PendingTransaction
+      response => Increase::PendingTransaction
     end
 
     assert_pattern do
@@ -17,13 +17,13 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
         amount: Integer,
         completed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::PendingTransaction::Currency,
+        currency: Increase::PendingTransaction::Currency,
         description: String,
         route_id: String | nil,
-        route_type: Increase::Models::PendingTransaction::RouteType | nil,
-        source: Increase::Models::PendingTransaction::Source,
-        status: Increase::Models::PendingTransaction::Status,
-        type: Increase::Models::PendingTransaction::Type
+        route_type: Increase::PendingTransaction::RouteType | nil,
+        source: Increase::PendingTransaction::Source,
+        status: Increase::PendingTransaction::Status,
+        type: Increase::PendingTransaction::Type
       }
     end
   end
@@ -39,7 +39,7 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::PendingTransaction
+      row => Increase::PendingTransaction
     end
 
     assert_pattern do
@@ -49,13 +49,13 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
         amount: Integer,
         completed_at: Time | nil,
         created_at: Time,
-        currency: Increase::Models::PendingTransaction::Currency,
+        currency: Increase::PendingTransaction::Currency,
         description: String,
         route_id: String | nil,
-        route_type: Increase::Models::PendingTransaction::RouteType | nil,
-        source: Increase::Models::PendingTransaction::Source,
-        status: Increase::Models::PendingTransaction::Status,
-        type: Increase::Models::PendingTransaction::Type
+        route_type: Increase::PendingTransaction::RouteType | nil,
+        source: Increase::PendingTransaction::Source,
+        status: Increase::PendingTransaction::Status,
+        type: Increase::PendingTransaction::Type
       }
     end
   end

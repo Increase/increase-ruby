@@ -3,24 +3,22 @@ module Increase
     type oauth_token =
       {
         access_token: String,
-        token_type: Increase::Models::OAuthToken::token_type,
-        type: Increase::Models::OAuthToken::type_
+        token_type: Increase::OAuthToken::token_type,
+        type: Increase::OAuthToken::type_
       }
 
     class OAuthToken < Increase::Internal::Type::BaseModel
       attr_accessor access_token: String
 
-      attr_accessor token_type: Increase::Models::OAuthToken::token_type
+      attr_accessor token_type: Increase::OAuthToken::token_type
 
-      attr_accessor type: Increase::Models::OAuthToken::type_
+      attr_accessor type: Increase::OAuthToken::type_
 
       def initialize: (
         access_token: String,
-        token_type: Increase::Models::OAuthToken::token_type,
-        type: Increase::Models::OAuthToken::type_
+        token_type: Increase::OAuthToken::token_type,
+        type: Increase::OAuthToken::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::oauth_token
 
       type token_type = :bearer
 
@@ -29,7 +27,7 @@ module Increase
 
         BEARER: :bearer
 
-        def self?.values: -> ::Array[Increase::Models::OAuthToken::token_type]
+        def self?.values: -> ::Array[Increase::OAuthToken::token_type]
       end
 
       type type_ = :oauth_token
@@ -39,7 +37,7 @@ module Increase
 
         OAUTH_TOKEN: :oauth_token
 
-        def self?.values: -> ::Array[Increase::Models::OAuthToken::type_]
+        def self?.values: -> ::Array[Increase::OAuthToken::type_]
       end
     end
   end

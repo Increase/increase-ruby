@@ -7,7 +7,7 @@ module Increase
           pending_transaction_id: String,
           ?amount: Integer,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::Transaction
+        ) -> Increase::Transaction
 
         def initialize: (client: Increase::Client) -> void
       end

@@ -3,6 +3,8 @@
 module Increase
   module Models
     class Lockbox < Increase::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The Lockbox identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -13,10 +15,10 @@ module Increase
       attr_accessor :account_id
 
       # The mailing address for the Lockbox.
-      sig { returns(Increase::Models::Lockbox::Address) }
+      sig { returns(Increase::Lockbox::Address) }
       attr_reader :address
 
-      sig { params(address: T.any(Increase::Models::Lockbox::Address, Increase::Internal::AnyHash)).void }
+      sig { params(address: Increase::Lockbox::Address::OrHash).void }
       attr_writer :address
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
@@ -39,12 +41,12 @@ module Increase
       attr_accessor :recipient_name
 
       # This indicates if mail can be sent to this address.
-      sig { returns(Increase::Models::Lockbox::Status::TaggedSymbol) }
+      sig { returns(Increase::Lockbox::Status::TaggedSymbol) }
       attr_accessor :status
 
       # A constant representing the object's type. For this resource it will always be
       # `lockbox`.
-      sig { returns(Increase::Models::Lockbox::Type::TaggedSymbol) }
+      sig { returns(Increase::Lockbox::Type::TaggedSymbol) }
       attr_accessor :type
 
       # Lockboxes are physical locations that can receive mail containing paper checks.
@@ -53,15 +55,14 @@ module Increase
         params(
           id: String,
           account_id: String,
-          address: T.any(Increase::Models::Lockbox::Address, Increase::Internal::AnyHash),
+          address: Increase::Lockbox::Address::OrHash,
           created_at: Time,
           description: T.nilable(String),
           idempotency_key: T.nilable(String),
           recipient_name: T.nilable(String),
-          status: Increase::Models::Lockbox::Status::OrSymbol,
-          type: Increase::Models::Lockbox::Type::OrSymbol
-        )
-          .returns(T.attached_class)
+          status: Increase::Lockbox::Status::OrSymbol,
+          type: Increase::Lockbox::Type::OrSymbol
+        ).returns(T.attached_class)
       end
       def self.new(
         # The Lockbox identifier.
@@ -87,26 +88,31 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `lockbox`.
         type:
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              id: String,
-              account_id: String,
-              address: Increase::Models::Lockbox::Address,
-              created_at: Time,
-              description: T.nilable(String),
-              idempotency_key: T.nilable(String),
-              recipient_name: T.nilable(String),
-              status: Increase::Models::Lockbox::Status::TaggedSymbol,
-              type: Increase::Models::Lockbox::Type::TaggedSymbol
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            account_id: String,
+            address: Increase::Lockbox::Address,
+            created_at: Time,
+            description: T.nilable(String),
+            idempotency_key: T.nilable(String),
+            recipient_name: T.nilable(String),
+            status: Increase::Lockbox::Status::TaggedSymbol,
+            type: Increase::Lockbox::Type::TaggedSymbol
+          }
+        )
+      end
+      def to_hash
+      end
 
       class Address < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The city of the address.
         sig { returns(String) }
         attr_accessor :city
@@ -144,8 +150,7 @@ module Increase
             postal_code: String,
             recipient: T.nilable(String),
             state: String
-          )
-            .returns(T.attached_class)
+          ).returns(T.attached_class)
         end
         def self.new(
           # The city of the address.
@@ -164,38 +169,43 @@ module Increase
           # The two-letter United States Postal Service (USPS) abbreviation for the state of
           # the address.
           state:
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                city: String,
-                line1: String,
-                line2: String,
-                postal_code: String,
-                recipient: T.nilable(String),
-                state: String
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              city: String,
+              line1: String,
+              line2: String,
+              postal_code: String,
+              recipient: T.nilable(String),
+              state: String
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       # This indicates if mail can be sent to this address.
       module Status
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Lockbox::Status) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Lockbox::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # This Lockbox is active. Checks mailed to it will be deposited automatically.
-        ACTIVE = T.let(:active, Increase::Models::Lockbox::Status::TaggedSymbol)
+        ACTIVE = T.let(:active, Increase::Lockbox::Status::TaggedSymbol)
 
         # This Lockbox is inactive. Checks mailed to it will not be deposited.
-        INACTIVE = T.let(:inactive, Increase::Models::Lockbox::Status::TaggedSymbol)
+        INACTIVE = T.let(:inactive, Increase::Lockbox::Status::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::Lockbox::Status::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(T::Array[Increase::Lockbox::Status::TaggedSymbol])
+        end
+        def self.values
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -203,13 +213,16 @@ module Increase
       module Type
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Lockbox::Type) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Lockbox::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        LOCKBOX = T.let(:lockbox, Increase::Models::Lockbox::Type::TaggedSymbol)
+        LOCKBOX = T.let(:lockbox, Increase::Lockbox::Type::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::Lockbox::Type::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(T::Array[Increase::Lockbox::Type::TaggedSymbol])
+        end
+        def self.values
+        end
       end
     end
   end

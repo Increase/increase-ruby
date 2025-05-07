@@ -5,24 +5,28 @@ module Increase
     class CardPurchaseSupplements
       # Retrieve a Card Purchase Supplement
       sig do
-        params(card_purchase_supplement_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::CardPurchaseSupplement)
+        params(
+          card_purchase_supplement_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::CardPurchaseSupplement)
       end
       def retrieve(
         # The identifier of the Card Purchase Supplement.
         card_purchase_supplement_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Card Purchase Supplements
       sig do
         params(
           card_payment_id: String,
-          created_at: T.any(Increase::Models::CardPurchaseSupplementListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at:
+            Increase::CardPurchaseSupplementListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::CardPurchaseSupplement])
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::CardPurchaseSupplement])
       end
       def list(
         # Filter Card Purchase Supplements to ones belonging to the specified Card
@@ -35,10 +39,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

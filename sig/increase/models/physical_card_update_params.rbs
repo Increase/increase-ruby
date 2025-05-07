@@ -15,8 +15,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::physical_card_update_params
-
       type status = :active | :disabled | :canceled
 
       module Status

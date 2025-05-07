@@ -6,17 +6,22 @@ module Increase
       class CardAuthorizationExpirations
         # Simulates expiring a Card Authorization immediately.
         sig do
-          params(card_payment_id: String, request_options: Increase::RequestOpts)
-            .returns(Increase::Models::CardPayment)
+          params(
+            card_payment_id: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::CardPayment)
         end
         def create(
           # The identifier of the Card Payment to expire.
           card_payment_id:,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

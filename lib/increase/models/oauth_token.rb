@@ -14,35 +14,33 @@ module Increase
       # @!attribute token_type
       #   The type of OAuth token.
       #
-      #   @return [Symbol, Increase::Models::OAuthToken::TokenType]
-      required :token_type, enum: -> { Increase::Models::OAuthToken::TokenType }
+      #   @return [Symbol, Increase::OAuthToken::TokenType]
+      required :token_type, enum: -> { Increase::OAuthToken::TokenType }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `oauth_token`.
       #
-      #   @return [Symbol, Increase::Models::OAuthToken::Type]
-      required :type, enum: -> { Increase::Models::OAuthToken::Type }
+      #   @return [Symbol, Increase::OAuthToken::Type]
+      required :type, enum: -> { Increase::OAuthToken::Type }
 
       # @!method initialize(access_token:, token_type:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::OAuthToken} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::OAuthToken} for
+      #   more details.
       #
       #   A token that is returned to your application when a user completes the OAuth
       #   flow and may be used to authenticate requests. Learn more about OAuth
       #   [here](/documentation/oauth).
       #
       #   @param access_token [String] You may use this token in place of an API key to make OAuth requests on a user's
-      #   ...
       #
-      #   @param token_type [Symbol, Increase::Models::OAuthToken::TokenType] The type of OAuth token.
+      #   @param token_type [Symbol, Increase::OAuthToken::TokenType] The type of OAuth token.
       #
-      #   @param type [Symbol, Increase::Models::OAuthToken::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::OAuthToken::Type] A constant representing the object's type. For this resource it will always be `
 
       # The type of OAuth token.
       #
-      # @see Increase::Models::OAuthToken#token_type
+      # @see Increase::OAuthToken#token_type
       module TokenType
         extend Increase::Internal::Type::Enum
 
@@ -55,7 +53,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `oauth_token`.
       #
-      # @see Increase::Models::OAuthToken#type
+      # @see Increase::OAuthToken#type
       module Type
         extend Increase::Internal::Type::Enum
 

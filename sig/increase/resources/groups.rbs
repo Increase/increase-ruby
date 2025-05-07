@@ -3,7 +3,7 @@ module Increase
     class Groups
       def retrieve: (
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Group
+      ) -> Increase::Group
 
       def initialize: (client: Increase::Client) -> void
     end

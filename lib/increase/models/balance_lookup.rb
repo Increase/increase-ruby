@@ -28,12 +28,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `balance_lookup`.
       #
-      #   @return [Symbol, Increase::Models::BalanceLookup::Type]
-      required :type, enum: -> { Increase::Models::BalanceLookup::Type }
+      #   @return [Symbol, Increase::BalanceLookup::Type]
+      required :type, enum: -> { Increase::BalanceLookup::Type }
 
       # @!method initialize(account_id:, available_balance:, current_balance:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::BalanceLookup} for more details.
+      #   Some parameter documentations has been truncated, see {Increase::BalanceLookup}
+      #   for more details.
       #
       #   Represents a request to lookup the balance of an Account at a given point in
       #   time.
@@ -41,18 +41,15 @@ module Increase
       #   @param account_id [String] The identifier for the account for which the balance was queried.
       #
       #   @param available_balance [Integer] The Account's available balance, representing the current balance less any open
-      #   ...
       #
       #   @param current_balance [Integer] The Account's current balance, representing the sum of all posted Transactions o
-      #   ...
       #
-      #   @param type [Symbol, Increase::Models::BalanceLookup::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::BalanceLookup::Type] A constant representing the object's type. For this resource it will always be `
 
       # A constant representing the object's type. For this resource it will always be
       # `balance_lookup`.
       #
-      # @see Increase::Models::BalanceLookup#type
+      # @see Increase::BalanceLookup#type
       module Type
         extend Increase::Internal::Type::Enum
 

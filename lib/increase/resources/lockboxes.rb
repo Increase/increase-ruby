@@ -15,16 +15,16 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Lockbox]
+      # @return [Increase::Lockbox]
       #
       # @see Increase::Models::LockboxCreateParams
       def create(params)
-        parsed, options = Increase::Models::LockboxCreateParams.dump_request(params)
+        parsed, options = Increase::LockboxCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "lockboxes",
           body: parsed,
-          model: Increase::Models::Lockbox,
+          model: Increase::Lockbox,
           options: options
         )
       end
@@ -37,14 +37,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Lockbox]
+      # @return [Increase::Lockbox]
       #
       # @see Increase::Models::LockboxRetrieveParams
       def retrieve(lockbox_id, params = {})
         @client.request(
           method: :get,
           path: ["lockboxes/%1$s", lockbox_id],
-          model: Increase::Models::Lockbox,
+          model: Increase::Lockbox,
           options: params[:request_options]
         )
       end
@@ -59,20 +59,20 @@ module Increase
       #
       # @param recipient_name [String] The recipient name you choose for the Lockbox.
       #
-      # @param status [Symbol, Increase::Models::LockboxUpdateParams::Status] This indicates if checks can be sent to the Lockbox.
+      # @param status [Symbol, Increase::LockboxUpdateParams::Status] This indicates if checks can be sent to the Lockbox.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Lockbox]
+      # @return [Increase::Lockbox]
       #
       # @see Increase::Models::LockboxUpdateParams
       def update(lockbox_id, params = {})
-        parsed, options = Increase::Models::LockboxUpdateParams.dump_request(params)
+        parsed, options = Increase::LockboxUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["lockboxes/%1$s", lockbox_id],
           body: parsed,
-          model: Increase::Models::Lockbox,
+          model: Increase::Lockbox,
           options: options
         )
       end
@@ -86,29 +86,27 @@ module Increase
       #
       # @param account_id [String] Filter Lockboxes to those associated with the provided Account.
       #
-      # @param created_at [Increase::Models::LockboxListParams::CreatedAt]
+      # @param created_at [Increase::LockboxListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      # ...
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::Lockbox>]
+      # @return [Increase::Internal::Page<Increase::Lockbox>]
       #
       # @see Increase::Models::LockboxListParams
       def list(params = {})
-        parsed, options = Increase::Models::LockboxListParams.dump_request(params)
+        parsed, options = Increase::LockboxListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "lockboxes",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::Lockbox,
+          model: Increase::Lockbox,
           options: options
         )
       end

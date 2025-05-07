@@ -9,9 +9,8 @@ module Increase
           disputed_transaction_id: String,
           explanation: String,
           amount: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::CardDispute)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::CardDispute)
       end
       def create(
         # The Transaction you wish to dispute. This Transaction must have a `source_type`
@@ -25,28 +24,33 @@ module Increase
         # the transaction.
         amount: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve a Card Dispute
       sig do
-        params(card_dispute_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::CardDispute)
+        params(
+          card_dispute_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::CardDispute)
       end
       def retrieve(
         # The identifier of the Card Dispute.
         card_dispute_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Card Disputes
       sig do
         params(
-          created_at: T.any(Increase::Models::CardDisputeListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at: Increase::CardDisputeListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::CardDisputeListParams::Status, Increase::Internal::AnyHash),
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::CardDispute])
+          status: Increase::CardDisputeListParams::Status::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::CardDispute])
       end
       def list(
         created_at: nil,
@@ -62,10 +66,13 @@ module Increase
         limit: nil,
         status: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

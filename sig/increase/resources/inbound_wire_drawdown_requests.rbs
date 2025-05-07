@@ -4,13 +4,13 @@ module Increase
       def retrieve: (
         String inbound_wire_drawdown_request_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundWireDrawdownRequest
+      ) -> Increase::InboundWireDrawdownRequest
 
       def list: (
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::InboundWireDrawdownRequest]
+      ) -> Increase::Internal::Page[Increase::InboundWireDrawdownRequest]
 
       def initialize: (client: Increase::Client) -> void
     end

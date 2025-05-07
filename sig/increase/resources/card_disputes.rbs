@@ -6,21 +6,21 @@ module Increase
         explanation: String,
         ?amount: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CardDispute
+      ) -> Increase::CardDispute
 
       def retrieve: (
         String card_dispute_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CardDispute
+      ) -> Increase::CardDispute
 
       def list: (
-        ?created_at: Increase::Models::CardDisputeListParams::CreatedAt,
+        ?created_at: Increase::CardDisputeListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::CardDisputeListParams::Status,
+        ?status: Increase::CardDisputeListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::CardDispute]
+      ) -> Increase::Internal::Page[Increase::CardDispute]
 
       def initialize: (client: Increase::Client) -> void
     end

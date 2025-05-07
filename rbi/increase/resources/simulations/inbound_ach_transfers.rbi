@@ -26,10 +26,10 @@ module Increase
             receiver_id_number: String,
             receiver_name: String,
             resolve_at: Time,
-            standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-            request_options: Increase::RequestOpts
-          )
-            .returns(Increase::Models::InboundACHTransfer)
+            standard_entry_class_code:
+              Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::InboundACHTransfer)
         end
         def create(
           # The identifier of the Account Number the inbound ACH Transfer is for.
@@ -58,10 +58,13 @@ module Increase
           # The standard entry class code for the transfer.
           standard_entry_class_code: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

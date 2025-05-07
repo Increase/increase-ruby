@@ -7,19 +7,19 @@ class Increase::Test::Resources::Simulations::ProgramsTest < Increase::Test::Res
     response = @increase.simulations.programs.create(name: "For Benefit Of")
 
     assert_pattern do
-      response => Increase::Models::Program
+      response => Increase::Program
     end
 
     assert_pattern do
       response => {
         id: String,
-        bank: Increase::Models::Program::Bank,
+        bank: Increase::Program::Bank,
         billing_account_id: String | nil,
         created_at: Time,
         default_digital_card_profile_id: String | nil,
         interest_rate: String,
         name: String,
-        type: Increase::Models::Program::Type,
+        type: Increase::Program::Type,
         updated_at: Time
       }
     end

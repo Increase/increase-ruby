@@ -5,8 +5,11 @@ module Increase
     class IntrafiExclusions
       # Create an IntraFi Exclusion
       sig do
-        params(bank_name: String, entity_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::IntrafiExclusion)
+        params(
+          bank_name: String,
+          entity_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::IntrafiExclusion)
       end
       def create(
         # The name of the financial institution to be excluded.
@@ -14,17 +17,23 @@ module Increase
         # The identifier of the Entity whose deposits will be excluded.
         entity_id:,
         request_options: {}
-      ); end
+      )
+      end
+
       # Get an IntraFi Exclusion
       sig do
-        params(intrafi_exclusion_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::IntrafiExclusion)
+        params(
+          intrafi_exclusion_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::IntrafiExclusion)
       end
       def retrieve(
         # The identifier of the IntraFi Exclusion to retrieve.
         intrafi_exclusion_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List IntraFi Exclusions
       sig do
         params(
@@ -32,9 +41,8 @@ module Increase
           entity_id: String,
           idempotency_key: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::IntrafiExclusion])
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::IntrafiExclusion])
       end
       def list(
         # Return the page of entries after this one.
@@ -50,11 +58,15 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Archive an IntraFi Exclusion
       sig do
-        params(intrafi_exclusion_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::IntrafiExclusion)
+        params(
+          intrafi_exclusion_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::IntrafiExclusion)
       end
       def archive(
         # The identifier of the IntraFi Exclusion request to archive. It may take 5
@@ -62,10 +74,13 @@ module Increase
         # does not guarantee that funds will be swept to the previously-excluded bank.
         intrafi_exclusion_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

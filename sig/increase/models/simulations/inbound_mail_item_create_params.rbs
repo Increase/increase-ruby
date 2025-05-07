@@ -23,8 +23,6 @@ module Increase
           ?contents_file_id: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::inbound_mail_item_create_params
       end
     end
   end

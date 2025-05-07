@@ -49,8 +49,6 @@ module Increase
           type: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::type_
         ) -> void
 
-        def to_hash: -> Increase::Models::Simulations::inbound_funds_hold_release_response
-
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency

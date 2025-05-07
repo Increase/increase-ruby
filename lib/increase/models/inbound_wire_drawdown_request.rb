@@ -147,12 +147,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `inbound_wire_drawdown_request`.
       #
-      #   @return [Symbol, Increase::Models::InboundWireDrawdownRequest::Type]
-      required :type, enum: -> { Increase::Models::InboundWireDrawdownRequest::Type }
+      #   @return [Symbol, Increase::InboundWireDrawdownRequest::Type]
+      required :type, enum: -> { Increase::InboundWireDrawdownRequest::Type }
 
       # @!method initialize(id:, amount:, beneficiary_account_number:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_routing_number:, created_at:, currency:, message_to_recipient:, originator_account_number:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, recipient_account_number_id:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundWireDrawdownRequest} for more details.
+      #   {Increase::InboundWireDrawdownRequest} for more details.
       #
       #   Inbound wire drawdown requests are requests from someone else to send them a
       #   wire. This feature is in beta; reach out to
@@ -175,10 +175,8 @@ module Increase
       #   @param beneficiary_routing_number [String] The drawdown request's beneficiary's routing number.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-      #   ...
       #
       #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
-      #   ...
       #
       #   @param message_to_recipient [String, nil] A message from the drawdown request's originator.
       #
@@ -195,27 +193,21 @@ module Increase
       #   @param originator_routing_number [String] The drawdown request's originator's routing number.
       #
       #   @param originator_to_beneficiary_information_line1 [String, nil] Line 1 of the information conveyed from the originator of the message to the ben
-      #   ...
       #
       #   @param originator_to_beneficiary_information_line2 [String, nil] Line 2 of the information conveyed from the originator of the message to the ben
-      #   ...
       #
       #   @param originator_to_beneficiary_information_line3 [String, nil] Line 3 of the information conveyed from the originator of the message to the ben
-      #   ...
       #
       #   @param originator_to_beneficiary_information_line4 [String, nil] Line 4 of the information conveyed from the originator of the message to the ben
-      #   ...
       #
       #   @param recipient_account_number_id [String] The Account Number from which the recipient of this request is being requested t
-      #   ...
       #
-      #   @param type [Symbol, Increase::Models::InboundWireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
-      #   ...
+      #   @param type [Symbol, Increase::InboundWireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_wire_drawdown_request`.
       #
-      # @see Increase::Models::InboundWireDrawdownRequest#type
+      # @see Increase::InboundWireDrawdownRequest#type
       module Type
         extend Increase::Internal::Type::Enum
 

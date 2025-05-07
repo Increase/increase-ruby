@@ -17,8 +17,6 @@ module Increase
         entity_id: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::intrafi_exclusion_create_params
     end
   end
 end

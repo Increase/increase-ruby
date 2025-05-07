@@ -6,14 +6,13 @@ module Increase
       # Create an OAuth Token
       sig do
         params(
-          grant_type: Increase::Models::OAuthTokenCreateParams::GrantType::OrSymbol,
+          grant_type: Increase::OAuthTokenCreateParams::GrantType::OrSymbol,
           client_id: String,
           client_secret: String,
           code: String,
           production_token: String,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Models::OAuthToken)
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::OAuthToken)
       end
       def create(
         # The credential you request in exchange for the code. In Production, this is
@@ -33,10 +32,13 @@ module Increase
         # parameter.
         production_token: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

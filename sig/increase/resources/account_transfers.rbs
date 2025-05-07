@@ -8,31 +8,31 @@ module Increase
         destination_account_id: String,
         ?require_approval: bool,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountTransfer
+      ) -> Increase::AccountTransfer
 
       def retrieve: (
         String account_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountTransfer
+      ) -> Increase::AccountTransfer
 
       def list: (
         ?account_id: String,
-        ?created_at: Increase::Models::AccountTransferListParams::CreatedAt,
+        ?created_at: Increase::AccountTransferListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::AccountTransfer]
+      ) -> Increase::Internal::Page[Increase::AccountTransfer]
 
       def approve: (
         String account_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountTransfer
+      ) -> Increase::AccountTransfer
 
       def cancel: (
         String account_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountTransfer
+      ) -> Increase::AccountTransfer
 
       def initialize: (client: Increase::Client) -> void
     end

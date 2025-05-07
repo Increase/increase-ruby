@@ -3,12 +3,14 @@
 module Increase
   module Models
     class Program < Increase::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The Program identifier.
       sig { returns(String) }
       attr_accessor :id
 
       # The Bank the Program is with.
-      sig { returns(Increase::Models::Program::Bank::TaggedSymbol) }
+      sig { returns(Increase::Program::Bank::TaggedSymbol) }
       attr_accessor :bank
 
       # The Program billing account.
@@ -36,7 +38,7 @@ module Increase
 
       # A constant representing the object's type. For this resource it will always be
       # `program`.
-      sig { returns(Increase::Models::Program::Type::TaggedSymbol) }
+      sig { returns(Increase::Program::Type::TaggedSymbol) }
       attr_accessor :type
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
@@ -51,16 +53,15 @@ module Increase
       sig do
         params(
           id: String,
-          bank: Increase::Models::Program::Bank::OrSymbol,
+          bank: Increase::Program::Bank::OrSymbol,
           billing_account_id: T.nilable(String),
           created_at: Time,
           default_digital_card_profile_id: T.nilable(String),
           interest_rate: String,
           name: String,
-          type: Increase::Models::Program::Type::OrSymbol,
+          type: Increase::Program::Type::OrSymbol,
           updated_at: Time
-        )
-          .returns(T.attached_class)
+        ).returns(T.attached_class)
       end
       def self.new(
         # The Program identifier.
@@ -86,43 +87,50 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
         # was last updated.
         updated_at:
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              id: String,
-              bank: Increase::Models::Program::Bank::TaggedSymbol,
-              billing_account_id: T.nilable(String),
-              created_at: Time,
-              default_digital_card_profile_id: T.nilable(String),
-              interest_rate: String,
-              name: String,
-              type: Increase::Models::Program::Type::TaggedSymbol,
-              updated_at: Time
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            bank: Increase::Program::Bank::TaggedSymbol,
+            billing_account_id: T.nilable(String),
+            created_at: Time,
+            default_digital_card_profile_id: T.nilable(String),
+            interest_rate: String,
+            name: String,
+            type: Increase::Program::Type::TaggedSymbol,
+            updated_at: Time
+          }
+        )
+      end
+      def to_hash
+      end
 
       # The Bank the Program is with.
       module Bank
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Program::Bank) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Program::Bank) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # Core Bank
-        CORE_BANK = T.let(:core_bank, Increase::Models::Program::Bank::TaggedSymbol)
+        CORE_BANK = T.let(:core_bank, Increase::Program::Bank::TaggedSymbol)
 
         # First Internet Bank of Indiana
-        FIRST_INTERNET_BANK = T.let(:first_internet_bank, Increase::Models::Program::Bank::TaggedSymbol)
+        FIRST_INTERNET_BANK =
+          T.let(:first_internet_bank, Increase::Program::Bank::TaggedSymbol)
 
         # Grasshopper Bank
-        GRASSHOPPER_BANK = T.let(:grasshopper_bank, Increase::Models::Program::Bank::TaggedSymbol)
+        GRASSHOPPER_BANK =
+          T.let(:grasshopper_bank, Increase::Program::Bank::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::Program::Bank::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(T::Array[Increase::Program::Bank::TaggedSymbol])
+        end
+        def self.values
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -130,13 +138,16 @@ module Increase
       module Type
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::Program::Type) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Program::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        PROGRAM = T.let(:program, Increase::Models::Program::Type::TaggedSymbol)
+        PROGRAM = T.let(:program, Increase::Program::Type::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::Program::Type::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(T::Array[Increase::Program::Type::TaggedSymbol])
+        end
+        def self.values
+        end
       end
     end
   end

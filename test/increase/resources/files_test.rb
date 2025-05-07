@@ -7,7 +7,7 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
     response = @increase.files.create(file: Pathname(__FILE__), purpose: :check_image_front)
 
     assert_pattern do
-      response => Increase::Models::File
+      response => Increase::File
     end
 
     assert_pattern do
@@ -15,12 +15,12 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
         id: String,
         created_at: Time,
         description: String | nil,
-        direction: Increase::Models::File::Direction,
+        direction: Increase::File::Direction,
         filename: String | nil,
         idempotency_key: String | nil,
         mime_type: String,
-        purpose: Increase::Models::File::Purpose,
-        type: Increase::Models::File::Type
+        purpose: Increase::File::Purpose,
+        type: Increase::File::Type
       }
     end
   end
@@ -29,7 +29,7 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
     response = @increase.files.retrieve("file_id")
 
     assert_pattern do
-      response => Increase::Models::File
+      response => Increase::File
     end
 
     assert_pattern do
@@ -37,12 +37,12 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
         id: String,
         created_at: Time,
         description: String | nil,
-        direction: Increase::Models::File::Direction,
+        direction: Increase::File::Direction,
         filename: String | nil,
         idempotency_key: String | nil,
         mime_type: String,
-        purpose: Increase::Models::File::Purpose,
-        type: Increase::Models::File::Type
+        purpose: Increase::File::Purpose,
+        type: Increase::File::Type
       }
     end
   end
@@ -58,7 +58,7 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::File
+      row => Increase::File
     end
 
     assert_pattern do
@@ -66,12 +66,12 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
         id: String,
         created_at: Time,
         description: String | nil,
-        direction: Increase::Models::File::Direction,
+        direction: Increase::File::Direction,
         filename: String | nil,
         idempotency_key: String | nil,
         mime_type: String,
-        purpose: Increase::Models::File::Purpose,
-        type: Increase::Models::File::Type
+        purpose: Increase::File::Purpose,
+        type: Increase::File::Type
       }
     end
   end

@@ -4,13 +4,13 @@ module Increase
       {
         id: String,
         account_id: String,
-        address: Increase::Models::Lockbox::Address,
+        address: Increase::Lockbox::Address,
         created_at: Time,
         description: String?,
         idempotency_key: String?,
         recipient_name: String?,
-        status: Increase::Models::Lockbox::status,
-        type: Increase::Models::Lockbox::type_
+        status: Increase::Lockbox::status,
+        type: Increase::Lockbox::type_
       }
 
     class Lockbox < Increase::Internal::Type::BaseModel
@@ -18,7 +18,7 @@ module Increase
 
       attr_accessor account_id: String
 
-      attr_accessor address: Increase::Models::Lockbox::Address
+      attr_accessor address: Increase::Lockbox::Address
 
       attr_accessor created_at: Time
 
@@ -28,23 +28,21 @@ module Increase
 
       attr_accessor recipient_name: String?
 
-      attr_accessor status: Increase::Models::Lockbox::status
+      attr_accessor status: Increase::Lockbox::status
 
-      attr_accessor type: Increase::Models::Lockbox::type_
+      attr_accessor type: Increase::Lockbox::type_
 
       def initialize: (
         id: String,
         account_id: String,
-        address: Increase::Models::Lockbox::Address,
+        address: Increase::Lockbox::Address,
         created_at: Time,
         description: String?,
         idempotency_key: String?,
         recipient_name: String?,
-        status: Increase::Models::Lockbox::status,
-        type: Increase::Models::Lockbox::type_
+        status: Increase::Lockbox::status,
+        type: Increase::Lockbox::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::lockbox
 
       type address =
         {
@@ -77,8 +75,6 @@ module Increase
           recipient: String?,
           state: String
         ) -> void
-
-        def to_hash: -> Increase::Models::Lockbox::address
       end
 
       type status = :active | :inactive
@@ -92,7 +88,7 @@ module Increase
         # This Lockbox is inactive. Checks mailed to it will not be deposited.
         INACTIVE: :inactive
 
-        def self?.values: -> ::Array[Increase::Models::Lockbox::status]
+        def self?.values: -> ::Array[Increase::Lockbox::status]
       end
 
       type type_ = :lockbox
@@ -102,7 +98,7 @@ module Increase
 
         LOCKBOX: :lockbox
 
-        def self?.values: -> ::Array[Increase::Models::Lockbox::type_]
+        def self?.values: -> ::Array[Increase::Lockbox::type_]
       end
     end
   end

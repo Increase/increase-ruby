@@ -8,25 +8,25 @@ module Increase
         front_image_file_id: String,
         program_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCardProfile
+      ) -> Increase::PhysicalCardProfile
 
       def retrieve: (
         String physical_card_profile_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCardProfile
+      ) -> Increase::PhysicalCardProfile
 
       def list: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::PhysicalCardProfileListParams::Status,
+        ?status: Increase::PhysicalCardProfileListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::PhysicalCardProfile]
+      ) -> Increase::Internal::Page[Increase::PhysicalCardProfile]
 
       def archive: (
         String physical_card_profile_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCardProfile
+      ) -> Increase::PhysicalCardProfile
 
       def clone_: (
         String physical_card_profile_id,
@@ -34,9 +34,9 @@ module Increase
         ?contact_phone: String,
         ?description: String,
         ?front_image_file_id: String,
-        ?front_text: Increase::Models::PhysicalCardProfileCloneParams::FrontText,
+        ?front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCardProfile
+      ) -> Increase::PhysicalCardProfile
 
       def initialize: (client: Increase::Client) -> void
     end

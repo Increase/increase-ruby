@@ -3,17 +3,17 @@ module Increase
     type document =
       {
         id: String,
-        category: Increase::Models::Document::category,
+        category: Increase::Document::category,
         created_at: Time,
         entity_id: String?,
         file_id: String,
-        type: Increase::Models::Document::type_
+        type: Increase::Document::type_
       }
 
     class Document < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor category: Increase::Models::Document::category
+      attr_accessor category: Increase::Document::category
 
       attr_accessor created_at: Time
 
@@ -21,18 +21,16 @@ module Increase
 
       attr_accessor file_id: String
 
-      attr_accessor type: Increase::Models::Document::type_
+      attr_accessor type: Increase::Document::type_
 
       def initialize: (
         id: String,
-        category: Increase::Models::Document::category,
+        category: Increase::Document::category,
         created_at: Time,
         entity_id: String?,
         file_id: String,
-        type: Increase::Models::Document::type_
+        type: Increase::Document::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::document
 
       type category =
         :form_1099_int
@@ -55,7 +53,7 @@ module Increase
         # Company information, such a policies or procedures, typically submitted during our due diligence process.
         COMPANY_INFORMATION: :company_information
 
-        def self?.values: -> ::Array[Increase::Models::Document::category]
+        def self?.values: -> ::Array[Increase::Document::category]
       end
 
       type type_ = :document
@@ -65,7 +63,7 @@ module Increase
 
         DOCUMENT: :document
 
-        def self?.values: -> ::Array[Increase::Models::Document::type_]
+        def self?.values: -> ::Array[Increase::Document::type_]
       end
     end
   end

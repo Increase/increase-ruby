@@ -5,24 +5,27 @@ module Increase
     class DigitalWalletTokens
       # Retrieve a Digital Wallet Token
       sig do
-        params(digital_wallet_token_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::DigitalWalletToken)
+        params(
+          digital_wallet_token_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::DigitalWalletToken)
       end
       def retrieve(
         # The identifier of the Digital Wallet Token.
         digital_wallet_token_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Digital Wallet Tokens
       sig do
         params(
           card_id: String,
-          created_at: T.any(Increase::Models::DigitalWalletTokenListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at: Increase::DigitalWalletTokenListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::DigitalWalletToken])
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::DigitalWalletToken])
       end
       def list(
         # Filter Digital Wallet Tokens to ones belonging to the specified Card.
@@ -34,10 +37,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

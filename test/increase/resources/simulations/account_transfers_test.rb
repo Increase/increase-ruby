@@ -7,7 +7,7 @@ class Increase::Test::Resources::Simulations::AccountTransfersTest < Increase::T
     response = @increase.simulations.account_transfers.complete("account_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::AccountTransfer
+      response => Increase::AccountTransfer
     end
 
     assert_pattern do
@@ -15,20 +15,20 @@ class Increase::Test::Resources::Simulations::AccountTransfersTest < Increase::T
         id: String,
         account_id: String,
         amount: Integer,
-        approval: Increase::Models::AccountTransfer::Approval | nil,
-        cancellation: Increase::Models::AccountTransfer::Cancellation | nil,
+        approval: Increase::AccountTransfer::Approval | nil,
+        cancellation: Increase::AccountTransfer::Cancellation | nil,
         created_at: Time,
-        created_by: Increase::Models::AccountTransfer::CreatedBy | nil,
-        currency: Increase::Models::AccountTransfer::Currency,
+        created_by: Increase::AccountTransfer::CreatedBy | nil,
+        currency: Increase::AccountTransfer::Currency,
         description: String,
         destination_account_id: String,
         destination_transaction_id: String | nil,
         idempotency_key: String | nil,
-        network: Increase::Models::AccountTransfer::Network,
+        network: Increase::AccountTransfer::Network,
         pending_transaction_id: String | nil,
-        status: Increase::Models::AccountTransfer::Status,
+        status: Increase::AccountTransfer::Status,
         transaction_id: String | nil,
-        type: Increase::Models::AccountTransfer::Type
+        type: Increase::AccountTransfer::Type
       }
     end
   end

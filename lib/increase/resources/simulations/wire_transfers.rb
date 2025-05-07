@@ -15,14 +15,14 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::WireTransfer]
+        # @return [Increase::WireTransfer]
         #
         # @see Increase::Models::Simulations::WireTransferReverseParams
         def reverse(wire_transfer_id, params = {})
           @client.request(
             method: :post,
             path: ["simulations/wire_transfers/%1$s/reverse", wire_transfer_id],
-            model: Increase::Models::WireTransfer,
+            model: Increase::WireTransfer,
             options: params[:request_options]
           )
         end
@@ -37,14 +37,14 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::WireTransfer]
+        # @return [Increase::WireTransfer]
         #
         # @see Increase::Models::Simulations::WireTransferSubmitParams
         def submit(wire_transfer_id, params = {})
           @client.request(
             method: :post,
             path: ["simulations/wire_transfers/%1$s/submit", wire_transfer_id],
-            model: Increase::Models::WireTransfer,
+            model: Increase::WireTransfer,
             options: params[:request_options]
           )
         end

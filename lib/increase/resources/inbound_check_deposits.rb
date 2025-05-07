@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundCheckDeposit]
+      # @return [Increase::InboundCheckDeposit]
       #
       # @see Increase::Models::InboundCheckDepositRetrieveParams
       def retrieve(inbound_check_deposit_id, params = {})
         @client.request(
           method: :get,
           path: ["inbound_check_deposits/%1$s", inbound_check_deposit_id],
-          model: Increase::Models::InboundCheckDeposit,
+          model: Increase::InboundCheckDeposit,
           options: params[:request_options]
         )
       end
@@ -33,28 +33,26 @@ module Increase
       # @param account_id [String] Filter Inbound Check Deposits to those belonging to the specified Account.
       #
       # @param check_transfer_id [String] Filter Inbound Check Deposits to those belonging to the specified Check Transfer
-      # ...
       #
-      # @param created_at [Increase::Models::InboundCheckDepositListParams::CreatedAt]
+      # @param created_at [Increase::InboundCheckDepositListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::InboundCheckDeposit>]
+      # @return [Increase::Internal::Page<Increase::InboundCheckDeposit>]
       #
       # @see Increase::Models::InboundCheckDepositListParams
       def list(params = {})
-        parsed, options = Increase::Models::InboundCheckDepositListParams.dump_request(params)
+        parsed, options = Increase::InboundCheckDepositListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "inbound_check_deposits",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::InboundCheckDeposit,
+          model: Increase::InboundCheckDeposit,
           options: options
         )
       end
@@ -67,14 +65,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundCheckDeposit]
+      # @return [Increase::InboundCheckDeposit]
       #
       # @see Increase::Models::InboundCheckDepositDeclineParams
       def decline(inbound_check_deposit_id, params = {})
         @client.request(
           method: :post,
           path: ["inbound_check_deposits/%1$s/decline", inbound_check_deposit_id],
-          model: Increase::Models::InboundCheckDeposit,
+          model: Increase::InboundCheckDeposit,
           options: params[:request_options]
         )
       end
@@ -85,20 +83,20 @@ module Increase
       #
       # @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to return.
       #
-      # @param reason [Symbol, Increase::Models::InboundCheckDepositReturnParams::Reason] The reason to return the Inbound Check Deposit.
+      # @param reason [Symbol, Increase::InboundCheckDepositReturnParams::Reason] The reason to return the Inbound Check Deposit.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundCheckDeposit]
+      # @return [Increase::InboundCheckDeposit]
       #
       # @see Increase::Models::InboundCheckDepositReturnParams
       def return_(inbound_check_deposit_id, params)
-        parsed, options = Increase::Models::InboundCheckDepositReturnParams.dump_request(params)
+        parsed, options = Increase::InboundCheckDepositReturnParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["inbound_check_deposits/%1$s/return", inbound_check_deposit_id],
           body: parsed,
-          model: Increase::Models::InboundCheckDeposit,
+          model: Increase::InboundCheckDeposit,
           options: options
         )
       end

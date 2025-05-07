@@ -7,41 +7,41 @@ module Increase
         ?informational_entity_id: String,
         ?program_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Account
+      ) -> Increase::Account
 
       def retrieve: (
         String account_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Account
+      ) -> Increase::Account
 
       def update: (
         String account_id,
         ?name: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Account
+      ) -> Increase::Account
 
       def list: (
-        ?created_at: Increase::Models::AccountListParams::CreatedAt,
+        ?created_at: Increase::AccountListParams::CreatedAt,
         ?cursor: String,
         ?entity_id: String,
         ?idempotency_key: String,
         ?informational_entity_id: String,
         ?limit: Integer,
         ?program_id: String,
-        ?status: Increase::Models::AccountListParams::Status,
+        ?status: Increase::AccountListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::Account]
+      ) -> Increase::Internal::Page[Increase::Account]
 
       def balance: (
         String account_id,
         ?at_time: Time,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::BalanceLookup
+      ) -> Increase::BalanceLookup
 
       def close: (
         String account_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Account
+      ) -> Increase::Account
 
       def initialize: (client: Increase::Client) -> void
     end

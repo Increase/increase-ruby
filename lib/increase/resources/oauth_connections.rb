@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::OAuthConnection]
+      # @return [Increase::OAuthConnection]
       #
       # @see Increase::Models::OAuthConnectionRetrieveParams
       def retrieve(oauth_connection_id, params = {})
         @client.request(
           method: :get,
           path: ["oauth_connections/%1$s", oauth_connection_id],
-          model: Increase::Models::OAuthConnection,
+          model: Increase::OAuthConnection,
           options: params[:request_options]
         )
       end
@@ -33,26 +33,24 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param oauth_application_id [String] Filter results to only include OAuth Connections for a specific OAuth Applicatio
-      # ...
       #
-      # @param status [Increase::Models::OAuthConnectionListParams::Status]
+      # @param status [Increase::OAuthConnectionListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::OAuthConnection>]
+      # @return [Increase::Internal::Page<Increase::OAuthConnection>]
       #
       # @see Increase::Models::OAuthConnectionListParams
       def list(params = {})
-        parsed, options = Increase::Models::OAuthConnectionListParams.dump_request(params)
+        parsed, options = Increase::OAuthConnectionListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "oauth_connections",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::OAuthConnection,
+          model: Increase::OAuthConnection,
           options: options
         )
       end

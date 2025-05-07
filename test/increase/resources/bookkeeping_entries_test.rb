@@ -7,7 +7,7 @@ class Increase::Test::Resources::BookkeepingEntriesTest < Increase::Test::Resour
     response = @increase.bookkeeping_entries.retrieve("bookkeeping_entry_id")
 
     assert_pattern do
-      response => Increase::Models::BookkeepingEntry
+      response => Increase::BookkeepingEntry
     end
 
     assert_pattern do
@@ -17,7 +17,7 @@ class Increase::Test::Resources::BookkeepingEntriesTest < Increase::Test::Resour
         amount: Integer,
         created_at: Time,
         entry_set_id: String,
-        type: Increase::Models::BookkeepingEntry::Type
+        type: Increase::BookkeepingEntry::Type
       }
     end
   end
@@ -33,7 +33,7 @@ class Increase::Test::Resources::BookkeepingEntriesTest < Increase::Test::Resour
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::BookkeepingEntry
+      row => Increase::BookkeepingEntry
     end
 
     assert_pattern do
@@ -43,7 +43,7 @@ class Increase::Test::Resources::BookkeepingEntriesTest < Increase::Test::Resour
         amount: Integer,
         created_at: Time,
         entry_set_id: String,
-        type: Increase::Models::BookkeepingEntry::Type
+        type: Increase::BookkeepingEntry::Type
       }
     end
   end

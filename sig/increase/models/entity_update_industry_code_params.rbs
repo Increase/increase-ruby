@@ -13,8 +13,6 @@ module Increase
         industry_code: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::entity_update_industry_code_params
     end
   end
 end

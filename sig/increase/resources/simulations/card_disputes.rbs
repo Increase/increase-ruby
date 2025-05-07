@@ -7,7 +7,7 @@ module Increase
           status: Increase::Models::Simulations::CardDisputeActionParams::status,
           ?explanation: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::CardDispute
+        ) -> Increase::CardDispute
 
         def initialize: (client: Increase::Client) -> void
       end

@@ -7,8 +7,8 @@ module Increase
         created_at: Time,
         idempotency_key: String?,
         intrafi_id: String,
-        status: Increase::Models::IntrafiAccountEnrollment::status,
-        type: Increase::Models::IntrafiAccountEnrollment::type_
+        status: Increase::IntrafiAccountEnrollment::status,
+        type: Increase::IntrafiAccountEnrollment::type_
       }
 
     class IntrafiAccountEnrollment < Increase::Internal::Type::BaseModel
@@ -22,9 +22,9 @@ module Increase
 
       attr_accessor intrafi_id: String
 
-      attr_accessor status: Increase::Models::IntrafiAccountEnrollment::status
+      attr_accessor status: Increase::IntrafiAccountEnrollment::status
 
-      attr_accessor type: Increase::Models::IntrafiAccountEnrollment::type_
+      attr_accessor type: Increase::IntrafiAccountEnrollment::type_
 
       def initialize: (
         id: String,
@@ -32,11 +32,9 @@ module Increase
         created_at: Time,
         idempotency_key: String?,
         intrafi_id: String,
-        status: Increase::Models::IntrafiAccountEnrollment::status,
-        type: Increase::Models::IntrafiAccountEnrollment::type_
+        status: Increase::IntrafiAccountEnrollment::status,
+        type: Increase::IntrafiAccountEnrollment::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::intrafi_account_enrollment
 
       type status =
         :pending_enrolling
@@ -63,7 +61,7 @@ module Increase
         # Something unexpected happened with this account. Contact Increase support.
         REQUIRES_ATTENTION: :requires_attention
 
-        def self?.values: -> ::Array[Increase::Models::IntrafiAccountEnrollment::status]
+        def self?.values: -> ::Array[Increase::IntrafiAccountEnrollment::status]
       end
 
       type type_ = :intrafi_account_enrollment
@@ -73,7 +71,7 @@ module Increase
 
         INTRAFI_ACCOUNT_ENROLLMENT: :intrafi_account_enrollment
 
-        def self?.values: -> ::Array[Increase::Models::IntrafiAccountEnrollment::type_]
+        def self?.values: -> ::Array[Increase::IntrafiAccountEnrollment::type_]
       end
     end
   end

@@ -11,13 +11,10 @@ module Increase
         sig do
           params(
             real_time_payments_transfer_id: String,
-            rejection: T.any(
-              Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
-              Increase::Internal::AnyHash
-            ),
-            request_options: Increase::RequestOpts
-          )
-            .returns(Increase::Models::RealTimePaymentsTransfer)
+            rejection:
+              Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::OrHash,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::RealTimePaymentsTransfer)
         end
         def complete(
           # The identifier of the Real-Time Payments Transfer you wish to complete.
@@ -25,10 +22,13 @@ module Increase
           # If set, the simulation will reject the transfer.
           rejection: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

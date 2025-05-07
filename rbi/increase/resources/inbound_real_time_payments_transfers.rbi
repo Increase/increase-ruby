@@ -5,25 +5,31 @@ module Increase
     class InboundRealTimePaymentsTransfers
       # Retrieve an Inbound Real-Time Payments Transfer
       sig do
-        params(inbound_real_time_payments_transfer_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::InboundRealTimePaymentsTransfer)
+        params(
+          inbound_real_time_payments_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::InboundRealTimePaymentsTransfer)
       end
       def retrieve(
         # The identifier of the Inbound Real-Time Payments Transfer to get details for.
         inbound_real_time_payments_transfer_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List Inbound Real-Time Payments Transfers
       sig do
         params(
           account_id: String,
           account_number_id: String,
-          created_at: T.any(Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt, Increase::Internal::AnyHash),
+          created_at:
+            Increase::InboundRealTimePaymentsTransferListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
-          request_options: Increase::RequestOpts
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(
+          Increase::Internal::Page[Increase::InboundRealTimePaymentsTransfer]
         )
-          .returns(Increase::Internal::Page[Increase::Models::InboundRealTimePaymentsTransfer])
       end
       def list(
         # Filter Inbound Real-Time Payments Transfers to those belonging to the specified
@@ -39,10 +45,13 @@ module Increase
         # objects.
         limit: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::DeclinedTransaction]
+      # @return [Increase::DeclinedTransaction]
       #
       # @see Increase::Models::DeclinedTransactionRetrieveParams
       def retrieve(declined_transaction_id, params = {})
         @client.request(
           method: :get,
           path: ["declined_transactions/%1$s", declined_transaction_id],
-          model: Increase::Models::DeclinedTransaction,
+          model: Increase::DeclinedTransaction,
           options: params[:request_options]
         )
       end
@@ -32,30 +32,29 @@ module Increase
       #
       # @param account_id [String] Filter Declined Transactions to ones belonging to the specified Account.
       #
-      # @param category [Increase::Models::DeclinedTransactionListParams::Category]
+      # @param category [Increase::DeclinedTransactionListParams::Category]
       #
-      # @param created_at [Increase::Models::DeclinedTransactionListParams::CreatedAt]
+      # @param created_at [Increase::DeclinedTransactionListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param route_id [String] Filter Declined Transactions to those belonging to the specified route.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::DeclinedTransaction>]
+      # @return [Increase::Internal::Page<Increase::DeclinedTransaction>]
       #
       # @see Increase::Models::DeclinedTransactionListParams
       def list(params = {})
-        parsed, options = Increase::Models::DeclinedTransactionListParams.dump_request(params)
+        parsed, options = Increase::DeclinedTransactionListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "declined_transactions",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::DeclinedTransaction,
+          model: Increase::DeclinedTransaction,
           options: options
         )
       end

@@ -16,20 +16,20 @@ module Increase
         ?recipient_address_line2: String,
         ?recipient_address_line3: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::WireDrawdownRequest
+      ) -> Increase::WireDrawdownRequest
 
       def retrieve: (
         String wire_drawdown_request_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::WireDrawdownRequest
+      ) -> Increase::WireDrawdownRequest
 
       def list: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::WireDrawdownRequestListParams::Status,
+        ?status: Increase::WireDrawdownRequestListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::WireDrawdownRequest]
+      ) -> Increase::Internal::Page[Increase::WireDrawdownRequest]
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -27,7 +27,6 @@ module Increase
       #   @param file_id [String] The File to create a File Link for.
       #
       #   @param expires_at [Time] The time at which the File Link will expire. The default is 1 hour from the time
-      #   ...
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

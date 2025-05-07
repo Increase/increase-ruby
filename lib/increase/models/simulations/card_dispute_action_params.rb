@@ -11,8 +11,8 @@ module Increase
         # @!attribute status
         #   The status to move the dispute to.
         #
-        #   @return [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Status]
-        required :status, enum: -> { Increase::Models::Simulations::CardDisputeActionParams::Status }
+        #   @return [Symbol, Increase::Simulations::CardDisputeActionParams::Status]
+        required :status, enum: -> { Increase::Simulations::CardDisputeActionParams::Status }
 
         # @!attribute explanation
         #   Why the dispute was rejected. Not required for accepting disputes.
@@ -21,7 +21,7 @@ module Increase
         optional :explanation, String
 
         # @!method initialize(status:, explanation: nil, request_options: {})
-        #   @param status [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Status] The status to move the dispute to.
+        #   @param status [Symbol, Increase::Simulations::CardDisputeActionParams::Status] The status to move the dispute to.
         #
         #   @param explanation [String] Why the dispute was rejected. Not required for accepting disputes.
         #

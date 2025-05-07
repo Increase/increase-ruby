@@ -3,6 +3,8 @@
 module Increase
   module Models
     class InboundWireTransfer < Increase::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # The inbound wire transfer's identifier.
       sig { returns(String) }
       attr_accessor :id
@@ -97,14 +99,13 @@ module Increase
 
       # Information about the reversal of the inbound wire transfer if it has been
       # reversed.
-      sig { returns(T.nilable(Increase::Models::InboundWireTransfer::Reversal)) }
+      sig { returns(T.nilable(Increase::InboundWireTransfer::Reversal)) }
       attr_reader :reversal
 
       sig do
         params(
-          reversal: T.nilable(T.any(Increase::Models::InboundWireTransfer::Reversal, Increase::Internal::AnyHash))
-        )
-          .void
+          reversal: T.nilable(Increase::InboundWireTransfer::Reversal::OrHash)
+        ).void
       end
       attr_writer :reversal
 
@@ -113,12 +114,12 @@ module Increase
       attr_accessor :sender_reference
 
       # The status of the transfer.
-      sig { returns(Increase::Models::InboundWireTransfer::Status::TaggedSymbol) }
+      sig { returns(Increase::InboundWireTransfer::Status::TaggedSymbol) }
       attr_accessor :status
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_wire_transfer`.
-      sig { returns(Increase::Models::InboundWireTransfer::Type::TaggedSymbol) }
+      sig { returns(Increase::InboundWireTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
       # An Inbound Wire Transfer is a wire transfer initiated outside of Increase to
@@ -147,12 +148,11 @@ module Increase
           originator_to_beneficiary_information_line2: T.nilable(String),
           originator_to_beneficiary_information_line3: T.nilable(String),
           originator_to_beneficiary_information_line4: T.nilable(String),
-          reversal: T.nilable(T.any(Increase::Models::InboundWireTransfer::Reversal, Increase::Internal::AnyHash)),
+          reversal: T.nilable(Increase::InboundWireTransfer::Reversal::OrHash),
           sender_reference: T.nilable(String),
-          status: Increase::Models::InboundWireTransfer::Status::OrSymbol,
-          type: Increase::Models::InboundWireTransfer::Type::OrSymbol
-        )
-          .returns(T.attached_class)
+          status: Increase::InboundWireTransfer::Status::OrSymbol,
+          type: Increase::InboundWireTransfer::Type::OrSymbol
+        ).returns(T.attached_class)
       end
       def self.new(
         # The inbound wire transfer's identifier.
@@ -213,45 +213,52 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `inbound_wire_transfer`.
         type:
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              id: String,
-              account_id: String,
-              account_number_id: String,
-              amount: Integer,
-              beneficiary_address_line1: T.nilable(String),
-              beneficiary_address_line2: T.nilable(String),
-              beneficiary_address_line3: T.nilable(String),
-              beneficiary_name: T.nilable(String),
-              beneficiary_reference: T.nilable(String),
-              created_at: Time,
-              description: String,
-              input_message_accountability_data: T.nilable(String),
-              originator_address_line1: T.nilable(String),
-              originator_address_line2: T.nilable(String),
-              originator_address_line3: T.nilable(String),
-              originator_name: T.nilable(String),
-              originator_routing_number: T.nilable(String),
-              originator_to_beneficiary_information: T.nilable(String),
-              originator_to_beneficiary_information_line1: T.nilable(String),
-              originator_to_beneficiary_information_line2: T.nilable(String),
-              originator_to_beneficiary_information_line3: T.nilable(String),
-              originator_to_beneficiary_information_line4: T.nilable(String),
-              reversal: T.nilable(Increase::Models::InboundWireTransfer::Reversal),
-              sender_reference: T.nilable(String),
-              status: Increase::Models::InboundWireTransfer::Status::TaggedSymbol,
-              type: Increase::Models::InboundWireTransfer::Type::TaggedSymbol
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            account_id: String,
+            account_number_id: String,
+            amount: Integer,
+            beneficiary_address_line1: T.nilable(String),
+            beneficiary_address_line2: T.nilable(String),
+            beneficiary_address_line3: T.nilable(String),
+            beneficiary_name: T.nilable(String),
+            beneficiary_reference: T.nilable(String),
+            created_at: Time,
+            description: String,
+            input_message_accountability_data: T.nilable(String),
+            originator_address_line1: T.nilable(String),
+            originator_address_line2: T.nilable(String),
+            originator_address_line3: T.nilable(String),
+            originator_name: T.nilable(String),
+            originator_routing_number: T.nilable(String),
+            originator_to_beneficiary_information: T.nilable(String),
+            originator_to_beneficiary_information_line1: T.nilable(String),
+            originator_to_beneficiary_information_line2: T.nilable(String),
+            originator_to_beneficiary_information_line3: T.nilable(String),
+            originator_to_beneficiary_information_line4: T.nilable(String),
+            reversal: T.nilable(Increase::InboundWireTransfer::Reversal),
+            sender_reference: T.nilable(String),
+            status: Increase::InboundWireTransfer::Status::TaggedSymbol,
+            type: Increase::InboundWireTransfer::Type::TaggedSymbol
+          }
+        )
+      end
+      def to_hash
+      end
 
       class Reversal < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # The reason for the reversal.
-        sig { returns(Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol) }
+        sig do
+          returns(Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol)
+        end
         attr_accessor :reason
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -262,8 +269,10 @@ module Increase
         # Information about the reversal of the inbound wire transfer if it has been
         # reversed.
         sig do
-          params(reason: Increase::Models::InboundWireTransfer::Reversal::Reason::OrSymbol, reversed_at: Time)
-            .returns(T.attached_class)
+          params(
+            reason: Increase::InboundWireTransfer::Reversal::Reason::OrSymbol,
+            reversed_at: Time
+          ).returns(T.attached_class)
         end
         def self.new(
           # The reason for the reversal.
@@ -271,31 +280,54 @@ module Increase
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the transfer was reversed.
           reversed_at:
-        ); end
-        sig do
-          override
-            .returns(
-              {reason: Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol, reversed_at: Time}
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              reason:
+                Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol,
+              reversed_at: Time
+            }
+          )
+        end
+        def to_hash
+        end
 
         # The reason for the reversal.
         module Reason
           extend Increase::Internal::Type::Enum
 
-          TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason) }
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::InboundWireTransfer::Reversal::Reason)
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The inbound wire transfer was a duplicate.
-          DUPLICATE = T.let(:duplicate, Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol)
+          DUPLICATE =
+            T.let(
+              :duplicate,
+              Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol
+            )
 
           # The recipient of the wire transfer requested the funds be returned to the sender.
           CREDITOR_REQUEST =
-            T.let(:creditor_request, Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol)
+            T.let(
+              :creditor_request,
+              Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol
+            )
 
-          sig { override.returns(T::Array[Increase::Models::InboundWireTransfer::Reversal::Reason::TaggedSymbol]) }
-          def self.values; end
+          sig do
+            override.returns(
+              T::Array[
+                Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 
@@ -303,23 +335,33 @@ module Increase
       module Status
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireTransfer::Status) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::InboundWireTransfer::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         # The Inbound Wire Transfer is awaiting action, will transition automatically if no action is taken.
-        PENDING = T.let(:pending, Increase::Models::InboundWireTransfer::Status::TaggedSymbol)
+        PENDING =
+          T.let(:pending, Increase::InboundWireTransfer::Status::TaggedSymbol)
 
         # The Inbound Wire Transfer is accepted.
-        ACCEPTED = T.let(:accepted, Increase::Models::InboundWireTransfer::Status::TaggedSymbol)
+        ACCEPTED =
+          T.let(:accepted, Increase::InboundWireTransfer::Status::TaggedSymbol)
 
         # The Inbound Wire Transfer was declined.
-        DECLINED = T.let(:declined, Increase::Models::InboundWireTransfer::Status::TaggedSymbol)
+        DECLINED =
+          T.let(:declined, Increase::InboundWireTransfer::Status::TaggedSymbol)
 
         # The Inbound Wire Transfer was reversed.
-        REVERSED = T.let(:reversed, Increase::Models::InboundWireTransfer::Status::TaggedSymbol)
+        REVERSED =
+          T.let(:reversed, Increase::InboundWireTransfer::Status::TaggedSymbol)
 
-        sig { override.returns(T::Array[Increase::Models::InboundWireTransfer::Status::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::InboundWireTransfer::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be
@@ -327,14 +369,23 @@ module Increase
       module Type
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Models::InboundWireTransfer::Type) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::InboundWireTransfer::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INBOUND_WIRE_TRANSFER =
-          T.let(:inbound_wire_transfer, Increase::Models::InboundWireTransfer::Type::TaggedSymbol)
+          T.let(
+            :inbound_wire_transfer,
+            Increase::InboundWireTransfer::Type::TaggedSymbol
+          )
 
-        sig { override.returns(T::Array[Increase::Models::InboundWireTransfer::Type::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[Increase::InboundWireTransfer::Type::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

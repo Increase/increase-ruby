@@ -5,8 +5,11 @@ module Increase
     class IntrafiAccountEnrollments
       # Enroll an account in the IntraFi deposit sweep network
       sig do
-        params(account_id: String, email_address: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::IntrafiAccountEnrollment)
+        params(
+          account_id: String,
+          email_address: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::IntrafiAccountEnrollment)
       end
       def create(
         # The identifier for the account to be added to IntraFi.
@@ -14,17 +17,23 @@ module Increase
         # The contact email for the account owner, to be shared with IntraFi.
         email_address:,
         request_options: {}
-      ); end
+      )
+      end
+
       # Get an IntraFi Account Enrollment
       sig do
-        params(intrafi_account_enrollment_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::IntrafiAccountEnrollment)
+        params(
+          intrafi_account_enrollment_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::IntrafiAccountEnrollment)
       end
       def retrieve(
         # The identifier of the IntraFi Account Enrollment to retrieve.
         intrafi_account_enrollment_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # List IntraFi Account Enrollments
       sig do
         params(
@@ -32,10 +41,9 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::IntrafiAccountEnrollmentListParams::Status, Increase::Internal::AnyHash),
-          request_options: Increase::RequestOpts
-        )
-          .returns(Increase::Internal::Page[Increase::Models::IntrafiAccountEnrollment])
+          status: Increase::IntrafiAccountEnrollmentListParams::Status::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Internal::Page[Increase::IntrafiAccountEnrollment])
       end
       def list(
         # Filter IntraFi Account Enrollments to the one belonging to an account.
@@ -52,20 +60,27 @@ module Increase
         limit: nil,
         status: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Unenroll an account from IntraFi
       sig do
-        params(intrafi_account_enrollment_id: String, request_options: Increase::RequestOpts)
-          .returns(Increase::Models::IntrafiAccountEnrollment)
+        params(
+          intrafi_account_enrollment_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::IntrafiAccountEnrollment)
       end
       def unenroll(
         # The Identifier of the IntraFi Account Enrollment to remove from IntraFi.
         intrafi_account_enrollment_id,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

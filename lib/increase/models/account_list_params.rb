@@ -9,8 +9,8 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::Models::AccountListParams::CreatedAt, nil]
-      optional :created_at, -> { Increase::Models::AccountListParams::CreatedAt }
+      #   @return [Increase::AccountListParams::CreatedAt, nil]
+      optional :created_at, -> { Increase::AccountListParams::CreatedAt }
 
       # @!attribute cursor
       #   Return the page of entries after this one.
@@ -54,30 +54,28 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::Models::AccountListParams::Status, nil]
-      optional :status, -> { Increase::Models::AccountListParams::Status }
+      #   @return [Increase::AccountListParams::Status, nil]
+      optional :status, -> { Increase::AccountListParams::Status }
 
       # @!method initialize(created_at: nil, cursor: nil, entity_id: nil, idempotency_key: nil, informational_entity_id: nil, limit: nil, program_id: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::AccountListParams} for more details.
       #
-      #   @param created_at [Increase::Models::AccountListParams::CreatedAt]
+      #   @param created_at [Increase::AccountListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param entity_id [String] Filter Accounts for those belonging to the specified Entity.
       #
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      #   ...
       #
       #   @param informational_entity_id [String] Filter Accounts for those belonging to the specified Entity as informational.
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
       #   @param program_id [String] Filter Accounts for those in a specific Program.
       #
-      #   @param status [Increase::Models::AccountListParams::Status]
+      #   @param status [Increase::AccountListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -112,19 +110,15 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::AccountListParams::CreatedAt} for more details.
+        #   {Increase::AccountListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
-        #   ...
         #
         #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
-        #   ...
         #
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #   ...
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
-        #   ...
       end
 
       class Status < Increase::Internal::Type::BaseModel
@@ -132,17 +126,16 @@ module Increase
         #   Filter Accounts for those with the specified status. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::AccountListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::AccountListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::AccountListParams::Status::In] },
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::AccountListParams::Status::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::AccountListParams::Status} for more details.
+        #   {Increase::AccountListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::AccountListParams::Status::In>] Filter Accounts for those with the specified status. For GET requests, this shou
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::AccountListParams::Status::In>] Filter Accounts for those with the specified status. For GET requests, this shou
 
         module In
           extend Increase::Internal::Type::Enum

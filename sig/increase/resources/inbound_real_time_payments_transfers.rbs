@@ -4,16 +4,16 @@ module Increase
       def retrieve: (
         String inbound_real_time_payments_transfer_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundRealTimePaymentsTransfer
+      ) -> Increase::InboundRealTimePaymentsTransfer
 
       def list: (
         ?account_id: String,
         ?account_number_id: String,
-        ?created_at: Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt,
+        ?created_at: Increase::InboundRealTimePaymentsTransferListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::InboundRealTimePaymentsTransfer]
+      ) -> Increase::Internal::Page[Increase::InboundRealTimePaymentsTransfer]
 
       def initialize: (client: Increase::Client) -> void
     end

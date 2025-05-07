@@ -11,9 +11,8 @@ module Increase
             amount: Integer,
             card_payment_id: String,
             event_subscription_id: String,
-            request_options: Increase::RequestOpts
-          )
-            .returns(Increase::Models::CardPayment)
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::CardPayment)
         end
         def create(
           # The amount of the increment in minor units in the card authorization's currency.
@@ -26,10 +25,13 @@ module Increase
           # specified event subscription for testing purposes.
           event_subscription_id: nil,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

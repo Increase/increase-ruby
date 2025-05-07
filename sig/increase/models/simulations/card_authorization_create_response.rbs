@@ -3,25 +3,23 @@ module Increase
     module Simulations
       type card_authorization_create_response =
         {
-          declined_transaction: Increase::Models::DeclinedTransaction?,
-          pending_transaction: Increase::Models::PendingTransaction?,
+          declined_transaction: Increase::DeclinedTransaction?,
+          pending_transaction: Increase::PendingTransaction?,
           type: Increase::Models::Simulations::CardAuthorizationCreateResponse::type_
         }
 
       class CardAuthorizationCreateResponse < Increase::Internal::Type::BaseModel
-        attr_accessor declined_transaction: Increase::Models::DeclinedTransaction?
+        attr_accessor declined_transaction: Increase::DeclinedTransaction?
 
-        attr_accessor pending_transaction: Increase::Models::PendingTransaction?
+        attr_accessor pending_transaction: Increase::PendingTransaction?
 
         attr_accessor type: Increase::Models::Simulations::CardAuthorizationCreateResponse::type_
 
         def initialize: (
-          declined_transaction: Increase::Models::DeclinedTransaction?,
-          pending_transaction: Increase::Models::PendingTransaction?,
+          declined_transaction: Increase::DeclinedTransaction?,
+          pending_transaction: Increase::PendingTransaction?,
           type: Increase::Models::Simulations::CardAuthorizationCreateResponse::type_
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::card_authorization_create_response
 
         type type_ = :inbound_card_authorization_simulation_result
 

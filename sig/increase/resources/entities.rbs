@@ -3,72 +3,72 @@ module Increase
     class Entities
       def create: (
         structure: Increase::Models::EntityCreateParams::structure,
-        ?corporation: Increase::Models::EntityCreateParams::Corporation,
+        ?corporation: Increase::EntityCreateParams::Corporation,
         ?description: String,
-        ?government_authority: Increase::Models::EntityCreateParams::GovernmentAuthority,
-        ?joint: Increase::Models::EntityCreateParams::Joint,
-        ?natural_person: Increase::Models::EntityCreateParams::NaturalPerson,
-        ?supplemental_documents: ::Array[Increase::Models::EntityCreateParams::SupplementalDocument],
-        ?third_party_verification: Increase::Models::EntityCreateParams::ThirdPartyVerification,
-        ?trust: Increase::Models::EntityCreateParams::Trust,
+        ?government_authority: Increase::EntityCreateParams::GovernmentAuthority,
+        ?joint: Increase::EntityCreateParams::Joint,
+        ?natural_person: Increase::EntityCreateParams::NaturalPerson,
+        ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
+        ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
+        ?trust: Increase::EntityCreateParams::Trust,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def retrieve: (
         String entity_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def list: (
-        ?created_at: Increase::Models::EntityListParams::CreatedAt,
+        ?created_at: Increase::EntityListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
-        ?status: Increase::Models::EntityListParams::Status,
+        ?status: Increase::EntityListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::Entity]
+      ) -> Increase::Internal::Page[Increase::Entity]
 
       def archive: (
         String entity_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def archive_beneficial_owner: (
         String entity_id,
         beneficial_owner_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def confirm: (
         String entity_id,
         ?confirmed_at: Time,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def create_beneficial_owner: (
         String entity_id,
-        beneficial_owner: Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner,
+        beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def update_address: (
         String entity_id,
-        address: Increase::Models::EntityUpdateAddressParams::Address,
+        address: Increase::EntityUpdateAddressParams::Address,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def update_beneficial_owner_address: (
         String entity_id,
-        address: Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address,
+        address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
         beneficial_owner_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def update_industry_code: (
         String entity_id,
         industry_code: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::Entity
+      ) -> Increase::Entity
 
       def initialize: (client: Increase::Client) -> void
     end

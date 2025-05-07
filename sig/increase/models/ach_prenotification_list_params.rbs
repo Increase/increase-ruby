@@ -2,7 +2,7 @@ module Increase
   module Models
     type ach_prenotification_list_params =
       {
-        created_at: Increase::Models::ACHPrenotificationListParams::CreatedAt,
+        created_at: Increase::ACHPrenotificationListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
         limit: Integer
@@ -13,11 +13,11 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader created_at: Increase::Models::ACHPrenotificationListParams::CreatedAt?
+      attr_reader created_at: Increase::ACHPrenotificationListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::ACHPrenotificationListParams::CreatedAt
-      ) -> Increase::Models::ACHPrenotificationListParams::CreatedAt
+        Increase::ACHPrenotificationListParams::CreatedAt
+      ) -> Increase::ACHPrenotificationListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -32,14 +32,12 @@ module Increase
       def limit=: (Integer) -> Integer
 
       def initialize: (
-        ?created_at: Increase::Models::ACHPrenotificationListParams::CreatedAt,
+        ?created_at: Increase::ACHPrenotificationListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::ach_prenotification_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -67,8 +65,6 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::ACHPrenotificationListParams::created_at
       end
     end
   end

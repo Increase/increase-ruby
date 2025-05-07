@@ -6,6 +6,8 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
       # Filter IntraFi Account Enrollments to the one belonging to an account.
       sig { returns(T.nilable(String)) }
       attr_reader :account_id
@@ -38,14 +40,15 @@ module Increase
       sig { params(limit: Integer).void }
       attr_writer :limit
 
-      sig { returns(T.nilable(Increase::Models::IntrafiAccountEnrollmentListParams::Status)) }
+      sig do
+        returns(T.nilable(Increase::IntrafiAccountEnrollmentListParams::Status))
+      end
       attr_reader :status
 
       sig do
         params(
-          status: T.any(Increase::Models::IntrafiAccountEnrollmentListParams::Status, Increase::Internal::AnyHash)
-        )
-          .void
+          status: Increase::IntrafiAccountEnrollmentListParams::Status::OrHash
+        ).void
       end
       attr_writer :status
 
@@ -55,10 +58,9 @@ module Increase
           cursor: String,
           idempotency_key: String,
           limit: Integer,
-          status: T.any(Increase::Models::IntrafiAccountEnrollmentListParams::Status, Increase::Internal::AnyHash),
-          request_options: T.any(Increase::RequestOptions, Increase::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          status: Increase::IntrafiAccountEnrollmentListParams::Status::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # Filter IntraFi Account Enrollments to the one belonging to an account.
@@ -75,80 +77,137 @@ module Increase
         limit: nil,
         status: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              account_id: String,
-              cursor: String,
-              idempotency_key: String,
-              limit: Integer,
-              status: Increase::Models::IntrafiAccountEnrollmentListParams::Status,
-              request_options: Increase::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            account_id: String,
+            cursor: String,
+            idempotency_key: String,
+            limit: Integer,
+            status: Increase::IntrafiAccountEnrollmentListParams::Status,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
 
       class Status < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+
         # Filter IntraFi Account Enrollments for those with the specified status or
         # statuses. For GET requests, this should be encoded as a comma-delimited string,
         # such as `?in=one,two,three`.
-        sig { returns(T.nilable(T::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol])) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol
+              ]
+            )
+          )
+        end
         attr_reader :in_
 
-        sig { params(in_: T::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol]).void }
+        sig do
+          params(
+            in_:
+              T::Array[
+                Increase::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol
+              ]
+          ).void
+        end
         attr_writer :in_
 
         sig do
-          params(in_: T::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol])
-            .returns(T.attached_class)
+          params(
+            in_:
+              T::Array[
+                Increase::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol
+              ]
+          ).returns(T.attached_class)
         end
         def self.new(
           # Filter IntraFi Account Enrollments for those with the specified status or
           # statuses. For GET requests, this should be encoded as a comma-delimited string,
           # such as `?in=one,two,three`.
           in_: nil
-        ); end
-        sig do
-          override
-            .returns({in_: T::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol]})
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              in_:
+                T::Array[
+                  Increase::IntrafiAccountEnrollmentListParams::Status::In::OrSymbol
+                ]
+            }
+          )
+        end
+        def to_hash
+        end
 
         module In
           extend Increase::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In) }
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::IntrafiAccountEnrollmentListParams::Status::In
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           # The account is being added to the IntraFi network.
           PENDING_ENROLLING =
-            T.let(:pending_enrolling, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol)
+            T.let(
+              :pending_enrolling,
+              Increase::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
+            )
 
           # The account has been enrolled with IntraFi.
           ENROLLED =
-            T.let(:enrolled, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol)
+            T.let(
+              :enrolled,
+              Increase::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
+            )
 
           # The account is being unenrolled from IntraFi's deposit sweep.
           PENDING_UNENROLLING =
             T.let(
               :pending_unenrolling,
-              Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
+              Increase::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
             )
 
           # The account was once enrolled, but is no longer enrolled at IntraFi.
           UNENROLLED =
-            T.let(:unenrolled, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol)
+            T.let(
+              :unenrolled,
+              Increase::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
+            )
 
           # Something unexpected happened with this account. Contact Increase support.
           REQUIRES_ATTENTION =
-            T.let(:requires_attention, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol)
+            T.let(
+              :requires_attention,
+              Increase::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
+            )
 
-          sig { override.returns(T::Array[Increase::Models::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol]) }
-          def self.values; end
+          sig do
+            override.returns(
+              T::Array[
+                Increase::IntrafiAccountEnrollmentListParams::Status::In::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

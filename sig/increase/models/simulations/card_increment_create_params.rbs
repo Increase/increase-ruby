@@ -27,8 +27,6 @@ module Increase
           ?event_subscription_id: String,
           ?request_options: Increase::request_opts
         ) -> void
-
-        def to_hash: -> Increase::Models::Simulations::card_increment_create_params
       end
     end
   end

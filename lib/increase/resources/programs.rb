@@ -11,14 +11,14 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::Program]
+      # @return [Increase::Program]
       #
       # @see Increase::Models::ProgramRetrieveParams
       def retrieve(program_id, params = {})
         @client.request(
           method: :get,
           path: ["programs/%1$s", program_id],
-          model: Increase::Models::Program,
+          model: Increase::Program,
           options: params[:request_options]
         )
       end
@@ -33,21 +33,20 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      # ...
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::Program>]
+      # @return [Increase::Internal::Page<Increase::Program>]
       #
       # @see Increase::Models::ProgramListParams
       def list(params = {})
-        parsed, options = Increase::Models::ProgramListParams.dump_request(params)
+        parsed, options = Increase::ProgramListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "programs",
           query: parsed,
           page: Increase::Internal::Page,
-          model: Increase::Models::Program,
+          model: Increase::Program,
           options: options
         )
       end

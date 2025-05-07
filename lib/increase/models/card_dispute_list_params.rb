@@ -9,8 +9,8 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::Models::CardDisputeListParams::CreatedAt, nil]
-      optional :created_at, -> { Increase::Models::CardDisputeListParams::CreatedAt }
+      #   @return [Increase::CardDisputeListParams::CreatedAt, nil]
+      optional :created_at, -> { Increase::CardDisputeListParams::CreatedAt }
 
       # @!attribute cursor
       #   Return the page of entries after this one.
@@ -36,24 +36,22 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::Models::CardDisputeListParams::Status, nil]
-      optional :status, -> { Increase::Models::CardDisputeListParams::Status }
+      #   @return [Increase::CardDisputeListParams::Status, nil]
+      optional :status, -> { Increase::CardDisputeListParams::Status }
 
       # @!method initialize(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDisputeListParams} for more details.
       #
-      #   @param created_at [Increase::Models::CardDisputeListParams::CreatedAt]
+      #   @param created_at [Increase::CardDisputeListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
-      #   ...
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #   ...
       #
-      #   @param status [Increase::Models::CardDisputeListParams::Status]
+      #   @param status [Increase::CardDisputeListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -88,19 +86,15 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardDisputeListParams::CreatedAt} for more details.
+        #   {Increase::CardDisputeListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
-        #   ...
         #
         #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
-        #   ...
         #
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #   ...
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
-        #   ...
       end
 
       class Status < Increase::Internal::Type::BaseModel
@@ -109,17 +103,16 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::Models::CardDisputeListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::CardDisputeListParams::Status::In>, nil]
         optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::Models::CardDisputeListParams::Status::In] },
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::CardDisputeListParams::Status::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardDisputeListParams::Status} for more details.
+        #   {Increase::CardDisputeListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::Models::CardDisputeListParams::Status::In>] Filter Card Disputes for those with the specified status or statuses. For GET re
-        #   ...
+        #   @param in_ [Array<Symbol, Increase::CardDisputeListParams::Status::In>] Filter Card Disputes for those with the specified status or statuses. For GET re
 
         module In
           extend Increase::Internal::Type::Enum

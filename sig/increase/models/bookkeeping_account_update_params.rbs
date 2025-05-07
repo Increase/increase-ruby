@@ -13,8 +13,6 @@ module Increase
         name: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::bookkeeping_account_update_params
     end
   end
 end

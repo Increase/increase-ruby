@@ -10,7 +10,7 @@ module Increase
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
-        type: Increase::Models::AccountStatement::type_
+        type: Increase::AccountStatement::type_
       }
 
     class AccountStatement < Increase::Internal::Type::BaseModel
@@ -30,7 +30,7 @@ module Increase
 
       attr_accessor statement_period_start: Time
 
-      attr_accessor type: Increase::Models::AccountStatement::type_
+      attr_accessor type: Increase::AccountStatement::type_
 
       def initialize: (
         id: String,
@@ -41,10 +41,8 @@ module Increase
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
-        type: Increase::Models::AccountStatement::type_
+        type: Increase::AccountStatement::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::account_statement
 
       type type_ = :account_statement
 
@@ -53,7 +51,7 @@ module Increase
 
         ACCOUNT_STATEMENT: :account_statement
 
-        def self?.values: -> ::Array[Increase::Models::AccountStatement::type_]
+        def self?.values: -> ::Array[Increase::AccountStatement::type_]
       end
     end
   end

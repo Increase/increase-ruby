@@ -11,7 +11,7 @@ class Increase::Test::Resources::Simulations::InboundMailItemsTest < Increase::T
       )
 
     assert_pattern do
-      response => Increase::Models::InboundMailItem
+      response => Increase::InboundMailItem
     end
 
     assert_pattern do
@@ -21,9 +21,9 @@ class Increase::Test::Resources::Simulations::InboundMailItemsTest < Increase::T
         file_id: String,
         lockbox_id: String | nil,
         recipient_name: String | nil,
-        rejection_reason: Increase::Models::InboundMailItem::RejectionReason | nil,
-        status: Increase::Models::InboundMailItem::Status,
-        type: Increase::Models::InboundMailItem::Type
+        rejection_reason: Increase::InboundMailItem::RejectionReason | nil,
+        status: Increase::InboundMailItem::Status,
+        type: Increase::InboundMailItem::Type
       }
     end
   end

@@ -7,26 +7,26 @@ module Increase
         ?compliance_category: Increase::Models::BookkeepingAccountCreateParams::compliance_category,
         ?entity_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::BookkeepingAccount
+      ) -> Increase::BookkeepingAccount
 
       def update: (
         String bookkeeping_account_id,
         name: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::BookkeepingAccount
+      ) -> Increase::BookkeepingAccount
 
       def list: (
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Models::BookkeepingAccount]
+      ) -> Increase::Internal::Page[Increase::BookkeepingAccount]
 
       def balance: (
         String bookkeeping_account_id,
         ?at_time: Time,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::BookkeepingBalanceLookup
+      ) -> Increase::BookkeepingBalanceLookup
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -4,10 +4,10 @@ module Increase
       {
         account_id: String,
         account_number_id: String,
-        created_at: Increase::Models::InboundWireTransferListParams::CreatedAt,
+        created_at: Increase::InboundWireTransferListParams::CreatedAt,
         cursor: String,
         limit: Integer,
-        status: Increase::Models::InboundWireTransferListParams::Status
+        status: Increase::InboundWireTransferListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -23,11 +23,11 @@ module Increase
 
       def account_number_id=: (String) -> String
 
-      attr_reader created_at: Increase::Models::InboundWireTransferListParams::CreatedAt?
+      attr_reader created_at: Increase::InboundWireTransferListParams::CreatedAt?
 
       def created_at=: (
-        Increase::Models::InboundWireTransferListParams::CreatedAt
-      ) -> Increase::Models::InboundWireTransferListParams::CreatedAt
+        Increase::InboundWireTransferListParams::CreatedAt
+      ) -> Increase::InboundWireTransferListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -37,23 +37,21 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Increase::Models::InboundWireTransferListParams::Status?
+      attr_reader status: Increase::InboundWireTransferListParams::Status?
 
       def status=: (
-        Increase::Models::InboundWireTransferListParams::Status
-      ) -> Increase::Models::InboundWireTransferListParams::Status
+        Increase::InboundWireTransferListParams::Status
+      ) -> Increase::InboundWireTransferListParams::Status
 
       def initialize: (
         ?account_id: String,
         ?account_number_id: String,
-        ?created_at: Increase::Models::InboundWireTransferListParams::CreatedAt,
+        ?created_at: Increase::InboundWireTransferListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
-        ?status: Increase::Models::InboundWireTransferListParams::Status,
+        ?status: Increase::InboundWireTransferListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::inbound_wire_transfer_list_params
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -81,27 +79,21 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
-
-        def to_hash: -> Increase::Models::InboundWireTransferListParams::created_at
       end
 
       type status =
-        {
-          in_: ::Array[Increase::Models::InboundWireTransferListParams::Status::in_]
-        }
+        { in_: ::Array[Increase::InboundWireTransferListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::InboundWireTransferListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::InboundWireTransferListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::Models::InboundWireTransferListParams::Status::in_]
-        ) -> ::Array[Increase::Models::InboundWireTransferListParams::Status::in_]
+          ::Array[Increase::InboundWireTransferListParams::Status::in_]
+        ) -> ::Array[Increase::InboundWireTransferListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::Models::InboundWireTransferListParams::Status::in_]
+          ?in_: ::Array[Increase::InboundWireTransferListParams::Status::in_]
         ) -> void
-
-        def to_hash: -> Increase::Models::InboundWireTransferListParams::status
 
         type in_ = :pending | :accepted | :declined | :reversed
 
@@ -120,7 +112,7 @@ module Increase
           # The Inbound Wire Transfer was reversed.
           REVERSED: :reversed
 
-          def self?.values: -> ::Array[Increase::Models::InboundWireTransferListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::InboundWireTransferListParams::Status::in_]
         end
       end
     end

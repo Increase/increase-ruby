@@ -3,32 +3,30 @@ module Increase
     type group =
       {
         id: String,
-        ach_debit_status: Increase::Models::Group::ach_debit_status,
-        activation_status: Increase::Models::Group::activation_status,
+        ach_debit_status: Increase::Group::ach_debit_status,
+        activation_status: Increase::Group::activation_status,
         created_at: Time,
-        type: Increase::Models::Group::type_
+        type: Increase::Group::type_
       }
 
     class Group < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor ach_debit_status: Increase::Models::Group::ach_debit_status
+      attr_accessor ach_debit_status: Increase::Group::ach_debit_status
 
-      attr_accessor activation_status: Increase::Models::Group::activation_status
+      attr_accessor activation_status: Increase::Group::activation_status
 
       attr_accessor created_at: Time
 
-      attr_accessor type: Increase::Models::Group::type_
+      attr_accessor type: Increase::Group::type_
 
       def initialize: (
         id: String,
-        ach_debit_status: Increase::Models::Group::ach_debit_status,
-        activation_status: Increase::Models::Group::activation_status,
+        ach_debit_status: Increase::Group::ach_debit_status,
+        activation_status: Increase::Group::activation_status,
         created_at: Time,
-        type: Increase::Models::Group::type_
+        type: Increase::Group::type_
       ) -> void
-
-      def to_hash: -> Increase::Models::group
 
       type ach_debit_status = :disabled | :enabled
 
@@ -41,7 +39,7 @@ module Increase
         # The Group can make ACH debits.
         ENABLED: :enabled
 
-        def self?.values: -> ::Array[Increase::Models::Group::ach_debit_status]
+        def self?.values: -> ::Array[Increase::Group::ach_debit_status]
       end
 
       type activation_status = :unactivated | :activated
@@ -55,7 +53,7 @@ module Increase
         # The Group is activated.
         ACTIVATED: :activated
 
-        def self?.values: -> ::Array[Increase::Models::Group::activation_status]
+        def self?.values: -> ::Array[Increase::Group::activation_status]
       end
 
       type type_ = :group
@@ -65,7 +63,7 @@ module Increase
 
         GROUP: :group
 
-        def self?.values: -> ::Array[Increase::Models::Group::type_]
+        def self?.values: -> ::Array[Increase::Group::type_]
       end
     end
   end

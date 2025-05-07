@@ -17,25 +17,23 @@ module Increase
         # @param amount [Integer] The interest amount in cents. Must be positive.
         #
         # @param accrued_on_account_id [String] The identifier of the Account the Interest accrued on. Defaults to `account_id`.
-        # ...
         #
         # @param period_end [Time] The end of the interest period. If not provided, defaults to the current time.
         #
         # @param period_start [Time] The start of the interest period. If not provided, defaults to the current time.
-        # ...
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Models::Transaction]
+        # @return [Increase::Transaction]
         #
         # @see Increase::Models::Simulations::InterestPaymentCreateParams
         def create(params)
-          parsed, options = Increase::Models::Simulations::InterestPaymentCreateParams.dump_request(params)
+          parsed, options = Increase::Simulations::InterestPaymentCreateParams.dump_request(params)
           @client.request(
             method: :post,
             path: "simulations/interest_payments",
             body: parsed,
-            model: Increase::Models::Transaction,
+            model: Increase::Transaction,
             options: options
           )
         end

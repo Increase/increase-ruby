@@ -9,29 +9,38 @@ module Increase
         # [Transaction](#transaction) to account for the returned funds. This Wire
         # Transfer must first have a `status` of `complete`.
         sig do
-          params(wire_transfer_id: String, request_options: Increase::RequestOpts)
-            .returns(Increase::Models::WireTransfer)
+          params(
+            wire_transfer_id: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::WireTransfer)
         end
         def reverse(
           # The identifier of the Wire Transfer you wish to reverse.
           wire_transfer_id,
           request_options: {}
-        ); end
+        )
+        end
+
         # Simulates the submission of a [Wire Transfer](#wire-transfers) to the Federal
         # Reserve. This transfer must first have a `status` of `pending_approval` or
         # `pending_creating`.
         sig do
-          params(wire_transfer_id: String, request_options: Increase::RequestOpts)
-            .returns(Increase::Models::WireTransfer)
+          params(
+            wire_transfer_id: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::WireTransfer)
         end
         def submit(
           # The identifier of the Wire Transfer you wish to submit.
           wire_transfer_id,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

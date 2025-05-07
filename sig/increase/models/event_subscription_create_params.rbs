@@ -37,8 +37,6 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      def to_hash: -> Increase::Models::event_subscription_create_params
-
       type selected_event_category =
         :"account.created"
         | :"account.updated"

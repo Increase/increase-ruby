@@ -5,7 +5,7 @@ module Increase
         def create: (
           account_id: String,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::Document
+        ) -> Increase::Document
 
         def initialize: (client: Increase::Client) -> void
       end

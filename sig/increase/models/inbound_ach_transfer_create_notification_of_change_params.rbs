@@ -21,8 +21,6 @@ module Increase
         ?updated_routing_number: String,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::inbound_ach_transfer_create_notification_of_change_params
     end
   end
 end

@@ -8,15 +8,23 @@ module Increase
         # group has one program called Commercial Banking. Note that when your group
         # operates more than one program, `program_id` is a required field when creating
         # accounts.
-        sig { params(name: String, request_options: Increase::RequestOpts).returns(Increase::Models::Program) }
+        sig do
+          params(
+            name: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::Program)
+        end
         def create(
           # The name of the program being added.
           name:,
           request_options: {}
-        ); end
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
-        def self.new(client:); end
+        def self.new(client:)
+        end
       end
     end
   end

@@ -13,7 +13,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
       )
 
     assert_pattern do
-      response => Increase::Models::CheckTransfer
+      response => Increase::CheckTransfer
     end
 
     assert_pattern do
@@ -22,25 +22,25 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         account_id: String,
         account_number: String,
         amount: Integer,
-        approval: Increase::Models::CheckTransfer::Approval | nil,
+        approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
-        cancellation: Increase::Models::CheckTransfer::Cancellation | nil,
+        cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,
-        created_by: Increase::Models::CheckTransfer::CreatedBy | nil,
-        currency: Increase::Models::CheckTransfer::Currency,
-        fulfillment_method: Increase::Models::CheckTransfer::FulfillmentMethod,
+        created_by: Increase::CheckTransfer::CreatedBy | nil,
+        currency: Increase::CheckTransfer::Currency,
+        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
         idempotency_key: String | nil,
-        mailing: Increase::Models::CheckTransfer::Mailing | nil,
+        mailing: Increase::CheckTransfer::Mailing | nil,
         pending_transaction_id: String | nil,
-        physical_check: Increase::Models::CheckTransfer::PhysicalCheck | nil,
+        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
         routing_number: String,
         source_account_number_id: String | nil,
-        status: Increase::Models::CheckTransfer::Status,
-        stop_payment_request: Increase::Models::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::Models::CheckTransfer::Submission | nil,
-        third_party: Increase::Models::CheckTransfer::ThirdParty | nil,
-        type: Increase::Models::CheckTransfer::Type
+        status: Increase::CheckTransfer::Status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
+        submission: Increase::CheckTransfer::Submission | nil,
+        third_party: Increase::CheckTransfer::ThirdParty | nil,
+        type: Increase::CheckTransfer::Type
       }
     end
   end
@@ -49,7 +49,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
     response = @increase.check_transfers.retrieve("check_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::CheckTransfer
+      response => Increase::CheckTransfer
     end
 
     assert_pattern do
@@ -58,25 +58,25 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         account_id: String,
         account_number: String,
         amount: Integer,
-        approval: Increase::Models::CheckTransfer::Approval | nil,
+        approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
-        cancellation: Increase::Models::CheckTransfer::Cancellation | nil,
+        cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,
-        created_by: Increase::Models::CheckTransfer::CreatedBy | nil,
-        currency: Increase::Models::CheckTransfer::Currency,
-        fulfillment_method: Increase::Models::CheckTransfer::FulfillmentMethod,
+        created_by: Increase::CheckTransfer::CreatedBy | nil,
+        currency: Increase::CheckTransfer::Currency,
+        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
         idempotency_key: String | nil,
-        mailing: Increase::Models::CheckTransfer::Mailing | nil,
+        mailing: Increase::CheckTransfer::Mailing | nil,
         pending_transaction_id: String | nil,
-        physical_check: Increase::Models::CheckTransfer::PhysicalCheck | nil,
+        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
         routing_number: String,
         source_account_number_id: String | nil,
-        status: Increase::Models::CheckTransfer::Status,
-        stop_payment_request: Increase::Models::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::Models::CheckTransfer::Submission | nil,
-        third_party: Increase::Models::CheckTransfer::ThirdParty | nil,
-        type: Increase::Models::CheckTransfer::Type
+        status: Increase::CheckTransfer::Status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
+        submission: Increase::CheckTransfer::Submission | nil,
+        third_party: Increase::CheckTransfer::ThirdParty | nil,
+        type: Increase::CheckTransfer::Type
       }
     end
   end
@@ -92,7 +92,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::CheckTransfer
+      row => Increase::CheckTransfer
     end
 
     assert_pattern do
@@ -101,25 +101,25 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         account_id: String,
         account_number: String,
         amount: Integer,
-        approval: Increase::Models::CheckTransfer::Approval | nil,
+        approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
-        cancellation: Increase::Models::CheckTransfer::Cancellation | nil,
+        cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,
-        created_by: Increase::Models::CheckTransfer::CreatedBy | nil,
-        currency: Increase::Models::CheckTransfer::Currency,
-        fulfillment_method: Increase::Models::CheckTransfer::FulfillmentMethod,
+        created_by: Increase::CheckTransfer::CreatedBy | nil,
+        currency: Increase::CheckTransfer::Currency,
+        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
         idempotency_key: String | nil,
-        mailing: Increase::Models::CheckTransfer::Mailing | nil,
+        mailing: Increase::CheckTransfer::Mailing | nil,
         pending_transaction_id: String | nil,
-        physical_check: Increase::Models::CheckTransfer::PhysicalCheck | nil,
+        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
         routing_number: String,
         source_account_number_id: String | nil,
-        status: Increase::Models::CheckTransfer::Status,
-        stop_payment_request: Increase::Models::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::Models::CheckTransfer::Submission | nil,
-        third_party: Increase::Models::CheckTransfer::ThirdParty | nil,
-        type: Increase::Models::CheckTransfer::Type
+        status: Increase::CheckTransfer::Status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
+        submission: Increase::CheckTransfer::Submission | nil,
+        third_party: Increase::CheckTransfer::ThirdParty | nil,
+        type: Increase::CheckTransfer::Type
       }
     end
   end
@@ -128,7 +128,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
     response = @increase.check_transfers.approve("check_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::CheckTransfer
+      response => Increase::CheckTransfer
     end
 
     assert_pattern do
@@ -137,25 +137,25 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         account_id: String,
         account_number: String,
         amount: Integer,
-        approval: Increase::Models::CheckTransfer::Approval | nil,
+        approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
-        cancellation: Increase::Models::CheckTransfer::Cancellation | nil,
+        cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,
-        created_by: Increase::Models::CheckTransfer::CreatedBy | nil,
-        currency: Increase::Models::CheckTransfer::Currency,
-        fulfillment_method: Increase::Models::CheckTransfer::FulfillmentMethod,
+        created_by: Increase::CheckTransfer::CreatedBy | nil,
+        currency: Increase::CheckTransfer::Currency,
+        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
         idempotency_key: String | nil,
-        mailing: Increase::Models::CheckTransfer::Mailing | nil,
+        mailing: Increase::CheckTransfer::Mailing | nil,
         pending_transaction_id: String | nil,
-        physical_check: Increase::Models::CheckTransfer::PhysicalCheck | nil,
+        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
         routing_number: String,
         source_account_number_id: String | nil,
-        status: Increase::Models::CheckTransfer::Status,
-        stop_payment_request: Increase::Models::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::Models::CheckTransfer::Submission | nil,
-        third_party: Increase::Models::CheckTransfer::ThirdParty | nil,
-        type: Increase::Models::CheckTransfer::Type
+        status: Increase::CheckTransfer::Status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
+        submission: Increase::CheckTransfer::Submission | nil,
+        third_party: Increase::CheckTransfer::ThirdParty | nil,
+        type: Increase::CheckTransfer::Type
       }
     end
   end
@@ -164,7 +164,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
     response = @increase.check_transfers.cancel("check_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::CheckTransfer
+      response => Increase::CheckTransfer
     end
 
     assert_pattern do
@@ -173,25 +173,25 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         account_id: String,
         account_number: String,
         amount: Integer,
-        approval: Increase::Models::CheckTransfer::Approval | nil,
+        approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
-        cancellation: Increase::Models::CheckTransfer::Cancellation | nil,
+        cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,
-        created_by: Increase::Models::CheckTransfer::CreatedBy | nil,
-        currency: Increase::Models::CheckTransfer::Currency,
-        fulfillment_method: Increase::Models::CheckTransfer::FulfillmentMethod,
+        created_by: Increase::CheckTransfer::CreatedBy | nil,
+        currency: Increase::CheckTransfer::Currency,
+        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
         idempotency_key: String | nil,
-        mailing: Increase::Models::CheckTransfer::Mailing | nil,
+        mailing: Increase::CheckTransfer::Mailing | nil,
         pending_transaction_id: String | nil,
-        physical_check: Increase::Models::CheckTransfer::PhysicalCheck | nil,
+        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
         routing_number: String,
         source_account_number_id: String | nil,
-        status: Increase::Models::CheckTransfer::Status,
-        stop_payment_request: Increase::Models::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::Models::CheckTransfer::Submission | nil,
-        third_party: Increase::Models::CheckTransfer::ThirdParty | nil,
-        type: Increase::Models::CheckTransfer::Type
+        status: Increase::CheckTransfer::Status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
+        submission: Increase::CheckTransfer::Submission | nil,
+        third_party: Increase::CheckTransfer::ThirdParty | nil,
+        type: Increase::CheckTransfer::Type
       }
     end
   end
@@ -200,7 +200,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
     response = @increase.check_transfers.stop_payment("check_transfer_id")
 
     assert_pattern do
-      response => Increase::Models::CheckTransfer
+      response => Increase::CheckTransfer
     end
 
     assert_pattern do
@@ -209,25 +209,25 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         account_id: String,
         account_number: String,
         amount: Integer,
-        approval: Increase::Models::CheckTransfer::Approval | nil,
+        approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
-        cancellation: Increase::Models::CheckTransfer::Cancellation | nil,
+        cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,
-        created_by: Increase::Models::CheckTransfer::CreatedBy | nil,
-        currency: Increase::Models::CheckTransfer::Currency,
-        fulfillment_method: Increase::Models::CheckTransfer::FulfillmentMethod,
+        created_by: Increase::CheckTransfer::CreatedBy | nil,
+        currency: Increase::CheckTransfer::Currency,
+        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
         idempotency_key: String | nil,
-        mailing: Increase::Models::CheckTransfer::Mailing | nil,
+        mailing: Increase::CheckTransfer::Mailing | nil,
         pending_transaction_id: String | nil,
-        physical_check: Increase::Models::CheckTransfer::PhysicalCheck | nil,
+        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
         routing_number: String,
         source_account_number_id: String | nil,
-        status: Increase::Models::CheckTransfer::Status,
-        stop_payment_request: Increase::Models::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::Models::CheckTransfer::Submission | nil,
-        third_party: Increase::Models::CheckTransfer::ThirdParty | nil,
-        type: Increase::Models::CheckTransfer::Type
+        status: Increase::CheckTransfer::Status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
+        submission: Increase::CheckTransfer::Submission | nil,
+        third_party: Increase::CheckTransfer::ThirdParty | nil,
+        type: Increase::CheckTransfer::Type
       }
     end
   end

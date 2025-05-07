@@ -7,17 +7,17 @@ class Increase::Test::Resources::Simulations::DocumentsTest < Increase::Test::Re
     response = @increase.simulations.documents.create(account_id: "account_in71c4amph0vgo2qllky")
 
     assert_pattern do
-      response => Increase::Models::Document
+      response => Increase::Document
     end
 
     assert_pattern do
       response => {
         id: String,
-        category: Increase::Models::Document::Category,
+        category: Increase::Document::Category,
         created_at: Time,
         entity_id: String | nil,
         file_id: String,
-        type: Increase::Models::Document::Type
+        type: Increase::Document::Type
       }
     end
   end

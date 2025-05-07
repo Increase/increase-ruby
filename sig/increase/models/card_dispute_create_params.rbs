@@ -22,8 +22,6 @@ module Increase
         ?amount: Integer,
         ?request_options: Increase::request_opts
       ) -> void
-
-      def to_hash: -> Increase::Models::card_dispute_create_params
     end
   end
 end

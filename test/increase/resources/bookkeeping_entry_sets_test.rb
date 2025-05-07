@@ -13,7 +13,7 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
       )
 
     assert_pattern do
-      response => Increase::Models::BookkeepingEntrySet
+      response => Increase::BookkeepingEntrySet
     end
 
     assert_pattern do
@@ -21,10 +21,10 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
         id: String,
         created_at: Time,
         date: Time,
-        entries: ^(Increase::Internal::Type::ArrayOf[Increase::Models::BookkeepingEntrySet::Entry]),
+        entries: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntrySet::Entry]),
         idempotency_key: String | nil,
         transaction_id: String | nil,
-        type: Increase::Models::BookkeepingEntrySet::Type
+        type: Increase::BookkeepingEntrySet::Type
       }
     end
   end
@@ -33,7 +33,7 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
     response = @increase.bookkeeping_entry_sets.retrieve("bookkeeping_entry_set_id")
 
     assert_pattern do
-      response => Increase::Models::BookkeepingEntrySet
+      response => Increase::BookkeepingEntrySet
     end
 
     assert_pattern do
@@ -41,10 +41,10 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
         id: String,
         created_at: Time,
         date: Time,
-        entries: ^(Increase::Internal::Type::ArrayOf[Increase::Models::BookkeepingEntrySet::Entry]),
+        entries: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntrySet::Entry]),
         idempotency_key: String | nil,
         transaction_id: String | nil,
-        type: Increase::Models::BookkeepingEntrySet::Type
+        type: Increase::BookkeepingEntrySet::Type
       }
     end
   end
@@ -60,7 +60,7 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Models::BookkeepingEntrySet
+      row => Increase::BookkeepingEntrySet
     end
 
     assert_pattern do
@@ -68,10 +68,10 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
         id: String,
         created_at: Time,
         date: Time,
-        entries: ^(Increase::Internal::Type::ArrayOf[Increase::Models::BookkeepingEntrySet::Entry]),
+        entries: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntrySet::Entry]),
         idempotency_key: String | nil,
         transaction_id: String | nil,
-        type: Increase::Models::BookkeepingEntrySet::Type
+        type: Increase::BookkeepingEntrySet::Type
       }
     end
   end

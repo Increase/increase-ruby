@@ -4,27 +4,27 @@ module Increase
       {
         id: String,
         account_id: String,
-        acknowledgement: Increase::Models::RealTimePaymentsTransfer::Acknowledgement?,
+        acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?,
         amount: Integer,
-        approval: Increase::Models::RealTimePaymentsTransfer::Approval?,
-        cancellation: Increase::Models::RealTimePaymentsTransfer::Cancellation?,
+        approval: Increase::RealTimePaymentsTransfer::Approval?,
+        cancellation: Increase::RealTimePaymentsTransfer::Cancellation?,
         created_at: Time,
-        created_by: Increase::Models::RealTimePaymentsTransfer::CreatedBy?,
+        created_by: Increase::RealTimePaymentsTransfer::CreatedBy?,
         creditor_name: String,
-        currency: Increase::Models::RealTimePaymentsTransfer::currency,
+        currency: Increase::RealTimePaymentsTransfer::currency,
         debtor_name: String?,
         destination_account_number: String,
         destination_routing_number: String,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
-        rejection: Increase::Models::RealTimePaymentsTransfer::Rejection?,
+        rejection: Increase::RealTimePaymentsTransfer::Rejection?,
         remittance_information: String,
         source_account_number_id: String,
-        status: Increase::Models::RealTimePaymentsTransfer::status,
-        submission: Increase::Models::RealTimePaymentsTransfer::Submission?,
+        status: Increase::RealTimePaymentsTransfer::status,
+        submission: Increase::RealTimePaymentsTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::Models::RealTimePaymentsTransfer::type_,
+        type: Increase::RealTimePaymentsTransfer::type_,
         ultimate_creditor_name: String?,
         ultimate_debtor_name: String?
       }
@@ -34,21 +34,21 @@ module Increase
 
       attr_accessor account_id: String
 
-      attr_accessor acknowledgement: Increase::Models::RealTimePaymentsTransfer::Acknowledgement?
+      attr_accessor acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?
 
       attr_accessor amount: Integer
 
-      attr_accessor approval: Increase::Models::RealTimePaymentsTransfer::Approval?
+      attr_accessor approval: Increase::RealTimePaymentsTransfer::Approval?
 
-      attr_accessor cancellation: Increase::Models::RealTimePaymentsTransfer::Cancellation?
+      attr_accessor cancellation: Increase::RealTimePaymentsTransfer::Cancellation?
 
       attr_accessor created_at: Time
 
-      attr_accessor created_by: Increase::Models::RealTimePaymentsTransfer::CreatedBy?
+      attr_accessor created_by: Increase::RealTimePaymentsTransfer::CreatedBy?
 
       attr_accessor creditor_name: String
 
-      attr_accessor currency: Increase::Models::RealTimePaymentsTransfer::currency
+      attr_accessor currency: Increase::RealTimePaymentsTransfer::currency
 
       attr_accessor debtor_name: String?
 
@@ -62,19 +62,19 @@ module Increase
 
       attr_accessor pending_transaction_id: String?
 
-      attr_accessor rejection: Increase::Models::RealTimePaymentsTransfer::Rejection?
+      attr_accessor rejection: Increase::RealTimePaymentsTransfer::Rejection?
 
       attr_accessor remittance_information: String
 
       attr_accessor source_account_number_id: String
 
-      attr_accessor status: Increase::Models::RealTimePaymentsTransfer::status
+      attr_accessor status: Increase::RealTimePaymentsTransfer::status
 
-      attr_accessor submission: Increase::Models::RealTimePaymentsTransfer::Submission?
+      attr_accessor submission: Increase::RealTimePaymentsTransfer::Submission?
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::Models::RealTimePaymentsTransfer::type_
+      attr_accessor type: Increase::RealTimePaymentsTransfer::type_
 
       attr_accessor ultimate_creditor_name: String?
 
@@ -83,32 +83,30 @@ module Increase
       def initialize: (
         id: String,
         account_id: String,
-        acknowledgement: Increase::Models::RealTimePaymentsTransfer::Acknowledgement?,
+        acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?,
         amount: Integer,
-        approval: Increase::Models::RealTimePaymentsTransfer::Approval?,
-        cancellation: Increase::Models::RealTimePaymentsTransfer::Cancellation?,
+        approval: Increase::RealTimePaymentsTransfer::Approval?,
+        cancellation: Increase::RealTimePaymentsTransfer::Cancellation?,
         created_at: Time,
-        created_by: Increase::Models::RealTimePaymentsTransfer::CreatedBy?,
+        created_by: Increase::RealTimePaymentsTransfer::CreatedBy?,
         creditor_name: String,
-        currency: Increase::Models::RealTimePaymentsTransfer::currency,
+        currency: Increase::RealTimePaymentsTransfer::currency,
         debtor_name: String?,
         destination_account_number: String,
         destination_routing_number: String,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
-        rejection: Increase::Models::RealTimePaymentsTransfer::Rejection?,
+        rejection: Increase::RealTimePaymentsTransfer::Rejection?,
         remittance_information: String,
         source_account_number_id: String,
-        status: Increase::Models::RealTimePaymentsTransfer::status,
-        submission: Increase::Models::RealTimePaymentsTransfer::Submission?,
+        status: Increase::RealTimePaymentsTransfer::status,
+        submission: Increase::RealTimePaymentsTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::Models::RealTimePaymentsTransfer::type_,
+        type: Increase::RealTimePaymentsTransfer::type_,
         ultimate_creditor_name: String?,
         ultimate_debtor_name: String?
       ) -> void
-
-      def to_hash: -> Increase::Models::real_time_payments_transfer
 
       type acknowledgement = { acknowledged_at: Time }
 
@@ -116,8 +114,6 @@ module Increase
         attr_accessor acknowledged_at: Time
 
         def initialize: (acknowledged_at: Time) -> void
-
-        def to_hash: -> Increase::Models::RealTimePaymentsTransfer::acknowledgement
       end
 
       type approval = { approved_at: Time, approved_by: String? }
@@ -128,8 +124,6 @@ module Increase
         attr_accessor approved_by: String?
 
         def initialize: (approved_at: Time, approved_by: String?) -> void
-
-        def to_hash: -> Increase::Models::RealTimePaymentsTransfer::approval
       end
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
@@ -140,35 +134,31 @@ module Increase
         attr_accessor canceled_by: String?
 
         def initialize: (canceled_at: Time, canceled_by: String?) -> void
-
-        def to_hash: -> Increase::Models::RealTimePaymentsTransfer::cancellation
       end
 
       type created_by =
         {
-          api_key: Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey?,
-          category: Increase::Models::RealTimePaymentsTransfer::CreatedBy::category,
-          oauth_application: Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication?,
-          user: Increase::Models::RealTimePaymentsTransfer::CreatedBy::User?
+          api_key: Increase::RealTimePaymentsTransfer::CreatedBy::APIKey?,
+          category: Increase::RealTimePaymentsTransfer::CreatedBy::category,
+          oauth_application: Increase::RealTimePaymentsTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::RealTimePaymentsTransfer::CreatedBy::User?
         }
 
       class CreatedBy < Increase::Internal::Type::BaseModel
-        attr_accessor api_key: Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey?
+        attr_accessor api_key: Increase::RealTimePaymentsTransfer::CreatedBy::APIKey?
 
-        attr_accessor category: Increase::Models::RealTimePaymentsTransfer::CreatedBy::category
+        attr_accessor category: Increase::RealTimePaymentsTransfer::CreatedBy::category
 
-        attr_accessor oauth_application: Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication?
+        attr_accessor oauth_application: Increase::RealTimePaymentsTransfer::CreatedBy::OAuthApplication?
 
-        attr_accessor user: Increase::Models::RealTimePaymentsTransfer::CreatedBy::User?
+        attr_accessor user: Increase::RealTimePaymentsTransfer::CreatedBy::User?
 
         def initialize: (
-          api_key: Increase::Models::RealTimePaymentsTransfer::CreatedBy::APIKey?,
-          category: Increase::Models::RealTimePaymentsTransfer::CreatedBy::category,
-          oauth_application: Increase::Models::RealTimePaymentsTransfer::CreatedBy::OAuthApplication?,
-          user: Increase::Models::RealTimePaymentsTransfer::CreatedBy::User?
+          api_key: Increase::RealTimePaymentsTransfer::CreatedBy::APIKey?,
+          category: Increase::RealTimePaymentsTransfer::CreatedBy::category,
+          oauth_application: Increase::RealTimePaymentsTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::RealTimePaymentsTransfer::CreatedBy::User?
         ) -> void
-
-        def to_hash: -> Increase::Models::RealTimePaymentsTransfer::created_by
 
         type api_key = { description: String? }
 
@@ -176,8 +166,6 @@ module Increase
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
-
-          def to_hash: -> Increase::Models::RealTimePaymentsTransfer::CreatedBy::api_key
         end
 
         type category = :api_key | :oauth_application | :user
@@ -194,7 +182,7 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER: :user
 
-          def self?.values: -> ::Array[Increase::Models::RealTimePaymentsTransfer::CreatedBy::category]
+          def self?.values: -> ::Array[Increase::RealTimePaymentsTransfer::CreatedBy::category]
         end
 
         type oauth_application = { name: String }
@@ -203,8 +191,6 @@ module Increase
           attr_accessor name: String
 
           def initialize: (name: String) -> void
-
-          def to_hash: -> Increase::Models::RealTimePaymentsTransfer::CreatedBy::oauth_application
         end
 
         type user = { email: String }
@@ -213,8 +199,6 @@ module Increase
           attr_accessor email: String
 
           def initialize: (email: String) -> void
-
-          def to_hash: -> Increase::Models::RealTimePaymentsTransfer::CreatedBy::user
         end
       end
 
@@ -241,30 +225,28 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsTransfer::currency]
+        def self?.values: -> ::Array[Increase::RealTimePaymentsTransfer::currency]
       end
 
       type rejection =
         {
           reject_reason_additional_information: String?,
-          reject_reason_code: Increase::Models::RealTimePaymentsTransfer::Rejection::reject_reason_code,
+          reject_reason_code: Increase::RealTimePaymentsTransfer::Rejection::reject_reason_code,
           rejected_at: Time?
         }
 
       class Rejection < Increase::Internal::Type::BaseModel
         attr_accessor reject_reason_additional_information: String?
 
-        attr_accessor reject_reason_code: Increase::Models::RealTimePaymentsTransfer::Rejection::reject_reason_code
+        attr_accessor reject_reason_code: Increase::RealTimePaymentsTransfer::Rejection::reject_reason_code
 
         attr_accessor rejected_at: Time?
 
         def initialize: (
           reject_reason_additional_information: String?,
-          reject_reason_code: Increase::Models::RealTimePaymentsTransfer::Rejection::reject_reason_code,
+          reject_reason_code: Increase::RealTimePaymentsTransfer::Rejection::reject_reason_code,
           rejected_at: Time?
         ) -> void
-
-        def to_hash: -> Increase::Models::RealTimePaymentsTransfer::rejection
 
         type reject_reason_code =
           :account_closed
@@ -355,7 +337,7 @@ module Increase
           # Some other error or issue has occurred.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::Models::RealTimePaymentsTransfer::Rejection::reject_reason_code]
+          def self?.values: -> ::Array[Increase::RealTimePaymentsTransfer::Rejection::reject_reason_code]
         end
       end
 
@@ -396,7 +378,7 @@ module Increase
         # The transfer has been sent successfully and is complete.
         COMPLETE: :complete
 
-        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsTransfer::status]
+        def self?.values: -> ::Array[Increase::RealTimePaymentsTransfer::status]
       end
 
       type submission =
@@ -411,8 +393,6 @@ module Increase
           submitted_at: Time?,
           transaction_identification: String
         ) -> void
-
-        def to_hash: -> Increase::Models::RealTimePaymentsTransfer::submission
       end
 
       type type_ = :real_time_payments_transfer
@@ -422,7 +402,7 @@ module Increase
 
         REAL_TIME_PAYMENTS_TRANSFER: :real_time_payments_transfer
 
-        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsTransfer::type_]
+        def self?.values: -> ::Array[Increase::RealTimePaymentsTransfer::type_]
       end
     end
   end
