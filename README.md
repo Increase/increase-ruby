@@ -96,7 +96,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  account = increase.accounts.create
+  account = increase.accounts.create(name: "New Account!")
 rescue Increase::Errors::APIError => e
   puts(e.status) # 400
 end
