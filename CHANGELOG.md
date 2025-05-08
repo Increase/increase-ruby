@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2025-05-08)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Features
+
+* **api:** api update ([11d10fa](https://github.com/Increase/increase-ruby/commit/11d10fadaf87159363f61318935bc5f2f303dcfa))
+
+
+### Documentation
+
+* remove or fix invalid readme examples ([a396397](https://github.com/Increase/increase-ruby/commit/a3963973a51da3cca92b1bf2bfc18402bb2bd78f))
+
 ## 0.1.0-alpha.19 (2025-05-07)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
