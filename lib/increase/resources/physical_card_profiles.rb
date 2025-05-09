@@ -3,9 +3,12 @@
 module Increase
   module Resources
     class PhysicalCardProfiles
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::PhysicalCardProfileCreateParams} for more details.
+      #
       # Create a Physical Card Profile
       #
-      # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, request_options: {})
+      # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, front_text: nil, request_options: {})
       #
       # @param carrier_image_file_id [String] The identifier of the File containing the physical card's carrier image.
       #
@@ -16,6 +19,8 @@ module Increase
       # @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
       # @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
+      #
+      # @param front_text [Increase::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

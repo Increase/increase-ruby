@@ -11,6 +11,8 @@ module Increase
           description: String,
           front_image_file_id: String,
           program_id: String,
+          front_text:
+            Increase::PhysicalCardProfileCreateParams::FrontText::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::PhysicalCardProfile)
       end
@@ -25,6 +27,9 @@ module Increase
         front_image_file_id:,
         # The identifier for the Program that this Physical Card Profile falls under.
         program_id:,
+        # Text printed on the front of the card. Reach out to
+        # [support@increase.com](mailto:support@increase.com) for more information.
+        front_text: nil,
         request_options: {}
       )
       end

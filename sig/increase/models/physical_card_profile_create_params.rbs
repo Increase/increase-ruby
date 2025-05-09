@@ -6,7 +6,8 @@ module Increase
         contact_phone: String,
         description: String,
         front_image_file_id: String,
-        program_id: String
+        program_id: String,
+        front_text: Increase::PhysicalCardProfileCreateParams::FrontText
       }
       & Increase::Internal::Type::request_parameters
 
@@ -24,14 +25,33 @@ module Increase
 
       attr_accessor program_id: String
 
+      attr_reader front_text: Increase::PhysicalCardProfileCreateParams::FrontText?
+
+      def front_text=: (
+        Increase::PhysicalCardProfileCreateParams::FrontText
+      ) -> Increase::PhysicalCardProfileCreateParams::FrontText
+
       def initialize: (
         carrier_image_file_id: String,
         contact_phone: String,
         description: String,
         front_image_file_id: String,
         program_id: String,
+        ?front_text: Increase::PhysicalCardProfileCreateParams::FrontText,
         ?request_options: Increase::request_opts
       ) -> void
+
+      type front_text = { :line1 => String, :line2 => String }
+
+      class FrontText < Increase::Internal::Type::BaseModel
+        attr_accessor line1: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        def initialize: (line1: String, ?line2: String) -> void
+      end
     end
   end
 end
