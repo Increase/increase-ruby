@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2025-05-12)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Features
+
+* **api:** api update ([e9058dd](https://github.com/Increase/increase-ruby/commit/e9058dd6b8bf03cca193810a0973ffb0cd242b51))
+* support sorbet aliases at the runtime ([38e39cf](https://github.com/Increase/increase-ruby/commit/38e39cfce387746d743d13133b2d1e17c3b5fa86))
+
 ## 0.1.0-alpha.21 (2025-05-09)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
