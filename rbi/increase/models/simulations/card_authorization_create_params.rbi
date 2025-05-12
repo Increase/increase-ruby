@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::CardAuthorizationCreateParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The authorization amount in cents.
         sig { returns(Integer) }
@@ -465,7 +470,12 @@ module Increase
 
         class NetworkDetails < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Fields specific to the Visa network.
           sig do
@@ -509,7 +519,12 @@ module Increase
 
           class Visa < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The reason code for the stand-in processing.
             sig do

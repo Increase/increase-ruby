@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::AccountStatementCreateParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Account the statement is for.
         sig { returns(String) }

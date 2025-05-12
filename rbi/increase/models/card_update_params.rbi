@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::CardUpdateParams, Increase::Internal::AnyHash)
+        end
 
       # The card's updated billing address.
       sig { returns(T.nilable(Increase::CardUpdateParams::BillingAddress)) }
@@ -99,7 +102,12 @@ module Increase
 
       class BillingAddress < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CardUpdateParams::BillingAddress,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The city of the billing address.
         sig { returns(String) }
@@ -165,7 +173,12 @@ module Increase
 
       class DigitalWallet < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CardUpdateParams::DigitalWallet,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The digital card profile assigned to this digital card.
         sig { returns(T.nilable(String)) }

@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::EntityCreateBeneficialOwnerParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The identifying details of anyone controlling or owning 25% or more of the
       # corporation.
@@ -52,7 +58,12 @@ module Increase
 
       class BeneficialOwner < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Personal details for the beneficial owner.
         sig do
@@ -132,7 +143,12 @@ module Increase
 
         class Individual < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The individual's physical address. Mail receiving locations like PO Boxes and
           # PMB's are disallowed.
@@ -233,7 +249,12 @@ module Increase
 
           class Address < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             sig { returns(String) }
@@ -321,7 +342,12 @@ module Increase
 
           class Identification < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # A method that can be used to verify the individual's identity.
             sig do
@@ -504,7 +530,12 @@ module Increase
 
             class DriversLicense < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The driver's license's expiration date in YYYY-MM-DD format.
               sig { returns(Date) }
@@ -563,7 +594,12 @@ module Increase
 
             class Other < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The two-character ISO 3166-1 code representing the country that issued the
               # document.
@@ -637,7 +673,12 @@ module Increase
 
             class Passport < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The country that issued the passport.
               sig { returns(String) }

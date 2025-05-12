@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::AccountBalanceParams, Increase::Internal::AnyHash)
+        end
 
       # The moment to query the balance at. If not set, returns the current balances.
       sig { returns(T.nilable(Time)) }

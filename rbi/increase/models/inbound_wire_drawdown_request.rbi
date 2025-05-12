@@ -3,7 +3,13 @@
 module Increase
   module Models
     class InboundWireDrawdownRequest < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::InboundWireDrawdownRequest,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The Wire drawdown request identifier.
       sig { returns(String) }

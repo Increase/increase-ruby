@@ -3,7 +3,8 @@
 module Increase
   module Models
     class Entity < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias { T.any(Increase::Entity, Increase::Internal::AnyHash) }
 
       # The entity's identifier.
       sig { returns(String) }
@@ -210,7 +211,9 @@ module Increase
 
       class Corporation < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::Entity::Corporation, Increase::Internal::AnyHash)
+          end
 
         # The corporation's address.
         sig { returns(Increase::Entity::Corporation::Address) }
@@ -304,7 +307,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::Corporation::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -369,7 +377,12 @@ module Increase
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::Corporation::BeneficialOwner,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The identifier of this beneficial owner.
           sig { returns(String) }
@@ -440,7 +453,12 @@ module Increase
 
           class Individual < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Corporation::BeneficialOwner::Individual,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The person's address.
             sig do
@@ -522,7 +540,12 @@ module Increase
 
             class Address < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::Entity::Corporation::BeneficialOwner::Individual::Address,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The city, district, town, or village of the address.
               sig { returns(T.nilable(String)) }
@@ -595,7 +618,12 @@ module Increase
 
             class Identification < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # A method that can be used to verify the individual's identity.
               sig do
@@ -742,7 +770,12 @@ module Increase
 
       class GovernmentAuthority < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Entity::GovernmentAuthority,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The government authority's address.
         sig { returns(Increase::Entity::GovernmentAuthority::Address) }
@@ -833,7 +866,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::GovernmentAuthority::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -898,7 +936,12 @@ module Increase
 
         class AuthorizedPerson < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::GovernmentAuthority::AuthorizedPerson,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The identifier of this authorized person.
           sig { returns(String) }
@@ -959,7 +1002,9 @@ module Increase
 
       class Joint < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::Entity::Joint, Increase::Internal::AnyHash)
+          end
 
         # The two individuals that share control of the entity.
         sig { returns(T::Array[Increase::Entity::Joint::Individual]) }
@@ -997,7 +1042,12 @@ module Increase
 
         class Individual < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::Joint::Individual,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The person's address.
           sig { returns(Increase::Entity::Joint::Individual::Address) }
@@ -1067,7 +1117,12 @@ module Increase
 
           class Address < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Joint::Individual::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The city of the address.
             sig { returns(String) }
@@ -1132,7 +1187,12 @@ module Increase
 
           class Identification < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Joint::Individual::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # A method that can be used to verify the individual's identity.
             sig do
@@ -1240,7 +1300,9 @@ module Increase
 
       class NaturalPerson < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::Entity::NaturalPerson, Increase::Internal::AnyHash)
+          end
 
         # The person's address.
         sig { returns(Increase::Entity::NaturalPerson::Address) }
@@ -1309,7 +1371,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::NaturalPerson::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -1374,7 +1441,12 @@ module Increase
 
         class Identification < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::NaturalPerson::Identification,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # A method that can be used to verify the individual's identity.
           sig do
@@ -1540,7 +1612,12 @@ module Increase
 
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Entity::ThirdPartyVerification,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The reference identifier for the third party verification.
         sig { returns(String) }
@@ -1620,7 +1697,9 @@ module Increase
 
       class Trust < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::Entity::Trust, Increase::Internal::AnyHash)
+          end
 
         # The trust's address.
         sig { returns(Increase::Entity::Trust::Address) }
@@ -1718,7 +1797,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::Trust::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -1808,7 +1892,12 @@ module Increase
 
         class Grantor < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::Trust::Grantor,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The person's address.
           sig { returns(Increase::Entity::Trust::Grantor::Address) }
@@ -1879,7 +1968,12 @@ module Increase
 
           class Address < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Trust::Grantor::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The city of the address.
             sig { returns(String) }
@@ -1944,7 +2038,12 @@ module Increase
 
           class Identification < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Trust::Grantor::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # A method that can be used to verify the individual's identity.
             sig do
@@ -2051,7 +2150,12 @@ module Increase
 
         class Trustee < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Entity::Trust::Trustee,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The individual trustee of the trust. Will be present if the trustee's
           # `structure` is equal to `individual`.
@@ -2105,7 +2209,12 @@ module Increase
 
           class Individual < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Trust::Trustee::Individual,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The person's address.
             sig do
@@ -2186,7 +2295,12 @@ module Increase
 
             class Address < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::Entity::Trust::Trustee::Individual::Address,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The city of the address.
               sig { returns(String) }
@@ -2251,7 +2365,12 @@ module Increase
 
             class Identification < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::Entity::Trust::Trustee::Individual::Identification,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # A method that can be used to verify the individual's identity.
               sig do

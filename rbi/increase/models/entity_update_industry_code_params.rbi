@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::EntityUpdateIndustryCodeParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The North American Industry Classification System (NAICS) code for the
       # corporation's primary line of business. This is a number, like `5132` for

@@ -3,7 +3,10 @@
 module Increase
   module Models
     class CheckTransfer < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::CheckTransfer, Increase::Internal::AnyHash)
+        end
 
       # The Check transfer's identifier.
       sig { returns(String) }
@@ -306,7 +309,12 @@ module Increase
 
       class Approval < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::Approval,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the transfer was approved.
@@ -346,7 +354,12 @@ module Increase
 
       class Cancellation < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::Cancellation,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Transfer was canceled.
@@ -386,7 +399,12 @@ module Increase
 
       class CreatedBy < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::CreatedBy,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # If present, details about the API key that created the transfer.
         sig { returns(T.nilable(Increase::CheckTransfer::CreatedBy::APIKey)) }
@@ -477,7 +495,12 @@ module Increase
 
         class APIKey < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::CreatedBy::APIKey,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The description set for the API key when it was created.
           sig { returns(T.nilable(String)) }
@@ -542,7 +565,12 @@ module Increase
 
         class OAuthApplication < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::CreatedBy::OAuthApplication,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The name of the OAuth Application.
           sig { returns(String) }
@@ -563,7 +591,12 @@ module Increase
 
         class User < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::CreatedBy::User,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The email address of the User.
           sig { returns(String) }
@@ -654,7 +687,9 @@ module Increase
 
       class Mailing < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::CheckTransfer::Mailing, Increase::Internal::AnyHash)
+          end
 
         # The ID of the file corresponding to an image of the check that was mailed, if
         # available.
@@ -706,7 +741,12 @@ module Increase
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::PhysicalCheck,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The ID of the file for the check attachment.
         sig { returns(T.nilable(String)) }
@@ -853,7 +893,12 @@ module Increase
 
         class MailingAddress < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::MailingAddress,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the check's destination.
           sig { returns(T.nilable(String)) }
@@ -924,7 +969,12 @@ module Increase
 
         class ReturnAddress < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::ReturnAddress,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the check's destination.
           sig { returns(T.nilable(String)) }
@@ -1033,7 +1083,12 @@ module Increase
 
         class TrackingUpdate < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::TrackingUpdate,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The type of tracking event.
           sig do
@@ -1204,7 +1259,12 @@ module Increase
 
       class StopPaymentRequest < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::StopPaymentRequest,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The reason why this transfer was stopped.
         sig do
@@ -1350,7 +1410,12 @@ module Increase
 
       class Submission < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::Submission,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Per USPS requirements, Increase will standardize the address to USPS standards
         # and check it against the USPS National Change of Address (NCOA) database before
@@ -1475,7 +1540,12 @@ module Increase
 
         class SubmittedAddress < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::Submission::SubmittedAddress,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The submitted address city.
           sig { returns(String) }
@@ -1548,7 +1618,12 @@ module Increase
 
       class ThirdParty < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransfer::ThirdParty,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The name that you will print on the check.
         sig { returns(T.nilable(String)) }

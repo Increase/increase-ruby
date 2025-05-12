@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::PhysicalCardProfileListParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # Return the page of entries after this one.
       sig { returns(T.nilable(String)) }
@@ -86,7 +92,12 @@ module Increase
 
       class Status < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::PhysicalCardProfileListParams::Status,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Filter Physical Card Profiles for those with the specified statuses. For GET
         # requests, this should be encoded as a comma-delimited string, such as

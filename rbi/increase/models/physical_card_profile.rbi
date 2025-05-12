@@ -3,7 +3,10 @@
 module Increase
   module Models
     class PhysicalCardProfile < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::PhysicalCardProfile, Increase::Internal::AnyHash)
+        end
 
       # The Card Profile identifier.
       sig { returns(String) }

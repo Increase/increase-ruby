@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::InboundCheckDepositCreateParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Account Number the Inbound Check Deposit will be against.
         sig { returns(String) }

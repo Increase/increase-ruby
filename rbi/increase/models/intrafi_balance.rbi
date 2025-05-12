@@ -3,7 +3,10 @@
 module Increase
   module Models
     class IntrafiBalance < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::IntrafiBalance, Increase::Internal::AnyHash)
+        end
 
       # The identifier of this balance.
       sig { returns(String) }
@@ -83,7 +86,12 @@ module Increase
 
       class Balance < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::IntrafiBalance::Balance,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of this balance.
         sig { returns(String) }
@@ -162,7 +170,12 @@ module Increase
 
         class BankLocation < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::IntrafiBalance::Balance::BankLocation,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The bank's city.
           sig { returns(String) }

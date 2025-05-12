@@ -29,7 +29,7 @@ module Increase
         #
         #   @option spec [Boolean] :"nil?"
         #
-        # @return [Increase::Internal::Type::HashOf]
+        # @return [self]
         def self.[](...) = new(...)
 
         # @api public

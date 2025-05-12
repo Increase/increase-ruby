@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::WireTransferReverseParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         sig do
           params(request_options: Increase::RequestOptions::OrHash).returns(

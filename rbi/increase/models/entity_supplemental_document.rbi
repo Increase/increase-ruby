@@ -3,7 +3,13 @@
 module Increase
   module Models
     class EntitySupplementalDocument < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::EntitySupplementalDocument,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
       # Supplemental Document was created.

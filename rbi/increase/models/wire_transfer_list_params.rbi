@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::WireTransferListParams, Increase::Internal::AnyHash)
+        end
 
       # Filter Wire Transfers to those belonging to the specified Account.
       sig { returns(T.nilable(String)) }
@@ -106,7 +109,12 @@ module Increase
 
       class CreatedAt < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::WireTransferListParams::CreatedAt,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
         # timestamp.

@@ -3,7 +3,13 @@
 module Increase
   module Models
     class InboundRealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::InboundRealTimePaymentsTransfer,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The inbound Real-Time Payments transfer's identifier.
       sig { returns(String) }
@@ -207,7 +213,12 @@ module Increase
 
       class Confirmation < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::InboundRealTimePaymentsTransfer::Confirmation,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The time at which the transfer was confirmed.
         sig { returns(Time) }
@@ -302,7 +313,12 @@ module Increase
 
       class Decline < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::InboundRealTimePaymentsTransfer::Decline,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The time at which the transfer was declined.
         sig { returns(Time) }

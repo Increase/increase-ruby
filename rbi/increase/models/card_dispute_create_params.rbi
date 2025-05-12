@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::CardDisputeCreateParams, Increase::Internal::AnyHash)
+        end
 
       # The Transaction you wish to dispute. This Transaction must have a `source_type`
       # of `card_settlement`.

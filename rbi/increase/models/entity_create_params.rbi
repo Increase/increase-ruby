@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::EntityCreateParams, Increase::Internal::AnyHash)
+        end
 
       # The type of Entity to create.
       sig { returns(Increase::EntityCreateParams::Structure::OrSymbol) }
@@ -231,7 +234,12 @@ module Increase
 
       class Corporation < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::Corporation,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
         # are disallowed.
@@ -378,7 +386,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Corporation::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -447,7 +460,12 @@ module Increase
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Corporation::BeneficialOwner,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Personal details for the beneficial owner.
           sig do
@@ -525,7 +543,12 @@ module Increase
 
           class Individual < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The individual's physical address. Mail receiving locations like PO Boxes and
             # PMB's are disallowed.
@@ -626,7 +649,12 @@ module Increase
 
             class Address < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Address,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
               sig { returns(String) }
@@ -714,7 +742,12 @@ module Increase
 
             class Identification < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # A method that can be used to verify the individual's identity.
               sig do
@@ -898,7 +931,10 @@ module Increase
               class DriversLicense < Increase::Internal::Type::BaseModel
                 OrHash =
                   T.type_alias do
-                    T.any(T.self_type, Increase::Internal::AnyHash)
+                    T.any(
+                      Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::DriversLicense,
+                      Increase::Internal::AnyHash
+                    )
                   end
 
                 # The driver's license's expiration date in YYYY-MM-DD format.
@@ -959,7 +995,10 @@ module Increase
               class Other < Increase::Internal::Type::BaseModel
                 OrHash =
                   T.type_alias do
-                    T.any(T.self_type, Increase::Internal::AnyHash)
+                    T.any(
+                      Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Other,
+                      Increase::Internal::AnyHash
+                    )
                   end
 
                 # The two-character ISO 3166-1 code representing the country that issued the
@@ -1035,7 +1074,10 @@ module Increase
               class Passport < Increase::Internal::Type::BaseModel
                 OrHash =
                   T.type_alias do
-                    T.any(T.self_type, Increase::Internal::AnyHash)
+                    T.any(
+                      Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport,
+                      Increase::Internal::AnyHash
+                    )
                   end
 
                 # The country that issued the passport.
@@ -1168,7 +1210,12 @@ module Increase
 
       class GovernmentAuthority < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::GovernmentAuthority,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
         # are disallowed.
@@ -1274,7 +1321,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::GovernmentAuthority::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -1343,7 +1395,12 @@ module Increase
 
         class AuthorizedPerson < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::GovernmentAuthority::AuthorizedPerson,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The person's legal name.
           sig { returns(String) }
@@ -1395,7 +1452,12 @@ module Increase
 
       class Joint < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::Joint,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The two individuals that share control of the entity.
         sig do
@@ -1441,7 +1503,12 @@ module Increase
 
         class Individual < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Joint::Individual,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The individual's physical address. Mail receiving locations like PO Boxes and
           # PMB's are disallowed.
@@ -1539,7 +1606,12 @@ module Increase
 
           class Address < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::Joint::Individual::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The city of the address.
             sig { returns(String) }
@@ -1608,7 +1680,12 @@ module Increase
 
           class Identification < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::Joint::Individual::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # A method that can be used to verify the individual's identity.
             sig do
@@ -1791,7 +1868,12 @@ module Increase
 
             class DriversLicense < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Joint::Individual::Identification::DriversLicense,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The driver's license's expiration date in YYYY-MM-DD format.
               sig { returns(Date) }
@@ -1850,7 +1932,12 @@ module Increase
 
             class Other < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Joint::Individual::Identification::Other,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The two-character ISO 3166-1 code representing the country that issued the
               # document.
@@ -1924,7 +2011,12 @@ module Increase
 
             class Passport < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Joint::Individual::Identification::Passport,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The country that issued the passport.
               sig { returns(String) }
@@ -1971,7 +2063,12 @@ module Increase
 
       class NaturalPerson < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::NaturalPerson,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The individual's physical address. Mail receiving locations like PO Boxes and
         # PMB's are disallowed.
@@ -2068,7 +2165,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::NaturalPerson::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -2137,7 +2239,12 @@ module Increase
 
         class Identification < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::NaturalPerson::Identification,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # A method that can be used to verify the individual's identity.
           sig do
@@ -2320,7 +2427,12 @@ module Increase
 
           class DriversLicense < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::NaturalPerson::Identification::DriversLicense,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The driver's license's expiration date in YYYY-MM-DD format.
             sig { returns(Date) }
@@ -2379,7 +2491,12 @@ module Increase
 
           class Other < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::NaturalPerson::Identification::Other,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The two-character ISO 3166-1 code representing the country that issued the
             # document.
@@ -2453,7 +2570,12 @@ module Increase
 
           class Passport < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::NaturalPerson::Identification::Passport,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The country that issued the passport.
             sig { returns(String) }
@@ -2499,7 +2621,12 @@ module Increase
 
       class SupplementalDocument < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::SupplementalDocument,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the File containing the document.
         sig { returns(String) }
@@ -2519,7 +2646,12 @@ module Increase
 
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::ThirdPartyVerification,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The reference identifier for the third party verification.
         sig { returns(String) }
@@ -2603,7 +2735,12 @@ module Increase
 
       class Trust < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::Trust,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The trust's physical address. Mail receiving locations like PO Boxes and PMB's
         # are disallowed.
@@ -2724,7 +2861,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Trust::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the address.
           sig { returns(String) }
@@ -2830,7 +2972,12 @@ module Increase
 
         class Trustee < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Trust::Trustee,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The structure of the trustee.
           sig do
@@ -2922,7 +3069,12 @@ module Increase
 
           class Individual < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::Trust::Trustee::Individual,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The individual's physical address. Mail receiving locations like PO Boxes and
             # PMB's are disallowed.
@@ -3024,7 +3176,12 @@ module Increase
 
             class Address < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Trust::Trustee::Individual::Address,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The city of the address.
               sig { returns(String) }
@@ -3093,7 +3250,12 @@ module Increase
 
             class Identification < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Trust::Trustee::Individual::Identification,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # A method that can be used to verify the individual's identity.
               sig do
@@ -3277,7 +3439,10 @@ module Increase
               class DriversLicense < Increase::Internal::Type::BaseModel
                 OrHash =
                   T.type_alias do
-                    T.any(T.self_type, Increase::Internal::AnyHash)
+                    T.any(
+                      Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::DriversLicense,
+                      Increase::Internal::AnyHash
+                    )
                   end
 
                 # The driver's license's expiration date in YYYY-MM-DD format.
@@ -3338,7 +3503,10 @@ module Increase
               class Other < Increase::Internal::Type::BaseModel
                 OrHash =
                   T.type_alias do
-                    T.any(T.self_type, Increase::Internal::AnyHash)
+                    T.any(
+                      Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Other,
+                      Increase::Internal::AnyHash
+                    )
                   end
 
                 # The two-character ISO 3166-1 code representing the country that issued the
@@ -3414,7 +3582,10 @@ module Increase
               class Passport < Increase::Internal::Type::BaseModel
                 OrHash =
                   T.type_alias do
-                    T.any(T.self_type, Increase::Internal::AnyHash)
+                    T.any(
+                      Increase::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport,
+                      Increase::Internal::AnyHash
+                    )
                   end
 
                 # The country that issued the passport.
@@ -3462,7 +3633,12 @@ module Increase
 
         class Grantor < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Trust::Grantor,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The individual's physical address. Mail receiving locations like PO Boxes and
           # PMB's are disallowed.
@@ -3558,7 +3734,12 @@ module Increase
 
           class Address < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::Trust::Grantor::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The city of the address.
             sig { returns(String) }
@@ -3627,7 +3808,12 @@ module Increase
 
           class Identification < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::Trust::Grantor::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # A method that can be used to verify the individual's identity.
             sig do
@@ -3810,7 +3996,12 @@ module Increase
 
             class DriversLicense < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Trust::Grantor::Identification::DriversLicense,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The driver's license's expiration date in YYYY-MM-DD format.
               sig { returns(Date) }
@@ -3869,7 +4060,12 @@ module Increase
 
             class Other < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Trust::Grantor::Identification::Other,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The two-character ISO 3166-1 code representing the country that issued the
               # document.
@@ -3943,7 +4139,12 @@ module Increase
 
             class Passport < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::EntityCreateParams::Trust::Grantor::Identification::Passport,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The country that issued the passport.
               sig { returns(String) }

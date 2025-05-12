@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::ExportCreateParams, Increase::Internal::AnyHash)
+        end
 
       # The type of Export to create.
       sig { returns(Increase::ExportCreateParams::Category::OrSymbol) }
@@ -201,7 +204,12 @@ module Increase
 
       class AccountStatementOfx < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::AccountStatementOfx,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The Account to create a statement for.
         sig { returns(String) }
@@ -256,7 +264,12 @@ module Increase
 
         class CreatedAt < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::AccountStatementOfx::CreatedAt,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           # timestamp.
@@ -332,7 +345,12 @@ module Increase
 
       class BalanceCsv < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::BalanceCsv,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Filter exported Transactions to the specified Account.
         sig { returns(T.nilable(String)) }
@@ -398,7 +416,12 @@ module Increase
 
         class CreatedAt < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::BalanceCsv::CreatedAt,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           # timestamp.
@@ -474,7 +497,12 @@ module Increase
 
       class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Filter exported Transactions to the specified Bookkeeping Account.
         sig { returns(T.nilable(String)) }
@@ -532,7 +560,12 @@ module Increase
 
         class CreatedAt < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           # timestamp.
@@ -608,7 +641,12 @@ module Increase
 
       class EntityCsv < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::EntityCsv,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Entity statuses to filter by.
         sig do
@@ -645,7 +683,12 @@ module Increase
 
         class Status < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::EntityCsv::Status,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Entity statuses to filter by. For GET requests, this should be encoded as a
           # comma-delimited string, such as `?in=one,two,three`.
@@ -735,7 +778,12 @@ module Increase
 
       class TransactionCsv < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::TransactionCsv,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Filter exported Transactions to the specified Account.
         sig { returns(T.nilable(String)) }
@@ -802,7 +850,12 @@ module Increase
 
         class CreatedAt < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::TransactionCsv::CreatedAt,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
           # timestamp.

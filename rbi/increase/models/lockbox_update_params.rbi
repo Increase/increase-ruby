@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::LockboxUpdateParams, Increase::Internal::AnyHash)
+        end
 
       # The description you choose for the Lockbox.
       sig { returns(T.nilable(String)) }

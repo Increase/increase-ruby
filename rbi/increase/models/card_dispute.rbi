@@ -3,7 +3,10 @@
 module Increase
   module Models
     class CardDispute < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::CardDispute, Increase::Internal::AnyHash)
+        end
 
       # The Card Dispute identifier.
       sig { returns(String) }
@@ -158,7 +161,12 @@ module Increase
 
       class Acceptance < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CardDispute::Acceptance,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Card Dispute was accepted.
@@ -210,7 +218,9 @@ module Increase
 
       class Loss < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::CardDispute::Loss, Increase::Internal::AnyHash)
+          end
 
         # The identifier of the Card Dispute that was lost.
         sig { returns(String) }
@@ -270,7 +280,9 @@ module Increase
 
       class Rejection < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::CardDispute::Rejection, Increase::Internal::AnyHash)
+          end
 
         # The identifier of the Card Dispute that was rejected.
         sig { returns(String) }
@@ -375,7 +387,9 @@ module Increase
 
       class Win < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::CardDispute::Win, Increase::Internal::AnyHash)
+          end
 
         # The identifier of the Card Dispute that was won.
         sig { returns(String) }

@@ -3,7 +3,10 @@
 module Increase
   module Models
     class PhysicalCard < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::PhysicalCard, Increase::Internal::AnyHash)
+        end
 
       # The physical card identifier.
       sig { returns(String) }
@@ -117,7 +120,12 @@ module Increase
 
       class Cardholder < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::PhysicalCard::Cardholder,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The cardholder's first name.
         sig { returns(String) }
@@ -148,7 +156,9 @@ module Increase
 
       class Shipment < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::PhysicalCard::Shipment, Increase::Internal::AnyHash)
+          end
 
         # The location to where the card's packing label is addressed.
         sig { returns(Increase::PhysicalCard::Shipment::Address) }
@@ -218,7 +228,12 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PhysicalCard::Shipment::Address,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the shipping address.
           sig { returns(String) }
@@ -402,7 +417,12 @@ module Increase
 
         class Tracking < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PhysicalCard::Shipment::Tracking,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The tracking number.
           sig { returns(String) }
@@ -476,7 +496,12 @@ module Increase
 
           class Update < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::PhysicalCard::Shipment::Tracking::Update,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
             # carrier expects the card to be delivered.

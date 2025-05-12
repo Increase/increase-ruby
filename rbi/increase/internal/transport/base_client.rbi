@@ -5,9 +5,11 @@ module Increase
     module Transport
       # @api private
       class BaseClient
+        extend Increase::Internal::Util::SorbetRuntimeSupport
+
         abstract!
 
-        RequestComponentsShape =
+        RequestComponents =
           T.type_alias do
             {
               method: Symbol,
@@ -53,7 +55,7 @@ module Increase
             }
           end
 
-        RequestInputShape =
+        RequestInput =
           T.type_alias do
             {
               method: Symbol,
@@ -74,8 +76,7 @@ module Increase
           # @api private
           sig do
             params(
-              req:
-                Increase::Internal::Transport::BaseClient::RequestComponentsShape
+              req: Increase::Internal::Transport::BaseClient::RequestComponents
             ).void
           end
           def validate!(req)
@@ -94,13 +95,10 @@ module Increase
           # @api private
           sig do
             params(
-              request:
-                Increase::Internal::Transport::BaseClient::RequestInputShape,
+              request: Increase::Internal::Transport::BaseClient::RequestInput,
               status: Integer,
               response_headers: T.any(T::Hash[String, String], Net::HTTPHeader)
-            ).returns(
-              Increase::Internal::Transport::BaseClient::RequestInputShape
-            )
+            ).returns(Increase::Internal::Transport::BaseClient::RequestInput)
           end
           def follow_redirect(request, status:, response_headers:)
           end
@@ -167,13 +165,10 @@ module Increase
         sig do
           overridable
             .params(
-              req:
-                Increase::Internal::Transport::BaseClient::RequestComponentsShape,
+              req: Increase::Internal::Transport::BaseClient::RequestComponents,
               opts: Increase::Internal::AnyHash
             )
-            .returns(
-              Increase::Internal::Transport::BaseClient::RequestInputShape
-            )
+            .returns(Increase::Internal::Transport::BaseClient::RequestInput)
         end
         private def build_request(req, opts)
         end
@@ -191,8 +186,7 @@ module Increase
         # @api private
         sig do
           params(
-            request:
-              Increase::Internal::Transport::BaseClient::RequestInputShape,
+            request: Increase::Internal::Transport::BaseClient::RequestInput,
             redirect_count: Integer,
             retry_count: Integer,
             send_retry_header: T::Boolean

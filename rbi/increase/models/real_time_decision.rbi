@@ -3,7 +3,10 @@
 module Increase
   module Models
     class RealTimeDecision < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::RealTimeDecision, Increase::Internal::AnyHash)
+        end
 
       # The Real-Time Decision identifier.
       sig { returns(String) }
@@ -192,7 +195,12 @@ module Increase
 
       class CardAuthentication < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecision::CardAuthentication,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Account the card belongs to.
         sig { returns(String) }
@@ -306,7 +314,12 @@ module Increase
 
       class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecision::CardAuthenticationChallenge,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Account the card belongs to.
         sig { returns(String) }
@@ -421,7 +434,12 @@ module Increase
 
       class CardAuthorization < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecision::CardAuthorization,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Account the authorization will debit.
         sig { returns(String) }
@@ -824,7 +842,12 @@ module Increase
 
         class NetworkDetails < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The payment network used to process this card authorization.
           sig do
@@ -921,7 +944,12 @@ module Increase
 
           class Visa < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # For electronic commerce transactions, this identifies the level of security used
             # in obtaining the customer's payment credential. For mail or telephone order
@@ -1264,7 +1292,12 @@ module Increase
 
         class NetworkIdentifiers < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # A life-cycle identifier used across e.g., an authorization and a reversal.
           # Expected to be unique per acquirer within a window of time. For some card
@@ -1386,7 +1419,12 @@ module Increase
 
         class RequestDetails < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthorization::RequestDetails,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The type of this request (e.g., an initial authorization or an incremental
           # authorization).
@@ -1501,7 +1539,12 @@ module Increase
 
           class IncrementalAuthorization < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The card payment for this authorization and increment.
             sig { returns(String) }
@@ -1543,7 +1586,12 @@ module Increase
 
         class Verification < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthorization::Verification,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Fields related to verification of the Card Verification Code, a 3-digit code on
           # the back of the card.
@@ -1613,7 +1661,12 @@ module Increase
 
           class CardVerificationCode < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The result of verifying the Card Verification Code.
             sig do
@@ -1696,7 +1749,12 @@ module Increase
 
           class CardholderAddress < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # Line 1 of the address on file for the cardholder.
             sig { returns(T.nilable(String)) }
@@ -1888,7 +1946,12 @@ module Increase
 
       class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecision::DigitalWalletAuthentication,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Card that is being tokenized.
         sig { returns(String) }
@@ -2121,7 +2184,12 @@ module Increase
 
       class DigitalWalletToken < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecision::DigitalWalletToken,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier of the Card that is being tokenized.
         sig { returns(String) }
@@ -2255,7 +2323,12 @@ module Increase
 
         class Device < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::DigitalWalletToken::Device,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # ID assigned to the device by the digital wallet provider.
           sig { returns(T.nilable(String)) }

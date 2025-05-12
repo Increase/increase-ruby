@@ -3,7 +3,10 @@
 module Increase
   module Models
     class PendingTransaction < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::PendingTransaction, Increase::Internal::AnyHash)
+        end
 
       # The Pending Transaction identifier.
       sig { returns(String) }
@@ -226,7 +229,12 @@ module Increase
 
       class Source < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::PendingTransaction::Source,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # An Account Transfer Instruction object. This field will be present in the JSON
         # response if and only if `category` is equal to `account_transfer_instruction`.
@@ -603,7 +611,12 @@ module Increase
 
         class AccountTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::AccountTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The pending amount in the minor unit of the transaction's currency. For dollars,
           # for example, this is cents.
@@ -728,7 +741,12 @@ module Increase
 
         class ACHTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::ACHTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The pending amount in USD cents.
           sig { returns(Integer) }
@@ -760,7 +778,12 @@ module Increase
 
         class CardAuthorization < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::CardAuthorization,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The Card Authorization identifier.
           sig { returns(String) }
@@ -1257,7 +1280,12 @@ module Increase
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # The payment network used to process this card authorization.
             sig do
@@ -1354,7 +1382,12 @@ module Increase
 
             class Visa < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -1697,7 +1730,12 @@ module Increase
 
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # A life-cycle identifier used across e.g., an authorization and a reversal.
             # Expected to be unique per acquirer within a window of time. For some card
@@ -1850,7 +1888,12 @@ module Increase
 
           class Verification < Increase::Internal::Type::BaseModel
             OrHash =
-              T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+              T.type_alias do
+                T.any(
+                  Increase::PendingTransaction::Source::CardAuthorization::Verification,
+                  Increase::Internal::AnyHash
+                )
+              end
 
             # Fields related to verification of the Card Verification Code, a 3-digit code on
             # the back of the card.
@@ -1920,7 +1963,12 @@ module Increase
 
             class CardVerificationCode < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::PendingTransaction::Source::CardAuthorization::Verification::CardVerificationCode,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # The result of verifying the Card Verification Code.
               sig do
@@ -2003,7 +2051,12 @@ module Increase
 
             class CardholderAddress < Increase::Internal::Type::BaseModel
               OrHash =
-                T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+                T.type_alias do
+                  T.any(
+                    Increase::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress,
+                    Increase::Internal::AnyHash
+                  )
+                end
 
               # Line 1 of the address on file for the cardholder.
               sig { returns(T.nilable(String)) }
@@ -2242,7 +2295,12 @@ module Increase
 
         class CheckDepositInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::CheckDepositInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The pending amount in USD cents.
           sig { returns(Integer) }
@@ -2385,7 +2443,12 @@ module Increase
 
         class CheckTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::CheckTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The transfer amount in USD cents.
           sig { returns(Integer) }
@@ -2508,7 +2571,12 @@ module Increase
 
         class InboundFundsHold < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::InboundFundsHold,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The Inbound Funds Hold identifier.
           sig { returns(String) }
@@ -2778,7 +2846,12 @@ module Increase
 
         class InboundWireTransferReversal < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::InboundWireTransferReversal,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The ID of the Inbound Wire Transfer that is being reversed.
           sig { returns(String) }
@@ -2804,7 +2877,12 @@ module Increase
 
         class RealTimePaymentsTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The transfer amount in USD cents.
           sig { returns(Integer) }
@@ -2839,7 +2917,12 @@ module Increase
 
         class SwiftTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::SwiftTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The identifier of the Swift Transfer that led to this Pending Transaction.
           sig { returns(String) }
@@ -2861,7 +2944,12 @@ module Increase
 
         class WireTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::WireTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The account number for the destination account.
           sig { returns(String) }

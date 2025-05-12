@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::CheckTransferCreateParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The identifier for the account that will send the transfer.
       sig { returns(String) }
@@ -178,7 +184,12 @@ module Increase
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransferCreateParams::PhysicalCheck,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Details for where Increase will mail the check.
         sig do
@@ -333,7 +344,12 @@ module Increase
 
         class MailingAddress < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city component of the check's destination address.
           sig { returns(String) }
@@ -399,7 +415,12 @@ module Increase
 
         class ReturnAddress < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The city of the return address.
           sig { returns(String) }
@@ -515,7 +536,12 @@ module Increase
 
       class ThirdParty < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::CheckTransferCreateParams::ThirdParty,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The pay-to name you will print on the check. If provided, this is used for
         # [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will

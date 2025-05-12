@@ -3,7 +3,10 @@
 module Increase
   module Models
     class AccountNumber < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::AccountNumber, Increase::Internal::AnyHash)
+        end
 
       # The Account Number identifier.
       sig { returns(String) }
@@ -139,7 +142,12 @@ module Increase
 
       class InboundACH < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::AccountNumber::InboundACH,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Whether ACH debits are allowed against this Account Number. Note that they will
         # still be declined if this is `allowed` if the Account Number is not active.
@@ -214,7 +222,12 @@ module Increase
 
       class InboundChecks < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::AccountNumber::InboundChecks,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # How Increase should process checks with this account number printed on them.
         sig do

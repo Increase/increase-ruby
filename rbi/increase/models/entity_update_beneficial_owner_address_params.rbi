@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::EntityUpdateBeneficialOwnerAddressParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The individual's physical address. Mail receiving locations like PO Boxes and
       # PMB's are disallowed.
@@ -62,7 +68,12 @@ module Increase
 
       class Address < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
         sig { returns(String) }

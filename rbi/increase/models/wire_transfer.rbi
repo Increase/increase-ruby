@@ -3,7 +3,10 @@
 module Increase
   module Models
     class WireTransfer < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::WireTransfer, Increase::Internal::AnyHash)
+        end
 
       # The wire transfer's identifier.
       sig { returns(String) }
@@ -315,7 +318,9 @@ module Increase
 
       class Approval < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::WireTransfer::Approval, Increase::Internal::AnyHash)
+          end
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the transfer was approved.
@@ -355,7 +360,12 @@ module Increase
 
       class Cancellation < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::WireTransfer::Cancellation,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Transfer was canceled.
@@ -395,7 +405,12 @@ module Increase
 
       class CreatedBy < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::WireTransfer::CreatedBy,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # If present, details about the API key that created the transfer.
         sig { returns(T.nilable(Increase::WireTransfer::CreatedBy::APIKey)) }
@@ -486,7 +501,12 @@ module Increase
 
         class APIKey < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::CreatedBy::APIKey,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The description set for the API key when it was created.
           sig { returns(T.nilable(String)) }
@@ -551,7 +571,12 @@ module Increase
 
         class OAuthApplication < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::CreatedBy::OAuthApplication,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The name of the OAuth Application.
           sig { returns(String) }
@@ -572,7 +597,12 @@ module Increase
 
         class User < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::CreatedBy::User,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The email address of the User.
           sig { returns(String) }
@@ -649,7 +679,9 @@ module Increase
 
       class Reversal < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(Increase::WireTransfer::Reversal, Increase::Internal::AnyHash)
+          end
 
         # The amount that was reversed in USD cents.
         sig { returns(Integer) }
@@ -879,7 +911,12 @@ module Increase
 
       class Submission < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::WireTransfer::Submission,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The accountability data for the submission.
         sig { returns(String) }

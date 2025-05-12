@@ -3,6 +3,7 @@ module Increase
     module Type
       module Enum
         include Increase::Internal::Type::Converter
+        include Increase::Internal::Util::SorbetRuntimeSupport
 
         def self.values: -> ::Array[(nil | bool | Integer | Float | Symbol)]
 

@@ -2,6 +2,8 @@ module Increase
   module Internal
     module Type
       module Converter
+        extend Increase::Internal::Util::SorbetRuntimeSupport
+
         type input = Increase::Internal::Type::Converter | Class
 
         type coerce_state =

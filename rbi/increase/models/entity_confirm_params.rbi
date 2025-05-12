@@ -6,7 +6,10 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::EntityConfirmParams, Increase::Internal::AnyHash)
+        end
 
       # When your user confirmed the Entity's details. If not provided, the current time
       # will be used.

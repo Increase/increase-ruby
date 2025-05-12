@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::RealTimeDecisionActionParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # If the Real-Time Decision relates to a 3DS card authentication attempt, this
       # object contains your response to the authentication.
@@ -154,7 +160,12 @@ module Increase
 
       class CardAuthentication < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecisionActionParams::CardAuthentication,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Whether the card authentication attempt should be approved or declined.
         sig do
@@ -237,7 +248,12 @@ module Increase
 
       class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Whether the card authentication challenge was successfully delivered to the
         # cardholder.
@@ -316,7 +332,12 @@ module Increase
 
       class CardAuthorization < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecisionActionParams::CardAuthorization,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Whether the card authorization should be approved or declined.
         sig do
@@ -485,7 +506,12 @@ module Increase
 
       class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Whether your application was able to deliver the one-time passcode.
         sig do
@@ -582,7 +608,12 @@ module Increase
 
         class Success < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The email address that was used to verify the cardholder via one-time passcode.
           sig { returns(T.nilable(String)) }
@@ -617,7 +648,12 @@ module Increase
 
       class DigitalWalletToken < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecisionActionParams::DigitalWalletToken,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # If your application approves the provisioning attempt, this contains metadata
         # about the digital wallet token that will be generated.
@@ -692,7 +728,12 @@ module Increase
 
         class Approval < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::DigitalWalletToken::Approval,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # An email address that can be used to verify the cardholder via one-time
           # passcode.
@@ -730,7 +771,12 @@ module Increase
 
         class Decline < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::DigitalWalletToken::Decline,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # Why the tokenization attempt was declined. This is for logging purposes only and
           # is not displayed to the end-user.

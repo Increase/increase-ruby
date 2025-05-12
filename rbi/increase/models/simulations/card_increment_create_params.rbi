@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::CardIncrementCreateParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The amount of the increment in minor units in the card authorization's currency.
         sig { returns(Integer) }

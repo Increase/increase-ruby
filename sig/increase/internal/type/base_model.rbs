@@ -3,9 +3,12 @@ module Increase
     module Type
       class BaseModel
         extend Increase::Internal::Type::Converter
+        extend Increase::Internal::Util::SorbetRuntimeSupport
 
         type known_field =
           { mode: (:coerce | :dump)?, required: bool, nilable: bool }
+
+        def self.inherited: (self child) -> void
 
         def self.known_fields: -> ::Hash[Symbol, (Increase::Internal::Type::BaseModel::known_field
         & { type_fn: (^-> Increase::Internal::Type::Converter::input) })]
@@ -58,10 +61,10 @@ module Increase
         def self.coerce: (
           Increase::Internal::Type::BaseModel | ::Hash[top, top] | top value,
           state: Increase::Internal::Type::Converter::coerce_state
-        ) -> (instance | top)
+        ) -> (self | top)
 
         def self.dump: (
-          instance | top value,
+          self | top value,
           state: Increase::Internal::Type::Converter::dump_state
         ) -> (::Hash[top, top] | top)
 

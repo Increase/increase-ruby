@@ -5,7 +5,12 @@ module Increase
     module Simulations
       class CardAuthorizationCreateResponse < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Models::Simulations::CardAuthorizationCreateResponse,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # If the authorization attempt fails, this will contain the resulting
         # [Declined Transaction](#declined-transactions) object. The Declined

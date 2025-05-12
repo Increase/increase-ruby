@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::RealTimePaymentsTransferCompleteParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # If set, the simulation will reject the transfer.
         sig do
@@ -56,7 +61,12 @@ module Increase
 
         class Rejection < Increase::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
+                Increase::Internal::AnyHash
+              )
+            end
 
           # The reason code that the simulated rejection will have.
           sig do

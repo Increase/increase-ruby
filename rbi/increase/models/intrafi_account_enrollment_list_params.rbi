@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::IntrafiAccountEnrollmentListParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # Filter IntraFi Account Enrollments to the one belonging to an account.
       sig { returns(T.nilable(String)) }
@@ -97,7 +103,12 @@ module Increase
 
       class Status < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::IntrafiAccountEnrollmentListParams::Status,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # Filter IntraFi Account Enrollments for those with the specified status or
         # statuses. For GET requests, this should be encoded as a comma-delimited string,

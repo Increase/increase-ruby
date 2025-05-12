@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::PhysicalCardAdvanceShipmentParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The shipment status to move the Physical Card to.
         sig do

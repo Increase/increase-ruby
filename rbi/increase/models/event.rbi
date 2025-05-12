@@ -3,7 +3,8 @@
 module Increase
   module Models
     class Event < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias { T.any(Increase::Event, Increase::Internal::AnyHash) }
 
       # The Event identifier.
       sig { returns(String) }

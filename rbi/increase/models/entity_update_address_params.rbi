@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::EntityUpdateAddressParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
       # are disallowed.
@@ -47,7 +53,12 @@ module Increase
 
       class Address < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateAddressParams::Address,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The city of the address.
         sig { returns(String) }

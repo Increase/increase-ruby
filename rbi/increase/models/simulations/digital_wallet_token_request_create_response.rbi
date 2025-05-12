@@ -5,7 +5,12 @@ module Increase
     module Simulations
       class DigitalWalletTokenRequestCreateResponse < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # If the simulated tokenization attempt was declined, this field contains details
         # as to why.

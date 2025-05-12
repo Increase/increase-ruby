@@ -3,7 +3,10 @@
 module Increase
   module Models
     class BookkeepingEntrySet < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::BookkeepingEntrySet, Increase::Internal::AnyHash)
+        end
 
       # The entry set identifier.
       sig { returns(String) }
@@ -90,7 +93,12 @@ module Increase
 
       class Entry < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::BookkeepingEntrySet::Entry,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The entry identifier.
         sig { returns(String) }

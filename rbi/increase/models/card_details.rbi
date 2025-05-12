@@ -3,7 +3,10 @@
 module Increase
   module Models
     class CardDetails < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::CardDetails, Increase::Internal::AnyHash)
+        end
 
       # The identifier for the Card for which sensitive details have been returned.
       sig { returns(String) }

@@ -3,7 +3,10 @@
 module Increase
   module Models
     class InboundCheckDeposit < Increase::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(Increase::InboundCheckDeposit, Increase::Internal::AnyHash)
+        end
 
       # The deposit's identifier.
       sig { returns(String) }
@@ -229,7 +232,12 @@ module Increase
 
       class Adjustment < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::InboundCheckDeposit::Adjustment,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The time at which the return adjustment was received.
         sig { returns(Time) }
@@ -374,7 +382,12 @@ module Increase
 
       class DepositReturn < Increase::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::InboundCheckDeposit::DepositReturn,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The reason the deposit was returned.
         sig do

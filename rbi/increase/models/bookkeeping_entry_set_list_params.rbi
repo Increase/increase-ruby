@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::BookkeepingEntrySetListParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # Return the page of entries after this one.
       sig { returns(T.nilable(String)) }

@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::InboundACHTransferDeclineParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The reason why this transfer will be returned. If this parameter is unset, the
       # return codes will be `payment_stopped` for debits and

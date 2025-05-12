@@ -69,5 +69,9 @@ module Increase
     #   Returns a new instance of RequestOptions.
     #
     #   @param values [Hash{Symbol=>Object}]
+
+    define_sorbet_constant!(:OrHash) do
+      T.type_alias { T.any(Increase::RequestOptions, Increase::Internal::AnyHash) }
+    end
   end
 end

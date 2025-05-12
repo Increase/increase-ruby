@@ -2,6 +2,8 @@ module Increase
   module Internal
     module Transport
       class PooledNetRequester
+        extend Increase::Internal::Util::SorbetRuntimeSupport
+
         type request =
           {
             method: Symbol,

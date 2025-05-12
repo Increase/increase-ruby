@@ -8,7 +8,12 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
-          T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              Increase::Simulations::CardRefundCreateParams,
+              Increase::Internal::AnyHash
+            )
+          end
 
         # The identifier for the Transaction to refund. The Transaction's source must have
         # a category of card_settlement.

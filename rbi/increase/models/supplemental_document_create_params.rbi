@@ -6,7 +6,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, Increase::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            Increase::SupplementalDocumentCreateParams,
+            Increase::Internal::AnyHash
+          )
+        end
 
       # The identifier of the Entity to associate with the supplemental document.
       sig { returns(String) }
