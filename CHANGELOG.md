@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2025-05-13)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Features
+
+* expose base client options as read only attributes ([22199bc](https://github.com/Increase/increase-ruby/commit/22199bc7e21f1c545662ae0da9934598f8c190e5))
+* expose recursive `#to_h` conversion ([bc9b4f3](https://github.com/Increase/increase-ruby/commit/bc9b4f3e3063d52a4454084832f3b12a052a4af8))
+
+
+### Bug Fixes
+
+* **internal:** update gemspec name ([4323fb5](https://github.com/Increase/increase-ruby/commit/4323fb58792ad85fe9109898bbf47f578cb3f43a))
+
+
+### Chores
+
+* fix misc linting / minor issues ([730b149](https://github.com/Increase/increase-ruby/commit/730b14968b92319ce539148582bfe9e968fe07f3))
+
 ## 0.1.0-alpha.22 (2025-05-12)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
