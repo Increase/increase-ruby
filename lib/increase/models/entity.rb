@@ -990,6 +990,9 @@ module Increase
           # Middesk. See https://middesk.com for more information.
           MIDDESK = :middesk
 
+          # Oscilar. See https://oscilar.com for more information.
+          OSCILAR = :oscilar
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

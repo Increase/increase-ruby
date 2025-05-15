@@ -2721,6 +2721,13 @@ module Increase
               Increase::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol
             )
 
+          # Oscilar. See https://oscilar.com for more information.
+          OSCILAR =
+            T.let(
+              :oscilar,
+              Increase::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

@@ -463,9 +463,11 @@ module Increase
               )
             end
 
-          # Each entry represents an addendum sent with the transfer. Please reach out to
-          # [support@increase.com](mailto:support@increase.com) to send more than one
-          # addendum.
+          # Each entry represents an addendum sent with the transfer. In general, you should
+          # send at most one addendum–most ACH recipients cannot access beyond the first 80
+          # characters sent. Please reach out to
+          # [support@increase.com](mailto:support@increase.com) to send 2 or more addenda to
+          # a recipient expecting a specific addendum format.
           sig do
             returns(
               T::Array[
@@ -485,9 +487,11 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # Each entry represents an addendum sent with the transfer. Please reach out to
-            # [support@increase.com](mailto:support@increase.com) to send more than one
-            # addendum.
+            # Each entry represents an addendum sent with the transfer. In general, you should
+            # send at most one addendum–most ACH recipients cannot access beyond the first 80
+            # characters sent. Please reach out to
+            # [support@increase.com](mailto:support@increase.com) to send 2 or more addenda to
+            # a recipient expecting a specific addendum format.
             entries:
           )
           end

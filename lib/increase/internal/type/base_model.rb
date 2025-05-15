@@ -393,6 +393,14 @@ module Increase
         # @param keys [Array<Symbol>, nil]
         #
         # @return [Hash{Symbol=>Object}]
+        #
+        # @example
+        #   # `account` is a `Increase::Account`
+        #   account => {
+        #     id: id,
+        #     bank: bank,
+        #     closed_at: closed_at
+        #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
             .filter_map do |k|

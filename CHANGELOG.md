@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2025-05-15)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Features
+
+* **api:** api update ([3afcf27](https://github.com/Increase/increase-ruby/commit/3afcf27617485341a7bacdf0ce80d7cfdb047684))
+* **api:** api update ([bd63d1d](https://github.com/Increase/increase-ruby/commit/bd63d1d70c9bd7709a1f09e3183ddfc861a53729))
+* bump default connection pool size limit to minimum of 99 ([2742b21](https://github.com/Increase/increase-ruby/commit/2742b21734e33f6e6a3f10d74276e558345db8e0))
+
+
+### Documentation
+
+* rewrite much of README.md for readability ([30d40de](https://github.com/Increase/increase-ruby/commit/30d40de36a7c3f591ad793490f0bd09ada0343b7))
+
 ## 0.1.0-alpha.23 (2025-05-13)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)

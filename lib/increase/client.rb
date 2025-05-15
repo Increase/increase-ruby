@@ -215,10 +215,10 @@ module Increase
       api_key: ENV["INCREASE_API_KEY"],
       environment: nil,
       base_url: ENV["INCREASE_BASE_URL"],
-      max_retries: Increase::Client::DEFAULT_MAX_RETRIES,
-      timeout: Increase::Client::DEFAULT_TIMEOUT_IN_SECONDS,
-      initial_retry_delay: Increase::Client::DEFAULT_INITIAL_RETRY_DELAY,
-      max_retry_delay: Increase::Client::DEFAULT_MAX_RETRY_DELAY,
+      max_retries: self.class::DEFAULT_MAX_RETRIES,
+      timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
+      initial_retry_delay: self.class::DEFAULT_INITIAL_RETRY_DELAY,
+      max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY,
       idempotency_header: "Idempotency-Key"
     )
       base_url ||= Increase::Client::ENVIRONMENTS.fetch(environment&.to_sym || :production) do
