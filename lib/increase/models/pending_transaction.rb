@@ -257,6 +257,16 @@ module Increase
         #   @return [Object, nil]
         required :other, Increase::Internal::Type::Unknown, nil?: true
 
+        # @!attribute outbound_card_push_transfer_instruction
+        #   An Outbound Card Push Transfer Instruction object. This field will be present in
+        #   the JSON response if and only if `category` is equal to
+        #   `outbound_card_push_transfer_instruction`.
+        #
+        #   @return [Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction, nil]
+        required :outbound_card_push_transfer_instruction,
+                 -> { Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction },
+                 nil?: true
+
         # @!attribute real_time_payments_transfer_instruction
         #   A Real-Time Payments Transfer Instruction object. This field will be present in
         #   the JSON response if and only if `category` is equal to
@@ -285,7 +295,7 @@ module Increase
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, category:, check_deposit_instruction:, check_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, wire_transfer_instruction:)
+        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, category:, check_deposit_instruction:, check_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, outbound_card_push_transfer_instruction:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, wire_transfer_instruction:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::PendingTransaction::Source} for more details.
         #
@@ -310,6 +320,8 @@ module Increase
         #   @param inbound_wire_transfer_reversal [Increase::PendingTransaction::Source::InboundWireTransferReversal, nil] An Inbound Wire Transfer Reversal object. This field will be present in the JSON
         #
         #   @param other [Object, nil] If the category of this Transaction source is equal to `other`, this field will
+        #
+        #   @param outbound_card_push_transfer_instruction [Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction, nil] An Outbound Card Push Transfer Instruction object. This field will be present in
         #
         #   @param real_time_payments_transfer_instruction [Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction, nil] A Real-Time Payments Transfer Instruction object. This field will be present in
         #
@@ -1195,6 +1207,9 @@ module Increase
           # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
           SWIFT_TRANSFER_INSTRUCTION = :swift_transfer_instruction
 
+          # Outbound Card Push Transfer Instruction: details will be under the `outbound_card_push_transfer_instruction` object.
+          OUTBOUND_CARD_PUSH_TRANSFER_INSTRUCTION = :outbound_card_push_transfer_instruction
+
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
@@ -1526,6 +1541,35 @@ module Increase
           #   and the User requests that it be reversed.
           #
           #   @param inbound_wire_transfer_id [String] The ID of the Inbound Wire Transfer that is being reversed.
+        end
+
+        # @see Increase::PendingTransaction::Source#outbound_card_push_transfer_instruction
+        class OutboundCardPushTransferInstruction < Increase::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The transfer amount in USD cents.
+          #
+          #   @return [Integer]
+          required :amount, Integer
+
+          # @!attribute transfer_id
+          #   The identifier of the Outbound Card Push Transfer that led to this Pending
+          #   Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(amount:, transfer_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction} for
+          #   more details.
+          #
+          #   An Outbound Card Push Transfer Instruction object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `outbound_card_push_transfer_instruction`.
+          #
+          #   @param amount [Integer] The transfer amount in USD cents.
+          #
+          #   @param transfer_id [String] The identifier of the Outbound Card Push Transfer that led to this Pending Trans
         end
 
         # @see Increase::PendingTransaction::Source#real_time_payments_transfer_instruction

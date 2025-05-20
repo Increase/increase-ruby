@@ -169,6 +169,9 @@ module Increase
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION = :swift_transfer_intention
 
+          # Outbound Card Push Transfer Acceptance: details will be under the `outbound_card_push_transfer_acceptance` object.
+          OUTBOUND_CARD_PUSH_TRANSFER_ACCEPTANCE = :outbound_card_push_transfer_acceptance
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 

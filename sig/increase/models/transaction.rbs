@@ -120,6 +120,7 @@ module Increase
           interest_payment: Increase::Transaction::Source::InterestPayment?,
           internal_source: Increase::Transaction::Source::InternalSource?,
           other: top?,
+          outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
@@ -181,6 +182,8 @@ module Increase
 
         attr_accessor other: top?
 
+        attr_accessor outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?
+
         attr_accessor real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?
 
         attr_accessor sample_funds: Increase::Transaction::Source::SampleFunds?
@@ -217,6 +220,7 @@ module Increase
           interest_payment: Increase::Transaction::Source::InterestPayment?,
           internal_source: Increase::Transaction::Source::InternalSource?,
           other: top?,
+          outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
@@ -2628,6 +2632,7 @@ module Increase
           | :sample_funds
           | :wire_transfer_intention
           | :swift_transfer_intention
+          | :outbound_card_push_transfer_acceptance
           | :other
 
         module Category
@@ -2719,6 +2724,9 @@ module Increase
 
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION: :swift_transfer_intention
+
+          # Outbound Card Push Transfer Acceptance: details will be under the `outbound_card_push_transfer_acceptance` object.
+          OUTBOUND_CARD_PUSH_TRANSFER_ACCEPTANCE: :outbound_card_push_transfer_acceptance
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
@@ -3749,6 +3757,17 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Transaction::Source::InternalSource::reason]
           end
+        end
+
+        type outbound_card_push_transfer_acceptance =
+          { amount: Integer, transfer_id: String }
+
+        class OutboundCardPushTransferAcceptance < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor transfer_id: String
+
+          def initialize: (amount: Integer, transfer_id: String) -> void
         end
 
         type real_time_payments_transfer_acknowledgement =

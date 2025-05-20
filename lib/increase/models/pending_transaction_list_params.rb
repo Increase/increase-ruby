@@ -118,6 +118,9 @@ module Increase
           # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
           SWIFT_TRANSFER_INSTRUCTION = :swift_transfer_instruction
 
+          # Outbound Card Push Transfer Instruction: details will be under the `outbound_card_push_transfer_instruction` object.
+          OUTBOUND_CARD_PUSH_TRANSFER_INSTRUCTION = :outbound_card_push_transfer_instruction
+
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 

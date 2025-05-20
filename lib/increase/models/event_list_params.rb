@@ -264,6 +264,12 @@ module Increase
           # Occurs whenever an OAuth Connection is deactivated.
           OAUTH_CONNECTION_DEACTIVATED = :"oauth_connection.deactivated"
 
+          # Occurs whenever an Outbound Card Push Transfer is created.
+          OUTBOUND_CARD_PUSH_TRANSFER_CREATED = :"outbound_card_push_transfer.created"
+
+          # Occurs whenever an Outbound Card Push Transfer is updated.
+          OUTBOUND_CARD_PUSH_TRANSFER_UPDATED = :"outbound_card_push_transfer.updated"
+
           # Occurs whenever a Pending Transaction is created.
           PENDING_TRANSACTION_CREATED = :"pending_transaction.created"
 

@@ -430,6 +430,18 @@ module Increase
         #   @return [Object, nil]
         required :other, Increase::Internal::Type::Unknown, nil?: true
 
+        # @!attribute outbound_card_push_transfer_acceptance
+        #   An Outbound Card Push Transfer Acceptance object. This field will be present in
+        #   the JSON response if and only if `category` is equal to
+        #   `outbound_card_push_transfer_acceptance`. An Outbound Card Push Transfer
+        #   Acceptance is created when an Outbound Card Push Transfer sent from Increase is
+        #   accepted by the receiving bank.
+        #
+        #   @return [Increase::Transaction::Source::OutboundCardPushTransferAcceptance, nil]
+        required :outbound_card_push_transfer_acceptance,
+                 -> { Increase::Transaction::Source::OutboundCardPushTransferAcceptance },
+                 nil?: true
+
         # @!attribute real_time_payments_transfer_acknowledgement
         #   A Real-Time Payments Transfer Acknowledgement object. This field will be present
         #   in the JSON response if and only if `category` is equal to
@@ -472,7 +484,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_loss:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, wire_transfer_intention:)
+        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_loss:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, outbound_card_push_transfer_acceptance:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Transaction::Source} for more details.
         #
@@ -534,6 +546,8 @@ module Increase
         #   @param internal_source [Increase::Transaction::Source::InternalSource, nil] An Internal Source object. This field will be present in the JSON response if an
         #
         #   @param other [Object, nil] If the category of this Transaction source is equal to `other`, this field will
+        #
+        #   @param outbound_card_push_transfer_acceptance [Increase::Transaction::Source::OutboundCardPushTransferAcceptance, nil] An Outbound Card Push Transfer Acceptance object. This field will be present in
         #
         #   @param real_time_payments_transfer_acknowledgement [Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement, nil] A Real-Time Payments Transfer Acknowledgement object. This field will be present
         #
@@ -4066,6 +4080,9 @@ module Increase
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION = :swift_transfer_intention
 
+          # Outbound Card Push Transfer Acceptance: details will be under the `outbound_card_push_transfer_acceptance` object.
+          OUTBOUND_CARD_PUSH_TRANSFER_ACCEPTANCE = :outbound_card_push_transfer_acceptance
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
@@ -5624,6 +5641,32 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Increase::Transaction::Source#outbound_card_push_transfer_acceptance
+        class OutboundCardPushTransferAcceptance < Increase::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The transfer amount in USD cents.
+          #
+          #   @return [Integer]
+          required :amount, Integer
+
+          # @!attribute transfer_id
+          #   The identifier of the Outbound Card Push Transfer that led to this Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(amount:, transfer_id:)
+          #   An Outbound Card Push Transfer Acceptance object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `outbound_card_push_transfer_acceptance`. An Outbound Card Push Transfer
+          #   Acceptance is created when an Outbound Card Push Transfer sent from Increase is
+          #   accepted by the receiving bank.
+          #
+          #   @param amount [Integer] The transfer amount in USD cents.
+          #
+          #   @param transfer_id [String] The identifier of the Outbound Card Push Transfer that led to this Transaction.
         end
 
         # @see Increase::Transaction::Source#real_time_payments_transfer_acknowledgement

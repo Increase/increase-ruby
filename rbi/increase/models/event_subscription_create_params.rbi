@@ -556,6 +556,20 @@ module Increase
             Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
           )
 
+        # Occurs whenever an Outbound Card Push Transfer is created.
+        OUTBOUND_CARD_PUSH_TRANSFER_CREATED =
+          T.let(
+            :"outbound_card_push_transfer.created",
+            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
+          )
+
+        # Occurs whenever an Outbound Card Push Transfer is updated.
+        OUTBOUND_CARD_PUSH_TRANSFER_UPDATED =
+          T.let(
+            :"outbound_card_push_transfer.updated",
+            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
+          )
+
         # Occurs whenever a Pending Transaction is created.
         PENDING_TRANSACTION_CREATED =
           T.let(
