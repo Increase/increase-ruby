@@ -8,6 +8,7 @@ module Increase
       # Array of items of a given type.
       class ArrayOf
         include Increase::Internal::Type::Converter
+        include Increase::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -61,6 +62,11 @@ module Increase
             .returns(T.any(T::Array[T.anything], T.anything))
         end
         def dump(value, state:)
+        end
+
+        # @api private
+        sig { returns(T.anything) }
+        def to_sorbet_type
         end
 
         # @api private

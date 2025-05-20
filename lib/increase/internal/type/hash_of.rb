@@ -12,6 +12,7 @@ module Increase
       # Hash of items of a given type.
       class HashOf
         include Increase::Internal::Type::Converter
+        include Increase::Internal::Util::SorbetRuntimeSupport
 
         private_class_method :new
 
@@ -128,6 +129,13 @@ module Increase
           else
             super
           end
+        end
+
+        # @api private
+        #
+        # @return [Object]
+        def to_sorbet_type
+          T::Hash[Increase::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(item_type)]
         end
 
         # @api private

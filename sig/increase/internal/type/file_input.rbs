@@ -17,6 +17,8 @@ module Increase
           Pathname | StringIO | IO | String | top value,
           state: Increase::Internal::Type::Converter::dump_state
         ) -> (Pathname | StringIO | IO | String | top)
+
+        def self.to_sorbet_type: -> top
       end
     end
   end

@@ -3,6 +3,7 @@ module Increase
     module Type
       class Unknown
         extend Increase::Internal::Type::Converter
+        extend Increase::Internal::Util::SorbetRuntimeSupport
 
         def self.===: (top other) -> bool
 
@@ -17,6 +18,8 @@ module Increase
           top value,
           state: Increase::Internal::Type::Converter::dump_state
         ) -> top
+
+        def self.to_sorbet_type: -> top
       end
     end
   end
