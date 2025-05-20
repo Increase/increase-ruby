@@ -2,6 +2,8 @@ module Increase
   module Internal
     extend Increase::Internal::Util::SorbetRuntimeSupport
 
+    type file_input = Pathname | StringIO | IO | String | Increase::FilePart
+
     OMIT: Object
   end
 end

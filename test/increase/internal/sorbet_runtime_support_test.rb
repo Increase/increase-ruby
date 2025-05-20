@@ -25,6 +25,7 @@ class Increase::Test::SorbetRuntimeSupportTest < Minitest::Test
     err = Increase::Internal::Util::SorbetRuntimeSupport::MissingSorbetRuntimeError
 
     assert_raises(err) { Increase::Internal::AnyHash }
+    assert_raises(err) { Increase::Internal::FileInput }
     assert_raises(err) { Increase::Internal::Type::Converter::Input }
     assert_raises(err) { Increase::Internal::Type::Converter::CoerceState }
     assert_raises(err) { Increase::Internal::Type::Converter::DumpState }
