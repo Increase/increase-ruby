@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.25 (2025-05-20)
+
+Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
+
+### Features
+
+* **api:** api update ([e0ff4dc](https://github.com/Increase/increase-ruby/commit/e0ff4dc3724a0afac1fe6b232f319752dd0503f3))
+
+
+### Bug Fixes
+
+* correctly instantiate sorbet type aliases for enums and unions ([dbf0949](https://github.com/Increase/increase-ruby/commit/dbf094958b6e2f50f82252018dbc7d44380be1e1))
+
+
+### Chores
+
+* whitespaces ([67b9c0d](https://github.com/Increase/increase-ruby/commit/67b9c0d67f049bc1db8c0adb32320479aa48b4e5))
+
 ## 0.1.0-alpha.24 (2025-05-15)
 
 Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
