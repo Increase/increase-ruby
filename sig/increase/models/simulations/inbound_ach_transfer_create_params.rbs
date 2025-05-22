@@ -5,6 +5,7 @@ module Increase
         {
           account_number_id: String,
           amount: Integer,
+          addenda: Increase::Simulations::InboundACHTransferCreateParams::Addenda,
           company_descriptive_date: String,
           company_discretionary_data: String,
           company_entry_description: String,
@@ -24,6 +25,12 @@ module Increase
         attr_accessor account_number_id: String
 
         attr_accessor amount: Integer
+
+        attr_reader addenda: Increase::Simulations::InboundACHTransferCreateParams::Addenda?
+
+        def addenda=: (
+          Increase::Simulations::InboundACHTransferCreateParams::Addenda
+        ) -> Increase::Simulations::InboundACHTransferCreateParams::Addenda
 
         attr_reader company_descriptive_date: String?
 
@@ -66,6 +73,7 @@ module Increase
         def initialize: (
           account_number_id: String,
           amount: Integer,
+          ?addenda: Increase::Simulations::InboundACHTransferCreateParams::Addenda,
           ?company_descriptive_date: String,
           ?company_discretionary_data: String,
           ?company_entry_description: String,
@@ -81,6 +89,7 @@ module Increase
         def to_hash: -> {
           account_number_id: String,
           amount: Integer,
+          addenda: Increase::Simulations::InboundACHTransferCreateParams::Addenda,
           company_descriptive_date: String,
           company_discretionary_data: String,
           company_entry_description: String,
@@ -92,6 +101,70 @@ module Increase
           standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::standard_entry_class_code,
           request_options: Increase::RequestOptions
         }
+
+        type addenda =
+          {
+            category: Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::category,
+            freeform: Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform
+          }
+
+        class Addenda < Increase::Internal::Type::BaseModel
+          attr_accessor category: Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::category
+
+          attr_reader freeform: Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform?
+
+          def freeform=: (
+            Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform
+          ) -> Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform
+
+          def initialize: (
+            category: Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::category,
+            ?freeform: Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform
+          ) -> void
+
+          def to_hash: -> {
+            category: Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::category,
+            freeform: Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform
+          }
+
+          type category = :freeform
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # Unstructured `payment_related_information` passed through with the transfer.
+            FREEFORM: :freeform
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::category]
+          end
+
+          type freeform =
+            {
+              entries: ::Array[Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform::Entry]
+            }
+
+          class Freeform < Increase::Internal::Type::BaseModel
+            attr_accessor entries: ::Array[Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform::Entry]
+
+            def initialize: (
+              entries: ::Array[Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform::Entry]
+            ) -> void
+
+            def to_hash: -> {
+              entries: ::Array[Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform::Entry]
+            }
+
+            type entry = { payment_related_information: String }
+
+            class Entry < Increase::Internal::Type::BaseModel
+              attr_accessor payment_related_information: String
+
+              def initialize: (payment_related_information: String) -> void
+
+              def to_hash: -> { payment_related_information: String }
+            end
+          end
+        end
 
         type standard_entry_class_code =
           :corporate_credit_or_debit

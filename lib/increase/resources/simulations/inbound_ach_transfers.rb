@@ -19,11 +19,13 @@ module Increase
         # [Declined Transaction](#declined-transactions) depending on whether or not the
         # transfer is allowed.
         #
-        # @overload create(account_number_id:, amount:, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_id: nil, company_name: nil, receiver_id_number: nil, receiver_name: nil, resolve_at: nil, standard_entry_class_code: nil, request_options: {})
+        # @overload create(account_number_id:, amount:, addenda: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_id: nil, company_name: nil, receiver_id_number: nil, receiver_name: nil, resolve_at: nil, standard_entry_class_code: nil, request_options: {})
         #
         # @param account_number_id [String] The identifier of the Account Number the inbound ACH Transfer is for.
         #
         # @param amount [Integer] The transfer amount in cents. A positive amount originates a credit transfer pus
+        #
+        # @param addenda [Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda] Additional information to include in the transfer.
         #
         # @param company_descriptive_date [String] The description of the date of the transfer.
         #

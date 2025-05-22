@@ -18,6 +18,8 @@ module Increase
           params(
             account_number_id: String,
             amount: Integer,
+            addenda:
+              Increase::Simulations::InboundACHTransferCreateParams::Addenda::OrHash,
             company_descriptive_date: String,
             company_discretionary_data: String,
             company_entry_description: String,
@@ -38,6 +40,8 @@ module Increase
           # pushing funds to the receiving account. A negative amount originates a debit
           # transfer pulling funds from the receiving account.
           amount:,
+          # Additional information to include in the transfer.
+          addenda: nil,
           # The description of the date of the transfer.
           company_descriptive_date: nil,
           # Data associated with the transfer set by the sender.

@@ -5,6 +5,7 @@ module Increase
         def create: (
           account_number_id: String,
           amount: Integer,
+          ?addenda: Increase::Simulations::InboundACHTransferCreateParams::Addenda,
           ?company_descriptive_date: String,
           ?company_discretionary_data: String,
           ?company_entry_description: String,
