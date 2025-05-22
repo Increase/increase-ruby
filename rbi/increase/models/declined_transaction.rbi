@@ -1807,6 +1807,13 @@ module Increase
                 Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
               )
 
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT =
+              T.let(
+                :original_credit,
+                Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
             # A regular purchase.
             PURCHASE =
               T.let(

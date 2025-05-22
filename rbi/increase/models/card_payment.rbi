@@ -2217,6 +2217,13 @@ module Increase
                 Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
               )
 
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT =
+              T.let(
+                :original_credit,
+                Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
+              )
+
             # A regular purchase.
             PURCHASE =
               T.let(
@@ -3868,6 +3875,13 @@ module Increase
             BILL_PAYMENT =
               T.let(
                 :bill_payment,
+                Increase::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT =
+              T.let(
+                :original_credit,
                 Increase::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
               )
 

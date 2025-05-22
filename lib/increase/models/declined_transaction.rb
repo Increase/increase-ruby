@@ -987,6 +987,9 @@ module Increase
             # A transaction used to pay a bill.
             BILL_PAYMENT = :bill_payment
 
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT = :original_credit
+
             # A regular purchase.
             PURCHASE = :purchase
 

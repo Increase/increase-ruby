@@ -1385,6 +1385,13 @@ module Increase
               Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
             )
 
+          # Original credit transactions are used to send money to a cardholder.
+          ORIGINAL_CREDIT =
+            T.let(
+              :original_credit,
+              Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
+            )
+
           # A regular purchase.
           PURCHASE =
             T.let(
