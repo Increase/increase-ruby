@@ -78,6 +78,23 @@ module Increase
         ?recipient_address_line3: String,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        account_number_id: String,
+        amount: Integer,
+        message_to_recipient: String,
+        recipient_account_number: String,
+        recipient_name: String,
+        recipient_routing_number: String,
+        :originator_address_line1 => String,
+        :originator_address_line2 => String,
+        :originator_address_line3 => String,
+        originator_name: String,
+        :recipient_address_line1 => String,
+        :recipient_address_line2 => String,
+        :recipient_address_line3 => String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

@@ -13,7 +13,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiAccountEnrollment]
+      # @return [Increase::Models::IntrafiAccountEnrollment]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentCreateParams
       def create(params)
@@ -35,7 +35,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiAccountEnrollment]
+      # @return [Increase::Models::IntrafiAccountEnrollment]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentRetrieveParams
       def retrieve(intrafi_account_enrollment_id, params = {})
@@ -62,11 +62,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::IntrafiAccountEnrollmentListParams::Status]
+      # @param status [Increase::Models::IntrafiAccountEnrollmentListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::IntrafiAccountEnrollment>]
+      # @return [Increase::Internal::Page<Increase::Models::IntrafiAccountEnrollment>]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentListParams
       def list(params = {})
@@ -89,7 +89,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiAccountEnrollment]
+      # @return [Increase::Models::IntrafiAccountEnrollment]
       #
       # @see Increase::Models::IntrafiAccountEnrollmentUnenrollParams
       def unenroll(intrafi_account_enrollment_id, params = {})

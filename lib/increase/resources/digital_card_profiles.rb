@@ -23,11 +23,11 @@ module Increase
       #
       # @param contact_website [String] A website the user can visit to view and receive support for their card.
       #
-      # @param text_color [Increase::DigitalCardProfileCreateParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      # @param text_color [Increase::Models::DigitalCardProfileCreateParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::DigitalCardProfile]
+      # @return [Increase::Models::DigitalCardProfile]
       #
       # @see Increase::Models::DigitalCardProfileCreateParams
       def create(params)
@@ -49,7 +49,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::DigitalCardProfile]
+      # @return [Increase::Models::DigitalCardProfile]
       #
       # @see Increase::Models::DigitalCardProfileRetrieveParams
       def retrieve(digital_card_profile_id, params = {})
@@ -74,11 +74,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::DigitalCardProfileListParams::Status]
+      # @param status [Increase::Models::DigitalCardProfileListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::DigitalCardProfile>]
+      # @return [Increase::Internal::Page<Increase::Models::DigitalCardProfile>]
       #
       # @see Increase::Models::DigitalCardProfileListParams
       def list(params = {})
@@ -101,7 +101,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::DigitalCardProfile]
+      # @return [Increase::Models::DigitalCardProfile]
       #
       # @see Increase::Models::DigitalCardProfileArchiveParams
       def archive(digital_card_profile_id, params = {})
@@ -135,11 +135,11 @@ module Increase
       #
       # @param issuer_name [String] A user-facing description for whoever is issuing the card.
       #
-      # @param text_color [Increase::DigitalCardProfileCloneParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      # @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::DigitalCardProfile]
+      # @return [Increase::Models::DigitalCardProfile]
       #
       # @see Increase::Models::DigitalCardProfileCloneParams
       def clone_(digital_card_profile_id, params = {})

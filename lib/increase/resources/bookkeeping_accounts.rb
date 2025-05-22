@@ -11,13 +11,13 @@ module Increase
       #
       # @param account_id [String] The entity, if `compliance_category` is `commingled_cash`.
       #
-      # @param compliance_category [Symbol, Increase::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
+      # @param compliance_category [Symbol, Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
       #
       # @param entity_id [String] The entity, if `compliance_category` is `customer_balance`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BookkeepingAccount]
+      # @return [Increase::Models::BookkeepingAccount]
       #
       # @see Increase::Models::BookkeepingAccountCreateParams
       def create(params)
@@ -41,7 +41,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BookkeepingAccount]
+      # @return [Increase::Models::BookkeepingAccount]
       #
       # @see Increase::Models::BookkeepingAccountUpdateParams
       def update(bookkeeping_account_id, params)
@@ -70,7 +70,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::BookkeepingAccount>]
+      # @return [Increase::Internal::Page<Increase::Models::BookkeepingAccount>]
       #
       # @see Increase::Models::BookkeepingAccountListParams
       def list(params = {})
@@ -95,7 +95,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BookkeepingBalanceLookup]
+      # @return [Increase::Models::BookkeepingBalanceLookup]
       #
       # @see Increase::Models::BookkeepingAccountBalanceParams
       def balance(bookkeeping_account_id, params = {})

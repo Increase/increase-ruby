@@ -21,7 +21,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::InboundCheckDeposit]
+        # @return [Increase::Models::InboundCheckDeposit]
         #
         # @see Increase::Models::Simulations::InboundCheckDepositCreateParams
         def create(params)

@@ -20,7 +20,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Account]
+      # @return [Increase::Models::Account]
       #
       # @see Increase::Models::AccountCreateParams
       def create(params)
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Account]
+      # @return [Increase::Models::Account]
       #
       # @see Increase::Models::AccountRetrieveParams
       def retrieve(account_id, params = {})
@@ -64,7 +64,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Account]
+      # @return [Increase::Models::Account]
       #
       # @see Increase::Models::AccountUpdateParams
       def update(account_id, params = {})
@@ -85,7 +85,7 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, entity_id: nil, idempotency_key: nil, informational_entity_id: nil, limit: nil, program_id: nil, status: nil, request_options: {})
       #
-      # @param created_at [Increase::AccountListParams::CreatedAt]
+      # @param created_at [Increase::Models::AccountListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -99,11 +99,11 @@ module Increase
       #
       # @param program_id [String] Filter Accounts for those in a specific Program.
       #
-      # @param status [Increase::AccountListParams::Status]
+      # @param status [Increase::Models::AccountListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Account>]
+      # @return [Increase::Internal::Page<Increase::Models::Account>]
       #
       # @see Increase::Models::AccountListParams
       def list(params = {})
@@ -129,7 +129,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BalanceLookup]
+      # @return [Increase::Models::BalanceLookup]
       #
       # @see Increase::Models::AccountBalanceParams
       def balance(account_id, params = {})
@@ -151,7 +151,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Account]
+      # @return [Increase::Models::Account]
       #
       # @see Increase::Models::AccountCloseParams
       def close(account_id, params = {})

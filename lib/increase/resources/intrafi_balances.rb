@@ -13,7 +13,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiBalance]
+      # @return [Increase::Models::IntrafiBalance]
       #
       # @see Increase::Models::IntrafiBalanceIntrafiBalanceParams
       def intrafi_balance(account_id, params = {})

@@ -31,7 +31,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::PhysicalCardProfileListParams::Status, nil]
+      #   @return [Increase::Models::PhysicalCardProfileListParams::Status, nil]
       optional :status, -> { Increase::PhysicalCardProfileListParams::Status }
 
       # @!method initialize(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -44,7 +44,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::PhysicalCardProfileListParams::Status]
+      #   @param status [Increase::Models::PhysicalCardProfileListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -54,7 +54,7 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::PhysicalCardProfileListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::PhysicalCardProfileListParams::Status::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::PhysicalCardProfileListParams::Status::In]
@@ -63,9 +63,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PhysicalCardProfileListParams::Status} for more details.
+        #   {Increase::Models::PhysicalCardProfileListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::PhysicalCardProfileListParams::Status::In>] Filter Physical Card Profiles for those with the specified statuses. For GET req
+        #   @param in_ [Array<Symbol, Increase::Models::PhysicalCardProfileListParams::Status::In>] Filter Physical Card Profiles for those with the specified statuses. For GET req
 
         module In
           extend Increase::Internal::Type::Enum

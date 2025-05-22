@@ -16,13 +16,13 @@ module Increase
       # @!attribute cardholder
       #   Details about the cardholder, as it will appear on the physical card.
       #
-      #   @return [Increase::PhysicalCardCreateParams::Cardholder]
+      #   @return [Increase::Models::PhysicalCardCreateParams::Cardholder]
       required :cardholder, -> { Increase::PhysicalCardCreateParams::Cardholder }
 
       # @!attribute shipment
       #   The details used to ship this physical card.
       #
-      #   @return [Increase::PhysicalCardCreateParams::Shipment]
+      #   @return [Increase::Models::PhysicalCardCreateParams::Shipment]
       required :shipment, -> { Increase::PhysicalCardCreateParams::Shipment }
 
       # @!attribute physical_card_profile_id
@@ -38,9 +38,9 @@ module Increase
       #
       #   @param card_id [String] The underlying card representing this physical card.
       #
-      #   @param cardholder [Increase::PhysicalCardCreateParams::Cardholder] Details about the cardholder, as it will appear on the physical card.
+      #   @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder] Details about the cardholder, as it will appear on the physical card.
       #
-      #   @param shipment [Increase::PhysicalCardCreateParams::Shipment] The details used to ship this physical card.
+      #   @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment] The details used to ship this physical card.
       #
       #   @param physical_card_profile_id [String] The physical card profile to use for this physical card. The latest default phys
       #
@@ -71,13 +71,13 @@ module Increase
         # @!attribute address
         #   The address to where the card should be shipped.
         #
-        #   @return [Increase::PhysicalCardCreateParams::Shipment::Address]
+        #   @return [Increase::Models::PhysicalCardCreateParams::Shipment::Address]
         required :address, -> { Increase::PhysicalCardCreateParams::Shipment::Address }
 
         # @!attribute method_
         #   The shipping method to use.
         #
-        #   @return [Symbol, Increase::PhysicalCardCreateParams::Shipment::Method]
+        #   @return [Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Method]
         required :method_,
                  enum: -> {
                    Increase::PhysicalCardCreateParams::Shipment::Method
@@ -87,11 +87,11 @@ module Increase
         # @!method initialize(address:, method_:)
         #   The details used to ship this physical card.
         #
-        #   @param address [Increase::PhysicalCardCreateParams::Shipment::Address] The address to where the card should be shipped.
+        #   @param address [Increase::Models::PhysicalCardCreateParams::Shipment::Address] The address to where the card should be shipped.
         #
-        #   @param method_ [Symbol, Increase::PhysicalCardCreateParams::Shipment::Method] The shipping method to use.
+        #   @param method_ [Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Method] The shipping method to use.
 
-        # @see Increase::PhysicalCardCreateParams::Shipment#address
+        # @see Increase::Models::PhysicalCardCreateParams::Shipment#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the shipping address.
@@ -163,7 +163,7 @@ module Increase
 
         # The shipping method to use.
         #
-        # @see Increase::PhysicalCardCreateParams::Shipment#method_
+        # @see Increase::Models::PhysicalCardCreateParams::Shipment#method_
         module Method
           extend Increase::Internal::Type::Enum
 

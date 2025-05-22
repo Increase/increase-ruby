@@ -13,7 +13,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::AccountStatement]
+        # @return [Increase::Models::AccountStatement]
         #
         # @see Increase::Models::Simulations::AccountStatementCreateParams
         def create(params)

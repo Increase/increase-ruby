@@ -21,6 +21,12 @@ module Increase
           type: Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::type_
         ) -> void
 
+        def to_hash: -> {
+          decline_reason: Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::decline_reason?,
+          digital_wallet_token_id: String?,
+          type: Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::type_
+        }
+
         type decline_reason =
           :card_not_active
           | :no_verification_method

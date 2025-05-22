@@ -26,7 +26,7 @@ module Increase
       #
       # @param company_name [String] The name by which the recipient knows you.
       #
-      # @param credit_debit_indicator [Symbol, Increase::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
+      # @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
       #
       # @param effective_date [Date] The transfer effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601
       #
@@ -34,11 +34,11 @@ module Increase
       #
       # @param individual_name [String] The name of the transfer recipient. This value is information and not verified b
       #
-      # @param standard_entry_class_code [Symbol, Increase::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      # @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::ACHPrenotification]
+      # @return [Increase::Models::ACHPrenotification]
       #
       # @see Increase::Models::ACHPrenotificationCreateParams
       def create(params)
@@ -60,7 +60,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::ACHPrenotification]
+      # @return [Increase::Models::ACHPrenotification]
       #
       # @see Increase::Models::ACHPrenotificationRetrieveParams
       def retrieve(ach_prenotification_id, params = {})
@@ -79,7 +79,7 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
       #
-      # @param created_at [Increase::ACHPrenotificationListParams::CreatedAt]
+      # @param created_at [Increase::Models::ACHPrenotificationListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -89,7 +89,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::ACHPrenotification>]
+      # @return [Increase::Internal::Page<Increase::Models::ACHPrenotification>]
       #
       # @see Increase::Models::ACHPrenotificationListParams
       def list(params = {})

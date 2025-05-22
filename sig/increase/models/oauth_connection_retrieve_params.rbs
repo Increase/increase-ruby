@@ -8,6 +8,8 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       def initialize: (?request_options: Increase::request_opts) -> void
+
+      def to_hash: -> { request_options: Increase::RequestOptions }
     end
   end
 end

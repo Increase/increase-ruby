@@ -21,6 +21,12 @@ module Increase
         ?updated_routing_number: String,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        updated_account_number: String,
+        updated_routing_number: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

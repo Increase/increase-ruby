@@ -53,17 +53,30 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
+        card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
+        card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
+        digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
+        digital_wallet_token: Increase::RealTimeDecisionActionParams::DigitalWalletToken,
+        request_options: Increase::RequestOptions
+      }
+
       type card_authentication =
         {
-          decision: Increase::RealTimeDecisionActionParams::CardAuthentication::decision
+          decision: Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision
         }
 
       class CardAuthentication < Increase::Internal::Type::BaseModel
-        attr_accessor decision: Increase::RealTimeDecisionActionParams::CardAuthentication::decision
+        attr_accessor decision: Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision
 
         def initialize: (
-          decision: Increase::RealTimeDecisionActionParams::CardAuthentication::decision
+          decision: Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision
         ) -> void
+
+        def to_hash: -> {
+          decision: Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision
+        }
 
         type decision = :approve | :challenge | :deny
 
@@ -79,21 +92,25 @@ module Increase
           # Deny the authentication attempt.
           DENY: :deny
 
-          def self?.values: -> ::Array[Increase::RealTimeDecisionActionParams::CardAuthentication::decision]
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthentication::decision]
         end
       end
 
       type card_authentication_challenge =
         {
-          result: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
         }
 
       class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
-        attr_accessor result: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+        attr_accessor result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
 
         def initialize: (
-          result: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
         ) -> void
+
+        def to_hash: -> {
+          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+        }
 
         type result = :success | :failure
 
@@ -106,29 +123,34 @@ module Increase
           # Your application was unable to deliver the one-time code to the cardholder.
           FAILURE: :failure
 
-          def self?.values: -> ::Array[Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::result]
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result]
         end
       end
 
       type card_authorization =
         {
-          decision: Increase::RealTimeDecisionActionParams::CardAuthorization::decision,
-          decline_reason: Increase::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+          decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision,
+          decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
         }
 
       class CardAuthorization < Increase::Internal::Type::BaseModel
-        attr_accessor decision: Increase::RealTimeDecisionActionParams::CardAuthorization::decision
+        attr_accessor decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision
 
-        attr_reader decline_reason: Increase::RealTimeDecisionActionParams::CardAuthorization::decline_reason?
+        attr_reader decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason?
 
         def decline_reason=: (
-          Increase::RealTimeDecisionActionParams::CardAuthorization::decline_reason
-        ) -> Increase::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+          Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+        ) -> Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
 
         def initialize: (
-          decision: Increase::RealTimeDecisionActionParams::CardAuthorization::decision,
-          ?decline_reason: Increase::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+          decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision,
+          ?decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
         ) -> void
+
+        def to_hash: -> {
+          decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision,
+          decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+        }
 
         type decision = :approve | :decline
 
@@ -141,7 +163,7 @@ module Increase
           # Decline the authorization.
           DECLINE: :decline
 
-          def self?.values: -> ::Array[Increase::RealTimeDecisionActionParams::CardAuthorization::decision]
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision]
         end
 
         type decline_reason =
@@ -173,18 +195,18 @@ module Increase
           # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::RealTimeDecisionActionParams::CardAuthorization::decline_reason]
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason]
         end
       end
 
       type digital_wallet_authentication =
         {
-          result: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::result,
+          result: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::result,
           success: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success
         }
 
       class DigitalWalletAuthentication < Increase::Internal::Type::BaseModel
-        attr_accessor result: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::result
+        attr_accessor result: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::result
 
         attr_reader success: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success?
 
@@ -193,9 +215,14 @@ module Increase
         ) -> Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success
 
         def initialize: (
-          result: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::result,
+          result: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::result,
           ?success: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success
         ) -> void
+
+        def to_hash: -> {
+          result: Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::result,
+          success: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success
+        }
 
         type result = :success | :failure
 
@@ -208,7 +235,7 @@ module Increase
           # Your application failed to deliver the one-time passcode to the cardholder.
           FAILURE: :failure
 
-          def self?.values: -> ::Array[Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::result]
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::result]
         end
 
         type success = { email: String, phone: String }
@@ -223,6 +250,8 @@ module Increase
           def phone=: (String) -> String
 
           def initialize: (?email: String, ?phone: String) -> void
+
+          def to_hash: -> { email: String, phone: String }
         end
       end
 
@@ -250,6 +279,11 @@ module Increase
           ?decline: Increase::RealTimeDecisionActionParams::DigitalWalletToken::Decline
         ) -> void
 
+        def to_hash: -> {
+          approval: Increase::RealTimeDecisionActionParams::DigitalWalletToken::Approval,
+          decline: Increase::RealTimeDecisionActionParams::DigitalWalletToken::Decline
+        }
+
         type approval = { email: String, phone: String }
 
         class Approval < Increase::Internal::Type::BaseModel
@@ -262,6 +296,8 @@ module Increase
           def phone=: (String) -> String
 
           def initialize: (?email: String, ?phone: String) -> void
+
+          def to_hash: -> { email: String, phone: String }
         end
 
         type decline = { reason: String }
@@ -272,6 +308,8 @@ module Increase
           def reason=: (String) -> String
 
           def initialize: (?reason: String) -> void
+
+          def to_hash: -> { reason: String }
         end
       end
     end

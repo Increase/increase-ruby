@@ -19,6 +19,11 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        status: Increase::Models::EventSubscriptionUpdateParams::status,
+        request_options: Increase::RequestOptions
+      }
+
       type status = :active | :disabled | :deleted
 
       module Status

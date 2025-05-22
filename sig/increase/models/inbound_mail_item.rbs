@@ -7,9 +7,9 @@ module Increase
         file_id: String,
         lockbox_id: String?,
         recipient_name: String?,
-        rejection_reason: Increase::InboundMailItem::rejection_reason?,
-        status: Increase::InboundMailItem::status,
-        type: Increase::InboundMailItem::type_
+        rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
+        status: Increase::Models::InboundMailItem::status,
+        type: Increase::Models::InboundMailItem::type_
       }
 
     class InboundMailItem < Increase::Internal::Type::BaseModel
@@ -23,11 +23,11 @@ module Increase
 
       attr_accessor recipient_name: String?
 
-      attr_accessor rejection_reason: Increase::InboundMailItem::rejection_reason?
+      attr_accessor rejection_reason: Increase::Models::InboundMailItem::rejection_reason?
 
-      attr_accessor status: Increase::InboundMailItem::status
+      attr_accessor status: Increase::Models::InboundMailItem::status
 
-      attr_accessor type: Increase::InboundMailItem::type_
+      attr_accessor type: Increase::Models::InboundMailItem::type_
 
       def initialize: (
         id: String,
@@ -35,10 +35,21 @@ module Increase
         file_id: String,
         lockbox_id: String?,
         recipient_name: String?,
-        rejection_reason: Increase::InboundMailItem::rejection_reason?,
-        status: Increase::InboundMailItem::status,
-        type: Increase::InboundMailItem::type_
+        rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
+        status: Increase::Models::InboundMailItem::status,
+        type: Increase::Models::InboundMailItem::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        file_id: String,
+        lockbox_id: String?,
+        recipient_name: String?,
+        rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
+        status: Increase::Models::InboundMailItem::status,
+        type: Increase::Models::InboundMailItem::type_
+      }
 
       type rejection_reason =
         :no_matching_lockbox | :no_check | :lockbox_not_active
@@ -55,7 +66,7 @@ module Increase
         # The Lockbox or its associated Account is not active.
         LOCKBOX_NOT_ACTIVE: :lockbox_not_active
 
-        def self?.values: -> ::Array[Increase::InboundMailItem::rejection_reason]
+        def self?.values: -> ::Array[Increase::Models::InboundMailItem::rejection_reason]
       end
 
       type status = :pending | :processed | :rejected
@@ -72,7 +83,7 @@ module Increase
         # The mail item has been rejected.
         REJECTED: :rejected
 
-        def self?.values: -> ::Array[Increase::InboundMailItem::status]
+        def self?.values: -> ::Array[Increase::Models::InboundMailItem::status]
       end
 
       type type_ = :inbound_mail_item
@@ -82,7 +93,7 @@ module Increase
 
         INBOUND_MAIL_ITEM: :inbound_mail_item
 
-        def self?.values: -> ::Array[Increase::InboundMailItem::type_]
+        def self?.values: -> ::Array[Increase::Models::InboundMailItem::type_]
       end
     end
   end

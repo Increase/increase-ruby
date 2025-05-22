@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundWireTransfer]
+      # @return [Increase::Models::InboundWireTransfer]
       #
       # @see Increase::Models::InboundWireTransferRetrieveParams
       def retrieve(inbound_wire_transfer_id, params = {})
@@ -34,17 +34,17 @@ module Increase
       #
       # @param account_number_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Account Number.
       #
-      # @param created_at [Increase::InboundWireTransferListParams::CreatedAt]
+      # @param created_at [Increase::Models::InboundWireTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::InboundWireTransferListParams::Status]
+      # @param status [Increase::Models::InboundWireTransferListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::InboundWireTransfer>]
+      # @return [Increase::Internal::Page<Increase::Models::InboundWireTransfer>]
       #
       # @see Increase::Models::InboundWireTransferListParams
       def list(params = {})
@@ -65,11 +65,11 @@ module Increase
       #
       # @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
       #
-      # @param reason [Symbol, Increase::InboundWireTransferReverseParams::Reason] Reason for the reversal.
+      # @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundWireTransfer]
+      # @return [Increase::Models::InboundWireTransfer]
       #
       # @see Increase::Models::InboundWireTransferReverseParams
       def reverse(inbound_wire_transfer_id, params)

@@ -63,6 +63,17 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        category: Increase::Models::ExportCreateParams::category,
+        account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
+        balance_csv: Increase::ExportCreateParams::BalanceCsv,
+        bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
+        entity_csv: Increase::ExportCreateParams::EntityCsv,
+        transaction_csv: Increase::ExportCreateParams::TransactionCsv,
+        vendor_csv: top,
+        request_options: Increase::RequestOptions
+      }
+
       type category =
         :account_statement_ofx
         | :transaction_csv
@@ -115,6 +126,11 @@ module Increase
           ?created_at: Increase::ExportCreateParams::AccountStatementOfx::CreatedAt
         ) -> void
 
+        def to_hash: -> {
+          account_id: String,
+          created_at: Increase::ExportCreateParams::AccountStatementOfx::CreatedAt
+        }
+
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
@@ -141,6 +157,13 @@ module Increase
             ?on_or_after: Time,
             ?on_or_before: Time
           ) -> void
+
+          def to_hash: -> {
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          }
         end
       end
 
@@ -172,6 +195,12 @@ module Increase
           ?program_id: String
         ) -> void
 
+        def to_hash: -> {
+          account_id: String,
+          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt,
+          program_id: String
+        }
+
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
@@ -198,6 +227,13 @@ module Increase
             ?on_or_after: Time,
             ?on_or_before: Time
           ) -> void
+
+          def to_hash: -> {
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          }
         end
       end
 
@@ -223,6 +259,11 @@ module Increase
           ?created_at: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt
         ) -> void
 
+        def to_hash: -> {
+          bookkeeping_account_id: String,
+          created_at: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt
+        }
+
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
@@ -249,6 +290,13 @@ module Increase
             ?on_or_after: Time,
             ?on_or_before: Time
           ) -> void
+
+          def to_hash: -> {
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          }
         end
       end
 
@@ -266,15 +314,25 @@ module Increase
           ?status: Increase::ExportCreateParams::EntityCsv::Status
         ) -> void
 
+        def to_hash: -> {
+          status: Increase::ExportCreateParams::EntityCsv::Status
+        }
+
         type status =
-          { in_: ::Array[Increase::ExportCreateParams::EntityCsv::Status::in_] }
+          {
+            in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
+          }
 
         class Status < Increase::Internal::Type::BaseModel
-          attr_accessor in_: ::Array[Increase::ExportCreateParams::EntityCsv::Status::in_]
+          attr_accessor in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
 
           def initialize: (
-            in_: ::Array[Increase::ExportCreateParams::EntityCsv::Status::in_]
+            in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
           ) -> void
+
+          def to_hash: -> {
+            in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
+          }
 
           type in_ = :active | :archived | :disabled
 
@@ -290,7 +348,7 @@ module Increase
             # The entity is temporarily disabled and cannot be used for financial activity.
             DISABLED: :disabled
 
-            def self?.values: -> ::Array[Increase::ExportCreateParams::EntityCsv::Status::in_]
+            def self?.values: -> ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
           end
         end
       end
@@ -323,6 +381,12 @@ module Increase
           ?program_id: String
         ) -> void
 
+        def to_hash: -> {
+          account_id: String,
+          created_at: Increase::ExportCreateParams::TransactionCsv::CreatedAt,
+          program_id: String
+        }
+
         type created_at =
           { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
@@ -349,6 +413,13 @@ module Increase
             ?on_or_after: Time,
             ?on_or_before: Time
           ) -> void
+
+          def to_hash: -> {
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          }
         end
       end
     end

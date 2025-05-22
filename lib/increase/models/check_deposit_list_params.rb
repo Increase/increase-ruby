@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::CheckDepositListParams::CreatedAt, nil]
+      #   @return [Increase::Models::CheckDepositListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::CheckDepositListParams::CreatedAt }
 
       # @!attribute cursor
@@ -46,7 +46,7 @@ module Increase
       #
       #   @param account_id [String] Filter Check Deposits to those belonging to the specified Account.
       #
-      #   @param created_at [Increase::CheckDepositListParams::CreatedAt]
+      #   @param created_at [Increase::Models::CheckDepositListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -87,7 +87,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::CheckDepositListParams::CreatedAt} for more details.
+        #   {Increase::Models::CheckDepositListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

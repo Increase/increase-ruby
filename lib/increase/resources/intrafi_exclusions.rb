@@ -13,7 +13,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiExclusion]
+      # @return [Increase::Models::IntrafiExclusion]
       #
       # @see Increase::Models::IntrafiExclusionCreateParams
       def create(params)
@@ -35,7 +35,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiExclusion]
+      # @return [Increase::Models::IntrafiExclusion]
       #
       # @see Increase::Models::IntrafiExclusionRetrieveParams
       def retrieve(intrafi_exclusion_id, params = {})
@@ -64,7 +64,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::IntrafiExclusion>]
+      # @return [Increase::Internal::Page<Increase::Models::IntrafiExclusion>]
       #
       # @see Increase::Models::IntrafiExclusionListParams
       def list(params = {})
@@ -90,7 +90,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::IntrafiExclusion]
+      # @return [Increase::Models::IntrafiExclusion]
       #
       # @see Increase::Models::IntrafiExclusionArchiveParams
       def archive(intrafi_exclusion_id, params = {})

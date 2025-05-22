@@ -20,11 +20,11 @@ module Increase
       #
       # @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
       #
-      # @param front_text [Increase::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      # @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCardProfile]
+      # @return [Increase::Models::PhysicalCardProfile]
       #
       # @see Increase::Models::PhysicalCardProfileCreateParams
       def create(params)
@@ -46,7 +46,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCardProfile]
+      # @return [Increase::Models::PhysicalCardProfile]
       #
       # @see Increase::Models::PhysicalCardProfileRetrieveParams
       def retrieve(physical_card_profile_id, params = {})
@@ -71,11 +71,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::PhysicalCardProfileListParams::Status]
+      # @param status [Increase::Models::PhysicalCardProfileListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::PhysicalCardProfile>]
+      # @return [Increase::Internal::Page<Increase::Models::PhysicalCardProfile>]
       #
       # @see Increase::Models::PhysicalCardProfileListParams
       def list(params = {})
@@ -98,7 +98,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCardProfile]
+      # @return [Increase::Models::PhysicalCardProfile]
       #
       # @see Increase::Models::PhysicalCardProfileArchiveParams
       def archive(physical_card_profile_id, params = {})
@@ -127,11 +127,11 @@ module Increase
       #
       # @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
-      # @param front_text [Increase::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      # @param front_text [Increase::Models::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCardProfile]
+      # @return [Increase::Models::PhysicalCardProfile]
       #
       # @see Increase::Models::PhysicalCardProfileCloneParams
       def clone_(physical_card_profile_id, params = {})

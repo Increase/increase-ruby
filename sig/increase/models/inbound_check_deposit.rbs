@@ -13,15 +13,15 @@ module Increase
         check_number: String?,
         check_transfer_id: String?,
         created_at: Time,
-        currency: Increase::InboundCheckDeposit::currency,
+        currency: Increase::Models::InboundCheckDeposit::currency,
         declined_at: Time?,
         declined_transaction_id: String?,
         deposit_return: Increase::InboundCheckDeposit::DepositReturn?,
         front_image_file_id: String?,
-        payee_name_analysis: Increase::InboundCheckDeposit::payee_name_analysis,
-        status: Increase::InboundCheckDeposit::status,
+        payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis,
+        status: Increase::Models::InboundCheckDeposit::status,
         transaction_id: String?,
-        type: Increase::InboundCheckDeposit::type_
+        type: Increase::Models::InboundCheckDeposit::type_
       }
 
     class InboundCheckDeposit < Increase::Internal::Type::BaseModel
@@ -47,7 +47,7 @@ module Increase
 
       attr_accessor created_at: Time
 
-      attr_accessor currency: Increase::InboundCheckDeposit::currency
+      attr_accessor currency: Increase::Models::InboundCheckDeposit::currency
 
       attr_accessor declined_at: Time?
 
@@ -57,13 +57,13 @@ module Increase
 
       attr_accessor front_image_file_id: String?
 
-      attr_accessor payee_name_analysis: Increase::InboundCheckDeposit::payee_name_analysis
+      attr_accessor payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis
 
-      attr_accessor status: Increase::InboundCheckDeposit::status
+      attr_accessor status: Increase::Models::InboundCheckDeposit::status
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::InboundCheckDeposit::type_
+      attr_accessor type: Increase::Models::InboundCheckDeposit::type_
 
       def initialize: (
         id: String,
@@ -77,22 +77,45 @@ module Increase
         check_number: String?,
         check_transfer_id: String?,
         created_at: Time,
-        currency: Increase::InboundCheckDeposit::currency,
+        currency: Increase::Models::InboundCheckDeposit::currency,
         declined_at: Time?,
         declined_transaction_id: String?,
         deposit_return: Increase::InboundCheckDeposit::DepositReturn?,
         front_image_file_id: String?,
-        payee_name_analysis: Increase::InboundCheckDeposit::payee_name_analysis,
-        status: Increase::InboundCheckDeposit::status,
+        payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis,
+        status: Increase::Models::InboundCheckDeposit::status,
         transaction_id: String?,
-        type: Increase::InboundCheckDeposit::type_
+        type: Increase::Models::InboundCheckDeposit::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        accepted_at: Time?,
+        account_id: String,
+        account_number_id: String?,
+        adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
+        amount: Integer,
+        back_image_file_id: String?,
+        bank_of_first_deposit_routing_number: String?,
+        check_number: String?,
+        check_transfer_id: String?,
+        created_at: Time,
+        currency: Increase::Models::InboundCheckDeposit::currency,
+        declined_at: Time?,
+        declined_transaction_id: String?,
+        deposit_return: Increase::InboundCheckDeposit::DepositReturn?,
+        front_image_file_id: String?,
+        payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis,
+        status: Increase::Models::InboundCheckDeposit::status,
+        transaction_id: String?,
+        type: Increase::Models::InboundCheckDeposit::type_
+      }
 
       type adjustment =
         {
           adjusted_at: Time,
           amount: Integer,
-          reason: Increase::InboundCheckDeposit::Adjustment::reason,
+          reason: Increase::Models::InboundCheckDeposit::Adjustment::reason,
           transaction_id: String
         }
 
@@ -101,16 +124,23 @@ module Increase
 
         attr_accessor amount: Integer
 
-        attr_accessor reason: Increase::InboundCheckDeposit::Adjustment::reason
+        attr_accessor reason: Increase::Models::InboundCheckDeposit::Adjustment::reason
 
         attr_accessor transaction_id: String
 
         def initialize: (
           adjusted_at: Time,
           amount: Integer,
-          reason: Increase::InboundCheckDeposit::Adjustment::reason,
+          reason: Increase::Models::InboundCheckDeposit::Adjustment::reason,
           transaction_id: String
         ) -> void
+
+        def to_hash: -> {
+          adjusted_at: Time,
+          amount: Integer,
+          reason: Increase::Models::InboundCheckDeposit::Adjustment::reason,
+          transaction_id: String
+        }
 
         type reason =
           :late_return
@@ -133,7 +163,7 @@ module Increase
           # The recipient was not able to process the check. This usually happens for e.g., low quality images.
           NON_CONFORMING_ITEM: :non_conforming_item
 
-          def self?.values: -> ::Array[Increase::InboundCheckDeposit::Adjustment::reason]
+          def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::Adjustment::reason]
         end
       end
 
@@ -160,28 +190,34 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::InboundCheckDeposit::currency]
+        def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::currency]
       end
 
       type deposit_return =
         {
-          reason: Increase::InboundCheckDeposit::DepositReturn::reason,
+          reason: Increase::Models::InboundCheckDeposit::DepositReturn::reason,
           returned_at: Time,
           transaction_id: String
         }
 
       class DepositReturn < Increase::Internal::Type::BaseModel
-        attr_accessor reason: Increase::InboundCheckDeposit::DepositReturn::reason
+        attr_accessor reason: Increase::Models::InboundCheckDeposit::DepositReturn::reason
 
         attr_accessor returned_at: Time
 
         attr_accessor transaction_id: String
 
         def initialize: (
-          reason: Increase::InboundCheckDeposit::DepositReturn::reason,
+          reason: Increase::Models::InboundCheckDeposit::DepositReturn::reason,
           returned_at: Time,
           transaction_id: String
         ) -> void
+
+        def to_hash: -> {
+          reason: Increase::Models::InboundCheckDeposit::DepositReturn::reason,
+          returned_at: Time,
+          transaction_id: String
+        }
 
         type reason =
           :altered_or_fictitious
@@ -208,7 +244,7 @@ module Increase
           # The check was not endorsed by the payee.
           ENDORSEMENT_IRREGULAR: :endorsement_irregular
 
-          def self?.values: -> ::Array[Increase::InboundCheckDeposit::DepositReturn::reason]
+          def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::DepositReturn::reason]
         end
       end
 
@@ -227,7 +263,7 @@ module Increase
         # The payee name analysis was not evaluated.
         NOT_EVALUATED: :not_evaluated
 
-        def self?.values: -> ::Array[Increase::InboundCheckDeposit::payee_name_analysis]
+        def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::payee_name_analysis]
       end
 
       type status =
@@ -251,7 +287,7 @@ module Increase
         # The Inbound Check Deposit requires attention from an Increase operator.
         REQUIRES_ATTENTION: :requires_attention
 
-        def self?.values: -> ::Array[Increase::InboundCheckDeposit::status]
+        def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::status]
       end
 
       type type_ = :inbound_check_deposit
@@ -261,7 +297,7 @@ module Increase
 
         INBOUND_CHECK_DEPOSIT: :inbound_check_deposit
 
-        def self?.values: -> ::Array[Increase::InboundCheckDeposit::type_]
+        def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::type_]
       end
     end
   end

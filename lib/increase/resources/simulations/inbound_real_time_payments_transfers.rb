@@ -30,7 +30,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::InboundRealTimePaymentsTransfer]
+        # @return [Increase::Models::InboundRealTimePaymentsTransfer]
         #
         # @see Increase::Models::Simulations::InboundRealTimePaymentsTransferCreateParams
         def create(params)

@@ -24,7 +24,7 @@ module Increase
         :originator_to_beneficiary_information_line3 => String?,
         :originator_to_beneficiary_information_line4 => String?,
         recipient_account_number_id: String,
-        type: Increase::InboundWireDrawdownRequest::type_
+        type: Increase::Models::InboundWireDrawdownRequest::type_
       }
 
     class InboundWireDrawdownRequest < Increase::Internal::Type::BaseModel
@@ -72,7 +72,7 @@ module Increase
 
       attr_accessor recipient_account_number_id: String
 
-      attr_accessor type: Increase::InboundWireDrawdownRequest::type_
+      attr_accessor type: Increase::Models::InboundWireDrawdownRequest::type_
 
       def initialize: (
         id: String,
@@ -97,8 +97,34 @@ module Increase
         originator_to_beneficiary_information_line3: String?,
         originator_to_beneficiary_information_line4: String?,
         recipient_account_number_id: String,
-        type: Increase::InboundWireDrawdownRequest::type_
+        type: Increase::Models::InboundWireDrawdownRequest::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Integer,
+        beneficiary_account_number: String,
+        :beneficiary_address_line1 => String?,
+        :beneficiary_address_line2 => String?,
+        :beneficiary_address_line3 => String?,
+        beneficiary_name: String?,
+        beneficiary_routing_number: String,
+        created_at: Time,
+        currency: String,
+        message_to_recipient: String?,
+        originator_account_number: String?,
+        :originator_address_line1 => String?,
+        :originator_address_line2 => String?,
+        :originator_address_line3 => String?,
+        originator_name: String?,
+        originator_routing_number: String,
+        :originator_to_beneficiary_information_line1 => String?,
+        :originator_to_beneficiary_information_line2 => String?,
+        :originator_to_beneficiary_information_line3 => String?,
+        :originator_to_beneficiary_information_line4 => String?,
+        recipient_account_number_id: String,
+        type: Increase::Models::InboundWireDrawdownRequest::type_
+      }
 
       type type_ = :inbound_wire_drawdown_request
 
@@ -107,7 +133,7 @@ module Increase
 
         INBOUND_WIRE_DRAWDOWN_REQUEST: :inbound_wire_drawdown_request
 
-        def self?.values: -> ::Array[Increase::InboundWireDrawdownRequest::type_]
+        def self?.values: -> ::Array[Increase::Models::InboundWireDrawdownRequest::type_]
       end
     end
   end

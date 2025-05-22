@@ -39,25 +39,25 @@ module Increase
       # @!attribute rejection_reason
       #   If the mail item has been rejected, why it was rejected.
       #
-      #   @return [Symbol, Increase::InboundMailItem::RejectionReason, nil]
+      #   @return [Symbol, Increase::Models::InboundMailItem::RejectionReason, nil]
       required :rejection_reason, enum: -> { Increase::InboundMailItem::RejectionReason }, nil?: true
 
       # @!attribute status
       #   If the mail item has been processed.
       #
-      #   @return [Symbol, Increase::InboundMailItem::Status]
+      #   @return [Symbol, Increase::Models::InboundMailItem::Status]
       required :status, enum: -> { Increase::InboundMailItem::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `inbound_mail_item`.
       #
-      #   @return [Symbol, Increase::InboundMailItem::Type]
+      #   @return [Symbol, Increase::Models::InboundMailItem::Type]
       required :type, enum: -> { Increase::InboundMailItem::Type }
 
       # @!method initialize(id:, created_at:, file_id:, lockbox_id:, recipient_name:, rejection_reason:, status:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::InboundMailItem} for more details.
+      #   {Increase::Models::InboundMailItem} for more details.
       #
       #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox.
       #
@@ -71,15 +71,15 @@ module Increase
       #
       #   @param recipient_name [String, nil] The recipient name as written on the mail item.
       #
-      #   @param rejection_reason [Symbol, Increase::InboundMailItem::RejectionReason, nil] If the mail item has been rejected, why it was rejected.
+      #   @param rejection_reason [Symbol, Increase::Models::InboundMailItem::RejectionReason, nil] If the mail item has been rejected, why it was rejected.
       #
-      #   @param status [Symbol, Increase::InboundMailItem::Status] If the mail item has been processed.
+      #   @param status [Symbol, Increase::Models::InboundMailItem::Status] If the mail item has been processed.
       #
-      #   @param type [Symbol, Increase::InboundMailItem::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundMailItem::Type] A constant representing the object's type. For this resource it will always be `
 
       # If the mail item has been rejected, why it was rejected.
       #
-      # @see Increase::InboundMailItem#rejection_reason
+      # @see Increase::Models::InboundMailItem#rejection_reason
       module RejectionReason
         extend Increase::Internal::Type::Enum
 
@@ -98,7 +98,7 @@ module Increase
 
       # If the mail item has been processed.
       #
-      # @see Increase::InboundMailItem#status
+      # @see Increase::Models::InboundMailItem#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -118,7 +118,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `inbound_mail_item`.
       #
-      # @see Increase::InboundMailItem#type
+      # @see Increase::Models::InboundMailItem#type
       module Type
         extend Increase::Internal::Type::Enum
 

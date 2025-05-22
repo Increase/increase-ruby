@@ -17,27 +17,27 @@ module Increase
         company_name: String?,
         created_at: Time,
         created_by: Increase::ACHTransfer::CreatedBy?,
-        currency: Increase::ACHTransfer::currency,
-        destination_account_holder: Increase::ACHTransfer::destination_account_holder,
+        currency: Increase::Models::ACHTransfer::currency,
+        destination_account_holder: Increase::Models::ACHTransfer::destination_account_holder,
         external_account_id: String?,
-        funding: Increase::ACHTransfer::funding,
+        funding: Increase::Models::ACHTransfer::funding,
         idempotency_key: String?,
         inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold?,
         individual_id: String?,
         individual_name: String?,
-        network: Increase::ACHTransfer::network,
+        network: Increase::Models::ACHTransfer::network,
         notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange],
         pending_transaction_id: String?,
         preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
         return_: Increase::ACHTransfer::Return?,
         routing_number: String,
         settlement: Increase::ACHTransfer::Settlement?,
-        standard_entry_class_code: Increase::ACHTransfer::standard_entry_class_code,
+        standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code,
         statement_descriptor: String,
-        status: Increase::ACHTransfer::status,
+        status: Increase::Models::ACHTransfer::status,
         submission: Increase::ACHTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::ACHTransfer::type_
+        type: Increase::Models::ACHTransfer::type_
       }
 
     class ACHTransfer < Increase::Internal::Type::BaseModel
@@ -71,13 +71,13 @@ module Increase
 
       attr_accessor created_by: Increase::ACHTransfer::CreatedBy?
 
-      attr_accessor currency: Increase::ACHTransfer::currency
+      attr_accessor currency: Increase::Models::ACHTransfer::currency
 
-      attr_accessor destination_account_holder: Increase::ACHTransfer::destination_account_holder
+      attr_accessor destination_account_holder: Increase::Models::ACHTransfer::destination_account_holder
 
       attr_accessor external_account_id: String?
 
-      attr_accessor funding: Increase::ACHTransfer::funding
+      attr_accessor funding: Increase::Models::ACHTransfer::funding
 
       attr_accessor idempotency_key: String?
 
@@ -87,7 +87,7 @@ module Increase
 
       attr_accessor individual_name: String?
 
-      attr_accessor network: Increase::ACHTransfer::network
+      attr_accessor network: Increase::Models::ACHTransfer::network
 
       attr_accessor notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange]
 
@@ -101,17 +101,17 @@ module Increase
 
       attr_accessor settlement: Increase::ACHTransfer::Settlement?
 
-      attr_accessor standard_entry_class_code: Increase::ACHTransfer::standard_entry_class_code
+      attr_accessor standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code
 
       attr_accessor statement_descriptor: String
 
-      attr_accessor status: Increase::ACHTransfer::status
+      attr_accessor status: Increase::Models::ACHTransfer::status
 
       attr_accessor submission: Increase::ACHTransfer::Submission?
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::ACHTransfer::type_
+      attr_accessor type: Increase::Models::ACHTransfer::type_
 
       def initialize: (
         id: String,
@@ -129,28 +129,67 @@ module Increase
         company_name: String?,
         created_at: Time,
         created_by: Increase::ACHTransfer::CreatedBy?,
-        currency: Increase::ACHTransfer::currency,
-        destination_account_holder: Increase::ACHTransfer::destination_account_holder,
+        currency: Increase::Models::ACHTransfer::currency,
+        destination_account_holder: Increase::Models::ACHTransfer::destination_account_holder,
         external_account_id: String?,
-        funding: Increase::ACHTransfer::funding,
+        funding: Increase::Models::ACHTransfer::funding,
         idempotency_key: String?,
         inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold?,
         individual_id: String?,
         individual_name: String?,
-        network: Increase::ACHTransfer::network,
+        network: Increase::Models::ACHTransfer::network,
         notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange],
         pending_transaction_id: String?,
         preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
         return_: Increase::ACHTransfer::Return?,
         routing_number: String,
         settlement: Increase::ACHTransfer::Settlement?,
-        standard_entry_class_code: Increase::ACHTransfer::standard_entry_class_code,
+        standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code,
         statement_descriptor: String,
-        status: Increase::ACHTransfer::status,
+        status: Increase::Models::ACHTransfer::status,
         submission: Increase::ACHTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::ACHTransfer::type_
+        type: Increase::Models::ACHTransfer::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number: String,
+        acknowledgement: Increase::ACHTransfer::Acknowledgement?,
+        addenda: Increase::ACHTransfer::Addenda?,
+        amount: Integer,
+        approval: Increase::ACHTransfer::Approval?,
+        cancellation: Increase::ACHTransfer::Cancellation?,
+        company_descriptive_date: String?,
+        company_discretionary_data: String?,
+        company_entry_description: String?,
+        company_id: String,
+        company_name: String?,
+        created_at: Time,
+        created_by: Increase::ACHTransfer::CreatedBy?,
+        currency: Increase::Models::ACHTransfer::currency,
+        destination_account_holder: Increase::Models::ACHTransfer::destination_account_holder,
+        external_account_id: String?,
+        funding: Increase::Models::ACHTransfer::funding,
+        idempotency_key: String?,
+        inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold?,
+        individual_id: String?,
+        individual_name: String?,
+        network: Increase::Models::ACHTransfer::network,
+        notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange],
+        pending_transaction_id: String?,
+        preferred_effective_date: Increase::ACHTransfer::PreferredEffectiveDate,
+        return_: Increase::ACHTransfer::Return?,
+        routing_number: String,
+        settlement: Increase::ACHTransfer::Settlement?,
+        standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code,
+        statement_descriptor: String,
+        status: Increase::Models::ACHTransfer::status,
+        submission: Increase::ACHTransfer::Submission?,
+        transaction_id: String?,
+        type: Increase::Models::ACHTransfer::type_
+      }
 
       type acknowledgement = { acknowledged_at: String }
 
@@ -158,27 +197,35 @@ module Increase
         attr_accessor acknowledged_at: String
 
         def initialize: (acknowledged_at: String) -> void
+
+        def to_hash: -> { acknowledged_at: String }
       end
 
       type addenda =
         {
-          category: Increase::ACHTransfer::Addenda::category,
+          category: Increase::Models::ACHTransfer::Addenda::category,
           freeform: Increase::ACHTransfer::Addenda::Freeform?,
           payment_order_remittance_advice: Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice?
         }
 
       class Addenda < Increase::Internal::Type::BaseModel
-        attr_accessor category: Increase::ACHTransfer::Addenda::category
+        attr_accessor category: Increase::Models::ACHTransfer::Addenda::category
 
         attr_accessor freeform: Increase::ACHTransfer::Addenda::Freeform?
 
         attr_accessor payment_order_remittance_advice: Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice?
 
         def initialize: (
-          category: Increase::ACHTransfer::Addenda::category,
+          category: Increase::Models::ACHTransfer::Addenda::category,
           freeform: Increase::ACHTransfer::Addenda::Freeform?,
           payment_order_remittance_advice: Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice?
         ) -> void
+
+        def to_hash: -> {
+          category: Increase::Models::ACHTransfer::Addenda::category,
+          freeform: Increase::ACHTransfer::Addenda::Freeform?,
+          payment_order_remittance_advice: Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice?
+        }
 
         type category = :freeform | :payment_order_remittance_advice | :other
 
@@ -194,7 +241,7 @@ module Increase
           # Unknown addenda type.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::Addenda::category]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::Addenda::category]
         end
 
         type freeform =
@@ -207,12 +254,18 @@ module Increase
             entries: ::Array[Increase::ACHTransfer::Addenda::Freeform::Entry]
           ) -> void
 
+          def to_hash: -> {
+            entries: ::Array[Increase::ACHTransfer::Addenda::Freeform::Entry]
+          }
+
           type entry = { payment_related_information: String }
 
           class Entry < Increase::Internal::Type::BaseModel
             attr_accessor payment_related_information: String
 
             def initialize: (payment_related_information: String) -> void
+
+            def to_hash: -> { payment_related_information: String }
           end
         end
 
@@ -228,6 +281,10 @@ module Increase
             invoices: ::Array[Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice]
           ) -> void
 
+          def to_hash: -> {
+            invoices: ::Array[Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice]
+          }
+
           type invoice = { invoice_number: String, paid_amount: Integer }
 
           class Invoice < Increase::Internal::Type::BaseModel
@@ -239,6 +296,8 @@ module Increase
               invoice_number: String,
               paid_amount: Integer
             ) -> void
+
+            def to_hash: -> { invoice_number: String, paid_amount: Integer }
           end
         end
       end
@@ -251,6 +310,8 @@ module Increase
         attr_accessor approved_by: String?
 
         def initialize: (approved_at: Time, approved_by: String?) -> void
+
+        def to_hash: -> { approved_at: Time, approved_by: String? }
       end
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
@@ -261,12 +322,14 @@ module Increase
         attr_accessor canceled_by: String?
 
         def initialize: (canceled_at: Time, canceled_by: String?) -> void
+
+        def to_hash: -> { canceled_at: Time, canceled_by: String? }
       end
 
       type created_by =
         {
           api_key: Increase::ACHTransfer::CreatedBy::APIKey?,
-          category: Increase::ACHTransfer::CreatedBy::category,
+          category: Increase::Models::ACHTransfer::CreatedBy::category,
           oauth_application: Increase::ACHTransfer::CreatedBy::OAuthApplication?,
           user: Increase::ACHTransfer::CreatedBy::User?
         }
@@ -274,7 +337,7 @@ module Increase
       class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::ACHTransfer::CreatedBy::APIKey?
 
-        attr_accessor category: Increase::ACHTransfer::CreatedBy::category
+        attr_accessor category: Increase::Models::ACHTransfer::CreatedBy::category
 
         attr_accessor oauth_application: Increase::ACHTransfer::CreatedBy::OAuthApplication?
 
@@ -282,10 +345,17 @@ module Increase
 
         def initialize: (
           api_key: Increase::ACHTransfer::CreatedBy::APIKey?,
-          category: Increase::ACHTransfer::CreatedBy::category,
+          category: Increase::Models::ACHTransfer::CreatedBy::category,
           oauth_application: Increase::ACHTransfer::CreatedBy::OAuthApplication?,
           user: Increase::ACHTransfer::CreatedBy::User?
         ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::ACHTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::ACHTransfer::CreatedBy::category,
+          oauth_application: Increase::ACHTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::ACHTransfer::CreatedBy::User?
+        }
 
         type api_key = { description: String? }
 
@@ -293,6 +363,8 @@ module Increase
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type category = :api_key | :oauth_application | :user
@@ -309,7 +381,7 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER: :user
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::CreatedBy::category]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::CreatedBy::category]
         end
 
         type oauth_application = { name: String }
@@ -318,6 +390,8 @@ module Increase
           attr_accessor name: String
 
           def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
         end
 
         type user = { email: String }
@@ -326,6 +400,8 @@ module Increase
           attr_accessor email: String
 
           def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
         end
       end
 
@@ -352,7 +428,7 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::currency]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::currency]
       end
 
       type destination_account_holder = :business | :individual | :unknown
@@ -369,7 +445,7 @@ module Increase
         # It's unknown what kind of entity owns the External Account.
         UNKNOWN: :unknown
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::destination_account_holder]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::destination_account_holder]
       end
 
       type funding = :checking | :savings
@@ -383,7 +459,7 @@ module Increase
         # A savings account.
         SAVINGS: :savings
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::funding]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::funding]
       end
 
       type inbound_funds_hold =
@@ -392,12 +468,12 @@ module Increase
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
-          currency: Increase::ACHTransfer::InboundFundsHold::currency,
+          currency: Increase::Models::ACHTransfer::InboundFundsHold::currency,
           held_transaction_id: String?,
           pending_transaction_id: String?,
           released_at: Time?,
-          status: Increase::ACHTransfer::InboundFundsHold::status,
-          type: Increase::ACHTransfer::InboundFundsHold::type_
+          status: Increase::Models::ACHTransfer::InboundFundsHold::status,
+          type: Increase::Models::ACHTransfer::InboundFundsHold::type_
         }
 
       class InboundFundsHold < Increase::Internal::Type::BaseModel
@@ -409,7 +485,7 @@ module Increase
 
         attr_accessor created_at: Time
 
-        attr_accessor currency: Increase::ACHTransfer::InboundFundsHold::currency
+        attr_accessor currency: Increase::Models::ACHTransfer::InboundFundsHold::currency
 
         attr_accessor held_transaction_id: String?
 
@@ -417,22 +493,35 @@ module Increase
 
         attr_accessor released_at: Time?
 
-        attr_accessor status: Increase::ACHTransfer::InboundFundsHold::status
+        attr_accessor status: Increase::Models::ACHTransfer::InboundFundsHold::status
 
-        attr_accessor type: Increase::ACHTransfer::InboundFundsHold::type_
+        attr_accessor type: Increase::Models::ACHTransfer::InboundFundsHold::type_
 
         def initialize: (
           id: String,
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
-          currency: Increase::ACHTransfer::InboundFundsHold::currency,
+          currency: Increase::Models::ACHTransfer::InboundFundsHold::currency,
           held_transaction_id: String?,
           pending_transaction_id: String?,
           released_at: Time?,
-          status: Increase::ACHTransfer::InboundFundsHold::status,
-          type: Increase::ACHTransfer::InboundFundsHold::type_
+          status: Increase::Models::ACHTransfer::InboundFundsHold::status,
+          type: Increase::Models::ACHTransfer::InboundFundsHold::type_
         ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Integer,
+          automatically_releases_at: Time,
+          created_at: Time,
+          currency: Increase::Models::ACHTransfer::InboundFundsHold::currency,
+          held_transaction_id: String?,
+          pending_transaction_id: String?,
+          released_at: Time?,
+          status: Increase::Models::ACHTransfer::InboundFundsHold::status,
+          type: Increase::Models::ACHTransfer::InboundFundsHold::type_
+        }
 
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
@@ -457,7 +546,7 @@ module Increase
           # US Dollar (USD)
           USD: :USD
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::InboundFundsHold::currency]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::InboundFundsHold::currency]
         end
 
         type status = :held | :complete
@@ -471,7 +560,7 @@ module Increase
           # Funds have been released.
           COMPLETE: :complete
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::InboundFundsHold::status]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::InboundFundsHold::status]
         end
 
         type type_ = :inbound_funds_hold
@@ -481,7 +570,7 @@ module Increase
 
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::InboundFundsHold::type_]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::InboundFundsHold::type_]
         end
       end
 
@@ -492,28 +581,34 @@ module Increase
 
         ACH: :ach
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::network]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::network]
       end
 
       type notifications_of_change =
         {
-          change_code: Increase::ACHTransfer::NotificationsOfChange::change_code,
+          change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code,
           corrected_data: String,
           created_at: Time
         }
 
       class NotificationsOfChange < Increase::Internal::Type::BaseModel
-        attr_accessor change_code: Increase::ACHTransfer::NotificationsOfChange::change_code
+        attr_accessor change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code
 
         attr_accessor corrected_data: String
 
         attr_accessor created_at: Time
 
         def initialize: (
-          change_code: Increase::ACHTransfer::NotificationsOfChange::change_code,
+          change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code,
           corrected_data: String,
           created_at: Time
         ) -> void
+
+        def to_hash: -> {
+          change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code,
+          corrected_data: String,
+          created_at: Time
+        }
 
         type change_code =
           :incorrect_account_number
@@ -596,25 +691,30 @@ module Increase
           # The transaction code was incorrect, initiated by the originating depository financial institution.
           INCORRECT_TRANSACTION_CODE_BY_ORIGINATING_DEPOSITORY_FINANCIAL_INSTITUTION: :incorrect_transaction_code_by_originating_depository_financial_institution
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::NotificationsOfChange::change_code]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::NotificationsOfChange::change_code]
         end
       end
 
       type preferred_effective_date =
         {
           date: Date?,
-          settlement_schedule: Increase::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
+          settlement_schedule: Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
         }
 
       class PreferredEffectiveDate < Increase::Internal::Type::BaseModel
         attr_accessor date: Date?
 
-        attr_accessor settlement_schedule: Increase::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
+        attr_accessor settlement_schedule: Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
 
         def initialize: (
           date: Date?,
-          settlement_schedule: Increase::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
+          settlement_schedule: Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
         ) -> void
+
+        def to_hash: -> {
+          date: Date?,
+          settlement_schedule: Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule?
+        }
 
         type settlement_schedule = :same_day | :future_dated
 
@@ -630,7 +730,7 @@ module Increase
           # The chosen effective date will be the business day following the ACH processing date on which the transfer is submitted. The transfer will be settled on that future day.
           FUTURE_DATED: :future_dated
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::PreferredEffectiveDate::settlement_schedule]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::PreferredEffectiveDate::settlement_schedule]
         end
       end
 
@@ -638,7 +738,7 @@ module Increase
         {
           created_at: Time,
           raw_return_reason_code: String,
-          return_reason_code: Increase::ACHTransfer::Return::return_reason_code,
+          return_reason_code: Increase::Models::ACHTransfer::Return::return_reason_code,
           trace_number: String,
           transaction_id: String,
           transfer_id: String
@@ -649,7 +749,7 @@ module Increase
 
         attr_accessor raw_return_reason_code: String
 
-        attr_accessor return_reason_code: Increase::ACHTransfer::Return::return_reason_code
+        attr_accessor return_reason_code: Increase::Models::ACHTransfer::Return::return_reason_code
 
         attr_accessor trace_number: String
 
@@ -660,11 +760,20 @@ module Increase
         def initialize: (
           created_at: Time,
           raw_return_reason_code: String,
-          return_reason_code: Increase::ACHTransfer::Return::return_reason_code,
+          return_reason_code: Increase::Models::ACHTransfer::Return::return_reason_code,
           trace_number: String,
           transaction_id: String,
           transfer_id: String
         ) -> void
+
+        def to_hash: -> {
+          created_at: Time,
+          raw_return_reason_code: String,
+          return_reason_code: Increase::Models::ACHTransfer::Return::return_reason_code,
+          trace_number: String,
+          transaction_id: String,
+          transfer_id: String
+        }
 
         type return_reason_code =
           :insufficient_fund
@@ -951,7 +1060,7 @@ module Increase
           # Code R68. A rare return reason. The return was sent too late.
           UNTIMELY_RETURN: :untimely_return
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::Return::return_reason_code]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::Return::return_reason_code]
         end
       end
 
@@ -961,6 +1070,8 @@ module Increase
         attr_accessor settled_at: Time
 
         def initialize: (settled_at: Time) -> void
+
+        def to_hash: -> { settled_at: Time }
       end
 
       type standard_entry_class_code =
@@ -984,7 +1095,7 @@ module Increase
         # Internet Initiated (WEB).
         INTERNET_INITIATED: :internet_initiated
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::standard_entry_class_code]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::standard_entry_class_code]
       end
 
       type status =
@@ -1028,14 +1139,14 @@ module Increase
         # The transfer has been returned.
         RETURNED: :returned
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::status]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::status]
       end
 
       type submission =
         {
           effective_date: Date,
           expected_funds_settlement_at: Time,
-          expected_settlement_schedule: Increase::ACHTransfer::Submission::expected_settlement_schedule,
+          expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule,
           submitted_at: Time,
           trace_number: String
         }
@@ -1045,7 +1156,7 @@ module Increase
 
         attr_accessor expected_funds_settlement_at: Time
 
-        attr_accessor expected_settlement_schedule: Increase::ACHTransfer::Submission::expected_settlement_schedule
+        attr_accessor expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule
 
         attr_accessor submitted_at: Time
 
@@ -1054,10 +1165,18 @@ module Increase
         def initialize: (
           effective_date: Date,
           expected_funds_settlement_at: Time,
-          expected_settlement_schedule: Increase::ACHTransfer::Submission::expected_settlement_schedule,
+          expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule,
           submitted_at: Time,
           trace_number: String
         ) -> void
+
+        def to_hash: -> {
+          effective_date: Date,
+          expected_funds_settlement_at: Time,
+          expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule,
+          submitted_at: Time,
+          trace_number: String
+        }
 
         type expected_settlement_schedule = :same_day | :future_dated
 
@@ -1070,7 +1189,7 @@ module Increase
           # The transfer is expected to settle on a future date.
           FUTURE_DATED: :future_dated
 
-          def self?.values: -> ::Array[Increase::ACHTransfer::Submission::expected_settlement_schedule]
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::Submission::expected_settlement_schedule]
         end
       end
 
@@ -1081,7 +1200,7 @@ module Increase
 
         ACH_TRANSFER: :ach_transfer
 
-        def self?.values: -> ::Array[Increase::ACHTransfer::type_]
+        def self?.values: -> ::Array[Increase::Models::ACHTransfer::type_]
       end
     end
   end

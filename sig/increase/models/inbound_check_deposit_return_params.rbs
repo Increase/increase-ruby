@@ -15,6 +15,11 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        reason: Increase::Models::InboundCheckDepositReturnParams::reason,
+        request_options: Increase::RequestOptions
+      }
+
       type reason =
         :altered_or_fictitious
         | :not_authorized

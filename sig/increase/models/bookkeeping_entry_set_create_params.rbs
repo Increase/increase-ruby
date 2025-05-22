@@ -29,6 +29,13 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        entries: ::Array[Increase::BookkeepingEntrySetCreateParams::Entry],
+        date: Time,
+        transaction_id: String,
+        request_options: Increase::RequestOptions
+      }
+
       type entry = { account_id: String, amount: Integer }
 
       class Entry < Increase::Internal::Type::BaseModel
@@ -37,6 +44,8 @@ module Increase
         attr_accessor amount: Integer
 
         def initialize: (account_id: String, amount: Integer) -> void
+
+        def to_hash: -> { account_id: String, amount: Integer }
       end
     end
   end

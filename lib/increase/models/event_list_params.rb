@@ -15,12 +15,12 @@ module Increase
 
       # @!attribute category
       #
-      #   @return [Increase::EventListParams::Category, nil]
+      #   @return [Increase::Models::EventListParams::Category, nil]
       optional :category, -> { Increase::EventListParams::Category }
 
       # @!attribute created_at
       #
-      #   @return [Increase::EventListParams::CreatedAt, nil]
+      #   @return [Increase::Models::EventListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::EventListParams::CreatedAt }
 
       # @!attribute cursor
@@ -42,9 +42,9 @@ module Increase
       #
       #   @param associated_object_id [String] Filter Events to those belonging to the object with the provided identifier.
       #
-      #   @param category [Increase::EventListParams::Category]
+      #   @param category [Increase::Models::EventListParams::Category]
       #
-      #   @param created_at [Increase::EventListParams::CreatedAt]
+      #   @param created_at [Increase::Models::EventListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -58,16 +58,16 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::EventListParams::Category::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::EventListParams::Category::In>, nil]
         optional :in_,
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::EventListParams::Category::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::EventListParams::Category} for more details.
+        #   {Increase::Models::EventListParams::Category} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::EventListParams::Category::In>] Filter Events for those with the specified category or categories. For GET reque
+        #   @param in_ [Array<Symbol, Increase::Models::EventListParams::Category::In>] Filter Events for those with the specified category or categories. For GET reque
 
         module In
           extend Increase::Internal::Type::Enum
@@ -374,7 +374,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::EventListParams::CreatedAt} for more details.
+        #   {Increase::Models::EventListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

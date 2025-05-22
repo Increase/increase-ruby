@@ -89,6 +89,23 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        account_id: String,
+        account_number: String,
+        routing_number: String,
+        addendum: String,
+        company_descriptive_date: String,
+        company_discretionary_data: String,
+        company_entry_description: String,
+        company_name: String,
+        credit_debit_indicator: Increase::Models::ACHPrenotificationCreateParams::credit_debit_indicator,
+        effective_date: Date,
+        individual_id: String,
+        individual_name: String,
+        standard_entry_class_code: Increase::Models::ACHPrenotificationCreateParams::standard_entry_class_code,
+        request_options: Increase::RequestOptions
+      }
+
       type credit_debit_indicator = :credit | :debit
 
       module CreditDebitIndicator

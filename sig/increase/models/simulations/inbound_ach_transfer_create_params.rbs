@@ -78,6 +78,21 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> void
 
+        def to_hash: -> {
+          account_number_id: String,
+          amount: Integer,
+          company_descriptive_date: String,
+          company_discretionary_data: String,
+          company_entry_description: String,
+          company_id: String,
+          company_name: String,
+          receiver_id_number: String,
+          receiver_name: String,
+          resolve_at: Time,
+          standard_entry_class_code: Increase::Models::Simulations::InboundACHTransferCreateParams::standard_entry_class_code,
+          request_options: Increase::RequestOptions
+        }
+
         type standard_entry_class_code =
           :corporate_credit_or_debit
           | :corporate_trade_exchange

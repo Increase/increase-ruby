@@ -12,17 +12,17 @@ module Increase
       #
       # @param account_id [String] The Account the card should belong to.
       #
-      # @param billing_address [Increase::CardCreateParams::BillingAddress] The card's billing address.
+      # @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
       #
       # @param description [String] The description you choose to give the card.
       #
-      # @param digital_wallet [Increase::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
+      # @param digital_wallet [Increase::Models::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       # @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Card]
+      # @return [Increase::Models::Card]
       #
       # @see Increase::Models::CardCreateParams
       def create(params)
@@ -38,7 +38,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Card]
+      # @return [Increase::Models::Card]
       #
       # @see Increase::Models::CardRetrieveParams
       def retrieve(card_id, params = {})
@@ -59,19 +59,19 @@ module Increase
       #
       # @param card_id [String] The card identifier.
       #
-      # @param billing_address [Increase::CardUpdateParams::BillingAddress] The card's updated billing address.
+      # @param billing_address [Increase::Models::CardUpdateParams::BillingAddress] The card's updated billing address.
       #
       # @param description [String] The description you choose to give the card.
       #
-      # @param digital_wallet [Increase::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
+      # @param digital_wallet [Increase::Models::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       # @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
       #
-      # @param status [Symbol, Increase::CardUpdateParams::Status] The status to update the Card with.
+      # @param status [Symbol, Increase::Models::CardUpdateParams::Status] The status to update the Card with.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Card]
+      # @return [Increase::Models::Card]
       #
       # @see Increase::Models::CardUpdateParams
       def update(card_id, params = {})
@@ -94,7 +94,7 @@ module Increase
       #
       # @param account_id [String] Filter Cards to ones belonging to the specified Account.
       #
-      # @param created_at [Increase::CardListParams::CreatedAt]
+      # @param created_at [Increase::Models::CardListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -102,11 +102,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::CardListParams::Status]
+      # @param status [Increase::Models::CardListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Card>]
+      # @return [Increase::Internal::Page<Increase::Models::Card>]
       #
       # @see Increase::Models::CardListParams
       def list(params = {})
@@ -129,7 +129,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::CardDetails]
+      # @return [Increase::Models::CardDetails]
       #
       # @see Increase::Models::CardDetailsParams
       def details(card_id, params = {})

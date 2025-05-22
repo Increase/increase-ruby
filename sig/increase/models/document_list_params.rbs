@@ -47,19 +47,32 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        category: Increase::DocumentListParams::Category,
+        created_at: Increase::DocumentListParams::CreatedAt,
+        cursor: String,
+        entity_id: String,
+        limit: Integer,
+        request_options: Increase::RequestOptions
+      }
+
       type category =
-        { in_: ::Array[Increase::DocumentListParams::Category::in_] }
+        { in_: ::Array[Increase::Models::DocumentListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::DocumentListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::Models::DocumentListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::DocumentListParams::Category::in_]
-        ) -> ::Array[Increase::DocumentListParams::Category::in_]
+          ::Array[Increase::Models::DocumentListParams::Category::in_]
+        ) -> ::Array[Increase::Models::DocumentListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::DocumentListParams::Category::in_]
+          ?in_: ::Array[Increase::Models::DocumentListParams::Category::in_]
         ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::DocumentListParams::Category::in_]
+        }
 
         type in_ =
           :form_1099_int
@@ -82,7 +95,7 @@ module Increase
           # Company information, such a policies or procedures, typically submitted during our due diligence process.
           COMPANY_INFORMATION: :company_information
 
-          def self?.values: -> ::Array[Increase::DocumentListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::Models::DocumentListParams::Category::in_]
         end
       end
 
@@ -112,6 +125,13 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
       end
     end
   end

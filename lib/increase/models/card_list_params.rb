@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::CardListParams::CreatedAt, nil]
+      #   @return [Increase::Models::CardListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::CardListParams::CreatedAt }
 
       # @!attribute cursor
@@ -42,7 +42,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::CardListParams::Status, nil]
+      #   @return [Increase::Models::CardListParams::Status, nil]
       optional :status, -> { Increase::CardListParams::Status }
 
       # @!method initialize(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -51,7 +51,7 @@ module Increase
       #
       #   @param account_id [String] Filter Cards to ones belonging to the specified Account.
       #
-      #   @param created_at [Increase::CardListParams::CreatedAt]
+      #   @param created_at [Increase::Models::CardListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -59,7 +59,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::CardListParams::Status]
+      #   @param status [Increase::Models::CardListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -94,7 +94,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::CardListParams::CreatedAt} for more details.
+        #   {Increase::Models::CardListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
@@ -110,16 +110,16 @@ module Increase
         #   Filter Cards by status. For GET requests, this should be encoded as a
         #   comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::CardListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::CardListParams::Status::In>, nil]
         optional :in_,
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::CardListParams::Status::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::CardListParams::Status} for more details.
+        #   {Increase::Models::CardListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::CardListParams::Status::In>] Filter Cards by status. For GET requests, this should be encoded as a comma-deli
+        #   @param in_ [Array<Symbol, Increase::Models::CardListParams::Status::In>] Filter Cards by status. For GET requests, this should be encoded as a comma-deli
 
         module In
           extend Increase::Internal::Type::Enum

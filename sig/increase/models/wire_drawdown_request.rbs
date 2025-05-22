@@ -20,9 +20,9 @@ module Increase
         :recipient_address_line3 => String?,
         recipient_name: String?,
         recipient_routing_number: String,
-        status: Increase::WireDrawdownRequest::status,
+        status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
-        type: Increase::WireDrawdownRequest::type_
+        type: Increase::Models::WireDrawdownRequest::type_
       }
 
     class WireDrawdownRequest < Increase::Internal::Type::BaseModel
@@ -62,11 +62,11 @@ module Increase
 
       attr_accessor recipient_routing_number: String
 
-      attr_accessor status: Increase::WireDrawdownRequest::status
+      attr_accessor status: Increase::Models::WireDrawdownRequest::status
 
       attr_accessor submission: Increase::WireDrawdownRequest::Submission?
 
-      attr_accessor type: Increase::WireDrawdownRequest::type_
+      attr_accessor type: Increase::Models::WireDrawdownRequest::type_
 
       def initialize: (
         id: String,
@@ -87,10 +87,34 @@ module Increase
         recipient_address_line3: String?,
         recipient_name: String?,
         recipient_routing_number: String,
-        status: Increase::WireDrawdownRequest::status,
+        status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
-        type: Increase::WireDrawdownRequest::type_
+        type: Increase::Models::WireDrawdownRequest::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_number_id: String,
+        amount: Integer,
+        created_at: Time,
+        currency: String,
+        fulfillment_inbound_wire_transfer_id: String?,
+        idempotency_key: String?,
+        message_to_recipient: String,
+        :originator_address_line1 => String?,
+        :originator_address_line2 => String?,
+        :originator_address_line3 => String?,
+        originator_name: String?,
+        recipient_account_number: String,
+        :recipient_address_line1 => String?,
+        :recipient_address_line2 => String?,
+        :recipient_address_line3 => String?,
+        recipient_name: String?,
+        recipient_routing_number: String,
+        status: Increase::Models::WireDrawdownRequest::status,
+        submission: Increase::WireDrawdownRequest::Submission?,
+        type: Increase::Models::WireDrawdownRequest::type_
+      }
 
       type status =
         :pending_submission | :pending_response | :fulfilled | :refused
@@ -110,7 +134,7 @@ module Increase
         # The drawdown request has been refused by the recipient.
         REFUSED: :refused
 
-        def self?.values: -> ::Array[Increase::WireDrawdownRequest::status]
+        def self?.values: -> ::Array[Increase::Models::WireDrawdownRequest::status]
       end
 
       type submission = { input_message_accountability_data: String }
@@ -119,6 +143,8 @@ module Increase
         attr_accessor input_message_accountability_data: String
 
         def initialize: (input_message_accountability_data: String) -> void
+
+        def to_hash: -> { input_message_accountability_data: String }
       end
 
       type type_ = :wire_drawdown_request
@@ -128,7 +154,7 @@ module Increase
 
         WIRE_DRAWDOWN_REQUEST: :wire_drawdown_request
 
-        def self?.values: -> ::Array[Increase::WireDrawdownRequest::type_]
+        def self?.values: -> ::Array[Increase::Models::WireDrawdownRequest::type_]
       end
     end
   end

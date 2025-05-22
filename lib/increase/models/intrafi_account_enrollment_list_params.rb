@@ -37,7 +37,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::IntrafiAccountEnrollmentListParams::Status, nil]
+      #   @return [Increase::Models::IntrafiAccountEnrollmentListParams::Status, nil]
       optional :status, -> { Increase::IntrafiAccountEnrollmentListParams::Status }
 
       # @!method initialize(account_id: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -52,7 +52,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::IntrafiAccountEnrollmentListParams::Status]
+      #   @param status [Increase::Models::IntrafiAccountEnrollmentListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -62,7 +62,7 @@ module Increase
         #   statuses. For GET requests, this should be encoded as a comma-delimited string,
         #   such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::IntrafiAccountEnrollmentListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::IntrafiAccountEnrollmentListParams::Status::In]
@@ -71,9 +71,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::IntrafiAccountEnrollmentListParams::Status} for more details.
+        #   {Increase::Models::IntrafiAccountEnrollmentListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::IntrafiAccountEnrollmentListParams::Status::In>] Filter IntraFi Account Enrollments for those with the specified status or status
+        #   @param in_ [Array<Symbol, Increase::Models::IntrafiAccountEnrollmentListParams::Status::In>] Filter IntraFi Account Enrollments for those with the specified status or status
 
         module In
           extend Increase::Internal::Type::Enum

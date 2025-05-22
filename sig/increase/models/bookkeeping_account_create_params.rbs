@@ -37,6 +37,14 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        name: String,
+        account_id: String,
+        compliance_category: Increase::Models::BookkeepingAccountCreateParams::compliance_category,
+        entity_id: String,
+        request_options: Increase::RequestOptions
+      }
+
       type compliance_category = :commingled_cash | :customer_balance
 
       module ComplianceCategory

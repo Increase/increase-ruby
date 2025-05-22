@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::RealTimePaymentsTransferListParams::CreatedAt, nil]
+      #   @return [Increase::Models::RealTimePaymentsTransferListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::RealTimePaymentsTransferListParams::CreatedAt }
 
       # @!attribute cursor
@@ -49,7 +49,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::RealTimePaymentsTransferListParams::Status, nil]
+      #   @return [Increase::Models::RealTimePaymentsTransferListParams::Status, nil]
       optional :status, -> { Increase::RealTimePaymentsTransferListParams::Status }
 
       # @!method initialize(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -58,7 +58,7 @@ module Increase
       #
       #   @param account_id [String] Filter Real-Time Payments Transfers to those belonging to the specified Account.
       #
-      #   @param created_at [Increase::RealTimePaymentsTransferListParams::CreatedAt]
+      #   @param created_at [Increase::Models::RealTimePaymentsTransferListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -68,7 +68,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::RealTimePaymentsTransferListParams::Status]
+      #   @param status [Increase::Models::RealTimePaymentsTransferListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -103,7 +103,8 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::RealTimePaymentsTransferListParams::CreatedAt} for more details.
+        #   {Increase::Models::RealTimePaymentsTransferListParams::CreatedAt} for more
+        #   details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
@@ -119,7 +120,7 @@ module Increase
         #   Return results whose value is in the provided list. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::RealTimePaymentsTransferListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::RealTimePaymentsTransferListParams::Status::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::RealTimePaymentsTransferListParams::Status::In]
@@ -128,9 +129,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::RealTimePaymentsTransferListParams::Status} for more details.
+        #   {Increase::Models::RealTimePaymentsTransferListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::RealTimePaymentsTransferListParams::Status::In>] Return results whose value is in the provided list. For GET requests, this shoul
+        #   @param in_ [Array<Symbol, Increase::Models::RealTimePaymentsTransferListParams::Status::In>] Return results whose value is in the provided list. For GET requests, this shoul
 
         module In
           extend Increase::Internal::Type::Enum

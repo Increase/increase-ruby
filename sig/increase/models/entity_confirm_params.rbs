@@ -15,6 +15,11 @@ module Increase
         ?confirmed_at: Time,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        confirmed_at: Time,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

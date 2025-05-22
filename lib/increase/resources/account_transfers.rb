@@ -22,7 +22,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::AccountTransfer]
+      # @return [Increase::Models::AccountTransfer]
       #
       # @see Increase::Models::AccountTransferCreateParams
       def create(params)
@@ -44,7 +44,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::AccountTransfer]
+      # @return [Increase::Models::AccountTransfer]
       #
       # @see Increase::Models::AccountTransferRetrieveParams
       def retrieve(account_transfer_id, params = {})
@@ -65,7 +65,7 @@ module Increase
       #
       # @param account_id [String] Filter Account Transfers to those that originated from the specified Account.
       #
-      # @param created_at [Increase::AccountTransferListParams::CreatedAt]
+      # @param created_at [Increase::Models::AccountTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -75,7 +75,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::AccountTransfer>]
+      # @return [Increase::Internal::Page<Increase::Models::AccountTransfer>]
       #
       # @see Increase::Models::AccountTransferListParams
       def list(params = {})
@@ -98,7 +98,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::AccountTransfer]
+      # @return [Increase::Models::AccountTransfer]
       #
       # @see Increase::Models::AccountTransferApproveParams
       def approve(account_transfer_id, params = {})
@@ -118,7 +118,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::AccountTransfer]
+      # @return [Increase::Models::AccountTransfer]
       #
       # @see Increase::Models::AccountTransferCancelParams
       def cancel(account_transfer_id, params = {})

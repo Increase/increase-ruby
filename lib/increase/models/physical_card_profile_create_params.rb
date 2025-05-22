@@ -41,7 +41,7 @@ module Increase
       #   Text printed on the front of the card. Reach out to
       #   [support@increase.com](mailto:support@increase.com) for more information.
       #
-      #   @return [Increase::PhysicalCardProfileCreateParams::FrontText, nil]
+      #   @return [Increase::Models::PhysicalCardProfileCreateParams::FrontText, nil]
       optional :front_text, -> { Increase::PhysicalCardProfileCreateParams::FrontText }
 
       # @!method initialize(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, front_text: nil, request_options: {})
@@ -58,7 +58,7 @@ module Increase
       #
       #   @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
       #
-      #   @param front_text [Increase::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      #   @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -79,7 +79,7 @@ module Increase
 
         # @!method initialize(line1:, line2: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PhysicalCardProfileCreateParams::FrontText} for more details.
+        #   {Increase::Models::PhysicalCardProfileCreateParams::FrontText} for more details.
         #
         #   Text printed on the front of the card. Reach out to
         #   [support@increase.com](mailto:support@increase.com) for more information.

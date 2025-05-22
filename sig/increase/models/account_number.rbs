@@ -11,8 +11,8 @@ module Increase
         inbound_checks: Increase::AccountNumber::InboundChecks,
         name: String,
         routing_number: String,
-        status: Increase::AccountNumber::status,
-        type: Increase::AccountNumber::type_
+        status: Increase::Models::AccountNumber::status,
+        type: Increase::Models::AccountNumber::type_
       }
 
     class AccountNumber < Increase::Internal::Type::BaseModel
@@ -34,9 +34,9 @@ module Increase
 
       attr_accessor routing_number: String
 
-      attr_accessor status: Increase::AccountNumber::status
+      attr_accessor status: Increase::Models::AccountNumber::status
 
-      attr_accessor type: Increase::AccountNumber::type_
+      attr_accessor type: Increase::Models::AccountNumber::type_
 
       def initialize: (
         id: String,
@@ -48,19 +48,39 @@ module Increase
         inbound_checks: Increase::AccountNumber::InboundChecks,
         name: String,
         routing_number: String,
-        status: Increase::AccountNumber::status,
-        type: Increase::AccountNumber::type_
+        status: Increase::Models::AccountNumber::status,
+        type: Increase::Models::AccountNumber::type_
       ) -> void
 
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number: String,
+        created_at: Time,
+        idempotency_key: String?,
+        inbound_ach: Increase::AccountNumber::InboundACH,
+        inbound_checks: Increase::AccountNumber::InboundChecks,
+        name: String,
+        routing_number: String,
+        status: Increase::Models::AccountNumber::status,
+        type: Increase::Models::AccountNumber::type_
+      }
+
       type inbound_ach =
-        { debit_status: Increase::AccountNumber::InboundACH::debit_status }
+        {
+          debit_status: Increase::Models::AccountNumber::InboundACH::debit_status
+        }
 
       class InboundACH < Increase::Internal::Type::BaseModel
-        attr_accessor debit_status: Increase::AccountNumber::InboundACH::debit_status
+        attr_accessor debit_status: Increase::Models::AccountNumber::InboundACH::debit_status
 
         def initialize: (
-          debit_status: Increase::AccountNumber::InboundACH::debit_status
+          debit_status: Increase::Models::AccountNumber::InboundACH::debit_status
         ) -> void
+
+        def to_hash: -> {
+          debit_status: Increase::Models::AccountNumber::InboundACH::debit_status
+        }
 
         type debit_status = :allowed | :blocked
 
@@ -73,19 +93,23 @@ module Increase
           # ACH Debits are blocked.
           BLOCKED: :blocked
 
-          def self?.values: -> ::Array[Increase::AccountNumber::InboundACH::debit_status]
+          def self?.values: -> ::Array[Increase::Models::AccountNumber::InboundACH::debit_status]
         end
       end
 
       type inbound_checks =
-        { status: Increase::AccountNumber::InboundChecks::status }
+        { status: Increase::Models::AccountNumber::InboundChecks::status }
 
       class InboundChecks < Increase::Internal::Type::BaseModel
-        attr_accessor status: Increase::AccountNumber::InboundChecks::status
+        attr_accessor status: Increase::Models::AccountNumber::InboundChecks::status
 
         def initialize: (
-          status: Increase::AccountNumber::InboundChecks::status
+          status: Increase::Models::AccountNumber::InboundChecks::status
         ) -> void
+
+        def to_hash: -> {
+          status: Increase::Models::AccountNumber::InboundChecks::status
+        }
 
         type status = :allowed | :check_transfers_only
 
@@ -98,7 +122,7 @@ module Increase
           # Checks with this Account Number will be processed only if they can be matched to an existing Check Transfer.
           CHECK_TRANSFERS_ONLY: :check_transfers_only
 
-          def self?.values: -> ::Array[Increase::AccountNumber::InboundChecks::status]
+          def self?.values: -> ::Array[Increase::Models::AccountNumber::InboundChecks::status]
         end
       end
 
@@ -116,7 +140,7 @@ module Increase
         # The account number is permanently disabled.
         CANCELED: :canceled
 
-        def self?.values: -> ::Array[Increase::AccountNumber::status]
+        def self?.values: -> ::Array[Increase::Models::AccountNumber::status]
       end
 
       type type_ = :account_number
@@ -126,7 +150,7 @@ module Increase
 
         ACCOUNT_NUMBER: :account_number
 
-        def self?.values: -> ::Array[Increase::AccountNumber::type_]
+        def self?.values: -> ::Array[Increase::Models::AccountNumber::type_]
       end
     end
   end

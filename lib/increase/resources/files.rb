@@ -14,13 +14,13 @@ module Increase
       #
       # @param file [Pathname, StringIO, IO, String, Increase::FilePart] The file contents. This should follow the specifications of [RFC 7578](https://d
       #
-      # @param purpose [Symbol, Increase::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
+      # @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
       #
       # @param description [String] The description you choose to give the File.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::File]
+      # @return [Increase::Models::File]
       #
       # @see Increase::Models::FileCreateParams
       def create(params)
@@ -43,7 +43,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::File]
+      # @return [Increase::Models::File]
       #
       # @see Increase::Models::FileRetrieveParams
       def retrieve(file_id, params = {})
@@ -62,7 +62,7 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, purpose: nil, request_options: {})
       #
-      # @param created_at [Increase::FileListParams::CreatedAt]
+      # @param created_at [Increase::Models::FileListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -70,11 +70,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param purpose [Increase::FileListParams::Purpose]
+      # @param purpose [Increase::Models::FileListParams::Purpose]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::File>]
+      # @return [Increase::Internal::Page<Increase::Models::File>]
       #
       # @see Increase::Models::FileListParams
       def list(params = {})

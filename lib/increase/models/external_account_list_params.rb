@@ -37,7 +37,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::ExternalAccountListParams::Status, nil]
+      #   @return [Increase::Models::ExternalAccountListParams::Status, nil]
       optional :status, -> { Increase::ExternalAccountListParams::Status }
 
       # @!method initialize(cursor: nil, idempotency_key: nil, limit: nil, routing_number: nil, status: nil, request_options: {})
@@ -52,7 +52,7 @@ module Increase
       #
       #   @param routing_number [String] Filter External Accounts to those with the specified Routing Number.
       #
-      #   @param status [Increase::ExternalAccountListParams::Status]
+      #   @param status [Increase::Models::ExternalAccountListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -62,7 +62,7 @@ module Increase
         #   GET requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::ExternalAccountListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::ExternalAccountListParams::Status::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::ExternalAccountListParams::Status::In]
@@ -71,9 +71,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::ExternalAccountListParams::Status} for more details.
+        #   {Increase::Models::ExternalAccountListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::ExternalAccountListParams::Status::In>] Filter External Accounts for those with the specified status or statuses. For GE
+        #   @param in_ [Array<Symbol, Increase::Models::ExternalAccountListParams::Status::In>] Filter External Accounts for those with the specified status or statuses. For GE
 
         module In
           extend Increase::Internal::Type::Enum

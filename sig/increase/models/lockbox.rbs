@@ -9,8 +9,8 @@ module Increase
         description: String?,
         idempotency_key: String?,
         recipient_name: String?,
-        status: Increase::Lockbox::status,
-        type: Increase::Lockbox::type_
+        status: Increase::Models::Lockbox::status,
+        type: Increase::Models::Lockbox::type_
       }
 
     class Lockbox < Increase::Internal::Type::BaseModel
@@ -28,9 +28,9 @@ module Increase
 
       attr_accessor recipient_name: String?
 
-      attr_accessor status: Increase::Lockbox::status
+      attr_accessor status: Increase::Models::Lockbox::status
 
-      attr_accessor type: Increase::Lockbox::type_
+      attr_accessor type: Increase::Models::Lockbox::type_
 
       def initialize: (
         id: String,
@@ -40,9 +40,21 @@ module Increase
         description: String?,
         idempotency_key: String?,
         recipient_name: String?,
-        status: Increase::Lockbox::status,
-        type: Increase::Lockbox::type_
+        status: Increase::Models::Lockbox::status,
+        type: Increase::Models::Lockbox::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        address: Increase::Lockbox::Address,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        recipient_name: String?,
+        status: Increase::Models::Lockbox::status,
+        type: Increase::Models::Lockbox::type_
+      }
 
       type address =
         {
@@ -75,6 +87,15 @@ module Increase
           recipient: String?,
           state: String
         ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          recipient: String?,
+          state: String
+        }
       end
 
       type status = :active | :inactive
@@ -88,7 +109,7 @@ module Increase
         # This Lockbox is inactive. Checks mailed to it will not be deposited.
         INACTIVE: :inactive
 
-        def self?.values: -> ::Array[Increase::Lockbox::status]
+        def self?.values: -> ::Array[Increase::Models::Lockbox::status]
       end
 
       type type_ = :lockbox
@@ -98,7 +119,7 @@ module Increase
 
         LOCKBOX: :lockbox
 
-        def self?.values: -> ::Array[Increase::Lockbox::type_]
+        def self?.values: -> ::Array[Increase::Models::Lockbox::type_]
       end
     end
   end

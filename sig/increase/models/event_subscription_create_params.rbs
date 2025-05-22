@@ -37,6 +37,14 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        url: String,
+        oauth_connection_id: String,
+        selected_event_category: Increase::Models::EventSubscriptionCreateParams::selected_event_category,
+        shared_secret: String,
+        request_options: Increase::RequestOptions
+      }
+
       type selected_event_category =
         :"account.created"
         | :"account.updated"

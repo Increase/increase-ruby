@@ -14,11 +14,11 @@ module Increase
         cancellation: Increase::WireTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::WireTransfer::CreatedBy?,
-        currency: Increase::WireTransfer::currency,
+        currency: Increase::Models::WireTransfer::currency,
         external_account_id: String?,
         idempotency_key: String?,
         message_to_recipient: String?,
-        network: Increase::WireTransfer::network,
+        network: Increase::Models::WireTransfer::network,
         :originator_address_line1 => String?,
         :originator_address_line2 => String?,
         :originator_address_line3 => String?,
@@ -27,10 +27,10 @@ module Increase
         reversal: Increase::WireTransfer::Reversal?,
         routing_number: String,
         source_account_number_id: String?,
-        status: Increase::WireTransfer::status,
+        status: Increase::Models::WireTransfer::status,
         submission: Increase::WireTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::WireTransfer::type_
+        type: Increase::Models::WireTransfer::type_
       }
 
     class WireTransfer < Increase::Internal::Type::BaseModel
@@ -58,7 +58,7 @@ module Increase
 
       attr_accessor created_by: Increase::WireTransfer::CreatedBy?
 
-      attr_accessor currency: Increase::WireTransfer::currency
+      attr_accessor currency: Increase::Models::WireTransfer::currency
 
       attr_accessor external_account_id: String?
 
@@ -66,7 +66,7 @@ module Increase
 
       attr_accessor message_to_recipient: String?
 
-      attr_accessor network: Increase::WireTransfer::network
+      attr_accessor network: Increase::Models::WireTransfer::network
 
       attr_accessor originator_address_line1: String?
 
@@ -84,13 +84,13 @@ module Increase
 
       attr_accessor source_account_number_id: String?
 
-      attr_accessor status: Increase::WireTransfer::status
+      attr_accessor status: Increase::Models::WireTransfer::status
 
       attr_accessor submission: Increase::WireTransfer::Submission?
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::WireTransfer::type_
+      attr_accessor type: Increase::Models::WireTransfer::type_
 
       def initialize: (
         id: String,
@@ -105,11 +105,11 @@ module Increase
         cancellation: Increase::WireTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::WireTransfer::CreatedBy?,
-        currency: Increase::WireTransfer::currency,
+        currency: Increase::Models::WireTransfer::currency,
         external_account_id: String?,
         idempotency_key: String?,
         message_to_recipient: String?,
-        network: Increase::WireTransfer::network,
+        network: Increase::Models::WireTransfer::network,
         originator_address_line1: String?,
         originator_address_line2: String?,
         originator_address_line3: String?,
@@ -118,11 +118,43 @@ module Increase
         reversal: Increase::WireTransfer::Reversal?,
         routing_number: String,
         source_account_number_id: String?,
-        status: Increase::WireTransfer::status,
+        status: Increase::Models::WireTransfer::status,
         submission: Increase::WireTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::WireTransfer::type_
+        type: Increase::Models::WireTransfer::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number: String,
+        amount: Integer,
+        approval: Increase::WireTransfer::Approval?,
+        :beneficiary_address_line1 => String?,
+        :beneficiary_address_line2 => String?,
+        :beneficiary_address_line3 => String?,
+        beneficiary_name: String?,
+        cancellation: Increase::WireTransfer::Cancellation?,
+        created_at: Time,
+        created_by: Increase::WireTransfer::CreatedBy?,
+        currency: Increase::Models::WireTransfer::currency,
+        external_account_id: String?,
+        idempotency_key: String?,
+        message_to_recipient: String?,
+        network: Increase::Models::WireTransfer::network,
+        :originator_address_line1 => String?,
+        :originator_address_line2 => String?,
+        :originator_address_line3 => String?,
+        originator_name: String?,
+        pending_transaction_id: String?,
+        reversal: Increase::WireTransfer::Reversal?,
+        routing_number: String,
+        source_account_number_id: String?,
+        status: Increase::Models::WireTransfer::status,
+        submission: Increase::WireTransfer::Submission?,
+        transaction_id: String?,
+        type: Increase::Models::WireTransfer::type_
+      }
 
       type approval = { approved_at: Time, approved_by: String? }
 
@@ -132,6 +164,8 @@ module Increase
         attr_accessor approved_by: String?
 
         def initialize: (approved_at: Time, approved_by: String?) -> void
+
+        def to_hash: -> { approved_at: Time, approved_by: String? }
       end
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
@@ -142,12 +176,14 @@ module Increase
         attr_accessor canceled_by: String?
 
         def initialize: (canceled_at: Time, canceled_by: String?) -> void
+
+        def to_hash: -> { canceled_at: Time, canceled_by: String? }
       end
 
       type created_by =
         {
           api_key: Increase::WireTransfer::CreatedBy::APIKey?,
-          category: Increase::WireTransfer::CreatedBy::category,
+          category: Increase::Models::WireTransfer::CreatedBy::category,
           oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
           user: Increase::WireTransfer::CreatedBy::User?
         }
@@ -155,7 +191,7 @@ module Increase
       class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::WireTransfer::CreatedBy::APIKey?
 
-        attr_accessor category: Increase::WireTransfer::CreatedBy::category
+        attr_accessor category: Increase::Models::WireTransfer::CreatedBy::category
 
         attr_accessor oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?
 
@@ -163,10 +199,17 @@ module Increase
 
         def initialize: (
           api_key: Increase::WireTransfer::CreatedBy::APIKey?,
-          category: Increase::WireTransfer::CreatedBy::category,
+          category: Increase::Models::WireTransfer::CreatedBy::category,
           oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
           user: Increase::WireTransfer::CreatedBy::User?
         ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::WireTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::WireTransfer::CreatedBy::category,
+          oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::WireTransfer::CreatedBy::User?
+        }
 
         type api_key = { description: String? }
 
@@ -174,6 +217,8 @@ module Increase
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type category = :api_key | :oauth_application | :user
@@ -190,7 +235,7 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER: :user
 
-          def self?.values: -> ::Array[Increase::WireTransfer::CreatedBy::category]
+          def self?.values: -> ::Array[Increase::Models::WireTransfer::CreatedBy::category]
         end
 
         type oauth_application = { name: String }
@@ -199,6 +244,8 @@ module Increase
           attr_accessor name: String
 
           def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
         end
 
         type user = { email: String }
@@ -207,6 +254,8 @@ module Increase
           attr_accessor email: String
 
           def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
         end
       end
 
@@ -233,7 +282,7 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::WireTransfer::currency]
+        def self?.values: -> ::Array[Increase::Models::WireTransfer::currency]
       end
 
       type network = :wire
@@ -243,7 +292,7 @@ module Increase
 
         WIRE: :wire
 
-        def self?.values: -> ::Array[Increase::WireTransfer::network]
+        def self?.values: -> ::Array[Increase::Models::WireTransfer::network]
       end
 
       type reversal =
@@ -321,6 +370,26 @@ module Increase
           transaction_id: String,
           wire_transfer_id: String
         ) -> void
+
+        def to_hash: -> {
+          amount: Integer,
+          created_at: Time,
+          description: String,
+          financial_institution_to_financial_institution_information: String?,
+          input_cycle_date: Date,
+          input_message_accountability_data: String,
+          input_sequence_number: String,
+          input_source: String,
+          originator_routing_number: String?,
+          previous_message_input_cycle_date: Date,
+          previous_message_input_message_accountability_data: String,
+          previous_message_input_sequence_number: String,
+          previous_message_input_source: String,
+          receiver_financial_institution_information: String?,
+          sender_reference: String?,
+          transaction_id: String,
+          wire_transfer_id: String
+        }
       end
 
       type status =
@@ -364,7 +433,7 @@ module Increase
         # The transfer has been acknowledged by Fedwire and can be considered complete.
         COMPLETE: :complete
 
-        def self?.values: -> ::Array[Increase::WireTransfer::status]
+        def self?.values: -> ::Array[Increase::Models::WireTransfer::status]
       end
 
       type submission =
@@ -379,6 +448,11 @@ module Increase
           input_message_accountability_data: String,
           submitted_at: Time
         ) -> void
+
+        def to_hash: -> {
+          input_message_accountability_data: String,
+          submitted_at: Time
+        }
       end
 
       type type_ = :wire_transfer
@@ -388,7 +462,7 @@ module Increase
 
         WIRE_TRANSFER: :wire_transfer
 
-        def self?.values: -> ::Array[Increase::WireTransfer::type_]
+        def self?.values: -> ::Array[Increase::Models::WireTransfer::type_]
       end
     end
   end

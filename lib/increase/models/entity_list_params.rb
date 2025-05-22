@@ -9,7 +9,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::EntityListParams::CreatedAt, nil]
+      #   @return [Increase::Models::EntityListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::EntityListParams::CreatedAt }
 
       # @!attribute cursor
@@ -36,14 +36,14 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::EntityListParams::Status, nil]
+      #   @return [Increase::Models::EntityListParams::Status, nil]
       optional :status, -> { Increase::EntityListParams::Status }
 
       # @!method initialize(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityListParams} for more details.
       #
-      #   @param created_at [Increase::EntityListParams::CreatedAt]
+      #   @param created_at [Increase::Models::EntityListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -51,7 +51,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::EntityListParams::Status]
+      #   @param status [Increase::Models::EntityListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -86,7 +86,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::EntityListParams::CreatedAt} for more details.
+        #   {Increase::Models::EntityListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
@@ -103,16 +103,16 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::EntityListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::EntityListParams::Status::In>, nil]
         optional :in_,
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::EntityListParams::Status::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::EntityListParams::Status} for more details.
+        #   {Increase::Models::EntityListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::EntityListParams::Status::In>] Filter Entities for those with the specified status or statuses. For GET request
+        #   @param in_ [Array<Symbol, Increase::Models::EntityListParams::Status::In>] Filter Entities for those with the specified status or statuses. For GET request
 
         module In
           extend Increase::Internal::Type::Enum

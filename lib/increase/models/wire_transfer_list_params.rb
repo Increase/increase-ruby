@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::WireTransferListParams::CreatedAt, nil]
+      #   @return [Increase::Models::WireTransferListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::WireTransferListParams::CreatedAt }
 
       # @!attribute cursor
@@ -52,7 +52,7 @@ module Increase
       #
       #   @param account_id [String] Filter Wire Transfers to those belonging to the specified Account.
       #
-      #   @param created_at [Increase::WireTransferListParams::CreatedAt]
+      #   @param created_at [Increase::Models::WireTransferListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -95,7 +95,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::WireTransferListParams::CreatedAt} for more details.
+        #   {Increase::Models::WireTransferListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::PhysicalCardListParams::CreatedAt, nil]
+      #   @return [Increase::Models::PhysicalCardListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::PhysicalCardListParams::CreatedAt }
 
       # @!attribute cursor
@@ -46,7 +46,7 @@ module Increase
       #
       #   @param card_id [String] Filter Physical Cards to ones belonging to the specified Card.
       #
-      #   @param created_at [Increase::PhysicalCardListParams::CreatedAt]
+      #   @param created_at [Increase::Models::PhysicalCardListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -87,7 +87,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PhysicalCardListParams::CreatedAt} for more details.
+        #   {Increase::Models::PhysicalCardListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

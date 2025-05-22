@@ -53,19 +53,33 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        account_id: String,
+        category: Increase::TransactionListParams::Category,
+        created_at: Increase::TransactionListParams::CreatedAt,
+        cursor: String,
+        limit: Integer,
+        route_id: String,
+        request_options: Increase::RequestOptions
+      }
+
       type category =
-        { in_: ::Array[Increase::TransactionListParams::Category::in_] }
+        { in_: ::Array[Increase::Models::TransactionListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::TransactionListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::Models::TransactionListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::TransactionListParams::Category::in_]
-        ) -> ::Array[Increase::TransactionListParams::Category::in_]
+          ::Array[Increase::Models::TransactionListParams::Category::in_]
+        ) -> ::Array[Increase::Models::TransactionListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::TransactionListParams::Category::in_]
+          ?in_: ::Array[Increase::Models::TransactionListParams::Category::in_]
         ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::TransactionListParams::Category::in_]
+        }
 
         type in_ =
           :account_transfer_intention
@@ -196,7 +210,7 @@ module Increase
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
 
-          def self?.values: -> ::Array[Increase::TransactionListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::Models::TransactionListParams::Category::in_]
         end
       end
 
@@ -226,6 +240,13 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
       end
     end
   end

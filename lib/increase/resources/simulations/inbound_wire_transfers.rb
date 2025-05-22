@@ -48,7 +48,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::InboundWireTransfer]
+        # @return [Increase::Models::InboundWireTransfer]
         #
         # @see Increase::Models::Simulations::InboundWireTransferCreateParams
         def create(params)

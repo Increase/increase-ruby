@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Document]
+      # @return [Increase::Models::Document]
       #
       # @see Increase::Models::DocumentRetrieveParams
       def retrieve(document_id, params = {})
@@ -30,9 +30,9 @@ module Increase
       #
       # @overload list(category: nil, created_at: nil, cursor: nil, entity_id: nil, limit: nil, request_options: {})
       #
-      # @param category [Increase::DocumentListParams::Category]
+      # @param category [Increase::Models::DocumentListParams::Category]
       #
-      # @param created_at [Increase::DocumentListParams::CreatedAt]
+      # @param created_at [Increase::Models::DocumentListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Document>]
+      # @return [Increase::Internal::Page<Increase::Models::Document>]
       #
       # @see Increase::Models::DocumentListParams
       def list(params = {})

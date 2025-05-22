@@ -13,7 +13,7 @@ module Increase
       # @!attribute acceptance
       #   If your transfer is accepted, this will contain details of the acceptance.
       #
-      #   @return [Increase::InboundACHTransfer::Acceptance, nil]
+      #   @return [Increase::Models::InboundACHTransfer::Acceptance, nil]
       required :acceptance, -> { Increase::InboundACHTransfer::Acceptance }, nil?: true
 
       # @!attribute account_id
@@ -31,7 +31,7 @@ module Increase
       # @!attribute addenda
       #   Additional information sent from the originator.
       #
-      #   @return [Increase::InboundACHTransfer::Addenda, nil]
+      #   @return [Increase::Models::InboundACHTransfer::Addenda, nil]
       required :addenda, -> { Increase::InboundACHTransfer::Addenda }, nil?: true
 
       # @!attribute amount
@@ -56,13 +56,13 @@ module Increase
       # @!attribute decline
       #   If your transfer is declined, this will contain details of the decline.
       #
-      #   @return [Increase::InboundACHTransfer::Decline, nil]
+      #   @return [Increase::Models::InboundACHTransfer::Decline, nil]
       required :decline, -> { Increase::InboundACHTransfer::Decline }, nil?: true
 
       # @!attribute direction
       #   The direction of the transfer.
       #
-      #   @return [Symbol, Increase::InboundACHTransfer::Direction]
+      #   @return [Symbol, Increase::Models::InboundACHTransfer::Direction]
       required :direction, enum: -> { Increase::InboundACHTransfer::Direction }
 
       # @!attribute effective_date
@@ -75,7 +75,7 @@ module Increase
       # @!attribute expected_settlement_schedule
       #   The settlement schedule the transfer is expected to follow.
       #
-      #   @return [Symbol, Increase::InboundACHTransfer::ExpectedSettlementSchedule]
+      #   @return [Symbol, Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule]
       required :expected_settlement_schedule,
                enum: -> { Increase::InboundACHTransfer::ExpectedSettlementSchedule }
 
@@ -83,14 +83,14 @@ module Increase
       #   If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will
       #   contain fields pertaining to the International ACH Transaction.
       #
-      #   @return [Increase::InboundACHTransfer::InternationalAddenda, nil]
+      #   @return [Increase::Models::InboundACHTransfer::InternationalAddenda, nil]
       required :international_addenda, -> { Increase::InboundACHTransfer::InternationalAddenda }, nil?: true
 
       # @!attribute notification_of_change
       #   If you initiate a notification of change in response to the transfer, this will
       #   contain its details.
       #
-      #   @return [Increase::InboundACHTransfer::NotificationOfChange, nil]
+      #   @return [Increase::Models::InboundACHTransfer::NotificationOfChange, nil]
       required :notification_of_change, -> { Increase::InboundACHTransfer::NotificationOfChange }, nil?: true
 
       # @!attribute originator_company_descriptive_date
@@ -145,13 +145,13 @@ module Increase
       # @!attribute standard_entry_class_code
       #   The Standard Entry Class (SEC) code of the transfer.
       #
-      #   @return [Symbol, Increase::InboundACHTransfer::StandardEntryClassCode]
+      #   @return [Symbol, Increase::Models::InboundACHTransfer::StandardEntryClassCode]
       required :standard_entry_class_code, enum: -> { Increase::InboundACHTransfer::StandardEntryClassCode }
 
       # @!attribute status
       #   The status of the transfer.
       #
-      #   @return [Symbol, Increase::InboundACHTransfer::Status]
+      #   @return [Symbol, Increase::Models::InboundACHTransfer::Status]
       required :status, enum: -> { Increase::InboundACHTransfer::Status }
 
       # @!attribute trace_number
@@ -166,32 +166,32 @@ module Increase
       # @!attribute transfer_return
       #   If your transfer is returned, this will contain details of the return.
       #
-      #   @return [Increase::InboundACHTransfer::TransferReturn, nil]
+      #   @return [Increase::Models::InboundACHTransfer::TransferReturn, nil]
       required :transfer_return, -> { Increase::InboundACHTransfer::TransferReturn }, nil?: true
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `inbound_ach_transfer`.
       #
-      #   @return [Symbol, Increase::InboundACHTransfer::Type]
+      #   @return [Symbol, Increase::Models::InboundACHTransfer::Type]
       required :type, enum: -> { Increase::InboundACHTransfer::Type }
 
       # @!method initialize(id:, acceptance:, account_id:, account_number_id:, addenda:, amount:, automatically_resolves_at:, created_at:, decline:, direction:, effective_date:, expected_settlement_schedule:, international_addenda:, notification_of_change:, originator_company_descriptive_date:, originator_company_discretionary_data:, originator_company_entry_description:, originator_company_id:, originator_company_name:, originator_routing_number:, receiver_id_number:, receiver_name:, standard_entry_class_code:, status:, trace_number:, transfer_return:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::InboundACHTransfer} for more details.
+      #   {Increase::Models::InboundACHTransfer} for more details.
       #
       #   An Inbound ACH Transfer is an ACH transfer initiated outside of Increase to your
       #   account.
       #
       #   @param id [String] The inbound ACH transfer's identifier.
       #
-      #   @param acceptance [Increase::InboundACHTransfer::Acceptance, nil] If your transfer is accepted, this will contain details of the acceptance.
+      #   @param acceptance [Increase::Models::InboundACHTransfer::Acceptance, nil] If your transfer is accepted, this will contain details of the acceptance.
       #
       #   @param account_id [String] The Account to which the transfer belongs.
       #
       #   @param account_number_id [String] The identifier of the Account Number to which this transfer was sent.
       #
-      #   @param addenda [Increase::InboundACHTransfer::Addenda, nil] Additional information sent from the originator.
+      #   @param addenda [Increase::Models::InboundACHTransfer::Addenda, nil] Additional information sent from the originator.
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
@@ -199,17 +199,17 @@ module Increase
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
-      #   @param decline [Increase::InboundACHTransfer::Decline, nil] If your transfer is declined, this will contain details of the decline.
+      #   @param decline [Increase::Models::InboundACHTransfer::Decline, nil] If your transfer is declined, this will contain details of the decline.
       #
-      #   @param direction [Symbol, Increase::InboundACHTransfer::Direction] The direction of the transfer.
+      #   @param direction [Symbol, Increase::Models::InboundACHTransfer::Direction] The direction of the transfer.
       #
       #   @param effective_date [Date] The effective date of the transfer. This is sent by the sending bank and is a fa
       #
-      #   @param expected_settlement_schedule [Symbol, Increase::InboundACHTransfer::ExpectedSettlementSchedule] The settlement schedule the transfer is expected to follow.
+      #   @param expected_settlement_schedule [Symbol, Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule] The settlement schedule the transfer is expected to follow.
       #
-      #   @param international_addenda [Increase::InboundACHTransfer::InternationalAddenda, nil] If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will co
+      #   @param international_addenda [Increase::Models::InboundACHTransfer::InternationalAddenda, nil] If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will co
       #
-      #   @param notification_of_change [Increase::InboundACHTransfer::NotificationOfChange, nil] If you initiate a notification of change in response to the transfer, this will
+      #   @param notification_of_change [Increase::Models::InboundACHTransfer::NotificationOfChange, nil] If you initiate a notification of change in response to the transfer, this will
       #
       #   @param originator_company_descriptive_date [String, nil] The descriptive date of the transfer.
       #
@@ -227,17 +227,17 @@ module Increase
       #
       #   @param receiver_name [String, nil] The name of the receiver of the transfer.
       #
-      #   @param standard_entry_class_code [Symbol, Increase::InboundACHTransfer::StandardEntryClassCode] The Standard Entry Class (SEC) code of the transfer.
+      #   @param standard_entry_class_code [Symbol, Increase::Models::InboundACHTransfer::StandardEntryClassCode] The Standard Entry Class (SEC) code of the transfer.
       #
-      #   @param status [Symbol, Increase::InboundACHTransfer::Status] The status of the transfer.
+      #   @param status [Symbol, Increase::Models::InboundACHTransfer::Status] The status of the transfer.
       #
       #   @param trace_number [String] A 15 digit number set by the sending bank and transmitted to the receiving bank.
       #
-      #   @param transfer_return [Increase::InboundACHTransfer::TransferReturn, nil] If your transfer is returned, this will contain details of the return.
+      #   @param transfer_return [Increase::Models::InboundACHTransfer::TransferReturn, nil] If your transfer is returned, this will contain details of the return.
       #
-      #   @param type [Symbol, Increase::InboundACHTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundACHTransfer::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::InboundACHTransfer#acceptance
+      # @see Increase::Models::InboundACHTransfer#acceptance
       class Acceptance < Increase::Internal::Type::BaseModel
         # @!attribute accepted_at
         #   The time at which the transfer was accepted.
@@ -259,30 +259,30 @@ module Increase
         #   @param transaction_id [String] The id of the transaction for the accepted transfer.
       end
 
-      # @see Increase::InboundACHTransfer#addenda
+      # @see Increase::Models::InboundACHTransfer#addenda
       class Addenda < Increase::Internal::Type::BaseModel
         # @!attribute category
         #   The type of addendum.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::Addenda::Category]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::Addenda::Category]
         required :category, enum: -> { Increase::InboundACHTransfer::Addenda::Category }
 
         # @!attribute freeform
         #   Unstructured `payment_related_information` passed through by the originator.
         #
-        #   @return [Increase::InboundACHTransfer::Addenda::Freeform, nil]
+        #   @return [Increase::Models::InboundACHTransfer::Addenda::Freeform, nil]
         required :freeform, -> { Increase::InboundACHTransfer::Addenda::Freeform }, nil?: true
 
         # @!method initialize(category:, freeform:)
         #   Additional information sent from the originator.
         #
-        #   @param category [Symbol, Increase::InboundACHTransfer::Addenda::Category] The type of addendum.
+        #   @param category [Symbol, Increase::Models::InboundACHTransfer::Addenda::Category] The type of addendum.
         #
-        #   @param freeform [Increase::InboundACHTransfer::Addenda::Freeform, nil] Unstructured `payment_related_information` passed through by the originator.
+        #   @param freeform [Increase::Models::InboundACHTransfer::Addenda::Freeform, nil] Unstructured `payment_related_information` passed through by the originator.
 
         # The type of addendum.
         #
-        # @see Increase::InboundACHTransfer::Addenda#category
+        # @see Increase::Models::InboundACHTransfer::Addenda#category
         module Category
           extend Increase::Internal::Type::Enum
 
@@ -293,12 +293,12 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
-        # @see Increase::InboundACHTransfer::Addenda#freeform
+        # @see Increase::Models::InboundACHTransfer::Addenda#freeform
         class Freeform < Increase::Internal::Type::BaseModel
           # @!attribute entries
           #   Each entry represents an addendum received from the originator.
           #
-          #   @return [Array<Increase::InboundACHTransfer::Addenda::Freeform::Entry>]
+          #   @return [Array<Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry>]
           required :entries,
                    -> {
                      Increase::Internal::Type::ArrayOf[Increase::InboundACHTransfer::Addenda::Freeform::Entry]
@@ -307,7 +307,7 @@ module Increase
           # @!method initialize(entries:)
           #   Unstructured `payment_related_information` passed through by the originator.
           #
-          #   @param entries [Array<Increase::InboundACHTransfer::Addenda::Freeform::Entry>] Each entry represents an addendum received from the originator.
+          #   @param entries [Array<Increase::Models::InboundACHTransfer::Addenda::Freeform::Entry>] Each entry represents an addendum received from the originator.
 
           class Entry < Increase::Internal::Type::BaseModel
             # @!attribute payment_related_information
@@ -322,7 +322,7 @@ module Increase
         end
       end
 
-      # @see Increase::InboundACHTransfer#decline
+      # @see Increase::Models::InboundACHTransfer#decline
       class Decline < Increase::Internal::Type::BaseModel
         # @!attribute declined_at
         #   The time at which the transfer was declined.
@@ -339,7 +339,7 @@ module Increase
         # @!attribute reason
         #   The reason for the transfer decline.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::Decline::Reason]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::Decline::Reason]
         required :reason, enum: -> { Increase::InboundACHTransfer::Decline::Reason }
 
         # @!method initialize(declined_at:, declined_transaction_id:, reason:)
@@ -349,11 +349,11 @@ module Increase
         #
         #   @param declined_transaction_id [String] The id of the transaction for the declined transfer.
         #
-        #   @param reason [Symbol, Increase::InboundACHTransfer::Decline::Reason] The reason for the transfer decline.
+        #   @param reason [Symbol, Increase::Models::InboundACHTransfer::Decline::Reason] The reason for the transfer decline.
 
         # The reason for the transfer decline.
         #
-        # @see Increase::InboundACHTransfer::Decline#reason
+        # @see Increase::Models::InboundACHTransfer::Decline#reason
         module Reason
           extend Increase::Internal::Type::Enum
 
@@ -417,7 +417,7 @@ module Increase
 
       # The direction of the transfer.
       #
-      # @see Increase::InboundACHTransfer#direction
+      # @see Increase::Models::InboundACHTransfer#direction
       module Direction
         extend Increase::Internal::Type::Enum
 
@@ -433,7 +433,7 @@ module Increase
 
       # The settlement schedule the transfer is expected to follow.
       #
-      # @see Increase::InboundACHTransfer#expected_settlement_schedule
+      # @see Increase::Models::InboundACHTransfer#expected_settlement_schedule
       module ExpectedSettlementSchedule
         extend Increase::Internal::Type::Enum
 
@@ -447,7 +447,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::InboundACHTransfer#international_addenda
+      # @see Increase::Models::InboundACHTransfer#international_addenda
       class InternationalAddenda < Increase::Internal::Type::BaseModel
         # @!attribute destination_country_code
         #   The [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), Alpha-2
@@ -466,7 +466,7 @@ module Increase
         # @!attribute foreign_exchange_indicator
         #   A description of how the foreign exchange rate was calculated.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::InternationalAddenda::ForeignExchangeIndicator]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ForeignExchangeIndicator]
         required :foreign_exchange_indicator,
                  enum: -> { Increase::InboundACHTransfer::InternationalAddenda::ForeignExchangeIndicator }
 
@@ -481,7 +481,7 @@ module Increase
         #   An instruction of how to interpret the `foreign_exchange_reference` field for
         #   this Transaction.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::InternationalAddenda::ForeignExchangeReferenceIndicator]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ForeignExchangeReferenceIndicator]
         required :foreign_exchange_reference_indicator,
                  enum: -> {
                    Increase::InboundACHTransfer::InternationalAddenda::ForeignExchangeReferenceIndicator
@@ -503,7 +503,7 @@ module Increase
         # @!attribute international_transaction_type_code
         #   The type of transfer. Set by the originator.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::InternationalAddenda::InternationalTransactionTypeCode]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::InternationalTransactionTypeCode]
         required :international_transaction_type_code,
                  enum: -> {
                    Increase::InboundACHTransfer::InternationalAddenda::InternationalTransactionTypeCode
@@ -535,7 +535,7 @@ module Increase
         #   An instruction of how to interpret the
         #   `originating_depository_financial_institution_id` field for this Transaction.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier]
         required :originating_depository_financial_institution_id_qualifier,
                  enum: -> {
                    Increase::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier
@@ -668,7 +668,7 @@ module Increase
         #   An instruction of how to interpret the
         #   `receiving_depository_financial_institution_id` field for this Transaction.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier]
         required :receiving_depository_financial_institution_id_qualifier,
                  enum: -> {
                    Increase::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier
@@ -682,7 +682,7 @@ module Increase
 
         # @!method initialize(destination_country_code:, destination_currency_code:, foreign_exchange_indicator:, foreign_exchange_reference:, foreign_exchange_reference_indicator:, foreign_payment_amount:, foreign_trace_number:, international_transaction_type_code:, originating_currency_code:, originating_depository_financial_institution_branch_country:, originating_depository_financial_institution_id:, originating_depository_financial_institution_id_qualifier:, originating_depository_financial_institution_name:, originator_city:, originator_country:, originator_identification:, originator_name:, originator_postal_code:, originator_state_or_province:, originator_street_address:, payment_related_information:, payment_related_information2:, receiver_city:, receiver_country:, receiver_identification_number:, receiver_postal_code:, receiver_state_or_province:, receiver_street_address:, receiving_company_or_individual_name:, receiving_depository_financial_institution_country:, receiving_depository_financial_institution_id:, receiving_depository_financial_institution_id_qualifier:, receiving_depository_financial_institution_name:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::InboundACHTransfer::InternationalAddenda} for more details.
+        #   {Increase::Models::InboundACHTransfer::InternationalAddenda} for more details.
         #
         #   If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will
         #   contain fields pertaining to the International ACH Transaction.
@@ -691,17 +691,17 @@ module Increase
         #
         #   @param destination_currency_code [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the des
         #
-        #   @param foreign_exchange_indicator [Symbol, Increase::InboundACHTransfer::InternationalAddenda::ForeignExchangeIndicator] A description of how the foreign exchange rate was calculated.
+        #   @param foreign_exchange_indicator [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ForeignExchangeIndicator] A description of how the foreign exchange rate was calculated.
         #
         #   @param foreign_exchange_reference [String, nil] Depending on the `foreign_exchange_reference_indicator`, an exchange rate or a r
         #
-        #   @param foreign_exchange_reference_indicator [Symbol, Increase::InboundACHTransfer::InternationalAddenda::ForeignExchangeReferenceIndicator] An instruction of how to interpret the `foreign_exchange_reference` field for th
+        #   @param foreign_exchange_reference_indicator [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ForeignExchangeReferenceIndicator] An instruction of how to interpret the `foreign_exchange_reference` field for th
         #
         #   @param foreign_payment_amount [Integer] The amount in the minor unit of the foreign payment currency. For dollars, for e
         #
         #   @param foreign_trace_number [String, nil] A reference number in the foreign banking infrastructure.
         #
-        #   @param international_transaction_type_code [Symbol, Increase::InboundACHTransfer::InternationalAddenda::InternationalTransactionTypeCode] The type of transfer. Set by the originator.
+        #   @param international_transaction_type_code [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::InternationalTransactionTypeCode] The type of transfer. Set by the originator.
         #
         #   @param originating_currency_code [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the ori
         #
@@ -709,7 +709,7 @@ module Increase
         #
         #   @param originating_depository_financial_institution_id [String] An identifier for the originating bank. One of an International Bank Account Num
         #
-        #   @param originating_depository_financial_institution_id_qualifier [Symbol, Increase::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier] An instruction of how to interpret the `originating_depository_financial_institu
+        #   @param originating_depository_financial_institution_id_qualifier [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier] An instruction of how to interpret the `originating_depository_financial_institu
         #
         #   @param originating_depository_financial_institution_name [String] The name of the originating bank. Sometimes this will refer to an American bank
         #
@@ -749,13 +749,13 @@ module Increase
         #
         #   @param receiving_depository_financial_institution_id [String] An identifier for the receiving bank. One of an International Bank Account Numbe
         #
-        #   @param receiving_depository_financial_institution_id_qualifier [Symbol, Increase::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier] An instruction of how to interpret the `receiving_depository_financial_instituti
+        #   @param receiving_depository_financial_institution_id_qualifier [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier] An instruction of how to interpret the `receiving_depository_financial_instituti
         #
         #   @param receiving_depository_financial_institution_name [String] The name of the receiving bank, as set by the sending financial institution.
 
         # A description of how the foreign exchange rate was calculated.
         #
-        # @see Increase::InboundACHTransfer::InternationalAddenda#foreign_exchange_indicator
+        # @see Increase::Models::InboundACHTransfer::InternationalAddenda#foreign_exchange_indicator
         module ForeignExchangeIndicator
           extend Increase::Internal::Type::Enum
 
@@ -775,7 +775,7 @@ module Increase
         # An instruction of how to interpret the `foreign_exchange_reference` field for
         # this Transaction.
         #
-        # @see Increase::InboundACHTransfer::InternationalAddenda#foreign_exchange_reference_indicator
+        # @see Increase::Models::InboundACHTransfer::InternationalAddenda#foreign_exchange_reference_indicator
         module ForeignExchangeReferenceIndicator
           extend Increase::Internal::Type::Enum
 
@@ -794,7 +794,7 @@ module Increase
 
         # The type of transfer. Set by the originator.
         #
-        # @see Increase::InboundACHTransfer::InternationalAddenda#international_transaction_type_code
+        # @see Increase::Models::InboundACHTransfer::InternationalAddenda#international_transaction_type_code
         module InternationalTransactionTypeCode
           extend Increase::Internal::Type::Enum
 
@@ -865,7 +865,7 @@ module Increase
         # An instruction of how to interpret the
         # `originating_depository_financial_institution_id` field for this Transaction.
         #
-        # @see Increase::InboundACHTransfer::InternationalAddenda#originating_depository_financial_institution_id_qualifier
+        # @see Increase::Models::InboundACHTransfer::InternationalAddenda#originating_depository_financial_institution_id_qualifier
         module OriginatingDepositoryFinancialInstitutionIDQualifier
           extend Increase::Internal::Type::Enum
 
@@ -885,7 +885,7 @@ module Increase
         # An instruction of how to interpret the
         # `receiving_depository_financial_institution_id` field for this Transaction.
         #
-        # @see Increase::InboundACHTransfer::InternationalAddenda#receiving_depository_financial_institution_id_qualifier
+        # @see Increase::Models::InboundACHTransfer::InternationalAddenda#receiving_depository_financial_institution_id_qualifier
         module ReceivingDepositoryFinancialInstitutionIDQualifier
           extend Increase::Internal::Type::Enum
 
@@ -903,7 +903,7 @@ module Increase
         end
       end
 
-      # @see Increase::InboundACHTransfer#notification_of_change
+      # @see Increase::Models::InboundACHTransfer#notification_of_change
       class NotificationOfChange < Increase::Internal::Type::BaseModel
         # @!attribute updated_account_number
         #   The new account number provided in the notification of change.
@@ -928,7 +928,7 @@ module Increase
 
       # The Standard Entry Class (SEC) code of the transfer.
       #
-      # @see Increase::InboundACHTransfer#standard_entry_class_code
+      # @see Increase::Models::InboundACHTransfer#standard_entry_class_code
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
@@ -986,7 +986,7 @@ module Increase
 
       # The status of the transfer.
       #
-      # @see Increase::InboundACHTransfer#status
+      # @see Increase::Models::InboundACHTransfer#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -1006,12 +1006,12 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::InboundACHTransfer#transfer_return
+      # @see Increase::Models::InboundACHTransfer#transfer_return
       class TransferReturn < Increase::Internal::Type::BaseModel
         # @!attribute reason
         #   The reason for the transfer return.
         #
-        #   @return [Symbol, Increase::InboundACHTransfer::TransferReturn::Reason]
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::TransferReturn::Reason]
         required :reason, enum: -> { Increase::InboundACHTransfer::TransferReturn::Reason }
 
         # @!attribute returned_at
@@ -1029,7 +1029,7 @@ module Increase
         # @!method initialize(reason:, returned_at:, transaction_id:)
         #   If your transfer is returned, this will contain details of the return.
         #
-        #   @param reason [Symbol, Increase::InboundACHTransfer::TransferReturn::Reason] The reason for the transfer return.
+        #   @param reason [Symbol, Increase::Models::InboundACHTransfer::TransferReturn::Reason] The reason for the transfer return.
         #
         #   @param returned_at [Time] The time at which the transfer was returned.
         #
@@ -1037,7 +1037,7 @@ module Increase
 
         # The reason for the transfer return.
         #
-        # @see Increase::InboundACHTransfer::TransferReturn#reason
+        # @see Increase::Models::InboundACHTransfer::TransferReturn#reason
         module Reason
           extend Increase::Internal::Type::Enum
 
@@ -1081,7 +1081,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `inbound_ach_transfer`.
       #
-      # @see Increase::InboundACHTransfer#type
+      # @see Increase::Models::InboundACHTransfer#type
       module Type
         extend Increase::Internal::Type::Enum
 

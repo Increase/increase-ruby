@@ -34,7 +34,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::RealTimePaymentsTransfer]
+      # @return [Increase::Models::RealTimePaymentsTransfer]
       #
       # @see Increase::Models::RealTimePaymentsTransferCreateParams
       def create(params)
@@ -56,7 +56,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::RealTimePaymentsTransfer]
+      # @return [Increase::Models::RealTimePaymentsTransfer]
       #
       # @see Increase::Models::RealTimePaymentsTransferRetrieveParams
       def retrieve(real_time_payments_transfer_id, params = {})
@@ -77,7 +77,7 @@ module Increase
       #
       # @param account_id [String] Filter Real-Time Payments Transfers to those belonging to the specified Account.
       #
-      # @param created_at [Increase::RealTimePaymentsTransferListParams::CreatedAt]
+      # @param created_at [Increase::Models::RealTimePaymentsTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -87,11 +87,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::RealTimePaymentsTransferListParams::Status]
+      # @param status [Increase::Models::RealTimePaymentsTransferListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::RealTimePaymentsTransfer>]
+      # @return [Increase::Internal::Page<Increase::Models::RealTimePaymentsTransfer>]
       #
       # @see Increase::Models::RealTimePaymentsTransferListParams
       def list(params = {})

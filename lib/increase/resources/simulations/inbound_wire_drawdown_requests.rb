@@ -55,7 +55,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::InboundWireDrawdownRequest]
+        # @return [Increase::Models::InboundWireDrawdownRequest]
         #
         # @see Increase::Models::Simulations::InboundWireDrawdownRequestCreateParams
         def create(params)

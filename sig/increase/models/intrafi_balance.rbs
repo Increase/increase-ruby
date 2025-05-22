@@ -4,10 +4,10 @@ module Increase
       {
         id: String,
         balances: ::Array[Increase::IntrafiBalance::Balance],
-        currency: Increase::IntrafiBalance::currency,
+        currency: Increase::Models::IntrafiBalance::currency,
         effective_date: Date,
         total_balance: Integer,
-        type: Increase::IntrafiBalance::type_
+        type: Increase::Models::IntrafiBalance::type_
       }
 
     class IntrafiBalance < Increase::Internal::Type::BaseModel
@@ -15,22 +15,31 @@ module Increase
 
       attr_accessor balances: ::Array[Increase::IntrafiBalance::Balance]
 
-      attr_accessor currency: Increase::IntrafiBalance::currency
+      attr_accessor currency: Increase::Models::IntrafiBalance::currency
 
       attr_accessor effective_date: Date
 
       attr_accessor total_balance: Integer
 
-      attr_accessor type: Increase::IntrafiBalance::type_
+      attr_accessor type: Increase::Models::IntrafiBalance::type_
 
       def initialize: (
         id: String,
         balances: ::Array[Increase::IntrafiBalance::Balance],
-        currency: Increase::IntrafiBalance::currency,
+        currency: Increase::Models::IntrafiBalance::currency,
         effective_date: Date,
         total_balance: Integer,
-        type: Increase::IntrafiBalance::type_
+        type: Increase::Models::IntrafiBalance::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        balances: ::Array[Increase::IntrafiBalance::Balance],
+        currency: Increase::Models::IntrafiBalance::currency,
+        effective_date: Date,
+        total_balance: Integer,
+        type: Increase::Models::IntrafiBalance::type_
+      }
 
       type balance =
         {
@@ -60,6 +69,14 @@ module Increase
           fdic_certificate_number: String
         ) -> void
 
+        def to_hash: -> {
+          id: String,
+          balance: Integer,
+          bank: String,
+          bank_location: Increase::IntrafiBalance::Balance::BankLocation?,
+          fdic_certificate_number: String
+        }
+
         type bank_location = { city: String, state: String }
 
         class BankLocation < Increase::Internal::Type::BaseModel
@@ -68,6 +85,8 @@ module Increase
           attr_accessor state: String
 
           def initialize: (city: String, state: String) -> void
+
+          def to_hash: -> { city: String, state: String }
         end
       end
 
@@ -94,7 +113,7 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::IntrafiBalance::currency]
+        def self?.values: -> ::Array[Increase::Models::IntrafiBalance::currency]
       end
 
       type type_ = :intrafi_balance
@@ -104,7 +123,7 @@ module Increase
 
         INTRAFI_BALANCE: :intrafi_balance
 
-        def self?.values: -> ::Array[Increase::IntrafiBalance::type_]
+        def self?.values: -> ::Array[Increase::Models::IntrafiBalance::type_]
       end
     end
   end

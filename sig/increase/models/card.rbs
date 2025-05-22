@@ -13,8 +13,8 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         :last4 => String,
-        status: Increase::Card::status,
-        type: Increase::Card::type_
+        status: Increase::Models::Card::status,
+        type: Increase::Models::Card::type_
       }
 
     class Card < Increase::Internal::Type::BaseModel
@@ -40,9 +40,9 @@ module Increase
 
       attr_accessor last4: String
 
-      attr_accessor status: Increase::Card::status
+      attr_accessor status: Increase::Models::Card::status
 
-      attr_accessor type: Increase::Card::type_
+      attr_accessor type: Increase::Models::Card::type_
 
       def initialize: (
         id: String,
@@ -56,9 +56,25 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         last4: String,
-        status: Increase::Card::status,
-        type: Increase::Card::type_
+        status: Increase::Models::Card::status,
+        type: Increase::Models::Card::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        billing_address: Increase::Card::BillingAddress,
+        created_at: Time,
+        description: String?,
+        digital_wallet: Increase::Card::DigitalWallet?,
+        entity_id: String?,
+        expiration_month: Integer,
+        expiration_year: Integer,
+        idempotency_key: String?,
+        :last4 => String,
+        status: Increase::Models::Card::status,
+        type: Increase::Models::Card::type_
+      }
 
       type billing_address =
         {
@@ -87,6 +103,14 @@ module Increase
           postal_code: String?,
           state: String?
         ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          :line1 => String?,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
       end
 
       type digital_wallet =
@@ -104,6 +128,12 @@ module Increase
           email: String?,
           phone: String?
         ) -> void
+
+        def to_hash: -> {
+          digital_card_profile_id: String?,
+          email: String?,
+          phone: String?
+        }
       end
 
       type status = :active | :disabled | :canceled
@@ -120,7 +150,7 @@ module Increase
         # The card is permanently canceled.
         CANCELED: :canceled
 
-        def self?.values: -> ::Array[Increase::Card::status]
+        def self?.values: -> ::Array[Increase::Models::Card::status]
       end
 
       type type_ = :card
@@ -130,7 +160,7 @@ module Increase
 
         CARD: :card
 
-        def self?.values: -> ::Array[Increase::Card::type_]
+        def self?.values: -> ::Array[Increase::Models::Card::type_]
       end
     end
   end

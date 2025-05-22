@@ -18,6 +18,11 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> void
 
+        def to_hash: -> {
+          shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::shipment_status,
+          request_options: Increase::RequestOptions
+        }
+
         type shipment_status =
           :pending
           | :canceled

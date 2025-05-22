@@ -32,6 +32,15 @@ module Increase
         wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
       ) -> void
 
+      def to_hash: -> {
+        ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
+        name: String,
+        real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
+        routing_number: String,
+        type: Increase::Models::RoutingNumberListResponse::type_,
+        wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
+      }
+
       type ach_transfers = :supported | :not_supported
 
       module ACHTransfers

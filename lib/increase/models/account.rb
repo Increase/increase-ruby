@@ -13,7 +13,7 @@ module Increase
       # @!attribute bank
       #   The bank the Account is with.
       #
-      #   @return [Symbol, Increase::Account::Bank]
+      #   @return [Symbol, Increase::Models::Account::Bank]
       required :bank, enum: -> { Increase::Account::Bank }
 
       # @!attribute closed_at
@@ -34,7 +34,7 @@ module Increase
       #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account
       #   currency.
       #
-      #   @return [Symbol, Increase::Account::Currency]
+      #   @return [Symbol, Increase::Models::Account::Currency]
       required :currency, enum: -> { Increase::Account::Currency }
 
       # @!attribute entity_id
@@ -96,32 +96,32 @@ module Increase
       # @!attribute status
       #   The status of the Account.
       #
-      #   @return [Symbol, Increase::Account::Status]
+      #   @return [Symbol, Increase::Models::Account::Status]
       required :status, enum: -> { Increase::Account::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `account`.
       #
-      #   @return [Symbol, Increase::Account::Type]
+      #   @return [Symbol, Increase::Models::Account::Type]
       required :type, enum: -> { Increase::Account::Type }
 
       # @!method initialize(id:, bank:, closed_at:, created_at:, currency:, entity_id:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, name:, program_id:, status:, type:)
-      #   Some parameter documentations has been truncated, see {Increase::Account} for
-      #   more details.
+      #   Some parameter documentations has been truncated, see
+      #   {Increase::Models::Account} for more details.
       #
       #   Accounts are your bank accounts with Increase. They store money, receive
       #   transfers, and send payments. They earn interest and have depository insurance.
       #
       #   @param id [String] The Account identifier.
       #
-      #   @param bank [Symbol, Increase::Account::Bank] The bank the Account is with.
+      #   @param bank [Symbol, Increase::Models::Account::Bank] The bank the Account is with.
       #
       #   @param closed_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
       #
-      #   @param currency [Symbol, Increase::Account::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account curr
+      #   @param currency [Symbol, Increase::Models::Account::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account curr
       #
       #   @param entity_id [String, nil] The identifier for the Entity the Account belongs to.
       #
@@ -139,13 +139,13 @@ module Increase
       #
       #   @param program_id [String] The identifier of the Program determining the compliance and commercial terms of
       #
-      #   @param status [Symbol, Increase::Account::Status] The status of the Account.
+      #   @param status [Symbol, Increase::Models::Account::Status] The status of the Account.
       #
-      #   @param type [Symbol, Increase::Account::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Account::Type] A constant representing the object's type. For this resource it will always be `
 
       # The bank the Account is with.
       #
-      # @see Increase::Account#bank
+      # @see Increase::Models::Account#bank
       module Bank
         extend Increase::Internal::Type::Enum
 
@@ -165,7 +165,7 @@ module Increase
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account
       # currency.
       #
-      # @see Increase::Account#currency
+      # @see Increase::Models::Account#currency
       module Currency
         extend Increase::Internal::Type::Enum
 
@@ -193,7 +193,7 @@ module Increase
 
       # The status of the Account.
       #
-      # @see Increase::Account#status
+      # @see Increase::Models::Account#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -210,7 +210,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `account`.
       #
-      # @see Increase::Account#type
+      # @see Increase::Models::Account#type
       module Type
         extend Increase::Internal::Type::Enum
 

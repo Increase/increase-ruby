@@ -14,7 +14,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::CheckDeposit]
+        # @return [Increase::Models::CheckDeposit]
         #
         # @see Increase::Models::Simulations::CheckDepositRejectParams
         def reject(check_deposit_id, params = {})
@@ -35,7 +35,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::CheckDeposit]
+        # @return [Increase::Models::CheckDeposit]
         #
         # @see Increase::Models::Simulations::CheckDepositReturnParams
         def return_(check_deposit_id, params = {})
@@ -56,7 +56,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::CheckDeposit]
+        # @return [Increase::Models::CheckDeposit]
         #
         # @see Increase::Models::Simulations::CheckDepositSubmitParams
         def submit(check_deposit_id, params = {})

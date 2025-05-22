@@ -13,7 +13,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::EntitySupplementalDocument]
+      # @return [Increase::Models::EntitySupplementalDocument]
       #
       # @see Increase::Models::SupplementalDocumentCreateParams
       def create(params)
@@ -44,7 +44,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::EntitySupplementalDocument>]
+      # @return [Increase::Internal::Page<Increase::Models::EntitySupplementalDocument>]
       #
       # @see Increase::Models::SupplementalDocumentListParams
       def list(params)

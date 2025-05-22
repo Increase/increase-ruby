@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Event]
+      # @return [Increase::Models::Event]
       #
       # @see Increase::Models::EventRetrieveParams
       def retrieve(event_id, params = {})
@@ -32,9 +32,9 @@ module Increase
       #
       # @param associated_object_id [String] Filter Events to those belonging to the object with the provided identifier.
       #
-      # @param category [Increase::EventListParams::Category]
+      # @param category [Increase::Models::EventListParams::Category]
       #
-      # @param created_at [Increase::EventListParams::CreatedAt]
+      # @param created_at [Increase::Models::EventListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Event>]
+      # @return [Increase::Internal::Page<Increase::Models::Event>]
       #
       # @see Increase::Models::EventListParams
       def list(params = {})

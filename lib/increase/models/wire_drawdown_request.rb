@@ -121,26 +121,26 @@ module Increase
       # @!attribute status
       #   The lifecycle status of the drawdown request.
       #
-      #   @return [Symbol, Increase::WireDrawdownRequest::Status]
+      #   @return [Symbol, Increase::Models::WireDrawdownRequest::Status]
       required :status, enum: -> { Increase::WireDrawdownRequest::Status }
 
       # @!attribute submission
       #   After the drawdown request is submitted to Fedwire, this will contain
       #   supplemental details.
       #
-      #   @return [Increase::WireDrawdownRequest::Submission, nil]
+      #   @return [Increase::Models::WireDrawdownRequest::Submission, nil]
       required :submission, -> { Increase::WireDrawdownRequest::Submission }, nil?: true
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `wire_drawdown_request`.
       #
-      #   @return [Symbol, Increase::WireDrawdownRequest::Type]
+      #   @return [Symbol, Increase::Models::WireDrawdownRequest::Type]
       required :type, enum: -> { Increase::WireDrawdownRequest::Type }
 
       # @!method initialize(id:, account_number_id:, amount:, created_at:, currency:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, message_to_recipient:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, recipient_account_number:, recipient_address_line1:, recipient_address_line2:, recipient_address_line3:, recipient_name:, recipient_routing_number:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::WireDrawdownRequest} for more details.
+      #   {Increase::Models::WireDrawdownRequest} for more details.
       #
       #   Wire drawdown requests enable you to request that someone else send you a wire.
       #   This feature is in beta; reach out to
@@ -182,15 +182,15 @@ module Increase
       #
       #   @param recipient_routing_number [String] The drawdown request's recipient's routing number.
       #
-      #   @param status [Symbol, Increase::WireDrawdownRequest::Status] The lifecycle status of the drawdown request.
+      #   @param status [Symbol, Increase::Models::WireDrawdownRequest::Status] The lifecycle status of the drawdown request.
       #
-      #   @param submission [Increase::WireDrawdownRequest::Submission, nil] After the drawdown request is submitted to Fedwire, this will contain supplement
+      #   @param submission [Increase::Models::WireDrawdownRequest::Submission, nil] After the drawdown request is submitted to Fedwire, this will contain supplement
       #
-      #   @param type [Symbol, Increase::WireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::WireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
 
       # The lifecycle status of the drawdown request.
       #
-      # @see Increase::WireDrawdownRequest#status
+      # @see Increase::Models::WireDrawdownRequest#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -210,7 +210,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::WireDrawdownRequest#submission
+      # @see Increase::Models::WireDrawdownRequest#submission
       class Submission < Increase::Internal::Type::BaseModel
         # @!attribute input_message_accountability_data
         #   The input message accountability data (IMAD) uniquely identifying the submission
@@ -221,7 +221,7 @@ module Increase
 
         # @!method initialize(input_message_accountability_data:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::WireDrawdownRequest::Submission} for more details.
+        #   {Increase::Models::WireDrawdownRequest::Submission} for more details.
         #
         #   After the drawdown request is submitted to Fedwire, this will contain
         #   supplemental details.
@@ -232,7 +232,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `wire_drawdown_request`.
       #
-      # @see Increase::WireDrawdownRequest#type
+      # @see Increase::Models::WireDrawdownRequest#type
       module Type
         extend Increase::Internal::Type::Enum
 

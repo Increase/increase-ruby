@@ -9,7 +9,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::InboundMailItemListParams::CreatedAt, nil]
+      #   @return [Increase::Models::InboundMailItemListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::InboundMailItemListParams::CreatedAt }
 
       # @!attribute cursor
@@ -35,7 +35,7 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundMailItemListParams} for more details.
       #
-      #   @param created_at [Increase::InboundMailItemListParams::CreatedAt]
+      #   @param created_at [Increase::Models::InboundMailItemListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -76,7 +76,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::InboundMailItemListParams::CreatedAt} for more details.
+        #   {Increase::Models::InboundMailItemListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

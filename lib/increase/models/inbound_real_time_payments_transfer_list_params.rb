@@ -23,7 +23,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::InboundRealTimePaymentsTransferListParams::CreatedAt, nil]
+      #   @return [Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::InboundRealTimePaymentsTransferListParams::CreatedAt }
 
       # @!attribute cursor
@@ -47,7 +47,7 @@ module Increase
       #
       #   @param account_number_id [String] Filter Inbound Real-Time Payments Transfers to ones belonging to the specified A
       #
-      #   @param created_at [Increase::InboundRealTimePaymentsTransferListParams::CreatedAt]
+      #   @param created_at [Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -86,8 +86,8 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::InboundRealTimePaymentsTransferListParams::CreatedAt} for more
-        #   details.
+        #   {Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt} for
+        #   more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

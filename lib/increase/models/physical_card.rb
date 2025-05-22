@@ -19,7 +19,7 @@ module Increase
       # @!attribute cardholder
       #   Details about the cardholder, as it appears on the printed card.
       #
-      #   @return [Increase::PhysicalCard::Cardholder]
+      #   @return [Increase::Models::PhysicalCard::Cardholder]
       required :cardholder, -> { Increase::PhysicalCard::Cardholder }
 
       # @!attribute created_at
@@ -46,25 +46,25 @@ module Increase
       # @!attribute shipment
       #   The details used to ship this physical card.
       #
-      #   @return [Increase::PhysicalCard::Shipment]
+      #   @return [Increase::Models::PhysicalCard::Shipment]
       required :shipment, -> { Increase::PhysicalCard::Shipment }
 
       # @!attribute status
       #   The status of the Physical Card.
       #
-      #   @return [Symbol, Increase::PhysicalCard::Status]
+      #   @return [Symbol, Increase::Models::PhysicalCard::Status]
       required :status, enum: -> { Increase::PhysicalCard::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `physical_card`.
       #
-      #   @return [Symbol, Increase::PhysicalCard::Type]
+      #   @return [Symbol, Increase::Models::PhysicalCard::Type]
       required :type, enum: -> { Increase::PhysicalCard::Type }
 
       # @!method initialize(id:, card_id:, cardholder:, created_at:, idempotency_key:, physical_card_profile_id:, shipment:, status:, type:)
-      #   Some parameter documentations has been truncated, see {Increase::PhysicalCard}
-      #   for more details.
+      #   Some parameter documentations has been truncated, see
+      #   {Increase::Models::PhysicalCard} for more details.
       #
       #   Custom physical Visa cards that are shipped to your customers. The artwork is
       #   configurable by a connected [Card Profile](/documentation/api#card-profiles).
@@ -76,7 +76,7 @@ module Increase
       #
       #   @param card_id [String] The identifier for the Card this Physical Card represents.
       #
-      #   @param cardholder [Increase::PhysicalCard::Cardholder] Details about the cardholder, as it appears on the printed card.
+      #   @param cardholder [Increase::Models::PhysicalCard::Cardholder] Details about the cardholder, as it appears on the printed card.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
@@ -84,13 +84,13 @@ module Increase
       #
       #   @param physical_card_profile_id [String, nil] The Physical Card Profile used for this Physical Card.
       #
-      #   @param shipment [Increase::PhysicalCard::Shipment] The details used to ship this physical card.
+      #   @param shipment [Increase::Models::PhysicalCard::Shipment] The details used to ship this physical card.
       #
-      #   @param status [Symbol, Increase::PhysicalCard::Status] The status of the Physical Card.
+      #   @param status [Symbol, Increase::Models::PhysicalCard::Status] The status of the Physical Card.
       #
-      #   @param type [Symbol, Increase::PhysicalCard::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::PhysicalCard::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::PhysicalCard#cardholder
+      # @see Increase::Models::PhysicalCard#cardholder
       class Cardholder < Increase::Internal::Type::BaseModel
         # @!attribute first_name
         #   The cardholder's first name.
@@ -112,44 +112,44 @@ module Increase
         #   @param last_name [String] The cardholder's last name.
       end
 
-      # @see Increase::PhysicalCard#shipment
+      # @see Increase::Models::PhysicalCard#shipment
       class Shipment < Increase::Internal::Type::BaseModel
         # @!attribute address
         #   The location to where the card's packing label is addressed.
         #
-        #   @return [Increase::PhysicalCard::Shipment::Address]
+        #   @return [Increase::Models::PhysicalCard::Shipment::Address]
         required :address, -> { Increase::PhysicalCard::Shipment::Address }
 
         # @!attribute method_
         #   The shipping method.
         #
-        #   @return [Symbol, Increase::PhysicalCard::Shipment::Method]
+        #   @return [Symbol, Increase::Models::PhysicalCard::Shipment::Method]
         required :method_, enum: -> { Increase::PhysicalCard::Shipment::Method }, api_name: :method
 
         # @!attribute status
         #   The status of this shipment.
         #
-        #   @return [Symbol, Increase::PhysicalCard::Shipment::Status]
+        #   @return [Symbol, Increase::Models::PhysicalCard::Shipment::Status]
         required :status, enum: -> { Increase::PhysicalCard::Shipment::Status }
 
         # @!attribute tracking
         #   Tracking details for the shipment.
         #
-        #   @return [Increase::PhysicalCard::Shipment::Tracking, nil]
+        #   @return [Increase::Models::PhysicalCard::Shipment::Tracking, nil]
         required :tracking, -> { Increase::PhysicalCard::Shipment::Tracking }, nil?: true
 
         # @!method initialize(address:, method_:, status:, tracking:)
         #   The details used to ship this physical card.
         #
-        #   @param address [Increase::PhysicalCard::Shipment::Address] The location to where the card's packing label is addressed.
+        #   @param address [Increase::Models::PhysicalCard::Shipment::Address] The location to where the card's packing label is addressed.
         #
-        #   @param method_ [Symbol, Increase::PhysicalCard::Shipment::Method] The shipping method.
+        #   @param method_ [Symbol, Increase::Models::PhysicalCard::Shipment::Method] The shipping method.
         #
-        #   @param status [Symbol, Increase::PhysicalCard::Shipment::Status] The status of this shipment.
+        #   @param status [Symbol, Increase::Models::PhysicalCard::Shipment::Status] The status of this shipment.
         #
-        #   @param tracking [Increase::PhysicalCard::Shipment::Tracking, nil] Tracking details for the shipment.
+        #   @param tracking [Increase::Models::PhysicalCard::Shipment::Tracking, nil] Tracking details for the shipment.
 
-        # @see Increase::PhysicalCard::Shipment#address
+        # @see Increase::Models::PhysicalCard::Shipment#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the shipping address.
@@ -213,7 +213,7 @@ module Increase
 
         # The shipping method.
         #
-        # @see Increase::PhysicalCard::Shipment#method_
+        # @see Increase::Models::PhysicalCard::Shipment#method_
         module Method
           extend Increase::Internal::Type::Enum
 
@@ -232,7 +232,7 @@ module Increase
 
         # The status of this shipment.
         #
-        # @see Increase::PhysicalCard::Shipment#status
+        # @see Increase::Models::PhysicalCard::Shipment#status
         module Status
           extend Increase::Internal::Type::Enum
 
@@ -261,7 +261,7 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
-        # @see Increase::PhysicalCard::Shipment#tracking
+        # @see Increase::Models::PhysicalCard::Shipment#tracking
         class Tracking < Increase::Internal::Type::BaseModel
           # @!attribute number
           #   The tracking number.
@@ -292,7 +292,7 @@ module Increase
           # @!attribute updates
           #   Tracking updates relating to the physical card's delivery.
           #
-          #   @return [Array<Increase::PhysicalCard::Shipment::Tracking::Update>]
+          #   @return [Array<Increase::Models::PhysicalCard::Shipment::Tracking::Update>]
           required :updates,
                    -> {
                      Increase::Internal::Type::ArrayOf[Increase::PhysicalCard::Shipment::Tracking::Update]
@@ -300,7 +300,7 @@ module Increase
 
           # @!method initialize(number:, return_number:, return_reason:, shipped_at:, updates:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::PhysicalCard::Shipment::Tracking} for more details.
+          #   {Increase::Models::PhysicalCard::Shipment::Tracking} for more details.
           #
           #   Tracking details for the shipment.
           #
@@ -312,7 +312,7 @@ module Increase
           #
           #   @param shipped_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
           #
-          #   @param updates [Array<Increase::PhysicalCard::Shipment::Tracking::Update>] Tracking updates relating to the physical card's delivery.
+          #   @param updates [Array<Increase::Models::PhysicalCard::Shipment::Tracking::Update>] Tracking updates relating to the physical card's delivery.
 
           class Update < Increase::Internal::Type::BaseModel
             # @!attribute carrier_estimated_delivery_at
@@ -325,7 +325,7 @@ module Increase
             # @!attribute category
             #   The type of tracking event.
             #
-            #   @return [Symbol, Increase::PhysicalCard::Shipment::Tracking::Update::Category]
+            #   @return [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category]
             required :category, enum: -> { Increase::PhysicalCard::Shipment::Tracking::Update::Category }
 
             # @!attribute city
@@ -355,11 +355,11 @@ module Increase
 
             # @!method initialize(carrier_estimated_delivery_at:, category:, city:, created_at:, postal_code:, state:)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::PhysicalCard::Shipment::Tracking::Update} for more details.
+            #   {Increase::Models::PhysicalCard::Shipment::Tracking::Update} for more details.
             #
             #   @param carrier_estimated_delivery_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
             #
-            #   @param category [Symbol, Increase::PhysicalCard::Shipment::Tracking::Update::Category] The type of tracking event.
+            #   @param category [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category] The type of tracking event.
             #
             #   @param city [String, nil] The city where the event took place.
             #
@@ -371,7 +371,7 @@ module Increase
 
             # The type of tracking event.
             #
-            # @see Increase::PhysicalCard::Shipment::Tracking::Update#category
+            # @see Increase::Models::PhysicalCard::Shipment::Tracking::Update#category
             module Category
               extend Increase::Internal::Type::Enum
 
@@ -396,7 +396,7 @@ module Increase
 
       # The status of the Physical Card.
       #
-      # @see Increase::PhysicalCard#status
+      # @see Increase::Models::PhysicalCard#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -416,7 +416,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `physical_card`.
       #
-      # @see Increase::PhysicalCard#type
+      # @see Increase::Models::PhysicalCard#type
       module Type
         extend Increase::Internal::Type::Enum
 

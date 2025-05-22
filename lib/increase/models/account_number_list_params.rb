@@ -15,12 +15,12 @@ module Increase
 
       # @!attribute ach_debit_status
       #
-      #   @return [Increase::AccountNumberListParams::ACHDebitStatus, nil]
+      #   @return [Increase::Models::AccountNumberListParams::ACHDebitStatus, nil]
       optional :ach_debit_status, -> { Increase::AccountNumberListParams::ACHDebitStatus }
 
       # @!attribute created_at
       #
-      #   @return [Increase::AccountNumberListParams::CreatedAt, nil]
+      #   @return [Increase::Models::AccountNumberListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::AccountNumberListParams::CreatedAt }
 
       # @!attribute cursor
@@ -47,7 +47,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::AccountNumberListParams::Status, nil]
+      #   @return [Increase::Models::AccountNumberListParams::Status, nil]
       optional :status, -> { Increase::AccountNumberListParams::Status }
 
       # @!method initialize(account_id: nil, ach_debit_status: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -56,9 +56,9 @@ module Increase
       #
       #   @param account_id [String] Filter Account Numbers to those belonging to the specified Account.
       #
-      #   @param ach_debit_status [Increase::AccountNumberListParams::ACHDebitStatus]
+      #   @param ach_debit_status [Increase::Models::AccountNumberListParams::ACHDebitStatus]
       #
-      #   @param created_at [Increase::AccountNumberListParams::CreatedAt]
+      #   @param created_at [Increase::Models::AccountNumberListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -66,7 +66,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::AccountNumberListParams::Status]
+      #   @param status [Increase::Models::AccountNumberListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -75,7 +75,7 @@ module Increase
         #   The ACH Debit status to retrieve Account Numbers for. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::AccountNumberListParams::ACHDebitStatus::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::AccountNumberListParams::ACHDebitStatus::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::AccountNumberListParams::ACHDebitStatus::In]
@@ -84,9 +84,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::AccountNumberListParams::ACHDebitStatus} for more details.
+        #   {Increase::Models::AccountNumberListParams::ACHDebitStatus} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::AccountNumberListParams::ACHDebitStatus::In>] The ACH Debit status to retrieve Account Numbers for. For GET requests, this sho
+        #   @param in_ [Array<Symbol, Increase::Models::AccountNumberListParams::ACHDebitStatus::In>] The ACH Debit status to retrieve Account Numbers for. For GET requests, this sho
 
         module In
           extend Increase::Internal::Type::Enum
@@ -133,7 +133,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::AccountNumberListParams::CreatedAt} for more details.
+        #   {Increase::Models::AccountNumberListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
@@ -149,7 +149,7 @@ module Increase
         #   The status to retrieve Account Numbers for. For GET requests, this should be
         #   encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::AccountNumberListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::AccountNumberListParams::Status::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::AccountNumberListParams::Status::In]
@@ -158,9 +158,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::AccountNumberListParams::Status} for more details.
+        #   {Increase::Models::AccountNumberListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::AccountNumberListParams::Status::In>] The status to retrieve Account Numbers for. For GET requests, this should be enc
+        #   @param in_ [Array<Symbol, Increase::Models::AccountNumberListParams::Status::In>] The status to retrieve Account Numbers for. For GET requests, this should be enc
 
         module In
           extend Increase::Internal::Type::Enum

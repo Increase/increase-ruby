@@ -10,7 +10,7 @@ module Increase
       #
       # @overload create(grant_type:, client_id: nil, client_secret: nil, code: nil, production_token: nil, request_options: {})
       #
-      # @param grant_type [Symbol, Increase::OAuthTokenCreateParams::GrantType] The credential you request in exchange for the code. In Production, this is alwa
+      # @param grant_type [Symbol, Increase::Models::OAuthTokenCreateParams::GrantType] The credential you request in exchange for the code. In Production, this is alwa
       #
       # @param client_id [String] The public identifier for your application.
       #
@@ -22,7 +22,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::OAuthToken]
+      # @return [Increase::Models::OAuthToken]
       #
       # @see Increase::Models::OAuthTokenCreateParams
       def create(params)

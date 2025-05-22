@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundMailItem]
+      # @return [Increase::Models::InboundMailItem]
       #
       # @see Increase::Models::InboundMailItemRetrieveParams
       def retrieve(inbound_mail_item_id, params = {})
@@ -30,7 +30,7 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, limit: nil, lockbox_id: nil, request_options: {})
       #
-      # @param created_at [Increase::InboundMailItemListParams::CreatedAt]
+      # @param created_at [Increase::Models::InboundMailItemListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -40,7 +40,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::InboundMailItem>]
+      # @return [Increase::Internal::Page<Increase::Models::InboundMailItem>]
       #
       # @see Increase::Models::InboundMailItemListParams
       def list(params = {})

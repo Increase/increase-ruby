@@ -15,7 +15,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::AccountTransfer]
+        # @return [Increase::Models::AccountTransfer]
         #
         # @see Increase::Models::Simulations::AccountTransferCompleteParams
         def complete(account_transfer_id, params = {})

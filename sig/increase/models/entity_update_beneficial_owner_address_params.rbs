@@ -21,6 +21,12 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
+        beneficial_owner_id: String,
+        request_options: Increase::RequestOptions
+      }
+
       type address =
         {
           country: String,
@@ -60,6 +66,15 @@ module Increase
           ?state: String,
           ?zip: String
         ) -> void
+
+        def to_hash: -> {
+          country: String,
+          :line1 => String,
+          city: String,
+          :line2 => String,
+          state: String,
+          zip: String
+        }
       end
     end
   end

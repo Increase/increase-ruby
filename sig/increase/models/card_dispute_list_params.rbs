@@ -47,6 +47,15 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        created_at: Increase::CardDisputeListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardDisputeListParams::Status,
+        request_options: Increase::RequestOptions
+      }
+
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
@@ -73,21 +82,32 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
       end
 
       type status =
-        { in_: ::Array[Increase::CardDisputeListParams::Status::in_] }
+        { in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_] }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::CardDisputeListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::CardDisputeListParams::Status::in_]
-        ) -> ::Array[Increase::CardDisputeListParams::Status::in_]
+          ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+        ) -> ::Array[Increase::Models::CardDisputeListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::CardDisputeListParams::Status::in_]
+          ?in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]
         ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+        }
 
         type in_ =
           :pending_reviewing
@@ -118,7 +138,7 @@ module Increase
           # The Card Dispute has been won and no further action can be taken.
           WON: :won
 
-          def self?.values: -> ::Array[Increase::CardDisputeListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::Models::CardDisputeListParams::Status::in_]
         end
       end
     end

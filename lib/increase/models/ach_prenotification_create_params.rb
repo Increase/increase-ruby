@@ -59,7 +59,7 @@ module Increase
       # @!attribute credit_debit_indicator
       #   Whether the Prenotification is for a future debit or credit.
       #
-      #   @return [Symbol, Increase::ACHPrenotificationCreateParams::CreditDebitIndicator, nil]
+      #   @return [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator, nil]
       optional :credit_debit_indicator,
                enum: -> { Increase::ACHPrenotificationCreateParams::CreditDebitIndicator }
 
@@ -86,7 +86,7 @@ module Increase
       # @!attribute standard_entry_class_code
       #   The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #
-      #   @return [Symbol, Increase::ACHPrenotificationCreateParams::StandardEntryClassCode, nil]
+      #   @return [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode, nil]
       optional :standard_entry_class_code,
                enum: -> { Increase::ACHPrenotificationCreateParams::StandardEntryClassCode }
 
@@ -110,7 +110,7 @@ module Increase
       #
       #   @param company_name [String] The name by which the recipient knows you.
       #
-      #   @param credit_debit_indicator [Symbol, Increase::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
+      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
       #
       #   @param effective_date [Date] The transfer effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601
       #
@@ -118,7 +118,7 @@ module Increase
       #
       #   @param individual_name [String] The name of the transfer recipient. This value is information and not verified b
       #
-      #   @param standard_entry_class_code [Symbol, Increase::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

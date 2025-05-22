@@ -21,6 +21,12 @@ module Increase
           type: Increase::Models::Simulations::CardAuthorizationCreateResponse::type_
         ) -> void
 
+        def to_hash: -> {
+          declined_transaction: Increase::DeclinedTransaction?,
+          pending_transaction: Increase::PendingTransaction?,
+          type: Increase::Models::Simulations::CardAuthorizationCreateResponse::type_
+        }
+
         type type_ = :inbound_card_authorization_simulation_result
 
         module Type

@@ -41,11 +41,11 @@ module Increase
         #
         # @param resolve_at [Time] The time at which the transfer should be resolved. If not provided will resolve
         #
-        # @param standard_entry_class_code [Symbol, Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode] The standard entry class code for the transfer.
+        # @param standard_entry_class_code [Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode] The standard entry class code for the transfer.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::InboundACHTransfer]
+        # @return [Increase::Models::InboundACHTransfer]
         #
         # @see Increase::Models::Simulations::InboundACHTransferCreateParams
         def create(params)

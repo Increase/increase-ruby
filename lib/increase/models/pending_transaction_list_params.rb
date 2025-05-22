@@ -15,12 +15,12 @@ module Increase
 
       # @!attribute category
       #
-      #   @return [Increase::PendingTransactionListParams::Category, nil]
+      #   @return [Increase::Models::PendingTransactionListParams::Category, nil]
       optional :category, -> { Increase::PendingTransactionListParams::Category }
 
       # @!attribute created_at
       #
-      #   @return [Increase::PendingTransactionListParams::CreatedAt, nil]
+      #   @return [Increase::Models::PendingTransactionListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::PendingTransactionListParams::CreatedAt }
 
       # @!attribute cursor
@@ -44,7 +44,7 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::PendingTransactionListParams::Status, nil]
+      #   @return [Increase::Models::PendingTransactionListParams::Status, nil]
       optional :status, -> { Increase::PendingTransactionListParams::Status }
 
       # @!method initialize(account_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, route_id: nil, status: nil, request_options: {})
@@ -53,9 +53,9 @@ module Increase
       #
       #   @param account_id [String] Filter pending transactions to those belonging to the specified Account.
       #
-      #   @param category [Increase::PendingTransactionListParams::Category]
+      #   @param category [Increase::Models::PendingTransactionListParams::Category]
       #
-      #   @param created_at [Increase::PendingTransactionListParams::CreatedAt]
+      #   @param created_at [Increase::Models::PendingTransactionListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -63,7 +63,7 @@ module Increase
       #
       #   @param route_id [String] Filter pending transactions to those belonging to the specified Route.
       #
-      #   @param status [Increase::PendingTransactionListParams::Status]
+      #   @param status [Increase::Models::PendingTransactionListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -72,7 +72,7 @@ module Increase
         #   Return results whose value is in the provided list. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::PendingTransactionListParams::Category::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::PendingTransactionListParams::Category::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::PendingTransactionListParams::Category::In]
@@ -81,9 +81,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PendingTransactionListParams::Category} for more details.
+        #   {Increase::Models::PendingTransactionListParams::Category} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::PendingTransactionListParams::Category::In>] Return results whose value is in the provided list. For GET requests, this shoul
+        #   @param in_ [Array<Symbol, Increase::Models::PendingTransactionListParams::Category::In>] Return results whose value is in the provided list. For GET requests, this shoul
 
         module In
           extend Increase::Internal::Type::Enum
@@ -160,7 +160,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PendingTransactionListParams::CreatedAt} for more details.
+        #   {Increase::Models::PendingTransactionListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
@@ -178,7 +178,7 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::PendingTransactionListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::PendingTransactionListParams::Status::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::PendingTransactionListParams::Status::In]
@@ -187,9 +187,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PendingTransactionListParams::Status} for more details.
+        #   {Increase::Models::PendingTransactionListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::PendingTransactionListParams::Status::In>] Filter Pending Transactions for those with the specified status. By default only
+        #   @param in_ [Array<Symbol, Increase::Models::PendingTransactionListParams::Status::In>] Filter Pending Transactions for those with the specified status. By default only
 
         module In
           extend Increase::Internal::Type::Enum

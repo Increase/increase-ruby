@@ -59,6 +59,19 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        app_icon_file_id: String,
+        background_image_file_id: String,
+        card_description: String,
+        description: String,
+        issuer_name: String,
+        contact_email: String,
+        contact_phone: String,
+        contact_website: String,
+        text_color: Increase::DigitalCardProfileCreateParams::TextColor,
+        request_options: Increase::RequestOptions
+      }
+
       type text_color = { blue: Integer, green: Integer, red: Integer }
 
       class TextColor < Increase::Internal::Type::BaseModel
@@ -69,6 +82,8 @@ module Increase
         attr_accessor red: Integer
 
         def initialize: (blue: Integer, green: Integer, red: Integer) -> void
+
+        def to_hash: -> { blue: Integer, green: Integer, red: Integer }
       end
     end
   end

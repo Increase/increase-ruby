@@ -34,6 +34,15 @@ module Increase
         ?description: String,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        amount: Integer,
+        back_image_file_id: String,
+        front_image_file_id: String,
+        description: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

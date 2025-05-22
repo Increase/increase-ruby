@@ -17,6 +17,12 @@ module Increase
         entity_id: String,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        bank_name: String,
+        entity_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

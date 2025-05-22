@@ -44,7 +44,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::WireTransfer]
+      # @return [Increase::Models::WireTransfer]
       #
       # @see Increase::Models::WireTransferCreateParams
       def create(params)
@@ -66,7 +66,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::WireTransfer]
+      # @return [Increase::Models::WireTransfer]
       #
       # @see Increase::Models::WireTransferRetrieveParams
       def retrieve(wire_transfer_id, params = {})
@@ -87,7 +87,7 @@ module Increase
       #
       # @param account_id [String] Filter Wire Transfers to those belonging to the specified Account.
       #
-      # @param created_at [Increase::WireTransferListParams::CreatedAt]
+      # @param created_at [Increase::Models::WireTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -99,7 +99,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::WireTransfer>]
+      # @return [Increase::Internal::Page<Increase::Models::WireTransfer>]
       #
       # @see Increase::Models::WireTransferListParams
       def list(params = {})
@@ -122,7 +122,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::WireTransfer]
+      # @return [Increase::Models::WireTransfer]
       #
       # @see Increase::Models::WireTransferApproveParams
       def approve(wire_transfer_id, params = {})
@@ -142,7 +142,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::WireTransfer]
+      # @return [Increase::Models::WireTransfer]
       #
       # @see Increase::Models::WireTransferCancelParams
       def cancel(wire_transfer_id, params = {})

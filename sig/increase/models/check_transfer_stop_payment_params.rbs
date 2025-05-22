@@ -19,6 +19,11 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        reason: Increase::Models::CheckTransferStopPaymentParams::reason,
+        request_options: Increase::RequestOptions
+      }
+
       type reason = :mail_delivery_failed | :not_authorized | :unknown
 
       module Reason

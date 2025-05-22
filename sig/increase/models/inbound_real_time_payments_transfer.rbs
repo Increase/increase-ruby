@@ -9,15 +9,15 @@ module Increase
         confirmation: Increase::InboundRealTimePaymentsTransfer::Confirmation?,
         created_at: Time,
         creditor_name: String,
-        currency: Increase::InboundRealTimePaymentsTransfer::currency,
+        currency: Increase::Models::InboundRealTimePaymentsTransfer::currency,
         debtor_account_number: String,
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
         remittance_information: String?,
-        status: Increase::InboundRealTimePaymentsTransfer::status,
+        status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
-        type: Increase::InboundRealTimePaymentsTransfer::type_
+        type: Increase::Models::InboundRealTimePaymentsTransfer::type_
       }
 
     class InboundRealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
@@ -35,7 +35,7 @@ module Increase
 
       attr_accessor creditor_name: String
 
-      attr_accessor currency: Increase::InboundRealTimePaymentsTransfer::currency
+      attr_accessor currency: Increase::Models::InboundRealTimePaymentsTransfer::currency
 
       attr_accessor debtor_account_number: String
 
@@ -47,11 +47,11 @@ module Increase
 
       attr_accessor remittance_information: String?
 
-      attr_accessor status: Increase::InboundRealTimePaymentsTransfer::status
+      attr_accessor status: Increase::Models::InboundRealTimePaymentsTransfer::status
 
       attr_accessor transaction_identification: String
 
-      attr_accessor type: Increase::InboundRealTimePaymentsTransfer::type_
+      attr_accessor type: Increase::Models::InboundRealTimePaymentsTransfer::type_
 
       def initialize: (
         id: String,
@@ -61,16 +61,35 @@ module Increase
         confirmation: Increase::InboundRealTimePaymentsTransfer::Confirmation?,
         created_at: Time,
         creditor_name: String,
-        currency: Increase::InboundRealTimePaymentsTransfer::currency,
+        currency: Increase::Models::InboundRealTimePaymentsTransfer::currency,
         debtor_account_number: String,
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
         remittance_information: String?,
-        status: Increase::InboundRealTimePaymentsTransfer::status,
+        status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
-        type: Increase::InboundRealTimePaymentsTransfer::type_
+        type: Increase::Models::InboundRealTimePaymentsTransfer::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        confirmation: Increase::InboundRealTimePaymentsTransfer::Confirmation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::InboundRealTimePaymentsTransfer::currency,
+        debtor_account_number: String,
+        debtor_name: String,
+        debtor_routing_number: String,
+        decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
+        remittance_information: String?,
+        status: Increase::Models::InboundRealTimePaymentsTransfer::status,
+        transaction_identification: String,
+        type: Increase::Models::InboundRealTimePaymentsTransfer::type_
+      }
 
       type confirmation = { confirmed_at: Time, transaction_id: String }
 
@@ -80,6 +99,8 @@ module Increase
         attr_accessor transaction_id: String
 
         def initialize: (confirmed_at: Time, transaction_id: String) -> void
+
+        def to_hash: -> { confirmed_at: Time, transaction_id: String }
       end
 
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
@@ -105,14 +126,14 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::InboundRealTimePaymentsTransfer::currency]
+        def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsTransfer::currency]
       end
 
       type decline =
         {
           declined_at: Time,
           declined_transaction_id: String,
-          reason: Increase::InboundRealTimePaymentsTransfer::Decline::reason
+          reason: Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason
         }
 
       class Decline < Increase::Internal::Type::BaseModel
@@ -120,13 +141,19 @@ module Increase
 
         attr_accessor declined_transaction_id: String
 
-        attr_accessor reason: Increase::InboundRealTimePaymentsTransfer::Decline::reason
+        attr_accessor reason: Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason
 
         def initialize: (
           declined_at: Time,
           declined_transaction_id: String,
-          reason: Increase::InboundRealTimePaymentsTransfer::Decline::reason
+          reason: Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason
         ) -> void
+
+        def to_hash: -> {
+          declined_at: Time,
+          declined_transaction_id: String,
+          reason: Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason
+        }
 
         type reason =
           :account_number_canceled
@@ -157,7 +184,7 @@ module Increase
           # Your account is not enabled to receive Real-Time Payments transfers.
           REAL_TIME_PAYMENTS_NOT_ENABLED: :real_time_payments_not_enabled
 
-          def self?.values: -> ::Array[Increase::InboundRealTimePaymentsTransfer::Decline::reason]
+          def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason]
         end
       end
 
@@ -178,7 +205,7 @@ module Increase
         # The transfer has been declined.
         DECLINED: :declined
 
-        def self?.values: -> ::Array[Increase::InboundRealTimePaymentsTransfer::status]
+        def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsTransfer::status]
       end
 
       type type_ = :inbound_real_time_payments_transfer
@@ -188,7 +215,7 @@ module Increase
 
         INBOUND_REAL_TIME_PAYMENTS_TRANSFER: :inbound_real_time_payments_transfer
 
-        def self?.values: -> ::Array[Increase::InboundRealTimePaymentsTransfer::type_]
+        def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsTransfer::type_]
       end
     end
   end

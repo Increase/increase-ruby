@@ -11,7 +11,7 @@ module Increase
       #   The credential you request in exchange for the code. In Production, this is
       #   always `authorization_code`. In Sandbox, you can pass either enum value.
       #
-      #   @return [Symbol, Increase::OAuthTokenCreateParams::GrantType]
+      #   @return [Symbol, Increase::Models::OAuthTokenCreateParams::GrantType]
       required :grant_type, enum: -> { Increase::OAuthTokenCreateParams::GrantType }
 
       # @!attribute client_id
@@ -47,7 +47,7 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::OAuthTokenCreateParams} for more details.
       #
-      #   @param grant_type [Symbol, Increase::OAuthTokenCreateParams::GrantType] The credential you request in exchange for the code. In Production, this is alwa
+      #   @param grant_type [Symbol, Increase::Models::OAuthTokenCreateParams::GrantType] The credential you request in exchange for the code. In Production, this is alwa
       #
       #   @param client_id [String] The public identifier for your application.
       #

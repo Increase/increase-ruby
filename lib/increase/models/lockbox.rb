@@ -20,7 +20,7 @@ module Increase
       # @!attribute address
       #   The mailing address for the Lockbox.
       #
-      #   @return [Increase::Lockbox::Address]
+      #   @return [Increase::Models::Lockbox::Address]
       required :address, -> { Increase::Lockbox::Address }
 
       # @!attribute created_at
@@ -53,19 +53,19 @@ module Increase
       # @!attribute status
       #   This indicates if mail can be sent to this address.
       #
-      #   @return [Symbol, Increase::Lockbox::Status]
+      #   @return [Symbol, Increase::Models::Lockbox::Status]
       required :status, enum: -> { Increase::Lockbox::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `lockbox`.
       #
-      #   @return [Symbol, Increase::Lockbox::Type]
+      #   @return [Symbol, Increase::Models::Lockbox::Type]
       required :type, enum: -> { Increase::Lockbox::Type }
 
       # @!method initialize(id:, account_id:, address:, created_at:, description:, idempotency_key:, recipient_name:, status:, type:)
-      #   Some parameter documentations has been truncated, see {Increase::Lockbox} for
-      #   more details.
+      #   Some parameter documentations has been truncated, see
+      #   {Increase::Models::Lockbox} for more details.
       #
       #   Lockboxes are physical locations that can receive mail containing paper checks.
       #   Increase will automatically create a Check Deposit for checks received this way.
@@ -74,7 +74,7 @@ module Increase
       #
       #   @param account_id [String] The identifier for the Account checks sent to this lockbox will be deposited int
       #
-      #   @param address [Increase::Lockbox::Address] The mailing address for the Lockbox.
+      #   @param address [Increase::Models::Lockbox::Address] The mailing address for the Lockbox.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
       #
@@ -84,11 +84,11 @@ module Increase
       #
       #   @param recipient_name [String, nil] The recipient name you choose for the Lockbox.
       #
-      #   @param status [Symbol, Increase::Lockbox::Status] This indicates if mail can be sent to this address.
+      #   @param status [Symbol, Increase::Models::Lockbox::Status] This indicates if mail can be sent to this address.
       #
-      #   @param type [Symbol, Increase::Lockbox::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Lockbox::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::Lockbox#address
+      # @see Increase::Models::Lockbox#address
       class Address < Increase::Internal::Type::BaseModel
         # @!attribute city
         #   The city of the address.
@@ -132,7 +132,7 @@ module Increase
 
         # @!method initialize(city:, line1:, line2:, postal_code:, recipient:, state:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Lockbox::Address} for more details.
+        #   {Increase::Models::Lockbox::Address} for more details.
         #
         #   The mailing address for the Lockbox.
         #
@@ -151,7 +151,7 @@ module Increase
 
       # This indicates if mail can be sent to this address.
       #
-      # @see Increase::Lockbox#status
+      # @see Increase::Models::Lockbox#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -168,7 +168,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `lockbox`.
       #
-      # @see Increase::Lockbox#type
+      # @see Increase::Models::Lockbox#type
       module Type
         extend Increase::Internal::Type::Enum
 

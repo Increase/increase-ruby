@@ -12,14 +12,14 @@ module Increase
         #   The reason why the Federal Reserve or destination bank returned this transfer.
         #   Defaults to `no_account`.
         #
-        #   @return [Symbol, Increase::Simulations::ACHTransferReturnParams::Reason, nil]
+        #   @return [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason, nil]
         optional :reason, enum: -> { Increase::Simulations::ACHTransferReturnParams::Reason }
 
         # @!method initialize(reason: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::ACHTransferReturnParams} for more details.
         #
-        #   @param reason [Symbol, Increase::Simulations::ACHTransferReturnParams::Reason] The reason why the Federal Reserve or destination bank returned this transfer. D
+        #   @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason] The reason why the Federal Reserve or destination bank returned this transfer. D
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

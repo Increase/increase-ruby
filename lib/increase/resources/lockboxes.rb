@@ -15,7 +15,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Lockbox]
+      # @return [Increase::Models::Lockbox]
       #
       # @see Increase::Models::LockboxCreateParams
       def create(params)
@@ -37,7 +37,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Lockbox]
+      # @return [Increase::Models::Lockbox]
       #
       # @see Increase::Models::LockboxRetrieveParams
       def retrieve(lockbox_id, params = {})
@@ -59,11 +59,11 @@ module Increase
       #
       # @param recipient_name [String] The recipient name you choose for the Lockbox.
       #
-      # @param status [Symbol, Increase::LockboxUpdateParams::Status] This indicates if checks can be sent to the Lockbox.
+      # @param status [Symbol, Increase::Models::LockboxUpdateParams::Status] This indicates if checks can be sent to the Lockbox.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Lockbox]
+      # @return [Increase::Models::Lockbox]
       #
       # @see Increase::Models::LockboxUpdateParams
       def update(lockbox_id, params = {})
@@ -86,7 +86,7 @@ module Increase
       #
       # @param account_id [String] Filter Lockboxes to those associated with the provided Account.
       #
-      # @param created_at [Increase::LockboxListParams::CreatedAt]
+      # @param created_at [Increase::Models::LockboxListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -96,7 +96,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Lockbox>]
+      # @return [Increase::Internal::Page<Increase::Models::Lockbox>]
       #
       # @see Increase::Models::LockboxListParams
       def list(params = {})

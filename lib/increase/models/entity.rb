@@ -14,7 +14,7 @@ module Increase
       #   Details of the corporation entity. Will be present if `structure` is equal to
       #   `corporation`.
       #
-      #   @return [Increase::Entity::Corporation, nil]
+      #   @return [Increase::Models::Entity::Corporation, nil]
       required :corporation, -> { Increase::Entity::Corporation }, nil?: true
 
       # @!attribute created_at
@@ -41,7 +41,7 @@ module Increase
       #   Details of the government authority entity. Will be present if `structure` is
       #   equal to `government_authority`.
       #
-      #   @return [Increase::Entity::GovernmentAuthority, nil]
+      #   @return [Increase::Models::Entity::GovernmentAuthority, nil]
       required :government_authority, -> { Increase::Entity::GovernmentAuthority }, nil?: true
 
       # @!attribute idempotency_key
@@ -55,26 +55,26 @@ module Increase
       # @!attribute joint
       #   Details of the joint entity. Will be present if `structure` is equal to `joint`.
       #
-      #   @return [Increase::Entity::Joint, nil]
+      #   @return [Increase::Models::Entity::Joint, nil]
       required :joint, -> { Increase::Entity::Joint }, nil?: true
 
       # @!attribute natural_person
       #   Details of the natural person entity. Will be present if `structure` is equal to
       #   `natural_person`.
       #
-      #   @return [Increase::Entity::NaturalPerson, nil]
+      #   @return [Increase::Models::Entity::NaturalPerson, nil]
       required :natural_person, -> { Increase::Entity::NaturalPerson }, nil?: true
 
       # @!attribute status
       #   The status of the entity.
       #
-      #   @return [Symbol, Increase::Entity::Status]
+      #   @return [Symbol, Increase::Models::Entity::Status]
       required :status, enum: -> { Increase::Entity::Status }
 
       # @!attribute structure
       #   The entity's legal structure.
       #
-      #   @return [Symbol, Increase::Entity::Structure]
+      #   @return [Symbol, Increase::Models::Entity::Structure]
       required :structure, enum: -> { Increase::Entity::Structure }
 
       # @!attribute supplemental_documents
@@ -82,7 +82,7 @@ module Increase
       #   first 10 documents for an entity. If an entity has more than 10 documents, use
       #   the GET /entity_supplemental_documents list endpoint to retrieve them.
       #
-      #   @return [Array<Increase::EntitySupplementalDocument>]
+      #   @return [Array<Increase::Models::EntitySupplementalDocument>]
       required :supplemental_documents,
                -> { Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument] }
 
@@ -90,32 +90,32 @@ module Increase
       #   A reference to data stored in a third-party verification service. Your
       #   integration may or may not use this field.
       #
-      #   @return [Increase::Entity::ThirdPartyVerification, nil]
+      #   @return [Increase::Models::Entity::ThirdPartyVerification, nil]
       required :third_party_verification, -> { Increase::Entity::ThirdPartyVerification }, nil?: true
 
       # @!attribute trust
       #   Details of the trust entity. Will be present if `structure` is equal to `trust`.
       #
-      #   @return [Increase::Entity::Trust, nil]
+      #   @return [Increase::Models::Entity::Trust, nil]
       required :trust, -> { Increase::Entity::Trust }, nil?: true
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `entity`.
       #
-      #   @return [Symbol, Increase::Entity::Type]
+      #   @return [Symbol, Increase::Models::Entity::Type]
       required :type, enum: -> { Increase::Entity::Type }
 
       # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, status:, structure:, supplemental_documents:, third_party_verification:, trust:, type:)
-      #   Some parameter documentations has been truncated, see {Increase::Entity} for
-      #   more details.
+      #   Some parameter documentations has been truncated, see {Increase::Models::Entity}
+      #   for more details.
       #
       #   Entities are the legal entities that own accounts. They can be people,
       #   corporations, partnerships, government authorities, or trusts.
       #
       #   @param id [String] The entity's identifier.
       #
-      #   @param corporation [Increase::Entity::Corporation, nil] Details of the corporation entity. Will be present if `structure` is equal to `c
+      #   @param corporation [Increase::Models::Entity::Corporation, nil] Details of the corporation entity. Will be present if `structure` is equal to `c
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Entity
       #
@@ -123,39 +123,39 @@ module Increase
       #
       #   @param details_confirmed_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Entity'
       #
-      #   @param government_authority [Increase::Entity::GovernmentAuthority, nil] Details of the government authority entity. Will be present if `structure` is eq
+      #   @param government_authority [Increase::Models::Entity::GovernmentAuthority, nil] Details of the government authority entity. Will be present if `structure` is eq
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
-      #   @param joint [Increase::Entity::Joint, nil] Details of the joint entity. Will be present if `structure` is equal to `joint`.
+      #   @param joint [Increase::Models::Entity::Joint, nil] Details of the joint entity. Will be present if `structure` is equal to `joint`.
       #
-      #   @param natural_person [Increase::Entity::NaturalPerson, nil] Details of the natural person entity. Will be present if `structure` is equal to
+      #   @param natural_person [Increase::Models::Entity::NaturalPerson, nil] Details of the natural person entity. Will be present if `structure` is equal to
       #
-      #   @param status [Symbol, Increase::Entity::Status] The status of the entity.
+      #   @param status [Symbol, Increase::Models::Entity::Status] The status of the entity.
       #
-      #   @param structure [Symbol, Increase::Entity::Structure] The entity's legal structure.
+      #   @param structure [Symbol, Increase::Models::Entity::Structure] The entity's legal structure.
       #
-      #   @param supplemental_documents [Array<Increase::EntitySupplementalDocument>] Additional documentation associated with the entity. This is limited to the firs
+      #   @param supplemental_documents [Array<Increase::Models::EntitySupplementalDocument>] Additional documentation associated with the entity. This is limited to the firs
       #
-      #   @param third_party_verification [Increase::Entity::ThirdPartyVerification, nil] A reference to data stored in a third-party verification service. Your integrati
+      #   @param third_party_verification [Increase::Models::Entity::ThirdPartyVerification, nil] A reference to data stored in a third-party verification service. Your integrati
       #
-      #   @param trust [Increase::Entity::Trust, nil] Details of the trust entity. Will be present if `structure` is equal to `trust`.
+      #   @param trust [Increase::Models::Entity::Trust, nil] Details of the trust entity. Will be present if `structure` is equal to `trust`.
       #
-      #   @param type [Symbol, Increase::Entity::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Entity::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::Entity#corporation
+      # @see Increase::Models::Entity#corporation
       class Corporation < Increase::Internal::Type::BaseModel
         # @!attribute address
         #   The corporation's address.
         #
-        #   @return [Increase::Entity::Corporation::Address]
+        #   @return [Increase::Models::Entity::Corporation::Address]
         required :address, -> { Increase::Entity::Corporation::Address }
 
         # @!attribute beneficial_owners
         #   The identifying details of anyone controlling or owning 25% or more of the
         #   corporation.
         #
-        #   @return [Array<Increase::Entity::Corporation::BeneficialOwner>]
+        #   @return [Array<Increase::Models::Entity::Corporation::BeneficialOwner>]
         required :beneficial_owners,
                  -> { Increase::Internal::Type::ArrayOf[Increase::Entity::Corporation::BeneficialOwner] }
 
@@ -193,14 +193,14 @@ module Increase
 
         # @!method initialize(address:, beneficial_owners:, incorporation_state:, industry_code:, name:, tax_identifier:, website:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Entity::Corporation} for more details.
+        #   {Increase::Models::Entity::Corporation} for more details.
         #
         #   Details of the corporation entity. Will be present if `structure` is equal to
         #   `corporation`.
         #
-        #   @param address [Increase::Entity::Corporation::Address] The corporation's address.
+        #   @param address [Increase::Models::Entity::Corporation::Address] The corporation's address.
         #
-        #   @param beneficial_owners [Array<Increase::Entity::Corporation::BeneficialOwner>] The identifying details of anyone controlling or owning 25% or more of the corpo
+        #   @param beneficial_owners [Array<Increase::Models::Entity::Corporation::BeneficialOwner>] The identifying details of anyone controlling or owning 25% or more of the corpo
         #
         #   @param incorporation_state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the corporat
         #
@@ -212,7 +212,7 @@ module Increase
         #
         #   @param website [String, nil] The website of the corporation.
 
-        # @see Increase::Entity::Corporation#address
+        # @see Increase::Models::Entity::Corporation#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the address.
@@ -247,7 +247,7 @@ module Increase
 
           # @!method initialize(city:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Entity::Corporation::Address} for more details.
+          #   {Increase::Models::Entity::Corporation::Address} for more details.
           #
           #   The corporation's address.
           #
@@ -278,13 +278,13 @@ module Increase
           # @!attribute individual
           #   Personal details for the beneficial owner.
           #
-          #   @return [Increase::Entity::Corporation::BeneficialOwner::Individual]
+          #   @return [Increase::Models::Entity::Corporation::BeneficialOwner::Individual]
           required :individual, -> { Increase::Entity::Corporation::BeneficialOwner::Individual }
 
           # @!attribute prong
           #   Why this person is considered a beneficial owner of the entity.
           #
-          #   @return [Symbol, Increase::Entity::Corporation::BeneficialOwner::Prong]
+          #   @return [Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Prong]
           required :prong, enum: -> { Increase::Entity::Corporation::BeneficialOwner::Prong }
 
           # @!method initialize(beneficial_owner_id:, company_title:, individual:, prong:)
@@ -292,16 +292,16 @@ module Increase
           #
           #   @param company_title [String, nil] This person's role or title within the entity.
           #
-          #   @param individual [Increase::Entity::Corporation::BeneficialOwner::Individual] Personal details for the beneficial owner.
+          #   @param individual [Increase::Models::Entity::Corporation::BeneficialOwner::Individual] Personal details for the beneficial owner.
           #
-          #   @param prong [Symbol, Increase::Entity::Corporation::BeneficialOwner::Prong] Why this person is considered a beneficial owner of the entity.
+          #   @param prong [Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Prong] Why this person is considered a beneficial owner of the entity.
 
-          # @see Increase::Entity::Corporation::BeneficialOwner#individual
+          # @see Increase::Models::Entity::Corporation::BeneficialOwner#individual
           class Individual < Increase::Internal::Type::BaseModel
             # @!attribute address
             #   The person's address.
             #
-            #   @return [Increase::Entity::Corporation::BeneficialOwner::Individual::Address]
+            #   @return [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Address]
             required :address, -> { Increase::Entity::Corporation::BeneficialOwner::Individual::Address }
 
             # @!attribute date_of_birth
@@ -313,7 +313,7 @@ module Increase
             # @!attribute identification
             #   A means of verifying the person's identity.
             #
-            #   @return [Increase::Entity::Corporation::BeneficialOwner::Individual::Identification]
+            #   @return [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification]
             required :identification,
                      -> { Increase::Entity::Corporation::BeneficialOwner::Individual::Identification }
 
@@ -326,15 +326,15 @@ module Increase
             # @!method initialize(address:, date_of_birth:, identification:, name:)
             #   Personal details for the beneficial owner.
             #
-            #   @param address [Increase::Entity::Corporation::BeneficialOwner::Individual::Address] The person's address.
+            #   @param address [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Address] The person's address.
             #
             #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
             #
-            #   @param identification [Increase::Entity::Corporation::BeneficialOwner::Individual::Identification] A means of verifying the person's identity.
+            #   @param identification [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification] A means of verifying the person's identity.
             #
             #   @param name [String] The person's legal name.
 
-            # @see Increase::Entity::Corporation::BeneficialOwner::Individual#address
+            # @see Increase::Models::Entity::Corporation::BeneficialOwner::Individual#address
             class Address < Increase::Internal::Type::BaseModel
               # @!attribute city
               #   The city, district, town, or village of the address.
@@ -375,8 +375,8 @@ module Increase
 
               # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
               #   Some parameter documentations has been truncated, see
-              #   {Increase::Entity::Corporation::BeneficialOwner::Individual::Address} for more
-              #   details.
+              #   {Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Address}
+              #   for more details.
               #
               #   The person's address.
               #
@@ -393,12 +393,12 @@ module Increase
               #   @param zip [String, nil] The ZIP or postal code of the address.
             end
 
-            # @see Increase::Entity::Corporation::BeneficialOwner::Individual#identification
+            # @see Increase::Models::Entity::Corporation::BeneficialOwner::Individual#identification
             class Identification < Increase::Internal::Type::BaseModel
               # @!attribute method_
               #   A method that can be used to verify the individual's identity.
               #
-              #   @return [Symbol, Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method]
+              #   @return [Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::Method]
               required :method_,
                        enum: -> {
                          Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method
@@ -414,18 +414,18 @@ module Increase
 
               # @!method initialize(method_:, number_last4:)
               #   Some parameter documentations has been truncated, see
-              #   {Increase::Entity::Corporation::BeneficialOwner::Individual::Identification} for
-              #   more details.
+              #   {Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification}
+              #   for more details.
               #
               #   A means of verifying the person's identity.
               #
-              #   @param method_ [Symbol, Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method] A method that can be used to verify the individual's identity.
+              #   @param method_ [Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::Method] A method that can be used to verify the individual's identity.
               #
               #   @param number_last4 [String] The last 4 digits of the identification number that can be used to verify the in
 
               # A method that can be used to verify the individual's identity.
               #
-              # @see Increase::Entity::Corporation::BeneficialOwner::Individual::Identification#method_
+              # @see Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification#method_
               module Method
                 extend Increase::Internal::Type::Enum
 
@@ -452,7 +452,7 @@ module Increase
 
           # Why this person is considered a beneficial owner of the entity.
           #
-          # @see Increase::Entity::Corporation::BeneficialOwner#prong
+          # @see Increase::Models::Entity::Corporation::BeneficialOwner#prong
           module Prong
             extend Increase::Internal::Type::Enum
 
@@ -468,18 +468,18 @@ module Increase
         end
       end
 
-      # @see Increase::Entity#government_authority
+      # @see Increase::Models::Entity#government_authority
       class GovernmentAuthority < Increase::Internal::Type::BaseModel
         # @!attribute address
         #   The government authority's address.
         #
-        #   @return [Increase::Entity::GovernmentAuthority::Address]
+        #   @return [Increase::Models::Entity::GovernmentAuthority::Address]
         required :address, -> { Increase::Entity::GovernmentAuthority::Address }
 
         # @!attribute authorized_persons
         #   The identifying details of authorized persons of the government authority.
         #
-        #   @return [Array<Increase::Entity::GovernmentAuthority::AuthorizedPerson>]
+        #   @return [Array<Increase::Models::Entity::GovernmentAuthority::AuthorizedPerson>]
         required :authorized_persons,
                  -> {
                    Increase::Internal::Type::ArrayOf[Increase::Entity::GovernmentAuthority::AuthorizedPerson]
@@ -488,7 +488,7 @@ module Increase
         # @!attribute category
         #   The category of the government authority.
         #
-        #   @return [Symbol, Increase::Entity::GovernmentAuthority::Category]
+        #   @return [Symbol, Increase::Models::Entity::GovernmentAuthority::Category]
         required :category, enum: -> { Increase::Entity::GovernmentAuthority::Category }
 
         # @!attribute name
@@ -513,11 +513,11 @@ module Increase
         #   Details of the government authority entity. Will be present if `structure` is
         #   equal to `government_authority`.
         #
-        #   @param address [Increase::Entity::GovernmentAuthority::Address] The government authority's address.
+        #   @param address [Increase::Models::Entity::GovernmentAuthority::Address] The government authority's address.
         #
-        #   @param authorized_persons [Array<Increase::Entity::GovernmentAuthority::AuthorizedPerson>] The identifying details of authorized persons of the government authority.
+        #   @param authorized_persons [Array<Increase::Models::Entity::GovernmentAuthority::AuthorizedPerson>] The identifying details of authorized persons of the government authority.
         #
-        #   @param category [Symbol, Increase::Entity::GovernmentAuthority::Category] The category of the government authority.
+        #   @param category [Symbol, Increase::Models::Entity::GovernmentAuthority::Category] The category of the government authority.
         #
         #   @param name [String] The government authority's name.
         #
@@ -525,7 +525,7 @@ module Increase
         #
         #   @param website [String, nil] The government authority's website.
 
-        # @see Increase::Entity::GovernmentAuthority#address
+        # @see Increase::Models::Entity::GovernmentAuthority#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the address.
@@ -560,7 +560,7 @@ module Increase
 
           # @!method initialize(city:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Entity::GovernmentAuthority::Address} for more details.
+          #   {Increase::Models::Entity::GovernmentAuthority::Address} for more details.
           #
           #   The government authority's address.
           #
@@ -596,7 +596,7 @@ module Increase
 
         # The category of the government authority.
         #
-        # @see Increase::Entity::GovernmentAuthority#category
+        # @see Increase::Models::Entity::GovernmentAuthority#category
         module Category
           extend Increase::Internal::Type::Enum
 
@@ -608,12 +608,12 @@ module Increase
         end
       end
 
-      # @see Increase::Entity#joint
+      # @see Increase::Models::Entity#joint
       class Joint < Increase::Internal::Type::BaseModel
         # @!attribute individuals
         #   The two individuals that share control of the entity.
         #
-        #   @return [Array<Increase::Entity::Joint::Individual>]
+        #   @return [Array<Increase::Models::Entity::Joint::Individual>]
         required :individuals, -> { Increase::Internal::Type::ArrayOf[Increase::Entity::Joint::Individual] }
 
         # @!attribute name
@@ -625,7 +625,7 @@ module Increase
         # @!method initialize(individuals:, name:)
         #   Details of the joint entity. Will be present if `structure` is equal to `joint`.
         #
-        #   @param individuals [Array<Increase::Entity::Joint::Individual>] The two individuals that share control of the entity.
+        #   @param individuals [Array<Increase::Models::Entity::Joint::Individual>] The two individuals that share control of the entity.
         #
         #   @param name [String] The entity's name.
 
@@ -633,7 +633,7 @@ module Increase
           # @!attribute address
           #   The person's address.
           #
-          #   @return [Increase::Entity::Joint::Individual::Address]
+          #   @return [Increase::Models::Entity::Joint::Individual::Address]
           required :address, -> { Increase::Entity::Joint::Individual::Address }
 
           # @!attribute date_of_birth
@@ -645,7 +645,7 @@ module Increase
           # @!attribute identification
           #   A means of verifying the person's identity.
           #
-          #   @return [Increase::Entity::Joint::Individual::Identification]
+          #   @return [Increase::Models::Entity::Joint::Individual::Identification]
           required :identification, -> { Increase::Entity::Joint::Individual::Identification }
 
           # @!attribute name
@@ -655,15 +655,15 @@ module Increase
           required :name, String
 
           # @!method initialize(address:, date_of_birth:, identification:, name:)
-          #   @param address [Increase::Entity::Joint::Individual::Address] The person's address.
+          #   @param address [Increase::Models::Entity::Joint::Individual::Address] The person's address.
           #
           #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
           #
-          #   @param identification [Increase::Entity::Joint::Individual::Identification] A means of verifying the person's identity.
+          #   @param identification [Increase::Models::Entity::Joint::Individual::Identification] A means of verifying the person's identity.
           #
           #   @param name [String] The person's legal name.
 
-          # @see Increase::Entity::Joint::Individual#address
+          # @see Increase::Models::Entity::Joint::Individual#address
           class Address < Increase::Internal::Type::BaseModel
             # @!attribute city
             #   The city of the address.
@@ -698,7 +698,7 @@ module Increase
 
             # @!method initialize(city:, line1:, line2:, state:, zip:)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::Entity::Joint::Individual::Address} for more details.
+            #   {Increase::Models::Entity::Joint::Individual::Address} for more details.
             #
             #   The person's address.
             #
@@ -713,12 +713,12 @@ module Increase
             #   @param zip [String] The ZIP code of the address.
           end
 
-          # @see Increase::Entity::Joint::Individual#identification
+          # @see Increase::Models::Entity::Joint::Individual#identification
           class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
             #   A method that can be used to verify the individual's identity.
             #
-            #   @return [Symbol, Increase::Entity::Joint::Individual::Identification::Method]
+            #   @return [Symbol, Increase::Models::Entity::Joint::Individual::Identification::Method]
             required :method_,
                      enum: -> { Increase::Entity::Joint::Individual::Identification::Method },
                      api_name: :method
@@ -732,17 +732,17 @@ module Increase
 
             # @!method initialize(method_:, number_last4:)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::Entity::Joint::Individual::Identification} for more details.
+            #   {Increase::Models::Entity::Joint::Individual::Identification} for more details.
             #
             #   A means of verifying the person's identity.
             #
-            #   @param method_ [Symbol, Increase::Entity::Joint::Individual::Identification::Method] A method that can be used to verify the individual's identity.
+            #   @param method_ [Symbol, Increase::Models::Entity::Joint::Individual::Identification::Method] A method that can be used to verify the individual's identity.
             #
             #   @param number_last4 [String] The last 4 digits of the identification number that can be used to verify the in
 
             # A method that can be used to verify the individual's identity.
             #
-            # @see Increase::Entity::Joint::Individual::Identification#method_
+            # @see Increase::Models::Entity::Joint::Individual::Identification#method_
             module Method
               extend Increase::Internal::Type::Enum
 
@@ -768,12 +768,12 @@ module Increase
         end
       end
 
-      # @see Increase::Entity#natural_person
+      # @see Increase::Models::Entity#natural_person
       class NaturalPerson < Increase::Internal::Type::BaseModel
         # @!attribute address
         #   The person's address.
         #
-        #   @return [Increase::Entity::NaturalPerson::Address]
+        #   @return [Increase::Models::Entity::NaturalPerson::Address]
         required :address, -> { Increase::Entity::NaturalPerson::Address }
 
         # @!attribute date_of_birth
@@ -785,7 +785,7 @@ module Increase
         # @!attribute identification
         #   A means of verifying the person's identity.
         #
-        #   @return [Increase::Entity::NaturalPerson::Identification]
+        #   @return [Increase::Models::Entity::NaturalPerson::Identification]
         required :identification, -> { Increase::Entity::NaturalPerson::Identification }
 
         # @!attribute name
@@ -798,15 +798,15 @@ module Increase
         #   Details of the natural person entity. Will be present if `structure` is equal to
         #   `natural_person`.
         #
-        #   @param address [Increase::Entity::NaturalPerson::Address] The person's address.
+        #   @param address [Increase::Models::Entity::NaturalPerson::Address] The person's address.
         #
         #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
         #
-        #   @param identification [Increase::Entity::NaturalPerson::Identification] A means of verifying the person's identity.
+        #   @param identification [Increase::Models::Entity::NaturalPerson::Identification] A means of verifying the person's identity.
         #
         #   @param name [String] The person's legal name.
 
-        # @see Increase::Entity::NaturalPerson#address
+        # @see Increase::Models::Entity::NaturalPerson#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the address.
@@ -841,7 +841,7 @@ module Increase
 
           # @!method initialize(city:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Entity::NaturalPerson::Address} for more details.
+          #   {Increase::Models::Entity::NaturalPerson::Address} for more details.
           #
           #   The person's address.
           #
@@ -856,12 +856,12 @@ module Increase
           #   @param zip [String] The ZIP code of the address.
         end
 
-        # @see Increase::Entity::NaturalPerson#identification
+        # @see Increase::Models::Entity::NaturalPerson#identification
         class Identification < Increase::Internal::Type::BaseModel
           # @!attribute method_
           #   A method that can be used to verify the individual's identity.
           #
-          #   @return [Symbol, Increase::Entity::NaturalPerson::Identification::Method]
+          #   @return [Symbol, Increase::Models::Entity::NaturalPerson::Identification::Method]
           required :method_,
                    enum: -> {
                      Increase::Entity::NaturalPerson::Identification::Method
@@ -877,17 +877,17 @@ module Increase
 
           # @!method initialize(method_:, number_last4:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Entity::NaturalPerson::Identification} for more details.
+          #   {Increase::Models::Entity::NaturalPerson::Identification} for more details.
           #
           #   A means of verifying the person's identity.
           #
-          #   @param method_ [Symbol, Increase::Entity::NaturalPerson::Identification::Method] A method that can be used to verify the individual's identity.
+          #   @param method_ [Symbol, Increase::Models::Entity::NaturalPerson::Identification::Method] A method that can be used to verify the individual's identity.
           #
           #   @param number_last4 [String] The last 4 digits of the identification number that can be used to verify the in
 
           # A method that can be used to verify the individual's identity.
           #
-          # @see Increase::Entity::NaturalPerson::Identification#method_
+          # @see Increase::Models::Entity::NaturalPerson::Identification#method_
           module Method
             extend Increase::Internal::Type::Enum
 
@@ -914,7 +914,7 @@ module Increase
 
       # The status of the entity.
       #
-      # @see Increase::Entity#status
+      # @see Increase::Models::Entity#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -933,7 +933,7 @@ module Increase
 
       # The entity's legal structure.
       #
-      # @see Increase::Entity#structure
+      # @see Increase::Models::Entity#structure
       module Structure
         extend Increase::Internal::Type::Enum
 
@@ -956,7 +956,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # @see Increase::Entity#third_party_verification
+      # @see Increase::Models::Entity#third_party_verification
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
         # @!attribute reference
         #   The reference identifier for the third party verification.
@@ -967,7 +967,7 @@ module Increase
         # @!attribute vendor
         #   The vendor that was used to perform the verification.
         #
-        #   @return [Symbol, Increase::Entity::ThirdPartyVerification::Vendor]
+        #   @return [Symbol, Increase::Models::Entity::ThirdPartyVerification::Vendor]
         required :vendor, enum: -> { Increase::Entity::ThirdPartyVerification::Vendor }
 
         # @!method initialize(reference:, vendor:)
@@ -976,11 +976,11 @@ module Increase
         #
         #   @param reference [String] The reference identifier for the third party verification.
         #
-        #   @param vendor [Symbol, Increase::Entity::ThirdPartyVerification::Vendor] The vendor that was used to perform the verification.
+        #   @param vendor [Symbol, Increase::Models::Entity::ThirdPartyVerification::Vendor] The vendor that was used to perform the verification.
 
         # The vendor that was used to perform the verification.
         #
-        # @see Increase::Entity::ThirdPartyVerification#vendor
+        # @see Increase::Models::Entity::ThirdPartyVerification#vendor
         module Vendor
           extend Increase::Internal::Type::Enum
 
@@ -998,18 +998,18 @@ module Increase
         end
       end
 
-      # @see Increase::Entity#trust
+      # @see Increase::Models::Entity#trust
       class Trust < Increase::Internal::Type::BaseModel
         # @!attribute address
         #   The trust's address.
         #
-        #   @return [Increase::Entity::Trust::Address]
+        #   @return [Increase::Models::Entity::Trust::Address]
         required :address, -> { Increase::Entity::Trust::Address }
 
         # @!attribute category
         #   Whether the trust is `revocable` or `irrevocable`.
         #
-        #   @return [Symbol, Increase::Entity::Trust::Category]
+        #   @return [Symbol, Increase::Models::Entity::Trust::Category]
         required :category, enum: -> { Increase::Entity::Trust::Category }
 
         # @!attribute formation_document_file_id
@@ -1028,7 +1028,7 @@ module Increase
         # @!attribute grantor
         #   The grantor of the trust. Will be present if the `category` is `revocable`.
         #
-        #   @return [Increase::Entity::Trust::Grantor, nil]
+        #   @return [Increase::Models::Entity::Trust::Grantor, nil]
         required :grantor, -> { Increase::Entity::Trust::Grantor }, nil?: true
 
         # @!attribute name
@@ -1046,32 +1046,32 @@ module Increase
         # @!attribute trustees
         #   The trustees of the trust.
         #
-        #   @return [Array<Increase::Entity::Trust::Trustee>]
+        #   @return [Array<Increase::Models::Entity::Trust::Trustee>]
         required :trustees, -> { Increase::Internal::Type::ArrayOf[Increase::Entity::Trust::Trustee] }
 
         # @!method initialize(address:, category:, formation_document_file_id:, formation_state:, grantor:, name:, tax_identifier:, trustees:)
-        #   Some parameter documentations has been truncated, see {Increase::Entity::Trust}
-        #   for more details.
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Entity::Trust} for more details.
         #
         #   Details of the trust entity. Will be present if `structure` is equal to `trust`.
         #
-        #   @param address [Increase::Entity::Trust::Address] The trust's address.
+        #   @param address [Increase::Models::Entity::Trust::Address] The trust's address.
         #
-        #   @param category [Symbol, Increase::Entity::Trust::Category] Whether the trust is `revocable` or `irrevocable`.
+        #   @param category [Symbol, Increase::Models::Entity::Trust::Category] Whether the trust is `revocable` or `irrevocable`.
         #
         #   @param formation_document_file_id [String, nil] The ID for the File containing the formation document of the trust.
         #
         #   @param formation_state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the state in
         #
-        #   @param grantor [Increase::Entity::Trust::Grantor, nil] The grantor of the trust. Will be present if the `category` is `revocable`.
+        #   @param grantor [Increase::Models::Entity::Trust::Grantor, nil] The grantor of the trust. Will be present if the `category` is `revocable`.
         #
         #   @param name [String] The trust's name.
         #
         #   @param tax_identifier [String, nil] The Employer Identification Number (EIN) of the trust itself.
         #
-        #   @param trustees [Array<Increase::Entity::Trust::Trustee>] The trustees of the trust.
+        #   @param trustees [Array<Increase::Models::Entity::Trust::Trustee>] The trustees of the trust.
 
-        # @see Increase::Entity::Trust#address
+        # @see Increase::Models::Entity::Trust#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
           #   The city of the address.
@@ -1106,7 +1106,7 @@ module Increase
 
           # @!method initialize(city:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Entity::Trust::Address} for more details.
+          #   {Increase::Models::Entity::Trust::Address} for more details.
           #
           #   The trust's address.
           #
@@ -1123,7 +1123,7 @@ module Increase
 
         # Whether the trust is `revocable` or `irrevocable`.
         #
-        # @see Increase::Entity::Trust#category
+        # @see Increase::Models::Entity::Trust#category
         module Category
           extend Increase::Internal::Type::Enum
 
@@ -1137,12 +1137,12 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
-        # @see Increase::Entity::Trust#grantor
+        # @see Increase::Models::Entity::Trust#grantor
         class Grantor < Increase::Internal::Type::BaseModel
           # @!attribute address
           #   The person's address.
           #
-          #   @return [Increase::Entity::Trust::Grantor::Address]
+          #   @return [Increase::Models::Entity::Trust::Grantor::Address]
           required :address, -> { Increase::Entity::Trust::Grantor::Address }
 
           # @!attribute date_of_birth
@@ -1154,7 +1154,7 @@ module Increase
           # @!attribute identification
           #   A means of verifying the person's identity.
           #
-          #   @return [Increase::Entity::Trust::Grantor::Identification]
+          #   @return [Increase::Models::Entity::Trust::Grantor::Identification]
           required :identification, -> { Increase::Entity::Trust::Grantor::Identification }
 
           # @!attribute name
@@ -1166,15 +1166,15 @@ module Increase
           # @!method initialize(address:, date_of_birth:, identification:, name:)
           #   The grantor of the trust. Will be present if the `category` is `revocable`.
           #
-          #   @param address [Increase::Entity::Trust::Grantor::Address] The person's address.
+          #   @param address [Increase::Models::Entity::Trust::Grantor::Address] The person's address.
           #
           #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
           #
-          #   @param identification [Increase::Entity::Trust::Grantor::Identification] A means of verifying the person's identity.
+          #   @param identification [Increase::Models::Entity::Trust::Grantor::Identification] A means of verifying the person's identity.
           #
           #   @param name [String] The person's legal name.
 
-          # @see Increase::Entity::Trust::Grantor#address
+          # @see Increase::Models::Entity::Trust::Grantor#address
           class Address < Increase::Internal::Type::BaseModel
             # @!attribute city
             #   The city of the address.
@@ -1209,7 +1209,7 @@ module Increase
 
             # @!method initialize(city:, line1:, line2:, state:, zip:)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::Entity::Trust::Grantor::Address} for more details.
+            #   {Increase::Models::Entity::Trust::Grantor::Address} for more details.
             #
             #   The person's address.
             #
@@ -1224,12 +1224,12 @@ module Increase
             #   @param zip [String] The ZIP code of the address.
           end
 
-          # @see Increase::Entity::Trust::Grantor#identification
+          # @see Increase::Models::Entity::Trust::Grantor#identification
           class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
             #   A method that can be used to verify the individual's identity.
             #
-            #   @return [Symbol, Increase::Entity::Trust::Grantor::Identification::Method]
+            #   @return [Symbol, Increase::Models::Entity::Trust::Grantor::Identification::Method]
             required :method_,
                      enum: -> { Increase::Entity::Trust::Grantor::Identification::Method },
                      api_name: :method
@@ -1243,17 +1243,17 @@ module Increase
 
             # @!method initialize(method_:, number_last4:)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::Entity::Trust::Grantor::Identification} for more details.
+            #   {Increase::Models::Entity::Trust::Grantor::Identification} for more details.
             #
             #   A means of verifying the person's identity.
             #
-            #   @param method_ [Symbol, Increase::Entity::Trust::Grantor::Identification::Method] A method that can be used to verify the individual's identity.
+            #   @param method_ [Symbol, Increase::Models::Entity::Trust::Grantor::Identification::Method] A method that can be used to verify the individual's identity.
             #
             #   @param number_last4 [String] The last 4 digits of the identification number that can be used to verify the in
 
             # A method that can be used to verify the individual's identity.
             #
-            # @see Increase::Entity::Trust::Grantor::Identification#method_
+            # @see Increase::Models::Entity::Trust::Grantor::Identification#method_
             module Method
               extend Increase::Internal::Type::Enum
 
@@ -1283,29 +1283,29 @@ module Increase
           #   The individual trustee of the trust. Will be present if the trustee's
           #   `structure` is equal to `individual`.
           #
-          #   @return [Increase::Entity::Trust::Trustee::Individual, nil]
+          #   @return [Increase::Models::Entity::Trust::Trustee::Individual, nil]
           required :individual, -> { Increase::Entity::Trust::Trustee::Individual }, nil?: true
 
           # @!attribute structure
           #   The structure of the trustee. Will always be equal to `individual`.
           #
-          #   @return [Symbol, Increase::Entity::Trust::Trustee::Structure]
+          #   @return [Symbol, Increase::Models::Entity::Trust::Trustee::Structure]
           required :structure, enum: -> { Increase::Entity::Trust::Trustee::Structure }
 
           # @!method initialize(individual:, structure:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Entity::Trust::Trustee} for more details.
+          #   {Increase::Models::Entity::Trust::Trustee} for more details.
           #
-          #   @param individual [Increase::Entity::Trust::Trustee::Individual, nil] The individual trustee of the trust. Will be present if the trustee's `structure
+          #   @param individual [Increase::Models::Entity::Trust::Trustee::Individual, nil] The individual trustee of the trust. Will be present if the trustee's `structure
           #
-          #   @param structure [Symbol, Increase::Entity::Trust::Trustee::Structure] The structure of the trustee. Will always be equal to `individual`.
+          #   @param structure [Symbol, Increase::Models::Entity::Trust::Trustee::Structure] The structure of the trustee. Will always be equal to `individual`.
 
-          # @see Increase::Entity::Trust::Trustee#individual
+          # @see Increase::Models::Entity::Trust::Trustee#individual
           class Individual < Increase::Internal::Type::BaseModel
             # @!attribute address
             #   The person's address.
             #
-            #   @return [Increase::Entity::Trust::Trustee::Individual::Address]
+            #   @return [Increase::Models::Entity::Trust::Trustee::Individual::Address]
             required :address, -> { Increase::Entity::Trust::Trustee::Individual::Address }
 
             # @!attribute date_of_birth
@@ -1317,7 +1317,7 @@ module Increase
             # @!attribute identification
             #   A means of verifying the person's identity.
             #
-            #   @return [Increase::Entity::Trust::Trustee::Individual::Identification]
+            #   @return [Increase::Models::Entity::Trust::Trustee::Individual::Identification]
             required :identification, -> { Increase::Entity::Trust::Trustee::Individual::Identification }
 
             # @!attribute name
@@ -1330,15 +1330,15 @@ module Increase
             #   The individual trustee of the trust. Will be present if the trustee's
             #   `structure` is equal to `individual`.
             #
-            #   @param address [Increase::Entity::Trust::Trustee::Individual::Address] The person's address.
+            #   @param address [Increase::Models::Entity::Trust::Trustee::Individual::Address] The person's address.
             #
             #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
             #
-            #   @param identification [Increase::Entity::Trust::Trustee::Individual::Identification] A means of verifying the person's identity.
+            #   @param identification [Increase::Models::Entity::Trust::Trustee::Individual::Identification] A means of verifying the person's identity.
             #
             #   @param name [String] The person's legal name.
 
-            # @see Increase::Entity::Trust::Trustee::Individual#address
+            # @see Increase::Models::Entity::Trust::Trustee::Individual#address
             class Address < Increase::Internal::Type::BaseModel
               # @!attribute city
               #   The city of the address.
@@ -1373,7 +1373,8 @@ module Increase
 
               # @!method initialize(city:, line1:, line2:, state:, zip:)
               #   Some parameter documentations has been truncated, see
-              #   {Increase::Entity::Trust::Trustee::Individual::Address} for more details.
+              #   {Increase::Models::Entity::Trust::Trustee::Individual::Address} for more
+              #   details.
               #
               #   The person's address.
               #
@@ -1388,12 +1389,12 @@ module Increase
               #   @param zip [String] The ZIP code of the address.
             end
 
-            # @see Increase::Entity::Trust::Trustee::Individual#identification
+            # @see Increase::Models::Entity::Trust::Trustee::Individual#identification
             class Identification < Increase::Internal::Type::BaseModel
               # @!attribute method_
               #   A method that can be used to verify the individual's identity.
               #
-              #   @return [Symbol, Increase::Entity::Trust::Trustee::Individual::Identification::Method]
+              #   @return [Symbol, Increase::Models::Entity::Trust::Trustee::Individual::Identification::Method]
               required :method_,
                        enum: -> { Increase::Entity::Trust::Trustee::Individual::Identification::Method },
                        api_name: :method
@@ -1407,17 +1408,18 @@ module Increase
 
               # @!method initialize(method_:, number_last4:)
               #   Some parameter documentations has been truncated, see
-              #   {Increase::Entity::Trust::Trustee::Individual::Identification} for more details.
+              #   {Increase::Models::Entity::Trust::Trustee::Individual::Identification} for more
+              #   details.
               #
               #   A means of verifying the person's identity.
               #
-              #   @param method_ [Symbol, Increase::Entity::Trust::Trustee::Individual::Identification::Method] A method that can be used to verify the individual's identity.
+              #   @param method_ [Symbol, Increase::Models::Entity::Trust::Trustee::Individual::Identification::Method] A method that can be used to verify the individual's identity.
               #
               #   @param number_last4 [String] The last 4 digits of the identification number that can be used to verify the in
 
               # A method that can be used to verify the individual's identity.
               #
-              # @see Increase::Entity::Trust::Trustee::Individual::Identification#method_
+              # @see Increase::Models::Entity::Trust::Trustee::Individual::Identification#method_
               module Method
                 extend Increase::Internal::Type::Enum
 
@@ -1444,7 +1446,7 @@ module Increase
 
           # The structure of the trustee. Will always be equal to `individual`.
           #
-          # @see Increase::Entity::Trust::Trustee#structure
+          # @see Increase::Models::Entity::Trust::Trustee#structure
           module Structure
             extend Increase::Internal::Type::Enum
 
@@ -1460,7 +1462,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `entity`.
       #
-      # @see Increase::Entity#type
+      # @see Increase::Models::Entity#type
       module Type
         extend Increase::Internal::Type::Enum
 

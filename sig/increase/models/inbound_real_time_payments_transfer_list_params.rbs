@@ -45,6 +45,15 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        account_id: String,
+        account_number_id: String,
+        created_at: Increase::InboundRealTimePaymentsTransferListParams::CreatedAt,
+        cursor: String,
+        limit: Integer,
+        request_options: Increase::RequestOptions
+      }
+
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
 
@@ -71,6 +80,13 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
       end
     end
   end

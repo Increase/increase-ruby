@@ -17,7 +17,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::ACHTransfer]
+        # @return [Increase::Models::ACHTransfer]
         #
         # @see Increase::Models::Simulations::ACHTransferAcknowledgeParams
         def acknowledge(ach_transfer_id, params = {})
@@ -40,13 +40,13 @@ module Increase
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to create a notification of change f
         #
-        # @param change_code [Symbol, Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode] The reason for the notification of change.
+        # @param change_code [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode] The reason for the notification of change.
         #
         # @param corrected_data [String] The corrected data for the notification of change (e.g., a new routing number).
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::ACHTransfer]
+        # @return [Increase::Models::ACHTransfer]
         #
         # @see Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams
         def create_notification_of_change(ach_transfer_id, params)
@@ -71,11 +71,11 @@ module Increase
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to return.
         #
-        # @param reason [Symbol, Increase::Simulations::ACHTransferReturnParams::Reason] The reason why the Federal Reserve or destination bank returned this transfer. D
+        # @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason] The reason why the Federal Reserve or destination bank returned this transfer. D
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::ACHTransfer]
+        # @return [Increase::Models::ACHTransfer]
         #
         # @see Increase::Models::Simulations::ACHTransferReturnParams
         def return_(ach_transfer_id, params = {})
@@ -102,7 +102,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::ACHTransfer]
+        # @return [Increase::Models::ACHTransfer]
         #
         # @see Increase::Models::Simulations::ACHTransferSettleParams
         def settle(ach_transfer_id, params = {})
@@ -127,7 +127,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::ACHTransfer]
+        # @return [Increase::Models::ACHTransfer]
         #
         # @see Increase::Models::Simulations::ACHTransferSubmitParams
         def submit(ach_transfer_id, params = {})

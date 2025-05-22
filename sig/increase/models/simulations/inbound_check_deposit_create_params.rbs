@@ -21,6 +21,13 @@ module Increase
           check_number: String,
           ?request_options: Increase::request_opts
         ) -> void
+
+        def to_hash: -> {
+          account_number_id: String,
+          amount: Integer,
+          check_number: String,
+          request_options: Increase::RequestOptions
+        }
       end
     end
   end

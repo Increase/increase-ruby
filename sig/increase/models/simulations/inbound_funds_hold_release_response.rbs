@@ -49,6 +49,19 @@ module Increase
           type: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::type_
         ) -> void
 
+        def to_hash: -> {
+          id: String,
+          amount: Integer,
+          automatically_releases_at: Time,
+          created_at: Time,
+          currency: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::currency,
+          held_transaction_id: String?,
+          pending_transaction_id: String?,
+          released_at: Time?,
+          status: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::status,
+          type: Increase::Models::Simulations::InboundFundsHoldReleaseResponse::type_
+        }
+
         type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
         module Currency

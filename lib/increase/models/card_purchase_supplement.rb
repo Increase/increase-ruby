@@ -19,13 +19,13 @@ module Increase
       # @!attribute invoice
       #   Invoice-level information about the payment.
       #
-      #   @return [Increase::CardPurchaseSupplement::Invoice, nil]
+      #   @return [Increase::Models::CardPurchaseSupplement::Invoice, nil]
       required :invoice, -> { Increase::CardPurchaseSupplement::Invoice }, nil?: true
 
       # @!attribute line_items
       #   Line item information, such as individual products purchased.
       #
-      #   @return [Array<Increase::CardPurchaseSupplement::LineItem>, nil]
+      #   @return [Array<Increase::Models::CardPurchaseSupplement::LineItem>, nil]
       required :line_items,
                -> { Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement::LineItem] },
                nil?: true
@@ -40,12 +40,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `card_purchase_supplement`.
       #
-      #   @return [Symbol, Increase::CardPurchaseSupplement::Type]
+      #   @return [Symbol, Increase::Models::CardPurchaseSupplement::Type]
       required :type, enum: -> { Increase::CardPurchaseSupplement::Type }
 
       # @!method initialize(id:, card_payment_id:, invoice:, line_items:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::CardPurchaseSupplement} for more details.
+      #   {Increase::Models::CardPurchaseSupplement} for more details.
       #
       #   Additional information about a card purchase (e.g., settlement or refund), such
       #   as level 3 line item data.
@@ -54,15 +54,15 @@ module Increase
       #
       #   @param card_payment_id [String, nil] The ID of the Card Payment this transaction belongs to.
       #
-      #   @param invoice [Increase::CardPurchaseSupplement::Invoice, nil] Invoice-level information about the payment.
+      #   @param invoice [Increase::Models::CardPurchaseSupplement::Invoice, nil] Invoice-level information about the payment.
       #
-      #   @param line_items [Array<Increase::CardPurchaseSupplement::LineItem>, nil] Line item information, such as individual products purchased.
+      #   @param line_items [Array<Increase::Models::CardPurchaseSupplement::LineItem>, nil] Line item information, such as individual products purchased.
       #
       #   @param transaction_id [String] The ID of the transaction.
       #
-      #   @param type [Symbol, Increase::CardPurchaseSupplement::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardPurchaseSupplement::Type] A constant representing the object's type. For this resource it will always be `
 
-      # @see Increase::CardPurchaseSupplement#invoice
+      # @see Increase::Models::CardPurchaseSupplement#invoice
       class Invoice < Increase::Internal::Type::BaseModel
         # @!attribute discount_amount
         #   Discount given to cardholder.
@@ -79,7 +79,7 @@ module Increase
         # @!attribute discount_treatment_code
         #   Indicates how the merchant applied the discount.
         #
-        #   @return [Symbol, Increase::CardPurchaseSupplement::Invoice::DiscountTreatmentCode, nil]
+        #   @return [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::DiscountTreatmentCode, nil]
         required :discount_treatment_code,
                  enum: -> { Increase::CardPurchaseSupplement::Invoice::DiscountTreatmentCode },
                  nil?: true
@@ -155,7 +155,7 @@ module Increase
         # @!attribute tax_treatments
         #   Indicates how the merchant applied taxes.
         #
-        #   @return [Symbol, Increase::CardPurchaseSupplement::Invoice::TaxTreatments, nil]
+        #   @return [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::TaxTreatments, nil]
         required :tax_treatments,
                  enum: -> { Increase::CardPurchaseSupplement::Invoice::TaxTreatments },
                  nil?: true
@@ -168,7 +168,7 @@ module Increase
 
         # @!method initialize(discount_amount:, discount_currency:, discount_treatment_code:, duty_tax_amount:, duty_tax_currency:, order_date:, shipping_amount:, shipping_currency:, shipping_destination_country_code:, shipping_destination_postal_code:, shipping_source_postal_code:, shipping_tax_amount:, shipping_tax_currency:, shipping_tax_rate:, tax_treatments:, unique_value_added_tax_invoice_reference:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::CardPurchaseSupplement::Invoice} for more details.
+        #   {Increase::Models::CardPurchaseSupplement::Invoice} for more details.
         #
         #   Invoice-level information about the payment.
         #
@@ -176,7 +176,7 @@ module Increase
         #
         #   @param discount_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the discount.
         #
-        #   @param discount_treatment_code [Symbol, Increase::CardPurchaseSupplement::Invoice::DiscountTreatmentCode, nil] Indicates how the merchant applied the discount.
+        #   @param discount_treatment_code [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::DiscountTreatmentCode, nil] Indicates how the merchant applied the discount.
         #
         #   @param duty_tax_amount [Integer, nil] Amount of duty taxes.
         #
@@ -200,13 +200,13 @@ module Increase
         #
         #   @param shipping_tax_rate [String, nil] Tax rate for freight and shipping.
         #
-        #   @param tax_treatments [Symbol, Increase::CardPurchaseSupplement::Invoice::TaxTreatments, nil] Indicates how the merchant applied taxes.
+        #   @param tax_treatments [Symbol, Increase::Models::CardPurchaseSupplement::Invoice::TaxTreatments, nil] Indicates how the merchant applied taxes.
         #
         #   @param unique_value_added_tax_invoice_reference [String, nil] Value added tax invoice reference number.
 
         # Indicates how the merchant applied the discount.
         #
-        # @see Increase::CardPurchaseSupplement::Invoice#discount_treatment_code
+        # @see Increase::Models::CardPurchaseSupplement::Invoice#discount_treatment_code
         module DiscountTreatmentCode
           extend Increase::Internal::Type::Enum
 
@@ -225,7 +225,7 @@ module Increase
 
         # Indicates how the merchant applied taxes.
         #
-        # @see Increase::CardPurchaseSupplement::Invoice#tax_treatments
+        # @see Increase::Models::CardPurchaseSupplement::Invoice#tax_treatments
         module TaxTreatments
           extend Increase::Internal::Type::Enum
 
@@ -259,7 +259,7 @@ module Increase
         # @!attribute detail_indicator
         #   Indicates the type of line item.
         #
-        #   @return [Symbol, Increase::CardPurchaseSupplement::LineItem::DetailIndicator, nil]
+        #   @return [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DetailIndicator, nil]
         required :detail_indicator,
                  enum: -> { Increase::CardPurchaseSupplement::LineItem::DetailIndicator },
                  nil?: true
@@ -279,7 +279,7 @@ module Increase
         # @!attribute discount_treatment_code
         #   Indicates how the merchant applied the discount for this specific line item.
         #
-        #   @return [Symbol, Increase::CardPurchaseSupplement::LineItem::DiscountTreatmentCode, nil]
+        #   @return [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DiscountTreatmentCode, nil]
         required :discount_treatment_code,
                  enum: -> { Increase::CardPurchaseSupplement::LineItem::DiscountTreatmentCode },
                  nil?: true
@@ -360,17 +360,17 @@ module Increase
 
         # @!method initialize(id:, detail_indicator:, discount_amount:, discount_currency:, discount_treatment_code:, item_commodity_code:, item_descriptor:, item_quantity:, product_code:, sales_tax_amount:, sales_tax_currency:, sales_tax_rate:, total_amount:, total_amount_currency:, unit_cost:, unit_cost_currency:, unit_of_measure_code:)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::CardPurchaseSupplement::LineItem} for more details.
+        #   {Increase::Models::CardPurchaseSupplement::LineItem} for more details.
         #
         #   @param id [String] The Card Purchase Supplement Line Item identifier.
         #
-        #   @param detail_indicator [Symbol, Increase::CardPurchaseSupplement::LineItem::DetailIndicator, nil] Indicates the type of line item.
+        #   @param detail_indicator [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DetailIndicator, nil] Indicates the type of line item.
         #
         #   @param discount_amount [Integer, nil] Discount amount for this specific line item.
         #
         #   @param discount_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the discount.
         #
-        #   @param discount_treatment_code [Symbol, Increase::CardPurchaseSupplement::LineItem::DiscountTreatmentCode, nil] Indicates how the merchant applied the discount for this specific line item.
+        #   @param discount_treatment_code [Symbol, Increase::Models::CardPurchaseSupplement::LineItem::DiscountTreatmentCode, nil] Indicates how the merchant applied the discount for this specific line item.
         #
         #   @param item_commodity_code [String, nil] Code used to categorize the purchase item.
         #
@@ -398,7 +398,7 @@ module Increase
 
         # Indicates the type of line item.
         #
-        # @see Increase::CardPurchaseSupplement::LineItem#detail_indicator
+        # @see Increase::Models::CardPurchaseSupplement::LineItem#detail_indicator
         module DetailIndicator
           extend Increase::Internal::Type::Enum
 
@@ -417,7 +417,7 @@ module Increase
 
         # Indicates how the merchant applied the discount for this specific line item.
         #
-        # @see Increase::CardPurchaseSupplement::LineItem#discount_treatment_code
+        # @see Increase::Models::CardPurchaseSupplement::LineItem#discount_treatment_code
         module DiscountTreatmentCode
           extend Increase::Internal::Type::Enum
 
@@ -438,7 +438,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `card_purchase_supplement`.
       #
-      # @see Increase::CardPurchaseSupplement#type
+      # @see Increase::Models::CardPurchaseSupplement#type
       module Type
         extend Increase::Internal::Type::Enum
 

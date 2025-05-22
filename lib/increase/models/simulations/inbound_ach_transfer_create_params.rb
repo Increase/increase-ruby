@@ -74,7 +74,7 @@ module Increase
         # @!attribute standard_entry_class_code
         #   The standard entry class code for the transfer.
         #
-        #   @return [Symbol, Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode, nil]
+        #   @return [Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode, nil]
         optional :standard_entry_class_code,
                  enum: -> { Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode }
 
@@ -103,7 +103,7 @@ module Increase
         #
         #   @param resolve_at [Time] The time at which the transfer should be resolved. If not provided will resolve
         #
-        #   @param standard_entry_class_code [Symbol, Increase::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode] The standard entry class code for the transfer.
+        #   @param standard_entry_class_code [Symbol, Increase::Models::Simulations::InboundACHTransferCreateParams::StandardEntryClassCode] The standard entry class code for the transfer.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

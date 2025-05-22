@@ -9,8 +9,8 @@ module Increase
         idempotency_key: String?,
         physical_card_profile_id: String?,
         shipment: Increase::PhysicalCard::Shipment,
-        status: Increase::PhysicalCard::status,
-        type: Increase::PhysicalCard::type_
+        status: Increase::Models::PhysicalCard::status,
+        type: Increase::Models::PhysicalCard::type_
       }
 
     class PhysicalCard < Increase::Internal::Type::BaseModel
@@ -28,9 +28,9 @@ module Increase
 
       attr_accessor shipment: Increase::PhysicalCard::Shipment
 
-      attr_accessor status: Increase::PhysicalCard::status
+      attr_accessor status: Increase::Models::PhysicalCard::status
 
-      attr_accessor type: Increase::PhysicalCard::type_
+      attr_accessor type: Increase::Models::PhysicalCard::type_
 
       def initialize: (
         id: String,
@@ -40,9 +40,21 @@ module Increase
         idempotency_key: String?,
         physical_card_profile_id: String?,
         shipment: Increase::PhysicalCard::Shipment,
-        status: Increase::PhysicalCard::status,
-        type: Increase::PhysicalCard::type_
+        status: Increase::Models::PhysicalCard::status,
+        type: Increase::Models::PhysicalCard::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        card_id: String,
+        cardholder: Increase::PhysicalCard::Cardholder,
+        created_at: Time,
+        idempotency_key: String?,
+        physical_card_profile_id: String?,
+        shipment: Increase::PhysicalCard::Shipment,
+        status: Increase::Models::PhysicalCard::status,
+        type: Increase::Models::PhysicalCard::type_
+      }
 
       type cardholder = { first_name: String, last_name: String }
 
@@ -52,31 +64,40 @@ module Increase
         attr_accessor last_name: String
 
         def initialize: (first_name: String, last_name: String) -> void
+
+        def to_hash: -> { first_name: String, last_name: String }
       end
 
       type shipment =
         {
           address: Increase::PhysicalCard::Shipment::Address,
-          method_: Increase::PhysicalCard::Shipment::method_,
-          status: Increase::PhysicalCard::Shipment::status,
+          method_: Increase::Models::PhysicalCard::Shipment::method_,
+          status: Increase::Models::PhysicalCard::Shipment::status,
           tracking: Increase::PhysicalCard::Shipment::Tracking?
         }
 
       class Shipment < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::PhysicalCard::Shipment::Address
 
-        attr_accessor method_: Increase::PhysicalCard::Shipment::method_
+        attr_accessor method_: Increase::Models::PhysicalCard::Shipment::method_
 
-        attr_accessor status: Increase::PhysicalCard::Shipment::status
+        attr_accessor status: Increase::Models::PhysicalCard::Shipment::status
 
         attr_accessor tracking: Increase::PhysicalCard::Shipment::Tracking?
 
         def initialize: (
           address: Increase::PhysicalCard::Shipment::Address,
-          method_: Increase::PhysicalCard::Shipment::method_,
-          status: Increase::PhysicalCard::Shipment::status,
+          method_: Increase::Models::PhysicalCard::Shipment::method_,
+          status: Increase::Models::PhysicalCard::Shipment::status,
           tracking: Increase::PhysicalCard::Shipment::Tracking?
         ) -> void
+
+        def to_hash: -> {
+          address: Increase::PhysicalCard::Shipment::Address,
+          method_: Increase::Models::PhysicalCard::Shipment::method_,
+          status: Increase::Models::PhysicalCard::Shipment::status,
+          tracking: Increase::PhysicalCard::Shipment::Tracking?
+        }
 
         type address =
           {
@@ -113,6 +134,16 @@ module Increase
             postal_code: String,
             state: String
           ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            :line2 => String?,
+            :line3 => String?,
+            name: String,
+            postal_code: String,
+            state: String
+          }
         end
 
         type method_ = :usps | :fedex_priority_overnight | :fedex_2_day
@@ -129,7 +160,7 @@ module Increase
           # FedEx 2-day.
           FEDEX_2_DAY: :fedex_2_day
 
-          def self?.values: -> ::Array[Increase::PhysicalCard::Shipment::method_]
+          def self?.values: -> ::Array[Increase::Models::PhysicalCard::Shipment::method_]
         end
 
         type status =
@@ -165,7 +196,7 @@ module Increase
           # The physical card shipment was returned to the sender and destroyed by the production facility.
           RETURNED: :returned
 
-          def self?.values: -> ::Array[Increase::PhysicalCard::Shipment::status]
+          def self?.values: -> ::Array[Increase::Models::PhysicalCard::Shipment::status]
         end
 
         type tracking =
@@ -196,10 +227,18 @@ module Increase
             updates: ::Array[Increase::PhysicalCard::Shipment::Tracking::Update]
           ) -> void
 
+          def to_hash: -> {
+            number: String,
+            return_number: String?,
+            return_reason: String?,
+            shipped_at: Time,
+            updates: ::Array[Increase::PhysicalCard::Shipment::Tracking::Update]
+          }
+
           type update =
             {
               carrier_estimated_delivery_at: Time?,
-              category: Increase::PhysicalCard::Shipment::Tracking::Update::category,
+              category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category,
               city: String?,
               created_at: Time,
               postal_code: String?,
@@ -209,7 +248,7 @@ module Increase
           class Update < Increase::Internal::Type::BaseModel
             attr_accessor carrier_estimated_delivery_at: Time?
 
-            attr_accessor category: Increase::PhysicalCard::Shipment::Tracking::Update::category
+            attr_accessor category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category
 
             attr_accessor city: String?
 
@@ -221,12 +260,21 @@ module Increase
 
             def initialize: (
               carrier_estimated_delivery_at: Time?,
-              category: Increase::PhysicalCard::Shipment::Tracking::Update::category,
+              category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category,
               city: String?,
               created_at: Time,
               postal_code: String?,
               state: String?
             ) -> void
+
+            def to_hash: -> {
+              carrier_estimated_delivery_at: Time?,
+              category: Increase::Models::PhysicalCard::Shipment::Tracking::Update::category,
+              city: String?,
+              created_at: Time,
+              postal_code: String?,
+              state: String?
+            }
 
             type category =
               :in_transit
@@ -249,7 +297,7 @@ module Increase
               # Delivery failed and the physical card was returned to sender.
               RETURNED_TO_SENDER: :returned_to_sender
 
-              def self?.values: -> ::Array[Increase::PhysicalCard::Shipment::Tracking::Update::category]
+              def self?.values: -> ::Array[Increase::Models::PhysicalCard::Shipment::Tracking::Update::category]
             end
           end
         end
@@ -269,7 +317,7 @@ module Increase
         # The physical card is permanently canceled.
         CANCELED: :canceled
 
-        def self?.values: -> ::Array[Increase::PhysicalCard::status]
+        def self?.values: -> ::Array[Increase::Models::PhysicalCard::status]
       end
 
       type type_ = :physical_card
@@ -279,7 +327,7 @@ module Increase
 
         PHYSICAL_CARD: :physical_card
 
-        def self?.values: -> ::Array[Increase::PhysicalCard::type_]
+        def self?.values: -> ::Array[Increase::Models::PhysicalCard::type_]
       end
     end
   end

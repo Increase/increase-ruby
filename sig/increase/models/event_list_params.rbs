@@ -47,18 +47,32 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
-      type category = { in_: ::Array[Increase::EventListParams::Category::in_] }
+      def to_hash: -> {
+        associated_object_id: String,
+        category: Increase::EventListParams::Category,
+        created_at: Increase::EventListParams::CreatedAt,
+        cursor: String,
+        limit: Integer,
+        request_options: Increase::RequestOptions
+      }
+
+      type category =
+        { in_: ::Array[Increase::Models::EventListParams::Category::in_] }
 
       class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::EventListParams::Category::in_]?
+        attr_reader in_: ::Array[Increase::Models::EventListParams::Category::in_]?
 
         def in_=: (
-          ::Array[Increase::EventListParams::Category::in_]
-        ) -> ::Array[Increase::EventListParams::Category::in_]
+          ::Array[Increase::Models::EventListParams::Category::in_]
+        ) -> ::Array[Increase::Models::EventListParams::Category::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::EventListParams::Category::in_]
+          ?in_: ::Array[Increase::Models::EventListParams::Category::in_]
         ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::EventListParams::Category::in_]
+        }
 
         type in_ =
           :"account.created"
@@ -417,7 +431,7 @@ module Increase
           # Occurs whenever a Wire Transfer is updated.
           WIRE_TRANSFER_UPDATED: :"wire_transfer.updated"
 
-          def self?.values: -> ::Array[Increase::EventListParams::Category::in_]
+          def self?.values: -> ::Array[Increase::Models::EventListParams::Category::in_]
         end
       end
 
@@ -447,6 +461,13 @@ module Increase
           ?on_or_after: Time,
           ?on_or_before: Time
         ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
       end
     end
   end

@@ -35,7 +35,7 @@ module Increase
       #   Text printed on the front of the card. Reach out to
       #   [support@increase.com](mailto:support@increase.com) for more information.
       #
-      #   @return [Increase::PhysicalCardProfileCloneParams::FrontText, nil]
+      #   @return [Increase::Models::PhysicalCardProfileCloneParams::FrontText, nil]
       optional :front_text, -> { Increase::PhysicalCardProfileCloneParams::FrontText }
 
       # @!method initialize(carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, request_options: {})
@@ -50,7 +50,7 @@ module Increase
       #
       #   @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
-      #   @param front_text [Increase::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      #   @param front_text [Increase::Models::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -71,7 +71,7 @@ module Increase
 
         # @!method initialize(line1:, line2: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::PhysicalCardProfileCloneParams::FrontText} for more details.
+        #   {Increase::Models::PhysicalCardProfileCloneParams::FrontText} for more details.
         #
         #   Text printed on the front of the card. Reach out to
         #   [support@increase.com](mailto:support@increase.com) for more information.

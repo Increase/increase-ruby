@@ -10,11 +10,11 @@ module Increase
       # @!attribute reason
       #   Reason for the reversal.
       #
-      #   @return [Symbol, Increase::InboundWireTransferReverseParams::Reason]
+      #   @return [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason]
       required :reason, enum: -> { Increase::InboundWireTransferReverseParams::Reason }
 
       # @!method initialize(reason:, request_options: {})
-      #   @param reason [Symbol, Increase::InboundWireTransferReverseParams::Reason] Reason for the reversal.
+      #   @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

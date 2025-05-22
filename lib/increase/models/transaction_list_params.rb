@@ -15,12 +15,12 @@ module Increase
 
       # @!attribute category
       #
-      #   @return [Increase::TransactionListParams::Category, nil]
+      #   @return [Increase::Models::TransactionListParams::Category, nil]
       optional :category, -> { Increase::TransactionListParams::Category }
 
       # @!attribute created_at
       #
-      #   @return [Increase::TransactionListParams::CreatedAt, nil]
+      #   @return [Increase::Models::TransactionListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::TransactionListParams::CreatedAt }
 
       # @!attribute cursor
@@ -49,9 +49,9 @@ module Increase
       #
       #   @param account_id [String] Filter Transactions for those belonging to the specified Account.
       #
-      #   @param category [Increase::TransactionListParams::Category]
+      #   @param category [Increase::Models::TransactionListParams::Category]
       #
-      #   @param created_at [Increase::TransactionListParams::CreatedAt]
+      #   @param created_at [Increase::Models::TransactionListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -66,7 +66,7 @@ module Increase
         #   Return results whose value is in the provided list. For GET requests, this
         #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::TransactionListParams::Category::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::TransactionListParams::Category::In>, nil]
         optional :in_,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::TransactionListParams::Category::In]
@@ -75,9 +75,9 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::TransactionListParams::Category} for more details.
+        #   {Increase::Models::TransactionListParams::Category} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::TransactionListParams::Category::In>] Return results whose value is in the provided list. For GET requests, this shoul
+        #   @param in_ [Array<Symbol, Increase::Models::TransactionListParams::Category::In>] Return results whose value is in the provided list. For GET requests, this shoul
 
         module In
           extend Increase::Internal::Type::Enum
@@ -211,7 +211,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::TransactionListParams::CreatedAt} for more details.
+        #   {Increase::Models::TransactionListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

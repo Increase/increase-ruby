@@ -25,7 +25,7 @@ module Increase
       # @!attribute entries
       #   The entries.
       #
-      #   @return [Array<Increase::BookkeepingEntrySet::Entry>]
+      #   @return [Array<Increase::Models::BookkeepingEntrySet::Entry>]
       required :entries, -> { Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntrySet::Entry] }
 
       # @!attribute idempotency_key
@@ -46,12 +46,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `bookkeeping_entry_set`.
       #
-      #   @return [Symbol, Increase::BookkeepingEntrySet::Type]
+      #   @return [Symbol, Increase::Models::BookkeepingEntrySet::Type]
       required :type, enum: -> { Increase::BookkeepingEntrySet::Type }
 
       # @!method initialize(id:, created_at:, date:, entries:, idempotency_key:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::BookkeepingEntrySet} for more details.
+      #   {Increase::Models::BookkeepingEntrySet} for more details.
       #
       #   Entry Sets are accounting entries that are transactionally applied. Your
       #   compliance setup might require annotating money movements using this API. Learn
@@ -64,13 +64,13 @@ module Increase
       #
       #   @param date [Time] The timestamp of the entry set.
       #
-      #   @param entries [Array<Increase::BookkeepingEntrySet::Entry>] The entries.
+      #   @param entries [Array<Increase::Models::BookkeepingEntrySet::Entry>] The entries.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param transaction_id [String, nil] The transaction identifier, if any.
       #
-      #   @param type [Symbol, Increase::BookkeepingEntrySet::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::BookkeepingEntrySet::Type] A constant representing the object's type. For this resource it will always be `
 
       class Entry < Increase::Internal::Type::BaseModel
         # @!attribute id
@@ -102,7 +102,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `bookkeeping_entry_set`.
       #
-      # @see Increase::BookkeepingEntrySet#type
+      # @see Increase::Models::BookkeepingEntrySet#type
       module Type
         extend Increase::Internal::Type::Enum
 

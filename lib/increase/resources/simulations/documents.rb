@@ -12,7 +12,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Document]
+        # @return [Increase::Models::Document]
         #
         # @see Increase::Models::Simulations::DocumentCreateParams
         def create(params)

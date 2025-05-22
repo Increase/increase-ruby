@@ -11,12 +11,12 @@ module Increase
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        status: Increase::Entity::status,
-        structure: Increase::Entity::structure,
+        status: Increase::Models::Entity::status,
+        structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
-        type: Increase::Entity::type_
+        type: Increase::Models::Entity::type_
       }
 
     class Entity < Increase::Internal::Type::BaseModel
@@ -38,9 +38,9 @@ module Increase
 
       attr_accessor natural_person: Increase::Entity::NaturalPerson?
 
-      attr_accessor status: Increase::Entity::status
+      attr_accessor status: Increase::Models::Entity::status
 
-      attr_accessor structure: Increase::Entity::structure
+      attr_accessor structure: Increase::Models::Entity::structure
 
       attr_accessor supplemental_documents: ::Array[Increase::EntitySupplementalDocument]
 
@@ -48,7 +48,7 @@ module Increase
 
       attr_accessor trust: Increase::Entity::Trust?
 
-      attr_accessor type: Increase::Entity::type_
+      attr_accessor type: Increase::Models::Entity::type_
 
       def initialize: (
         id: String,
@@ -60,13 +60,31 @@ module Increase
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        status: Increase::Entity::status,
-        structure: Increase::Entity::structure,
+        status: Increase::Models::Entity::status,
+        structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
-        type: Increase::Entity::type_
+        type: Increase::Models::Entity::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        corporation: Increase::Entity::Corporation?,
+        created_at: Time,
+        description: String?,
+        details_confirmed_at: Time?,
+        government_authority: Increase::Entity::GovernmentAuthority?,
+        idempotency_key: String?,
+        joint: Increase::Entity::Joint?,
+        natural_person: Increase::Entity::NaturalPerson?,
+        status: Increase::Models::Entity::status,
+        structure: Increase::Models::Entity::structure,
+        supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
+        third_party_verification: Increase::Entity::ThirdPartyVerification?,
+        trust: Increase::Entity::Trust?,
+        type: Increase::Models::Entity::type_
+      }
 
       type corporation =
         {
@@ -104,6 +122,16 @@ module Increase
           website: String?
         ) -> void
 
+        def to_hash: -> {
+          address: Increase::Entity::Corporation::Address,
+          beneficial_owners: ::Array[Increase::Entity::Corporation::BeneficialOwner],
+          incorporation_state: String?,
+          industry_code: String?,
+          name: String,
+          tax_identifier: String?,
+          website: String?
+        }
+
         type address =
           {
             city: String,
@@ -131,6 +159,14 @@ module Increase
             state: String,
             zip: String
           ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String,
+            zip: String
+          }
         end
 
         type beneficial_owner =
@@ -138,7 +174,7 @@ module Increase
             beneficial_owner_id: String,
             company_title: String?,
             individual: Increase::Entity::Corporation::BeneficialOwner::Individual,
-            prong: Increase::Entity::Corporation::BeneficialOwner::prong
+            prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
           }
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
@@ -148,14 +184,21 @@ module Increase
 
           attr_accessor individual: Increase::Entity::Corporation::BeneficialOwner::Individual
 
-          attr_accessor prong: Increase::Entity::Corporation::BeneficialOwner::prong
+          attr_accessor prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
 
           def initialize: (
             beneficial_owner_id: String,
             company_title: String?,
             individual: Increase::Entity::Corporation::BeneficialOwner::Individual,
-            prong: Increase::Entity::Corporation::BeneficialOwner::prong
+            prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
           ) -> void
+
+          def to_hash: -> {
+            beneficial_owner_id: String,
+            company_title: String?,
+            individual: Increase::Entity::Corporation::BeneficialOwner::Individual,
+            prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
+          }
 
           type individual =
             {
@@ -180,6 +223,13 @@ module Increase
               identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
               name: String
             ) -> void
+
+            def to_hash: -> {
+              address: Increase::Entity::Corporation::BeneficialOwner::Individual::Address,
+              date_of_birth: Date,
+              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
+              name: String
+            }
 
             type address =
               {
@@ -212,23 +262,37 @@ module Increase
                 state: String?,
                 zip: String?
               ) -> void
+
+              def to_hash: -> {
+                city: String?,
+                country: String,
+                :line1 => String,
+                :line2 => String?,
+                state: String?,
+                zip: String?
+              }
             end
 
             type identification =
               {
-                method_: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::method_,
+                method_: Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::method_,
                 :number_last4 => String
               }
 
             class Identification < Increase::Internal::Type::BaseModel
-              attr_accessor method_: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::method_
+              attr_accessor method_: Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::method_
 
               attr_accessor number_last4: String
 
               def initialize: (
-                method_: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::method_,
+                method_: Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::method_,
                 number_last4: String
               ) -> void
+
+              def to_hash: -> {
+                method_: Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::method_,
+                :number_last4 => String
+              }
 
               type method_ =
                 :social_security_number
@@ -255,7 +319,7 @@ module Increase
                 # Another identifying document.
                 OTHER: :other
 
-                def self?.values: -> ::Array[Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::method_]
+                def self?.values: -> ::Array[Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification::method_]
               end
             end
           end
@@ -271,7 +335,7 @@ module Increase
             # A person who manages, directs, or has significant control of the entity.
             CONTROL: :control
 
-            def self?.values: -> ::Array[Increase::Entity::Corporation::BeneficialOwner::prong]
+            def self?.values: -> ::Array[Increase::Models::Entity::Corporation::BeneficialOwner::prong]
           end
         end
       end
@@ -280,7 +344,7 @@ module Increase
         {
           address: Increase::Entity::GovernmentAuthority::Address,
           authorized_persons: ::Array[Increase::Entity::GovernmentAuthority::AuthorizedPerson],
-          category: Increase::Entity::GovernmentAuthority::category,
+          category: Increase::Models::Entity::GovernmentAuthority::category,
           name: String,
           tax_identifier: String?,
           website: String?
@@ -291,7 +355,7 @@ module Increase
 
         attr_accessor authorized_persons: ::Array[Increase::Entity::GovernmentAuthority::AuthorizedPerson]
 
-        attr_accessor category: Increase::Entity::GovernmentAuthority::category
+        attr_accessor category: Increase::Models::Entity::GovernmentAuthority::category
 
         attr_accessor name: String
 
@@ -302,11 +366,20 @@ module Increase
         def initialize: (
           address: Increase::Entity::GovernmentAuthority::Address,
           authorized_persons: ::Array[Increase::Entity::GovernmentAuthority::AuthorizedPerson],
-          category: Increase::Entity::GovernmentAuthority::category,
+          category: Increase::Models::Entity::GovernmentAuthority::category,
           name: String,
           tax_identifier: String?,
           website: String?
         ) -> void
+
+        def to_hash: -> {
+          address: Increase::Entity::GovernmentAuthority::Address,
+          authorized_persons: ::Array[Increase::Entity::GovernmentAuthority::AuthorizedPerson],
+          category: Increase::Models::Entity::GovernmentAuthority::category,
+          name: String,
+          tax_identifier: String?,
+          website: String?
+        }
 
         type address =
           {
@@ -335,6 +408,14 @@ module Increase
             state: String,
             zip: String
           ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String,
+            zip: String
+          }
         end
 
         type authorized_person = { authorized_person_id: String, name: String }
@@ -345,6 +426,8 @@ module Increase
           attr_accessor name: String
 
           def initialize: (authorized_person_id: String, name: String) -> void
+
+          def to_hash: -> { authorized_person_id: String, name: String }
         end
 
         type category = :municipality
@@ -355,7 +438,7 @@ module Increase
           # The Public Entity is a Municipality.
           MUNICIPALITY: :municipality
 
-          def self?.values: -> ::Array[Increase::Entity::GovernmentAuthority::category]
+          def self?.values: -> ::Array[Increase::Models::Entity::GovernmentAuthority::category]
         end
       end
 
@@ -374,6 +457,11 @@ module Increase
           individuals: ::Array[Increase::Entity::Joint::Individual],
           name: String
         ) -> void
+
+        def to_hash: -> {
+          individuals: ::Array[Increase::Entity::Joint::Individual],
+          name: String
+        }
 
         type individual =
           {
@@ -398,6 +486,13 @@ module Increase
             identification: Increase::Entity::Joint::Individual::Identification,
             name: String
           ) -> void
+
+          def to_hash: -> {
+            address: Increase::Entity::Joint::Individual::Address,
+            date_of_birth: Date,
+            identification: Increase::Entity::Joint::Individual::Identification,
+            name: String
+          }
 
           type address =
             {
@@ -426,23 +521,36 @@ module Increase
               state: String,
               zip: String
             ) -> void
+
+            def to_hash: -> {
+              city: String,
+              :line1 => String,
+              :line2 => String?,
+              state: String,
+              zip: String
+            }
           end
 
           type identification =
             {
-              method_: Increase::Entity::Joint::Individual::Identification::method_,
+              method_: Increase::Models::Entity::Joint::Individual::Identification::method_,
               :number_last4 => String
             }
 
           class Identification < Increase::Internal::Type::BaseModel
-            attr_accessor method_: Increase::Entity::Joint::Individual::Identification::method_
+            attr_accessor method_: Increase::Models::Entity::Joint::Individual::Identification::method_
 
             attr_accessor number_last4: String
 
             def initialize: (
-              method_: Increase::Entity::Joint::Individual::Identification::method_,
+              method_: Increase::Models::Entity::Joint::Individual::Identification::method_,
               number_last4: String
             ) -> void
+
+            def to_hash: -> {
+              method_: Increase::Models::Entity::Joint::Individual::Identification::method_,
+              :number_last4 => String
+            }
 
             type method_ =
               :social_security_number
@@ -469,7 +577,7 @@ module Increase
               # Another identifying document.
               OTHER: :other
 
-              def self?.values: -> ::Array[Increase::Entity::Joint::Individual::Identification::method_]
+              def self?.values: -> ::Array[Increase::Models::Entity::Joint::Individual::Identification::method_]
             end
           end
         end
@@ -499,6 +607,13 @@ module Increase
           name: String
         ) -> void
 
+        def to_hash: -> {
+          address: Increase::Entity::NaturalPerson::Address,
+          date_of_birth: Date,
+          identification: Increase::Entity::NaturalPerson::Identification,
+          name: String
+        }
+
         type address =
           {
             city: String,
@@ -526,23 +641,36 @@ module Increase
             state: String,
             zip: String
           ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String,
+            zip: String
+          }
         end
 
         type identification =
           {
-            method_: Increase::Entity::NaturalPerson::Identification::method_,
+            method_: Increase::Models::Entity::NaturalPerson::Identification::method_,
             :number_last4 => String
           }
 
         class Identification < Increase::Internal::Type::BaseModel
-          attr_accessor method_: Increase::Entity::NaturalPerson::Identification::method_
+          attr_accessor method_: Increase::Models::Entity::NaturalPerson::Identification::method_
 
           attr_accessor number_last4: String
 
           def initialize: (
-            method_: Increase::Entity::NaturalPerson::Identification::method_,
+            method_: Increase::Models::Entity::NaturalPerson::Identification::method_,
             number_last4: String
           ) -> void
+
+          def to_hash: -> {
+            method_: Increase::Models::Entity::NaturalPerson::Identification::method_,
+            :number_last4 => String
+          }
 
           type method_ =
             :social_security_number
@@ -569,7 +697,7 @@ module Increase
             # Another identifying document.
             OTHER: :other
 
-            def self?.values: -> ::Array[Increase::Entity::NaturalPerson::Identification::method_]
+            def self?.values: -> ::Array[Increase::Models::Entity::NaturalPerson::Identification::method_]
           end
         end
       end
@@ -588,7 +716,7 @@ module Increase
         # The entity is temporarily disabled and cannot be used for financial activity.
         DISABLED: :disabled
 
-        def self?.values: -> ::Array[Increase::Entity::status]
+        def self?.values: -> ::Array[Increase::Models::Entity::status]
       end
 
       type structure =
@@ -612,24 +740,29 @@ module Increase
         # A government authority.
         GOVERNMENT_AUTHORITY: :government_authority
 
-        def self?.values: -> ::Array[Increase::Entity::structure]
+        def self?.values: -> ::Array[Increase::Models::Entity::structure]
       end
 
       type third_party_verification =
         {
           reference: String,
-          vendor: Increase::Entity::ThirdPartyVerification::vendor
+          vendor: Increase::Models::Entity::ThirdPartyVerification::vendor
         }
 
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
         attr_accessor reference: String
 
-        attr_accessor vendor: Increase::Entity::ThirdPartyVerification::vendor
+        attr_accessor vendor: Increase::Models::Entity::ThirdPartyVerification::vendor
 
         def initialize: (
           reference: String,
-          vendor: Increase::Entity::ThirdPartyVerification::vendor
+          vendor: Increase::Models::Entity::ThirdPartyVerification::vendor
         ) -> void
+
+        def to_hash: -> {
+          reference: String,
+          vendor: Increase::Models::Entity::ThirdPartyVerification::vendor
+        }
 
         type vendor = :alloy | :middesk | :oscilar
 
@@ -645,14 +778,14 @@ module Increase
           # Oscilar. See https://oscilar.com for more information.
           OSCILAR: :oscilar
 
-          def self?.values: -> ::Array[Increase::Entity::ThirdPartyVerification::vendor]
+          def self?.values: -> ::Array[Increase::Models::Entity::ThirdPartyVerification::vendor]
         end
       end
 
       type trust =
         {
           address: Increase::Entity::Trust::Address,
-          category: Increase::Entity::Trust::category,
+          category: Increase::Models::Entity::Trust::category,
           formation_document_file_id: String?,
           formation_state: String?,
           grantor: Increase::Entity::Trust::Grantor?,
@@ -664,7 +797,7 @@ module Increase
       class Trust < Increase::Internal::Type::BaseModel
         attr_accessor address: Increase::Entity::Trust::Address
 
-        attr_accessor category: Increase::Entity::Trust::category
+        attr_accessor category: Increase::Models::Entity::Trust::category
 
         attr_accessor formation_document_file_id: String?
 
@@ -680,7 +813,7 @@ module Increase
 
         def initialize: (
           address: Increase::Entity::Trust::Address,
-          category: Increase::Entity::Trust::category,
+          category: Increase::Models::Entity::Trust::category,
           formation_document_file_id: String?,
           formation_state: String?,
           grantor: Increase::Entity::Trust::Grantor?,
@@ -688,6 +821,17 @@ module Increase
           tax_identifier: String?,
           trustees: ::Array[Increase::Entity::Trust::Trustee]
         ) -> void
+
+        def to_hash: -> {
+          address: Increase::Entity::Trust::Address,
+          category: Increase::Models::Entity::Trust::category,
+          formation_document_file_id: String?,
+          formation_state: String?,
+          grantor: Increase::Entity::Trust::Grantor?,
+          name: String,
+          tax_identifier: String?,
+          trustees: ::Array[Increase::Entity::Trust::Trustee]
+        }
 
         type address =
           {
@@ -716,6 +860,14 @@ module Increase
             state: String,
             zip: String
           ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String,
+            zip: String
+          }
         end
 
         type category = :revocable | :irrevocable
@@ -729,7 +881,7 @@ module Increase
           # The trust cannot be revoked.
           IRREVOCABLE: :irrevocable
 
-          def self?.values: -> ::Array[Increase::Entity::Trust::category]
+          def self?.values: -> ::Array[Increase::Models::Entity::Trust::category]
         end
 
         type grantor =
@@ -755,6 +907,13 @@ module Increase
             identification: Increase::Entity::Trust::Grantor::Identification,
             name: String
           ) -> void
+
+          def to_hash: -> {
+            address: Increase::Entity::Trust::Grantor::Address,
+            date_of_birth: Date,
+            identification: Increase::Entity::Trust::Grantor::Identification,
+            name: String
+          }
 
           type address =
             {
@@ -783,23 +942,36 @@ module Increase
               state: String,
               zip: String
             ) -> void
+
+            def to_hash: -> {
+              city: String,
+              :line1 => String,
+              :line2 => String?,
+              state: String,
+              zip: String
+            }
           end
 
           type identification =
             {
-              method_: Increase::Entity::Trust::Grantor::Identification::method_,
+              method_: Increase::Models::Entity::Trust::Grantor::Identification::method_,
               :number_last4 => String
             }
 
           class Identification < Increase::Internal::Type::BaseModel
-            attr_accessor method_: Increase::Entity::Trust::Grantor::Identification::method_
+            attr_accessor method_: Increase::Models::Entity::Trust::Grantor::Identification::method_
 
             attr_accessor number_last4: String
 
             def initialize: (
-              method_: Increase::Entity::Trust::Grantor::Identification::method_,
+              method_: Increase::Models::Entity::Trust::Grantor::Identification::method_,
               number_last4: String
             ) -> void
+
+            def to_hash: -> {
+              method_: Increase::Models::Entity::Trust::Grantor::Identification::method_,
+              :number_last4 => String
+            }
 
             type method_ =
               :social_security_number
@@ -826,7 +998,7 @@ module Increase
               # Another identifying document.
               OTHER: :other
 
-              def self?.values: -> ::Array[Increase::Entity::Trust::Grantor::Identification::method_]
+              def self?.values: -> ::Array[Increase::Models::Entity::Trust::Grantor::Identification::method_]
             end
           end
         end
@@ -834,18 +1006,23 @@ module Increase
         type trustee =
           {
             individual: Increase::Entity::Trust::Trustee::Individual?,
-            structure: Increase::Entity::Trust::Trustee::structure
+            structure: Increase::Models::Entity::Trust::Trustee::structure
           }
 
         class Trustee < Increase::Internal::Type::BaseModel
           attr_accessor individual: Increase::Entity::Trust::Trustee::Individual?
 
-          attr_accessor structure: Increase::Entity::Trust::Trustee::structure
+          attr_accessor structure: Increase::Models::Entity::Trust::Trustee::structure
 
           def initialize: (
             individual: Increase::Entity::Trust::Trustee::Individual?,
-            structure: Increase::Entity::Trust::Trustee::structure
+            structure: Increase::Models::Entity::Trust::Trustee::structure
           ) -> void
+
+          def to_hash: -> {
+            individual: Increase::Entity::Trust::Trustee::Individual?,
+            structure: Increase::Models::Entity::Trust::Trustee::structure
+          }
 
           type individual =
             {
@@ -870,6 +1047,13 @@ module Increase
               identification: Increase::Entity::Trust::Trustee::Individual::Identification,
               name: String
             ) -> void
+
+            def to_hash: -> {
+              address: Increase::Entity::Trust::Trustee::Individual::Address,
+              date_of_birth: Date,
+              identification: Increase::Entity::Trust::Trustee::Individual::Identification,
+              name: String
+            }
 
             type address =
               {
@@ -898,23 +1082,36 @@ module Increase
                 state: String,
                 zip: String
               ) -> void
+
+              def to_hash: -> {
+                city: String,
+                :line1 => String,
+                :line2 => String?,
+                state: String,
+                zip: String
+              }
             end
 
             type identification =
               {
-                method_: Increase::Entity::Trust::Trustee::Individual::Identification::method_,
+                method_: Increase::Models::Entity::Trust::Trustee::Individual::Identification::method_,
                 :number_last4 => String
               }
 
             class Identification < Increase::Internal::Type::BaseModel
-              attr_accessor method_: Increase::Entity::Trust::Trustee::Individual::Identification::method_
+              attr_accessor method_: Increase::Models::Entity::Trust::Trustee::Individual::Identification::method_
 
               attr_accessor number_last4: String
 
               def initialize: (
-                method_: Increase::Entity::Trust::Trustee::Individual::Identification::method_,
+                method_: Increase::Models::Entity::Trust::Trustee::Individual::Identification::method_,
                 number_last4: String
               ) -> void
+
+              def to_hash: -> {
+                method_: Increase::Models::Entity::Trust::Trustee::Individual::Identification::method_,
+                :number_last4 => String
+              }
 
               type method_ =
                 :social_security_number
@@ -941,7 +1138,7 @@ module Increase
                 # Another identifying document.
                 OTHER: :other
 
-                def self?.values: -> ::Array[Increase::Entity::Trust::Trustee::Individual::Identification::method_]
+                def self?.values: -> ::Array[Increase::Models::Entity::Trust::Trustee::Individual::Identification::method_]
               end
             end
           end
@@ -954,7 +1151,7 @@ module Increase
             # The trustee is an individual.
             INDIVIDUAL: :individual
 
-            def self?.values: -> ::Array[Increase::Entity::Trust::Trustee::structure]
+            def self?.values: -> ::Array[Increase::Models::Entity::Trust::Trustee::structure]
           end
         end
       end
@@ -966,7 +1163,7 @@ module Increase
 
         ENTITY: :entity
 
-        def self?.values: -> ::Array[Increase::Entity::type_]
+        def self?.values: -> ::Array[Increase::Models::Entity::type_]
       end
     end
   end

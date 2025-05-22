@@ -32,7 +32,7 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `card_details`.
       #
-      #   @return [Symbol, Increase::CardDetails::Type]
+      #   @return [Symbol, Increase::Models::CardDetails::Type]
       required :type, enum: -> { Increase::CardDetails::Type }
 
       # @!attribute verification_code
@@ -44,8 +44,8 @@ module Increase
       required :verification_code, String
 
       # @!method initialize(card_id:, expiration_month:, expiration_year:, primary_account_number:, type:, verification_code:)
-      #   Some parameter documentations has been truncated, see {Increase::CardDetails}
-      #   for more details.
+      #   Some parameter documentations has been truncated, see
+      #   {Increase::Models::CardDetails} for more details.
       #
       #   An object containing the sensitive details (card number, cvc, etc) for a Card.
       #
@@ -57,14 +57,14 @@ module Increase
       #
       #   @param primary_account_number [String] The card number.
       #
-      #   @param type [Symbol, Increase::CardDetails::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardDetails::Type] A constant representing the object's type. For this resource it will always be `
       #
       #   @param verification_code [String] The three-digit verification code for the card. It's also known as the Card Veri
 
       # A constant representing the object's type. For this resource it will always be
       # `card_details`.
       #
-      # @see Increase::CardDetails#type
+      # @see Increase::Models::CardDetails#type
       module Type
         extend Increase::Internal::Type::Enum
 

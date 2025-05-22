@@ -23,6 +23,13 @@ module Increase
           ?amount: Integer,
           ?request_options: Increase::request_opts
         ) -> void
+
+        def to_hash: -> {
+          card_id: String,
+          pending_transaction_id: String,
+          amount: Integer,
+          request_options: Increase::RequestOptions
+        }
       end
     end
   end

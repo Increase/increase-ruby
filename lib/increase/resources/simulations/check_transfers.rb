@@ -15,7 +15,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::CheckTransfer]
+        # @return [Increase::Models::CheckTransfer]
         #
         # @see Increase::Models::Simulations::CheckTransferMailParams
         def mail(check_transfer_id, params = {})

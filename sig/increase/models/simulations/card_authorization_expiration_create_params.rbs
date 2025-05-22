@@ -15,6 +15,11 @@ module Increase
           card_payment_id: String,
           ?request_options: Increase::request_opts
         ) -> void
+
+        def to_hash: -> {
+          card_payment_id: String,
+          request_options: Increase::RequestOptions
+        }
       end
     end
   end

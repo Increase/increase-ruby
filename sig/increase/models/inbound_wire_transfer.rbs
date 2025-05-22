@@ -26,8 +26,8 @@ module Increase
         :originator_to_beneficiary_information_line4 => String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
         sender_reference: String?,
-        status: Increase::InboundWireTransfer::status,
-        type: Increase::InboundWireTransfer::type_
+        status: Increase::Models::InboundWireTransfer::status,
+        type: Increase::Models::InboundWireTransfer::type_
       }
 
     class InboundWireTransfer < Increase::Internal::Type::BaseModel
@@ -79,9 +79,9 @@ module Increase
 
       attr_accessor sender_reference: String?
 
-      attr_accessor status: Increase::InboundWireTransfer::status
+      attr_accessor status: Increase::Models::InboundWireTransfer::status
 
-      attr_accessor type: Increase::InboundWireTransfer::type_
+      attr_accessor type: Increase::Models::InboundWireTransfer::type_
 
       def initialize: (
         id: String,
@@ -108,25 +108,59 @@ module Increase
         originator_to_beneficiary_information_line4: String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
         sender_reference: String?,
-        status: Increase::InboundWireTransfer::status,
-        type: Increase::InboundWireTransfer::type_
+        status: Increase::Models::InboundWireTransfer::status,
+        type: Increase::Models::InboundWireTransfer::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        :beneficiary_address_line1 => String?,
+        :beneficiary_address_line2 => String?,
+        :beneficiary_address_line3 => String?,
+        beneficiary_name: String?,
+        beneficiary_reference: String?,
+        created_at: Time,
+        description: String,
+        input_message_accountability_data: String?,
+        :originator_address_line1 => String?,
+        :originator_address_line2 => String?,
+        :originator_address_line3 => String?,
+        originator_name: String?,
+        originator_routing_number: String?,
+        originator_to_beneficiary_information: String?,
+        :originator_to_beneficiary_information_line1 => String?,
+        :originator_to_beneficiary_information_line2 => String?,
+        :originator_to_beneficiary_information_line3 => String?,
+        :originator_to_beneficiary_information_line4 => String?,
+        reversal: Increase::InboundWireTransfer::Reversal?,
+        sender_reference: String?,
+        status: Increase::Models::InboundWireTransfer::status,
+        type: Increase::Models::InboundWireTransfer::type_
+      }
 
       type reversal =
         {
-          reason: Increase::InboundWireTransfer::Reversal::reason,
+          reason: Increase::Models::InboundWireTransfer::Reversal::reason,
           reversed_at: Time
         }
 
       class Reversal < Increase::Internal::Type::BaseModel
-        attr_accessor reason: Increase::InboundWireTransfer::Reversal::reason
+        attr_accessor reason: Increase::Models::InboundWireTransfer::Reversal::reason
 
         attr_accessor reversed_at: Time
 
         def initialize: (
-          reason: Increase::InboundWireTransfer::Reversal::reason,
+          reason: Increase::Models::InboundWireTransfer::Reversal::reason,
           reversed_at: Time
         ) -> void
+
+        def to_hash: -> {
+          reason: Increase::Models::InboundWireTransfer::Reversal::reason,
+          reversed_at: Time
+        }
 
         type reason = :duplicate | :creditor_request
 
@@ -139,7 +173,7 @@ module Increase
           # The recipient of the wire transfer requested the funds be returned to the sender.
           CREDITOR_REQUEST: :creditor_request
 
-          def self?.values: -> ::Array[Increase::InboundWireTransfer::Reversal::reason]
+          def self?.values: -> ::Array[Increase::Models::InboundWireTransfer::Reversal::reason]
         end
       end
 
@@ -160,7 +194,7 @@ module Increase
         # The Inbound Wire Transfer was reversed.
         REVERSED: :reversed
 
-        def self?.values: -> ::Array[Increase::InboundWireTransfer::status]
+        def self?.values: -> ::Array[Increase::Models::InboundWireTransfer::status]
       end
 
       type type_ = :inbound_wire_transfer
@@ -170,7 +204,7 @@ module Increase
 
         INBOUND_WIRE_TRANSFER: :inbound_wire_transfer
 
-        def self?.values: -> ::Array[Increase::InboundWireTransfer::type_]
+        def self?.values: -> ::Array[Increase::Models::InboundWireTransfer::type_]
       end
     end
   end

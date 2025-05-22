@@ -22,7 +22,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::CheckDeposit]
+      # @return [Increase::Models::CheckDeposit]
       #
       # @see Increase::Models::CheckDepositCreateParams
       def create(params)
@@ -44,7 +44,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::CheckDeposit]
+      # @return [Increase::Models::CheckDeposit]
       #
       # @see Increase::Models::CheckDepositRetrieveParams
       def retrieve(check_deposit_id, params = {})
@@ -65,7 +65,7 @@ module Increase
       #
       # @param account_id [String] Filter Check Deposits to those belonging to the specified Account.
       #
-      # @param created_at [Increase::CheckDepositListParams::CreatedAt]
+      # @param created_at [Increase::Models::CheckDepositListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -75,7 +75,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::CheckDeposit>]
+      # @return [Increase::Internal::Page<Increase::Models::CheckDeposit>]
       #
       # @see Increase::Models::CheckDepositListParams
       def list(params = {})

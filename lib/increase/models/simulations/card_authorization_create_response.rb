@@ -10,7 +10,7 @@ module Increase
         #   [Declined Transaction](#declined-transactions) object. The Declined
         #   Transaction's `source` will be of `category: card_decline`.
         #
-        #   @return [Increase::DeclinedTransaction, nil]
+        #   @return [Increase::Models::DeclinedTransaction, nil]
         required :declined_transaction, -> { Increase::DeclinedTransaction }, nil?: true
 
         # @!attribute pending_transaction
@@ -18,7 +18,7 @@ module Increase
         #   Transaction object. The Pending Transaction's `source` will be of
         #   `category: card_authorization`.
         #
-        #   @return [Increase::PendingTransaction, nil]
+        #   @return [Increase::Models::PendingTransaction, nil]
         required :pending_transaction, -> { Increase::PendingTransaction }, nil?: true
 
         # @!attribute type
@@ -35,9 +35,9 @@ module Increase
         #
         #   The results of a Card Authorization simulation.
         #
-        #   @param declined_transaction [Increase::DeclinedTransaction, nil] If the authorization attempt fails, this will contain the resulting [Declined Tr
+        #   @param declined_transaction [Increase::Models::DeclinedTransaction, nil] If the authorization attempt fails, this will contain the resulting [Declined Tr
         #
-        #   @param pending_transaction [Increase::PendingTransaction, nil] If the authorization attempt succeeds, this will contain the resulting Pending T
+        #   @param pending_transaction [Increase::Models::PendingTransaction, nil] If the authorization attempt succeeds, this will contain the resulting Pending T
         #
         #   @param type [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type] A constant representing the object's type. For this resource it will always be `
 

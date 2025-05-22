@@ -9,16 +9,16 @@ module Increase
         cancellation: Increase::AccountTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::AccountTransfer::CreatedBy?,
-        currency: Increase::AccountTransfer::currency,
+        currency: Increase::Models::AccountTransfer::currency,
         description: String,
         destination_account_id: String,
         destination_transaction_id: String?,
         idempotency_key: String?,
-        network: Increase::AccountTransfer::network,
+        network: Increase::Models::AccountTransfer::network,
         pending_transaction_id: String?,
-        status: Increase::AccountTransfer::status,
+        status: Increase::Models::AccountTransfer::status,
         transaction_id: String?,
-        type: Increase::AccountTransfer::type_
+        type: Increase::Models::AccountTransfer::type_
       }
 
     class AccountTransfer < Increase::Internal::Type::BaseModel
@@ -36,7 +36,7 @@ module Increase
 
       attr_accessor created_by: Increase::AccountTransfer::CreatedBy?
 
-      attr_accessor currency: Increase::AccountTransfer::currency
+      attr_accessor currency: Increase::Models::AccountTransfer::currency
 
       attr_accessor description: String
 
@@ -46,15 +46,15 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor network: Increase::AccountTransfer::network
+      attr_accessor network: Increase::Models::AccountTransfer::network
 
       attr_accessor pending_transaction_id: String?
 
-      attr_accessor status: Increase::AccountTransfer::status
+      attr_accessor status: Increase::Models::AccountTransfer::status
 
       attr_accessor transaction_id: String?
 
-      attr_accessor type: Increase::AccountTransfer::type_
+      attr_accessor type: Increase::Models::AccountTransfer::type_
 
       def initialize: (
         id: String,
@@ -64,17 +64,37 @@ module Increase
         cancellation: Increase::AccountTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::AccountTransfer::CreatedBy?,
-        currency: Increase::AccountTransfer::currency,
+        currency: Increase::Models::AccountTransfer::currency,
         description: String,
         destination_account_id: String,
         destination_transaction_id: String?,
         idempotency_key: String?,
-        network: Increase::AccountTransfer::network,
+        network: Increase::Models::AccountTransfer::network,
         pending_transaction_id: String?,
-        status: Increase::AccountTransfer::status,
+        status: Increase::Models::AccountTransfer::status,
         transaction_id: String?,
-        type: Increase::AccountTransfer::type_
+        type: Increase::Models::AccountTransfer::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        amount: Integer,
+        approval: Increase::AccountTransfer::Approval?,
+        cancellation: Increase::AccountTransfer::Cancellation?,
+        created_at: Time,
+        created_by: Increase::AccountTransfer::CreatedBy?,
+        currency: Increase::Models::AccountTransfer::currency,
+        description: String,
+        destination_account_id: String,
+        destination_transaction_id: String?,
+        idempotency_key: String?,
+        network: Increase::Models::AccountTransfer::network,
+        pending_transaction_id: String?,
+        status: Increase::Models::AccountTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::AccountTransfer::type_
+      }
 
       type approval = { approved_at: Time, approved_by: String? }
 
@@ -84,6 +104,8 @@ module Increase
         attr_accessor approved_by: String?
 
         def initialize: (approved_at: Time, approved_by: String?) -> void
+
+        def to_hash: -> { approved_at: Time, approved_by: String? }
       end
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
@@ -94,12 +116,14 @@ module Increase
         attr_accessor canceled_by: String?
 
         def initialize: (canceled_at: Time, canceled_by: String?) -> void
+
+        def to_hash: -> { canceled_at: Time, canceled_by: String? }
       end
 
       type created_by =
         {
           api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
-          category: Increase::AccountTransfer::CreatedBy::category,
+          category: Increase::Models::AccountTransfer::CreatedBy::category,
           oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
           user: Increase::AccountTransfer::CreatedBy::User?
         }
@@ -107,7 +131,7 @@ module Increase
       class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::AccountTransfer::CreatedBy::APIKey?
 
-        attr_accessor category: Increase::AccountTransfer::CreatedBy::category
+        attr_accessor category: Increase::Models::AccountTransfer::CreatedBy::category
 
         attr_accessor oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?
 
@@ -115,10 +139,17 @@ module Increase
 
         def initialize: (
           api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
-          category: Increase::AccountTransfer::CreatedBy::category,
+          category: Increase::Models::AccountTransfer::CreatedBy::category,
           oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
           user: Increase::AccountTransfer::CreatedBy::User?
         ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::AccountTransfer::CreatedBy::category,
+          oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::AccountTransfer::CreatedBy::User?
+        }
 
         type api_key = { description: String? }
 
@@ -126,6 +157,8 @@ module Increase
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type category = :api_key | :oauth_application | :user
@@ -142,7 +175,7 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER: :user
 
-          def self?.values: -> ::Array[Increase::AccountTransfer::CreatedBy::category]
+          def self?.values: -> ::Array[Increase::Models::AccountTransfer::CreatedBy::category]
         end
 
         type oauth_application = { name: String }
@@ -151,6 +184,8 @@ module Increase
           attr_accessor name: String
 
           def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
         end
 
         type user = { email: String }
@@ -159,6 +194,8 @@ module Increase
           attr_accessor email: String
 
           def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
         end
       end
 
@@ -185,7 +222,7 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::AccountTransfer::currency]
+        def self?.values: -> ::Array[Increase::Models::AccountTransfer::currency]
       end
 
       type network = :account
@@ -195,7 +232,7 @@ module Increase
 
         ACCOUNT: :account
 
-        def self?.values: -> ::Array[Increase::AccountTransfer::network]
+        def self?.values: -> ::Array[Increase::Models::AccountTransfer::network]
       end
 
       type status = :pending_approval | :canceled | :complete
@@ -212,7 +249,7 @@ module Increase
         # The transfer has been completed.
         COMPLETE: :complete
 
-        def self?.values: -> ::Array[Increase::AccountTransfer::status]
+        def self?.values: -> ::Array[Increase::Models::AccountTransfer::status]
       end
 
       type type_ = :account_transfer
@@ -222,7 +259,7 @@ module Increase
 
         ACCOUNT_TRANSFER: :account_transfer
 
-        def self?.values: -> ::Array[Increase::AccountTransfer::type_]
+        def self?.values: -> ::Array[Increase::Models::AccountTransfer::type_]
       end
     end
   end

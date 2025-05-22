@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::OAuthConnection]
+      # @return [Increase::Models::OAuthConnection]
       #
       # @see Increase::Models::OAuthConnectionRetrieveParams
       def retrieve(oauth_connection_id, params = {})
@@ -36,11 +36,11 @@ module Increase
       #
       # @param oauth_application_id [String] Filter results to only include OAuth Connections for a specific OAuth Applicatio
       #
-      # @param status [Increase::OAuthConnectionListParams::Status]
+      # @param status [Increase::Models::OAuthConnectionListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::OAuthConnection>]
+      # @return [Increase::Internal::Page<Increase::Models::OAuthConnection>]
       #
       # @see Increase::Models::OAuthConnectionListParams
       def list(params = {})

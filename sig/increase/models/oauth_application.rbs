@@ -7,8 +7,8 @@ module Increase
         created_at: Time,
         deleted_at: Time?,
         name: String?,
-        status: Increase::OAuthApplication::status,
-        type: Increase::OAuthApplication::type_
+        status: Increase::Models::OAuthApplication::status,
+        type: Increase::Models::OAuthApplication::type_
       }
 
     class OAuthApplication < Increase::Internal::Type::BaseModel
@@ -22,9 +22,9 @@ module Increase
 
       attr_accessor name: String?
 
-      attr_accessor status: Increase::OAuthApplication::status
+      attr_accessor status: Increase::Models::OAuthApplication::status
 
-      attr_accessor type: Increase::OAuthApplication::type_
+      attr_accessor type: Increase::Models::OAuthApplication::type_
 
       def initialize: (
         id: String,
@@ -32,9 +32,19 @@ module Increase
         created_at: Time,
         deleted_at: Time?,
         name: String?,
-        status: Increase::OAuthApplication::status,
-        type: Increase::OAuthApplication::type_
+        status: Increase::Models::OAuthApplication::status,
+        type: Increase::Models::OAuthApplication::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        client_id: String,
+        created_at: Time,
+        deleted_at: Time?,
+        name: String?,
+        status: Increase::Models::OAuthApplication::status,
+        type: Increase::Models::OAuthApplication::type_
+      }
 
       type status = :active | :deleted
 
@@ -47,7 +57,7 @@ module Increase
         # The application is deleted.
         DELETED: :deleted
 
-        def self?.values: -> ::Array[Increase::OAuthApplication::status]
+        def self?.values: -> ::Array[Increase::Models::OAuthApplication::status]
       end
 
       type type_ = :oauth_application
@@ -57,7 +67,7 @@ module Increase
 
         OAUTH_APPLICATION: :oauth_application
 
-        def self?.values: -> ::Array[Increase::OAuthApplication::type_]
+        def self?.values: -> ::Array[Increase::Models::OAuthApplication::type_]
       end
     end
   end

@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundRealTimePaymentsTransfer]
+      # @return [Increase::Models::InboundRealTimePaymentsTransfer]
       #
       # @see Increase::Models::InboundRealTimePaymentsTransferRetrieveParams
       def retrieve(inbound_real_time_payments_transfer_id, params = {})
@@ -34,7 +34,7 @@ module Increase
       #
       # @param account_number_id [String] Filter Inbound Real-Time Payments Transfers to ones belonging to the specified A
       #
-      # @param created_at [Increase::InboundRealTimePaymentsTransferListParams::CreatedAt]
+      # @param created_at [Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::InboundRealTimePaymentsTransfer>]
+      # @return [Increase::Internal::Page<Increase::Models::InboundRealTimePaymentsTransfer>]
       #
       # @see Increase::Models::InboundRealTimePaymentsTransferListParams
       def list(params = {})

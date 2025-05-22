@@ -17,7 +17,7 @@ module Increase
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Increase::Program]
+        # @return [Increase::Models::Program]
         #
         # @see Increase::Models::Simulations::ProgramCreateParams
         def create(params)

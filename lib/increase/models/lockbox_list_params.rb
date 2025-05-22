@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::LockboxListParams::CreatedAt, nil]
+      #   @return [Increase::Models::LockboxListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::LockboxListParams::CreatedAt }
 
       # @!attribute cursor
@@ -46,7 +46,7 @@ module Increase
       #
       #   @param account_id [String] Filter Lockboxes to those associated with the provided Account.
       #
-      #   @param created_at [Increase::LockboxListParams::CreatedAt]
+      #   @param created_at [Increase::Models::LockboxListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -87,7 +87,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::LockboxListParams::CreatedAt} for more details.
+        #   {Increase::Models::LockboxListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

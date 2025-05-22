@@ -45,6 +45,15 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        carrier_image_file_id: String,
+        contact_phone: String,
+        description: String,
+        front_image_file_id: String,
+        front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
+        request_options: Increase::RequestOptions
+      }
+
       type front_text = { :line1 => String, :line2 => String }
 
       class FrontText < Increase::Internal::Type::BaseModel
@@ -55,6 +64,8 @@ module Increase
         def line2=: (String) -> String
 
         def initialize: (line1: String, ?line2: String) -> void
+
+        def to_hash: -> { :line1 => String, :line2 => String }
       end
     end
   end

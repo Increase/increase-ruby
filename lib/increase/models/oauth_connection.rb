@@ -39,19 +39,19 @@ module Increase
       # @!attribute status
       #   Whether the connection is active.
       #
-      #   @return [Symbol, Increase::OAuthConnection::Status]
+      #   @return [Symbol, Increase::Models::OAuthConnection::Status]
       required :status, enum: -> { Increase::OAuthConnection::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `oauth_connection`.
       #
-      #   @return [Symbol, Increase::OAuthConnection::Type]
+      #   @return [Symbol, Increase::Models::OAuthConnection::Type]
       required :type, enum: -> { Increase::OAuthConnection::Type }
 
       # @!method initialize(id:, created_at:, deleted_at:, group_id:, oauth_application_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::OAuthConnection} for more details.
+      #   {Increase::Models::OAuthConnection} for more details.
       #
       #   When a user authorizes your OAuth application, an OAuth Connection object is
       #   created. Learn more about OAuth
@@ -67,13 +67,13 @@ module Increase
       #
       #   @param oauth_application_id [String] The identifier of the OAuth application this connection is for.
       #
-      #   @param status [Symbol, Increase::OAuthConnection::Status] Whether the connection is active.
+      #   @param status [Symbol, Increase::Models::OAuthConnection::Status] Whether the connection is active.
       #
-      #   @param type [Symbol, Increase::OAuthConnection::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::OAuthConnection::Type] A constant representing the object's type. For this resource it will always be `
 
       # Whether the connection is active.
       #
-      # @see Increase::OAuthConnection#status
+      # @see Increase::Models::OAuthConnection#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -90,7 +90,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `oauth_connection`.
       #
-      # @see Increase::OAuthConnection#type
+      # @see Increase::Models::OAuthConnection#type
       module Type
         extend Increase::Internal::Type::Enum
 

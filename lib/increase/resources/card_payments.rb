@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::CardPayment]
+      # @return [Increase::Models::CardPayment]
       #
       # @see Increase::Models::CardPaymentRetrieveParams
       def retrieve(card_payment_id, params = {})
@@ -34,7 +34,7 @@ module Increase
       #
       # @param card_id [String] Filter Card Payments to ones belonging to the specified Card.
       #
-      # @param created_at [Increase::CardPaymentListParams::CreatedAt]
+      # @param created_at [Increase::Models::CardPaymentListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::CardPayment>]
+      # @return [Increase::Internal::Page<Increase::Models::CardPayment>]
       #
       # @see Increase::Models::CardPaymentListParams
       def list(params = {})

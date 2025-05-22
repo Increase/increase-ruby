@@ -14,13 +14,13 @@ module Increase
       #
       # @param oauth_connection_id [String] If specified, this subscription will only receive webhooks for Events associated
       #
-      # @param selected_event_category [Symbol, Increase::EventSubscriptionCreateParams::SelectedEventCategory] If specified, this subscription will only receive webhooks for Events with the s
+      # @param selected_event_category [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory] If specified, this subscription will only receive webhooks for Events with the s
       #
       # @param shared_secret [String] The key that will be used to sign webhooks. If no value is passed, a random stri
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::EventSubscription]
+      # @return [Increase::Models::EventSubscription]
       #
       # @see Increase::Models::EventSubscriptionCreateParams
       def create(params)
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::EventSubscription]
+      # @return [Increase::Models::EventSubscription]
       #
       # @see Increase::Models::EventSubscriptionRetrieveParams
       def retrieve(event_subscription_id, params = {})
@@ -60,11 +60,11 @@ module Increase
       #
       # @param event_subscription_id [String] The identifier of the Event Subscription.
       #
-      # @param status [Symbol, Increase::EventSubscriptionUpdateParams::Status] The status to update the Event Subscription with.
+      # @param status [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status] The status to update the Event Subscription with.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::EventSubscription]
+      # @return [Increase::Models::EventSubscription]
       #
       # @see Increase::Models::EventSubscriptionUpdateParams
       def update(event_subscription_id, params = {})
@@ -93,7 +93,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::EventSubscription>]
+      # @return [Increase::Internal::Page<Increase::Models::EventSubscription>]
       #
       # @see Increase::Models::EventSubscriptionListParams
       def list(params = {})

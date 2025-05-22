@@ -12,19 +12,19 @@ module Increase
         check_number: String,
         created_at: Time,
         created_by: Increase::CheckTransfer::CreatedBy?,
-        currency: Increase::CheckTransfer::currency,
-        fulfillment_method: Increase::CheckTransfer::fulfillment_method,
+        currency: Increase::Models::CheckTransfer::currency,
+        fulfillment_method: Increase::Models::CheckTransfer::fulfillment_method,
         idempotency_key: String?,
         mailing: Increase::CheckTransfer::Mailing?,
         pending_transaction_id: String?,
         physical_check: Increase::CheckTransfer::PhysicalCheck?,
         routing_number: String,
         source_account_number_id: String?,
-        status: Increase::CheckTransfer::status,
+        status: Increase::Models::CheckTransfer::status,
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?,
         submission: Increase::CheckTransfer::Submission?,
         third_party: Increase::CheckTransfer::ThirdParty?,
-        type: Increase::CheckTransfer::type_
+        type: Increase::Models::CheckTransfer::type_
       }
 
     class CheckTransfer < Increase::Internal::Type::BaseModel
@@ -48,9 +48,9 @@ module Increase
 
       attr_accessor created_by: Increase::CheckTransfer::CreatedBy?
 
-      attr_accessor currency: Increase::CheckTransfer::currency
+      attr_accessor currency: Increase::Models::CheckTransfer::currency
 
-      attr_accessor fulfillment_method: Increase::CheckTransfer::fulfillment_method
+      attr_accessor fulfillment_method: Increase::Models::CheckTransfer::fulfillment_method
 
       attr_accessor idempotency_key: String?
 
@@ -64,7 +64,7 @@ module Increase
 
       attr_accessor source_account_number_id: String?
 
-      attr_accessor status: Increase::CheckTransfer::status
+      attr_accessor status: Increase::Models::CheckTransfer::status
 
       attr_accessor stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?
 
@@ -72,7 +72,7 @@ module Increase
 
       attr_accessor third_party: Increase::CheckTransfer::ThirdParty?
 
-      attr_accessor type: Increase::CheckTransfer::type_
+      attr_accessor type: Increase::Models::CheckTransfer::type_
 
       def initialize: (
         id: String,
@@ -85,20 +85,46 @@ module Increase
         check_number: String,
         created_at: Time,
         created_by: Increase::CheckTransfer::CreatedBy?,
-        currency: Increase::CheckTransfer::currency,
-        fulfillment_method: Increase::CheckTransfer::fulfillment_method,
+        currency: Increase::Models::CheckTransfer::currency,
+        fulfillment_method: Increase::Models::CheckTransfer::fulfillment_method,
         idempotency_key: String?,
         mailing: Increase::CheckTransfer::Mailing?,
         pending_transaction_id: String?,
         physical_check: Increase::CheckTransfer::PhysicalCheck?,
         routing_number: String,
         source_account_number_id: String?,
-        status: Increase::CheckTransfer::status,
+        status: Increase::Models::CheckTransfer::status,
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?,
         submission: Increase::CheckTransfer::Submission?,
         third_party: Increase::CheckTransfer::ThirdParty?,
-        type: Increase::CheckTransfer::type_
+        type: Increase::Models::CheckTransfer::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number: String,
+        amount: Integer,
+        approval: Increase::CheckTransfer::Approval?,
+        approved_inbound_check_deposit_id: String?,
+        cancellation: Increase::CheckTransfer::Cancellation?,
+        check_number: String,
+        created_at: Time,
+        created_by: Increase::CheckTransfer::CreatedBy?,
+        currency: Increase::Models::CheckTransfer::currency,
+        fulfillment_method: Increase::Models::CheckTransfer::fulfillment_method,
+        idempotency_key: String?,
+        mailing: Increase::CheckTransfer::Mailing?,
+        pending_transaction_id: String?,
+        physical_check: Increase::CheckTransfer::PhysicalCheck?,
+        routing_number: String,
+        source_account_number_id: String?,
+        status: Increase::Models::CheckTransfer::status,
+        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?,
+        submission: Increase::CheckTransfer::Submission?,
+        third_party: Increase::CheckTransfer::ThirdParty?,
+        type: Increase::Models::CheckTransfer::type_
+      }
 
       type approval = { approved_at: Time, approved_by: String? }
 
@@ -108,6 +134,8 @@ module Increase
         attr_accessor approved_by: String?
 
         def initialize: (approved_at: Time, approved_by: String?) -> void
+
+        def to_hash: -> { approved_at: Time, approved_by: String? }
       end
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
@@ -118,12 +146,14 @@ module Increase
         attr_accessor canceled_by: String?
 
         def initialize: (canceled_at: Time, canceled_by: String?) -> void
+
+        def to_hash: -> { canceled_at: Time, canceled_by: String? }
       end
 
       type created_by =
         {
           api_key: Increase::CheckTransfer::CreatedBy::APIKey?,
-          category: Increase::CheckTransfer::CreatedBy::category,
+          category: Increase::Models::CheckTransfer::CreatedBy::category,
           oauth_application: Increase::CheckTransfer::CreatedBy::OAuthApplication?,
           user: Increase::CheckTransfer::CreatedBy::User?
         }
@@ -131,7 +161,7 @@ module Increase
       class CreatedBy < Increase::Internal::Type::BaseModel
         attr_accessor api_key: Increase::CheckTransfer::CreatedBy::APIKey?
 
-        attr_accessor category: Increase::CheckTransfer::CreatedBy::category
+        attr_accessor category: Increase::Models::CheckTransfer::CreatedBy::category
 
         attr_accessor oauth_application: Increase::CheckTransfer::CreatedBy::OAuthApplication?
 
@@ -139,10 +169,17 @@ module Increase
 
         def initialize: (
           api_key: Increase::CheckTransfer::CreatedBy::APIKey?,
-          category: Increase::CheckTransfer::CreatedBy::category,
+          category: Increase::Models::CheckTransfer::CreatedBy::category,
           oauth_application: Increase::CheckTransfer::CreatedBy::OAuthApplication?,
           user: Increase::CheckTransfer::CreatedBy::User?
         ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::CheckTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::CheckTransfer::CreatedBy::category,
+          oauth_application: Increase::CheckTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::CheckTransfer::CreatedBy::User?
+        }
 
         type api_key = { description: String? }
 
@@ -150,6 +187,8 @@ module Increase
           attr_accessor description: String?
 
           def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type category = :api_key | :oauth_application | :user
@@ -166,7 +205,7 @@ module Increase
           # A User in the Increase dashboard. Details will be under the `user` object.
           USER: :user
 
-          def self?.values: -> ::Array[Increase::CheckTransfer::CreatedBy::category]
+          def self?.values: -> ::Array[Increase::Models::CheckTransfer::CreatedBy::category]
         end
 
         type oauth_application = { name: String }
@@ -175,6 +214,8 @@ module Increase
           attr_accessor name: String
 
           def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
         end
 
         type user = { email: String }
@@ -183,6 +224,8 @@ module Increase
           attr_accessor email: String
 
           def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
         end
       end
 
@@ -209,7 +252,7 @@ module Increase
         # US Dollar (USD)
         USD: :USD
 
-        def self?.values: -> ::Array[Increase::CheckTransfer::currency]
+        def self?.values: -> ::Array[Increase::Models::CheckTransfer::currency]
       end
 
       type fulfillment_method = :physical_check | :third_party
@@ -223,7 +266,7 @@ module Increase
         # Increase will not print a check; you are responsible for printing and mailing a check with the provided account number, routing number, check number, and amount.
         THIRD_PARTY: :third_party
 
-        def self?.values: -> ::Array[Increase::CheckTransfer::fulfillment_method]
+        def self?.values: -> ::Array[Increase::Models::CheckTransfer::fulfillment_method]
       end
 
       type mailing =
@@ -241,6 +284,12 @@ module Increase
           mailed_at: Time,
           tracking_number: String?
         ) -> void
+
+        def to_hash: -> {
+          image_id: String?,
+          mailed_at: Time,
+          tracking_number: String?
+        }
       end
 
       type physical_check =
@@ -251,7 +300,7 @@ module Increase
           note: String?,
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
-          shipping_method: Increase::CheckTransfer::PhysicalCheck::shipping_method?,
+          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
           signature_text: String?,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         }
@@ -269,7 +318,7 @@ module Increase
 
         attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?
 
-        attr_accessor shipping_method: Increase::CheckTransfer::PhysicalCheck::shipping_method?
+        attr_accessor shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?
 
         attr_accessor signature_text: String?
 
@@ -282,10 +331,22 @@ module Increase
           note: String?,
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
-          shipping_method: Increase::CheckTransfer::PhysicalCheck::shipping_method?,
+          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
           signature_text: String?,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         ) -> void
+
+        def to_hash: -> {
+          attachment_file_id: String?,
+          mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
+          memo: String?,
+          note: String?,
+          recipient_name: String,
+          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
+          signature_text: String?,
+          tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
+        }
 
         type mailing_address =
           {
@@ -318,6 +379,15 @@ module Increase
             postal_code: String?,
             state: String?
           ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            :line1 => String?,
+            :line2 => String?,
+            name: String?,
+            postal_code: String?,
+            state: String?
+          }
         end
 
         type return_address =
@@ -351,6 +421,15 @@ module Increase
             postal_code: String?,
             state: String?
           ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            :line1 => String?,
+            :line2 => String?,
+            name: String?,
+            postal_code: String?,
+            state: String?
+          }
         end
 
         type shipping_method = :usps_first_class | :fedex_overnight
@@ -364,28 +443,34 @@ module Increase
           # FedEx Overnight
           FEDEX_OVERNIGHT: :fedex_overnight
 
-          def self?.values: -> ::Array[Increase::CheckTransfer::PhysicalCheck::shipping_method]
+          def self?.values: -> ::Array[Increase::Models::CheckTransfer::PhysicalCheck::shipping_method]
         end
 
         type tracking_update =
           {
-            category: Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
+            category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
             created_at: Time,
             postal_code: String
           }
 
         class TrackingUpdate < Increase::Internal::Type::BaseModel
-          attr_accessor category: Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::category
+          attr_accessor category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category
 
           attr_accessor created_at: Time
 
           attr_accessor postal_code: String
 
           def initialize: (
-            category: Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
+            category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
             created_at: Time,
             postal_code: String
           ) -> void
+
+          def to_hash: -> {
+            category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
+            created_at: Time,
+            postal_code: String
+          }
 
           type category =
             :in_transit
@@ -408,7 +493,7 @@ module Increase
             # Delivery failed and the check was returned to sender.
             RETURNED_TO_SENDER: :returned_to_sender
 
-            def self?.values: -> ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::category]
+            def self?.values: -> ::Array[Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category]
           end
         end
       end
@@ -458,32 +543,39 @@ module Increase
         # The transfer has been returned.
         RETURNED: :returned
 
-        def self?.values: -> ::Array[Increase::CheckTransfer::status]
+        def self?.values: -> ::Array[Increase::Models::CheckTransfer::status]
       end
 
       type stop_payment_request =
         {
-          reason: Increase::CheckTransfer::StopPaymentRequest::reason,
+          reason: Increase::Models::CheckTransfer::StopPaymentRequest::reason,
           requested_at: Time,
           transfer_id: String,
-          type: Increase::CheckTransfer::StopPaymentRequest::type_
+          type: Increase::Models::CheckTransfer::StopPaymentRequest::type_
         }
 
       class StopPaymentRequest < Increase::Internal::Type::BaseModel
-        attr_accessor reason: Increase::CheckTransfer::StopPaymentRequest::reason
+        attr_accessor reason: Increase::Models::CheckTransfer::StopPaymentRequest::reason
 
         attr_accessor requested_at: Time
 
         attr_accessor transfer_id: String
 
-        attr_accessor type: Increase::CheckTransfer::StopPaymentRequest::type_
+        attr_accessor type: Increase::Models::CheckTransfer::StopPaymentRequest::type_
 
         def initialize: (
-          reason: Increase::CheckTransfer::StopPaymentRequest::reason,
+          reason: Increase::Models::CheckTransfer::StopPaymentRequest::reason,
           requested_at: Time,
           transfer_id: String,
-          type: Increase::CheckTransfer::StopPaymentRequest::type_
+          type: Increase::Models::CheckTransfer::StopPaymentRequest::type_
         ) -> void
+
+        def to_hash: -> {
+          reason: Increase::Models::CheckTransfer::StopPaymentRequest::reason,
+          requested_at: Time,
+          transfer_id: String,
+          type: Increase::Models::CheckTransfer::StopPaymentRequest::type_
+        }
 
         type reason =
           :mail_delivery_failed
@@ -506,7 +598,7 @@ module Increase
           # The check was stopped for another reason.
           UNKNOWN: :unknown
 
-          def self?.values: -> ::Array[Increase::CheckTransfer::StopPaymentRequest::reason]
+          def self?.values: -> ::Array[Increase::Models::CheckTransfer::StopPaymentRequest::reason]
         end
 
         type type_ = :check_transfer_stop_payment_request
@@ -516,29 +608,35 @@ module Increase
 
           CHECK_TRANSFER_STOP_PAYMENT_REQUEST: :check_transfer_stop_payment_request
 
-          def self?.values: -> ::Array[Increase::CheckTransfer::StopPaymentRequest::type_]
+          def self?.values: -> ::Array[Increase::Models::CheckTransfer::StopPaymentRequest::type_]
         end
       end
 
       type submission =
         {
-          address_correction_action: Increase::CheckTransfer::Submission::address_correction_action,
+          address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
           submitted_at: Time
         }
 
       class Submission < Increase::Internal::Type::BaseModel
-        attr_accessor address_correction_action: Increase::CheckTransfer::Submission::address_correction_action
+        attr_accessor address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action
 
         attr_accessor submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress
 
         attr_accessor submitted_at: Time
 
         def initialize: (
-          address_correction_action: Increase::CheckTransfer::Submission::address_correction_action,
+          address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
           submitted_at: Time
         ) -> void
+
+        def to_hash: -> {
+          address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action,
+          submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
+          submitted_at: Time
+        }
 
         type address_correction_action =
           :none
@@ -561,7 +659,7 @@ module Increase
           # An error occurred while correcting the address. This typically means the USPS could not find that address. The address was not changed.
           ERROR: :error
 
-          def self?.values: -> ::Array[Increase::CheckTransfer::Submission::address_correction_action]
+          def self?.values: -> ::Array[Increase::Models::CheckTransfer::Submission::address_correction_action]
         end
 
         type submitted_address =
@@ -595,6 +693,15 @@ module Increase
             state: String,
             zip: String
           ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            :line2 => String?,
+            recipient_name: String,
+            state: String,
+            zip: String
+          }
         end
       end
 
@@ -604,6 +711,8 @@ module Increase
         attr_accessor recipient_name: String?
 
         def initialize: (recipient_name: String?) -> void
+
+        def to_hash: -> { recipient_name: String? }
       end
 
       type type_ = :check_transfer
@@ -613,7 +722,7 @@ module Increase
 
         CHECK_TRANSFER: :check_transfer
 
-        def self?.values: -> ::Array[Increase::CheckTransfer::type_]
+        def self?.values: -> ::Array[Increase::Models::CheckTransfer::type_]
       end
     end
   end

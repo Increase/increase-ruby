@@ -7,7 +7,7 @@ module Increase
         amount: Integer,
         created_at: Time,
         entry_set_id: String,
-        type: Increase::BookkeepingEntry::type_
+        type: Increase::Models::BookkeepingEntry::type_
       }
 
     class BookkeepingEntry < Increase::Internal::Type::BaseModel
@@ -21,7 +21,7 @@ module Increase
 
       attr_accessor entry_set_id: String
 
-      attr_accessor type: Increase::BookkeepingEntry::type_
+      attr_accessor type: Increase::Models::BookkeepingEntry::type_
 
       def initialize: (
         id: String,
@@ -29,8 +29,17 @@ module Increase
         amount: Integer,
         created_at: Time,
         entry_set_id: String,
-        type: Increase::BookkeepingEntry::type_
+        type: Increase::Models::BookkeepingEntry::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        amount: Integer,
+        created_at: Time,
+        entry_set_id: String,
+        type: Increase::Models::BookkeepingEntry::type_
+      }
 
       type type_ = :bookkeeping_entry
 
@@ -39,7 +48,7 @@ module Increase
 
         BOOKKEEPING_ENTRY: :bookkeeping_entry
 
-        def self?.values: -> ::Array[Increase::BookkeepingEntry::type_]
+        def self?.values: -> ::Array[Increase::Models::BookkeepingEntry::type_]
       end
     end
   end

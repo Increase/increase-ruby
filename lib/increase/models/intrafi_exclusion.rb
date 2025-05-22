@@ -53,7 +53,7 @@ module Increase
       # @!attribute status
       #   The status of the exclusion request.
       #
-      #   @return [Symbol, Increase::IntrafiExclusion::Status]
+      #   @return [Symbol, Increase::Models::IntrafiExclusion::Status]
       required :status, enum: -> { Increase::IntrafiExclusion::Status }
 
       # @!attribute submitted_at
@@ -66,12 +66,12 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `intrafi_exclusion`.
       #
-      #   @return [Symbol, Increase::IntrafiExclusion::Type]
+      #   @return [Symbol, Increase::Models::IntrafiExclusion::Type]
       required :type, enum: -> { Increase::IntrafiExclusion::Type }
 
       # @!method initialize(id:, bank_name:, created_at:, entity_id:, excluded_at:, fdic_certificate_number:, idempotency_key:, status:, submitted_at:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::IntrafiExclusion} for more details.
+      #   {Increase::Models::IntrafiExclusion} for more details.
       #
       #   Certain institutions may be excluded per Entity when sweeping funds into the
       #   IntraFi network. This is useful when an Entity already has deposits at a
@@ -92,15 +92,15 @@ module Increase
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
-      #   @param status [Symbol, Increase::IntrafiExclusion::Status] The status of the exclusion request.
+      #   @param status [Symbol, Increase::Models::IntrafiExclusion::Status] The status of the exclusion request.
       #
       #   @param submitted_at [Time, nil] When this was exclusion was submitted to IntraFi by Increase.
       #
-      #   @param type [Symbol, Increase::IntrafiExclusion::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::IntrafiExclusion::Type] A constant representing the object's type. For this resource it will always be `
 
       # The status of the exclusion request.
       #
-      # @see Increase::IntrafiExclusion#status
+      # @see Increase::Models::IntrafiExclusion#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -120,7 +120,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `intrafi_exclusion`.
       #
-      # @see Increase::IntrafiExclusion#type
+      # @see Increase::Models::IntrafiExclusion#type
       module Type
         extend Increase::Internal::Type::Enum
 

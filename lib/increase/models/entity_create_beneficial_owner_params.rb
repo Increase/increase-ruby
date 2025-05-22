@@ -11,14 +11,14 @@ module Increase
       #   The identifying details of anyone controlling or owning 25% or more of the
       #   corporation.
       #
-      #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner]
+      #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner]
       required :beneficial_owner, -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner }
 
       # @!method initialize(beneficial_owner:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityCreateBeneficialOwnerParams} for more details.
       #
-      #   @param beneficial_owner [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner] The identifying details of anyone controlling or owning 25% or more of the corpo
+      #   @param beneficial_owner [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner] The identifying details of anyone controlling or owning 25% or more of the corpo
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -26,7 +26,7 @@ module Increase
         # @!attribute individual
         #   Personal details for the beneficial owner.
         #
-        #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual]
+        #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual]
         required :individual, -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual }
 
         # @!attribute prongs
@@ -34,7 +34,7 @@ module Increase
         #   option is required, if a person is both a control person and owner, submit an
         #   array containing both.
         #
-        #   @return [Array<Symbol, Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong>]
+        #   @return [Array<Symbol, Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong>]
         required :prongs,
                  -> {
                    Increase::Internal::Type::ArrayOf[enum: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong]
@@ -48,24 +48,25 @@ module Increase
 
         # @!method initialize(individual:, prongs:, company_title: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner} for more details.
+        #   {Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner} for more
+        #   details.
         #
         #   The identifying details of anyone controlling or owning 25% or more of the
         #   corporation.
         #
-        #   @param individual [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual] Personal details for the beneficial owner.
+        #   @param individual [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual] Personal details for the beneficial owner.
         #
-        #   @param prongs [Array<Symbol, Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
+        #   @param prongs [Array<Symbol, Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
         #
         #   @param company_title [String] This person's role or title within the entity.
 
-        # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner#individual
+        # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner#individual
         class Individual < Increase::Internal::Type::BaseModel
           # @!attribute address
           #   The individual's physical address. Mail receiving locations like PO Boxes and
           #   PMB's are disallowed.
           #
-          #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address]
+          #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address]
           required :address,
                    -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address }
 
@@ -78,7 +79,7 @@ module Increase
           # @!attribute identification
           #   A means of verifying the person's identity.
           #
-          #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification]
+          #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification]
           required :identification,
                    -> {
                      Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification
@@ -101,22 +102,22 @@ module Increase
 
           # @!method initialize(address:, date_of_birth:, identification:, name:, confirmed_no_us_tax_id: nil)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual} for
-          #   more details.
+          #   {Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual}
+          #   for more details.
           #
           #   Personal details for the beneficial owner.
           #
-          #   @param address [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
+          #   @param address [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
           #
           #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
           #
-          #   @param identification [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification] A means of verifying the person's identity.
+          #   @param identification [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification] A means of verifying the person's identity.
           #
           #   @param name [String] The person's legal name.
           #
           #   @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
 
-          # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual#address
+          # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual#address
           class Address < Increase::Internal::Type::BaseModel
             # @!attribute country
             #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
@@ -158,7 +159,7 @@ module Increase
 
             # @!method initialize(country:, line1:, city: nil, line2: nil, state: nil, zip: nil)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address}
+            #   {Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Address}
             #   for more details.
             #
             #   The individual's physical address. Mail receiving locations like PO Boxes and
@@ -177,12 +178,12 @@ module Increase
             #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
           end
 
-          # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual#identification
+          # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual#identification
           class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
             #   A method that can be used to verify the individual's identity.
             #
-            #   @return [Symbol, Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Method]
+            #   @return [Symbol, Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Method]
             required :method_,
                      enum: -> {
                        Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Method
@@ -200,7 +201,7 @@ module Increase
             #   Information about the United States driver's license used for identification.
             #   Required if `method` is equal to `drivers_license`.
             #
-            #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense, nil]
+            #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense, nil]
             optional :drivers_license,
                      -> {
                        Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense
@@ -210,7 +211,7 @@ module Increase
             #   Information about the identification document provided. Required if `method` is
             #   equal to `other`.
             #
-            #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other, nil]
+            #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other, nil]
             optional :other,
                      -> {
                        Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other
@@ -220,7 +221,7 @@ module Increase
             #   Information about the passport used for identification. Required if `method` is
             #   equal to `passport`.
             #
-            #   @return [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport, nil]
+            #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport, nil]
             optional :passport,
                      -> {
                        Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport
@@ -228,24 +229,24 @@ module Increase
 
             # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
             #   Some parameter documentations has been truncated, see
-            #   {Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification}
+            #   {Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification}
             #   for more details.
             #
             #   A means of verifying the person's identity.
             #
-            #   @param method_ [Symbol, Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Method] A method that can be used to verify the individual's identity.
+            #   @param method_ [Symbol, Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Method] A method that can be used to verify the individual's identity.
             #
             #   @param number [String] An identification number that can be used to verify the individual's identity, s
             #
-            #   @param drivers_license [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense] Information about the United States driver's license used for identification. Re
+            #   @param drivers_license [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense] Information about the United States driver's license used for identification. Re
             #
-            #   @param other [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other] Information about the identification document provided. Required if `method` is
+            #   @param other [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other] Information about the identification document provided. Required if `method` is
             #
-            #   @param passport [Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport] Information about the passport used for identification. Required if `method` is
+            #   @param passport [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport] Information about the passport used for identification. Required if `method` is
 
             # A method that can be used to verify the individual's identity.
             #
-            # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#method_
+            # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#method_
             module Method
               extend Increase::Internal::Type::Enum
 
@@ -268,7 +269,7 @@ module Increase
               #   @return [Array<Symbol>]
             end
 
-            # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#drivers_license
+            # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#drivers_license
             class DriversLicense < Increase::Internal::Type::BaseModel
               # @!attribute expiration_date
               #   The driver's license's expiration date in YYYY-MM-DD format.
@@ -307,7 +308,7 @@ module Increase
               #   @param back_file_id [String] The identifier of the File containing the back of the driver's license.
             end
 
-            # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#other
+            # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#other
             class Other < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The two-character ISO 3166-1 code representing the country that issued the
@@ -343,7 +344,7 @@ module Increase
 
               # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other}
+              #   {Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other}
               #   for more details.
               #
               #   Information about the identification document provided. Required if `method` is
@@ -360,7 +361,7 @@ module Increase
               #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
             end
 
-            # @see Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#passport
+            # @see Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification#passport
             class Passport < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The country that issued the passport.

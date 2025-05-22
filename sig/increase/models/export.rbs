@@ -3,19 +3,19 @@ module Increase
     type export =
       {
         id: String,
-        category: Increase::Export::category,
+        category: Increase::Models::Export::category,
         created_at: Time,
         file_download_url: String?,
         file_id: String?,
         idempotency_key: String?,
-        status: Increase::Export::status,
-        type: Increase::Export::type_
+        status: Increase::Models::Export::status,
+        type: Increase::Models::Export::type_
       }
 
     class Export < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor category: Increase::Export::category
+      attr_accessor category: Increase::Models::Export::category
 
       attr_accessor created_at: Time
 
@@ -25,20 +25,31 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor status: Increase::Export::status
+      attr_accessor status: Increase::Models::Export::status
 
-      attr_accessor type: Increase::Export::type_
+      attr_accessor type: Increase::Models::Export::type_
 
       def initialize: (
         id: String,
-        category: Increase::Export::category,
+        category: Increase::Models::Export::category,
         created_at: Time,
         file_download_url: String?,
         file_id: String?,
         idempotency_key: String?,
-        status: Increase::Export::status,
-        type: Increase::Export::type_
+        status: Increase::Models::Export::status,
+        type: Increase::Models::Export::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        category: Increase::Models::Export::category,
+        created_at: Time,
+        file_download_url: String?,
+        file_id: String?,
+        idempotency_key: String?,
+        status: Increase::Models::Export::status,
+        type: Increase::Models::Export::type_
+      }
 
       type category =
         :account_statement_ofx
@@ -73,7 +84,7 @@ module Increase
         # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
         DASHBOARD_TABLE_CSV: :dashboard_table_csv
 
-        def self?.values: -> ::Array[Increase::Export::category]
+        def self?.values: -> ::Array[Increase::Models::Export::category]
       end
 
       type status = :pending | :complete | :failed
@@ -90,7 +101,7 @@ module Increase
         # The export failed to generate. Increase will reach out to you to resolve the issue.
         FAILED: :failed
 
-        def self?.values: -> ::Array[Increase::Export::status]
+        def self?.values: -> ::Array[Increase::Models::Export::status]
       end
 
       type type_ = :export
@@ -100,7 +111,7 @@ module Increase
 
         EXPORT: :export
 
-        def self?.values: -> ::Array[Increase::Export::type_]
+        def self?.values: -> ::Array[Increase::Models::Export::type_]
       end
     end
   end

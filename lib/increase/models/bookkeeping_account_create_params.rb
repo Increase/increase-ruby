@@ -22,7 +22,7 @@ module Increase
       # @!attribute compliance_category
       #   The account compliance category.
       #
-      #   @return [Symbol, Increase::BookkeepingAccountCreateParams::ComplianceCategory, nil]
+      #   @return [Symbol, Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory, nil]
       optional :compliance_category, enum: -> { Increase::BookkeepingAccountCreateParams::ComplianceCategory }
 
       # @!attribute entity_id
@@ -36,7 +36,7 @@ module Increase
       #
       #   @param account_id [String] The entity, if `compliance_category` is `commingled_cash`.
       #
-      #   @param compliance_category [Symbol, Increase::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
+      #   @param compliance_category [Symbol, Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
       #
       #   @param entity_id [String] The entity, if `compliance_category` is `customer_balance`.
       #

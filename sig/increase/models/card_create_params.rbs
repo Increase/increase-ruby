@@ -45,6 +45,15 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        account_id: String,
+        billing_address: Increase::CardCreateParams::BillingAddress,
+        description: String,
+        digital_wallet: Increase::CardCreateParams::DigitalWallet,
+        entity_id: String,
+        request_options: Increase::RequestOptions
+      }
+
       type billing_address =
         {
           city: String,
@@ -74,6 +83,14 @@ module Increase
           state: String,
           ?line2: String
         ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          postal_code: String,
+          state: String,
+          :line2 => String
+        }
       end
 
       type digital_wallet =
@@ -97,6 +114,12 @@ module Increase
           ?email: String,
           ?phone: String
         ) -> void
+
+        def to_hash: -> {
+          digital_card_profile_id: String,
+          email: String,
+          phone: String
+        }
       end
     end
   end

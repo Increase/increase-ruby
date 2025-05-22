@@ -45,19 +45,34 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        routing_number: String,
+        status: Increase::ExternalAccountListParams::Status,
+        request_options: Increase::RequestOptions
+      }
+
       type status =
-        { in_: ::Array[Increase::ExternalAccountListParams::Status::in_] }
+        {
+          in_: ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
+        }
 
       class Status < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::ExternalAccountListParams::Status::in_]?
+        attr_reader in_: ::Array[Increase::Models::ExternalAccountListParams::Status::in_]?
 
         def in_=: (
-          ::Array[Increase::ExternalAccountListParams::Status::in_]
-        ) -> ::Array[Increase::ExternalAccountListParams::Status::in_]
+          ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
+        ) -> ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
 
         def initialize: (
-          ?in_: ::Array[Increase::ExternalAccountListParams::Status::in_]
+          ?in_: ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
         ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
+        }
 
         type in_ = :active | :archived
 
@@ -70,7 +85,7 @@ module Increase
           # The External Account is archived and won't appear in the dashboard.
           ARCHIVED: :archived
 
-          def self?.values: -> ::Array[Increase::ExternalAccountListParams::Status::in_]
+          def self?.values: -> ::Array[Increase::Models::ExternalAccountListParams::Status::in_]
         end
       end
     end

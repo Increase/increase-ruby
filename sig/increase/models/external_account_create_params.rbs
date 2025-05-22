@@ -41,6 +41,15 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        account_number: String,
+        description: String,
+        routing_number: String,
+        account_holder: Increase::Models::ExternalAccountCreateParams::account_holder,
+        funding: Increase::Models::ExternalAccountCreateParams::funding,
+        request_options: Increase::RequestOptions
+      }
+
       type account_holder = :business | :individual | :unknown
 
       module AccountHolder

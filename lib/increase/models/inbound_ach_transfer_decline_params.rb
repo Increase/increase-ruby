@@ -12,14 +12,14 @@ module Increase
       #   return codes will be `payment_stopped` for debits and
       #   `credit_entry_refused_by_receiver` for credits.
       #
-      #   @return [Symbol, Increase::InboundACHTransferDeclineParams::Reason, nil]
+      #   @return [Symbol, Increase::Models::InboundACHTransferDeclineParams::Reason, nil]
       optional :reason, enum: -> { Increase::InboundACHTransferDeclineParams::Reason }
 
       # @!method initialize(reason: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundACHTransferDeclineParams} for more details.
       #
-      #   @param reason [Symbol, Increase::InboundACHTransferDeclineParams::Reason] The reason why this transfer will be returned. If this parameter is unset, the r
+      #   @param reason [Symbol, Increase::Models::InboundACHTransferDeclineParams::Reason] The reason why this transfer will be returned. If this parameter is unset, the r
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

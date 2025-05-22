@@ -9,7 +9,7 @@ module Increase
 
       # @!attribute created_at
       #
-      #   @return [Increase::ACHPrenotificationListParams::CreatedAt, nil]
+      #   @return [Increase::Models::ACHPrenotificationListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::ACHPrenotificationListParams::CreatedAt }
 
       # @!attribute cursor
@@ -38,7 +38,7 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ACHPrenotificationListParams} for more details.
       #
-      #   @param created_at [Increase::ACHPrenotificationListParams::CreatedAt]
+      #   @param created_at [Increase::Models::ACHPrenotificationListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -79,7 +79,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::ACHPrenotificationListParams::CreatedAt} for more details.
+        #   {Increase::Models::ACHPrenotificationListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

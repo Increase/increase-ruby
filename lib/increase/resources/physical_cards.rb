@@ -12,15 +12,15 @@ module Increase
       #
       # @param card_id [String] The underlying card representing this physical card.
       #
-      # @param cardholder [Increase::PhysicalCardCreateParams::Cardholder] Details about the cardholder, as it will appear on the physical card.
+      # @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder] Details about the cardholder, as it will appear on the physical card.
       #
-      # @param shipment [Increase::PhysicalCardCreateParams::Shipment] The details used to ship this physical card.
+      # @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment] The details used to ship this physical card.
       #
       # @param physical_card_profile_id [String] The physical card profile to use for this physical card. The latest default phys
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCard]
+      # @return [Increase::Models::PhysicalCard]
       #
       # @see Increase::Models::PhysicalCardCreateParams
       def create(params)
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCard]
+      # @return [Increase::Models::PhysicalCard]
       #
       # @see Increase::Models::PhysicalCardRetrieveParams
       def retrieve(physical_card_id, params = {})
@@ -60,11 +60,11 @@ module Increase
       #
       # @param physical_card_id [String] The Physical Card identifier.
       #
-      # @param status [Symbol, Increase::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
+      # @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::PhysicalCard]
+      # @return [Increase::Models::PhysicalCard]
       #
       # @see Increase::Models::PhysicalCardUpdateParams
       def update(physical_card_id, params)
@@ -87,7 +87,7 @@ module Increase
       #
       # @param card_id [String] Filter Physical Cards to ones belonging to the specified Card.
       #
-      # @param created_at [Increase::PhysicalCardListParams::CreatedAt]
+      # @param created_at [Increase::Models::PhysicalCardListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -97,7 +97,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::PhysicalCard>]
+      # @return [Increase::Internal::Page<Increase::Models::PhysicalCard>]
       #
       # @see Increase::Models::PhysicalCardListParams
       def list(params = {})

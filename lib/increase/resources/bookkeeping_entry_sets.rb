@@ -10,7 +10,7 @@ module Increase
       #
       # @overload create(entries:, date: nil, transaction_id: nil, request_options: {})
       #
-      # @param entries [Array<Increase::BookkeepingEntrySetCreateParams::Entry>] The bookkeeping entries.
+      # @param entries [Array<Increase::Models::BookkeepingEntrySetCreateParams::Entry>] The bookkeeping entries.
       #
       # @param date [Time] The date of the transaction. Optional if `transaction_id` is provided, in which
       #
@@ -18,7 +18,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BookkeepingEntrySet]
+      # @return [Increase::Models::BookkeepingEntrySet]
       #
       # @see Increase::Models::BookkeepingEntrySetCreateParams
       def create(params)
@@ -40,7 +40,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BookkeepingEntrySet]
+      # @return [Increase::Models::BookkeepingEntrySet]
       #
       # @see Increase::Models::BookkeepingEntrySetRetrieveParams
       def retrieve(bookkeeping_entry_set_id, params = {})
@@ -69,7 +69,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::BookkeepingEntrySet>]
+      # @return [Increase::Internal::Page<Increase::Models::BookkeepingEntrySet>]
       #
       # @see Increase::Models::BookkeepingEntrySetListParams
       def list(params = {})

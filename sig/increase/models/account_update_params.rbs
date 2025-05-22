@@ -15,6 +15,11 @@ module Increase
         ?name: String,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        name: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

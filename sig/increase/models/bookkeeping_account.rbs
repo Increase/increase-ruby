@@ -4,11 +4,11 @@ module Increase
       {
         id: String,
         account_id: String?,
-        compliance_category: Increase::BookkeepingAccount::compliance_category?,
+        compliance_category: Increase::Models::BookkeepingAccount::compliance_category?,
         entity_id: String?,
         idempotency_key: String?,
         name: String,
-        type: Increase::BookkeepingAccount::type_
+        type: Increase::Models::BookkeepingAccount::type_
       }
 
     class BookkeepingAccount < Increase::Internal::Type::BaseModel
@@ -16,7 +16,7 @@ module Increase
 
       attr_accessor account_id: String?
 
-      attr_accessor compliance_category: Increase::BookkeepingAccount::compliance_category?
+      attr_accessor compliance_category: Increase::Models::BookkeepingAccount::compliance_category?
 
       attr_accessor entity_id: String?
 
@@ -24,17 +24,27 @@ module Increase
 
       attr_accessor name: String
 
-      attr_accessor type: Increase::BookkeepingAccount::type_
+      attr_accessor type: Increase::Models::BookkeepingAccount::type_
 
       def initialize: (
         id: String,
         account_id: String?,
-        compliance_category: Increase::BookkeepingAccount::compliance_category?,
+        compliance_category: Increase::Models::BookkeepingAccount::compliance_category?,
         entity_id: String?,
         idempotency_key: String?,
         name: String,
-        type: Increase::BookkeepingAccount::type_
+        type: Increase::Models::BookkeepingAccount::type_
       ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String?,
+        compliance_category: Increase::Models::BookkeepingAccount::compliance_category?,
+        entity_id: String?,
+        idempotency_key: String?,
+        name: String,
+        type: Increase::Models::BookkeepingAccount::type_
+      }
 
       type compliance_category = :commingled_cash | :customer_balance
 
@@ -47,7 +57,7 @@ module Increase
         # A customer balance.
         CUSTOMER_BALANCE: :customer_balance
 
-        def self?.values: -> ::Array[Increase::BookkeepingAccount::compliance_category]
+        def self?.values: -> ::Array[Increase::Models::BookkeepingAccount::compliance_category]
       end
 
       type type_ = :bookkeeping_account
@@ -57,7 +67,7 @@ module Increase
 
         BOOKKEEPING_ACCOUNT: :bookkeeping_account
 
-        def self?.values: -> ::Array[Increase::BookkeepingAccount::type_]
+        def self?.values: -> ::Array[Increase::Models::BookkeepingAccount::type_]
       end
     end
   end

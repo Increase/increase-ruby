@@ -29,13 +29,13 @@ module Increase
       # @!attribute account_holder
       #   The type of entity that owns the External Account.
       #
-      #   @return [Symbol, Increase::ExternalAccountCreateParams::AccountHolder, nil]
+      #   @return [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder, nil]
       optional :account_holder, enum: -> { Increase::ExternalAccountCreateParams::AccountHolder }
 
       # @!attribute funding
       #   The type of the destination account. Defaults to `checking`.
       #
-      #   @return [Symbol, Increase::ExternalAccountCreateParams::Funding, nil]
+      #   @return [Symbol, Increase::Models::ExternalAccountCreateParams::Funding, nil]
       optional :funding, enum: -> { Increase::ExternalAccountCreateParams::Funding }
 
       # @!method initialize(account_number:, description:, routing_number:, account_holder: nil, funding: nil, request_options: {})
@@ -48,9 +48,9 @@ module Increase
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
       #
-      #   @param account_holder [Symbol, Increase::ExternalAccountCreateParams::AccountHolder] The type of entity that owns the External Account.
+      #   @param account_holder [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder] The type of entity that owns the External Account.
       #
-      #   @param funding [Symbol, Increase::ExternalAccountCreateParams::Funding] The type of the destination account. Defaults to `checking`.
+      #   @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding] The type of the destination account. Defaults to `checking`.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

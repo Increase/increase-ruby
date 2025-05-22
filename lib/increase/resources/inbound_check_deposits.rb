@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundCheckDeposit]
+      # @return [Increase::Models::InboundCheckDeposit]
       #
       # @see Increase::Models::InboundCheckDepositRetrieveParams
       def retrieve(inbound_check_deposit_id, params = {})
@@ -34,7 +34,7 @@ module Increase
       #
       # @param check_transfer_id [String] Filter Inbound Check Deposits to those belonging to the specified Check Transfer
       #
-      # @param created_at [Increase::InboundCheckDepositListParams::CreatedAt]
+      # @param created_at [Increase::Models::InboundCheckDepositListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::InboundCheckDeposit>]
+      # @return [Increase::Internal::Page<Increase::Models::InboundCheckDeposit>]
       #
       # @see Increase::Models::InboundCheckDepositListParams
       def list(params = {})
@@ -65,7 +65,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundCheckDeposit]
+      # @return [Increase::Models::InboundCheckDeposit]
       #
       # @see Increase::Models::InboundCheckDepositDeclineParams
       def decline(inbound_check_deposit_id, params = {})
@@ -83,11 +83,11 @@ module Increase
       #
       # @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to return.
       #
-      # @param reason [Symbol, Increase::InboundCheckDepositReturnParams::Reason] The reason to return the Inbound Check Deposit.
+      # @param reason [Symbol, Increase::Models::InboundCheckDepositReturnParams::Reason] The reason to return the Inbound Check Deposit.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::InboundCheckDeposit]
+      # @return [Increase::Models::InboundCheckDeposit]
       #
       # @see Increase::Models::InboundCheckDepositReturnParams
       def return_(inbound_check_deposit_id, params)

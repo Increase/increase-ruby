@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::OAuthApplication]
+      # @return [Increase::Models::OAuthApplication]
       #
       # @see Increase::Models::OAuthApplicationRetrieveParams
       def retrieve(oauth_application_id, params = {})
@@ -30,17 +30,17 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, limit: nil, status: nil, request_options: {})
       #
-      # @param created_at [Increase::OAuthApplicationListParams::CreatedAt]
+      # @param created_at [Increase::Models::OAuthApplicationListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::OAuthApplicationListParams::Status]
+      # @param status [Increase::Models::OAuthApplicationListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::OAuthApplication>]
+      # @return [Increase::Internal::Page<Increase::Models::OAuthApplication>]
       #
       # @see Increase::Models::OAuthApplicationListParams
       def list(params = {})

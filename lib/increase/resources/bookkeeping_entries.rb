@@ -11,7 +11,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::BookkeepingEntry]
+      # @return [Increase::Models::BookkeepingEntry]
       #
       # @see Increase::Models::BookkeepingEntryRetrieveParams
       def retrieve(bookkeeping_entry_id, params = {})
@@ -38,7 +38,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::BookkeepingEntry>]
+      # @return [Increase::Internal::Page<Increase::Models::BookkeepingEntry>]
       #
       # @see Increase::Models::BookkeepingEntryListParams
       def list(params = {})

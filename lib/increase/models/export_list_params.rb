@@ -9,12 +9,12 @@ module Increase
 
       # @!attribute category
       #
-      #   @return [Increase::ExportListParams::Category, nil]
+      #   @return [Increase::Models::ExportListParams::Category, nil]
       optional :category, -> { Increase::ExportListParams::Category }
 
       # @!attribute created_at
       #
-      #   @return [Increase::ExportListParams::CreatedAt, nil]
+      #   @return [Increase::Models::ExportListParams::CreatedAt, nil]
       optional :created_at, -> { Increase::ExportListParams::CreatedAt }
 
       # @!attribute cursor
@@ -41,16 +41,16 @@ module Increase
 
       # @!attribute status
       #
-      #   @return [Increase::ExportListParams::Status, nil]
+      #   @return [Increase::Models::ExportListParams::Status, nil]
       optional :status, -> { Increase::ExportListParams::Status }
 
       # @!method initialize(category: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportListParams} for more details.
       #
-      #   @param category [Increase::ExportListParams::Category]
+      #   @param category [Increase::Models::ExportListParams::Category]
       #
-      #   @param created_at [Increase::ExportListParams::CreatedAt]
+      #   @param created_at [Increase::Models::ExportListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
@@ -58,7 +58,7 @@ module Increase
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      #   @param status [Increase::ExportListParams::Status]
+      #   @param status [Increase::Models::ExportListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -68,16 +68,16 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::ExportListParams::Category::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::ExportListParams::Category::In>, nil]
         optional :in_,
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::ExportListParams::Category::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::ExportListParams::Category} for more details.
+        #   {Increase::Models::ExportListParams::Category} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::ExportListParams::Category::In>] Filter Exports for those with the specified category or categories. For GET requ
+        #   @param in_ [Array<Symbol, Increase::Models::ExportListParams::Category::In>] Filter Exports for those with the specified category or categories. For GET requ
 
         module In
           extend Increase::Internal::Type::Enum
@@ -139,7 +139,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::ExportListParams::CreatedAt} for more details.
+        #   {Increase::Models::ExportListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
@@ -156,16 +156,16 @@ module Increase
         #   requests, this should be encoded as a comma-delimited string, such as
         #   `?in=one,two,three`.
         #
-        #   @return [Array<Symbol, Increase::ExportListParams::Status::In>, nil]
+        #   @return [Array<Symbol, Increase::Models::ExportListParams::Status::In>, nil]
         optional :in_,
                  -> { Increase::Internal::Type::ArrayOf[enum: Increase::ExportListParams::Status::In] },
                  api_name: :in
 
         # @!method initialize(in_: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::ExportListParams::Status} for more details.
+        #   {Increase::Models::ExportListParams::Status} for more details.
         #
-        #   @param in_ [Array<Symbol, Increase::ExportListParams::Status::In>] Filter Exports for those with the specified status or statuses. For GET requests
+        #   @param in_ [Array<Symbol, Increase::Models::ExportListParams::Status::In>] Filter Exports for those with the specified status or statuses. For GET requests
 
         module In
           extend Increase::Internal::Type::Enum

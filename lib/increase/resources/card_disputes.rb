@@ -18,7 +18,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::CardDispute]
+      # @return [Increase::Models::CardDispute]
       #
       # @see Increase::Models::CardDisputeCreateParams
       def create(params)
@@ -40,7 +40,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::CardDispute]
+      # @return [Increase::Models::CardDispute]
       #
       # @see Increase::Models::CardDisputeRetrieveParams
       def retrieve(card_dispute_id, params = {})
@@ -59,7 +59,7 @@ module Increase
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
-      # @param created_at [Increase::CardDisputeListParams::CreatedAt]
+      # @param created_at [Increase::Models::CardDisputeListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
@@ -67,11 +67,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::CardDisputeListParams::Status]
+      # @param status [Increase::Models::CardDisputeListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::CardDispute>]
+      # @return [Increase::Internal::Page<Increase::Models::CardDispute>]
       #
       # @see Increase::Models::CardDisputeListParams
       def list(params = {})

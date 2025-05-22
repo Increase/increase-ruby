@@ -22,6 +22,11 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> void
 
+        def to_hash: -> {
+          reason: Increase::Models::Simulations::ACHTransferReturnParams::reason,
+          request_options: Increase::RequestOptions
+        }
+
         type reason =
           :insufficient_fund
           | :no_account

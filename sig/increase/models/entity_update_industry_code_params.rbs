@@ -13,6 +13,11 @@ module Increase
         industry_code: String,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        industry_code: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

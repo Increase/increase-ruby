@@ -15,6 +15,11 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> void
 
+      def to_hash: -> {
+        address: Increase::EntityUpdateAddressParams::Address,
+        request_options: Increase::RequestOptions
+      }
+
       type address =
         {
           city: String,
@@ -44,6 +49,14 @@ module Increase
           zip: String,
           ?line2: String
         ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          state: String,
+          zip: String,
+          :line2 => String
+        }
       end
     end
   end

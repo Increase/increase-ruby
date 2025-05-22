@@ -38,7 +38,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::WireDrawdownRequest]
+      # @return [Increase::Models::WireDrawdownRequest]
       #
       # @see Increase::Models::WireDrawdownRequestCreateParams
       def create(params)
@@ -60,7 +60,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::WireDrawdownRequest]
+      # @return [Increase::Models::WireDrawdownRequest]
       #
       # @see Increase::Models::WireDrawdownRequestRetrieveParams
       def retrieve(wire_drawdown_request_id, params = {})
@@ -85,11 +85,11 @@ module Increase
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
-      # @param status [Increase::WireDrawdownRequestListParams::Status]
+      # @param status [Increase::Models::WireDrawdownRequestListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::WireDrawdownRequest>]
+      # @return [Increase::Internal::Page<Increase::Models::WireDrawdownRequest>]
       #
       # @see Increase::Models::WireDrawdownRequestListParams
       def list(params = {})

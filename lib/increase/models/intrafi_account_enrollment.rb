@@ -42,19 +42,19 @@ module Increase
       #   The status of the account in the network. An account takes about one business
       #   day to go from `pending_enrolling` to `enrolled`.
       #
-      #   @return [Symbol, Increase::IntrafiAccountEnrollment::Status]
+      #   @return [Symbol, Increase::Models::IntrafiAccountEnrollment::Status]
       required :status, enum: -> { Increase::IntrafiAccountEnrollment::Status }
 
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `intrafi_account_enrollment`.
       #
-      #   @return [Symbol, Increase::IntrafiAccountEnrollment::Type]
+      #   @return [Symbol, Increase::Models::IntrafiAccountEnrollment::Type]
       required :type, enum: -> { Increase::IntrafiAccountEnrollment::Type }
 
       # @!method initialize(id:, account_id:, created_at:, idempotency_key:, intrafi_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::IntrafiAccountEnrollment} for more details.
+      #   {Increase::Models::IntrafiAccountEnrollment} for more details.
       #
       #   IntraFi is a
       #   [network of financial institutions](https://www.intrafi.com/network-banks) that
@@ -74,14 +74,14 @@ module Increase
       #
       #   @param intrafi_id [String] The identifier of the account in IntraFi's system. This identifier will be print
       #
-      #   @param status [Symbol, Increase::IntrafiAccountEnrollment::Status] The status of the account in the network. An account takes about one business da
+      #   @param status [Symbol, Increase::Models::IntrafiAccountEnrollment::Status] The status of the account in the network. An account takes about one business da
       #
-      #   @param type [Symbol, Increase::IntrafiAccountEnrollment::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::IntrafiAccountEnrollment::Type] A constant representing the object's type. For this resource it will always be `
 
       # The status of the account in the network. An account takes about one business
       # day to go from `pending_enrolling` to `enrolled`.
       #
-      # @see Increase::IntrafiAccountEnrollment#status
+      # @see Increase::Models::IntrafiAccountEnrollment#status
       module Status
         extend Increase::Internal::Type::Enum
 
@@ -107,7 +107,7 @@ module Increase
       # A constant representing the object's type. For this resource it will always be
       # `intrafi_account_enrollment`.
       #
-      # @see Increase::IntrafiAccountEnrollment#type
+      # @see Increase::Models::IntrafiAccountEnrollment#type
       module Type
         extend Increase::Internal::Type::Enum
 

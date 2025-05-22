@@ -34,6 +34,15 @@ module Increase
         ?require_approval: bool,
         ?request_options: Increase::request_opts
       ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        amount: Integer,
+        description: String,
+        destination_account_id: String,
+        require_approval: bool,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end
