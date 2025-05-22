@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.26 (2025-05-22)
+
+Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
+
+### Features
+
+* **api:** api update ([02d1d7a](https://github.com/Increase/increase-ruby/commit/02d1d7a9743f2fa636c1f7c5da1239651942e84f))
+* **api:** api update ([0048087](https://github.com/Increase/increase-ruby/commit/004808756c486b90f9d3bbac352d209c77fc0044))
+
+
+### Chores
+
+* **docs:** grammar improvements ([7528787](https://github.com/Increase/increase-ruby/commit/752878761b5cd474fe3f751b33b8a66f360ca2e3))
+* force utf-8 locale via `RUBYOPT` when formatting ([9836cc4](https://github.com/Increase/increase-ruby/commit/9836cc43f50da4049117fd2724bfbcf41a2c3283))
+* refine Yard and Sorbet types and ensure linting is turned on for examples ([3846f08](https://github.com/Increase/increase-ruby/commit/3846f08fefcddec7cefbf86e3a3fbfa535318d94))
+* use fully qualified names for yard annotations and rbs aliases ([7a81744](https://github.com/Increase/increase-ruby/commit/7a81744d65096fc1af4b633f04f85f0d01c90617))
+
 ## 0.1.0-alpha.25 (2025-05-20)
 
 Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
