@@ -600,11 +600,13 @@ module Increase
         #
         # @return [Object]
         def encode_content(headers, body)
+          # rubocop:disable Style/CaseEquality
+          # rubocop:disable Layout/LineLength
           content_type = headers["content-type"]
           case [content_type, body]
           in [Increase::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
             [headers, JSON.generate(body)]
-          in [Increase::Internal::Util::JSONL_CONTENT, Enumerable] unless body.is_a?(Increase::Internal::Type::FileInput)
+          in [Increase::Internal::Util::JSONL_CONTENT, Enumerable] unless Increase::Internal::Type::FileInput === body
             [headers, body.lazy.map { JSON.generate(_1) }]
           in [%r{^multipart/form-data}, Hash | Increase::Internal::Type::FileInput]
             boundary, strio = encode_multipart_streaming(body)
@@ -619,6 +621,8 @@ module Increase
           else
             [headers, body]
           end
+          # rubocop:enable Layout/LineLength
+          # rubocop:enable Style/CaseEquality
         end
 
         # @api private
