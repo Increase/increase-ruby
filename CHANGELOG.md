@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2025-05-23)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Bug Fixes
+
+* prevent rubocop from mangling `===` to `is_a?` check ([b0fc6ac](https://github.com/Increase/increase-ruby/commit/b0fc6ac4326dc7a7ab598af3652be29e357590df))
+
 ## 0.1.0-alpha.26 (2025-05-22)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
