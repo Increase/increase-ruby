@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2025-05-27)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Features
+
+* **api:** api update ([22c484f](https://github.com/Increase/increase-ruby/commit/22c484f13d1e81041c1d07f28aacd858314755e8))
+
+
+### Bug Fixes
+
+* sorbet types for enums, and make tapioca detection ignore `tapioca dsl` ([bf4354d](https://github.com/Increase/increase-ruby/commit/bf4354d9eda8ed1b0a114ac319d3e62b357049e6))
+
 ## 0.1.0-alpha.27 (2025-05-23)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
