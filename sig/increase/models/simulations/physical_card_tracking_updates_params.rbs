@@ -1,0 +1,80 @@
+module Increase
+  module Models
+    module Simulations
+      type physical_card_tracking_updates_params =
+        {
+          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          carrier_estimated_delivery_at: Time,
+          city: String,
+          postal_code: String,
+          state: String
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class PhysicalCardTrackingUpdatesParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category
+
+        attr_reader carrier_estimated_delivery_at: Time?
+
+        def carrier_estimated_delivery_at=: (Time) -> Time
+
+        attr_reader city: String?
+
+        def city=: (String) -> String
+
+        attr_reader postal_code: String?
+
+        def postal_code=: (String) -> String
+
+        attr_reader state: String?
+
+        def state=: (String) -> String
+
+        def initialize: (
+          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          ?carrier_estimated_delivery_at: Time,
+          ?city: String,
+          ?postal_code: String,
+          ?state: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          carrier_estimated_delivery_at: Time,
+          city: String,
+          postal_code: String,
+          state: String,
+          request_options: Increase::RequestOptions
+        }
+
+        type category =
+          :in_transit
+          | :processed_for_delivery
+          | :delivered
+          | :returned_to_sender
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The physical card is in transit.
+          IN_TRANSIT: :in_transit
+
+          # The physical card has been processed for delivery.
+          PROCESSED_FOR_DELIVERY: :processed_for_delivery
+
+          # The physical card has been delivered.
+          DELIVERED: :delivered
+
+          # Delivery failed and the physical card was returned to sender.
+          RETURNED_TO_SENDER: :returned_to_sender
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category]
+        end
+      end
+    end
+  end
+end

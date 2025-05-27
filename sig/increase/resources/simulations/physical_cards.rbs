@@ -8,6 +8,16 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> Increase::PhysicalCard
 
+        def tracking_updates: (
+          String physical_card_id,
+          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          ?carrier_estimated_delivery_at: Time,
+          ?city: String,
+          ?postal_code: String,
+          ?state: String,
+          ?request_options: Increase::request_opts
+        ) -> Increase::PhysicalCard
+
         def initialize: (client: Increase::Client) -> void
       end
     end

@@ -25,4 +25,27 @@ class Increase::Test::Resources::Simulations::PhysicalCardsTest < Increase::Test
       }
     end
   end
+
+  def test_tracking_updates_required_params
+    response =
+      @increase.simulations.physical_cards.tracking_updates("physical_card_id", category: :delivered)
+
+    assert_pattern do
+      response => Increase::PhysicalCard
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        card_id: String,
+        cardholder: Increase::PhysicalCard::Cardholder,
+        created_at: Time,
+        idempotency_key: String | nil,
+        physical_card_profile_id: String | nil,
+        shipment: Increase::PhysicalCard::Shipment,
+        status: Increase::PhysicalCard::Status,
+        type: Increase::PhysicalCard::Type
+      }
+    end
+  end
 end

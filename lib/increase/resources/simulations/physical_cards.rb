@@ -30,6 +30,43 @@ module Increase
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams} for more
+        # details.
+        #
+        # This endpoint allows you to simulate receiving a tracking update for a Physical
+        # Card, to simulate the progress of a shipment.
+        #
+        # @overload tracking_updates(physical_card_id, category:, carrier_estimated_delivery_at: nil, city: nil, postal_code: nil, state: nil, request_options: {})
+        #
+        # @param physical_card_id [String] The Physical Card you would like to action.
+        #
+        # @param category [Symbol, Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::Category] The type of tracking event.
+        #
+        # @param carrier_estimated_delivery_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
+        #
+        # @param city [String] The city where the event took place.
+        #
+        # @param postal_code [String] The postal code where the event took place.
+        #
+        # @param state [String] The state where the event took place.
+        #
+        # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Increase::Models::PhysicalCard]
+        #
+        # @see Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams
+        def tracking_updates(physical_card_id, params)
+          parsed, options = Increase::Simulations::PhysicalCardTrackingUpdatesParams.dump_request(params)
+          @client.request(
+            method: :post,
+            path: ["simulations/physical_cards/%1$s/tracking_updates", physical_card_id],
+            body: parsed,
+            model: Increase::PhysicalCard,
+            options: options
+          )
+        end
+
         # @api private
         #
         # @param client [Increase::Client]

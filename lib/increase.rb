@@ -284,6 +284,7 @@ require_relative "increase/models/simulations/inbound_wire_drawdown_request_crea
 require_relative "increase/models/simulations/inbound_wire_transfer_create_params"
 require_relative "increase/models/simulations/interest_payment_create_params"
 require_relative "increase/models/simulations/physical_card_advance_shipment_params"
+require_relative "increase/models/simulations/physical_card_tracking_updates_params"
 require_relative "increase/models/simulations/program_create_params"
 require_relative "increase/models/simulations/real_time_payments_transfer_complete_params"
 require_relative "increase/models/simulations/wire_transfer_reverse_params"
