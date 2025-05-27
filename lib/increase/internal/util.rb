@@ -875,8 +875,12 @@ module Increase
             case type
             in Increase::Internal::Util::SorbetRuntimeSupport
               type.to_sorbet_type
-            else
+            in Class | Module
               type
+            in true | false
+              T::Boolean
+            else
+              type.class
             end
           end
         end
