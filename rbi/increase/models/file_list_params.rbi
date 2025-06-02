@@ -389,6 +389,13 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
+          # An account verification letter.
+          ACCOUNT_VERIFICATION_LETTER =
+            T.let(
+              :account_verification_letter,
+              Increase::FileListParams::Purpose::In::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[Increase::FileListParams::Purpose::In::TaggedSymbol]

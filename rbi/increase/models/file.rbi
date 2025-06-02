@@ -258,6 +258,13 @@ module Increase
             Increase::File::Purpose::TaggedSymbol
           )
 
+        # An account verification letter.
+        ACCOUNT_VERIFICATION_LETTER =
+          T.let(
+            :account_verification_letter,
+            Increase::File::Purpose::TaggedSymbol
+          )
+
         sig do
           override.returns(T::Array[Increase::File::Purpose::TaggedSymbol])
         end

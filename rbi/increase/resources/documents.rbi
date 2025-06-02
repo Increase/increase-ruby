@@ -24,6 +24,7 @@ module Increase
           created_at: Increase::DocumentListParams::CreatedAt::OrHash,
           cursor: String,
           entity_id: String,
+          idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Internal::Page[Increase::Document])
@@ -35,6 +36,11 @@ module Increase
         cursor: nil,
         # Filter Documents to ones belonging to the specified Entity.
         entity_id: nil,
+        # Filter records to the one with the specified `idempotency_key` you chose for
+        # that object. This value is unique across Increase and is used to ensure that a
+        # request is only processed once. Learn more about
+        # [idempotency](https://increase.com/documentation/idempotency-keys).
+        idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,

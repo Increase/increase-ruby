@@ -17,6 +17,7 @@ class Increase::Test::Resources::DocumentsTest < Increase::Test::ResourceTest
         created_at: Time,
         entity_id: String | nil,
         file_id: String,
+        idempotency_key: String | nil,
         type: Increase::Document::Type
       }
     end
@@ -43,6 +44,7 @@ class Increase::Test::Resources::DocumentsTest < Increase::Test::ResourceTest
         created_at: Time,
         entity_id: String | nil,
         file_id: String,
+        idempotency_key: String | nil,
         type: Increase::Document::Type
       }
     end

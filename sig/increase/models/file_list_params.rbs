@@ -135,6 +135,7 @@ module Increase
           | :unusual_activity_report_attachment
           | :deposit_account_control_agreement
           | :proof_of_authorization_request_submission
+          | :account_verification_letter
 
         module In
           extend Increase::Internal::Type::Enum
@@ -213,6 +214,9 @@ module Increase
 
           # A file containing additional evidence for a Proof of Authorization Request Submission.
           PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION: :proof_of_authorization_request_submission
+
+          # An account verification letter.
+          ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
 
           def self?.values: -> ::Array[Increase::Models::FileListParams::Purpose::in_]
         end

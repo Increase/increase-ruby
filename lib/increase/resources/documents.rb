@@ -28,7 +28,7 @@ module Increase
       #
       # List Documents
       #
-      # @overload list(category: nil, created_at: nil, cursor: nil, entity_id: nil, limit: nil, request_options: {})
+      # @overload list(category: nil, created_at: nil, cursor: nil, entity_id: nil, idempotency_key: nil, limit: nil, request_options: {})
       #
       # @param category [Increase::Models::DocumentListParams::Category]
       #
@@ -37,6 +37,8 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param entity_id [String] Filter Documents to ones belonging to the specified Entity.
+      #
+      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #

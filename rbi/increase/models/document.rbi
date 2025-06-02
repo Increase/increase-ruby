@@ -27,6 +27,12 @@ module Increase
       sig { returns(String) }
       attr_accessor :file_id
 
+      # The idempotency key you chose for this object. This value is unique across
+      # Increase and is used to ensure that a request is only processed once. Learn more
+      # about [idempotency](https://increase.com/documentation/idempotency-keys).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :idempotency_key
+
       # A constant representing the object's type. For this resource it will always be
       # `document`.
       sig { returns(Increase::Document::Type::TaggedSymbol) }
@@ -41,6 +47,7 @@ module Increase
           created_at: Time,
           entity_id: T.nilable(String),
           file_id: String,
+          idempotency_key: T.nilable(String),
           type: Increase::Document::Type::OrSymbol
         ).returns(T.attached_class)
       end
@@ -56,6 +63,10 @@ module Increase
         entity_id:,
         # The identifier of the File containing the Document's contents.
         file_id:,
+        # The idempotency key you chose for this object. This value is unique across
+        # Increase and is used to ensure that a request is only processed once. Learn more
+        # about [idempotency](https://increase.com/documentation/idempotency-keys).
+        idempotency_key:,
         # A constant representing the object's type. For this resource it will always be
         # `document`.
         type:
@@ -70,6 +81,7 @@ module Increase
             created_at: Time,
             entity_id: T.nilable(String),
             file_id: String,
+            idempotency_key: T.nilable(String),
             type: Increase::Document::Type::TaggedSymbol
           }
         )
@@ -104,6 +116,13 @@ module Increase
         COMPANY_INFORMATION =
           T.let(
             :company_information,
+            Increase::Document::Category::TaggedSymbol
+          )
+
+        # An account verification letter.
+        ACCOUNT_VERIFICATION_LETTER =
+          T.let(
+            :account_verification_letter,
             Increase::Document::Category::TaggedSymbol
           )
 

@@ -6,6 +6,7 @@ module Increase
         created_at: Increase::DocumentListParams::CreatedAt,
         cursor: String,
         entity_id: String,
+        idempotency_key: String,
         limit: Integer
       }
       & Increase::Internal::Type::request_parameters
@@ -34,6 +35,10 @@ module Increase
 
       def entity_id=: (String) -> String
 
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
       attr_reader limit: Integer?
 
       def limit=: (Integer) -> Integer
@@ -43,6 +48,7 @@ module Increase
         ?created_at: Increase::DocumentListParams::CreatedAt,
         ?cursor: String,
         ?entity_id: String,
+        ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
       ) -> void
@@ -52,6 +58,7 @@ module Increase
         created_at: Increase::DocumentListParams::CreatedAt,
         cursor: String,
         entity_id: String,
+        idempotency_key: String,
         limit: Integer,
         request_options: Increase::RequestOptions
       }
@@ -79,6 +86,7 @@ module Increase
           | :form_1099_misc
           | :proof_of_authorization
           | :company_information
+          | :account_verification_letter
 
         module In
           extend Increase::Internal::Type::Enum
@@ -94,6 +102,9 @@ module Increase
 
           # Company information, such a policies or procedures, typically submitted during our due diligence process.
           COMPANY_INFORMATION: :company_information
+
+          # An account verification letter.
+          ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
 
           def self?.values: -> ::Array[Increase::Models::DocumentListParams::Category::in_]
         end

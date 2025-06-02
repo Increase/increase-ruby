@@ -35,6 +35,14 @@ module Increase
       #   @return [String]
       required :file_id, String
 
+      # @!attribute idempotency_key
+      #   The idempotency key you chose for this object. This value is unique across
+      #   Increase and is used to ensure that a request is only processed once. Learn more
+      #   about [idempotency](https://increase.com/documentation/idempotency-keys).
+      #
+      #   @return [String, nil]
+      required :idempotency_key, String, nil?: true
+
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `document`.
@@ -42,7 +50,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Document::Type]
       required :type, enum: -> { Increase::Document::Type }
 
-      # @!method initialize(id:, category:, created_at:, entity_id:, file_id:, type:)
+      # @!method initialize(id:, category:, created_at:, entity_id:, file_id:, idempotency_key:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Document} for more details.
       #
@@ -58,6 +66,8 @@ module Increase
       #   @param entity_id [String, nil] The identifier of the Entity the document was generated for.
       #
       #   @param file_id [String] The identifier of the File containing the Document's contents.
+      #
+      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param type [Symbol, Increase::Models::Document::Type] A constant representing the object's type. For this resource it will always be `
 
@@ -78,6 +88,9 @@ module Increase
 
         # Company information, such a policies or procedures, typically submitted during our due diligence process.
         COMPANY_INFORMATION = :company_information
+
+        # An account verification letter.
+        ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
 
         # @!method self.values
         #   @return [Array<Symbol>]

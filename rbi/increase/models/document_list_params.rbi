@@ -41,6 +41,16 @@ module Increase
       sig { params(entity_id: String).void }
       attr_writer :entity_id
 
+      # Filter records to the one with the specified `idempotency_key` you chose for
+      # that object. This value is unique across Increase and is used to ensure that a
+      # request is only processed once. Learn more about
+      # [idempotency](https://increase.com/documentation/idempotency-keys).
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
+
       # Limit the size of the list that is returned. The default (and maximum) is 100
       # objects.
       sig { returns(T.nilable(Integer)) }
@@ -55,6 +65,7 @@ module Increase
           created_at: Increase::DocumentListParams::CreatedAt::OrHash,
           cursor: String,
           entity_id: String,
+          idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -66,6 +77,11 @@ module Increase
         cursor: nil,
         # Filter Documents to ones belonging to the specified Entity.
         entity_id: nil,
+        # Filter records to the one with the specified `idempotency_key` you chose for
+        # that object. This value is unique across Increase and is used to ensure that a
+        # request is only processed once. Learn more about
+        # [idempotency](https://increase.com/documentation/idempotency-keys).
+        idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
@@ -80,6 +96,7 @@ module Increase
             created_at: Increase::DocumentListParams::CreatedAt,
             cursor: String,
             entity_id: String,
+            idempotency_key: String,
             limit: Integer,
             request_options: Increase::RequestOptions
           }
@@ -174,6 +191,13 @@ module Increase
           COMPANY_INFORMATION =
             T.let(
               :company_information,
+              Increase::DocumentListParams::Category::In::TaggedSymbol
+            )
+
+          # An account verification letter.
+          ACCOUNT_VERIFICATION_LETTER =
+            T.let(
+              :account_verification_letter,
               Increase::DocumentListParams::Category::In::TaggedSymbol
             )
 

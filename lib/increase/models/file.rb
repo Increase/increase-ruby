@@ -189,6 +189,9 @@ module Increase
         # A file containing additional evidence for a Proof of Authorization Request Submission.
         PROOF_OF_AUTHORIZATION_REQUEST_SUBMISSION = :proof_of_authorization_request_submission
 
+        # An account verification letter.
+        ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

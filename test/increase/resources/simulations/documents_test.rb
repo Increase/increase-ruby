@@ -17,6 +17,7 @@ class Increase::Test::Resources::Simulations::DocumentsTest < Increase::Test::Re
         created_at: Time,
         entity_id: String | nil,
         file_id: String,
+        idempotency_key: String | nil,
         type: Increase::Document::Type
       }
     end
