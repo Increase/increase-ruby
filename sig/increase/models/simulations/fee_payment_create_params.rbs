@@ -1,0 +1,30 @@
+module Increase
+  module Models
+    module Simulations
+      type fee_payment_create_params =
+        { account_id: String, amount: Integer }
+        & Increase::Internal::Type::request_parameters
+
+      class FeePaymentCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor account_id: String
+
+        attr_accessor amount: Integer
+
+        def initialize: (
+          account_id: String,
+          amount: Integer,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          amount: Integer,
+          request_options: Increase::RequestOptions
+        }
+      end
+    end
+  end
+end
