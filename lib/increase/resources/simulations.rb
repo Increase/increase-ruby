@@ -6,9 +6,6 @@ module Increase
       # @return [Increase::Resources::Simulations::InterestPayments]
       attr_reader :interest_payments
 
-      # @return [Increase::Resources::Simulations::FeePayments]
-      attr_reader :fee_payments
-
       # @return [Increase::Resources::Simulations::CardAuthorizations]
       attr_reader :card_authorizations
 
@@ -93,7 +90,6 @@ module Increase
       def initialize(client:)
         @client = client
         @interest_payments = Increase::Resources::Simulations::InterestPayments.new(client: client)
-        @fee_payments = Increase::Resources::Simulations::FeePayments.new(client: client)
         @card_authorizations = Increase::Resources::Simulations::CardAuthorizations.new(client: client)
         @card_authorization_expirations =
           Increase::Resources::Simulations::CardAuthorizationExpirations.new(client: client)
