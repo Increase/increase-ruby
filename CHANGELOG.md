@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.30 (2025-06-03)
+
+Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
+
+### Features
+
+* **api:** api update ([bb7f9d3](https://github.com/Increase/increase-ruby/commit/bb7f9d31c20555ba9391376680a6efdbb667e81d))
+* **api:** api update ([6211a95](https://github.com/Increase/increase-ruby/commit/6211a959e8612d7974fcdbc0076f068bc1a90025))
+* **api:** api update ([39d9b4c](https://github.com/Increase/increase-ruby/commit/39d9b4c8731658a5568bb974cd9334f07c83bb4f))
+* **api:** api update ([4f9aad6](https://github.com/Increase/increase-ruby/commit/4f9aad6968a09f1549b32d98d19dddced537403f))
+
+
+### Bug Fixes
+
+* `to_sorbet_type` should not return branded types ([4dd5dff](https://github.com/Increase/increase-ruby/commit/4dd5dffdb9d333152cb5d759c763f4b0cfd15afd))
+
 ## 0.1.0-alpha.29 (2025-05-28)
 
 Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
