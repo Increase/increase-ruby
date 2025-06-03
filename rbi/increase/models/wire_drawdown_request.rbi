@@ -109,8 +109,11 @@ module Increase
       attr_accessor :type
 
       # Wire drawdown requests enable you to request that someone else send you a wire.
-      # This feature is in beta; reach out to
-      # [support@increase.com](mailto:support@increase.com) to learn more.
+      # Because there is nuance to making sure your counterparty's bank processes these
+      # correctly, we ask that you reach out to
+      # [support@increase.com](mailto:support@increase.com) to enable this feature so we
+      # can help you plan your integration. For more information, see our
+      # [Wire Drawdown Requests documentation](/documentation/wire-drawdown-requests).
       sig do
         params(
           id: String,
