@@ -3,6 +3,30 @@
 module Increase
   module Resources
     class Documents
+      # Create a Document
+      #
+      # @overload create(category:, account_verification_letter: nil, request_options: {})
+      #
+      # @param category [Symbol, Increase::Models::DocumentCreateParams::Category] The type of document to create.
+      #
+      # @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::Document]
+      #
+      # @see Increase::Models::DocumentCreateParams
+      def create(params)
+        parsed, options = Increase::DocumentCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "documents",
+          body: parsed,
+          model: Increase::Document,
+          options: options
+        )
+      end
+
       # Retrieve a Document
       #
       # @overload retrieve(document_id, request_options: {})

@@ -3,6 +3,7 @@ module Increase
     type document =
       {
         id: String,
+        account_verification_letter: Increase::Document::AccountVerificationLetter?,
         category: Increase::Models::Document::category,
         created_at: Time,
         entity_id: String?,
@@ -13,6 +14,8 @@ module Increase
 
     class Document < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_verification_letter: Increase::Document::AccountVerificationLetter?
 
       attr_accessor category: Increase::Models::Document::category
 
@@ -28,6 +31,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_verification_letter: Increase::Document::AccountVerificationLetter?,
         category: Increase::Models::Document::category,
         created_at: Time,
         entity_id: String?,
@@ -38,6 +42,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        account_verification_letter: Increase::Document::AccountVerificationLetter?,
         category: Increase::Models::Document::category,
         created_at: Time,
         entity_id: String?,
@@ -45,6 +50,16 @@ module Increase
         idempotency_key: String?,
         type: Increase::Models::Document::type_
       }
+
+      type account_verification_letter = { account_number_id: String }
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        def initialize: (account_number_id: String) -> void
+
+        def to_hash: -> { account_number_id: String }
+      end
 
       type category =
         :form_1099_int

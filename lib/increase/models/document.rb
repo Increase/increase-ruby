@@ -2,13 +2,19 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::Documents#retrieve
+    # @see Increase::Resources::Documents#create
     class Document < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Document identifier.
       #
       #   @return [String]
       required :id, String
+
+      # @!attribute account_verification_letter
+      #   Properties of an account verification letter document.
+      #
+      #   @return [Increase::Models::Document::AccountVerificationLetter, nil]
+      required :account_verification_letter, -> { Increase::Document::AccountVerificationLetter }, nil?: true
 
       # @!attribute category
       #   The type of document.
@@ -50,7 +56,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Document::Type]
       required :type, enum: -> { Increase::Document::Type }
 
-      # @!method initialize(id:, category:, created_at:, entity_id:, file_id:, idempotency_key:, type:)
+      # @!method initialize(id:, account_verification_letter:, category:, created_at:, entity_id:, file_id:, idempotency_key:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Document} for more details.
       #
@@ -58,6 +64,8 @@ module Increase
       #   they can be listed here.
       #
       #   @param id [String] The Document identifier.
+      #
+      #   @param account_verification_letter [Increase::Models::Document::AccountVerificationLetter, nil] Properties of an account verification letter document.
       #
       #   @param category [Symbol, Increase::Models::Document::Category] The type of document.
       #
@@ -70,6 +78,20 @@ module Increase
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param type [Symbol, Increase::Models::Document::Type] A constant representing the object's type. For this resource it will always be `
+
+      # @see Increase::Models::Document#account_verification_letter
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The identifier of the Account Number the document was generated for.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!method initialize(account_number_id:)
+        #   Properties of an account verification letter document.
+        #
+        #   @param account_number_id [String] The identifier of the Account Number the document was generated for.
+      end
 
       # The type of document.
       #

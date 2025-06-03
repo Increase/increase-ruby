@@ -1,0 +1,61 @@
+module Increase
+  module Models
+    type document_create_params =
+      {
+        category: Increase::Models::DocumentCreateParams::category,
+        account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class DocumentCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor category: Increase::Models::DocumentCreateParams::category
+
+      attr_reader account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter?
+
+      def account_verification_letter=: (
+        Increase::DocumentCreateParams::AccountVerificationLetter
+      ) -> Increase::DocumentCreateParams::AccountVerificationLetter
+
+      def initialize: (
+        category: Increase::Models::DocumentCreateParams::category,
+        ?account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        category: Increase::Models::DocumentCreateParams::category,
+        account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        request_options: Increase::RequestOptions
+      }
+
+      type category = :account_verification_letter
+
+      module Category
+        extend Increase::Internal::Type::Enum
+
+        # An account verification letter.
+        ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
+
+        def self?.values: -> ::Array[Increase::Models::DocumentCreateParams::category]
+      end
+
+      type account_verification_letter =
+        { account_number_id: String, balance_date: Date }
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        attr_reader balance_date: Date?
+
+        def balance_date=: (Date) -> Date
+
+        def initialize: (account_number_id: String, ?balance_date: Date) -> void
+
+        def to_hash: -> { account_number_id: String, balance_date: Date }
+      end
+    end
+  end
+end

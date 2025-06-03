@@ -1,6 +1,12 @@
 module Increase
   module Resources
     class Documents
+      def create: (
+        category: Increase::Models::DocumentCreateParams::category,
+        ?account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Document
+
       def retrieve: (
         String document_id,
         ?request_options: Increase::request_opts

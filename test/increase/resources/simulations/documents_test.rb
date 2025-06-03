@@ -13,6 +13,7 @@ class Increase::Test::Resources::Simulations::DocumentsTest < Increase::Test::Re
     assert_pattern do
       response => {
         id: String,
+        account_verification_letter: Increase::Document::AccountVerificationLetter | nil,
         category: Increase::Document::Category,
         created_at: Time,
         entity_id: String | nil,

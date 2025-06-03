@@ -194,6 +194,8 @@ module Increase
 
   Document = Increase::Models::Document
 
+  DocumentCreateParams = Increase::Models::DocumentCreateParams
+
   DocumentListParams = Increase::Models::DocumentListParams
 
   DocumentRetrieveParams = Increase::Models::DocumentRetrieveParams

@@ -3,6 +3,24 @@
 module Increase
   module Resources
     class Documents
+      # Create a Document
+      sig do
+        params(
+          category: Increase::DocumentCreateParams::Category::OrSymbol,
+          account_verification_letter:
+            Increase::DocumentCreateParams::AccountVerificationLetter::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Document)
+      end
+      def create(
+        # The type of document to create.
+        category:,
+        # An account verification letter.
+        account_verification_letter: nil,
+        request_options: {}
+      )
+      end
+
       # Retrieve a Document
       sig do
         params(

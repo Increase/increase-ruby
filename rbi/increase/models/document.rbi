@@ -10,6 +10,18 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # Properties of an account verification letter document.
+      sig { returns(T.nilable(Increase::Document::AccountVerificationLetter)) }
+      attr_reader :account_verification_letter
+
+      sig do
+        params(
+          account_verification_letter:
+            T.nilable(Increase::Document::AccountVerificationLetter::OrHash)
+        ).void
+      end
+      attr_writer :account_verification_letter
+
       # The type of document.
       sig { returns(Increase::Document::Category::TaggedSymbol) }
       attr_accessor :category
@@ -43,6 +55,8 @@ module Increase
       sig do
         params(
           id: String,
+          account_verification_letter:
+            T.nilable(Increase::Document::AccountVerificationLetter::OrHash),
           category: Increase::Document::Category::OrSymbol,
           created_at: Time,
           entity_id: T.nilable(String),
@@ -54,6 +68,8 @@ module Increase
       def self.new(
         # The Document identifier.
         id:,
+        # Properties of an account verification letter document.
+        account_verification_letter:,
         # The type of document.
         category:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
@@ -77,6 +93,8 @@ module Increase
         override.returns(
           {
             id: String,
+            account_verification_letter:
+              T.nilable(Increase::Document::AccountVerificationLetter),
             category: Increase::Document::Category::TaggedSymbol,
             created_at: Time,
             entity_id: T.nilable(String),
@@ -87,6 +105,32 @@ module Increase
         )
       end
       def to_hash
+      end
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::Document::AccountVerificationLetter,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The identifier of the Account Number the document was generated for.
+        sig { returns(String) }
+        attr_accessor :account_number_id
+
+        # Properties of an account verification letter document.
+        sig { params(account_number_id: String).returns(T.attached_class) }
+        def self.new(
+          # The identifier of the Account Number the document was generated for.
+          account_number_id:
+        )
+        end
+
+        sig { override.returns({ account_number_id: String }) }
+        def to_hash
+        end
       end
 
       # The type of document.
