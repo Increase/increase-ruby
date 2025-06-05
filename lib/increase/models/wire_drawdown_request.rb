@@ -143,8 +143,11 @@ module Increase
       #   {Increase::Models::WireDrawdownRequest} for more details.
       #
       #   Wire drawdown requests enable you to request that someone else send you a wire.
-      #   This feature is in beta; reach out to
-      #   [support@increase.com](mailto:support@increase.com) to learn more.
+      #   Because there is nuance to making sure your counterparty's bank processes these
+      #   correctly, we ask that you reach out to
+      #   [support@increase.com](mailto:support@increase.com) to enable this feature so we
+      #   can help you plan your integration. For more information, see our
+      #   [Wire Drawdown Requests documentation](/documentation/wire-drawdown-requests).
       #
       #   @param id [String] The Wire drawdown request identifier.
       #

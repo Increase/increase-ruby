@@ -26,8 +26,7 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
         idempotency_key: String | nil,
         routing_number: String,
         status: Increase::ExternalAccount::Status,
-        type: Increase::ExternalAccount::Type,
-        verification_status: Increase::ExternalAccount::VerificationStatus
+        type: Increase::ExternalAccount::Type
       }
     end
   end
@@ -50,8 +49,7 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
         idempotency_key: String | nil,
         routing_number: String,
         status: Increase::ExternalAccount::Status,
-        type: Increase::ExternalAccount::Type,
-        verification_status: Increase::ExternalAccount::VerificationStatus
+        type: Increase::ExternalAccount::Type
       }
     end
   end
@@ -74,8 +72,7 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
         idempotency_key: String | nil,
         routing_number: String,
         status: Increase::ExternalAccount::Status,
-        type: Increase::ExternalAccount::Type,
-        verification_status: Increase::ExternalAccount::VerificationStatus
+        type: Increase::ExternalAccount::Type
       }
     end
   end
@@ -105,8 +102,7 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
         idempotency_key: String | nil,
         routing_number: String,
         status: Increase::ExternalAccount::Status,
-        type: Increase::ExternalAccount::Type,
-        verification_status: Increase::ExternalAccount::VerificationStatus
+        type: Increase::ExternalAccount::Type
       }
     end
   end

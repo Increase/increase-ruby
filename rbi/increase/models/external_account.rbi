@@ -52,12 +52,6 @@ module Increase
       sig { returns(Increase::ExternalAccount::Type::TaggedSymbol) }
       attr_accessor :type
 
-      # If you have verified ownership of the External Account.
-      sig do
-        returns(Increase::ExternalAccount::VerificationStatus::TaggedSymbol)
-      end
-      attr_accessor :verification_status
-
       # External Accounts represent accounts at financial institutions other than
       # Increase. You can use this API to store their details for reuse.
       sig do
@@ -71,9 +65,7 @@ module Increase
           idempotency_key: T.nilable(String),
           routing_number: String,
           status: Increase::ExternalAccount::Status::OrSymbol,
-          type: Increase::ExternalAccount::Type::OrSymbol,
-          verification_status:
-            Increase::ExternalAccount::VerificationStatus::OrSymbol
+          type: Increase::ExternalAccount::Type::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -100,9 +92,7 @@ module Increase
         status:,
         # A constant representing the object's type. For this resource it will always be
         # `external_account`.
-        type:,
-        # If you have verified ownership of the External Account.
-        verification_status:
+        type:
       )
       end
 
@@ -119,9 +109,7 @@ module Increase
             idempotency_key: T.nilable(String),
             routing_number: String,
             status: Increase::ExternalAccount::Status::TaggedSymbol,
-            type: Increase::ExternalAccount::Type::TaggedSymbol,
-            verification_status:
-              Increase::ExternalAccount::VerificationStatus::TaggedSymbol
+            type: Increase::ExternalAccount::Type::TaggedSymbol
           }
         )
       end
@@ -238,48 +226,6 @@ module Increase
         sig do
           override.returns(
             T::Array[Increase::ExternalAccount::Type::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # If you have verified ownership of the External Account.
-      module VerificationStatus
-        extend Increase::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Increase::ExternalAccount::VerificationStatus)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        # The External Account has not been verified.
-        UNVERIFIED =
-          T.let(
-            :unverified,
-            Increase::ExternalAccount::VerificationStatus::TaggedSymbol
-          )
-
-        # The External Account is in the process of being verified.
-        PENDING =
-          T.let(
-            :pending,
-            Increase::ExternalAccount::VerificationStatus::TaggedSymbol
-          )
-
-        # The External Account is verified.
-        VERIFIED =
-          T.let(
-            :verified,
-            Increase::ExternalAccount::VerificationStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Increase::ExternalAccount::VerificationStatus::TaggedSymbol
-            ]
           )
         end
         def self.values

@@ -32,6 +32,16 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::RealTimePaymentsTransfer]
 
+      def approve: (
+        String real_time_payments_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::RealTimePaymentsTransfer
+
+      def cancel: (
+        String real_time_payments_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::RealTimePaymentsTransfer
+
       def initialize: (client: Increase::Client) -> void
     end
   end

@@ -68,13 +68,7 @@ module Increase
       #   @return [Symbol, Increase::Models::ExternalAccount::Type]
       required :type, enum: -> { Increase::ExternalAccount::Type }
 
-      # @!attribute verification_status
-      #   If you have verified ownership of the External Account.
-      #
-      #   @return [Symbol, Increase::Models::ExternalAccount::VerificationStatus]
-      required :verification_status, enum: -> { Increase::ExternalAccount::VerificationStatus }
-
-      # @!method initialize(id:, account_holder:, account_number:, created_at:, description:, funding:, idempotency_key:, routing_number:, status:, type:, verification_status:)
+      # @!method initialize(id:, account_holder:, account_number:, created_at:, description:, funding:, idempotency_key:, routing_number:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExternalAccount} for more details.
       #
@@ -100,8 +94,6 @@ module Increase
       #   @param status [Symbol, Increase::Models::ExternalAccount::Status] The External Account's status.
       #
       #   @param type [Symbol, Increase::Models::ExternalAccount::Type] A constant representing the object's type. For this resource it will always be `
-      #
-      #   @param verification_status [Symbol, Increase::Models::ExternalAccount::VerificationStatus] If you have verified ownership of the External Account.
 
       # The type of entity that owns the External Account.
       #
@@ -165,25 +157,6 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         EXTERNAL_ACCOUNT = :external_account
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # If you have verified ownership of the External Account.
-      #
-      # @see Increase::Models::ExternalAccount#verification_status
-      module VerificationStatus
-        extend Increase::Internal::Type::Enum
-
-        # The External Account has not been verified.
-        UNVERIFIED = :unverified
-
-        # The External Account is in the process of being verified.
-        PENDING = :pending
-
-        # The External Account is verified.
-        VERIFIED = :verified
 
         # @!method self.values
         #   @return [Array<Symbol>]

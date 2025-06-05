@@ -391,6 +391,10 @@ module Increase
 
   class RealTimePaymentsTransfer = Increase::Models::RealTimePaymentsTransfer
 
+  class RealTimePaymentsTransferApproveParams = Increase::Models::RealTimePaymentsTransferApproveParams
+
+  class RealTimePaymentsTransferCancelParams = Increase::Models::RealTimePaymentsTransferCancelParams
+
   class RealTimePaymentsTransferCreateParams = Increase::Models::RealTimePaymentsTransferCreateParams
 
   class RealTimePaymentsTransferListParams = Increase::Models::RealTimePaymentsTransferListParams
