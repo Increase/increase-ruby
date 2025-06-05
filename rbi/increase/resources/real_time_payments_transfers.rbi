@@ -104,6 +104,34 @@ module Increase
       )
       end
 
+      # Approves an Real-Time Payments Transfer in a pending_approval state.
+      sig do
+        params(
+          real_time_payments_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::RealTimePaymentsTransfer)
+      end
+      def approve(
+        # The identifier of the Real-Time Payments Transfer to approve.
+        real_time_payments_transfer_id,
+        request_options: {}
+      )
+      end
+
+      # Cancels an Real-Time Payments Transfer in a pending_approval state.
+      sig do
+        params(
+          real_time_payments_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::RealTimePaymentsTransfer)
+      end
+      def cancel(
+        # The identifier of the pending Real-Time Payments Transfer to cancel.
+        real_time_payments_transfer_id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)

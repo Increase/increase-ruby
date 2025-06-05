@@ -106,6 +106,46 @@ module Increase
         )
       end
 
+      # Approves an Real-Time Payments Transfer in a pending_approval state.
+      #
+      # @overload approve(real_time_payments_transfer_id, request_options: {})
+      #
+      # @param real_time_payments_transfer_id [String] The identifier of the Real-Time Payments Transfer to approve.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::RealTimePaymentsTransfer]
+      #
+      # @see Increase::Models::RealTimePaymentsTransferApproveParams
+      def approve(real_time_payments_transfer_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["real_time_payments_transfers/%1$s/approve", real_time_payments_transfer_id],
+          model: Increase::RealTimePaymentsTransfer,
+          options: params[:request_options]
+        )
+      end
+
+      # Cancels an Real-Time Payments Transfer in a pending_approval state.
+      #
+      # @overload cancel(real_time_payments_transfer_id, request_options: {})
+      #
+      # @param real_time_payments_transfer_id [String] The identifier of the pending Real-Time Payments Transfer to cancel.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::RealTimePaymentsTransfer]
+      #
+      # @see Increase::Models::RealTimePaymentsTransferCancelParams
+      def cancel(real_time_payments_transfer_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["real_time_payments_transfers/%1$s/cancel", real_time_payments_transfer_id],
+          model: Increase::RealTimePaymentsTransfer,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Increase::Client]
