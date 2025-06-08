@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.31 (2025-06-08)
+
+Full Changelog: [v0.1.0-alpha.30...v0.1.0-alpha.31](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.30...v0.1.0-alpha.31)
+
+### Features
+
+* **api:** api update ([381598e](https://github.com/Increase/increase-ruby/commit/381598ee6a15e75c4a33a1f27b4e5930f4f9e744))
+* **api:** api update ([901ff94](https://github.com/Increase/increase-ruby/commit/901ff949f455288cd8f902e7bcf14b720376e27a))
+* **api:** api update ([b21fa1c](https://github.com/Increase/increase-ruby/commit/b21fa1ca020cec0ba8e704474e5d726cdbc34b3c))
+* **api:** api update ([cda80e7](https://github.com/Increase/increase-ruby/commit/cda80e71e5adcef9e2db23380c8750a1854c7675))
+
+
+### Bug Fixes
+
+* default content-type for text in multi-part formdata uploads should be text/plain ([6008528](https://github.com/Increase/increase-ruby/commit/60085285e33b4259d2c02332ced3b0436ebdae5e))
+
+
+### Chores
+
+* fix idempotency header ([3e72dbd](https://github.com/Increase/increase-ruby/commit/3e72dbdfa637e7c0eeb9c821fd6ff12c3cc2c13a))
+* Update SECURITY.md ([692d69b](https://github.com/Increase/increase-ruby/commit/692d69bf188e7735ee58289f6d9c4cdbcec303ab))
+
 ## 0.1.0-alpha.30 (2025-06-03)
 
 Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
