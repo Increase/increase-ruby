@@ -348,6 +348,25 @@ module Increase
         end
         attr_writer :check_transfer_instruction
 
+        # A Group Initiated Hold Source object. This field will be present in the JSON
+        # response if and only if `category` is equal to `group_initiated_hold`.
+        sig do
+          returns(
+            T.nilable(Increase::PendingTransaction::Source::GroupInitiatedHold)
+          )
+        end
+        attr_reader :group_initiated_hold
+
+        sig do
+          params(
+            group_initiated_hold:
+              T.nilable(
+                Increase::PendingTransaction::Source::GroupInitiatedHold::OrHash
+              )
+          ).void
+        end
+        attr_writer :group_initiated_hold
+
         # An Inbound Funds Hold object. This field will be present in the JSON response if
         # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
         # certain transaction types to account for return windows where funds might still
@@ -509,6 +528,10 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::CheckTransferInstruction::OrHash
               ),
+            group_initiated_hold:
+              T.nilable(
+                Increase::PendingTransaction::Source::GroupInitiatedHold::OrHash
+              ),
             inbound_funds_hold:
               T.nilable(
                 Increase::PendingTransaction::Source::InboundFundsHold::OrHash
@@ -557,6 +580,9 @@ module Increase
           # A Check Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `check_transfer_instruction`.
           check_transfer_instruction:,
+          # A Group Initiated Hold Source object. This field will be present in the JSON
+          # response if and only if `category` is equal to `group_initiated_hold`.
+          group_initiated_hold:,
           # An Inbound Funds Hold object. This field will be present in the JSON response if
           # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
           # certain transaction types to account for return windows where funds might still
@@ -611,6 +637,10 @@ module Increase
               check_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::CheckTransferInstruction
+                ),
+              group_initiated_hold:
+                T.nilable(
+                  Increase::PendingTransaction::Source::GroupInitiatedHold
                 ),
               inbound_funds_hold:
                 T.nilable(
@@ -2288,6 +2318,13 @@ module Increase
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
+          # Group Initiated Hold Source: details will be under the `group_initiated_hold` object.
+          GROUP_INITIATED_HOLD =
+            T.let(
+              :group_initiated_hold,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
           # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
           REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION =
             T.let(
@@ -2614,6 +2651,33 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+
+        class GroupInitiatedHold < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::GroupInitiatedHold,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The Group Initiated Hold identifier.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # A Group Initiated Hold Source object. This field will be present in the JSON
+          # response if and only if `category` is equal to `group_initiated_hold`.
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The Group Initiated Hold identifier.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
           end
         end
 

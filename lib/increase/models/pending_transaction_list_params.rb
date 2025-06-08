@@ -106,6 +106,9 @@ module Increase
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
+          # Group Initiated Hold Source: details will be under the `group_initiated_hold` object.
+          GROUP_INITIATED_HOLD = :group_initiated_hold
+
           # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
           REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION = :real_time_payments_transfer_instruction
 

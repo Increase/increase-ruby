@@ -237,6 +237,13 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Group Initiated Hold Source: details will be under the `group_initiated_hold` object.
+          GROUP_INITIATED_HOLD =
+            T.let(
+              :group_initiated_hold,
+              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
           REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION =
             T.let(
