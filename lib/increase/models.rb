@@ -393,7 +393,11 @@ module Increase
 
   PendingTransaction = Increase::Models::PendingTransaction
 
+  PendingTransactionCreateParams = Increase::Models::PendingTransactionCreateParams
+
   PendingTransactionListParams = Increase::Models::PendingTransactionListParams
+
+  PendingTransactionReleaseParams = Increase::Models::PendingTransactionReleaseParams
 
   PendingTransactionRetrieveParams = Increase::Models::PendingTransactionRetrieveParams
 

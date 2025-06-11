@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::PendingTransactions#retrieve
+    # @see Increase::Resources::PendingTransactions#create
     class PendingTransaction < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The Pending Transaction identifier.
@@ -226,15 +226,6 @@ module Increase
                  -> { Increase::PendingTransaction::Source::CheckTransferInstruction },
                  nil?: true
 
-        # @!attribute group_initiated_hold
-        #   A Group Initiated Hold Source object. This field will be present in the JSON
-        #   response if and only if `category` is equal to `group_initiated_hold`.
-        #
-        #   @return [Increase::Models::PendingTransaction::Source::GroupInitiatedHold, nil]
-        required :group_initiated_hold,
-                 -> { Increase::PendingTransaction::Source::GroupInitiatedHold },
-                 nil?: true
-
         # @!attribute inbound_funds_hold
         #   An Inbound Funds Hold object. This field will be present in the JSON response if
         #   and only if `category` is equal to `inbound_funds_hold`. We hold funds for
@@ -295,6 +286,14 @@ module Increase
                  -> { Increase::PendingTransaction::Source::SwiftTransferInstruction },
                  nil?: true
 
+        # @!attribute user_initiated_hold
+        #   An User Initiated Hold object. This field will be present in the JSON response
+        #   if and only if `category` is equal to `user_initiated_hold`. Created when a user
+        #   initiates a hold on funds in their account.
+        #
+        #   @return [Object, nil]
+        required :user_initiated_hold, Increase::Internal::Type::Unknown, nil?: true
+
         # @!attribute wire_transfer_instruction
         #   A Wire Transfer Instruction object. This field will be present in the JSON
         #   response if and only if `category` is equal to `wire_transfer_instruction`.
@@ -304,7 +303,7 @@ module Increase
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, category:, check_deposit_instruction:, check_transfer_instruction:, group_initiated_hold:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, outbound_card_push_transfer_instruction:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, wire_transfer_instruction:)
+        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, category:, check_deposit_instruction:, check_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, outbound_card_push_transfer_instruction:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, user_initiated_hold:, wire_transfer_instruction:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::PendingTransaction::Source} for more details.
         #
@@ -324,8 +323,6 @@ module Increase
         #
         #   @param check_transfer_instruction [Increase::Models::PendingTransaction::Source::CheckTransferInstruction, nil] A Check Transfer Instruction object. This field will be present in the JSON resp
         #
-        #   @param group_initiated_hold [Increase::Models::PendingTransaction::Source::GroupInitiatedHold, nil] A Group Initiated Hold Source object. This field will be present in the JSON res
-        #
         #   @param inbound_funds_hold [Increase::Models::PendingTransaction::Source::InboundFundsHold, nil] An Inbound Funds Hold object. This field will be present in the JSON response if
         #
         #   @param inbound_wire_transfer_reversal [Increase::Models::PendingTransaction::Source::InboundWireTransferReversal, nil] An Inbound Wire Transfer Reversal object. This field will be present in the JSON
@@ -337,6 +334,8 @@ module Increase
         #   @param real_time_payments_transfer_instruction [Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction, nil] A Real-Time Payments Transfer Instruction object. This field will be present in
         #
         #   @param swift_transfer_instruction [Increase::Models::PendingTransaction::Source::SwiftTransferInstruction, nil] A Swift Transfer Instruction object. This field will be present in the JSON resp
+        #
+        #   @param user_initiated_hold [Object, nil] An User Initiated Hold object. This field will be present in the JSON response i
         #
         #   @param wire_transfer_instruction [Increase::Models::PendingTransaction::Source::WireTransferInstruction, nil] A Wire Transfer Instruction object. This field will be present in the JSON respo
 
@@ -1210,8 +1209,8 @@ module Increase
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
-          # Group Initiated Hold Source: details will be under the `group_initiated_hold` object.
-          GROUP_INITIATED_HOLD = :group_initiated_hold
+          # User Initiated Hold: details will be under the `user_initiated_hold` object.
+          USER_INITIATED_HOLD = :user_initiated_hold
 
           # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
           REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION = :real_time_payments_transfer_instruction
@@ -1387,21 +1386,6 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
-        end
-
-        # @see Increase::Models::PendingTransaction::Source#group_initiated_hold
-        class GroupInitiatedHold < Increase::Internal::Type::BaseModel
-          # @!attribute id
-          #   The Group Initiated Hold identifier.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   A Group Initiated Hold Source object. This field will be present in the JSON
-          #   response if and only if `category` is equal to `group_initiated_hold`.
-          #
-          #   @param id [String] The Group Initiated Hold identifier.
         end
 
         # @see Increase::Models::PendingTransaction::Source#inbound_funds_hold

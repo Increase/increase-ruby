@@ -122,13 +122,13 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
-          group_initiated_hold: Increase::PendingTransaction::Source::GroupInitiatedHold?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
           outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          user_initiated_hold: top?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
 
@@ -145,8 +145,6 @@ module Increase
 
         attr_accessor check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?
 
-        attr_accessor group_initiated_hold: Increase::PendingTransaction::Source::GroupInitiatedHold?
-
         attr_accessor inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?
 
         attr_accessor inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?
@@ -159,6 +157,8 @@ module Increase
 
         attr_accessor swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?
 
+        attr_accessor user_initiated_hold: top?
+
         attr_accessor wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
 
         def initialize: (
@@ -168,13 +168,13 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
-          group_initiated_hold: Increase::PendingTransaction::Source::GroupInitiatedHold?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
           outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          user_initiated_hold: top?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         ) -> void
 
@@ -185,13 +185,13 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
-          group_initiated_hold: Increase::PendingTransaction::Source::GroupInitiatedHold?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
           outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          user_initiated_hold: top?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
 
@@ -853,7 +853,7 @@ module Increase
           | :check_deposit_instruction
           | :check_transfer_instruction
           | :inbound_funds_hold
-          | :group_initiated_hold
+          | :user_initiated_hold
           | :real_time_payments_transfer_instruction
           | :wire_transfer_instruction
           | :inbound_wire_transfer_reversal
@@ -882,8 +882,8 @@ module Increase
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
 
-          # Group Initiated Hold Source: details will be under the `group_initiated_hold` object.
-          GROUP_INITIATED_HOLD: :group_initiated_hold
+          # User Initiated Hold: details will be under the `user_initiated_hold` object.
+          USER_INITIATED_HOLD: :user_initiated_hold
 
           # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
           REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION: :real_time_payments_transfer_instruction
@@ -1020,16 +1020,6 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::CheckTransferInstruction::currency]
           end
-        end
-
-        type group_initiated_hold = { id: String }
-
-        class GroupInitiatedHold < Increase::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
         end
 
         type inbound_funds_hold =

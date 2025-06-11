@@ -1,6 +1,13 @@
 module Increase
   module Resources
     class PendingTransactions
+      def create: (
+        account_id: String,
+        amount: Integer,
+        ?description: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::PendingTransaction
+
       def retrieve: (
         String pending_transaction_id,
         ?request_options: Increase::request_opts
@@ -16,6 +23,11 @@ module Increase
         ?status: Increase::PendingTransactionListParams::Status,
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::PendingTransaction]
+
+      def release: (
+        String pending_transaction_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::PendingTransaction
 
       def initialize: (client: Increase::Client) -> void
     end

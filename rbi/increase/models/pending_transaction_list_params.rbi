@@ -237,10 +237,10 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Group Initiated Hold Source: details will be under the `group_initiated_hold` object.
-          GROUP_INITIATED_HOLD =
+          # User Initiated Hold: details will be under the `user_initiated_hold` object.
+          USER_INITIATED_HOLD =
             T.let(
-              :group_initiated_hold,
+              :user_initiated_hold,
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
