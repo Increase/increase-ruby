@@ -5,6 +5,7 @@ module Increase
         id: String,
         account_id: String,
         amount: Integer,
+        balance_impact: Increase::Models::PendingTransaction::balance_impact,
         completed_at: Time?,
         created_at: Time,
         currency: Increase::Models::PendingTransaction::currency,
@@ -22,6 +23,8 @@ module Increase
       attr_accessor account_id: String
 
       attr_accessor amount: Integer
+
+      attr_accessor balance_impact: Increase::Models::PendingTransaction::balance_impact
 
       attr_accessor completed_at: Time?
 
@@ -45,6 +48,7 @@ module Increase
         id: String,
         account_id: String,
         amount: Integer,
+        balance_impact: Increase::Models::PendingTransaction::balance_impact,
         completed_at: Time?,
         created_at: Time,
         currency: Increase::Models::PendingTransaction::currency,
@@ -60,6 +64,7 @@ module Increase
         id: String,
         account_id: String,
         amount: Integer,
+        balance_impact: Increase::Models::PendingTransaction::balance_impact,
         completed_at: Time?,
         created_at: Time,
         currency: Increase::Models::PendingTransaction::currency,
@@ -70,6 +75,20 @@ module Increase
         status: Increase::Models::PendingTransaction::status,
         type: Increase::Models::PendingTransaction::type_
       }
+
+      type balance_impact = :affects_available_balance | :none
+
+      module BalanceImpact
+        extend Increase::Internal::Type::Enum
+
+        # This Pending Transaction will decrement the available balance on the Account while its status is `pending`.
+        AFFECTS_AVAILABLE_BALANCE: :affects_available_balance
+
+        # This Pending Transaction does not affect the available balance on the Account.
+        NONE: :none
+
+        def self?.values: -> ::Array[Increase::Models::PendingTransaction::balance_impact]
+      end
 
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 

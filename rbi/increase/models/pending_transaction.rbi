@@ -21,6 +21,11 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
+      # How the Pending Transaction affects the balance of its Account while its status
+      # is `pending`.
+      sig { returns(Increase::PendingTransaction::BalanceImpact::TaggedSymbol) }
+      attr_accessor :balance_impact
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
       # Transaction was completed.
       sig { returns(T.nilable(Time)) }
@@ -82,6 +87,7 @@ module Increase
           id: String,
           account_id: String,
           amount: Integer,
+          balance_impact: Increase::PendingTransaction::BalanceImpact::OrSymbol,
           completed_at: T.nilable(Time),
           created_at: Time,
           currency: Increase::PendingTransaction::Currency::OrSymbol,
@@ -102,6 +108,9 @@ module Increase
         # The Pending Transaction amount in the minor unit of its currency. For dollars,
         # for example, this is cents.
         amount:,
+        # How the Pending Transaction affects the balance of its Account while its status
+        # is `pending`.
+        balance_impact:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
         # Transaction was completed.
         completed_at:,
@@ -140,6 +149,8 @@ module Increase
             id: String,
             account_id: String,
             amount: Integer,
+            balance_impact:
+              Increase::PendingTransaction::BalanceImpact::TaggedSymbol,
             completed_at: T.nilable(Time),
             created_at: Time,
             currency: Increase::PendingTransaction::Currency::TaggedSymbol,
@@ -154,6 +165,40 @@ module Increase
         )
       end
       def to_hash
+      end
+
+      # How the Pending Transaction affects the balance of its Account while its status
+      # is `pending`.
+      module BalanceImpact
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::PendingTransaction::BalanceImpact)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # This Pending Transaction will decrement the available balance on the Account while its status is `pending`.
+        AFFECTS_AVAILABLE_BALANCE =
+          T.let(
+            :affects_available_balance,
+            Increase::PendingTransaction::BalanceImpact::TaggedSymbol
+          )
+
+        # This Pending Transaction does not affect the available balance on the Account.
+        NONE =
+          T.let(
+            :none,
+            Increase::PendingTransaction::BalanceImpact::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Increase::PendingTransaction::BalanceImpact::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Pending
