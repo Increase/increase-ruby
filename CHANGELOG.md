@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.33 (2025-06-12)
+
+Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
+
+### Features
+
+* **api:** api update ([68187fc](https://github.com/Increase/increase-ruby/commit/68187fce49e249a80b2e0c6246ff80d176c9a399))
+
 ## 0.1.0-alpha.32 (2025-06-11)
 
 Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
