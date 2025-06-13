@@ -406,6 +406,13 @@ module Increase
               Increase::PhysicalCard::Shipment::Status::TaggedSymbol
             )
 
+          # The physical card shipment requires attention from Increase before progressing.
+          REQUIRES_ATTENTION =
+            T.let(
+              :requires_attention,
+              Increase::PhysicalCard::Shipment::Status::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[Increase::PhysicalCard::Shipment::Status::TaggedSymbol]

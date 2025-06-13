@@ -171,6 +171,7 @@ module Increase
           | :rejected
           | :shipped
           | :returned
+          | :requires_attention
 
         module Status
           extend Increase::Internal::Type::Enum
@@ -195,6 +196,9 @@ module Increase
 
           # The physical card shipment was returned to the sender and destroyed by the production facility.
           RETURNED: :returned
+
+          # The physical card shipment requires attention from Increase before progressing.
+          REQUIRES_ATTENTION: :requires_attention
 
           def self?.values: -> ::Array[Increase::Models::PhysicalCard::Shipment::status]
         end

@@ -45,6 +45,9 @@ module Increase
           # The physical card shipment was returned to the sender and destroyed by the production facility.
           RETURNED = :returned
 
+          # The physical card shipment requires attention from Increase before progressing.
+          REQUIRES_ATTENTION = :requires_attention
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end
