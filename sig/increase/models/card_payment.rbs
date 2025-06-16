@@ -4715,12 +4715,12 @@ module Increase
             }
           end
 
-          type type_ = :card_validation
+          type type_ = :inbound_card_validation
 
           module Type
             extend Increase::Internal::Type::Enum
 
-            CARD_VALIDATION: :card_validation
+            INBOUND_CARD_VALIDATION: :inbound_card_validation
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardValidation::type_]
           end
@@ -4873,7 +4873,7 @@ module Increase
           # Card Authentication: details will be under the `card_authentication` object.
           CARD_AUTHENTICATION: :card_authentication
 
-          # Card Validation: details will be under the `card_validation` object.
+          # Inbound Card Validation: details will be under the `card_validation` object.
           CARD_VALIDATION: :card_validation
 
           # Card Decline: details will be under the `card_decline` object.

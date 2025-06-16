@@ -112,6 +112,7 @@ module Increase
           ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
           card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
           card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
+          card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
           card_refund: Increase::Transaction::Source::CardRefund?,
           card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
           card_settlement: Increase::Transaction::Source::CardSettlement?,
@@ -133,7 +134,6 @@ module Increase
           interest_payment: Increase::Transaction::Source::InterestPayment?,
           internal_source: Increase::Transaction::Source::InternalSource?,
           other: top?,
-          outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
@@ -152,6 +152,8 @@ module Increase
         attr_accessor card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?
 
         attr_accessor card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?
+
+        attr_accessor card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?
 
         attr_accessor card_refund: Increase::Transaction::Source::CardRefund?
 
@@ -195,8 +197,6 @@ module Increase
 
         attr_accessor other: top?
 
-        attr_accessor outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?
-
         attr_accessor real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?
 
         attr_accessor sample_funds: Increase::Transaction::Source::SampleFunds?
@@ -212,6 +212,7 @@ module Increase
           ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
           card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
           card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
+          card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
           card_refund: Increase::Transaction::Source::CardRefund?,
           card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
           card_settlement: Increase::Transaction::Source::CardSettlement?,
@@ -233,7 +234,6 @@ module Increase
           interest_payment: Increase::Transaction::Source::InterestPayment?,
           internal_source: Increase::Transaction::Source::InternalSource?,
           other: top?,
-          outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
@@ -247,6 +247,7 @@ module Increase
           ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
           card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
           card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
+          card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
           card_refund: Increase::Transaction::Source::CardRefund?,
           card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
           card_settlement: Increase::Transaction::Source::CardSettlement?,
@@ -268,7 +269,6 @@ module Increase
           interest_payment: Increase::Transaction::Source::InterestPayment?,
           internal_source: Increase::Transaction::Source::InternalSource?,
           other: top?,
-          outbound_card_push_transfer_acceptance: Increase::Transaction::Source::OutboundCardPushTransferAcceptance?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
@@ -773,6 +773,19 @@ module Increase
             lost_at: Time,
             transaction_id: String
           }
+        end
+
+        type card_push_transfer_acceptance =
+          { amount: Integer, transfer_id: String }
+
+        class CardPushTransferAcceptance < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor transfer_id: String
+
+          def initialize: (amount: Integer, transfer_id: String) -> void
+
+          def to_hash: -> { amount: Integer, transfer_id: String }
         end
 
         type card_refund =
@@ -2993,7 +3006,7 @@ module Increase
           | :sample_funds
           | :wire_transfer_intention
           | :swift_transfer_intention
-          | :outbound_card_push_transfer_acceptance
+          | :card_push_transfer_acceptance
           | :other
 
         module Category
@@ -3086,8 +3099,8 @@ module Increase
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION: :swift_transfer_intention
 
-          # Outbound Card Push Transfer Acceptance: details will be under the `outbound_card_push_transfer_acceptance` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_ACCEPTANCE: :outbound_card_push_transfer_acceptance
+          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
+          CARD_PUSH_TRANSFER_ACCEPTANCE: :card_push_transfer_acceptance
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
@@ -4276,19 +4289,6 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::Transaction::Source::InternalSource::reason]
           end
-        end
-
-        type outbound_card_push_transfer_acceptance =
-          { amount: Integer, transfer_id: String }
-
-        class OutboundCardPushTransferAcceptance < Increase::Internal::Type::BaseModel
-          attr_accessor amount: Integer
-
-          attr_accessor transfer_id: String
-
-          def initialize: (amount: Integer, transfer_id: String) -> void
-
-          def to_hash: -> { amount: Integer, transfer_id: String }
         end
 
         type real_time_payments_transfer_acknowledgement =

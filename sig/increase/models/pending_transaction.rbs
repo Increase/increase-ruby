@@ -138,13 +138,13 @@ module Increase
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
+          card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
-          outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
           user_initiated_hold: top?,
@@ -158,6 +158,8 @@ module Increase
 
         attr_accessor card_authorization: Increase::PendingTransaction::Source::CardAuthorization?
 
+        attr_accessor card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?
+
         attr_accessor category: Increase::Models::PendingTransaction::Source::category
 
         attr_accessor check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?
@@ -169,8 +171,6 @@ module Increase
         attr_accessor inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?
 
         attr_accessor other: top?
-
-        attr_accessor outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?
 
         attr_accessor real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?
 
@@ -184,13 +184,13 @@ module Increase
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
+          card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
-          outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
           user_initiated_hold: top?,
@@ -201,13 +201,13 @@ module Increase
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
+          card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
-          outbound_card_push_transfer_instruction: Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
           user_initiated_hold: top?,
@@ -865,6 +865,19 @@ module Increase
           end
         end
 
+        type card_push_transfer_instruction =
+          { amount: Integer, transfer_id: String }
+
+        class CardPushTransferInstruction < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor transfer_id: String
+
+          def initialize: (amount: Integer, transfer_id: String) -> void
+
+          def to_hash: -> { amount: Integer, transfer_id: String }
+        end
+
         type category =
           :account_transfer_instruction
           | :ach_transfer_instruction
@@ -877,7 +890,7 @@ module Increase
           | :wire_transfer_instruction
           | :inbound_wire_transfer_reversal
           | :swift_transfer_instruction
-          | :outbound_card_push_transfer_instruction
+          | :card_push_transfer_instruction
           | :other
 
         module Category
@@ -916,8 +929,8 @@ module Increase
           # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
           SWIFT_TRANSFER_INSTRUCTION: :swift_transfer_instruction
 
-          # Outbound Card Push Transfer Instruction: details will be under the `outbound_card_push_transfer_instruction` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_INSTRUCTION: :outbound_card_push_transfer_instruction
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION: :card_push_transfer_instruction
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
@@ -1162,19 +1175,6 @@ module Increase
           def initialize: (inbound_wire_transfer_id: String) -> void
 
           def to_hash: -> { inbound_wire_transfer_id: String }
-        end
-
-        type outbound_card_push_transfer_instruction =
-          { amount: Integer, transfer_id: String }
-
-        class OutboundCardPushTransferInstruction < Increase::Internal::Type::BaseModel
-          attr_accessor amount: Integer
-
-          attr_accessor transfer_id: String
-
-          def initialize: (amount: Integer, transfer_id: String) -> void
-
-          def to_hash: -> { amount: Integer, transfer_id: String }
         end
 
         type real_time_payments_transfer_instruction =

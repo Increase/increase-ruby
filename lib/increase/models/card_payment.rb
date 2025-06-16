@@ -171,10 +171,10 @@ module Increase
         required :card_settlement, -> { Increase::CardPayment::Element::CardSettlement }, nil?: true
 
         # @!attribute card_validation
-        #   A Card Validation object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_validation`. Card Validations are requests
-        #   from a merchant to verify that a card number and optionally its address and/or
-        #   Card Verification Value are valid.
+        #   An Inbound Card Validation object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `card_validation`. Inbound Card
+        #   Validations are requests from a merchant to verify that a card number and
+        #   optionally its address and/or Card Verification Value are valid.
         #
         #   @return [Increase::Models::CardPayment::Element::CardValidation, nil]
         required :card_validation, -> { Increase::CardPayment::Element::CardValidation }, nil?: true
@@ -222,7 +222,7 @@ module Increase
         #
         #   @param card_settlement [Increase::Models::CardPayment::Element::CardSettlement, nil] A Card Settlement object. This field will be present in the JSON response if and
         #
-        #   @param card_validation [Increase::Models::CardPayment::Element::CardValidation, nil] A Card Validation object. This field will be present in the JSON response if and
+        #   @param card_validation [Increase::Models::CardPayment::Element::CardValidation, nil] An Inbound Card Validation object. This field will be present in the JSON respon
         #
         #   @param category [Symbol, Increase::Models::CardPayment::Element::Category] The type of the resource. We may add additional possible values for this enum ov
         #
@@ -5880,7 +5880,7 @@ module Increase
 
           # @!attribute type
           #   A constant representing the object's type. For this resource it will always be
-          #   `card_validation`.
+          #   `inbound_card_validation`.
           #
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardValidation::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardValidation::Type }
@@ -5895,10 +5895,10 @@ module Increase
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardValidation} for more details.
           #
-          #   A Card Validation object. This field will be present in the JSON response if and
-          #   only if `category` is equal to `card_validation`. Card Validations are requests
-          #   from a merchant to verify that a card number and optionally its address and/or
-          #   Card Verification Value are valid.
+          #   An Inbound Card Validation object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `card_validation`. Inbound Card
+          #   Validations are requests from a merchant to verify that a card number and
+          #   optionally its address and/or Card Verification Value are valid.
           #
           #   @param id [String] The Card Validation identifier.
           #
@@ -6232,13 +6232,13 @@ module Increase
           end
 
           # A constant representing the object's type. For this resource it will always be
-          # `card_validation`.
+          # `inbound_card_validation`.
           #
           # @see Increase::Models::CardPayment::Element::CardValidation#type
           module Type
             extend Increase::Internal::Type::Enum
 
-            CARD_VALIDATION = :card_validation
+            INBOUND_CARD_VALIDATION = :inbound_card_validation
 
             # @!method self.values
             #   @return [Array<Symbol>]
@@ -6408,7 +6408,7 @@ module Increase
           # Card Authentication: details will be under the `card_authentication` object.
           CARD_AUTHENTICATION = :card_authentication
 
-          # Card Validation: details will be under the `card_validation` object.
+          # Inbound Card Validation: details will be under the `card_validation` object.
           CARD_VALIDATION = :card_validation
 
           # Card Decline: details will be under the `card_decline` object.

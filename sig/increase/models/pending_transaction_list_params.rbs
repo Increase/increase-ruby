@@ -104,7 +104,7 @@ module Increase
           | :wire_transfer_instruction
           | :inbound_wire_transfer_reversal
           | :swift_transfer_instruction
-          | :outbound_card_push_transfer_instruction
+          | :card_push_transfer_instruction
           | :other
 
         module In
@@ -143,8 +143,8 @@ module Increase
           # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
           SWIFT_TRANSFER_INSTRUCTION: :swift_transfer_instruction
 
-          # Outbound Card Push Transfer Instruction: details will be under the `outbound_card_push_transfer_instruction` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_INSTRUCTION: :outbound_card_push_transfer_instruction
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION: :card_push_transfer_instruction
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other

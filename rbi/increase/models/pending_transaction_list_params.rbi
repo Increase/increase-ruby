@@ -272,10 +272,10 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Outbound Card Push Transfer Instruction: details will be under the `outbound_card_push_transfer_instruction` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_INSTRUCTION =
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION =
             T.let(
-              :outbound_card_push_transfer_instruction,
+              :card_push_transfer_instruction,
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
