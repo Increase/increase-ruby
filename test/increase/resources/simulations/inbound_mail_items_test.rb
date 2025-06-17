@@ -17,6 +17,7 @@ class Increase::Test::Resources::Simulations::InboundMailItemsTest < Increase::T
     assert_pattern do
       response => {
         id: String,
+        checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
         created_at: Time,
         file_id: String,
         lockbox_id: String | nil,

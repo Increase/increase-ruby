@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute checks
+      #   The checks in the mail item.
+      #
+      #   @return [Array<Increase::Models::InboundMailItem::Check>]
+      required :checks, -> { Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check] }
+
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
       #   Mail Item was created.
@@ -55,13 +61,15 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundMailItem::Type]
       required :type, enum: -> { Increase::InboundMailItem::Type }
 
-      # @!method initialize(id:, created_at:, file_id:, lockbox_id:, recipient_name:, rejection_reason:, status:, type:)
+      # @!method initialize(id:, checks:, created_at:, file_id:, lockbox_id:, recipient_name:, rejection_reason:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundMailItem} for more details.
       #
       #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox.
       #
       #   @param id [String] The Inbound Mail Item identifier.
+      #
+      #   @param checks [Array<Increase::Models::InboundMailItem::Check>] The checks in the mail item.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
       #
@@ -76,6 +84,35 @@ module Increase
       #   @param status [Symbol, Increase::Models::InboundMailItem::Status] If the mail item has been processed.
       #
       #   @param type [Symbol, Increase::Models::InboundMailItem::Type] A constant representing the object's type. For this resource it will always be `
+
+      class Check < Increase::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount of the check.
+        #
+        #   @return [Integer]
+        required :amount, Integer
+
+        # @!attribute back_file_id
+        #   The identifier for the File containing the back of the check.
+        #
+        #   @return [String, nil]
+        required :back_file_id, String, nil?: true
+
+        # @!attribute front_file_id
+        #   The identifier for the File containing the front of the check.
+        #
+        #   @return [String, nil]
+        required :front_file_id, String, nil?: true
+
+        # @!method initialize(amount:, back_file_id:, front_file_id:)
+        #   Inbound Mail Item Checks represent the checks in an Inbound Mail Item.
+        #
+        #   @param amount [Integer] The amount of the check.
+        #
+        #   @param back_file_id [String, nil] The identifier for the File containing the back of the check.
+        #
+        #   @param front_file_id [String, nil] The identifier for the File containing the front of the check.
+      end
 
       # If the mail item has been rejected, why it was rejected.
       #
