@@ -133,7 +133,8 @@ module Increase
 
         # @!attribute payee
         #   The payee of the check. This will be printed on the top-left portion of the
-        #   check and defaults to the return address if unspecified.
+        #   check and defaults to the return address if unspecified. This should be an array
+        #   of up to 4 elements, each of which represents a line of the payee.
         #
         #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>, nil]
         optional :payee,

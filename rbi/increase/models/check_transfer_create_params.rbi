@@ -232,7 +232,8 @@ module Increase
         attr_writer :note
 
         # The payee of the check. This will be printed on the top-left portion of the
-        # check and defaults to the return address if unspecified.
+        # check and defaults to the return address if unspecified. This should be an array
+        # of up to 4 elements, each of which represents a line of the payee.
         sig do
           returns(
             T.nilable(
@@ -337,7 +338,8 @@ module Increase
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
           # The payee of the check. This will be printed on the top-left portion of the
-          # check and defaults to the return address if unspecified.
+          # check and defaults to the return address if unspecified. This should be an array
+          # of up to 4 elements, each of which represents a line of the payee.
           payee: nil,
           # The return address to be printed on the check. If omitted this will default to
           # an Increase-owned address that will mark checks as delivery failed and shred
