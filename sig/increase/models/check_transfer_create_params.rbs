@@ -90,7 +90,7 @@ module Increase
           recipient_name: String,
           attachment_file_id: String,
           note: String,
-          payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee],
+          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           signature_text: String
@@ -111,11 +111,11 @@ module Increase
 
         def note=: (String) -> String
 
-        attr_reader payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]?
+        attr_reader payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]?
 
-        def payee=: (
-          ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]
-        ) -> ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]
+        def payer=: (
+          ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
+        ) -> ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
 
         attr_reader return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress?
 
@@ -139,7 +139,7 @@ module Increase
           recipient_name: String,
           ?attachment_file_id: String,
           ?note: String,
-          ?payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee],
+          ?payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           ?return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           ?shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           ?signature_text: String
@@ -151,7 +151,7 @@ module Increase
           recipient_name: String,
           attachment_file_id: String,
           note: String,
-          payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee],
+          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           signature_text: String
@@ -196,9 +196,9 @@ module Increase
           }
         end
 
-        type payee = { contents: String }
+        type payer = { contents: String }
 
-        class Payee < Increase::Internal::Type::BaseModel
+        class Payer < Increase::Internal::Type::BaseModel
           attr_accessor contents: String
 
           def initialize: (contents: String) -> void

@@ -231,29 +231,29 @@ module Increase
         sig { params(note: String).void }
         attr_writer :note
 
-        # The payee of the check. This will be printed on the top-left portion of the
+        # The payer of the check. This will be printed on the top-left portion of the
         # check and defaults to the return address if unspecified. This should be an array
-        # of up to 4 elements, each of which represents a line of the payee.
+        # of up to 4 elements, each of which represents a line of the payer.
         sig do
           returns(
             T.nilable(
               T::Array[
-                Increase::CheckTransferCreateParams::PhysicalCheck::Payee
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payer
               ]
             )
           )
         end
-        attr_reader :payee
+        attr_reader :payer
 
         sig do
           params(
-            payee:
+            payer:
               T::Array[
-                Increase::CheckTransferCreateParams::PhysicalCheck::Payee::OrHash
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payer::OrHash
               ]
           ).void
         end
-        attr_writer :payee
+        attr_writer :payer
 
         # The return address to be printed on the check. If omitted this will default to
         # an Increase-owned address that will mark checks as delivery failed and shred
@@ -313,9 +313,9 @@ module Increase
             recipient_name: String,
             attachment_file_id: String,
             note: String,
-            payee:
+            payer:
               T::Array[
-                Increase::CheckTransferCreateParams::PhysicalCheck::Payee::OrHash
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payer::OrHash
               ],
             return_address:
               Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress::OrHash,
@@ -337,10 +337,10 @@ module Increase
           attachment_file_id: nil,
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
-          # The payee of the check. This will be printed on the top-left portion of the
+          # The payer of the check. This will be printed on the top-left portion of the
           # check and defaults to the return address if unspecified. This should be an array
-          # of up to 4 elements, each of which represents a line of the payee.
-          payee: nil,
+          # of up to 4 elements, each of which represents a line of the payer.
+          payer: nil,
           # The return address to be printed on the check. If omitted this will default to
           # an Increase-owned address that will mark checks as delivery failed and shred
           # them.
@@ -363,9 +363,9 @@ module Increase
               recipient_name: String,
               attachment_file_id: String,
               note: String,
-              payee:
+              payer:
                 T::Array[
-                  Increase::CheckTransferCreateParams::PhysicalCheck::Payee
+                  Increase::CheckTransferCreateParams::PhysicalCheck::Payer
                 ],
               return_address:
                 Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
@@ -449,11 +449,11 @@ module Increase
           end
         end
 
-        class Payee < Increase::Internal::Type::BaseModel
+        class Payer < Increase::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Increase::CheckTransferCreateParams::PhysicalCheck::Payee,
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payer,
                 Increase::Internal::AnyHash
               )
             end
@@ -606,7 +606,7 @@ module Increase
 
         # The pay-to name you will print on the check. If provided, this is used for
         # [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will
-        # be unable to validate the payee name when the check is deposited.
+        # be unable to validate the payer name when the check is deposited.
         sig { returns(T.nilable(String)) }
         attr_reader :recipient_name
 
@@ -620,7 +620,7 @@ module Increase
         def self.new(
           # The pay-to name you will print on the check. If provided, this is used for
           # [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will
-          # be unable to validate the payee name when the check is deposited.
+          # be unable to validate the payer name when the check is deposited.
           recipient_name: nil
         )
         end

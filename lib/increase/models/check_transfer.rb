@@ -473,14 +473,14 @@ module Increase
         #   @return [String, nil]
         required :note, String, nil?: true
 
-        # @!attribute payee
-        #   The payee of the check. This will be printed on the top-left portion of the
+        # @!attribute payer
+        #   The payer of the check. This will be printed on the top-left portion of the
         #   check and defaults to the return address if unspecified.
         #
-        #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payee>]
-        required :payee,
+        #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
+        required :payer,
                  -> {
-                   Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payee]
+                   Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payer]
                  }
 
         # @!attribute recipient_name
@@ -521,7 +521,7 @@ module Increase
                    Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
                  }
 
-        # @!method initialize(attachment_file_id:, mailing_address:, memo:, note:, payee:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
+        # @!method initialize(attachment_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransfer::PhysicalCheck} for more details.
         #
@@ -536,7 +536,7 @@ module Increase
         #
         #   @param note [String, nil] The descriptor that will be printed on the letter included with the check.
         #
-        #   @param payee [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payee>] The payee of the check. This will be printed on the top-left portion of the chec
+        #   @param payer [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>] The payer of the check. This will be printed on the top-left portion of the chec
         #
         #   @param recipient_name [String] The name that will be printed on the check.
         #
@@ -602,7 +602,7 @@ module Increase
           #   @param state [String, nil] The state of the check's destination.
         end
 
-        class Payee < Increase::Internal::Type::BaseModel
+        class Payer < Increase::Internal::Type::BaseModel
           # @!attribute contents
           #   The contents of the line.
           #

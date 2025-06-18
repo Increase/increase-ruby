@@ -298,7 +298,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
-          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
+          payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
@@ -315,7 +315,7 @@ module Increase
 
         attr_accessor note: String?
 
-        attr_accessor payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee]
+        attr_accessor payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer]
 
         attr_accessor recipient_name: String
 
@@ -332,7 +332,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
-          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
+          payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
@@ -345,7 +345,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
-          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
+          payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
@@ -395,9 +395,9 @@ module Increase
           }
         end
 
-        type payee = { contents: String }
+        type payer = { contents: String }
 
-        class Payee < Increase::Internal::Type::BaseModel
+        class Payer < Increase::Internal::Type::BaseModel
           attr_accessor contents: String
 
           def initialize: (contents: String) -> void

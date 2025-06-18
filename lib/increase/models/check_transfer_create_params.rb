@@ -131,15 +131,15 @@ module Increase
         #   @return [String, nil]
         optional :note, String
 
-        # @!attribute payee
-        #   The payee of the check. This will be printed on the top-left portion of the
+        # @!attribute payer
+        #   The payer of the check. This will be printed on the top-left portion of the
         #   check and defaults to the return address if unspecified. This should be an array
-        #   of up to 4 elements, each of which represents a line of the payee.
+        #   of up to 4 elements, each of which represents a line of the payer.
         #
-        #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>, nil]
-        optional :payee,
+        #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>, nil]
+        optional :payer,
                  -> {
-                   Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]
+                   Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
                  }
 
         # @!attribute return_address
@@ -167,7 +167,7 @@ module Increase
         #   @return [String, nil]
         optional :signature_text, String
 
-        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, payee: nil, return_address: nil, shipping_method: nil, signature_text: nil)
+        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, payer: nil, return_address: nil, shipping_method: nil, signature_text: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
         #
@@ -185,7 +185,7 @@ module Increase
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.
         #
-        #   @param payee [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>] The payee of the check. This will be printed on the top-left portion of the chec
+        #   @param payer [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>] The payer of the check. This will be printed on the top-left portion of the chec
         #
         #   @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress] The return address to be printed on the check. If omitted this will default to a
         #
@@ -239,7 +239,7 @@ module Increase
           #   @param line2 [String] The second line of the address component of the check's destination address.
         end
 
-        class Payee < Increase::Internal::Type::BaseModel
+        class Payer < Increase::Internal::Type::BaseModel
           # @!attribute contents
           #   The contents of the line.
           #
@@ -328,7 +328,7 @@ module Increase
         # @!attribute recipient_name
         #   The pay-to name you will print on the check. If provided, this is used for
         #   [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will
-        #   be unable to validate the payee name when the check is deposited.
+        #   be unable to validate the payer name when the check is deposited.
         #
         #   @return [String, nil]
         optional :recipient_name, String
