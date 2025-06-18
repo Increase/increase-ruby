@@ -131,6 +131,16 @@ module Increase
         #   @return [String, nil]
         optional :note, String
 
+        # @!attribute payee
+        #   The payee of the check. This will be printed on the top-left portion of the
+        #   check and defaults to the return address if unspecified.
+        #
+        #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>, nil]
+        optional :payee,
+                 -> {
+                   Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]
+                 }
+
         # @!attribute return_address
         #   The return address to be printed on the check. If omitted this will default to
         #   an Increase-owned address that will mark checks as delivery failed and shred
@@ -156,7 +166,7 @@ module Increase
         #   @return [String, nil]
         optional :signature_text, String
 
-        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, return_address: nil, shipping_method: nil, signature_text: nil)
+        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, payee: nil, return_address: nil, shipping_method: nil, signature_text: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
         #
@@ -173,6 +183,8 @@ module Increase
         #   @param attachment_file_id [String] The ID of a File to be attached to the check. This must have `purpose: check_att
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.
+        #
+        #   @param payee [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>] The payee of the check. This will be printed on the top-left portion of the chec
         #
         #   @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress] The return address to be printed on the check. If omitted this will default to a
         #
@@ -224,6 +236,17 @@ module Increase
           #   @param state [String] The US state component of the check's destination address.
           #
           #   @param line2 [String] The second line of the address component of the check's destination address.
+        end
+
+        class Payee < Increase::Internal::Type::BaseModel
+          # @!attribute contents
+          #   The contents of the line.
+          #
+          #   @return [String]
+          required :contents, String
+
+          # @!method initialize(contents:)
+          #   @param contents [String] The contents of the line.
         end
 
         # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#return_address

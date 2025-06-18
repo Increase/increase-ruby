@@ -231,6 +231,29 @@ module Increase
         sig { params(note: String).void }
         attr_writer :note
 
+        # The payee of the check. This will be printed on the top-left portion of the
+        # check and defaults to the return address if unspecified.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payee
+              ]
+            )
+          )
+        end
+        attr_reader :payee
+
+        sig do
+          params(
+            payee:
+              T::Array[
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payee::OrHash
+              ]
+          ).void
+        end
+        attr_writer :payee
+
         # The return address to be printed on the check. If omitted this will default to
         # an Increase-owned address that will mark checks as delivery failed and shred
         # them.
@@ -289,6 +312,10 @@ module Increase
             recipient_name: String,
             attachment_file_id: String,
             note: String,
+            payee:
+              T::Array[
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payee::OrHash
+              ],
             return_address:
               Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress::OrHash,
             shipping_method:
@@ -309,6 +336,9 @@ module Increase
           attachment_file_id: nil,
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
+          # The payee of the check. This will be printed on the top-left portion of the
+          # check and defaults to the return address if unspecified.
+          payee: nil,
           # The return address to be printed on the check. If omitted this will default to
           # an Increase-owned address that will mark checks as delivery failed and shred
           # them.
@@ -331,6 +361,10 @@ module Increase
               recipient_name: String,
               attachment_file_id: String,
               note: String,
+              payee:
+                T::Array[
+                  Increase::CheckTransferCreateParams::PhysicalCheck::Payee
+                ],
               return_address:
                 Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
               shipping_method:
@@ -409,6 +443,31 @@ module Increase
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class Payee < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payee,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :contents
+
+          sig { params(contents: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            contents:
+          )
+          end
+
+          sig { override.returns({ contents: String }) }
           def to_hash
           end
         end

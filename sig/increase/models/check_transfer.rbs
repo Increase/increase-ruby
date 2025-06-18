@@ -298,6 +298,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
+          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
@@ -314,6 +315,8 @@ module Increase
 
         attr_accessor note: String?
 
+        attr_accessor payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee]
+
         attr_accessor recipient_name: String
 
         attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?
@@ -329,6 +332,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
+          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
@@ -341,6 +345,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
+          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
@@ -388,6 +393,16 @@ module Increase
             postal_code: String?,
             state: String?
           }
+        end
+
+        type payee = { contents: String }
+
+        class Payee < Increase::Internal::Type::BaseModel
+          attr_accessor contents: String
+
+          def initialize: (contents: String) -> void
+
+          def to_hash: -> { contents: String }
         end
 
         type return_address =
