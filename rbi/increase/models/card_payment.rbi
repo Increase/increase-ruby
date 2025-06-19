@@ -270,10 +270,10 @@ module Increase
         end
         attr_writer :card_settlement
 
-        # A Card Validation object. This field will be present in the JSON response if and
-        # only if `category` is equal to `card_validation`. Card Validations are requests
-        # from a merchant to verify that a card number and optionally its address and/or
-        # Card Verification Value are valid.
+        # An Inbound Card Validation object. This field will be present in the JSON
+        # response if and only if `category` is equal to `card_validation`. Inbound Card
+        # Validations are requests from a merchant to verify that a card number and
+        # optionally its address and/or Card Verification Value are valid.
         sig do
           returns(T.nilable(Increase::CardPayment::Element::CardValidation))
         end
@@ -380,10 +380,10 @@ module Increase
           # preceded by an authorization, an acquirer can also directly clear a transaction
           # without first authorizing it.
           card_settlement:,
-          # A Card Validation object. This field will be present in the JSON response if and
-          # only if `category` is equal to `card_validation`. Card Validations are requests
-          # from a merchant to verify that a card number and optionally its address and/or
-          # Card Verification Value are valid.
+          # An Inbound Card Validation object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_validation`. Inbound Card
+          # Validations are requests from a merchant to verify that a card number and
+          # optionally its address and/or Card Verification Value are valid.
           card_validation:,
           # The type of the resource. We may add additional possible values for this enum
           # over time; your application should be able to handle such additions gracefully.
@@ -10650,7 +10650,7 @@ module Increase
           attr_accessor :terminal_id
 
           # A constant representing the object's type. For this resource it will always be
-          # `card_validation`.
+          # `inbound_card_validation`.
           sig do
             returns(
               Increase::CardPayment::Element::CardValidation::Type::TaggedSymbol
@@ -10674,10 +10674,10 @@ module Increase
           end
           attr_writer :verification
 
-          # A Card Validation object. This field will be present in the JSON response if and
-          # only if `category` is equal to `card_validation`. Card Validations are requests
-          # from a merchant to verify that a card number and optionally its address and/or
-          # Card Verification Value are valid.
+          # An Inbound Card Validation object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_validation`. Inbound Card
+          # Validations are requests from a merchant to verify that a card number and
+          # optionally its address and/or Card Verification Value are valid.
           sig do
             params(
               id: String,
@@ -10756,7 +10756,7 @@ module Increase
             # is transacting with.
             terminal_id:,
             # A constant representing the object's type. For this resource it will always be
-            # `card_validation`.
+            # `inbound_card_validation`.
             type:,
             # Fields related to verification of cardholder-provided values.
             verification:
@@ -11422,7 +11422,7 @@ module Increase
           end
 
           # A constant representing the object's type. For this resource it will always be
-          # `card_validation`.
+          # `inbound_card_validation`.
           module Type
             extend Increase::Internal::Type::Enum
 
@@ -11435,9 +11435,9 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            CARD_VALIDATION =
+            INBOUND_CARD_VALIDATION =
               T.let(
-                :card_validation,
+                :inbound_card_validation,
                 Increase::CardPayment::Element::CardValidation::Type::TaggedSymbol
               )
 
@@ -11785,7 +11785,7 @@ module Increase
               Increase::CardPayment::Element::Category::TaggedSymbol
             )
 
-          # Card Validation: details will be under the `card_validation` object.
+          # Inbound Card Validation: details will be under the `card_validation` object.
           CARD_VALIDATION =
             T.let(
               :card_validation,

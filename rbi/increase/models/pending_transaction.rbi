@@ -344,6 +344,27 @@ module Increase
         end
         attr_writer :card_authorization
 
+        # A Card Push Transfer Instruction object. This field will be present in the JSON
+        # response if and only if `category` is equal to `card_push_transfer_instruction`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::PendingTransaction::Source::CardPushTransferInstruction
+            )
+          )
+        end
+        attr_reader :card_push_transfer_instruction
+
+        sig do
+          params(
+            card_push_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::CardPushTransferInstruction::OrHash
+              )
+          ).void
+        end
+        attr_writer :card_push_transfer_instruction
+
         # The type of the resource. We may add additional possible values for this enum
         # over time; your application should be able to handle such additions gracefully.
         sig do
@@ -442,28 +463,6 @@ module Increase
         sig { returns(T.nilable(T.anything)) }
         attr_accessor :other
 
-        # An Outbound Card Push Transfer Instruction object. This field will be present in
-        # the JSON response if and only if `category` is equal to
-        # `outbound_card_push_transfer_instruction`.
-        sig do
-          returns(
-            T.nilable(
-              Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction
-            )
-          )
-        end
-        attr_reader :outbound_card_push_transfer_instruction
-
-        sig do
-          params(
-            outbound_card_push_transfer_instruction:
-              T.nilable(
-                Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction::OrHash
-              )
-          ).void
-        end
-        attr_writer :outbound_card_push_transfer_instruction
-
         # A Real-Time Payments Transfer Instruction object. This field will be present in
         # the JSON response if and only if `category` is equal to
         # `real_time_payments_transfer_instruction`.
@@ -551,6 +550,10 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::CardAuthorization::OrHash
               ),
+            card_push_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::CardPushTransferInstruction::OrHash
+              ),
             category: Increase::PendingTransaction::Source::Category::OrSymbol,
             check_deposit_instruction:
               T.nilable(
@@ -569,10 +572,6 @@ module Increase
                 Increase::PendingTransaction::Source::InboundWireTransferReversal::OrHash
               ),
             other: T.nilable(T.anything),
-            outbound_card_push_transfer_instruction:
-              T.nilable(
-                Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction::OrHash
-              ),
             real_time_payments_transfer_instruction:
               T.nilable(
                 Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction::OrHash
@@ -600,6 +599,9 @@ module Increase
           # temporary holds placed on a customers funds with the intent to later clear a
           # transaction.
           card_authorization:,
+          # A Card Push Transfer Instruction object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_push_transfer_instruction`.
+          card_push_transfer_instruction:,
           # The type of the resource. We may add additional possible values for this enum
           # over time; your application should be able to handle such additions gracefully.
           category:,
@@ -622,10 +624,6 @@ module Increase
           # If the category of this Transaction source is equal to `other`, this field will
           # contain an empty object, otherwise it will contain null.
           other:,
-          # An Outbound Card Push Transfer Instruction object. This field will be present in
-          # the JSON response if and only if `category` is equal to
-          # `outbound_card_push_transfer_instruction`.
-          outbound_card_push_transfer_instruction:,
           # A Real-Time Payments Transfer Instruction object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `real_time_payments_transfer_instruction`.
@@ -658,6 +656,10 @@ module Increase
                 T.nilable(
                   Increase::PendingTransaction::Source::CardAuthorization
                 ),
+              card_push_transfer_instruction:
+                T.nilable(
+                  Increase::PendingTransaction::Source::CardPushTransferInstruction
+                ),
               category:
                 Increase::PendingTransaction::Source::Category::TaggedSymbol,
               check_deposit_instruction:
@@ -677,10 +679,6 @@ module Increase
                   Increase::PendingTransaction::Source::InboundWireTransferReversal
                 ),
               other: T.nilable(T.anything),
-              outbound_card_push_transfer_instruction:
-                T.nilable(
-                  Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction
-                ),
               real_time_payments_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction
@@ -2292,6 +2290,43 @@ module Increase
           end
         end
 
+        class CardPushTransferInstruction < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::CardPushTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The transfer amount in USD cents.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The identifier of the Card Push Transfer that led to this Pending Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A Card Push Transfer Instruction object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_push_transfer_instruction`.
+          sig do
+            params(amount: Integer, transfer_id: String).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # The transfer amount in USD cents.
+            amount:,
+            # The identifier of the Card Push Transfer that led to this Pending Transaction.
+            transfer_id:
+          )
+          end
+
+          sig { override.returns({ amount: Integer, transfer_id: String }) }
+          def to_hash
+          end
+        end
+
         # The type of the resource. We may add additional possible values for this enum
         # over time; your application should be able to handle such additions gracefully.
         module Category
@@ -2380,10 +2415,10 @@ module Increase
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
-          # Outbound Card Push Transfer Instruction: details will be under the `outbound_card_push_transfer_instruction` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_INSTRUCTION =
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION =
             T.let(
-              :outbound_card_push_transfer_instruction,
+              :card_push_transfer_instruction,
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
@@ -2983,46 +3018,6 @@ module Increase
           end
 
           sig { override.returns({ inbound_wire_transfer_id: String }) }
-          def to_hash
-          end
-        end
-
-        class OutboundCardPushTransferInstruction < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::PendingTransaction::Source::OutboundCardPushTransferInstruction,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # The transfer amount in USD cents.
-          sig { returns(Integer) }
-          attr_accessor :amount
-
-          # The identifier of the Outbound Card Push Transfer that led to this Pending
-          # Transaction.
-          sig { returns(String) }
-          attr_accessor :transfer_id
-
-          # An Outbound Card Push Transfer Instruction object. This field will be present in
-          # the JSON response if and only if `category` is equal to
-          # `outbound_card_push_transfer_instruction`.
-          sig do
-            params(amount: Integer, transfer_id: String).returns(
-              T.attached_class
-            )
-          end
-          def self.new(
-            # The transfer amount in USD cents.
-            amount:,
-            # The identifier of the Outbound Card Push Transfer that led to this Pending
-            # Transaction.
-            transfer_id:
-          )
-          end
-
-          sig { override.returns({ amount: Integer, transfer_id: String }) }
           def to_hash
           end
         end

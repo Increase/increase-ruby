@@ -3,6 +3,7 @@ module Increase
     type inbound_mail_item =
       {
         id: String,
+        checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
         lockbox_id: String?,
@@ -14,6 +15,8 @@ module Increase
 
     class InboundMailItem < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor checks: ::Array[Increase::InboundMailItem::Check]
 
       attr_accessor created_at: Time
 
@@ -31,6 +34,7 @@ module Increase
 
       def initialize: (
         id: String,
+        checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
         lockbox_id: String?,
@@ -42,6 +46,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
         lockbox_id: String?,
@@ -50,6 +55,29 @@ module Increase
         status: Increase::Models::InboundMailItem::status,
         type: Increase::Models::InboundMailItem::type_
       }
+
+      type check =
+        { amount: Integer, back_file_id: String?, front_file_id: String? }
+
+      class Check < Increase::Internal::Type::BaseModel
+        attr_accessor amount: Integer
+
+        attr_accessor back_file_id: String?
+
+        attr_accessor front_file_id: String?
+
+        def initialize: (
+          amount: Integer,
+          back_file_id: String?,
+          front_file_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          amount: Integer,
+          back_file_id: String?,
+          front_file_id: String?
+        }
+      end
 
       type rejection_reason =
         :no_matching_lockbox | :no_check | :lockbox_not_active

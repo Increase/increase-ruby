@@ -592,31 +592,59 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
-          # Occurs whenever an Outbound Card Push Transfer is created.
+          # Occurs whenever a Card Push Transfer is created.
           OUTBOUND_CARD_PUSH_TRANSFER_CREATED =
             T.let(
               :"outbound_card_push_transfer.created",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
-          # Occurs whenever an Outbound Card Push Transfer is updated.
+          # Occurs whenever a Card Push Transfer is updated.
           OUTBOUND_CARD_PUSH_TRANSFER_UPDATED =
             T.let(
               :"outbound_card_push_transfer.updated",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
-          # Occurs whenever an Outbound Card Validation is created.
+          # Occurs whenever a Card Validation is created.
           OUTBOUND_CARD_VALIDATION_CREATED =
             T.let(
               :"outbound_card_validation.created",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
-          # Occurs whenever an Outbound Card Validation is updated.
+          # Occurs whenever a Card Validation is updated.
           OUTBOUND_CARD_VALIDATION_UPDATED =
             T.let(
               :"outbound_card_validation.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Card Push Transfer is created.
+          CARD_PUSH_TRANSFER_CREATED =
+            T.let(
+              :"card_push_transfer.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Card Push Transfer is updated.
+          CARD_PUSH_TRANSFER_UPDATED =
+            T.let(
+              :"card_push_transfer.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Card Validation is created.
+          CARD_VALIDATION_CREATED =
+            T.let(
+              :"card_validation.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Card Validation is updated.
+          CARD_VALIDATION_UPDATED =
+            T.let(
+              :"card_validation.updated",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
@@ -736,6 +764,20 @@ module Increase
           REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_UPDATED =
             T.let(
               :"real_time_payments_request_for_payment.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Swift Transfer is created.
+          SWIFT_TRANSFER_CREATED =
+            T.let(
+              :"swift_transfer.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Swift Transfer is updated.
+          SWIFT_TRANSFER_UPDATED =
+            T.let(
+              :"swift_transfer.updated",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 

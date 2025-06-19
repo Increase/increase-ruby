@@ -324,6 +324,27 @@ module Increase
         end
         attr_writer :card_dispute_loss
 
+        # A Card Push Transfer Acceptance object. This field will be present in the JSON
+        # response if and only if `category` is equal to `card_push_transfer_acceptance`.
+        # A Card Push Transfer Acceptance is created when an Outbound Card Push Transfer
+        # sent from Increase is accepted by the receiving bank.
+        sig do
+          returns(
+            T.nilable(Increase::Transaction::Source::CardPushTransferAcceptance)
+          )
+        end
+        attr_reader :card_push_transfer_acceptance
+
+        sig do
+          params(
+            card_push_transfer_acceptance:
+              T.nilable(
+                Increase::Transaction::Source::CardPushTransferAcceptance::OrHash
+              )
+          ).void
+        end
+        attr_writer :card_push_transfer_acceptance
+
         # A Card Refund object. This field will be present in the JSON response if and
         # only if `category` is equal to `card_refund`. Card Refunds move money back to
         # the cardholder. While they are usually connected to a Card Settlement an
@@ -711,30 +732,6 @@ module Increase
         sig { returns(T.nilable(T.anything)) }
         attr_accessor :other
 
-        # An Outbound Card Push Transfer Acceptance object. This field will be present in
-        # the JSON response if and only if `category` is equal to
-        # `outbound_card_push_transfer_acceptance`. An Outbound Card Push Transfer
-        # Acceptance is created when an Outbound Card Push Transfer sent from Increase is
-        # accepted by the receiving bank.
-        sig do
-          returns(
-            T.nilable(
-              Increase::Transaction::Source::OutboundCardPushTransferAcceptance
-            )
-          )
-        end
-        attr_reader :outbound_card_push_transfer_acceptance
-
-        sig do
-          params(
-            outbound_card_push_transfer_acceptance:
-              T.nilable(
-                Increase::Transaction::Source::OutboundCardPushTransferAcceptance::OrHash
-              )
-          ).void
-        end
-        attr_writer :outbound_card_push_transfer_acceptance
-
         # A Real-Time Payments Transfer Acknowledgement object. This field will be present
         # in the JSON response if and only if `category` is equal to
         # `real_time_payments_transfer_acknowledgement`. A Real-Time Payments Transfer
@@ -841,6 +838,10 @@ module Increase
               ),
             card_dispute_loss:
               T.nilable(Increase::Transaction::Source::CardDisputeLoss::OrHash),
+            card_push_transfer_acceptance:
+              T.nilable(
+                Increase::Transaction::Source::CardPushTransferAcceptance::OrHash
+              ),
             card_refund:
               T.nilable(Increase::Transaction::Source::CardRefund::OrHash),
             card_revenue_payment:
@@ -907,10 +908,6 @@ module Increase
             internal_source:
               T.nilable(Increase::Transaction::Source::InternalSource::OrHash),
             other: T.nilable(T.anything),
-            outbound_card_push_transfer_acceptance:
-              T.nilable(
-                Increase::Transaction::Source::OutboundCardPushTransferAcceptance::OrHash
-              ),
             real_time_payments_transfer_acknowledgement:
               T.nilable(
                 Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement::OrHash
@@ -958,6 +955,11 @@ module Increase
           # and only if `category` is equal to `card_dispute_loss`. Contains the details of
           # a lost Card Dispute.
           card_dispute_loss:,
+          # A Card Push Transfer Acceptance object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_push_transfer_acceptance`.
+          # A Card Push Transfer Acceptance is created when an Outbound Card Push Transfer
+          # sent from Increase is accepted by the receiving bank.
+          card_push_transfer_acceptance:,
           # A Card Refund object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_refund`. Card Refunds move money back to
           # the cardholder. While they are usually connected to a Card Settlement an
@@ -1065,12 +1067,6 @@ module Increase
           # If the category of this Transaction source is equal to `other`, this field will
           # contain an empty object, otherwise it will contain null.
           other:,
-          # An Outbound Card Push Transfer Acceptance object. This field will be present in
-          # the JSON response if and only if `category` is equal to
-          # `outbound_card_push_transfer_acceptance`. An Outbound Card Push Transfer
-          # Acceptance is created when an Outbound Card Push Transfer sent from Increase is
-          # accepted by the receiving bank.
-          outbound_card_push_transfer_acceptance:,
           # A Real-Time Payments Transfer Acknowledgement object. This field will be present
           # in the JSON response if and only if `category` is equal to
           # `real_time_payments_transfer_acknowledgement`. A Real-Time Payments Transfer
@@ -1109,6 +1105,10 @@ module Increase
                 T.nilable(Increase::Transaction::Source::CardDisputeAcceptance),
               card_dispute_loss:
                 T.nilable(Increase::Transaction::Source::CardDisputeLoss),
+              card_push_transfer_acceptance:
+                T.nilable(
+                  Increase::Transaction::Source::CardPushTransferAcceptance
+                ),
               card_refund: T.nilable(Increase::Transaction::Source::CardRefund),
               card_revenue_payment:
                 T.nilable(Increase::Transaction::Source::CardRevenuePayment),
@@ -1161,10 +1161,6 @@ module Increase
               internal_source:
                 T.nilable(Increase::Transaction::Source::InternalSource),
               other: T.nilable(T.anything),
-              outbound_card_push_transfer_acceptance:
-                T.nilable(
-                  Increase::Transaction::Source::OutboundCardPushTransferAcceptance
-                ),
               real_time_payments_transfer_acknowledgement:
                 T.nilable(
                   Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement
@@ -2175,6 +2171,45 @@ module Increase
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class CardPushTransferAcceptance < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::CardPushTransferAcceptance,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The transfer amount in USD cents.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The identifier of the Card Push Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A Card Push Transfer Acceptance object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_push_transfer_acceptance`.
+          # A Card Push Transfer Acceptance is created when an Outbound Card Push Transfer
+          # sent from Increase is accepted by the receiving bank.
+          sig do
+            params(amount: Integer, transfer_id: String).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # The transfer amount in USD cents.
+            amount:,
+            # The identifier of the Card Push Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig { override.returns({ amount: Integer, transfer_id: String }) }
           def to_hash
           end
         end
@@ -7558,10 +7593,10 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
-          # Outbound Card Push Transfer Acceptance: details will be under the `outbound_card_push_transfer_acceptance` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_ACCEPTANCE =
+          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
+          CARD_PUSH_TRANSFER_ACCEPTANCE =
             T.let(
-              :outbound_card_push_transfer_acceptance,
+              :card_push_transfer_acceptance,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
@@ -10191,46 +10226,6 @@ module Increase
             end
             def self.values
             end
-          end
-        end
-
-        class OutboundCardPushTransferAcceptance < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::Transaction::Source::OutboundCardPushTransferAcceptance,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # The transfer amount in USD cents.
-          sig { returns(Integer) }
-          attr_accessor :amount
-
-          # The identifier of the Outbound Card Push Transfer that led to this Transaction.
-          sig { returns(String) }
-          attr_accessor :transfer_id
-
-          # An Outbound Card Push Transfer Acceptance object. This field will be present in
-          # the JSON response if and only if `category` is equal to
-          # `outbound_card_push_transfer_acceptance`. An Outbound Card Push Transfer
-          # Acceptance is created when an Outbound Card Push Transfer sent from Increase is
-          # accepted by the receiving bank.
-          sig do
-            params(amount: Integer, transfer_id: String).returns(
-              T.attached_class
-            )
-          end
-          def self.new(
-            # The transfer amount in USD cents.
-            amount:,
-            # The identifier of the Outbound Card Push Transfer that led to this Transaction.
-            transfer_id:
-          )
-          end
-
-          sig { override.returns({ amount: Integer, transfer_id: String }) }
-          def to_hash
           end
         end
 

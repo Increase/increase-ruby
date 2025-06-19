@@ -772,6 +772,11 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :note
 
+        # The payer of the check. This will be printed on the top-left portion of the
+        # check and defaults to the return address if unspecified.
+        sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payer]) }
+        attr_accessor :payer
+
         # The name that will be printed on the check.
         sig { returns(String) }
         attr_accessor :recipient_name
@@ -826,6 +831,8 @@ module Increase
               Increase::CheckTransfer::PhysicalCheck::MailingAddress::OrHash,
             memo: T.nilable(String),
             note: T.nilable(String),
+            payer:
+              T::Array[Increase::CheckTransfer::PhysicalCheck::Payer::OrHash],
             recipient_name: String,
             return_address:
               T.nilable(
@@ -851,6 +858,9 @@ module Increase
           memo:,
           # The descriptor that will be printed on the letter included with the check.
           note:,
+          # The payer of the check. This will be printed on the top-left portion of the
+          # check and defaults to the return address if unspecified.
+          payer:,
           # The name that will be printed on the check.
           recipient_name:,
           # The return address to be printed on the check.
@@ -873,6 +883,7 @@ module Increase
                 Increase::CheckTransfer::PhysicalCheck::MailingAddress,
               memo: T.nilable(String),
               note: T.nilable(String),
+              payer: T::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
               recipient_name: String,
               return_address:
                 T.nilable(
@@ -963,6 +974,31 @@ module Increase
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class Payer < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::Payer,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :contents
+
+          sig { params(contents: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            contents:
+          )
+          end
+
+          sig { override.returns({ contents: String }) }
           def to_hash
           end
         end

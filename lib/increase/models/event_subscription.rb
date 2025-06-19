@@ -285,17 +285,29 @@ module Increase
         # Occurs whenever an OAuth Connection is deactivated.
         OAUTH_CONNECTION_DEACTIVATED = :"oauth_connection.deactivated"
 
-        # Occurs whenever an Outbound Card Push Transfer is created.
+        # Occurs whenever a Card Push Transfer is created.
         OUTBOUND_CARD_PUSH_TRANSFER_CREATED = :"outbound_card_push_transfer.created"
 
-        # Occurs whenever an Outbound Card Push Transfer is updated.
+        # Occurs whenever a Card Push Transfer is updated.
         OUTBOUND_CARD_PUSH_TRANSFER_UPDATED = :"outbound_card_push_transfer.updated"
 
-        # Occurs whenever an Outbound Card Validation is created.
+        # Occurs whenever a Card Validation is created.
         OUTBOUND_CARD_VALIDATION_CREATED = :"outbound_card_validation.created"
 
-        # Occurs whenever an Outbound Card Validation is updated.
+        # Occurs whenever a Card Validation is updated.
         OUTBOUND_CARD_VALIDATION_UPDATED = :"outbound_card_validation.updated"
+
+        # Occurs whenever a Card Push Transfer is created.
+        CARD_PUSH_TRANSFER_CREATED = :"card_push_transfer.created"
+
+        # Occurs whenever a Card Push Transfer is updated.
+        CARD_PUSH_TRANSFER_UPDATED = :"card_push_transfer.updated"
+
+        # Occurs whenever a Card Validation is created.
+        CARD_VALIDATION_CREATED = :"card_validation.created"
+
+        # Occurs whenever a Card Validation is updated.
+        CARD_VALIDATION_UPDATED = :"card_validation.updated"
 
         # Occurs whenever a Pending Transaction is created.
         PENDING_TRANSACTION_CREATED = :"pending_transaction.created"
@@ -349,6 +361,12 @@ module Increase
 
         # Occurs whenever a Real-Time Payments Request for Payment is updated.
         REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_UPDATED = :"real_time_payments_request_for_payment.updated"
+
+        # Occurs whenever a Swift Transfer is created.
+        SWIFT_TRANSFER_CREATED = :"swift_transfer.created"
+
+        # Occurs whenever a Swift Transfer is updated.
+        SWIFT_TRANSFER_UPDATED = :"swift_transfer.updated"
 
         # Occurs whenever a Transaction is created.
         TRANSACTION_CREATED = :"transaction.created"

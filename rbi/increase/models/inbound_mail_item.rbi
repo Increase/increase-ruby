@@ -12,6 +12,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The checks in the mail item.
+      sig { returns(T::Array[Increase::InboundMailItem::Check]) }
+      attr_accessor :checks
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
       # Mail Item was created.
       sig { returns(Time) }
@@ -51,6 +55,7 @@ module Increase
       sig do
         params(
           id: String,
+          checks: T::Array[Increase::InboundMailItem::Check::OrHash],
           created_at: Time,
           file_id: String,
           lockbox_id: T.nilable(String),
@@ -64,6 +69,8 @@ module Increase
       def self.new(
         # The Inbound Mail Item identifier.
         id:,
+        # The checks in the mail item.
+        checks:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
         # Mail Item was created.
         created_at:,
@@ -88,6 +95,7 @@ module Increase
         override.returns(
           {
             id: String,
+            checks: T::Array[Increase::InboundMailItem::Check],
             created_at: Time,
             file_id: String,
             lockbox_id: T.nilable(String),
@@ -102,6 +110,55 @@ module Increase
         )
       end
       def to_hash
+      end
+
+      class Check < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::InboundMailItem::Check, Increase::Internal::AnyHash)
+          end
+
+        # The amount of the check.
+        sig { returns(Integer) }
+        attr_accessor :amount
+
+        # The identifier for the File containing the back of the check.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :back_file_id
+
+        # The identifier for the File containing the front of the check.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :front_file_id
+
+        # Inbound Mail Item Checks represent the checks in an Inbound Mail Item.
+        sig do
+          params(
+            amount: Integer,
+            back_file_id: T.nilable(String),
+            front_file_id: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount of the check.
+          amount:,
+          # The identifier for the File containing the back of the check.
+          back_file_id:,
+          # The identifier for the File containing the front of the check.
+          front_file_id:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: Integer,
+              back_file_id: T.nilable(String),
+              front_file_id: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       # If the mail item has been rejected, why it was rejected.

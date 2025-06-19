@@ -369,10 +369,10 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Outbound Card Push Transfer Acceptance: details will be under the `outbound_card_push_transfer_acceptance` object.
-          OUTBOUND_CARD_PUSH_TRANSFER_ACCEPTANCE =
+          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
+          CARD_PUSH_TRANSFER_ACCEPTANCE =
             T.let(
-              :outbound_card_push_transfer_acceptance,
+              :card_push_transfer_acceptance,
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
