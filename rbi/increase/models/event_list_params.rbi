@@ -767,6 +767,20 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Swift Transfer is created.
+          SWIFT_TRANSFER_CREATED =
+            T.let(
+              :"swift_transfer.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Swift Transfer is updated.
+          SWIFT_TRANSFER_UPDATED =
+            T.let(
+              :"swift_transfer.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Transaction is created.
           TRANSACTION_CREATED =
             T.let(

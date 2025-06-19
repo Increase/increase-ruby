@@ -323,6 +323,12 @@ module Increase
         # Occurs whenever a Real-Time Payments Request for Payment is updated.
         REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_UPDATED = :"real_time_payments_request_for_payment.updated"
 
+        # Occurs whenever a Swift Transfer is created.
+        SWIFT_TRANSFER_CREATED = :"swift_transfer.created"
+
+        # Occurs whenever a Swift Transfer is updated.
+        SWIFT_TRANSFER_UPDATED = :"swift_transfer.updated"
+
         # Occurs whenever a Transaction is created.
         TRANSACTION_CREATED = :"transaction.created"
 
