@@ -13,7 +13,6 @@ module Increase
         decline: Increase::InboundACHTransfer::Decline?,
         direction: Increase::Models::InboundACHTransfer::direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::expected_settlement_schedule,
         international_addenda: Increase::InboundACHTransfer::InternationalAddenda?,
         notification_of_change: Increase::InboundACHTransfer::NotificationOfChange?,
         originator_company_descriptive_date: String?,
@@ -24,6 +23,7 @@ module Increase
         originator_routing_number: String,
         receiver_id_number: String?,
         receiver_name: String?,
+        settlement: Increase::InboundACHTransfer::Settlement?,
         standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code,
         status: Increase::Models::InboundACHTransfer::status,
         trace_number: String,
@@ -54,8 +54,6 @@ module Increase
 
       attr_accessor effective_date: Date
 
-      attr_accessor expected_settlement_schedule: Increase::Models::InboundACHTransfer::expected_settlement_schedule
-
       attr_accessor international_addenda: Increase::InboundACHTransfer::InternationalAddenda?
 
       attr_accessor notification_of_change: Increase::InboundACHTransfer::NotificationOfChange?
@@ -75,6 +73,8 @@ module Increase
       attr_accessor receiver_id_number: String?
 
       attr_accessor receiver_name: String?
+
+      attr_accessor settlement: Increase::InboundACHTransfer::Settlement?
 
       attr_accessor standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code
 
@@ -98,7 +98,6 @@ module Increase
         decline: Increase::InboundACHTransfer::Decline?,
         direction: Increase::Models::InboundACHTransfer::direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::expected_settlement_schedule,
         international_addenda: Increase::InboundACHTransfer::InternationalAddenda?,
         notification_of_change: Increase::InboundACHTransfer::NotificationOfChange?,
         originator_company_descriptive_date: String?,
@@ -109,6 +108,7 @@ module Increase
         originator_routing_number: String,
         receiver_id_number: String?,
         receiver_name: String?,
+        settlement: Increase::InboundACHTransfer::Settlement?,
         standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code,
         status: Increase::Models::InboundACHTransfer::status,
         trace_number: String,
@@ -128,7 +128,6 @@ module Increase
         decline: Increase::InboundACHTransfer::Decline?,
         direction: Increase::Models::InboundACHTransfer::direction,
         effective_date: Date,
-        expected_settlement_schedule: Increase::Models::InboundACHTransfer::expected_settlement_schedule,
         international_addenda: Increase::InboundACHTransfer::InternationalAddenda?,
         notification_of_change: Increase::InboundACHTransfer::NotificationOfChange?,
         originator_company_descriptive_date: String?,
@@ -139,6 +138,7 @@ module Increase
         originator_routing_number: String,
         receiver_id_number: String?,
         receiver_name: String?,
+        settlement: Increase::InboundACHTransfer::Settlement?,
         standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code,
         status: Increase::Models::InboundACHTransfer::status,
         trace_number: String,
@@ -333,20 +333,6 @@ module Increase
         DEBIT: :debit
 
         def self?.values: -> ::Array[Increase::Models::InboundACHTransfer::direction]
-      end
-
-      type expected_settlement_schedule = :same_day | :future_dated
-
-      module ExpectedSettlementSchedule
-        extend Increase::Internal::Type::Enum
-
-        # The transfer is expected to settle same-day.
-        SAME_DAY: :same_day
-
-        # The transfer is expected to settle on a future date.
-        FUTURE_DATED: :future_dated
-
-        def self?.values: -> ::Array[Increase::Models::InboundACHTransfer::expected_settlement_schedule]
       end
 
       type international_addenda =
@@ -703,6 +689,42 @@ module Increase
           updated_account_number: String?,
           updated_routing_number: String?
         }
+      end
+
+      type settlement =
+        {
+          settled_at: Time,
+          settlement_schedule: Increase::Models::InboundACHTransfer::Settlement::settlement_schedule
+        }
+
+      class Settlement < Increase::Internal::Type::BaseModel
+        attr_accessor settled_at: Time
+
+        attr_accessor settlement_schedule: Increase::Models::InboundACHTransfer::Settlement::settlement_schedule
+
+        def initialize: (
+          settled_at: Time,
+          settlement_schedule: Increase::Models::InboundACHTransfer::Settlement::settlement_schedule
+        ) -> void
+
+        def to_hash: -> {
+          settled_at: Time,
+          settlement_schedule: Increase::Models::InboundACHTransfer::Settlement::settlement_schedule
+        }
+
+        type settlement_schedule = :same_day | :future_dated
+
+        module SettlementSchedule
+          extend Increase::Internal::Type::Enum
+
+          # The transfer is expected to settle same-day.
+          SAME_DAY: :same_day
+
+          # The transfer is expected to settle on a future date.
+          FUTURE_DATED: :future_dated
+
+          def self?.values: -> ::Array[Increase::Models::InboundACHTransfer::Settlement::settlement_schedule]
+        end
       end
 
       type standard_entry_class_code =

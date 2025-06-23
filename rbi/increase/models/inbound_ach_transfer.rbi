@@ -76,14 +76,6 @@ module Increase
       sig { returns(Date) }
       attr_accessor :effective_date
 
-      # The settlement schedule the transfer is expected to follow.
-      sig do
-        returns(
-          Increase::InboundACHTransfer::ExpectedSettlementSchedule::TaggedSymbol
-        )
-      end
-      attr_accessor :expected_settlement_schedule
-
       # If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will
       # contain fields pertaining to the International ACH Transaction.
       sig do
@@ -151,6 +143,19 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :receiver_name
 
+      # A subhash containing information about when and how the transfer settled at the
+      # Federal Reserve.
+      sig { returns(T.nilable(Increase::InboundACHTransfer::Settlement)) }
+      attr_reader :settlement
+
+      sig do
+        params(
+          settlement:
+            T.nilable(Increase::InboundACHTransfer::Settlement::OrHash)
+        ).void
+      end
+      attr_writer :settlement
+
       # The Standard Entry Class (SEC) code of the transfer.
       sig do
         returns(
@@ -203,8 +208,6 @@ module Increase
           decline: T.nilable(Increase::InboundACHTransfer::Decline::OrHash),
           direction: Increase::InboundACHTransfer::Direction::OrSymbol,
           effective_date: Date,
-          expected_settlement_schedule:
-            Increase::InboundACHTransfer::ExpectedSettlementSchedule::OrSymbol,
           international_addenda:
             T.nilable(
               Increase::InboundACHTransfer::InternationalAddenda::OrHash
@@ -221,6 +224,8 @@ module Increase
           originator_routing_number: String,
           receiver_id_number: T.nilable(String),
           receiver_name: T.nilable(String),
+          settlement:
+            T.nilable(Increase::InboundACHTransfer::Settlement::OrHash),
           standard_entry_class_code:
             Increase::InboundACHTransfer::StandardEntryClassCode::OrSymbol,
           status: Increase::InboundACHTransfer::Status::OrSymbol,
@@ -255,8 +260,6 @@ module Increase
         # The effective date of the transfer. This is sent by the sending bank and is a
         # factor in determining funds availability.
         effective_date:,
-        # The settlement schedule the transfer is expected to follow.
-        expected_settlement_schedule:,
         # If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will
         # contain fields pertaining to the International ACH Transaction.
         international_addenda:,
@@ -280,6 +283,9 @@ module Increase
         receiver_id_number:,
         # The name of the receiver of the transfer.
         receiver_name:,
+        # A subhash containing information about when and how the transfer settled at the
+        # Federal Reserve.
+        settlement:,
         # The Standard Entry Class (SEC) code of the transfer.
         standard_entry_class_code:,
         # The status of the transfer.
@@ -311,8 +317,6 @@ module Increase
             decline: T.nilable(Increase::InboundACHTransfer::Decline),
             direction: Increase::InboundACHTransfer::Direction::TaggedSymbol,
             effective_date: Date,
-            expected_settlement_schedule:
-              Increase::InboundACHTransfer::ExpectedSettlementSchedule::TaggedSymbol,
             international_addenda:
               T.nilable(Increase::InboundACHTransfer::InternationalAddenda),
             notification_of_change:
@@ -325,6 +329,7 @@ module Increase
             originator_routing_number: String,
             receiver_id_number: T.nilable(String),
             receiver_name: T.nilable(String),
+            settlement: T.nilable(Increase::InboundACHTransfer::Settlement),
             standard_entry_class_code:
               Increase::InboundACHTransfer::StandardEntryClassCode::TaggedSymbol,
             status: Increase::InboundACHTransfer::Status::TaggedSymbol,
@@ -752,44 +757,6 @@ module Increase
         sig do
           override.returns(
             T::Array[Increase::InboundACHTransfer::Direction::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # The settlement schedule the transfer is expected to follow.
-      module ExpectedSettlementSchedule
-        extend Increase::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              Increase::InboundACHTransfer::ExpectedSettlementSchedule
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        # The transfer is expected to settle same-day.
-        SAME_DAY =
-          T.let(
-            :same_day,
-            Increase::InboundACHTransfer::ExpectedSettlementSchedule::TaggedSymbol
-          )
-
-        # The transfer is expected to settle on a future date.
-        FUTURE_DATED =
-          T.let(
-            :future_dated,
-            Increase::InboundACHTransfer::ExpectedSettlementSchedule::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Increase::InboundACHTransfer::ExpectedSettlementSchedule::TaggedSymbol
-            ]
           )
         end
         def self.values
@@ -1549,6 +1516,97 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class Settlement < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::InboundACHTransfer::Settlement,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # When the funds for this transfer settle at the recipient bank at the Federal
+        # Reserve.
+        sig { returns(Time) }
+        attr_accessor :settled_at
+
+        # The settlement schedule this transfer follows.
+        sig do
+          returns(
+            Increase::InboundACHTransfer::Settlement::SettlementSchedule::TaggedSymbol
+          )
+        end
+        attr_accessor :settlement_schedule
+
+        # A subhash containing information about when and how the transfer settled at the
+        # Federal Reserve.
+        sig do
+          params(
+            settled_at: Time,
+            settlement_schedule:
+              Increase::InboundACHTransfer::Settlement::SettlementSchedule::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # When the funds for this transfer settle at the recipient bank at the Federal
+          # Reserve.
+          settled_at:,
+          # The settlement schedule this transfer follows.
+          settlement_schedule:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              settled_at: Time,
+              settlement_schedule:
+                Increase::InboundACHTransfer::Settlement::SettlementSchedule::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The settlement schedule this transfer follows.
+        module SettlementSchedule
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::InboundACHTransfer::Settlement::SettlementSchedule
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The transfer is expected to settle same-day.
+          SAME_DAY =
+            T.let(
+              :same_day,
+              Increase::InboundACHTransfer::Settlement::SettlementSchedule::TaggedSymbol
+            )
+
+          # The transfer is expected to settle on a future date.
+          FUTURE_DATED =
+            T.let(
+              :future_dated,
+              Increase::InboundACHTransfer::Settlement::SettlementSchedule::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::InboundACHTransfer::Settlement::SettlementSchedule::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 

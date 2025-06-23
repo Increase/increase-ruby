@@ -72,13 +72,6 @@ module Increase
       #   @return [Date]
       required :effective_date, Date
 
-      # @!attribute expected_settlement_schedule
-      #   The settlement schedule the transfer is expected to follow.
-      #
-      #   @return [Symbol, Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule]
-      required :expected_settlement_schedule,
-               enum: -> { Increase::InboundACHTransfer::ExpectedSettlementSchedule }
-
       # @!attribute international_addenda
       #   If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will
       #   contain fields pertaining to the International ACH Transaction.
@@ -142,6 +135,13 @@ module Increase
       #   @return [String, nil]
       required :receiver_name, String, nil?: true
 
+      # @!attribute settlement
+      #   A subhash containing information about when and how the transfer settled at the
+      #   Federal Reserve.
+      #
+      #   @return [Increase::Models::InboundACHTransfer::Settlement, nil]
+      required :settlement, -> { Increase::InboundACHTransfer::Settlement }, nil?: true
+
       # @!attribute standard_entry_class_code
       #   The Standard Entry Class (SEC) code of the transfer.
       #
@@ -176,7 +176,7 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundACHTransfer::Type]
       required :type, enum: -> { Increase::InboundACHTransfer::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, addenda:, amount:, automatically_resolves_at:, created_at:, decline:, direction:, effective_date:, expected_settlement_schedule:, international_addenda:, notification_of_change:, originator_company_descriptive_date:, originator_company_discretionary_data:, originator_company_entry_description:, originator_company_id:, originator_company_name:, originator_routing_number:, receiver_id_number:, receiver_name:, standard_entry_class_code:, status:, trace_number:, transfer_return:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, addenda:, amount:, automatically_resolves_at:, created_at:, decline:, direction:, effective_date:, international_addenda:, notification_of_change:, originator_company_descriptive_date:, originator_company_discretionary_data:, originator_company_entry_description:, originator_company_id:, originator_company_name:, originator_routing_number:, receiver_id_number:, receiver_name:, settlement:, standard_entry_class_code:, status:, trace_number:, transfer_return:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundACHTransfer} for more details.
       #
@@ -205,8 +205,6 @@ module Increase
       #
       #   @param effective_date [Date] The effective date of the transfer. This is sent by the sending bank and is a fa
       #
-      #   @param expected_settlement_schedule [Symbol, Increase::Models::InboundACHTransfer::ExpectedSettlementSchedule] The settlement schedule the transfer is expected to follow.
-      #
       #   @param international_addenda [Increase::Models::InboundACHTransfer::InternationalAddenda, nil] If the Inbound ACH Transfer has a Standard Entry Class Code of IAT, this will co
       #
       #   @param notification_of_change [Increase::Models::InboundACHTransfer::NotificationOfChange, nil] If you initiate a notification of change in response to the transfer, this will
@@ -226,6 +224,8 @@ module Increase
       #   @param receiver_id_number [String, nil] The id of the receiver of the transfer.
       #
       #   @param receiver_name [String, nil] The name of the receiver of the transfer.
+      #
+      #   @param settlement [Increase::Models::InboundACHTransfer::Settlement, nil] A subhash containing information about when and how the transfer settled at the
       #
       #   @param standard_entry_class_code [Symbol, Increase::Models::InboundACHTransfer::StandardEntryClassCode] The Standard Entry Class (SEC) code of the transfer.
       #
@@ -426,22 +426,6 @@ module Increase
 
         # Debit
         DEBIT = :debit
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # The settlement schedule the transfer is expected to follow.
-      #
-      # @see Increase::Models::InboundACHTransfer#expected_settlement_schedule
-      module ExpectedSettlementSchedule
-        extend Increase::Internal::Type::Enum
-
-        # The transfer is expected to settle same-day.
-        SAME_DAY = :same_day
-
-        # The transfer is expected to settle on a future date.
-        FUTURE_DATED = :future_dated
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -924,6 +908,52 @@ module Increase
         #   @param updated_account_number [String, nil] The new account number provided in the notification of change.
         #
         #   @param updated_routing_number [String, nil] The new account number provided in the notification of change.
+      end
+
+      # @see Increase::Models::InboundACHTransfer#settlement
+      class Settlement < Increase::Internal::Type::BaseModel
+        # @!attribute settled_at
+        #   When the funds for this transfer settle at the recipient bank at the Federal
+        #   Reserve.
+        #
+        #   @return [Time]
+        required :settled_at, Time
+
+        # @!attribute settlement_schedule
+        #   The settlement schedule this transfer follows.
+        #
+        #   @return [Symbol, Increase::Models::InboundACHTransfer::Settlement::SettlementSchedule]
+        required :settlement_schedule,
+                 enum: -> {
+                   Increase::InboundACHTransfer::Settlement::SettlementSchedule
+                 }
+
+        # @!method initialize(settled_at:, settlement_schedule:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::InboundACHTransfer::Settlement} for more details.
+        #
+        #   A subhash containing information about when and how the transfer settled at the
+        #   Federal Reserve.
+        #
+        #   @param settled_at [Time] When the funds for this transfer settle at the recipient bank at the Federal Res
+        #
+        #   @param settlement_schedule [Symbol, Increase::Models::InboundACHTransfer::Settlement::SettlementSchedule] The settlement schedule this transfer follows.
+
+        # The settlement schedule this transfer follows.
+        #
+        # @see Increase::Models::InboundACHTransfer::Settlement#settlement_schedule
+        module SettlementSchedule
+          extend Increase::Internal::Type::Enum
+
+          # The transfer is expected to settle same-day.
+          SAME_DAY = :same_day
+
+          # The transfer is expected to settle on a future date.
+          FUTURE_DATED = :future_dated
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # The Standard Entry Class (SEC) code of the transfer.
