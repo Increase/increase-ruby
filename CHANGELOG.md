@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.1.0 (2025-06-23)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/Increase/increase-ruby/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** api update ([0f5e84f](https://github.com/Increase/increase-ruby/commit/0f5e84f8b0592dd7aceb782205d6001b88899729))
+* **api:** api update ([0bca37e](https://github.com/Increase/increase-ruby/commit/0bca37e04d7c3d25db73ac6d04b83bafc0871981))
+* **api:** api update ([af7da72](https://github.com/Increase/increase-ruby/commit/af7da7244c3be50d3324c81b45250de8dece0d66))
+* **api:** api update ([da619e1](https://github.com/Increase/increase-ruby/commit/da619e1bbda845ebdb6e947b31aa2f42680427b4))
+* **api:** api update ([448a80e](https://github.com/Increase/increase-ruby/commit/448a80e2f8d328b75f6d2f7e853b6ca3deca0a18))
+* **api:** api update ([fb4e2d4](https://github.com/Increase/increase-ruby/commit/fb4e2d4946295fa4d5d027ad82a06ee11f9002c5))
+* **api:** api update ([a1e1715](https://github.com/Increase/increase-ruby/commit/a1e17156bdd69cae745635ca7b6aa2aa290c5e54))
+* **api:** api update ([305a386](https://github.com/Increase/increase-ruby/commit/305a38617d22becf2b86bcae6beec3e95e5ca069))
+
+
+### Bug Fixes
+
+* issue where we cannot mutate arrays on base model derivatives ([52fb1fb](https://github.com/Increase/increase-ruby/commit/52fb1fbfae48eeb4431d5ed57969b9a4a24efe6d))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([7002a0a](https://github.com/Increase/increase-ruby/commit/7002a0a60f51908f98e39f4daae7cb7af99fe98e))
+
 ## 1.0.0 (2025-06-16)
 
 Full Changelog: [v0.1.0-alpha.34...v1.0.0](https://github.com/Increase/increase-ruby/compare/v0.1.0-alpha.34...v1.0.0)
