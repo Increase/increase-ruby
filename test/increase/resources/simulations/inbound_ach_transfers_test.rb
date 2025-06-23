@@ -37,7 +37,7 @@ class Increase::Test::Resources::Simulations::InboundACHTransfersTest < Increase
         originator_routing_number: String,
         receiver_id_number: String | nil,
         receiver_name: String | nil,
-        settlement: Increase::InboundACHTransfer::Settlement | nil,
+        settlement: Increase::InboundACHTransfer::Settlement,
         standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
         status: Increase::InboundACHTransfer::Status,
         trace_number: String,

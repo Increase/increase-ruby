@@ -145,13 +145,12 @@ module Increase
 
       # A subhash containing information about when and how the transfer settled at the
       # Federal Reserve.
-      sig { returns(T.nilable(Increase::InboundACHTransfer::Settlement)) }
+      sig { returns(Increase::InboundACHTransfer::Settlement) }
       attr_reader :settlement
 
       sig do
         params(
-          settlement:
-            T.nilable(Increase::InboundACHTransfer::Settlement::OrHash)
+          settlement: Increase::InboundACHTransfer::Settlement::OrHash
         ).void
       end
       attr_writer :settlement
@@ -224,8 +223,7 @@ module Increase
           originator_routing_number: String,
           receiver_id_number: T.nilable(String),
           receiver_name: T.nilable(String),
-          settlement:
-            T.nilable(Increase::InboundACHTransfer::Settlement::OrHash),
+          settlement: Increase::InboundACHTransfer::Settlement::OrHash,
           standard_entry_class_code:
             Increase::InboundACHTransfer::StandardEntryClassCode::OrSymbol,
           status: Increase::InboundACHTransfer::Status::OrSymbol,
@@ -329,7 +327,7 @@ module Increase
             originator_routing_number: String,
             receiver_id_number: T.nilable(String),
             receiver_name: T.nilable(String),
-            settlement: T.nilable(Increase::InboundACHTransfer::Settlement),
+            settlement: Increase::InboundACHTransfer::Settlement,
             standard_entry_class_code:
               Increase::InboundACHTransfer::StandardEntryClassCode::TaggedSymbol,
             status: Increase::InboundACHTransfer::Status::TaggedSymbol,

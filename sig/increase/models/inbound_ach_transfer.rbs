@@ -23,7 +23,7 @@ module Increase
         originator_routing_number: String,
         receiver_id_number: String?,
         receiver_name: String?,
-        settlement: Increase::InboundACHTransfer::Settlement?,
+        settlement: Increase::InboundACHTransfer::Settlement,
         standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code,
         status: Increase::Models::InboundACHTransfer::status,
         trace_number: String,
@@ -74,7 +74,7 @@ module Increase
 
       attr_accessor receiver_name: String?
 
-      attr_accessor settlement: Increase::InboundACHTransfer::Settlement?
+      attr_accessor settlement: Increase::InboundACHTransfer::Settlement
 
       attr_accessor standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code
 
@@ -108,7 +108,7 @@ module Increase
         originator_routing_number: String,
         receiver_id_number: String?,
         receiver_name: String?,
-        settlement: Increase::InboundACHTransfer::Settlement?,
+        settlement: Increase::InboundACHTransfer::Settlement,
         standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code,
         status: Increase::Models::InboundACHTransfer::status,
         trace_number: String,
@@ -138,7 +138,7 @@ module Increase
         originator_routing_number: String,
         receiver_id_number: String?,
         receiver_name: String?,
-        settlement: Increase::InboundACHTransfer::Settlement?,
+        settlement: Increase::InboundACHTransfer::Settlement,
         standard_entry_class_code: Increase::Models::InboundACHTransfer::standard_entry_class_code,
         status: Increase::Models::InboundACHTransfer::status,
         trace_number: String,
