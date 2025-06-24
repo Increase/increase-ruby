@@ -41,6 +41,12 @@ module Increase
       #   @return [String]
       required :file_id, String
 
+      # @!attribute funding_instructions
+      #   Properties of a funding instructions document.
+      #
+      #   @return [Increase::Models::Document::FundingInstructions, nil]
+      required :funding_instructions, -> { Increase::Document::FundingInstructions }, nil?: true
+
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
       #   Increase and is used to ensure that a request is only processed once. Learn more
@@ -56,7 +62,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Document::Type]
       required :type, enum: -> { Increase::Document::Type }
 
-      # @!method initialize(id:, account_verification_letter:, category:, created_at:, entity_id:, file_id:, idempotency_key:, type:)
+      # @!method initialize(id:, account_verification_letter:, category:, created_at:, entity_id:, file_id:, funding_instructions:, idempotency_key:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Document} for more details.
       #
@@ -74,6 +80,8 @@ module Increase
       #   @param entity_id [String, nil] The identifier of the Entity the document was generated for.
       #
       #   @param file_id [String] The identifier of the File containing the Document's contents.
+      #
+      #   @param funding_instructions [Increase::Models::Document::FundingInstructions, nil] Properties of a funding instructions document.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
@@ -114,8 +122,25 @@ module Increase
         # An account verification letter.
         ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
 
+        # Funding instructions.
+        FUNDING_INSTRUCTIONS = :funding_instructions
+
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::Document#funding_instructions
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The identifier of the Account Number the document was generated for.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!method initialize(account_number_id:)
+        #   Properties of a funding instructions document.
+        #
+        #   @param account_number_id [String] The identifier of the Account Number the document was generated for.
       end
 
       # A constant representing the object's type. For this resource it will always be

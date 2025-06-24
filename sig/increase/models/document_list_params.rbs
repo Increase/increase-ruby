@@ -87,6 +87,7 @@ module Increase
           | :proof_of_authorization
           | :company_information
           | :account_verification_letter
+          | :funding_instructions
 
         module In
           extend Increase::Internal::Type::Enum
@@ -105,6 +106,9 @@ module Increase
 
           # An account verification letter.
           ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
+
+          # Funding instructions.
+          FUNDING_INSTRUCTIONS: :funding_instructions
 
           def self?.values: -> ::Array[Increase::Models::DocumentListParams::Category::in_]
         end

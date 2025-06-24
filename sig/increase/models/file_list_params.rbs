@@ -136,6 +136,7 @@ module Increase
           | :deposit_account_control_agreement
           | :proof_of_authorization_request_submission
           | :account_verification_letter
+          | :funding_instructions
 
         module In
           extend Increase::Internal::Type::Enum
@@ -217,6 +218,9 @@ module Increase
 
           # An account verification letter.
           ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
+
+          # Funding instructions.
+          FUNDING_INSTRUCTIONS: :funding_instructions
 
           def self?.values: -> ::Array[Increase::Models::FileListParams::Purpose::in_]
         end

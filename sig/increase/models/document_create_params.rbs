@@ -3,7 +3,8 @@ module Increase
     type document_create_params =
       {
         category: Increase::Models::DocumentCreateParams::category,
-        account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter
+        account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        funding_instructions: Increase::DocumentCreateParams::FundingInstructions
       }
       & Increase::Internal::Type::request_parameters
 
@@ -19,25 +20,36 @@ module Increase
         Increase::DocumentCreateParams::AccountVerificationLetter
       ) -> Increase::DocumentCreateParams::AccountVerificationLetter
 
+      attr_reader funding_instructions: Increase::DocumentCreateParams::FundingInstructions?
+
+      def funding_instructions=: (
+        Increase::DocumentCreateParams::FundingInstructions
+      ) -> Increase::DocumentCreateParams::FundingInstructions
+
       def initialize: (
         category: Increase::Models::DocumentCreateParams::category,
         ?account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        ?funding_instructions: Increase::DocumentCreateParams::FundingInstructions,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
         category: Increase::Models::DocumentCreateParams::category,
         account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        funding_instructions: Increase::DocumentCreateParams::FundingInstructions,
         request_options: Increase::RequestOptions
       }
 
-      type category = :account_verification_letter
+      type category = :account_verification_letter | :funding_instructions
 
       module Category
         extend Increase::Internal::Type::Enum
 
         # An account verification letter.
         ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
+
+        # Funding instructions.
+        FUNDING_INSTRUCTIONS: :funding_instructions
 
         def self?.values: -> ::Array[Increase::Models::DocumentCreateParams::category]
       end
@@ -55,6 +67,16 @@ module Increase
         def initialize: (account_number_id: String, ?balance_date: Date) -> void
 
         def to_hash: -> { account_number_id: String, balance_date: Date }
+      end
+
+      type funding_instructions = { account_number_id: String }
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        def initialize: (account_number_id: String) -> void
+
+        def to_hash: -> { account_number_id: String }
       end
     end
   end

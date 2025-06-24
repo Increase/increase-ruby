@@ -9,6 +9,8 @@ module Increase
           category: Increase::DocumentCreateParams::Category::OrSymbol,
           account_verification_letter:
             Increase::DocumentCreateParams::AccountVerificationLetter::OrHash,
+          funding_instructions:
+            Increase::DocumentCreateParams::FundingInstructions::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Document)
       end
@@ -17,6 +19,8 @@ module Increase
         category:,
         # An account verification letter.
         account_verification_letter: nil,
+        # Funding instructions.
+        funding_instructions: nil,
         request_options: {}
       )
       end

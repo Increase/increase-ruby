@@ -19,10 +19,18 @@ module Increase
       #   @return [Increase::Models::DocumentCreateParams::AccountVerificationLetter, nil]
       optional :account_verification_letter, -> { Increase::DocumentCreateParams::AccountVerificationLetter }
 
-      # @!method initialize(category:, account_verification_letter: nil, request_options: {})
+      # @!attribute funding_instructions
+      #   Funding instructions.
+      #
+      #   @return [Increase::Models::DocumentCreateParams::FundingInstructions, nil]
+      optional :funding_instructions, -> { Increase::DocumentCreateParams::FundingInstructions }
+
+      # @!method initialize(category:, account_verification_letter: nil, funding_instructions: nil, request_options: {})
       #   @param category [Symbol, Increase::Models::DocumentCreateParams::Category] The type of document to create.
       #
       #   @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter.
+      #
+      #   @param funding_instructions [Increase::Models::DocumentCreateParams::FundingInstructions] Funding instructions.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -32,6 +40,9 @@ module Increase
 
         # An account verification letter.
         ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
+
+        # Funding instructions.
+        FUNDING_INSTRUCTIONS = :funding_instructions
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -56,6 +67,19 @@ module Increase
         #   @param account_number_id [String] The Account Number the bank letter should be generated for.
         #
         #   @param balance_date [Date] If provided, the letter will include the Account's balance as of the date.
+      end
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The Account Number the funding instructions should be generated for.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!method initialize(account_number_id:)
+        #   Funding instructions.
+        #
+        #   @param account_number_id [String] The Account Number the funding instructions should be generated for.
       end
     end
   end

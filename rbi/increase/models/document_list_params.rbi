@@ -201,6 +201,13 @@ module Increase
               Increase::DocumentListParams::Category::In::TaggedSymbol
             )
 
+          # Funding instructions.
+          FUNDING_INSTRUCTIONS =
+            T.let(
+              :funding_instructions,
+              Increase::DocumentListParams::Category::In::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[Increase::DocumentListParams::Category::In::TaggedSymbol]

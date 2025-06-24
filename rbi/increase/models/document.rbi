@@ -39,6 +39,18 @@ module Increase
       sig { returns(String) }
       attr_accessor :file_id
 
+      # Properties of a funding instructions document.
+      sig { returns(T.nilable(Increase::Document::FundingInstructions)) }
+      attr_reader :funding_instructions
+
+      sig do
+        params(
+          funding_instructions:
+            T.nilable(Increase::Document::FundingInstructions::OrHash)
+        ).void
+      end
+      attr_writer :funding_instructions
+
       # The idempotency key you chose for this object. This value is unique across
       # Increase and is used to ensure that a request is only processed once. Learn more
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -61,6 +73,8 @@ module Increase
           created_at: Time,
           entity_id: T.nilable(String),
           file_id: String,
+          funding_instructions:
+            T.nilable(Increase::Document::FundingInstructions::OrHash),
           idempotency_key: T.nilable(String),
           type: Increase::Document::Type::OrSymbol
         ).returns(T.attached_class)
@@ -79,6 +93,8 @@ module Increase
         entity_id:,
         # The identifier of the File containing the Document's contents.
         file_id:,
+        # Properties of a funding instructions document.
+        funding_instructions:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -99,6 +115,8 @@ module Increase
             created_at: Time,
             entity_id: T.nilable(String),
             file_id: String,
+            funding_instructions:
+              T.nilable(Increase::Document::FundingInstructions),
             idempotency_key: T.nilable(String),
             type: Increase::Document::Type::TaggedSymbol
           }
@@ -170,10 +188,43 @@ module Increase
             Increase::Document::Category::TaggedSymbol
           )
 
+        # Funding instructions.
+        FUNDING_INSTRUCTIONS =
+          T.let(
+            :funding_instructions,
+            Increase::Document::Category::TaggedSymbol
+          )
+
         sig do
           override.returns(T::Array[Increase::Document::Category::TaggedSymbol])
         end
         def self.values
+        end
+      end
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::Document::FundingInstructions,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The identifier of the Account Number the document was generated for.
+        sig { returns(String) }
+        attr_accessor :account_number_id
+
+        # Properties of a funding instructions document.
+        sig { params(account_number_id: String).returns(T.attached_class) }
+        def self.new(
+          # The identifier of the Account Number the document was generated for.
+          account_number_id:
+        )
+        end
+
+        sig { override.returns({ account_number_id: String }) }
+        def to_hash
         end
       end
 

@@ -8,6 +8,7 @@ module Increase
         created_at: Time,
         entity_id: String?,
         file_id: String,
+        funding_instructions: Increase::Document::FundingInstructions?,
         idempotency_key: String?,
         type: Increase::Models::Document::type_
       }
@@ -25,6 +26,8 @@ module Increase
 
       attr_accessor file_id: String
 
+      attr_accessor funding_instructions: Increase::Document::FundingInstructions?
+
       attr_accessor idempotency_key: String?
 
       attr_accessor type: Increase::Models::Document::type_
@@ -36,6 +39,7 @@ module Increase
         created_at: Time,
         entity_id: String?,
         file_id: String,
+        funding_instructions: Increase::Document::FundingInstructions?,
         idempotency_key: String?,
         type: Increase::Models::Document::type_
       ) -> void
@@ -47,6 +51,7 @@ module Increase
         created_at: Time,
         entity_id: String?,
         file_id: String,
+        funding_instructions: Increase::Document::FundingInstructions?,
         idempotency_key: String?,
         type: Increase::Models::Document::type_
       }
@@ -67,6 +72,7 @@ module Increase
         | :proof_of_authorization
         | :company_information
         | :account_verification_letter
+        | :funding_instructions
 
       module Category
         extend Increase::Internal::Type::Enum
@@ -86,7 +92,20 @@ module Increase
         # An account verification letter.
         ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
 
+        # Funding instructions.
+        FUNDING_INSTRUCTIONS: :funding_instructions
+
         def self?.values: -> ::Array[Increase::Models::Document::category]
+      end
+
+      type funding_instructions = { account_number_id: String }
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        def initialize: (account_number_id: String) -> void
+
+        def to_hash: -> { account_number_id: String }
       end
 
       type type_ = :document

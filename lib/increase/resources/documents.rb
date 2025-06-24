@@ -5,11 +5,13 @@ module Increase
     class Documents
       # Create a Document
       #
-      # @overload create(category:, account_verification_letter: nil, request_options: {})
+      # @overload create(category:, account_verification_letter: nil, funding_instructions: nil, request_options: {})
       #
       # @param category [Symbol, Increase::Models::DocumentCreateParams::Category] The type of document to create.
       #
       # @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter.
+      #
+      # @param funding_instructions [Increase::Models::DocumentCreateParams::FundingInstructions] Funding instructions.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

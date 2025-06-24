@@ -396,6 +396,13 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
+          # Funding instructions.
+          FUNDING_INSTRUCTIONS =
+            T.let(
+              :funding_instructions,
+              Increase::FileListParams::Purpose::In::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[Increase::FileListParams::Purpose::In::TaggedSymbol]

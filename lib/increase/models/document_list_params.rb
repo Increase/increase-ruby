@@ -98,6 +98,9 @@ module Increase
           # An account verification letter.
           ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
 
+          # Funding instructions.
+          FUNDING_INSTRUCTIONS = :funding_instructions
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

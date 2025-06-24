@@ -4,6 +4,7 @@ module Increase
       def create: (
         category: Increase::Models::DocumentCreateParams::category,
         ?account_verification_letter: Increase::DocumentCreateParams::AccountVerificationLetter,
+        ?funding_instructions: Increase::DocumentCreateParams::FundingInstructions,
         ?request_options: Increase::request_opts
       ) -> Increase::Document
 

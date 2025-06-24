@@ -265,6 +265,10 @@ module Increase
             Increase::File::Purpose::TaggedSymbol
           )
 
+        # Funding instructions.
+        FUNDING_INSTRUCTIONS =
+          T.let(:funding_instructions, Increase::File::Purpose::TaggedSymbol)
+
         sig do
           override.returns(T::Array[Increase::File::Purpose::TaggedSymbol])
         end
