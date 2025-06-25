@@ -4081,6 +4081,13 @@ module Increase
                 Increase::CardPayment::Element::CardDecline::Reason::TaggedSymbol
               )
 
+            # The given PIN did not match the card's value.
+            PIN_MISMATCH =
+              T.let(
+                :pin_mismatch,
+                Increase::CardPayment::Element::CardDecline::Reason::TaggedSymbol
+              )
+
             # The given expiration date did not match the card's value. Only applies when a CVV2 is present.
             CARD_EXPIRATION_MISMATCH =
               T.let(

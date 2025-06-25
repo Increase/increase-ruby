@@ -192,6 +192,9 @@ module Increase
           # The given CVV2 did not match the card's value.
           CVV2_MISMATCH = :cvv2_mismatch
 
+          # The given PIN did not match the card's value.
+          PIN_MISMATCH = :pin_mismatch
+
           # The given expiration date did not match the card's value. Only applies when a CVV2 is present.
           CARD_EXPIRATION_MISMATCH = :card_expiration_mismatch
 
