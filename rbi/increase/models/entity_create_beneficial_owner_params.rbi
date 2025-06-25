@@ -602,7 +602,7 @@ module Increase
                 end
 
               # The two-character ISO 3166-1 code representing the country that issued the
-              # document.
+              # document (e.g., `US`).
               sig { returns(String) }
               attr_accessor :country
 
@@ -642,7 +642,7 @@ module Increase
               end
               def self.new(
                 # The two-character ISO 3166-1 code representing the country that issued the
-                # document.
+                # document (e.g., `US`).
                 country:,
                 # A description of the document submitted.
                 description:,
@@ -680,7 +680,8 @@ module Increase
                   )
                 end
 
-              # The country that issued the passport.
+              # The two-character ISO 3166-1 code representing the country that issued the
+              # document (e.g., `US`).
               sig { returns(String) }
               attr_accessor :country
 
@@ -702,7 +703,8 @@ module Increase
                 ).returns(T.attached_class)
               end
               def self.new(
-                # The country that issued the passport.
+                # The two-character ISO 3166-1 code representing the country that issued the
+                # document (e.g., `US`).
                 country:,
                 # The passport's expiration date in YYYY-MM-DD format.
                 expiration_date:,

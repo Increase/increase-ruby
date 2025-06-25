@@ -542,7 +542,7 @@ module Increase
               class Other < Increase::Internal::Type::BaseModel
                 # @!attribute country
                 #   The two-character ISO 3166-1 code representing the country that issued the
-                #   document.
+                #   document (e.g., `US`).
                 #
                 #   @return [String]
                 required :country, String
@@ -594,7 +594,8 @@ module Increase
               # @see Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification#passport
               class Passport < Increase::Internal::Type::BaseModel
                 # @!attribute country
-                #   The country that issued the passport.
+                #   The two-character ISO 3166-1 code representing the country that issued the
+                #   document (e.g., `US`).
                 #
                 #   @return [String]
                 required :country, String
@@ -612,10 +613,14 @@ module Increase
                 required :file_id, String
 
                 # @!method initialize(country:, expiration_date:, file_id:)
+                #   Some parameter documentations has been truncated, see
+                #   {Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Passport}
+                #   for more details.
+                #
                 #   Information about the passport used for identification. Required if `method` is
                 #   equal to `passport`.
                 #
-                #   @param country [String] The country that issued the passport.
+                #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
                 #
                 #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
                 #
@@ -1047,7 +1052,7 @@ module Increase
             class Other < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The two-character ISO 3166-1 code representing the country that issued the
-              #   document.
+              #   document (e.g., `US`).
               #
               #   @return [String]
               required :country, String
@@ -1099,7 +1104,8 @@ module Increase
             # @see Increase::Models::EntityCreateParams::Joint::Individual::Identification#passport
             class Passport < Increase::Internal::Type::BaseModel
               # @!attribute country
-              #   The country that issued the passport.
+              #   The two-character ISO 3166-1 code representing the country that issued the
+              #   passport (e.g., `US`).
               #
               #   @return [String]
               required :country, String
@@ -1117,10 +1123,14 @@ module Increase
               required :file_id, String
 
               # @!method initialize(country:, expiration_date:, file_id:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::EntityCreateParams::Joint::Individual::Identification::Passport}
+              #   for more details.
+              #
               #   Information about the passport used for identification. Required if `method` is
               #   equal to `passport`.
               #
-              #   @param country [String] The country that issued the passport.
+              #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
               #
               #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
               #
@@ -1359,7 +1369,7 @@ module Increase
           class Other < Increase::Internal::Type::BaseModel
             # @!attribute country
             #   The two-character ISO 3166-1 code representing the country that issued the
-            #   document.
+            #   document (e.g., `US`).
             #
             #   @return [String]
             required :country, String
@@ -1411,7 +1421,8 @@ module Increase
           # @see Increase::Models::EntityCreateParams::NaturalPerson::Identification#passport
           class Passport < Increase::Internal::Type::BaseModel
             # @!attribute country
-            #   The country that issued the passport.
+            #   The two-character ISO 3166-1 code representing the country that issued the
+            #   passport (e.g., `US`).
             #
             #   @return [String]
             required :country, String
@@ -1429,10 +1440,14 @@ module Increase
             required :file_id, String
 
             # @!method initialize(country:, expiration_date:, file_id:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::EntityCreateParams::NaturalPerson::Identification::Passport}
+            #   for more details.
+            #
             #   Information about the passport used for identification. Required if `method` is
             #   equal to `passport`.
             #
-            #   @param country [String] The country that issued the passport.
+            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
             #
             #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
             #
@@ -1920,7 +1935,7 @@ module Increase
               class Other < Increase::Internal::Type::BaseModel
                 # @!attribute country
                 #   The two-character ISO 3166-1 code representing the country that issued the
-                #   document.
+                #   document (e.g., `US`).
                 #
                 #   @return [String]
                 required :country, String
@@ -1972,7 +1987,8 @@ module Increase
               # @see Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification#passport
               class Passport < Increase::Internal::Type::BaseModel
                 # @!attribute country
-                #   The country that issued the passport.
+                #   The two-character ISO 3166-1 code representing the country that issued the
+                #   passport (e.g., `US`).
                 #
                 #   @return [String]
                 required :country, String
@@ -1990,10 +2006,14 @@ module Increase
                 required :file_id, String
 
                 # @!method initialize(country:, expiration_date:, file_id:)
+                #   Some parameter documentations has been truncated, see
+                #   {Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Passport}
+                #   for more details.
+                #
                 #   Information about the passport used for identification. Required if `method` is
                 #   equal to `passport`.
                 #
-                #   @param country [String] The country that issued the passport.
+                #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
                 #
                 #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
                 #
@@ -2231,7 +2251,7 @@ module Increase
             class Other < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The two-character ISO 3166-1 code representing the country that issued the
-              #   document.
+              #   document (e.g., `US`).
               #
               #   @return [String]
               required :country, String
@@ -2283,7 +2303,8 @@ module Increase
             # @see Increase::Models::EntityCreateParams::Trust::Grantor::Identification#passport
             class Passport < Increase::Internal::Type::BaseModel
               # @!attribute country
-              #   The country that issued the passport.
+              #   The two-character ISO 3166-1 code representing the country that issued the
+              #   passport (e.g., `US`).
               #
               #   @return [String]
               required :country, String
@@ -2301,10 +2322,14 @@ module Increase
               required :file_id, String
 
               # @!method initialize(country:, expiration_date:, file_id:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Passport}
+              #   for more details.
+              #
               #   Information about the passport used for identification. Required if `method` is
               #   equal to `passport`.
               #
-              #   @param country [String] The country that issued the passport.
+              #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
               #
               #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
               #
