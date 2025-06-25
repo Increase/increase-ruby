@@ -1835,6 +1835,20 @@ module Increase
                 Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
               )
 
+            # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
+            CASH_DISBURSEMENT =
+              T.let(
+                :cash_disbursement,
+                Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
+            # The processing category is unknown.
+            UNKNOWN =
+              T.let(
+                :unknown,
+                Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[

@@ -735,6 +735,8 @@ module Increase
             | :purchase
             | :quasi_cash
             | :refund
+            | :cash_disbursement
+            | :unknown
 
           module ProcessingCategory
             extend Increase::Internal::Type::Enum
@@ -759,6 +761,12 @@ module Increase
 
             # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
             REFUND: :refund
+
+            # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
+            CASH_DISBURSEMENT: :cash_disbursement
+
+            # The processing category is unknown.
+            UNKNOWN: :unknown
 
             def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::CardDecline::processing_category]
           end

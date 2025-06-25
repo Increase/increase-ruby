@@ -1413,6 +1413,20 @@ module Increase
               Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
             )
 
+          # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
+          CASH_DISBURSEMENT =
+            T.let(
+              :cash_disbursement,
+              Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
+            )
+
+          # The processing category is unknown.
+          UNKNOWN =
+            T.let(
+              :unknown,
+              Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[
