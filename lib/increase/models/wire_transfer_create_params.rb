@@ -62,6 +62,13 @@ module Increase
       #   @return [String, nil]
       optional :external_account_id, String
 
+      # @!attribute inbound_wire_drawdown_request_id
+      #   The ID of an Inbound Wire Drawdown Request in response to which this transfer is
+      #   being sent.
+      #
+      #   @return [String, nil]
+      optional :inbound_wire_drawdown_request_id, String
+
       # @!attribute originator_address_line1
       #   The originator's address line 1. This is only necessary if you're transferring
       #   from a commingled account. Otherwise, we'll use the associated entity's details.
@@ -109,7 +116,7 @@ module Increase
       #   @return [String, nil]
       optional :source_account_number_id, String
 
-      # @!method initialize(account_id:, amount:, beneficiary_name:, message_to_recipient:, account_number: nil, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, external_account_id: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
+      # @!method initialize(account_id:, amount:, beneficiary_name:, message_to_recipient:, account_number: nil, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireTransferCreateParams} for more details.
       #
@@ -130,6 +137,8 @@ module Increase
       #   @param beneficiary_address_line3 [String] The beneficiary's address line 3.
       #
       #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      #
+      #   @param inbound_wire_drawdown_request_id [String] The ID of an Inbound Wire Drawdown Request in response to which this transfer is
       #
       #   @param originator_address_line1 [String] The originator's address line 1. This is only necessary if you're transferring f
       #

@@ -100,6 +100,13 @@ module Increase
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
+      # @!attribute inbound_wire_drawdown_request_id
+      #   The ID of an Inbound Wire Drawdown Request in response to which this transfer
+      #   was sent.
+      #
+      #   @return [String, nil]
+      required :inbound_wire_drawdown_request_id, String, nil?: true
+
       # @!attribute message_to_recipient
       #   The message that will show on the recipient's bank statement.
       #
@@ -189,7 +196,7 @@ module Increase
       #   @return [Symbol, Increase::Models::WireTransfer::Type]
       required :type, enum: -> { Increase::WireTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, cancellation:, created_at:, created_by:, currency:, external_account_id:, idempotency_key:, message_to_recipient:, network:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, pending_transaction_id:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:)
+      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, cancellation:, created_at:, created_by:, currency:, external_account_id:, idempotency_key:, inbound_wire_drawdown_request_id:, message_to_recipient:, network:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, pending_transaction_id:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireTransfer} for more details.
       #
@@ -225,6 +232,8 @@ module Increase
       #   @param external_account_id [String, nil] The identifier of the External Account the transfer was made to, if any.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #
+      #   @param inbound_wire_drawdown_request_id [String, nil] The ID of an Inbound Wire Drawdown Request in response to which this transfer wa
       #
       #   @param message_to_recipient [String, nil] The message that will show on the recipient's bank statement.
       #

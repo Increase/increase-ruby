@@ -11,6 +11,7 @@ module Increase
         :beneficiary_address_line2 => String,
         :beneficiary_address_line3 => String,
         external_account_id: String,
+        inbound_wire_drawdown_request_id: String,
         :originator_address_line1 => String,
         :originator_address_line2 => String,
         :originator_address_line3 => String,
@@ -53,6 +54,10 @@ module Increase
 
       def external_account_id=: (String) -> String
 
+      attr_reader inbound_wire_drawdown_request_id: String?
+
+      def inbound_wire_drawdown_request_id=: (String) -> String
+
       attr_reader originator_address_line1: String?
 
       def originator_address_line1=: (String) -> String
@@ -91,6 +96,7 @@ module Increase
         ?beneficiary_address_line2: String,
         ?beneficiary_address_line3: String,
         ?external_account_id: String,
+        ?inbound_wire_drawdown_request_id: String,
         ?originator_address_line1: String,
         ?originator_address_line2: String,
         ?originator_address_line3: String,
@@ -111,6 +117,7 @@ module Increase
         :beneficiary_address_line2 => String,
         :beneficiary_address_line3 => String,
         external_account_id: String,
+        inbound_wire_drawdown_request_id: String,
         :originator_address_line1 => String,
         :originator_address_line2 => String,
         :originator_address_line3 => String,

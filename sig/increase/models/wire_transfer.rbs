@@ -17,6 +17,7 @@ module Increase
         currency: Increase::Models::WireTransfer::currency,
         external_account_id: String?,
         idempotency_key: String?,
+        inbound_wire_drawdown_request_id: String?,
         message_to_recipient: String?,
         network: Increase::Models::WireTransfer::network,
         :originator_address_line1 => String?,
@@ -64,6 +65,8 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
+      attr_accessor inbound_wire_drawdown_request_id: String?
+
       attr_accessor message_to_recipient: String?
 
       attr_accessor network: Increase::Models::WireTransfer::network
@@ -108,6 +111,7 @@ module Increase
         currency: Increase::Models::WireTransfer::currency,
         external_account_id: String?,
         idempotency_key: String?,
+        inbound_wire_drawdown_request_id: String?,
         message_to_recipient: String?,
         network: Increase::Models::WireTransfer::network,
         originator_address_line1: String?,
@@ -140,6 +144,7 @@ module Increase
         currency: Increase::Models::WireTransfer::currency,
         external_account_id: String?,
         idempotency_key: String?,
+        inbound_wire_drawdown_request_id: String?,
         message_to_recipient: String?,
         network: Increase::Models::WireTransfer::network,
         :originator_address_line1 => String?,

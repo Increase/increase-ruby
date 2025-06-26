@@ -15,6 +15,7 @@ module Increase
           beneficiary_address_line2: String,
           beneficiary_address_line3: String,
           external_account_id: String,
+          inbound_wire_drawdown_request_id: String,
           originator_address_line1: String,
           originator_address_line2: String,
           originator_address_line3: String,
@@ -45,6 +46,9 @@ module Increase
         # The ID of an External Account to initiate a transfer to. If this parameter is
         # provided, `account_number` and `routing_number` must be absent.
         external_account_id: nil,
+        # The ID of an Inbound Wire Drawdown Request in response to which this transfer is
+        # being sent.
+        inbound_wire_drawdown_request_id: nil,
         # The originator's address line 1. This is only necessary if you're transferring
         # from a commingled account. Otherwise, we'll use the associated entity's details.
         originator_address_line1: nil,

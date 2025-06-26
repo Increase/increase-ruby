@@ -95,6 +95,11 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
 
+      # The ID of an Inbound Wire Drawdown Request in response to which this transfer
+      # was sent.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :inbound_wire_drawdown_request_id
+
       # The message that will show on the recipient's bank statement.
       sig { returns(T.nilable(String)) }
       attr_accessor :message_to_recipient
@@ -189,6 +194,7 @@ module Increase
           currency: Increase::WireTransfer::Currency::OrSymbol,
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
+          inbound_wire_drawdown_request_id: T.nilable(String),
           message_to_recipient: T.nilable(String),
           network: Increase::WireTransfer::Network::OrSymbol,
           originator_address_line1: T.nilable(String),
@@ -242,6 +248,9 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
+        # The ID of an Inbound Wire Drawdown Request in response to which this transfer
+        # was sent.
+        inbound_wire_drawdown_request_id:,
         # The message that will show on the recipient's bank statement.
         message_to_recipient:,
         # The transfer's network.
@@ -296,6 +305,7 @@ module Increase
             currency: Increase::WireTransfer::Currency::TaggedSymbol,
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
+            inbound_wire_drawdown_request_id: T.nilable(String),
             message_to_recipient: T.nilable(String),
             network: Increase::WireTransfer::Network::TaggedSymbol,
             originator_address_line1: T.nilable(String),

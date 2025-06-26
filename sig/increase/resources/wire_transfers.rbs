@@ -11,6 +11,7 @@ module Increase
         ?beneficiary_address_line2: String,
         ?beneficiary_address_line3: String,
         ?external_account_id: String,
+        ?inbound_wire_drawdown_request_id: String,
         ?originator_address_line1: String,
         ?originator_address_line2: String,
         ?originator_address_line3: String,
