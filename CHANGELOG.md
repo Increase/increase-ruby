@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.1 (2025-06-26)
+
+Full Changelog: [v1.5.0...v1.5.1](https://github.com/Increase/increase-ruby/compare/v1.5.0...v1.5.1)
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([0b4d159](https://github.com/Increase/increase-ruby/commit/0b4d15981b94bb9b8d4debe1af14899bee48385a))
+
 ## 1.5.0 (2025-06-26)
 
 Full Changelog: [v1.4.0...v1.5.0](https://github.com/Increase/increase-ruby/compare/v1.4.0...v1.5.0)
