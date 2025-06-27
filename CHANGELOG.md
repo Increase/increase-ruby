@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.2 (2025-06-27)
+
+Full Changelog: [v1.5.1...v1.5.2](https://github.com/Increase/increase-ruby/compare/v1.5.1...v1.5.2)
+
+### Bug Fixes
+
+* sorbet type annotation on client's `environ` settings ([d9f2aaa](https://github.com/Increase/increase-ruby/commit/d9f2aaa0973e9f1b79fe3c9ffcfd1c3be5f0a395))
+
 ## 1.5.1 (2025-06-26)
 
 Full Changelog: [v1.5.0...v1.5.1](https://github.com/Increase/increase-ruby/compare/v1.5.0...v1.5.1)
