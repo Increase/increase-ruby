@@ -269,6 +269,10 @@ module Increase
         FUNDING_INSTRUCTIONS =
           T.let(:funding_instructions, Increase::File::Purpose::TaggedSymbol)
 
+        # A Hold Harmless Letter.
+        HOLD_HARMLESS_LETTER =
+          T.let(:hold_harmless_letter, Increase::File::Purpose::TaggedSymbol)
+
         sig do
           override.returns(T::Array[Increase::File::Purpose::TaggedSymbol])
         end

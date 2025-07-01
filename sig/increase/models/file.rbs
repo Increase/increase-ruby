@@ -98,6 +98,7 @@ module Increase
         | :proof_of_authorization_request_submission
         | :account_verification_letter
         | :funding_instructions
+        | :hold_harmless_letter
 
       module Purpose
         extend Increase::Internal::Type::Enum
@@ -182,6 +183,9 @@ module Increase
 
         # Funding instructions.
         FUNDING_INSTRUCTIONS: :funding_instructions
+
+        # A Hold Harmless Letter.
+        HOLD_HARMLESS_LETTER: :hold_harmless_letter
 
         def self?.values: -> ::Array[Increase::Models::File::purpose]
       end

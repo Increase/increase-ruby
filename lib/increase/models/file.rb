@@ -195,6 +195,9 @@ module Increase
         # Funding instructions.
         FUNDING_INSTRUCTIONS = :funding_instructions
 
+        # A Hold Harmless Letter.
+        HOLD_HARMLESS_LETTER = :hold_harmless_letter
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

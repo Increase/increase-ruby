@@ -403,6 +403,13 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
+          # A Hold Harmless Letter.
+          HOLD_HARMLESS_LETTER =
+            T.let(
+              :hold_harmless_letter,
+              Increase::FileListParams::Purpose::In::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[Increase::FileListParams::Purpose::In::TaggedSymbol]
