@@ -71,13 +71,6 @@ module Increase
             Increase::InboundACHTransferTransferReturnParams::Reason::TaggedSymbol
           )
 
-        # The originating financial institution asked for this transfer to be returned. The receiving bank is complying with the request. The Nacha return code is R06.
-        RETURNED_PER_ODFI_REQUEST =
-          T.let(
-            :returned_per_odfi_request,
-            Increase::InboundACHTransferTransferReturnParams::Reason::TaggedSymbol
-          )
-
         # The customer no longer authorizes this transaction. The Nacha return code is R07.
         AUTHORIZATION_REVOKED_BY_CUSTOMER =
           T.let(

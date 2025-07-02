@@ -30,9 +30,6 @@ module Increase
         # The customer's account has insufficient funds. This reason is only allowed for debits. The Nacha return code is R01.
         INSUFFICIENT_FUNDS = :insufficient_funds
 
-        # The originating financial institution asked for this transfer to be returned. The receiving bank is complying with the request. The Nacha return code is R06.
-        RETURNED_PER_ODFI_REQUEST = :returned_per_odfi_request
-
         # The customer no longer authorizes this transaction. The Nacha return code is R07.
         AUTHORIZATION_REVOKED_BY_CUSTOMER = :authorization_revoked_by_customer
 
