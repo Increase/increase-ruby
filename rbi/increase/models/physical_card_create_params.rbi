@@ -147,20 +147,50 @@ module Increase
         end
         attr_accessor :method_
 
+        # When this physical card should be produced by the card printer. The default
+        # timeline is the day after the card printer receives the order, except for
+        # `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+        # production methods, please reach out to
+        # [support@increase.com](mailto:support@increase.com).
+        sig do
+          returns(
+            T.nilable(
+              Increase::PhysicalCardCreateParams::Shipment::Schedule::OrSymbol
+            )
+          )
+        end
+        attr_reader :schedule
+
+        sig do
+          params(
+            schedule:
+              Increase::PhysicalCardCreateParams::Shipment::Schedule::OrSymbol
+          ).void
+        end
+        attr_writer :schedule
+
         # The details used to ship this physical card.
         sig do
           params(
             address:
               Increase::PhysicalCardCreateParams::Shipment::Address::OrHash,
             method_:
-              Increase::PhysicalCardCreateParams::Shipment::Method::OrSymbol
+              Increase::PhysicalCardCreateParams::Shipment::Method::OrSymbol,
+            schedule:
+              Increase::PhysicalCardCreateParams::Shipment::Schedule::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
           # The address to where the card should be shipped.
           address:,
           # The shipping method to use.
-          method_:
+          method_:,
+          # When this physical card should be produced by the card printer. The default
+          # timeline is the day after the card printer receives the order, except for
+          # `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+          # production methods, please reach out to
+          # [support@increase.com](mailto:support@increase.com).
+          schedule: nil
         )
         end
 
@@ -169,7 +199,9 @@ module Increase
             {
               address: Increase::PhysicalCardCreateParams::Shipment::Address,
               method_:
-                Increase::PhysicalCardCreateParams::Shipment::Method::OrSymbol
+                Increase::PhysicalCardCreateParams::Shipment::Method::OrSymbol,
+              schedule:
+                Increase::PhysicalCardCreateParams::Shipment::Schedule::OrSymbol
             }
           )
         end
@@ -315,6 +347,48 @@ module Increase
             override.returns(
               T::Array[
                 Increase::PhysicalCardCreateParams::Shipment::Method::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # When this physical card should be produced by the card printer. The default
+        # timeline is the day after the card printer receives the order, except for
+        # `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+        # production methods, please reach out to
+        # [support@increase.com](mailto:support@increase.com).
+        module Schedule
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::PhysicalCardCreateParams::Shipment::Schedule
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The physical card will be shipped one business day after the order is received by the card printer. A card that is submitted to Increase on a Monday evening (Pacific Time) will ship out on Wednesday.
+          NEXT_DAY =
+            T.let(
+              :next_day,
+              Increase::PhysicalCardCreateParams::Shipment::Schedule::TaggedSymbol
+            )
+
+          # The physical card will be shipped on the same business day that the order is received by the card printer. A card that is submitted to Increase on a Monday evening (Pacific Time) will ship out on Tuesday.
+          SAME_DAY =
+            T.let(
+              :same_day,
+              Increase::PhysicalCardCreateParams::Shipment::Schedule::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::PhysicalCardCreateParams::Shipment::Schedule::TaggedSymbol
               ]
             )
           end

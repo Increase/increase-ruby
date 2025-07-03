@@ -54,7 +54,8 @@ module Increase
       type shipment =
         {
           address: Increase::PhysicalCardCreateParams::Shipment::Address,
-          method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_
+          method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_,
+          schedule: Increase::Models::PhysicalCardCreateParams::Shipment::schedule
         }
 
       class Shipment < Increase::Internal::Type::BaseModel
@@ -62,14 +63,22 @@ module Increase
 
         attr_accessor method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_
 
+        attr_reader schedule: Increase::Models::PhysicalCardCreateParams::Shipment::schedule?
+
+        def schedule=: (
+          Increase::Models::PhysicalCardCreateParams::Shipment::schedule
+        ) -> Increase::Models::PhysicalCardCreateParams::Shipment::schedule
+
         def initialize: (
           address: Increase::PhysicalCardCreateParams::Shipment::Address,
-          method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_
+          method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_,
+          ?schedule: Increase::Models::PhysicalCardCreateParams::Shipment::schedule
         ) -> void
 
         def to_hash: -> {
           address: Increase::PhysicalCardCreateParams::Shipment::Address,
-          method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_
+          method_: Increase::Models::PhysicalCardCreateParams::Shipment::method_,
+          schedule: Increase::Models::PhysicalCardCreateParams::Shipment::schedule
         }
 
         type address =
@@ -145,6 +154,20 @@ module Increase
           FEDEX_2_DAY: :fedex_2_day
 
           def self?.values: -> ::Array[Increase::Models::PhysicalCardCreateParams::Shipment::method_]
+        end
+
+        type schedule = :next_day | :same_day
+
+        module Schedule
+          extend Increase::Internal::Type::Enum
+
+          # The physical card will be shipped one business day after the order is received by the card printer. A card that is submitted to Increase on a Monday evening (Pacific Time) will ship out on Wednesday.
+          NEXT_DAY: :next_day
+
+          # The physical card will be shipped on the same business day that the order is received by the card printer. A card that is submitted to Increase on a Monday evening (Pacific Time) will ship out on Tuesday.
+          SAME_DAY: :same_day
+
+          def self?.values: -> ::Array[Increase::Models::PhysicalCardCreateParams::Shipment::schedule]
         end
       end
     end
