@@ -126,6 +126,16 @@ module Increase
         #   @return [Symbol, Increase::Models::PhysicalCard::Shipment::Method]
         required :method_, enum: -> { Increase::PhysicalCard::Shipment::Method }, api_name: :method
 
+        # @!attribute schedule
+        #   When this physical card should be produced by the card printer. The default
+        #   timeline is the day after the card printer receives the order, except for
+        #   `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+        #   production methods, please reach out to
+        #   [support@increase.com](mailto:support@increase.com).
+        #
+        #   @return [Symbol, Increase::Models::PhysicalCard::Shipment::Schedule]
+        required :schedule, enum: -> { Increase::PhysicalCard::Shipment::Schedule }
+
         # @!attribute status
         #   The status of this shipment.
         #
@@ -138,12 +148,17 @@ module Increase
         #   @return [Increase::Models::PhysicalCard::Shipment::Tracking, nil]
         required :tracking, -> { Increase::PhysicalCard::Shipment::Tracking }, nil?: true
 
-        # @!method initialize(address:, method_:, status:, tracking:)
+        # @!method initialize(address:, method_:, schedule:, status:, tracking:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::PhysicalCard::Shipment} for more details.
+        #
         #   The details used to ship this physical card.
         #
         #   @param address [Increase::Models::PhysicalCard::Shipment::Address] The location to where the card's packing label is addressed.
         #
         #   @param method_ [Symbol, Increase::Models::PhysicalCard::Shipment::Method] The shipping method.
+        #
+        #   @param schedule [Symbol, Increase::Models::PhysicalCard::Shipment::Schedule] When this physical card should be produced by the card printer. The default time
         #
         #   @param status [Symbol, Increase::Models::PhysicalCard::Shipment::Status] The status of this shipment.
         #
@@ -225,6 +240,26 @@ module Increase
 
           # FedEx 2-day.
           FEDEX_2_DAY = :fedex_2_day
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # When this physical card should be produced by the card printer. The default
+        # timeline is the day after the card printer receives the order, except for
+        # `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+        # production methods, please reach out to
+        # [support@increase.com](mailto:support@increase.com).
+        #
+        # @see Increase::Models::PhysicalCard::Shipment#schedule
+        module Schedule
+          extend Increase::Internal::Type::Enum
+
+          # The physical card will be shipped one business day after the order is received by the card printer. A card that is submitted to Increase on a Monday evening (Pacific Time) will ship out on Wednesday.
+          NEXT_DAY = :next_day
+
+          # The physical card will be shipped on the same business day that the order is received by the card printer. A card that is submitted to Increase on a Monday evening (Pacific Time) will ship out on Tuesday.
+          SAME_DAY = :same_day
 
           # @!method self.values
           #   @return [Array<Symbol>]
