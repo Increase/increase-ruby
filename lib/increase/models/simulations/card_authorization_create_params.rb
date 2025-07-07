@@ -222,6 +222,9 @@ module Increase
           # The transaction was declined because the 3DS authentication failed.
           FAILED_3DS_AUTHENTICATION = :failed_3ds_authentication
 
+          # The transaction was suspected to be used by a card tester to test for valid card numbers.
+          SUSPECTED_CARD_TESTING = :suspected_card_testing
+
           # The transaction was suspected to be fraudulent. Please reach out to support@increase.com for more information.
           SUSPECTED_FRAUD = :suspected_fraud
 

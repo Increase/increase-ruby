@@ -4151,6 +4151,13 @@ module Increase
                 Increase::CardPayment::Element::CardDecline::Reason::TaggedSymbol
               )
 
+            # The transaction was suspected to be used by a card tester to test for valid card numbers.
+            SUSPECTED_CARD_TESTING =
+              T.let(
+                :suspected_card_testing,
+                Increase::CardPayment::Element::CardDecline::Reason::TaggedSymbol
+              )
+
             # The transaction was suspected to be fraudulent. Please reach out to support@increase.com for more information.
             SUSPECTED_FRAUD =
               T.let(
