@@ -8,122 +8,197 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_number_id
-      #   The Account Number to which the recipient should send funds.
+      #   The Account Number to which the debtor should send funds.
       #
       #   @return [String]
       required :account_number_id, String
 
       # @!attribute amount
-      #   The amount requested from the recipient, in USD cents.
+      #   The amount requested from the debtor, in USD cents.
       #
       #   @return [Integer]
       required :amount, Integer
 
-      # @!attribute message_to_recipient
-      #   A message the recipient will see as part of the request.
+      # @!attribute creditor_address
+      #   The creditor's address.
+      #
+      #   @return [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress]
+      required :creditor_address, -> { Increase::WireDrawdownRequestCreateParams::CreditorAddress }
+
+      # @!attribute creditor_name
+      #   The creditor's name.
       #
       #   @return [String]
-      required :message_to_recipient, String
+      required :creditor_name, String
 
-      # @!attribute recipient_account_number
-      #   The drawdown request's recipient's account number.
+      # @!attribute debtor_account_number
+      #   The debtor's account number.
       #
       #   @return [String]
-      required :recipient_account_number, String
+      required :debtor_account_number, String
 
-      # @!attribute recipient_name
-      #   The drawdown request's recipient's name.
+      # @!attribute debtor_address
+      #   The debtor's address.
+      #
+      #   @return [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress]
+      required :debtor_address, -> { Increase::WireDrawdownRequestCreateParams::DebtorAddress }
+
+      # @!attribute debtor_name
+      #   The debtor's name.
       #
       #   @return [String]
-      required :recipient_name, String
+      required :debtor_name, String
 
-      # @!attribute recipient_routing_number
-      #   The drawdown request's recipient's routing number.
+      # @!attribute debtor_routing_number
+      #   The debtor's routing number.
       #
       #   @return [String]
-      required :recipient_routing_number, String
+      required :debtor_routing_number, String
 
-      # @!attribute originator_address_line1
-      #   The drawdown request originator's address line 1. This is only necessary if
-      #   you're requesting a payment to a commingled account. Otherwise, we'll use the
-      #   associated entity's details.
+      # @!attribute unstructured_remittance_information
+      #   Remittance information the debtor will see as part of the request.
       #
-      #   @return [String, nil]
-      optional :originator_address_line1, String
+      #   @return [String]
+      required :unstructured_remittance_information, String
 
-      # @!attribute originator_address_line2
-      #   The drawdown request originator's address line 2. This is only necessary if
-      #   you're requesting a payment to a commingled account. Otherwise, we'll use the
-      #   associated entity's details.
+      # @!method initialize(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_account_number:, debtor_address:, debtor_name:, debtor_routing_number:, unstructured_remittance_information:, request_options: {})
+      #   @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
-      #   @return [String, nil]
-      optional :originator_address_line2, String
-
-      # @!attribute originator_address_line3
-      #   The drawdown request originator's address line 3. This is only necessary if
-      #   you're requesting a payment to a commingled account. Otherwise, we'll use the
-      #   associated entity's details.
+      #   @param amount [Integer] The amount requested from the debtor, in USD cents.
       #
-      #   @return [String, nil]
-      optional :originator_address_line3, String
-
-      # @!attribute originator_name
-      #   The drawdown request originator's name. This is only necessary if you're
-      #   requesting a payment to a commingled account. Otherwise, we'll use the
-      #   associated entity's details.
+      #   @param creditor_address [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress] The creditor's address.
       #
-      #   @return [String, nil]
-      optional :originator_name, String
-
-      # @!attribute recipient_address_line1
-      #   Line 1 of the drawdown request's recipient's address.
+      #   @param creditor_name [String] The creditor's name.
       #
-      #   @return [String, nil]
-      optional :recipient_address_line1, String
-
-      # @!attribute recipient_address_line2
-      #   Line 2 of the drawdown request's recipient's address.
+      #   @param debtor_account_number [String] The debtor's account number.
       #
-      #   @return [String, nil]
-      optional :recipient_address_line2, String
-
-      # @!attribute recipient_address_line3
-      #   Line 3 of the drawdown request's recipient's address.
+      #   @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress] The debtor's address.
       #
-      #   @return [String, nil]
-      optional :recipient_address_line3, String
-
-      # @!method initialize(account_number_id:, amount:, message_to_recipient:, recipient_account_number:, recipient_name:, recipient_routing_number:, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, recipient_address_line1: nil, recipient_address_line2: nil, recipient_address_line3: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::WireDrawdownRequestCreateParams} for more details.
+      #   @param debtor_name [String] The debtor's name.
       #
-      #   @param account_number_id [String] The Account Number to which the recipient should send funds.
+      #   @param debtor_routing_number [String] The debtor's routing number.
       #
-      #   @param amount [Integer] The amount requested from the recipient, in USD cents.
-      #
-      #   @param message_to_recipient [String] A message the recipient will see as part of the request.
-      #
-      #   @param recipient_account_number [String] The drawdown request's recipient's account number.
-      #
-      #   @param recipient_name [String] The drawdown request's recipient's name.
-      #
-      #   @param recipient_routing_number [String] The drawdown request's recipient's routing number.
-      #
-      #   @param originator_address_line1 [String] The drawdown request originator's address line 1. This is only necessary if you'
-      #
-      #   @param originator_address_line2 [String] The drawdown request originator's address line 2. This is only necessary if you'
-      #
-      #   @param originator_address_line3 [String] The drawdown request originator's address line 3. This is only necessary if you'
-      #
-      #   @param originator_name [String] The drawdown request originator's name. This is only necessary if you're request
-      #
-      #   @param recipient_address_line1 [String] Line 1 of the drawdown request's recipient's address.
-      #
-      #   @param recipient_address_line2 [String] Line 2 of the drawdown request's recipient's address.
-      #
-      #   @param recipient_address_line3 [String] Line 3 of the drawdown request's recipient's address.
+      #   @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        # @!attribute city
+        #   The city, district, town, or village of the address.
+        #
+        #   @return [String]
+        required :city, String
+
+        # @!attribute country
+        #   The two-letter
+        #   [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #   the country of the address.
+        #
+        #   @return [String]
+        required :country, String
+
+        # @!attribute line1
+        #   The first line of the address. This is usually the street number and street.
+        #
+        #   @return [String]
+        required :line1, String
+
+        # @!attribute line2
+        #   The second line of the address. This might be the floor or room number.
+        #
+        #   @return [String, nil]
+        optional :line2, String
+
+        # @!attribute postal_code
+        #   The ZIP code of the address.
+        #
+        #   @return [String, nil]
+        optional :postal_code, String
+
+        # @!attribute state
+        #   The address state.
+        #
+        #   @return [String, nil]
+        optional :state, String
+
+        # @!method initialize(city:, country:, line1:, line2: nil, postal_code: nil, state: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress} for more
+        #   details.
+        #
+        #   The creditor's address.
+        #
+        #   @param city [String] The city, district, town, or village of the address.
+        #
+        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #
+        #   @param line1 [String] The first line of the address. This is usually the street number and street.
+        #
+        #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        #
+        #   @param postal_code [String] The ZIP code of the address.
+        #
+        #   @param state [String] The address state.
+      end
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        # @!attribute city
+        #   The city, district, town, or village of the address.
+        #
+        #   @return [String]
+        required :city, String
+
+        # @!attribute country
+        #   The two-letter
+        #   [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #   the country of the address.
+        #
+        #   @return [String]
+        required :country, String
+
+        # @!attribute line1
+        #   The first line of the address. This is usually the street number and street.
+        #
+        #   @return [String]
+        required :line1, String
+
+        # @!attribute line2
+        #   The second line of the address. This might be the floor or room number.
+        #
+        #   @return [String, nil]
+        optional :line2, String
+
+        # @!attribute postal_code
+        #   The ZIP code of the address.
+        #
+        #   @return [String, nil]
+        optional :postal_code, String
+
+        # @!attribute state
+        #   The address state.
+        #
+        #   @return [String, nil]
+        optional :state, String
+
+        # @!method initialize(city:, country:, line1:, line2: nil, postal_code: nil, state: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress} for more
+        #   details.
+        #
+        #   The debtor's address.
+        #
+        #   @param city [String] The city, district, town, or village of the address.
+        #
+        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #
+        #   @param line1 [String] The first line of the address. This is usually the street number and street.
+        #
+        #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        #
+        #   @param postal_code [String] The ZIP code of the address.
+        #
+        #   @param state [String] The address state.
+      end
     end
   end
 end

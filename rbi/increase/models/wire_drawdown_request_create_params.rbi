@@ -14,140 +14,95 @@ module Increase
           )
         end
 
-      # The Account Number to which the recipient should send funds.
+      # The Account Number to which the debtor should send funds.
       sig { returns(String) }
       attr_accessor :account_number_id
 
-      # The amount requested from the recipient, in USD cents.
+      # The amount requested from the debtor, in USD cents.
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # A message the recipient will see as part of the request.
+      # The creditor's address.
+      sig do
+        returns(Increase::WireDrawdownRequestCreateParams::CreditorAddress)
+      end
+      attr_reader :creditor_address
+
+      sig do
+        params(
+          creditor_address:
+            Increase::WireDrawdownRequestCreateParams::CreditorAddress::OrHash
+        ).void
+      end
+      attr_writer :creditor_address
+
+      # The creditor's name.
       sig { returns(String) }
-      attr_accessor :message_to_recipient
+      attr_accessor :creditor_name
 
-      # The drawdown request's recipient's account number.
+      # The debtor's account number.
       sig { returns(String) }
-      attr_accessor :recipient_account_number
+      attr_accessor :debtor_account_number
 
-      # The drawdown request's recipient's name.
+      # The debtor's address.
+      sig { returns(Increase::WireDrawdownRequestCreateParams::DebtorAddress) }
+      attr_reader :debtor_address
+
+      sig do
+        params(
+          debtor_address:
+            Increase::WireDrawdownRequestCreateParams::DebtorAddress::OrHash
+        ).void
+      end
+      attr_writer :debtor_address
+
+      # The debtor's name.
       sig { returns(String) }
-      attr_accessor :recipient_name
+      attr_accessor :debtor_name
 
-      # The drawdown request's recipient's routing number.
+      # The debtor's routing number.
       sig { returns(String) }
-      attr_accessor :recipient_routing_number
+      attr_accessor :debtor_routing_number
 
-      # The drawdown request originator's address line 1. This is only necessary if
-      # you're requesting a payment to a commingled account. Otherwise, we'll use the
-      # associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_address_line1
-
-      sig { params(originator_address_line1: String).void }
-      attr_writer :originator_address_line1
-
-      # The drawdown request originator's address line 2. This is only necessary if
-      # you're requesting a payment to a commingled account. Otherwise, we'll use the
-      # associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_address_line2
-
-      sig { params(originator_address_line2: String).void }
-      attr_writer :originator_address_line2
-
-      # The drawdown request originator's address line 3. This is only necessary if
-      # you're requesting a payment to a commingled account. Otherwise, we'll use the
-      # associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_address_line3
-
-      sig { params(originator_address_line3: String).void }
-      attr_writer :originator_address_line3
-
-      # The drawdown request originator's name. This is only necessary if you're
-      # requesting a payment to a commingled account. Otherwise, we'll use the
-      # associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_name
-
-      sig { params(originator_name: String).void }
-      attr_writer :originator_name
-
-      # Line 1 of the drawdown request's recipient's address.
-      sig { returns(T.nilable(String)) }
-      attr_reader :recipient_address_line1
-
-      sig { params(recipient_address_line1: String).void }
-      attr_writer :recipient_address_line1
-
-      # Line 2 of the drawdown request's recipient's address.
-      sig { returns(T.nilable(String)) }
-      attr_reader :recipient_address_line2
-
-      sig { params(recipient_address_line2: String).void }
-      attr_writer :recipient_address_line2
-
-      # Line 3 of the drawdown request's recipient's address.
-      sig { returns(T.nilable(String)) }
-      attr_reader :recipient_address_line3
-
-      sig { params(recipient_address_line3: String).void }
-      attr_writer :recipient_address_line3
+      # Remittance information the debtor will see as part of the request.
+      sig { returns(String) }
+      attr_accessor :unstructured_remittance_information
 
       sig do
         params(
           account_number_id: String,
           amount: Integer,
-          message_to_recipient: String,
-          recipient_account_number: String,
-          recipient_name: String,
-          recipient_routing_number: String,
-          originator_address_line1: String,
-          originator_address_line2: String,
-          originator_address_line3: String,
-          originator_name: String,
-          recipient_address_line1: String,
-          recipient_address_line2: String,
-          recipient_address_line3: String,
+          creditor_address:
+            Increase::WireDrawdownRequestCreateParams::CreditorAddress::OrHash,
+          creditor_name: String,
+          debtor_account_number: String,
+          debtor_address:
+            Increase::WireDrawdownRequestCreateParams::DebtorAddress::OrHash,
+          debtor_name: String,
+          debtor_routing_number: String,
+          unstructured_remittance_information: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The Account Number to which the recipient should send funds.
+        # The Account Number to which the debtor should send funds.
         account_number_id:,
-        # The amount requested from the recipient, in USD cents.
+        # The amount requested from the debtor, in USD cents.
         amount:,
-        # A message the recipient will see as part of the request.
-        message_to_recipient:,
-        # The drawdown request's recipient's account number.
-        recipient_account_number:,
-        # The drawdown request's recipient's name.
-        recipient_name:,
-        # The drawdown request's recipient's routing number.
-        recipient_routing_number:,
-        # The drawdown request originator's address line 1. This is only necessary if
-        # you're requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_address_line1: nil,
-        # The drawdown request originator's address line 2. This is only necessary if
-        # you're requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_address_line2: nil,
-        # The drawdown request originator's address line 3. This is only necessary if
-        # you're requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_address_line3: nil,
-        # The drawdown request originator's name. This is only necessary if you're
-        # requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_name: nil,
-        # Line 1 of the drawdown request's recipient's address.
-        recipient_address_line1: nil,
-        # Line 2 of the drawdown request's recipient's address.
-        recipient_address_line2: nil,
-        # Line 3 of the drawdown request's recipient's address.
-        recipient_address_line3: nil,
+        # The creditor's address.
+        creditor_address:,
+        # The creditor's name.
+        creditor_name:,
+        # The debtor's account number.
+        debtor_account_number:,
+        # The debtor's address.
+        debtor_address:,
+        # The debtor's name.
+        debtor_name:,
+        # The debtor's routing number.
+        debtor_routing_number:,
+        # Remittance information the debtor will see as part of the request.
+        unstructured_remittance_information:,
         request_options: {}
       )
       end
@@ -157,22 +112,198 @@ module Increase
           {
             account_number_id: String,
             amount: Integer,
-            message_to_recipient: String,
-            recipient_account_number: String,
-            recipient_name: String,
-            recipient_routing_number: String,
-            originator_address_line1: String,
-            originator_address_line2: String,
-            originator_address_line3: String,
-            originator_name: String,
-            recipient_address_line1: String,
-            recipient_address_line2: String,
-            recipient_address_line3: String,
+            creditor_address:
+              Increase::WireDrawdownRequestCreateParams::CreditorAddress,
+            creditor_name: String,
+            debtor_account_number: String,
+            debtor_address:
+              Increase::WireDrawdownRequestCreateParams::DebtorAddress,
+            debtor_name: String,
+            debtor_routing_number: String,
+            unstructured_remittance_information: String,
             request_options: Increase::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireDrawdownRequestCreateParams::CreditorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The city, district, town, or village of the address.
+        sig { returns(String) }
+        attr_accessor :city
+
+        # The two-letter
+        # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        # the country of the address.
+        sig { returns(String) }
+        attr_accessor :country
+
+        # The first line of the address. This is usually the street number and street.
+        sig { returns(String) }
+        attr_accessor :line1
+
+        # The second line of the address. This might be the floor or room number.
+        sig { returns(T.nilable(String)) }
+        attr_reader :line2
+
+        sig { params(line2: String).void }
+        attr_writer :line2
+
+        # The ZIP code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_reader :postal_code
+
+        sig { params(postal_code: String).void }
+        attr_writer :postal_code
+
+        # The address state.
+        sig { returns(T.nilable(String)) }
+        attr_reader :state
+
+        sig { params(state: String).void }
+        attr_writer :state
+
+        # The creditor's address.
+        sig do
+          params(
+            city: String,
+            country: String,
+            line1: String,
+            line2: String,
+            postal_code: String,
+            state: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city, district, town, or village of the address.
+          city:,
+          # The two-letter
+          # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+          # the country of the address.
+          country:,
+          # The first line of the address. This is usually the street number and street.
+          line1:,
+          # The second line of the address. This might be the floor or room number.
+          line2: nil,
+          # The ZIP code of the address.
+          postal_code: nil,
+          # The address state.
+          state: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: String,
+              country: String,
+              line1: String,
+              line2: String,
+              postal_code: String,
+              state: String
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireDrawdownRequestCreateParams::DebtorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The city, district, town, or village of the address.
+        sig { returns(String) }
+        attr_accessor :city
+
+        # The two-letter
+        # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        # the country of the address.
+        sig { returns(String) }
+        attr_accessor :country
+
+        # The first line of the address. This is usually the street number and street.
+        sig { returns(String) }
+        attr_accessor :line1
+
+        # The second line of the address. This might be the floor or room number.
+        sig { returns(T.nilable(String)) }
+        attr_reader :line2
+
+        sig { params(line2: String).void }
+        attr_writer :line2
+
+        # The ZIP code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_reader :postal_code
+
+        sig { params(postal_code: String).void }
+        attr_writer :postal_code
+
+        # The address state.
+        sig { returns(T.nilable(String)) }
+        attr_reader :state
+
+        sig { params(state: String).void }
+        attr_writer :state
+
+        # The debtor's address.
+        sig do
+          params(
+            city: String,
+            country: String,
+            line1: String,
+            line2: String,
+            postal_code: String,
+            state: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city, district, town, or village of the address.
+          city:,
+          # The two-letter
+          # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+          # the country of the address.
+          country:,
+          # The first line of the address. This is usually the street number and street.
+          line1:,
+          # The second line of the address. This might be the floor or room number.
+          line2: nil,
+          # The ZIP code of the address.
+          postal_code: nil,
+          # The address state.
+          state: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: String,
+              country: String,
+              line1: String,
+              line2: String,
+              postal_code: String,
+              state: String
+            }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

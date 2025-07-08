@@ -3,38 +3,27 @@
 module Increase
   module Resources
     class WireDrawdownRequests
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::WireDrawdownRequestCreateParams} for more details.
-      #
       # Create a Wire Drawdown Request
       #
-      # @overload create(account_number_id:, amount:, message_to_recipient:, recipient_account_number:, recipient_name:, recipient_routing_number:, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, recipient_address_line1: nil, recipient_address_line2: nil, recipient_address_line3: nil, request_options: {})
+      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_account_number:, debtor_address:, debtor_name:, debtor_routing_number:, unstructured_remittance_information:, request_options: {})
       #
-      # @param account_number_id [String] The Account Number to which the recipient should send funds.
+      # @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
-      # @param amount [Integer] The amount requested from the recipient, in USD cents.
+      # @param amount [Integer] The amount requested from the debtor, in USD cents.
       #
-      # @param message_to_recipient [String] A message the recipient will see as part of the request.
+      # @param creditor_address [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress] The creditor's address.
       #
-      # @param recipient_account_number [String] The drawdown request's recipient's account number.
+      # @param creditor_name [String] The creditor's name.
       #
-      # @param recipient_name [String] The drawdown request's recipient's name.
+      # @param debtor_account_number [String] The debtor's account number.
       #
-      # @param recipient_routing_number [String] The drawdown request's recipient's routing number.
+      # @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress] The debtor's address.
       #
-      # @param originator_address_line1 [String] The drawdown request originator's address line 1. This is only necessary if you'
+      # @param debtor_name [String] The debtor's name.
       #
-      # @param originator_address_line2 [String] The drawdown request originator's address line 2. This is only necessary if you'
+      # @param debtor_routing_number [String] The debtor's routing number.
       #
-      # @param originator_address_line3 [String] The drawdown request originator's address line 3. This is only necessary if you'
-      #
-      # @param originator_name [String] The drawdown request originator's name. This is only necessary if you're request
-      #
-      # @param recipient_address_line1 [String] Line 1 of the drawdown request's recipient's address.
-      #
-      # @param recipient_address_line2 [String] Line 2 of the drawdown request's recipient's address.
-      #
-      # @param recipient_address_line3 [String] Line 3 of the drawdown request's recipient's address.
+      # @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -8,55 +8,37 @@ module Increase
         params(
           account_number_id: String,
           amount: Integer,
-          message_to_recipient: String,
-          recipient_account_number: String,
-          recipient_name: String,
-          recipient_routing_number: String,
-          originator_address_line1: String,
-          originator_address_line2: String,
-          originator_address_line3: String,
-          originator_name: String,
-          recipient_address_line1: String,
-          recipient_address_line2: String,
-          recipient_address_line3: String,
+          creditor_address:
+            Increase::WireDrawdownRequestCreateParams::CreditorAddress::OrHash,
+          creditor_name: String,
+          debtor_account_number: String,
+          debtor_address:
+            Increase::WireDrawdownRequestCreateParams::DebtorAddress::OrHash,
+          debtor_name: String,
+          debtor_routing_number: String,
+          unstructured_remittance_information: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::WireDrawdownRequest)
       end
       def create(
-        # The Account Number to which the recipient should send funds.
+        # The Account Number to which the debtor should send funds.
         account_number_id:,
-        # The amount requested from the recipient, in USD cents.
+        # The amount requested from the debtor, in USD cents.
         amount:,
-        # A message the recipient will see as part of the request.
-        message_to_recipient:,
-        # The drawdown request's recipient's account number.
-        recipient_account_number:,
-        # The drawdown request's recipient's name.
-        recipient_name:,
-        # The drawdown request's recipient's routing number.
-        recipient_routing_number:,
-        # The drawdown request originator's address line 1. This is only necessary if
-        # you're requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_address_line1: nil,
-        # The drawdown request originator's address line 2. This is only necessary if
-        # you're requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_address_line2: nil,
-        # The drawdown request originator's address line 3. This is only necessary if
-        # you're requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_address_line3: nil,
-        # The drawdown request originator's name. This is only necessary if you're
-        # requesting a payment to a commingled account. Otherwise, we'll use the
-        # associated entity's details.
-        originator_name: nil,
-        # Line 1 of the drawdown request's recipient's address.
-        recipient_address_line1: nil,
-        # Line 2 of the drawdown request's recipient's address.
-        recipient_address_line2: nil,
-        # Line 3 of the drawdown request's recipient's address.
-        recipient_address_line3: nil,
+        # The creditor's address.
+        creditor_address:,
+        # The creditor's name.
+        creditor_name:,
+        # The debtor's account number.
+        debtor_account_number:,
+        # The debtor's address.
+        debtor_address:,
+        # The debtor's name.
+        debtor_name:,
+        # The debtor's routing number.
+        debtor_routing_number:,
+        # Remittance information the debtor will see as part of the request.
+        unstructured_remittance_information:,
         request_options: {}
       )
       end

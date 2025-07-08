@@ -8,10 +8,13 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
       @increase.wire_drawdown_requests.create(
         account_number_id: "account_number_v18nkfqm6afpsrvy82b2",
         amount: 10_000,
-        message_to_recipient: "Invoice 29582",
-        recipient_account_number: "987654321",
-        recipient_name: "Ian Crease",
-        recipient_routing_number: "101050001"
+        creditor_address: {city: "New York", country: "US", line1: "33 Liberty Street"},
+        creditor_name: "National Phonograph Company",
+        debtor_account_number: "987654321",
+        debtor_address: {city: "New York", country: "US", line1: "33 Liberty Street"},
+        debtor_name: "Ian Crease",
+        debtor_routing_number: "101050001",
+        unstructured_remittance_information: "Invoice 29582"
       )
 
     assert_pattern do
@@ -24,23 +27,19 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
         account_number_id: String,
         amount: Integer,
         created_at: Time,
+        creditor_address: Increase::WireDrawdownRequest::CreditorAddress,
+        creditor_name: String,
         currency: String,
+        debtor_account_number: String,
+        debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_name: String,
+        debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String | nil,
         idempotency_key: String | nil,
-        message_to_recipient: String,
-        originator_address_line1: String | nil,
-        originator_address_line2: String | nil,
-        originator_address_line3: String | nil,
-        originator_name: String | nil,
-        recipient_account_number: String,
-        recipient_address_line1: String | nil,
-        recipient_address_line2: String | nil,
-        recipient_address_line3: String | nil,
-        recipient_name: String | nil,
-        recipient_routing_number: String,
         status: Increase::WireDrawdownRequest::Status,
         submission: Increase::WireDrawdownRequest::Submission | nil,
-        type: Increase::WireDrawdownRequest::Type
+        type: Increase::WireDrawdownRequest::Type,
+        unstructured_remittance_information: String
       }
     end
   end
@@ -58,23 +57,19 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
         account_number_id: String,
         amount: Integer,
         created_at: Time,
+        creditor_address: Increase::WireDrawdownRequest::CreditorAddress,
+        creditor_name: String,
         currency: String,
+        debtor_account_number: String,
+        debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_name: String,
+        debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String | nil,
         idempotency_key: String | nil,
-        message_to_recipient: String,
-        originator_address_line1: String | nil,
-        originator_address_line2: String | nil,
-        originator_address_line3: String | nil,
-        originator_name: String | nil,
-        recipient_account_number: String,
-        recipient_address_line1: String | nil,
-        recipient_address_line2: String | nil,
-        recipient_address_line3: String | nil,
-        recipient_name: String | nil,
-        recipient_routing_number: String,
         status: Increase::WireDrawdownRequest::Status,
         submission: Increase::WireDrawdownRequest::Submission | nil,
-        type: Increase::WireDrawdownRequest::Type
+        type: Increase::WireDrawdownRequest::Type,
+        unstructured_remittance_information: String
       }
     end
   end
@@ -99,23 +94,19 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
         account_number_id: String,
         amount: Integer,
         created_at: Time,
+        creditor_address: Increase::WireDrawdownRequest::CreditorAddress,
+        creditor_name: String,
         currency: String,
+        debtor_account_number: String,
+        debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_name: String,
+        debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String | nil,
         idempotency_key: String | nil,
-        message_to_recipient: String,
-        originator_address_line1: String | nil,
-        originator_address_line2: String | nil,
-        originator_address_line3: String | nil,
-        originator_name: String | nil,
-        recipient_account_number: String,
-        recipient_address_line1: String | nil,
-        recipient_address_line2: String | nil,
-        recipient_address_line3: String | nil,
-        recipient_name: String | nil,
-        recipient_routing_number: String,
         status: Increase::WireDrawdownRequest::Status,
         submission: Increase::WireDrawdownRequest::Submission | nil,
-        type: Increase::WireDrawdownRequest::Type
+        type: Increase::WireDrawdownRequest::Type,
+        unstructured_remittance_information: String
       }
     end
   end

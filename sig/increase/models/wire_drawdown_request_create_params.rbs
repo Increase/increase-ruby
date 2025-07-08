@@ -4,17 +4,13 @@ module Increase
       {
         account_number_id: String,
         amount: Integer,
-        message_to_recipient: String,
-        recipient_account_number: String,
-        recipient_name: String,
-        recipient_routing_number: String,
-        :originator_address_line1 => String,
-        :originator_address_line2 => String,
-        :originator_address_line3 => String,
-        originator_name: String,
-        :recipient_address_line1 => String,
-        :recipient_address_line2 => String,
-        :recipient_address_line3 => String
+        creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress,
+        creditor_name: String,
+        debtor_account_number: String,
+        debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
+        debtor_name: String,
+        debtor_routing_number: String,
+        unstructured_remittance_information: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -26,75 +22,141 @@ module Increase
 
       attr_accessor amount: Integer
 
-      attr_accessor message_to_recipient: String
+      attr_accessor creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress
 
-      attr_accessor recipient_account_number: String
+      attr_accessor creditor_name: String
 
-      attr_accessor recipient_name: String
+      attr_accessor debtor_account_number: String
 
-      attr_accessor recipient_routing_number: String
+      attr_accessor debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress
 
-      attr_reader originator_address_line1: String?
+      attr_accessor debtor_name: String
 
-      def originator_address_line1=: (String) -> String
+      attr_accessor debtor_routing_number: String
 
-      attr_reader originator_address_line2: String?
-
-      def originator_address_line2=: (String) -> String
-
-      attr_reader originator_address_line3: String?
-
-      def originator_address_line3=: (String) -> String
-
-      attr_reader originator_name: String?
-
-      def originator_name=: (String) -> String
-
-      attr_reader recipient_address_line1: String?
-
-      def recipient_address_line1=: (String) -> String
-
-      attr_reader recipient_address_line2: String?
-
-      def recipient_address_line2=: (String) -> String
-
-      attr_reader recipient_address_line3: String?
-
-      def recipient_address_line3=: (String) -> String
+      attr_accessor unstructured_remittance_information: String
 
       def initialize: (
         account_number_id: String,
         amount: Integer,
-        message_to_recipient: String,
-        recipient_account_number: String,
-        recipient_name: String,
-        recipient_routing_number: String,
-        ?originator_address_line1: String,
-        ?originator_address_line2: String,
-        ?originator_address_line3: String,
-        ?originator_name: String,
-        ?recipient_address_line1: String,
-        ?recipient_address_line2: String,
-        ?recipient_address_line3: String,
+        creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress,
+        creditor_name: String,
+        debtor_account_number: String,
+        debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
+        debtor_name: String,
+        debtor_routing_number: String,
+        unstructured_remittance_information: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
         account_number_id: String,
         amount: Integer,
-        message_to_recipient: String,
-        recipient_account_number: String,
-        recipient_name: String,
-        recipient_routing_number: String,
-        :originator_address_line1 => String,
-        :originator_address_line2 => String,
-        :originator_address_line3 => String,
-        originator_name: String,
-        :recipient_address_line1 => String,
-        :recipient_address_line2 => String,
-        :recipient_address_line3 => String,
+        creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress,
+        creditor_name: String,
+        debtor_account_number: String,
+        debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
+        debtor_name: String,
+        debtor_routing_number: String,
+        unstructured_remittance_information: String,
         request_options: Increase::RequestOptions
       }
+
+      type creditor_address =
+        {
+          city: String,
+          country: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          state: String
+        }
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor country: String
+
+        attr_accessor line1: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        attr_reader postal_code: String?
+
+        def postal_code=: (String) -> String
+
+        attr_reader state: String?
+
+        def state=: (String) -> String
+
+        def initialize: (
+          city: String,
+          country: String,
+          line1: String,
+          ?line2: String,
+          ?postal_code: String,
+          ?state: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          country: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          state: String
+        }
+      end
+
+      type debtor_address =
+        {
+          city: String,
+          country: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          state: String
+        }
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor country: String
+
+        attr_accessor line1: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        attr_reader postal_code: String?
+
+        def postal_code=: (String) -> String
+
+        attr_reader state: String?
+
+        def state=: (String) -> String
+
+        def initialize: (
+          city: String,
+          country: String,
+          line1: String,
+          ?line2: String,
+          ?postal_code: String,
+          ?state: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          country: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          state: String
+        }
+      end
     end
   end
 end

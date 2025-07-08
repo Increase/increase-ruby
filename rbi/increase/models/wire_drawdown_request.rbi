@@ -12,8 +12,8 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
-      # The Account Number to which the recipient of this request is being requested to
-      # send funds.
+      # The Account Number to which the debtor—the recipient of this request—is being
+      # requested to send funds.
       sig { returns(String) }
       attr_accessor :account_number_id
 
@@ -26,10 +26,49 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # The creditor's address.
+      sig { returns(Increase::WireDrawdownRequest::CreditorAddress) }
+      attr_reader :creditor_address
+
+      sig do
+        params(
+          creditor_address:
+            Increase::WireDrawdownRequest::CreditorAddress::OrHash
+        ).void
+      end
+      attr_writer :creditor_address
+
+      # The creditor's name.
+      sig { returns(String) }
+      attr_accessor :creditor_name
+
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
       # requested. Will always be "USD".
       sig { returns(String) }
       attr_accessor :currency
+
+      # The debtor's account number.
+      sig { returns(String) }
+      attr_accessor :debtor_account_number
+
+      # The debtor's address.
+      sig { returns(Increase::WireDrawdownRequest::DebtorAddress) }
+      attr_reader :debtor_address
+
+      sig do
+        params(
+          debtor_address: Increase::WireDrawdownRequest::DebtorAddress::OrHash
+        ).void
+      end
+      attr_writer :debtor_address
+
+      # The debtor's name.
+      sig { returns(String) }
+      attr_accessor :debtor_name
+
+      # The debtor's routing number.
+      sig { returns(String) }
+      attr_accessor :debtor_routing_number
 
       # If the recipient fulfills the drawdown request by sending funds, then this will
       # be the identifier of the corresponding Transaction.
@@ -41,50 +80,6 @@ module Increase
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
-
-      # The message the recipient will see as part of the drawdown request.
-      sig { returns(String) }
-      attr_accessor :message_to_recipient
-
-      # The originator's address line 1.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line1
-
-      # The originator's address line 2.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line2
-
-      # The originator's address line 3.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line3
-
-      # The originator's name.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_name
-
-      # The drawdown request's recipient's account number.
-      sig { returns(String) }
-      attr_accessor :recipient_account_number
-
-      # Line 1 of the drawdown request's recipient's address.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :recipient_address_line1
-
-      # Line 2 of the drawdown request's recipient's address.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :recipient_address_line2
-
-      # Line 3 of the drawdown request's recipient's address.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :recipient_address_line3
-
-      # The drawdown request's recipient's name.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :recipient_name
-
-      # The drawdown request's recipient's routing number.
-      sig { returns(String) }
-      attr_accessor :recipient_routing_number
 
       # The lifecycle status of the drawdown request.
       sig { returns(Increase::WireDrawdownRequest::Status::TaggedSymbol) }
@@ -108,6 +103,10 @@ module Increase
       sig { returns(Increase::WireDrawdownRequest::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # Remittance information the debtor will see as part of the drawdown request.
+      sig { returns(String) }
+      attr_accessor :unstructured_remittance_information
+
       # Wire drawdown requests enable you to request that someone else send you a wire.
       # Because there is nuance to making sure your counterparty's bank processes these
       # correctly, we ask that you reach out to
@@ -120,40 +119,49 @@ module Increase
           account_number_id: String,
           amount: Integer,
           created_at: Time,
+          creditor_address:
+            Increase::WireDrawdownRequest::CreditorAddress::OrHash,
+          creditor_name: String,
           currency: String,
+          debtor_account_number: String,
+          debtor_address: Increase::WireDrawdownRequest::DebtorAddress::OrHash,
+          debtor_name: String,
+          debtor_routing_number: String,
           fulfillment_inbound_wire_transfer_id: T.nilable(String),
           idempotency_key: T.nilable(String),
-          message_to_recipient: String,
-          originator_address_line1: T.nilable(String),
-          originator_address_line2: T.nilable(String),
-          originator_address_line3: T.nilable(String),
-          originator_name: T.nilable(String),
-          recipient_account_number: String,
-          recipient_address_line1: T.nilable(String),
-          recipient_address_line2: T.nilable(String),
-          recipient_address_line3: T.nilable(String),
-          recipient_name: T.nilable(String),
-          recipient_routing_number: String,
           status: Increase::WireDrawdownRequest::Status::OrSymbol,
           submission:
             T.nilable(Increase::WireDrawdownRequest::Submission::OrHash),
-          type: Increase::WireDrawdownRequest::Type::OrSymbol
+          type: Increase::WireDrawdownRequest::Type::OrSymbol,
+          unstructured_remittance_information: String
         ).returns(T.attached_class)
       end
       def self.new(
         # The Wire drawdown request identifier.
         id:,
-        # The Account Number to which the recipient of this request is being requested to
-        # send funds.
+        # The Account Number to which the debtor—the recipient of this request—is being
+        # requested to send funds.
         account_number_id:,
         # The amount being requested in cents.
         amount:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the wire drawdown request was created.
         created_at:,
+        # The creditor's address.
+        creditor_address:,
+        # The creditor's name.
+        creditor_name:,
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
         # requested. Will always be "USD".
         currency:,
+        # The debtor's account number.
+        debtor_account_number:,
+        # The debtor's address.
+        debtor_address:,
+        # The debtor's name.
+        debtor_name:,
+        # The debtor's routing number.
+        debtor_routing_number:,
         # If the recipient fulfills the drawdown request by sending funds, then this will
         # be the identifier of the corresponding Transaction.
         fulfillment_inbound_wire_transfer_id:,
@@ -161,28 +169,6 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
-        # The message the recipient will see as part of the drawdown request.
-        message_to_recipient:,
-        # The originator's address line 1.
-        originator_address_line1:,
-        # The originator's address line 2.
-        originator_address_line2:,
-        # The originator's address line 3.
-        originator_address_line3:,
-        # The originator's name.
-        originator_name:,
-        # The drawdown request's recipient's account number.
-        recipient_account_number:,
-        # Line 1 of the drawdown request's recipient's address.
-        recipient_address_line1:,
-        # Line 2 of the drawdown request's recipient's address.
-        recipient_address_line2:,
-        # Line 3 of the drawdown request's recipient's address.
-        recipient_address_line3:,
-        # The drawdown request's recipient's name.
-        recipient_name:,
-        # The drawdown request's recipient's routing number.
-        recipient_routing_number:,
         # The lifecycle status of the drawdown request.
         status:,
         # After the drawdown request is submitted to Fedwire, this will contain
@@ -190,7 +176,9 @@ module Increase
         submission:,
         # A constant representing the object's type. For this resource it will always be
         # `wire_drawdown_request`.
-        type:
+        type:,
+        # Remittance information the debtor will see as part of the drawdown request.
+        unstructured_remittance_information:
       )
       end
 
@@ -201,27 +189,183 @@ module Increase
             account_number_id: String,
             amount: Integer,
             created_at: Time,
+            creditor_address: Increase::WireDrawdownRequest::CreditorAddress,
+            creditor_name: String,
             currency: String,
+            debtor_account_number: String,
+            debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+            debtor_name: String,
+            debtor_routing_number: String,
             fulfillment_inbound_wire_transfer_id: T.nilable(String),
             idempotency_key: T.nilable(String),
-            message_to_recipient: String,
-            originator_address_line1: T.nilable(String),
-            originator_address_line2: T.nilable(String),
-            originator_address_line3: T.nilable(String),
-            originator_name: T.nilable(String),
-            recipient_account_number: String,
-            recipient_address_line1: T.nilable(String),
-            recipient_address_line2: T.nilable(String),
-            recipient_address_line3: T.nilable(String),
-            recipient_name: T.nilable(String),
-            recipient_routing_number: String,
             status: Increase::WireDrawdownRequest::Status::TaggedSymbol,
             submission: T.nilable(Increase::WireDrawdownRequest::Submission),
-            type: Increase::WireDrawdownRequest::Type::TaggedSymbol
+            type: Increase::WireDrawdownRequest::Type::TaggedSymbol,
+            unstructured_remittance_information: String
           }
         )
       end
       def to_hash
+      end
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireDrawdownRequest::CreditorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The city, district, town, or village of the address.
+        sig { returns(String) }
+        attr_accessor :city
+
+        # The two-letter
+        # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        # the country of the address.
+        sig { returns(String) }
+        attr_accessor :country
+
+        # The first line of the address.
+        sig { returns(String) }
+        attr_accessor :line1
+
+        # The second line of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # The ZIP code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The address state.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The creditor's address.
+        sig do
+          params(
+            city: String,
+            country: String,
+            line1: String,
+            line2: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city, district, town, or village of the address.
+          city:,
+          # The two-letter
+          # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+          # the country of the address.
+          country:,
+          # The first line of the address.
+          line1:,
+          # The second line of the address.
+          line2:,
+          # The ZIP code of the address.
+          postal_code:,
+          # The address state.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: String,
+              country: String,
+              line1: String,
+              line2: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireDrawdownRequest::DebtorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The city, district, town, or village of the address.
+        sig { returns(String) }
+        attr_accessor :city
+
+        # The two-letter
+        # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        # the country of the address.
+        sig { returns(String) }
+        attr_accessor :country
+
+        # The first line of the address.
+        sig { returns(String) }
+        attr_accessor :line1
+
+        # The second line of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # The ZIP code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The address state.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The debtor's address.
+        sig do
+          params(
+            city: String,
+            country: String,
+            line1: String,
+            line2: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city, district, town, or village of the address.
+          city:,
+          # The two-letter
+          # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+          # the country of the address.
+          country:,
+          # The first line of the address.
+          line1:,
+          # The second line of the address.
+          line2:,
+          # The ZIP code of the address.
+          postal_code:,
+          # The address state.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: String,
+              country: String,
+              line1: String,
+              line2: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       # The lifecycle status of the drawdown request.
