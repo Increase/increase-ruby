@@ -1,0 +1,17 @@
+module Increase
+  module Models
+    module Simulations
+      type wire_drawdown_request_refuse_params =
+        {  } & Increase::Internal::Type::request_parameters
+
+      class WireDrawdownRequestRefuseParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: Increase::request_opts) -> void
+
+        def to_hash: -> { request_options: Increase::RequestOptions }
+      end
+    end
+  end
+end

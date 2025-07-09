@@ -58,6 +58,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::InboundWireTransfers) }
       attr_reader :inbound_wire_transfers
 
+      sig { returns(Increase::Resources::Simulations::WireDrawdownRequests) }
+      attr_reader :wire_drawdown_requests
+
       sig do
         returns(Increase::Resources::Simulations::InboundWireDrawdownRequests)
       end

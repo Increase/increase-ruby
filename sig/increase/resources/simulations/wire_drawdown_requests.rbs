@@ -1,0 +1,14 @@
+module Increase
+  module Resources
+    class Simulations
+      class WireDrawdownRequests
+        def refuse: (
+          String wire_drawdown_request_id,
+          ?request_options: Increase::request_opts
+        ) -> Increase::WireDrawdownRequest
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end

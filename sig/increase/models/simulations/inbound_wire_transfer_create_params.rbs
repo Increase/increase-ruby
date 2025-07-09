@@ -19,7 +19,8 @@ module Increase
           :originator_to_beneficiary_information_line2 => String,
           :originator_to_beneficiary_information_line3 => String,
           :originator_to_beneficiary_information_line4 => String,
-          sender_reference: String
+          sender_reference: String,
+          wire_drawdown_request_id: String
         }
         & Increase::Internal::Type::request_parameters
 
@@ -91,6 +92,10 @@ module Increase
 
         def sender_reference=: (String) -> String
 
+        attr_reader wire_drawdown_request_id: String?
+
+        def wire_drawdown_request_id=: (String) -> String
+
         def initialize: (
           account_number_id: String,
           amount: Integer,
@@ -109,6 +114,7 @@ module Increase
           ?originator_to_beneficiary_information_line3: String,
           ?originator_to_beneficiary_information_line4: String,
           ?sender_reference: String,
+          ?wire_drawdown_request_id: String,
           ?request_options: Increase::request_opts
         ) -> void
 
@@ -130,6 +136,7 @@ module Increase
           :originator_to_beneficiary_information_line3 => String,
           :originator_to_beneficiary_information_line4 => String,
           sender_reference: String,
+          wire_drawdown_request_id: String,
           request_options: Increase::RequestOptions
         }
       end

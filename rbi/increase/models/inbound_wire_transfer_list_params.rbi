@@ -67,6 +67,14 @@ module Increase
       end
       attr_writer :status
 
+      # Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown
+      # Request.
+      sig { returns(T.nilable(String)) }
+      attr_reader :wire_drawdown_request_id
+
+      sig { params(wire_drawdown_request_id: String).void }
+      attr_writer :wire_drawdown_request_id
+
       sig do
         params(
           account_id: String,
@@ -76,6 +84,7 @@ module Increase
           cursor: String,
           limit: Integer,
           status: Increase::InboundWireTransferListParams::Status::OrHash,
+          wire_drawdown_request_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -91,6 +100,9 @@ module Increase
         # objects.
         limit: nil,
         status: nil,
+        # Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown
+        # Request.
+        wire_drawdown_request_id: nil,
         request_options: {}
       )
       end
@@ -104,6 +116,7 @@ module Increase
             cursor: String,
             limit: Integer,
             status: Increase::InboundWireTransferListParams::Status,
+            wire_drawdown_request_id: String,
             request_options: Increase::RequestOptions
           }
         )

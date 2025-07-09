@@ -42,7 +42,14 @@ module Increase
       #   @return [Increase::Models::InboundWireTransferListParams::Status, nil]
       optional :status, -> { Increase::InboundWireTransferListParams::Status }
 
-      # @!method initialize(account_id: nil, account_number_id: nil, created_at: nil, cursor: nil, limit: nil, status: nil, request_options: {})
+      # @!attribute wire_drawdown_request_id
+      #   Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown
+      #   Request.
+      #
+      #   @return [String, nil]
+      optional :wire_drawdown_request_id, String
+
+      # @!method initialize(account_id: nil, account_number_id: nil, created_at: nil, cursor: nil, limit: nil, status: nil, wire_drawdown_request_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundWireTransferListParams} for more details.
       #
@@ -57,6 +64,8 @@ module Increase
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
       #
       #   @param status [Increase::Models::InboundWireTransferListParams::Status]
+      #
+      #   @param wire_drawdown_request_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown R
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

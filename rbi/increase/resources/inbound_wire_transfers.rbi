@@ -27,6 +27,7 @@ module Increase
           cursor: String,
           limit: Integer,
           status: Increase::InboundWireTransferListParams::Status::OrHash,
+          wire_drawdown_request_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Internal::Page[Increase::InboundWireTransfer])
       end
@@ -42,6 +43,9 @@ module Increase
         # objects.
         limit: nil,
         status: nil,
+        # Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown
+        # Request.
+        wire_drawdown_request_id: nil,
         request_options: {}
       )
       end

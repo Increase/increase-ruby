@@ -143,6 +143,14 @@ module Increase
         sig { params(sender_reference: String).void }
         attr_writer :sender_reference
 
+        # The identifier of a Wire Drawdown Request the inbound Wire Transfer is
+        # fulfilling.
+        sig { returns(T.nilable(String)) }
+        attr_reader :wire_drawdown_request_id
+
+        sig { params(wire_drawdown_request_id: String).void }
+        attr_writer :wire_drawdown_request_id
+
         sig do
           params(
             account_number_id: String,
@@ -162,6 +170,7 @@ module Increase
             originator_to_beneficiary_information_line3: String,
             originator_to_beneficiary_information_line4: String,
             sender_reference: String,
+            wire_drawdown_request_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -215,6 +224,9 @@ module Increase
           # The sending bank will set sender_reference in production. You can simulate any
           # value here.
           sender_reference: nil,
+          # The identifier of a Wire Drawdown Request the inbound Wire Transfer is
+          # fulfilling.
+          wire_drawdown_request_id: nil,
           request_options: {}
         )
         end
@@ -239,6 +251,7 @@ module Increase
               originator_to_beneficiary_information_line3: String,
               originator_to_beneficiary_information_line4: String,
               sender_reference: String,
+              wire_drawdown_request_id: String,
               request_options: Increase::RequestOptions
             }
           )

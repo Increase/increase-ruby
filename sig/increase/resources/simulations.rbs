@@ -35,6 +35,8 @@ module Increase
 
       attr_reader inbound_wire_transfers: Increase::Resources::Simulations::InboundWireTransfers
 
+      attr_reader wire_drawdown_requests: Increase::Resources::Simulations::WireDrawdownRequests
+
       attr_reader inbound_wire_drawdown_requests: Increase::Resources::Simulations::InboundWireDrawdownRequests
 
       attr_reader check_transfers: Increase::Resources::Simulations::CheckTransfers

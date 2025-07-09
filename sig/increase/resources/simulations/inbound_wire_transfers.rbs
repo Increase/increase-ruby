@@ -20,6 +20,7 @@ module Increase
           ?originator_to_beneficiary_information_line3: String,
           ?originator_to_beneficiary_information_line4: String,
           ?sender_reference: String,
+          ?wire_drawdown_request_id: String,
           ?request_options: Increase::request_opts
         ) -> Increase::InboundWireTransfer
 

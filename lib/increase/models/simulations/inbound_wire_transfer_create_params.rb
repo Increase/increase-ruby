@@ -125,7 +125,14 @@ module Increase
         #   @return [String, nil]
         optional :sender_reference, String
 
-        # @!method initialize(account_number_id:, amount:, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, beneficiary_name: nil, beneficiary_reference: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, originator_routing_number: nil, originator_to_beneficiary_information_line1: nil, originator_to_beneficiary_information_line2: nil, originator_to_beneficiary_information_line3: nil, originator_to_beneficiary_information_line4: nil, sender_reference: nil, request_options: {})
+        # @!attribute wire_drawdown_request_id
+        #   The identifier of a Wire Drawdown Request the inbound Wire Transfer is
+        #   fulfilling.
+        #
+        #   @return [String, nil]
+        optional :wire_drawdown_request_id, String
+
+        # @!method initialize(account_number_id:, amount:, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, beneficiary_name: nil, beneficiary_reference: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, originator_routing_number: nil, originator_to_beneficiary_information_line1: nil, originator_to_beneficiary_information_line2: nil, originator_to_beneficiary_information_line3: nil, originator_to_beneficiary_information_line4: nil, sender_reference: nil, wire_drawdown_request_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::InboundWireTransferCreateParams} for more
         #   details.
@@ -163,6 +170,8 @@ module Increase
         #   @param originator_to_beneficiary_information_line4 [String] The sending bank will set originator_to_beneficiary_information_line4 in product
         #
         #   @param sender_reference [String] The sending bank will set sender_reference in production. You can simulate any v
+        #
+        #   @param wire_drawdown_request_id [String] The identifier of a Wire Drawdown Request the inbound Wire Transfer is fulfillin
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

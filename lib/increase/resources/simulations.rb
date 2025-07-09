@@ -54,6 +54,9 @@ module Increase
       # @return [Increase::Resources::Simulations::InboundWireTransfers]
       attr_reader :inbound_wire_transfers
 
+      # @return [Increase::Resources::Simulations::WireDrawdownRequests]
+      attr_reader :wire_drawdown_requests
+
       # @return [Increase::Resources::Simulations::InboundWireDrawdownRequests]
       attr_reader :inbound_wire_drawdown_requests
 
@@ -108,6 +111,7 @@ module Increase
         @inbound_ach_transfers = Increase::Resources::Simulations::InboundACHTransfers.new(client: client)
         @wire_transfers = Increase::Resources::Simulations::WireTransfers.new(client: client)
         @inbound_wire_transfers = Increase::Resources::Simulations::InboundWireTransfers.new(client: client)
+        @wire_drawdown_requests = Increase::Resources::Simulations::WireDrawdownRequests.new(client: client)
         @inbound_wire_drawdown_requests =
           Increase::Resources::Simulations::InboundWireDrawdownRequests.new(client: client)
         @check_transfers = Increase::Resources::Simulations::CheckTransfers.new(client: client)

@@ -7,7 +7,8 @@ module Increase
         created_at: Increase::InboundWireTransferListParams::CreatedAt,
         cursor: String,
         limit: Integer,
-        status: Increase::InboundWireTransferListParams::Status
+        status: Increase::InboundWireTransferListParams::Status,
+        wire_drawdown_request_id: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -43,6 +44,10 @@ module Increase
         Increase::InboundWireTransferListParams::Status
       ) -> Increase::InboundWireTransferListParams::Status
 
+      attr_reader wire_drawdown_request_id: String?
+
+      def wire_drawdown_request_id=: (String) -> String
+
       def initialize: (
         ?account_id: String,
         ?account_number_id: String,
@@ -50,6 +55,7 @@ module Increase
         ?cursor: String,
         ?limit: Integer,
         ?status: Increase::InboundWireTransferListParams::Status,
+        ?wire_drawdown_request_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -60,6 +66,7 @@ module Increase
         cursor: String,
         limit: Integer,
         status: Increase::InboundWireTransferListParams::Status,
+        wire_drawdown_request_id: String,
         request_options: Increase::RequestOptions
       }
 
