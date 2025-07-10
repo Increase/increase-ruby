@@ -5,6 +5,7 @@ module Increase
         card_id: String,
         expiration_month: Integer,
         expiration_year: Integer,
+        pin: String,
         primary_account_number: String,
         type: Increase::Models::CardDetails::type_,
         verification_code: String
@@ -17,6 +18,8 @@ module Increase
 
       attr_accessor expiration_year: Integer
 
+      attr_accessor pin: String
+
       attr_accessor primary_account_number: String
 
       attr_accessor type: Increase::Models::CardDetails::type_
@@ -27,6 +30,7 @@ module Increase
         card_id: String,
         expiration_month: Integer,
         expiration_year: Integer,
+        pin: String,
         primary_account_number: String,
         type: Increase::Models::CardDetails::type_,
         verification_code: String
@@ -36,6 +40,7 @@ module Increase
         card_id: String,
         expiration_month: Integer,
         expiration_year: Integer,
+        pin: String,
         primary_account_number: String,
         type: Increase::Models::CardDetails::type_,
         verification_code: String

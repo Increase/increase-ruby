@@ -22,6 +22,12 @@ module Increase
       #   @return [Integer]
       required :expiration_year, Integer
 
+      # @!attribute pin
+      #   The 4-digit PIN for the card, for use with ATMs.
+      #
+      #   @return [String]
+      required :pin, String
+
       # @!attribute primary_account_number
       #   The card number.
       #
@@ -43,7 +49,7 @@ module Increase
       #   @return [String]
       required :verification_code, String
 
-      # @!method initialize(card_id:, expiration_month:, expiration_year:, primary_account_number:, type:, verification_code:)
+      # @!method initialize(card_id:, expiration_month:, expiration_year:, pin:, primary_account_number:, type:, verification_code:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDetails} for more details.
       #
@@ -54,6 +60,8 @@ module Increase
       #   @param expiration_month [Integer] The month the card expires in M format (e.g., August is 8).
       #
       #   @param expiration_year [Integer] The year the card expires in YYYY format (e.g., 2025).
+      #
+      #   @param pin [String] The 4-digit PIN for the card, for use with ATMs.
       #
       #   @param primary_account_number [String] The card number.
       #

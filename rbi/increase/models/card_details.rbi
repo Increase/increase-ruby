@@ -20,6 +20,10 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :expiration_year
 
+      # The 4-digit PIN for the card, for use with ATMs.
+      sig { returns(String) }
+      attr_accessor :pin
+
       # The card number.
       sig { returns(String) }
       attr_accessor :primary_account_number
@@ -41,6 +45,7 @@ module Increase
           card_id: String,
           expiration_month: Integer,
           expiration_year: Integer,
+          pin: String,
           primary_account_number: String,
           type: Increase::CardDetails::Type::OrSymbol,
           verification_code: String
@@ -53,6 +58,8 @@ module Increase
         expiration_month:,
         # The year the card expires in YYYY format (e.g., 2025).
         expiration_year:,
+        # The 4-digit PIN for the card, for use with ATMs.
+        pin:,
         # The card number.
         primary_account_number:,
         # A constant representing the object's type. For this resource it will always be
@@ -71,6 +78,7 @@ module Increase
             card_id: String,
             expiration_month: Integer,
             expiration_year: Integer,
+            pin: String,
             primary_account_number: String,
             type: Increase::CardDetails::Type::TaggedSymbol,
             verification_code: String

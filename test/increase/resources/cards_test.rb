@@ -126,6 +126,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
         card_id: String,
         expiration_month: Integer,
         expiration_year: Integer,
+        pin: String,
         primary_account_number: String,
         type: Increase::CardDetails::Type,
         verification_code: String
