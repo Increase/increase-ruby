@@ -11,6 +11,7 @@ module Increase
         sig do
           params(
             name: String,
+            bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
             reserve_account_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::Program)
@@ -18,6 +19,8 @@ module Increase
         def create(
           # The name of the program being added.
           name:,
+          # The bank for the program's accounts, defaults to First Internet Bank.
+          bank: nil,
           # The identifier of the Account the Program should be added to is for.
           reserve_account_id: nil,
           request_options: {}

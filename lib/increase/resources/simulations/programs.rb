@@ -9,9 +9,11 @@ module Increase
         # operates more than one program, `program_id` is a required field when creating
         # accounts.
         #
-        # @overload create(name:, reserve_account_id: nil, request_options: {})
+        # @overload create(name:, bank: nil, reserve_account_id: nil, request_options: {})
         #
         # @param name [String] The name of the program being added.
+        #
+        # @param bank [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank] The bank for the program's accounts, defaults to First Internet Bank.
         #
         # @param reserve_account_id [String] The identifier of the Account the Program should be added to is for.
         #

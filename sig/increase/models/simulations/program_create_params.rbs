@@ -2,7 +2,11 @@ module Increase
   module Models
     module Simulations
       type program_create_params =
-        { name: String, reserve_account_id: String }
+        {
+          name: String,
+          bank: Increase::Models::Simulations::ProgramCreateParams::bank,
+          reserve_account_id: String
+        }
         & Increase::Internal::Type::request_parameters
 
       class ProgramCreateParams < Increase::Internal::Type::BaseModel
@@ -11,21 +15,57 @@ module Increase
 
         attr_accessor name: String
 
+        attr_reader bank: Increase::Models::Simulations::ProgramCreateParams::bank?
+
+        def bank=: (
+          Increase::Models::Simulations::ProgramCreateParams::bank
+        ) -> Increase::Models::Simulations::ProgramCreateParams::bank
+
         attr_reader reserve_account_id: String?
 
         def reserve_account_id=: (String) -> String
 
         def initialize: (
           name: String,
+          ?bank: Increase::Models::Simulations::ProgramCreateParams::bank,
           ?reserve_account_id: String,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
           name: String,
+          bank: Increase::Models::Simulations::ProgramCreateParams::bank,
           reserve_account_id: String,
           request_options: Increase::RequestOptions
         }
+
+        type bank =
+          :blue_ridge_bank
+          | :core_bank
+          | :first_internet_bank
+          | :global_innovations_bank
+          | :grasshopper_bank
+
+        module Bank
+          extend Increase::Internal::Type::Enum
+
+          # Blue Ridge Bank, N.A.
+          BLUE_RIDGE_BANK: :blue_ridge_bank
+
+          # Core Bank
+          CORE_BANK: :core_bank
+
+          # First Internet Bank of Indiana
+          FIRST_INTERNET_BANK: :first_internet_bank
+
+          # Global Innovations Bank
+          GLOBAL_INNOVATIONS_BANK: :global_innovations_bank
+
+          # Grasshopper Bank
+          GRASSHOPPER_BANK: :grasshopper_bank
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::ProgramCreateParams::bank]
+        end
       end
     end
   end

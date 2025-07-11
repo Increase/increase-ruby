@@ -14,18 +14,49 @@ module Increase
         #   @return [String]
         required :name, String
 
+        # @!attribute bank
+        #   The bank for the program's accounts, defaults to First Internet Bank.
+        #
+        #   @return [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank, nil]
+        optional :bank, enum: -> { Increase::Simulations::ProgramCreateParams::Bank }
+
         # @!attribute reserve_account_id
         #   The identifier of the Account the Program should be added to is for.
         #
         #   @return [String, nil]
         optional :reserve_account_id, String
 
-        # @!method initialize(name:, reserve_account_id: nil, request_options: {})
+        # @!method initialize(name:, bank: nil, reserve_account_id: nil, request_options: {})
         #   @param name [String] The name of the program being added.
+        #
+        #   @param bank [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank] The bank for the program's accounts, defaults to First Internet Bank.
         #
         #   @param reserve_account_id [String] The identifier of the Account the Program should be added to is for.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
+
+        # The bank for the program's accounts, defaults to First Internet Bank.
+        module Bank
+          extend Increase::Internal::Type::Enum
+
+          # Blue Ridge Bank, N.A.
+          BLUE_RIDGE_BANK = :blue_ridge_bank
+
+          # Core Bank
+          CORE_BANK = :core_bank
+
+          # First Internet Bank of Indiana
+          FIRST_INTERNET_BANK = :first_internet_bank
+
+          # Global Innovations Bank
+          GLOBAL_INNOVATIONS_BANK = :global_innovations_bank
+
+          # Grasshopper Bank
+          GRASSHOPPER_BANK = :grasshopper_bank
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

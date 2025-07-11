@@ -4,6 +4,7 @@ module Increase
       class Programs
         def create: (
           name: String,
+          ?bank: Increase::Models::Simulations::ProgramCreateParams::bank,
           ?reserve_account_id: String,
           ?request_options: Increase::request_opts
         ) -> Increase::Program
