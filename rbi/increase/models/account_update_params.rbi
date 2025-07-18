@@ -11,6 +11,14 @@ module Increase
           T.any(Increase::AccountUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # The new credit limit of the Account, if and only if the Account is a loan
+      # account.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :credit_limit
+
+      sig { params(credit_limit: Integer).void }
+      attr_writer :credit_limit
+
       # The new name of the Account.
       sig { returns(T.nilable(String)) }
       attr_reader :name
@@ -20,11 +28,15 @@ module Increase
 
       sig do
         params(
+          credit_limit: Integer,
           name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The new credit limit of the Account, if and only if the Account is a loan
+        # account.
+        credit_limit: nil,
         # The new name of the Account.
         name: nil,
         request_options: {}
@@ -33,7 +45,11 @@ module Increase
 
       sig do
         override.returns(
-          { name: String, request_options: Increase::RequestOptions }
+          {
+            credit_limit: Integer,
+            name: String,
+            request_options: Increase::RequestOptions
+          }
         )
       end
       def to_hash

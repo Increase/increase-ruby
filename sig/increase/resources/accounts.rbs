@@ -16,6 +16,7 @@ module Increase
 
       def update: (
         String account_id,
+        ?credit_limit: Integer,
         ?name: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Account

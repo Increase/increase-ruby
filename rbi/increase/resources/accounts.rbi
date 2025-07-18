@@ -46,6 +46,7 @@ module Increase
       sig do
         params(
           account_id: String,
+          credit_limit: Integer,
           name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Account)
@@ -53,6 +54,9 @@ module Increase
       def update(
         # The identifier of the Account to update.
         account_id,
+        # The new credit limit of the Account, if and only if the Account is a loan
+        # account.
+        credit_limit: nil,
         # The new name of the Account.
         name: nil,
         request_options: {}

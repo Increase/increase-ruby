@@ -54,11 +54,16 @@ module Increase
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::AccountUpdateParams} for more details.
+      #
       # Update an Account
       #
-      # @overload update(account_id, name: nil, request_options: {})
+      # @overload update(account_id, credit_limit: nil, name: nil, request_options: {})
       #
       # @param account_id [String] The identifier of the Account to update.
+      #
+      # @param credit_limit [Integer] The new credit limit of the Account, if and only if the Account is a loan accoun
       #
       # @param name [String] The new name of the Account.
       #
