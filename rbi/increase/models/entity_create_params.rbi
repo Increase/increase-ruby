@@ -1467,27 +1467,17 @@ module Increase
         end
         attr_accessor :individuals
 
-        # The name of the joint entity.
-        sig { returns(T.nilable(String)) }
-        attr_reader :name
-
-        sig { params(name: String).void }
-        attr_writer :name
-
         # Details of the joint entity to create. Required if `structure` is equal to
         # `joint`.
         sig do
           params(
             individuals:
-              T::Array[Increase::EntityCreateParams::Joint::Individual::OrHash],
-            name: String
+              T::Array[Increase::EntityCreateParams::Joint::Individual::OrHash]
           ).returns(T.attached_class)
         end
         def self.new(
           # The two individuals that share control of the entity.
-          individuals:,
-          # The name of the joint entity.
-          name: nil
+          individuals:
         )
         end
 
@@ -1495,8 +1485,7 @@ module Increase
           override.returns(
             {
               individuals:
-                T::Array[Increase::EntityCreateParams::Joint::Individual],
-              name: String
+                T::Array[Increase::EntityCreateParams::Joint::Individual]
             }
           )
         end

@@ -650,25 +650,18 @@ module Increase
 
       type joint =
         {
-          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual],
-          name: String
+          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual]
         }
 
       class Joint < Increase::Internal::Type::BaseModel
         attr_accessor individuals: ::Array[Increase::EntityCreateParams::Joint::Individual]
 
-        attr_reader name: String?
-
-        def name=: (String) -> String
-
         def initialize: (
-          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual],
-          ?name: String
+          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual]
         ) -> void
 
         def to_hash: -> {
-          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual],
-          name: String
+          individuals: ::Array[Increase::EntityCreateParams::Joint::Individual]
         }
 
         type individual =

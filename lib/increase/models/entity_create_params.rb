@@ -810,19 +810,11 @@ module Increase
         required :individuals,
                  -> { Increase::Internal::Type::ArrayOf[Increase::EntityCreateParams::Joint::Individual] }
 
-        # @!attribute name
-        #   The name of the joint entity.
-        #
-        #   @return [String, nil]
-        optional :name, String
-
-        # @!method initialize(individuals:, name: nil)
+        # @!method initialize(individuals:)
         #   Details of the joint entity to create. Required if `structure` is equal to
         #   `joint`.
         #
         #   @param individuals [Array<Increase::Models::EntityCreateParams::Joint::Individual>] The two individuals that share control of the entity.
-        #
-        #   @param name [String] The name of the joint entity.
 
         class Individual < Increase::Internal::Type::BaseModel
           # @!attribute address
