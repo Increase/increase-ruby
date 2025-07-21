@@ -306,6 +306,12 @@ module Increase
           # Occurs whenever a Physical Card Profile is updated.
           PHYSICAL_CARD_PROFILE_UPDATED = :"physical_card_profile.updated"
 
+          # Occurs whenever a Program is created.
+          PROGRAM_CREATED = :"program.created"
+
+          # Occurs whenever a Program is updated.
+          PROGRAM_UPDATED = :"program.updated"
+
           # Occurs whenever a Proof of Authorization Request is created.
           PROOF_OF_AUTHORIZATION_REQUEST_CREATED = :"proof_of_authorization_request.created"
 

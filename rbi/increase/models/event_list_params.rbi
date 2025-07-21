@@ -690,6 +690,20 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Program is created.
+          PROGRAM_CREATED =
+            T.let(
+              :"program.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Program is updated.
+          PROGRAM_UPDATED =
+            T.let(
+              :"program.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Proof of Authorization Request is created.
           PROOF_OF_AUTHORIZATION_REQUEST_CREATED =
             T.let(
