@@ -8,7 +8,6 @@ module Increase
           card_id: String,
           decline_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::decline_reason,
           digital_wallet_token_id: String,
-          direction: Increase::Models::Simulations::CardAuthorizationCreateParams::direction,
           event_subscription_id: String,
           merchant_acceptor_id: String,
           merchant_category_code: String,
@@ -19,6 +18,7 @@ module Increase
           network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
           network_risk_score: Integer,
           physical_card_id: String,
+          processing_category: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory,
           terminal_id: String
         }
         & Increase::Internal::Type::request_parameters
@@ -46,12 +46,6 @@ module Increase
         attr_reader digital_wallet_token_id: String?
 
         def digital_wallet_token_id=: (String) -> String
-
-        attr_reader direction: Increase::Models::Simulations::CardAuthorizationCreateParams::direction?
-
-        def direction=: (
-          Increase::Models::Simulations::CardAuthorizationCreateParams::direction
-        ) -> Increase::Models::Simulations::CardAuthorizationCreateParams::direction
 
         attr_reader event_subscription_id: String?
 
@@ -95,6 +89,12 @@ module Increase
 
         def physical_card_id=: (String) -> String
 
+        attr_reader processing_category: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory?
+
+        def processing_category=: (
+          Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory
+        ) -> Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory
+
         attr_reader terminal_id: String?
 
         def terminal_id=: (String) -> String
@@ -105,7 +105,6 @@ module Increase
           ?card_id: String,
           ?decline_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::decline_reason,
           ?digital_wallet_token_id: String,
-          ?direction: Increase::Models::Simulations::CardAuthorizationCreateParams::direction,
           ?event_subscription_id: String,
           ?merchant_acceptor_id: String,
           ?merchant_category_code: String,
@@ -116,6 +115,7 @@ module Increase
           ?network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
           ?network_risk_score: Integer,
           ?physical_card_id: String,
+          ?processing_category: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory,
           ?terminal_id: String,
           ?request_options: Increase::request_opts
         ) -> void
@@ -126,7 +126,6 @@ module Increase
           card_id: String,
           decline_reason: Increase::Models::Simulations::CardAuthorizationCreateParams::decline_reason,
           digital_wallet_token_id: String,
-          direction: Increase::Models::Simulations::CardAuthorizationCreateParams::direction,
           event_subscription_id: String,
           merchant_acceptor_id: String,
           merchant_category_code: String,
@@ -137,6 +136,7 @@ module Increase
           network_details: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
           network_risk_score: Integer,
           physical_card_id: String,
+          processing_category: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory,
           terminal_id: String,
           request_options: Increase::RequestOptions
         }
@@ -229,20 +229,6 @@ module Increase
           def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthorizationCreateParams::decline_reason]
         end
 
-        type direction = :settlement | :refund
-
-        module Direction
-          extend Increase::Internal::Type::Enum
-
-          # A regular card authorization where funds are debited from the cardholder.
-          SETTLEMENT: :settlement
-
-          # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
-          REFUND: :refund
-
-          def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthorizationCreateParams::direction]
-        end
-
         type network_details =
           {
             visa: Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa
@@ -314,6 +300,63 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::stand_in_processing_reason]
             end
+          end
+        end
+
+        type processing_category =
+          {
+            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+          }
+
+        class ProcessingCategory < Increase::Internal::Type::BaseModel
+          attr_accessor category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+
+          def initialize: (
+            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+          ) -> void
+
+          def to_hash: -> {
+            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+          }
+
+          type category =
+            :account_funding
+            | :automatic_fuel_dispenser
+            | :bill_payment
+            | :original_credit
+            | :purchase
+            | :quasi_cash
+            | :refund
+            | :cash_disbursement
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
+            ACCOUNT_FUNDING: :account_funding
+
+            # Automatic fuel dispenser authorizations occur when a card is used at a gas pump, prior to the actual transaction amount being known. They are followed by an advice message that updates the amount of the pending transaction.
+            AUTOMATIC_FUEL_DISPENSER: :automatic_fuel_dispenser
+
+            # A transaction used to pay a bill.
+            BILL_PAYMENT: :bill_payment
+
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT: :original_credit
+
+            # A regular purchase.
+            PURCHASE: :purchase
+
+            # Quasi-cash transactions represent purchases of items which may be convertible to cash.
+            QUASI_CASH: :quasi_cash
+
+            # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
+            REFUND: :refund
+
+            # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
+            CASH_DISBURSEMENT: :cash_disbursement
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category]
           end
         end
       end

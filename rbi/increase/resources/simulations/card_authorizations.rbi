@@ -19,8 +19,6 @@ module Increase
             decline_reason:
               Increase::Simulations::CardAuthorizationCreateParams::DeclineReason::OrSymbol,
             digital_wallet_token_id: String,
-            direction:
-              Increase::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol,
             event_subscription_id: String,
             merchant_acceptor_id: String,
             merchant_category_code: String,
@@ -32,6 +30,8 @@ module Increase
               Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::OrHash,
             network_risk_score: Integer,
             physical_card_id: String,
+            processing_category:
+              Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::OrHash,
             terminal_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(
@@ -51,9 +51,6 @@ module Increase
           decline_reason: nil,
           # The identifier of the Digital Wallet Token to be authorized.
           digital_wallet_token_id: nil,
-          # The direction describes the direction the funds will move, either from the
-          # cardholder to the merchant or from the merchant to the cardholder.
-          direction: nil,
           # The identifier of the Event Subscription to use. If provided, will override the
           # default real time event subscription. Because you can only create one real time
           # decision event subscription, you can use this field to route events to any
@@ -80,6 +77,9 @@ module Increase
           network_risk_score: nil,
           # The identifier of the Physical Card to be authorized.
           physical_card_id: nil,
+          # Fields specific to a specific type of authorization, such as Automatic Fuel
+          # Dispensers, Refund Authorizations, or Cash Disbursements.
+          processing_category: nil,
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           terminal_id: nil,

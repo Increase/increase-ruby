@@ -60,25 +60,6 @@ module Increase
         sig { params(digital_wallet_token_id: String).void }
         attr_writer :digital_wallet_token_id
 
-        # The direction describes the direction the funds will move, either from the
-        # cardholder to the merchant or from the merchant to the cardholder.
-        sig do
-          returns(
-            T.nilable(
-              Increase::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol
-            )
-          )
-        end
-        attr_reader :direction
-
-        sig do
-          params(
-            direction:
-              Increase::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol
-          ).void
-        end
-        attr_writer :direction
-
         # The identifier of the Event Subscription to use. If provided, will override the
         # default real time event subscription. Because you can only create one real time
         # decision event subscription, you can use this field to route events to any
@@ -166,6 +147,25 @@ module Increase
         sig { params(physical_card_id: String).void }
         attr_writer :physical_card_id
 
+        # Fields specific to a specific type of authorization, such as Automatic Fuel
+        # Dispensers, Refund Authorizations, or Cash Disbursements.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory
+            )
+          )
+        end
+        attr_reader :processing_category
+
+        sig do
+          params(
+            processing_category:
+              Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::OrHash
+          ).void
+        end
+        attr_writer :processing_category
+
         # The terminal identifier (commonly abbreviated as TID) of the terminal the card
         # is transacting with.
         sig { returns(T.nilable(String)) }
@@ -182,8 +182,6 @@ module Increase
             decline_reason:
               Increase::Simulations::CardAuthorizationCreateParams::DeclineReason::OrSymbol,
             digital_wallet_token_id: String,
-            direction:
-              Increase::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol,
             event_subscription_id: String,
             merchant_acceptor_id: String,
             merchant_category_code: String,
@@ -195,6 +193,8 @@ module Increase
               Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::OrHash,
             network_risk_score: Integer,
             physical_card_id: String,
+            processing_category:
+              Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::OrHash,
             terminal_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -212,9 +212,6 @@ module Increase
           decline_reason: nil,
           # The identifier of the Digital Wallet Token to be authorized.
           digital_wallet_token_id: nil,
-          # The direction describes the direction the funds will move, either from the
-          # cardholder to the merchant or from the merchant to the cardholder.
-          direction: nil,
           # The identifier of the Event Subscription to use. If provided, will override the
           # default real time event subscription. Because you can only create one real time
           # decision event subscription, you can use this field to route events to any
@@ -241,6 +238,9 @@ module Increase
           network_risk_score: nil,
           # The identifier of the Physical Card to be authorized.
           physical_card_id: nil,
+          # Fields specific to a specific type of authorization, such as Automatic Fuel
+          # Dispensers, Refund Authorizations, or Cash Disbursements.
+          processing_category: nil,
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           terminal_id: nil,
@@ -257,8 +257,6 @@ module Increase
               decline_reason:
                 Increase::Simulations::CardAuthorizationCreateParams::DeclineReason::OrSymbol,
               digital_wallet_token_id: String,
-              direction:
-                Increase::Simulations::CardAuthorizationCreateParams::Direction::OrSymbol,
               event_subscription_id: String,
               merchant_acceptor_id: String,
               merchant_category_code: String,
@@ -270,6 +268,8 @@ module Increase
                 Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails,
               network_risk_score: Integer,
               physical_card_id: String,
+              processing_category:
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory,
               terminal_id: String,
               request_options: Increase::RequestOptions
             }
@@ -436,45 +436,6 @@ module Increase
             override.returns(
               T::Array[
                 Increase::Simulations::CardAuthorizationCreateParams::DeclineReason::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The direction describes the direction the funds will move, either from the
-        # cardholder to the merchant or from the merchant to the cardholder.
-        module Direction
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::Simulations::CardAuthorizationCreateParams::Direction
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # A regular card authorization where funds are debited from the cardholder.
-          SETTLEMENT =
-            T.let(
-              :settlement,
-              Increase::Simulations::CardAuthorizationCreateParams::Direction::TaggedSymbol
-            )
-
-          # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
-          REFUND =
-            T.let(
-              :refund,
-              Increase::Simulations::CardAuthorizationCreateParams::Direction::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::Simulations::CardAuthorizationCreateParams::Direction::TaggedSymbol
               ]
             )
           end
@@ -653,6 +614,132 @@ module Increase
               end
               def self.values
               end
+            end
+          end
+        end
+
+        class ProcessingCategory < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The processing category describes the intent behind the authorization, such as
+          # whether it was used for bill payments or an automatic fuel dispenser.
+          sig do
+            returns(
+              Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol
+            )
+          end
+          attr_accessor :category
+
+          # Fields specific to a specific type of authorization, such as Automatic Fuel
+          # Dispensers, Refund Authorizations, or Cash Disbursements.
+          sig do
+            params(
+              category:
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The processing category describes the intent behind the authorization, such as
+            # whether it was used for bill payments or an automatic fuel dispenser.
+            category:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                category:
+                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The processing category describes the intent behind the authorization, such as
+          # whether it was used for bill payments or an automatic fuel dispenser.
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
+            ACCOUNT_FUNDING =
+              T.let(
+                :account_funding,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # Automatic fuel dispenser authorizations occur when a card is used at a gas pump, prior to the actual transaction amount being known. They are followed by an advice message that updates the amount of the pending transaction.
+            AUTOMATIC_FUEL_DISPENSER =
+              T.let(
+                :automatic_fuel_dispenser,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # A transaction used to pay a bill.
+            BILL_PAYMENT =
+              T.let(
+                :bill_payment,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT =
+              T.let(
+                :original_credit,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # A regular purchase.
+            PURCHASE =
+              T.let(
+                :purchase,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # Quasi-cash transactions represent purchases of items which may be convertible to cash.
+            QUASI_CASH =
+              T.let(
+                :quasi_cash,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
+            REFUND =
+              T.let(
+                :refund,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
+            CASH_DISBURSEMENT =
+              T.let(
+                :cash_disbursement,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
         end
