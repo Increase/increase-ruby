@@ -172,6 +172,12 @@ module Increase
           #   @return [String]
           required :city, String
 
+          # @!attribute country
+          #   The country of the shipping address.
+          #
+          #   @return [String]
+          required :country, String
+
           # @!attribute line1
           #   The first line of the shipping address.
           #
@@ -203,15 +209,17 @@ module Increase
           required :postal_code, String
 
           # @!attribute state
-          #   The US state of the shipping address.
+          #   The state of the shipping address.
           #
           #   @return [String]
           required :state, String
 
-          # @!method initialize(city:, line1:, line2:, line3:, name:, postal_code:, state:)
+          # @!method initialize(city:, country:, line1:, line2:, line3:, name:, postal_code:, state:)
           #   The location to where the card's packing label is addressed.
           #
           #   @param city [String] The city of the shipping address.
+          #
+          #   @param country [String] The country of the shipping address.
           #
           #   @param line1 [String] The first line of the shipping address.
           #
@@ -223,7 +231,7 @@ module Increase
           #
           #   @param postal_code [String] The postal code of the shipping address.
           #
-          #   @param state [String] The US state of the shipping address.
+          #   @param state [String] The state of the shipping address.
         end
 
         # The shipping method.
@@ -232,7 +240,7 @@ module Increase
         module Method
           extend Increase::Internal::Type::Enum
 
-          # USPS Post with tracking.
+          # USPS Post.
           USPS = :usps
 
           # FedEx Priority Overnight, no signature.
@@ -240,6 +248,9 @@ module Increase
 
           # FedEx 2-day.
           FEDEX_2_DAY = :fedex_2_day
+
+          # DHL Worldwide Express, international shipping only.
+          DHL_WORLDWIDE_EXPRESS = :dhl_worldwide_express
 
           # @!method self.values
           #   @return [Array<Symbol>]

@@ -233,9 +233,19 @@ module Increase
           sig { returns(String) }
           attr_accessor :postal_code
 
-          # The US state of the shipping address.
+          # The state of the shipping address.
           sig { returns(String) }
           attr_accessor :state
+
+          # The two-character ISO 3166-1 code of the country where the card should be
+          # shipped (e.g., `US`). Please reach out to
+          # [support@increase.com](mailto:support@increase.com) to ship cards
+          # internationally.
+          sig { returns(T.nilable(String)) }
+          attr_reader :country
+
+          sig { params(country: String).void }
+          attr_writer :country
 
           # The second line of the shipping address.
           sig { returns(T.nilable(String)) }
@@ -266,6 +276,7 @@ module Increase
               name: String,
               postal_code: String,
               state: String,
+              country: String,
               line2: String,
               line3: String,
               phone_number: String
@@ -280,8 +291,13 @@ module Increase
             name:,
             # The postal code of the shipping address.
             postal_code:,
-            # The US state of the shipping address.
+            # The state of the shipping address.
             state:,
+            # The two-character ISO 3166-1 code of the country where the card should be
+            # shipped (e.g., `US`). Please reach out to
+            # [support@increase.com](mailto:support@increase.com) to ship cards
+            # internationally.
+            country: nil,
             # The second line of the shipping address.
             line2: nil,
             # The third line of the shipping address.
@@ -299,6 +315,7 @@ module Increase
                 name: String,
                 postal_code: String,
                 state: String,
+                country: String,
                 line2: String,
                 line3: String,
                 phone_number: String
@@ -322,7 +339,7 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # USPS Post with tracking.
+          # USPS Post.
           USPS =
             T.let(
               :usps,
@@ -340,6 +357,13 @@ module Increase
           FEDEX_2_DAY =
             T.let(
               :fedex_2_day,
+              Increase::PhysicalCardCreateParams::Shipment::Method::TaggedSymbol
+            )
+
+          # DHL Worldwide Express, international shipping only.
+          DHL_WORLDWIDE_EXPRESS =
+            T.let(
+              :dhl_worldwide_express,
               Increase::PhysicalCardCreateParams::Shipment::Method::TaggedSymbol
             )
 

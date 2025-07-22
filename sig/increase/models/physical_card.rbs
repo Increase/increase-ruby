@@ -107,6 +107,7 @@ module Increase
         type address =
           {
             city: String,
+            country: String,
             :line1 => String,
             :line2 => String?,
             :line3 => String?,
@@ -117,6 +118,8 @@ module Increase
 
         class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
+
+          attr_accessor country: String
 
           attr_accessor line1: String
 
@@ -132,6 +135,7 @@ module Increase
 
           def initialize: (
             city: String,
+            country: String,
             line1: String,
             line2: String?,
             line3: String?,
@@ -142,6 +146,7 @@ module Increase
 
           def to_hash: -> {
             city: String,
+            country: String,
             :line1 => String,
             :line2 => String?,
             :line3 => String?,
@@ -151,12 +156,16 @@ module Increase
           }
         end
 
-        type method_ = :usps | :fedex_priority_overnight | :fedex_2_day
+        type method_ =
+          :usps
+          | :fedex_priority_overnight
+          | :fedex_2_day
+          | :dhl_worldwide_express
 
         module Method
           extend Increase::Internal::Type::Enum
 
-          # USPS Post with tracking.
+          # USPS Post.
           USPS: :usps
 
           # FedEx Priority Overnight, no signature.
@@ -164,6 +173,9 @@ module Increase
 
           # FedEx 2-day.
           FEDEX_2_DAY: :fedex_2_day
+
+          # DHL Worldwide Express, international shipping only.
+          DHL_WORLDWIDE_EXPRESS: :dhl_worldwide_express
 
           def self?.values: -> ::Array[Increase::Models::PhysicalCard::Shipment::method_]
         end

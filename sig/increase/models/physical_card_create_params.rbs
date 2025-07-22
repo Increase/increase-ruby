@@ -88,6 +88,7 @@ module Increase
             name: String,
             postal_code: String,
             state: String,
+            country: String,
             :line2 => String,
             :line3 => String,
             phone_number: String
@@ -103,6 +104,10 @@ module Increase
           attr_accessor postal_code: String
 
           attr_accessor state: String
+
+          attr_reader country: String?
+
+          def country=: (String) -> String
 
           attr_reader line2: String?
 
@@ -122,6 +127,7 @@ module Increase
             name: String,
             postal_code: String,
             state: String,
+            ?country: String,
             ?line2: String,
             ?line3: String,
             ?phone_number: String
@@ -133,18 +139,23 @@ module Increase
             name: String,
             postal_code: String,
             state: String,
+            country: String,
             :line2 => String,
             :line3 => String,
             phone_number: String
           }
         end
 
-        type method_ = :usps | :fedex_priority_overnight | :fedex_2_day
+        type method_ =
+          :usps
+          | :fedex_priority_overnight
+          | :fedex_2_day
+          | :dhl_worldwide_express
 
         module Method
           extend Increase::Internal::Type::Enum
 
-          # USPS Post with tracking.
+          # USPS Post.
           USPS: :usps
 
           # FedEx Priority Overnight, no signature.
@@ -152,6 +163,9 @@ module Increase
 
           # FedEx 2-day.
           FEDEX_2_DAY: :fedex_2_day
+
+          # DHL Worldwide Express, international shipping only.
+          DHL_WORLDWIDE_EXPRESS: :dhl_worldwide_express
 
           def self?.values: -> ::Array[Increase::Models::PhysicalCardCreateParams::Shipment::method_]
         end

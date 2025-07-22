@@ -133,10 +133,19 @@ module Increase
           required :postal_code, String
 
           # @!attribute state
-          #   The US state of the shipping address.
+          #   The state of the shipping address.
           #
           #   @return [String]
           required :state, String
+
+          # @!attribute country
+          #   The two-character ISO 3166-1 code of the country where the card should be
+          #   shipped (e.g., `US`). Please reach out to
+          #   [support@increase.com](mailto:support@increase.com) to ship cards
+          #   internationally.
+          #
+          #   @return [String, nil]
+          optional :country, String
 
           # @!attribute line2
           #   The second line of the shipping address.
@@ -156,7 +165,11 @@ module Increase
           #   @return [String, nil]
           optional :phone_number, String
 
-          # @!method initialize(city:, line1:, name:, postal_code:, state:, line2: nil, line3: nil, phone_number: nil)
+          # @!method initialize(city:, line1:, name:, postal_code:, state:, country: nil, line2: nil, line3: nil, phone_number: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::PhysicalCardCreateParams::Shipment::Address} for more
+          #   details.
+          #
           #   The address to where the card should be shipped.
           #
           #   @param city [String] The city of the shipping address.
@@ -167,7 +180,9 @@ module Increase
           #
           #   @param postal_code [String] The postal code of the shipping address.
           #
-          #   @param state [String] The US state of the shipping address.
+          #   @param state [String] The state of the shipping address.
+          #
+          #   @param country [String] The two-character ISO 3166-1 code of the country where the card should be shippe
           #
           #   @param line2 [String] The second line of the shipping address.
           #
@@ -182,7 +197,7 @@ module Increase
         module Method
           extend Increase::Internal::Type::Enum
 
-          # USPS Post with tracking.
+          # USPS Post.
           USPS = :usps
 
           # FedEx Priority Overnight, no signature.
@@ -190,6 +205,9 @@ module Increase
 
           # FedEx 2-day.
           FEDEX_2_DAY = :fedex_2_day
+
+          # DHL Worldwide Express, international shipping only.
+          DHL_WORLDWIDE_EXPRESS = :dhl_worldwide_express
 
           # @!method self.values
           #   @return [Array<Symbol>]

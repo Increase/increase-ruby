@@ -258,6 +258,10 @@ module Increase
           sig { returns(String) }
           attr_accessor :city
 
+          # The country of the shipping address.
+          sig { returns(String) }
+          attr_accessor :country
+
           # The first line of the shipping address.
           sig { returns(String) }
           attr_accessor :line1
@@ -278,7 +282,7 @@ module Increase
           sig { returns(String) }
           attr_accessor :postal_code
 
-          # The US state of the shipping address.
+          # The state of the shipping address.
           sig { returns(String) }
           attr_accessor :state
 
@@ -286,6 +290,7 @@ module Increase
           sig do
             params(
               city: String,
+              country: String,
               line1: String,
               line2: T.nilable(String),
               line3: T.nilable(String),
@@ -297,6 +302,8 @@ module Increase
           def self.new(
             # The city of the shipping address.
             city:,
+            # The country of the shipping address.
+            country:,
             # The first line of the shipping address.
             line1:,
             # The second line of the shipping address.
@@ -307,7 +314,7 @@ module Increase
             name:,
             # The postal code of the shipping address.
             postal_code:,
-            # The US state of the shipping address.
+            # The state of the shipping address.
             state:
           )
           end
@@ -316,6 +323,7 @@ module Increase
             override.returns(
               {
                 city: String,
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
                 line3: T.nilable(String),
@@ -339,7 +347,7 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # USPS Post with tracking.
+          # USPS Post.
           USPS =
             T.let(:usps, Increase::PhysicalCard::Shipment::Method::TaggedSymbol)
 
@@ -354,6 +362,13 @@ module Increase
           FEDEX_2_DAY =
             T.let(
               :fedex_2_day,
+              Increase::PhysicalCard::Shipment::Method::TaggedSymbol
+            )
+
+          # DHL Worldwide Express, international shipping only.
+          DHL_WORLDWIDE_EXPRESS =
+            T.let(
+              :dhl_worldwide_express,
               Increase::PhysicalCard::Shipment::Method::TaggedSymbol
             )
 
