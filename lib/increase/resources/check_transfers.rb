@@ -138,7 +138,7 @@ module Increase
         )
       end
 
-      # Request a stop payment on a Check Transfer
+      # Stop payment on a Check Transfer
       #
       # @overload stop_payment(check_transfer_id, reason: nil, request_options: {})
       #

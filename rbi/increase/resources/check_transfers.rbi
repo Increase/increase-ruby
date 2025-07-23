@@ -120,7 +120,7 @@ module Increase
       )
       end
 
-      # Request a stop payment on a Check Transfer
+      # Stop payment on a Check Transfer
       sig do
         params(
           check_transfer_id: String,
