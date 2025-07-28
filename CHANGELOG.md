@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.18.1 (2025-07-28)
+
+Full Changelog: [v1.18.0...v1.18.1](https://github.com/Increase/increase-ruby/compare/v1.18.0...v1.18.1)
+
+### Bug Fixes
+
+* **internal:** ensure sorbet test always runs serially ([3fadad9](https://github.com/Increase/increase-ruby/commit/3fadad9784a466584e85aefa67b223010d1d2437))
+
+
+### Chores
+
+* update contribute.md ([123999a](https://github.com/Increase/increase-ruby/commit/123999a695d9b5c4b895f6743c8657a29fc4ef5b))
+
 ## 1.18.0 (2025-07-23)
 
 Full Changelog: [v1.17.0...v1.18.0](https://github.com/Increase/increase-ruby/compare/v1.17.0...v1.18.0)
