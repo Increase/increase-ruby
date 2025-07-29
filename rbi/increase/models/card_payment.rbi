@@ -4881,6 +4881,16 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :pending_transaction_id
 
+          # The amount of this increment in the minor unit of the transaction's presentment
+          # currency.
+          sig { returns(Integer) }
+          attr_accessor :presentment_amount
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          # transaction's presentment currency.
+          sig { returns(String) }
+          attr_accessor :presentment_currency
+
           # The identifier of the Real-Time Decision sent to approve or decline this
           # incremental authorization.
           sig { returns(T.nilable(String)) }
@@ -4918,6 +4928,8 @@ module Increase
                 Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers::OrHash,
               network_risk_score: T.nilable(Integer),
               pending_transaction_id: T.nilable(String),
+              presentment_amount: Integer,
+              presentment_currency: String,
               real_time_decision_id: T.nilable(String),
               type:
                 Increase::CardPayment::Element::CardIncrement::Type::OrSymbol,
@@ -4947,6 +4959,12 @@ module Increase
             network_risk_score:,
             # The identifier of the Pending Transaction associated with this Card Increment.
             pending_transaction_id:,
+            # The amount of this increment in the minor unit of the transaction's presentment
+            # currency.
+            presentment_amount:,
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+            # transaction's presentment currency.
+            presentment_currency:,
             # The identifier of the Real-Time Decision sent to approve or decline this
             # incremental authorization.
             real_time_decision_id:,
@@ -4975,6 +4993,8 @@ module Increase
                   Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers,
                 network_risk_score: T.nilable(Integer),
                 pending_transaction_id: T.nilable(String),
+                presentment_amount: Integer,
+                presentment_currency: String,
                 real_time_decision_id: T.nilable(String),
                 type:
                   Increase::CardPayment::Element::CardIncrement::Type::TaggedSymbol,

@@ -1960,6 +1960,8 @@ module Increase
             network_identifiers: Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers,
             network_risk_score: Integer?,
             pending_transaction_id: String?,
+            presentment_amount: Integer,
+            presentment_currency: String,
             real_time_decision_id: String?,
             type: Increase::Models::CardPayment::Element::CardIncrement::type_,
             updated_authorization_amount: Integer
@@ -1984,6 +1986,10 @@ module Increase
 
           attr_accessor pending_transaction_id: String?
 
+          attr_accessor presentment_amount: Integer
+
+          attr_accessor presentment_currency: String
+
           attr_accessor real_time_decision_id: String?
 
           attr_accessor type: Increase::Models::CardPayment::Element::CardIncrement::type_
@@ -2000,6 +2006,8 @@ module Increase
             network_identifiers: Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers,
             network_risk_score: Integer?,
             pending_transaction_id: String?,
+            presentment_amount: Integer,
+            presentment_currency: String,
             real_time_decision_id: String?,
             type: Increase::Models::CardPayment::Element::CardIncrement::type_,
             updated_authorization_amount: Integer
@@ -2015,6 +2023,8 @@ module Increase
             network_identifiers: Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers,
             network_risk_score: Integer?,
             pending_transaction_id: String?,
+            presentment_amount: Integer,
+            presentment_currency: String,
             real_time_decision_id: String?,
             type: Increase::Models::CardPayment::Element::CardIncrement::type_,
             updated_authorization_amount: Integer
