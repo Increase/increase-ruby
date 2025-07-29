@@ -4194,12 +4194,26 @@ module Increase
           #   @return [String, nil]
           required :pending_transaction_id, String, nil?: true
 
+          # @!attribute presentment_currency
+          #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
+          #   presentment currency.
+          #
+          #   @return [String]
+          required :presentment_currency, String
+
           # @!attribute reversal_amount
           #   The amount of this reversal in the minor unit of the transaction's currency. For
           #   dollars, for example, this is cents.
           #
           #   @return [Integer]
           required :reversal_amount, Integer
+
+          # @!attribute reversal_presentment_amount
+          #   The amount of this reversal in the minor unit of the transaction's presentment
+          #   currency. For dollars, for example, this is cents.
+          #
+          #   @return [Integer]
+          required :reversal_presentment_amount, Integer
 
           # @!attribute reversal_reason
           #   Why this reversal was initiated.
@@ -4230,7 +4244,14 @@ module Increase
           #   @return [Integer]
           required :updated_authorization_amount, Integer
 
-          # @!method initialize(id:, card_authorization_id:, currency:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, reversal_amount:, reversal_reason:, terminal_id:, type:, updated_authorization_amount:)
+          # @!attribute updated_authorization_presentment_amount
+          #   The amount left pending on the Card Authorization in the minor unit of the
+          #   transaction's presentment currency. For dollars, for example, this is cents.
+          #
+          #   @return [Integer]
+          required :updated_authorization_presentment_amount, Integer
+
+          # @!method initialize(id:, card_authorization_id:, currency:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_currency:, reversal_amount:, reversal_presentment_amount:, reversal_reason:, terminal_id:, type:, updated_authorization_amount:, updated_authorization_presentment_amount:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardReversal} for more details.
           #
@@ -4264,7 +4285,11 @@ module Increase
           #
           #   @param pending_transaction_id [String, nil] The identifier of the Pending Transaction associated with this Card Reversal.
           #
+          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's p
+          #
           #   @param reversal_amount [Integer] The amount of this reversal in the minor unit of the transaction's currency. For
+          #
+          #   @param reversal_presentment_amount [Integer] The amount of this reversal in the minor unit of the transaction's presentment c
           #
           #   @param reversal_reason [Symbol, Increase::Models::CardPayment::Element::CardReversal::ReversalReason, nil] Why this reversal was initiated.
           #
@@ -4273,6 +4298,8 @@ module Increase
           #   @param type [Symbol, Increase::Models::CardPayment::Element::CardReversal::Type] A constant representing the object's type. For this resource it will always be `
           #
           #   @param updated_authorization_amount [Integer] The amount left pending on the Card Authorization in the minor unit of the trans
+          #
+          #   @param updated_authorization_presentment_amount [Integer] The amount left pending on the Card Authorization in the minor unit of the trans
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
           # currency.

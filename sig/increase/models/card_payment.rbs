@@ -3153,11 +3153,14 @@ module Increase
             network: Increase::Models::CardPayment::Element::CardReversal::network,
             network_identifiers: Increase::CardPayment::Element::CardReversal::NetworkIdentifiers,
             pending_transaction_id: String?,
+            presentment_currency: String,
             reversal_amount: Integer,
+            reversal_presentment_amount: Integer,
             reversal_reason: Increase::Models::CardPayment::Element::CardReversal::reversal_reason?,
             terminal_id: String?,
             type: Increase::Models::CardPayment::Element::CardReversal::type_,
-            updated_authorization_amount: Integer
+            updated_authorization_amount: Integer,
+            updated_authorization_presentment_amount: Integer
           }
 
         class CardReversal < Increase::Internal::Type::BaseModel
@@ -3187,7 +3190,11 @@ module Increase
 
           attr_accessor pending_transaction_id: String?
 
+          attr_accessor presentment_currency: String
+
           attr_accessor reversal_amount: Integer
+
+          attr_accessor reversal_presentment_amount: Integer
 
           attr_accessor reversal_reason: Increase::Models::CardPayment::Element::CardReversal::reversal_reason?
 
@@ -3196,6 +3203,8 @@ module Increase
           attr_accessor type: Increase::Models::CardPayment::Element::CardReversal::type_
 
           attr_accessor updated_authorization_amount: Integer
+
+          attr_accessor updated_authorization_presentment_amount: Integer
 
           def initialize: (
             id: String,
@@ -3211,11 +3220,14 @@ module Increase
             network: Increase::Models::CardPayment::Element::CardReversal::network,
             network_identifiers: Increase::CardPayment::Element::CardReversal::NetworkIdentifiers,
             pending_transaction_id: String?,
+            presentment_currency: String,
             reversal_amount: Integer,
+            reversal_presentment_amount: Integer,
             reversal_reason: Increase::Models::CardPayment::Element::CardReversal::reversal_reason?,
             terminal_id: String?,
             type: Increase::Models::CardPayment::Element::CardReversal::type_,
-            updated_authorization_amount: Integer
+            updated_authorization_amount: Integer,
+            updated_authorization_presentment_amount: Integer
           ) -> void
 
           def to_hash: -> {
@@ -3232,11 +3244,14 @@ module Increase
             network: Increase::Models::CardPayment::Element::CardReversal::network,
             network_identifiers: Increase::CardPayment::Element::CardReversal::NetworkIdentifiers,
             pending_transaction_id: String?,
+            presentment_currency: String,
             reversal_amount: Integer,
+            reversal_presentment_amount: Integer,
             reversal_reason: Increase::Models::CardPayment::Element::CardReversal::reversal_reason?,
             terminal_id: String?,
             type: Increase::Models::CardPayment::Element::CardReversal::type_,
-            updated_authorization_amount: Integer
+            updated_authorization_amount: Integer,
+            updated_authorization_presentment_amount: Integer
           }
 
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD

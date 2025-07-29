@@ -7729,10 +7729,20 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :pending_transaction_id
 
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
+          # presentment currency.
+          sig { returns(String) }
+          attr_accessor :presentment_currency
+
           # The amount of this reversal in the minor unit of the transaction's currency. For
           # dollars, for example, this is cents.
           sig { returns(Integer) }
           attr_accessor :reversal_amount
+
+          # The amount of this reversal in the minor unit of the transaction's presentment
+          # currency. For dollars, for example, this is cents.
+          sig { returns(Integer) }
+          attr_accessor :reversal_presentment_amount
 
           # Why this reversal was initiated.
           sig do
@@ -7763,6 +7773,11 @@ module Increase
           sig { returns(Integer) }
           attr_accessor :updated_authorization_amount
 
+          # The amount left pending on the Card Authorization in the minor unit of the
+          # transaction's presentment currency. For dollars, for example, this is cents.
+          sig { returns(Integer) }
+          attr_accessor :updated_authorization_presentment_amount
+
           # A Card Reversal object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_reversal`. Card Reversals cancel parts of
           # or the entirety of an existing Card Authorization.
@@ -7784,7 +7799,9 @@ module Increase
               network_identifiers:
                 Increase::CardPayment::Element::CardReversal::NetworkIdentifiers::OrHash,
               pending_transaction_id: T.nilable(String),
+              presentment_currency: String,
               reversal_amount: Integer,
+              reversal_presentment_amount: Integer,
               reversal_reason:
                 T.nilable(
                   Increase::CardPayment::Element::CardReversal::ReversalReason::OrSymbol
@@ -7792,7 +7809,8 @@ module Increase
               terminal_id: T.nilable(String),
               type:
                 Increase::CardPayment::Element::CardReversal::Type::OrSymbol,
-              updated_authorization_amount: Integer
+              updated_authorization_amount: Integer,
+              updated_authorization_presentment_amount: Integer
             ).returns(T.attached_class)
           end
           def self.new(
@@ -7826,9 +7844,15 @@ module Increase
             network_identifiers:,
             # The identifier of the Pending Transaction associated with this Card Reversal.
             pending_transaction_id:,
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
+            # presentment currency.
+            presentment_currency:,
             # The amount of this reversal in the minor unit of the transaction's currency. For
             # dollars, for example, this is cents.
             reversal_amount:,
+            # The amount of this reversal in the minor unit of the transaction's presentment
+            # currency. For dollars, for example, this is cents.
+            reversal_presentment_amount:,
             # Why this reversal was initiated.
             reversal_reason:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
@@ -7839,7 +7863,10 @@ module Increase
             type:,
             # The amount left pending on the Card Authorization in the minor unit of the
             # transaction's currency. For dollars, for example, this is cents.
-            updated_authorization_amount:
+            updated_authorization_amount:,
+            # The amount left pending on the Card Authorization in the minor unit of the
+            # transaction's presentment currency. For dollars, for example, this is cents.
+            updated_authorization_presentment_amount:
           )
           end
 
@@ -7862,7 +7889,9 @@ module Increase
                 network_identifiers:
                   Increase::CardPayment::Element::CardReversal::NetworkIdentifiers,
                 pending_transaction_id: T.nilable(String),
+                presentment_currency: String,
                 reversal_amount: Integer,
+                reversal_presentment_amount: Integer,
                 reversal_reason:
                   T.nilable(
                     Increase::CardPayment::Element::CardReversal::ReversalReason::TaggedSymbol
@@ -7870,7 +7899,8 @@ module Increase
                 terminal_id: T.nilable(String),
                 type:
                   Increase::CardPayment::Element::CardReversal::Type::TaggedSymbol,
-                updated_authorization_amount: Integer
+                updated_authorization_amount: Integer,
+                updated_authorization_presentment_amount: Integer
               }
             )
           end
