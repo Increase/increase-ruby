@@ -471,6 +471,15 @@ module Increase
           #   @return [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Actioner]
           required :actioner, enum: -> { Increase::PendingTransaction::Source::CardAuthorization::Actioner }
 
+          # @!attribute additional_amounts
+          #   Additional amounts associated with the card authorization, such as ATM
+          #   surcharges fees. These are usually a subset of the `amount` field and are used
+          #   to provide more detailed information about the transaction.
+          #
+          #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts]
+          required :additional_amounts,
+                   -> { Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts }
+
           # @!attribute amount
           #   The pending amount in the minor unit of the transaction's currency. For dollars,
           #   for example, this is cents.
@@ -641,7 +650,7 @@ module Increase
           #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification]
           required :verification, -> { Increase::PendingTransaction::Source::CardAuthorization::Verification }
 
-          # @!method initialize(id:, actioner:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, expires_at:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, pending_transaction_id:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, terminal_id:, type:, verification:)
+          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, expires_at:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, pending_transaction_id:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, terminal_id:, type:, verification:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::PendingTransaction::Source::CardAuthorization} for more
           #   details.
@@ -654,6 +663,8 @@ module Increase
           #   @param id [String] The Card Authorization identifier.
           #
           #   @param actioner [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Actioner] Whether this authorization was approved by Increase, the card network through st
+          #
+          #   @param additional_amounts [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
           #
           #   @param amount [Integer] The pending amount in the minor unit of the transaction's currency. For dollars,
           #
@@ -723,6 +734,369 @@ module Increase
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::PendingTransaction::Source::CardAuthorization#additional_amounts
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            # @!attribute clinic
+            #   The part of this transaction amount that was for clinic-related services.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Clinic, nil]
+            required :clinic,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Clinic
+                     },
+                     nil?: true
+
+            # @!attribute dental
+            #   The part of this transaction amount that was for dental-related services.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Dental, nil]
+            required :dental,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Dental
+                     },
+                     nil?: true
+
+            # @!attribute prescription
+            #   The part of this transaction amount that was for healthcare prescriptions.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Prescription, nil]
+            required :prescription,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Prescription
+                     },
+                     nil?: true
+
+            # @!attribute surcharge
+            #   The surcharge amount charged for this transaction by the merchant.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Surcharge, nil]
+            required :surcharge,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Surcharge
+                     },
+                     nil?: true
+
+            # @!attribute total_cumulative
+            #   The total amount of a series of incremental authorizations, optionally provided.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalCumulative, nil]
+            required :total_cumulative,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalCumulative
+                     },
+                     nil?: true
+
+            # @!attribute total_healthcare
+            #   The total amount of healthcare-related additional amounts.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalHealthcare, nil]
+            required :total_healthcare,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalHealthcare
+                     },
+                     nil?: true
+
+            # @!attribute transit
+            #   The part of this transaction amount that was for transit-related services.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Transit, nil]
+            required :transit,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Transit
+                     },
+                     nil?: true
+
+            # @!attribute unknown
+            #   An unknown additional amount.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Unknown, nil]
+            required :unknown,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Unknown
+                     },
+                     nil?: true
+
+            # @!attribute vision
+            #   The part of this transaction amount that was for vision-related services.
+            #
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Vision, nil]
+            required :vision,
+                     -> {
+                       Increase::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Vision
+                     },
+                     nil?: true
+
+            # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts}
+            #   for more details.
+            #
+            #   Additional amounts associated with the card authorization, such as ATM
+            #   surcharges fees. These are usually a subset of the `amount` field and are used
+            #   to provide more detailed information about the transaction.
+            #
+            #   @param clinic [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #
+            #   @param dental [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #
+            #   @param prescription [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #
+            #   @param surcharge [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #
+            #   @param total_cumulative [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #
+            #   @param total_healthcare [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #
+            #   @param transit [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #
+            #   @param unknown [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #
+            #   @param vision [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#clinic
+            class Clinic < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Clinic}
+              #   for more details.
+              #
+              #   The part of this transaction amount that was for clinic-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#dental
+            class Dental < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Dental}
+              #   for more details.
+              #
+              #   The part of this transaction amount that was for dental-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#prescription
+            class Prescription < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Prescription}
+              #   for more details.
+              #
+              #   The part of this transaction amount that was for healthcare prescriptions.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#surcharge
+            class Surcharge < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Surcharge}
+              #   for more details.
+              #
+              #   The surcharge amount charged for this transaction by the merchant.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#total_cumulative
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalCumulative}
+              #   for more details.
+              #
+              #   The total amount of a series of incremental authorizations, optionally provided.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#total_healthcare
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::TotalHealthcare}
+              #   for more details.
+              #
+              #   The total amount of healthcare-related additional amounts.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#transit
+            class Transit < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Transit}
+              #   for more details.
+              #
+              #   The part of this transaction amount that was for transit-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#unknown
+            class Unknown < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Unknown}
+              #   for more details.
+              #
+              #   An unknown additional amount.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts#vision
+            class Vision < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field.
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Vision}
+              #   for more details.
+              #
+              #   The part of this transaction amount that was for vision-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
           end
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the

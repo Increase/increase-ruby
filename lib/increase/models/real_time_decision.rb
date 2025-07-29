@@ -248,6 +248,14 @@ module Increase
         #   @return [String]
         required :account_id, String
 
+        # @!attribute additional_amounts
+        #   Additional amounts associated with the card authorization, such as ATM
+        #   surcharges fees. These are usually a subset of the `amount` field and are used
+        #   to provide more detailed information about the transaction.
+        #
+        #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts]
+        required :additional_amounts, -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts }
+
         # @!attribute card_id
         #   The identifier of the Card that is being authorized.
         #
@@ -411,13 +419,15 @@ module Increase
         #   @return [Increase::Models::RealTimeDecision::CardAuthorization::Verification]
         required :verification, -> { Increase::RealTimeDecision::CardAuthorization::Verification }
 
-        # @!method initialize(account_id:, card_id:, decision:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, request_details:, settlement_amount:, settlement_currency:, terminal_id:, upcoming_card_payment_id:, verification:)
+        # @!method initialize(account_id:, additional_amounts:, card_id:, decision:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, request_details:, settlement_amount:, settlement_currency:, terminal_id:, upcoming_card_payment_id:, verification:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecision::CardAuthorization} for more details.
         #
         #   Fields related to a card authorization.
         #
         #   @param account_id [String] The identifier of the Account the authorization will debit.
+        #
+        #   @param additional_amounts [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
         #
         #   @param card_id [String] The identifier of the Card that is being authorized.
         #
@@ -466,6 +476,351 @@ module Increase
         #   @param upcoming_card_payment_id [String] The identifier of the Card Payment this authorization will belong to. Available
         #
         #   @param verification [Increase::Models::RealTimeDecision::CardAuthorization::Verification] Fields related to verification of cardholder-provided values.
+
+        # @see Increase::Models::RealTimeDecision::CardAuthorization#additional_amounts
+        class AdditionalAmounts < Increase::Internal::Type::BaseModel
+          # @!attribute clinic
+          #   The part of this transaction amount that was for clinic-related services.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic, nil]
+          required :clinic,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic },
+                   nil?: true
+
+          # @!attribute dental
+          #   The part of this transaction amount that was for dental-related services.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental, nil]
+          required :dental,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental },
+                   nil?: true
+
+          # @!attribute prescription
+          #   The part of this transaction amount that was for healthcare prescriptions.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription, nil]
+          required :prescription,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription },
+                   nil?: true
+
+          # @!attribute surcharge
+          #   The surcharge amount charged for this transaction by the merchant.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge, nil]
+          required :surcharge,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge },
+                   nil?: true
+
+          # @!attribute total_cumulative
+          #   The total amount of a series of incremental authorizations, optionally provided.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative, nil]
+          required :total_cumulative,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative },
+                   nil?: true
+
+          # @!attribute total_healthcare
+          #   The total amount of healthcare-related additional amounts.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalHealthcare, nil]
+          required :total_healthcare,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalHealthcare },
+                   nil?: true
+
+          # @!attribute transit
+          #   The part of this transaction amount that was for transit-related services.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Transit, nil]
+          required :transit,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Transit },
+                   nil?: true
+
+          # @!attribute unknown
+          #   An unknown additional amount.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Unknown, nil]
+          required :unknown,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Unknown },
+                   nil?: true
+
+          # @!attribute vision
+          #   The part of this transaction amount that was for vision-related services.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Vision, nil]
+          required :vision,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Vision },
+                   nil?: true
+
+          # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts} for
+          #   more details.
+          #
+          #   Additional amounts associated with the card authorization, such as ATM
+          #   surcharges fees. These are usually a subset of the `amount` field and are used
+          #   to provide more detailed information about the transaction.
+          #
+          #   @param clinic [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+          #
+          #   @param dental [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+          #
+          #   @param prescription [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+          #
+          #   @param surcharge [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+          #
+          #   @param total_cumulative [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+          #
+          #   @param total_healthcare [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+          #
+          #   @param transit [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+          #
+          #   @param unknown [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+          #
+          #   @param vision [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#clinic
+          class Clinic < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic}
+            #   for more details.
+            #
+            #   The part of this transaction amount that was for clinic-related services.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#dental
+          class Dental < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental}
+            #   for more details.
+            #
+            #   The part of this transaction amount that was for dental-related services.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#prescription
+          class Prescription < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription}
+            #   for more details.
+            #
+            #   The part of this transaction amount that was for healthcare prescriptions.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#surcharge
+          class Surcharge < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge}
+            #   for more details.
+            #
+            #   The surcharge amount charged for this transaction by the merchant.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#total_cumulative
+          class TotalCumulative < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative}
+            #   for more details.
+            #
+            #   The total amount of a series of incremental authorizations, optionally provided.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#total_healthcare
+          class TotalHealthcare < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalHealthcare}
+            #   for more details.
+            #
+            #   The total amount of healthcare-related additional amounts.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#transit
+          class Transit < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Transit}
+            #   for more details.
+            #
+            #   The part of this transaction amount that was for transit-related services.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#unknown
+          class Unknown < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Unknown}
+            #   for more details.
+            #
+            #   An unknown additional amount.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#vision
+          class Vision < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Vision}
+            #   for more details.
+            #
+            #   The part of this transaction amount that was for vision-related services.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field.
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+        end
 
         # Whether or not the authorization was approved.
         #

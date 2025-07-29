@@ -1192,6 +1192,24 @@ module Increase
           end
           attr_accessor :actioner
 
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts
+            )
+          end
+          attr_reader :additional_amounts
+
+          sig do
+            params(
+              additional_amounts:
+                Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::OrHash
+            ).void
+          end
+          attr_writer :additional_amounts
+
           # The pending amount in the minor unit of the transaction's currency. For dollars,
           # for example, this is cents.
           sig { returns(Integer) }
@@ -1368,6 +1386,8 @@ module Increase
               id: String,
               actioner:
                 Increase::CardPayment::Element::CardAuthorization::Actioner::OrSymbol,
+              additional_amounts:
+                Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::OrHash,
               amount: Integer,
               card_payment_id: String,
               currency:
@@ -1408,6 +1428,10 @@ module Increase
             # Whether this authorization was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            additional_amounts:,
             # The pending amount in the minor unit of the transaction's currency. For dollars,
             # for example, this is cents.
             amount:,
@@ -1482,6 +1506,8 @@ module Increase
                 id: String,
                 actioner:
                   Increase::CardPayment::Element::CardAuthorization::Actioner::TaggedSymbol,
+                additional_amounts:
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts,
                 amount: Integer,
                 card_payment_id: String,
                 currency:
@@ -1563,6 +1589,648 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The part of this transaction amount that was for clinic-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic
+                )
+              )
+            end
+            attr_reader :clinic
+
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic::OrHash
+                  )
+              ).void
+            end
+            attr_writer :clinic
+
+            # The part of this transaction amount that was for dental-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental
+                )
+              )
+            end
+            attr_reader :dental
+
+            sig do
+              params(
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental::OrHash
+                  )
+              ).void
+            end
+            attr_writer :dental
+
+            # The part of this transaction amount that was for healthcare prescriptions.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription
+                )
+              )
+            end
+            attr_reader :prescription
+
+            sig do
+              params(
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription::OrHash
+                  )
+              ).void
+            end
+            attr_writer :prescription
+
+            # The surcharge amount charged for this transaction by the merchant.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge
+                )
+              )
+            end
+            attr_reader :surcharge
+
+            sig do
+              params(
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge::OrHash
+                  )
+              ).void
+            end
+            attr_writer :surcharge
+
+            # The total amount of a series of incremental authorizations, optionally provided.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative
+                )
+              )
+            end
+            attr_reader :total_cumulative
+
+            sig do
+              params(
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_cumulative
+
+            # The total amount of healthcare-related additional amounts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare
+                )
+              )
+            end
+            attr_reader :total_healthcare
+
+            sig do
+              params(
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_healthcare
+
+            # The part of this transaction amount that was for transit-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit
+                )
+              )
+            end
+            attr_reader :transit
+
+            sig do
+              params(
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit::OrHash
+                  )
+              ).void
+            end
+            attr_writer :transit
+
+            # An unknown additional amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown
+                )
+              )
+            end
+            attr_reader :unknown
+
+            sig do
+              params(
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown::OrHash
+                  )
+              ).void
+            end
+            attr_writer :unknown
+
+            # The part of this transaction amount that was for vision-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision
+                )
+              )
+            end
+            attr_reader :vision
+
+            sig do
+              params(
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision::OrHash
+                  )
+              ).void
+            end
+            attr_writer :vision
+
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic::OrHash
+                  ),
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental::OrHash
+                  ),
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription::OrHash
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge::OrHash
+                  ),
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative::OrHash
+                  ),
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare::OrHash
+                  ),
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit::OrHash
+                  ),
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown::OrHash
+                  ),
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The part of this transaction amount that was for clinic-related services.
+              clinic:,
+              # The part of this transaction amount that was for dental-related services.
+              dental:,
+              # The part of this transaction amount that was for healthcare prescriptions.
+              prescription:,
+              # The surcharge amount charged for this transaction by the merchant.
+              surcharge:,
+              # The total amount of a series of incremental authorizations, optionally provided.
+              total_cumulative:,
+              # The total amount of healthcare-related additional amounts.
+              total_healthcare:,
+              # The part of this transaction amount that was for transit-related services.
+              transit:,
+              # An unknown additional amount.
+              unknown:,
+              # The part of this transaction amount that was for vision-related services.
+              vision:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  clinic:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic
+                    ),
+                  dental:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental
+                    ),
+                  prescription:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription
+                    ),
+                  surcharge:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge
+                    ),
+                  total_cumulative:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative
+                    ),
+                  total_healthcare:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare
+                    ),
+                  transit:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit
+                    ),
+                  unknown:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown
+                    ),
+                  vision:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Clinic < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for clinic-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Dental < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Prescription < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for healthcare prescriptions.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Surcharge < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The surcharge amount charged for this transaction by the merchant.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of a series of incremental authorizations, optionally provided.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of healthcare-related additional amounts.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Transit < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for transit-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Unknown < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # An unknown additional amount.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Vision < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for vision-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
             end
           end
 
@@ -2863,6 +3531,24 @@ module Increase
           end
           attr_accessor :actioner
 
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardDecline::AdditionalAmounts
+            )
+          end
+          attr_reader :additional_amounts
+
+          sig do
+            params(
+              additional_amounts:
+                Increase::CardPayment::Element::CardDecline::AdditionalAmounts::OrHash
+            ).void
+          end
+          attr_writer :additional_amounts
+
           # The declined amount in the minor unit of the destination account currency. For
           # dollars, for example, this is cents.
           sig { returns(Integer) }
@@ -3038,6 +3724,8 @@ module Increase
               id: String,
               actioner:
                 Increase::CardPayment::Element::CardDecline::Actioner::OrSymbol,
+              additional_amounts:
+                Increase::CardPayment::Element::CardDecline::AdditionalAmounts::OrHash,
               amount: Integer,
               card_payment_id: String,
               currency:
@@ -3081,6 +3769,10 @@ module Increase
             # Whether this authorization was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            additional_amounts:,
             # The declined amount in the minor unit of the destination account currency. For
             # dollars, for example, this is cents.
             amount:,
@@ -3154,6 +3846,8 @@ module Increase
                 id: String,
                 actioner:
                   Increase::CardPayment::Element::CardDecline::Actioner::TaggedSymbol,
+                additional_amounts:
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts,
                 amount: Integer,
                 card_payment_id: String,
                 currency:
@@ -3238,6 +3932,648 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The part of this transaction amount that was for clinic-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic
+                )
+              )
+            end
+            attr_reader :clinic
+
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic::OrHash
+                  )
+              ).void
+            end
+            attr_writer :clinic
+
+            # The part of this transaction amount that was for dental-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental
+                )
+              )
+            end
+            attr_reader :dental
+
+            sig do
+              params(
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental::OrHash
+                  )
+              ).void
+            end
+            attr_writer :dental
+
+            # The part of this transaction amount that was for healthcare prescriptions.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription
+                )
+              )
+            end
+            attr_reader :prescription
+
+            sig do
+              params(
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription::OrHash
+                  )
+              ).void
+            end
+            attr_writer :prescription
+
+            # The surcharge amount charged for this transaction by the merchant.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge
+                )
+              )
+            end
+            attr_reader :surcharge
+
+            sig do
+              params(
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge::OrHash
+                  )
+              ).void
+            end
+            attr_writer :surcharge
+
+            # The total amount of a series of incremental authorizations, optionally provided.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative
+                )
+              )
+            end
+            attr_reader :total_cumulative
+
+            sig do
+              params(
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_cumulative
+
+            # The total amount of healthcare-related additional amounts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare
+                )
+              )
+            end
+            attr_reader :total_healthcare
+
+            sig do
+              params(
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_healthcare
+
+            # The part of this transaction amount that was for transit-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Transit
+                )
+              )
+            end
+            attr_reader :transit
+
+            sig do
+              params(
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Transit::OrHash
+                  )
+              ).void
+            end
+            attr_writer :transit
+
+            # An unknown additional amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown
+                )
+              )
+            end
+            attr_reader :unknown
+
+            sig do
+              params(
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown::OrHash
+                  )
+              ).void
+            end
+            attr_writer :unknown
+
+            # The part of this transaction amount that was for vision-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Vision
+                )
+              )
+            end
+            attr_reader :vision
+
+            sig do
+              params(
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Vision::OrHash
+                  )
+              ).void
+            end
+            attr_writer :vision
+
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic::OrHash
+                  ),
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental::OrHash
+                  ),
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription::OrHash
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge::OrHash
+                  ),
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative::OrHash
+                  ),
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare::OrHash
+                  ),
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Transit::OrHash
+                  ),
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown::OrHash
+                  ),
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Vision::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The part of this transaction amount that was for clinic-related services.
+              clinic:,
+              # The part of this transaction amount that was for dental-related services.
+              dental:,
+              # The part of this transaction amount that was for healthcare prescriptions.
+              prescription:,
+              # The surcharge amount charged for this transaction by the merchant.
+              surcharge:,
+              # The total amount of a series of incremental authorizations, optionally provided.
+              total_cumulative:,
+              # The total amount of healthcare-related additional amounts.
+              total_healthcare:,
+              # The part of this transaction amount that was for transit-related services.
+              transit:,
+              # An unknown additional amount.
+              unknown:,
+              # The part of this transaction amount that was for vision-related services.
+              vision:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  clinic:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic
+                    ),
+                  dental:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental
+                    ),
+                  prescription:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription
+                    ),
+                  surcharge:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge
+                    ),
+                  total_cumulative:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative
+                    ),
+                  total_healthcare:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare
+                    ),
+                  transit:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Transit
+                    ),
+                  unknown:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown
+                    ),
+                  vision:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Vision
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Clinic < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for clinic-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Dental < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Prescription < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for healthcare prescriptions.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Surcharge < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The surcharge amount charged for this transaction by the merchant.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of a series of incremental authorizations, optionally provided.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of healthcare-related additional amounts.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Transit < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Transit,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for transit-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Unknown < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # An unknown additional amount.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Vision < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Vision,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for vision-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
             end
           end
 
@@ -4830,6 +6166,24 @@ module Increase
           end
           attr_accessor :actioner
 
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardIncrement::AdditionalAmounts
+            )
+          end
+          attr_reader :additional_amounts
+
+          sig do
+            params(
+              additional_amounts:
+                Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::OrHash
+            ).void
+          end
+          attr_writer :additional_amounts
+
           # The amount of this increment in the minor unit of the transaction's currency.
           # For dollars, for example, this is cents.
           sig { returns(Integer) }
@@ -4918,6 +6272,8 @@ module Increase
               id: String,
               actioner:
                 Increase::CardPayment::Element::CardIncrement::Actioner::OrSymbol,
+              additional_amounts:
+                Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::OrHash,
               amount: Integer,
               card_authorization_id: String,
               currency:
@@ -4942,6 +6298,10 @@ module Increase
             # Whether this authorization was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            additional_amounts:,
             # The amount of this increment in the minor unit of the transaction's currency.
             # For dollars, for example, this is cents.
             amount:,
@@ -4983,6 +6343,8 @@ module Increase
                 id: String,
                 actioner:
                   Increase::CardPayment::Element::CardIncrement::Actioner::TaggedSymbol,
+                additional_amounts:
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts,
                 amount: Integer,
                 card_authorization_id: String,
                 currency:
@@ -5048,6 +6410,648 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The part of this transaction amount that was for clinic-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic
+                )
+              )
+            end
+            attr_reader :clinic
+
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic::OrHash
+                  )
+              ).void
+            end
+            attr_writer :clinic
+
+            # The part of this transaction amount that was for dental-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental
+                )
+              )
+            end
+            attr_reader :dental
+
+            sig do
+              params(
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental::OrHash
+                  )
+              ).void
+            end
+            attr_writer :dental
+
+            # The part of this transaction amount that was for healthcare prescriptions.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription
+                )
+              )
+            end
+            attr_reader :prescription
+
+            sig do
+              params(
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription::OrHash
+                  )
+              ).void
+            end
+            attr_writer :prescription
+
+            # The surcharge amount charged for this transaction by the merchant.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge
+                )
+              )
+            end
+            attr_reader :surcharge
+
+            sig do
+              params(
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge::OrHash
+                  )
+              ).void
+            end
+            attr_writer :surcharge
+
+            # The total amount of a series of incremental authorizations, optionally provided.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative
+                )
+              )
+            end
+            attr_reader :total_cumulative
+
+            sig do
+              params(
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_cumulative
+
+            # The total amount of healthcare-related additional amounts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare
+                )
+              )
+            end
+            attr_reader :total_healthcare
+
+            sig do
+              params(
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_healthcare
+
+            # The part of this transaction amount that was for transit-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit
+                )
+              )
+            end
+            attr_reader :transit
+
+            sig do
+              params(
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit::OrHash
+                  )
+              ).void
+            end
+            attr_writer :transit
+
+            # An unknown additional amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown
+                )
+              )
+            end
+            attr_reader :unknown
+
+            sig do
+              params(
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown::OrHash
+                  )
+              ).void
+            end
+            attr_writer :unknown
+
+            # The part of this transaction amount that was for vision-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision
+                )
+              )
+            end
+            attr_reader :vision
+
+            sig do
+              params(
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision::OrHash
+                  )
+              ).void
+            end
+            attr_writer :vision
+
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic::OrHash
+                  ),
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental::OrHash
+                  ),
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription::OrHash
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge::OrHash
+                  ),
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative::OrHash
+                  ),
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare::OrHash
+                  ),
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit::OrHash
+                  ),
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown::OrHash
+                  ),
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The part of this transaction amount that was for clinic-related services.
+              clinic:,
+              # The part of this transaction amount that was for dental-related services.
+              dental:,
+              # The part of this transaction amount that was for healthcare prescriptions.
+              prescription:,
+              # The surcharge amount charged for this transaction by the merchant.
+              surcharge:,
+              # The total amount of a series of incremental authorizations, optionally provided.
+              total_cumulative:,
+              # The total amount of healthcare-related additional amounts.
+              total_healthcare:,
+              # The part of this transaction amount that was for transit-related services.
+              transit:,
+              # An unknown additional amount.
+              unknown:,
+              # The part of this transaction amount that was for vision-related services.
+              vision:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  clinic:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic
+                    ),
+                  dental:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental
+                    ),
+                  prescription:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription
+                    ),
+                  surcharge:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge
+                    ),
+                  total_cumulative:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative
+                    ),
+                  total_healthcare:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare
+                    ),
+                  transit:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit
+                    ),
+                  unknown:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown
+                    ),
+                  vision:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Clinic < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for clinic-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Dental < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Prescription < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for healthcare prescriptions.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Surcharge < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The surcharge amount charged for this transaction by the merchant.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of a series of incremental authorizations, optionally provided.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of healthcare-related additional amounts.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Transit < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for transit-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Unknown < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # An unknown additional amount.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Vision < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for vision-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
             end
           end
 
@@ -10640,6 +12644,24 @@ module Increase
           end
           attr_accessor :actioner
 
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardValidation::AdditionalAmounts
+            )
+          end
+          attr_reader :additional_amounts
+
+          sig do
+            params(
+              additional_amounts:
+                Increase::CardPayment::Element::CardValidation::AdditionalAmounts::OrHash
+            ).void
+          end
+          attr_writer :additional_amounts
+
           # The ID of the Card Payment this transaction belongs to.
           sig { returns(String) }
           attr_accessor :card_payment_id
@@ -10775,6 +12797,8 @@ module Increase
               id: String,
               actioner:
                 Increase::CardPayment::Element::CardValidation::Actioner::OrSymbol,
+              additional_amounts:
+                Increase::CardPayment::Element::CardValidation::AdditionalAmounts::OrHash,
               card_payment_id: String,
               currency:
                 Increase::CardPayment::Element::CardValidation::Currency::OrSymbol,
@@ -10806,6 +12830,10 @@ module Increase
             # Whether this authorization was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            additional_amounts:,
             # The ID of the Card Payment this transaction belongs to.
             card_payment_id:,
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
@@ -10861,6 +12889,8 @@ module Increase
                 id: String,
                 actioner:
                   Increase::CardPayment::Element::CardValidation::Actioner::TaggedSymbol,
+                additional_amounts:
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts,
                 card_payment_id: String,
                 currency:
                   Increase::CardPayment::Element::CardValidation::Currency::TaggedSymbol,
@@ -10933,6 +12963,648 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The part of this transaction amount that was for clinic-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic
+                )
+              )
+            end
+            attr_reader :clinic
+
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic::OrHash
+                  )
+              ).void
+            end
+            attr_writer :clinic
+
+            # The part of this transaction amount that was for dental-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental
+                )
+              )
+            end
+            attr_reader :dental
+
+            sig do
+              params(
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental::OrHash
+                  )
+              ).void
+            end
+            attr_writer :dental
+
+            # The part of this transaction amount that was for healthcare prescriptions.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription
+                )
+              )
+            end
+            attr_reader :prescription
+
+            sig do
+              params(
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription::OrHash
+                  )
+              ).void
+            end
+            attr_writer :prescription
+
+            # The surcharge amount charged for this transaction by the merchant.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge
+                )
+              )
+            end
+            attr_reader :surcharge
+
+            sig do
+              params(
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge::OrHash
+                  )
+              ).void
+            end
+            attr_writer :surcharge
+
+            # The total amount of a series of incremental authorizations, optionally provided.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative
+                )
+              )
+            end
+            attr_reader :total_cumulative
+
+            sig do
+              params(
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_cumulative
+
+            # The total amount of healthcare-related additional amounts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare
+                )
+              )
+            end
+            attr_reader :total_healthcare
+
+            sig do
+              params(
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_healthcare
+
+            # The part of this transaction amount that was for transit-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Transit
+                )
+              )
+            end
+            attr_reader :transit
+
+            sig do
+              params(
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Transit::OrHash
+                  )
+              ).void
+            end
+            attr_writer :transit
+
+            # An unknown additional amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown
+                )
+              )
+            end
+            attr_reader :unknown
+
+            sig do
+              params(
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown::OrHash
+                  )
+              ).void
+            end
+            attr_writer :unknown
+
+            # The part of this transaction amount that was for vision-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Vision
+                )
+              )
+            end
+            attr_reader :vision
+
+            sig do
+              params(
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Vision::OrHash
+                  )
+              ).void
+            end
+            attr_writer :vision
+
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic::OrHash
+                  ),
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental::OrHash
+                  ),
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription::OrHash
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge::OrHash
+                  ),
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative::OrHash
+                  ),
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare::OrHash
+                  ),
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Transit::OrHash
+                  ),
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown::OrHash
+                  ),
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Vision::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The part of this transaction amount that was for clinic-related services.
+              clinic:,
+              # The part of this transaction amount that was for dental-related services.
+              dental:,
+              # The part of this transaction amount that was for healthcare prescriptions.
+              prescription:,
+              # The surcharge amount charged for this transaction by the merchant.
+              surcharge:,
+              # The total amount of a series of incremental authorizations, optionally provided.
+              total_cumulative:,
+              # The total amount of healthcare-related additional amounts.
+              total_healthcare:,
+              # The part of this transaction amount that was for transit-related services.
+              transit:,
+              # An unknown additional amount.
+              unknown:,
+              # The part of this transaction amount that was for vision-related services.
+              vision:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  clinic:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic
+                    ),
+                  dental:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental
+                    ),
+                  prescription:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription
+                    ),
+                  surcharge:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge
+                    ),
+                  total_cumulative:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative
+                    ),
+                  total_healthcare:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare
+                    ),
+                  transit:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Transit
+                    ),
+                  unknown:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown
+                    ),
+                  vision:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Vision
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Clinic < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for clinic-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Dental < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Prescription < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for healthcare prescriptions.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Surcharge < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The surcharge amount charged for this transaction by the merchant.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of a series of incremental authorizations, optionally provided.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of healthcare-related additional amounts.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Transit < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Transit,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for transit-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Unknown < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # An unknown additional amount.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Vision < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Vision,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field.
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for vision-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field.
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
             end
           end
 

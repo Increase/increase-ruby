@@ -317,6 +317,7 @@ module Increase
           {
             id: String,
             actioner: Increase::Models::DeclinedTransaction::Source::CardDecline::actioner,
+            additional_amounts: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts,
             amount: Integer,
             card_payment_id: String,
             currency: Increase::Models::DeclinedTransaction::Source::CardDecline::currency,
@@ -348,6 +349,8 @@ module Increase
           attr_accessor id: String
 
           attr_accessor actioner: Increase::Models::DeclinedTransaction::Source::CardDecline::actioner
+
+          attr_accessor additional_amounts: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts
 
           attr_accessor amount: Integer
 
@@ -402,6 +405,7 @@ module Increase
           def initialize: (
             id: String,
             actioner: Increase::Models::DeclinedTransaction::Source::CardDecline::actioner,
+            additional_amounts: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts,
             amount: Integer,
             card_payment_id: String,
             currency: Increase::Models::DeclinedTransaction::Source::CardDecline::currency,
@@ -432,6 +436,7 @@ module Increase
           def to_hash: -> {
             id: String,
             actioner: Increase::Models::DeclinedTransaction::Source::CardDecline::actioner,
+            additional_amounts: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts,
             amount: Integer,
             card_payment_id: String,
             currency: Increase::Models::DeclinedTransaction::Source::CardDecline::currency,
@@ -474,6 +479,171 @@ module Increase
             NETWORK: :network
 
             def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::CardDecline::actioner]
+          end
+
+          type additional_amounts =
+            {
+              clinic: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic?,
+              dental: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental?,
+              prescription: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription?,
+              surcharge: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge?,
+              total_cumulative: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative?,
+              total_healthcare: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare?,
+              transit: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit?,
+              unknown: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown?,
+              vision: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision?
+            }
+
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            attr_accessor clinic: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic?
+
+            attr_accessor dental: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental?
+
+            attr_accessor prescription: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription?
+
+            attr_accessor surcharge: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge?
+
+            attr_accessor total_cumulative: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative?
+
+            attr_accessor total_healthcare: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare?
+
+            attr_accessor transit: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit?
+
+            attr_accessor unknown: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown?
+
+            attr_accessor vision: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision?
+
+            def initialize: (
+              clinic: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic?,
+              dental: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental?,
+              prescription: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription?,
+              surcharge: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge?,
+              total_cumulative: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative?,
+              total_healthcare: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare?,
+              transit: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit?,
+              unknown: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown?,
+              vision: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision?
+            ) -> void
+
+            def to_hash: -> {
+              clinic: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic?,
+              dental: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental?,
+              prescription: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription?,
+              surcharge: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge?,
+              total_cumulative: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative?,
+              total_healthcare: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare?,
+              transit: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit?,
+              unknown: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown?,
+              vision: Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision?
+            }
+
+            type clinic = { amount: Integer, currency: String }
+
+            class Clinic < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type dental = { amount: Integer, currency: String }
+
+            class Dental < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type prescription = { amount: Integer, currency: String }
+
+            class Prescription < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type surcharge = { amount: Integer, currency: String }
+
+            class Surcharge < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type total_cumulative = { amount: Integer, currency: String }
+
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type total_healthcare = { amount: Integer, currency: String }
+
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type transit = { amount: Integer, currency: String }
+
+            class Transit < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type unknown = { amount: Integer, currency: String }
+
+            class Unknown < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type vision = { amount: Integer, currency: String }
+
+            class Vision < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
           end
 
           type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
