@@ -1300,6 +1300,7 @@ module Increase
             declined_transaction_id: String,
             digital_wallet_token_id: String?,
             direction: Increase::Models::CardPayment::Element::CardDecline::direction,
+            incremented_card_authorization_id: String?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -1339,6 +1340,8 @@ module Increase
           attr_accessor digital_wallet_token_id: String?
 
           attr_accessor direction: Increase::Models::CardPayment::Element::CardDecline::direction
+
+          attr_accessor incremented_card_authorization_id: String?
 
           attr_accessor merchant_acceptor_id: String
 
@@ -1388,6 +1391,7 @@ module Increase
             declined_transaction_id: String,
             digital_wallet_token_id: String?,
             direction: Increase::Models::CardPayment::Element::CardDecline::direction,
+            incremented_card_authorization_id: String?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -1419,6 +1423,7 @@ module Increase
             declined_transaction_id: String,
             digital_wallet_token_id: String?,
             direction: Increase::Models::CardPayment::Element::CardDecline::direction,
+            incremented_card_authorization_id: String?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,

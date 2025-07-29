@@ -3585,6 +3585,11 @@ module Increase
           end
           attr_accessor :direction
 
+          # The identifier of the card authorization this request attempted to incrementally
+          # authorize.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :incremented_card_authorization_id
+
           # The merchant identifier (commonly abbreviated as MID) of the merchant the card
           # is transacting with.
           sig { returns(String) }
@@ -3734,6 +3739,7 @@ module Increase
               digital_wallet_token_id: T.nilable(String),
               direction:
                 Increase::CardPayment::Element::CardDecline::Direction::OrSymbol,
+              incremented_card_authorization_id: T.nilable(String),
               merchant_acceptor_id: String,
               merchant_category_code: String,
               merchant_city: T.nilable(String),
@@ -3789,6 +3795,9 @@ module Increase
             # The direction describes the direction the funds will move, either from the
             # cardholder to the merchant or from the merchant to the cardholder.
             direction:,
+            # The identifier of the card authorization this request attempted to incrementally
+            # authorize.
+            incremented_card_authorization_id:,
             # The merchant identifier (commonly abbreviated as MID) of the merchant the card
             # is transacting with.
             merchant_acceptor_id:,
@@ -3856,6 +3865,7 @@ module Increase
                 digital_wallet_token_id: T.nilable(String),
                 direction:
                   Increase::CardPayment::Element::CardDecline::Direction::TaggedSymbol,
+                incremented_card_authorization_id: T.nilable(String),
                 merchant_acceptor_id: String,
                 merchant_category_code: String,
                 merchant_city: T.nilable(String),

@@ -1932,6 +1932,13 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardDecline::Direction]
           required :direction, enum: -> { Increase::CardPayment::Element::CardDecline::Direction }
 
+          # @!attribute incremented_card_authorization_id
+          #   The identifier of the card authorization this request attempted to incrementally
+          #   authorize.
+          #
+          #   @return [String, nil]
+          required :incremented_card_authorization_id, String, nil?: true
+
           # @!attribute merchant_acceptor_id
           #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
           #   is transacting with.
@@ -2062,7 +2069,7 @@ module Increase
           #   @return [Increase::Models::CardPayment::Element::CardDecline::Verification]
           required :verification, -> { Increase::CardPayment::Element::CardDecline::Verification }
 
-          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, declined_transaction_id:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, real_time_decision_reason:, reason:, terminal_id:, verification:)
+          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, declined_transaction_id:, digital_wallet_token_id:, direction:, incremented_card_authorization_id:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, real_time_decision_reason:, reason:, terminal_id:, verification:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardDecline} for more details.
           #
@@ -2086,6 +2093,8 @@ module Increase
           #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
           #
           #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardDecline::Direction] The direction describes the direction the funds will move, either from the cardh
+          #
+          #   @param incremented_card_authorization_id [String, nil] The identifier of the card authorization this request attempted to incrementally
           #
           #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
           #
