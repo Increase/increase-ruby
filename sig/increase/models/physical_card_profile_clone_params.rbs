@@ -6,7 +6,8 @@ module Increase
         contact_phone: String,
         description: String,
         front_image_file_id: String,
-        front_text: Increase::PhysicalCardProfileCloneParams::FrontText
+        front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
+        program_id: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -36,12 +37,17 @@ module Increase
         Increase::PhysicalCardProfileCloneParams::FrontText
       ) -> Increase::PhysicalCardProfileCloneParams::FrontText
 
+      attr_reader program_id: String?
+
+      def program_id=: (String) -> String
+
       def initialize: (
         ?carrier_image_file_id: String,
         ?contact_phone: String,
         ?description: String,
         ?front_image_file_id: String,
         ?front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
+        ?program_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -51,6 +57,7 @@ module Increase
         description: String,
         front_image_file_id: String,
         front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
+        program_id: String,
         request_options: Increase::RequestOptions
       }
 

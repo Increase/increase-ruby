@@ -98,6 +98,7 @@ module Increase
           front_image_file_id: String,
           front_text:
             Increase::PhysicalCardProfileCloneParams::FrontText::OrHash,
+          program_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::PhysicalCardProfile)
       end
@@ -115,6 +116,8 @@ module Increase
         # Text printed on the front of the card. Reach out to
         # [support@increase.com](mailto:support@increase.com) for more information.
         front_text: nil,
+        # The identifier of the Program to use for the cloned Physical Card Profile.
+        program_id: nil,
         request_options: {}
       )
       end

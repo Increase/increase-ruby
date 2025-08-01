@@ -57,6 +57,13 @@ module Increase
       end
       attr_writer :front_text
 
+      # The identifier of the Program to use for the cloned Physical Card Profile.
+      sig { returns(T.nilable(String)) }
+      attr_reader :program_id
+
+      sig { params(program_id: String).void }
+      attr_writer :program_id
+
       sig do
         params(
           carrier_image_file_id: String,
@@ -65,6 +72,7 @@ module Increase
           front_image_file_id: String,
           front_text:
             Increase::PhysicalCardProfileCloneParams::FrontText::OrHash,
+          program_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -80,6 +88,8 @@ module Increase
         # Text printed on the front of the card. Reach out to
         # [support@increase.com](mailto:support@increase.com) for more information.
         front_text: nil,
+        # The identifier of the Program to use for the cloned Physical Card Profile.
+        program_id: nil,
         request_options: {}
       )
       end
@@ -92,6 +102,7 @@ module Increase
             description: String,
             front_image_file_id: String,
             front_text: Increase::PhysicalCardProfileCloneParams::FrontText,
+            program_id: String,
             request_options: Increase::RequestOptions
           }
         )

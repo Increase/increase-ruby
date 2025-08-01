@@ -38,7 +38,13 @@ module Increase
       #   @return [Increase::Models::PhysicalCardProfileCloneParams::FrontText, nil]
       optional :front_text, -> { Increase::PhysicalCardProfileCloneParams::FrontText }
 
-      # @!method initialize(carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, request_options: {})
+      # @!attribute program_id
+      #   The identifier of the Program to use for the cloned Physical Card Profile.
+      #
+      #   @return [String, nil]
+      optional :program_id, String
+
+      # @!method initialize(carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, program_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::PhysicalCardProfileCloneParams} for more details.
       #
@@ -51,6 +57,8 @@ module Increase
       #   @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
       #   @param front_text [Increase::Models::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      #
+      #   @param program_id [String] The identifier of the Program to use for the cloned Physical Card Profile.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

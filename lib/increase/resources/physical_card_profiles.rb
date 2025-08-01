@@ -115,7 +115,7 @@ module Increase
       #
       # Clone a Physical Card Profile
       #
-      # @overload clone_(physical_card_profile_id, carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, request_options: {})
+      # @overload clone_(physical_card_profile_id, carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, program_id: nil, request_options: {})
       #
       # @param physical_card_profile_id [String] The identifier of the Physical Card Profile to clone.
       #
@@ -128,6 +128,8 @@ module Increase
       # @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
       # @param front_text [Increase::Models::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      #
+      # @param program_id [String] The identifier of the Program to use for the cloned Physical Card Profile.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
