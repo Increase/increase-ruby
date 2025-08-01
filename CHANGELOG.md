@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.22.0 (2025-08-01)
+
+Full Changelog: [v1.21.0...v1.22.0](https://github.com/Increase/increase-ruby/compare/v1.21.0...v1.22.0)
+
+### Features
+
+* **api:** api update ([7be51b2](https://github.com/Increase/increase-ruby/commit/7be51b29bbd7029482f6048e2fefc70fbf2b4163))
+
+
+### Chores
+
+* **internal:** increase visibility of internal helper method ([ac6bbf0](https://github.com/Increase/increase-ruby/commit/ac6bbf06ad0adedc4d3ad1e6549ddf437db09995))
+
 ## 1.21.0 (2025-07-29)
 
 Full Changelog: [v1.20.0...v1.21.0](https://github.com/Increase/increase-ruby/compare/v1.20.0...v1.21.0)
