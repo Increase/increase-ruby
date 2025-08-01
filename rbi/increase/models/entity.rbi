@@ -981,10 +981,31 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # The Public Entity is a Municipality.
+          # A municipality.
           MUNICIPALITY =
             T.let(
               :municipality,
+              Increase::Entity::GovernmentAuthority::Category::TaggedSymbol
+            )
+
+          # A state agency.
+          STATE_AGENCY =
+            T.let(
+              :state_agency,
+              Increase::Entity::GovernmentAuthority::Category::TaggedSymbol
+            )
+
+          # A state government.
+          STATE_GOVERNMENT =
+            T.let(
+              :state_government,
+              Increase::Entity::GovernmentAuthority::Category::TaggedSymbol
+            )
+
+          # A federal agency.
+          FEDERAL_AGENCY =
+            T.let(
+              :federal_agency,
               Increase::Entity::GovernmentAuthority::Category::TaggedSymbol
             )
 

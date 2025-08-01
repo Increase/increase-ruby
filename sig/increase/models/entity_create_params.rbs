@@ -636,13 +636,23 @@ module Increase
           def to_hash: -> { name: String }
         end
 
-        type category = :municipality
+        type category =
+          :municipality | :state_agency | :state_government | :federal_agency
 
         module Category
           extend Increase::Internal::Type::Enum
 
-          # The Public Entity is a Municipality.
+          # A municipality.
           MUNICIPALITY: :municipality
+
+          # A state agency.
+          STATE_AGENCY: :state_agency
+
+          # A state government.
+          STATE_GOVERNMENT: :state_government
+
+          # A federal agency.
+          FEDERAL_AGENCY: :federal_agency
 
           def self?.values: -> ::Array[Increase::Models::EntityCreateParams::GovernmentAuthority::category]
         end

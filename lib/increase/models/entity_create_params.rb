@@ -794,8 +794,17 @@ module Increase
         module Category
           extend Increase::Internal::Type::Enum
 
-          # The Public Entity is a Municipality.
+          # A municipality.
           MUNICIPALITY = :municipality
+
+          # A state agency.
+          STATE_AGENCY = :state_agency
+
+          # A state government.
+          STATE_GOVERNMENT = :state_government
+
+          # A federal agency.
+          FEDERAL_AGENCY = :federal_agency
 
           # @!method self.values
           #   @return [Array<Symbol>]
