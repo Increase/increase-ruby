@@ -342,6 +342,9 @@ module Increase
         # A savings account.
         SAVINGS = :savings
 
+        # A bank's general ledger. Uncommon.
+        GENERAL_LEDGER = :general_ledger
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

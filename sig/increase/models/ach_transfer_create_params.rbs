@@ -281,7 +281,7 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::ACHTransferCreateParams::destination_account_holder]
       end
 
-      type funding = :checking | :savings
+      type funding = :checking | :savings | :general_ledger
 
       module Funding
         extend Increase::Internal::Type::Enum
@@ -291,6 +291,9 @@ module Increase
 
         # A savings account.
         SAVINGS: :savings
+
+        # A bank's general ledger. Uncommon.
+        GENERAL_LEDGER: :general_ledger
 
         def self?.values: -> ::Array[Increase::Models::ACHTransferCreateParams::funding]
       end

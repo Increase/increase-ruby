@@ -1157,6 +1157,10 @@ module Increase
         # A savings account.
         SAVINGS = T.let(:savings, Increase::ACHTransfer::Funding::TaggedSymbol)
 
+        # A bank's general ledger. Uncommon.
+        GENERAL_LEDGER =
+          T.let(:general_ledger, Increase::ACHTransfer::Funding::TaggedSymbol)
+
         sig do
           override.returns(
             T::Array[Increase::ACHTransfer::Funding::TaggedSymbol]

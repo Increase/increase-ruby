@@ -698,6 +698,13 @@ module Increase
             Increase::ACHTransferCreateParams::Funding::TaggedSymbol
           )
 
+        # A bank's general ledger. Uncommon.
+        GENERAL_LEDGER =
+          T.let(
+            :general_ledger,
+            Increase::ACHTransferCreateParams::Funding::TaggedSymbol
+          )
+
         sig do
           override.returns(
             T::Array[Increase::ACHTransferCreateParams::Funding::TaggedSymbol]
