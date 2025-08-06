@@ -1157,19 +1157,22 @@ module Increase
               CHARGEBACK_SUBMITTED = :chargeback_submitted
 
               # The user declined the merchant's request for pre-arbitration.
-              MERCHANT_PREARBITRATION_DECLINED = :merchant_prearbitration_declined
+              MERCHANT_PREARBITRATION_REQUEST_DECLINE_SUBMITTED = :merchant_prearbitration_request_decline_submitted
 
               # The merchant's request for pre-arbitration was received.
-              MERCHANT_PREARBITRATION_RECEIVED = :merchant_prearbitration_received
+              MERCHANT_PREARBITRATION_REQUEST_RECEIVED = :merchant_prearbitration_request_received
 
               # The transaction was represented by the merchant.
               REPRESENTED = :represented
 
               # The user's request for pre-arbitration was declined.
-              USER_PREARBITRATION_DECLINED = :user_prearbitration_declined
+              USER_PREARBITRATION_REQUEST_DECLINE_RECEIVED = :user_prearbitration_request_decline_received
 
               # The user's request for pre-arbitration was submitted.
-              USER_PREARBITRATION_SUBMITTED = :user_prearbitration_submitted
+              USER_PREARBITRATION_REQUEST_SUBMITTED = :user_prearbitration_request_submitted
+
+              # The user withdrew from the dispute.
+              USER_WITHDRAWAL_SUBMITTED = :user_withdrawal_submitted
 
               # @!method self.values
               #   @return [Array<Symbol>]

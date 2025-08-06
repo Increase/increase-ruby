@@ -2338,16 +2338,16 @@ module Increase
                 )
 
               # The user declined the merchant's request for pre-arbitration.
-              MERCHANT_PREARBITRATION_DECLINED =
+              MERCHANT_PREARBITRATION_REQUEST_DECLINE_SUBMITTED =
                 T.let(
-                  :merchant_prearbitration_declined,
+                  :merchant_prearbitration_request_decline_submitted,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
               # The merchant's request for pre-arbitration was received.
-              MERCHANT_PREARBITRATION_RECEIVED =
+              MERCHANT_PREARBITRATION_REQUEST_RECEIVED =
                 T.let(
-                  :merchant_prearbitration_received,
+                  :merchant_prearbitration_request_received,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
@@ -2359,16 +2359,23 @@ module Increase
                 )
 
               # The user's request for pre-arbitration was declined.
-              USER_PREARBITRATION_DECLINED =
+              USER_PREARBITRATION_REQUEST_DECLINE_RECEIVED =
                 T.let(
-                  :user_prearbitration_declined,
+                  :user_prearbitration_request_decline_received,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
               # The user's request for pre-arbitration was submitted.
-              USER_PREARBITRATION_SUBMITTED =
+              USER_PREARBITRATION_REQUEST_SUBMITTED =
                 T.let(
-                  :user_prearbitration_submitted,
+                  :user_prearbitration_request_submitted,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              # The user withdrew from the dispute.
+              USER_WITHDRAWAL_SUBMITTED =
+                T.let(
+                  :user_withdrawal_submitted,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
