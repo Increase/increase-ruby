@@ -309,6 +309,26 @@ module Increase
         end
         attr_writer :card_dispute_acceptance
 
+        # A Card Dispute Financial object. This field will be present in the JSON response
+        # if and only if `category` is equal to `card_dispute_financial`. Financial event
+        # related to a Card Dispute.
+        sig do
+          returns(
+            T.nilable(Increase::Transaction::Source::CardDisputeFinancial)
+          )
+        end
+        attr_reader :card_dispute_financial
+
+        sig do
+          params(
+            card_dispute_financial:
+              T.nilable(
+                Increase::Transaction::Source::CardDisputeFinancial::OrHash
+              )
+          ).void
+        end
+        attr_writer :card_dispute_financial
+
         # A Card Dispute Loss object. This field will be present in the JSON response if
         # and only if `category` is equal to `card_dispute_loss`. Contains the details of
         # a lost Card Dispute.
@@ -837,6 +857,10 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::CardDisputeAcceptance::OrHash
               ),
+            card_dispute_financial:
+              T.nilable(
+                Increase::Transaction::Source::CardDisputeFinancial::OrHash
+              ),
             card_dispute_loss:
               T.nilable(Increase::Transaction::Source::CardDisputeLoss::OrHash),
             card_push_transfer_acceptance:
@@ -952,6 +976,10 @@ module Increase
           # response if and only if `category` is equal to `card_dispute_acceptance`.
           # Contains the details of a successful Card Dispute.
           card_dispute_acceptance:,
+          # A Card Dispute Financial object. This field will be present in the JSON response
+          # if and only if `category` is equal to `card_dispute_financial`. Financial event
+          # related to a Card Dispute.
+          card_dispute_financial:,
           # A Card Dispute Loss object. This field will be present in the JSON response if
           # and only if `category` is equal to `card_dispute_loss`. Contains the details of
           # a lost Card Dispute.
@@ -1104,6 +1132,8 @@ module Increase
                 T.nilable(Increase::Transaction::Source::ACHTransferReturn),
               card_dispute_acceptance:
                 T.nilable(Increase::Transaction::Source::CardDisputeAcceptance),
+              card_dispute_financial:
+                T.nilable(Increase::Transaction::Source::CardDisputeFinancial),
               card_dispute_loss:
                 T.nilable(Increase::Transaction::Source::CardDisputeLoss),
               card_push_transfer_acceptance:
@@ -2107,6 +2137,251 @@ module Increase
             )
           end
           def to_hash
+          end
+        end
+
+        class CardDisputeFinancial < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::CardDisputeFinancial,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The amount of the financial event.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The identifier of the Card Dispute the financial event is associated with.
+          sig { returns(String) }
+          attr_accessor :card_dispute_id
+
+          # The network that the Card Dispute is associated with.
+          sig do
+            returns(
+              Increase::Transaction::Source::CardDisputeFinancial::Network::TaggedSymbol
+            )
+          end
+          attr_accessor :network
+
+          # The identifier of the Transaction that was created to credit or debit the
+          # disputed funds to or from your account.
+          sig { returns(String) }
+          attr_accessor :transaction_id
+
+          # Information for events related to card dispute for card payments processed over
+          # Visa's network. This field will be present in the JSON response if and only if
+          # `network` is equal to `visa`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Transaction::Source::CardDisputeFinancial::Visa
+              )
+            )
+          end
+          attr_reader :visa
+
+          sig do
+            params(
+              visa:
+                T.nilable(
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::OrHash
+                )
+            ).void
+          end
+          attr_writer :visa
+
+          # A Card Dispute Financial object. This field will be present in the JSON response
+          # if and only if `category` is equal to `card_dispute_financial`. Financial event
+          # related to a Card Dispute.
+          sig do
+            params(
+              amount: Integer,
+              card_dispute_id: String,
+              network:
+                Increase::Transaction::Source::CardDisputeFinancial::Network::OrSymbol,
+              transaction_id: String,
+              visa:
+                T.nilable(
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The amount of the financial event.
+            amount:,
+            # The identifier of the Card Dispute the financial event is associated with.
+            card_dispute_id:,
+            # The network that the Card Dispute is associated with.
+            network:,
+            # The identifier of the Transaction that was created to credit or debit the
+            # disputed funds to or from your account.
+            transaction_id:,
+            # Information for events related to card dispute for card payments processed over
+            # Visa's network. This field will be present in the JSON response if and only if
+            # `network` is equal to `visa`.
+            visa:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: Integer,
+                card_dispute_id: String,
+                network:
+                  Increase::Transaction::Source::CardDisputeFinancial::Network::TaggedSymbol,
+                transaction_id: String,
+                visa:
+                  T.nilable(
+                    Increase::Transaction::Source::CardDisputeFinancial::Visa
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The network that the Card Dispute is associated with.
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::Transaction::Source::CardDisputeFinancial::Network
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Visa: details will be under the `visa` object.
+            VISA =
+              T.let(
+                :visa,
+                Increase::Transaction::Source::CardDisputeFinancial::Network::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Transaction::Source::CardDisputeFinancial::Network::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class Visa < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The type of card dispute financial event.
+            sig do
+              returns(
+                Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+              )
+            end
+            attr_accessor :event_type
+
+            # Information for events related to card dispute for card payments processed over
+            # Visa's network. This field will be present in the JSON response if and only if
+            # `network` is equal to `visa`.
+            sig do
+              params(
+                event_type:
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The type of card dispute financial event.
+              event_type:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  event_type:
+                    Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The type of card dispute financial event.
+            module EventType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The user's chargeback was submitted.
+              CHARGEBACK_SUBMITTED =
+                T.let(
+                  :chargeback_submitted,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              # The user declined the merchant's request for pre-arbitration.
+              MERCHANT_PREARBITRATION_DECLINED =
+                T.let(
+                  :merchant_prearbitration_declined,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              # The merchant's request for pre-arbitration was received.
+              MERCHANT_PREARBITRATION_RECEIVED =
+                T.let(
+                  :merchant_prearbitration_received,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              # The transaction was represented by the merchant.
+              REPRESENTED =
+                T.let(
+                  :represented,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              # The user's request for pre-arbitration was declined.
+              USER_PREARBITRATION_DECLINED =
+                T.let(
+                  :user_prearbitration_declined,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              # The user's request for pre-arbitration was submitted.
+              USER_PREARBITRATION_SUBMITTED =
+                T.let(
+                  :user_prearbitration_submitted,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
           end
         end
 
@@ -7430,6 +7705,13 @@ module Increase
           CARD_DISPUTE_ACCEPTANCE =
             T.let(
               :card_dispute_acceptance,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL =
+            T.let(
+              :card_dispute_financial,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 

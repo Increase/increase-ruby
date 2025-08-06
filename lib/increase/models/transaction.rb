@@ -214,6 +214,18 @@ module Increase
                  },
                  nil?: true
 
+        # @!attribute card_dispute_financial
+        #   A Card Dispute Financial object. This field will be present in the JSON response
+        #   if and only if `category` is equal to `card_dispute_financial`. Financial event
+        #   related to a Card Dispute.
+        #
+        #   @return [Increase::Models::Transaction::Source::CardDisputeFinancial, nil]
+        required :card_dispute_financial,
+                 -> {
+                   Increase::Transaction::Source::CardDisputeFinancial
+                 },
+                 nil?: true
+
         # @!attribute card_dispute_loss
         #   A Card Dispute Loss object. This field will be present in the JSON response if
         #   and only if `category` is equal to `card_dispute_loss`. Contains the details of
@@ -484,7 +496,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, wire_transfer_intention:)
+        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -502,6 +514,8 @@ module Increase
         #   @param ach_transfer_return [Increase::Models::Transaction::Source::ACHTransferReturn, nil] An ACH Transfer Return object. This field will be present in the JSON response i
         #
         #   @param card_dispute_acceptance [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil] A Card Dispute Acceptance object. This field will be present in the JSON respons
+        #
+        #   @param card_dispute_financial [Increase::Models::Transaction::Source::CardDisputeFinancial, nil] A Card Dispute Financial object. This field will be present in the JSON response
         #
         #   @param card_dispute_loss [Increase::Models::Transaction::Source::CardDisputeLoss, nil] A Card Dispute Loss object. This field will be present in the JSON response if a
         #
@@ -1047,6 +1061,120 @@ module Increase
           #   @param card_dispute_id [String] The identifier of the Card Dispute that was accepted.
           #
           #   @param transaction_id [String] The identifier of the Transaction that was created to return the disputed funds
+        end
+
+        # @see Increase::Models::Transaction::Source#card_dispute_financial
+        class CardDisputeFinancial < Increase::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount of the financial event.
+          #
+          #   @return [Integer]
+          required :amount, Integer
+
+          # @!attribute card_dispute_id
+          #   The identifier of the Card Dispute the financial event is associated with.
+          #
+          #   @return [String]
+          required :card_dispute_id, String
+
+          # @!attribute network
+          #   The network that the Card Dispute is associated with.
+          #
+          #   @return [Symbol, Increase::Models::Transaction::Source::CardDisputeFinancial::Network]
+          required :network, enum: -> { Increase::Transaction::Source::CardDisputeFinancial::Network }
+
+          # @!attribute transaction_id
+          #   The identifier of the Transaction that was created to credit or debit the
+          #   disputed funds to or from your account.
+          #
+          #   @return [String]
+          required :transaction_id, String
+
+          # @!attribute visa
+          #   Information for events related to card dispute for card payments processed over
+          #   Visa's network. This field will be present in the JSON response if and only if
+          #   `network` is equal to `visa`.
+          #
+          #   @return [Increase::Models::Transaction::Source::CardDisputeFinancial::Visa, nil]
+          required :visa, -> { Increase::Transaction::Source::CardDisputeFinancial::Visa }, nil?: true
+
+          # @!method initialize(amount:, card_dispute_id:, network:, transaction_id:, visa:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::Transaction::Source::CardDisputeFinancial} for more details.
+          #
+          #   A Card Dispute Financial object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `card_dispute_financial`. Financial event
+          #   related to a Card Dispute.
+          #
+          #   @param amount [Integer] The amount of the financial event.
+          #
+          #   @param card_dispute_id [String] The identifier of the Card Dispute the financial event is associated with.
+          #
+          #   @param network [Symbol, Increase::Models::Transaction::Source::CardDisputeFinancial::Network] The network that the Card Dispute is associated with.
+          #
+          #   @param transaction_id [String] The identifier of the Transaction that was created to credit or debit the disput
+          #
+          #   @param visa [Increase::Models::Transaction::Source::CardDisputeFinancial::Visa, nil] Information for events related to card dispute for card payments processed over
+
+          # The network that the Card Dispute is associated with.
+          #
+          # @see Increase::Models::Transaction::Source::CardDisputeFinancial#network
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            # Visa: details will be under the `visa` object.
+            VISA = :visa
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::Transaction::Source::CardDisputeFinancial#visa
+          class Visa < Increase::Internal::Type::BaseModel
+            # @!attribute event_type
+            #   The type of card dispute financial event.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::EventType]
+            required :event_type,
+                     enum: -> {
+                       Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType
+                     }
+
+            # @!method initialize(event_type:)
+            #   Information for events related to card dispute for card payments processed over
+            #   Visa's network. This field will be present in the JSON response if and only if
+            #   `network` is equal to `visa`.
+            #
+            #   @param event_type [Symbol, Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::EventType] The type of card dispute financial event.
+
+            # The type of card dispute financial event.
+            #
+            # @see Increase::Models::Transaction::Source::CardDisputeFinancial::Visa#event_type
+            module EventType
+              extend Increase::Internal::Type::Enum
+
+              # The user's chargeback was submitted.
+              CHARGEBACK_SUBMITTED = :chargeback_submitted
+
+              # The user declined the merchant's request for pre-arbitration.
+              MERCHANT_PREARBITRATION_DECLINED = :merchant_prearbitration_declined
+
+              # The merchant's request for pre-arbitration was received.
+              MERCHANT_PREARBITRATION_RECEIVED = :merchant_prearbitration_received
+
+              # The transaction was represented by the merchant.
+              REPRESENTED = :represented
+
+              # The user's request for pre-arbitration was declined.
+              USER_PREARBITRATION_DECLINED = :user_prearbitration_declined
+
+              # The user's request for pre-arbitration was submitted.
+              USER_PREARBITRATION_SUBMITTED = :user_prearbitration_submitted
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
         end
 
         # @see Increase::Models::Transaction::Source#card_dispute_loss
@@ -4040,6 +4168,9 @@ module Increase
 
           # Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
           CARD_DISPUTE_ACCEPTANCE = :card_dispute_acceptance
+
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL = :card_dispute_financial
 
           # Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS = :card_dispute_loss

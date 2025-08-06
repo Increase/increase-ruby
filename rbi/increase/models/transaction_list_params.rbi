@@ -208,6 +208,13 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL =
+            T.let(
+              :card_dispute_financial,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS =
             T.let(

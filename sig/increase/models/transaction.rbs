@@ -111,6 +111,7 @@ module Increase
           ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
           ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
           card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
+          card_dispute_financial: Increase::Transaction::Source::CardDisputeFinancial?,
           card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
           card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
           card_refund: Increase::Transaction::Source::CardRefund?,
@@ -150,6 +151,8 @@ module Increase
         attr_accessor ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?
 
         attr_accessor card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?
+
+        attr_accessor card_dispute_financial: Increase::Transaction::Source::CardDisputeFinancial?
 
         attr_accessor card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?
 
@@ -211,6 +214,7 @@ module Increase
           ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
           ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
           card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
+          card_dispute_financial: Increase::Transaction::Source::CardDisputeFinancial?,
           card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
           card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
           card_refund: Increase::Transaction::Source::CardRefund?,
@@ -246,6 +250,7 @@ module Increase
           ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
           ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
           card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
+          card_dispute_financial: Increase::Transaction::Source::CardDisputeFinancial?,
           card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
           card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
           card_refund: Increase::Transaction::Source::CardRefund?,
@@ -741,6 +746,103 @@ module Increase
             card_dispute_id: String,
             transaction_id: String
           }
+        end
+
+        type card_dispute_financial =
+          {
+            amount: Integer,
+            card_dispute_id: String,
+            network: Increase::Models::Transaction::Source::CardDisputeFinancial::network,
+            transaction_id: String,
+            visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
+          }
+
+        class CardDisputeFinancial < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor card_dispute_id: String
+
+          attr_accessor network: Increase::Models::Transaction::Source::CardDisputeFinancial::network
+
+          attr_accessor transaction_id: String
+
+          attr_accessor visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
+
+          def initialize: (
+            amount: Integer,
+            card_dispute_id: String,
+            network: Increase::Models::Transaction::Source::CardDisputeFinancial::network,
+            transaction_id: String,
+            visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
+          ) -> void
+
+          def to_hash: -> {
+            amount: Integer,
+            card_dispute_id: String,
+            network: Increase::Models::Transaction::Source::CardDisputeFinancial::network,
+            transaction_id: String,
+            visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
+          }
+
+          type network = :visa
+
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            # Visa: details will be under the `visa` object.
+            VISA: :visa
+
+            def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardDisputeFinancial::network]
+          end
+
+          type visa =
+            {
+              event_type: Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::event_type
+            }
+
+          class Visa < Increase::Internal::Type::BaseModel
+            attr_accessor event_type: Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::event_type
+
+            def initialize: (
+              event_type: Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::event_type
+            ) -> void
+
+            def to_hash: -> {
+              event_type: Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::event_type
+            }
+
+            type event_type =
+              :chargeback_submitted
+              | :merchant_prearbitration_declined
+              | :merchant_prearbitration_received
+              | :represented
+              | :user_prearbitration_declined
+              | :user_prearbitration_submitted
+
+            module EventType
+              extend Increase::Internal::Type::Enum
+
+              # The user's chargeback was submitted.
+              CHARGEBACK_SUBMITTED: :chargeback_submitted
+
+              # The user declined the merchant's request for pre-arbitration.
+              MERCHANT_PREARBITRATION_DECLINED: :merchant_prearbitration_declined
+
+              # The merchant's request for pre-arbitration was received.
+              MERCHANT_PREARBITRATION_RECEIVED: :merchant_prearbitration_received
+
+              # The transaction was represented by the merchant.
+              REPRESENTED: :represented
+
+              # The user's request for pre-arbitration was declined.
+              USER_PREARBITRATION_DECLINED: :user_prearbitration_declined
+
+              # The user's request for pre-arbitration was submitted.
+              USER_PREARBITRATION_SUBMITTED: :user_prearbitration_submitted
+
+              def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::event_type]
+            end
+          end
         end
 
         type card_dispute_loss =
@@ -2983,6 +3085,7 @@ module Increase
           | :ach_transfer_return
           | :cashback_payment
           | :card_dispute_acceptance
+          | :card_dispute_financial
           | :card_dispute_loss
           | :card_refund
           | :card_settlement
@@ -3029,6 +3132,9 @@ module Increase
 
           # Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
           CARD_DISPUTE_ACCEPTANCE: :card_dispute_acceptance
+
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL: :card_dispute_financial
 
           # Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS: :card_dispute_loss
