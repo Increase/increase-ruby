@@ -2337,38 +2337,38 @@ module Increase
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
-              # The user declined the merchant's request for pre-arbitration.
-              MERCHANT_PREARBITRATION_REQUEST_DECLINE_SUBMITTED =
+              # The user declined the merchant's pre-arbitration submission.
+              MERCHANT_PREARBITRATION_DECLINE_SUBMITTED =
                 T.let(
-                  :merchant_prearbitration_request_decline_submitted,
+                  :merchant_prearbitration_decline_submitted,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
-              # The merchant's request for pre-arbitration was received.
-              MERCHANT_PREARBITRATION_REQUEST_RECEIVED =
+              # The merchant's pre-arbitration submission was received.
+              MERCHANT_PREARBITRATION_RECEIVED =
                 T.let(
-                  :merchant_prearbitration_request_received,
+                  :merchant_prearbitration_received,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
-              # The transaction was represented by the merchant.
+              # The transaction was re-presented by the merchant.
               REPRESENTED =
                 T.let(
                   :represented,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
-              # The user's request for pre-arbitration was declined.
-              USER_PREARBITRATION_REQUEST_DECLINE_RECEIVED =
+              # The user's pre-arbitration was declined by the merchant.
+              USER_PREARBITRATION_DECLINE_RECEIVED =
                 T.let(
-                  :user_prearbitration_request_decline_received,
+                  :user_prearbitration_decline_received,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
-              # The user's request for pre-arbitration was submitted.
-              USER_PREARBITRATION_REQUEST_SUBMITTED =
+              # The user's pre-arbitration was submitted.
+              USER_PREARBITRATION_SUBMITTED =
                 T.let(
-                  :user_prearbitration_request_submitted,
+                  :user_prearbitration_submitted,
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
