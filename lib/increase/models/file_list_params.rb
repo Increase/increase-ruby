@@ -116,6 +116,9 @@ module Increase
         module In
           extend Increase::Internal::Type::Enum
 
+          # A file to be attached to a Card Dispute.
+          CARD_DISPUTE_ATTACHMENT = :card_dispute_attachment
+
           # An image of the front of a check, used for check deposits.
           CHECK_IMAGE_FRONT = :check_image_front
 

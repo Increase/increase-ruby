@@ -220,6 +220,13 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+          # A file to be attached to a Card Dispute.
+          CARD_DISPUTE_ATTACHMENT =
+            T.let(
+              :card_dispute_attachment,
+              Increase::FileListParams::Purpose::In::TaggedSymbol
+            )
+
           # An image of the front of a check, used for check deposits.
           CHECK_IMAGE_FRONT =
             T.let(

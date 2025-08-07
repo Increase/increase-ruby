@@ -140,6 +140,10 @@ module Increase
         TaggedSymbol = T.type_alias { T.all(Symbol, Increase::File::Purpose) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        # A file to be attached to a Card Dispute.
+        CARD_DISPUTE_ATTACHMENT =
+          T.let(:card_dispute_attachment, Increase::File::Purpose::TaggedSymbol)
+
         # An image of the front of a check, used for check deposits.
         CHECK_IMAGE_FRONT =
           T.let(:check_image_front, Increase::File::Purpose::TaggedSymbol)
