@@ -687,3 +687,35 @@ class Increase::Test::BaseModelQoLTest < Minitest::Test
     end
   end
 end
+
+class Increase::Test::MetaInfoTest < Minitest::Test
+  A1 = Increase::Internal::Type::ArrayOf[Integer, nil?: true, doc: "dog"]
+  H1 = Increase::Internal::Type::HashOf[-> { String }, nil?: true, doc: "dawg"]
+
+  class M1 < Increase::Internal::Type::BaseModel
+    required :a, Integer, doc: "dog"
+    optional :b, -> { String }, nil?: true, doc: "dawg"
+  end
+
+  module U1
+    extend Increase::Internal::Type::Union
+
+    variant -> { Integer }, const: 2, doc: "dog"
+    variant -> { String }, doc: "dawg"
+  end
+
+  def test_meta_retrieval
+    m1 = A1.instance_variable_get(:@meta)
+    m2 = H1.instance_variable_get(:@meta)
+    assert_equal({doc: "dog"}, m1)
+    assert_equal({doc: "dawg"}, m2)
+
+    ma, mb = M1.fields.fetch_values(:a, :b)
+    assert_equal({doc: "dog"}, ma.fetch(:meta))
+    assert_equal({doc: "dawg"}, mb.fetch(:meta))
+
+    ua, ub = U1.send(:known_variants).map(&:last)
+    assert_equal({doc: "dog"}, ua)
+    assert_equal({doc: "dawg"}, ub)
+  end
+end

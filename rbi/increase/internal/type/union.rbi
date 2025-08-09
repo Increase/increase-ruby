@@ -16,7 +16,8 @@ module Increase
             T::Array[
               [
                 T.nilable(Symbol),
-                T.proc.returns(Increase::Internal::Type::Converter::Input)
+                T.proc.returns(Increase::Internal::Type::Converter::Input),
+                Increase::Internal::AnyHash
               ]
             ]
           )
@@ -25,7 +26,13 @@ module Increase
         end
 
         # @api private
-        sig { returns(T::Array[[T.nilable(Symbol), T.anything]]) }
+        sig do
+          returns(
+            T::Array[
+              [T.nilable(Symbol), T.anything, Increase::Internal::AnyHash]
+            ]
+          )
+        end
         protected def derefed_variants
         end
 

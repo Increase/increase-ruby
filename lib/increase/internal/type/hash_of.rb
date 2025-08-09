@@ -168,6 +168,7 @@ module Increase
         #   @option spec [Boolean] :"nil?"
         def initialize(type_info, spec = {})
           @item_type_fn = Increase::Internal::Type::Converter.type_info(type_info || spec)
+          @meta = Increase::Internal::Type::Converter.meta_info(type_info, spec)
           @nilable = spec.fetch(:nil?, false)
         end
 

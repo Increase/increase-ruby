@@ -39,6 +39,23 @@ module Increase
           | Increase::Internal::Type::Converter::input spec
         ) -> (^-> top)
 
+        def self.meta_info: (
+          {
+            const: (nil | bool | Integer | Float | Symbol)?,
+            enum: ^-> Increase::Internal::Type::Converter::input?,
+            union: ^-> Increase::Internal::Type::Converter::input?
+          }
+          | ^-> Increase::Internal::Type::Converter::input
+          | Increase::Internal::Type::Converter::input type_info,
+          {
+            const: (nil | bool | Integer | Float | Symbol)?,
+            enum: ^-> Increase::Internal::Type::Converter::input?,
+            union: ^-> Increase::Internal::Type::Converter::input?
+          }
+          | ^-> Increase::Internal::Type::Converter::input
+          | Increase::Internal::Type::Converter::input spec
+        ) -> ::Hash[Symbol, top]
+
         def self.new_coerce_state: (
           ?translate_names: bool
         ) -> Increase::Internal::Type::Converter::coerce_state
