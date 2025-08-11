@@ -41,7 +41,8 @@ class Increase::Test::Resources::Simulations::InboundWireTransfersTest < Increas
         reversal: Increase::InboundWireTransfer::Reversal | nil,
         sender_reference: String | nil,
         status: Increase::InboundWireTransfer::Status,
-        type: Increase::InboundWireTransfer::Type
+        type: Increase::InboundWireTransfer::Type,
+        wire_drawdown_request_id: String | nil
       }
     end
   end
