@@ -125,6 +125,10 @@ module Increase
       sig { returns(Increase::InboundWireTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The wire drawdown request the inbound wire transfer is fulfilling.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :wire_drawdown_request_id
+
       # An Inbound Wire Transfer is a wire transfer initiated outside of Increase to
       # your account.
       sig do
@@ -154,7 +158,8 @@ module Increase
           reversal: T.nilable(Increase::InboundWireTransfer::Reversal::OrHash),
           sender_reference: T.nilable(String),
           status: Increase::InboundWireTransfer::Status::OrSymbol,
-          type: Increase::InboundWireTransfer::Type::OrSymbol
+          type: Increase::InboundWireTransfer::Type::OrSymbol,
+          wire_drawdown_request_id: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -215,7 +220,9 @@ module Increase
         status:,
         # A constant representing the object's type. For this resource it will always be
         # `inbound_wire_transfer`.
-        type:
+        type:,
+        # The wire drawdown request the inbound wire transfer is fulfilling.
+        wire_drawdown_request_id:
       )
       end
 
@@ -247,7 +254,8 @@ module Increase
             reversal: T.nilable(Increase::InboundWireTransfer::Reversal),
             sender_reference: T.nilable(String),
             status: Increase::InboundWireTransfer::Status::TaggedSymbol,
-            type: Increase::InboundWireTransfer::Type::TaggedSymbol
+            type: Increase::InboundWireTransfer::Type::TaggedSymbol,
+            wire_drawdown_request_id: T.nilable(String)
           }
         )
       end

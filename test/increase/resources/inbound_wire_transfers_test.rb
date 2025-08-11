@@ -37,7 +37,8 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
         reversal: Increase::InboundWireTransfer::Reversal | nil,
         sender_reference: String | nil,
         status: Increase::InboundWireTransfer::Status,
-        type: Increase::InboundWireTransfer::Type
+        type: Increase::InboundWireTransfer::Type,
+        wire_drawdown_request_id: String | nil
       }
     end
   end
@@ -83,7 +84,8 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
         reversal: Increase::InboundWireTransfer::Reversal | nil,
         sender_reference: String | nil,
         status: Increase::InboundWireTransfer::Status,
-        type: Increase::InboundWireTransfer::Type
+        type: Increase::InboundWireTransfer::Type,
+        wire_drawdown_request_id: String | nil
       }
     end
   end
@@ -123,7 +125,8 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
         reversal: Increase::InboundWireTransfer::Reversal | nil,
         sender_reference: String | nil,
         status: Increase::InboundWireTransfer::Status,
-        type: Increase::InboundWireTransfer::Type
+        type: Increase::InboundWireTransfer::Type,
+        wire_drawdown_request_id: String | nil
       }
     end
   end
