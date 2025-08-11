@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.29.0 (2025-08-11)
+
+Full Changelog: [v1.28.0...v1.29.0](https://github.com/Increase/increase-ruby/compare/v1.28.0...v1.29.0)
+
+### Features
+
+* **api:** api update ([8067d85](https://github.com/Increase/increase-ruby/commit/8067d8591d4f0a2f5a33b796a3f50fe6b5fb6c48))
+
+
+### Chores
+
+* collect metadata from type DSL ([175f631](https://github.com/Increase/increase-ruby/commit/175f6319788a5ddb8576871ce2e7db5f87474c57))
+* **internal:** update comment in script ([a4ab2aa](https://github.com/Increase/increase-ruby/commit/a4ab2aa028a24748cde9280d83e4457e966b6aac))
+* update @stainless-api/prism-cli to v5.15.0 ([663a03e](https://github.com/Increase/increase-ruby/commit/663a03e20f29203afbb2b8ff06aa63a0391b3afc))
+
 ## 1.28.0 (2025-08-07)
 
 Full Changelog: [v1.27.0...v1.28.0](https://github.com/Increase/increase-ruby/compare/v1.27.0...v1.28.0)
