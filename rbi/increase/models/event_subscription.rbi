@@ -548,6 +548,20 @@ module Increase
             Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
           )
 
+        # Occurs whenever a Legacy Card Dispute is created.
+        LEGACY_CARD_DISPUTE_CREATED =
+          T.let(
+            :"legacy_card_dispute.created",
+            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
+          )
+
+        # Occurs whenever a Legacy Card Dispute is updated.
+        LEGACY_CARD_DISPUTE_UPDATED =
+          T.let(
+            :"legacy_card_dispute.updated",
+            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
+          )
+
         # Occurs whenever a Lockbox is created.
         LOCKBOX_CREATED =
           T.let(

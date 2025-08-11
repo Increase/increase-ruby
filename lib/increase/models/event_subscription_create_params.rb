@@ -234,6 +234,12 @@ module Increase
         # Occurs whenever an IntraFi Exclusion is updated.
         INTRAFI_EXCLUSION_UPDATED = :"intrafi_exclusion.updated"
 
+        # Occurs whenever a Legacy Card Dispute is created.
+        LEGACY_CARD_DISPUTE_CREATED = :"legacy_card_dispute.created"
+
+        # Occurs whenever a Legacy Card Dispute is updated.
+        LEGACY_CARD_DISPUTE_UPDATED = :"legacy_card_dispute.updated"
+
         # Occurs whenever a Lockbox is created.
         LOCKBOX_CREATED = :"lockbox.created"
 
