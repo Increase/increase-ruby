@@ -166,7 +166,13 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundWireTransfer::Type]
       required :type, enum: -> { Increase::InboundWireTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_reference:, created_at:, description:, input_message_accountability_data:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, reversal:, sender_reference:, status:, type:)
+      # @!attribute wire_drawdown_request_id
+      #   The wire drawdown request the inbound wire transfer is fulfilling.
+      #
+      #   @return [String, nil]
+      required :wire_drawdown_request_id, String, nil?: true
+
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_reference:, created_at:, description:, input_message_accountability_data:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, reversal:, sender_reference:, status:, type:, wire_drawdown_request_id:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundWireTransfer} for more details.
       #
@@ -224,6 +230,8 @@ module Increase
       #   @param status [Symbol, Increase::Models::InboundWireTransfer::Status] The status of the transfer.
       #
       #   @param type [Symbol, Increase::Models::InboundWireTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param wire_drawdown_request_id [String, nil] The wire drawdown request the inbound wire transfer is fulfilling.
 
       # @see Increase::Models::InboundWireTransfer#reversal
       class Reversal < Increase::Internal::Type::BaseModel

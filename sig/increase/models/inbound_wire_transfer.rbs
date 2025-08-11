@@ -27,7 +27,8 @@ module Increase
         reversal: Increase::InboundWireTransfer::Reversal?,
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
-        type: Increase::Models::InboundWireTransfer::type_
+        type: Increase::Models::InboundWireTransfer::type_,
+        wire_drawdown_request_id: String?
       }
 
     class InboundWireTransfer < Increase::Internal::Type::BaseModel
@@ -83,6 +84,8 @@ module Increase
 
       attr_accessor type: Increase::Models::InboundWireTransfer::type_
 
+      attr_accessor wire_drawdown_request_id: String?
+
       def initialize: (
         id: String,
         account_id: String,
@@ -109,7 +112,8 @@ module Increase
         reversal: Increase::InboundWireTransfer::Reversal?,
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
-        type: Increase::Models::InboundWireTransfer::type_
+        type: Increase::Models::InboundWireTransfer::type_,
+        wire_drawdown_request_id: String?
       ) -> void
 
       def to_hash: -> {
@@ -138,7 +142,8 @@ module Increase
         reversal: Increase::InboundWireTransfer::Reversal?,
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
-        type: Increase::Models::InboundWireTransfer::type_
+        type: Increase::Models::InboundWireTransfer::type_,
+        wire_drawdown_request_id: String?
       }
 
       type reversal =
