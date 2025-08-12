@@ -5322,6 +5322,12 @@ module Increase
           #   @return [String, nil]
           required :originator_routing_number, String, nil?: true
 
+          # @!attribute originator_to_beneficiary_information
+          #   Additional information included in the wire reversal by the reversal originator.
+          #
+          #   @return [String, nil]
+          required :originator_to_beneficiary_information, String, nil?: true
+
           # @!attribute previous_message_input_cycle_date
           #   The Fedwire cycle date for the wire transfer that is being reversed by this
           #   message.
@@ -5372,7 +5378,7 @@ module Increase
           #   @return [String]
           required :wire_transfer_id, String
 
-          # @!method initialize(amount:, created_at:, description:, financial_institution_to_financial_institution_information:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, originator_routing_number:, previous_message_input_cycle_date:, previous_message_input_message_accountability_data:, previous_message_input_sequence_number:, previous_message_input_source:, receiver_financial_institution_information:, sender_reference:, transaction_id:, wire_transfer_id:)
+          # @!method initialize(amount:, created_at:, description:, financial_institution_to_financial_institution_information:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, originator_routing_number:, originator_to_beneficiary_information:, previous_message_input_cycle_date:, previous_message_input_message_accountability_data:, previous_message_input_sequence_number:, previous_message_input_source:, receiver_financial_institution_information:, sender_reference:, transaction_id:, wire_transfer_id:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::InboundWireReversal} for more details.
           #
@@ -5399,6 +5405,8 @@ module Increase
           #   @param input_source [String] The Fedwire input source identifier.
           #
           #   @param originator_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank originating th
+          #
+          #   @param originator_to_beneficiary_information [String, nil] Additional information included in the wire reversal by the reversal originator.
           #
           #   @param previous_message_input_cycle_date [Date] The Fedwire cycle date for the wire transfer that is being reversed by this mess
           #

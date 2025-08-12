@@ -732,6 +732,10 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :originator_routing_number
 
+        # Additional information included in the wire reversal by the reversal originator.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :originator_to_beneficiary_information
+
         # The Fedwire cycle date for the wire transfer that is being reversed by this
         # message.
         sig { returns(Date) }
@@ -779,6 +783,7 @@ module Increase
             input_sequence_number: String,
             input_source: String,
             originator_routing_number: T.nilable(String),
+            originator_to_beneficiary_information: T.nilable(String),
             previous_message_input_cycle_date: Date,
             previous_message_input_message_accountability_data: String,
             previous_message_input_sequence_number: String,
@@ -811,6 +816,8 @@ module Increase
           # The American Banking Association (ABA) routing number of the bank originating
           # the transfer.
           originator_routing_number:,
+          # Additional information included in the wire reversal by the reversal originator.
+          originator_to_beneficiary_information:,
           # The Fedwire cycle date for the wire transfer that is being reversed by this
           # message.
           previous_message_input_cycle_date:,
@@ -845,6 +852,7 @@ module Increase
               input_sequence_number: String,
               input_source: String,
               originator_routing_number: T.nilable(String),
+              originator_to_beneficiary_information: T.nilable(String),
               previous_message_input_cycle_date: Date,
               previous_message_input_message_accountability_data: String,
               previous_message_input_sequence_number: String,
