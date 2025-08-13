@@ -30,7 +30,7 @@ module Increase
       attr_accessor :currency
 
       # The identifier for the Entity the Account belongs to.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :entity_id
 
       # The idempotency key you chose for this object. This value is unique across
@@ -87,7 +87,7 @@ module Increase
           closed_at: T.nilable(Time),
           created_at: Time,
           currency: Increase::Account::Currency::OrSymbol,
-          entity_id: T.nilable(String),
+          entity_id: String,
           idempotency_key: T.nilable(String),
           informational_entity_id: T.nilable(String),
           interest_accrued: String,
@@ -153,7 +153,7 @@ module Increase
             closed_at: T.nilable(Time),
             created_at: Time,
             currency: Increase::Account::Currency::TaggedSymbol,
-            entity_id: T.nilable(String),
+            entity_id: String,
             idempotency_key: T.nilable(String),
             informational_entity_id: T.nilable(String),
             interest_accrued: String,

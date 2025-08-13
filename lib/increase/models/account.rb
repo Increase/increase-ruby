@@ -40,8 +40,8 @@ module Increase
       # @!attribute entity_id
       #   The identifier for the Entity the Account belongs to.
       #
-      #   @return [String, nil]
-      required :entity_id, String, nil?: true
+      #   @return [String]
+      required :entity_id, String
 
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
@@ -123,7 +123,7 @@ module Increase
       #
       #   @param currency [Symbol, Increase::Models::Account::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account curr
       #
-      #   @param entity_id [String, nil] The identifier for the Entity the Account belongs to.
+      #   @param entity_id [String] The identifier for the Entity the Account belongs to.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
