@@ -176,6 +176,15 @@ module Increase
     # @return [Increase::Resources::IntrafiExclusions]
     attr_reader :intrafi_exclusions
 
+    # @return [Increase::Resources::CardTokens]
+    attr_reader :card_tokens
+
+    # @return [Increase::Resources::CardPushTransfers]
+    attr_reader :card_push_transfers
+
+    # @return [Increase::Resources::CardValidations]
+    attr_reader :card_validations
+
     # @return [Increase::Resources::Simulations]
     attr_reader :simulations
 
@@ -293,6 +302,9 @@ module Increase
       @intrafi_account_enrollments = Increase::Resources::IntrafiAccountEnrollments.new(client: self)
       @intrafi_balances = Increase::Resources::IntrafiBalances.new(client: self)
       @intrafi_exclusions = Increase::Resources::IntrafiExclusions.new(client: self)
+      @card_tokens = Increase::Resources::CardTokens.new(client: self)
+      @card_push_transfers = Increase::Resources::CardPushTransfers.new(client: self)
+      @card_validations = Increase::Resources::CardValidations.new(client: self)
       @simulations = Increase::Resources::Simulations.new(client: self)
     end
   end

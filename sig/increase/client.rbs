@@ -117,6 +117,12 @@ module Increase
 
     attr_reader intrafi_exclusions: Increase::Resources::IntrafiExclusions
 
+    attr_reader card_tokens: Increase::Resources::CardTokens
+
+    attr_reader card_push_transfers: Increase::Resources::CardPushTransfers
+
+    attr_reader card_validations: Increase::Resources::CardValidations
+
     attr_reader simulations: Increase::Resources::Simulations
 
     private def auth_headers: -> ::Hash[String, String]

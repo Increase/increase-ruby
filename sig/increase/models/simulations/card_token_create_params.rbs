@@ -1,0 +1,129 @@
+module Increase
+  module Models
+    module Simulations
+      type card_token_create_params =
+        {
+          capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
+          expiration: Date,
+          :last4 => String,
+          prefix: String,
+          primary_account_number_length: Integer
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class CardTokenCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_reader capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability]?
+
+        def capabilities=: (
+          ::Array[Increase::Simulations::CardTokenCreateParams::Capability]
+        ) -> ::Array[Increase::Simulations::CardTokenCreateParams::Capability]
+
+        attr_reader expiration: Date?
+
+        def expiration=: (Date) -> Date
+
+        attr_reader last4: String?
+
+        def last4=: (String) -> String
+
+        attr_reader prefix: String?
+
+        def prefix=: (String) -> String
+
+        attr_reader primary_account_number_length: Integer?
+
+        def primary_account_number_length=: (Integer) -> Integer
+
+        def initialize: (
+          ?capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
+          ?expiration: Date,
+          ?last4: String,
+          ?prefix: String,
+          ?primary_account_number_length: Integer,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
+          expiration: Date,
+          :last4 => String,
+          prefix: String,
+          primary_account_number_length: Integer,
+          request_options: Increase::RequestOptions
+        }
+
+        type capability =
+          {
+            cross_border_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::cross_border_push_transfers,
+            domestic_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::domestic_push_transfers,
+            route: Increase::Models::Simulations::CardTokenCreateParams::Capability::route
+          }
+
+        class Capability < Increase::Internal::Type::BaseModel
+          attr_accessor cross_border_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::cross_border_push_transfers
+
+          attr_accessor domestic_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::domestic_push_transfers
+
+          attr_accessor route: Increase::Models::Simulations::CardTokenCreateParams::Capability::route
+
+          def initialize: (
+            cross_border_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::cross_border_push_transfers,
+            domestic_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::domestic_push_transfers,
+            route: Increase::Models::Simulations::CardTokenCreateParams::Capability::route
+          ) -> void
+
+          def to_hash: -> {
+            cross_border_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::cross_border_push_transfers,
+            domestic_push_transfers: Increase::Models::Simulations::CardTokenCreateParams::Capability::domestic_push_transfers,
+            route: Increase::Models::Simulations::CardTokenCreateParams::Capability::route
+          }
+
+          type cross_border_push_transfers = :supported | :not_supported
+
+          module CrossBorderPushTransfers
+            extend Increase::Internal::Type::Enum
+
+            # The capability is supported.
+            SUPPORTED: :supported
+
+            # The capability is not supported.
+            NOT_SUPPORTED: :not_supported
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Capability::cross_border_push_transfers]
+          end
+
+          type domestic_push_transfers = :supported | :not_supported
+
+          module DomesticPushTransfers
+            extend Increase::Internal::Type::Enum
+
+            # The capability is supported.
+            SUPPORTED: :supported
+
+            # The capability is not supported.
+            NOT_SUPPORTED: :not_supported
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Capability::domestic_push_transfers]
+          end
+
+          type route = :visa | :mastercard
+
+          module Route
+            extend Increase::Internal::Type::Enum
+
+            # Visa and Interlink
+            VISA: :visa
+
+            # Mastercard and Maestro
+            MASTERCARD: :mastercard
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Capability::route]
+          end
+        end
+      end
+    end
+  end
+end

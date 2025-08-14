@@ -1,0 +1,634 @@
+module Increase
+  module Models
+    type card_validation =
+      {
+        id: String,
+        acceptance: Increase::CardValidation::Acceptance?,
+        account_id: String,
+        cardholder_first_name: String?,
+        cardholder_last_name: String?,
+        cardholder_middle_name: String?,
+        cardholder_postal_code: String?,
+        cardholder_street_address: String?,
+        created_at: Time,
+        created_by: Increase::CardValidation::CreatedBy?,
+        decline: Increase::CardValidation::Decline?,
+        idempotency_key: String?,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        status: Increase::Models::CardValidation::status,
+        submission: Increase::CardValidation::Submission?,
+        type: Increase::Models::CardValidation::type_
+      }
+
+    class CardValidation < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor acceptance: Increase::CardValidation::Acceptance?
+
+      attr_accessor account_id: String
+
+      attr_accessor cardholder_first_name: String?
+
+      attr_accessor cardholder_last_name: String?
+
+      attr_accessor cardholder_middle_name: String?
+
+      attr_accessor cardholder_postal_code: String?
+
+      attr_accessor cardholder_street_address: String?
+
+      attr_accessor created_at: Time
+
+      attr_accessor created_by: Increase::CardValidation::CreatedBy?
+
+      attr_accessor decline: Increase::CardValidation::Decline?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor merchant_category_code: String
+
+      attr_accessor merchant_city_name: String
+
+      attr_accessor merchant_name: String
+
+      attr_accessor merchant_postal_code: String
+
+      attr_accessor merchant_state: String
+
+      attr_accessor status: Increase::Models::CardValidation::status
+
+      attr_accessor submission: Increase::CardValidation::Submission?
+
+      attr_accessor type: Increase::Models::CardValidation::type_
+
+      def initialize: (
+        id: String,
+        acceptance: Increase::CardValidation::Acceptance?,
+        account_id: String,
+        cardholder_first_name: String?,
+        cardholder_last_name: String?,
+        cardholder_middle_name: String?,
+        cardholder_postal_code: String?,
+        cardholder_street_address: String?,
+        created_at: Time,
+        created_by: Increase::CardValidation::CreatedBy?,
+        decline: Increase::CardValidation::Decline?,
+        idempotency_key: String?,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        status: Increase::Models::CardValidation::status,
+        submission: Increase::CardValidation::Submission?,
+        type: Increase::Models::CardValidation::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        acceptance: Increase::CardValidation::Acceptance?,
+        account_id: String,
+        cardholder_first_name: String?,
+        cardholder_last_name: String?,
+        cardholder_middle_name: String?,
+        cardholder_postal_code: String?,
+        cardholder_street_address: String?,
+        created_at: Time,
+        created_by: Increase::CardValidation::CreatedBy?,
+        decline: Increase::CardValidation::Decline?,
+        idempotency_key: String?,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        status: Increase::Models::CardValidation::status,
+        submission: Increase::CardValidation::Submission?,
+        type: Increase::Models::CardValidation::type_
+      }
+
+      type acceptance =
+        {
+          accepted_at: Time,
+          authorization_identification_response: String,
+          :card_verification_value2_result => Increase::Models::CardValidation::Acceptance::card_verification_value2_result?,
+          cardholder_first_name_result: Increase::Models::CardValidation::Acceptance::cardholder_first_name_result?,
+          cardholder_full_name_result: Increase::Models::CardValidation::Acceptance::cardholder_full_name_result?,
+          cardholder_last_name_result: Increase::Models::CardValidation::Acceptance::cardholder_last_name_result?,
+          cardholder_middle_name_result: Increase::Models::CardValidation::Acceptance::cardholder_middle_name_result?,
+          cardholder_postal_code_result: Increase::Models::CardValidation::Acceptance::cardholder_postal_code_result?,
+          cardholder_street_address_result: Increase::Models::CardValidation::Acceptance::cardholder_street_address_result?,
+          network_transaction_identifier: String?
+        }
+
+      class Acceptance < Increase::Internal::Type::BaseModel
+        attr_accessor accepted_at: Time
+
+        attr_accessor authorization_identification_response: String
+
+        attr_accessor card_verification_value2_result: Increase::Models::CardValidation::Acceptance::card_verification_value2_result?
+
+        attr_accessor cardholder_first_name_result: Increase::Models::CardValidation::Acceptance::cardholder_first_name_result?
+
+        attr_accessor cardholder_full_name_result: Increase::Models::CardValidation::Acceptance::cardholder_full_name_result?
+
+        attr_accessor cardholder_last_name_result: Increase::Models::CardValidation::Acceptance::cardholder_last_name_result?
+
+        attr_accessor cardholder_middle_name_result: Increase::Models::CardValidation::Acceptance::cardholder_middle_name_result?
+
+        attr_accessor cardholder_postal_code_result: Increase::Models::CardValidation::Acceptance::cardholder_postal_code_result?
+
+        attr_accessor cardholder_street_address_result: Increase::Models::CardValidation::Acceptance::cardholder_street_address_result?
+
+        attr_accessor network_transaction_identifier: String?
+
+        def initialize: (
+          accepted_at: Time,
+          authorization_identification_response: String,
+          card_verification_value2_result: Increase::Models::CardValidation::Acceptance::card_verification_value2_result?,
+          cardholder_first_name_result: Increase::Models::CardValidation::Acceptance::cardholder_first_name_result?,
+          cardholder_full_name_result: Increase::Models::CardValidation::Acceptance::cardholder_full_name_result?,
+          cardholder_last_name_result: Increase::Models::CardValidation::Acceptance::cardholder_last_name_result?,
+          cardholder_middle_name_result: Increase::Models::CardValidation::Acceptance::cardholder_middle_name_result?,
+          cardholder_postal_code_result: Increase::Models::CardValidation::Acceptance::cardholder_postal_code_result?,
+          cardholder_street_address_result: Increase::Models::CardValidation::Acceptance::cardholder_street_address_result?,
+          network_transaction_identifier: String?
+        ) -> void
+
+        def to_hash: -> {
+          accepted_at: Time,
+          authorization_identification_response: String,
+          :card_verification_value2_result => Increase::Models::CardValidation::Acceptance::card_verification_value2_result?,
+          cardholder_first_name_result: Increase::Models::CardValidation::Acceptance::cardholder_first_name_result?,
+          cardholder_full_name_result: Increase::Models::CardValidation::Acceptance::cardholder_full_name_result?,
+          cardholder_last_name_result: Increase::Models::CardValidation::Acceptance::cardholder_last_name_result?,
+          cardholder_middle_name_result: Increase::Models::CardValidation::Acceptance::cardholder_middle_name_result?,
+          cardholder_postal_code_result: Increase::Models::CardValidation::Acceptance::cardholder_postal_code_result?,
+          cardholder_street_address_result: Increase::Models::CardValidation::Acceptance::cardholder_street_address_result?,
+          network_transaction_identifier: String?
+        }
+
+        type card_verification_value2_result = :match | :no_match
+
+        module CardVerificationValue2Result
+          extend Increase::Internal::Type::Enum
+
+          # The Card Verification Value 2 (CVV2) matches the expected value.
+          MATCH: :match
+
+          # The Card Verification Value 2 (CVV2) does not match the expected value.
+          NO_MATCH: :no_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::card_verification_value2_result]
+        end
+
+        type cardholder_first_name_result = :match | :no_match | :partial_match
+
+        module CardholderFirstNameResult
+          extend Increase::Internal::Type::Enum
+
+          # The cardholder name component matches the expected value.
+          MATCH: :match
+
+          # The cardholder name component does not match the expected value.
+          NO_MATCH: :no_match
+
+          # The cardholder name component partially matches the expected value.
+          PARTIAL_MATCH: :partial_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::cardholder_first_name_result]
+        end
+
+        type cardholder_full_name_result = :match | :no_match | :partial_match
+
+        module CardholderFullNameResult
+          extend Increase::Internal::Type::Enum
+
+          # The cardholder name component matches the expected value.
+          MATCH: :match
+
+          # The cardholder name component does not match the expected value.
+          NO_MATCH: :no_match
+
+          # The cardholder name component partially matches the expected value.
+          PARTIAL_MATCH: :partial_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::cardholder_full_name_result]
+        end
+
+        type cardholder_last_name_result = :match | :no_match | :partial_match
+
+        module CardholderLastNameResult
+          extend Increase::Internal::Type::Enum
+
+          # The cardholder name component matches the expected value.
+          MATCH: :match
+
+          # The cardholder name component does not match the expected value.
+          NO_MATCH: :no_match
+
+          # The cardholder name component partially matches the expected value.
+          PARTIAL_MATCH: :partial_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::cardholder_last_name_result]
+        end
+
+        type cardholder_middle_name_result = :match | :no_match | :partial_match
+
+        module CardholderMiddleNameResult
+          extend Increase::Internal::Type::Enum
+
+          # The cardholder name component matches the expected value.
+          MATCH: :match
+
+          # The cardholder name component does not match the expected value.
+          NO_MATCH: :no_match
+
+          # The cardholder name component partially matches the expected value.
+          PARTIAL_MATCH: :partial_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::cardholder_middle_name_result]
+        end
+
+        type cardholder_postal_code_result = :match | :no_match
+
+        module CardholderPostalCodeResult
+          extend Increase::Internal::Type::Enum
+
+          # The cardholder address component matches the expected value.
+          MATCH: :match
+
+          # The cardholder address component does not match the expected value.
+          NO_MATCH: :no_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::cardholder_postal_code_result]
+        end
+
+        type cardholder_street_address_result = :match | :no_match
+
+        module CardholderStreetAddressResult
+          extend Increase::Internal::Type::Enum
+
+          # The cardholder address component matches the expected value.
+          MATCH: :match
+
+          # The cardholder address component does not match the expected value.
+          NO_MATCH: :no_match
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Acceptance::cardholder_street_address_result]
+        end
+      end
+
+      type created_by =
+        {
+          api_key: Increase::CardValidation::CreatedBy::APIKey?,
+          category: Increase::Models::CardValidation::CreatedBy::category,
+          oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
+          user: Increase::CardValidation::CreatedBy::User?
+        }
+
+      class CreatedBy < Increase::Internal::Type::BaseModel
+        attr_accessor api_key: Increase::CardValidation::CreatedBy::APIKey?
+
+        attr_accessor category: Increase::Models::CardValidation::CreatedBy::category
+
+        attr_accessor oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?
+
+        attr_accessor user: Increase::CardValidation::CreatedBy::User?
+
+        def initialize: (
+          api_key: Increase::CardValidation::CreatedBy::APIKey?,
+          category: Increase::Models::CardValidation::CreatedBy::category,
+          oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
+          user: Increase::CardValidation::CreatedBy::User?
+        ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::CardValidation::CreatedBy::APIKey?,
+          category: Increase::Models::CardValidation::CreatedBy::category,
+          oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
+          user: Increase::CardValidation::CreatedBy::User?
+        }
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
+        end
+
+        type category = :api_key | :oauth_application | :user
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # An API key. Details will be under the `api_key` object.
+          API_KEY: :api_key
+
+          # An OAuth application you connected to Increase. Details will be under the `oauth_application` object.
+          OAUTH_APPLICATION: :oauth_application
+
+          # A User in the Increase dashboard. Details will be under the `user` object.
+          USER: :user
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::CreatedBy::category]
+        end
+
+        type oauth_application = { name: String }
+
+        class OAuthApplication < Increase::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
+        end
+
+        type user = { email: String }
+
+        class User < Increase::Internal::Type::BaseModel
+          attr_accessor email: String
+
+          def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
+        end
+      end
+
+      type decline =
+        {
+          declined_at: Time,
+          network_transaction_identifier: String?,
+          reason: Increase::Models::CardValidation::Decline::reason
+        }
+
+      class Decline < Increase::Internal::Type::BaseModel
+        attr_accessor declined_at: Time
+
+        attr_accessor network_transaction_identifier: String?
+
+        attr_accessor reason: Increase::Models::CardValidation::Decline::reason
+
+        def initialize: (
+          declined_at: Time,
+          network_transaction_identifier: String?,
+          reason: Increase::Models::CardValidation::Decline::reason
+        ) -> void
+
+        def to_hash: -> {
+          declined_at: Time,
+          network_transaction_identifier: String?,
+          reason: Increase::Models::CardValidation::Decline::reason
+        }
+
+        type reason =
+          :do_not_honor
+          | :activity_count_limit_exceeded
+          | :refer_to_card_issuer
+          | :refer_to_card_issuer_special_condition
+          | :invalid_merchant
+          | :pick_up_card
+          | :error
+          | :pick_up_card_special
+          | :invalid_transaction
+          | :invalid_amount
+          | :invalid_account_number
+          | :no_such_issuer
+          | :re_enter_transaction
+          | :no_credit_account
+          | :pick_up_card_lost
+          | :pick_up_card_stolen
+          | :closed_account
+          | :insufficient_funds
+          | :no_checking_account
+          | :no_savings_account
+          | :expired_card
+          | :transaction_not_permitted_to_cardholder
+          | :transaction_not_allowed_at_terminal
+          | :suspected_fraud
+          | :activity_amount_limit_exceeded
+          | :restricted_card
+          | :security_violation
+          | :transaction_does_not_fulfill_anti_money_laundering_requirement
+          | :blocked_first_use
+          | :credit_issuer_unavailable
+          | :negative_card_verification_value_results
+          | :issuer_unavailable
+          | :financial_institution_cannot_be_found
+          | :transaction_cannot_be_completed
+          | :duplicate_transaction
+          | :system_malfunction
+          | :additional_customer_authentication_required
+          | :surcharge_amount_not_permitted
+          | :decline_for_cvv2_failure
+          | :stop_payment_order
+          | :revocation_of_authorization_order
+          | :revocation_of_all_authorizations_order
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The card issuer has declined the transaction without providing a specific reason.
+          DO_NOT_HONOR: :do_not_honor
+
+          # The number of transactions for the card has exceeded the limit set by the issuer.
+          ACTIVITY_COUNT_LIMIT_EXCEEDED: :activity_count_limit_exceeded
+
+          # The card issuer requires the cardholder to contact them for further information regarding the transaction.
+          REFER_TO_CARD_ISSUER: :refer_to_card_issuer
+
+          # The card issuer requires the cardholder to contact them due to a special condition related to the transaction.
+          REFER_TO_CARD_ISSUER_SPECIAL_CONDITION: :refer_to_card_issuer_special_condition
+
+          # The merchant is not valid for this transaction.
+          INVALID_MERCHANT: :invalid_merchant
+
+          # The card should be retained by the terminal.
+          PICK_UP_CARD: :pick_up_card
+
+          # An error occurred during processing of the transaction.
+          ERROR: :error
+
+          # The card should be retained by the terminal due to a special condition.
+          PICK_UP_CARD_SPECIAL: :pick_up_card_special
+
+          # The transaction is invalid and cannot be processed.
+          INVALID_TRANSACTION: :invalid_transaction
+
+          # The amount of the transaction is invalid.
+          INVALID_AMOUNT: :invalid_amount
+
+          # The account number provided is invalid.
+          INVALID_ACCOUNT_NUMBER: :invalid_account_number
+
+          # The issuer of the card could not be found.
+          NO_SUCH_ISSUER: :no_such_issuer
+
+          # The transaction should be re-entered for processing.
+          RE_ENTER_TRANSACTION: :re_enter_transaction
+
+          # There is no credit account associated with the card.
+          NO_CREDIT_ACCOUNT: :no_credit_account
+
+          # The card should be retained by the terminal because it has been reported lost.
+          PICK_UP_CARD_LOST: :pick_up_card_lost
+
+          # The card should be retained by the terminal because it has been reported stolen.
+          PICK_UP_CARD_STOLEN: :pick_up_card_stolen
+
+          # The account associated with the card has been closed.
+          CLOSED_ACCOUNT: :closed_account
+
+          # There are insufficient funds in the account to complete the transaction.
+          INSUFFICIENT_FUNDS: :insufficient_funds
+
+          # There is no checking account associated with the card.
+          NO_CHECKING_ACCOUNT: :no_checking_account
+
+          # There is no savings account associated with the card.
+          NO_SAVINGS_ACCOUNT: :no_savings_account
+
+          # The card has expired and cannot be used for transactions.
+          EXPIRED_CARD: :expired_card
+
+          # The transaction is not permitted for this cardholder.
+          TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER: :transaction_not_permitted_to_cardholder
+
+          # The transaction is not allowed at this terminal.
+          TRANSACTION_NOT_ALLOWED_AT_TERMINAL: :transaction_not_allowed_at_terminal
+
+          # The transaction has been flagged as suspected fraud and cannot be processed.
+          SUSPECTED_FRAUD: :suspected_fraud
+
+          # The amount of activity on the card has exceeded the limit set by the issuer.
+          ACTIVITY_AMOUNT_LIMIT_EXCEEDED: :activity_amount_limit_exceeded
+
+          # The card has restrictions that prevent it from being used for this transaction.
+          RESTRICTED_CARD: :restricted_card
+
+          # A security violation has occurred, preventing the transaction from being processed.
+          SECURITY_VIOLATION: :security_violation
+
+          # The transaction does not meet the anti-money laundering requirements set by the issuer.
+          TRANSACTION_DOES_NOT_FULFILL_ANTI_MONEY_LAUNDERING_REQUIREMENT: :transaction_does_not_fulfill_anti_money_laundering_requirement
+
+          # The first use of the card has been blocked by the issuer.
+          BLOCKED_FIRST_USE: :blocked_first_use
+
+          # The credit issuer is currently unavailable to process the transaction.
+          CREDIT_ISSUER_UNAVAILABLE: :credit_issuer_unavailable
+
+          # The card verification value (CVV) results were negative, indicating a potential issue with the card.
+          NEGATIVE_CARD_VERIFICATION_VALUE_RESULTS: :negative_card_verification_value_results
+
+          # The issuer of the card is currently unavailable to process the transaction.
+          ISSUER_UNAVAILABLE: :issuer_unavailable
+
+          # The financial institution associated with the card could not be found.
+          FINANCIAL_INSTITUTION_CANNOT_BE_FOUND: :financial_institution_cannot_be_found
+
+          # The transaction cannot be completed due to an unspecified reason.
+          TRANSACTION_CANNOT_BE_COMPLETED: :transaction_cannot_be_completed
+
+          # The transaction is a duplicate of a previous transaction and cannot be processed again.
+          DUPLICATE_TRANSACTION: :duplicate_transaction
+
+          # A system malfunction occurred, preventing the transaction from being processed.
+          SYSTEM_MALFUNCTION: :system_malfunction
+
+          # Additional customer authentication is required to complete the transaction.
+          ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED: :additional_customer_authentication_required
+
+          # The surcharge amount applied to the transaction is not permitted by the issuer.
+          SURCHARGE_AMOUNT_NOT_PERMITTED: :surcharge_amount_not_permitted
+
+          # The transaction was declined due to a failure in verifying the CVV2 code.
+          DECLINE_FOR_CVV2_FAILURE: :decline_for_cvv2_failure
+
+          # A stop payment order has been placed on this transaction.
+          STOP_PAYMENT_ORDER: :stop_payment_order
+
+          # An order has been placed to revoke authorization for this transaction.
+          REVOCATION_OF_AUTHORIZATION_ORDER: :revocation_of_authorization_order
+
+          # An order has been placed to revoke all authorizations for this cardholder.
+          REVOCATION_OF_ALL_AUTHORIZATIONS_ORDER: :revocation_of_all_authorizations_order
+
+          def self?.values: -> ::Array[Increase::Models::CardValidation::Decline::reason]
+        end
+      end
+
+      type status =
+        :requires_attention
+        | :pending_submission
+        | :submitted
+        | :complete
+        | :declined
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The validation requires attention from an Increase operator.
+        REQUIRES_ATTENTION: :requires_attention
+
+        # The validation is queued to be submitted to the card network.
+        PENDING_SUBMISSION: :pending_submission
+
+        # The validation has been submitted and is pending a response from the card network.
+        SUBMITTED: :submitted
+
+        # The validation has been sent successfully and is complete.
+        COMPLETE: :complete
+
+        # The validation was declined by the network or the recipient's bank.
+        DECLINED: :declined
+
+        def self?.values: -> ::Array[Increase::Models::CardValidation::status]
+      end
+
+      type submission =
+        {
+          retrieval_reference_number: String,
+          submitted_at: Time,
+          trace_number: String
+        }
+
+      class Submission < Increase::Internal::Type::BaseModel
+        attr_accessor retrieval_reference_number: String
+
+        attr_accessor submitted_at: Time
+
+        attr_accessor trace_number: String
+
+        def initialize: (
+          retrieval_reference_number: String,
+          submitted_at: Time,
+          trace_number: String
+        ) -> void
+
+        def to_hash: -> {
+          retrieval_reference_number: String,
+          submitted_at: Time,
+          trace_number: String
+        }
+      end
+
+      type type_ = :card_validation
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        CARD_VALIDATION: :card_validation
+
+        def self?.values: -> ::Array[Increase::Models::CardValidation::type_]
+      end
+    end
+  end
+end

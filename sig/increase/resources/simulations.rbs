@@ -57,6 +57,8 @@ module Increase
 
       attr_reader documents: Increase::Resources::Simulations::Documents
 
+      attr_reader card_tokens: Increase::Resources::Simulations::CardTokens
+
       def initialize: (client: Increase::Client) -> void
     end
   end
