@@ -119,9 +119,39 @@ module Increase
 
   class CardPurchaseSupplementRetrieveParams = Increase::Models::CardPurchaseSupplementRetrieveParams
 
+  class CardPushTransfer = Increase::Models::CardPushTransfer
+
+  class CardPushTransferApproveParams = Increase::Models::CardPushTransferApproveParams
+
+  class CardPushTransferCancelParams = Increase::Models::CardPushTransferCancelParams
+
+  class CardPushTransferCreateParams = Increase::Models::CardPushTransferCreateParams
+
+  class CardPushTransferListParams = Increase::Models::CardPushTransferListParams
+
+  class CardPushTransferRetrieveParams = Increase::Models::CardPushTransferRetrieveParams
+
   class CardRetrieveParams = Increase::Models::CardRetrieveParams
 
+  class CardToken = Increase::Models::CardToken
+
+  class CardTokenCapabilities = Increase::Models::CardTokenCapabilities
+
+  class CardTokenCapabilitiesParams = Increase::Models::CardTokenCapabilitiesParams
+
+  class CardTokenListParams = Increase::Models::CardTokenListParams
+
+  class CardTokenRetrieveParams = Increase::Models::CardTokenRetrieveParams
+
   class CardUpdateParams = Increase::Models::CardUpdateParams
+
+  class CardValidation = Increase::Models::CardValidation
+
+  class CardValidationCreateParams = Increase::Models::CardValidationCreateParams
+
+  class CardValidationListParams = Increase::Models::CardValidationListParams
+
+  class CardValidationRetrieveParams = Increase::Models::CardValidationRetrieveParams
 
   class CheckDeposit = Increase::Models::CheckDeposit
 

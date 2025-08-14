@@ -1,0 +1,38 @@
+module Increase
+  module Resources
+    class CardValidations
+      def create: (
+        account_id: String,
+        card_token_id: String,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        ?cardholder_first_name: String,
+        ?cardholder_last_name: String,
+        ?cardholder_middle_name: String,
+        ?cardholder_postal_code: String,
+        ?cardholder_street_address: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardValidation
+
+      def retrieve: (
+        String card_validation_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardValidation
+
+      def list: (
+        ?account_id: String,
+        ?created_at: Increase::CardValidationListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CardValidationListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::CardValidation]
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

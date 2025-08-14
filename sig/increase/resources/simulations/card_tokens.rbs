@@ -1,0 +1,18 @@
+module Increase
+  module Resources
+    class Simulations
+      class CardTokens
+        def create: (
+          ?capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
+          ?expiration: Date,
+          ?last4: String,
+          ?prefix: String,
+          ?primary_account_number_length: Integer,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CardToken
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end

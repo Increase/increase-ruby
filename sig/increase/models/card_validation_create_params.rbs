@@ -1,0 +1,91 @@
+module Increase
+  module Models
+    type card_validation_create_params =
+      {
+        account_id: String,
+        card_token_id: String,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        cardholder_first_name: String,
+        cardholder_last_name: String,
+        cardholder_middle_name: String,
+        cardholder_postal_code: String,
+        cardholder_street_address: String
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class CardValidationCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor card_token_id: String
+
+      attr_accessor merchant_category_code: String
+
+      attr_accessor merchant_city_name: String
+
+      attr_accessor merchant_name: String
+
+      attr_accessor merchant_postal_code: String
+
+      attr_accessor merchant_state: String
+
+      attr_reader cardholder_first_name: String?
+
+      def cardholder_first_name=: (String) -> String
+
+      attr_reader cardholder_last_name: String?
+
+      def cardholder_last_name=: (String) -> String
+
+      attr_reader cardholder_middle_name: String?
+
+      def cardholder_middle_name=: (String) -> String
+
+      attr_reader cardholder_postal_code: String?
+
+      def cardholder_postal_code=: (String) -> String
+
+      attr_reader cardholder_street_address: String?
+
+      def cardholder_street_address=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        card_token_id: String,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        ?cardholder_first_name: String,
+        ?cardholder_last_name: String,
+        ?cardholder_middle_name: String,
+        ?cardholder_postal_code: String,
+        ?cardholder_street_address: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        card_token_id: String,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        cardholder_first_name: String,
+        cardholder_last_name: String,
+        cardholder_middle_name: String,
+        cardholder_postal_code: String,
+        cardholder_street_address: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

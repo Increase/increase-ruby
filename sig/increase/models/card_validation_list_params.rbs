@@ -1,0 +1,151 @@
+module Increase
+  module Models
+    type card_validation_list_params =
+      {
+        account_id: String,
+        created_at: Increase::CardValidationListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardValidationListParams::Status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class CardValidationListParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader created_at: Increase::CardValidationListParams::CreatedAt?
+
+      def created_at=: (
+        Increase::CardValidationListParams::CreatedAt
+      ) -> Increase::CardValidationListParams::CreatedAt
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Increase::CardValidationListParams::Status?
+
+      def status=: (
+        Increase::CardValidationListParams::Status
+      ) -> Increase::CardValidationListParams::Status
+
+      def initialize: (
+        ?account_id: String,
+        ?created_at: Increase::CardValidationListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CardValidationListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        created_at: Increase::CardValidationListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardValidationListParams::Status,
+        request_options: Increase::RequestOptions
+      }
+
+      type created_at =
+        { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+
+      class CreatedAt < Increase::Internal::Type::BaseModel
+        attr_reader after: Time?
+
+        def after=: (Time) -> Time
+
+        attr_reader before: Time?
+
+        def before=: (Time) -> Time
+
+        attr_reader on_or_after: Time?
+
+        def on_or_after=: (Time) -> Time
+
+        attr_reader on_or_before: Time?
+
+        def on_or_before=: (Time) -> Time
+
+        def initialize: (
+          ?after: Time,
+          ?before: Time,
+          ?on_or_after: Time,
+          ?on_or_before: Time
+        ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
+      end
+
+      type status =
+        {
+          in_: ::Array[Increase::Models::CardValidationListParams::Status::in_]
+        }
+
+      class Status < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::CardValidationListParams::Status::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::CardValidationListParams::Status::in_]
+        ) -> ::Array[Increase::Models::CardValidationListParams::Status::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::CardValidationListParams::Status::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::CardValidationListParams::Status::in_]
+        }
+
+        type in_ =
+          :requires_attention
+          | :pending_submission
+          | :submitted
+          | :complete
+          | :declined
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # The validation requires attention from an Increase operator.
+          REQUIRES_ATTENTION: :requires_attention
+
+          # The validation is queued to be submitted to the card network.
+          PENDING_SUBMISSION: :pending_submission
+
+          # The validation has been submitted and is pending a response from the card network.
+          SUBMITTED: :submitted
+
+          # The validation has been sent successfully and is complete.
+          COMPLETE: :complete
+
+          # The validation was declined by the network or the recipient's bank.
+          DECLINED: :declined
+
+          def self?.values: -> ::Array[Increase::Models::CardValidationListParams::Status::in_]
+        end
+      end
+    end
+  end
+end

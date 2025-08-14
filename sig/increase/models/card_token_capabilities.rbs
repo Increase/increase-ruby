@@ -1,0 +1,104 @@
+module Increase
+  module Models
+    type card_token_capabilities =
+      {
+        routes: ::Array[Increase::CardTokenCapabilities::Route],
+        type: Increase::Models::CardTokenCapabilities::type_
+      }
+
+    class CardTokenCapabilities < Increase::Internal::Type::BaseModel
+      attr_accessor routes: ::Array[Increase::CardTokenCapabilities::Route]
+
+      attr_accessor type: Increase::Models::CardTokenCapabilities::type_
+
+      def initialize: (
+        routes: ::Array[Increase::CardTokenCapabilities::Route],
+        type: Increase::Models::CardTokenCapabilities::type_
+      ) -> void
+
+      def to_hash: -> {
+        routes: ::Array[Increase::CardTokenCapabilities::Route],
+        type: Increase::Models::CardTokenCapabilities::type_
+      }
+
+      type route =
+        {
+          cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers,
+          domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers,
+          route: Increase::Models::CardTokenCapabilities::Route::route
+        }
+
+      class Route < Increase::Internal::Type::BaseModel
+        attr_accessor cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers
+
+        attr_accessor domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers
+
+        attr_accessor route: Increase::Models::CardTokenCapabilities::Route::route
+
+        def initialize: (
+          cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers,
+          domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers,
+          route: Increase::Models::CardTokenCapabilities::Route::route
+        ) -> void
+
+        def to_hash: -> {
+          cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers,
+          domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers,
+          route: Increase::Models::CardTokenCapabilities::Route::route
+        }
+
+        type cross_border_push_transfers = :supported | :not_supported
+
+        module CrossBorderPushTransfers
+          extend Increase::Internal::Type::Enum
+
+          # The capability is supported.
+          SUPPORTED: :supported
+
+          # The capability is not supported.
+          NOT_SUPPORTED: :not_supported
+
+          def self?.values: -> ::Array[Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers]
+        end
+
+        type domestic_push_transfers = :supported | :not_supported
+
+        module DomesticPushTransfers
+          extend Increase::Internal::Type::Enum
+
+          # The capability is supported.
+          SUPPORTED: :supported
+
+          # The capability is not supported.
+          NOT_SUPPORTED: :not_supported
+
+          def self?.values: -> ::Array[Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers]
+        end
+
+        type route = :visa | :mastercard
+
+        module Route
+          extend Increase::Internal::Type::Enum
+
+          # Visa and Interlink
+          VISA: :visa
+
+          # Mastercard and Maestro
+          MASTERCARD: :mastercard
+
+          def self?.values: -> ::Array[Increase::Models::CardTokenCapabilities::Route::route]
+        end
+      end
+
+      type type_ = :card_token_capabilities
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        CARD_TOKEN_CAPABILITIES: :card_token_capabilities
+
+        def self?.values: -> ::Array[Increase::Models::CardTokenCapabilities::type_]
+      end
+    end
+  end
+end

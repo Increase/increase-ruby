@@ -1,0 +1,60 @@
+module Increase
+  module Models
+    type card_token =
+      {
+        id: String,
+        created_at: Time,
+        expiration_date: Date,
+        :last4 => String,
+        length: Integer,
+        prefix: String,
+        type: Increase::Models::CardToken::type_
+      }
+
+    class CardToken < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor expiration_date: Date
+
+      attr_accessor last4: String
+
+      attr_accessor length: Integer
+
+      attr_accessor prefix: String
+
+      attr_accessor type: Increase::Models::CardToken::type_
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        expiration_date: Date,
+        last4: String,
+        length: Integer,
+        prefix: String,
+        type: Increase::Models::CardToken::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        expiration_date: Date,
+        :last4 => String,
+        length: Integer,
+        prefix: String,
+        type: Increase::Models::CardToken::type_
+      }
+
+      type type_ = :card_token
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        CARD_TOKEN: :card_token
+
+        def self?.values: -> ::Array[Increase::Models::CardToken::type_]
+      end
+    end
+  end
+end

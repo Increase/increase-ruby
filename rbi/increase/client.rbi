@@ -175,6 +175,15 @@ module Increase
     sig { returns(Increase::Resources::IntrafiExclusions) }
     attr_reader :intrafi_exclusions
 
+    sig { returns(Increase::Resources::CardTokens) }
+    attr_reader :card_tokens
+
+    sig { returns(Increase::Resources::CardPushTransfers) }
+    attr_reader :card_push_transfers
+
+    sig { returns(Increase::Resources::CardValidations) }
+    attr_reader :card_validations
+
     sig { returns(Increase::Resources::Simulations) }
     attr_reader :simulations
 

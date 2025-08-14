@@ -1,0 +1,163 @@
+module Increase
+  module Models
+    type card_push_transfer_list_params =
+      {
+        account_id: String,
+        created_at: Increase::CardPushTransferListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardPushTransferListParams::Status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class CardPushTransferListParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader created_at: Increase::CardPushTransferListParams::CreatedAt?
+
+      def created_at=: (
+        Increase::CardPushTransferListParams::CreatedAt
+      ) -> Increase::CardPushTransferListParams::CreatedAt
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Increase::CardPushTransferListParams::Status?
+
+      def status=: (
+        Increase::CardPushTransferListParams::Status
+      ) -> Increase::CardPushTransferListParams::Status
+
+      def initialize: (
+        ?account_id: String,
+        ?created_at: Increase::CardPushTransferListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CardPushTransferListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        created_at: Increase::CardPushTransferListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardPushTransferListParams::Status,
+        request_options: Increase::RequestOptions
+      }
+
+      type created_at =
+        { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+
+      class CreatedAt < Increase::Internal::Type::BaseModel
+        attr_reader after: Time?
+
+        def after=: (Time) -> Time
+
+        attr_reader before: Time?
+
+        def before=: (Time) -> Time
+
+        attr_reader on_or_after: Time?
+
+        def on_or_after=: (Time) -> Time
+
+        attr_reader on_or_before: Time?
+
+        def on_or_before=: (Time) -> Time
+
+        def initialize: (
+          ?after: Time,
+          ?before: Time,
+          ?on_or_after: Time,
+          ?on_or_before: Time
+        ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
+      end
+
+      type status =
+        {
+          in_: ::Array[Increase::Models::CardPushTransferListParams::Status::in_]
+        }
+
+      class Status < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::CardPushTransferListParams::Status::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::CardPushTransferListParams::Status::in_]
+        ) -> ::Array[Increase::Models::CardPushTransferListParams::Status::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::CardPushTransferListParams::Status::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::CardPushTransferListParams::Status::in_]
+        }
+
+        type in_ =
+          :pending_approval
+          | :canceled
+          | :pending_reviewing
+          | :requires_attention
+          | :pending_submission
+          | :submitted
+          | :complete
+          | :declined
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # The transfer is pending approval.
+          PENDING_APPROVAL: :pending_approval
+
+          # The transfer has been canceled.
+          CANCELED: :canceled
+
+          # The transfer is pending review by Increase.
+          PENDING_REVIEWING: :pending_reviewing
+
+          # The transfer requires attention from an Increase operator.
+          REQUIRES_ATTENTION: :requires_attention
+
+          # The transfer is queued to be submitted to the card network.
+          PENDING_SUBMISSION: :pending_submission
+
+          # The transfer has been submitted and is pending a response from the card network.
+          SUBMITTED: :submitted
+
+          # The transfer has been sent successfully and is complete.
+          COMPLETE: :complete
+
+          # The transfer was declined by the network or the recipient's bank.
+          DECLINED: :declined
+
+          def self?.values: -> ::Array[Increase::Models::CardPushTransferListParams::Status::in_]
+        end
+      end
+    end
+  end
+end
