@@ -188,7 +188,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         "entity_id",
         beneficial_owner: {
           individual: {
-            address: {country: "US", line1: "33 Liberty Street"},
+            address: {city: "New York", country: "US", line1: "33 Liberty Street"},
             date_of_birth: "1970-01-31",
             identification: {method: :social_security_number, number: "078051120"},
             name: "Ian Crease"
@@ -258,7 +258,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
     response =
       @increase.entities.update_beneficial_owner_address(
         "entity_id",
-        address: {country: "US", line1: "33 Liberty Street"},
+        address: {city: "New York", country: "US", line1: "33 Liberty Street"},
         beneficial_owner_id: "entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7"
       )
 
