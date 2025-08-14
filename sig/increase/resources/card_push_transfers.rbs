@@ -1,0 +1,53 @@
+module Increase
+  module Resources
+    class CardPushTransfers
+      def create: (
+        amount: Integer,
+        business_application_identifier: Increase::Models::CardPushTransferCreateParams::business_application_identifier,
+        card_token_id: String,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_name_prefix: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        recipient_name: String,
+        sender_address_city: String,
+        sender_address_line1: String,
+        sender_address_postal_code: String,
+        sender_address_state: String,
+        sender_name: String,
+        source_account_number_id: String,
+        ?require_approval: bool,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardPushTransfer
+
+      def retrieve: (
+        String card_push_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardPushTransfer
+
+      def list: (
+        ?account_id: String,
+        ?created_at: Increase::CardPushTransferListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CardPushTransferListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::CardPushTransfer]
+
+      def approve: (
+        String card_push_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardPushTransfer
+
+      def cancel: (
+        String card_push_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardPushTransfer
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end
