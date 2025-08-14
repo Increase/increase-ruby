@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.33.0 (2025-08-14)
+
+Full Changelog: [v1.32.0...v1.33.0](https://github.com/Increase/increase-ruby/compare/v1.32.0...v1.33.0)
+
+### Features
+
+* **api:** api update ([3a7dff1](https://github.com/Increase/increase-ruby/commit/3a7dff16065381bd9a3f2e8d49e87749679d9409))
+
 ## 1.32.0 (2025-08-13)
 
 Full Changelog: [v1.31.0...v1.32.0](https://github.com/Increase/increase-ruby/compare/v1.31.0...v1.32.0)
