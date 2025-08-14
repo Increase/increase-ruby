@@ -75,6 +75,10 @@ module Increase
             )
           end
 
+        # The city, district, town, or village of the address.
+        sig { returns(String) }
+        attr_accessor :city
+
         # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
         sig { returns(String) }
         attr_accessor :country
@@ -82,14 +86,6 @@ module Increase
         # The first line of the address. This is usually the street number and street.
         sig { returns(String) }
         attr_accessor :line1
-
-        # The city, district, town, or village of the address. Required in certain
-        # countries.
-        sig { returns(T.nilable(String)) }
-        attr_reader :city
-
-        sig { params(city: String).void }
-        attr_writer :city
 
         # The second line of the address. This might be the floor or room number.
         sig { returns(T.nilable(String)) }
@@ -117,22 +113,21 @@ module Increase
         # PMB's are disallowed.
         sig do
           params(
+            city: String,
             country: String,
             line1: String,
-            city: String,
             line2: String,
             state: String,
             zip: String
           ).returns(T.attached_class)
         end
         def self.new(
+          # The city, district, town, or village of the address.
+          city:,
           # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           country:,
           # The first line of the address. This is usually the street number and street.
           line1:,
-          # The city, district, town, or village of the address. Required in certain
-          # countries.
-          city: nil,
           # The second line of the address. This might be the floor or room number.
           line2: nil,
           # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -146,9 +141,9 @@ module Increase
         sig do
           override.returns(
             {
+              city: String,
               country: String,
               line1: String,
-              city: String,
               line2: String,
               state: String,
               zip: String
