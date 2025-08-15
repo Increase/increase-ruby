@@ -126,6 +126,9 @@ module Increase
         # A savings account.
         SAVINGS = :savings
 
+        # A general ledger account.
+        GENERAL_LEDGER = :general_ledger
+
         # A different type of account.
         OTHER = :other
 
