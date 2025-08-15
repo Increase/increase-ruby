@@ -78,7 +78,7 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::ExternalAccount::account_holder]
       end
 
-      type funding = :checking | :savings | :other
+      type funding = :checking | :savings | :general_ledger | :other
 
       module Funding
         extend Increase::Internal::Type::Enum
@@ -88,6 +88,9 @@ module Increase
 
         # A savings account.
         SAVINGS: :savings
+
+        # A general ledger account.
+        GENERAL_LEDGER: :general_ledger
 
         # A different type of account.
         OTHER: :other

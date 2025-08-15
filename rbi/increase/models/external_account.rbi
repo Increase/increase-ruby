@@ -172,6 +172,13 @@ module Increase
         SAVINGS =
           T.let(:savings, Increase::ExternalAccount::Funding::TaggedSymbol)
 
+        # A general ledger account.
+        GENERAL_LEDGER =
+          T.let(
+            :general_ledger,
+            Increase::ExternalAccount::Funding::TaggedSymbol
+          )
+
         # A different type of account.
         OTHER = T.let(:other, Increase::ExternalAccount::Funding::TaggedSymbol)
 

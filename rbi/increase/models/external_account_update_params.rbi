@@ -166,6 +166,13 @@ module Increase
             Increase::ExternalAccountUpdateParams::Funding::TaggedSymbol
           )
 
+        # A general ledger account.
+        GENERAL_LEDGER =
+          T.let(
+            :general_ledger,
+            Increase::ExternalAccountUpdateParams::Funding::TaggedSymbol
+          )
+
         # A different type of account.
         OTHER =
           T.let(
