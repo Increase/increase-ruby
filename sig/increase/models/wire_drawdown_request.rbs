@@ -11,6 +11,7 @@ module Increase
         currency: String,
         debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_external_account_id: String?,
         debtor_name: String,
         debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String?,
@@ -40,6 +41,8 @@ module Increase
 
       attr_accessor debtor_address: Increase::WireDrawdownRequest::DebtorAddress
 
+      attr_accessor debtor_external_account_id: String?
+
       attr_accessor debtor_name: String
 
       attr_accessor debtor_routing_number: String
@@ -66,6 +69,7 @@ module Increase
         currency: String,
         debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_external_account_id: String?,
         debtor_name: String,
         debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String?,
@@ -86,6 +90,7 @@ module Increase
         currency: String,
         debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_external_account_id: String?,
         debtor_name: String,
         debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String?,
