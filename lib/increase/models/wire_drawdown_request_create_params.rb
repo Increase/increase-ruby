@@ -31,12 +31,6 @@ module Increase
       #   @return [String]
       required :creditor_name, String
 
-      # @!attribute debtor_account_number
-      #   The debtor's account number.
-      #
-      #   @return [String]
-      required :debtor_account_number, String
-
       # @!attribute debtor_address
       #   The debtor's address.
       #
@@ -49,19 +43,35 @@ module Increase
       #   @return [String]
       required :debtor_name, String
 
-      # @!attribute debtor_routing_number
-      #   The debtor's routing number.
-      #
-      #   @return [String]
-      required :debtor_routing_number, String
-
       # @!attribute unstructured_remittance_information
       #   Remittance information the debtor will see as part of the request.
       #
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_account_number:, debtor_address:, debtor_name:, debtor_routing_number:, unstructured_remittance_information:, request_options: {})
+      # @!attribute debtor_account_number
+      #   The debtor's account number.
+      #
+      #   @return [String, nil]
+      optional :debtor_account_number, String
+
+      # @!attribute debtor_external_account_id
+      #   The ID of an External Account to initiate a transfer to. If this parameter is
+      #   provided, `debtor_account_number` and `debtor_routing_number` must be absent.
+      #
+      #   @return [String, nil]
+      optional :debtor_external_account_id, String
+
+      # @!attribute debtor_routing_number
+      #   The debtor's routing number.
+      #
+      #   @return [String, nil]
+      optional :debtor_routing_number, String
+
+      # @!method initialize(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Increase::Models::WireDrawdownRequestCreateParams} for more details.
+      #
       #   @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
       #   @param amount [Integer] The amount requested from the debtor, in USD cents.
@@ -70,15 +80,17 @@ module Increase
       #
       #   @param creditor_name [String] The creditor's name.
       #
-      #   @param debtor_account_number [String] The debtor's account number.
-      #
       #   @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress] The debtor's address.
       #
       #   @param debtor_name [String] The debtor's name.
       #
-      #   @param debtor_routing_number [String] The debtor's routing number.
-      #
       #   @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
+      #
+      #   @param debtor_account_number [String] The debtor's account number.
+      #
+      #   @param debtor_external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      #
+      #   @param debtor_routing_number [String] The debtor's routing number.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

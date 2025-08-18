@@ -6,11 +6,12 @@ module Increase
         amount: Integer,
         creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress,
         creditor_name: String,
-        debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
         debtor_name: String,
-        debtor_routing_number: String,
-        unstructured_remittance_information: String
+        unstructured_remittance_information: String,
+        debtor_account_number: String,
+        debtor_external_account_id: String,
+        debtor_routing_number: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -26,26 +27,35 @@ module Increase
 
       attr_accessor creditor_name: String
 
-      attr_accessor debtor_account_number: String
-
       attr_accessor debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress
 
       attr_accessor debtor_name: String
 
-      attr_accessor debtor_routing_number: String
-
       attr_accessor unstructured_remittance_information: String
+
+      attr_reader debtor_account_number: String?
+
+      def debtor_account_number=: (String) -> String
+
+      attr_reader debtor_external_account_id: String?
+
+      def debtor_external_account_id=: (String) -> String
+
+      attr_reader debtor_routing_number: String?
+
+      def debtor_routing_number=: (String) -> String
 
       def initialize: (
         account_number_id: String,
         amount: Integer,
         creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress,
         creditor_name: String,
-        debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
         debtor_name: String,
-        debtor_routing_number: String,
         unstructured_remittance_information: String,
+        ?debtor_account_number: String,
+        ?debtor_external_account_id: String,
+        ?debtor_routing_number: String,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -54,11 +64,12 @@ module Increase
         amount: Integer,
         creditor_address: Increase::WireDrawdownRequestCreateParams::CreditorAddress,
         creditor_name: String,
-        debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
         debtor_name: String,
-        debtor_routing_number: String,
         unstructured_remittance_information: String,
+        debtor_account_number: String,
+        debtor_external_account_id: String,
+        debtor_routing_number: String,
         request_options: Increase::RequestOptions
       }
 
