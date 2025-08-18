@@ -21,6 +21,7 @@ class Increase::Test::Resources::Simulations::WireDrawdownRequestsTest < Increas
         currency: String,
         debtor_account_number: String,
         debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+        debtor_external_account_id: String | nil,
         debtor_name: String,
         debtor_routing_number: String,
         fulfillment_inbound_wire_transfer_id: String | nil,

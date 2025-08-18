@@ -61,6 +61,12 @@ module Increase
       #   @return [Increase::Models::WireDrawdownRequest::DebtorAddress]
       required :debtor_address, -> { Increase::WireDrawdownRequest::DebtorAddress }
 
+      # @!attribute debtor_external_account_id
+      #   The debtor's external account identifier.
+      #
+      #   @return [String, nil]
+      required :debtor_external_account_id, String, nil?: true
+
       # @!attribute debtor_name
       #   The debtor's name.
       #
@@ -114,7 +120,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_name:, debtor_routing_number:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unstructured_remittance_information:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireDrawdownRequest} for more details.
       #
@@ -142,6 +148,8 @@ module Increase
       #   @param debtor_account_number [String] The debtor's account number.
       #
       #   @param debtor_address [Increase::Models::WireDrawdownRequest::DebtorAddress] The debtor's address.
+      #
+      #   @param debtor_external_account_id [String, nil] The debtor's external account identifier.
       #
       #   @param debtor_name [String] The debtor's name.
       #

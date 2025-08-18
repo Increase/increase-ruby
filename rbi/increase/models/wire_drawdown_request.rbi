@@ -62,6 +62,10 @@ module Increase
       end
       attr_writer :debtor_address
 
+      # The debtor's external account identifier.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_external_account_id
+
       # The debtor's name.
       sig { returns(String) }
       attr_accessor :debtor_name
@@ -125,6 +129,7 @@ module Increase
           currency: String,
           debtor_account_number: String,
           debtor_address: Increase::WireDrawdownRequest::DebtorAddress::OrHash,
+          debtor_external_account_id: T.nilable(String),
           debtor_name: String,
           debtor_routing_number: String,
           fulfillment_inbound_wire_transfer_id: T.nilable(String),
@@ -158,6 +163,8 @@ module Increase
         debtor_account_number:,
         # The debtor's address.
         debtor_address:,
+        # The debtor's external account identifier.
+        debtor_external_account_id:,
         # The debtor's name.
         debtor_name:,
         # The debtor's routing number.
@@ -194,6 +201,7 @@ module Increase
             currency: String,
             debtor_account_number: String,
             debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
+            debtor_external_account_id: T.nilable(String),
             debtor_name: String,
             debtor_routing_number: String,
             fulfillment_inbound_wire_transfer_id: T.nilable(String),
