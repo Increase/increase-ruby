@@ -10,10 +10,8 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
         amount: 10_000,
         creditor_address: {city: "New York", country: "US", line1: "33 Liberty Street"},
         creditor_name: "National Phonograph Company",
-        debtor_account_number: "987654321",
         debtor_address: {city: "New York", country: "US", line1: "33 Liberty Street"},
         debtor_name: "Ian Crease",
-        debtor_routing_number: "101050001",
         unstructured_remittance_information: "Invoice 29582"
       )
 

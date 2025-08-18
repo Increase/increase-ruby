@@ -3,9 +3,12 @@
 module Increase
   module Resources
     class WireDrawdownRequests
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::WireDrawdownRequestCreateParams} for more details.
+      #
       # Create a Wire Drawdown Request
       #
-      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_account_number:, debtor_address:, debtor_name:, debtor_routing_number:, unstructured_remittance_information:, request_options: {})
+      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, request_options: {})
       #
       # @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
@@ -15,15 +18,17 @@ module Increase
       #
       # @param creditor_name [String] The creditor's name.
       #
-      # @param debtor_account_number [String] The debtor's account number.
-      #
       # @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress] The debtor's address.
       #
       # @param debtor_name [String] The debtor's name.
       #
-      # @param debtor_routing_number [String] The debtor's routing number.
-      #
       # @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
+      #
+      # @param debtor_account_number [String] The debtor's account number.
+      #
+      # @param debtor_external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      #
+      # @param debtor_routing_number [String] The debtor's routing number.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
