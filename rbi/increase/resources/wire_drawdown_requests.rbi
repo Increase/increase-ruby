@@ -11,12 +11,13 @@ module Increase
           creditor_address:
             Increase::WireDrawdownRequestCreateParams::CreditorAddress::OrHash,
           creditor_name: String,
-          debtor_account_number: String,
           debtor_address:
             Increase::WireDrawdownRequestCreateParams::DebtorAddress::OrHash,
           debtor_name: String,
-          debtor_routing_number: String,
           unstructured_remittance_information: String,
+          debtor_account_number: String,
+          debtor_external_account_id: String,
+          debtor_routing_number: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::WireDrawdownRequest)
       end
@@ -29,16 +30,19 @@ module Increase
         creditor_address:,
         # The creditor's name.
         creditor_name:,
-        # The debtor's account number.
-        debtor_account_number:,
         # The debtor's address.
         debtor_address:,
         # The debtor's name.
         debtor_name:,
-        # The debtor's routing number.
-        debtor_routing_number:,
         # Remittance information the debtor will see as part of the request.
         unstructured_remittance_information:,
+        # The debtor's account number.
+        debtor_account_number: nil,
+        # The ID of an External Account to initiate a transfer to. If this parameter is
+        # provided, `debtor_account_number` and `debtor_routing_number` must be absent.
+        debtor_external_account_id: nil,
+        # The debtor's routing number.
+        debtor_routing_number: nil,
         request_options: {}
       )
       end
