@@ -12,8 +12,19 @@ module Increase
         beneficiary_name: String?,
         beneficiary_reference: String?,
         created_at: Time,
+        :creditor_address_line1 => String?,
+        :creditor_address_line2 => String?,
+        :creditor_address_line3 => String?,
+        creditor_name: String?,
+        :debtor_address_line1 => String?,
+        :debtor_address_line2 => String?,
+        :debtor_address_line3 => String?,
+        debtor_name: String?,
         description: String,
+        end_to_end_identification: String?,
         input_message_accountability_data: String?,
+        instructing_agent_routing_number: String?,
+        instruction_identification: String?,
         :originator_address_line1 => String?,
         :originator_address_line2 => String?,
         :originator_address_line3 => String?,
@@ -28,6 +39,8 @@ module Increase
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
+        unique_end_to_end_transaction_reference: String?,
+        unstructured_remittance_information: String?,
         wire_drawdown_request_id: String?
       }
 
@@ -52,9 +65,31 @@ module Increase
 
       attr_accessor created_at: Time
 
+      attr_accessor creditor_address_line1: String?
+
+      attr_accessor creditor_address_line2: String?
+
+      attr_accessor creditor_address_line3: String?
+
+      attr_accessor creditor_name: String?
+
+      attr_accessor debtor_address_line1: String?
+
+      attr_accessor debtor_address_line2: String?
+
+      attr_accessor debtor_address_line3: String?
+
+      attr_accessor debtor_name: String?
+
       attr_accessor description: String
 
+      attr_accessor end_to_end_identification: String?
+
       attr_accessor input_message_accountability_data: String?
+
+      attr_accessor instructing_agent_routing_number: String?
+
+      attr_accessor instruction_identification: String?
 
       attr_accessor originator_address_line1: String?
 
@@ -84,6 +119,10 @@ module Increase
 
       attr_accessor type: Increase::Models::InboundWireTransfer::type_
 
+      attr_accessor unique_end_to_end_transaction_reference: String?
+
+      attr_accessor unstructured_remittance_information: String?
+
       attr_accessor wire_drawdown_request_id: String?
 
       def initialize: (
@@ -97,8 +136,19 @@ module Increase
         beneficiary_name: String?,
         beneficiary_reference: String?,
         created_at: Time,
+        creditor_address_line1: String?,
+        creditor_address_line2: String?,
+        creditor_address_line3: String?,
+        creditor_name: String?,
+        debtor_address_line1: String?,
+        debtor_address_line2: String?,
+        debtor_address_line3: String?,
+        debtor_name: String?,
         description: String,
+        end_to_end_identification: String?,
         input_message_accountability_data: String?,
+        instructing_agent_routing_number: String?,
+        instruction_identification: String?,
         originator_address_line1: String?,
         originator_address_line2: String?,
         originator_address_line3: String?,
@@ -113,6 +163,8 @@ module Increase
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
+        unique_end_to_end_transaction_reference: String?,
+        unstructured_remittance_information: String?,
         wire_drawdown_request_id: String?
       ) -> void
 
@@ -127,8 +179,19 @@ module Increase
         beneficiary_name: String?,
         beneficiary_reference: String?,
         created_at: Time,
+        :creditor_address_line1 => String?,
+        :creditor_address_line2 => String?,
+        :creditor_address_line3 => String?,
+        creditor_name: String?,
+        :debtor_address_line1 => String?,
+        :debtor_address_line2 => String?,
+        :debtor_address_line3 => String?,
+        debtor_name: String?,
         description: String,
+        end_to_end_identification: String?,
         input_message_accountability_data: String?,
+        instructing_agent_routing_number: String?,
+        instruction_identification: String?,
         :originator_address_line1 => String?,
         :originator_address_line2 => String?,
         :originator_address_line3 => String?,
@@ -143,6 +206,8 @@ module Increase
         sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
+        unique_end_to_end_transaction_reference: String?,
+        unstructured_remittance_information: String?,
         wire_drawdown_request_id: String?
       }
 
