@@ -26,8 +26,19 @@ class Increase::Test::Resources::Simulations::InboundWireTransfersTest < Increas
         beneficiary_name: String | nil,
         beneficiary_reference: String | nil,
         created_at: Time,
+        creditor_address_line1: String | nil,
+        creditor_address_line2: String | nil,
+        creditor_address_line3: String | nil,
+        creditor_name: String | nil,
+        debtor_address_line1: String | nil,
+        debtor_address_line2: String | nil,
+        debtor_address_line3: String | nil,
+        debtor_name: String | nil,
         description: String,
+        end_to_end_identification: String | nil,
         input_message_accountability_data: String | nil,
+        instructing_agent_routing_number: String | nil,
+        instruction_identification: String | nil,
         originator_address_line1: String | nil,
         originator_address_line2: String | nil,
         originator_address_line3: String | nil,
@@ -42,6 +53,8 @@ class Increase::Test::Resources::Simulations::InboundWireTransfersTest < Increas
         sender_reference: String | nil,
         status: Increase::InboundWireTransfer::Status,
         type: Increase::InboundWireTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil,
+        unstructured_remittance_information: String | nil,
         wire_drawdown_request_id: String | nil
       }
     end

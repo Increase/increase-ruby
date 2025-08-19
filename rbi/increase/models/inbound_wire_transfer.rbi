@@ -49,15 +49,60 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_address_line1
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_address_line2
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_address_line3
+
+      # A name set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_name
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_address_line1
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_address_line2
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_address_line3
+
+      # A name set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_name
+
       # An Increase-constructed description of the transfer.
       sig { returns(String) }
       attr_accessor :description
+
+      # A free-form reference string set by the sender, to help identify the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :end_to_end_identification
 
       # A unique identifier available to the originating and receiving banks, commonly
       # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
       # service and is helpful when debugging wires with the originating bank.
       sig { returns(T.nilable(String)) }
       attr_accessor :input_message_accountability_data
+
+      # The American Banking Association (ABA) routing number of the bank that sent the
+      # wire.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :instructing_agent_routing_number
+
+      # The sending bank's identifier for the wire transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :instruction_identification
 
       # The address of the wire originator, set by the sending bank.
       sig { returns(T.nilable(String)) }
@@ -125,6 +170,16 @@ module Increase
       sig { returns(Increase::InboundWireTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The Unique End-to-end Transaction Reference
+      # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      # of the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unique_end_to_end_transaction_reference
+
+      # A free-form message set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unstructured_remittance_information
+
       # The wire drawdown request the inbound wire transfer is fulfilling.
       sig { returns(T.nilable(String)) }
       attr_accessor :wire_drawdown_request_id
@@ -143,8 +198,19 @@ module Increase
           beneficiary_name: T.nilable(String),
           beneficiary_reference: T.nilable(String),
           created_at: Time,
+          creditor_address_line1: T.nilable(String),
+          creditor_address_line2: T.nilable(String),
+          creditor_address_line3: T.nilable(String),
+          creditor_name: T.nilable(String),
+          debtor_address_line1: T.nilable(String),
+          debtor_address_line2: T.nilable(String),
+          debtor_address_line3: T.nilable(String),
+          debtor_name: T.nilable(String),
           description: String,
+          end_to_end_identification: T.nilable(String),
           input_message_accountability_data: T.nilable(String),
+          instructing_agent_routing_number: T.nilable(String),
+          instruction_identification: T.nilable(String),
           originator_address_line1: T.nilable(String),
           originator_address_line2: T.nilable(String),
           originator_address_line3: T.nilable(String),
@@ -159,6 +225,8 @@ module Increase
           sender_reference: T.nilable(String),
           status: Increase::InboundWireTransfer::Status::OrSymbol,
           type: Increase::InboundWireTransfer::Type::OrSymbol,
+          unique_end_to_end_transaction_reference: T.nilable(String),
+          unstructured_remittance_information: T.nilable(String),
           wire_drawdown_request_id: T.nilable(String)
         ).returns(T.attached_class)
       end
@@ -184,12 +252,35 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the inbound wire transfer was created.
         created_at:,
+        # A free-form address field set by the sender.
+        creditor_address_line1:,
+        # A free-form address field set by the sender.
+        creditor_address_line2:,
+        # A free-form address field set by the sender.
+        creditor_address_line3:,
+        # A name set by the sender.
+        creditor_name:,
+        # A free-form address field set by the sender.
+        debtor_address_line1:,
+        # A free-form address field set by the sender.
+        debtor_address_line2:,
+        # A free-form address field set by the sender.
+        debtor_address_line3:,
+        # A name set by the sender.
+        debtor_name:,
         # An Increase-constructed description of the transfer.
         description:,
+        # A free-form reference string set by the sender, to help identify the transfer.
+        end_to_end_identification:,
         # A unique identifier available to the originating and receiving banks, commonly
         # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
         # service and is helpful when debugging wires with the originating bank.
         input_message_accountability_data:,
+        # The American Banking Association (ABA) routing number of the bank that sent the
+        # wire.
+        instructing_agent_routing_number:,
+        # The sending bank's identifier for the wire transfer.
+        instruction_identification:,
         # The address of the wire originator, set by the sending bank.
         originator_address_line1:,
         # The address of the wire originator, set by the sending bank.
@@ -221,6 +312,12 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `inbound_wire_transfer`.
         type:,
+        # The Unique End-to-end Transaction Reference
+        # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        # of the transfer.
+        unique_end_to_end_transaction_reference:,
+        # A free-form message set by the sender.
+        unstructured_remittance_information:,
         # The wire drawdown request the inbound wire transfer is fulfilling.
         wire_drawdown_request_id:
       )
@@ -239,8 +336,19 @@ module Increase
             beneficiary_name: T.nilable(String),
             beneficiary_reference: T.nilable(String),
             created_at: Time,
+            creditor_address_line1: T.nilable(String),
+            creditor_address_line2: T.nilable(String),
+            creditor_address_line3: T.nilable(String),
+            creditor_name: T.nilable(String),
+            debtor_address_line1: T.nilable(String),
+            debtor_address_line2: T.nilable(String),
+            debtor_address_line3: T.nilable(String),
+            debtor_name: T.nilable(String),
             description: String,
+            end_to_end_identification: T.nilable(String),
             input_message_accountability_data: T.nilable(String),
+            instructing_agent_routing_number: T.nilable(String),
+            instruction_identification: T.nilable(String),
             originator_address_line1: T.nilable(String),
             originator_address_line2: T.nilable(String),
             originator_address_line3: T.nilable(String),
@@ -255,6 +363,8 @@ module Increase
             sender_reference: T.nilable(String),
             status: Increase::InboundWireTransfer::Status::TaggedSymbol,
             type: Increase::InboundWireTransfer::Type::TaggedSymbol,
+            unique_end_to_end_transaction_reference: T.nilable(String),
+            unstructured_remittance_information: T.nilable(String),
             wire_drawdown_request_id: T.nilable(String)
           }
         )
