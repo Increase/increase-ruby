@@ -481,9 +481,7 @@ module Increase
         #
         #   @return [Array<Increase::Models::Entity::GovernmentAuthority::AuthorizedPerson>]
         required :authorized_persons,
-                 -> {
-                   Increase::Internal::Type::ArrayOf[Increase::Entity::GovernmentAuthority::AuthorizedPerson]
-                 }
+                 -> { Increase::Internal::Type::ArrayOf[Increase::Entity::GovernmentAuthority::AuthorizedPerson] }
 
         # @!attribute category
         #   The category of the government authority.

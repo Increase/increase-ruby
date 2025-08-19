@@ -64,14 +64,7 @@ module Increase
             setter = :"#{name_sym}="
             api_name = info.fetch(:api_name, name_sym)
             nilable = info.fetch(:nil?, false)
-            const = if required && !nilable
-              info.fetch(
-                :const,
-                Increase::Internal::OMIT
-              )
-            else
-              Increase::Internal::OMIT
-            end
+            const = required && !nilable ? info.fetch(:const, Increase::Internal::OMIT) : Increase::Internal::OMIT
 
             [name_sym, setter].each { undef_method(_1) } if known_fields.key?(name_sym)
 

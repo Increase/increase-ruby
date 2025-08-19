@@ -35,10 +35,7 @@ module Increase
       #   contain details of the adjustments.
       #
       #   @return [Array<Increase::Models::InboundCheckDeposit::Adjustment>]
-      required :adjustments,
-               -> {
-                 Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]
-               }
+      required :adjustments, -> { Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment] }
 
       # @!attribute amount
       #   The deposited amount in USD cents.

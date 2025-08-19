@@ -138,9 +138,7 @@ module Increase
         #
         #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>, nil]
         optional :payer,
-                 -> {
-                   Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
-                 }
+                 -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payer] }
 
         # @!attribute return_address
         #   The return address to be printed on the check. If omitted this will default to
@@ -155,10 +153,7 @@ module Increase
         #   https://increase.com/documentation/originating-checks#printing-checks .
         #
         #   @return [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod, nil]
-        optional :shipping_method,
-                 enum: -> {
-                   Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod
-                 }
+        optional :shipping_method, enum: -> { Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod }
 
         # @!attribute signature_text
         #   The text that will appear as the signature on the check in cursive font. If not
