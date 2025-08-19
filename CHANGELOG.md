@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.37.1 (2025-08-19)
+
+Full Changelog: [v1.37.0...v1.37.1](https://github.com/Increase/increase-ruby/compare/v1.37.0...v1.37.1)
+
+### Bug Fixes
+
+* bump sorbet version and fix new type errors from the breaking change ([0b9b4ea](https://github.com/Increase/increase-ruby/commit/0b9b4eaee891bbbd8fe56fa7da8b54b6b94c0172))
+
 ## 1.37.0 (2025-08-18)
 
 Full Changelog: [v1.36.0...v1.37.0](https://github.com/Increase/increase-ruby/compare/v1.36.0...v1.37.0)
