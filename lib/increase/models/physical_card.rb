@@ -343,9 +343,7 @@ module Increase
           #
           #   @return [Array<Increase::Models::PhysicalCard::Shipment::Tracking::Update>]
           required :updates,
-                   -> {
-                     Increase::Internal::Type::ArrayOf[Increase::PhysicalCard::Shipment::Tracking::Update]
-                   }
+                   -> { Increase::Internal::Type::ArrayOf[Increase::PhysicalCard::Shipment::Tracking::Update] }
 
           # @!method initialize(number:, return_number:, return_reason:, shipped_at:, updates:)
           #   Some parameter documentations has been truncated, see

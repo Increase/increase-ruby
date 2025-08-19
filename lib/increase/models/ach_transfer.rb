@@ -435,9 +435,7 @@ module Increase
           #
           #   @return [Array<Increase::Models::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice>]
           required :invoices,
-                   -> {
-                     Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice]
-                   }
+                   -> { Increase::Internal::Type::ArrayOf[Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice::Invoice] }
 
           # @!method initialize(invoices:)
           #   Structured ASC X12 820 remittance advice records. Please reach out to

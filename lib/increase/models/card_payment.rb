@@ -417,9 +417,7 @@ module Increase
             #
             #   @return [Array<Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt>]
             required :attempts,
-                     -> {
-                       Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt]
-                     }
+                     -> { Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt] }
 
             # @!attribute created_at
             #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card
@@ -439,9 +437,7 @@ module Increase
             #
             #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod]
             required :verification_method,
-                     enum: -> {
-                       Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod
-                     }
+                     enum: -> { Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod }
 
             # @!attribute verification_value
             #   E.g., the email address or phone number used for the Card Authentication
@@ -480,9 +476,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome]
               required :outcome,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome }
 
               # @!method initialize(created_at:, outcome:)
               #   Some parameter documentations has been truncated, see
@@ -649,10 +643,7 @@ module Increase
           #   to provide more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts]
-          required :additional_amounts,
-                   -> {
-                     Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts
-                   }
+          required :additional_amounts, -> { Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts }
 
           # @!attribute amount
           #   The pending amount in the minor unit of the transaction's currency. For dollars,
@@ -1602,9 +1593,7 @@ module Increase
             #
             #   @return [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode]
             required :card_verification_code,
-                     -> {
-                       Increase::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode
-                     }
+                     -> { Increase::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode }
 
             # @!attribute cardholder_address
             #   Cardholder address provided in the authorization request and the address on file
@@ -1632,9 +1621,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result]
               required :result,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result }
 
               # @!method initialize(result:)
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
@@ -1694,9 +1681,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result]
               required :result,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
               #   Some parameter documentations has been truncated, see
@@ -1766,10 +1751,7 @@ module Increase
           #   currency.
           #
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Currency]
-          required :currency,
-                   enum: -> {
-                     Increase::CardPayment::Element::CardAuthorizationExpiration::Currency
-                   }
+          required :currency, enum: -> { Increase::CardPayment::Element::CardAuthorizationExpiration::Currency }
 
           # @!attribute expired_amount
           #   The amount of this authorization expiration in the minor unit of the
@@ -1994,10 +1976,7 @@ module Increase
           #   Network-specific identifiers for a specific request or transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardDecline::NetworkIdentifiers]
-          required :network_identifiers,
-                   -> {
-                     Increase::CardPayment::Element::CardDecline::NetworkIdentifiers
-                   }
+          required :network_identifiers, -> { Increase::CardPayment::Element::CardDecline::NetworkIdentifiers }
 
           # @!attribute network_risk_score
           #   The risk score generated by the card network. For Visa this is the Visa Advanced
@@ -2551,10 +2530,7 @@ module Increase
             #   The payment network used to process this card authorization.
             #
             #   @return [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Category]
-            required :category,
-                     enum: -> {
-                       Increase::CardPayment::Element::CardDecline::NetworkDetails::Category
-                     }
+            required :category, enum: -> { Increase::CardPayment::Element::CardDecline::NetworkDetails::Category }
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -2960,9 +2936,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result]
               required :result,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result }
 
               # @!method initialize(result:)
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
@@ -3022,9 +2996,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result]
               required :result,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
               #   Some parameter documentations has been truncated, see
@@ -3270,10 +3242,7 @@ module Increase
           #   to provide more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts]
-          required :additional_amounts,
-                   -> {
-                     Increase::CardPayment::Element::CardIncrement::AdditionalAmounts
-                   }
+          required :additional_amounts, -> { Increase::CardPayment::Element::CardIncrement::AdditionalAmounts }
 
           # @!attribute amount
           #   The amount of this increment in the minor unit of the transaction's currency.
@@ -3305,10 +3274,7 @@ module Increase
           #   Network-specific identifiers for a specific request or transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardIncrement::NetworkIdentifiers]
-          required :network_identifiers,
-                   -> {
-                     Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers
-                   }
+          required :network_identifiers, -> { Increase::CardPayment::Element::CardIncrement::NetworkIdentifiers }
 
           # @!attribute network_risk_score
           #   The risk score generated by the card network. For Visa this is the Visa Advanced
@@ -4899,9 +4865,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> {
-                           Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service]
-                         }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -5287,10 +5251,7 @@ module Increase
           #   Network-specific identifiers for a specific request or transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardReversal::NetworkIdentifiers]
-          required :network_identifiers,
-                   -> {
-                     Increase::CardPayment::Element::CardReversal::NetworkIdentifiers
-                   }
+          required :network_identifiers, -> { Increase::CardPayment::Element::CardReversal::NetworkIdentifiers }
 
           # @!attribute pending_transaction_id
           #   The identifier of the Pending Transaction associated with this Card Reversal.
@@ -5620,10 +5581,7 @@ module Increase
           #   Network-specific identifiers for this refund.
           #
           #   @return [Increase::Models::CardPayment::Element::CardSettlement::NetworkIdentifiers]
-          required :network_identifiers,
-                   -> {
-                     Increase::CardPayment::Element::CardSettlement::NetworkIdentifiers
-                   }
+          required :network_identifiers, -> { Increase::CardPayment::Element::CardSettlement::NetworkIdentifiers }
 
           # @!attribute pending_transaction_id
           #   The identifier of the Pending Transaction associated with this Transaction.
@@ -5732,10 +5690,7 @@ module Increase
             #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
             #   @return [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Cashback::Currency]
-            required :currency,
-                     enum: -> {
-                       Increase::CardPayment::Element::CardSettlement::Cashback::Currency
-                     }
+            required :currency, enum: -> { Increase::CardPayment::Element::CardSettlement::Cashback::Currency }
 
             # @!method initialize(amount:, currency:)
             #   Some parameter documentations has been truncated, see
@@ -5829,10 +5784,7 @@ module Increase
             #   reimbursement.
             #
             #   @return [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Interchange::Currency]
-            required :currency,
-                     enum: -> {
-                       Increase::CardPayment::Element::CardSettlement::Interchange::Currency
-                     }
+            required :currency, enum: -> { Increase::CardPayment::Element::CardSettlement::Interchange::Currency }
 
             # @!method initialize(amount:, code:, currency:)
             #   Some parameter documentations has been truncated, see
@@ -6592,9 +6544,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> {
-                           Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service]
-                         }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -6925,10 +6875,7 @@ module Increase
           #   to provide more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts]
-          required :additional_amounts,
-                   -> {
-                     Increase::CardPayment::Element::CardValidation::AdditionalAmounts
-                   }
+          required :additional_amounts, -> { Increase::CardPayment::Element::CardValidation::AdditionalAmounts }
 
           # @!attribute card_payment_id
           #   The ID of the Card Payment this transaction belongs to.
@@ -7005,10 +6952,7 @@ module Increase
           #   Network-specific identifiers for a specific request or transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardValidation::NetworkIdentifiers]
-          required :network_identifiers,
-                   -> {
-                     Increase::CardPayment::Element::CardValidation::NetworkIdentifiers
-                   }
+          required :network_identifiers, -> { Increase::CardPayment::Element::CardValidation::NetworkIdentifiers }
 
           # @!attribute network_risk_score
           #   The risk score generated by the card network. For Visa this is the Visa Advanced
@@ -7506,10 +7450,7 @@ module Increase
             #   The payment network used to process this card authorization.
             #
             #   @return [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Category]
-            required :category,
-                     enum: -> {
-                       Increase::CardPayment::Element::CardValidation::NetworkDetails::Category
-                     }
+            required :category, enum: -> { Increase::CardPayment::Element::CardValidation::NetworkDetails::Category }
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -7791,9 +7732,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result]
               required :result,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result }
 
               # @!method initialize(result:)
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
@@ -7853,9 +7792,7 @@ module Increase
               #
               #   @return [Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result]
               required :result,
-                       enum: -> {
-                         Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result
-                       }
+                       enum: -> { Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
               #   Some parameter documentations has been truncated, see

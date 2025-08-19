@@ -99,10 +99,7 @@ module Increase
         #   cardholder.
         #
         #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result]
-        required :result,
-                 enum: -> {
-                   Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result
-                 }
+        required :result, enum: -> { Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result }
 
         # @!method initialize(result:)
         #   Some parameter documentations has been truncated, see
@@ -210,10 +207,7 @@ module Increase
         #   Whether your application was able to deliver the one-time passcode.
         #
         #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result]
-        required :result,
-                 enum: -> {
-                   Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result
-                 }
+        required :result, enum: -> { Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result }
 
         # @!attribute success
         #

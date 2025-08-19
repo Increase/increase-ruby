@@ -36,9 +36,7 @@ module Increase
         #
         #   @return [Array<Symbol, Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong>]
         required :prongs,
-                 -> {
-                   Increase::Internal::Type::ArrayOf[enum: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong]
-                 }
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Prong] }
 
         # @!attribute company_title
         #   This person's role or title within the entity.
@@ -81,9 +79,7 @@ module Increase
           #
           #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification]
           required :identification,
-                   -> {
-                     Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification
-                   }
+                   -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification }
 
           # @!attribute name
           #   The person's legal name.
@@ -202,9 +198,7 @@ module Increase
             #
             #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense, nil]
             optional :drivers_license,
-                     -> {
-                       Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense
-                     }
+                     -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::DriversLicense }
 
             # @!attribute other
             #   Information about the identification document provided. Required if `method` is
@@ -212,9 +206,7 @@ module Increase
             #
             #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other, nil]
             optional :other,
-                     -> {
-                       Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other
-                     }
+                     -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Other }
 
             # @!attribute passport
             #   Information about the passport used for identification. Required if `method` is
@@ -222,9 +214,7 @@ module Increase
             #
             #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport, nil]
             optional :passport,
-                     -> {
-                       Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport
-                     }
+                     -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::Individual::Identification::Passport }
 
             # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
             #   Some parameter documentations has been truncated, see
