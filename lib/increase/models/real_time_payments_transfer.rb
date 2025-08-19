@@ -444,10 +444,7 @@ module Increase
         #   Real-Time Payments network.
         #
         #   @return [Symbol, Increase::Models::RealTimePaymentsTransfer::Rejection::RejectReasonCode]
-        required :reject_reason_code,
-                 enum: -> {
-                   Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode
-                 }
+        required :reject_reason_code, enum: -> { Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode }
 
         # @!attribute rejected_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which

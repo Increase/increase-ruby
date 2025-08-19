@@ -478,10 +478,7 @@ module Increase
         #   check and defaults to the return address if unspecified.
         #
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
-        required :payer,
-                 -> {
-                   Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payer]
-                 }
+        required :payer, -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payer] }
 
         # @!attribute recipient_name
         #   The name that will be printed on the check.
@@ -517,9 +514,7 @@ module Increase
         #
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>]
         required :tracking_updates,
-                 -> {
-                   Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
-                 }
+                 -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate] }
 
         # @!method initialize(attachment_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
         #   Some parameter documentations has been truncated, see

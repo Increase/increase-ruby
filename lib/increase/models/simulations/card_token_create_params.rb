@@ -13,9 +13,7 @@ module Increase
         #
         #   @return [Array<Increase::Models::Simulations::CardTokenCreateParams::Capability>, nil]
         optional :capabilities,
-                 -> {
-                   Increase::Internal::Type::ArrayOf[Increase::Simulations::CardTokenCreateParams::Capability]
-                 }
+                 -> { Increase::Internal::Type::ArrayOf[Increase::Simulations::CardTokenCreateParams::Capability] }
 
         # @!attribute expiration
         #   The expiration date of the card.
@@ -60,18 +58,14 @@ module Increase
           #
           #   @return [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::CrossBorderPushTransfers]
           required :cross_border_push_transfers,
-                   enum: -> {
-                     Increase::Simulations::CardTokenCreateParams::Capability::CrossBorderPushTransfers
-                   }
+                   enum: -> { Increase::Simulations::CardTokenCreateParams::Capability::CrossBorderPushTransfers }
 
           # @!attribute domestic_push_transfers
           #   The domestic push transfers capability.
           #
           #   @return [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::DomesticPushTransfers]
           required :domestic_push_transfers,
-                   enum: -> {
-                     Increase::Simulations::CardTokenCreateParams::Capability::DomesticPushTransfers
-                   }
+                   enum: -> { Increase::Simulations::CardTokenCreateParams::Capability::DomesticPushTransfers }
 
           # @!attribute route
           #   The route of the capability.

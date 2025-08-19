@@ -1135,10 +1135,7 @@ module Increase
             #   The type of card dispute financial event.
             #
             #   @return [Symbol, Increase::Models::Transaction::Source::CardDisputeFinancial::Visa::EventType]
-            required :event_type,
-                     enum: -> {
-                       Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType
-                     }
+            required :event_type, enum: -> { Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType }
 
             # @!method initialize(event_type:)
             #   Information for events related to card dispute for card payments processed over
@@ -2294,9 +2291,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> {
-                           Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service]
-                         }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardRefund::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -2783,10 +2778,7 @@ module Increase
           #   Network-specific identifiers for this refund.
           #
           #   @return [Increase::Models::Transaction::Source::CardSettlement::NetworkIdentifiers]
-          required :network_identifiers,
-                   -> {
-                     Increase::Transaction::Source::CardSettlement::NetworkIdentifiers
-                   }
+          required :network_identifiers, -> { Increase::Transaction::Source::CardSettlement::NetworkIdentifiers }
 
           # @!attribute pending_transaction_id
           #   The identifier of the Pending Transaction associated with this Transaction.
@@ -2989,10 +2981,7 @@ module Increase
             #   reimbursement.
             #
             #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
-            required :currency,
-                     enum: -> {
-                       Increase::Transaction::Source::CardSettlement::Interchange::Currency
-                     }
+            required :currency, enum: -> { Increase::Transaction::Source::CardSettlement::Interchange::Currency }
 
             # @!method initialize(amount:, code:, currency:)
             #   Some parameter documentations has been truncated, see
@@ -3752,9 +3741,7 @@ module Increase
                 #
                 #   @return [Array<Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
                 required :services,
-                         -> {
-                           Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service]
-                         }
+                         -> { Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardSettlement::PurchaseDetails::Travel::Ancillary::Service] }
 
                 # @!attribute ticket_document_number
                 #   Ticket document number.
@@ -4383,10 +4370,7 @@ module Increase
           #   against.
           #
           #   @return [Symbol, Increase::Models::Transaction::Source::CheckDepositReturn::ReturnReason]
-          required :return_reason,
-                   enum: -> {
-                     Increase::Transaction::Source::CheckDepositReturn::ReturnReason
-                   }
+          required :return_reason, enum: -> { Increase::Transaction::Source::CheckDepositReturn::ReturnReason }
 
           # @!attribute returned_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -4824,10 +4808,7 @@ module Increase
             #   The type of addendum.
             #
             #   @return [Symbol, Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Category]
-            required :category,
-                     enum: -> {
-                       Increase::Transaction::Source::InboundACHTransfer::Addenda::Category
-                     }
+            required :category, enum: -> { Increase::Transaction::Source::InboundACHTransfer::Addenda::Category }
 
             # @!attribute freeform
             #   Unstructured `payment_related_information` passed through by the originator.
@@ -4864,9 +4845,7 @@ module Increase
               #
               #   @return [Array<Increase::Models::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry>]
               required :entries,
-                       -> {
-                         Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry]
-                       }
+                       -> { Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::InboundACHTransfer::Addenda::Freeform::Entry] }
 
               # @!method initialize(entries:)
               #   Unstructured `payment_related_information` passed through by the originator.
@@ -5007,9 +4986,7 @@ module Increase
           #
           #   @return [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::Currency]
           required :currency,
-                   enum: -> {
-                     Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::Currency
-                   }
+                   enum: -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::Currency }
 
           # @!attribute debtor_account_number
           #   The account number of the account that sent the transfer.
@@ -5128,9 +5105,7 @@ module Increase
           #
           #   @return [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
           required :currency,
-                   enum: -> {
-                     Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency
-                   }
+                   enum: -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency }
 
           # @!attribute debtor_account_number
           #   The account number of the account that sent the transfer.

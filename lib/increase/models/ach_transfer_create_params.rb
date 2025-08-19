@@ -247,9 +247,7 @@ module Increase
           #
           #   @return [Array<Increase::Models::ACHTransferCreateParams::Addenda::Freeform::Entry>]
           required :entries,
-                   -> {
-                     Increase::Internal::Type::ArrayOf[Increase::ACHTransferCreateParams::Addenda::Freeform::Entry]
-                   }
+                   -> { Increase::Internal::Type::ArrayOf[Increase::ACHTransferCreateParams::Addenda::Freeform::Entry] }
 
           # @!method initialize(entries:)
           #   Some parameter documentations has been truncated, see
@@ -278,9 +276,7 @@ module Increase
           #
           #   @return [Array<Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice>]
           required :invoices,
-                   -> {
-                     Increase::Internal::Type::ArrayOf[Increase::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice]
-                   }
+                   -> { Increase::Internal::Type::ArrayOf[Increase::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice] }
 
           # @!method initialize(invoices:)
           #   Structured ASC X12 820 remittance advice records. Please reach out to
