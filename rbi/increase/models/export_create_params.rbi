@@ -16,6 +16,21 @@ module Increase
       attr_accessor :category
 
       # Options for the created export. Required if `category` is equal to
+      # `account_statement_bai2`.
+      sig do
+        returns(T.nilable(Increase::ExportCreateParams::AccountStatementBai2))
+      end
+      attr_reader :account_statement_bai2
+
+      sig do
+        params(
+          account_statement_bai2:
+            Increase::ExportCreateParams::AccountStatementBai2::OrHash
+        ).void
+      end
+      attr_writer :account_statement_bai2
+
+      # Options for the created export. Required if `category` is equal to
       # `account_statement_ofx`.
       sig do
         returns(T.nilable(Increase::ExportCreateParams::AccountStatementOfx))
@@ -90,6 +105,8 @@ module Increase
       sig do
         params(
           category: Increase::ExportCreateParams::Category::OrSymbol,
+          account_statement_bai2:
+            Increase::ExportCreateParams::AccountStatementBai2::OrHash,
           account_statement_ofx:
             Increase::ExportCreateParams::AccountStatementOfx::OrHash,
           balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash,
@@ -104,6 +121,9 @@ module Increase
       def self.new(
         # The type of Export to create.
         category:,
+        # Options for the created export. Required if `category` is equal to
+        # `account_statement_bai2`.
+        account_statement_bai2: nil,
         # Options for the created export. Required if `category` is equal to
         # `account_statement_ofx`.
         account_statement_ofx: nil,
@@ -128,6 +148,8 @@ module Increase
         override.returns(
           {
             category: Increase::ExportCreateParams::Category::OrSymbol,
+            account_statement_bai2:
+              Increase::ExportCreateParams::AccountStatementBai2,
             account_statement_ofx:
               Increase::ExportCreateParams::AccountStatementOfx,
             balance_csv: Increase::ExportCreateParams::BalanceCsv,
@@ -155,6 +177,13 @@ module Increase
         ACCOUNT_STATEMENT_OFX =
           T.let(
             :account_statement_ofx,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # Export a BAI2 file of transactions and balances for a given date and optional Account.
+        ACCOUNT_STATEMENT_BAI2 =
+          T.let(
+            :account_statement_bai2,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
@@ -199,6 +228,57 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class AccountStatementBai2 < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::AccountStatementBai2,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The Account to create a BAI2 report for. If not provided, all open accounts will
+        # be included.
+        sig { returns(T.nilable(String)) }
+        attr_reader :account_id
+
+        sig { params(account_id: String).void }
+        attr_writer :account_id
+
+        # The date to create a BAI2 report for. If not provided, the current date will be
+        # used. The timezone is UTC. If the current date is used, the report will include
+        # intraday balances, otherwise it will include end-of-day balances for the
+        # provided date.
+        sig { returns(T.nilable(Date)) }
+        attr_reader :effective_date
+
+        sig { params(effective_date: Date).void }
+        attr_writer :effective_date
+
+        # Options for the created export. Required if `category` is equal to
+        # `account_statement_bai2`.
+        sig do
+          params(account_id: String, effective_date: Date).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The Account to create a BAI2 report for. If not provided, all open accounts will
+          # be included.
+          account_id: nil,
+          # The date to create a BAI2 report for. If not provided, the current date will be
+          # used. The timezone is UTC. If the current date is used, the report will include
+          # intraday balances, otherwise it will include end-of-day balances for the
+          # provided date.
+          effective_date: nil
+        )
+        end
+
+        sig { override.returns({ account_id: String, effective_date: Date }) }
+        def to_hash
         end
       end
 

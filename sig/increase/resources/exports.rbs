@@ -3,6 +3,7 @@ module Increase
     class Exports
       def create: (
         category: Increase::Models::ExportCreateParams::category,
+        ?account_statement_bai2: Increase::ExportCreateParams::AccountStatementBai2,
         ?account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         ?balance_csv: Increase::ExportCreateParams::BalanceCsv,
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
