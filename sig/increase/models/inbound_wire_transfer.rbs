@@ -6,11 +6,6 @@ module Increase
         account_id: String,
         account_number_id: String,
         amount: Integer,
-        :beneficiary_address_line1 => String?,
-        :beneficiary_address_line2 => String?,
-        :beneficiary_address_line3 => String?,
-        beneficiary_name: String?,
-        beneficiary_reference: String?,
         created_at: Time,
         :creditor_address_line1 => String?,
         :creditor_address_line2 => String?,
@@ -25,18 +20,7 @@ module Increase
         input_message_accountability_data: String?,
         instructing_agent_routing_number: String?,
         instruction_identification: String?,
-        :originator_address_line1 => String?,
-        :originator_address_line2 => String?,
-        :originator_address_line3 => String?,
-        originator_name: String?,
-        originator_routing_number: String?,
-        originator_to_beneficiary_information: String?,
-        :originator_to_beneficiary_information_line1 => String?,
-        :originator_to_beneficiary_information_line2 => String?,
-        :originator_to_beneficiary_information_line3 => String?,
-        :originator_to_beneficiary_information_line4 => String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
-        sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
         unique_end_to_end_transaction_reference: String?,
@@ -52,16 +36,6 @@ module Increase
       attr_accessor account_number_id: String
 
       attr_accessor amount: Integer
-
-      attr_accessor beneficiary_address_line1: String?
-
-      attr_accessor beneficiary_address_line2: String?
-
-      attr_accessor beneficiary_address_line3: String?
-
-      attr_accessor beneficiary_name: String?
-
-      attr_accessor beneficiary_reference: String?
 
       attr_accessor created_at: Time
 
@@ -91,29 +65,7 @@ module Increase
 
       attr_accessor instruction_identification: String?
 
-      attr_accessor originator_address_line1: String?
-
-      attr_accessor originator_address_line2: String?
-
-      attr_accessor originator_address_line3: String?
-
-      attr_accessor originator_name: String?
-
-      attr_accessor originator_routing_number: String?
-
-      attr_accessor originator_to_beneficiary_information: String?
-
-      attr_accessor originator_to_beneficiary_information_line1: String?
-
-      attr_accessor originator_to_beneficiary_information_line2: String?
-
-      attr_accessor originator_to_beneficiary_information_line3: String?
-
-      attr_accessor originator_to_beneficiary_information_line4: String?
-
       attr_accessor reversal: Increase::InboundWireTransfer::Reversal?
-
-      attr_accessor sender_reference: String?
 
       attr_accessor status: Increase::Models::InboundWireTransfer::status
 
@@ -130,11 +82,6 @@ module Increase
         account_id: String,
         account_number_id: String,
         amount: Integer,
-        beneficiary_address_line1: String?,
-        beneficiary_address_line2: String?,
-        beneficiary_address_line3: String?,
-        beneficiary_name: String?,
-        beneficiary_reference: String?,
         created_at: Time,
         creditor_address_line1: String?,
         creditor_address_line2: String?,
@@ -149,18 +96,7 @@ module Increase
         input_message_accountability_data: String?,
         instructing_agent_routing_number: String?,
         instruction_identification: String?,
-        originator_address_line1: String?,
-        originator_address_line2: String?,
-        originator_address_line3: String?,
-        originator_name: String?,
-        originator_routing_number: String?,
-        originator_to_beneficiary_information: String?,
-        originator_to_beneficiary_information_line1: String?,
-        originator_to_beneficiary_information_line2: String?,
-        originator_to_beneficiary_information_line3: String?,
-        originator_to_beneficiary_information_line4: String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
-        sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
         unique_end_to_end_transaction_reference: String?,
@@ -173,11 +109,6 @@ module Increase
         account_id: String,
         account_number_id: String,
         amount: Integer,
-        :beneficiary_address_line1 => String?,
-        :beneficiary_address_line2 => String?,
-        :beneficiary_address_line3 => String?,
-        beneficiary_name: String?,
-        beneficiary_reference: String?,
         created_at: Time,
         :creditor_address_line1 => String?,
         :creditor_address_line2 => String?,
@@ -192,18 +123,7 @@ module Increase
         input_message_accountability_data: String?,
         instructing_agent_routing_number: String?,
         instruction_identification: String?,
-        :originator_address_line1 => String?,
-        :originator_address_line2 => String?,
-        :originator_address_line3 => String?,
-        originator_name: String?,
-        originator_routing_number: String?,
-        originator_to_beneficiary_information: String?,
-        :originator_to_beneficiary_information_line1 => String?,
-        :originator_to_beneficiary_information_line2 => String?,
-        :originator_to_beneficiary_information_line3 => String?,
-        :originator_to_beneficiary_information_line4 => String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
-        sender_reference: String?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
         unique_end_to_end_transaction_reference: String?,

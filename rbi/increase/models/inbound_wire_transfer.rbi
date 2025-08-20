@@ -24,26 +24,6 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # A free-form address field set by the sender.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line1
-
-      # A free-form address field set by the sender.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line2
-
-      # A free-form address field set by the sender.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line3
-
-      # A name set by the sender.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_name
-
-      # A free-form reference string set by the sender, to help identify the transfer.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_reference
-
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the inbound wire transfer was created.
       sig { returns(Time) }
@@ -104,47 +84,6 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :instruction_identification
 
-      # The address of the wire originator, set by the sending bank.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line1
-
-      # The address of the wire originator, set by the sending bank.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line2
-
-      # The address of the wire originator, set by the sending bank.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line3
-
-      # The originator of the wire, set by the sending bank.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_name
-
-      # The American Banking Association (ABA) routing number of the bank originating
-      # the transfer.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_routing_number
-
-      # An Increase-created concatenation of the Originator-to-Beneficiary lines.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information
-
-      # A free-form message set by the wire originator.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line1
-
-      # A free-form message set by the wire originator.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line2
-
-      # A free-form message set by the wire originator.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line3
-
-      # A free-form message set by the wire originator.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line4
-
       # Information about the reversal of the inbound wire transfer if it has been
       # reversed.
       sig { returns(T.nilable(Increase::InboundWireTransfer::Reversal)) }
@@ -156,10 +95,6 @@ module Increase
         ).void
       end
       attr_writer :reversal
-
-      # The sending bank's reference number for the wire transfer.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :sender_reference
 
       # The status of the transfer.
       sig { returns(Increase::InboundWireTransfer::Status::TaggedSymbol) }
@@ -192,11 +127,6 @@ module Increase
           account_id: String,
           account_number_id: String,
           amount: Integer,
-          beneficiary_address_line1: T.nilable(String),
-          beneficiary_address_line2: T.nilable(String),
-          beneficiary_address_line3: T.nilable(String),
-          beneficiary_name: T.nilable(String),
-          beneficiary_reference: T.nilable(String),
           created_at: Time,
           creditor_address_line1: T.nilable(String),
           creditor_address_line2: T.nilable(String),
@@ -211,18 +141,7 @@ module Increase
           input_message_accountability_data: T.nilable(String),
           instructing_agent_routing_number: T.nilable(String),
           instruction_identification: T.nilable(String),
-          originator_address_line1: T.nilable(String),
-          originator_address_line2: T.nilable(String),
-          originator_address_line3: T.nilable(String),
-          originator_name: T.nilable(String),
-          originator_routing_number: T.nilable(String),
-          originator_to_beneficiary_information: T.nilable(String),
-          originator_to_beneficiary_information_line1: T.nilable(String),
-          originator_to_beneficiary_information_line2: T.nilable(String),
-          originator_to_beneficiary_information_line3: T.nilable(String),
-          originator_to_beneficiary_information_line4: T.nilable(String),
           reversal: T.nilable(Increase::InboundWireTransfer::Reversal::OrHash),
-          sender_reference: T.nilable(String),
           status: Increase::InboundWireTransfer::Status::OrSymbol,
           type: Increase::InboundWireTransfer::Type::OrSymbol,
           unique_end_to_end_transaction_reference: T.nilable(String),
@@ -239,16 +158,6 @@ module Increase
         account_number_id:,
         # The amount in USD cents.
         amount:,
-        # A free-form address field set by the sender.
-        beneficiary_address_line1:,
-        # A free-form address field set by the sender.
-        beneficiary_address_line2:,
-        # A free-form address field set by the sender.
-        beneficiary_address_line3:,
-        # A name set by the sender.
-        beneficiary_name:,
-        # A free-form reference string set by the sender, to help identify the transfer.
-        beneficiary_reference:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the inbound wire transfer was created.
         created_at:,
@@ -281,32 +190,9 @@ module Increase
         instructing_agent_routing_number:,
         # The sending bank's identifier for the wire transfer.
         instruction_identification:,
-        # The address of the wire originator, set by the sending bank.
-        originator_address_line1:,
-        # The address of the wire originator, set by the sending bank.
-        originator_address_line2:,
-        # The address of the wire originator, set by the sending bank.
-        originator_address_line3:,
-        # The originator of the wire, set by the sending bank.
-        originator_name:,
-        # The American Banking Association (ABA) routing number of the bank originating
-        # the transfer.
-        originator_routing_number:,
-        # An Increase-created concatenation of the Originator-to-Beneficiary lines.
-        originator_to_beneficiary_information:,
-        # A free-form message set by the wire originator.
-        originator_to_beneficiary_information_line1:,
-        # A free-form message set by the wire originator.
-        originator_to_beneficiary_information_line2:,
-        # A free-form message set by the wire originator.
-        originator_to_beneficiary_information_line3:,
-        # A free-form message set by the wire originator.
-        originator_to_beneficiary_information_line4:,
         # Information about the reversal of the inbound wire transfer if it has been
         # reversed.
         reversal:,
-        # The sending bank's reference number for the wire transfer.
-        sender_reference:,
         # The status of the transfer.
         status:,
         # A constant representing the object's type. For this resource it will always be
@@ -330,11 +216,6 @@ module Increase
             account_id: String,
             account_number_id: String,
             amount: Integer,
-            beneficiary_address_line1: T.nilable(String),
-            beneficiary_address_line2: T.nilable(String),
-            beneficiary_address_line3: T.nilable(String),
-            beneficiary_name: T.nilable(String),
-            beneficiary_reference: T.nilable(String),
             created_at: Time,
             creditor_address_line1: T.nilable(String),
             creditor_address_line2: T.nilable(String),
@@ -349,18 +230,7 @@ module Increase
             input_message_accountability_data: T.nilable(String),
             instructing_agent_routing_number: T.nilable(String),
             instruction_identification: T.nilable(String),
-            originator_address_line1: T.nilable(String),
-            originator_address_line2: T.nilable(String),
-            originator_address_line3: T.nilable(String),
-            originator_name: T.nilable(String),
-            originator_routing_number: T.nilable(String),
-            originator_to_beneficiary_information: T.nilable(String),
-            originator_to_beneficiary_information_line1: T.nilable(String),
-            originator_to_beneficiary_information_line2: T.nilable(String),
-            originator_to_beneficiary_information_line3: T.nilable(String),
-            originator_to_beneficiary_information_line4: T.nilable(String),
             reversal: T.nilable(Increase::InboundWireTransfer::Reversal),
-            sender_reference: T.nilable(String),
             status: Increase::InboundWireTransfer::Status::TaggedSymbol,
             type: Increase::InboundWireTransfer::Type::TaggedSymbol,
             unique_end_to_end_transaction_reference: T.nilable(String),
