@@ -121,7 +121,34 @@ module Increase
         )
       end
 
-      # Retrieve sensitive details for a Card
+      # Create an iframe URL for a Card to display the card details. More details about
+      # styling and usage can be found in the
+      # [documentation](/documentation/embedded-card-component).
+      #
+      # @overload create_details_iframe(card_id, physical_card_id: nil, request_options: {})
+      #
+      # @param card_id [String] The identifier of the Card to retrieve details for.
+      #
+      # @param physical_card_id [String] The identifier of the Physical Card to retrieve details for.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::CardIframeURL]
+      #
+      # @see Increase::Models::CardCreateDetailsIframeParams
+      def create_details_iframe(card_id, params = {})
+        parsed, options = Increase::CardCreateDetailsIframeParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["cards/%1$s/create_details_iframe", card_id],
+          body: parsed,
+          model: Increase::CardIframeURL,
+          options: options
+        )
+      end
+
+      # Sensitive details for a Card include the primary account number, expiry, card
+      # verification code, and PIN.
       #
       # @overload details(card_id, request_options: {})
       #

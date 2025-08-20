@@ -1,0 +1,26 @@
+module Increase
+  module Models
+    type card_create_details_iframe_params =
+      { physical_card_id: String }
+      & Increase::Internal::Type::request_parameters
+
+    class CardCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader physical_card_id: String?
+
+      def physical_card_id=: (String) -> String
+
+      def initialize: (
+        ?physical_card_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        physical_card_id: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end
