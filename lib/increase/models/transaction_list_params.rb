@@ -172,6 +172,9 @@ module Increase
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION = :swift_transfer_intention
 
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN = :swift_transfer_return
+
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE = :card_push_transfer_acceptance
 

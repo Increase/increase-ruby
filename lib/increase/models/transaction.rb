@@ -484,6 +484,14 @@ module Increase
                  -> { Increase::Transaction::Source::SwiftTransferIntention },
                  nil?: true
 
+        # @!attribute swift_transfer_return
+        #   A Swift Transfer Return object. This field will be present in the JSON response
+        #   if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
+        #   Return is created when a Swift Transfer is returned by the receiving bank.
+        #
+        #   @return [Increase::Models::Transaction::Source::SwiftTransferReturn, nil]
+        required :swift_transfer_return, -> { Increase::Transaction::Source::SwiftTransferReturn }, nil?: true
+
         # @!attribute wire_transfer_intention
         #   A Wire Transfer Intention object. This field will be present in the JSON
         #   response if and only if `category` is equal to `wire_transfer_intention`. A Wire
@@ -496,7 +504,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, wire_transfer_intention:)
+        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -568,6 +576,8 @@ module Increase
         #   @param sample_funds [Increase::Models::Transaction::Source::SampleFunds, nil] A Sample Funds object. This field will be present in the JSON response if and on
         #
         #   @param swift_transfer_intention [Increase::Models::Transaction::Source::SwiftTransferIntention, nil] A Swift Transfer Intention object. This field will be present in the JSON respon
+        #
+        #   @param swift_transfer_return [Increase::Models::Transaction::Source::SwiftTransferReturn, nil] A Swift Transfer Return object. This field will be present in the JSON response
         #
         #   @param wire_transfer_intention [Increase::Models::Transaction::Source::WireTransferIntention, nil] A Wire Transfer Intention object. This field will be present in the JSON respons
 
@@ -4231,6 +4241,9 @@ module Increase
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION = :swift_transfer_intention
 
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN = :swift_transfer_return
+
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE = :card_push_transfer_acceptance
 
@@ -5869,6 +5882,22 @@ module Increase
           #   A Swift Transfer Intention object. This field will be present in the JSON
           #   response if and only if `category` is equal to `swift_transfer_intention`. A
           #   Swift Transfer initiated via Increase.
+          #
+          #   @param transfer_id [String] The identifier of the Swift Transfer that led to this Transaction.
+        end
+
+        # @see Increase::Models::Transaction::Source#swift_transfer_return
+        class SwiftTransferReturn < Increase::Internal::Type::BaseModel
+          # @!attribute transfer_id
+          #   The identifier of the Swift Transfer that led to this Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(transfer_id:)
+          #   A Swift Transfer Return object. This field will be present in the JSON response
+          #   if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
+          #   Return is created when a Swift Transfer is returned by the receiving bank.
           #
           #   @param transfer_id [String] The identifier of the Swift Transfer that led to this Transaction.
         end
