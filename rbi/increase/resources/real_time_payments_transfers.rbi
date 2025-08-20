@@ -104,7 +104,7 @@ module Increase
       )
       end
 
-      # Approves an Real-Time Payments Transfer in a pending_approval state.
+      # Approves a Real-Time Payments Transfer in a pending_approval state.
       sig do
         params(
           real_time_payments_transfer_id: String,
@@ -118,7 +118,7 @@ module Increase
       )
       end
 
-      # Cancels an Real-Time Payments Transfer in a pending_approval state.
+      # Cancels a Real-Time Payments Transfer in a pending_approval state.
       sig do
         params(
           real_time_payments_transfer_id: String,
