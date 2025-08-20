@@ -114,6 +114,22 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
     end
   end
 
+  def test_create_details_iframe
+    response = @increase.cards.create_details_iframe("card_id")
+
+    assert_pattern do
+      response => Increase::CardIframeURL
+    end
+
+    assert_pattern do
+      response => {
+        expires_at: Time,
+        iframe_url: String,
+        type: Increase::CardIframeURL::Type
+      }
+    end
+  end
+
   def test_details
     response = @increase.cards.details("card_id")
 
