@@ -85,6 +85,9 @@ module Increase
           # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
           ACCOUNT_STATEMENT_OFX = :account_statement_ofx
 
+          # Export a BAI2 file of transactions and balances for a given date and optional Account.
+          ACCOUNT_STATEMENT_BAI2 = :account_statement_bai2
+
           # Export a CSV of all transactions for a given time range.
           TRANSACTION_CSV = :transaction_csv
 

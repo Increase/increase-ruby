@@ -170,6 +170,13 @@ module Increase
               Increase::ExportListParams::Category::In::TaggedSymbol
             )
 
+          # Export a BAI2 file of transactions and balances for a given date and optional Account.
+          ACCOUNT_STATEMENT_BAI2 =
+            T.let(
+              :account_statement_bai2,
+              Increase::ExportListParams::Category::In::TaggedSymbol
+            )
+
           # Export a CSV of all transactions for a given time range.
           TRANSACTION_CSV =
             T.let(

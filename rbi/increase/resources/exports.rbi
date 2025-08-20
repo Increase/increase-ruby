@@ -7,6 +7,8 @@ module Increase
       sig do
         params(
           category: Increase::ExportCreateParams::Category::OrSymbol,
+          account_statement_bai2:
+            Increase::ExportCreateParams::AccountStatementBai2::OrHash,
           account_statement_ofx:
             Increase::ExportCreateParams::AccountStatementOfx::OrHash,
           balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash,
@@ -21,6 +23,9 @@ module Increase
       def create(
         # The type of Export to create.
         category:,
+        # Options for the created export. Required if `category` is equal to
+        # `account_statement_bai2`.
+        account_statement_bai2: nil,
         # Options for the created export. Required if `category` is equal to
         # `account_statement_ofx`.
         account_statement_ofx: nil,
