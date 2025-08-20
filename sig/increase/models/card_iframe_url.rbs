@@ -1,0 +1,40 @@
+module Increase
+  module Models
+    type card_iframe_url =
+      {
+        expires_at: Time,
+        iframe_url: String,
+        type: Increase::Models::CardIframeURL::type_
+      }
+
+    class CardIframeURL < Increase::Internal::Type::BaseModel
+      attr_accessor expires_at: Time
+
+      attr_accessor iframe_url: String
+
+      attr_accessor type: Increase::Models::CardIframeURL::type_
+
+      def initialize: (
+        expires_at: Time,
+        iframe_url: String,
+        type: Increase::Models::CardIframeURL::type_
+      ) -> void
+
+      def to_hash: -> {
+        expires_at: Time,
+        iframe_url: String,
+        type: Increase::Models::CardIframeURL::type_
+      }
+
+      type type_ = :card_iframe_url
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        CARD_IFRAME_URL: :card_iframe_url
+
+        def self?.values: -> ::Array[Increase::Models::CardIframeURL::type_]
+      end
+    end
+  end
+end
