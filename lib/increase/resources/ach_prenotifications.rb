@@ -10,7 +10,7 @@ module Increase
       #
       # @overload create(account_id:, account_number:, routing_number:, addendum: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, credit_debit_indicator: nil, effective_date: nil, individual_id: nil, individual_name: nil, standard_entry_class_code: nil, request_options: {})
       #
-      # @param account_id [String] The Increase identifier for the account that will send the transfer.
+      # @param account_id [String] The Increase identifier for the account that will send the ACH Prenotification.
       #
       # @param account_number [String] The account number for the destination account.
       #
@@ -18,21 +18,21 @@ module Increase
       #
       # @param addendum [String] Additional information that will be sent to the recipient.
       #
-      # @param company_descriptive_date [String] The description of the date of the transfer.
+      # @param company_descriptive_date [String] The description of the date of the ACH Prenotification.
       #
-      # @param company_discretionary_data [String] The data you choose to associate with the transfer.
+      # @param company_discretionary_data [String] The data you choose to associate with the ACH Prenotification.
       #
-      # @param company_entry_description [String] The description of the transfer you wish to be shown to the recipient.
+      # @param company_entry_description [String] The description you wish to be shown to the recipient.
       #
       # @param company_name [String] The name by which the recipient knows you.
       #
       # @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
       #
-      # @param effective_date [Date] The transfer effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601
+      # @param effective_date [Date] The ACH Prenotification effective date in [ISO 8601](https://en.wikipedia.org/wi
       #
-      # @param individual_id [String] Your identifier for the transfer recipient.
+      # @param individual_id [String] Your identifier for the recipient.
       #
-      # @param individual_name [String] The name of the transfer recipient. This value is information and not verified b
+      # @param individual_name [String] The name of therecipient. This value is informational and not verified by the re
       #
       # @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #

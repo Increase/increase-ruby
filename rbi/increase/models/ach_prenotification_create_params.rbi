@@ -14,7 +14,7 @@ module Increase
           )
         end
 
-      # The Increase identifier for the account that will send the transfer.
+      # The Increase identifier for the account that will send the ACH Prenotification.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -34,21 +34,21 @@ module Increase
       sig { params(addendum: String).void }
       attr_writer :addendum
 
-      # The description of the date of the transfer.
+      # The description of the date of the ACH Prenotification.
       sig { returns(T.nilable(String)) }
       attr_reader :company_descriptive_date
 
       sig { params(company_descriptive_date: String).void }
       attr_writer :company_descriptive_date
 
-      # The data you choose to associate with the transfer.
+      # The data you choose to associate with the ACH Prenotification.
       sig { returns(T.nilable(String)) }
       attr_reader :company_discretionary_data
 
       sig { params(company_discretionary_data: String).void }
       attr_writer :company_discretionary_data
 
-      # The description of the transfer you wish to be shown to the recipient.
+      # The description you wish to be shown to the recipient.
       sig { returns(T.nilable(String)) }
       attr_reader :company_entry_description
 
@@ -80,7 +80,7 @@ module Increase
       end
       attr_writer :credit_debit_indicator
 
-      # The transfer effective date in
+      # The ACH Prenotification effective date in
       # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
       sig { returns(T.nilable(Date)) }
       attr_reader :effective_date
@@ -88,15 +88,15 @@ module Increase
       sig { params(effective_date: Date).void }
       attr_writer :effective_date
 
-      # Your identifier for the transfer recipient.
+      # Your identifier for the recipient.
       sig { returns(T.nilable(String)) }
       attr_reader :individual_id
 
       sig { params(individual_id: String).void }
       attr_writer :individual_id
 
-      # The name of the transfer recipient. This value is information and not verified
-      # by the recipient's bank.
+      # The name of therecipient. This value is informational and not verified by the
+      # recipient's bank.
       sig { returns(T.nilable(String)) }
       attr_reader :individual_name
 
@@ -142,7 +142,7 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The Increase identifier for the account that will send the transfer.
+        # The Increase identifier for the account that will send the ACH Prenotification.
         account_id:,
         # The account number for the destination account.
         account_number:,
@@ -151,23 +151,23 @@ module Increase
         routing_number:,
         # Additional information that will be sent to the recipient.
         addendum: nil,
-        # The description of the date of the transfer.
+        # The description of the date of the ACH Prenotification.
         company_descriptive_date: nil,
-        # The data you choose to associate with the transfer.
+        # The data you choose to associate with the ACH Prenotification.
         company_discretionary_data: nil,
-        # The description of the transfer you wish to be shown to the recipient.
+        # The description you wish to be shown to the recipient.
         company_entry_description: nil,
         # The name by which the recipient knows you.
         company_name: nil,
         # Whether the Prenotification is for a future debit or credit.
         credit_debit_indicator: nil,
-        # The transfer effective date in
+        # The ACH Prenotification effective date in
         # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
         effective_date: nil,
-        # Your identifier for the transfer recipient.
+        # Your identifier for the recipient.
         individual_id: nil,
-        # The name of the transfer recipient. This value is information and not verified
-        # by the recipient's bank.
+        # The name of therecipient. This value is informational and not verified by the
+        # recipient's bank.
         individual_name: nil,
         # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
         standard_entry_class_code: nil,

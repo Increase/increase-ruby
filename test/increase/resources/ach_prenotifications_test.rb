@@ -18,6 +18,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
     assert_pattern do
       response => {
         id: String,
+        account_id: String | nil,
         account_number: String,
         addendum: String | nil,
         company_descriptive_date: String | nil,
@@ -28,9 +29,12 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
         credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
         effective_date: Time | nil,
         idempotency_key: String | nil,
+        individual_id: String | nil,
+        individual_name: String | nil,
         notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
         prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
         routing_number: String,
+        standard_entry_class_code: Increase::ACHPrenotification::StandardEntryClassCode | nil,
         status: Increase::ACHPrenotification::Status,
         type: Increase::ACHPrenotification::Type
       }
@@ -47,6 +51,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
     assert_pattern do
       response => {
         id: String,
+        account_id: String | nil,
         account_number: String,
         addendum: String | nil,
         company_descriptive_date: String | nil,
@@ -57,9 +62,12 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
         credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
         effective_date: Time | nil,
         idempotency_key: String | nil,
+        individual_id: String | nil,
+        individual_name: String | nil,
         notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
         prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
         routing_number: String,
+        standard_entry_class_code: Increase::ACHPrenotification::StandardEntryClassCode | nil,
         status: Increase::ACHPrenotification::Status,
         type: Increase::ACHPrenotification::Type
       }
@@ -83,6 +91,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
     assert_pattern do
       row => {
         id: String,
+        account_id: String | nil,
         account_number: String,
         addendum: String | nil,
         company_descriptive_date: String | nil,
@@ -93,9 +102,12 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
         credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
         effective_date: Time | nil,
         idempotency_key: String | nil,
+        individual_id: String | nil,
+        individual_name: String | nil,
         notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
         prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
         routing_number: String,
+        standard_entry_class_code: Increase::ACHPrenotification::StandardEntryClassCode | nil,
         status: Increase::ACHPrenotification::Status,
         type: Increase::ACHPrenotification::Type
       }

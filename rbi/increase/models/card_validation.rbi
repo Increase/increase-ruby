@@ -28,6 +28,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :account_id
 
+      # The ID of the Card Token that was used to validate the card.
+      sig { returns(String) }
+      attr_accessor :card_token_id
+
       # The cardholder's first name.
       sig { returns(T.nilable(String)) }
       attr_accessor :cardholder_first_name
@@ -132,6 +136,7 @@ module Increase
           id: String,
           acceptance: T.nilable(Increase::CardValidation::Acceptance::OrHash),
           account_id: String,
+          card_token_id: String,
           cardholder_first_name: T.nilable(String),
           cardholder_last_name: T.nilable(String),
           cardholder_middle_name: T.nilable(String),
@@ -159,6 +164,8 @@ module Increase
         acceptance:,
         # The identifier of the Account from which to send the validation.
         account_id:,
+        # The ID of the Card Token that was used to validate the card.
+        card_token_id:,
         # The cardholder's first name.
         cardholder_first_name:,
         # The cardholder's last name.
@@ -210,6 +217,7 @@ module Increase
             id: String,
             acceptance: T.nilable(Increase::CardValidation::Acceptance),
             account_id: String,
+            card_token_id: String,
             cardholder_first_name: T.nilable(String),
             cardholder_last_name: T.nilable(String),
             cardholder_middle_name: T.nilable(String),

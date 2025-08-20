@@ -23,6 +23,12 @@ module Increase
       #   @return [String]
       required :account_id, String
 
+      # @!attribute card_token_id
+      #   The ID of the Card Token that was used to validate the card.
+      #
+      #   @return [String]
+      required :card_token_id, String
+
       # @!attribute cardholder_first_name
       #   The cardholder's first name.
       #
@@ -133,7 +139,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardValidation::Type]
       required :type, enum: -> { Increase::CardValidation::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, cardholder_first_name:, cardholder_last_name:, cardholder_middle_name:, cardholder_postal_code:, cardholder_street_address:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_postal_code:, merchant_state:, status:, submission:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, card_token_id:, cardholder_first_name:, cardholder_last_name:, cardholder_middle_name:, cardholder_postal_code:, cardholder_street_address:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_postal_code:, merchant_state:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardValidation} for more details.
       #
@@ -145,6 +151,8 @@ module Increase
       #   @param acceptance [Increase::Models::CardValidation::Acceptance, nil] If the validation is accepted by the recipient bank, this will contain supplemen
       #
       #   @param account_id [String] The identifier of the Account from which to send the validation.
+      #
+      #   @param card_token_id [String] The ID of the Card Token that was used to validate the card.
       #
       #   @param cardholder_first_name [String, nil] The cardholder's first name.
       #

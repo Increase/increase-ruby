@@ -8,6 +8,7 @@ module Increase
         amount: Integer,
         approval: Increase::CheckTransfer::Approval?,
         approved_inbound_check_deposit_id: String?,
+        balance_check: Increase::Models::CheckTransfer::balance_check?,
         cancellation: Increase::CheckTransfer::Cancellation?,
         check_number: String,
         created_at: Time,
@@ -39,6 +40,8 @@ module Increase
       attr_accessor approval: Increase::CheckTransfer::Approval?
 
       attr_accessor approved_inbound_check_deposit_id: String?
+
+      attr_accessor balance_check: Increase::Models::CheckTransfer::balance_check?
 
       attr_accessor cancellation: Increase::CheckTransfer::Cancellation?
 
@@ -81,6 +84,7 @@ module Increase
         amount: Integer,
         approval: Increase::CheckTransfer::Approval?,
         approved_inbound_check_deposit_id: String?,
+        balance_check: Increase::Models::CheckTransfer::balance_check?,
         cancellation: Increase::CheckTransfer::Cancellation?,
         check_number: String,
         created_at: Time,
@@ -107,6 +111,7 @@ module Increase
         amount: Integer,
         approval: Increase::CheckTransfer::Approval?,
         approved_inbound_check_deposit_id: String?,
+        balance_check: Increase::Models::CheckTransfer::balance_check?,
         cancellation: Increase::CheckTransfer::Cancellation?,
         check_number: String,
         created_at: Time,
@@ -136,6 +141,20 @@ module Increase
         def initialize: (approved_at: Time, approved_by: String?) -> void
 
         def to_hash: -> { approved_at: Time, approved_by: String? }
+      end
+
+      type balance_check = :full | :none
+
+      module BalanceCheck
+        extend Increase::Internal::Type::Enum
+
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        FULL: :full
+
+        # No balance check will performed; a zero-dollar Pending Transaction will be created.
+        NONE: :none
+
+        def self?.values: -> ::Array[Increase::Models::CheckTransfer::balance_check]
       end
 
       type cancellation = { canceled_at: Time, canceled_by: String? }
