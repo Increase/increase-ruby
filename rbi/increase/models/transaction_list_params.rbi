@@ -376,6 +376,13 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN =
+            T.let(
+              :swift_transfer_return,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE =
             T.let(

@@ -811,6 +811,24 @@ module Increase
         end
         attr_writer :swift_transfer_intention
 
+        # A Swift Transfer Return object. This field will be present in the JSON response
+        # if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
+        # Return is created when a Swift Transfer is returned by the receiving bank.
+        sig do
+          returns(T.nilable(Increase::Transaction::Source::SwiftTransferReturn))
+        end
+        attr_reader :swift_transfer_return
+
+        sig do
+          params(
+            swift_transfer_return:
+              T.nilable(
+                Increase::Transaction::Source::SwiftTransferReturn::OrHash
+              )
+          ).void
+        end
+        attr_writer :swift_transfer_return
+
         # A Wire Transfer Intention object. This field will be present in the JSON
         # response if and only if `category` is equal to `wire_transfer_intention`. A Wire
         # Transfer initiated via Increase and sent to a different bank.
@@ -942,6 +960,10 @@ module Increase
             swift_transfer_intention:
               T.nilable(
                 Increase::Transaction::Source::SwiftTransferIntention::OrHash
+              ),
+            swift_transfer_return:
+              T.nilable(
+                Increase::Transaction::Source::SwiftTransferReturn::OrHash
               ),
             wire_transfer_intention:
               T.nilable(
@@ -1110,6 +1132,10 @@ module Increase
           # response if and only if `category` is equal to `swift_transfer_intention`. A
           # Swift Transfer initiated via Increase.
           swift_transfer_intention:,
+          # A Swift Transfer Return object. This field will be present in the JSON response
+          # if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
+          # Return is created when a Swift Transfer is returned by the receiving bank.
+          swift_transfer_return:,
           # A Wire Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `wire_transfer_intention`. A Wire
           # Transfer initiated via Increase and sent to a different bank.
@@ -1202,6 +1228,8 @@ module Increase
                 T.nilable(
                   Increase::Transaction::Source::SwiftTransferIntention
                 ),
+              swift_transfer_return:
+                T.nilable(Increase::Transaction::Source::SwiftTransferReturn),
               wire_transfer_intention:
                 T.nilable(Increase::Transaction::Source::WireTransferIntention)
             }
@@ -7883,6 +7911,13 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN =
+            T.let(
+              :swift_transfer_return,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE =
             T.let(
@@ -10643,6 +10678,34 @@ module Increase
           # A Swift Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `swift_transfer_intention`. A
           # Swift Transfer initiated via Increase.
+          sig { params(transfer_id: String).returns(T.attached_class) }
+          def self.new(
+            # The identifier of the Swift Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig { override.returns({ transfer_id: String }) }
+          def to_hash
+          end
+        end
+
+        class SwiftTransferReturn < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::SwiftTransferReturn,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the Swift Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A Swift Transfer Return object. This field will be present in the JSON response
+          # if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
+          # Return is created when a Swift Transfer is returned by the receiving bank.
           sig { params(transfer_id: String).returns(T.attached_class) }
           def self.new(
             # The identifier of the Swift Transfer that led to this Transaction.
