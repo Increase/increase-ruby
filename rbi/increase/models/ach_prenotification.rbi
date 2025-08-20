@@ -12,6 +12,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The account that sent the ACH Prenotification.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :account_id
+
       # The destination account number.
       sig { returns(String) }
       attr_accessor :account_number
@@ -61,6 +65,15 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
 
+      # Your identifier for the recipient.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :individual_id
+
+      # The name of the recipient. This value is informational and not verified by the
+      # recipient's bank.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :individual_name
+
       # If the receiving bank notifies that future transfers should use different
       # details, this will contain those details.
       sig do
@@ -88,6 +101,16 @@ module Increase
       sig { returns(String) }
       attr_accessor :routing_number
 
+      # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      sig do
+        returns(
+          T.nilable(
+            Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :standard_entry_class_code
+
       # The lifecycle status of the ACH Prenotification.
       sig { returns(Increase::ACHPrenotification::Status::TaggedSymbol) }
       attr_accessor :status
@@ -102,6 +125,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: T.nilable(String),
           account_number: String,
           addendum: T.nilable(String),
           company_descriptive_date: T.nilable(String),
@@ -115,6 +139,8 @@ module Increase
             ),
           effective_date: T.nilable(Time),
           idempotency_key: T.nilable(String),
+          individual_id: T.nilable(String),
+          individual_name: T.nilable(String),
           notifications_of_change:
             T::Array[
               Increase::ACHPrenotification::NotificationsOfChange::OrHash
@@ -124,6 +150,10 @@ module Increase
               Increase::ACHPrenotification::PrenotificationReturn::OrHash
             ),
           routing_number: String,
+          standard_entry_class_code:
+            T.nilable(
+              Increase::ACHPrenotification::StandardEntryClassCode::OrSymbol
+            ),
           status: Increase::ACHPrenotification::Status::OrSymbol,
           type: Increase::ACHPrenotification::Type::OrSymbol
         ).returns(T.attached_class)
@@ -131,6 +161,8 @@ module Increase
       def self.new(
         # The ACH Prenotification's identifier.
         id:,
+        # The account that sent the ACH Prenotification.
+        account_id:,
         # The destination account number.
         account_number:,
         # Additional information for the recipient.
@@ -154,6 +186,11 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
+        # Your identifier for the recipient.
+        individual_id:,
+        # The name of the recipient. This value is informational and not verified by the
+        # recipient's bank.
+        individual_name:,
         # If the receiving bank notifies that future transfers should use different
         # details, this will contain those details.
         notifications_of_change:,
@@ -161,6 +198,8 @@ module Increase
         prenotification_return:,
         # The American Bankers' Association (ABA) Routing Transit Number (RTN).
         routing_number:,
+        # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+        standard_entry_class_code:,
         # The lifecycle status of the ACH Prenotification.
         status:,
         # A constant representing the object's type. For this resource it will always be
@@ -173,6 +212,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: T.nilable(String),
             account_number: String,
             addendum: T.nilable(String),
             company_descriptive_date: T.nilable(String),
@@ -186,11 +226,17 @@ module Increase
               ),
             effective_date: T.nilable(Time),
             idempotency_key: T.nilable(String),
+            individual_id: T.nilable(String),
+            individual_name: T.nilable(String),
             notifications_of_change:
               T::Array[Increase::ACHPrenotification::NotificationsOfChange],
             prenotification_return:
               T.nilable(Increase::ACHPrenotification::PrenotificationReturn),
             routing_number: String,
+            standard_entry_class_code:
+              T.nilable(
+                Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+              ),
             status: Increase::ACHPrenotification::Status::TaggedSymbol,
             type: Increase::ACHPrenotification::Type::TaggedSymbol
           }
@@ -1024,6 +1070,55 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      module StandardEntryClassCode
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::ACHPrenotification::StandardEntryClassCode)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Corporate Credit and Debit (CCD).
+        CORPORATE_CREDIT_OR_DEBIT =
+          T.let(
+            :corporate_credit_or_debit,
+            Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+          )
+
+        # Corporate Trade Exchange (CTX).
+        CORPORATE_TRADE_EXCHANGE =
+          T.let(
+            :corporate_trade_exchange,
+            Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+          )
+
+        # Prearranged Payments and Deposits (PPD).
+        PREARRANGED_PAYMENTS_AND_DEPOSIT =
+          T.let(
+            :prearranged_payments_and_deposit,
+            Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+          )
+
+        # Internet Initiated (WEB).
+        INTERNET_INITIATED =
+          T.let(
+            :internet_initiated,
+            Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::ACHPrenotification::StandardEntryClassCode::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
 

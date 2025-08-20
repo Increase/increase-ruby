@@ -3,6 +3,7 @@ module Increase
     type ach_prenotification =
       {
         id: String,
+        account_id: String?,
         account_number: String,
         addendum: String?,
         company_descriptive_date: String?,
@@ -13,15 +14,20 @@ module Increase
         credit_debit_indicator: Increase::Models::ACHPrenotification::credit_debit_indicator?,
         effective_date: Time?,
         idempotency_key: String?,
+        individual_id: String?,
+        individual_name: String?,
         notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange],
         prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?,
         routing_number: String,
+        standard_entry_class_code: Increase::Models::ACHPrenotification::standard_entry_class_code?,
         status: Increase::Models::ACHPrenotification::status,
         type: Increase::Models::ACHPrenotification::type_
       }
 
     class ACHPrenotification < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_id: String?
 
       attr_accessor account_number: String
 
@@ -43,11 +49,17 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
+      attr_accessor individual_id: String?
+
+      attr_accessor individual_name: String?
+
       attr_accessor notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange]
 
       attr_accessor prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?
 
       attr_accessor routing_number: String
+
+      attr_accessor standard_entry_class_code: Increase::Models::ACHPrenotification::standard_entry_class_code?
 
       attr_accessor status: Increase::Models::ACHPrenotification::status
 
@@ -55,6 +67,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_id: String?,
         account_number: String,
         addendum: String?,
         company_descriptive_date: String?,
@@ -65,15 +78,19 @@ module Increase
         credit_debit_indicator: Increase::Models::ACHPrenotification::credit_debit_indicator?,
         effective_date: Time?,
         idempotency_key: String?,
+        individual_id: String?,
+        individual_name: String?,
         notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange],
         prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?,
         routing_number: String,
+        standard_entry_class_code: Increase::Models::ACHPrenotification::standard_entry_class_code?,
         status: Increase::Models::ACHPrenotification::status,
         type: Increase::Models::ACHPrenotification::type_
       ) -> void
 
       def to_hash: -> {
         id: String,
+        account_id: String?,
         account_number: String,
         addendum: String?,
         company_descriptive_date: String?,
@@ -84,9 +101,12 @@ module Increase
         credit_debit_indicator: Increase::Models::ACHPrenotification::credit_debit_indicator?,
         effective_date: Time?,
         idempotency_key: String?,
+        individual_id: String?,
+        individual_name: String?,
         notifications_of_change: ::Array[Increase::ACHPrenotification::NotificationsOfChange],
         prenotification_return: Increase::ACHPrenotification::PrenotificationReturn?,
         routing_number: String,
+        standard_entry_class_code: Increase::Models::ACHPrenotification::standard_entry_class_code?,
         status: Increase::Models::ACHPrenotification::status,
         type: Increase::Models::ACHPrenotification::type_
       }
@@ -524,6 +544,30 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::ACHPrenotification::PrenotificationReturn::return_reason_code]
         end
+      end
+
+      type standard_entry_class_code =
+        :corporate_credit_or_debit
+        | :corporate_trade_exchange
+        | :prearranged_payments_and_deposit
+        | :internet_initiated
+
+      module StandardEntryClassCode
+        extend Increase::Internal::Type::Enum
+
+        # Corporate Credit and Debit (CCD).
+        CORPORATE_CREDIT_OR_DEBIT: :corporate_credit_or_debit
+
+        # Corporate Trade Exchange (CTX).
+        CORPORATE_TRADE_EXCHANGE: :corporate_trade_exchange
+
+        # Prearranged Payments and Deposits (PPD).
+        PREARRANGED_PAYMENTS_AND_DEPOSIT: :prearranged_payments_and_deposit
+
+        # Internet Initiated (WEB).
+        INTERNET_INITIATED: :internet_initiated
+
+        def self?.values: -> ::Array[Increase::Models::ACHPrenotification::standard_entry_class_code]
       end
 
       type status =

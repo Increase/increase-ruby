@@ -5,6 +5,7 @@ module Increase
         id: String,
         account_id: String,
         created_at: Time,
+        email_address: String?,
         idempotency_key: String?,
         intrafi_id: String,
         status: Increase::Models::IntrafiAccountEnrollment::status,
@@ -18,6 +19,8 @@ module Increase
 
       attr_accessor created_at: Time
 
+      attr_accessor email_address: String?
+
       attr_accessor idempotency_key: String?
 
       attr_accessor intrafi_id: String
@@ -30,6 +33,7 @@ module Increase
         id: String,
         account_id: String,
         created_at: Time,
+        email_address: String?,
         idempotency_key: String?,
         intrafi_id: String,
         status: Increase::Models::IntrafiAccountEnrollment::status,
@@ -40,6 +44,7 @@ module Increase
         id: String,
         account_id: String,
         created_at: Time,
+        email_address: String?,
         idempotency_key: String?,
         intrafi_id: String,
         status: Increase::Models::IntrafiAccountEnrollment::status,

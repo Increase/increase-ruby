@@ -8,7 +8,7 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   The Increase identifier for the account that will send the transfer.
+      #   The Increase identifier for the account that will send the ACH Prenotification.
       #
       #   @return [String]
       required :account_id, String
@@ -33,19 +33,19 @@ module Increase
       optional :addendum, String
 
       # @!attribute company_descriptive_date
-      #   The description of the date of the transfer.
+      #   The description of the date of the ACH Prenotification.
       #
       #   @return [String, nil]
       optional :company_descriptive_date, String
 
       # @!attribute company_discretionary_data
-      #   The data you choose to associate with the transfer.
+      #   The data you choose to associate with the ACH Prenotification.
       #
       #   @return [String, nil]
       optional :company_discretionary_data, String
 
       # @!attribute company_entry_description
-      #   The description of the transfer you wish to be shown to the recipient.
+      #   The description you wish to be shown to the recipient.
       #
       #   @return [String, nil]
       optional :company_entry_description, String
@@ -64,21 +64,21 @@ module Increase
                enum: -> { Increase::ACHPrenotificationCreateParams::CreditDebitIndicator }
 
       # @!attribute effective_date
-      #   The transfer effective date in
+      #   The ACH Prenotification effective date in
       #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
       #
       #   @return [Date, nil]
       optional :effective_date, Date
 
       # @!attribute individual_id
-      #   Your identifier for the transfer recipient.
+      #   Your identifier for the recipient.
       #
       #   @return [String, nil]
       optional :individual_id, String
 
       # @!attribute individual_name
-      #   The name of the transfer recipient. This value is information and not verified
-      #   by the recipient's bank.
+      #   The name of therecipient. This value is informational and not verified by the
+      #   recipient's bank.
       #
       #   @return [String, nil]
       optional :individual_name, String
@@ -94,7 +94,7 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ACHPrenotificationCreateParams} for more details.
       #
-      #   @param account_id [String] The Increase identifier for the account that will send the transfer.
+      #   @param account_id [String] The Increase identifier for the account that will send the ACH Prenotification.
       #
       #   @param account_number [String] The account number for the destination account.
       #
@@ -102,21 +102,21 @@ module Increase
       #
       #   @param addendum [String] Additional information that will be sent to the recipient.
       #
-      #   @param company_descriptive_date [String] The description of the date of the transfer.
+      #   @param company_descriptive_date [String] The description of the date of the ACH Prenotification.
       #
-      #   @param company_discretionary_data [String] The data you choose to associate with the transfer.
+      #   @param company_discretionary_data [String] The data you choose to associate with the ACH Prenotification.
       #
-      #   @param company_entry_description [String] The description of the transfer you wish to be shown to the recipient.
+      #   @param company_entry_description [String] The description you wish to be shown to the recipient.
       #
       #   @param company_name [String] The name by which the recipient knows you.
       #
       #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
       #
-      #   @param effective_date [Date] The transfer effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601
+      #   @param effective_date [Date] The ACH Prenotification effective date in [ISO 8601](https://en.wikipedia.org/wi
       #
-      #   @param individual_id [String] Your identifier for the transfer recipient.
+      #   @param individual_id [String] Your identifier for the recipient.
       #
-      #   @param individual_name [String] The name of the transfer recipient. This value is information and not verified b
+      #   @param individual_name [String] The name of therecipient. This value is informational and not verified by the re
       #
       #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #

@@ -42,6 +42,12 @@ module Increase
       #   @return [String, nil]
       required :approved_inbound_check_deposit_id, String, nil?: true
 
+      # @!attribute balance_check
+      #   How the account's available balance should be checked.
+      #
+      #   @return [Symbol, Increase::Models::CheckTransfer::BalanceCheck, nil]
+      required :balance_check, enum: -> { Increase::CheckTransfer::BalanceCheck }, nil?: true
+
       # @!attribute cancellation
       #   If your account requires approvals for transfers and the transfer was not
       #   approved, this will contain details of the cancellation.
@@ -158,7 +164,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CheckTransfer::Type]
       required :type, enum: -> { Increase::CheckTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, approved_inbound_check_deposit_id:, cancellation:, check_number:, created_at:, created_by:, currency:, fulfillment_method:, idempotency_key:, mailing:, pending_transaction_id:, physical_check:, routing_number:, source_account_number_id:, status:, stop_payment_request:, submission:, third_party:, type:)
+      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, approved_inbound_check_deposit_id:, balance_check:, cancellation:, check_number:, created_at:, created_by:, currency:, fulfillment_method:, idempotency_key:, mailing:, pending_transaction_id:, physical_check:, routing_number:, source_account_number_id:, status:, stop_payment_request:, submission:, third_party:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckTransfer} for more details.
       #
@@ -176,6 +182,8 @@ module Increase
       #   @param approval [Increase::Models::CheckTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
       #
       #   @param approved_inbound_check_deposit_id [String, nil] If the Check Transfer was successfully deposited, this will contain the identifi
+      #
+      #   @param balance_check [Symbol, Increase::Models::CheckTransfer::BalanceCheck, nil] How the account's available balance should be checked.
       #
       #   @param cancellation [Increase::Models::CheckTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
       #
@@ -237,6 +245,22 @@ module Increase
         #   @param approved_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
         #
         #   @param approved_by [String, nil] If the Transfer was approved by a user in the dashboard, the email address of th
+      end
+
+      # How the account's available balance should be checked.
+      #
+      # @see Increase::Models::CheckTransfer#balance_check
+      module BalanceCheck
+        extend Increase::Internal::Type::Enum
+
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        FULL = :full
+
+        # No balance check will performed; a zero-dollar Pending Transaction will be created.
+        NONE = :none
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see Increase::Models::CheckTransfer#cancellation

@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The account that sent the ACH Prenotification.
+      #
+      #   @return [String, nil]
+      required :account_id, String, nil?: true
+
       # @!attribute account_number
       #   The destination account number.
       #
@@ -75,6 +81,19 @@ module Increase
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
+      # @!attribute individual_id
+      #   Your identifier for the recipient.
+      #
+      #   @return [String, nil]
+      required :individual_id, String, nil?: true
+
+      # @!attribute individual_name
+      #   The name of the recipient. This value is informational and not verified by the
+      #   recipient's bank.
+      #
+      #   @return [String, nil]
+      required :individual_name, String, nil?: true
+
       # @!attribute notifications_of_change
       #   If the receiving bank notifies that future transfers should use different
       #   details, this will contain those details.
@@ -95,6 +114,14 @@ module Increase
       #   @return [String]
       required :routing_number, String
 
+      # @!attribute standard_entry_class_code
+      #   The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      #
+      #   @return [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil]
+      required :standard_entry_class_code,
+               enum: -> { Increase::ACHPrenotification::StandardEntryClassCode },
+               nil?: true
+
       # @!attribute status
       #   The lifecycle status of the ACH Prenotification.
       #
@@ -108,7 +135,7 @@ module Increase
       #   @return [Symbol, Increase::Models::ACHPrenotification::Type]
       required :type, enum: -> { Increase::ACHPrenotification::Type }
 
-      # @!method initialize(id:, account_number:, addendum:, company_descriptive_date:, company_discretionary_data:, company_entry_description:, company_name:, created_at:, credit_debit_indicator:, effective_date:, idempotency_key:, notifications_of_change:, prenotification_return:, routing_number:, status:, type:)
+      # @!method initialize(id:, account_id:, account_number:, addendum:, company_descriptive_date:, company_discretionary_data:, company_entry_description:, company_name:, created_at:, credit_debit_indicator:, effective_date:, idempotency_key:, individual_id:, individual_name:, notifications_of_change:, prenotification_return:, routing_number:, standard_entry_class_code:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ACHPrenotification} for more details.
       #
@@ -116,6 +143,8 @@ module Increase
       #   Automated Clearing House (ACH).
       #
       #   @param id [String] The ACH Prenotification's identifier.
+      #
+      #   @param account_id [String, nil] The account that sent the ACH Prenotification.
       #
       #   @param account_number [String] The destination account number.
       #
@@ -137,11 +166,17 @@ module Increase
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
+      #   @param individual_id [String, nil] Your identifier for the recipient.
+      #
+      #   @param individual_name [String, nil] The name of the recipient. This value is informational and not verified by the r
+      #
       #   @param notifications_of_change [Array<Increase::Models::ACHPrenotification::NotificationsOfChange>] If the receiving bank notifies that future transfers should use different detail
       #
       #   @param prenotification_return [Increase::Models::ACHPrenotification::PrenotificationReturn, nil] If your prenotification is returned, this will contain details of the return.
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
+      #
+      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
       #
       #   @param status [Symbol, Increase::Models::ACHPrenotification::Status] The lifecycle status of the ACH Prenotification.
       #
@@ -521,6 +556,28 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      #
+      # @see Increase::Models::ACHPrenotification#standard_entry_class_code
+      module StandardEntryClassCode
+        extend Increase::Internal::Type::Enum
+
+        # Corporate Credit and Debit (CCD).
+        CORPORATE_CREDIT_OR_DEBIT = :corporate_credit_or_debit
+
+        # Corporate Trade Exchange (CTX).
+        CORPORATE_TRADE_EXCHANGE = :corporate_trade_exchange
+
+        # Prearranged Payments and Deposits (PPD).
+        PREARRANGED_PAYMENTS_AND_DEPOSIT = :prearranged_payments_and_deposit
+
+        # Internet Initiated (WEB).
+        INTERNET_INITIATED = :internet_initiated
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The lifecycle status of the ACH Prenotification.
