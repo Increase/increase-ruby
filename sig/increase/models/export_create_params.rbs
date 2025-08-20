@@ -3,6 +3,7 @@ module Increase
     type export_create_params =
       {
         category: Increase::Models::ExportCreateParams::category,
+        :account_statement_bai2 => Increase::ExportCreateParams::AccountStatementBai2,
         account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
@@ -17,6 +18,12 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       attr_accessor category: Increase::Models::ExportCreateParams::category
+
+      attr_reader account_statement_bai2: Increase::ExportCreateParams::AccountStatementBai2?
+
+      def account_statement_bai2=: (
+        Increase::ExportCreateParams::AccountStatementBai2
+      ) -> Increase::ExportCreateParams::AccountStatementBai2
 
       attr_reader account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx?
 
@@ -54,6 +61,7 @@ module Increase
 
       def initialize: (
         category: Increase::Models::ExportCreateParams::category,
+        ?account_statement_bai2: Increase::ExportCreateParams::AccountStatementBai2,
         ?account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         ?balance_csv: Increase::ExportCreateParams::BalanceCsv,
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
@@ -65,6 +73,7 @@ module Increase
 
       def to_hash: -> {
         category: Increase::Models::ExportCreateParams::category,
+        :account_statement_bai2 => Increase::ExportCreateParams::AccountStatementBai2,
         account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
@@ -76,6 +85,7 @@ module Increase
 
       type category =
         :account_statement_ofx
+        | :account_statement_bai2
         | :transaction_csv
         | :balance_csv
         | :bookkeeping_account_balance_csv
@@ -87,6 +97,9 @@ module Increase
 
         # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
         ACCOUNT_STATEMENT_OFX: :account_statement_ofx
+
+        # Export a BAI2 file of transactions and balances for a given date and optional Account.
+        ACCOUNT_STATEMENT_BAI2: :account_statement_bai2
 
         # Export a CSV of all transactions for a given time range.
         TRANSACTION_CSV: :transaction_csv
@@ -104,6 +117,22 @@ module Increase
         VENDOR_CSV: :vendor_csv
 
         def self?.values: -> ::Array[Increase::Models::ExportCreateParams::category]
+      end
+
+      type account_statement_bai2 = { account_id: String, effective_date: Date }
+
+      class AccountStatementBai2 < Increase::Internal::Type::BaseModel
+        attr_reader account_id: String?
+
+        def account_id=: (String) -> String
+
+        attr_reader effective_date: Date?
+
+        def effective_date=: (Date) -> Date
+
+        def initialize: (?account_id: String, ?effective_date: Date) -> void
+
+        def to_hash: -> { account_id: String, effective_date: Date }
       end
 
       type account_statement_ofx =

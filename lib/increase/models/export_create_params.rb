@@ -13,6 +13,13 @@ module Increase
       #   @return [Symbol, Increase::Models::ExportCreateParams::Category]
       required :category, enum: -> { Increase::ExportCreateParams::Category }
 
+      # @!attribute account_statement_bai2
+      #   Options for the created export. Required if `category` is equal to
+      #   `account_statement_bai2`.
+      #
+      #   @return [Increase::Models::ExportCreateParams::AccountStatementBai2, nil]
+      optional :account_statement_bai2, -> { Increase::ExportCreateParams::AccountStatementBai2 }
+
       # @!attribute account_statement_ofx
       #   Options for the created export. Required if `category` is equal to
       #   `account_statement_ofx`.
@@ -54,11 +61,13 @@ module Increase
       #   @return [Object, nil]
       optional :vendor_csv, Increase::Internal::Type::Unknown
 
-      # @!method initialize(category:, account_statement_ofx: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
+      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportCreateParams} for more details.
       #
       #   @param category [Symbol, Increase::Models::ExportCreateParams::Category] The type of Export to create.
+      #
+      #   @param account_statement_bai2 [Increase::Models::ExportCreateParams::AccountStatementBai2] Options for the created export. Required if `category` is equal to `account_stat
       #
       #   @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx] Options for the created export. Required if `category` is equal to `account_stat
       #
@@ -83,6 +92,9 @@ module Increase
         # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
         ACCOUNT_STATEMENT_OFX = :account_statement_ofx
 
+        # Export a BAI2 file of transactions and balances for a given date and optional Account.
+        ACCOUNT_STATEMENT_BAI2 = :account_statement_bai2
+
         # Export a CSV of all transactions for a given time range.
         TRANSACTION_CSV = :transaction_csv
 
@@ -100,6 +112,35 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      class AccountStatementBai2 < Increase::Internal::Type::BaseModel
+        # @!attribute account_id
+        #   The Account to create a BAI2 report for. If not provided, all open accounts will
+        #   be included.
+        #
+        #   @return [String, nil]
+        optional :account_id, String
+
+        # @!attribute effective_date
+        #   The date to create a BAI2 report for. If not provided, the current date will be
+        #   used. The timezone is UTC. If the current date is used, the report will include
+        #   intraday balances, otherwise it will include end-of-day balances for the
+        #   provided date.
+        #
+        #   @return [Date, nil]
+        optional :effective_date, Date
+
+        # @!method initialize(account_id: nil, effective_date: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::ExportCreateParams::AccountStatementBai2} for more details.
+        #
+        #   Options for the created export. Required if `category` is equal to
+        #   `account_statement_bai2`.
+        #
+        #   @param account_id [String] The Account to create a BAI2 report for. If not provided, all open accounts will
+        #
+        #   @param effective_date [Date] The date to create a BAI2 report for. If not provided, the current date will be
       end
 
       class AccountStatementOfx < Increase::Internal::Type::BaseModel
