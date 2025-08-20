@@ -21,6 +21,10 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # The contact email for the account owner, to be shared with IntraFi.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :email_address
+
       # The idempotency key you chose for this object. This value is unique across
       # Increase and is used to ensure that a request is only processed once. Learn more
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -54,6 +58,7 @@ module Increase
           id: String,
           account_id: String,
           created_at: Time,
+          email_address: T.nilable(String),
           idempotency_key: T.nilable(String),
           intrafi_id: String,
           status: Increase::IntrafiAccountEnrollment::Status::OrSymbol,
@@ -68,6 +73,8 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the enrollment was created.
         created_at:,
+        # The contact email for the account owner, to be shared with IntraFi.
+        email_address:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -90,6 +97,7 @@ module Increase
             id: String,
             account_id: String,
             created_at: Time,
+            email_address: T.nilable(String),
             idempotency_key: T.nilable(String),
             intrafi_id: String,
             status: Increase::IntrafiAccountEnrollment::Status::TaggedSymbol,

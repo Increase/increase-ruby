@@ -41,6 +41,12 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :approved_inbound_check_deposit_id
 
+      # How the account's available balance should be checked.
+      sig do
+        returns(T.nilable(Increase::CheckTransfer::BalanceCheck::TaggedSymbol))
+      end
+      attr_accessor :balance_check
+
       # If your account requires approvals for transfers and the transfer was not
       # approved, this will contain details of the cancellation.
       sig { returns(T.nilable(Increase::CheckTransfer::Cancellation)) }
@@ -184,6 +190,8 @@ module Increase
           amount: Integer,
           approval: T.nilable(Increase::CheckTransfer::Approval::OrHash),
           approved_inbound_check_deposit_id: T.nilable(String),
+          balance_check:
+            T.nilable(Increase::CheckTransfer::BalanceCheck::OrSymbol),
           cancellation:
             T.nilable(Increase::CheckTransfer::Cancellation::OrHash),
           check_number: String,
@@ -222,6 +230,8 @@ module Increase
         # If the Check Transfer was successfully deposited, this will contain the
         # identifier of the Inbound Check Deposit object with details of the deposit.
         approved_inbound_check_deposit_id:,
+        # How the account's available balance should be checked.
+        balance_check:,
         # If your account requires approvals for transfers and the transfer was not
         # approved, this will contain details of the cancellation.
         cancellation:,
@@ -282,6 +292,8 @@ module Increase
             amount: Integer,
             approval: T.nilable(Increase::CheckTransfer::Approval),
             approved_inbound_check_deposit_id: T.nilable(String),
+            balance_check:
+              T.nilable(Increase::CheckTransfer::BalanceCheck::TaggedSymbol),
             cancellation: T.nilable(Increase::CheckTransfer::Cancellation),
             check_number: String,
             created_at: Time,
@@ -349,6 +361,29 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      # How the account's available balance should be checked.
+      module BalanceCheck
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::CheckTransfer::BalanceCheck) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        FULL = T.let(:full, Increase::CheckTransfer::BalanceCheck::TaggedSymbol)
+
+        # No balance check will performed; a zero-dollar Pending Transaction will be created.
+        NONE = T.let(:none, Increase::CheckTransfer::BalanceCheck::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[Increase::CheckTransfer::BalanceCheck::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 

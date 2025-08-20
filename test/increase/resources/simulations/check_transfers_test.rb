@@ -18,6 +18,7 @@ class Increase::Test::Resources::Simulations::CheckTransfersTest < Increase::Tes
         amount: Integer,
         approval: Increase::CheckTransfer::Approval | nil,
         approved_inbound_check_deposit_id: String | nil,
+        balance_check: Increase::CheckTransfer::BalanceCheck | nil,
         cancellation: Increase::CheckTransfer::Cancellation | nil,
         check_number: String,
         created_at: Time,

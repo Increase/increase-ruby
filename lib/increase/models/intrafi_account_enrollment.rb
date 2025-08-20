@@ -23,6 +23,12 @@ module Increase
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute email_address
+      #   The contact email for the account owner, to be shared with IntraFi.
+      #
+      #   @return [String, nil]
+      required :email_address, String, nil?: true
+
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
       #   Increase and is used to ensure that a request is only processed once. Learn more
@@ -52,7 +58,7 @@ module Increase
       #   @return [Symbol, Increase::Models::IntrafiAccountEnrollment::Type]
       required :type, enum: -> { Increase::IntrafiAccountEnrollment::Type }
 
-      # @!method initialize(id:, account_id:, created_at:, idempotency_key:, intrafi_id:, status:, type:)
+      # @!method initialize(id:, account_id:, created_at:, email_address:, idempotency_key:, intrafi_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::IntrafiAccountEnrollment} for more details.
       #
@@ -69,6 +75,8 @@ module Increase
       #   @param account_id [String] The identifier of the Increase Account being swept into the network.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #
+      #   @param email_address [String, nil] The contact email for the account owner, to be shared with IntraFi.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
