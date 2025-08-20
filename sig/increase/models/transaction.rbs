@@ -138,6 +138,7 @@ module Increase
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
+          swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         }
 
@@ -206,6 +207,8 @@ module Increase
 
         attr_accessor swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?
 
+        attr_accessor swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?
+
         attr_accessor wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
 
         def initialize: (
@@ -241,6 +244,7 @@ module Increase
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
+          swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         ) -> void
 
@@ -277,6 +281,7 @@ module Increase
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
+          swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         }
 
@@ -3113,6 +3118,7 @@ module Increase
           | :sample_funds
           | :wire_transfer_intention
           | :swift_transfer_intention
+          | :swift_transfer_return
           | :card_push_transfer_acceptance
           | :other
 
@@ -3208,6 +3214,9 @@ module Increase
 
           # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
           SWIFT_TRANSFER_INTENTION: :swift_transfer_intention
+
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN: :swift_transfer_return
 
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE: :card_push_transfer_acceptance
@@ -4456,6 +4465,16 @@ module Increase
         type swift_transfer_intention = { transfer_id: String }
 
         class SwiftTransferIntention < Increase::Internal::Type::BaseModel
+          attr_accessor transfer_id: String
+
+          def initialize: (transfer_id: String) -> void
+
+          def to_hash: -> { transfer_id: String }
+        end
+
+        type swift_transfer_return = { transfer_id: String }
+
+        class SwiftTransferReturn < Increase::Internal::Type::BaseModel
           attr_accessor transfer_id: String
 
           def initialize: (transfer_id: String) -> void
