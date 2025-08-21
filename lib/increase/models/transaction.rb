@@ -5421,41 +5421,65 @@ module Increase
           #   @return [Integer]
           required :amount, Integer
 
-          # @!attribute beneficiary_address_line1
+          # @!attribute creditor_address_line1
           #   A free-form address field set by the sender.
           #
           #   @return [String, nil]
-          required :beneficiary_address_line1, String, nil?: true
+          required :creditor_address_line1, String, nil?: true
 
-          # @!attribute beneficiary_address_line2
+          # @!attribute creditor_address_line2
           #   A free-form address field set by the sender.
           #
           #   @return [String, nil]
-          required :beneficiary_address_line2, String, nil?: true
+          required :creditor_address_line2, String, nil?: true
 
-          # @!attribute beneficiary_address_line3
+          # @!attribute creditor_address_line3
           #   A free-form address field set by the sender.
           #
           #   @return [String, nil]
-          required :beneficiary_address_line3, String, nil?: true
+          required :creditor_address_line3, String, nil?: true
 
-          # @!attribute beneficiary_name
+          # @!attribute creditor_name
           #   A name set by the sender.
           #
           #   @return [String, nil]
-          required :beneficiary_name, String, nil?: true
+          required :creditor_name, String, nil?: true
 
-          # @!attribute beneficiary_reference
-          #   A free-form reference string set by the sender, to help identify the transfer.
+          # @!attribute debtor_address_line1
+          #   A free-form address field set by the sender.
           #
           #   @return [String, nil]
-          required :beneficiary_reference, String, nil?: true
+          required :debtor_address_line1, String, nil?: true
+
+          # @!attribute debtor_address_line2
+          #   A free-form address field set by the sender.
+          #
+          #   @return [String, nil]
+          required :debtor_address_line2, String, nil?: true
+
+          # @!attribute debtor_address_line3
+          #   A free-form address field set by the sender.
+          #
+          #   @return [String, nil]
+          required :debtor_address_line3, String, nil?: true
+
+          # @!attribute debtor_name
+          #   A name set by the sender.
+          #
+          #   @return [String, nil]
+          required :debtor_name, String, nil?: true
 
           # @!attribute description
           #   An Increase-constructed description of the transfer.
           #
           #   @return [String]
           required :description, String
+
+          # @!attribute end_to_end_identification
+          #   A free-form reference string set by the sender, to help identify the transfer.
+          #
+          #   @return [String, nil]
+          required :end_to_end_identification, String, nil?: true
 
           # @!attribute input_message_accountability_data
           #   A unique identifier available to the originating and receiving banks, commonly
@@ -5465,66 +5489,18 @@ module Increase
           #   @return [String, nil]
           required :input_message_accountability_data, String, nil?: true
 
-          # @!attribute originator_address_line1
-          #   The address of the wire originator, set by the sending bank.
+          # @!attribute instructing_agent_routing_number
+          #   The American Banking Association (ABA) routing number of the bank that sent the
+          #   wire.
           #
           #   @return [String, nil]
-          required :originator_address_line1, String, nil?: true
+          required :instructing_agent_routing_number, String, nil?: true
 
-          # @!attribute originator_address_line2
-          #   The address of the wire originator, set by the sending bank.
+          # @!attribute instruction_identification
+          #   The sending bank's identifier for the wire transfer.
           #
           #   @return [String, nil]
-          required :originator_address_line2, String, nil?: true
-
-          # @!attribute originator_address_line3
-          #   The address of the wire originator, set by the sending bank.
-          #
-          #   @return [String, nil]
-          required :originator_address_line3, String, nil?: true
-
-          # @!attribute originator_name
-          #   The originator of the wire, set by the sending bank.
-          #
-          #   @return [String, nil]
-          required :originator_name, String, nil?: true
-
-          # @!attribute originator_routing_number
-          #   The American Banking Association (ABA) routing number of the bank originating
-          #   the transfer.
-          #
-          #   @return [String, nil]
-          required :originator_routing_number, String, nil?: true
-
-          # @!attribute originator_to_beneficiary_information
-          #   An Increase-created concatenation of the Originator-to-Beneficiary lines.
-          #
-          #   @return [String, nil]
-          required :originator_to_beneficiary_information, String, nil?: true
-
-          # @!attribute originator_to_beneficiary_information_line1
-          #   A free-form message set by the wire originator.
-          #
-          #   @return [String, nil]
-          required :originator_to_beneficiary_information_line1, String, nil?: true
-
-          # @!attribute originator_to_beneficiary_information_line2
-          #   A free-form message set by the wire originator.
-          #
-          #   @return [String, nil]
-          required :originator_to_beneficiary_information_line2, String, nil?: true
-
-          # @!attribute originator_to_beneficiary_information_line3
-          #   A free-form message set by the wire originator.
-          #
-          #   @return [String, nil]
-          required :originator_to_beneficiary_information_line3, String, nil?: true
-
-          # @!attribute originator_to_beneficiary_information_line4
-          #   A free-form message set by the wire originator.
-          #
-          #   @return [String, nil]
-          required :originator_to_beneficiary_information_line4, String, nil?: true
+          required :instruction_identification, String, nil?: true
 
           # @!attribute transfer_id
           #   The ID of the Inbound Wire Transfer object that resulted in this Transaction.
@@ -5532,7 +5508,21 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!method initialize(amount:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, beneficiary_reference:, description:, input_message_accountability_data:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, originator_routing_number:, originator_to_beneficiary_information:, originator_to_beneficiary_information_line1:, originator_to_beneficiary_information_line2:, originator_to_beneficiary_information_line3:, originator_to_beneficiary_information_line4:, transfer_id:)
+          # @!attribute unique_end_to_end_transaction_reference
+          #   The Unique End-to-end Transaction Reference
+          #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+          #   of the transfer.
+          #
+          #   @return [String, nil]
+          required :unique_end_to_end_transaction_reference, String, nil?: true
+
+          # @!attribute unstructured_remittance_information
+          #   A free-form message set by the sender.
+          #
+          #   @return [String, nil]
+          required :unstructured_remittance_information, String, nil?: true
+
+          # @!method initialize(amount:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, transfer_id:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::InboundWireTransfer} for more details.
           #
@@ -5543,41 +5533,37 @@ module Increase
           #
           #   @param amount [Integer] The amount in USD cents.
           #
-          #   @param beneficiary_address_line1 [String, nil] A free-form address field set by the sender.
+          #   @param creditor_address_line1 [String, nil] A free-form address field set by the sender.
           #
-          #   @param beneficiary_address_line2 [String, nil] A free-form address field set by the sender.
+          #   @param creditor_address_line2 [String, nil] A free-form address field set by the sender.
           #
-          #   @param beneficiary_address_line3 [String, nil] A free-form address field set by the sender.
+          #   @param creditor_address_line3 [String, nil] A free-form address field set by the sender.
           #
-          #   @param beneficiary_name [String, nil] A name set by the sender.
+          #   @param creditor_name [String, nil] A name set by the sender.
           #
-          #   @param beneficiary_reference [String, nil] A free-form reference string set by the sender, to help identify the transfer.
+          #   @param debtor_address_line1 [String, nil] A free-form address field set by the sender.
+          #
+          #   @param debtor_address_line2 [String, nil] A free-form address field set by the sender.
+          #
+          #   @param debtor_address_line3 [String, nil] A free-form address field set by the sender.
+          #
+          #   @param debtor_name [String, nil] A name set by the sender.
           #
           #   @param description [String] An Increase-constructed description of the transfer.
           #
+          #   @param end_to_end_identification [String, nil] A free-form reference string set by the sender, to help identify the transfer.
+          #
           #   @param input_message_accountability_data [String, nil] A unique identifier available to the originating and receiving banks, commonly a
           #
-          #   @param originator_address_line1 [String, nil] The address of the wire originator, set by the sending bank.
+          #   @param instructing_agent_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank that sent the
           #
-          #   @param originator_address_line2 [String, nil] The address of the wire originator, set by the sending bank.
-          #
-          #   @param originator_address_line3 [String, nil] The address of the wire originator, set by the sending bank.
-          #
-          #   @param originator_name [String, nil] The originator of the wire, set by the sending bank.
-          #
-          #   @param originator_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank originating th
-          #
-          #   @param originator_to_beneficiary_information [String, nil] An Increase-created concatenation of the Originator-to-Beneficiary lines.
-          #
-          #   @param originator_to_beneficiary_information_line1 [String, nil] A free-form message set by the wire originator.
-          #
-          #   @param originator_to_beneficiary_information_line2 [String, nil] A free-form message set by the wire originator.
-          #
-          #   @param originator_to_beneficiary_information_line3 [String, nil] A free-form message set by the wire originator.
-          #
-          #   @param originator_to_beneficiary_information_line4 [String, nil] A free-form message set by the wire originator.
+          #   @param instruction_identification [String, nil] The sending bank's identifier for the wire transfer.
           #
           #   @param transfer_id [String] The ID of the Inbound Wire Transfer object that resulted in this Transaction.
+          #
+          #   @param unique_end_to_end_transaction_reference [String, nil] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+          #
+          #   @param unstructured_remittance_information [String, nil] A free-form message set by the sender.
         end
 
         # @see Increase::Models::Transaction::Source#inbound_wire_transfer_reversal
