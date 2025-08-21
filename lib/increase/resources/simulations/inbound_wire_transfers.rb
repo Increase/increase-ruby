@@ -10,41 +10,37 @@ module Increase
         #
         # Simulates an [Inbound Wire Transfer](#inbound-wire-transfers) to your account.
         #
-        # @overload create(account_number_id:, amount:, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, beneficiary_name: nil, beneficiary_reference: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, originator_routing_number: nil, originator_to_beneficiary_information_line1: nil, originator_to_beneficiary_information_line2: nil, originator_to_beneficiary_information_line3: nil, originator_to_beneficiary_information_line4: nil, sender_reference: nil, wire_drawdown_request_id: nil, request_options: {})
+        # @overload create(account_number_id:, amount:, creditor_address_line1: nil, creditor_address_line2: nil, creditor_address_line3: nil, creditor_name: nil, debtor_address_line1: nil, debtor_address_line2: nil, debtor_address_line3: nil, debtor_name: nil, end_to_end_identification: nil, instructing_agent_routing_number: nil, instruction_identification: nil, unique_end_to_end_transaction_reference: nil, unstructured_remittance_information: nil, wire_drawdown_request_id: nil, request_options: {})
         #
         # @param account_number_id [String] The identifier of the Account Number the inbound Wire Transfer is for.
         #
         # @param amount [Integer] The transfer amount in cents. Must be positive.
         #
-        # @param beneficiary_address_line1 [String] The sending bank will set beneficiary_address_line1 in production. You can simul
+        # @param creditor_address_line1 [String] The sending bank will set creditor_address_line1 in production. You can simulate
         #
-        # @param beneficiary_address_line2 [String] The sending bank will set beneficiary_address_line2 in production. You can simul
+        # @param creditor_address_line2 [String] The sending bank will set creditor_address_line2 in production. You can simulate
         #
-        # @param beneficiary_address_line3 [String] The sending bank will set beneficiary_address_line3 in production. You can simul
+        # @param creditor_address_line3 [String] The sending bank will set creditor_address_line3 in production. You can simulate
         #
-        # @param beneficiary_name [String] The sending bank will set beneficiary_name in production. You can simulate any v
+        # @param creditor_name [String] The sending bank will set creditor_name in production. You can simulate any valu
         #
-        # @param beneficiary_reference [String] The sending bank will set beneficiary_reference in production. You can simulate
+        # @param debtor_address_line1 [String] The sending bank will set debtor_address_line1 in production. You can simulate a
         #
-        # @param originator_address_line1 [String] The sending bank will set originator_address_line1 in production. You can simula
+        # @param debtor_address_line2 [String] The sending bank will set debtor_address_line2 in production. You can simulate a
         #
-        # @param originator_address_line2 [String] The sending bank will set originator_address_line2 in production. You can simula
+        # @param debtor_address_line3 [String] The sending bank will set debtor_address_line3 in production. You can simulate a
         #
-        # @param originator_address_line3 [String] The sending bank will set originator_address_line3 in production. You can simula
+        # @param debtor_name [String] The sending bank will set debtor_name in production. You can simulate any value
         #
-        # @param originator_name [String] The sending bank will set originator_name in production. You can simulate any va
+        # @param end_to_end_identification [String] The sending bank will set end_to_end_identification in production. You can simul
         #
-        # @param originator_routing_number [String] The sending bank will set originator_routing_number in production. You can simul
+        # @param instructing_agent_routing_number [String] The sending bank will set instructing_agent_routing_number in production. You ca
         #
-        # @param originator_to_beneficiary_information_line1 [String] The sending bank will set originator_to_beneficiary_information_line1 in product
+        # @param instruction_identification [String] The sending bank will set instruction_identification in production. You can simu
         #
-        # @param originator_to_beneficiary_information_line2 [String] The sending bank will set originator_to_beneficiary_information_line2 in product
+        # @param unique_end_to_end_transaction_reference [String] The sending bank will set unique_end_to_end_transaction_reference in production.
         #
-        # @param originator_to_beneficiary_information_line3 [String] The sending bank will set originator_to_beneficiary_information_line3 in product
-        #
-        # @param originator_to_beneficiary_information_line4 [String] The sending bank will set originator_to_beneficiary_information_line4 in product
-        #
-        # @param sender_reference [String] The sending bank will set sender_reference in production. You can simulate any v
+        # @param unstructured_remittance_information [String] The sending bank will set unstructured_remittance_information in production. You
         #
         # @param wire_drawdown_request_id [String] The identifier of a Wire Drawdown Request the inbound Wire Transfer is fulfillin
         #

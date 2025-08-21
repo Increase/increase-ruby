@@ -5,21 +5,19 @@ module Increase
         {
           account_number_id: String,
           amount: Integer,
-          :beneficiary_address_line1 => String,
-          :beneficiary_address_line2 => String,
-          :beneficiary_address_line3 => String,
-          beneficiary_name: String,
-          beneficiary_reference: String,
-          :originator_address_line1 => String,
-          :originator_address_line2 => String,
-          :originator_address_line3 => String,
-          originator_name: String,
-          originator_routing_number: String,
-          :originator_to_beneficiary_information_line1 => String,
-          :originator_to_beneficiary_information_line2 => String,
-          :originator_to_beneficiary_information_line3 => String,
-          :originator_to_beneficiary_information_line4 => String,
-          sender_reference: String,
+          :creditor_address_line1 => String,
+          :creditor_address_line2 => String,
+          :creditor_address_line3 => String,
+          creditor_name: String,
+          :debtor_address_line1 => String,
+          :debtor_address_line2 => String,
+          :debtor_address_line3 => String,
+          debtor_name: String,
+          end_to_end_identification: String,
+          instructing_agent_routing_number: String,
+          instruction_identification: String,
+          unique_end_to_end_transaction_reference: String,
+          unstructured_remittance_information: String,
           wire_drawdown_request_id: String
         }
         & Increase::Internal::Type::request_parameters
@@ -32,65 +30,57 @@ module Increase
 
         attr_accessor amount: Integer
 
-        attr_reader beneficiary_address_line1: String?
+        attr_reader creditor_address_line1: String?
 
-        def beneficiary_address_line1=: (String) -> String
+        def creditor_address_line1=: (String) -> String
 
-        attr_reader beneficiary_address_line2: String?
+        attr_reader creditor_address_line2: String?
 
-        def beneficiary_address_line2=: (String) -> String
+        def creditor_address_line2=: (String) -> String
 
-        attr_reader beneficiary_address_line3: String?
+        attr_reader creditor_address_line3: String?
 
-        def beneficiary_address_line3=: (String) -> String
+        def creditor_address_line3=: (String) -> String
 
-        attr_reader beneficiary_name: String?
+        attr_reader creditor_name: String?
 
-        def beneficiary_name=: (String) -> String
+        def creditor_name=: (String) -> String
 
-        attr_reader beneficiary_reference: String?
+        attr_reader debtor_address_line1: String?
 
-        def beneficiary_reference=: (String) -> String
+        def debtor_address_line1=: (String) -> String
 
-        attr_reader originator_address_line1: String?
+        attr_reader debtor_address_line2: String?
 
-        def originator_address_line1=: (String) -> String
+        def debtor_address_line2=: (String) -> String
 
-        attr_reader originator_address_line2: String?
+        attr_reader debtor_address_line3: String?
 
-        def originator_address_line2=: (String) -> String
+        def debtor_address_line3=: (String) -> String
 
-        attr_reader originator_address_line3: String?
+        attr_reader debtor_name: String?
 
-        def originator_address_line3=: (String) -> String
+        def debtor_name=: (String) -> String
 
-        attr_reader originator_name: String?
+        attr_reader end_to_end_identification: String?
 
-        def originator_name=: (String) -> String
+        def end_to_end_identification=: (String) -> String
 
-        attr_reader originator_routing_number: String?
+        attr_reader instructing_agent_routing_number: String?
 
-        def originator_routing_number=: (String) -> String
+        def instructing_agent_routing_number=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line1: String?
+        attr_reader instruction_identification: String?
 
-        def originator_to_beneficiary_information_line1=: (String) -> String
+        def instruction_identification=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line2: String?
+        attr_reader unique_end_to_end_transaction_reference: String?
 
-        def originator_to_beneficiary_information_line2=: (String) -> String
+        def unique_end_to_end_transaction_reference=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line3: String?
+        attr_reader unstructured_remittance_information: String?
 
-        def originator_to_beneficiary_information_line3=: (String) -> String
-
-        attr_reader originator_to_beneficiary_information_line4: String?
-
-        def originator_to_beneficiary_information_line4=: (String) -> String
-
-        attr_reader sender_reference: String?
-
-        def sender_reference=: (String) -> String
+        def unstructured_remittance_information=: (String) -> String
 
         attr_reader wire_drawdown_request_id: String?
 
@@ -99,21 +89,19 @@ module Increase
         def initialize: (
           account_number_id: String,
           amount: Integer,
-          ?beneficiary_address_line1: String,
-          ?beneficiary_address_line2: String,
-          ?beneficiary_address_line3: String,
-          ?beneficiary_name: String,
-          ?beneficiary_reference: String,
-          ?originator_address_line1: String,
-          ?originator_address_line2: String,
-          ?originator_address_line3: String,
-          ?originator_name: String,
-          ?originator_routing_number: String,
-          ?originator_to_beneficiary_information_line1: String,
-          ?originator_to_beneficiary_information_line2: String,
-          ?originator_to_beneficiary_information_line3: String,
-          ?originator_to_beneficiary_information_line4: String,
-          ?sender_reference: String,
+          ?creditor_address_line1: String,
+          ?creditor_address_line2: String,
+          ?creditor_address_line3: String,
+          ?creditor_name: String,
+          ?debtor_address_line1: String,
+          ?debtor_address_line2: String,
+          ?debtor_address_line3: String,
+          ?debtor_name: String,
+          ?end_to_end_identification: String,
+          ?instructing_agent_routing_number: String,
+          ?instruction_identification: String,
+          ?unique_end_to_end_transaction_reference: String,
+          ?unstructured_remittance_information: String,
           ?wire_drawdown_request_id: String,
           ?request_options: Increase::request_opts
         ) -> void
@@ -121,21 +109,19 @@ module Increase
         def to_hash: -> {
           account_number_id: String,
           amount: Integer,
-          :beneficiary_address_line1 => String,
-          :beneficiary_address_line2 => String,
-          :beneficiary_address_line3 => String,
-          beneficiary_name: String,
-          beneficiary_reference: String,
-          :originator_address_line1 => String,
-          :originator_address_line2 => String,
-          :originator_address_line3 => String,
-          originator_name: String,
-          originator_routing_number: String,
-          :originator_to_beneficiary_information_line1 => String,
-          :originator_to_beneficiary_information_line2 => String,
-          :originator_to_beneficiary_information_line3 => String,
-          :originator_to_beneficiary_information_line4 => String,
-          sender_reference: String,
+          :creditor_address_line1 => String,
+          :creditor_address_line2 => String,
+          :creditor_address_line3 => String,
+          creditor_name: String,
+          :debtor_address_line1 => String,
+          :debtor_address_line2 => String,
+          :debtor_address_line3 => String,
+          debtor_name: String,
+          end_to_end_identification: String,
+          instructing_agent_routing_number: String,
+          instruction_identification: String,
+          unique_end_to_end_transaction_reference: String,
+          unstructured_remittance_information: String,
           wire_drawdown_request_id: String,
           request_options: Increase::RequestOptions
         }
