@@ -23,125 +23,109 @@ module Increase
         sig { returns(Integer) }
         attr_accessor :amount
 
-        # The sending bank will set beneficiary_address_line1 in production. You can
-        # simulate any value here.
-        sig { returns(T.nilable(String)) }
-        attr_reader :beneficiary_address_line1
-
-        sig { params(beneficiary_address_line1: String).void }
-        attr_writer :beneficiary_address_line1
-
-        # The sending bank will set beneficiary_address_line2 in production. You can
-        # simulate any value here.
-        sig { returns(T.nilable(String)) }
-        attr_reader :beneficiary_address_line2
-
-        sig { params(beneficiary_address_line2: String).void }
-        attr_writer :beneficiary_address_line2
-
-        # The sending bank will set beneficiary_address_line3 in production. You can
-        # simulate any value here.
-        sig { returns(T.nilable(String)) }
-        attr_reader :beneficiary_address_line3
-
-        sig { params(beneficiary_address_line3: String).void }
-        attr_writer :beneficiary_address_line3
-
-        # The sending bank will set beneficiary_name in production. You can simulate any
-        # value here.
-        sig { returns(T.nilable(String)) }
-        attr_reader :beneficiary_name
-
-        sig { params(beneficiary_name: String).void }
-        attr_writer :beneficiary_name
-
-        # The sending bank will set beneficiary_reference in production. You can simulate
+        # The sending bank will set creditor_address_line1 in production. You can simulate
         # any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :beneficiary_reference
+        attr_reader :creditor_address_line1
 
-        sig { params(beneficiary_reference: String).void }
-        attr_writer :beneficiary_reference
+        sig { params(creditor_address_line1: String).void }
+        attr_writer :creditor_address_line1
 
-        # The sending bank will set originator_address_line1 in production. You can
-        # simulate any value here.
+        # The sending bank will set creditor_address_line2 in production. You can simulate
+        # any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_address_line1
+        attr_reader :creditor_address_line2
 
-        sig { params(originator_address_line1: String).void }
-        attr_writer :originator_address_line1
+        sig { params(creditor_address_line2: String).void }
+        attr_writer :creditor_address_line2
 
-        # The sending bank will set originator_address_line2 in production. You can
-        # simulate any value here.
+        # The sending bank will set creditor_address_line3 in production. You can simulate
+        # any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_address_line2
+        attr_reader :creditor_address_line3
 
-        sig { params(originator_address_line2: String).void }
-        attr_writer :originator_address_line2
+        sig { params(creditor_address_line3: String).void }
+        attr_writer :creditor_address_line3
 
-        # The sending bank will set originator_address_line3 in production. You can
-        # simulate any value here.
-        sig { returns(T.nilable(String)) }
-        attr_reader :originator_address_line3
-
-        sig { params(originator_address_line3: String).void }
-        attr_writer :originator_address_line3
-
-        # The sending bank will set originator_name in production. You can simulate any
+        # The sending bank will set creditor_name in production. You can simulate any
         # value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_name
+        attr_reader :creditor_name
 
-        sig { params(originator_name: String).void }
-        attr_writer :originator_name
+        sig { params(creditor_name: String).void }
+        attr_writer :creditor_name
 
-        # The sending bank will set originator_routing_number in production. You can
+        # The sending bank will set debtor_address_line1 in production. You can simulate
+        # any value here.
+        sig { returns(T.nilable(String)) }
+        attr_reader :debtor_address_line1
+
+        sig { params(debtor_address_line1: String).void }
+        attr_writer :debtor_address_line1
+
+        # The sending bank will set debtor_address_line2 in production. You can simulate
+        # any value here.
+        sig { returns(T.nilable(String)) }
+        attr_reader :debtor_address_line2
+
+        sig { params(debtor_address_line2: String).void }
+        attr_writer :debtor_address_line2
+
+        # The sending bank will set debtor_address_line3 in production. You can simulate
+        # any value here.
+        sig { returns(T.nilable(String)) }
+        attr_reader :debtor_address_line3
+
+        sig { params(debtor_address_line3: String).void }
+        attr_writer :debtor_address_line3
+
+        # The sending bank will set debtor_name in production. You can simulate any value
+        # here.
+        sig { returns(T.nilable(String)) }
+        attr_reader :debtor_name
+
+        sig { params(debtor_name: String).void }
+        attr_writer :debtor_name
+
+        # The sending bank will set end_to_end_identification in production. You can
         # simulate any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_routing_number
+        attr_reader :end_to_end_identification
 
-        sig { params(originator_routing_number: String).void }
-        attr_writer :originator_routing_number
+        sig { params(end_to_end_identification: String).void }
+        attr_writer :end_to_end_identification
 
-        # The sending bank will set originator_to_beneficiary_information_line1 in
-        # production. You can simulate any value here.
+        # The sending bank will set instructing_agent_routing_number in production. You
+        # can simulate any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_to_beneficiary_information_line1
+        attr_reader :instructing_agent_routing_number
 
-        sig { params(originator_to_beneficiary_information_line1: String).void }
-        attr_writer :originator_to_beneficiary_information_line1
+        sig { params(instructing_agent_routing_number: String).void }
+        attr_writer :instructing_agent_routing_number
 
-        # The sending bank will set originator_to_beneficiary_information_line2 in
-        # production. You can simulate any value here.
+        # The sending bank will set instruction_identification in production. You can
+        # simulate any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_to_beneficiary_information_line2
+        attr_reader :instruction_identification
 
-        sig { params(originator_to_beneficiary_information_line2: String).void }
-        attr_writer :originator_to_beneficiary_information_line2
+        sig { params(instruction_identification: String).void }
+        attr_writer :instruction_identification
 
-        # The sending bank will set originator_to_beneficiary_information_line3 in
-        # production. You can simulate any value here.
+        # The sending bank will set unique_end_to_end_transaction_reference in production.
+        # You can simulate any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_to_beneficiary_information_line3
+        attr_reader :unique_end_to_end_transaction_reference
 
-        sig { params(originator_to_beneficiary_information_line3: String).void }
-        attr_writer :originator_to_beneficiary_information_line3
+        sig { params(unique_end_to_end_transaction_reference: String).void }
+        attr_writer :unique_end_to_end_transaction_reference
 
-        # The sending bank will set originator_to_beneficiary_information_line4 in
-        # production. You can simulate any value here.
+        # The sending bank will set unstructured_remittance_information in production. You
+        # can simulate any value here.
         sig { returns(T.nilable(String)) }
-        attr_reader :originator_to_beneficiary_information_line4
+        attr_reader :unstructured_remittance_information
 
-        sig { params(originator_to_beneficiary_information_line4: String).void }
-        attr_writer :originator_to_beneficiary_information_line4
-
-        # The sending bank will set sender_reference in production. You can simulate any
-        # value here.
-        sig { returns(T.nilable(String)) }
-        attr_reader :sender_reference
-
-        sig { params(sender_reference: String).void }
-        attr_writer :sender_reference
+        sig { params(unstructured_remittance_information: String).void }
+        attr_writer :unstructured_remittance_information
 
         # The identifier of a Wire Drawdown Request the inbound Wire Transfer is
         # fulfilling.
@@ -155,21 +139,19 @@ module Increase
           params(
             account_number_id: String,
             amount: Integer,
-            beneficiary_address_line1: String,
-            beneficiary_address_line2: String,
-            beneficiary_address_line3: String,
-            beneficiary_name: String,
-            beneficiary_reference: String,
-            originator_address_line1: String,
-            originator_address_line2: String,
-            originator_address_line3: String,
-            originator_name: String,
-            originator_routing_number: String,
-            originator_to_beneficiary_information_line1: String,
-            originator_to_beneficiary_information_line2: String,
-            originator_to_beneficiary_information_line3: String,
-            originator_to_beneficiary_information_line4: String,
-            sender_reference: String,
+            creditor_address_line1: String,
+            creditor_address_line2: String,
+            creditor_address_line3: String,
+            creditor_name: String,
+            debtor_address_line1: String,
+            debtor_address_line2: String,
+            debtor_address_line3: String,
+            debtor_name: String,
+            end_to_end_identification: String,
+            instructing_agent_routing_number: String,
+            instruction_identification: String,
+            unique_end_to_end_transaction_reference: String,
+            unstructured_remittance_information: String,
             wire_drawdown_request_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -179,51 +161,45 @@ module Increase
           account_number_id:,
           # The transfer amount in cents. Must be positive.
           amount:,
-          # The sending bank will set beneficiary_address_line1 in production. You can
-          # simulate any value here.
-          beneficiary_address_line1: nil,
-          # The sending bank will set beneficiary_address_line2 in production. You can
-          # simulate any value here.
-          beneficiary_address_line2: nil,
-          # The sending bank will set beneficiary_address_line3 in production. You can
-          # simulate any value here.
-          beneficiary_address_line3: nil,
-          # The sending bank will set beneficiary_name in production. You can simulate any
-          # value here.
-          beneficiary_name: nil,
-          # The sending bank will set beneficiary_reference in production. You can simulate
+          # The sending bank will set creditor_address_line1 in production. You can simulate
           # any value here.
-          beneficiary_reference: nil,
-          # The sending bank will set originator_address_line1 in production. You can
-          # simulate any value here.
-          originator_address_line1: nil,
-          # The sending bank will set originator_address_line2 in production. You can
-          # simulate any value here.
-          originator_address_line2: nil,
-          # The sending bank will set originator_address_line3 in production. You can
-          # simulate any value here.
-          originator_address_line3: nil,
-          # The sending bank will set originator_name in production. You can simulate any
+          creditor_address_line1: nil,
+          # The sending bank will set creditor_address_line2 in production. You can simulate
+          # any value here.
+          creditor_address_line2: nil,
+          # The sending bank will set creditor_address_line3 in production. You can simulate
+          # any value here.
+          creditor_address_line3: nil,
+          # The sending bank will set creditor_name in production. You can simulate any
           # value here.
-          originator_name: nil,
-          # The sending bank will set originator_routing_number in production. You can
+          creditor_name: nil,
+          # The sending bank will set debtor_address_line1 in production. You can simulate
+          # any value here.
+          debtor_address_line1: nil,
+          # The sending bank will set debtor_address_line2 in production. You can simulate
+          # any value here.
+          debtor_address_line2: nil,
+          # The sending bank will set debtor_address_line3 in production. You can simulate
+          # any value here.
+          debtor_address_line3: nil,
+          # The sending bank will set debtor_name in production. You can simulate any value
+          # here.
+          debtor_name: nil,
+          # The sending bank will set end_to_end_identification in production. You can
           # simulate any value here.
-          originator_routing_number: nil,
-          # The sending bank will set originator_to_beneficiary_information_line1 in
-          # production. You can simulate any value here.
-          originator_to_beneficiary_information_line1: nil,
-          # The sending bank will set originator_to_beneficiary_information_line2 in
-          # production. You can simulate any value here.
-          originator_to_beneficiary_information_line2: nil,
-          # The sending bank will set originator_to_beneficiary_information_line3 in
-          # production. You can simulate any value here.
-          originator_to_beneficiary_information_line3: nil,
-          # The sending bank will set originator_to_beneficiary_information_line4 in
-          # production. You can simulate any value here.
-          originator_to_beneficiary_information_line4: nil,
-          # The sending bank will set sender_reference in production. You can simulate any
-          # value here.
-          sender_reference: nil,
+          end_to_end_identification: nil,
+          # The sending bank will set instructing_agent_routing_number in production. You
+          # can simulate any value here.
+          instructing_agent_routing_number: nil,
+          # The sending bank will set instruction_identification in production. You can
+          # simulate any value here.
+          instruction_identification: nil,
+          # The sending bank will set unique_end_to_end_transaction_reference in production.
+          # You can simulate any value here.
+          unique_end_to_end_transaction_reference: nil,
+          # The sending bank will set unstructured_remittance_information in production. You
+          # can simulate any value here.
+          unstructured_remittance_information: nil,
           # The identifier of a Wire Drawdown Request the inbound Wire Transfer is
           # fulfilling.
           wire_drawdown_request_id: nil,
@@ -236,21 +212,19 @@ module Increase
             {
               account_number_id: String,
               amount: Integer,
-              beneficiary_address_line1: String,
-              beneficiary_address_line2: String,
-              beneficiary_address_line3: String,
-              beneficiary_name: String,
-              beneficiary_reference: String,
-              originator_address_line1: String,
-              originator_address_line2: String,
-              originator_address_line3: String,
-              originator_name: String,
-              originator_routing_number: String,
-              originator_to_beneficiary_information_line1: String,
-              originator_to_beneficiary_information_line2: String,
-              originator_to_beneficiary_information_line3: String,
-              originator_to_beneficiary_information_line4: String,
-              sender_reference: String,
+              creditor_address_line1: String,
+              creditor_address_line2: String,
+              creditor_address_line3: String,
+              creditor_name: String,
+              debtor_address_line1: String,
+              debtor_address_line2: String,
+              debtor_address_line3: String,
+              debtor_name: String,
+              end_to_end_identification: String,
+              instructing_agent_routing_number: String,
+              instruction_identification: String,
+              unique_end_to_end_transaction_reference: String,
+              unstructured_remittance_information: String,
               wire_drawdown_request_id: String,
               request_options: Increase::RequestOptions
             }
