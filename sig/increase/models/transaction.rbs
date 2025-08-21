@@ -4116,107 +4116,97 @@ module Increase
         type inbound_wire_transfer =
           {
             amount: Integer,
-            :beneficiary_address_line1 => String?,
-            :beneficiary_address_line2 => String?,
-            :beneficiary_address_line3 => String?,
-            beneficiary_name: String?,
-            beneficiary_reference: String?,
+            :creditor_address_line1 => String?,
+            :creditor_address_line2 => String?,
+            :creditor_address_line3 => String?,
+            creditor_name: String?,
+            :debtor_address_line1 => String?,
+            :debtor_address_line2 => String?,
+            :debtor_address_line3 => String?,
+            debtor_name: String?,
             description: String,
+            end_to_end_identification: String?,
             input_message_accountability_data: String?,
-            :originator_address_line1 => String?,
-            :originator_address_line2 => String?,
-            :originator_address_line3 => String?,
-            originator_name: String?,
-            originator_routing_number: String?,
-            originator_to_beneficiary_information: String?,
-            :originator_to_beneficiary_information_line1 => String?,
-            :originator_to_beneficiary_information_line2 => String?,
-            :originator_to_beneficiary_information_line3 => String?,
-            :originator_to_beneficiary_information_line4 => String?,
-            transfer_id: String
+            instructing_agent_routing_number: String?,
+            instruction_identification: String?,
+            transfer_id: String,
+            unique_end_to_end_transaction_reference: String?,
+            unstructured_remittance_information: String?
           }
 
         class InboundWireTransfer < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
 
-          attr_accessor beneficiary_address_line1: String?
+          attr_accessor creditor_address_line1: String?
 
-          attr_accessor beneficiary_address_line2: String?
+          attr_accessor creditor_address_line2: String?
 
-          attr_accessor beneficiary_address_line3: String?
+          attr_accessor creditor_address_line3: String?
 
-          attr_accessor beneficiary_name: String?
+          attr_accessor creditor_name: String?
 
-          attr_accessor beneficiary_reference: String?
+          attr_accessor debtor_address_line1: String?
+
+          attr_accessor debtor_address_line2: String?
+
+          attr_accessor debtor_address_line3: String?
+
+          attr_accessor debtor_name: String?
 
           attr_accessor description: String
 
+          attr_accessor end_to_end_identification: String?
+
           attr_accessor input_message_accountability_data: String?
 
-          attr_accessor originator_address_line1: String?
+          attr_accessor instructing_agent_routing_number: String?
 
-          attr_accessor originator_address_line2: String?
-
-          attr_accessor originator_address_line3: String?
-
-          attr_accessor originator_name: String?
-
-          attr_accessor originator_routing_number: String?
-
-          attr_accessor originator_to_beneficiary_information: String?
-
-          attr_accessor originator_to_beneficiary_information_line1: String?
-
-          attr_accessor originator_to_beneficiary_information_line2: String?
-
-          attr_accessor originator_to_beneficiary_information_line3: String?
-
-          attr_accessor originator_to_beneficiary_information_line4: String?
+          attr_accessor instruction_identification: String?
 
           attr_accessor transfer_id: String
 
+          attr_accessor unique_end_to_end_transaction_reference: String?
+
+          attr_accessor unstructured_remittance_information: String?
+
           def initialize: (
             amount: Integer,
-            beneficiary_address_line1: String?,
-            beneficiary_address_line2: String?,
-            beneficiary_address_line3: String?,
-            beneficiary_name: String?,
-            beneficiary_reference: String?,
+            creditor_address_line1: String?,
+            creditor_address_line2: String?,
+            creditor_address_line3: String?,
+            creditor_name: String?,
+            debtor_address_line1: String?,
+            debtor_address_line2: String?,
+            debtor_address_line3: String?,
+            debtor_name: String?,
             description: String,
+            end_to_end_identification: String?,
             input_message_accountability_data: String?,
-            originator_address_line1: String?,
-            originator_address_line2: String?,
-            originator_address_line3: String?,
-            originator_name: String?,
-            originator_routing_number: String?,
-            originator_to_beneficiary_information: String?,
-            originator_to_beneficiary_information_line1: String?,
-            originator_to_beneficiary_information_line2: String?,
-            originator_to_beneficiary_information_line3: String?,
-            originator_to_beneficiary_information_line4: String?,
-            transfer_id: String
+            instructing_agent_routing_number: String?,
+            instruction_identification: String?,
+            transfer_id: String,
+            unique_end_to_end_transaction_reference: String?,
+            unstructured_remittance_information: String?
           ) -> void
 
           def to_hash: -> {
             amount: Integer,
-            :beneficiary_address_line1 => String?,
-            :beneficiary_address_line2 => String?,
-            :beneficiary_address_line3 => String?,
-            beneficiary_name: String?,
-            beneficiary_reference: String?,
+            :creditor_address_line1 => String?,
+            :creditor_address_line2 => String?,
+            :creditor_address_line3 => String?,
+            creditor_name: String?,
+            :debtor_address_line1 => String?,
+            :debtor_address_line2 => String?,
+            :debtor_address_line3 => String?,
+            debtor_name: String?,
             description: String,
+            end_to_end_identification: String?,
             input_message_accountability_data: String?,
-            :originator_address_line1 => String?,
-            :originator_address_line2 => String?,
-            :originator_address_line3 => String?,
-            originator_name: String?,
-            originator_routing_number: String?,
-            originator_to_beneficiary_information: String?,
-            :originator_to_beneficiary_information_line1 => String?,
-            :originator_to_beneficiary_information_line2 => String?,
-            :originator_to_beneficiary_information_line3 => String?,
-            :originator_to_beneficiary_information_line4 => String?,
-            transfer_id: String
+            instructing_agent_routing_number: String?,
+            instruction_identification: String?,
+            transfer_id: String,
+            unique_end_to_end_transaction_reference: String?,
+            unstructured_remittance_information: String?
           }
         end
 
