@@ -9939,27 +9939,43 @@ module Increase
 
           # A free-form address field set by the sender.
           sig { returns(T.nilable(String)) }
-          attr_accessor :beneficiary_address_line1
+          attr_accessor :creditor_address_line1
 
           # A free-form address field set by the sender.
           sig { returns(T.nilable(String)) }
-          attr_accessor :beneficiary_address_line2
+          attr_accessor :creditor_address_line2
 
           # A free-form address field set by the sender.
           sig { returns(T.nilable(String)) }
-          attr_accessor :beneficiary_address_line3
+          attr_accessor :creditor_address_line3
 
           # A name set by the sender.
           sig { returns(T.nilable(String)) }
-          attr_accessor :beneficiary_name
+          attr_accessor :creditor_name
 
-          # A free-form reference string set by the sender, to help identify the transfer.
+          # A free-form address field set by the sender.
           sig { returns(T.nilable(String)) }
-          attr_accessor :beneficiary_reference
+          attr_accessor :debtor_address_line1
+
+          # A free-form address field set by the sender.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :debtor_address_line2
+
+          # A free-form address field set by the sender.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :debtor_address_line3
+
+          # A name set by the sender.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :debtor_name
 
           # An Increase-constructed description of the transfer.
           sig { returns(String) }
           attr_accessor :description
+
+          # A free-form reference string set by the sender, to help identify the transfer.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :end_to_end_identification
 
           # A unique identifier available to the originating and receiving banks, commonly
           # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
@@ -9967,50 +9983,28 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :input_message_accountability_data
 
-          # The address of the wire originator, set by the sending bank.
+          # The American Banking Association (ABA) routing number of the bank that sent the
+          # wire.
           sig { returns(T.nilable(String)) }
-          attr_accessor :originator_address_line1
+          attr_accessor :instructing_agent_routing_number
 
-          # The address of the wire originator, set by the sending bank.
+          # The sending bank's identifier for the wire transfer.
           sig { returns(T.nilable(String)) }
-          attr_accessor :originator_address_line2
-
-          # The address of the wire originator, set by the sending bank.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_address_line3
-
-          # The originator of the wire, set by the sending bank.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_name
-
-          # The American Banking Association (ABA) routing number of the bank originating
-          # the transfer.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_routing_number
-
-          # An Increase-created concatenation of the Originator-to-Beneficiary lines.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_to_beneficiary_information
-
-          # A free-form message set by the wire originator.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_to_beneficiary_information_line1
-
-          # A free-form message set by the wire originator.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_to_beneficiary_information_line2
-
-          # A free-form message set by the wire originator.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_to_beneficiary_information_line3
-
-          # A free-form message set by the wire originator.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :originator_to_beneficiary_information_line4
+          attr_accessor :instruction_identification
 
           # The ID of the Inbound Wire Transfer object that resulted in this Transaction.
           sig { returns(String) }
           attr_accessor :transfer_id
+
+          # The Unique End-to-end Transaction Reference
+          # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+          # of the transfer.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :unique_end_to_end_transaction_reference
+
+          # A free-form message set by the sender.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :unstructured_remittance_information
 
           # An Inbound Wire Transfer Intention object. This field will be present in the
           # JSON response if and only if `category` is equal to `inbound_wire_transfer`. An
@@ -10019,68 +10013,64 @@ module Increase
           sig do
             params(
               amount: Integer,
-              beneficiary_address_line1: T.nilable(String),
-              beneficiary_address_line2: T.nilable(String),
-              beneficiary_address_line3: T.nilable(String),
-              beneficiary_name: T.nilable(String),
-              beneficiary_reference: T.nilable(String),
+              creditor_address_line1: T.nilable(String),
+              creditor_address_line2: T.nilable(String),
+              creditor_address_line3: T.nilable(String),
+              creditor_name: T.nilable(String),
+              debtor_address_line1: T.nilable(String),
+              debtor_address_line2: T.nilable(String),
+              debtor_address_line3: T.nilable(String),
+              debtor_name: T.nilable(String),
               description: String,
+              end_to_end_identification: T.nilable(String),
               input_message_accountability_data: T.nilable(String),
-              originator_address_line1: T.nilable(String),
-              originator_address_line2: T.nilable(String),
-              originator_address_line3: T.nilable(String),
-              originator_name: T.nilable(String),
-              originator_routing_number: T.nilable(String),
-              originator_to_beneficiary_information: T.nilable(String),
-              originator_to_beneficiary_information_line1: T.nilable(String),
-              originator_to_beneficiary_information_line2: T.nilable(String),
-              originator_to_beneficiary_information_line3: T.nilable(String),
-              originator_to_beneficiary_information_line4: T.nilable(String),
-              transfer_id: String
+              instructing_agent_routing_number: T.nilable(String),
+              instruction_identification: T.nilable(String),
+              transfer_id: String,
+              unique_end_to_end_transaction_reference: T.nilable(String),
+              unstructured_remittance_information: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
             # The amount in USD cents.
             amount:,
             # A free-form address field set by the sender.
-            beneficiary_address_line1:,
+            creditor_address_line1:,
             # A free-form address field set by the sender.
-            beneficiary_address_line2:,
+            creditor_address_line2:,
             # A free-form address field set by the sender.
-            beneficiary_address_line3:,
+            creditor_address_line3:,
             # A name set by the sender.
-            beneficiary_name:,
-            # A free-form reference string set by the sender, to help identify the transfer.
-            beneficiary_reference:,
+            creditor_name:,
+            # A free-form address field set by the sender.
+            debtor_address_line1:,
+            # A free-form address field set by the sender.
+            debtor_address_line2:,
+            # A free-form address field set by the sender.
+            debtor_address_line3:,
+            # A name set by the sender.
+            debtor_name:,
             # An Increase-constructed description of the transfer.
             description:,
+            # A free-form reference string set by the sender, to help identify the transfer.
+            end_to_end_identification:,
             # A unique identifier available to the originating and receiving banks, commonly
             # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
             # service and is helpful when debugging wires with the originating bank.
             input_message_accountability_data:,
-            # The address of the wire originator, set by the sending bank.
-            originator_address_line1:,
-            # The address of the wire originator, set by the sending bank.
-            originator_address_line2:,
-            # The address of the wire originator, set by the sending bank.
-            originator_address_line3:,
-            # The originator of the wire, set by the sending bank.
-            originator_name:,
-            # The American Banking Association (ABA) routing number of the bank originating
-            # the transfer.
-            originator_routing_number:,
-            # An Increase-created concatenation of the Originator-to-Beneficiary lines.
-            originator_to_beneficiary_information:,
-            # A free-form message set by the wire originator.
-            originator_to_beneficiary_information_line1:,
-            # A free-form message set by the wire originator.
-            originator_to_beneficiary_information_line2:,
-            # A free-form message set by the wire originator.
-            originator_to_beneficiary_information_line3:,
-            # A free-form message set by the wire originator.
-            originator_to_beneficiary_information_line4:,
+            # The American Banking Association (ABA) routing number of the bank that sent the
+            # wire.
+            instructing_agent_routing_number:,
+            # The sending bank's identifier for the wire transfer.
+            instruction_identification:,
             # The ID of the Inbound Wire Transfer object that resulted in this Transaction.
-            transfer_id:
+            transfer_id:,
+            # The Unique End-to-end Transaction Reference
+            # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+            # of the transfer.
+            unique_end_to_end_transaction_reference:,
+            # A free-form message set by the sender.
+            unstructured_remittance_information:
           )
           end
 
@@ -10088,24 +10078,22 @@ module Increase
             override.returns(
               {
                 amount: Integer,
-                beneficiary_address_line1: T.nilable(String),
-                beneficiary_address_line2: T.nilable(String),
-                beneficiary_address_line3: T.nilable(String),
-                beneficiary_name: T.nilable(String),
-                beneficiary_reference: T.nilable(String),
+                creditor_address_line1: T.nilable(String),
+                creditor_address_line2: T.nilable(String),
+                creditor_address_line3: T.nilable(String),
+                creditor_name: T.nilable(String),
+                debtor_address_line1: T.nilable(String),
+                debtor_address_line2: T.nilable(String),
+                debtor_address_line3: T.nilable(String),
+                debtor_name: T.nilable(String),
                 description: String,
+                end_to_end_identification: T.nilable(String),
                 input_message_accountability_data: T.nilable(String),
-                originator_address_line1: T.nilable(String),
-                originator_address_line2: T.nilable(String),
-                originator_address_line3: T.nilable(String),
-                originator_name: T.nilable(String),
-                originator_routing_number: T.nilable(String),
-                originator_to_beneficiary_information: T.nilable(String),
-                originator_to_beneficiary_information_line1: T.nilable(String),
-                originator_to_beneficiary_information_line2: T.nilable(String),
-                originator_to_beneficiary_information_line3: T.nilable(String),
-                originator_to_beneficiary_information_line4: T.nilable(String),
-                transfer_id: String
+                instructing_agent_routing_number: T.nilable(String),
+                instruction_identification: T.nilable(String),
+                transfer_id: String,
+                unique_end_to_end_transaction_reference: T.nilable(String),
+                unstructured_remittance_information: T.nilable(String)
               }
             )
           end
