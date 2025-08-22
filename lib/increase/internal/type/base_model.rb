@@ -441,8 +441,8 @@ module Increase
         #   # `account` is a `Increase::Account`
         #   account => {
         #     id: id,
-        #     bank: bank,
-        #     closed_at: closed_at
+        #     account_revenue_rate: account_revenue_rate,
+        #     bank: bank
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

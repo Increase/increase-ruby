@@ -10,6 +10,12 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The account revenue rate currently being earned on the account, as a string
+      # containing a decimal number. For example, a 1% account revenue rate would be
+      # represented as "0.01".
+      sig { returns(T.nilable(String)) }
+      attr_accessor :account_revenue_rate
+
       # The bank the Account is with.
       sig { returns(Increase::Account::Bank::TaggedSymbol) }
       attr_accessor :bank
@@ -54,7 +60,7 @@ module Increase
       sig { returns(T.nilable(Date)) }
       attr_accessor :interest_accrued_at
 
-      # The Interest Rate currently being earned on the account, as a string containing
+      # The interest rate currently being earned on the account, as a string containing
       # a decimal number. For example, a 1% interest rate would be represented as
       # "0.01".
       sig { returns(String) }
@@ -83,6 +89,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_revenue_rate: T.nilable(String),
           bank: Increase::Account::Bank::OrSymbol,
           closed_at: T.nilable(Time),
           created_at: Time,
@@ -102,6 +109,10 @@ module Increase
       def self.new(
         # The Account identifier.
         id:,
+        # The account revenue rate currently being earned on the account, as a string
+        # containing a decimal number. For example, a 1% account revenue rate would be
+        # represented as "0.01".
+        account_revenue_rate:,
         # The bank the Account is with.
         bank:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
@@ -128,7 +139,7 @@ module Increase
         # The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which
         # interest was accrued.
         interest_accrued_at:,
-        # The Interest Rate currently being earned on the account, as a string containing
+        # The interest rate currently being earned on the account, as a string containing
         # a decimal number. For example, a 1% interest rate would be represented as
         # "0.01".
         interest_rate:,
@@ -149,6 +160,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_revenue_rate: T.nilable(String),
             bank: Increase::Account::Bank::TaggedSymbol,
             closed_at: T.nilable(Time),
             created_at: Time,
