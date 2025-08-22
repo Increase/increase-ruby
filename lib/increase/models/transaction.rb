@@ -389,16 +389,6 @@ module Increase
                  -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation },
                  nil?: true
 
-        # @!attribute inbound_real_time_payments_transfer_decline
-        #   An Inbound Real-Time Payments Transfer Decline object. This field will be
-        #   present in the JSON response if and only if `category` is equal to
-        #   `inbound_real_time_payments_transfer_decline`.
-        #
-        #   @return [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline, nil]
-        required :inbound_real_time_payments_transfer_decline,
-                 -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline },
-                 nil?: true
-
         # @!attribute inbound_wire_reversal
         #   An Inbound Wire Reversal object. This field will be present in the JSON response
         #   if and only if `category` is equal to `inbound_wire_reversal`. An Inbound Wire
@@ -504,7 +494,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_real_time_payments_transfer_decline:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
+        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -556,8 +546,6 @@ module Increase
         #   @param inbound_check_deposit_return_intention [Increase::Models::Transaction::Source::InboundCheckDepositReturnIntention, nil] An Inbound Check Deposit Return Intention object. This field will be present in
         #
         #   @param inbound_real_time_payments_transfer_confirmation [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation, nil] An Inbound Real-Time Payments Transfer Confirmation object. This field will be p
-        #
-        #   @param inbound_real_time_payments_transfer_decline [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline, nil] An Inbound Real-Time Payments Transfer Decline object. This field will be presen
         #
         #   @param inbound_wire_reversal [Increase::Models::Transaction::Source::InboundWireReversal, nil] An Inbound Wire Reversal object. This field will be present in the JSON response
         #
@@ -4211,9 +4199,6 @@ module Increase
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION = :inbound_real_time_payments_transfer_confirmation
 
-          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE = :inbound_real_time_payments_transfer_decline
-
           # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
           INBOUND_WIRE_REVERSAL = :inbound_wire_reversal
 
@@ -5090,161 +5075,6 @@ module Increase
 
             # US Dollar (USD)
             USD = :USD
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-        end
-
-        # @see Increase::Models::Transaction::Source#inbound_real_time_payments_transfer_decline
-        class InboundRealTimePaymentsTransferDecline < Increase::Internal::Type::BaseModel
-          # @!attribute amount
-          #   The declined amount in the minor unit of the destination account currency. For
-          #   dollars, for example, this is cents.
-          #
-          #   @return [Integer]
-          required :amount, Integer
-
-          # @!attribute creditor_name
-          #   The name the sender of the transfer specified as the recipient of the transfer.
-          #
-          #   @return [String]
-          required :creditor_name, String
-
-          # @!attribute currency
-          #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
-          #   transfer's currency. This will always be "USD" for a Real-Time Payments
-          #   transfer.
-          #
-          #   @return [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
-          required :currency,
-                   enum: -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency }
-
-          # @!attribute debtor_account_number
-          #   The account number of the account that sent the transfer.
-          #
-          #   @return [String]
-          required :debtor_account_number, String
-
-          # @!attribute debtor_name
-          #   The name provided by the sender of the transfer.
-          #
-          #   @return [String]
-          required :debtor_name, String
-
-          # @!attribute debtor_routing_number
-          #   The routing number of the account that sent the transfer.
-          #
-          #   @return [String]
-          required :debtor_routing_number, String
-
-          # @!attribute reason
-          #   Why the transfer was declined.
-          #
-          #   @return [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason]
-          required :reason,
-                   enum: -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason }
-
-          # @!attribute remittance_information
-          #   Additional information included with the transfer.
-          #
-          #   @return [String, nil]
-          required :remittance_information, String, nil?: true
-
-          # @!attribute transaction_identification
-          #   The Real-Time Payments network identification of the declined transfer.
-          #
-          #   @return [String]
-          required :transaction_identification, String
-
-          # @!attribute transfer_id
-          #   The identifier of the Real-Time Payments Transfer that led to this Transaction.
-          #
-          #   @return [String]
-          required :transfer_id, String
-
-          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, reason:, remittance_information:, transaction_identification:, transfer_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline}
-          #   for more details.
-          #
-          #   An Inbound Real-Time Payments Transfer Decline object. This field will be
-          #   present in the JSON response if and only if `category` is equal to
-          #   `inbound_real_time_payments_transfer_decline`.
-          #
-          #   @param amount [Integer] The declined amount in the minor unit of the destination account currency. For d
-          #
-          #   @param creditor_name [String] The name the sender of the transfer specified as the recipient of the transfer.
-          #
-          #   @param currency [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined tran
-          #
-          #   @param debtor_account_number [String] The account number of the account that sent the transfer.
-          #
-          #   @param debtor_name [String] The name provided by the sender of the transfer.
-          #
-          #   @param debtor_routing_number [String] The routing number of the account that sent the transfer.
-          #
-          #   @param reason [Symbol, Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason] Why the transfer was declined.
-          #
-          #   @param remittance_information [String, nil] Additional information included with the transfer.
-          #
-          #   @param transaction_identification [String] The Real-Time Payments network identification of the declined transfer.
-          #
-          #   @param transfer_id [String] The identifier of the Real-Time Payments Transfer that led to this Transaction.
-
-          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
-          # transfer's currency. This will always be "USD" for a Real-Time Payments
-          # transfer.
-          #
-          # @see Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline#currency
-          module Currency
-            extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
-            # US Dollar (USD)
-            USD = :USD
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # Why the transfer was declined.
-          #
-          # @see Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferDecline#reason
-          module Reason
-            extend Increase::Internal::Type::Enum
-
-            # The account number is canceled.
-            ACCOUNT_NUMBER_CANCELED = :account_number_canceled
-
-            # The account number is disabled.
-            ACCOUNT_NUMBER_DISABLED = :account_number_disabled
-
-            # Your account is restricted.
-            ACCOUNT_RESTRICTED = :account_restricted
-
-            # Your account is inactive.
-            GROUP_LOCKED = :group_locked
-
-            # The account's entity is not active.
-            ENTITY_NOT_ACTIVE = :entity_not_active
-
-            # Your account is not enabled to receive Real-Time Payments transfers.
-            REAL_TIME_PAYMENTS_NOT_ENABLED = :real_time_payments_not_enabled
 
             # @!method self.values
             #   @return [Array<Symbol>]
