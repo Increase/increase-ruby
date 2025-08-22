@@ -13,6 +13,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_revenue_rate: String | nil,
         bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
@@ -41,6 +42,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_revenue_rate: String | nil,
         bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
@@ -69,6 +71,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_revenue_rate: String | nil,
         bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
@@ -104,6 +107,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        account_revenue_rate: String | nil,
         bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
@@ -149,6 +153,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_revenue_rate: String | nil,
         bank: Increase::Account::Bank,
         closed_at: Time | nil,
         created_at: Time,
