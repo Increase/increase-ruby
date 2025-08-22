@@ -630,28 +630,6 @@ module Increase
         end
         attr_writer :inbound_real_time_payments_transfer_confirmation
 
-        # An Inbound Real-Time Payments Transfer Decline object. This field will be
-        # present in the JSON response if and only if `category` is equal to
-        # `inbound_real_time_payments_transfer_decline`.
-        sig do
-          returns(
-            T.nilable(
-              Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline
-            )
-          )
-        end
-        attr_reader :inbound_real_time_payments_transfer_decline
-
-        sig do
-          params(
-            inbound_real_time_payments_transfer_decline:
-              T.nilable(
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::OrHash
-              )
-          ).void
-        end
-        attr_writer :inbound_real_time_payments_transfer_decline
-
         # An Inbound Wire Reversal object. This field will be present in the JSON response
         # if and only if `category` is equal to `inbound_wire_reversal`. An Inbound Wire
         # Reversal represents a reversal of a wire transfer that was initiated via
@@ -930,10 +908,6 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::OrHash
               ),
-            inbound_real_time_payments_transfer_decline:
-              T.nilable(
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::OrHash
-              ),
             inbound_wire_reversal:
               T.nilable(
                 Increase::Transaction::Source::InboundWireReversal::OrHash
@@ -1085,10 +1059,6 @@ module Increase
           # Payments Transfer Confirmation is created when a Real-Time Payments transfer is
           # initiated at another bank and received by Increase.
           inbound_real_time_payments_transfer_confirmation:,
-          # An Inbound Real-Time Payments Transfer Decline object. This field will be
-          # present in the JSON response if and only if `category` is equal to
-          # `inbound_real_time_payments_transfer_decline`.
-          inbound_real_time_payments_transfer_decline:,
           # An Inbound Wire Reversal object. This field will be present in the JSON response
           # if and only if `category` is equal to `inbound_wire_reversal`. An Inbound Wire
           # Reversal represents a reversal of a wire transfer that was initiated via
@@ -1200,10 +1170,6 @@ module Increase
               inbound_real_time_payments_transfer_confirmation:
                 T.nilable(
                   Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation
-                ),
-              inbound_real_time_payments_transfer_decline:
-                T.nilable(
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline
                 ),
               inbound_wire_reversal:
                 T.nilable(Increase::Transaction::Source::InboundWireReversal),
@@ -7841,13 +7807,6 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
-          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE =
-            T.let(
-              :inbound_real_time_payments_transfer_decline,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
           # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
           INBOUND_WIRE_REVERSAL =
             T.let(
@@ -9466,268 +9425,6 @@ module Increase
               override.returns(
                 T::Array[
                   Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::Currency::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-        end
-
-        class InboundRealTimePaymentsTransferDecline < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # The declined amount in the minor unit of the destination account currency. For
-          # dollars, for example, this is cents.
-          sig { returns(Integer) }
-          attr_accessor :amount
-
-          # The name the sender of the transfer specified as the recipient of the transfer.
-          sig { returns(String) }
-          attr_accessor :creditor_name
-
-          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
-          # transfer's currency. This will always be "USD" for a Real-Time Payments
-          # transfer.
-          sig do
-            returns(
-              Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-            )
-          end
-          attr_accessor :currency
-
-          # The account number of the account that sent the transfer.
-          sig { returns(String) }
-          attr_accessor :debtor_account_number
-
-          # The name provided by the sender of the transfer.
-          sig { returns(String) }
-          attr_accessor :debtor_name
-
-          # The routing number of the account that sent the transfer.
-          sig { returns(String) }
-          attr_accessor :debtor_routing_number
-
-          # Why the transfer was declined.
-          sig do
-            returns(
-              Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-            )
-          end
-          attr_accessor :reason
-
-          # Additional information included with the transfer.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :remittance_information
-
-          # The Real-Time Payments network identification of the declined transfer.
-          sig { returns(String) }
-          attr_accessor :transaction_identification
-
-          # The identifier of the Real-Time Payments Transfer that led to this Transaction.
-          sig { returns(String) }
-          attr_accessor :transfer_id
-
-          # An Inbound Real-Time Payments Transfer Decline object. This field will be
-          # present in the JSON response if and only if `category` is equal to
-          # `inbound_real_time_payments_transfer_decline`.
-          sig do
-            params(
-              amount: Integer,
-              creditor_name: String,
-              currency:
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::OrSymbol,
-              debtor_account_number: String,
-              debtor_name: String,
-              debtor_routing_number: String,
-              reason:
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::OrSymbol,
-              remittance_information: T.nilable(String),
-              transaction_identification: String,
-              transfer_id: String
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The declined amount in the minor unit of the destination account currency. For
-            # dollars, for example, this is cents.
-            amount:,
-            # The name the sender of the transfer specified as the recipient of the transfer.
-            creditor_name:,
-            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
-            # transfer's currency. This will always be "USD" for a Real-Time Payments
-            # transfer.
-            currency:,
-            # The account number of the account that sent the transfer.
-            debtor_account_number:,
-            # The name provided by the sender of the transfer.
-            debtor_name:,
-            # The routing number of the account that sent the transfer.
-            debtor_routing_number:,
-            # Why the transfer was declined.
-            reason:,
-            # Additional information included with the transfer.
-            remittance_information:,
-            # The Real-Time Payments network identification of the declined transfer.
-            transaction_identification:,
-            # The identifier of the Real-Time Payments Transfer that led to this Transaction.
-            transfer_id:
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                amount: Integer,
-                creditor_name: String,
-                currency:
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol,
-                debtor_account_number: String,
-                debtor_name: String,
-                debtor_routing_number: String,
-                reason:
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol,
-                remittance_information: T.nilable(String),
-                transaction_identification: String,
-                transfer_id: String
-              }
-            )
-          end
-          def to_hash
-          end
-
-          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
-          # transfer's currency. This will always be "USD" for a Real-Time Payments
-          # transfer.
-          module Currency
-            extend Increase::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-              )
-
-            # US Dollar (USD)
-            USD =
-              T.let(
-                :USD,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Currency::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
-          # Why the transfer was declined.
-          module Reason
-            extend Increase::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # The account number is canceled.
-            ACCOUNT_NUMBER_CANCELED =
-              T.let(
-                :account_number_canceled,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-              )
-
-            # The account number is disabled.
-            ACCOUNT_NUMBER_DISABLED =
-              T.let(
-                :account_number_disabled,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-              )
-
-            # Your account is restricted.
-            ACCOUNT_RESTRICTED =
-              T.let(
-                :account_restricted,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-              )
-
-            # Your account is inactive.
-            GROUP_LOCKED =
-              T.let(
-                :group_locked,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-              )
-
-            # The account's entity is not active.
-            ENTITY_NOT_ACTIVE =
-              T.let(
-                :entity_not_active,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-              )
-
-            # Your account is not enabled to receive Real-Time Payments transfers.
-            REAL_TIME_PAYMENTS_NOT_ENABLED =
-              T.let(
-                :real_time_payments_not_enabled,
-                Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Increase::Transaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol
                 ]
               )
             end
