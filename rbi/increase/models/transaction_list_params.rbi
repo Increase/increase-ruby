@@ -306,13 +306,6 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE =
-            T.let(
-              :inbound_real_time_payments_transfer_decline,
-              Increase::TransactionListParams::Category::In::TaggedSymbol
-            )
-
           # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
           INBOUND_WIRE_REVERSAL =
             T.let(
