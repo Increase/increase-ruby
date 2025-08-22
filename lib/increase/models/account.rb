@@ -10,6 +10,14 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_revenue_rate
+      #   The account revenue rate currently being earned on the account, as a string
+      #   containing a decimal number. For example, a 1% account revenue rate would be
+      #   represented as "0.01".
+      #
+      #   @return [String, nil]
+      required :account_revenue_rate, String, nil?: true
+
       # @!attribute bank
       #   The bank the Account is with.
       #
@@ -73,7 +81,7 @@ module Increase
       required :interest_accrued_at, Date, nil?: true
 
       # @!attribute interest_rate
-      #   The Interest Rate currently being earned on the account, as a string containing
+      #   The interest rate currently being earned on the account, as a string containing
       #   a decimal number. For example, a 1% interest rate would be represented as
       #   "0.01".
       #
@@ -106,7 +114,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Account::Type]
       required :type, enum: -> { Increase::Account::Type }
 
-      # @!method initialize(id:, bank:, closed_at:, created_at:, currency:, entity_id:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, name:, program_id:, status:, type:)
+      # @!method initialize(id:, account_revenue_rate:, bank:, closed_at:, created_at:, currency:, entity_id:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, name:, program_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Account} for more details.
       #
@@ -114,6 +122,8 @@ module Increase
       #   transfers, and send payments. They earn interest and have depository insurance.
       #
       #   @param id [String] The Account identifier.
+      #
+      #   @param account_revenue_rate [String, nil] The account revenue rate currently being earned on the account, as a string cont
       #
       #   @param bank [Symbol, Increase::Models::Account::Bank] The bank the Account is with.
       #
@@ -133,7 +143,7 @@ module Increase
       #
       #   @param interest_accrued_at [Date, nil] The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which inte
       #
-      #   @param interest_rate [String] The Interest Rate currently being earned on the account, as a string containing
+      #   @param interest_rate [String] The interest rate currently being earned on the account, as a string containing
       #
       #   @param name [String] The name you choose for the Account.
       #

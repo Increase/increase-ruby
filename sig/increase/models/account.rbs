@@ -3,6 +3,7 @@ module Increase
     type account =
       {
         id: String,
+        account_revenue_rate: String?,
         bank: Increase::Models::Account::bank,
         closed_at: Time?,
         created_at: Time,
@@ -21,6 +22,8 @@ module Increase
 
     class Account < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_revenue_rate: String?
 
       attr_accessor bank: Increase::Models::Account::bank
 
@@ -52,6 +55,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_revenue_rate: String?,
         bank: Increase::Models::Account::bank,
         closed_at: Time?,
         created_at: Time,
@@ -70,6 +74,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        account_revenue_rate: String?,
         bank: Increase::Models::Account::bank,
         closed_at: Time?,
         created_at: Time,
