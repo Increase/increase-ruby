@@ -311,6 +311,7 @@ require_relative "increase/models/simulations/physical_card_tracking_updates_par
 require_relative "increase/models/simulations/program_create_params"
 require_relative "increase/models/simulations/real_time_payments_transfer_complete_params"
 require_relative "increase/models/simulations/wire_drawdown_request_refuse_params"
+require_relative "increase/models/simulations/wire_drawdown_request_submit_params"
 require_relative "increase/models/simulations/wire_transfer_reverse_params"
 require_relative "increase/models/simulations/wire_transfer_submit_params"
 require_relative "increase/models/supplemental_document_create_params"

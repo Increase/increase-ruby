@@ -7,6 +7,11 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> Increase::WireDrawdownRequest
 
+        def submit: (
+          String wire_drawdown_request_id,
+          ?request_options: Increase::request_opts
+        ) -> Increase::WireDrawdownRequest
+
         def initialize: (client: Increase::Client) -> void
       end
     end
