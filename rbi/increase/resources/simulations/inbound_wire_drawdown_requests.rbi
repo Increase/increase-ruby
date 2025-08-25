@@ -9,75 +9,75 @@ module Increase
         sig do
           params(
             amount: Integer,
-            beneficiary_account_number: String,
-            beneficiary_routing_number: String,
+            creditor_account_number: String,
+            creditor_routing_number: String,
             currency: String,
-            message_to_recipient: String,
-            originator_account_number: String,
-            originator_routing_number: String,
             recipient_account_number_id: String,
-            beneficiary_address_line1: String,
-            beneficiary_address_line2: String,
-            beneficiary_address_line3: String,
-            beneficiary_name: String,
-            originator_address_line1: String,
-            originator_address_line2: String,
-            originator_address_line3: String,
-            originator_name: String,
-            originator_to_beneficiary_information_line1: String,
-            originator_to_beneficiary_information_line2: String,
-            originator_to_beneficiary_information_line3: String,
-            originator_to_beneficiary_information_line4: String,
+            creditor_address_line1: String,
+            creditor_address_line2: String,
+            creditor_address_line3: String,
+            creditor_name: String,
+            debtor_account_number: String,
+            debtor_address_line1: String,
+            debtor_address_line2: String,
+            debtor_address_line3: String,
+            debtor_name: String,
+            debtor_routing_number: String,
+            end_to_end_identification: String,
+            instruction_identification: String,
+            unique_end_to_end_transaction_reference: String,
+            unstructured_remittance_information: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::InboundWireDrawdownRequest)
         end
         def create(
           # The amount being requested in cents.
           amount:,
-          # The drawdown request's beneficiary's account number.
-          beneficiary_account_number:,
-          # The drawdown request's beneficiary's routing number.
-          beneficiary_routing_number:,
+          # The creditor's account number.
+          creditor_account_number:,
+          # The creditor's routing number.
+          creditor_routing_number:,
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
           # requested. Will always be "USD".
           currency:,
-          # A message from the drawdown request's originator.
-          message_to_recipient:,
-          # The drawdown request's originator's account number.
-          originator_account_number:,
-          # The drawdown request's originator's routing number.
-          originator_routing_number:,
           # The Account Number to which the recipient of this request is being requested to
           # send funds from.
           recipient_account_number_id:,
-          # Line 1 of the drawdown request's beneficiary's address.
-          beneficiary_address_line1: nil,
-          # Line 2 of the drawdown request's beneficiary's address.
-          beneficiary_address_line2: nil,
-          # Line 3 of the drawdown request's beneficiary's address.
-          beneficiary_address_line3: nil,
-          # The drawdown request's beneficiary's name.
-          beneficiary_name: nil,
-          # Line 1 of the drawdown request's originator's address.
-          originator_address_line1: nil,
-          # Line 2 of the drawdown request's originator's address.
-          originator_address_line2: nil,
-          # Line 3 of the drawdown request's originator's address.
-          originator_address_line3: nil,
-          # The drawdown request's originator's name.
-          originator_name: nil,
-          # Line 1 of the information conveyed from the originator of the message to the
-          # beneficiary.
-          originator_to_beneficiary_information_line1: nil,
-          # Line 2 of the information conveyed from the originator of the message to the
-          # beneficiary.
-          originator_to_beneficiary_information_line2: nil,
-          # Line 3 of the information conveyed from the originator of the message to the
-          # beneficiary.
-          originator_to_beneficiary_information_line3: nil,
-          # Line 4 of the information conveyed from the originator of the message to the
-          # beneficiary.
-          originator_to_beneficiary_information_line4: nil,
+          # A free-form address field set by the sender representing the first line of the
+          # creditor's address.
+          creditor_address_line1: nil,
+          # A free-form address field set by the sender representing the second line of the
+          # creditor's address.
+          creditor_address_line2: nil,
+          # A free-form address field set by the sender representing the third line of the
+          # creditor's address.
+          creditor_address_line3: nil,
+          # A free-form name field set by the sender representing the creditor's name.
+          creditor_name: nil,
+          # The debtor's account number.
+          debtor_account_number: nil,
+          # A free-form address field set by the sender representing the first line of the
+          # debtor's address.
+          debtor_address_line1: nil,
+          # A free-form address field set by the sender representing the second line of the
+          # debtor's address.
+          debtor_address_line2: nil,
+          # A free-form address field set by the sender.
+          debtor_address_line3: nil,
+          # A free-form name field set by the sender representing the debtor's name.
+          debtor_name: nil,
+          # The debtor's routing number.
+          debtor_routing_number: nil,
+          # A free-form reference string set by the sender, to help identify the transfer.
+          end_to_end_identification: nil,
+          # The sending bank's identifier for the wire transfer.
+          instruction_identification: nil,
+          # The Unique End-to-end Transaction Reference
+          # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+          # of the transfer.
+          unique_end_to_end_transaction_reference: nil,
+          # A free-form message set by the sender.
+          unstructured_remittance_information: nil,
           request_options: {}
         )
         end

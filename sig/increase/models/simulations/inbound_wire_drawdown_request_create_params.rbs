@@ -4,25 +4,24 @@ module Increase
       type inbound_wire_drawdown_request_create_params =
         {
           amount: Integer,
-          beneficiary_account_number: String,
-          beneficiary_routing_number: String,
+          creditor_account_number: String,
+          creditor_routing_number: String,
           currency: String,
-          message_to_recipient: String,
-          originator_account_number: String,
-          originator_routing_number: String,
           recipient_account_number_id: String,
-          :beneficiary_address_line1 => String,
-          :beneficiary_address_line2 => String,
-          :beneficiary_address_line3 => String,
-          beneficiary_name: String,
-          :originator_address_line1 => String,
-          :originator_address_line2 => String,
-          :originator_address_line3 => String,
-          originator_name: String,
-          :originator_to_beneficiary_information_line1 => String,
-          :originator_to_beneficiary_information_line2 => String,
-          :originator_to_beneficiary_information_line3 => String,
-          :originator_to_beneficiary_information_line4 => String
+          :creditor_address_line1 => String,
+          :creditor_address_line2 => String,
+          :creditor_address_line3 => String,
+          creditor_name: String,
+          debtor_account_number: String,
+          :debtor_address_line1 => String,
+          :debtor_address_line2 => String,
+          :debtor_address_line3 => String,
+          debtor_name: String,
+          debtor_routing_number: String,
+          end_to_end_identification: String,
+          instruction_identification: String,
+          unique_end_to_end_transaction_reference: String,
+          unstructured_remittance_information: String
         }
         & Increase::Internal::Type::request_parameters
 
@@ -32,113 +31,113 @@ module Increase
 
         attr_accessor amount: Integer
 
-        attr_accessor beneficiary_account_number: String
+        attr_accessor creditor_account_number: String
 
-        attr_accessor beneficiary_routing_number: String
+        attr_accessor creditor_routing_number: String
 
         attr_accessor currency: String
 
-        attr_accessor message_to_recipient: String
-
-        attr_accessor originator_account_number: String
-
-        attr_accessor originator_routing_number: String
-
         attr_accessor recipient_account_number_id: String
 
-        attr_reader beneficiary_address_line1: String?
+        attr_reader creditor_address_line1: String?
 
-        def beneficiary_address_line1=: (String) -> String
+        def creditor_address_line1=: (String) -> String
 
-        attr_reader beneficiary_address_line2: String?
+        attr_reader creditor_address_line2: String?
 
-        def beneficiary_address_line2=: (String) -> String
+        def creditor_address_line2=: (String) -> String
 
-        attr_reader beneficiary_address_line3: String?
+        attr_reader creditor_address_line3: String?
 
-        def beneficiary_address_line3=: (String) -> String
+        def creditor_address_line3=: (String) -> String
 
-        attr_reader beneficiary_name: String?
+        attr_reader creditor_name: String?
 
-        def beneficiary_name=: (String) -> String
+        def creditor_name=: (String) -> String
 
-        attr_reader originator_address_line1: String?
+        attr_reader debtor_account_number: String?
 
-        def originator_address_line1=: (String) -> String
+        def debtor_account_number=: (String) -> String
 
-        attr_reader originator_address_line2: String?
+        attr_reader debtor_address_line1: String?
 
-        def originator_address_line2=: (String) -> String
+        def debtor_address_line1=: (String) -> String
 
-        attr_reader originator_address_line3: String?
+        attr_reader debtor_address_line2: String?
 
-        def originator_address_line3=: (String) -> String
+        def debtor_address_line2=: (String) -> String
 
-        attr_reader originator_name: String?
+        attr_reader debtor_address_line3: String?
 
-        def originator_name=: (String) -> String
+        def debtor_address_line3=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line1: String?
+        attr_reader debtor_name: String?
 
-        def originator_to_beneficiary_information_line1=: (String) -> String
+        def debtor_name=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line2: String?
+        attr_reader debtor_routing_number: String?
 
-        def originator_to_beneficiary_information_line2=: (String) -> String
+        def debtor_routing_number=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line3: String?
+        attr_reader end_to_end_identification: String?
 
-        def originator_to_beneficiary_information_line3=: (String) -> String
+        def end_to_end_identification=: (String) -> String
 
-        attr_reader originator_to_beneficiary_information_line4: String?
+        attr_reader instruction_identification: String?
 
-        def originator_to_beneficiary_information_line4=: (String) -> String
+        def instruction_identification=: (String) -> String
+
+        attr_reader unique_end_to_end_transaction_reference: String?
+
+        def unique_end_to_end_transaction_reference=: (String) -> String
+
+        attr_reader unstructured_remittance_information: String?
+
+        def unstructured_remittance_information=: (String) -> String
 
         def initialize: (
           amount: Integer,
-          beneficiary_account_number: String,
-          beneficiary_routing_number: String,
+          creditor_account_number: String,
+          creditor_routing_number: String,
           currency: String,
-          message_to_recipient: String,
-          originator_account_number: String,
-          originator_routing_number: String,
           recipient_account_number_id: String,
-          ?beneficiary_address_line1: String,
-          ?beneficiary_address_line2: String,
-          ?beneficiary_address_line3: String,
-          ?beneficiary_name: String,
-          ?originator_address_line1: String,
-          ?originator_address_line2: String,
-          ?originator_address_line3: String,
-          ?originator_name: String,
-          ?originator_to_beneficiary_information_line1: String,
-          ?originator_to_beneficiary_information_line2: String,
-          ?originator_to_beneficiary_information_line3: String,
-          ?originator_to_beneficiary_information_line4: String,
+          ?creditor_address_line1: String,
+          ?creditor_address_line2: String,
+          ?creditor_address_line3: String,
+          ?creditor_name: String,
+          ?debtor_account_number: String,
+          ?debtor_address_line1: String,
+          ?debtor_address_line2: String,
+          ?debtor_address_line3: String,
+          ?debtor_name: String,
+          ?debtor_routing_number: String,
+          ?end_to_end_identification: String,
+          ?instruction_identification: String,
+          ?unique_end_to_end_transaction_reference: String,
+          ?unstructured_remittance_information: String,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
           amount: Integer,
-          beneficiary_account_number: String,
-          beneficiary_routing_number: String,
+          creditor_account_number: String,
+          creditor_routing_number: String,
           currency: String,
-          message_to_recipient: String,
-          originator_account_number: String,
-          originator_routing_number: String,
           recipient_account_number_id: String,
-          :beneficiary_address_line1 => String,
-          :beneficiary_address_line2 => String,
-          :beneficiary_address_line3 => String,
-          beneficiary_name: String,
-          :originator_address_line1 => String,
-          :originator_address_line2 => String,
-          :originator_address_line3 => String,
-          originator_name: String,
-          :originator_to_beneficiary_information_line1 => String,
-          :originator_to_beneficiary_information_line2 => String,
-          :originator_to_beneficiary_information_line3 => String,
-          :originator_to_beneficiary_information_line4 => String,
+          :creditor_address_line1 => String,
+          :creditor_address_line2 => String,
+          :creditor_address_line3 => String,
+          creditor_name: String,
+          debtor_account_number: String,
+          :debtor_address_line1 => String,
+          :debtor_address_line2 => String,
+          :debtor_address_line3 => String,
+          debtor_name: String,
+          debtor_routing_number: String,
+          end_to_end_identification: String,
+          instruction_identification: String,
+          unique_end_to_end_transaction_reference: String,
+          unstructured_remittance_information: String,
           request_options: Increase::RequestOptions
         }
       end

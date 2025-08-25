@@ -7,12 +7,9 @@ class Increase::Test::Resources::Simulations::InboundWireDrawdownRequestsTest < 
     response =
       @increase.simulations.inbound_wire_drawdown_requests.create(
         amount: 10_000,
-        beneficiary_account_number: "987654321",
-        beneficiary_routing_number: "101050001",
+        creditor_account_number: "987654321",
+        creditor_routing_number: "101050001",
         currency: "USD",
-        message_to_recipient: "Invoice 29582",
-        originator_account_number: "987654321",
-        originator_routing_number: "101050001",
         recipient_account_number_id: "account_number_v18nkfqm6afpsrvy82b2"
       )
 
@@ -24,27 +21,25 @@ class Increase::Test::Resources::Simulations::InboundWireDrawdownRequestsTest < 
       response => {
         id: String,
         amount: Integer,
-        beneficiary_account_number: String,
-        beneficiary_address_line1: String | nil,
-        beneficiary_address_line2: String | nil,
-        beneficiary_address_line3: String | nil,
-        beneficiary_name: String | nil,
-        beneficiary_routing_number: String,
         created_at: Time,
+        creditor_account_number: String,
+        creditor_address_line1: String | nil,
+        creditor_address_line2: String | nil,
+        creditor_address_line3: String | nil,
+        creditor_name: String | nil,
+        creditor_routing_number: String,
         currency: String,
-        message_to_recipient: String | nil,
-        originator_account_number: String | nil,
-        originator_address_line1: String | nil,
-        originator_address_line2: String | nil,
-        originator_address_line3: String | nil,
-        originator_name: String | nil,
-        originator_routing_number: String,
-        originator_to_beneficiary_information_line1: String | nil,
-        originator_to_beneficiary_information_line2: String | nil,
-        originator_to_beneficiary_information_line3: String | nil,
-        originator_to_beneficiary_information_line4: String | nil,
+        debtor_address_line1: String | nil,
+        debtor_address_line2: String | nil,
+        debtor_address_line3: String | nil,
+        debtor_name: String | nil,
+        end_to_end_identification: String | nil,
+        input_message_accountability_data: String | nil,
+        instruction_identification: String | nil,
         recipient_account_number_id: String,
-        type: Increase::InboundWireDrawdownRequest::Type
+        type: Increase::InboundWireDrawdownRequest::Type,
+        unique_end_to_end_transaction_reference: String | nil,
+        unstructured_remittance_information: String | nil
       }
     end
   end

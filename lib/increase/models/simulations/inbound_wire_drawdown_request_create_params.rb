@@ -14,17 +14,17 @@ module Increase
         #   @return [Integer]
         required :amount, Integer
 
-        # @!attribute beneficiary_account_number
-        #   The drawdown request's beneficiary's account number.
+        # @!attribute creditor_account_number
+        #   The creditor's account number.
         #
         #   @return [String]
-        required :beneficiary_account_number, String
+        required :creditor_account_number, String
 
-        # @!attribute beneficiary_routing_number
-        #   The drawdown request's beneficiary's routing number.
+        # @!attribute creditor_routing_number
+        #   The creditor's routing number.
         #
         #   @return [String]
-        required :beneficiary_routing_number, String
+        required :creditor_routing_number, String
 
         # @!attribute currency
         #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
@@ -33,24 +33,6 @@ module Increase
         #   @return [String]
         required :currency, String
 
-        # @!attribute message_to_recipient
-        #   A message from the drawdown request's originator.
-        #
-        #   @return [String]
-        required :message_to_recipient, String
-
-        # @!attribute originator_account_number
-        #   The drawdown request's originator's account number.
-        #
-        #   @return [String]
-        required :originator_account_number, String
-
-        # @!attribute originator_routing_number
-        #   The drawdown request's originator's routing number.
-        #
-        #   @return [String]
-        required :originator_routing_number, String
-
         # @!attribute recipient_account_number_id
         #   The Account Number to which the recipient of this request is being requested to
         #   send funds from.
@@ -58,126 +40,139 @@ module Increase
         #   @return [String]
         required :recipient_account_number_id, String
 
-        # @!attribute beneficiary_address_line1
-        #   Line 1 of the drawdown request's beneficiary's address.
+        # @!attribute creditor_address_line1
+        #   A free-form address field set by the sender representing the first line of the
+        #   creditor's address.
         #
         #   @return [String, nil]
-        optional :beneficiary_address_line1, String
+        optional :creditor_address_line1, String
 
-        # @!attribute beneficiary_address_line2
-        #   Line 2 of the drawdown request's beneficiary's address.
+        # @!attribute creditor_address_line2
+        #   A free-form address field set by the sender representing the second line of the
+        #   creditor's address.
         #
         #   @return [String, nil]
-        optional :beneficiary_address_line2, String
+        optional :creditor_address_line2, String
 
-        # @!attribute beneficiary_address_line3
-        #   Line 3 of the drawdown request's beneficiary's address.
+        # @!attribute creditor_address_line3
+        #   A free-form address field set by the sender representing the third line of the
+        #   creditor's address.
         #
         #   @return [String, nil]
-        optional :beneficiary_address_line3, String
+        optional :creditor_address_line3, String
 
-        # @!attribute beneficiary_name
-        #   The drawdown request's beneficiary's name.
+        # @!attribute creditor_name
+        #   A free-form name field set by the sender representing the creditor's name.
         #
         #   @return [String, nil]
-        optional :beneficiary_name, String
+        optional :creditor_name, String
 
-        # @!attribute originator_address_line1
-        #   Line 1 of the drawdown request's originator's address.
+        # @!attribute debtor_account_number
+        #   The debtor's account number.
         #
         #   @return [String, nil]
-        optional :originator_address_line1, String
+        optional :debtor_account_number, String
 
-        # @!attribute originator_address_line2
-        #   Line 2 of the drawdown request's originator's address.
+        # @!attribute debtor_address_line1
+        #   A free-form address field set by the sender representing the first line of the
+        #   debtor's address.
         #
         #   @return [String, nil]
-        optional :originator_address_line2, String
+        optional :debtor_address_line1, String
 
-        # @!attribute originator_address_line3
-        #   Line 3 of the drawdown request's originator's address.
+        # @!attribute debtor_address_line2
+        #   A free-form address field set by the sender representing the second line of the
+        #   debtor's address.
         #
         #   @return [String, nil]
-        optional :originator_address_line3, String
+        optional :debtor_address_line2, String
 
-        # @!attribute originator_name
-        #   The drawdown request's originator's name.
+        # @!attribute debtor_address_line3
+        #   A free-form address field set by the sender.
         #
         #   @return [String, nil]
-        optional :originator_name, String
+        optional :debtor_address_line3, String
 
-        # @!attribute originator_to_beneficiary_information_line1
-        #   Line 1 of the information conveyed from the originator of the message to the
-        #   beneficiary.
+        # @!attribute debtor_name
+        #   A free-form name field set by the sender representing the debtor's name.
         #
         #   @return [String, nil]
-        optional :originator_to_beneficiary_information_line1, String
+        optional :debtor_name, String
 
-        # @!attribute originator_to_beneficiary_information_line2
-        #   Line 2 of the information conveyed from the originator of the message to the
-        #   beneficiary.
+        # @!attribute debtor_routing_number
+        #   The debtor's routing number.
         #
         #   @return [String, nil]
-        optional :originator_to_beneficiary_information_line2, String
+        optional :debtor_routing_number, String
 
-        # @!attribute originator_to_beneficiary_information_line3
-        #   Line 3 of the information conveyed from the originator of the message to the
-        #   beneficiary.
+        # @!attribute end_to_end_identification
+        #   A free-form reference string set by the sender, to help identify the transfer.
         #
         #   @return [String, nil]
-        optional :originator_to_beneficiary_information_line3, String
+        optional :end_to_end_identification, String
 
-        # @!attribute originator_to_beneficiary_information_line4
-        #   Line 4 of the information conveyed from the originator of the message to the
-        #   beneficiary.
+        # @!attribute instruction_identification
+        #   The sending bank's identifier for the wire transfer.
         #
         #   @return [String, nil]
-        optional :originator_to_beneficiary_information_line4, String
+        optional :instruction_identification, String
 
-        # @!method initialize(amount:, beneficiary_account_number:, beneficiary_routing_number:, currency:, message_to_recipient:, originator_account_number:, originator_routing_number:, recipient_account_number_id:, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, beneficiary_name: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, originator_to_beneficiary_information_line1: nil, originator_to_beneficiary_information_line2: nil, originator_to_beneficiary_information_line3: nil, originator_to_beneficiary_information_line4: nil, request_options: {})
+        # @!attribute unique_end_to_end_transaction_reference
+        #   The Unique End-to-end Transaction Reference
+        #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        #   of the transfer.
+        #
+        #   @return [String, nil]
+        optional :unique_end_to_end_transaction_reference, String
+
+        # @!attribute unstructured_remittance_information
+        #   A free-form message set by the sender.
+        #
+        #   @return [String, nil]
+        optional :unstructured_remittance_information, String
+
+        # @!method initialize(amount:, creditor_account_number:, creditor_routing_number:, currency:, recipient_account_number_id:, creditor_address_line1: nil, creditor_address_line2: nil, creditor_address_line3: nil, creditor_name: nil, debtor_account_number: nil, debtor_address_line1: nil, debtor_address_line2: nil, debtor_address_line3: nil, debtor_name: nil, debtor_routing_number: nil, end_to_end_identification: nil, instruction_identification: nil, unique_end_to_end_transaction_reference: nil, unstructured_remittance_information: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::InboundWireDrawdownRequestCreateParams} for more
         #   details.
         #
         #   @param amount [Integer] The amount being requested in cents.
         #
-        #   @param beneficiary_account_number [String] The drawdown request's beneficiary's account number.
+        #   @param creditor_account_number [String] The creditor's account number.
         #
-        #   @param beneficiary_routing_number [String] The drawdown request's beneficiary's routing number.
+        #   @param creditor_routing_number [String] The creditor's routing number.
         #
         #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
         #
-        #   @param message_to_recipient [String] A message from the drawdown request's originator.
-        #
-        #   @param originator_account_number [String] The drawdown request's originator's account number.
-        #
-        #   @param originator_routing_number [String] The drawdown request's originator's routing number.
-        #
         #   @param recipient_account_number_id [String] The Account Number to which the recipient of this request is being requested to
         #
-        #   @param beneficiary_address_line1 [String] Line 1 of the drawdown request's beneficiary's address.
+        #   @param creditor_address_line1 [String] A free-form address field set by the sender representing the first line of the c
         #
-        #   @param beneficiary_address_line2 [String] Line 2 of the drawdown request's beneficiary's address.
+        #   @param creditor_address_line2 [String] A free-form address field set by the sender representing the second line of the
         #
-        #   @param beneficiary_address_line3 [String] Line 3 of the drawdown request's beneficiary's address.
+        #   @param creditor_address_line3 [String] A free-form address field set by the sender representing the third line of the c
         #
-        #   @param beneficiary_name [String] The drawdown request's beneficiary's name.
+        #   @param creditor_name [String] A free-form name field set by the sender representing the creditor's name.
         #
-        #   @param originator_address_line1 [String] Line 1 of the drawdown request's originator's address.
+        #   @param debtor_account_number [String] The debtor's account number.
         #
-        #   @param originator_address_line2 [String] Line 2 of the drawdown request's originator's address.
+        #   @param debtor_address_line1 [String] A free-form address field set by the sender representing the first line of the d
         #
-        #   @param originator_address_line3 [String] Line 3 of the drawdown request's originator's address.
+        #   @param debtor_address_line2 [String] A free-form address field set by the sender representing the second line of the
         #
-        #   @param originator_name [String] The drawdown request's originator's name.
+        #   @param debtor_address_line3 [String] A free-form address field set by the sender.
         #
-        #   @param originator_to_beneficiary_information_line1 [String] Line 1 of the information conveyed from the originator of the message to the ben
+        #   @param debtor_name [String] A free-form name field set by the sender representing the debtor's name.
         #
-        #   @param originator_to_beneficiary_information_line2 [String] Line 2 of the information conveyed from the originator of the message to the ben
+        #   @param debtor_routing_number [String] The debtor's routing number.
         #
-        #   @param originator_to_beneficiary_information_line3 [String] Line 3 of the information conveyed from the originator of the message to the ben
+        #   @param end_to_end_identification [String] A free-form reference string set by the sender, to help identify the transfer.
         #
-        #   @param originator_to_beneficiary_information_line4 [String] Line 4 of the information conveyed from the originator of the message to the ben
+        #   @param instruction_identification [String] The sending bank's identifier for the wire transfer.
+        #
+        #   @param unique_end_to_end_transaction_reference [String] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+        #
+        #   @param unstructured_remittance_information [String] A free-form message set by the sender.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
