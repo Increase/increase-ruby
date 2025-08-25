@@ -24,6 +24,26 @@ module Increase
           )
         end
 
+        # Simulates a Wire Drawdown Request being submitted to Fedwire.
+        #
+        # @overload submit(wire_drawdown_request_id, request_options: {})
+        #
+        # @param wire_drawdown_request_id [String] The identifier of the Wire Drawdown Request you wish to submit.
+        #
+        # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Increase::Models::WireDrawdownRequest]
+        #
+        # @see Increase::Models::Simulations::WireDrawdownRequestSubmitParams
+        def submit(wire_drawdown_request_id, params = {})
+          @client.request(
+            method: :post,
+            path: ["simulations/wire_drawdown_requests/%1$s/submit", wire_drawdown_request_id],
+            model: Increase::WireDrawdownRequest,
+            options: params[:request_options]
+          )
+        end
+
         # @api private
         #
         # @param client [Increase::Client]
