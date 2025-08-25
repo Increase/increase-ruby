@@ -19,87 +19,70 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # The drawdown request's beneficiary's account number.
-      sig { returns(String) }
-      attr_accessor :beneficiary_account_number
-
-      # Line 1 of the drawdown request's beneficiary's address.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line1
-
-      # Line 2 of the drawdown request's beneficiary's address.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line2
-
-      # Line 3 of the drawdown request's beneficiary's address.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line3
-
-      # The drawdown request's beneficiary's name.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_name
-
-      # The drawdown request's beneficiary's routing number.
-      sig { returns(String) }
-      attr_accessor :beneficiary_routing_number
-
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the inbound wire drawdown requested was created.
       sig { returns(Time) }
       attr_accessor :created_at
+
+      # The creditor's account number.
+      sig { returns(String) }
+      attr_accessor :creditor_account_number
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_address_line1
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_address_line2
+
+      # A free-form address field set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_address_line3
+
+      # A name set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creditor_name
+
+      # The creditor's routing number.
+      sig { returns(String) }
+      attr_accessor :creditor_routing_number
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
       # requested. Will always be "USD".
       sig { returns(String) }
       attr_accessor :currency
 
-      # A message from the drawdown request's originator.
+      # A free-form address field set by the sender.
       sig { returns(T.nilable(String)) }
-      attr_accessor :message_to_recipient
+      attr_accessor :debtor_address_line1
 
-      # The drawdown request's originator's account number.
+      # A free-form address field set by the sender.
       sig { returns(T.nilable(String)) }
-      attr_accessor :originator_account_number
+      attr_accessor :debtor_address_line2
 
-      # Line 1 of the drawdown request's originator's address.
+      # A free-form address field set by the sender.
       sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line1
+      attr_accessor :debtor_address_line3
 
-      # Line 2 of the drawdown request's originator's address.
+      # A name set by the sender.
       sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line2
+      attr_accessor :debtor_name
 
-      # Line 3 of the drawdown request's originator's address.
+      # A free-form reference string set by the sender, to help identify the drawdown
+      # request.
       sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line3
+      attr_accessor :end_to_end_identification
 
-      # The drawdown request's originator's name.
+      # A unique identifier available to the originating and receiving banks, commonly
+      # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
+      # service and is helpful when debugging wires with the originating bank.
       sig { returns(T.nilable(String)) }
-      attr_accessor :originator_name
+      attr_accessor :input_message_accountability_data
 
-      # The drawdown request's originator's routing number.
-      sig { returns(String) }
-      attr_accessor :originator_routing_number
-
-      # Line 1 of the information conveyed from the originator of the message to the
-      # beneficiary.
+      # The sending bank's identifier for the drawdown request.
       sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line1
-
-      # Line 2 of the information conveyed from the originator of the message to the
-      # beneficiary.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line2
-
-      # Line 3 of the information conveyed from the originator of the message to the
-      # beneficiary.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line3
-
-      # Line 4 of the information conveyed from the originator of the message to the
-      # beneficiary.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_to_beneficiary_information_line4
+      attr_accessor :instruction_identification
 
       # The Account Number from which the recipient of this request is being requested
       # to send funds.
@@ -111,6 +94,16 @@ module Increase
       sig { returns(Increase::InboundWireDrawdownRequest::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The Unique End-to-end Transaction Reference
+      # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      # of the drawdown request.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unique_end_to_end_transaction_reference
+
+      # A free-form message set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unstructured_remittance_information
+
       # Inbound wire drawdown requests are requests from someone else to send them a
       # wire. For more information, see our
       # [Wire Drawdown Requests documentation](/documentation/wire-drawdown-requests).
@@ -118,27 +111,25 @@ module Increase
         params(
           id: String,
           amount: Integer,
-          beneficiary_account_number: String,
-          beneficiary_address_line1: T.nilable(String),
-          beneficiary_address_line2: T.nilable(String),
-          beneficiary_address_line3: T.nilable(String),
-          beneficiary_name: T.nilable(String),
-          beneficiary_routing_number: String,
           created_at: Time,
+          creditor_account_number: String,
+          creditor_address_line1: T.nilable(String),
+          creditor_address_line2: T.nilable(String),
+          creditor_address_line3: T.nilable(String),
+          creditor_name: T.nilable(String),
+          creditor_routing_number: String,
           currency: String,
-          message_to_recipient: T.nilable(String),
-          originator_account_number: T.nilable(String),
-          originator_address_line1: T.nilable(String),
-          originator_address_line2: T.nilable(String),
-          originator_address_line3: T.nilable(String),
-          originator_name: T.nilable(String),
-          originator_routing_number: String,
-          originator_to_beneficiary_information_line1: T.nilable(String),
-          originator_to_beneficiary_information_line2: T.nilable(String),
-          originator_to_beneficiary_information_line3: T.nilable(String),
-          originator_to_beneficiary_information_line4: T.nilable(String),
+          debtor_address_line1: T.nilable(String),
+          debtor_address_line2: T.nilable(String),
+          debtor_address_line3: T.nilable(String),
+          debtor_name: T.nilable(String),
+          end_to_end_identification: T.nilable(String),
+          input_message_accountability_data: T.nilable(String),
+          instruction_identification: T.nilable(String),
           recipient_account_number_id: String,
-          type: Increase::InboundWireDrawdownRequest::Type::OrSymbol
+          type: Increase::InboundWireDrawdownRequest::Type::OrSymbol,
+          unique_end_to_end_transaction_reference: T.nilable(String),
+          unstructured_remittance_information: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -146,56 +137,53 @@ module Increase
         id:,
         # The amount being requested in cents.
         amount:,
-        # The drawdown request's beneficiary's account number.
-        beneficiary_account_number:,
-        # Line 1 of the drawdown request's beneficiary's address.
-        beneficiary_address_line1:,
-        # Line 2 of the drawdown request's beneficiary's address.
-        beneficiary_address_line2:,
-        # Line 3 of the drawdown request's beneficiary's address.
-        beneficiary_address_line3:,
-        # The drawdown request's beneficiary's name.
-        beneficiary_name:,
-        # The drawdown request's beneficiary's routing number.
-        beneficiary_routing_number:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the inbound wire drawdown requested was created.
         created_at:,
+        # The creditor's account number.
+        creditor_account_number:,
+        # A free-form address field set by the sender.
+        creditor_address_line1:,
+        # A free-form address field set by the sender.
+        creditor_address_line2:,
+        # A free-form address field set by the sender.
+        creditor_address_line3:,
+        # A name set by the sender.
+        creditor_name:,
+        # The creditor's routing number.
+        creditor_routing_number:,
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
         # requested. Will always be "USD".
         currency:,
-        # A message from the drawdown request's originator.
-        message_to_recipient:,
-        # The drawdown request's originator's account number.
-        originator_account_number:,
-        # Line 1 of the drawdown request's originator's address.
-        originator_address_line1:,
-        # Line 2 of the drawdown request's originator's address.
-        originator_address_line2:,
-        # Line 3 of the drawdown request's originator's address.
-        originator_address_line3:,
-        # The drawdown request's originator's name.
-        originator_name:,
-        # The drawdown request's originator's routing number.
-        originator_routing_number:,
-        # Line 1 of the information conveyed from the originator of the message to the
-        # beneficiary.
-        originator_to_beneficiary_information_line1:,
-        # Line 2 of the information conveyed from the originator of the message to the
-        # beneficiary.
-        originator_to_beneficiary_information_line2:,
-        # Line 3 of the information conveyed from the originator of the message to the
-        # beneficiary.
-        originator_to_beneficiary_information_line3:,
-        # Line 4 of the information conveyed from the originator of the message to the
-        # beneficiary.
-        originator_to_beneficiary_information_line4:,
+        # A free-form address field set by the sender.
+        debtor_address_line1:,
+        # A free-form address field set by the sender.
+        debtor_address_line2:,
+        # A free-form address field set by the sender.
+        debtor_address_line3:,
+        # A name set by the sender.
+        debtor_name:,
+        # A free-form reference string set by the sender, to help identify the drawdown
+        # request.
+        end_to_end_identification:,
+        # A unique identifier available to the originating and receiving banks, commonly
+        # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
+        # service and is helpful when debugging wires with the originating bank.
+        input_message_accountability_data:,
+        # The sending bank's identifier for the drawdown request.
+        instruction_identification:,
         # The Account Number from which the recipient of this request is being requested
         # to send funds.
         recipient_account_number_id:,
         # A constant representing the object's type. For this resource it will always be
         # `inbound_wire_drawdown_request`.
-        type:
+        type:,
+        # The Unique End-to-end Transaction Reference
+        # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        # of the drawdown request.
+        unique_end_to_end_transaction_reference:,
+        # A free-form message set by the sender.
+        unstructured_remittance_information:
       )
       end
 
@@ -204,27 +192,25 @@ module Increase
           {
             id: String,
             amount: Integer,
-            beneficiary_account_number: String,
-            beneficiary_address_line1: T.nilable(String),
-            beneficiary_address_line2: T.nilable(String),
-            beneficiary_address_line3: T.nilable(String),
-            beneficiary_name: T.nilable(String),
-            beneficiary_routing_number: String,
             created_at: Time,
+            creditor_account_number: String,
+            creditor_address_line1: T.nilable(String),
+            creditor_address_line2: T.nilable(String),
+            creditor_address_line3: T.nilable(String),
+            creditor_name: T.nilable(String),
+            creditor_routing_number: String,
             currency: String,
-            message_to_recipient: T.nilable(String),
-            originator_account_number: T.nilable(String),
-            originator_address_line1: T.nilable(String),
-            originator_address_line2: T.nilable(String),
-            originator_address_line3: T.nilable(String),
-            originator_name: T.nilable(String),
-            originator_routing_number: String,
-            originator_to_beneficiary_information_line1: T.nilable(String),
-            originator_to_beneficiary_information_line2: T.nilable(String),
-            originator_to_beneficiary_information_line3: T.nilable(String),
-            originator_to_beneficiary_information_line4: T.nilable(String),
+            debtor_address_line1: T.nilable(String),
+            debtor_address_line2: T.nilable(String),
+            debtor_address_line3: T.nilable(String),
+            debtor_name: T.nilable(String),
+            end_to_end_identification: T.nilable(String),
+            input_message_accountability_data: T.nilable(String),
+            instruction_identification: T.nilable(String),
             recipient_account_number_id: String,
-            type: Increase::InboundWireDrawdownRequest::Type::TaggedSymbol
+            type: Increase::InboundWireDrawdownRequest::Type::TaggedSymbol,
+            unique_end_to_end_transaction_reference: T.nilable(String),
+            unstructured_remittance_information: T.nilable(String)
           }
         )
       end
