@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.48.0 (2025-08-25)
+
+Full Changelog: [v1.47.0...v1.48.0](https://github.com/Increase/increase-ruby/compare/v1.47.0...v1.48.0)
+
+### Features
+
+* **api:** api update ([5bf108b](https://github.com/Increase/increase-ruby/commit/5bf108b6bb1dfa41a6d2e0e981edd099ffb13ef6))
+
+
+### Chores
+
+* add json schema comment for rubocop.yml ([aabb92c](https://github.com/Increase/increase-ruby/commit/aabb92ccae37972783253afb3506ff429cbedfb5))
+
 ## 1.47.0 (2025-08-22)
 
 Full Changelog: [v1.46.0...v1.47.0](https://github.com/Increase/increase-ruby/compare/v1.46.0...v1.47.0)
