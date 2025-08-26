@@ -1,11 +1,11 @@
 module Increase
   module Resources
     class Simulations
-      class InboundFundsHolds
-        def release: (
-          String inbound_funds_hold_id,
+      class PendingTransactions
+        def release_inbound_funds_hold: (
+          String pending_transaction_id,
           ?request_options: Increase::request_opts
-        ) -> Increase::Models::Simulations::InboundFundsHoldReleaseResponse
+        ) -> Increase::PendingTransaction
 
         def initialize: (client: Increase::Client) -> void
       end
