@@ -312,10 +312,10 @@ module Increase
           input_source: String,
           originator_routing_number: String?,
           originator_to_beneficiary_information: String?,
-          previous_message_input_cycle_date: Date,
-          previous_message_input_message_accountability_data: String,
+          previous_message_input_cycle_date: Date?,
+          previous_message_input_message_accountability_data: String?,
           previous_message_input_sequence_number: String,
-          previous_message_input_source: String,
+          previous_message_input_source: String?,
           receiver_financial_institution_information: String?,
           sender_reference: String?,
           transaction_id: String,
@@ -343,13 +343,13 @@ module Increase
 
         attr_accessor originator_to_beneficiary_information: String?
 
-        attr_accessor previous_message_input_cycle_date: Date
+        attr_accessor previous_message_input_cycle_date: Date?
 
-        attr_accessor previous_message_input_message_accountability_data: String
+        attr_accessor previous_message_input_message_accountability_data: String?
 
         attr_accessor previous_message_input_sequence_number: String
 
-        attr_accessor previous_message_input_source: String
+        attr_accessor previous_message_input_source: String?
 
         attr_accessor receiver_financial_institution_information: String?
 
@@ -370,10 +370,10 @@ module Increase
           input_source: String,
           originator_routing_number: String?,
           originator_to_beneficiary_information: String?,
-          previous_message_input_cycle_date: Date,
-          previous_message_input_message_accountability_data: String,
+          previous_message_input_cycle_date: Date?,
+          previous_message_input_message_accountability_data: String?,
           previous_message_input_sequence_number: String,
-          previous_message_input_source: String,
+          previous_message_input_source: String?,
           receiver_financial_institution_information: String?,
           sender_reference: String?,
           transaction_id: String,
@@ -391,10 +391,10 @@ module Increase
           input_source: String,
           originator_routing_number: String?,
           originator_to_beneficiary_information: String?,
-          previous_message_input_cycle_date: Date,
-          previous_message_input_message_accountability_data: String,
+          previous_message_input_cycle_date: Date?,
+          previous_message_input_message_accountability_data: String?,
           previous_message_input_sequence_number: String,
-          previous_message_input_source: String,
+          previous_message_input_source: String?,
           receiver_financial_institution_information: String?,
           sender_reference: String?,
           transaction_id: String,
