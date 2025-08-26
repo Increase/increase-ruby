@@ -5577,6 +5577,12 @@ module Increase
           #   @return [String, nil]
           required :merchant_state, String, nil?: true
 
+          # @!attribute network
+          #   The card network on which this transaction was processed.
+          #
+          #   @return [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Network]
+          required :network, enum: -> { Increase::CardPayment::Element::CardSettlement::Network }
+
           # @!attribute network_identifiers
           #   Network-specific identifiers for this refund.
           #
@@ -5624,7 +5630,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardSettlement::Type }
 
-          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, transaction_id:, type:)
+          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, transaction_id:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardSettlement} for more details.
           #
@@ -5661,6 +5667,8 @@ module Increase
           #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is always a 5-digit ZIP code.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
+          #
+          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Network] The card network on which this transaction was processed.
           #
           #   @param network_identifiers [Increase::Models::CardPayment::Element::CardSettlement::NetworkIdentifiers] Network-specific identifiers for this refund.
           #
@@ -5827,6 +5835,19 @@ module Increase
               # @!method self.values
               #   @return [Array<Symbol>]
             end
+          end
+
+          # The card network on which this transaction was processed.
+          #
+          # @see Increase::Models::CardPayment::Element::CardSettlement#network
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            # Visa
+            VISA = :visa
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#network_identifiers

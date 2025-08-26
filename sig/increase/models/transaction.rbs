@@ -1999,6 +1999,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String?,
             merchant_state: String?,
+            network: Increase::Models::Transaction::Source::CardSettlement::network,
             network_identifiers: Increase::Transaction::Source::CardSettlement::NetworkIdentifiers,
             pending_transaction_id: String?,
             presentment_amount: Integer,
@@ -2037,6 +2038,8 @@ module Increase
 
           attr_accessor merchant_state: String?
 
+          attr_accessor network: Increase::Models::Transaction::Source::CardSettlement::network
+
           attr_accessor network_identifiers: Increase::Transaction::Source::CardSettlement::NetworkIdentifiers
 
           attr_accessor pending_transaction_id: String?
@@ -2066,6 +2069,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String?,
             merchant_state: String?,
+            network: Increase::Models::Transaction::Source::CardSettlement::network,
             network_identifiers: Increase::Transaction::Source::CardSettlement::NetworkIdentifiers,
             pending_transaction_id: String?,
             presentment_amount: Integer,
@@ -2090,6 +2094,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String?,
             merchant_state: String?,
+            network: Increase::Models::Transaction::Source::CardSettlement::network,
             network_identifiers: Increase::Transaction::Source::CardSettlement::NetworkIdentifiers,
             pending_transaction_id: String?,
             presentment_amount: Integer,
@@ -2224,6 +2229,17 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardSettlement::Interchange::currency]
             end
+          end
+
+          type network = :visa
+
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            # Visa
+            VISA: :visa
+
+            def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardSettlement::network]
           end
 
           type network_identifiers =
