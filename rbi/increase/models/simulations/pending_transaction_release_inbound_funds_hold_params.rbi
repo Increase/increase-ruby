@@ -3,14 +3,14 @@
 module Increase
   module Models
     module Simulations
-      class InboundFundsHoldReleaseParams < Increase::Internal::Type::BaseModel
+      class PendingTransactionReleaseInboundFundsHoldParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Increase::Simulations::InboundFundsHoldReleaseParams,
+              Increase::Simulations::PendingTransactionReleaseInboundFundsHoldParams,
               Increase::Internal::AnyHash
             )
           end

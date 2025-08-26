@@ -3,8 +3,8 @@
 module Increase
   module Models
     module Simulations
-      # @see Increase::Resources::Simulations::InboundFundsHolds#release
-      class InboundFundsHoldReleaseParams < Increase::Internal::Type::BaseModel
+      # @see Increase::Resources::Simulations::PendingTransactions#release_inbound_funds_hold
+      class PendingTransactionReleaseInboundFundsHoldParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
