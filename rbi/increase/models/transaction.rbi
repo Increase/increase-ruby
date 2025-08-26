@@ -9487,11 +9487,11 @@ module Increase
 
           # The Fedwire cycle date for the wire transfer that is being reversed by this
           # message.
-          sig { returns(Date) }
+          sig { returns(T.nilable(Date)) }
           attr_accessor :previous_message_input_cycle_date
 
           # The Fedwire transaction identifier for the wire transfer that was reversed.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :previous_message_input_message_accountability_data
 
           # The Fedwire sequence number for the wire transfer that was reversed.
@@ -9499,7 +9499,7 @@ module Increase
           attr_accessor :previous_message_input_sequence_number
 
           # The Fedwire input source identifier for the wire transfer that was reversed.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :previous_message_input_source
 
           # Information included in the wire reversal for the receiving financial
@@ -9537,10 +9537,11 @@ module Increase
               input_source: String,
               originator_routing_number: T.nilable(String),
               originator_to_beneficiary_information: T.nilable(String),
-              previous_message_input_cycle_date: Date,
-              previous_message_input_message_accountability_data: String,
+              previous_message_input_cycle_date: T.nilable(Date),
+              previous_message_input_message_accountability_data:
+                T.nilable(String),
               previous_message_input_sequence_number: String,
-              previous_message_input_source: String,
+              previous_message_input_source: T.nilable(String),
               receiver_financial_institution_information: T.nilable(String),
               sender_reference: T.nilable(String),
               transaction_id: String,
@@ -9606,10 +9607,11 @@ module Increase
                 input_source: String,
                 originator_routing_number: T.nilable(String),
                 originator_to_beneficiary_information: T.nilable(String),
-                previous_message_input_cycle_date: Date,
-                previous_message_input_message_accountability_data: String,
+                previous_message_input_cycle_date: T.nilable(Date),
+                previous_message_input_message_accountability_data:
+                  T.nilable(String),
                 previous_message_input_sequence_number: String,
-                previous_message_input_source: String,
+                previous_message_input_source: T.nilable(String),
                 receiver_financial_institution_information: T.nilable(String),
                 sender_reference: T.nilable(String),
                 transaction_id: String,
