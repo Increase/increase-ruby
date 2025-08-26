@@ -3409,10 +3409,6 @@ module Increase
               )
             end
 
-          # The Inbound Funds Hold identifier.
-          sig { returns(String) }
-          attr_accessor :id
-
           # The held amount in the minor unit of the account's currency. For dollars, for
           # example, this is cents.
           sig { returns(Integer) }
@@ -3472,7 +3468,6 @@ module Increase
           # be clawed back by the sending institution.
           sig do
             params(
-              id: String,
               amount: Integer,
               automatically_releases_at: Time,
               created_at: Time,
@@ -3488,8 +3483,6 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The Inbound Funds Hold identifier.
-            id:,
             # The held amount in the minor unit of the account's currency. For dollars, for
             # example, this is cents.
             amount:,
@@ -3519,7 +3512,6 @@ module Increase
           sig do
             override.returns(
               {
-                id: String,
                 amount: Integer,
                 automatically_releases_at: Time,
                 created_at: Time,

@@ -617,12 +617,6 @@ module Increase
 
       # @see Increase::Models::CheckDeposit#inbound_funds_hold
       class InboundFundsHold < Increase::Internal::Type::BaseModel
-        # @!attribute id
-        #   The Inbound Funds Hold identifier.
-        #
-        #   @return [String]
-        required :id, String
-
         # @!attribute amount
         #   The held amount in the minor unit of the account's currency. For dollars, for
         #   example, this is cents.
@@ -682,14 +676,12 @@ module Increase
         #   @return [Symbol, Increase::Models::CheckDeposit::InboundFundsHold::Type]
         required :type, enum: -> { Increase::CheckDeposit::InboundFundsHold::Type }
 
-        # @!method initialize(id:, amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
+        # @!method initialize(amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckDeposit::InboundFundsHold} for more details.
         #
         #   Increase will sometimes hold the funds for Check Deposits. If funds are held,
         #   this sub-object will contain details of the hold.
-        #
-        #   @param id [String] The Inbound Funds Hold identifier.
         #
         #   @param amount [Integer] The held amount in the minor unit of the account's currency. For dollars, for ex
         #

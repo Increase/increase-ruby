@@ -1801,12 +1801,6 @@ module Increase
 
         # @see Increase::Models::PendingTransaction::Source#inbound_funds_hold
         class InboundFundsHold < Increase::Internal::Type::BaseModel
-          # @!attribute id
-          #   The Inbound Funds Hold identifier.
-          #
-          #   @return [String]
-          required :id, String
-
           # @!attribute amount
           #   The held amount in the minor unit of the account's currency. For dollars, for
           #   example, this is cents.
@@ -1866,7 +1860,7 @@ module Increase
           #   @return [Symbol, Increase::Models::PendingTransaction::Source::InboundFundsHold::Type]
           required :type, enum: -> { Increase::PendingTransaction::Source::InboundFundsHold::Type }
 
-          # @!method initialize(id:, amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
+          # @!method initialize(amount:, automatically_releases_at:, created_at:, currency:, held_transaction_id:, pending_transaction_id:, released_at:, status:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::PendingTransaction::Source::InboundFundsHold} for more
           #   details.
@@ -1875,8 +1869,6 @@ module Increase
           #   and only if `category` is equal to `inbound_funds_hold`. We hold funds for
           #   certain transaction types to account for return windows where funds might still
           #   be clawed back by the sending institution.
-          #
-          #   @param id [String] The Inbound Funds Hold identifier.
           #
           #   @param amount [Integer] The held amount in the minor unit of the account's currency. For dollars, for ex
           #
