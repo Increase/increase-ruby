@@ -528,14 +528,14 @@ module Increase
         #   The Fedwire cycle date for the wire transfer that is being reversed by this
         #   message.
         #
-        #   @return [Date]
-        required :previous_message_input_cycle_date, Date
+        #   @return [Date, nil]
+        required :previous_message_input_cycle_date, Date, nil?: true
 
         # @!attribute previous_message_input_message_accountability_data
         #   The Fedwire transaction identifier for the wire transfer that was reversed.
         #
-        #   @return [String]
-        required :previous_message_input_message_accountability_data, String
+        #   @return [String, nil]
+        required :previous_message_input_message_accountability_data, String, nil?: true
 
         # @!attribute previous_message_input_sequence_number
         #   The Fedwire sequence number for the wire transfer that was reversed.
@@ -546,8 +546,8 @@ module Increase
         # @!attribute previous_message_input_source
         #   The Fedwire input source identifier for the wire transfer that was reversed.
         #
-        #   @return [String]
-        required :previous_message_input_source, String
+        #   @return [String, nil]
+        required :previous_message_input_source, String, nil?: true
 
         # @!attribute receiver_financial_institution_information
         #   Information included in the wire reversal for the receiving financial
@@ -600,13 +600,13 @@ module Increase
         #
         #   @param originator_to_beneficiary_information [String, nil] Additional information included in the wire reversal by the reversal originator.
         #
-        #   @param previous_message_input_cycle_date [Date] The Fedwire cycle date for the wire transfer that is being reversed by this mess
+        #   @param previous_message_input_cycle_date [Date, nil] The Fedwire cycle date for the wire transfer that is being reversed by this mess
         #
-        #   @param previous_message_input_message_accountability_data [String] The Fedwire transaction identifier for the wire transfer that was reversed.
+        #   @param previous_message_input_message_accountability_data [String, nil] The Fedwire transaction identifier for the wire transfer that was reversed.
         #
         #   @param previous_message_input_sequence_number [String] The Fedwire sequence number for the wire transfer that was reversed.
         #
-        #   @param previous_message_input_source [String] The Fedwire input source identifier for the wire transfer that was reversed.
+        #   @param previous_message_input_source [String, nil] The Fedwire input source identifier for the wire transfer that was reversed.
         #
         #   @param receiver_financial_institution_information [String, nil] Information included in the wire reversal for the receiving financial institutio
         #
