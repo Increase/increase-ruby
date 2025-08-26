@@ -36,8 +36,8 @@ module Increase
       # @return [Increase::Resources::Simulations::DigitalWalletTokenRequests]
       attr_reader :digital_wallet_token_requests
 
-      # @return [Increase::Resources::Simulations::InboundFundsHolds]
-      attr_reader :inbound_funds_holds
+      # @return [Increase::Resources::Simulations::PendingTransactions]
+      attr_reader :pending_transactions
 
       # @return [Increase::Resources::Simulations::AccountTransfers]
       attr_reader :account_transfers
@@ -108,7 +108,7 @@ module Increase
         @physical_cards = Increase::Resources::Simulations::PhysicalCards.new(client: client)
         @digital_wallet_token_requests =
           Increase::Resources::Simulations::DigitalWalletTokenRequests.new(client: client)
-        @inbound_funds_holds = Increase::Resources::Simulations::InboundFundsHolds.new(client: client)
+        @pending_transactions = Increase::Resources::Simulations::PendingTransactions.new(client: client)
         @account_transfers = Increase::Resources::Simulations::AccountTransfers.new(client: client)
         @ach_transfers = Increase::Resources::Simulations::ACHTransfers.new(client: client)
         @inbound_ach_transfers = Increase::Resources::Simulations::InboundACHTransfers.new(client: client)

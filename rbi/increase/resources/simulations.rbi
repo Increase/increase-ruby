@@ -40,8 +40,8 @@ module Increase
       end
       attr_reader :digital_wallet_token_requests
 
-      sig { returns(Increase::Resources::Simulations::InboundFundsHolds) }
-      attr_reader :inbound_funds_holds
+      sig { returns(Increase::Resources::Simulations::PendingTransactions) }
+      attr_reader :pending_transactions
 
       sig { returns(Increase::Resources::Simulations::AccountTransfers) }
       attr_reader :account_transfers
