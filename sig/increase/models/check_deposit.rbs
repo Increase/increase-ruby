@@ -499,7 +499,6 @@ module Increase
 
       type inbound_funds_hold =
         {
-          id: String,
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
@@ -512,8 +511,6 @@ module Increase
         }
 
       class InboundFundsHold < Increase::Internal::Type::BaseModel
-        attr_accessor id: String
-
         attr_accessor amount: Integer
 
         attr_accessor automatically_releases_at: Time
@@ -533,7 +530,6 @@ module Increase
         attr_accessor type: Increase::Models::CheckDeposit::InboundFundsHold::type_
 
         def initialize: (
-          id: String,
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
@@ -546,7 +542,6 @@ module Increase
         ) -> void
 
         def to_hash: -> {
-          id: String,
           amount: Integer,
           automatically_releases_at: Time,
           created_at: Time,
