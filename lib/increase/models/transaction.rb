@@ -154,6 +154,19 @@ module Increase
 
       # @see Increase::Models::Transaction#source
       class Source < Increase::Internal::Type::BaseModel
+        # @!attribute account_revenue_payment
+        #   An Account Revenue Payment object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `account_revenue_payment`. A
+        #   Account Revenue Payment represents a payment made to an account from the bank.
+        #   Account revenue is a type of non-interest income.
+        #
+        #   @return [Increase::Models::Transaction::Source::AccountRevenuePayment, nil]
+        required :account_revenue_payment,
+                 -> {
+                   Increase::Transaction::Source::AccountRevenuePayment
+                 },
+                 nil?: true
+
         # @!attribute account_transfer_intention
         #   An Account Transfer Intention object. This field will be present in the JSON
         #   response if and only if `category` is equal to `account_transfer_intention`. Two
@@ -494,7 +507,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
+        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -502,6 +515,8 @@ module Increase
         #   Transaction. Note that for backwards compatibility reasons, additional
         #   undocumented keys may appear in this object. These should be treated as
         #   deprecated and will be removed in the future.
+        #
+        #   @param account_revenue_payment [Increase::Models::Transaction::Source::AccountRevenuePayment, nil] An Account Revenue Payment object. This field will be present in the JSON respon
         #
         #   @param account_transfer_intention [Increase::Models::Transaction::Source::AccountTransferIntention, nil] An Account Transfer Intention object. This field will be present in the JSON res
         #
@@ -568,6 +583,39 @@ module Increase
         #   @param swift_transfer_return [Increase::Models::Transaction::Source::SwiftTransferReturn, nil] A Swift Transfer Return object. This field will be present in the JSON response
         #
         #   @param wire_transfer_intention [Increase::Models::Transaction::Source::WireTransferIntention, nil] A Wire Transfer Intention object. This field will be present in the JSON respons
+
+        # @see Increase::Models::Transaction::Source#account_revenue_payment
+        class AccountRevenuePayment < Increase::Internal::Type::BaseModel
+          # @!attribute accrued_on_account_id
+          #   The account on which the account revenue was accrued.
+          #
+          #   @return [String]
+          required :accrued_on_account_id, String
+
+          # @!attribute period_end
+          #   The end of the period for which this transaction paid account revenue.
+          #
+          #   @return [Time]
+          required :period_end, Time
+
+          # @!attribute period_start
+          #   The start of the period for which this transaction paid account revenue.
+          #
+          #   @return [Time]
+          required :period_start, Time
+
+          # @!method initialize(accrued_on_account_id:, period_end:, period_start:)
+          #   An Account Revenue Payment object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `account_revenue_payment`. A
+          #   Account Revenue Payment represents a payment made to an account from the bank.
+          #   Account revenue is a type of non-interest income.
+          #
+          #   @param accrued_on_account_id [String] The account on which the account revenue was accrued.
+          #
+          #   @param period_end [Time] The end of the period for which this transaction paid account revenue.
+          #
+          #   @param period_start [Time] The start of the period for which this transaction paid account revenue.
+        end
 
         # @see Increase::Models::Transaction::Source#account_transfer_intention
         class AccountTransferIntention < Increase::Internal::Type::BaseModel
@@ -4252,6 +4300,9 @@ module Increase
 
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE = :card_push_transfer_acceptance
+
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT = :account_revenue_payment
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other

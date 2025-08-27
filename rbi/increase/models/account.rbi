@@ -12,7 +12,8 @@ module Increase
 
       # The account revenue rate currently being earned on the account, as a string
       # containing a decimal number. For example, a 1% account revenue rate would be
-      # represented as "0.01".
+      # represented as "0.01". Account revenue is a type of non-interest income accrued
+      # on the account.
       sig { returns(T.nilable(String)) }
       attr_accessor :account_revenue_rate
 
@@ -111,7 +112,8 @@ module Increase
         id:,
         # The account revenue rate currently being earned on the account, as a string
         # containing a decimal number. For example, a 1% account revenue rate would be
-        # represented as "0.01".
+        # represented as "0.01". Account revenue is a type of non-interest income accrued
+        # on the account.
         account_revenue_rate:,
         # The bank the Account is with.
         bank:,
