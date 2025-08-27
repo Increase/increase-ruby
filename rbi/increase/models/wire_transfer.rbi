@@ -702,13 +702,13 @@ module Increase
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # The debtor's routing number.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :debtor_routing_number
+
         # The description on the reversal message from Fedwire, set by the reversing bank.
         sig { returns(String) }
         attr_accessor :description
-
-        # Additional financial institution information included in the wire reversal.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :financial_institution_to_financial_institution_information
 
         # The Fedwire cycle date for the wire reversal. The "Fedwire day" begins at 9:00
         # PM Eastern Time on the evening before the `cycle date`.
@@ -727,40 +727,13 @@ module Increase
         sig { returns(String) }
         attr_accessor :input_source
 
-        # The American Banking Association (ABA) routing number of the bank originating
-        # the transfer.
+        # The sending bank's identifier for the reversal.
         sig { returns(T.nilable(String)) }
-        attr_accessor :originator_routing_number
+        attr_accessor :instruction_identification
 
-        # Additional information included in the wire reversal by the reversal originator.
+        # Additional information about the reason for the reversal.
         sig { returns(T.nilable(String)) }
-        attr_accessor :originator_to_beneficiary_information
-
-        # The Fedwire cycle date for the wire transfer that is being reversed by this
-        # message.
-        sig { returns(T.nilable(Date)) }
-        attr_accessor :previous_message_input_cycle_date
-
-        # The Fedwire transaction identifier for the wire transfer that was reversed.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :previous_message_input_message_accountability_data
-
-        # The Fedwire sequence number for the wire transfer that was reversed.
-        sig { returns(String) }
-        attr_accessor :previous_message_input_sequence_number
-
-        # The Fedwire input source identifier for the wire transfer that was reversed.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :previous_message_input_source
-
-        # Information included in the wire reversal for the receiving financial
-        # institution.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :receiver_financial_institution_information
-
-        # The sending bank's reference number for the wire reversal.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :sender_reference
+        attr_accessor :return_reason_additional_information
 
         # The ID for the Transaction associated with the transfer reversal.
         sig { returns(String) }
@@ -775,22 +748,14 @@ module Increase
           params(
             amount: Integer,
             created_at: Time,
+            debtor_routing_number: T.nilable(String),
             description: String,
-            financial_institution_to_financial_institution_information:
-              T.nilable(String),
             input_cycle_date: Date,
             input_message_accountability_data: String,
             input_sequence_number: String,
             input_source: String,
-            originator_routing_number: T.nilable(String),
-            originator_to_beneficiary_information: T.nilable(String),
-            previous_message_input_cycle_date: T.nilable(Date),
-            previous_message_input_message_accountability_data:
-              T.nilable(String),
-            previous_message_input_sequence_number: String,
-            previous_message_input_source: T.nilable(String),
-            receiver_financial_institution_information: T.nilable(String),
-            sender_reference: T.nilable(String),
+            instruction_identification: T.nilable(String),
+            return_reason_additional_information: T.nilable(String),
             transaction_id: String,
             wire_transfer_id: String
           ).returns(T.attached_class)
@@ -801,10 +766,10 @@ module Increase
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the reversal was created.
           created_at:,
+          # The debtor's routing number.
+          debtor_routing_number:,
           # The description on the reversal message from Fedwire, set by the reversing bank.
           description:,
-          # Additional financial institution information included in the wire reversal.
-          financial_institution_to_financial_institution_information:,
           # The Fedwire cycle date for the wire reversal. The "Fedwire day" begins at 9:00
           # PM Eastern Time on the evening before the `cycle date`.
           input_cycle_date:,
@@ -814,25 +779,10 @@ module Increase
           input_sequence_number:,
           # The Fedwire input source identifier.
           input_source:,
-          # The American Banking Association (ABA) routing number of the bank originating
-          # the transfer.
-          originator_routing_number:,
-          # Additional information included in the wire reversal by the reversal originator.
-          originator_to_beneficiary_information:,
-          # The Fedwire cycle date for the wire transfer that is being reversed by this
-          # message.
-          previous_message_input_cycle_date:,
-          # The Fedwire transaction identifier for the wire transfer that was reversed.
-          previous_message_input_message_accountability_data:,
-          # The Fedwire sequence number for the wire transfer that was reversed.
-          previous_message_input_sequence_number:,
-          # The Fedwire input source identifier for the wire transfer that was reversed.
-          previous_message_input_source:,
-          # Information included in the wire reversal for the receiving financial
-          # institution.
-          receiver_financial_institution_information:,
-          # The sending bank's reference number for the wire reversal.
-          sender_reference:,
+          # The sending bank's identifier for the reversal.
+          instruction_identification:,
+          # Additional information about the reason for the reversal.
+          return_reason_additional_information:,
           # The ID for the Transaction associated with the transfer reversal.
           transaction_id:,
           # The ID for the Wire Transfer that is being reversed.
@@ -845,22 +795,14 @@ module Increase
             {
               amount: Integer,
               created_at: Time,
+              debtor_routing_number: T.nilable(String),
               description: String,
-              financial_institution_to_financial_institution_information:
-                T.nilable(String),
               input_cycle_date: Date,
               input_message_accountability_data: String,
               input_sequence_number: String,
               input_source: String,
-              originator_routing_number: T.nilable(String),
-              originator_to_beneficiary_information: T.nilable(String),
-              previous_message_input_cycle_date: T.nilable(Date),
-              previous_message_input_message_accountability_data:
-                T.nilable(String),
-              previous_message_input_sequence_number: String,
-              previous_message_input_source: T.nilable(String),
-              receiver_financial_institution_information: T.nilable(String),
-              sender_reference: T.nilable(String),
+              instruction_identification: T.nilable(String),
+              return_reason_additional_information: T.nilable(String),
               transaction_id: String,
               wire_transfer_id: String
             }
