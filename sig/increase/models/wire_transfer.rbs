@@ -304,20 +304,14 @@ module Increase
         {
           amount: Integer,
           created_at: Time,
+          debtor_routing_number: String?,
           description: String,
-          financial_institution_to_financial_institution_information: String?,
           input_cycle_date: Date,
           input_message_accountability_data: String,
           input_sequence_number: String,
           input_source: String,
-          originator_routing_number: String?,
-          originator_to_beneficiary_information: String?,
-          previous_message_input_cycle_date: Date?,
-          previous_message_input_message_accountability_data: String?,
-          previous_message_input_sequence_number: String,
-          previous_message_input_source: String?,
-          receiver_financial_institution_information: String?,
-          sender_reference: String?,
+          instruction_identification: String?,
+          return_reason_additional_information: String?,
           transaction_id: String,
           wire_transfer_id: String
         }
@@ -327,9 +321,9 @@ module Increase
 
         attr_accessor created_at: Time
 
-        attr_accessor description: String
+        attr_accessor debtor_routing_number: String?
 
-        attr_accessor financial_institution_to_financial_institution_information: String?
+        attr_accessor description: String
 
         attr_accessor input_cycle_date: Date
 
@@ -339,21 +333,9 @@ module Increase
 
         attr_accessor input_source: String
 
-        attr_accessor originator_routing_number: String?
+        attr_accessor instruction_identification: String?
 
-        attr_accessor originator_to_beneficiary_information: String?
-
-        attr_accessor previous_message_input_cycle_date: Date?
-
-        attr_accessor previous_message_input_message_accountability_data: String?
-
-        attr_accessor previous_message_input_sequence_number: String
-
-        attr_accessor previous_message_input_source: String?
-
-        attr_accessor receiver_financial_institution_information: String?
-
-        attr_accessor sender_reference: String?
+        attr_accessor return_reason_additional_information: String?
 
         attr_accessor transaction_id: String
 
@@ -362,20 +344,14 @@ module Increase
         def initialize: (
           amount: Integer,
           created_at: Time,
+          debtor_routing_number: String?,
           description: String,
-          financial_institution_to_financial_institution_information: String?,
           input_cycle_date: Date,
           input_message_accountability_data: String,
           input_sequence_number: String,
           input_source: String,
-          originator_routing_number: String?,
-          originator_to_beneficiary_information: String?,
-          previous_message_input_cycle_date: Date?,
-          previous_message_input_message_accountability_data: String?,
-          previous_message_input_sequence_number: String,
-          previous_message_input_source: String?,
-          receiver_financial_institution_information: String?,
-          sender_reference: String?,
+          instruction_identification: String?,
+          return_reason_additional_information: String?,
           transaction_id: String,
           wire_transfer_id: String
         ) -> void
@@ -383,20 +359,14 @@ module Increase
         def to_hash: -> {
           amount: Integer,
           created_at: Time,
+          debtor_routing_number: String?,
           description: String,
-          financial_institution_to_financial_institution_information: String?,
           input_cycle_date: Date,
           input_message_accountability_data: String,
           input_sequence_number: String,
           input_source: String,
-          originator_routing_number: String?,
-          originator_to_beneficiary_information: String?,
-          previous_message_input_cycle_date: Date?,
-          previous_message_input_message_accountability_data: String?,
-          previous_message_input_sequence_number: String,
-          previous_message_input_source: String?,
-          receiver_financial_institution_information: String?,
-          sender_reference: String?,
+          instruction_identification: String?,
+          return_reason_additional_information: String?,
           transaction_id: String,
           wire_transfer_id: String
         }

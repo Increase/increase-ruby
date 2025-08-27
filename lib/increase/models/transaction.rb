@@ -5117,17 +5117,17 @@ module Increase
           #   @return [Time]
           required :created_at, Time
 
+          # @!attribute debtor_routing_number
+          #   The debtor's routing number.
+          #
+          #   @return [String, nil]
+          required :debtor_routing_number, String, nil?: true
+
           # @!attribute description
           #   The description on the reversal message from Fedwire, set by the reversing bank.
           #
           #   @return [String]
           required :description, String
-
-          # @!attribute financial_institution_to_financial_institution_information
-          #   Additional financial institution information included in the wire reversal.
-          #
-          #   @return [String, nil]
-          required :financial_institution_to_financial_institution_information, String, nil?: true
 
           # @!attribute input_cycle_date
           #   The Fedwire cycle date for the wire reversal. The "Fedwire day" begins at 9:00
@@ -5154,56 +5154,17 @@ module Increase
           #   @return [String]
           required :input_source, String
 
-          # @!attribute originator_routing_number
-          #   The American Banking Association (ABA) routing number of the bank originating
-          #   the transfer.
+          # @!attribute instruction_identification
+          #   The sending bank's identifier for the reversal.
           #
           #   @return [String, nil]
-          required :originator_routing_number, String, nil?: true
+          required :instruction_identification, String, nil?: true
 
-          # @!attribute originator_to_beneficiary_information
-          #   Additional information included in the wire reversal by the reversal originator.
+          # @!attribute return_reason_additional_information
+          #   Additional information about the reason for the reversal.
           #
           #   @return [String, nil]
-          required :originator_to_beneficiary_information, String, nil?: true
-
-          # @!attribute previous_message_input_cycle_date
-          #   The Fedwire cycle date for the wire transfer that is being reversed by this
-          #   message.
-          #
-          #   @return [Date, nil]
-          required :previous_message_input_cycle_date, Date, nil?: true
-
-          # @!attribute previous_message_input_message_accountability_data
-          #   The Fedwire transaction identifier for the wire transfer that was reversed.
-          #
-          #   @return [String, nil]
-          required :previous_message_input_message_accountability_data, String, nil?: true
-
-          # @!attribute previous_message_input_sequence_number
-          #   The Fedwire sequence number for the wire transfer that was reversed.
-          #
-          #   @return [String]
-          required :previous_message_input_sequence_number, String
-
-          # @!attribute previous_message_input_source
-          #   The Fedwire input source identifier for the wire transfer that was reversed.
-          #
-          #   @return [String, nil]
-          required :previous_message_input_source, String, nil?: true
-
-          # @!attribute receiver_financial_institution_information
-          #   Information included in the wire reversal for the receiving financial
-          #   institution.
-          #
-          #   @return [String, nil]
-          required :receiver_financial_institution_information, String, nil?: true
-
-          # @!attribute sender_reference
-          #   The sending bank's reference number for the wire reversal.
-          #
-          #   @return [String, nil]
-          required :sender_reference, String, nil?: true
+          required :return_reason_additional_information, String, nil?: true
 
           # @!attribute transaction_id
           #   The ID for the Transaction associated with the transfer reversal.
@@ -5217,7 +5178,7 @@ module Increase
           #   @return [String]
           required :wire_transfer_id, String
 
-          # @!method initialize(amount:, created_at:, description:, financial_institution_to_financial_institution_information:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, originator_routing_number:, originator_to_beneficiary_information:, previous_message_input_cycle_date:, previous_message_input_message_accountability_data:, previous_message_input_sequence_number:, previous_message_input_source:, receiver_financial_institution_information:, sender_reference:, transaction_id:, wire_transfer_id:)
+          # @!method initialize(amount:, created_at:, debtor_routing_number:, description:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, instruction_identification:, return_reason_additional_information:, transaction_id:, wire_transfer_id:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::InboundWireReversal} for more details.
           #
@@ -5231,9 +5192,9 @@ module Increase
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
           #
-          #   @param description [String] The description on the reversal message from Fedwire, set by the reversing bank.
+          #   @param debtor_routing_number [String, nil] The debtor's routing number.
           #
-          #   @param financial_institution_to_financial_institution_information [String, nil] Additional financial institution information included in the wire reversal.
+          #   @param description [String] The description on the reversal message from Fedwire, set by the reversing bank.
           #
           #   @param input_cycle_date [Date] The Fedwire cycle date for the wire reversal. The "Fedwire day" begins at 9:00 P
           #
@@ -5243,21 +5204,9 @@ module Increase
           #
           #   @param input_source [String] The Fedwire input source identifier.
           #
-          #   @param originator_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank originating th
+          #   @param instruction_identification [String, nil] The sending bank's identifier for the reversal.
           #
-          #   @param originator_to_beneficiary_information [String, nil] Additional information included in the wire reversal by the reversal originator.
-          #
-          #   @param previous_message_input_cycle_date [Date, nil] The Fedwire cycle date for the wire transfer that is being reversed by this mess
-          #
-          #   @param previous_message_input_message_accountability_data [String, nil] The Fedwire transaction identifier for the wire transfer that was reversed.
-          #
-          #   @param previous_message_input_sequence_number [String] The Fedwire sequence number for the wire transfer that was reversed.
-          #
-          #   @param previous_message_input_source [String, nil] The Fedwire input source identifier for the wire transfer that was reversed.
-          #
-          #   @param receiver_financial_institution_information [String, nil] Information included in the wire reversal for the receiving financial institutio
-          #
-          #   @param sender_reference [String, nil] The sending bank's reference number for the wire reversal.
+          #   @param return_reason_additional_information [String, nil] Additional information about the reason for the reversal.
           #
           #   @param transaction_id [String] The ID for the Transaction associated with the transfer reversal.
           #
