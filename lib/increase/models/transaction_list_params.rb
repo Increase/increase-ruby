@@ -175,6 +175,9 @@ module Increase
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE = :card_push_transfer_acceptance
 
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT = :account_revenue_payment
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 

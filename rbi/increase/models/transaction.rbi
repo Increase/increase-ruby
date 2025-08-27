@@ -205,6 +205,27 @@ module Increase
             T.any(Increase::Transaction::Source, Increase::Internal::AnyHash)
           end
 
+        # An Account Revenue Payment object. This field will be present in the JSON
+        # response if and only if `category` is equal to `account_revenue_payment`. A
+        # Account Revenue Payment represents a payment made to an account from the bank.
+        # Account revenue is a type of non-interest income.
+        sig do
+          returns(
+            T.nilable(Increase::Transaction::Source::AccountRevenuePayment)
+          )
+        end
+        attr_reader :account_revenue_payment
+
+        sig do
+          params(
+            account_revenue_payment:
+              T.nilable(
+                Increase::Transaction::Source::AccountRevenuePayment::OrHash
+              )
+          ).void
+        end
+        attr_writer :account_revenue_payment
+
         # An Account Transfer Intention object. This field will be present in the JSON
         # response if and only if `category` is equal to `account_transfer_intention`. Two
         # Account Transfer Intentions are created from each Account Transfer. One
@@ -833,6 +854,10 @@ module Increase
         # deprecated and will be removed in the future.
         sig do
           params(
+            account_revenue_payment:
+              T.nilable(
+                Increase::Transaction::Source::AccountRevenuePayment::OrHash
+              ),
             account_transfer_intention:
               T.nilable(
                 Increase::Transaction::Source::AccountTransferIntention::OrHash
@@ -946,6 +971,11 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # An Account Revenue Payment object. This field will be present in the JSON
+          # response if and only if `category` is equal to `account_revenue_payment`. A
+          # Account Revenue Payment represents a payment made to an account from the bank.
+          # Account revenue is a type of non-interest income.
+          account_revenue_payment:,
           # An Account Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `account_transfer_intention`. Two
           # Account Transfer Intentions are created from each Account Transfer. One
@@ -1116,6 +1146,8 @@ module Increase
         sig do
           override.returns(
             {
+              account_revenue_payment:
+                T.nilable(Increase::Transaction::Source::AccountRevenuePayment),
               account_transfer_intention:
                 T.nilable(
                   Increase::Transaction::Source::AccountTransferIntention
@@ -1202,6 +1234,61 @@ module Increase
           )
         end
         def to_hash
+        end
+
+        class AccountRevenuePayment < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::AccountRevenuePayment,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The account on which the account revenue was accrued.
+          sig { returns(String) }
+          attr_accessor :accrued_on_account_id
+
+          # The end of the period for which this transaction paid account revenue.
+          sig { returns(Time) }
+          attr_accessor :period_end
+
+          # The start of the period for which this transaction paid account revenue.
+          sig { returns(Time) }
+          attr_accessor :period_start
+
+          # An Account Revenue Payment object. This field will be present in the JSON
+          # response if and only if `category` is equal to `account_revenue_payment`. A
+          # Account Revenue Payment represents a payment made to an account from the bank.
+          # Account revenue is a type of non-interest income.
+          sig do
+            params(
+              accrued_on_account_id: String,
+              period_end: Time,
+              period_start: Time
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The account on which the account revenue was accrued.
+            accrued_on_account_id:,
+            # The end of the period for which this transaction paid account revenue.
+            period_end:,
+            # The start of the period for which this transaction paid account revenue.
+            period_start:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                accrued_on_account_id: String,
+                period_end: Time,
+                period_start: Time
+              }
+            )
+          end
+          def to_hash
+          end
         end
 
         class AccountTransferIntention < Increase::Internal::Type::BaseModel
@@ -7926,6 +8013,13 @@ module Increase
           CARD_PUSH_TRANSFER_ACCEPTANCE =
             T.let(
               :card_push_transfer_acceptance,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT =
+            T.let(
+              :account_revenue_payment,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
