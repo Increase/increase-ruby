@@ -106,6 +106,7 @@ module Increase
 
       type source =
         {
+          account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
           account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
           ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
           ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
@@ -142,6 +143,8 @@ module Increase
         }
 
       class Source < Increase::Internal::Type::BaseModel
+        attr_accessor account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?
+
         attr_accessor account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?
 
         attr_accessor ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?
@@ -209,6 +212,7 @@ module Increase
         attr_accessor wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
 
         def initialize: (
+          account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
           account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
           ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
           ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
@@ -245,6 +249,7 @@ module Increase
         ) -> void
 
         def to_hash: -> {
+          account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
           account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
           ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
           ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
@@ -279,6 +284,33 @@ module Increase
           swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         }
+
+        type account_revenue_payment =
+          {
+            accrued_on_account_id: String,
+            period_end: Time,
+            period_start: Time
+          }
+
+        class AccountRevenuePayment < Increase::Internal::Type::BaseModel
+          attr_accessor accrued_on_account_id: String
+
+          attr_accessor period_end: Time
+
+          attr_accessor period_start: Time
+
+          def initialize: (
+            accrued_on_account_id: String,
+            period_end: Time,
+            period_start: Time
+          ) -> void
+
+          def to_hash: -> {
+            accrued_on_account_id: String,
+            period_end: Time,
+            period_start: Time
+          }
+        end
 
         type account_transfer_intention =
           {
@@ -3130,6 +3162,7 @@ module Increase
           | :swift_transfer_intention
           | :swift_transfer_return
           | :card_push_transfer_acceptance
+          | :account_revenue_payment
           | :other
 
         module Category
@@ -3227,6 +3260,9 @@ module Increase
 
           # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
           CARD_PUSH_TRANSFER_ACCEPTANCE: :card_push_transfer_acceptance
+
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT: :account_revenue_payment
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER: :other

@@ -383,6 +383,13 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT =
+            T.let(
+              :account_revenue_payment,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER =
             T.let(
