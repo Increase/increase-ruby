@@ -206,7 +206,7 @@ module Increase
           end
 
         # An Account Revenue Payment object. This field will be present in the JSON
-        # response if and only if `category` is equal to `account_revenue_payment`. A
+        # response if and only if `category` is equal to `account_revenue_payment`. An
         # Account Revenue Payment represents a payment made to an account from the bank.
         # Account revenue is a type of non-interest income.
         sig do
@@ -972,7 +972,7 @@ module Increase
         end
         def self.new(
           # An Account Revenue Payment object. This field will be present in the JSON
-          # response if and only if `category` is equal to `account_revenue_payment`. A
+          # response if and only if `category` is equal to `account_revenue_payment`. An
           # Account Revenue Payment represents a payment made to an account from the bank.
           # Account revenue is a type of non-interest income.
           account_revenue_payment:,
@@ -1258,7 +1258,7 @@ module Increase
           attr_accessor :period_start
 
           # An Account Revenue Payment object. This field will be present in the JSON
-          # response if and only if `category` is equal to `account_revenue_payment`. A
+          # response if and only if `category` is equal to `account_revenue_payment`. An
           # Account Revenue Payment represents a payment made to an account from the bank.
           # Account revenue is a type of non-interest income.
           sig do
