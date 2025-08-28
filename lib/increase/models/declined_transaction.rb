@@ -1780,6 +1780,9 @@ module Increase
             # The check cannot be processed. This is rare: please contact support.
             UNABLE_TO_PROCESS = :unable_to_process
 
+            # The check image is unusable.
+            UNUSABLE_IMAGE = :unusable_image
+
             # Your integration declined this check via the API.
             USER_INITIATED = :user_initiated
 
