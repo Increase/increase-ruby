@@ -72,16 +72,25 @@ module Increase
         # `submitted`. For convenience, if the transfer is in `status`:
         # `pending_submission`, the simulation will also submit the transfer. Without this
         # simulation the transfer will eventually settle on its own following the same
-        # Federal Reserve timeline as in production.
+        # Federal Reserve timeline as in production. Additionally, you can specify the
+        # behavior of the inbound funds hold that is created when the ACH Transfer is
+        # settled. If no behavior is specified, the inbound funds hold will be released
+        # immediately in order for the funds to be available for use.
         sig do
           params(
             ach_transfer_id: String,
+            inbound_funds_hold_behavior:
+              Increase::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::ACHTransfer)
         end
         def settle(
           # The identifier of the ACH Transfer you wish to become settled.
           ach_transfer_id,
+          # The behavior of the inbound funds hold that is created when the ACH Transfer is
+          # settled. If no behavior is specified, the inbound funds hold will be released
+          # immediately in order for the funds to be available for use.
+          inbound_funds_hold_behavior: nil,
           request_options: {}
         )
         end

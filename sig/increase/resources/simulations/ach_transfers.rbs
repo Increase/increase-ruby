@@ -22,6 +22,7 @@ module Increase
 
         def settle: (
           String ach_transfer_id,
+          ?inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior,
           ?request_options: Increase::request_opts
         ) -> Increase::ACHTransfer
 
