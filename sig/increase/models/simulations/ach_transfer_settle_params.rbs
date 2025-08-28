@@ -2,15 +2,45 @@ module Increase
   module Models
     module Simulations
       type ach_transfer_settle_params =
-        {  } & Increase::Internal::Type::request_parameters
+        {
+          inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior
+        }
+        & Increase::Internal::Type::request_parameters
 
       class ACHTransferSettleParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Increase::request_opts) -> void
+        attr_reader inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior?
 
-        def to_hash: -> { request_options: Increase::RequestOptions }
+        def inbound_funds_hold_behavior=: (
+          Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior
+        ) -> Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior
+
+        def initialize: (
+          ?inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior,
+          request_options: Increase::RequestOptions
+        }
+
+        type inbound_funds_hold_behavior =
+          :release_immediately | :release_on_default_schedule
+
+        module InboundFundsHoldBehavior
+          extend Increase::Internal::Type::Enum
+
+          # Release the inbound funds hold immediately.
+          RELEASE_IMMEDIATELY: :release_immediately
+
+          # Release the inbound funds hold on the default schedule.
+          RELEASE_ON_DEFAULT_SCHEDULE: :release_on_default_schedule
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior]
+        end
       end
     end
   end

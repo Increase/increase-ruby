@@ -89,16 +89,24 @@ module Increase
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Increase::Models::Simulations::ACHTransferSettleParams} for more details.
+        #
         # Simulates the settlement of an [ACH Transfer](#ach-transfers) by the Federal
         # Reserve. This transfer must first have a `status` of `pending_submission` or
         # `submitted`. For convenience, if the transfer is in `status`:
         # `pending_submission`, the simulation will also submit the transfer. Without this
         # simulation the transfer will eventually settle on its own following the same
-        # Federal Reserve timeline as in production.
+        # Federal Reserve timeline as in production. Additionally, you can specify the
+        # behavior of the inbound funds hold that is created when the ACH Transfer is
+        # settled. If no behavior is specified, the inbound funds hold will be released
+        # immediately in order for the funds to be available for use.
         #
-        # @overload settle(ach_transfer_id, request_options: {})
+        # @overload settle(ach_transfer_id, inbound_funds_hold_behavior: nil, request_options: {})
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to become settled.
+        #
+        # @param inbound_funds_hold_behavior [Symbol, Increase::Models::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior] The behavior of the inbound funds hold that is created when the ACH Transfer is
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -106,11 +114,13 @@ module Increase
         #
         # @see Increase::Models::Simulations::ACHTransferSettleParams
         def settle(ach_transfer_id, params = {})
+          parsed, options = Increase::Simulations::ACHTransferSettleParams.dump_request(params)
           @client.request(
             method: :post,
             path: ["simulations/ach_transfers/%1$s/settle", ach_transfer_id],
+            body: parsed,
             model: Increase::ACHTransfer,
-            options: params[:request_options]
+            options: options
           )
         end
 
