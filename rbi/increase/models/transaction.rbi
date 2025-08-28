@@ -10318,6 +10318,13 @@ module Increase
                 Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
               )
 
+            # Account revenue payment distribution
+            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION =
+              T.let(
+                :account_revenue_payment_distribution,
+                Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[

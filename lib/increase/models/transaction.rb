@@ -5636,6 +5636,9 @@ module Increase
             # Sample funds return
             SAMPLE_FUNDS_RETURN = :sample_funds_return
 
+            # Account revenue payment distribution
+            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION = :account_revenue_payment_distribution
+
             # @!method self.values
             #   @return [Array<Symbol>]
           end

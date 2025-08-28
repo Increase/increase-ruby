@@ -4245,6 +4245,7 @@ module Increase
             | :negative_balance_forgiveness
             | :sample_funds
             | :sample_funds_return
+            | :account_revenue_payment_distribution
 
           module Reason
             extend Increase::Internal::Type::Enum
@@ -4293,6 +4294,9 @@ module Increase
 
             # Sample funds return
             SAMPLE_FUNDS_RETURN: :sample_funds_return
+
+            # Account revenue payment distribution
+            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION: :account_revenue_payment_distribution
 
             def self?.values: -> ::Array[Increase::Models::Transaction::Source::InternalSource::reason]
           end
