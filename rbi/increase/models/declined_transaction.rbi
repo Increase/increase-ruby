@@ -3371,6 +3371,13 @@ module Increase
                 Increase::DeclinedTransaction::Source::CheckDecline::Reason::TaggedSymbol
               )
 
+            # The check image is unusable.
+            UNUSABLE_IMAGE =
+              T.let(
+                :unusable_image,
+                Increase::DeclinedTransaction::Source::CheckDecline::Reason::TaggedSymbol
+              )
+
             # Your integration declined this check via the API.
             USER_INITIATED =
               T.let(
