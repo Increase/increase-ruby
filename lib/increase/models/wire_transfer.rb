@@ -523,6 +523,20 @@ module Increase
         #   @return [String, nil]
         required :return_reason_additional_information, String, nil?: true
 
+        # @!attribute return_reason_code
+        #   A code provided by the sending bank giving a reason for the reversal. It will
+        #   generally be one of the codes defined in the ISO20022
+        #   `ExternalReturnReason1Code` code set, but this is not enforced by the network.
+        #
+        #   @return [String, nil]
+        required :return_reason_code, String, nil?: true
+
+        # @!attribute return_reason_code_description
+        #   An Increase-generated description of the `return_reason_code`.
+        #
+        #   @return [String, nil]
+        required :return_reason_code_description, String, nil?: true
+
         # @!attribute transaction_id
         #   The ID for the Transaction associated with the transfer reversal.
         #
@@ -535,7 +549,7 @@ module Increase
         #   @return [String]
         required :wire_transfer_id, String
 
-        # @!method initialize(amount:, created_at:, debtor_routing_number:, description:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, instruction_identification:, return_reason_additional_information:, transaction_id:, wire_transfer_id:)
+        # @!method initialize(amount:, created_at:, debtor_routing_number:, description:, input_cycle_date:, input_message_accountability_data:, input_sequence_number:, input_source:, instruction_identification:, return_reason_additional_information:, return_reason_code:, return_reason_code_description:, transaction_id:, wire_transfer_id:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::WireTransfer::Reversal} for more details.
         #
@@ -560,6 +574,10 @@ module Increase
         #   @param instruction_identification [String, nil] The sending bank's identifier for the reversal.
         #
         #   @param return_reason_additional_information [String, nil] Additional information about the reason for the reversal.
+        #
+        #   @param return_reason_code [String, nil] A code provided by the sending bank giving a reason for the reversal. It will ge
+        #
+        #   @param return_reason_code_description [String, nil] An Increase-generated description of the `return_reason_code`.
         #
         #   @param transaction_id [String] The ID for the Transaction associated with the transfer reversal.
         #
