@@ -3,15 +3,18 @@
 module Increase
   module Resources
     class Documents
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::DocumentCreateParams} for more details.
+      #
       # Create a Document
       #
       # @overload create(category:, account_verification_letter: nil, funding_instructions: nil, request_options: {})
       #
       # @param category [Symbol, Increase::Models::DocumentCreateParams::Category] The type of document to create.
       #
-      # @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter.
+      # @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter. Required if and only if `category` is `account_v
       #
-      # @param funding_instructions [Increase::Models::DocumentCreateParams::FundingInstructions] Funding instructions.
+      # @param funding_instructions [Increase::Models::DocumentCreateParams::FundingInstructions] Funding instructions. Required if and only if `category` is `funding_instruction
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

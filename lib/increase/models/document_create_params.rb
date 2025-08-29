@@ -14,23 +14,28 @@ module Increase
       required :category, enum: -> { Increase::DocumentCreateParams::Category }
 
       # @!attribute account_verification_letter
-      #   An account verification letter.
+      #   An account verification letter. Required if and only if `category` is
+      #   `account_verification_letter`.
       #
       #   @return [Increase::Models::DocumentCreateParams::AccountVerificationLetter, nil]
       optional :account_verification_letter, -> { Increase::DocumentCreateParams::AccountVerificationLetter }
 
       # @!attribute funding_instructions
-      #   Funding instructions.
+      #   Funding instructions. Required if and only if `category` is
+      #   `funding_instructions`.
       #
       #   @return [Increase::Models::DocumentCreateParams::FundingInstructions, nil]
       optional :funding_instructions, -> { Increase::DocumentCreateParams::FundingInstructions }
 
       # @!method initialize(category:, account_verification_letter: nil, funding_instructions: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Increase::Models::DocumentCreateParams} for more details.
+      #
       #   @param category [Symbol, Increase::Models::DocumentCreateParams::Category] The type of document to create.
       #
-      #   @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter.
+      #   @param account_verification_letter [Increase::Models::DocumentCreateParams::AccountVerificationLetter] An account verification letter. Required if and only if `category` is `account_v
       #
-      #   @param funding_instructions [Increase::Models::DocumentCreateParams::FundingInstructions] Funding instructions.
+      #   @param funding_instructions [Increase::Models::DocumentCreateParams::FundingInstructions] Funding instructions. Required if and only if `category` is `funding_instruction
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -62,7 +67,8 @@ module Increase
         optional :balance_date, Date
 
         # @!method initialize(account_number_id:, balance_date: nil)
-        #   An account verification letter.
+        #   An account verification letter. Required if and only if `category` is
+        #   `account_verification_letter`.
         #
         #   @param account_number_id [String] The Account Number the bank letter should be generated for.
         #
@@ -77,7 +83,8 @@ module Increase
         required :account_number_id, String
 
         # @!method initialize(account_number_id:)
-        #   Funding instructions.
+        #   Funding instructions. Required if and only if `category` is
+        #   `funding_instructions`.
         #
         #   @param account_number_id [String] The Account Number the funding instructions should be generated for.
       end
