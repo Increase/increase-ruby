@@ -28,7 +28,7 @@ module Increase
 
       # @!attribute government_authority
       #   Details of the Government Authority entity to create. Required if `structure` is
-      #   equal to `Government Authority`.
+      #   equal to `government_authority`.
       #
       #   @return [Increase::Models::EntityCreateParams::GovernmentAuthority, nil]
       optional :government_authority, -> { Increase::EntityCreateParams::GovernmentAuthority }
@@ -693,7 +693,7 @@ module Increase
         #   {Increase::Models::EntityCreateParams::GovernmentAuthority} for more details.
         #
         #   Details of the Government Authority entity to create. Required if `structure` is
-        #   equal to `Government Authority`.
+        #   equal to `government_authority`.
         #
         #   @param address [Increase::Models::EntityCreateParams::GovernmentAuthority::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
         #
@@ -1642,8 +1642,8 @@ module Increase
           required :structure, enum: -> { Increase::EntityCreateParams::Trust::Trustee::Structure }
 
           # @!attribute individual
-          #   Details of the individual trustee. Required when the trustee `structure` is
-          #   equal to `individual`.
+          #   Details of the individual trustee. Within the trustee object, this is required
+          #   if `structure` is equal to `individual`.
           #
           #   @return [Increase::Models::EntityCreateParams::Trust::Trustee::Individual, nil]
           optional :individual, -> { Increase::EntityCreateParams::Trust::Trustee::Individual }
@@ -1654,7 +1654,7 @@ module Increase
           #
           #   @param structure [Symbol, Increase::Models::EntityCreateParams::Trust::Trustee::Structure] The structure of the trustee.
           #
-          #   @param individual [Increase::Models::EntityCreateParams::Trust::Trustee::Individual] Details of the individual trustee. Required when the trustee `structure` is equa
+          #   @param individual [Increase::Models::EntityCreateParams::Trust::Trustee::Individual] Details of the individual trustee. Within the trustee object, this is required i
 
           # The structure of the trustee.
           #
@@ -1710,8 +1710,8 @@ module Increase
             #   {Increase::Models::EntityCreateParams::Trust::Trustee::Individual} for more
             #   details.
             #
-            #   Details of the individual trustee. Required when the trustee `structure` is
-            #   equal to `individual`.
+            #   Details of the individual trustee. Within the trustee object, this is required
+            #   if `structure` is equal to `individual`.
             #
             #   @param address [Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
             #

@@ -345,6 +345,7 @@ module Increase
         attr_accessor :category
 
         # Unstructured `payment_related_information` passed through with the transfer.
+        # Required if and only if `category` is `freeform`.
         sig do
           returns(
             T.nilable(Increase::ACHTransferCreateParams::Addenda::Freeform)
@@ -362,6 +363,7 @@ module Increase
 
         # Structured ASC X12 820 remittance advice records. Please reach out to
         # [support@increase.com](mailto:support@increase.com) for more information.
+        # Required if and only if `category` is `payment_order_remittance_advice`.
         sig do
           returns(
             T.nilable(
@@ -395,9 +397,11 @@ module Increase
           # The type of addenda to pass with the transfer.
           category:,
           # Unstructured `payment_related_information` passed through with the transfer.
+          # Required if and only if `category` is `freeform`.
           freeform: nil,
           # Structured ASC X12 820 remittance advice records. Please reach out to
           # [support@increase.com](mailto:support@increase.com) for more information.
+          # Required if and only if `category` is `payment_order_remittance_advice`.
           payment_order_remittance_advice: nil
         )
         end
@@ -478,6 +482,7 @@ module Increase
           attr_accessor :entries
 
           # Unstructured `payment_related_information` passed through with the transfer.
+          # Required if and only if `category` is `freeform`.
           sig do
             params(
               entries:
@@ -560,6 +565,7 @@ module Increase
 
           # Structured ASC X12 820 remittance advice records. Please reach out to
           # [support@increase.com](mailto:support@increase.com) for more information.
+          # Required if and only if `category` is `payment_order_remittance_advice`.
           sig do
             params(
               invoices:

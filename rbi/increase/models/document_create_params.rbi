@@ -15,7 +15,8 @@ module Increase
       sig { returns(Increase::DocumentCreateParams::Category::OrSymbol) }
       attr_accessor :category
 
-      # An account verification letter.
+      # An account verification letter. Required if and only if `category` is
+      # `account_verification_letter`.
       sig do
         returns(
           T.nilable(Increase::DocumentCreateParams::AccountVerificationLetter)
@@ -31,7 +32,8 @@ module Increase
       end
       attr_writer :account_verification_letter
 
-      # Funding instructions.
+      # Funding instructions. Required if and only if `category` is
+      # `funding_instructions`.
       sig do
         returns(T.nilable(Increase::DocumentCreateParams::FundingInstructions))
       end
@@ -58,9 +60,11 @@ module Increase
       def self.new(
         # The type of document to create.
         category:,
-        # An account verification letter.
+        # An account verification letter. Required if and only if `category` is
+        # `account_verification_letter`.
         account_verification_letter: nil,
-        # Funding instructions.
+        # Funding instructions. Required if and only if `category` is
+        # `funding_instructions`.
         funding_instructions: nil,
         request_options: {}
       )
@@ -134,7 +138,8 @@ module Increase
         sig { params(balance_date: Date).void }
         attr_writer :balance_date
 
-        # An account verification letter.
+        # An account verification letter. Required if and only if `category` is
+        # `account_verification_letter`.
         sig do
           params(account_number_id: String, balance_date: Date).returns(
             T.attached_class
@@ -168,7 +173,8 @@ module Increase
         sig { returns(String) }
         attr_accessor :account_number_id
 
-        # Funding instructions.
+        # Funding instructions. Required if and only if `category` is
+        # `funding_instructions`.
         sig { params(account_number_id: String).returns(T.attached_class) }
         def self.new(
           # The Account Number the funding instructions should be generated for.
