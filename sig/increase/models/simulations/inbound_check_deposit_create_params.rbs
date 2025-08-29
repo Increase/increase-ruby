@@ -2,7 +2,12 @@ module Increase
   module Models
     module Simulations
       type inbound_check_deposit_create_params =
-        { account_number_id: String, amount: Integer, check_number: String }
+        {
+          account_number_id: String,
+          amount: Integer,
+          check_number: String,
+          payee_name_analysis: Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis
+        }
         & Increase::Internal::Type::request_parameters
 
       class InboundCheckDepositCreateParams < Increase::Internal::Type::BaseModel
@@ -15,10 +20,17 @@ module Increase
 
         attr_accessor check_number: String
 
+        attr_reader payee_name_analysis: Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis?
+
+        def payee_name_analysis=: (
+          Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis
+        ) -> Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis
+
         def initialize: (
           account_number_id: String,
           amount: Integer,
           check_number: String,
+          ?payee_name_analysis: Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis,
           ?request_options: Increase::request_opts
         ) -> void
 
@@ -26,8 +38,27 @@ module Increase
           account_number_id: String,
           amount: Integer,
           check_number: String,
+          payee_name_analysis: Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis,
           request_options: Increase::RequestOptions
         }
+
+        type payee_name_analysis =
+          :name_matches | :does_not_match | :not_evaluated
+
+        module PayeeNameAnalysis
+          extend Increase::Internal::Type::Enum
+
+          # The details on the check match the recipient name of the check transfer.
+          NAME_MATCHES: :name_matches
+
+          # The details on the check do not match the recipient name of the check transfer.
+          DOES_NOT_MATCH: :does_not_match
+
+          # The payee name analysis was not evaluated.
+          NOT_EVALUATED: :not_evaluated
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis]
+        end
       end
     end
   end
