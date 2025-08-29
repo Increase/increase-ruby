@@ -17,9 +17,11 @@ module Increase
       def create(
         # The type of document to create.
         category:,
-        # An account verification letter.
+        # An account verification letter. Required if and only if `category` is
+        # `account_verification_letter`.
         account_verification_letter: nil,
-        # Funding instructions.
+        # Funding instructions. Required if and only if `category` is
+        # `funding_instructions`.
         funding_instructions: nil,
         request_options: {}
       )

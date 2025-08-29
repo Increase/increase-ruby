@@ -35,7 +35,7 @@ module Increase
       attr_writer :description
 
       # Details of the Government Authority entity to create. Required if `structure` is
-      # equal to `Government Authority`.
+      # equal to `government_authority`.
       sig do
         returns(T.nilable(Increase::EntityCreateParams::GovernmentAuthority))
       end
@@ -140,7 +140,7 @@ module Increase
         # The description you choose to give the entity.
         description: nil,
         # Details of the Government Authority entity to create. Required if `structure` is
-        # equal to `Government Authority`.
+        # equal to `government_authority`.
         government_authority: nil,
         # Details of the joint entity to create. Required if `structure` is equal to
         # `joint`.
@@ -1263,7 +1263,7 @@ module Increase
         attr_writer :website
 
         # Details of the Government Authority entity to create. Required if `structure` is
-        # equal to `Government Authority`.
+        # equal to `government_authority`.
         sig do
           params(
             address:
@@ -3005,8 +3005,8 @@ module Increase
           end
           attr_accessor :structure
 
-          # Details of the individual trustee. Required when the trustee `structure` is
-          # equal to `individual`.
+          # Details of the individual trustee. Within the trustee object, this is required
+          # if `structure` is equal to `individual`.
           sig do
             returns(
               T.nilable(
@@ -3035,8 +3035,8 @@ module Increase
           def self.new(
             # The structure of the trustee.
             structure:,
-            # Details of the individual trustee. Required when the trustee `structure` is
-            # equal to `individual`.
+            # Details of the individual trustee. Within the trustee object, this is required
+            # if `structure` is equal to `individual`.
             individual: nil
           )
           end
@@ -3145,8 +3145,8 @@ module Increase
             sig { params(confirmed_no_us_tax_id: T::Boolean).void }
             attr_writer :confirmed_no_us_tax_id
 
-            # Details of the individual trustee. Required when the trustee `structure` is
-            # equal to `individual`.
+            # Details of the individual trustee. Within the trustee object, this is required
+            # if `structure` is equal to `individual`.
             sig do
               params(
                 address:

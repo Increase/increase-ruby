@@ -195,6 +195,7 @@ module Increase
 
         # @!attribute freeform
         #   Unstructured `payment_related_information` passed through with the transfer.
+        #   Required if and only if `category` is `freeform`.
         #
         #   @return [Increase::Models::ACHTransferCreateParams::Addenda::Freeform, nil]
         optional :freeform, -> { Increase::ACHTransferCreateParams::Addenda::Freeform }
@@ -202,6 +203,7 @@ module Increase
         # @!attribute payment_order_remittance_advice
         #   Structured ASC X12 820 remittance advice records. Please reach out to
         #   [support@increase.com](mailto:support@increase.com) for more information.
+        #   Required if and only if `category` is `payment_order_remittance_advice`.
         #
         #   @return [Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice, nil]
         optional :payment_order_remittance_advice,
@@ -216,7 +218,7 @@ module Increase
         #
         #   @param category [Symbol, Increase::Models::ACHTransferCreateParams::Addenda::Category] The type of addenda to pass with the transfer.
         #
-        #   @param freeform [Increase::Models::ACHTransferCreateParams::Addenda::Freeform] Unstructured `payment_related_information` passed through with the transfer.
+        #   @param freeform [Increase::Models::ACHTransferCreateParams::Addenda::Freeform] Unstructured `payment_related_information` passed through with the transfer. Req
         #
         #   @param payment_order_remittance_advice [Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice] Structured ASC X12 820 remittance advice records. Please reach out to [support@i
 
@@ -254,6 +256,7 @@ module Increase
           #   {Increase::Models::ACHTransferCreateParams::Addenda::Freeform} for more details.
           #
           #   Unstructured `payment_related_information` passed through with the transfer.
+          #   Required if and only if `category` is `freeform`.
           #
           #   @param entries [Array<Increase::Models::ACHTransferCreateParams::Addenda::Freeform::Entry>] Each entry represents an addendum sent with the transfer. In general, you should
 
@@ -281,6 +284,7 @@ module Increase
           # @!method initialize(invoices:)
           #   Structured ASC X12 820 remittance advice records. Please reach out to
           #   [support@increase.com](mailto:support@increase.com) for more information.
+          #   Required if and only if `category` is `payment_order_remittance_advice`.
           #
           #   @param invoices [Array<Increase::Models::ACHTransferCreateParams::Addenda::PaymentOrderRemittanceAdvice::Invoice>] ASC X12 RMR records for this specific transfer.
 

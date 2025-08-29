@@ -32,7 +32,7 @@ module Increase
         # The description you choose to give the entity.
         description: nil,
         # Details of the Government Authority entity to create. Required if `structure` is
-        # equal to `Government Authority`.
+        # equal to `government_authority`.
         government_authority: nil,
         # Details of the joint entity to create. Required if `structure` is equal to
         # `joint`.
