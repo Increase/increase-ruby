@@ -735,6 +735,16 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :return_reason_additional_information
 
+        # A code provided by the sending bank giving a reason for the reversal. It will
+        # generally be one of the codes defined in the ISO20022
+        # `ExternalReturnReason1Code` code set, but this is not enforced by the network.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :return_reason_code
+
+        # An Increase-generated description of the `return_reason_code`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :return_reason_code_description
+
         # The ID for the Transaction associated with the transfer reversal.
         sig { returns(String) }
         attr_accessor :transaction_id
@@ -756,6 +766,8 @@ module Increase
             input_source: String,
             instruction_identification: T.nilable(String),
             return_reason_additional_information: T.nilable(String),
+            return_reason_code: T.nilable(String),
+            return_reason_code_description: T.nilable(String),
             transaction_id: String,
             wire_transfer_id: String
           ).returns(T.attached_class)
@@ -783,6 +795,12 @@ module Increase
           instruction_identification:,
           # Additional information about the reason for the reversal.
           return_reason_additional_information:,
+          # A code provided by the sending bank giving a reason for the reversal. It will
+          # generally be one of the codes defined in the ISO20022
+          # `ExternalReturnReason1Code` code set, but this is not enforced by the network.
+          return_reason_code:,
+          # An Increase-generated description of the `return_reason_code`.
+          return_reason_code_description:,
           # The ID for the Transaction associated with the transfer reversal.
           transaction_id:,
           # The ID for the Wire Transfer that is being reversed.
@@ -803,6 +821,8 @@ module Increase
               input_source: String,
               instruction_identification: T.nilable(String),
               return_reason_additional_information: T.nilable(String),
+              return_reason_code: T.nilable(String),
+              return_reason_code_description: T.nilable(String),
               transaction_id: String,
               wire_transfer_id: String
             }

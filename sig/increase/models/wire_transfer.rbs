@@ -312,6 +312,8 @@ module Increase
           input_source: String,
           instruction_identification: String?,
           return_reason_additional_information: String?,
+          return_reason_code: String?,
+          return_reason_code_description: String?,
           transaction_id: String,
           wire_transfer_id: String
         }
@@ -337,6 +339,10 @@ module Increase
 
         attr_accessor return_reason_additional_information: String?
 
+        attr_accessor return_reason_code: String?
+
+        attr_accessor return_reason_code_description: String?
+
         attr_accessor transaction_id: String
 
         attr_accessor wire_transfer_id: String
@@ -352,6 +358,8 @@ module Increase
           input_source: String,
           instruction_identification: String?,
           return_reason_additional_information: String?,
+          return_reason_code: String?,
+          return_reason_code_description: String?,
           transaction_id: String,
           wire_transfer_id: String
         ) -> void
@@ -367,6 +375,8 @@ module Increase
           input_source: String,
           instruction_identification: String?,
           return_reason_additional_information: String?,
+          return_reason_code: String?,
+          return_reason_code_description: String?,
           transaction_id: String,
           wire_transfer_id: String
         }
