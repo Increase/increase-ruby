@@ -15,6 +15,8 @@ module Increase
             account_number_id: String,
             amount: Integer,
             check_number: String,
+            payee_name_analysis:
+              Increase::Simulations::InboundCheckDepositCreateParams::PayeeNameAnalysis::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::InboundCheckDeposit)
         end
@@ -25,6 +27,10 @@ module Increase
           amount:,
           # The check number on the check to be deposited.
           check_number:,
+          # Simulate the outcome of
+          # [payee name checking](https://increase.com/documentation/positive-pay#payee-name-mismatches).
+          # Defaults to `not_evaluated`.
+          payee_name_analysis: nil,
           request_options: {}
         )
         end

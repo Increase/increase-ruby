@@ -6,6 +6,7 @@ module Increase
           account_number_id: String,
           amount: Integer,
           check_number: String,
+          ?payee_name_analysis: Increase::Models::Simulations::InboundCheckDepositCreateParams::payee_name_analysis,
           ?request_options: Increase::request_opts
         ) -> Increase::InboundCheckDeposit
 
