@@ -8,6 +8,7 @@ module Increase
         ?government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         ?joint: Increase::EntityCreateParams::Joint,
         ?natural_person: Increase::EntityCreateParams::NaturalPerson,
+        ?risk_rating: Increase::EntityCreateParams::RiskRating,
         ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
         ?trust: Increase::EntityCreateParams::Trust,
@@ -16,6 +17,13 @@ module Increase
 
       def retrieve: (
         String entity_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Entity
+
+      def update: (
+        String entity_id,
+        ?risk_rating: Increase::EntityUpdateParams::RiskRating,
+        ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
