@@ -34,6 +34,22 @@ module Increase
       sig { returns(String) }
       attr_accessor :program_id
 
+      # A reference ID provided by the fulfillment provider for the card stock used.
+      # Only used if you've ordered card stock separately.
+      sig { returns(T.nilable(String)) }
+      attr_reader :card_stock_reference
+
+      sig { params(card_stock_reference: String).void }
+      attr_writer :card_stock_reference
+
+      # A reference ID provided by the fulfillment provider for the carrier stock used.
+      # Only used if you've ordered carrier stock separately.
+      sig { returns(T.nilable(String)) }
+      attr_reader :carrier_stock_reference
+
+      sig { params(carrier_stock_reference: String).void }
+      attr_writer :carrier_stock_reference
+
       # Text printed on the front of the card. Reach out to
       # [support@increase.com](mailto:support@increase.com) for more information.
       sig do
@@ -56,6 +72,8 @@ module Increase
           description: String,
           front_image_file_id: String,
           program_id: String,
+          card_stock_reference: String,
+          carrier_stock_reference: String,
           front_text:
             Increase::PhysicalCardProfileCreateParams::FrontText::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -72,6 +90,12 @@ module Increase
         front_image_file_id:,
         # The identifier for the Program that this Physical Card Profile falls under.
         program_id:,
+        # A reference ID provided by the fulfillment provider for the card stock used.
+        # Only used if you've ordered card stock separately.
+        card_stock_reference: nil,
+        # A reference ID provided by the fulfillment provider for the carrier stock used.
+        # Only used if you've ordered carrier stock separately.
+        carrier_stock_reference: nil,
         # Text printed on the front of the card. Reach out to
         # [support@increase.com](mailto:support@increase.com) for more information.
         front_text: nil,
@@ -87,6 +111,8 @@ module Increase
             description: String,
             front_image_file_id: String,
             program_id: String,
+            card_stock_reference: String,
+            carrier_stock_reference: String,
             front_text: Increase::PhysicalCardProfileCreateParams::FrontText,
             request_options: Increase::RequestOptions
           }

@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Physical Card Profile
       #
-      # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, front_text: nil, request_options: {})
+      # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, card_stock_reference: nil, carrier_stock_reference: nil, front_text: nil, request_options: {})
       #
       # @param carrier_image_file_id [String] The identifier of the File containing the physical card's carrier image.
       #
@@ -19,6 +19,10 @@ module Increase
       # @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
       # @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
+      #
+      # @param card_stock_reference [String] A reference ID provided by the fulfillment provider for the card stock used. Onl
+      #
+      # @param carrier_stock_reference [String] A reference ID provided by the fulfillment provider for the carrier stock used.
       #
       # @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
