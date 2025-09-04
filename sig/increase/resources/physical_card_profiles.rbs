@@ -7,6 +7,8 @@ module Increase
         description: String,
         front_image_file_id: String,
         program_id: String,
+        ?card_stock_reference: String,
+        ?carrier_stock_reference: String,
         ?front_text: Increase::PhysicalCardProfileCreateParams::FrontText,
         ?request_options: Increase::request_opts
       ) -> Increase::PhysicalCardProfile
