@@ -37,6 +37,20 @@ module Increase
       #   @return [String]
       required :program_id, String
 
+      # @!attribute card_stock_reference
+      #   A reference ID provided by the fulfillment provider for the card stock used.
+      #   Only used if you've ordered card stock separately.
+      #
+      #   @return [String, nil]
+      optional :card_stock_reference, String
+
+      # @!attribute carrier_stock_reference
+      #   A reference ID provided by the fulfillment provider for the carrier stock used.
+      #   Only used if you've ordered carrier stock separately.
+      #
+      #   @return [String, nil]
+      optional :carrier_stock_reference, String
+
       # @!attribute front_text
       #   Text printed on the front of the card. Reach out to
       #   [support@increase.com](mailto:support@increase.com) for more information.
@@ -44,7 +58,7 @@ module Increase
       #   @return [Increase::Models::PhysicalCardProfileCreateParams::FrontText, nil]
       optional :front_text, -> { Increase::PhysicalCardProfileCreateParams::FrontText }
 
-      # @!method initialize(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, front_text: nil, request_options: {})
+      # @!method initialize(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, card_stock_reference: nil, carrier_stock_reference: nil, front_text: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::PhysicalCardProfileCreateParams} for more details.
       #
@@ -57,6 +71,10 @@ module Increase
       #   @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
       #   @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
+      #
+      #   @param card_stock_reference [String] A reference ID provided by the fulfillment provider for the card stock used. Onl
+      #
+      #   @param carrier_stock_reference [String] A reference ID provided by the fulfillment provider for the carrier stock used.
       #
       #   @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
