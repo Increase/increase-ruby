@@ -8,7 +8,7 @@ module Increase
       #
       # Create an Entity
       #
-      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param structure [Symbol, Increase::Models::EntityCreateParams::Structure] The type of Entity to create.
       #
@@ -21,6 +21,8 @@ module Increase
       # @param joint [Increase::Models::EntityCreateParams::Joint] Details of the joint entity to create. Required if `structure` is equal to `join
       #
       # @param natural_person [Increase::Models::EntityCreateParams::NaturalPerson] Details of the natural person entity to create. Required if `structure` is equal
+      #
+      # @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       # @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
       #
@@ -61,6 +63,35 @@ module Increase
           path: ["entities/%1$s", entity_id],
           model: Increase::Entity,
           options: params[:request_options]
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::EntityUpdateParams} for more details.
+      #
+      # Update an Entity
+      #
+      # @overload update(entity_id, risk_rating: nil, third_party_verification: nil, request_options: {})
+      #
+      # @param entity_id [String] The entity identifier.
+      #
+      # @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
+      #
+      # @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::Entity]
+      #
+      # @see Increase::Models::EntityUpdateParams
+      def update(entity_id, params = {})
+        parsed, options = Increase::EntityUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["entities/%1$s", entity_id],
+          body: parsed,
+          model: Increase::Entity,
+          options: options
         )
       end
 

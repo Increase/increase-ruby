@@ -13,6 +13,7 @@ module Increase
             Increase::EntityCreateParams::GovernmentAuthority::OrHash,
           joint: Increase::EntityCreateParams::Joint::OrHash,
           natural_person: Increase::EntityCreateParams::NaturalPerson::OrHash,
+          risk_rating: Increase::EntityCreateParams::RiskRating::OrHash,
           supplemental_documents:
             T::Array[
               Increase::EntityCreateParams::SupplementalDocument::OrHash
@@ -42,6 +43,9 @@ module Increase
         # `social_security_number` or `individual_taxpayer_identification_number`
         # identification methods.
         natural_person: nil,
+        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # such as money laundering.
+        risk_rating: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
         # A reference to data stored in a third-party verification service. Your
@@ -64,6 +68,29 @@ module Increase
       def retrieve(
         # The identifier of the Entity to retrieve.
         entity_id,
+        request_options: {}
+      )
+      end
+
+      # Update an Entity
+      sig do
+        params(
+          entity_id: String,
+          risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
+          third_party_verification:
+            Increase::EntityUpdateParams::ThirdPartyVerification::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Entity)
+      end
+      def update(
+        # The entity identifier.
+        entity_id,
+        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # such as money laundering.
+        risk_rating: nil,
+        # A reference to data stored in a third-party verification service. Your
+        # integration may or may not use this field.
+        third_party_verification: nil,
         request_options: {}
       )
       end
