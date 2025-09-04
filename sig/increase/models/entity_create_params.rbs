@@ -8,6 +8,7 @@ module Increase
         government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         joint: Increase::EntityCreateParams::Joint,
         natural_person: Increase::EntityCreateParams::NaturalPerson,
+        risk_rating: Increase::EntityCreateParams::RiskRating,
         supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
         trust: Increase::EntityCreateParams::Trust
@@ -48,6 +49,12 @@ module Increase
         Increase::EntityCreateParams::NaturalPerson
       ) -> Increase::EntityCreateParams::NaturalPerson
 
+      attr_reader risk_rating: Increase::EntityCreateParams::RiskRating?
+
+      def risk_rating=: (
+        Increase::EntityCreateParams::RiskRating
+      ) -> Increase::EntityCreateParams::RiskRating
+
       attr_reader supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument]?
 
       def supplemental_documents=: (
@@ -73,6 +80,7 @@ module Increase
         ?government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         ?joint: Increase::EntityCreateParams::Joint,
         ?natural_person: Increase::EntityCreateParams::NaturalPerson,
+        ?risk_rating: Increase::EntityCreateParams::RiskRating,
         ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
         ?trust: Increase::EntityCreateParams::Trust,
@@ -86,6 +94,7 @@ module Increase
         government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         joint: Increase::EntityCreateParams::Joint,
         natural_person: Increase::EntityCreateParams::NaturalPerson,
+        risk_rating: Increase::EntityCreateParams::RiskRating,
         supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
         trust: Increase::EntityCreateParams::Trust,
@@ -1176,6 +1185,45 @@ module Increase
               file_id: String
             }
           end
+        end
+      end
+
+      type risk_rating =
+        {
+          rated_at: Time,
+          rating: Increase::Models::EntityCreateParams::RiskRating::rating
+        }
+
+      class RiskRating < Increase::Internal::Type::BaseModel
+        attr_accessor rated_at: Time
+
+        attr_accessor rating: Increase::Models::EntityCreateParams::RiskRating::rating
+
+        def initialize: (
+          rated_at: Time,
+          rating: Increase::Models::EntityCreateParams::RiskRating::rating
+        ) -> void
+
+        def to_hash: -> {
+          rated_at: Time,
+          rating: Increase::Models::EntityCreateParams::RiskRating::rating
+        }
+
+        type rating = :low | :medium | :high
+
+        module Rating
+          extend Increase::Internal::Type::Enum
+
+          # Low
+          LOW: :low
+
+          # Medium
+          MEDIUM: :medium
+
+          # High
+          HIGH: :high
+
+          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::RiskRating::rating]
         end
       end
 

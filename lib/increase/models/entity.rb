@@ -65,6 +65,13 @@ module Increase
       #   @return [Increase::Models::Entity::NaturalPerson, nil]
       required :natural_person, -> { Increase::Entity::NaturalPerson }, nil?: true
 
+      # @!attribute risk_rating
+      #   An assessment of the entity’s potential risk of involvement in financial crimes,
+      #   such as money laundering.
+      #
+      #   @return [Increase::Models::Entity::RiskRating, nil]
+      required :risk_rating, -> { Increase::Entity::RiskRating }, nil?: true
+
       # @!attribute status
       #   The status of the entity.
       #
@@ -106,7 +113,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Entity::Type]
       required :type, enum: -> { Increase::Entity::Type }
 
-      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, status:, structure:, supplemental_documents:, third_party_verification:, trust:, type:)
+      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, third_party_verification:, trust:, type:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Entity}
       #   for more details.
       #
@@ -130,6 +137,8 @@ module Increase
       #   @param joint [Increase::Models::Entity::Joint, nil] Details of the joint entity. Will be present if `structure` is equal to `joint`.
       #
       #   @param natural_person [Increase::Models::Entity::NaturalPerson, nil] Details of the natural person entity. Will be present if `structure` is equal to
+      #
+      #   @param risk_rating [Increase::Models::Entity::RiskRating, nil] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       #   @param status [Symbol, Increase::Models::Entity::Status] The status of the entity.
       #
@@ -916,6 +925,52 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+      end
+
+      # @see Increase::Models::Entity#risk_rating
+      class RiskRating < Increase::Internal::Type::BaseModel
+        # @!attribute rated_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+        #   rating was performed.
+        #
+        #   @return [Time]
+        required :rated_at, Time
+
+        # @!attribute rating
+        #   The rating given to this entity.
+        #
+        #   @return [Symbol, Increase::Models::Entity::RiskRating::Rating]
+        required :rating, enum: -> { Increase::Entity::RiskRating::Rating }
+
+        # @!method initialize(rated_at:, rating:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Entity::RiskRating} for more details.
+        #
+        #   An assessment of the entity’s potential risk of involvement in financial crimes,
+        #   such as money laundering.
+        #
+        #   @param rated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk ra
+        #
+        #   @param rating [Symbol, Increase::Models::Entity::RiskRating::Rating] The rating given to this entity.
+
+        # The rating given to this entity.
+        #
+        # @see Increase::Models::Entity::RiskRating#rating
+        module Rating
+          extend Increase::Internal::Type::Enum
+
+          # Low
+          LOW = :low
+
+          # Medium
+          MEDIUM = :medium
+
+          # High
+          HIGH = :high
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 

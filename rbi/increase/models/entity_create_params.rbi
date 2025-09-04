@@ -71,6 +71,18 @@ module Increase
       end
       attr_writer :natural_person
 
+      # An assessment of the entity’s potential risk of involvement in financial crimes,
+      # such as money laundering.
+      sig { returns(T.nilable(Increase::EntityCreateParams::RiskRating)) }
+      attr_reader :risk_rating
+
+      sig do
+        params(
+          risk_rating: Increase::EntityCreateParams::RiskRating::OrHash
+        ).void
+      end
+      attr_writer :risk_rating
+
       # Additional documentation associated with the entity.
       sig do
         returns(
@@ -121,6 +133,7 @@ module Increase
             Increase::EntityCreateParams::GovernmentAuthority::OrHash,
           joint: Increase::EntityCreateParams::Joint::OrHash,
           natural_person: Increase::EntityCreateParams::NaturalPerson::OrHash,
+          risk_rating: Increase::EntityCreateParams::RiskRating::OrHash,
           supplemental_documents:
             T::Array[
               Increase::EntityCreateParams::SupplementalDocument::OrHash
@@ -150,6 +163,9 @@ module Increase
         # `social_security_number` or `individual_taxpayer_identification_number`
         # identification methods.
         natural_person: nil,
+        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # such as money laundering.
+        risk_rating: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
         # A reference to data stored in a third-party verification service. Your
@@ -172,6 +188,7 @@ module Increase
               Increase::EntityCreateParams::GovernmentAuthority,
             joint: Increase::EntityCreateParams::Joint,
             natural_person: Increase::EntityCreateParams::NaturalPerson,
+            risk_rating: Increase::EntityCreateParams::RiskRating,
             supplemental_documents:
               T::Array[Increase::EntityCreateParams::SupplementalDocument],
             third_party_verification:
@@ -2626,6 +2643,97 @@ module Increase
             end
             def to_hash
             end
+          end
+        end
+      end
+
+      class RiskRating < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::RiskRating,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+        # rating was performed.
+        sig { returns(Time) }
+        attr_accessor :rated_at
+
+        # The rating given to this entity.
+        sig do
+          returns(Increase::EntityCreateParams::RiskRating::Rating::OrSymbol)
+        end
+        attr_accessor :rating
+
+        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # such as money laundering.
+        sig do
+          params(
+            rated_at: Time,
+            rating: Increase::EntityCreateParams::RiskRating::Rating::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+          # rating was performed.
+          rated_at:,
+          # The rating given to this entity.
+          rating:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              rated_at: Time,
+              rating: Increase::EntityCreateParams::RiskRating::Rating::OrSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The rating given to this entity.
+        module Rating
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::EntityCreateParams::RiskRating::Rating)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Low
+          LOW =
+            T.let(
+              :low,
+              Increase::EntityCreateParams::RiskRating::Rating::TaggedSymbol
+            )
+
+          # Medium
+          MEDIUM =
+            T.let(
+              :medium,
+              Increase::EntityCreateParams::RiskRating::Rating::TaggedSymbol
+            )
+
+          # High
+          HIGH =
+            T.let(
+              :high,
+              Increase::EntityCreateParams::RiskRating::Rating::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::EntityCreateParams::RiskRating::Rating::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end

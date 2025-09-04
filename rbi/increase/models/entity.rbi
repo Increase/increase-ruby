@@ -74,6 +74,18 @@ module Increase
       end
       attr_writer :natural_person
 
+      # An assessment of the entity’s potential risk of involvement in financial crimes,
+      # such as money laundering.
+      sig { returns(T.nilable(Increase::Entity::RiskRating)) }
+      attr_reader :risk_rating
+
+      sig do
+        params(
+          risk_rating: T.nilable(Increase::Entity::RiskRating::OrHash)
+        ).void
+      end
+      attr_writer :risk_rating
+
       # The status of the entity.
       sig { returns(Increase::Entity::Status::TaggedSymbol) }
       attr_accessor :status
@@ -127,6 +139,7 @@ module Increase
           idempotency_key: T.nilable(String),
           joint: T.nilable(Increase::Entity::Joint::OrHash),
           natural_person: T.nilable(Increase::Entity::NaturalPerson::OrHash),
+          risk_rating: T.nilable(Increase::Entity::RiskRating::OrHash),
           status: Increase::Entity::Status::OrSymbol,
           structure: Increase::Entity::Structure::OrSymbol,
           supplemental_documents:
@@ -163,6 +176,9 @@ module Increase
         # Details of the natural person entity. Will be present if `structure` is equal to
         # `natural_person`.
         natural_person:,
+        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # such as money laundering.
+        risk_rating:,
         # The status of the entity.
         status:,
         # The entity's legal structure.
@@ -195,6 +211,7 @@ module Increase
             idempotency_key: T.nilable(String),
             joint: T.nilable(Increase::Entity::Joint),
             natural_person: T.nilable(Increase::Entity::NaturalPerson),
+            risk_rating: T.nilable(Increase::Entity::RiskRating),
             status: Increase::Entity::Status::TaggedSymbol,
             structure: Increase::Entity::Structure::TaggedSymbol,
             supplemental_documents:
@@ -1568,6 +1585,78 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+      end
+
+      class RiskRating < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Entity::RiskRating, Increase::Internal::AnyHash)
+          end
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+        # rating was performed.
+        sig { returns(Time) }
+        attr_accessor :rated_at
+
+        # The rating given to this entity.
+        sig { returns(Increase::Entity::RiskRating::Rating::TaggedSymbol) }
+        attr_accessor :rating
+
+        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # such as money laundering.
+        sig do
+          params(
+            rated_at: Time,
+            rating: Increase::Entity::RiskRating::Rating::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+          # rating was performed.
+          rated_at:,
+          # The rating given to this entity.
+          rating:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              rated_at: Time,
+              rating: Increase::Entity::RiskRating::Rating::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The rating given to this entity.
+        module Rating
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Increase::Entity::RiskRating::Rating) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Low
+          LOW = T.let(:low, Increase::Entity::RiskRating::Rating::TaggedSymbol)
+
+          # Medium
+          MEDIUM =
+            T.let(:medium, Increase::Entity::RiskRating::Rating::TaggedSymbol)
+
+          # High
+          HIGH =
+            T.let(:high, Increase::Entity::RiskRating::Rating::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Increase::Entity::RiskRating::Rating::TaggedSymbol]
+            )
+          end
+          def self.values
           end
         end
       end

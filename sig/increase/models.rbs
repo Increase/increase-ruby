@@ -235,6 +235,8 @@ module Increase
 
   class EntityUpdateIndustryCodeParams = Increase::Models::EntityUpdateIndustryCodeParams
 
+  class EntityUpdateParams = Increase::Models::EntityUpdateParams
+
   class Event = Increase::Models::Event
 
   class EventListParams = Increase::Models::EventListParams

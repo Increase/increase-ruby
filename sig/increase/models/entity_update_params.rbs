@@ -1,0 +1,117 @@
+module Increase
+  module Models
+    type entity_update_params =
+      {
+        risk_rating: Increase::EntityUpdateParams::RiskRating,
+        third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class EntityUpdateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader risk_rating: Increase::EntityUpdateParams::RiskRating?
+
+      def risk_rating=: (
+        Increase::EntityUpdateParams::RiskRating
+      ) -> Increase::EntityUpdateParams::RiskRating
+
+      attr_reader third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification?
+
+      def third_party_verification=: (
+        Increase::EntityUpdateParams::ThirdPartyVerification
+      ) -> Increase::EntityUpdateParams::ThirdPartyVerification
+
+      def initialize: (
+        ?risk_rating: Increase::EntityUpdateParams::RiskRating,
+        ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        risk_rating: Increase::EntityUpdateParams::RiskRating,
+        third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
+        request_options: Increase::RequestOptions
+      }
+
+      type risk_rating =
+        {
+          rated_at: Time,
+          rating: Increase::Models::EntityUpdateParams::RiskRating::rating
+        }
+
+      class RiskRating < Increase::Internal::Type::BaseModel
+        attr_accessor rated_at: Time
+
+        attr_accessor rating: Increase::Models::EntityUpdateParams::RiskRating::rating
+
+        def initialize: (
+          rated_at: Time,
+          rating: Increase::Models::EntityUpdateParams::RiskRating::rating
+        ) -> void
+
+        def to_hash: -> {
+          rated_at: Time,
+          rating: Increase::Models::EntityUpdateParams::RiskRating::rating
+        }
+
+        type rating = :low | :medium | :high
+
+        module Rating
+          extend Increase::Internal::Type::Enum
+
+          # Low
+          LOW: :low
+
+          # Medium
+          MEDIUM: :medium
+
+          # High
+          HIGH: :high
+
+          def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::RiskRating::rating]
+        end
+      end
+
+      type third_party_verification =
+        {
+          reference: String,
+          vendor: Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor
+        }
+
+      class ThirdPartyVerification < Increase::Internal::Type::BaseModel
+        attr_accessor reference: String
+
+        attr_accessor vendor: Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor
+
+        def initialize: (
+          reference: String,
+          vendor: Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor
+        ) -> void
+
+        def to_hash: -> {
+          reference: String,
+          vendor: Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor
+        }
+
+        type vendor = :alloy | :middesk | :oscilar
+
+        module Vendor
+          extend Increase::Internal::Type::Enum
+
+          # Alloy. See https://alloy.com for more information.
+          ALLOY: :alloy
+
+          # Middesk. See https://middesk.com for more information.
+          MIDDESK: :middesk
+
+          # Oscilar. See https://oscilar.com for more information.
+          OSCILAR: :oscilar
+
+          def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor]
+        end
+      end
+    end
+  end
+end

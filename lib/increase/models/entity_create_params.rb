@@ -49,6 +49,13 @@ module Increase
       #   @return [Increase::Models::EntityCreateParams::NaturalPerson, nil]
       optional :natural_person, -> { Increase::EntityCreateParams::NaturalPerson }
 
+      # @!attribute risk_rating
+      #   An assessment of the entity’s potential risk of involvement in financial crimes,
+      #   such as money laundering.
+      #
+      #   @return [Increase::Models::EntityCreateParams::RiskRating, nil]
+      optional :risk_rating, -> { Increase::EntityCreateParams::RiskRating }
+
       # @!attribute supplemental_documents
       #   Additional documentation associated with the entity.
       #
@@ -70,7 +77,7 @@ module Increase
       #   @return [Increase::Models::EntityCreateParams::Trust, nil]
       optional :trust, -> { Increase::EntityCreateParams::Trust }
 
-      # @!method initialize(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityCreateParams} for more details.
       #
@@ -85,6 +92,8 @@ module Increase
       #   @param joint [Increase::Models::EntityCreateParams::Joint] Details of the joint entity to create. Required if `structure` is equal to `join
       #
       #   @param natural_person [Increase::Models::EntityCreateParams::NaturalPerson] Details of the natural person entity to create. Required if `structure` is equal
+      #
+      #   @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       #   @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
       #
@@ -1433,6 +1442,51 @@ module Increase
             #
             #   @param file_id [String] The identifier of the File containing the passport.
           end
+        end
+      end
+
+      class RiskRating < Increase::Internal::Type::BaseModel
+        # @!attribute rated_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+        #   rating was performed.
+        #
+        #   @return [Time]
+        required :rated_at, Time
+
+        # @!attribute rating
+        #   The rating given to this entity.
+        #
+        #   @return [Symbol, Increase::Models::EntityCreateParams::RiskRating::Rating]
+        required :rating, enum: -> { Increase::EntityCreateParams::RiskRating::Rating }
+
+        # @!method initialize(rated_at:, rating:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityCreateParams::RiskRating} for more details.
+        #
+        #   An assessment of the entity’s potential risk of involvement in financial crimes,
+        #   such as money laundering.
+        #
+        #   @param rated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk ra
+        #
+        #   @param rating [Symbol, Increase::Models::EntityCreateParams::RiskRating::Rating] The rating given to this entity.
+
+        # The rating given to this entity.
+        #
+        # @see Increase::Models::EntityCreateParams::RiskRating#rating
+        module Rating
+          extend Increase::Internal::Type::Enum
+
+          # Low
+          LOW = :low
+
+          # Medium
+          MEDIUM = :medium
+
+          # High
+          HIGH = :high
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
