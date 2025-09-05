@@ -71,13 +71,21 @@ module Increase
       #
       # Update an Entity
       #
-      # @overload update(entity_id, risk_rating: nil, third_party_verification: nil, request_options: {})
+      # @overload update(entity_id, corporation: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param entity_id [String] The entity identifier.
+      #
+      # @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update.
+      #
+      # @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update.
+      #
+      # @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update.
       #
       # @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       # @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
+      #
+      # @param trust [Increase::Models::EntityUpdateParams::Trust] Details of the trust entity to update.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

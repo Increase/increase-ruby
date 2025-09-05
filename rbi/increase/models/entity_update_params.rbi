@@ -11,6 +11,42 @@ module Increase
           T.any(Increase::EntityUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # Details of the corporation entity to update.
+      sig { returns(T.nilable(Increase::EntityUpdateParams::Corporation)) }
+      attr_reader :corporation
+
+      sig do
+        params(
+          corporation: Increase::EntityUpdateParams::Corporation::OrHash
+        ).void
+      end
+      attr_writer :corporation
+
+      # Details of the government authority entity to update.
+      sig do
+        returns(T.nilable(Increase::EntityUpdateParams::GovernmentAuthority))
+      end
+      attr_reader :government_authority
+
+      sig do
+        params(
+          government_authority:
+            Increase::EntityUpdateParams::GovernmentAuthority::OrHash
+        ).void
+      end
+      attr_writer :government_authority
+
+      # Details of the natural person entity to update.
+      sig { returns(T.nilable(Increase::EntityUpdateParams::NaturalPerson)) }
+      attr_reader :natural_person
+
+      sig do
+        params(
+          natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash
+        ).void
+      end
+      attr_writer :natural_person
+
       # An assessment of the entity’s potential risk of involvement in financial crimes,
       # such as money laundering.
       sig { returns(T.nilable(Increase::EntityUpdateParams::RiskRating)) }
@@ -38,21 +74,41 @@ module Increase
       end
       attr_writer :third_party_verification
 
+      # Details of the trust entity to update.
+      sig { returns(T.nilable(Increase::EntityUpdateParams::Trust)) }
+      attr_reader :trust
+
+      sig { params(trust: Increase::EntityUpdateParams::Trust::OrHash).void }
+      attr_writer :trust
+
       sig do
         params(
+          corporation: Increase::EntityUpdateParams::Corporation::OrHash,
+          government_authority:
+            Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
+          natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
           third_party_verification:
             Increase::EntityUpdateParams::ThirdPartyVerification::OrHash,
+          trust: Increase::EntityUpdateParams::Trust::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # Details of the corporation entity to update.
+        corporation: nil,
+        # Details of the government authority entity to update.
+        government_authority: nil,
+        # Details of the natural person entity to update.
+        natural_person: nil,
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
         # A reference to data stored in a third-party verification service. Your
         # integration may or may not use this field.
         third_party_verification: nil,
+        # Details of the trust entity to update.
+        trust: nil,
         request_options: {}
       )
       end
@@ -60,14 +116,106 @@ module Increase
       sig do
         override.returns(
           {
+            corporation: Increase::EntityUpdateParams::Corporation,
+            government_authority:
+              Increase::EntityUpdateParams::GovernmentAuthority,
+            natural_person: Increase::EntityUpdateParams::NaturalPerson,
             risk_rating: Increase::EntityUpdateParams::RiskRating,
             third_party_verification:
               Increase::EntityUpdateParams::ThirdPartyVerification,
+            trust: Increase::EntityUpdateParams::Trust,
             request_options: Increase::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      class Corporation < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateParams::Corporation,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The legal name of the corporation.
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        # Details of the corporation entity to update.
+        sig { params(name: String).returns(T.attached_class) }
+        def self.new(
+          # The legal name of the corporation.
+          name: nil
+        )
+        end
+
+        sig { override.returns({ name: String }) }
+        def to_hash
+        end
+      end
+
+      class GovernmentAuthority < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateParams::GovernmentAuthority,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The legal name of the government authority.
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        # Details of the government authority entity to update.
+        sig { params(name: String).returns(T.attached_class) }
+        def self.new(
+          # The legal name of the government authority.
+          name: nil
+        )
+        end
+
+        sig { override.returns({ name: String }) }
+        def to_hash
+        end
+      end
+
+      class NaturalPerson < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateParams::NaturalPerson,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The legal name of the natural person.
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        # Details of the natural person entity to update.
+        sig { params(name: String).returns(T.attached_class) }
+        def self.new(
+          # The legal name of the natural person.
+          name: nil
+        )
+        end
+
+        sig { override.returns({ name: String }) }
+        def to_hash
+        end
       end
 
       class RiskRating < Increase::Internal::Type::BaseModel
@@ -254,6 +402,35 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      class Trust < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateParams::Trust,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The legal name of the trust.
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        # Details of the trust entity to update.
+        sig { params(name: String).returns(T.attached_class) }
+        def self.new(
+          # The legal name of the trust.
+          name: nil
+        )
+        end
+
+        sig { override.returns({ name: String }) }
+        def to_hash
         end
       end
     end
