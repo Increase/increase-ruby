@@ -90,11 +90,14 @@ module Increase
       def update(
         # The entity identifier.
         entity_id,
-        # Details of the corporation entity to update.
+        # Details of the corporation entity to update. If you specify this parameter and
+        # the entity is not a corporation, the request will fail.
         corporation: nil,
-        # Details of the government authority entity to update.
+        # Details of the government authority entity to update. If you specify this
+        # parameter and the entity is not a government authority, the request will fail.
         government_authority: nil,
-        # Details of the natural person entity to update.
+        # Details of the natural person entity to update. If you specify this parameter
+        # and the entity is not a natural person, the request will fail.
         natural_person: nil,
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
@@ -102,7 +105,8 @@ module Increase
         # A reference to data stored in a third-party verification service. Your
         # integration may or may not use this field.
         third_party_verification: nil,
-        # Details of the trust entity to update.
+        # Details of the trust entity to update. If you specify this parameter and the
+        # entity is not a trust, the request will fail.
         trust: nil,
         request_options: {}
       )
