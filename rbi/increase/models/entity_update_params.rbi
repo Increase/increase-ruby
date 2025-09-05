@@ -11,7 +11,8 @@ module Increase
           T.any(Increase::EntityUpdateParams, Increase::Internal::AnyHash)
         end
 
-      # Details of the corporation entity to update.
+      # Details of the corporation entity to update. If you specify this parameter and
+      # the entity is not a corporation, the request will fail.
       sig { returns(T.nilable(Increase::EntityUpdateParams::Corporation)) }
       attr_reader :corporation
 
@@ -22,7 +23,8 @@ module Increase
       end
       attr_writer :corporation
 
-      # Details of the government authority entity to update.
+      # Details of the government authority entity to update. If you specify this
+      # parameter and the entity is not a government authority, the request will fail.
       sig do
         returns(T.nilable(Increase::EntityUpdateParams::GovernmentAuthority))
       end
@@ -36,7 +38,8 @@ module Increase
       end
       attr_writer :government_authority
 
-      # Details of the natural person entity to update.
+      # Details of the natural person entity to update. If you specify this parameter
+      # and the entity is not a natural person, the request will fail.
       sig { returns(T.nilable(Increase::EntityUpdateParams::NaturalPerson)) }
       attr_reader :natural_person
 
@@ -74,7 +77,8 @@ module Increase
       end
       attr_writer :third_party_verification
 
-      # Details of the trust entity to update.
+      # Details of the trust entity to update. If you specify this parameter and the
+      # entity is not a trust, the request will fail.
       sig { returns(T.nilable(Increase::EntityUpdateParams::Trust)) }
       attr_reader :trust
 
@@ -95,11 +99,14 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # Details of the corporation entity to update.
+        # Details of the corporation entity to update. If you specify this parameter and
+        # the entity is not a corporation, the request will fail.
         corporation: nil,
-        # Details of the government authority entity to update.
+        # Details of the government authority entity to update. If you specify this
+        # parameter and the entity is not a government authority, the request will fail.
         government_authority: nil,
-        # Details of the natural person entity to update.
+        # Details of the natural person entity to update. If you specify this parameter
+        # and the entity is not a natural person, the request will fail.
         natural_person: nil,
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
@@ -107,7 +114,8 @@ module Increase
         # A reference to data stored in a third-party verification service. Your
         # integration may or may not use this field.
         third_party_verification: nil,
-        # Details of the trust entity to update.
+        # Details of the trust entity to update. If you specify this parameter and the
+        # entity is not a trust, the request will fail.
         trust: nil,
         request_options: {}
       )
@@ -147,7 +155,8 @@ module Increase
         sig { params(name: String).void }
         attr_writer :name
 
-        # Details of the corporation entity to update.
+        # Details of the corporation entity to update. If you specify this parameter and
+        # the entity is not a corporation, the request will fail.
         sig { params(name: String).returns(T.attached_class) }
         def self.new(
           # The legal name of the corporation.
@@ -176,7 +185,8 @@ module Increase
         sig { params(name: String).void }
         attr_writer :name
 
-        # Details of the government authority entity to update.
+        # Details of the government authority entity to update. If you specify this
+        # parameter and the entity is not a government authority, the request will fail.
         sig { params(name: String).returns(T.attached_class) }
         def self.new(
           # The legal name of the government authority.
@@ -205,7 +215,8 @@ module Increase
         sig { params(name: String).void }
         attr_writer :name
 
-        # Details of the natural person entity to update.
+        # Details of the natural person entity to update. If you specify this parameter
+        # and the entity is not a natural person, the request will fail.
         sig { params(name: String).returns(T.attached_class) }
         def self.new(
           # The legal name of the natural person.
@@ -421,7 +432,8 @@ module Increase
         sig { params(name: String).void }
         attr_writer :name
 
-        # Details of the trust entity to update.
+        # Details of the trust entity to update. If you specify this parameter and the
+        # entity is not a trust, the request will fail.
         sig { params(name: String).returns(T.attached_class) }
         def self.new(
           # The legal name of the trust.
