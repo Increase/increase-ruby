@@ -6,6 +6,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::InterestPayments) }
       attr_reader :interest_payments
 
+      sig { returns(Increase::Resources::Simulations::AccountTransfers) }
+      attr_reader :account_transfers
+
       sig { returns(Increase::Resources::Simulations::CardAuthorizations) }
       attr_reader :card_authorizations
 
@@ -42,9 +45,6 @@ module Increase
 
       sig { returns(Increase::Resources::Simulations::PendingTransactions) }
       attr_reader :pending_transactions
-
-      sig { returns(Increase::Resources::Simulations::AccountTransfers) }
-      attr_reader :account_transfers
 
       sig { returns(Increase::Resources::Simulations::ACHTransfers) }
       attr_reader :ach_transfers

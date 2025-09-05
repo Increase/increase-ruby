@@ -3,6 +3,8 @@ module Increase
     class Simulations
       attr_reader interest_payments: Increase::Resources::Simulations::InterestPayments
 
+      attr_reader account_transfers: Increase::Resources::Simulations::AccountTransfers
+
       attr_reader card_authorizations: Increase::Resources::Simulations::CardAuthorizations
 
       attr_reader card_authorization_expirations: Increase::Resources::Simulations::CardAuthorizationExpirations
@@ -24,8 +26,6 @@ module Increase
       attr_reader digital_wallet_token_requests: Increase::Resources::Simulations::DigitalWalletTokenRequests
 
       attr_reader pending_transactions: Increase::Resources::Simulations::PendingTransactions
-
-      attr_reader account_transfers: Increase::Resources::Simulations::AccountTransfers
 
       attr_reader ach_transfers: Increase::Resources::Simulations::ACHTransfers
 
