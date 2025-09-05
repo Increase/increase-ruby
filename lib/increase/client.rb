@@ -29,6 +29,9 @@ module Increase
     # @return [Increase::Resources::AccountNumbers]
     attr_reader :account_numbers
 
+    # @return [Increase::Resources::AccountTransfers]
+    attr_reader :account_transfers
+
     # @return [Increase::Resources::Cards]
     attr_reader :cards
 
@@ -61,9 +64,6 @@ module Increase
 
     # @return [Increase::Resources::DeclinedTransactions]
     attr_reader :declined_transactions
-
-    # @return [Increase::Resources::AccountTransfers]
-    attr_reader :account_transfers
 
     # @return [Increase::Resources::ACHTransfers]
     attr_reader :ach_transfers
@@ -252,6 +252,7 @@ module Increase
 
       @accounts = Increase::Resources::Accounts.new(client: self)
       @account_numbers = Increase::Resources::AccountNumbers.new(client: self)
+      @account_transfers = Increase::Resources::AccountTransfers.new(client: self)
       @cards = Increase::Resources::Cards.new(client: self)
       @card_payments = Increase::Resources::CardPayments.new(client: self)
       @card_purchase_supplements = Increase::Resources::CardPurchaseSupplements.new(client: self)
@@ -263,7 +264,6 @@ module Increase
       @transactions = Increase::Resources::Transactions.new(client: self)
       @pending_transactions = Increase::Resources::PendingTransactions.new(client: self)
       @declined_transactions = Increase::Resources::DeclinedTransactions.new(client: self)
-      @account_transfers = Increase::Resources::AccountTransfers.new(client: self)
       @ach_transfers = Increase::Resources::ACHTransfers.new(client: self)
       @ach_prenotifications = Increase::Resources::ACHPrenotifications.new(client: self)
       @inbound_ach_transfers = Increase::Resources::InboundACHTransfers.new(client: self)

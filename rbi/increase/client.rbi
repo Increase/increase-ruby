@@ -28,6 +28,9 @@ module Increase
     sig { returns(Increase::Resources::AccountNumbers) }
     attr_reader :account_numbers
 
+    sig { returns(Increase::Resources::AccountTransfers) }
+    attr_reader :account_transfers
+
     sig { returns(Increase::Resources::Cards) }
     attr_reader :cards
 
@@ -60,9 +63,6 @@ module Increase
 
     sig { returns(Increase::Resources::DeclinedTransactions) }
     attr_reader :declined_transactions
-
-    sig { returns(Increase::Resources::AccountTransfers) }
-    attr_reader :account_transfers
 
     sig { returns(Increase::Resources::ACHTransfers) }
     attr_reader :ach_transfers

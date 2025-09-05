@@ -19,6 +19,8 @@ module Increase
 
     attr_reader account_numbers: Increase::Resources::AccountNumbers
 
+    attr_reader account_transfers: Increase::Resources::AccountTransfers
+
     attr_reader cards: Increase::Resources::Cards
 
     attr_reader card_payments: Increase::Resources::CardPayments
@@ -40,8 +42,6 @@ module Increase
     attr_reader pending_transactions: Increase::Resources::PendingTransactions
 
     attr_reader declined_transactions: Increase::Resources::DeclinedTransactions
-
-    attr_reader account_transfers: Increase::Resources::AccountTransfers
 
     attr_reader ach_transfers: Increase::Resources::ACHTransfers
 
