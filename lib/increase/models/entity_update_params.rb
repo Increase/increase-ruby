@@ -8,19 +8,22 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute corporation
-      #   Details of the corporation entity to update.
+      #   Details of the corporation entity to update. If you specify this parameter and
+      #   the entity is not a corporation, the request will fail.
       #
       #   @return [Increase::Models::EntityUpdateParams::Corporation, nil]
       optional :corporation, -> { Increase::EntityUpdateParams::Corporation }
 
       # @!attribute government_authority
-      #   Details of the government authority entity to update.
+      #   Details of the government authority entity to update. If you specify this
+      #   parameter and the entity is not a government authority, the request will fail.
       #
       #   @return [Increase::Models::EntityUpdateParams::GovernmentAuthority, nil]
       optional :government_authority, -> { Increase::EntityUpdateParams::GovernmentAuthority }
 
       # @!attribute natural_person
-      #   Details of the natural person entity to update.
+      #   Details of the natural person entity to update. If you specify this parameter
+      #   and the entity is not a natural person, the request will fail.
       #
       #   @return [Increase::Models::EntityUpdateParams::NaturalPerson, nil]
       optional :natural_person, -> { Increase::EntityUpdateParams::NaturalPerson }
@@ -40,7 +43,8 @@ module Increase
       optional :third_party_verification, -> { Increase::EntityUpdateParams::ThirdPartyVerification }
 
       # @!attribute trust
-      #   Details of the trust entity to update.
+      #   Details of the trust entity to update. If you specify this parameter and the
+      #   entity is not a trust, the request will fail.
       #
       #   @return [Increase::Models::EntityUpdateParams::Trust, nil]
       optional :trust, -> { Increase::EntityUpdateParams::Trust }
@@ -49,17 +53,17 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityUpdateParams} for more details.
       #
-      #   @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update.
+      #   @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update. If you specify this parameter and t
       #
-      #   @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update.
+      #   @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update. If you specify this parame
       #
-      #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update.
+      #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update. If you specify this parameter an
       #
       #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       #   @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
       #
-      #   @param trust [Increase::Models::EntityUpdateParams::Trust] Details of the trust entity to update.
+      #   @param trust [Increase::Models::EntityUpdateParams::Trust] Details of the trust entity to update. If you specify this parameter and the ent
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -71,7 +75,8 @@ module Increase
         optional :name, String
 
         # @!method initialize(name: nil)
-        #   Details of the corporation entity to update.
+        #   Details of the corporation entity to update. If you specify this parameter and
+        #   the entity is not a corporation, the request will fail.
         #
         #   @param name [String] The legal name of the corporation.
       end
@@ -84,7 +89,8 @@ module Increase
         optional :name, String
 
         # @!method initialize(name: nil)
-        #   Details of the government authority entity to update.
+        #   Details of the government authority entity to update. If you specify this
+        #   parameter and the entity is not a government authority, the request will fail.
         #
         #   @param name [String] The legal name of the government authority.
       end
@@ -97,7 +103,8 @@ module Increase
         optional :name, String
 
         # @!method initialize(name: nil)
-        #   Details of the natural person entity to update.
+        #   Details of the natural person entity to update. If you specify this parameter
+        #   and the entity is not a natural person, the request will fail.
         #
         #   @param name [String] The legal name of the natural person.
       end
@@ -196,7 +203,8 @@ module Increase
         optional :name, String
 
         # @!method initialize(name: nil)
-        #   Details of the trust entity to update.
+        #   Details of the trust entity to update. If you specify this parameter and the
+        #   entity is not a trust, the request will fail.
         #
         #   @param name [String] The legal name of the trust.
       end
