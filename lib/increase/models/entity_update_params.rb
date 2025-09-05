@@ -7,6 +7,24 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute corporation
+      #   Details of the corporation entity to update.
+      #
+      #   @return [Increase::Models::EntityUpdateParams::Corporation, nil]
+      optional :corporation, -> { Increase::EntityUpdateParams::Corporation }
+
+      # @!attribute government_authority
+      #   Details of the government authority entity to update.
+      #
+      #   @return [Increase::Models::EntityUpdateParams::GovernmentAuthority, nil]
+      optional :government_authority, -> { Increase::EntityUpdateParams::GovernmentAuthority }
+
+      # @!attribute natural_person
+      #   Details of the natural person entity to update.
+      #
+      #   @return [Increase::Models::EntityUpdateParams::NaturalPerson, nil]
+      optional :natural_person, -> { Increase::EntityUpdateParams::NaturalPerson }
+
       # @!attribute risk_rating
       #   An assessment of the entity’s potential risk of involvement in financial crimes,
       #   such as money laundering.
@@ -21,15 +39,68 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::ThirdPartyVerification, nil]
       optional :third_party_verification, -> { Increase::EntityUpdateParams::ThirdPartyVerification }
 
-      # @!method initialize(risk_rating: nil, third_party_verification: nil, request_options: {})
+      # @!attribute trust
+      #   Details of the trust entity to update.
+      #
+      #   @return [Increase::Models::EntityUpdateParams::Trust, nil]
+      optional :trust, -> { Increase::EntityUpdateParams::Trust }
+
+      # @!method initialize(corporation: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityUpdateParams} for more details.
+      #
+      #   @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update.
+      #
+      #   @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update.
+      #
+      #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update.
       #
       #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       #   @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
       #
+      #   @param trust [Increase::Models::EntityUpdateParams::Trust] Details of the trust entity to update.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
+
+      class Corporation < Increase::Internal::Type::BaseModel
+        # @!attribute name
+        #   The legal name of the corporation.
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(name: nil)
+        #   Details of the corporation entity to update.
+        #
+        #   @param name [String] The legal name of the corporation.
+      end
+
+      class GovernmentAuthority < Increase::Internal::Type::BaseModel
+        # @!attribute name
+        #   The legal name of the government authority.
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(name: nil)
+        #   Details of the government authority entity to update.
+        #
+        #   @param name [String] The legal name of the government authority.
+      end
+
+      class NaturalPerson < Increase::Internal::Type::BaseModel
+        # @!attribute name
+        #   The legal name of the natural person.
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(name: nil)
+        #   Details of the natural person entity to update.
+        #
+        #   @param name [String] The legal name of the natural person.
+      end
 
       class RiskRating < Increase::Internal::Type::BaseModel
         # @!attribute rated_at
@@ -115,6 +186,19 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      class Trust < Increase::Internal::Type::BaseModel
+        # @!attribute name
+        #   The legal name of the trust.
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(name: nil)
+        #   Details of the trust entity to update.
+        #
+        #   @param name [String] The legal name of the trust.
       end
     end
   end

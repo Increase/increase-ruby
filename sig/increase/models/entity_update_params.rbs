@@ -2,14 +2,36 @@ module Increase
   module Models
     type entity_update_params =
       {
+        corporation: Increase::EntityUpdateParams::Corporation,
+        government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
+        natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
-        third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification
+        third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
+        trust: Increase::EntityUpdateParams::Trust
       }
       & Increase::Internal::Type::request_parameters
 
     class EntityUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_reader corporation: Increase::EntityUpdateParams::Corporation?
+
+      def corporation=: (
+        Increase::EntityUpdateParams::Corporation
+      ) -> Increase::EntityUpdateParams::Corporation
+
+      attr_reader government_authority: Increase::EntityUpdateParams::GovernmentAuthority?
+
+      def government_authority=: (
+        Increase::EntityUpdateParams::GovernmentAuthority
+      ) -> Increase::EntityUpdateParams::GovernmentAuthority
+
+      attr_reader natural_person: Increase::EntityUpdateParams::NaturalPerson?
+
+      def natural_person=: (
+        Increase::EntityUpdateParams::NaturalPerson
+      ) -> Increase::EntityUpdateParams::NaturalPerson
 
       attr_reader risk_rating: Increase::EntityUpdateParams::RiskRating?
 
@@ -23,17 +45,67 @@ module Increase
         Increase::EntityUpdateParams::ThirdPartyVerification
       ) -> Increase::EntityUpdateParams::ThirdPartyVerification
 
+      attr_reader trust: Increase::EntityUpdateParams::Trust?
+
+      def trust=: (
+        Increase::EntityUpdateParams::Trust
+      ) -> Increase::EntityUpdateParams::Trust
+
       def initialize: (
+        ?corporation: Increase::EntityUpdateParams::Corporation,
+        ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
+        ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
         ?risk_rating: Increase::EntityUpdateParams::RiskRating,
         ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
+        ?trust: Increase::EntityUpdateParams::Trust,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        corporation: Increase::EntityUpdateParams::Corporation,
+        government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
+        natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
+        trust: Increase::EntityUpdateParams::Trust,
         request_options: Increase::RequestOptions
       }
+
+      type corporation = { name: String }
+
+      class Corporation < Increase::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?name: String) -> void
+
+        def to_hash: -> { name: String }
+      end
+
+      type government_authority = { name: String }
+
+      class GovernmentAuthority < Increase::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?name: String) -> void
+
+        def to_hash: -> { name: String }
+      end
+
+      type natural_person = { name: String }
+
+      class NaturalPerson < Increase::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?name: String) -> void
+
+        def to_hash: -> { name: String }
+      end
 
       type risk_rating =
         {
@@ -111,6 +183,18 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor]
         end
+      end
+
+      type trust = { name: String }
+
+      class Trust < Increase::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?name: String) -> void
+
+        def to_hash: -> { name: String }
       end
     end
   end

@@ -76,21 +76,34 @@ module Increase
       sig do
         params(
           entity_id: String,
+          corporation: Increase::EntityUpdateParams::Corporation::OrHash,
+          government_authority:
+            Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
+          natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
           third_party_verification:
             Increase::EntityUpdateParams::ThirdPartyVerification::OrHash,
+          trust: Increase::EntityUpdateParams::Trust::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Entity)
       end
       def update(
         # The entity identifier.
         entity_id,
+        # Details of the corporation entity to update.
+        corporation: nil,
+        # Details of the government authority entity to update.
+        government_authority: nil,
+        # Details of the natural person entity to update.
+        natural_person: nil,
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
         # A reference to data stored in a third-party verification service. Your
         # integration may or may not use this field.
         third_party_verification: nil,
+        # Details of the trust entity to update.
+        trust: nil,
         request_options: {}
       )
       end
