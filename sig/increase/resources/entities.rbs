@@ -22,8 +22,12 @@ module Increase
 
       def update: (
         String entity_id,
+        ?corporation: Increase::EntityUpdateParams::Corporation,
+        ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
+        ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
         ?risk_rating: Increase::EntityUpdateParams::RiskRating,
         ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
+        ?trust: Increase::EntityUpdateParams::Trust,
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
