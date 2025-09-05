@@ -6,6 +6,9 @@ module Increase
       # @return [Increase::Resources::Simulations::InterestPayments]
       attr_reader :interest_payments
 
+      # @return [Increase::Resources::Simulations::AccountTransfers]
+      attr_reader :account_transfers
+
       # @return [Increase::Resources::Simulations::CardAuthorizations]
       attr_reader :card_authorizations
 
@@ -38,9 +41,6 @@ module Increase
 
       # @return [Increase::Resources::Simulations::PendingTransactions]
       attr_reader :pending_transactions
-
-      # @return [Increase::Resources::Simulations::AccountTransfers]
-      attr_reader :account_transfers
 
       # @return [Increase::Resources::Simulations::ACHTransfers]
       attr_reader :ach_transfers
@@ -96,6 +96,7 @@ module Increase
       def initialize(client:)
         @client = client
         @interest_payments = Increase::Resources::Simulations::InterestPayments.new(client: client)
+        @account_transfers = Increase::Resources::Simulations::AccountTransfers.new(client: client)
         @card_authorizations = Increase::Resources::Simulations::CardAuthorizations.new(client: client)
         @card_authorization_expirations =
           Increase::Resources::Simulations::CardAuthorizationExpirations.new(client: client)
@@ -109,7 +110,6 @@ module Increase
         @digital_wallet_token_requests =
           Increase::Resources::Simulations::DigitalWalletTokenRequests.new(client: client)
         @pending_transactions = Increase::Resources::Simulations::PendingTransactions.new(client: client)
-        @account_transfers = Increase::Resources::Simulations::AccountTransfers.new(client: client)
         @ach_transfers = Increase::Resources::Simulations::ACHTransfers.new(client: client)
         @inbound_ach_transfers = Increase::Resources::Simulations::InboundACHTransfers.new(client: client)
         @wire_transfers = Increase::Resources::Simulations::WireTransfers.new(client: client)
