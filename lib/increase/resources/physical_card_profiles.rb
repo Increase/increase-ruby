@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Physical Card Profile
       #
-      # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, card_stock_reference: nil, carrier_stock_reference: nil, front_text: nil, request_options: {})
+      # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, back_color: nil, card_stock_reference: nil, carrier_stock_reference: nil, front_color: nil, front_text: nil, request_options: {})
       #
       # @param carrier_image_file_id [String] The identifier of the File containing the physical card's carrier image.
       #
@@ -20,9 +20,13 @@ module Increase
       #
       # @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
       #
+      # @param back_color [Symbol, Increase::Models::PhysicalCardProfileCreateParams::BackColor] The color of the text on the back of the card. Defaults to "black".
+      #
       # @param card_stock_reference [String] A reference ID provided by the fulfillment provider for the card stock used. Onl
       #
       # @param carrier_stock_reference [String] A reference ID provided by the fulfillment provider for the carrier stock used.
+      #
+      # @param front_color [Symbol, Increase::Models::PhysicalCardProfileCreateParams::FrontColor] The color of the design on the front of the card. Defaults to "black".
       #
       # @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
