@@ -34,6 +34,24 @@ module Increase
       sig { returns(String) }
       attr_accessor :program_id
 
+      # The color of the text on the back of the card. Defaults to "black".
+      sig do
+        returns(
+          T.nilable(
+            Increase::PhysicalCardProfileCreateParams::BackColor::OrSymbol
+          )
+        )
+      end
+      attr_reader :back_color
+
+      sig do
+        params(
+          back_color:
+            Increase::PhysicalCardProfileCreateParams::BackColor::OrSymbol
+        ).void
+      end
+      attr_writer :back_color
+
       # A reference ID provided by the fulfillment provider for the card stock used.
       # Only used if you've ordered card stock separately.
       sig { returns(T.nilable(String)) }
@@ -49,6 +67,24 @@ module Increase
 
       sig { params(carrier_stock_reference: String).void }
       attr_writer :carrier_stock_reference
+
+      # The color of the design on the front of the card. Defaults to "black".
+      sig do
+        returns(
+          T.nilable(
+            Increase::PhysicalCardProfileCreateParams::FrontColor::OrSymbol
+          )
+        )
+      end
+      attr_reader :front_color
+
+      sig do
+        params(
+          front_color:
+            Increase::PhysicalCardProfileCreateParams::FrontColor::OrSymbol
+        ).void
+      end
+      attr_writer :front_color
 
       # Text printed on the front of the card. Reach out to
       # [support@increase.com](mailto:support@increase.com) for more information.
@@ -72,8 +108,12 @@ module Increase
           description: String,
           front_image_file_id: String,
           program_id: String,
+          back_color:
+            Increase::PhysicalCardProfileCreateParams::BackColor::OrSymbol,
           card_stock_reference: String,
           carrier_stock_reference: String,
+          front_color:
+            Increase::PhysicalCardProfileCreateParams::FrontColor::OrSymbol,
           front_text:
             Increase::PhysicalCardProfileCreateParams::FrontText::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -90,12 +130,16 @@ module Increase
         front_image_file_id:,
         # The identifier for the Program that this Physical Card Profile falls under.
         program_id:,
+        # The color of the text on the back of the card. Defaults to "black".
+        back_color: nil,
         # A reference ID provided by the fulfillment provider for the card stock used.
         # Only used if you've ordered card stock separately.
         card_stock_reference: nil,
         # A reference ID provided by the fulfillment provider for the carrier stock used.
         # Only used if you've ordered carrier stock separately.
         carrier_stock_reference: nil,
+        # The color of the design on the front of the card. Defaults to "black".
+        front_color: nil,
         # Text printed on the front of the card. Reach out to
         # [support@increase.com](mailto:support@increase.com) for more information.
         front_text: nil,
@@ -111,14 +155,88 @@ module Increase
             description: String,
             front_image_file_id: String,
             program_id: String,
+            back_color:
+              Increase::PhysicalCardProfileCreateParams::BackColor::OrSymbol,
             card_stock_reference: String,
             carrier_stock_reference: String,
+            front_color:
+              Increase::PhysicalCardProfileCreateParams::FrontColor::OrSymbol,
             front_text: Increase::PhysicalCardProfileCreateParams::FrontText,
             request_options: Increase::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # The color of the text on the back of the card. Defaults to "black".
+      module BackColor
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::PhysicalCardProfileCreateParams::BackColor)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Black personalization color.
+        BLACK =
+          T.let(
+            :black,
+            Increase::PhysicalCardProfileCreateParams::BackColor::TaggedSymbol
+          )
+
+        # White personalization color.
+        WHITE =
+          T.let(
+            :white,
+            Increase::PhysicalCardProfileCreateParams::BackColor::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::PhysicalCardProfileCreateParams::BackColor::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The color of the design on the front of the card. Defaults to "black".
+      module FrontColor
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::PhysicalCardProfileCreateParams::FrontColor)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Black personalization color.
+        BLACK =
+          T.let(
+            :black,
+            Increase::PhysicalCardProfileCreateParams::FrontColor::TaggedSymbol
+          )
+
+        # White personalization color.
+        WHITE =
+          T.let(
+            :white,
+            Increase::PhysicalCardProfileCreateParams::FrontColor::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::PhysicalCardProfileCreateParams::FrontColor::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
 
       class FrontText < Increase::Internal::Type::BaseModel
