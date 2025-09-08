@@ -68,45 +68,235 @@ module Increase
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       class Corporation < Increase::Internal::Type::BaseModel
+        # @!attribute address
+        #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   are disallowed.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::Corporation::Address, nil]
+        optional :address, -> { Increase::EntityUpdateParams::Corporation::Address }
+
         # @!attribute name
         #   The legal name of the corporation.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(name: nil)
+        # @!method initialize(address: nil, name: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
+        #
         #   Details of the corporation entity to update. If you specify this parameter and
         #   the entity is not a corporation, the request will fail.
         #
+        #   @param address [Increase::Models::EntityUpdateParams::Corporation::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
         #   @param name [String] The legal name of the corporation.
+
+        # @see Increase::Models::EntityUpdateParams::Corporation#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String]
+          required :city, String
+
+          # @!attribute line1
+          #   The first line of the address. This is usually the street number and street.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute state
+          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   the address.
+          #
+          #   @return [String]
+          required :state, String
+
+          # @!attribute zip
+          #   The ZIP code of the address.
+          #
+          #   @return [String]
+          required :zip, String
+
+          # @!attribute line2
+          #   The second line of the address. This might be the floor or room number.
+          #
+          #   @return [String, nil]
+          optional :line2, String
+
+          # @!method initialize(city:, line1:, state:, zip:, line2: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityUpdateParams::Corporation::Address} for more details.
+          #
+          #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          #   are disallowed.
+          #
+          #   @param city [String] The city of the address.
+          #
+          #   @param line1 [String] The first line of the address. This is usually the street number and street.
+          #
+          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #
+          #   @param zip [String] The ZIP code of the address.
+          #
+          #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        end
       end
 
       class GovernmentAuthority < Increase::Internal::Type::BaseModel
+        # @!attribute address
+        #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   are disallowed.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::GovernmentAuthority::Address, nil]
+        optional :address, -> { Increase::EntityUpdateParams::GovernmentAuthority::Address }
+
         # @!attribute name
         #   The legal name of the government authority.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(name: nil)
+        # @!method initialize(address: nil, name: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityUpdateParams::GovernmentAuthority} for more details.
+        #
         #   Details of the government authority entity to update. If you specify this
         #   parameter and the entity is not a government authority, the request will fail.
         #
+        #   @param address [Increase::Models::EntityUpdateParams::GovernmentAuthority::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
         #   @param name [String] The legal name of the government authority.
+
+        # @see Increase::Models::EntityUpdateParams::GovernmentAuthority#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String]
+          required :city, String
+
+          # @!attribute line1
+          #   The first line of the address. This is usually the street number and street.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute state
+          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   the address.
+          #
+          #   @return [String]
+          required :state, String
+
+          # @!attribute zip
+          #   The ZIP code of the address.
+          #
+          #   @return [String]
+          required :zip, String
+
+          # @!attribute line2
+          #   The second line of the address. This might be the floor or room number.
+          #
+          #   @return [String, nil]
+          optional :line2, String
+
+          # @!method initialize(city:, line1:, state:, zip:, line2: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityUpdateParams::GovernmentAuthority::Address} for more
+          #   details.
+          #
+          #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          #   are disallowed.
+          #
+          #   @param city [String] The city of the address.
+          #
+          #   @param line1 [String] The first line of the address. This is usually the street number and street.
+          #
+          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #
+          #   @param zip [String] The ZIP code of the address.
+          #
+          #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        end
       end
 
       class NaturalPerson < Increase::Internal::Type::BaseModel
+        # @!attribute address
+        #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   are disallowed.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::NaturalPerson::Address, nil]
+        optional :address, -> { Increase::EntityUpdateParams::NaturalPerson::Address }
+
         # @!attribute name
         #   The legal name of the natural person.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(name: nil)
+        # @!method initialize(address: nil, name: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityUpdateParams::NaturalPerson} for more details.
+        #
         #   Details of the natural person entity to update. If you specify this parameter
         #   and the entity is not a natural person, the request will fail.
         #
+        #   @param address [Increase::Models::EntityUpdateParams::NaturalPerson::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
         #   @param name [String] The legal name of the natural person.
+
+        # @see Increase::Models::EntityUpdateParams::NaturalPerson#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String]
+          required :city, String
+
+          # @!attribute line1
+          #   The first line of the address. This is usually the street number and street.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute state
+          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   the address.
+          #
+          #   @return [String]
+          required :state, String
+
+          # @!attribute zip
+          #   The ZIP code of the address.
+          #
+          #   @return [String]
+          required :zip, String
+
+          # @!attribute line2
+          #   The second line of the address. This might be the floor or room number.
+          #
+          #   @return [String, nil]
+          optional :line2, String
+
+          # @!method initialize(city:, line1:, state:, zip:, line2: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityUpdateParams::NaturalPerson::Address} for more details.
+          #
+          #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          #   are disallowed.
+          #
+          #   @param city [String] The city of the address.
+          #
+          #   @param line1 [String] The first line of the address. This is usually the street number and street.
+          #
+          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #
+          #   @param zip [String] The ZIP code of the address.
+          #
+          #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        end
       end
 
       class RiskRating < Increase::Internal::Type::BaseModel
@@ -196,17 +386,80 @@ module Increase
       end
 
       class Trust < Increase::Internal::Type::BaseModel
+        # @!attribute address
+        #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   are disallowed.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::Trust::Address, nil]
+        optional :address, -> { Increase::EntityUpdateParams::Trust::Address }
+
         # @!attribute name
         #   The legal name of the trust.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(name: nil)
+        # @!method initialize(address: nil, name: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityUpdateParams::Trust} for more details.
+        #
         #   Details of the trust entity to update. If you specify this parameter and the
         #   entity is not a trust, the request will fail.
         #
+        #   @param address [Increase::Models::EntityUpdateParams::Trust::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
         #   @param name [String] The legal name of the trust.
+
+        # @see Increase::Models::EntityUpdateParams::Trust#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String]
+          required :city, String
+
+          # @!attribute line1
+          #   The first line of the address. This is usually the street number and street.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute state
+          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   the address.
+          #
+          #   @return [String]
+          required :state, String
+
+          # @!attribute zip
+          #   The ZIP code of the address.
+          #
+          #   @return [String]
+          required :zip, String
+
+          # @!attribute line2
+          #   The second line of the address. This might be the floor or room number.
+          #
+          #   @return [String, nil]
+          optional :line2, String
+
+          # @!method initialize(city:, line1:, state:, zip:, line2: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityUpdateParams::Trust::Address} for more details.
+          #
+          #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          #   are disallowed.
+          #
+          #   @param city [String] The city of the address.
+          #
+          #   @param line1 [String] The first line of the address. This is usually the street number and street.
+          #
+          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #
+          #   @param zip [String] The ZIP code of the address.
+          #
+          #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        end
       end
     end
   end
