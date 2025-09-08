@@ -3,6 +3,7 @@ module Increase
     type entity_update_params =
       {
         corporation: Increase::EntityUpdateParams::Corporation,
+        details_confirmed_at: Time,
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
@@ -20,6 +21,10 @@ module Increase
       def corporation=: (
         Increase::EntityUpdateParams::Corporation
       ) -> Increase::EntityUpdateParams::Corporation
+
+      attr_reader details_confirmed_at: Time?
+
+      def details_confirmed_at=: (Time) -> Time
 
       attr_reader government_authority: Increase::EntityUpdateParams::GovernmentAuthority?
 
@@ -53,6 +58,7 @@ module Increase
 
       def initialize: (
         ?corporation: Increase::EntityUpdateParams::Corporation,
+        ?details_confirmed_at: Time,
         ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
         ?risk_rating: Increase::EntityUpdateParams::RiskRating,
@@ -63,6 +69,7 @@ module Increase
 
       def to_hash: -> {
         corporation: Increase::EntityUpdateParams::Corporation,
+        details_confirmed_at: Time,
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,

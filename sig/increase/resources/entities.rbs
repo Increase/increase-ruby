@@ -23,6 +23,7 @@ module Increase
       def update: (
         String entity_id,
         ?corporation: Increase::EntityUpdateParams::Corporation,
+        ?details_confirmed_at: Time,
         ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
         ?risk_rating: Increase::EntityUpdateParams::RiskRating,
