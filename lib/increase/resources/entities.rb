@@ -71,11 +71,13 @@ module Increase
       #
       # Update an Entity
       #
-      # @overload update(entity_id, corporation: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload update(entity_id, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param entity_id [String] The entity identifier.
       #
       # @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update. If you specify this parameter and t
+      #
+      # @param details_confirmed_at [Time] When your user last confirmed the Entity's details. Depending on your program, y
       #
       # @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update. If you specify this parame
       #

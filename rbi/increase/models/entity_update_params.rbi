@@ -23,6 +23,15 @@ module Increase
       end
       attr_writer :corporation
 
+      # When your user last confirmed the Entity's details. Depending on your program,
+      # you may be required to affirmatively confirm details with your users on an
+      # annual basis.
+      sig { returns(T.nilable(Time)) }
+      attr_reader :details_confirmed_at
+
+      sig { params(details_confirmed_at: Time).void }
+      attr_writer :details_confirmed_at
+
       # Details of the government authority entity to update. If you specify this
       # parameter and the entity is not a government authority, the request will fail.
       sig do
@@ -89,6 +98,7 @@ module Increase
       sig do
         params(
           corporation: Increase::EntityUpdateParams::Corporation::OrHash,
+          details_confirmed_at: Time,
           government_authority:
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
@@ -103,6 +113,10 @@ module Increase
         # Details of the corporation entity to update. If you specify this parameter and
         # the entity is not a corporation, the request will fail.
         corporation: nil,
+        # When your user last confirmed the Entity's details. Depending on your program,
+        # you may be required to affirmatively confirm details with your users on an
+        # annual basis.
+        details_confirmed_at: nil,
         # Details of the government authority entity to update. If you specify this
         # parameter and the entity is not a government authority, the request will fail.
         government_authority: nil,
@@ -127,6 +141,7 @@ module Increase
         override.returns(
           {
             corporation: Increase::EntityUpdateParams::Corporation,
+            details_confirmed_at: Time,
             government_authority:
               Increase::EntityUpdateParams::GovernmentAuthority,
             natural_person: Increase::EntityUpdateParams::NaturalPerson,

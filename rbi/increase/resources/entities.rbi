@@ -78,6 +78,7 @@ module Increase
         params(
           entity_id: String,
           corporation: Increase::EntityUpdateParams::Corporation::OrHash,
+          details_confirmed_at: Time,
           government_authority:
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
@@ -94,6 +95,10 @@ module Increase
         # Details of the corporation entity to update. If you specify this parameter and
         # the entity is not a corporation, the request will fail.
         corporation: nil,
+        # When your user last confirmed the Entity's details. Depending on your program,
+        # you may be required to affirmatively confirm details with your users on an
+        # annual basis.
+        details_confirmed_at: nil,
         # Details of the government authority entity to update. If you specify this
         # parameter and the entity is not a government authority, the request will fail.
         government_authority: nil,
