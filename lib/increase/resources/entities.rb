@@ -26,7 +26,7 @@ module Increase
       #
       # @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
       #
-      # @param third_party_verification [Increase::Models::EntityCreateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
+      # @param third_party_verification [Increase::Models::EntityCreateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
       #
       # @param trust [Increase::Models::EntityCreateParams::Trust] Details of the trust entity to create. Required if `structure` is equal to `trus
       #
@@ -83,7 +83,7 @@ module Increase
       #
       # @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
-      # @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] A reference to data stored in a third-party verification service. Your integrati
+      # @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
       #
       # @param trust [Increase::Models::EntityUpdateParams::Trust] Details of the trust entity to update. If you specify this parameter and the ent
       #

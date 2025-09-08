@@ -1214,13 +1214,13 @@ module Increase
         module Rating
           extend Increase::Internal::Type::Enum
 
-          # Low
+          # Minimal risk of involvement in financial crime.
           LOW: :low
 
-          # Medium
+          # Moderate risk of involvement in financial crime.
           MEDIUM: :medium
 
-          # High
+          # Elevated risk of involvement in financial crime.
           HIGH: :high
 
           def self?.values: -> ::Array[Increase::Models::EntityCreateParams::RiskRating::rating]

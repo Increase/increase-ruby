@@ -101,8 +101,9 @@ module Increase
       end
       attr_writer :supplemental_documents
 
-      # A reference to data stored in a third-party verification service. Your
-      # integration may or may not use this field.
+      # If you are using a third-party service for identity verification, you can use
+      # this field to associate this Entity with the identifier that represents them in
+      # that service.
       sig do
         returns(T.nilable(Increase::EntityCreateParams::ThirdPartyVerification))
       end
@@ -168,8 +169,9 @@ module Increase
         risk_rating: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
-        # A reference to data stored in a third-party verification service. Your
-        # integration may or may not use this field.
+        # If you are using a third-party service for identity verification, you can use
+        # this field to associate this Entity with the identifier that represents them in
+        # that service.
         third_party_verification: nil,
         # Details of the trust entity to create. Required if `structure` is equal to
         # `trust`.
@@ -2705,21 +2707,21 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # Low
+          # Minimal risk of involvement in financial crime.
           LOW =
             T.let(
               :low,
               Increase::EntityCreateParams::RiskRating::Rating::TaggedSymbol
             )
 
-          # Medium
+          # Moderate risk of involvement in financial crime.
           MEDIUM =
             T.let(
               :medium,
               Increase::EntityCreateParams::RiskRating::Rating::TaggedSymbol
             )
 
-          # High
+          # Elevated risk of involvement in financial crime.
           HIGH =
             T.let(
               :high,
@@ -2784,8 +2786,9 @@ module Increase
         end
         attr_accessor :vendor
 
-        # A reference to data stored in a third-party verification service. Your
-        # integration may or may not use this field.
+        # If you are using a third-party service for identity verification, you can use
+        # this field to associate this Entity with the identifier that represents them in
+        # that service.
         sig do
           params(
             reference: String,
