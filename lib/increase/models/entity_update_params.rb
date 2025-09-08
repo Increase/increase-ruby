@@ -75,13 +75,22 @@ module Increase
         #   @return [Increase::Models::EntityUpdateParams::Corporation::Address, nil]
         optional :address, -> { Increase::EntityUpdateParams::Corporation::Address }
 
+        # @!attribute industry_code
+        #   The North American Industry Classification System (NAICS) code for the
+        #   corporation's primary line of business. This is a number, like `5132` for
+        #   `Software Publishers`. A full list of classification codes is available
+        #   [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+        #
+        #   @return [String, nil]
+        optional :industry_code, String
+
         # @!attribute name
         #   The legal name of the corporation.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(address: nil, name: nil)
+        # @!method initialize(address: nil, industry_code: nil, name: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
         #
@@ -89,6 +98,8 @@ module Increase
         #   the entity is not a corporation, the request will fail.
         #
         #   @param address [Increase::Models::EntityUpdateParams::Corporation::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
+        #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
         #
         #   @param name [String] The legal name of the corporation.
 
