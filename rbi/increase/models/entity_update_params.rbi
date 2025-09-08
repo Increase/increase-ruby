@@ -148,6 +148,20 @@ module Increase
             )
           end
 
+        # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        # are disallowed.
+        sig do
+          returns(T.nilable(Increase::EntityUpdateParams::Corporation::Address))
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address: Increase::EntityUpdateParams::Corporation::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
         # The legal name of the corporation.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -157,15 +171,104 @@ module Increase
 
         # Details of the corporation entity to update. If you specify this parameter and
         # the entity is not a corporation, the request will fail.
-        sig { params(name: String).returns(T.attached_class) }
+        sig do
+          params(
+            address: Increase::EntityUpdateParams::Corporation::Address::OrHash,
+            name: String
+          ).returns(T.attached_class)
+        end
         def self.new(
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          address: nil,
           # The legal name of the corporation.
           name: nil
         )
         end
 
-        sig { override.returns({ name: String }) }
+        sig do
+          override.returns(
+            {
+              address: Increase::EntityUpdateParams::Corporation::Address,
+              name: String
+            }
+          )
+        end
         def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::Corporation::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(String) }
+          attr_accessor :city
+
+          # The first line of the address. This is usually the street number and street.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the state of
+          # the address.
+          sig { returns(String) }
+          attr_accessor :state
+
+          # The ZIP code of the address.
+          sig { returns(String) }
+          attr_accessor :zip
+
+          # The second line of the address. This might be the floor or room number.
+          sig { returns(T.nilable(String)) }
+          attr_reader :line2
+
+          sig { params(line2: String).void }
+          attr_writer :line2
+
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          sig do
+            params(
+              city: String,
+              line1: String,
+              state: String,
+              zip: String,
+              line2: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The first line of the address. This is usually the street number and street.
+            line1:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the state of
+            # the address.
+            state:,
+            # The ZIP code of the address.
+            zip:,
+            # The second line of the address. This might be the floor or room number.
+            line2: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: String,
+                line1: String,
+                state: String,
+                zip: String,
+                line2: String
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
@@ -178,6 +281,25 @@ module Increase
             )
           end
 
+        # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        # are disallowed.
+        sig do
+          returns(
+            T.nilable(
+              Increase::EntityUpdateParams::GovernmentAuthority::Address
+            )
+          )
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              Increase::EntityUpdateParams::GovernmentAuthority::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
         # The legal name of the government authority.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -187,15 +309,106 @@ module Increase
 
         # Details of the government authority entity to update. If you specify this
         # parameter and the entity is not a government authority, the request will fail.
-        sig { params(name: String).returns(T.attached_class) }
+        sig do
+          params(
+            address:
+              Increase::EntityUpdateParams::GovernmentAuthority::Address::OrHash,
+            name: String
+          ).returns(T.attached_class)
+        end
         def self.new(
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          address: nil,
           # The legal name of the government authority.
           name: nil
         )
         end
 
-        sig { override.returns({ name: String }) }
+        sig do
+          override.returns(
+            {
+              address:
+                Increase::EntityUpdateParams::GovernmentAuthority::Address,
+              name: String
+            }
+          )
+        end
         def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::GovernmentAuthority::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(String) }
+          attr_accessor :city
+
+          # The first line of the address. This is usually the street number and street.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the state of
+          # the address.
+          sig { returns(String) }
+          attr_accessor :state
+
+          # The ZIP code of the address.
+          sig { returns(String) }
+          attr_accessor :zip
+
+          # The second line of the address. This might be the floor or room number.
+          sig { returns(T.nilable(String)) }
+          attr_reader :line2
+
+          sig { params(line2: String).void }
+          attr_writer :line2
+
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          sig do
+            params(
+              city: String,
+              line1: String,
+              state: String,
+              zip: String,
+              line2: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The first line of the address. This is usually the street number and street.
+            line1:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the state of
+            # the address.
+            state:,
+            # The ZIP code of the address.
+            zip:,
+            # The second line of the address. This might be the floor or room number.
+            line2: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: String,
+                line1: String,
+                state: String,
+                zip: String,
+                line2: String
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
@@ -208,6 +421,23 @@ module Increase
             )
           end
 
+        # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        # are disallowed.
+        sig do
+          returns(
+            T.nilable(Increase::EntityUpdateParams::NaturalPerson::Address)
+          )
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              Increase::EntityUpdateParams::NaturalPerson::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
         # The legal name of the natural person.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -217,15 +447,105 @@ module Increase
 
         # Details of the natural person entity to update. If you specify this parameter
         # and the entity is not a natural person, the request will fail.
-        sig { params(name: String).returns(T.attached_class) }
+        sig do
+          params(
+            address:
+              Increase::EntityUpdateParams::NaturalPerson::Address::OrHash,
+            name: String
+          ).returns(T.attached_class)
+        end
         def self.new(
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          address: nil,
           # The legal name of the natural person.
           name: nil
         )
         end
 
-        sig { override.returns({ name: String }) }
+        sig do
+          override.returns(
+            {
+              address: Increase::EntityUpdateParams::NaturalPerson::Address,
+              name: String
+            }
+          )
+        end
         def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::NaturalPerson::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(String) }
+          attr_accessor :city
+
+          # The first line of the address. This is usually the street number and street.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the state of
+          # the address.
+          sig { returns(String) }
+          attr_accessor :state
+
+          # The ZIP code of the address.
+          sig { returns(String) }
+          attr_accessor :zip
+
+          # The second line of the address. This might be the floor or room number.
+          sig { returns(T.nilable(String)) }
+          attr_reader :line2
+
+          sig { params(line2: String).void }
+          attr_writer :line2
+
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          sig do
+            params(
+              city: String,
+              line1: String,
+              state: String,
+              zip: String,
+              line2: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The first line of the address. This is usually the street number and street.
+            line1:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the state of
+            # the address.
+            state:,
+            # The ZIP code of the address.
+            zip:,
+            # The second line of the address. This might be the floor or room number.
+            line2: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: String,
+                line1: String,
+                state: String,
+                zip: String,
+                line2: String
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
@@ -425,6 +745,18 @@ module Increase
             )
           end
 
+        # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        # are disallowed.
+        sig { returns(T.nilable(Increase::EntityUpdateParams::Trust::Address)) }
+        attr_reader :address
+
+        sig do
+          params(
+            address: Increase::EntityUpdateParams::Trust::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
         # The legal name of the trust.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -434,15 +766,104 @@ module Increase
 
         # Details of the trust entity to update. If you specify this parameter and the
         # entity is not a trust, the request will fail.
-        sig { params(name: String).returns(T.attached_class) }
+        sig do
+          params(
+            address: Increase::EntityUpdateParams::Trust::Address::OrHash,
+            name: String
+          ).returns(T.attached_class)
+        end
         def self.new(
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          address: nil,
           # The legal name of the trust.
           name: nil
         )
         end
 
-        sig { override.returns({ name: String }) }
+        sig do
+          override.returns(
+            {
+              address: Increase::EntityUpdateParams::Trust::Address,
+              name: String
+            }
+          )
+        end
         def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::Trust::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(String) }
+          attr_accessor :city
+
+          # The first line of the address. This is usually the street number and street.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the state of
+          # the address.
+          sig { returns(String) }
+          attr_accessor :state
+
+          # The ZIP code of the address.
+          sig { returns(String) }
+          attr_accessor :zip
+
+          # The second line of the address. This might be the floor or room number.
+          sig { returns(T.nilable(String)) }
+          attr_reader :line2
+
+          sig { params(line2: String).void }
+          attr_writer :line2
+
+          # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
+          sig do
+            params(
+              city: String,
+              line1: String,
+              state: String,
+              zip: String,
+              line2: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The first line of the address. This is usually the street number and street.
+            line1:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the state of
+            # the address.
+            state:,
+            # The ZIP code of the address.
+            zip:,
+            # The second line of the address. This might be the floor or room number.
+            line2: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: String,
+                line1: String,
+                state: String,
+                zip: String,
+                line2: String
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
     end

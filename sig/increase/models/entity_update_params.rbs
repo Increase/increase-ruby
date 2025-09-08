@@ -71,40 +71,205 @@ module Increase
         request_options: Increase::RequestOptions
       }
 
-      type corporation = { name: String }
+      type corporation =
+        {
+          address: Increase::EntityUpdateParams::Corporation::Address,
+          name: String
+        }
 
       class Corporation < Increase::Internal::Type::BaseModel
+        attr_reader address: Increase::EntityUpdateParams::Corporation::Address?
+
+        def address=: (
+          Increase::EntityUpdateParams::Corporation::Address
+        ) -> Increase::EntityUpdateParams::Corporation::Address
+
         attr_reader name: String?
 
         def name=: (String) -> String
 
-        def initialize: (?name: String) -> void
+        def initialize: (
+          ?address: Increase::EntityUpdateParams::Corporation::Address,
+          ?name: String
+        ) -> void
 
-        def to_hash: -> { name: String }
+        def to_hash: -> {
+          address: Increase::EntityUpdateParams::Corporation::Address,
+          name: String
+        }
+
+        type address =
+          {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor line1: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_reader line2: String?
+
+          def line2=: (String) -> String
+
+          def initialize: (
+            city: String,
+            line1: String,
+            state: String,
+            zip: String,
+            ?line2: String
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+        end
       end
 
-      type government_authority = { name: String }
+      type government_authority =
+        {
+          address: Increase::EntityUpdateParams::GovernmentAuthority::Address,
+          name: String
+        }
 
       class GovernmentAuthority < Increase::Internal::Type::BaseModel
+        attr_reader address: Increase::EntityUpdateParams::GovernmentAuthority::Address?
+
+        def address=: (
+          Increase::EntityUpdateParams::GovernmentAuthority::Address
+        ) -> Increase::EntityUpdateParams::GovernmentAuthority::Address
+
         attr_reader name: String?
 
         def name=: (String) -> String
 
-        def initialize: (?name: String) -> void
+        def initialize: (
+          ?address: Increase::EntityUpdateParams::GovernmentAuthority::Address,
+          ?name: String
+        ) -> void
 
-        def to_hash: -> { name: String }
+        def to_hash: -> {
+          address: Increase::EntityUpdateParams::GovernmentAuthority::Address,
+          name: String
+        }
+
+        type address =
+          {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor line1: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_reader line2: String?
+
+          def line2=: (String) -> String
+
+          def initialize: (
+            city: String,
+            line1: String,
+            state: String,
+            zip: String,
+            ?line2: String
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+        end
       end
 
-      type natural_person = { name: String }
+      type natural_person =
+        {
+          address: Increase::EntityUpdateParams::NaturalPerson::Address,
+          name: String
+        }
 
       class NaturalPerson < Increase::Internal::Type::BaseModel
+        attr_reader address: Increase::EntityUpdateParams::NaturalPerson::Address?
+
+        def address=: (
+          Increase::EntityUpdateParams::NaturalPerson::Address
+        ) -> Increase::EntityUpdateParams::NaturalPerson::Address
+
         attr_reader name: String?
 
         def name=: (String) -> String
 
-        def initialize: (?name: String) -> void
+        def initialize: (
+          ?address: Increase::EntityUpdateParams::NaturalPerson::Address,
+          ?name: String
+        ) -> void
 
-        def to_hash: -> { name: String }
+        def to_hash: -> {
+          address: Increase::EntityUpdateParams::NaturalPerson::Address,
+          name: String
+        }
+
+        type address =
+          {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor line1: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_reader line2: String?
+
+          def line2=: (String) -> String
+
+          def initialize: (
+            city: String,
+            line1: String,
+            state: String,
+            zip: String,
+            ?line2: String
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+        end
       end
 
       type risk_rating =
@@ -185,16 +350,68 @@ module Increase
         end
       end
 
-      type trust = { name: String }
+      type trust =
+        { address: Increase::EntityUpdateParams::Trust::Address, name: String }
 
       class Trust < Increase::Internal::Type::BaseModel
+        attr_reader address: Increase::EntityUpdateParams::Trust::Address?
+
+        def address=: (
+          Increase::EntityUpdateParams::Trust::Address
+        ) -> Increase::EntityUpdateParams::Trust::Address
+
         attr_reader name: String?
 
         def name=: (String) -> String
 
-        def initialize: (?name: String) -> void
+        def initialize: (
+          ?address: Increase::EntityUpdateParams::Trust::Address,
+          ?name: String
+        ) -> void
 
-        def to_hash: -> { name: String }
+        def to_hash: -> {
+          address: Increase::EntityUpdateParams::Trust::Address,
+          name: String
+        }
+
+        type address =
+          {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor line1: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_reader line2: String?
+
+          def line2=: (String) -> String
+
+          def initialize: (
+            city: String,
+            line1: String,
+            state: String,
+            zip: String,
+            ?line2: String
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+        end
       end
     end
   end
