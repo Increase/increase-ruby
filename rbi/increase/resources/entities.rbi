@@ -48,8 +48,9 @@ module Increase
         risk_rating: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
-        # A reference to data stored in a third-party verification service. Your
-        # integration may or may not use this field.
+        # If you are using a third-party service for identity verification, you can use
+        # this field to associate this Entity with the identifier that represents them in
+        # that service.
         third_party_verification: nil,
         # Details of the trust entity to create. Required if `structure` is equal to
         # `trust`.
@@ -102,8 +103,9 @@ module Increase
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
-        # A reference to data stored in a third-party verification service. Your
-        # integration may or may not use this field.
+        # If you are using a third-party service for identity verification, you can use
+        # this field to associate this Entity with the identifier that represents them in
+        # that service.
         third_party_verification: nil,
         # Details of the trust entity to update. If you specify this parameter and the
         # entity is not a trust, the request will fail.
