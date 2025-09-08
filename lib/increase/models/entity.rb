@@ -94,8 +94,9 @@ module Increase
                -> { Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument] }
 
       # @!attribute third_party_verification
-      #   A reference to data stored in a third-party verification service. Your
-      #   integration may or may not use this field.
+      #   If you are using a third-party service for identity verification, you can use
+      #   this field to associate this Entity with the identifier that represents them in
+      #   that service.
       #
       #   @return [Increase::Models::Entity::ThirdPartyVerification, nil]
       required :third_party_verification, -> { Increase::Entity::ThirdPartyVerification }, nil?: true
@@ -146,7 +147,7 @@ module Increase
       #
       #   @param supplemental_documents [Array<Increase::Models::EntitySupplementalDocument>] Additional documentation associated with the entity. This is limited to the firs
       #
-      #   @param third_party_verification [Increase::Models::Entity::ThirdPartyVerification, nil] A reference to data stored in a third-party verification service. Your integrati
+      #   @param third_party_verification [Increase::Models::Entity::ThirdPartyVerification, nil] If you are using a third-party service for identity verification, you can use th
       #
       #   @param trust [Increase::Models::Entity::Trust, nil] Details of the trust entity. Will be present if `structure` is equal to `trust`.
       #
@@ -960,13 +961,13 @@ module Increase
         module Rating
           extend Increase::Internal::Type::Enum
 
-          # Low
+          # Minimal risk of involvement in financial crime.
           LOW = :low
 
-          # Medium
+          # Moderate risk of involvement in financial crime.
           MEDIUM = :medium
 
-          # High
+          # Elevated risk of involvement in financial crime.
           HIGH = :high
 
           # @!method self.values
@@ -1033,8 +1034,9 @@ module Increase
         required :vendor, enum: -> { Increase::Entity::ThirdPartyVerification::Vendor }
 
         # @!method initialize(reference:, vendor:)
-        #   A reference to data stored in a third-party verification service. Your
-        #   integration may or may not use this field.
+        #   If you are using a third-party service for identity verification, you can use
+        #   this field to associate this Entity with the identifier that represents them in
+        #   that service.
         #
         #   @param reference [String] The reference identifier for the third party verification.
         #

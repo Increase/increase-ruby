@@ -100,8 +100,9 @@ module Increase
       sig { returns(T::Array[Increase::EntitySupplementalDocument]) }
       attr_accessor :supplemental_documents
 
-      # A reference to data stored in a third-party verification service. Your
-      # integration may or may not use this field.
+      # If you are using a third-party service for identity verification, you can use
+      # this field to associate this Entity with the identifier that represents them in
+      # that service.
       sig { returns(T.nilable(Increase::Entity::ThirdPartyVerification)) }
       attr_reader :third_party_verification
 
@@ -187,8 +188,9 @@ module Increase
         # first 10 documents for an entity. If an entity has more than 10 documents, use
         # the GET /entity_supplemental_documents list endpoint to retrieve them.
         supplemental_documents:,
-        # A reference to data stored in a third-party verification service. Your
-        # integration may or may not use this field.
+        # If you are using a third-party service for identity verification, you can use
+        # this field to associate this Entity with the identifier that represents them in
+        # that service.
         third_party_verification:,
         # Details of the trust entity. Will be present if `structure` is equal to `trust`.
         trust:,
@@ -1640,14 +1642,14 @@ module Increase
             T.type_alias { T.all(Symbol, Increase::Entity::RiskRating::Rating) }
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # Low
+          # Minimal risk of involvement in financial crime.
           LOW = T.let(:low, Increase::Entity::RiskRating::Rating::TaggedSymbol)
 
-          # Medium
+          # Moderate risk of involvement in financial crime.
           MEDIUM =
             T.let(:medium, Increase::Entity::RiskRating::Rating::TaggedSymbol)
 
-          # High
+          # Elevated risk of involvement in financial crime.
           HIGH =
             T.let(:high, Increase::Entity::RiskRating::Rating::TaggedSymbol)
 
@@ -1741,8 +1743,9 @@ module Increase
         end
         attr_accessor :vendor
 
-        # A reference to data stored in a third-party verification service. Your
-        # integration may or may not use this field.
+        # If you are using a third-party service for identity verification, you can use
+        # this field to associate this Entity with the identifier that represents them in
+        # that service.
         sig do
           params(
             reference: String,
