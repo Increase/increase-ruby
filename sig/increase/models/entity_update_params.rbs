@@ -74,6 +74,7 @@ module Increase
       type corporation =
         {
           address: Increase::EntityUpdateParams::Corporation::Address,
+          industry_code: String,
           name: String
         }
 
@@ -84,17 +85,23 @@ module Increase
           Increase::EntityUpdateParams::Corporation::Address
         ) -> Increase::EntityUpdateParams::Corporation::Address
 
+        attr_reader industry_code: String?
+
+        def industry_code=: (String) -> String
+
         attr_reader name: String?
 
         def name=: (String) -> String
 
         def initialize: (
           ?address: Increase::EntityUpdateParams::Corporation::Address,
+          ?industry_code: String,
           ?name: String
         ) -> void
 
         def to_hash: -> {
           address: Increase::EntityUpdateParams::Corporation::Address,
+          industry_code: String,
           name: String
         }
 

@@ -162,6 +162,16 @@ module Increase
         end
         attr_writer :address
 
+        # The North American Industry Classification System (NAICS) code for the
+        # corporation's primary line of business. This is a number, like `5132` for
+        # `Software Publishers`. A full list of classification codes is available
+        # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+        sig { returns(T.nilable(String)) }
+        attr_reader :industry_code
+
+        sig { params(industry_code: String).void }
+        attr_writer :industry_code
+
         # The legal name of the corporation.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -174,6 +184,7 @@ module Increase
         sig do
           params(
             address: Increase::EntityUpdateParams::Corporation::Address::OrHash,
+            industry_code: String,
             name: String
           ).returns(T.attached_class)
         end
@@ -181,6 +192,11 @@ module Increase
           # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           # are disallowed.
           address: nil,
+          # The North American Industry Classification System (NAICS) code for the
+          # corporation's primary line of business. This is a number, like `5132` for
+          # `Software Publishers`. A full list of classification codes is available
+          # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+          industry_code: nil,
           # The legal name of the corporation.
           name: nil
         )
@@ -190,6 +206,7 @@ module Increase
           override.returns(
             {
               address: Increase::EntityUpdateParams::Corporation::Address,
+              industry_code: String,
               name: String
             }
           )
