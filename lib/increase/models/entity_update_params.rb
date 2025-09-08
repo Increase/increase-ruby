@@ -14,6 +14,14 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::Corporation, nil]
       optional :corporation, -> { Increase::EntityUpdateParams::Corporation }
 
+      # @!attribute details_confirmed_at
+      #   When your user last confirmed the Entity's details. Depending on your program,
+      #   you may be required to affirmatively confirm details with your users on an
+      #   annual basis.
+      #
+      #   @return [Time, nil]
+      optional :details_confirmed_at, Time
+
       # @!attribute government_authority
       #   Details of the government authority entity to update. If you specify this
       #   parameter and the entity is not a government authority, the request will fail.
@@ -50,11 +58,13 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::Trust, nil]
       optional :trust, -> { Increase::EntityUpdateParams::Trust }
 
-      # @!method initialize(corporation: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityUpdateParams} for more details.
       #
       #   @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update. If you specify this parameter and t
+      #
+      #   @param details_confirmed_at [Time] When your user last confirmed the Entity's details. Depending on your program, y
       #
       #   @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update. If you specify this parame
       #
