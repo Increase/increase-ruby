@@ -136,15 +136,33 @@ module Increase
         #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decision]
         required :decision, enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Decision }
 
+        # @!attribute approval
+        #   If your application approves the authorization, this contains metadata about
+        #   your decision to approve. Your response here is advisory to the acquiring bank.
+        #   The bank may choose to reverse the authorization if you approve the transaction
+        #   but indicate the address does not match.
+        #
+        #   @return [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval, nil]
+        optional :approval, -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Approval }
+
+        # @!attribute decline
+        #   If your application declines the authorization, this contains details about the
+        #   decline.
+        #
+        #   @return [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline, nil]
+        optional :decline, -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Decline }
+
         # @!attribute decline_reason
         #   The reason the card authorization was declined. This translates to a specific
-        #   decline code that is sent to the card network.
+        #   decline code that is sent to the card network. This field is deprecated, please
+        #   transition to using the `decline` object as this field will be removed in a
+        #   future release.
         #
         #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::DeclineReason, nil]
         optional :decline_reason,
                  enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason }
 
-        # @!method initialize(decision:, decline_reason: nil)
+        # @!method initialize(decision:, approval: nil, decline: nil, decline_reason: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization} for more
         #   details.
@@ -153,6 +171,10 @@ module Increase
         #   contains your response to the authorization.
         #
         #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decision] Whether the card authorization should be approved or declined.
+        #
+        #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval] If your application approves the authorization, this contains metadata about you
+        #
+        #   @param decline [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline] If your application declines the authorization, this contains details about the
         #
         #   @param decline_reason [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::DeclineReason] The reason the card authorization was declined. This translates to a specific de
 
@@ -172,8 +194,157 @@ module Increase
           #   @return [Array<Symbol>]
         end
 
+        # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization#approval
+        class Approval < Increase::Internal::Type::BaseModel
+          # @!attribute cardholder_address_verification_result
+          #   Your decisions on whether or not each provided address component is a match.
+          #   Your response here is evaluated against the customer's provided `postal_code`
+          #   and `line1`, and an appropriate network response is generated. For example, if
+          #   you would like to approve all transactions for a given card, you can submit
+          #   `match` for both `postal_code` and `line1` and Increase will generate an
+          #   approval with an Address Verification System (AVS) code that will match all of
+          #   the available address information, or will report that no check was performed if
+          #   no address information is available. If you do not provide a response, the
+          #   address verification result will be calculated by Increase using the available
+          #   address information available on the card. If none is available, Increase will
+          #   report that no check was performed.
+          #
+          #   @return [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult, nil]
+          optional :cardholder_address_verification_result,
+                   -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult }
+
+          # @!method initialize(cardholder_address_verification_result: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval}
+          #   for more details.
+          #
+          #   If your application approves the authorization, this contains metadata about
+          #   your decision to approve. Your response here is advisory to the acquiring bank.
+          #   The bank may choose to reverse the authorization if you approve the transaction
+          #   but indicate the address does not match.
+          #
+          #   @param cardholder_address_verification_result [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult] Your decisions on whether or not each provided address component is a match. You
+
+          # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval#cardholder_address_verification_result
+          class CardholderAddressVerificationResult < Increase::Internal::Type::BaseModel
+            # @!attribute line1
+            #   Your decision on the address line of the provided address.
+            #
+            #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1]
+            required :line1,
+                     enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1 }
+
+            # @!attribute postal_code
+            #   Your decision on the postal code of the provided address.
+            #
+            #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode]
+            required :postal_code,
+                     enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode }
+
+            # @!method initialize(line1:, postal_code:)
+            #   Your decisions on whether or not each provided address component is a match.
+            #   Your response here is evaluated against the customer's provided `postal_code`
+            #   and `line1`, and an appropriate network response is generated. For example, if
+            #   you would like to approve all transactions for a given card, you can submit
+            #   `match` for both `postal_code` and `line1` and Increase will generate an
+            #   approval with an Address Verification System (AVS) code that will match all of
+            #   the available address information, or will report that no check was performed if
+            #   no address information is available. If you do not provide a response, the
+            #   address verification result will be calculated by Increase using the available
+            #   address information available on the card. If none is available, Increase will
+            #   report that no check was performed.
+            #
+            #   @param line1 [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1] Your decision on the address line of the provided address.
+            #
+            #   @param postal_code [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode] Your decision on the postal code of the provided address.
+
+            # Your decision on the address line of the provided address.
+            #
+            # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult#line1
+            module Line1
+              extend Increase::Internal::Type::Enum
+
+              # The cardholder address verification result matches the address provided by the merchant.
+              MATCH = :match
+
+              # The cardholder address verification result does not match the address provided by the merchant.
+              NO_MATCH = :no_match
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # Your decision on the postal code of the provided address.
+            #
+            # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult#postal_code
+            module PostalCode
+              extend Increase::Internal::Type::Enum
+
+              # The cardholder address verification result matches the address provided by the merchant.
+              MATCH = :match
+
+              # The cardholder address verification result does not match the address provided by the merchant.
+              NO_MATCH = :no_match
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+        end
+
+        # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization#decline
+        class Decline < Increase::Internal::Type::BaseModel
+          # @!attribute reason
+          #   The reason the card authorization was declined. This translates to a specific
+          #   decline code that is sent to the card network.
+          #
+          #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason]
+          required :reason, enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason }
+
+          # @!method initialize(reason:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline} for
+          #   more details.
+          #
+          #   If your application declines the authorization, this contains details about the
+          #   decline.
+          #
+          #   @param reason [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason] The reason the card authorization was declined. This translates to a specific de
+
+          # The reason the card authorization was declined. This translates to a specific
+          # decline code that is sent to the card network.
+          #
+          # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline#reason
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
+            INSUFFICIENT_FUNDS = :insufficient_funds
+
+            # This type of transaction is not allowed for this card. This transaction should not be retried.
+            TRANSACTION_NEVER_ALLOWED = :transaction_never_allowed
+
+            # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
+            EXCEEDS_APPROVAL_LIMIT = :exceeds_approval_limit
+
+            # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
+            CARD_TEMPORARILY_DISABLED = :card_temporarily_disabled
+
+            # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
+            SUSPECTED_FRAUD = :suspected_fraud
+
+            # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
+            OTHER = :other
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
         # The reason the card authorization was declined. This translates to a specific
-        # decline code that is sent to the card network.
+        # decline code that is sent to the card network. This field is deprecated, please
+        # transition to using the `decline` object as this field will be removed in a
+        # future release.
         #
         # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization#decline_reason
         module DeclineReason
@@ -210,17 +381,23 @@ module Increase
         required :result, enum: -> { Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result }
 
         # @!attribute success
+        #   If your application was able to deliver the one-time passcode, this contains
+        #   metadata about the delivery. Exactly one of `phone` or `email` must be provided.
         #
         #   @return [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success, nil]
         optional :success, -> { Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success }
 
         # @!method initialize(result:, success: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication}
+        #   for more details.
+        #
         #   If the Real-Time Decision relates to a digital wallet authentication attempt,
         #   this object contains your response to the authentication.
         #
         #   @param result [Symbol, Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result] Whether your application was able to deliver the one-time passcode.
         #
-        #   @param success [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success]
+        #   @param success [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success] If your application was able to deliver the one-time passcode, this contains met
 
         # Whether your application was able to deliver the one-time passcode.
         #
@@ -257,6 +434,9 @@ module Increase
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success}
           #   for more details.
+          #
+          #   If your application was able to deliver the one-time passcode, this contains
+          #   metadata about the delivery. Exactly one of `phone` or `email` must be provided.
           #
           #   @param email [String] The email address that was used to verify the cardholder via one-time passcode.
           #
