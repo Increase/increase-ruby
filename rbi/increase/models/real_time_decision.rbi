@@ -477,6 +477,25 @@ module Increase
         end
         attr_accessor :decision
 
+        # Present if and only if `decision` is `decline`. Contains information related to
+        # the reason the authorization was declined.
+        sig do
+          returns(
+            T.nilable(Increase::RealTimeDecision::CardAuthorization::Decline)
+          )
+        end
+        attr_reader :decline
+
+        sig do
+          params(
+            decline:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthorization::Decline::OrHash
+              )
+          ).void
+        end
+        attr_writer :decline
+
         # If the authorization was made via a Digital Wallet Token (such as an Apple Pay
         # purchase), the identifier of the token that was used.
         sig { returns(T.nilable(String)) }
@@ -641,6 +660,10 @@ module Increase
               T.nilable(
                 Increase::RealTimeDecision::CardAuthorization::Decision::OrSymbol
               ),
+            decline:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthorization::Decline::OrHash
+              ),
             digital_wallet_token_id: T.nilable(String),
             direction:
               Increase::RealTimeDecision::CardAuthorization::Direction::OrSymbol,
@@ -682,6 +705,9 @@ module Increase
           card_id:,
           # Whether or not the authorization was approved.
           decision:,
+          # Present if and only if `decision` is `decline`. Contains information related to
+          # the reason the authorization was declined.
+          decline:,
           # If the authorization was made via a Digital Wallet Token (such as an Apple Pay
           # purchase), the identifier of the token that was used.
           digital_wallet_token_id:,
@@ -754,6 +780,10 @@ module Increase
               decision:
                 T.nilable(
                   Increase::RealTimeDecision::CardAuthorization::Decision::TaggedSymbol
+                ),
+              decline:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthorization::Decline
                 ),
               digital_wallet_token_id: T.nilable(String),
               direction:
@@ -1466,6 +1496,33 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+
+        class Decline < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthorization::Decline,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The reason the authorization was declined.
+          sig { returns(String) }
+          attr_accessor :reason
+
+          # Present if and only if `decision` is `decline`. Contains information related to
+          # the reason the authorization was declined.
+          sig { params(reason: String).returns(T.attached_class) }
+          def self.new(
+            # The reason the authorization was declined.
+            reason:
+          )
+          end
+
+          sig { override.returns({ reason: String }) }
+          def to_hash
           end
         end
 
@@ -2525,28 +2582,21 @@ module Increase
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-              # No address was provided in the authorization request.
+              # No address information was provided in the authorization request.
               NOT_CHECKED =
                 T.let(
                   :not_checked,
                   Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
                 )
 
-              # Postal code matches, but the street address was not verified.
-              POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
-                T.let(
-                  :postal_code_match_address_not_checked,
-                  Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
-                )
-
-              # Postal code matches, but the street address does not match.
+              # Postal code matches, but the street address does not match or was not provided.
               POSTAL_CODE_MATCH_ADDRESS_NO_MATCH =
                 T.let(
                   :postal_code_match_address_no_match,
                   Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
                 )
 
-              # Postal code does not match, but the street address matches.
+              # Postal code does not match, but the street address matches or was not provided.
               POSTAL_CODE_NO_MATCH_ADDRESS_MATCH =
                 T.let(
                   :postal_code_no_match_address_match,
@@ -2564,6 +2614,13 @@ module Increase
               NO_MATCH =
                 T.let(
                   :no_match,
+                  Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              # Postal code matches, but the street address was not verified. (deprecated)
+              POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
+                T.let(
+                  :postal_code_match_address_not_checked,
                   Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
                 )
 

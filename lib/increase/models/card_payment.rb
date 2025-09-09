@@ -1707,16 +1707,13 @@ module Increase
               module Result
                 extend Increase::Internal::Type::Enum
 
-                # No address was provided in the authorization request.
+                # No address information was provided in the authorization request.
                 NOT_CHECKED = :not_checked
 
-                # Postal code matches, but the street address was not verified.
-                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
-
-                # Postal code matches, but the street address does not match.
+                # Postal code matches, but the street address does not match or was not provided.
                 POSTAL_CODE_MATCH_ADDRESS_NO_MATCH = :postal_code_match_address_no_match
 
-                # Postal code does not match, but the street address matches.
+                # Postal code does not match, but the street address matches or was not provided.
                 POSTAL_CODE_NO_MATCH_ADDRESS_MATCH = :postal_code_no_match_address_match
 
                 # Postal code and street address match.
@@ -1724,6 +1721,9 @@ module Increase
 
                 # Postal code and street address do not match.
                 NO_MATCH = :no_match
+
+                # Postal code matches, but the street address was not verified. (deprecated)
+                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
@@ -3022,16 +3022,13 @@ module Increase
               module Result
                 extend Increase::Internal::Type::Enum
 
-                # No address was provided in the authorization request.
+                # No address information was provided in the authorization request.
                 NOT_CHECKED = :not_checked
 
-                # Postal code matches, but the street address was not verified.
-                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
-
-                # Postal code matches, but the street address does not match.
+                # Postal code matches, but the street address does not match or was not provided.
                 POSTAL_CODE_MATCH_ADDRESS_NO_MATCH = :postal_code_match_address_no_match
 
-                # Postal code does not match, but the street address matches.
+                # Postal code does not match, but the street address matches or was not provided.
                 POSTAL_CODE_NO_MATCH_ADDRESS_MATCH = :postal_code_no_match_address_match
 
                 # Postal code and street address match.
@@ -3039,6 +3036,9 @@ module Increase
 
                 # Postal code and street address do not match.
                 NO_MATCH = :no_match
+
+                # Postal code matches, but the street address was not verified. (deprecated)
+                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
@@ -7839,16 +7839,13 @@ module Increase
               module Result
                 extend Increase::Internal::Type::Enum
 
-                # No address was provided in the authorization request.
+                # No address information was provided in the authorization request.
                 NOT_CHECKED = :not_checked
 
-                # Postal code matches, but the street address was not verified.
-                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
-
-                # Postal code matches, but the street address does not match.
+                # Postal code matches, but the street address does not match or was not provided.
                 POSTAL_CODE_MATCH_ADDRESS_NO_MATCH = :postal_code_match_address_no_match
 
-                # Postal code does not match, but the street address matches.
+                # Postal code does not match, but the street address matches or was not provided.
                 POSTAL_CODE_NO_MATCH_ADDRESS_MATCH = :postal_code_no_match_address_match
 
                 # Postal code and street address match.
@@ -7856,6 +7853,9 @@ module Increase
 
                 # Postal code and street address do not match.
                 NO_MATCH = :no_match
+
+                # Postal code matches, but the street address was not verified. (deprecated)
+                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
 
                 # @!method self.values
                 #   @return [Array<Symbol>]

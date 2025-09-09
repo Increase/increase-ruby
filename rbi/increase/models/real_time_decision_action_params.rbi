@@ -347,8 +347,50 @@ module Increase
         end
         attr_accessor :decision
 
+        # If your application approves the authorization, this contains metadata about
+        # your decision to approve. Your response here is advisory to the acquiring bank.
+        # The bank may choose to reverse the authorization if you approve the transaction
+        # but indicate the address does not match.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Approval
+            )
+          )
+        end
+        attr_reader :approval
+
+        sig do
+          params(
+            approval:
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::OrHash
+          ).void
+        end
+        attr_writer :approval
+
+        # If your application declines the authorization, this contains details about the
+        # decline.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
+            )
+          )
+        end
+        attr_reader :decline
+
+        sig do
+          params(
+            decline:
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::OrHash
+          ).void
+        end
+        attr_writer :decline
+
         # The reason the card authorization was declined. This translates to a specific
-        # decline code that is sent to the card network.
+        # decline code that is sent to the card network. This field is deprecated, please
+        # transition to using the `decline` object as this field will be removed in a
+        # future release.
         sig do
           returns(
             T.nilable(
@@ -372,6 +414,10 @@ module Increase
           params(
             decision:
               Increase::RealTimeDecisionActionParams::CardAuthorization::Decision::OrSymbol,
+            approval:
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::OrHash,
+            decline:
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::OrHash,
             decline_reason:
               Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::OrSymbol
           ).returns(T.attached_class)
@@ -379,8 +425,18 @@ module Increase
         def self.new(
           # Whether the card authorization should be approved or declined.
           decision:,
+          # If your application approves the authorization, this contains metadata about
+          # your decision to approve. Your response here is advisory to the acquiring bank.
+          # The bank may choose to reverse the authorization if you approve the transaction
+          # but indicate the address does not match.
+          approval: nil,
+          # If your application declines the authorization, this contains details about the
+          # decline.
+          decline: nil,
           # The reason the card authorization was declined. This translates to a specific
-          # decline code that is sent to the card network.
+          # decline code that is sent to the card network. This field is deprecated, please
+          # transition to using the `decline` object as this field will be removed in a
+          # future release.
           decline_reason: nil
         )
         end
@@ -390,6 +446,10 @@ module Increase
             {
               decision:
                 Increase::RealTimeDecisionActionParams::CardAuthorization::Decision::OrSymbol,
+              approval:
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval,
+              decline:
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline,
               decline_reason:
                 Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::OrSymbol
             }
@@ -436,8 +496,339 @@ module Increase
           end
         end
 
+        class Approval < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Your decisions on whether or not each provided address component is a match.
+          # Your response here is evaluated against the customer's provided `postal_code`
+          # and `line1`, and an appropriate network response is generated. For example, if
+          # you would like to approve all transactions for a given card, you can submit
+          # `match` for both `postal_code` and `line1` and Increase will generate an
+          # approval with an Address Verification System (AVS) code that will match all of
+          # the available address information, or will report that no check was performed if
+          # no address information is available. If you do not provide a response, the
+          # address verification result will be calculated by Increase using the available
+          # address information available on the card. If none is available, Increase will
+          # report that no check was performed.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
+              )
+            )
+          end
+          attr_reader :cardholder_address_verification_result
+
+          sig do
+            params(
+              cardholder_address_verification_result:
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::OrHash
+            ).void
+          end
+          attr_writer :cardholder_address_verification_result
+
+          # If your application approves the authorization, this contains metadata about
+          # your decision to approve. Your response here is advisory to the acquiring bank.
+          # The bank may choose to reverse the authorization if you approve the transaction
+          # but indicate the address does not match.
+          sig do
+            params(
+              cardholder_address_verification_result:
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Your decisions on whether or not each provided address component is a match.
+            # Your response here is evaluated against the customer's provided `postal_code`
+            # and `line1`, and an appropriate network response is generated. For example, if
+            # you would like to approve all transactions for a given card, you can submit
+            # `match` for both `postal_code` and `line1` and Increase will generate an
+            # approval with an Address Verification System (AVS) code that will match all of
+            # the available address information, or will report that no check was performed if
+            # no address information is available. If you do not provide a response, the
+            # address verification result will be calculated by Increase using the available
+            # address information available on the card. If none is available, Increase will
+            # report that no check was performed.
+            cardholder_address_verification_result: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                cardholder_address_verification_result:
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class CardholderAddressVerificationResult < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Your decision on the address line of the provided address.
+            sig do
+              returns(
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1::OrSymbol
+              )
+            end
+            attr_accessor :line1
+
+            # Your decision on the postal code of the provided address.
+            sig do
+              returns(
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode::OrSymbol
+              )
+            end
+            attr_accessor :postal_code
+
+            # Your decisions on whether or not each provided address component is a match.
+            # Your response here is evaluated against the customer's provided `postal_code`
+            # and `line1`, and an appropriate network response is generated. For example, if
+            # you would like to approve all transactions for a given card, you can submit
+            # `match` for both `postal_code` and `line1` and Increase will generate an
+            # approval with an Address Verification System (AVS) code that will match all of
+            # the available address information, or will report that no check was performed if
+            # no address information is available. If you do not provide a response, the
+            # address verification result will be calculated by Increase using the available
+            # address information available on the card. If none is available, Increase will
+            # report that no check was performed.
+            sig do
+              params(
+                line1:
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1::OrSymbol,
+                postal_code:
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Your decision on the address line of the provided address.
+              line1:,
+              # Your decision on the postal code of the provided address.
+              postal_code:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  line1:
+                    Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1::OrSymbol,
+                  postal_code:
+                    Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Your decision on the address line of the provided address.
+            module Line1
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The cardholder address verification result matches the address provided by the merchant.
+              MATCH =
+                T.let(
+                  :match,
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1::TaggedSymbol
+                )
+
+              # The cardholder address verification result does not match the address provided by the merchant.
+              NO_MATCH =
+                T.let(
+                  :no_match,
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # Your decision on the postal code of the provided address.
+            module PostalCode
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The cardholder address verification result matches the address provided by the merchant.
+              MATCH =
+                T.let(
+                  :match,
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode::TaggedSymbol
+                )
+
+              # The cardholder address verification result does not match the address provided by the merchant.
+              NO_MATCH =
+                T.let(
+                  :no_match,
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+
+        class Decline < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The reason the card authorization was declined. This translates to a specific
+          # decline code that is sent to the card network.
+          sig do
+            returns(
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::OrSymbol
+            )
+          end
+          attr_accessor :reason
+
+          # If your application declines the authorization, this contains details about the
+          # decline.
+          sig do
+            params(
+              reason:
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The reason the card authorization was declined. This translates to a specific
+            # decline code that is sent to the card network.
+            reason:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                reason:
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The reason the card authorization was declined. This translates to a specific
+          # decline code that is sent to the card network.
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
+            INSUFFICIENT_FUNDS =
+              T.let(
+                :insufficient_funds,
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # This type of transaction is not allowed for this card. This transaction should not be retried.
+            TRANSACTION_NEVER_ALLOWED =
+              T.let(
+                :transaction_never_allowed,
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
+            EXCEEDS_APPROVAL_LIMIT =
+              T.let(
+                :exceeds_approval_limit,
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
+            CARD_TEMPORARILY_DISABLED =
+              T.let(
+                :card_temporarily_disabled,
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
+            SUSPECTED_FRAUD =
+              T.let(
+                :suspected_fraud,
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
+            OTHER =
+              T.let(
+                :other,
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
         # The reason the card authorization was declined. This translates to a specific
-        # decline code that is sent to the card network.
+        # decline code that is sent to the card network. This field is deprecated, please
+        # transition to using the `decline` object as this field will be removed in a
+        # future release.
         module DeclineReason
           extend Increase::Internal::Type::Enum
 
@@ -521,6 +912,8 @@ module Increase
         end
         attr_accessor :result
 
+        # If your application was able to deliver the one-time passcode, this contains
+        # metadata about the delivery. Exactly one of `phone` or `email` must be provided.
         sig do
           returns(
             T.nilable(
@@ -551,6 +944,8 @@ module Increase
         def self.new(
           # Whether your application was able to deliver the one-time passcode.
           result:,
+          # If your application was able to deliver the one-time passcode, this contains
+          # metadata about the delivery. Exactly one of `phone` or `email` must be provided.
           success: nil
         )
         end
@@ -630,6 +1025,8 @@ module Increase
           sig { params(phone: String).void }
           attr_writer :phone
 
+          # If your application was able to deliver the one-time passcode, this contains
+          # metadata about the delivery. Exactly one of `phone` or `email` must be provided.
           sig { params(email: String, phone: String).returns(T.attached_class) }
           def self.new(
             # The email address that was used to verify the cardholder via one-time passcode.
