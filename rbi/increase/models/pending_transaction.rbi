@@ -2918,28 +2918,21 @@ module Increase
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-                # No address was provided in the authorization request.
+                # No address information was provided in the authorization request.
                 NOT_CHECKED =
                   T.let(
                     :not_checked,
                     Increase::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
                   )
 
-                # Postal code matches, but the street address was not verified.
-                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
-                  T.let(
-                    :postal_code_match_address_not_checked,
-                    Increase::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
-                  )
-
-                # Postal code matches, but the street address does not match.
+                # Postal code matches, but the street address does not match or was not provided.
                 POSTAL_CODE_MATCH_ADDRESS_NO_MATCH =
                   T.let(
                     :postal_code_match_address_no_match,
                     Increase::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
                   )
 
-                # Postal code does not match, but the street address matches.
+                # Postal code does not match, but the street address matches or was not provided.
                 POSTAL_CODE_NO_MATCH_ADDRESS_MATCH =
                   T.let(
                     :postal_code_no_match_address_match,
@@ -2957,6 +2950,13 @@ module Increase
                 NO_MATCH =
                   T.let(
                     :no_match,
+                    Increase::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                # Postal code matches, but the street address was not verified. (deprecated)
+                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
+                  T.let(
+                    :postal_code_match_address_not_checked,
                     Increase::PendingTransaction::Source::CardAuthorization::Verification::CardholderAddress::Result::TaggedSymbol
                   )
 

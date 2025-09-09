@@ -268,6 +268,13 @@ module Increase
         #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::Decision, nil]
         required :decision, enum: -> { Increase::RealTimeDecision::CardAuthorization::Decision }, nil?: true
 
+        # @!attribute decline
+        #   Present if and only if `decision` is `decline`. Contains information related to
+        #   the reason the authorization was declined.
+        #
+        #   @return [Increase::Models::RealTimeDecision::CardAuthorization::Decline, nil]
+        required :decline, -> { Increase::RealTimeDecision::CardAuthorization::Decline }, nil?: true
+
         # @!attribute digital_wallet_token_id
         #   If the authorization was made via a Digital Wallet Token (such as an Apple Pay
         #   purchase), the identifier of the token that was used.
@@ -416,7 +423,7 @@ module Increase
         #   @return [Increase::Models::RealTimeDecision::CardAuthorization::Verification]
         required :verification, -> { Increase::RealTimeDecision::CardAuthorization::Verification }
 
-        # @!method initialize(account_id:, additional_amounts:, card_id:, decision:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, request_details:, settlement_amount:, settlement_currency:, terminal_id:, upcoming_card_payment_id:, verification:)
+        # @!method initialize(account_id:, additional_amounts:, card_id:, decision:, decline:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, request_details:, settlement_amount:, settlement_currency:, terminal_id:, upcoming_card_payment_id:, verification:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecision::CardAuthorization} for more details.
         #
@@ -429,6 +436,8 @@ module Increase
         #   @param card_id [String] The identifier of the Card that is being authorized.
         #
         #   @param decision [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::Decision, nil] Whether or not the authorization was approved.
+        #
+        #   @param decline [Increase::Models::RealTimeDecision::CardAuthorization::Decline, nil] Present if and only if `decision` is `decline`. Contains information related to
         #
         #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
         #
@@ -833,6 +842,21 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::RealTimeDecision::CardAuthorization#decline
+        class Decline < Increase::Internal::Type::BaseModel
+          # @!attribute reason
+          #   The reason the authorization was declined.
+          #
+          #   @return [String]
+          required :reason, String
+
+          # @!method initialize(reason:)
+          #   Present if and only if `decision` is `decline`. Contains information related to
+          #   the reason the authorization was declined.
+          #
+          #   @param reason [String] The reason the authorization was declined.
         end
 
         # The direction describes the direction the funds will move, either from the
@@ -1334,16 +1358,13 @@ module Increase
             module Result
               extend Increase::Internal::Type::Enum
 
-              # No address was provided in the authorization request.
+              # No address information was provided in the authorization request.
               NOT_CHECKED = :not_checked
 
-              # Postal code matches, but the street address was not verified.
-              POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
-
-              # Postal code matches, but the street address does not match.
+              # Postal code matches, but the street address does not match or was not provided.
               POSTAL_CODE_MATCH_ADDRESS_NO_MATCH = :postal_code_match_address_no_match
 
-              # Postal code does not match, but the street address matches.
+              # Postal code does not match, but the street address matches or was not provided.
               POSTAL_CODE_NO_MATCH_ADDRESS_MATCH = :postal_code_no_match_address_match
 
               # Postal code and street address match.
@@ -1351,6 +1372,9 @@ module Increase
 
               # Postal code and street address do not match.
               NO_MATCH = :no_match
+
+              # Postal code matches, but the street address was not verified. (deprecated)
+              POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED = :postal_code_match_address_not_checked
 
               # @!method self.values
               #   @return [Array<Symbol>]
