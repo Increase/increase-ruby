@@ -131,8 +131,7 @@ module Increase
         {
           decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision,
           approval: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval,
-          decline: Increase::RealTimeDecisionActionParams::CardAuthorization::Decline,
-          decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+          decline: Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
         }
 
       class CardAuthorization < Increase::Internal::Type::BaseModel
@@ -150,24 +149,16 @@ module Increase
           Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
         ) -> Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
 
-        attr_reader decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason?
-
-        def decline_reason=: (
-          Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
-        ) -> Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
-
         def initialize: (
           decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision,
           ?approval: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval,
-          ?decline: Increase::RealTimeDecisionActionParams::CardAuthorization::Decline,
-          ?decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+          ?decline: Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
         ) -> void
 
         def to_hash: -> {
           decision: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decision,
           approval: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval,
-          decline: Increase::RealTimeDecisionActionParams::CardAuthorization::Decline,
-          decline_reason: Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason
+          decline: Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
         }
 
         type decision = :approve | :decline
@@ -302,38 +293,6 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline::reason]
           end
-        end
-
-        type decline_reason =
-          :insufficient_funds
-          | :transaction_never_allowed
-          | :exceeds_approval_limit
-          | :card_temporarily_disabled
-          | :suspected_fraud
-          | :other
-
-        module DeclineReason
-          extend Increase::Internal::Type::Enum
-
-          # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
-          INSUFFICIENT_FUNDS: :insufficient_funds
-
-          # This type of transaction is not allowed for this card. This transaction should not be retried.
-          TRANSACTION_NEVER_ALLOWED: :transaction_never_allowed
-
-          # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
-          EXCEEDS_APPROVAL_LIMIT: :exceeds_approval_limit
-
-          # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
-          CARD_TEMPORARILY_DISABLED: :card_temporarily_disabled
-
-          # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
-          SUSPECTED_FRAUD: :suspected_fraud
-
-          # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
-          OTHER: :other
-
-          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthorization::decline_reason]
         end
       end
 
