@@ -387,27 +387,6 @@ module Increase
         end
         attr_writer :decline
 
-        # The reason the card authorization was declined. This translates to a specific
-        # decline code that is sent to the card network. This field is deprecated, please
-        # transition to using the `decline` object as this field will be removed in a
-        # future release.
-        sig do
-          returns(
-            T.nilable(
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::OrSymbol
-            )
-          )
-        end
-        attr_reader :decline_reason
-
-        sig do
-          params(
-            decline_reason:
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::OrSymbol
-          ).void
-        end
-        attr_writer :decline_reason
-
         # If the Real-Time Decision relates to a card authorization attempt, this object
         # contains your response to the authorization.
         sig do
@@ -417,9 +396,7 @@ module Increase
             approval:
               Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::OrHash,
             decline:
-              Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::OrHash,
-            decline_reason:
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::OrSymbol
+              Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -432,12 +409,7 @@ module Increase
           approval: nil,
           # If your application declines the authorization, this contains details about the
           # decline.
-          decline: nil,
-          # The reason the card authorization was declined. This translates to a specific
-          # decline code that is sent to the card network. This field is deprecated, please
-          # transition to using the `decline` object as this field will be removed in a
-          # future release.
-          decline_reason: nil
+          decline: nil
         )
         end
 
@@ -449,9 +421,7 @@ module Increase
               approval:
                 Increase::RealTimeDecisionActionParams::CardAuthorization::Approval,
               decline:
-                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline,
-              decline_reason:
-                Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::OrSymbol
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Decline
             }
           )
         end
@@ -822,75 +792,6 @@ module Increase
             end
             def self.values
             end
-          end
-        end
-
-        # The reason the card authorization was declined. This translates to a specific
-        # decline code that is sent to the card network. This field is deprecated, please
-        # transition to using the `decline` object as this field will be removed in a
-        # future release.
-        module DeclineReason
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
-          INSUFFICIENT_FUNDS =
-            T.let(
-              :insufficient_funds,
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-            )
-
-          # This type of transaction is not allowed for this card. This transaction should not be retried.
-          TRANSACTION_NEVER_ALLOWED =
-            T.let(
-              :transaction_never_allowed,
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-            )
-
-          # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
-          EXCEEDS_APPROVAL_LIMIT =
-            T.let(
-              :exceeds_approval_limit,
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-            )
-
-          # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
-          CARD_TEMPORARILY_DISABLED =
-            T.let(
-              :card_temporarily_disabled,
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-            )
-
-          # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
-          SUSPECTED_FRAUD =
-            T.let(
-              :suspected_fraud,
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-            )
-
-          # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
-          OTHER =
-            T.let(
-              :other,
-              Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end

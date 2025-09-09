@@ -152,17 +152,7 @@ module Increase
         #   @return [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline, nil]
         optional :decline, -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Decline }
 
-        # @!attribute decline_reason
-        #   The reason the card authorization was declined. This translates to a specific
-        #   decline code that is sent to the card network. This field is deprecated, please
-        #   transition to using the `decline` object as this field will be removed in a
-        #   future release.
-        #
-        #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::DeclineReason, nil]
-        optional :decline_reason,
-                 enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::DeclineReason }
-
-        # @!method initialize(decision:, approval: nil, decline: nil, decline_reason: nil)
+        # @!method initialize(decision:, approval: nil, decline: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization} for more
         #   details.
@@ -175,8 +165,6 @@ module Increase
         #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval] If your application approves the authorization, this contains metadata about you
         #
         #   @param decline [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline] If your application declines the authorization, this contains details about the
-        #
-        #   @param decline_reason [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::DeclineReason] The reason the card authorization was declined. This translates to a specific de
 
         # Whether the card authorization should be approved or declined.
         #
@@ -339,37 +327,6 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
-        end
-
-        # The reason the card authorization was declined. This translates to a specific
-        # decline code that is sent to the card network. This field is deprecated, please
-        # transition to using the `decline` object as this field will be removed in a
-        # future release.
-        #
-        # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization#decline_reason
-        module DeclineReason
-          extend Increase::Internal::Type::Enum
-
-          # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
-          INSUFFICIENT_FUNDS = :insufficient_funds
-
-          # This type of transaction is not allowed for this card. This transaction should not be retried.
-          TRANSACTION_NEVER_ALLOWED = :transaction_never_allowed
-
-          # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
-          EXCEEDS_APPROVAL_LIMIT = :exceeds_approval_limit
-
-          # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
-          CARD_TEMPORARILY_DISABLED = :card_temporarily_disabled
-
-          # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
-          SUSPECTED_FRAUD = :suspected_fraud
-
-          # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
-          OTHER = :other
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
 
