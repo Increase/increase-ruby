@@ -103,6 +103,9 @@ module Increase
           # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
           CHECK_TRANSFER_INSTRUCTION = :check_transfer_instruction
 
+          # FedNow Transfer Instruction: details will be under the `fed_now_transfer_instruction` object.
+          FED_NOW_TRANSFER_INSTRUCTION = :fed_now_transfer_instruction
+
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 

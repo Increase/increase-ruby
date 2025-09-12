@@ -263,6 +263,15 @@ module Increase
                  -> { Increase::PendingTransaction::Source::CheckTransferInstruction },
                  nil?: true
 
+        # @!attribute fed_now_transfer_instruction
+        #   A FedNow Transfer Instruction object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `fed_now_transfer_instruction`.
+        #
+        #   @return [Increase::Models::PendingTransaction::Source::FedNowTransferInstruction, nil]
+        required :fed_now_transfer_instruction,
+                 -> { Increase::PendingTransaction::Source::FedNowTransferInstruction },
+                 nil?: true
+
         # @!attribute inbound_funds_hold
         #   An Inbound Funds Hold object. This field will be present in the JSON response if
         #   and only if `category` is equal to `inbound_funds_hold`. We hold funds for
@@ -330,7 +339,7 @@ module Increase
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, card_push_transfer_instruction:, category:, check_deposit_instruction:, check_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, user_initiated_hold:, wire_transfer_instruction:)
+        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, card_authorization:, card_push_transfer_instruction:, category:, check_deposit_instruction:, check_transfer_instruction:, fed_now_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, user_initiated_hold:, wire_transfer_instruction:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::PendingTransaction::Source} for more details.
         #
@@ -351,6 +360,8 @@ module Increase
         #   @param check_deposit_instruction [Increase::Models::PendingTransaction::Source::CheckDepositInstruction, nil] A Check Deposit Instruction object. This field will be present in the JSON respo
         #
         #   @param check_transfer_instruction [Increase::Models::PendingTransaction::Source::CheckTransferInstruction, nil] A Check Transfer Instruction object. This field will be present in the JSON resp
+        #
+        #   @param fed_now_transfer_instruction [Increase::Models::PendingTransaction::Source::FedNowTransferInstruction, nil] A FedNow Transfer Instruction object. This field will be present in the JSON res
         #
         #   @param inbound_funds_hold [Increase::Models::PendingTransaction::Source::InboundFundsHold, nil] An Inbound Funds Hold object. This field will be present in the JSON response if
         #
@@ -1623,6 +1634,9 @@ module Increase
           # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
           CHECK_TRANSFER_INSTRUCTION = :check_transfer_instruction
 
+          # FedNow Transfer Instruction: details will be under the `fed_now_transfer_instruction` object.
+          FED_NOW_TRANSFER_INSTRUCTION = :fed_now_transfer_instruction
+
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 
@@ -1797,6 +1811,21 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Increase::Models::PendingTransaction::Source#fed_now_transfer_instruction
+        class FedNowTransferInstruction < Increase::Internal::Type::BaseModel
+          # @!attribute transfer_id
+          #   The identifier of the FedNow Transfer that led to this Pending Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(transfer_id:)
+          #   A FedNow Transfer Instruction object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `fed_now_transfer_instruction`.
+          #
+          #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this Pending Transaction.
         end
 
         # @see Increase::Models::PendingTransaction::Source#inbound_funds_hold

@@ -525,6 +525,29 @@ module Increase
         end
         attr_writer :check_transfer_deposit
 
+        # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
+        # response if and only if `category` is equal to
+        # `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+        # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Transaction::Source::FedNowTransferAcknowledgement
+            )
+          )
+        end
+        attr_reader :fed_now_transfer_acknowledgement
+
+        sig do
+          params(
+            fed_now_transfer_acknowledgement:
+              T.nilable(
+                Increase::Transaction::Source::FedNowTransferAcknowledgement::OrHash
+              )
+          ).void
+        end
+        attr_writer :fed_now_transfer_acknowledgement
+
         # A Fee Payment object. This field will be present in the JSON response if and
         # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
         # made to Increase.
@@ -911,6 +934,10 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::CheckTransferDeposit::OrHash
               ),
+            fed_now_transfer_acknowledgement:
+              T.nilable(
+                Increase::Transaction::Source::FedNowTransferAcknowledgement::OrHash
+              ),
             fee_payment:
               T.nilable(Increase::Transaction::Source::FeePayment::OrHash),
             inbound_ach_transfer:
@@ -1057,6 +1084,11 @@ module Increase
           # is a check drawn on an Increase account that has been deposited by an external
           # bank account. These types of checks are not pre-registered.
           check_transfer_deposit:,
+          # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
+          # response if and only if `category` is equal to
+          # `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+          # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
+          fed_now_transfer_acknowledgement:,
           # A Fee Payment object. This field will be present in the JSON response if and
           # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
           # made to Increase.
@@ -1184,6 +1216,10 @@ module Increase
                 T.nilable(Increase::Transaction::Source::CheckDepositReturn),
               check_transfer_deposit:
                 T.nilable(Increase::Transaction::Source::CheckTransferDeposit),
+              fed_now_transfer_acknowledgement:
+                T.nilable(
+                  Increase::Transaction::Source::FedNowTransferAcknowledgement
+                ),
               fee_payment: T.nilable(Increase::Transaction::Source::FeePayment),
               inbound_ach_transfer:
                 T.nilable(Increase::Transaction::Source::InboundACHTransfer),
@@ -7890,6 +7926,13 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
+          # FedNow Transfer Acknowledgement: details will be under the `fed_now_transfer_acknowledgement` object.
+          FED_NOW_TRANSFER_ACKNOWLEDGEMENT =
+            T.let(
+              :fed_now_transfer_acknowledgement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
           # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
           CHECK_TRANSFER_DEPOSIT =
             T.let(
@@ -8721,6 +8764,35 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+
+        class FedNowTransferAcknowledgement < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::FedNowTransferAcknowledgement,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the FedNow Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
+          # response if and only if `category` is equal to
+          # `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+          # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
+          sig { params(transfer_id: String).returns(T.attached_class) }
+          def self.new(
+            # The identifier of the FedNow Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig { override.returns({ transfer_id: String }) }
+          def to_hash
           end
         end
 

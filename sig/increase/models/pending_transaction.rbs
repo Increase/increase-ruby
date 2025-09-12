@@ -142,6 +142,7 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
+          fed_now_transfer_instruction: Increase::PendingTransaction::Source::FedNowTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
@@ -166,6 +167,8 @@ module Increase
 
         attr_accessor check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?
 
+        attr_accessor fed_now_transfer_instruction: Increase::PendingTransaction::Source::FedNowTransferInstruction?
+
         attr_accessor inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?
 
         attr_accessor inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?
@@ -188,6 +191,7 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
+          fed_now_transfer_instruction: Increase::PendingTransaction::Source::FedNowTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
@@ -205,6 +209,7 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
+          fed_now_transfer_instruction: Increase::PendingTransaction::Source::FedNowTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: top?,
@@ -1062,6 +1067,7 @@ module Increase
           | :card_authorization
           | :check_deposit_instruction
           | :check_transfer_instruction
+          | :fed_now_transfer_instruction
           | :inbound_funds_hold
           | :user_initiated_hold
           | :real_time_payments_transfer_instruction
@@ -1088,6 +1094,9 @@ module Increase
 
           # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
           CHECK_TRANSFER_INSTRUCTION: :check_transfer_instruction
+
+          # FedNow Transfer Instruction: details will be under the `fed_now_transfer_instruction` object.
+          FED_NOW_TRANSFER_INSTRUCTION: :fed_now_transfer_instruction
 
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
@@ -1230,6 +1239,16 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::CheckTransferInstruction::currency]
           end
+        end
+
+        type fed_now_transfer_instruction = { transfer_id: String }
+
+        class FedNowTransferInstruction < Increase::Internal::Type::BaseModel
+          attr_accessor transfer_id: String
+
+          def initialize: (transfer_id: String) -> void
+
+          def to_hash: -> { transfer_id: String }
         end
 
         type inbound_funds_hold =
