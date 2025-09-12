@@ -123,6 +123,7 @@ module Increase
           check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
+          fed_now_transfer_acknowledgement: Increase::Transaction::Source::FedNowTransferAcknowledgement?,
           fee_payment: Increase::Transaction::Source::FeePayment?,
           inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
@@ -177,6 +178,8 @@ module Increase
 
         attr_accessor check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?
 
+        attr_accessor fed_now_transfer_acknowledgement: Increase::Transaction::Source::FedNowTransferAcknowledgement?
+
         attr_accessor fee_payment: Increase::Transaction::Source::FeePayment?
 
         attr_accessor inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?
@@ -229,6 +232,7 @@ module Increase
           check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
+          fed_now_transfer_acknowledgement: Increase::Transaction::Source::FedNowTransferAcknowledgement?,
           fee_payment: Increase::Transaction::Source::FeePayment?,
           inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
@@ -266,6 +270,7 @@ module Increase
           check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
+          fed_now_transfer_acknowledgement: Increase::Transaction::Source::FedNowTransferAcknowledgement?,
           fee_payment: Increase::Transaction::Source::FeePayment?,
           inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
@@ -3144,6 +3149,7 @@ module Increase
           | :card_revenue_payment
           | :check_deposit_acceptance
           | :check_deposit_return
+          | :fed_now_transfer_acknowledgement
           | :check_transfer_deposit
           | :fee_payment
           | :inbound_ach_transfer
@@ -3206,6 +3212,9 @@ module Increase
 
           # Check Deposit Return: details will be under the `check_deposit_return` object.
           CHECK_DEPOSIT_RETURN: :check_deposit_return
+
+          # FedNow Transfer Acknowledgement: details will be under the `fed_now_transfer_acknowledgement` object.
+          FED_NOW_TRANSFER_ACKNOWLEDGEMENT: :fed_now_transfer_acknowledgement
 
           # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
           CHECK_TRANSFER_DEPOSIT: :check_transfer_deposit
@@ -3583,6 +3592,16 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::Transaction::Source::CheckTransferDeposit::type_]
           end
+        end
+
+        type fed_now_transfer_acknowledgement = { transfer_id: String }
+
+        class FedNowTransferAcknowledgement < Increase::Internal::Type::BaseModel
+          attr_accessor transfer_id: String
+
+          def initialize: (transfer_id: String) -> void
+
+          def to_hash: -> { transfer_id: String }
         end
 
         type fee_payment =

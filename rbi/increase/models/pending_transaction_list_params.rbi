@@ -230,6 +230,13 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
+          # FedNow Transfer Instruction: details will be under the `fed_now_transfer_instruction` object.
+          FED_NOW_TRANSFER_INSTRUCTION =
+            T.let(
+              :fed_now_transfer_instruction,
+              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD =
             T.let(
