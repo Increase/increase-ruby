@@ -338,15 +338,15 @@ module Increase
                  },
                  nil?: true
 
-        # @!attribute fed_now_transfer_acknowledgement
+        # @!attribute fednow_transfer_acknowledgement
         #   A FedNow Transfer Acknowledgement object. This field will be present in the JSON
         #   response if and only if `category` is equal to
-        #   `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+        #   `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
         #   when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
         #
-        #   @return [Increase::Models::Transaction::Source::FedNowTransferAcknowledgement, nil]
-        required :fed_now_transfer_acknowledgement,
-                 -> { Increase::Transaction::Source::FedNowTransferAcknowledgement },
+        #   @return [Increase::Models::Transaction::Source::FednowTransferAcknowledgement, nil]
+        required :fednow_transfer_acknowledgement,
+                 -> { Increase::Transaction::Source::FednowTransferAcknowledgement },
                  nil?: true
 
         # @!attribute fee_payment
@@ -518,7 +518,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fed_now_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
+        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fednow_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -561,7 +561,7 @@ module Increase
         #
         #   @param check_transfer_deposit [Increase::Models::Transaction::Source::CheckTransferDeposit, nil] A Check Transfer Deposit object. This field will be present in the JSON response
         #
-        #   @param fed_now_transfer_acknowledgement [Increase::Models::Transaction::Source::FedNowTransferAcknowledgement, nil] A FedNow Transfer Acknowledgement object. This field will be present in the JSON
+        #   @param fednow_transfer_acknowledgement [Increase::Models::Transaction::Source::FednowTransferAcknowledgement, nil] A FedNow Transfer Acknowledgement object. This field will be present in the JSON
         #
         #   @param fee_payment [Increase::Models::Transaction::Source::FeePayment, nil] A Fee Payment object. This field will be present in the JSON response if and onl
         #
@@ -4260,8 +4260,8 @@ module Increase
           # Check Deposit Return: details will be under the `check_deposit_return` object.
           CHECK_DEPOSIT_RETURN = :check_deposit_return
 
-          # FedNow Transfer Acknowledgement: details will be under the `fed_now_transfer_acknowledgement` object.
-          FED_NOW_TRANSFER_ACKNOWLEDGEMENT = :fed_now_transfer_acknowledgement
+          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
+          FEDNOW_TRANSFER_ACKNOWLEDGEMENT = :fednow_transfer_acknowledgement
 
           # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
           CHECK_TRANSFER_DEPOSIT = :check_transfer_deposit
@@ -4709,8 +4709,8 @@ module Increase
           end
         end
 
-        # @see Increase::Models::Transaction::Source#fed_now_transfer_acknowledgement
-        class FedNowTransferAcknowledgement < Increase::Internal::Type::BaseModel
+        # @see Increase::Models::Transaction::Source#fednow_transfer_acknowledgement
+        class FednowTransferAcknowledgement < Increase::Internal::Type::BaseModel
           # @!attribute transfer_id
           #   The identifier of the FedNow Transfer that led to this Transaction.
           #
@@ -4720,7 +4720,7 @@ module Increase
           # @!method initialize(transfer_id:)
           #   A FedNow Transfer Acknowledgement object. This field will be present in the JSON
           #   response if and only if `category` is equal to
-          #   `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+          #   `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
           #   when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
           #
           #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this Transaction.

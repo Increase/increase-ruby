@@ -230,10 +230,10 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
-          # FedNow Transfer Instruction: details will be under the `fed_now_transfer_instruction` object.
-          FED_NOW_TRANSFER_INSTRUCTION =
+          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
+          FEDNOW_TRANSFER_INSTRUCTION =
             T.let(
-              :fed_now_transfer_instruction,
+              :fednow_transfer_instruction,
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 

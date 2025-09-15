@@ -527,26 +527,26 @@ module Increase
 
         # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
         # response if and only if `category` is equal to
-        # `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+        # `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
         # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
         sig do
           returns(
             T.nilable(
-              Increase::Transaction::Source::FedNowTransferAcknowledgement
+              Increase::Transaction::Source::FednowTransferAcknowledgement
             )
           )
         end
-        attr_reader :fed_now_transfer_acknowledgement
+        attr_reader :fednow_transfer_acknowledgement
 
         sig do
           params(
-            fed_now_transfer_acknowledgement:
+            fednow_transfer_acknowledgement:
               T.nilable(
-                Increase::Transaction::Source::FedNowTransferAcknowledgement::OrHash
+                Increase::Transaction::Source::FednowTransferAcknowledgement::OrHash
               )
           ).void
         end
-        attr_writer :fed_now_transfer_acknowledgement
+        attr_writer :fednow_transfer_acknowledgement
 
         # A Fee Payment object. This field will be present in the JSON response if and
         # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
@@ -934,9 +934,9 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::CheckTransferDeposit::OrHash
               ),
-            fed_now_transfer_acknowledgement:
+            fednow_transfer_acknowledgement:
               T.nilable(
-                Increase::Transaction::Source::FedNowTransferAcknowledgement::OrHash
+                Increase::Transaction::Source::FednowTransferAcknowledgement::OrHash
               ),
             fee_payment:
               T.nilable(Increase::Transaction::Source::FeePayment::OrHash),
@@ -1086,9 +1086,9 @@ module Increase
           check_transfer_deposit:,
           # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
           # response if and only if `category` is equal to
-          # `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+          # `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
           # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
-          fed_now_transfer_acknowledgement:,
+          fednow_transfer_acknowledgement:,
           # A Fee Payment object. This field will be present in the JSON response if and
           # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
           # made to Increase.
@@ -1216,9 +1216,9 @@ module Increase
                 T.nilable(Increase::Transaction::Source::CheckDepositReturn),
               check_transfer_deposit:
                 T.nilable(Increase::Transaction::Source::CheckTransferDeposit),
-              fed_now_transfer_acknowledgement:
+              fednow_transfer_acknowledgement:
                 T.nilable(
-                  Increase::Transaction::Source::FedNowTransferAcknowledgement
+                  Increase::Transaction::Source::FednowTransferAcknowledgement
                 ),
               fee_payment: T.nilable(Increase::Transaction::Source::FeePayment),
               inbound_ach_transfer:
@@ -7926,10 +7926,10 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
-          # FedNow Transfer Acknowledgement: details will be under the `fed_now_transfer_acknowledgement` object.
-          FED_NOW_TRANSFER_ACKNOWLEDGEMENT =
+          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
+          FEDNOW_TRANSFER_ACKNOWLEDGEMENT =
             T.let(
-              :fed_now_transfer_acknowledgement,
+              :fednow_transfer_acknowledgement,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
@@ -8767,11 +8767,11 @@ module Increase
           end
         end
 
-        class FedNowTransferAcknowledgement < Increase::Internal::Type::BaseModel
+        class FednowTransferAcknowledgement < Increase::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Increase::Transaction::Source::FedNowTransferAcknowledgement,
+                Increase::Transaction::Source::FednowTransferAcknowledgement,
                 Increase::Internal::AnyHash
               )
             end
@@ -8782,7 +8782,7 @@ module Increase
 
           # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
           # response if and only if `category` is equal to
-          # `fed_now_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
+          # `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
           # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
           sig { params(transfer_id: String).returns(T.attached_class) }
           def self.new(
