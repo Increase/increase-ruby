@@ -417,25 +417,25 @@ module Increase
         attr_writer :check_transfer_instruction
 
         # A FedNow Transfer Instruction object. This field will be present in the JSON
-        # response if and only if `category` is equal to `fed_now_transfer_instruction`.
+        # response if and only if `category` is equal to `fednow_transfer_instruction`.
         sig do
           returns(
             T.nilable(
-              Increase::PendingTransaction::Source::FedNowTransferInstruction
+              Increase::PendingTransaction::Source::FednowTransferInstruction
             )
           )
         end
-        attr_reader :fed_now_transfer_instruction
+        attr_reader :fednow_transfer_instruction
 
         sig do
           params(
-            fed_now_transfer_instruction:
+            fednow_transfer_instruction:
               T.nilable(
-                Increase::PendingTransaction::Source::FedNowTransferInstruction::OrHash
+                Increase::PendingTransaction::Source::FednowTransferInstruction::OrHash
               )
           ).void
         end
-        attr_writer :fed_now_transfer_instruction
+        attr_writer :fednow_transfer_instruction
 
         # An Inbound Funds Hold object. This field will be present in the JSON response if
         # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
@@ -586,9 +586,9 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::CheckTransferInstruction::OrHash
               ),
-            fed_now_transfer_instruction:
+            fednow_transfer_instruction:
               T.nilable(
-                Increase::PendingTransaction::Source::FedNowTransferInstruction::OrHash
+                Increase::PendingTransaction::Source::FednowTransferInstruction::OrHash
               ),
             inbound_funds_hold:
               T.nilable(
@@ -639,8 +639,8 @@ module Increase
           # response if and only if `category` is equal to `check_transfer_instruction`.
           check_transfer_instruction:,
           # A FedNow Transfer Instruction object. This field will be present in the JSON
-          # response if and only if `category` is equal to `fed_now_transfer_instruction`.
-          fed_now_transfer_instruction:,
+          # response if and only if `category` is equal to `fednow_transfer_instruction`.
+          fednow_transfer_instruction:,
           # An Inbound Funds Hold object. This field will be present in the JSON response if
           # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
           # certain transaction types to account for return windows where funds might still
@@ -700,9 +700,9 @@ module Increase
                 T.nilable(
                   Increase::PendingTransaction::Source::CheckTransferInstruction
                 ),
-              fed_now_transfer_instruction:
+              fednow_transfer_instruction:
                 T.nilable(
-                  Increase::PendingTransaction::Source::FedNowTransferInstruction
+                  Increase::PendingTransaction::Source::FednowTransferInstruction
                 ),
               inbound_funds_hold:
                 T.nilable(
@@ -3089,10 +3089,10 @@ module Increase
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
-          # FedNow Transfer Instruction: details will be under the `fed_now_transfer_instruction` object.
-          FED_NOW_TRANSFER_INSTRUCTION =
+          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
+          FEDNOW_TRANSFER_INSTRUCTION =
             T.let(
-              :fed_now_transfer_instruction,
+              :fednow_transfer_instruction,
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
@@ -3439,11 +3439,11 @@ module Increase
           end
         end
 
-        class FedNowTransferInstruction < Increase::Internal::Type::BaseModel
+        class FednowTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Increase::PendingTransaction::Source::FedNowTransferInstruction,
+                Increase::PendingTransaction::Source::FednowTransferInstruction,
                 Increase::Internal::AnyHash
               )
             end
@@ -3453,7 +3453,7 @@ module Increase
           attr_accessor :transfer_id
 
           # A FedNow Transfer Instruction object. This field will be present in the JSON
-          # response if and only if `category` is equal to `fed_now_transfer_instruction`.
+          # response if and only if `category` is equal to `fednow_transfer_instruction`.
           sig { params(transfer_id: String).returns(T.attached_class) }
           def self.new(
             # The identifier of the FedNow Transfer that led to this Pending Transaction.
