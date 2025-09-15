@@ -257,10 +257,10 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
-          # FedNow Transfer Acknowledgement: details will be under the `fed_now_transfer_acknowledgement` object.
-          FED_NOW_TRANSFER_ACKNOWLEDGEMENT =
+          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
+          FEDNOW_TRANSFER_ACKNOWLEDGEMENT =
             T.let(
-              :fed_now_transfer_acknowledgement,
+              :fednow_transfer_acknowledgement,
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
