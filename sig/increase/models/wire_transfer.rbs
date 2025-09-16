@@ -18,13 +18,14 @@ module Increase
         external_account_id: String?,
         idempotency_key: String?,
         inbound_wire_drawdown_request_id: String?,
-        message_to_recipient: String?,
+        message_to_recipient: String,
         network: Increase::Models::WireTransfer::network,
         :originator_address_line1 => String?,
         :originator_address_line2 => String?,
         :originator_address_line3 => String?,
         originator_name: String?,
         pending_transaction_id: String?,
+        remittance: Increase::WireTransfer::Remittance?,
         reversal: Increase::WireTransfer::Reversal?,
         routing_number: String,
         source_account_number_id: String?,
@@ -67,7 +68,7 @@ module Increase
 
       attr_accessor inbound_wire_drawdown_request_id: String?
 
-      attr_accessor message_to_recipient: String?
+      attr_accessor message_to_recipient: String
 
       attr_accessor network: Increase::Models::WireTransfer::network
 
@@ -80,6 +81,8 @@ module Increase
       attr_accessor originator_name: String?
 
       attr_accessor pending_transaction_id: String?
+
+      attr_accessor remittance: Increase::WireTransfer::Remittance?
 
       attr_accessor reversal: Increase::WireTransfer::Reversal?
 
@@ -112,13 +115,14 @@ module Increase
         external_account_id: String?,
         idempotency_key: String?,
         inbound_wire_drawdown_request_id: String?,
-        message_to_recipient: String?,
+        message_to_recipient: String,
         network: Increase::Models::WireTransfer::network,
         originator_address_line1: String?,
         originator_address_line2: String?,
         originator_address_line3: String?,
         originator_name: String?,
         pending_transaction_id: String?,
+        remittance: Increase::WireTransfer::Remittance?,
         reversal: Increase::WireTransfer::Reversal?,
         routing_number: String,
         source_account_number_id: String?,
@@ -145,13 +149,14 @@ module Increase
         external_account_id: String?,
         idempotency_key: String?,
         inbound_wire_drawdown_request_id: String?,
-        message_to_recipient: String?,
+        message_to_recipient: String,
         network: Increase::Models::WireTransfer::network,
         :originator_address_line1 => String?,
         :originator_address_line2 => String?,
         :originator_address_line3 => String?,
         originator_name: String?,
         pending_transaction_id: String?,
+        remittance: Increase::WireTransfer::Remittance?,
         reversal: Increase::WireTransfer::Reversal?,
         routing_number: String,
         source_account_number_id: String?,
@@ -298,6 +303,80 @@ module Increase
         WIRE: :wire
 
         def self?.values: -> ::Array[Increase::Models::WireTransfer::network]
+      end
+
+      type remittance =
+        {
+          category: Increase::Models::WireTransfer::Remittance::category,
+          tax: Increase::WireTransfer::Remittance::Tax?,
+          unstructured: Increase::WireTransfer::Remittance::Unstructured?
+        }
+
+      class Remittance < Increase::Internal::Type::BaseModel
+        attr_accessor category: Increase::Models::WireTransfer::Remittance::category
+
+        attr_accessor tax: Increase::WireTransfer::Remittance::Tax?
+
+        attr_accessor unstructured: Increase::WireTransfer::Remittance::Unstructured?
+
+        def initialize: (
+          category: Increase::Models::WireTransfer::Remittance::category,
+          tax: Increase::WireTransfer::Remittance::Tax?,
+          unstructured: Increase::WireTransfer::Remittance::Unstructured?
+        ) -> void
+
+        def to_hash: -> {
+          category: Increase::Models::WireTransfer::Remittance::category,
+          tax: Increase::WireTransfer::Remittance::Tax?,
+          unstructured: Increase::WireTransfer::Remittance::Unstructured?
+        }
+
+        type category = :unstructured | :tax
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The wire transfer contains unstructured remittance information.
+          UNSTRUCTURED: :unstructured
+
+          # The wire transfer is for tax payment purposes to the Internal Revenue Service (IRS).
+          TAX: :tax
+
+          def self?.values: -> ::Array[Increase::Models::WireTransfer::Remittance::category]
+        end
+
+        type tax =
+          { date: Date, identification_number: String, type_code: String }
+
+        class Tax < Increase::Internal::Type::BaseModel
+          attr_accessor date: Date
+
+          attr_accessor identification_number: String
+
+          attr_accessor type_code: String
+
+          def initialize: (
+            date: Date,
+            identification_number: String,
+            type_code: String
+          ) -> void
+
+          def to_hash: -> {
+            date: Date,
+            identification_number: String,
+            type_code: String
+          }
+        end
+
+        type unstructured = { message: String }
+
+        class Unstructured < Increase::Internal::Type::BaseModel
+          attr_accessor message: String
+
+          def initialize: (message: String) -> void
+
+          def to_hash: -> { message: String }
+        end
       end
 
       type reversal =

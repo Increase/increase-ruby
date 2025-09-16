@@ -8,15 +8,13 @@ module Increase
       #
       # Create a Wire Transfer
       #
-      # @overload create(account_id:, amount:, beneficiary_name:, message_to_recipient:, account_number: nil, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
+      # @overload create(account_id:, amount:, beneficiary_name:, account_number: nil, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, remittance: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
       #
       # @param account_id [String] The identifier for the account that will send the transfer.
       #
       # @param amount [Integer] The transfer amount in USD cents.
       #
       # @param beneficiary_name [String] The beneficiary's name.
-      #
-      # @param message_to_recipient [String] The message that will show on the recipient's bank statement.
       #
       # @param account_number [String] The account number for the destination account.
       #
@@ -37,6 +35,8 @@ module Increase
       # @param originator_address_line3 [String] The originator's address line 3. This is only necessary if you're transferring f
       #
       # @param originator_name [String] The originator's name. This is only necessary if you're transferring from a comm
+      #
+      # @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
       #
       # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #

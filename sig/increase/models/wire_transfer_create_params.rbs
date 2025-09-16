@@ -5,7 +5,6 @@ module Increase
         account_id: String,
         amount: Integer,
         beneficiary_name: String,
-        message_to_recipient: String,
         account_number: String,
         :beneficiary_address_line1 => String,
         :beneficiary_address_line2 => String,
@@ -16,6 +15,7 @@ module Increase
         :originator_address_line2 => String,
         :originator_address_line3 => String,
         originator_name: String,
+        remittance: Increase::WireTransferCreateParams::Remittance,
         require_approval: bool,
         routing_number: String,
         source_account_number_id: String
@@ -31,8 +31,6 @@ module Increase
       attr_accessor amount: Integer
 
       attr_accessor beneficiary_name: String
-
-      attr_accessor message_to_recipient: String
 
       attr_reader account_number: String?
 
@@ -74,6 +72,12 @@ module Increase
 
       def originator_name=: (String) -> String
 
+      attr_reader remittance: Increase::WireTransferCreateParams::Remittance?
+
+      def remittance=: (
+        Increase::WireTransferCreateParams::Remittance
+      ) -> Increase::WireTransferCreateParams::Remittance
+
       attr_reader require_approval: bool?
 
       def require_approval=: (bool) -> bool
@@ -90,7 +94,6 @@ module Increase
         account_id: String,
         amount: Integer,
         beneficiary_name: String,
-        message_to_recipient: String,
         ?account_number: String,
         ?beneficiary_address_line1: String,
         ?beneficiary_address_line2: String,
@@ -101,6 +104,7 @@ module Increase
         ?originator_address_line2: String,
         ?originator_address_line3: String,
         ?originator_name: String,
+        ?remittance: Increase::WireTransferCreateParams::Remittance,
         ?require_approval: bool,
         ?routing_number: String,
         ?source_account_number_id: String,
@@ -111,7 +115,6 @@ module Increase
         account_id: String,
         amount: Integer,
         beneficiary_name: String,
-        message_to_recipient: String,
         account_number: String,
         :beneficiary_address_line1 => String,
         :beneficiary_address_line2 => String,
@@ -122,11 +125,94 @@ module Increase
         :originator_address_line2 => String,
         :originator_address_line3 => String,
         originator_name: String,
+        remittance: Increase::WireTransferCreateParams::Remittance,
         require_approval: bool,
         routing_number: String,
         source_account_number_id: String,
         request_options: Increase::RequestOptions
       }
+
+      type remittance =
+        {
+          category: Increase::Models::WireTransferCreateParams::Remittance::category,
+          tax: Increase::WireTransferCreateParams::Remittance::Tax,
+          unstructured: Increase::WireTransferCreateParams::Remittance::Unstructured
+        }
+
+      class Remittance < Increase::Internal::Type::BaseModel
+        attr_accessor category: Increase::Models::WireTransferCreateParams::Remittance::category
+
+        attr_reader tax: Increase::WireTransferCreateParams::Remittance::Tax?
+
+        def tax=: (
+          Increase::WireTransferCreateParams::Remittance::Tax
+        ) -> Increase::WireTransferCreateParams::Remittance::Tax
+
+        attr_reader unstructured: Increase::WireTransferCreateParams::Remittance::Unstructured?
+
+        def unstructured=: (
+          Increase::WireTransferCreateParams::Remittance::Unstructured
+        ) -> Increase::WireTransferCreateParams::Remittance::Unstructured
+
+        def initialize: (
+          category: Increase::Models::WireTransferCreateParams::Remittance::category,
+          ?tax: Increase::WireTransferCreateParams::Remittance::Tax,
+          ?unstructured: Increase::WireTransferCreateParams::Remittance::Unstructured
+        ) -> void
+
+        def to_hash: -> {
+          category: Increase::Models::WireTransferCreateParams::Remittance::category,
+          tax: Increase::WireTransferCreateParams::Remittance::Tax,
+          unstructured: Increase::WireTransferCreateParams::Remittance::Unstructured
+        }
+
+        type category = :unstructured | :tax
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The wire transfer contains unstructured remittance information.
+          UNSTRUCTURED: :unstructured
+
+          # The wire transfer is for tax payment purposes to the Internal Revenue Service (IRS).
+          TAX: :tax
+
+          def self?.values: -> ::Array[Increase::Models::WireTransferCreateParams::Remittance::category]
+        end
+
+        type tax =
+          { date: Date, identification_number: String, type_code: String }
+
+        class Tax < Increase::Internal::Type::BaseModel
+          attr_accessor date: Date
+
+          attr_accessor identification_number: String
+
+          attr_accessor type_code: String
+
+          def initialize: (
+            date: Date,
+            identification_number: String,
+            type_code: String
+          ) -> void
+
+          def to_hash: -> {
+            date: Date,
+            identification_number: String,
+            type_code: String
+          }
+        end
+
+        type unstructured = { message: String }
+
+        class Unstructured < Increase::Internal::Type::BaseModel
+          attr_accessor message: String
+
+          def initialize: (message: String) -> void
+
+          def to_hash: -> { message: String }
+        end
+      end
     end
   end
 end

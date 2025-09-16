@@ -9,7 +9,6 @@ module Increase
           account_id: String,
           amount: Integer,
           beneficiary_name: String,
-          message_to_recipient: String,
           account_number: String,
           beneficiary_address_line1: String,
           beneficiary_address_line2: String,
@@ -20,6 +19,7 @@ module Increase
           originator_address_line2: String,
           originator_address_line3: String,
           originator_name: String,
+          remittance: Increase::WireTransferCreateParams::Remittance::OrHash,
           require_approval: T::Boolean,
           routing_number: String,
           source_account_number_id: String,
@@ -33,8 +33,6 @@ module Increase
         amount:,
         # The beneficiary's name.
         beneficiary_name:,
-        # The message that will show on the recipient's bank statement.
-        message_to_recipient:,
         # The account number for the destination account.
         account_number: nil,
         # The beneficiary's address line 1.
@@ -61,6 +59,8 @@ module Increase
         # The originator's name. This is only necessary if you're transferring from a
         # commingled account. Otherwise, we'll use the associated entity's details.
         originator_name: nil,
+        # Additional remittance information related to the wire transfer.
+        remittance: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the

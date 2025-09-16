@@ -101,7 +101,7 @@ module Increase
       attr_accessor :inbound_wire_drawdown_request_id
 
       # The message that will show on the recipient's bank statement.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :message_to_recipient
 
       # The transfer's network.
@@ -130,6 +130,17 @@ module Increase
       # by someone else in your organization.
       sig { returns(T.nilable(String)) }
       attr_accessor :pending_transaction_id
+
+      # Remittance information sent with the wire transfer.
+      sig { returns(T.nilable(Increase::WireTransfer::Remittance)) }
+      attr_reader :remittance
+
+      sig do
+        params(
+          remittance: T.nilable(Increase::WireTransfer::Remittance::OrHash)
+        ).void
+      end
+      attr_writer :remittance
 
       # If your transfer is reversed, this will contain details of the reversal.
       sig { returns(T.nilable(Increase::WireTransfer::Reversal)) }
@@ -195,13 +206,14 @@ module Increase
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           inbound_wire_drawdown_request_id: T.nilable(String),
-          message_to_recipient: T.nilable(String),
+          message_to_recipient: String,
           network: Increase::WireTransfer::Network::OrSymbol,
           originator_address_line1: T.nilable(String),
           originator_address_line2: T.nilable(String),
           originator_address_line3: T.nilable(String),
           originator_name: T.nilable(String),
           pending_transaction_id: T.nilable(String),
+          remittance: T.nilable(Increase::WireTransfer::Remittance::OrHash),
           reversal: T.nilable(Increase::WireTransfer::Reversal::OrHash),
           routing_number: String,
           source_account_number_id: T.nilable(String),
@@ -268,6 +280,8 @@ module Increase
         # [requires approval](https://increase.com/documentation/transfer-approvals#transfer-approvals)
         # by someone else in your organization.
         pending_transaction_id:,
+        # Remittance information sent with the wire transfer.
+        remittance:,
         # If your transfer is reversed, this will contain details of the reversal.
         reversal:,
         # The American Bankers' Association (ABA) Routing Transit Number (RTN).
@@ -306,13 +320,14 @@ module Increase
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
             inbound_wire_drawdown_request_id: T.nilable(String),
-            message_to_recipient: T.nilable(String),
+            message_to_recipient: String,
             network: Increase::WireTransfer::Network::TaggedSymbol,
             originator_address_line1: T.nilable(String),
             originator_address_line2: T.nilable(String),
             originator_address_line3: T.nilable(String),
             originator_name: T.nilable(String),
             pending_transaction_id: T.nilable(String),
+            remittance: T.nilable(Increase::WireTransfer::Remittance),
             reversal: T.nilable(Increase::WireTransfer::Reversal),
             routing_number: String,
             source_account_number_id: T.nilable(String),
@@ -684,6 +699,203 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class Remittance < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireTransfer::Remittance,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The type of remittance information being passed.
+        sig do
+          returns(Increase::WireTransfer::Remittance::Category::TaggedSymbol)
+        end
+        attr_accessor :category
+
+        # Internal Revenue Service (IRS) tax repayment information. Required if `category`
+        # is equal to `tax`.
+        sig { returns(T.nilable(Increase::WireTransfer::Remittance::Tax)) }
+        attr_reader :tax
+
+        sig do
+          params(
+            tax: T.nilable(Increase::WireTransfer::Remittance::Tax::OrHash)
+          ).void
+        end
+        attr_writer :tax
+
+        # Unstructured remittance information. Required if `category` is equal to
+        # `unstructured`.
+        sig do
+          returns(T.nilable(Increase::WireTransfer::Remittance::Unstructured))
+        end
+        attr_reader :unstructured
+
+        sig do
+          params(
+            unstructured:
+              T.nilable(
+                Increase::WireTransfer::Remittance::Unstructured::OrHash
+              )
+          ).void
+        end
+        attr_writer :unstructured
+
+        # Remittance information sent with the wire transfer.
+        sig do
+          params(
+            category: Increase::WireTransfer::Remittance::Category::OrSymbol,
+            tax: T.nilable(Increase::WireTransfer::Remittance::Tax::OrHash),
+            unstructured:
+              T.nilable(
+                Increase::WireTransfer::Remittance::Unstructured::OrHash
+              )
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The type of remittance information being passed.
+          category:,
+          # Internal Revenue Service (IRS) tax repayment information. Required if `category`
+          # is equal to `tax`.
+          tax:,
+          # Unstructured remittance information. Required if `category` is equal to
+          # `unstructured`.
+          unstructured:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              category:
+                Increase::WireTransfer::Remittance::Category::TaggedSymbol,
+              tax: T.nilable(Increase::WireTransfer::Remittance::Tax),
+              unstructured:
+                T.nilable(Increase::WireTransfer::Remittance::Unstructured)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The type of remittance information being passed.
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::WireTransfer::Remittance::Category)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The wire transfer contains unstructured remittance information.
+          UNSTRUCTURED =
+            T.let(
+              :unstructured,
+              Increase::WireTransfer::Remittance::Category::TaggedSymbol
+            )
+
+          # The wire transfer is for tax payment purposes to the Internal Revenue Service (IRS).
+          TAX =
+            T.let(
+              :tax,
+              Increase::WireTransfer::Remittance::Category::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::WireTransfer::Remittance::Category::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        class Tax < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::Remittance::Tax,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The month and year the tax payment is for, in YYYY-MM-DD format. The day is
+          # ignored.
+          sig { returns(Date) }
+          attr_accessor :date
+
+          # The 9-digit Tax Identification Number (TIN) or Employer Identification Number
+          # (EIN).
+          sig { returns(String) }
+          attr_accessor :identification_number
+
+          # The 5-character tax type code.
+          sig { returns(String) }
+          attr_accessor :type_code
+
+          # Internal Revenue Service (IRS) tax repayment information. Required if `category`
+          # is equal to `tax`.
+          sig do
+            params(
+              date: Date,
+              identification_number: String,
+              type_code: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The month and year the tax payment is for, in YYYY-MM-DD format. The day is
+            # ignored.
+            date:,
+            # The 9-digit Tax Identification Number (TIN) or Employer Identification Number
+            # (EIN).
+            identification_number:,
+            # The 5-character tax type code.
+            type_code:
+          )
+          end
+
+          sig do
+            override.returns(
+              { date: Date, identification_number: String, type_code: String }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class Unstructured < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::Remittance::Unstructured,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The message to the beneficiary.
+          sig { returns(String) }
+          attr_accessor :message
+
+          # Unstructured remittance information. Required if `category` is equal to
+          # `unstructured`.
+          sig { params(message: String).returns(T.attached_class) }
+          def self.new(
+            # The message to the beneficiary.
+            message:
+          )
+          end
+
+          sig { override.returns({ message: String }) }
+          def to_hash
+          end
         end
       end
 
