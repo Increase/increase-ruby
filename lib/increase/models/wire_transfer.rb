@@ -110,8 +110,8 @@ module Increase
       # @!attribute message_to_recipient
       #   The message that will show on the recipient's bank statement.
       #
-      #   @return [String, nil]
-      required :message_to_recipient, String, nil?: true
+      #   @return [String]
+      required :message_to_recipient, String
 
       # @!attribute network
       #   The transfer's network.
@@ -151,6 +151,12 @@ module Increase
       #
       #   @return [String, nil]
       required :pending_transaction_id, String, nil?: true
+
+      # @!attribute remittance
+      #   Remittance information sent with the wire transfer.
+      #
+      #   @return [Increase::Models::WireTransfer::Remittance, nil]
+      required :remittance, -> { Increase::WireTransfer::Remittance }, nil?: true
 
       # @!attribute reversal
       #   If your transfer is reversed, this will contain details of the reversal.
@@ -196,7 +202,7 @@ module Increase
       #   @return [Symbol, Increase::Models::WireTransfer::Type]
       required :type, enum: -> { Increase::WireTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, cancellation:, created_at:, created_by:, currency:, external_account_id:, idempotency_key:, inbound_wire_drawdown_request_id:, message_to_recipient:, network:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, pending_transaction_id:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:)
+      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, beneficiary_address_line1:, beneficiary_address_line2:, beneficiary_address_line3:, beneficiary_name:, cancellation:, created_at:, created_by:, currency:, external_account_id:, idempotency_key:, inbound_wire_drawdown_request_id:, message_to_recipient:, network:, originator_address_line1:, originator_address_line2:, originator_address_line3:, originator_name:, pending_transaction_id:, remittance:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireTransfer} for more details.
       #
@@ -235,7 +241,7 @@ module Increase
       #
       #   @param inbound_wire_drawdown_request_id [String, nil] The ID of an Inbound Wire Drawdown Request in response to which this transfer wa
       #
-      #   @param message_to_recipient [String, nil] The message that will show on the recipient's bank statement.
+      #   @param message_to_recipient [String] The message that will show on the recipient's bank statement.
       #
       #   @param network [Symbol, Increase::Models::WireTransfer::Network] The transfer's network.
       #
@@ -248,6 +254,8 @@ module Increase
       #   @param originator_name [String, nil] The originator's name.
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer. A pending transact
+      #
+      #   @param remittance [Increase::Models::WireTransfer::Remittance, nil] Remittance information sent with the wire transfer.
       #
       #   @param reversal [Increase::Models::WireTransfer::Reversal, nil] If your transfer is reversed, this will contain details of the reversal.
       #
@@ -457,6 +465,108 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::WireTransfer#remittance
+      class Remittance < Increase::Internal::Type::BaseModel
+        # @!attribute category
+        #   The type of remittance information being passed.
+        #
+        #   @return [Symbol, Increase::Models::WireTransfer::Remittance::Category]
+        required :category, enum: -> { Increase::WireTransfer::Remittance::Category }
+
+        # @!attribute tax
+        #   Internal Revenue Service (IRS) tax repayment information. Required if `category`
+        #   is equal to `tax`.
+        #
+        #   @return [Increase::Models::WireTransfer::Remittance::Tax, nil]
+        required :tax, -> { Increase::WireTransfer::Remittance::Tax }, nil?: true
+
+        # @!attribute unstructured
+        #   Unstructured remittance information. Required if `category` is equal to
+        #   `unstructured`.
+        #
+        #   @return [Increase::Models::WireTransfer::Remittance::Unstructured, nil]
+        required :unstructured, -> { Increase::WireTransfer::Remittance::Unstructured }, nil?: true
+
+        # @!method initialize(category:, tax:, unstructured:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::WireTransfer::Remittance} for more details.
+        #
+        #   Remittance information sent with the wire transfer.
+        #
+        #   @param category [Symbol, Increase::Models::WireTransfer::Remittance::Category] The type of remittance information being passed.
+        #
+        #   @param tax [Increase::Models::WireTransfer::Remittance::Tax, nil] Internal Revenue Service (IRS) tax repayment information. Required if `category`
+        #
+        #   @param unstructured [Increase::Models::WireTransfer::Remittance::Unstructured, nil] Unstructured remittance information. Required if `category` is equal to `unstruc
+
+        # The type of remittance information being passed.
+        #
+        # @see Increase::Models::WireTransfer::Remittance#category
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The wire transfer contains unstructured remittance information.
+          UNSTRUCTURED = :unstructured
+
+          # The wire transfer is for tax payment purposes to the Internal Revenue Service (IRS).
+          TAX = :tax
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::WireTransfer::Remittance#tax
+        class Tax < Increase::Internal::Type::BaseModel
+          # @!attribute date
+          #   The month and year the tax payment is for, in YYYY-MM-DD format. The day is
+          #   ignored.
+          #
+          #   @return [Date]
+          required :date, Date
+
+          # @!attribute identification_number
+          #   The 9-digit Tax Identification Number (TIN) or Employer Identification Number
+          #   (EIN).
+          #
+          #   @return [String]
+          required :identification_number, String
+
+          # @!attribute type_code
+          #   The 5-character tax type code.
+          #
+          #   @return [String]
+          required :type_code, String
+
+          # @!method initialize(date:, identification_number:, type_code:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::WireTransfer::Remittance::Tax} for more details.
+          #
+          #   Internal Revenue Service (IRS) tax repayment information. Required if `category`
+          #   is equal to `tax`.
+          #
+          #   @param date [Date] The month and year the tax payment is for, in YYYY-MM-DD format. The day is igno
+          #
+          #   @param identification_number [String] The 9-digit Tax Identification Number (TIN) or Employer Identification Number (E
+          #
+          #   @param type_code [String] The 5-character tax type code.
+        end
+
+        # @see Increase::Models::WireTransfer::Remittance#unstructured
+        class Unstructured < Increase::Internal::Type::BaseModel
+          # @!attribute message
+          #   The message to the beneficiary.
+          #
+          #   @return [String]
+          required :message, String
+
+          # @!method initialize(message:)
+          #   Unstructured remittance information. Required if `category` is equal to
+          #   `unstructured`.
+          #
+          #   @param message [String] The message to the beneficiary.
+        end
       end
 
       # @see Increase::Models::WireTransfer#reversal
