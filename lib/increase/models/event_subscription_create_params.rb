@@ -174,6 +174,12 @@ module Increase
         # Occurs whenever an External Account is updated.
         EXTERNAL_ACCOUNT_UPDATED = :"external_account.updated"
 
+        # Occurs whenever a FedNow Transfer is created.
+        FEDNOW_TRANSFER_CREATED = :"fednow_transfer.created"
+
+        # Occurs whenever a FedNow Transfer is updated.
+        FEDNOW_TRANSFER_UPDATED = :"fednow_transfer.updated"
+
         # Occurs whenever a File is created.
         FILE_CREATED = :"file.created"
 
