@@ -388,6 +388,20 @@ module Increase
             Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
           )
 
+        # Occurs whenever a FedNow Transfer is created.
+        FEDNOW_TRANSFER_CREATED =
+          T.let(
+            :"fednow_transfer.created",
+            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
+          )
+
+        # Occurs whenever a FedNow Transfer is updated.
+        FEDNOW_TRANSFER_UPDATED =
+          T.let(
+            :"fednow_transfer.updated",
+            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
+          )
+
         # Occurs whenever a File is created.
         FILE_CREATED =
           T.let(
