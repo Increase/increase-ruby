@@ -2251,10 +2251,6 @@ module Increase
           sig { returns(Time) }
           attr_accessor :accepted_at
 
-          # The identifier of the Card Dispute that was accepted.
-          sig { returns(String) }
-          attr_accessor :card_dispute_id
-
           # The identifier of the Transaction that was created to return the disputed funds
           # to your account.
           sig { returns(String) }
@@ -2264,18 +2260,14 @@ module Increase
           # response if and only if `category` is equal to `card_dispute_acceptance`.
           # Contains the details of a successful Card Dispute.
           sig do
-            params(
-              accepted_at: Time,
-              card_dispute_id: String,
-              transaction_id: String
-            ).returns(T.attached_class)
+            params(accepted_at: Time, transaction_id: String).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             # the Card Dispute was accepted.
             accepted_at:,
-            # The identifier of the Card Dispute that was accepted.
-            card_dispute_id:,
             # The identifier of the Transaction that was created to return the disputed funds
             # to your account.
             transaction_id:
@@ -2283,13 +2275,7 @@ module Increase
           end
 
           sig do
-            override.returns(
-              {
-                accepted_at: Time,
-                card_dispute_id: String,
-                transaction_id: String
-              }
-            )
+            override.returns({ accepted_at: Time, transaction_id: String })
           end
           def to_hash
           end
@@ -2307,10 +2293,6 @@ module Increase
           # The amount of the financial event.
           sig { returns(Integer) }
           attr_accessor :amount
-
-          # The identifier of the Card Dispute the financial event is associated with.
-          sig { returns(String) }
-          attr_accessor :card_dispute_id
 
           # The network that the Card Dispute is associated with.
           sig do
@@ -2353,7 +2335,6 @@ module Increase
           sig do
             params(
               amount: Integer,
-              card_dispute_id: String,
               network:
                 Increase::Transaction::Source::CardDisputeFinancial::Network::OrSymbol,
               transaction_id: String,
@@ -2366,8 +2347,6 @@ module Increase
           def self.new(
             # The amount of the financial event.
             amount:,
-            # The identifier of the Card Dispute the financial event is associated with.
-            card_dispute_id:,
             # The network that the Card Dispute is associated with.
             network:,
             # The identifier of the Transaction that was created to credit or debit the
@@ -2384,7 +2363,6 @@ module Increase
             override.returns(
               {
                 amount: Integer,
-                card_dispute_id: String,
                 network:
                   Increase::Transaction::Source::CardDisputeFinancial::Network::TaggedSymbol,
                 transaction_id: String,
@@ -2556,10 +2534,6 @@ module Increase
               )
             end
 
-          # The identifier of the Card Dispute that was lost.
-          sig { returns(String) }
-          attr_accessor :card_dispute_id
-
           # Why the Card Dispute was lost.
           sig { returns(String) }
           attr_accessor :explanation
@@ -2579,15 +2553,12 @@ module Increase
           # a lost Card Dispute.
           sig do
             params(
-              card_dispute_id: String,
               explanation: String,
               lost_at: Time,
               transaction_id: String
             ).returns(T.attached_class)
           end
           def self.new(
-            # The identifier of the Card Dispute that was lost.
-            card_dispute_id:,
             # Why the Card Dispute was lost.
             explanation:,
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -2601,12 +2572,7 @@ module Increase
 
           sig do
             override.returns(
-              {
-                card_dispute_id: String,
-                explanation: String,
-                lost_at: Time,
-                transaction_id: String
-              }
+              { explanation: String, lost_at: Time, transaction_id: String }
             )
           end
           def to_hash
