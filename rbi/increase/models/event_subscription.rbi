@@ -485,6 +485,20 @@ module Increase
             Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
           )
 
+        # Occurs whenever an Inbound FedNow Transfer is created.
+        INBOUND_FEDNOW_TRANSFER_CREATED =
+          T.let(
+            :"inbound_fednow_transfer.created",
+            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
+          )
+
+        # Occurs whenever an Inbound FedNow Transfer is updated.
+        INBOUND_FEDNOW_TRANSFER_UPDATED =
+          T.let(
+            :"inbound_fednow_transfer.updated",
+            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
+          )
+
         # Occurs whenever an Inbound Mail Item is created.
         INBOUND_MAIL_ITEM_CREATED =
           T.let(

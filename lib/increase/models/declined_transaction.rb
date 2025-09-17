@@ -190,6 +190,16 @@ module Increase
                  -> { Increase::DeclinedTransaction::Source::CheckDepositRejection },
                  nil?: true
 
+        # @!attribute inbound_fednow_transfer_decline
+        #   An Inbound FedNow Transfer Decline object. This field will be present in the
+        #   JSON response if and only if `category` is equal to
+        #   `inbound_fednow_transfer_decline`.
+        #
+        #   @return [Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline, nil]
+        required :inbound_fednow_transfer_decline,
+                 -> { Increase::DeclinedTransaction::Source::InboundFednowTransferDecline },
+                 nil?: true
+
         # @!attribute inbound_real_time_payments_transfer_decline
         #   An Inbound Real-Time Payments Transfer Decline object. This field will be
         #   present in the JSON response if and only if `category` is equal to
@@ -214,7 +224,7 @@ module Increase
         #   @return [Increase::Models::DeclinedTransaction::Source::WireDecline, nil]
         required :wire_decline, -> { Increase::DeclinedTransaction::Source::WireDecline }, nil?: true
 
-        # @!method initialize(ach_decline:, card_decline:, category:, check_decline:, check_deposit_rejection:, inbound_real_time_payments_transfer_decline:, other:, wire_decline:)
+        # @!method initialize(ach_decline:, card_decline:, category:, check_decline:, check_deposit_rejection:, inbound_fednow_transfer_decline:, inbound_real_time_payments_transfer_decline:, other:, wire_decline:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::DeclinedTransaction::Source} for more details.
         #
@@ -233,6 +243,8 @@ module Increase
         #   @param check_decline [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil] A Check Decline object. This field will be present in the JSON response if and o
         #
         #   @param check_deposit_rejection [Increase::Models::DeclinedTransaction::Source::CheckDepositRejection, nil] A Check Deposit Rejection object. This field will be present in the JSON respons
+        #
+        #   @param inbound_fednow_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline, nil] An Inbound FedNow Transfer Decline object. This field will be present in the JSO
         #
         #   @param inbound_real_time_payments_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil] An Inbound Real-Time Payments Transfer Decline object. This field will be presen
         #
@@ -1644,6 +1656,9 @@ module Increase
           # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE = :inbound_real_time_payments_transfer_decline
 
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE = :inbound_fednow_transfer_decline
+
           # Wire Decline: details will be under the `wire_decline` object.
           WIRE_DECLINE = :wire_decline
 
@@ -1919,6 +1934,58 @@ module Increase
 
             # The check was rejected for an unknown reason.
             UNKNOWN = :unknown
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
+        # @see Increase::Models::DeclinedTransaction::Source#inbound_fednow_transfer_decline
+        class InboundFednowTransferDecline < Increase::Internal::Type::BaseModel
+          # @!attribute reason
+          #   Why the transfer was declined.
+          #
+          #   @return [Symbol, Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason]
+          required :reason, enum: -> { Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason }
+
+          # @!attribute transfer_id
+          #   The identifier of the FedNow Transfer that led to this declined transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(reason:, transfer_id:)
+          #   An Inbound FedNow Transfer Decline object. This field will be present in the
+          #   JSON response if and only if `category` is equal to
+          #   `inbound_fednow_transfer_decline`.
+          #
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason] Why the transfer was declined.
+          #
+          #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this declined transaction.
+
+          # Why the transfer was declined.
+          #
+          # @see Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline#reason
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The account number is canceled.
+            ACCOUNT_NUMBER_CANCELED = :account_number_canceled
+
+            # The account number is disabled.
+            ACCOUNT_NUMBER_DISABLED = :account_number_disabled
+
+            # Your account is restricted.
+            ACCOUNT_RESTRICTED = :account_restricted
+
+            # Your account is inactive.
+            GROUP_LOCKED = :group_locked
+
+            # The account's entity is not active.
+            ENTITY_NOT_ACTIVE = :entity_not_active
+
+            # Your account is not enabled to receive FedNow transfers.
+            FEDNOW_NOT_ENABLED = :fednow_not_enabled
 
             # @!method self.values
             #   @return [Array<Symbol>]

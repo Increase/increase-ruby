@@ -246,6 +246,12 @@ module Increase
         # Occurs whenever an Inbound Check Deposit is updated.
         INBOUND_CHECK_DEPOSIT_UPDATED = :"inbound_check_deposit.updated"
 
+        # Occurs whenever an Inbound FedNow Transfer is created.
+        INBOUND_FEDNOW_TRANSFER_CREATED = :"inbound_fednow_transfer.created"
+
+        # Occurs whenever an Inbound FedNow Transfer is updated.
+        INBOUND_FEDNOW_TRANSFER_UPDATED = :"inbound_fednow_transfer.updated"
+
         # Occurs whenever an Inbound Mail Item is created.
         INBOUND_MAIL_ITEM_CREATED = :"inbound_mail_item.created"
 
