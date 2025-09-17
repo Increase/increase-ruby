@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.80.0 (2025-09-17)
+
+Full Changelog: [v1.79.0...v1.80.0](https://github.com/Increase/increase-ruby/compare/v1.79.0...v1.80.0)
+
+### Features
+
+* **api:** api update ([d16cb6a](https://github.com/Increase/increase-ruby/commit/d16cb6abc1e6f4ca71d86374cde091360d657602))
+* expose response headers for both streams and errors ([17ddacf](https://github.com/Increase/increase-ruby/commit/17ddacf1c78a6f3e52a2f007d8efebab892db46e))
+
 ## 1.79.0 (2025-09-17)
 
 Full Changelog: [v1.78.0...v1.79.0](https://github.com/Increase/increase-ruby/compare/v1.78.0...v1.79.0)
