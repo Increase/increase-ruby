@@ -93,6 +93,9 @@ module Increase
           # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE = :inbound_real_time_payments_transfer_decline
 
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE = :inbound_fednow_transfer_decline
+
           # Wire Decline: details will be under the `wire_decline` object.
           WIRE_DECLINE = :wire_decline
 

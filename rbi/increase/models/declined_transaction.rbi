@@ -303,6 +303,28 @@ module Increase
         end
         attr_writer :check_deposit_rejection
 
+        # An Inbound FedNow Transfer Decline object. This field will be present in the
+        # JSON response if and only if `category` is equal to
+        # `inbound_fednow_transfer_decline`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::DeclinedTransaction::Source::InboundFednowTransferDecline
+            )
+          )
+        end
+        attr_reader :inbound_fednow_transfer_decline
+
+        sig do
+          params(
+            inbound_fednow_transfer_decline:
+              T.nilable(
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::OrHash
+              )
+          ).void
+        end
+        attr_writer :inbound_fednow_transfer_decline
+
         # An Inbound Real-Time Payments Transfer Decline object. This field will be
         # present in the JSON response if and only if `category` is equal to
         # `inbound_real_time_payments_transfer_decline`.
@@ -371,6 +393,10 @@ module Increase
               T.nilable(
                 Increase::DeclinedTransaction::Source::CheckDepositRejection::OrHash
               ),
+            inbound_fednow_transfer_decline:
+              T.nilable(
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::OrHash
+              ),
             inbound_real_time_payments_transfer_decline:
               T.nilable(
                 Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::OrHash
@@ -398,6 +424,10 @@ module Increase
           # A Check Deposit Rejection object. This field will be present in the JSON
           # response if and only if `category` is equal to `check_deposit_rejection`.
           check_deposit_rejection:,
+          # An Inbound FedNow Transfer Decline object. This field will be present in the
+          # JSON response if and only if `category` is equal to
+          # `inbound_fednow_transfer_decline`.
+          inbound_fednow_transfer_decline:,
           # An Inbound Real-Time Payments Transfer Decline object. This field will be
           # present in the JSON response if and only if `category` is equal to
           # `inbound_real_time_payments_transfer_decline`.
@@ -425,6 +455,10 @@ module Increase
               check_deposit_rejection:
                 T.nilable(
                   Increase::DeclinedTransaction::Source::CheckDepositRejection
+                ),
+              inbound_fednow_transfer_decline:
+                T.nilable(
+                  Increase::DeclinedTransaction::Source::InboundFednowTransferDecline
                 ),
               inbound_real_time_payments_transfer_decline:
                 T.nilable(
@@ -3116,6 +3150,13 @@ module Increase
               Increase::DeclinedTransaction::Source::Category::TaggedSymbol
             )
 
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE =
+            T.let(
+              :inbound_fednow_transfer_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
           # Wire Decline: details will be under the `wire_decline` object.
           WIRE_DECLINE =
             T.let(
@@ -3652,6 +3693,124 @@ module Increase
               override.returns(
                 T::Array[
                   Increase::DeclinedTransaction::Source::CheckDepositRejection::Reason::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class InboundFednowTransferDecline < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Why the transfer was declined.
+          sig do
+            returns(
+              Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+            )
+          end
+          attr_accessor :reason
+
+          # The identifier of the FedNow Transfer that led to this declined transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # An Inbound FedNow Transfer Decline object. This field will be present in the
+          # JSON response if and only if `category` is equal to
+          # `inbound_fednow_transfer_decline`.
+          sig do
+            params(
+              reason:
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::OrSymbol,
+              transfer_id: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Why the transfer was declined.
+            reason:,
+            # The identifier of the FedNow Transfer that led to this declined transaction.
+            transfer_id:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                reason:
+                  Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol,
+                transfer_id: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # Why the transfer was declined.
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The account number is canceled.
+            ACCOUNT_NUMBER_CANCELED =
+              T.let(
+                :account_number_canceled,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            # The account number is disabled.
+            ACCOUNT_NUMBER_DISABLED =
+              T.let(
+                :account_number_disabled,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            # Your account is restricted.
+            ACCOUNT_RESTRICTED =
+              T.let(
+                :account_restricted,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            # Your account is inactive.
+            GROUP_LOCKED =
+              T.let(
+                :group_locked,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            # The account's entity is not active.
+            ENTITY_NOT_ACTIVE =
+              T.let(
+                :entity_not_active,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            # Your account is not enabled to receive FedNow transfers.
+            FEDNOW_NOT_ENABLED =
+              T.let(
+                :fednow_not_enabled,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
                 ]
               )
             end
