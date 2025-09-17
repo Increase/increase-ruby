@@ -401,6 +401,18 @@ module Increase
                  -> { Increase::Transaction::Source::InboundCheckDepositReturnIntention },
                  nil?: true
 
+        # @!attribute inbound_fednow_transfer_confirmation
+        #   An Inbound FedNow Transfer Confirmation object. This field will be present in
+        #   the JSON response if and only if `category` is equal to
+        #   `inbound_fednow_transfer_confirmation`. An Inbound FedNow Transfer Confirmation
+        #   is created when a FedNow transfer is initiated at another bank and received by
+        #   Increase.
+        #
+        #   @return [Increase::Models::Transaction::Source::InboundFednowTransferConfirmation, nil]
+        required :inbound_fednow_transfer_confirmation,
+                 -> { Increase::Transaction::Source::InboundFednowTransferConfirmation },
+                 nil?: true
+
         # @!attribute inbound_real_time_payments_transfer_confirmation
         #   An Inbound Real-Time Payments Transfer Confirmation object. This field will be
         #   present in the JSON response if and only if `category` is equal to
@@ -518,7 +530,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fednow_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
+        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fednow_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_fednow_transfer_confirmation:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -572,6 +584,8 @@ module Increase
         #   @param inbound_check_adjustment [Increase::Models::Transaction::Source::InboundCheckAdjustment, nil] An Inbound Check Adjustment object. This field will be present in the JSON respo
         #
         #   @param inbound_check_deposit_return_intention [Increase::Models::Transaction::Source::InboundCheckDepositReturnIntention, nil] An Inbound Check Deposit Return Intention object. This field will be present in
+        #
+        #   @param inbound_fednow_transfer_confirmation [Increase::Models::Transaction::Source::InboundFednowTransferConfirmation, nil] An Inbound FedNow Transfer Confirmation object. This field will be present in th
         #
         #   @param inbound_real_time_payments_transfer_confirmation [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation, nil] An Inbound Real-Time Payments Transfer Confirmation object. This field will be p
         #
@@ -4281,6 +4295,9 @@ module Increase
           # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
           INBOUND_CHECK_ADJUSTMENT = :inbound_check_adjustment
 
+          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
+          INBOUND_FEDNOW_TRANSFER_CONFIRMATION = :inbound_fednow_transfer_confirmation
+
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION = :inbound_real_time_payments_transfer_confirmation
 
@@ -5066,6 +5083,24 @@ module Increase
           #   @param inbound_check_deposit_id [String] The ID of the Inbound Check Deposit that is being returned.
           #
           #   @param transfer_id [String, nil] The identifier of the Check Transfer object that was deposited.
+        end
+
+        # @see Increase::Models::Transaction::Source#inbound_fednow_transfer_confirmation
+        class InboundFednowTransferConfirmation < Increase::Internal::Type::BaseModel
+          # @!attribute transfer_id
+          #   The identifier of the FedNow Transfer that led to this Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(transfer_id:)
+          #   An Inbound FedNow Transfer Confirmation object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `inbound_fednow_transfer_confirmation`. An Inbound FedNow Transfer Confirmation
+          #   is created when a FedNow transfer is initiated at another bank and received by
+          #   Increase.
+          #
+          #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this Transaction.
         end
 
         # @see Increase::Models::Transaction::Source#inbound_real_time_payments_transfer_confirmation

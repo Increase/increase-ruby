@@ -650,6 +650,30 @@ module Increase
         end
         attr_writer :inbound_check_deposit_return_intention
 
+        # An Inbound FedNow Transfer Confirmation object. This field will be present in
+        # the JSON response if and only if `category` is equal to
+        # `inbound_fednow_transfer_confirmation`. An Inbound FedNow Transfer Confirmation
+        # is created when a FedNow transfer is initiated at another bank and received by
+        # Increase.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Transaction::Source::InboundFednowTransferConfirmation
+            )
+          )
+        end
+        attr_reader :inbound_fednow_transfer_confirmation
+
+        sig do
+          params(
+            inbound_fednow_transfer_confirmation:
+              T.nilable(
+                Increase::Transaction::Source::InboundFednowTransferConfirmation::OrHash
+              )
+          ).void
+        end
+        attr_writer :inbound_fednow_transfer_confirmation
+
         # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
         # present in the JSON response if and only if `category` is equal to
         # `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
@@ -956,6 +980,10 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::InboundCheckDepositReturnIntention::OrHash
               ),
+            inbound_fednow_transfer_confirmation:
+              T.nilable(
+                Increase::Transaction::Source::InboundFednowTransferConfirmation::OrHash
+              ),
             inbound_real_time_payments_transfer_confirmation:
               T.nilable(
                 Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::OrHash
@@ -1115,6 +1143,12 @@ module Increase
           # Intention is created when Increase receives an Inbound Check and the User
           # requests that it be returned.
           inbound_check_deposit_return_intention:,
+          # An Inbound FedNow Transfer Confirmation object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `inbound_fednow_transfer_confirmation`. An Inbound FedNow Transfer Confirmation
+          # is created when a FedNow transfer is initiated at another bank and received by
+          # Increase.
+          inbound_fednow_transfer_confirmation:,
           # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
           # present in the JSON response if and only if `category` is equal to
           # `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
@@ -1234,6 +1268,10 @@ module Increase
               inbound_check_deposit_return_intention:
                 T.nilable(
                   Increase::Transaction::Source::InboundCheckDepositReturnIntention
+                ),
+              inbound_fednow_transfer_confirmation:
+                T.nilable(
+                  Increase::Transaction::Source::InboundFednowTransferConfirmation
                 ),
               inbound_real_time_payments_transfer_confirmation:
                 T.nilable(
@@ -7975,6 +8013,13 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
+          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
+          INBOUND_FEDNOW_TRANSFER_CONFIRMATION =
+            T.let(
+              :inbound_fednow_transfer_confirmation,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION =
             T.let(
@@ -9459,6 +9504,36 @@ module Increase
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class InboundFednowTransferConfirmation < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::InboundFednowTransferConfirmation,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the FedNow Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # An Inbound FedNow Transfer Confirmation object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `inbound_fednow_transfer_confirmation`. An Inbound FedNow Transfer Confirmation
+          # is created when a FedNow transfer is initiated at another bank and received by
+          # Increase.
+          sig { params(transfer_id: String).returns(T.attached_class) }
+          def self.new(
+            # The identifier of the FedNow Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig { override.returns({ transfer_id: String }) }
           def to_hash
           end
         end

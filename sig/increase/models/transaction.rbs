@@ -129,6 +129,7 @@ module Increase
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
           inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
           inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
+          inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
           inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
           inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
           inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
@@ -190,6 +191,8 @@ module Increase
 
         attr_accessor inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?
 
+        attr_accessor inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?
+
         attr_accessor inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?
 
         attr_accessor inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?
@@ -238,6 +241,7 @@ module Increase
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
           inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
           inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
+          inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
           inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
           inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
           inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
@@ -276,6 +280,7 @@ module Increase
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
           inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
           inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
+          inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
           inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
           inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
           inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
@@ -3156,6 +3161,7 @@ module Increase
           | :inbound_ach_transfer_return_intention
           | :inbound_check_deposit_return_intention
           | :inbound_check_adjustment
+          | :inbound_fednow_transfer_confirmation
           | :inbound_real_time_payments_transfer_confirmation
           | :inbound_wire_reversal
           | :inbound_wire_transfer
@@ -3233,6 +3239,9 @@ module Increase
 
           # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
           INBOUND_CHECK_ADJUSTMENT: :inbound_check_adjustment
+
+          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
+          INBOUND_FEDNOW_TRANSFER_CONFIRMATION: :inbound_fednow_transfer_confirmation
 
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION: :inbound_real_time_payments_transfer_confirmation
@@ -3868,6 +3877,16 @@ module Increase
             inbound_check_deposit_id: String,
             transfer_id: String?
           }
+        end
+
+        type inbound_fednow_transfer_confirmation = { transfer_id: String }
+
+        class InboundFednowTransferConfirmation < Increase::Internal::Type::BaseModel
+          attr_accessor transfer_id: String
+
+          def initialize: (transfer_id: String) -> void
+
+          def to_hash: -> { transfer_id: String }
         end
 
         type inbound_real_time_payments_transfer_confirmation =

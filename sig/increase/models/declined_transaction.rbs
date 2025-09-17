@@ -111,6 +111,7 @@ module Increase
           category: Increase::Models::DeclinedTransaction::Source::category,
           check_decline: Increase::DeclinedTransaction::Source::CheckDecline?,
           check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?,
+          inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?,
           inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?,
           other: top?,
           wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
@@ -127,6 +128,8 @@ module Increase
 
         attr_accessor check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?
 
+        attr_accessor inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?
+
         attr_accessor inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?
 
         attr_accessor other: top?
@@ -139,6 +142,7 @@ module Increase
           category: Increase::Models::DeclinedTransaction::Source::category,
           check_decline: Increase::DeclinedTransaction::Source::CheckDecline?,
           check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?,
+          inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?,
           inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?,
           other: top?,
           wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
@@ -150,6 +154,7 @@ module Increase
           category: Increase::Models::DeclinedTransaction::Source::category,
           check_decline: Increase::DeclinedTransaction::Source::CheckDecline?,
           check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?,
+          inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?,
           inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?,
           other: top?,
           wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
@@ -1197,6 +1202,7 @@ module Increase
           | :card_decline
           | :check_decline
           | :inbound_real_time_payments_transfer_decline
+          | :inbound_fednow_transfer_decline
           | :wire_decline
           | :check_deposit_rejection
           | :other
@@ -1215,6 +1221,9 @@ module Increase
 
           # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE: :inbound_real_time_payments_transfer_decline
+
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE: :inbound_fednow_transfer_decline
 
           # Wire Decline: details will be under the `wire_decline` object.
           WIRE_DECLINE: :wire_decline
@@ -1472,6 +1481,60 @@ module Increase
             UNKNOWN: :unknown
 
             def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::reason]
+          end
+        end
+
+        type inbound_fednow_transfer_decline =
+          {
+            reason: Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::reason,
+            transfer_id: String
+          }
+
+        class InboundFednowTransferDecline < Increase::Internal::Type::BaseModel
+          attr_accessor reason: Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::reason
+
+          attr_accessor transfer_id: String
+
+          def initialize: (
+            reason: Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::reason,
+            transfer_id: String
+          ) -> void
+
+          def to_hash: -> {
+            reason: Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::reason,
+            transfer_id: String
+          }
+
+          type reason =
+            :account_number_canceled
+            | :account_number_disabled
+            | :account_restricted
+            | :group_locked
+            | :entity_not_active
+            | :fednow_not_enabled
+
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The account number is canceled.
+            ACCOUNT_NUMBER_CANCELED: :account_number_canceled
+
+            # The account number is disabled.
+            ACCOUNT_NUMBER_DISABLED: :account_number_disabled
+
+            # Your account is restricted.
+            ACCOUNT_RESTRICTED: :account_restricted
+
+            # Your account is inactive.
+            GROUP_LOCKED: :group_locked
+
+            # The account's entity is not active.
+            ENTITY_NOT_ACTIVE: :entity_not_active
+
+            # Your account is not enabled to receive FedNow transfers.
+            FEDNOW_NOT_ENABLED: :fednow_not_enabled
+
+            def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::reason]
           end
         end
 

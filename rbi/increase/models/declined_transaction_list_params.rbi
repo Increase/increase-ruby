@@ -211,6 +211,13 @@ module Increase
               Increase::DeclinedTransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE =
+            T.let(
+              :inbound_fednow_transfer_decline,
+              Increase::DeclinedTransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Wire Decline: details will be under the `wire_decline` object.
           WIRE_DECLINE =
             T.let(
