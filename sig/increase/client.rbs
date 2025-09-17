@@ -27,8 +27,6 @@ module Increase
 
     attr_reader card_purchase_supplements: Increase::Resources::CardPurchaseSupplements
 
-    attr_reader card_disputes: Increase::Resources::CardDisputes
-
     attr_reader physical_cards: Increase::Resources::PhysicalCards
 
     attr_reader digital_card_profiles: Increase::Resources::DigitalCardProfiles

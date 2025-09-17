@@ -1108,12 +1108,6 @@ module Increase
           #   @return [Time]
           required :accepted_at, Time
 
-          # @!attribute card_dispute_id
-          #   The identifier of the Card Dispute that was accepted.
-          #
-          #   @return [String]
-          required :card_dispute_id, String
-
           # @!attribute transaction_id
           #   The identifier of the Transaction that was created to return the disputed funds
           #   to your account.
@@ -1121,7 +1115,7 @@ module Increase
           #   @return [String]
           required :transaction_id, String
 
-          # @!method initialize(accepted_at:, card_dispute_id:, transaction_id:)
+          # @!method initialize(accepted_at:, transaction_id:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardDisputeAcceptance} for more details.
           #
@@ -1130,8 +1124,6 @@ module Increase
           #   Contains the details of a successful Card Dispute.
           #
           #   @param accepted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-          #
-          #   @param card_dispute_id [String] The identifier of the Card Dispute that was accepted.
           #
           #   @param transaction_id [String] The identifier of the Transaction that was created to return the disputed funds
         end
@@ -1143,12 +1135,6 @@ module Increase
           #
           #   @return [Integer]
           required :amount, Integer
-
-          # @!attribute card_dispute_id
-          #   The identifier of the Card Dispute the financial event is associated with.
-          #
-          #   @return [String]
-          required :card_dispute_id, String
 
           # @!attribute network
           #   The network that the Card Dispute is associated with.
@@ -1171,7 +1157,7 @@ module Increase
           #   @return [Increase::Models::Transaction::Source::CardDisputeFinancial::Visa, nil]
           required :visa, -> { Increase::Transaction::Source::CardDisputeFinancial::Visa }, nil?: true
 
-          # @!method initialize(amount:, card_dispute_id:, network:, transaction_id:, visa:)
+          # @!method initialize(amount:, network:, transaction_id:, visa:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardDisputeFinancial} for more details.
           #
@@ -1180,8 +1166,6 @@ module Increase
           #   related to a Card Dispute.
           #
           #   @param amount [Integer] The amount of the financial event.
-          #
-          #   @param card_dispute_id [String] The identifier of the Card Dispute the financial event is associated with.
           #
           #   @param network [Symbol, Increase::Models::Transaction::Source::CardDisputeFinancial::Network] The network that the Card Dispute is associated with.
           #
@@ -1252,12 +1236,6 @@ module Increase
 
         # @see Increase::Models::Transaction::Source#card_dispute_loss
         class CardDisputeLoss < Increase::Internal::Type::BaseModel
-          # @!attribute card_dispute_id
-          #   The identifier of the Card Dispute that was lost.
-          #
-          #   @return [String]
-          required :card_dispute_id, String
-
           # @!attribute explanation
           #   Why the Card Dispute was lost.
           #
@@ -1278,15 +1256,13 @@ module Increase
           #   @return [String]
           required :transaction_id, String
 
-          # @!method initialize(card_dispute_id:, explanation:, lost_at:, transaction_id:)
+          # @!method initialize(explanation:, lost_at:, transaction_id:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardDisputeLoss} for more details.
           #
           #   A Card Dispute Loss object. This field will be present in the JSON response if
           #   and only if `category` is equal to `card_dispute_loss`. Contains the details of
           #   a lost Card Dispute.
-          #
-          #   @param card_dispute_id [String] The identifier of the Card Dispute that was lost.
           #
           #   @param explanation [String] Why the Card Dispute was lost.
           #

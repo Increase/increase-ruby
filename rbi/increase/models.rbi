@@ -113,14 +113,6 @@ module Increase
 
   CardDetailsParams = Increase::Models::CardDetailsParams
 
-  CardDispute = Increase::Models::CardDispute
-
-  CardDisputeCreateParams = Increase::Models::CardDisputeCreateParams
-
-  CardDisputeListParams = Increase::Models::CardDisputeListParams
-
-  CardDisputeRetrieveParams = Increase::Models::CardDisputeRetrieveParams
-
   CardIframeURL = Increase::Models::CardIframeURL
 
   CardListParams = Increase::Models::CardListParams

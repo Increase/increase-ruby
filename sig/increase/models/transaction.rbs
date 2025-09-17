@@ -768,32 +768,21 @@ module Increase
         end
 
         type card_dispute_acceptance =
-          { accepted_at: Time, card_dispute_id: String, transaction_id: String }
+          { accepted_at: Time, transaction_id: String }
 
         class CardDisputeAcceptance < Increase::Internal::Type::BaseModel
           attr_accessor accepted_at: Time
 
-          attr_accessor card_dispute_id: String
-
           attr_accessor transaction_id: String
 
-          def initialize: (
-            accepted_at: Time,
-            card_dispute_id: String,
-            transaction_id: String
-          ) -> void
+          def initialize: (accepted_at: Time, transaction_id: String) -> void
 
-          def to_hash: -> {
-            accepted_at: Time,
-            card_dispute_id: String,
-            transaction_id: String
-          }
+          def to_hash: -> { accepted_at: Time, transaction_id: String }
         end
 
         type card_dispute_financial =
           {
             amount: Integer,
-            card_dispute_id: String,
             network: Increase::Models::Transaction::Source::CardDisputeFinancial::network,
             transaction_id: String,
             visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
@@ -801,8 +790,6 @@ module Increase
 
         class CardDisputeFinancial < Increase::Internal::Type::BaseModel
           attr_accessor amount: Integer
-
-          attr_accessor card_dispute_id: String
 
           attr_accessor network: Increase::Models::Transaction::Source::CardDisputeFinancial::network
 
@@ -812,7 +799,6 @@ module Increase
 
           def initialize: (
             amount: Integer,
-            card_dispute_id: String,
             network: Increase::Models::Transaction::Source::CardDisputeFinancial::network,
             transaction_id: String,
             visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
@@ -820,7 +806,6 @@ module Increase
 
           def to_hash: -> {
             amount: Integer,
-            card_dispute_id: String,
             network: Increase::Models::Transaction::Source::CardDisputeFinancial::network,
             transaction_id: String,
             visa: Increase::Transaction::Source::CardDisputeFinancial::Visa?
@@ -892,16 +877,9 @@ module Increase
         end
 
         type card_dispute_loss =
-          {
-            card_dispute_id: String,
-            explanation: String,
-            lost_at: Time,
-            transaction_id: String
-          }
+          { explanation: String, lost_at: Time, transaction_id: String }
 
         class CardDisputeLoss < Increase::Internal::Type::BaseModel
-          attr_accessor card_dispute_id: String
-
           attr_accessor explanation: String
 
           attr_accessor lost_at: Time
@@ -909,14 +887,12 @@ module Increase
           attr_accessor transaction_id: String
 
           def initialize: (
-            card_dispute_id: String,
             explanation: String,
             lost_at: Time,
             transaction_id: String
           ) -> void
 
           def to_hash: -> {
-            card_dispute_id: String,
             explanation: String,
             lost_at: Time,
             transaction_id: String
