@@ -20,6 +20,7 @@ class Increase::Test::Resources::RoutingNumbersTest < Increase::Test::ResourceTe
     assert_pattern do
       row => {
         ach_transfers: Increase::Models::RoutingNumberListResponse::ACHTransfers,
+        fednow_transfers: Increase::Models::RoutingNumberListResponse::FednowTransfers,
         name: String,
         real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers,
         routing_number: String,
