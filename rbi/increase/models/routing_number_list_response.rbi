@@ -19,6 +19,14 @@ module Increase
       end
       attr_accessor :ach_transfers
 
+      # This routing number's support for FedNow Transfers.
+      sig do
+        returns(
+          Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol
+        )
+      end
+      attr_accessor :fednow_transfers
+
       # The name of the financial institution belonging to a routing number.
       sig { returns(String) }
       attr_accessor :name
@@ -55,6 +63,8 @@ module Increase
         params(
           ach_transfers:
             Increase::Models::RoutingNumberListResponse::ACHTransfers::OrSymbol,
+          fednow_transfers:
+            Increase::Models::RoutingNumberListResponse::FednowTransfers::OrSymbol,
           name: String,
           real_time_payments_transfers:
             Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers::OrSymbol,
@@ -67,6 +77,8 @@ module Increase
       def self.new(
         # This routing number's support for ACH Transfers.
         ach_transfers:,
+        # This routing number's support for FedNow Transfers.
+        fednow_transfers:,
         # The name of the financial institution belonging to a routing number.
         name:,
         # This routing number's support for Real-Time Payments Transfers.
@@ -86,6 +98,8 @@ module Increase
           {
             ach_transfers:
               Increase::Models::RoutingNumberListResponse::ACHTransfers::TaggedSymbol,
+            fednow_transfers:
+              Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol,
             name: String,
             real_time_payments_transfers:
               Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers::TaggedSymbol,
@@ -131,6 +145,44 @@ module Increase
           override.returns(
             T::Array[
               Increase::Models::RoutingNumberListResponse::ACHTransfers::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # This routing number's support for FedNow Transfers.
+      module FednowTransfers
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              Increase::Models::RoutingNumberListResponse::FednowTransfers
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # The routing number can receive this transfer type.
+        SUPPORTED =
+          T.let(
+            :supported,
+            Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol
+          )
+
+        # The routing number cannot receive this transfer type.
+        NOT_SUPPORTED =
+          T.let(
+            :not_supported,
+            Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol
             ]
           )
         end

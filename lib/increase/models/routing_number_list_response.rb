@@ -10,6 +10,12 @@ module Increase
       #   @return [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers]
       required :ach_transfers, enum: -> { Increase::Models::RoutingNumberListResponse::ACHTransfers }
 
+      # @!attribute fednow_transfers
+      #   This routing number's support for FedNow Transfers.
+      #
+      #   @return [Symbol, Increase::Models::RoutingNumberListResponse::FednowTransfers]
+      required :fednow_transfers, enum: -> { Increase::Models::RoutingNumberListResponse::FednowTransfers }
+
       # @!attribute name
       #   The name of the financial institution belonging to a routing number.
       #
@@ -42,13 +48,15 @@ module Increase
       #   @return [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers]
       required :wire_transfers, enum: -> { Increase::Models::RoutingNumberListResponse::WireTransfers }
 
-      # @!method initialize(ach_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:)
+      # @!method initialize(ach_transfers:, fednow_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::RoutingNumberListResponse} for more details.
       #
       #   Routing numbers are used to identify your bank in a financial transaction.
       #
       #   @param ach_transfers [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers] This routing number's support for ACH Transfers.
+      #
+      #   @param fednow_transfers [Symbol, Increase::Models::RoutingNumberListResponse::FednowTransfers] This routing number's support for FedNow Transfers.
       #
       #   @param name [String] The name of the financial institution belonging to a routing number.
       #
@@ -64,6 +72,22 @@ module Increase
       #
       # @see Increase::Models::RoutingNumberListResponse#ach_transfers
       module ACHTransfers
+        extend Increase::Internal::Type::Enum
+
+        # The routing number can receive this transfer type.
+        SUPPORTED = :supported
+
+        # The routing number cannot receive this transfer type.
+        NOT_SUPPORTED = :not_supported
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # This routing number's support for FedNow Transfers.
+      #
+      # @see Increase::Models::RoutingNumberListResponse#fednow_transfers
+      module FednowTransfers
         extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.
