@@ -1,9 +1,9 @@
 module Increase
   module Models
     module Simulations
-      type physical_card_tracking_updates_params =
+      type physical_card_create_params =
         {
-          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          category: Increase::Models::Simulations::PhysicalCardCreateParams::category,
           carrier_estimated_delivery_at: Time,
           city: String,
           postal_code: String,
@@ -11,11 +11,11 @@ module Increase
         }
         & Increase::Internal::Type::request_parameters
 
-      class PhysicalCardTrackingUpdatesParams < Increase::Internal::Type::BaseModel
+      class PhysicalCardCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        attr_accessor category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category
+        attr_accessor category: Increase::Models::Simulations::PhysicalCardCreateParams::category
 
         attr_reader carrier_estimated_delivery_at: Time?
 
@@ -34,7 +34,7 @@ module Increase
         def state=: (String) -> String
 
         def initialize: (
-          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          category: Increase::Models::Simulations::PhysicalCardCreateParams::category,
           ?carrier_estimated_delivery_at: Time,
           ?city: String,
           ?postal_code: String,
@@ -43,7 +43,7 @@ module Increase
         ) -> void
 
         def to_hash: -> {
-          category: Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category,
+          category: Increase::Models::Simulations::PhysicalCardCreateParams::category,
           carrier_estimated_delivery_at: Time,
           city: String,
           postal_code: String,
@@ -72,7 +72,7 @@ module Increase
           # Delivery failed and the physical card was returned to sender.
           RETURNED_TO_SENDER: :returned_to_sender
 
-          def self?.values: -> ::Array[Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::category]
+          def self?.values: -> ::Array[Increase::Models::Simulations::PhysicalCardCreateParams::category]
         end
       end
     end

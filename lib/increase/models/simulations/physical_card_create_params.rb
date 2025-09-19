@@ -3,16 +3,16 @@
 module Increase
   module Models
     module Simulations
-      # @see Increase::Resources::Simulations::PhysicalCards#tracking_updates
-      class PhysicalCardTrackingUpdatesParams < Increase::Internal::Type::BaseModel
+      # @see Increase::Resources::Simulations::PhysicalCards#create
+      class PhysicalCardCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute category
         #   The type of tracking event.
         #
-        #   @return [Symbol, Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::Category]
-        required :category, enum: -> { Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category }
+        #   @return [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category]
+        required :category, enum: -> { Increase::Simulations::PhysicalCardCreateParams::Category }
 
         # @!attribute carrier_estimated_delivery_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
@@ -41,10 +41,9 @@ module Increase
 
         # @!method initialize(category:, carrier_estimated_delivery_at: nil, city: nil, postal_code: nil, state: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams} for more
-        #   details.
+        #   {Increase::Models::Simulations::PhysicalCardCreateParams} for more details.
         #
-        #   @param category [Symbol, Increase::Models::Simulations::PhysicalCardTrackingUpdatesParams::Category] The type of tracking event.
+        #   @param category [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category] The type of tracking event.
         #
         #   @param carrier_estimated_delivery_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
         #

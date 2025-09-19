@@ -2,14 +2,14 @@
 
 module Increase
   module Models
-    class CardCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
+    class CardDetailCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Increase::CardCreateDetailsIframeParams,
+            Increase::CardDetailCreateDetailsIframeParams,
             Increase::Internal::AnyHash
           )
         end

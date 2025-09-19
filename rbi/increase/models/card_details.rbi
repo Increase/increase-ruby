@@ -2,10 +2,10 @@
 
 module Increase
   module Models
-    class CardDetails < Increase::Internal::Type::BaseModel
+    class CardDetailsAPI < Increase::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Increase::CardDetails, Increase::Internal::AnyHash)
+          T.any(Increase::CardDetailsAPI, Increase::Internal::AnyHash)
         end
 
       # The identifier for the Card for which sensitive details have been returned.
@@ -30,7 +30,7 @@ module Increase
 
       # A constant representing the object's type. For this resource it will always be
       # `card_details`.
-      sig { returns(Increase::CardDetails::Type::TaggedSymbol) }
+      sig { returns(Increase::CardDetailsAPI::Type::TaggedSymbol) }
       attr_accessor :type
 
       # The three-digit verification code for the card. It's also known as the Card
@@ -39,7 +39,7 @@ module Increase
       sig { returns(String) }
       attr_accessor :verification_code
 
-      # An object containing the sensitive details (card number, cvc, etc) for a Card.
+      # An object containing the sensitive details (card number, CVC, etc) for a Card.
       sig do
         params(
           card_id: String,
@@ -47,7 +47,7 @@ module Increase
           expiration_year: Integer,
           pin: String,
           primary_account_number: String,
-          type: Increase::CardDetails::Type::OrSymbol,
+          type: Increase::CardDetailsAPI::Type::OrSymbol,
           verification_code: String
         ).returns(T.attached_class)
       end
@@ -80,7 +80,7 @@ module Increase
             expiration_year: Integer,
             pin: String,
             primary_account_number: String,
-            type: Increase::CardDetails::Type::TaggedSymbol,
+            type: Increase::CardDetailsAPI::Type::TaggedSymbol,
             verification_code: String
           }
         )
@@ -94,14 +94,16 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Increase::CardDetails::Type) }
+          T.type_alias { T.all(Symbol, Increase::CardDetailsAPI::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         CARD_DETAILS =
-          T.let(:card_details, Increase::CardDetails::Type::TaggedSymbol)
+          T.let(:card_details, Increase::CardDetailsAPI::Type::TaggedSymbol)
 
         sig do
-          override.returns(T::Array[Increase::CardDetails::Type::TaggedSymbol])
+          override.returns(
+            T::Array[Increase::CardDetailsAPI::Type::TaggedSymbol]
+          )
         end
         def self.values
         end

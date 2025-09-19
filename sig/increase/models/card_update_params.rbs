@@ -6,6 +6,7 @@ module Increase
         description: String,
         digital_wallet: Increase::CardUpdateParams::DigitalWallet,
         entity_id: String,
+        pin: String,
         status: Increase::Models::CardUpdateParams::status
       }
       & Increase::Internal::Type::request_parameters
@@ -34,6 +35,10 @@ module Increase
 
       def entity_id=: (String) -> String
 
+      attr_reader pin: String?
+
+      def pin=: (String) -> String
+
       attr_reader status: Increase::Models::CardUpdateParams::status?
 
       def status=: (
@@ -45,6 +50,7 @@ module Increase
         ?description: String,
         ?digital_wallet: Increase::CardUpdateParams::DigitalWallet,
         ?entity_id: String,
+        ?pin: String,
         ?status: Increase::Models::CardUpdateParams::status,
         ?request_options: Increase::request_opts
       ) -> void
@@ -54,6 +60,7 @@ module Increase
         description: String,
         digital_wallet: Increase::CardUpdateParams::DigitalWallet,
         entity_id: String,
+        pin: String,
         status: Increase::Models::CardUpdateParams::status,
         request_options: Increase::RequestOptions
       }
