@@ -2,8 +2,8 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::Cards#create_details_iframe
-    class CardCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
+    # @see Increase::Resources::CardDetails#create_details_iframe
+    class CardDetailCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

@@ -21,6 +21,7 @@ module Increase
         ?description: String,
         ?digital_wallet: Increase::CardUpdateParams::DigitalWallet,
         ?entity_id: String,
+        ?pin: String,
         ?status: Increase::Models::CardUpdateParams::status,
         ?request_options: Increase::request_opts
       ) -> Increase::Card
@@ -34,17 +35,6 @@ module Increase
         ?status: Increase::CardListParams::Status,
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::Card]
-
-      def create_details_iframe: (
-        String card_id,
-        ?physical_card_id: String,
-        ?request_options: Increase::request_opts
-      ) -> Increase::CardIframeURL
-
-      def details: (
-        String card_id,
-        ?request_options: Increase::request_opts
-      ) -> Increase::CardDetails
 
       def initialize: (client: Increase::Client) -> void
     end

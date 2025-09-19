@@ -91,13 +91,15 @@ module Increase
 
   class Card = Increase::Models::Card
 
-  class CardCreateDetailsIframeParams = Increase::Models::CardCreateDetailsIframeParams
-
   class CardCreateParams = Increase::Models::CardCreateParams
 
-  class CardDetails = Increase::Models::CardDetails
+  class CardDetailCreateDetailsIframeParams = Increase::Models::CardDetailCreateDetailsIframeParams
 
-  class CardDetailsParams = Increase::Models::CardDetailsParams
+  class CardDetailDetailsParams = Increase::Models::CardDetailDetailsParams
+
+  class CardDetailsAPI = Increase::Models::CardDetailsAPI
+
+  class CardDetailUpdateParams = Increase::Models::CardDetailUpdateParams
 
   class CardIframeURL = Increase::Models::CardIframeURL
 

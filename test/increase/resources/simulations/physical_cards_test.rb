@@ -3,9 +3,8 @@
 require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::PhysicalCardsTest < Increase::Test::ResourceTest
-  def test_advance_shipment_required_params
-    response =
-      @increase.simulations.physical_cards.advance_shipment("physical_card_id", shipment_status: :shipped)
+  def test_create_required_params
+    response = @increase.simulations.physical_cards.create("physical_card_id", category: :delivered)
 
     assert_pattern do
       response => Increase::PhysicalCard
@@ -26,9 +25,9 @@ class Increase::Test::Resources::Simulations::PhysicalCardsTest < Increase::Test
     end
   end
 
-  def test_tracking_updates_required_params
+  def test_advance_shipment_required_params
     response =
-      @increase.simulations.physical_cards.tracking_updates("physical_card_id", category: :delivered)
+      @increase.simulations.physical_cards.advance_shipment("physical_card_id", shipment_status: :shipped)
 
     assert_pattern do
       response => Increase::PhysicalCard

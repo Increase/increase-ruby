@@ -1,0 +1,20 @@
+module Increase
+  module Models
+    type card_detail_update_params =
+      { pin: String } & Increase::Internal::Type::request_parameters
+
+    class CardDetailUpdateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor pin: String
+
+      def initialize: (
+        pin: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> { pin: String, request_options: Increase::RequestOptions }
+    end
+  end
+end

@@ -3,14 +3,14 @@
 module Increase
   module Models
     module Simulations
-      class PhysicalCardTrackingUpdatesParams < Increase::Internal::Type::BaseModel
+      class PhysicalCardCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Increase::Simulations::PhysicalCardTrackingUpdatesParams,
+              Increase::Simulations::PhysicalCardCreateParams,
               Increase::Internal::AnyHash
             )
           end
@@ -18,7 +18,7 @@ module Increase
         # The type of tracking event.
         sig do
           returns(
-            Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::OrSymbol
+            Increase::Simulations::PhysicalCardCreateParams::Category::OrSymbol
           )
         end
         attr_accessor :category
@@ -55,7 +55,7 @@ module Increase
         sig do
           params(
             category:
-              Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::OrSymbol,
+              Increase::Simulations::PhysicalCardCreateParams::Category::OrSymbol,
             carrier_estimated_delivery_at: Time,
             city: String,
             postal_code: String,
@@ -83,7 +83,7 @@ module Increase
           override.returns(
             {
               category:
-                Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::OrSymbol,
+                Increase::Simulations::PhysicalCardCreateParams::Category::OrSymbol,
               carrier_estimated_delivery_at: Time,
               city: String,
               postal_code: String,
@@ -103,7 +103,7 @@ module Increase
             T.type_alias do
               T.all(
                 Symbol,
-                Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category
+                Increase::Simulations::PhysicalCardCreateParams::Category
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -112,34 +112,34 @@ module Increase
           IN_TRANSIT =
             T.let(
               :in_transit,
-              Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::TaggedSymbol
+              Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
             )
 
           # The physical card has been processed for delivery.
           PROCESSED_FOR_DELIVERY =
             T.let(
               :processed_for_delivery,
-              Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::TaggedSymbol
+              Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
             )
 
           # The physical card has been delivered.
           DELIVERED =
             T.let(
               :delivered,
-              Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::TaggedSymbol
+              Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
             )
 
           # Delivery failed and the physical card was returned to sender.
           RETURNED_TO_SENDER =
             T.let(
               :returned_to_sender,
-              Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::TaggedSymbol
+              Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Increase::Simulations::PhysicalCardTrackingUpdatesParams::Category::TaggedSymbol
+                Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
               ]
             )
           end
