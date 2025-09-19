@@ -50,6 +50,13 @@ module Increase
       sig { params(entity_id: String).void }
       attr_writer :entity_id
 
+      # The 4-digit PIN for the card, for use with ATMs.
+      sig { returns(T.nilable(String)) }
+      attr_reader :pin
+
+      sig { params(pin: String).void }
+      attr_writer :pin
+
       # The status to update the Card with.
       sig { returns(T.nilable(Increase::CardUpdateParams::Status::OrSymbol)) }
       attr_reader :status
@@ -63,6 +70,7 @@ module Increase
           description: String,
           digital_wallet: Increase::CardUpdateParams::DigitalWallet::OrHash,
           entity_id: String,
+          pin: String,
           status: Increase::CardUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -79,6 +87,8 @@ module Increase
         # The Entity the card belongs to. You only need to supply this in rare situations
         # when the card is not for the Account holder.
         entity_id: nil,
+        # The 4-digit PIN for the card, for use with ATMs.
+        pin: nil,
         # The status to update the Card with.
         status: nil,
         request_options: {}
@@ -92,6 +102,7 @@ module Increase
             description: String,
             digital_wallet: Increase::CardUpdateParams::DigitalWallet,
             entity_id: String,
+            pin: String,
             status: Increase::CardUpdateParams::Status::OrSymbol,
             request_options: Increase::RequestOptions
           }

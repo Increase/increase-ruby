@@ -56,6 +56,7 @@ module Increase
           description: String,
           digital_wallet: Increase::CardUpdateParams::DigitalWallet::OrHash,
           entity_id: String,
+          pin: String,
           status: Increase::CardUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Card)
@@ -74,6 +75,8 @@ module Increase
         # The Entity the card belongs to. You only need to supply this in rare situations
         # when the card is not for the Account holder.
         entity_id: nil,
+        # The 4-digit PIN for the card, for use with ATMs.
+        pin: nil,
         # The status to update the Card with.
         status: nil,
         request_options: {}
@@ -107,40 +110,6 @@ module Increase
         # objects.
         limit: nil,
         status: nil,
-        request_options: {}
-      )
-      end
-
-      # Create an iframe URL for a Card to display the card details. More details about
-      # styling and usage can be found in the
-      # [documentation](/documentation/embedded-card-component).
-      sig do
-        params(
-          card_id: String,
-          physical_card_id: String,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::CardIframeURL)
-      end
-      def create_details_iframe(
-        # The identifier of the Card to retrieve details for.
-        card_id,
-        # The identifier of the Physical Card to retrieve details for.
-        physical_card_id: nil,
-        request_options: {}
-      )
-      end
-
-      # Sensitive details for a Card include the primary account number, expiry, card
-      # verification code, and PIN.
-      sig do
-        params(
-          card_id: String,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::CardDetails)
-      end
-      def details(
-        # The identifier of the Card to retrieve details for.
-        card_id,
         request_options: {}
       )
       end

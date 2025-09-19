@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::Cards#create_details_iframe
+    # @see Increase::Resources::CardDetails#create_details_iframe
     class CardIframeURL < Increase::Internal::Type::BaseModel
       # @!attribute expires_at
       #   The time the iframe URL will expire.

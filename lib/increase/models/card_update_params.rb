@@ -34,13 +34,19 @@ module Increase
       #   @return [String, nil]
       optional :entity_id, String
 
+      # @!attribute pin
+      #   The 4-digit PIN for the card, for use with ATMs.
+      #
+      #   @return [String, nil]
+      optional :pin, String
+
       # @!attribute status
       #   The status to update the Card with.
       #
       #   @return [Symbol, Increase::Models::CardUpdateParams::Status, nil]
       optional :status, enum: -> { Increase::CardUpdateParams::Status }
 
-      # @!method initialize(billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
+      # @!method initialize(billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, pin: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardUpdateParams} for more details.
       #
@@ -51,6 +57,8 @@ module Increase
       #   @param digital_wallet [Increase::Models::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
       #
       #   @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
+      #
+      #   @param pin [String] The 4-digit PIN for the card, for use with ATMs.
       #
       #   @param status [Symbol, Increase::Models::CardUpdateParams::Status] The status to update the Card with.
       #

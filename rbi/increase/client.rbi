@@ -34,6 +34,9 @@ module Increase
     sig { returns(Increase::Resources::Cards) }
     attr_reader :cards
 
+    sig { returns(Increase::Resources::CardDetails) }
+    attr_reader :card_details
+
     sig { returns(Increase::Resources::CardPayments) }
     attr_reader :card_payments
 
