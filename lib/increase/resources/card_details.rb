@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class CardDetails
-      # Update a Card's Details
+      # Update a Card's PIN
       #
       # @overload update(card_id, pin:, request_options: {})
       #

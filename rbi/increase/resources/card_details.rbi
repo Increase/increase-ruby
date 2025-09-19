@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class CardDetails
-      # Update a Card's Details
+      # Update a Card's PIN
       sig do
         params(
           card_id: String,
