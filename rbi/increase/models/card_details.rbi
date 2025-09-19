@@ -39,7 +39,11 @@ module Increase
       sig { returns(String) }
       attr_accessor :verification_code
 
-      # An object containing the sensitive details (card number, CVC, etc) for a Card.
+      # An object containing the sensitive details (card number, CVC, PIN, etc) for a
+      # Card. These details are not included in the Card object. If you'd prefer to
+      # never access these details directly, you can use the
+      # [embedded iframe](/documentation/embedded-card-component) to display the
+      # information to your users.
       sig do
         params(
           card_id: String,
