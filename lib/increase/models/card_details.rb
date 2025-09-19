@@ -53,7 +53,11 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDetailsAPI} for more details.
       #
-      #   An object containing the sensitive details (card number, CVC, etc) for a Card.
+      #   An object containing the sensitive details (card number, CVC, PIN, etc) for a
+      #   Card. These details are not included in the Card object. If you'd prefer to
+      #   never access these details directly, you can use the
+      #   [embedded iframe](/documentation/embedded-card-component) to display the
+      #   information to your users.
       #
       #   @param card_id [String] The identifier for the Card for which sensitive details have been returned.
       #
