@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.83.0 (2025-09-19)
+
+Full Changelog: [v1.82.0...v1.83.0](https://github.com/Increase/increase-ruby/compare/v1.82.0...v1.83.0)
+
+### Features
+
+* **api:** api update ([e4382bb](https://github.com/Increase/increase-ruby/commit/e4382bb2fad1d76e20ff852aa75d8d819bd13d01))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([0173be9](https://github.com/Increase/increase-ruby/commit/0173be95cdbd2321196c60b385970c9b2520bcd8))
+
 ## 1.82.0 (2025-09-19)
 
 Full Changelog: [v1.81.0...v1.82.0](https://github.com/Increase/increase-ruby/compare/v1.81.0...v1.82.0)
