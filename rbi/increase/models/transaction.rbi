@@ -5350,6 +5350,28 @@ module Increase
           end
           attr_writer :purchase_details
 
+          # Surcharge amount details, if applicable. The amounts positive if the surcharge
+          # is added to to the overall transaction amount (surcharge), and negative if the
+          # surcharge is deducted from the overall transaction amount (discount).
+          sig do
+            returns(
+              T.nilable(
+                Increase::Transaction::Source::CardSettlement::Surcharge
+              )
+            )
+          end
+          attr_reader :surcharge
+
+          sig do
+            params(
+              surcharge:
+                T.nilable(
+                  Increase::Transaction::Source::CardSettlement::Surcharge::OrHash
+                )
+            ).void
+          end
+          attr_writer :surcharge
+
           # The identifier of the Transaction associated with this Transaction.
           sig { returns(String) }
           attr_accessor :transaction_id
@@ -5401,6 +5423,10 @@ module Increase
               purchase_details:
                 T.nilable(
                   Increase::Transaction::Source::CardSettlement::PurchaseDetails::OrHash
+                ),
+              surcharge:
+                T.nilable(
+                  Increase::Transaction::Source::CardSettlement::Surcharge::OrHash
                 ),
               transaction_id: String,
               type:
@@ -5455,6 +5481,10 @@ module Increase
             # Additional details about the card purchase, such as tax and industry-specific
             # fields.
             purchase_details:,
+            # Surcharge amount details, if applicable. The amounts positive if the surcharge
+            # is added to to the overall transaction amount (surcharge), and negative if the
+            # surcharge is deducted from the overall transaction amount (discount).
+            surcharge:,
             # The identifier of the Transaction associated with this Transaction.
             transaction_id:,
             # A constant representing the object's type. For this resource it will always be
@@ -5497,6 +5527,10 @@ module Increase
                 purchase_details:
                   T.nilable(
                     Increase::Transaction::Source::CardSettlement::PurchaseDetails
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::Surcharge
                   ),
                 transaction_id: String,
                 type:
@@ -7645,6 +7679,48 @@ module Increase
                   end
                 end
               end
+            end
+          end
+
+          class Surcharge < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Transaction::Source::CardSettlement::Surcharge,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The surcharge amount in the minor unit of the transaction's settlement currency.
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The surcharge amount in the minor unit of the transaction's presentment
+            # currency.
+            sig { returns(Integer) }
+            attr_accessor :presentment_amount
+
+            # Surcharge amount details, if applicable. The amounts positive if the surcharge
+            # is added to to the overall transaction amount (surcharge), and negative if the
+            # surcharge is deducted from the overall transaction amount (discount).
+            sig do
+              params(amount: Integer, presentment_amount: Integer).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The surcharge amount in the minor unit of the transaction's settlement currency.
+              amount:,
+              # The surcharge amount in the minor unit of the transaction's presentment
+              # currency.
+              presentment_amount:
+            )
+            end
+
+            sig do
+              override.returns({ amount: Integer, presentment_amount: Integer })
+            end
+            def to_hash
             end
           end
 

@@ -2863,6 +2863,14 @@ module Increase
                    -> { Increase::Transaction::Source::CardSettlement::PurchaseDetails },
                    nil?: true
 
+          # @!attribute surcharge
+          #   Surcharge amount details, if applicable. The amounts positive if the surcharge
+          #   is added to to the overall transaction amount (surcharge), and negative if the
+          #   surcharge is deducted from the overall transaction amount (discount).
+          #
+          #   @return [Increase::Models::Transaction::Source::CardSettlement::Surcharge, nil]
+          required :surcharge, -> { Increase::Transaction::Source::CardSettlement::Surcharge }, nil?: true
+
           # @!attribute transaction_id
           #   The identifier of the Transaction associated with this Transaction.
           #
@@ -2876,7 +2884,7 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Type]
           required :type, enum: -> { Increase::Transaction::Source::CardSettlement::Type }
 
-          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, transaction_id:, type:)
+          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, surcharge:, transaction_id:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardSettlement} for more details.
           #
@@ -2925,6 +2933,8 @@ module Increase
           #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
           #
           #   @param purchase_details [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails, nil] Additional details about the card purchase, such as tax and industry-specific fi
+          #
+          #   @param surcharge [Increase::Models::Transaction::Source::CardSettlement::Surcharge, nil] Surcharge amount details, if applicable. The amounts positive if the surcharge i
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this Transaction.
           #
@@ -4105,6 +4115,35 @@ module Increase
                 end
               end
             end
+          end
+
+          # @see Increase::Models::Transaction::Source::CardSettlement#surcharge
+          class Surcharge < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The surcharge amount in the minor unit of the transaction's settlement currency.
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute presentment_amount
+            #   The surcharge amount in the minor unit of the transaction's presentment
+            #   currency.
+            #
+            #   @return [Integer]
+            required :presentment_amount, Integer
+
+            # @!method initialize(amount:, presentment_amount:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::Transaction::Source::CardSettlement::Surcharge} for more
+            #   details.
+            #
+            #   Surcharge amount details, if applicable. The amounts positive if the surcharge
+            #   is added to to the overall transaction amount (surcharge), and negative if the
+            #   surcharge is deducted from the overall transaction amount (discount).
+            #
+            #   @param amount [Integer] The surcharge amount in the minor unit of the transaction's settlement currency.
+            #
+            #   @param presentment_amount [Integer] The surcharge amount in the minor unit of the transaction's presentment currency
           end
 
           # A constant representing the object's type. For this resource it will always be
