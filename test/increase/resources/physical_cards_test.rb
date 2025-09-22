@@ -40,7 +40,7 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
   end
 
   def test_retrieve
-    response = @increase.physical_cards.retrieve("physical_card_id")
+    response = @increase.physical_cards.retrieve("physical_card_ode8duyq5v2ynhjoharl")
 
     assert_pattern do
       response => Increase::PhysicalCard
@@ -62,7 +62,7 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
   end
 
   def test_update_required_params
-    response = @increase.physical_cards.update("physical_card_id", status: :disabled)
+    response = @increase.physical_cards.update("physical_card_ode8duyq5v2ynhjoharl", status: :disabled)
 
     assert_pattern do
       response => Increase::PhysicalCard

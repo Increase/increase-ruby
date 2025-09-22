@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.inbound_wire_transfers.retrieve("inbound_wire_transfer_id")
+    response = @increase.inbound_wire_transfers.retrieve("inbound_wire_transfer_f228m6bmhtcxjco9pwp0")
 
     assert_pattern do
       response => Increase::InboundWireTransfer
@@ -86,7 +86,10 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
 
   def test_reverse_required_params
     response =
-      @increase.inbound_wire_transfers.reverse("inbound_wire_transfer_id", reason: :creditor_request)
+      @increase.inbound_wire_transfers.reverse(
+        "inbound_wire_transfer_f228m6bmhtcxjco9pwp0",
+        reason: :creditor_request
+      )
 
     assert_pattern do
       response => Increase::InboundWireTransfer

@@ -29,7 +29,7 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
   end
 
   def test_retrieve
-    response = @increase.account_numbers.retrieve("account_number_id")
+    response = @increase.account_numbers.retrieve("account_number_v18nkfqm6afpsrvy82b2")
 
     assert_pattern do
       response => Increase::AccountNumber
@@ -53,7 +53,7 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
   end
 
   def test_update
-    response = @increase.account_numbers.update("account_number_id")
+    response = @increase.account_numbers.update("account_number_v18nkfqm6afpsrvy82b2")
 
     assert_pattern do
       response => Increase::AccountNumber

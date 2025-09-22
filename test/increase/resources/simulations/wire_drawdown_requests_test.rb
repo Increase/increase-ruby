@@ -4,7 +4,8 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::WireDrawdownRequestsTest < Increase::Test::ResourceTest
   def test_refuse
-    response = @increase.simulations.wire_drawdown_requests.refuse("wire_drawdown_request_id")
+    response =
+      @increase.simulations.wire_drawdown_requests.refuse("wire_drawdown_request_q6lmocus3glo0lr2bfv3")
 
     assert_pattern do
       response => Increase::WireDrawdownRequest
@@ -35,7 +36,8 @@ class Increase::Test::Resources::Simulations::WireDrawdownRequestsTest < Increas
   end
 
   def test_submit
-    response = @increase.simulations.wire_drawdown_requests.submit("wire_drawdown_request_id")
+    response =
+      @increase.simulations.wire_drawdown_requests.submit("wire_drawdown_request_q6lmocus3glo0lr2bfv3")
 
     assert_pattern do
       response => Increase::WireDrawdownRequest

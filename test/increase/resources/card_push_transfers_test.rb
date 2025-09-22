@@ -63,7 +63,7 @@ class Increase::Test::Resources::CardPushTransfersTest < Increase::Test::Resourc
   end
 
   def test_retrieve
-    response = @increase.card_push_transfers.retrieve("card_push_transfer_id")
+    response = @increase.card_push_transfers.retrieve("outbound_card_push_transfer_e0z9rdpamraczh4tvwye")
 
     assert_pattern do
       response => Increase::CardPushTransfer
@@ -152,7 +152,7 @@ class Increase::Test::Resources::CardPushTransfersTest < Increase::Test::Resourc
   end
 
   def test_approve
-    response = @increase.card_push_transfers.approve("card_push_transfer_id")
+    response = @increase.card_push_transfers.approve("outbound_card_push_transfer_e0z9rdpamraczh4tvwye")
 
     assert_pattern do
       response => Increase::CardPushTransfer
@@ -193,7 +193,7 @@ class Increase::Test::Resources::CardPushTransfersTest < Increase::Test::Resourc
   end
 
   def test_cancel
-    response = @increase.card_push_transfers.cancel("card_push_transfer_id")
+    response = @increase.card_push_transfers.cancel("outbound_card_push_transfer_e0z9rdpamraczh4tvwye")
 
     assert_pattern do
       response => Increase::CardPushTransfer

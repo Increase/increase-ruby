@@ -44,7 +44,7 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
   end
 
   def test_retrieve
-    response = @increase.wire_drawdown_requests.retrieve("wire_drawdown_request_id")
+    response = @increase.wire_drawdown_requests.retrieve("wire_drawdown_request_q6lmocus3glo0lr2bfv3")
 
     assert_pattern do
       response => Increase::WireDrawdownRequest

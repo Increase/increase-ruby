@@ -30,7 +30,7 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
   end
 
   def test_retrieve
-    response = @increase.bookkeeping_entry_sets.retrieve("bookkeeping_entry_set_id")
+    response = @increase.bookkeeping_entry_sets.retrieve("bookkeeping_entry_set_n80c6wr2p8gtc6p4ingf")
 
     assert_pattern do
       response => Increase::BookkeepingEntrySet

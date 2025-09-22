@@ -25,7 +25,7 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
   end
 
   def test_retrieve
-    response = @increase.event_subscriptions.retrieve("event_subscription_id")
+    response = @increase.event_subscriptions.retrieve("event_subscription_001dzz0r20rcdxgb013zqb8m04g")
 
     assert_pattern do
       response => Increase::EventSubscription
@@ -46,7 +46,7 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
   end
 
   def test_update
-    response = @increase.event_subscriptions.update("event_subscription_id")
+    response = @increase.event_subscriptions.update("event_subscription_001dzz0r20rcdxgb013zqb8m04g")
 
     assert_pattern do
       response => Increase::EventSubscription

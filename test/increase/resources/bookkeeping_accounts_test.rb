@@ -24,7 +24,11 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
   end
 
   def test_update_required_params
-    response = @increase.bookkeeping_accounts.update("bookkeeping_account_id", name: "Deprecated Account")
+    response =
+      @increase.bookkeeping_accounts.update(
+        "bookkeeping_account_e37p1f1iuocw5intf35v",
+        name: "Deprecated Account"
+      )
 
     assert_pattern do
       response => Increase::BookkeepingAccount
@@ -71,7 +75,7 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
   end
 
   def test_balance
-    response = @increase.bookkeeping_accounts.balance("bookkeeping_account_id")
+    response = @increase.bookkeeping_accounts.balance("bookkeeping_account_e37p1f1iuocw5intf35v")
 
     assert_pattern do
       response => Increase::BookkeepingBalanceLookup

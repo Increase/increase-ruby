@@ -26,7 +26,7 @@ class Increase::Test::Resources::DocumentsTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.documents.retrieve("document_id")
+    response = @increase.documents.retrieve("document_qjtqc6s4c14ve2q89izm")
 
     assert_pattern do
       response => Increase::Document

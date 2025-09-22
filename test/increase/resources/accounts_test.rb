@@ -33,7 +33,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.accounts.retrieve("account_id")
+    response = @increase.accounts.retrieve("account_in71c4amph0vgo2qllky")
 
     assert_pattern do
       response => Increase::Account
@@ -62,7 +62,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
   end
 
   def test_update
-    response = @increase.accounts.update("account_id")
+    response = @increase.accounts.update("account_in71c4amph0vgo2qllky")
 
     assert_pattern do
       response => Increase::Account
@@ -127,7 +127,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
   end
 
   def test_balance
-    response = @increase.accounts.balance("account_id")
+    response = @increase.accounts.balance("account_in71c4amph0vgo2qllky")
 
     assert_pattern do
       response => Increase::BalanceLookup
@@ -144,7 +144,7 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
   end
 
   def test_close
-    response = @increase.accounts.close("account_id")
+    response = @increase.accounts.close("account_in71c4amph0vgo2qllky")
 
     assert_pattern do
       response => Increase::Account

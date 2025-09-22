@@ -58,7 +58,7 @@ class Increase::Test::Resources::ACHTransfersTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.ach_transfers.retrieve("ach_transfer_id")
+    response = @increase.ach_transfers.retrieve("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer
@@ -163,7 +163,7 @@ class Increase::Test::Resources::ACHTransfersTest < Increase::Test::ResourceTest
   end
 
   def test_approve
-    response = @increase.ach_transfers.approve("ach_transfer_id")
+    response = @increase.ach_transfers.approve("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer
@@ -212,7 +212,7 @@ class Increase::Test::Resources::ACHTransfersTest < Increase::Test::ResourceTest
   end
 
   def test_cancel
-    response = @increase.ach_transfers.cancel("ach_transfer_id")
+    response = @increase.ach_transfers.cancel("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer

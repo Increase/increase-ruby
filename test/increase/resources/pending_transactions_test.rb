@@ -31,7 +31,7 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
   end
 
   def test_retrieve
-    response = @increase.pending_transactions.retrieve("pending_transaction_id")
+    response = @increase.pending_transactions.retrieve("pending_transaction_k1sfetcau2qbvjbzgju4")
 
     assert_pattern do
       response => Increase::PendingTransaction
@@ -90,7 +90,7 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
   end
 
   def test_release
-    response = @increase.pending_transactions.release("pending_transaction_id")
+    response = @increase.pending_transactions.release("pending_transaction_k1sfetcau2qbvjbzgju4")
 
     assert_pattern do
       response => Increase::PendingTransaction

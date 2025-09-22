@@ -28,7 +28,7 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
   end
 
   def test_retrieve
-    response = @increase.intrafi_exclusions.retrieve("intrafi_exclusion_id")
+    response = @increase.intrafi_exclusions.retrieve("account_in71c4amph0vgo2qllky")
 
     assert_pattern do
       response => Increase::IntrafiExclusion
@@ -81,7 +81,7 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
   end
 
   def test_archive
-    response = @increase.intrafi_exclusions.archive("intrafi_exclusion_id")
+    response = @increase.intrafi_exclusions.archive("intrafi_exclusion_ygfqduuzpau3jqof6jyh")
 
     assert_pattern do
       response => Increase::IntrafiExclusion

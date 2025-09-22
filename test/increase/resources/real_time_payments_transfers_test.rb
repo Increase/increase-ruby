@@ -48,7 +48,8 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
   end
 
   def test_retrieve
-    response = @increase.real_time_payments_transfers.retrieve("real_time_payments_transfer_id")
+    response =
+      @increase.real_time_payments_transfers.retrieve("real_time_payments_transfer_iyuhl5kdn7ssmup83mvq")
 
     assert_pattern do
       response => Increase::RealTimePaymentsTransfer
@@ -131,7 +132,8 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
   end
 
   def test_approve
-    response = @increase.real_time_payments_transfers.approve("real_time_payments_transfer_id")
+    response =
+      @increase.real_time_payments_transfers.approve("real_time_payments_transfer_iyuhl5kdn7ssmup83mvq")
 
     assert_pattern do
       response => Increase::RealTimePaymentsTransfer
@@ -169,7 +171,8 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
   end
 
   def test_cancel
-    response = @increase.real_time_payments_transfers.cancel("real_time_payments_transfer_id")
+    response =
+      @increase.real_time_payments_transfers.cancel("real_time_payments_transfer_iyuhl5kdn7ssmup83mvq")
 
     assert_pattern do
       response => Increase::RealTimePaymentsTransfer

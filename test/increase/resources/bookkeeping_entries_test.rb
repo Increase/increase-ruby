@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::BookkeepingEntriesTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.bookkeeping_entries.retrieve("bookkeeping_entry_id")
+    response = @increase.bookkeeping_entries.retrieve("bookkeeping_entry_ctjpajsj3ks2blx10375")
 
     assert_pattern do
       response => Increase::BookkeepingEntry

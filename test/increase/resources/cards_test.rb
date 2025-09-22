@@ -30,7 +30,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.cards.retrieve("card_id")
+    response = @increase.cards.retrieve("card_oubs0hwk5rn6knuecxg2")
 
     assert_pattern do
       response => Increase::Card
@@ -56,7 +56,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
   end
 
   def test_update
-    response = @increase.cards.update("card_id")
+    response = @increase.cards.update("card_oubs0hwk5rn6knuecxg2")
 
     assert_pattern do
       response => Increase::Card
