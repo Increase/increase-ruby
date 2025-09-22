@@ -2023,6 +2023,7 @@ module Increase
             presentment_amount: Integer,
             presentment_currency: String,
             purchase_details: Increase::Transaction::Source::CardSettlement::PurchaseDetails?,
+            surcharge: Increase::Transaction::Source::CardSettlement::Surcharge?,
             transaction_id: String,
             type: Increase::Models::Transaction::Source::CardSettlement::type_
           }
@@ -2068,6 +2069,8 @@ module Increase
 
           attr_accessor purchase_details: Increase::Transaction::Source::CardSettlement::PurchaseDetails?
 
+          attr_accessor surcharge: Increase::Transaction::Source::CardSettlement::Surcharge?
+
           attr_accessor transaction_id: String
 
           attr_accessor type: Increase::Models::Transaction::Source::CardSettlement::type_
@@ -2093,6 +2096,7 @@ module Increase
             presentment_amount: Integer,
             presentment_currency: String,
             purchase_details: Increase::Transaction::Source::CardSettlement::PurchaseDetails?,
+            surcharge: Increase::Transaction::Source::CardSettlement::Surcharge?,
             transaction_id: String,
             type: Increase::Models::Transaction::Source::CardSettlement::type_
           ) -> void
@@ -2118,6 +2122,7 @@ module Increase
             presentment_amount: Integer,
             presentment_currency: String,
             purchase_details: Increase::Transaction::Source::CardSettlement::PurchaseDetails?,
+            surcharge: Increase::Transaction::Source::CardSettlement::Surcharge?,
             transaction_id: String,
             type: Increase::Models::Transaction::Source::CardSettlement::type_
           }
@@ -3040,6 +3045,21 @@ module Increase
                 end
               end
             end
+          end
+
+          type surcharge = { amount: Integer, presentment_amount: Integer }
+
+          class Surcharge < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor presentment_amount: Integer
+
+            def initialize: (
+              amount: Integer,
+              presentment_amount: Integer
+            ) -> void
+
+            def to_hash: -> { amount: Integer, presentment_amount: Integer }
           end
 
           type type_ = :card_settlement
