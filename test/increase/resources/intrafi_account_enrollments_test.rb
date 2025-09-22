@@ -29,7 +29,8 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
   end
 
   def test_retrieve
-    response = @increase.intrafi_account_enrollments.retrieve("intrafi_account_enrollment_id")
+    response =
+      @increase.intrafi_account_enrollments.retrieve("intrafi_account_enrollment_w8l97znzreopkwf2tg75")
 
     assert_pattern do
       response => Increase::IntrafiAccountEnrollment
@@ -78,7 +79,8 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
   end
 
   def test_unenroll
-    response = @increase.intrafi_account_enrollments.unenroll("intrafi_account_enrollment_id")
+    response =
+      @increase.intrafi_account_enrollments.unenroll("intrafi_account_enrollment_w8l97znzreopkwf2tg75")
 
     assert_pattern do
       response => Increase::IntrafiAccountEnrollment

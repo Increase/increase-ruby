@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.inbound_check_deposits.retrieve("inbound_check_deposit_id")
+    response = @increase.inbound_check_deposits.retrieve("inbound_check_deposit_zoshvqybq0cjjm31mra")
 
     assert_pattern do
       response => Increase::InboundCheckDeposit
@@ -77,7 +77,7 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
   end
 
   def test_decline
-    response = @increase.inbound_check_deposits.decline("inbound_check_deposit_id")
+    response = @increase.inbound_check_deposits.decline("inbound_check_deposit_zoshvqybq0cjjm31mra")
 
     assert_pattern do
       response => Increase::InboundCheckDeposit
@@ -111,7 +111,10 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
 
   def test_return__required_params
     response =
-      @increase.inbound_check_deposits.return_("inbound_check_deposit_id", reason: :altered_or_fictitious)
+      @increase.inbound_check_deposits.return_(
+        "inbound_check_deposit_zoshvqybq0cjjm31mra",
+        reason: :altered_or_fictitious
+      )
 
     assert_pattern do
       response => Increase::InboundCheckDeposit

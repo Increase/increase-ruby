@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::AccountTransfersTest < Increase::Test::ResourceTest
   def test_complete
-    response = @increase.simulations.account_transfers.complete("account_transfer_id")
+    response = @increase.simulations.account_transfers.complete("account_transfer_7k9qe1ysdgqztnt63l7n")
 
     assert_pattern do
       response => Increase::AccountTransfer

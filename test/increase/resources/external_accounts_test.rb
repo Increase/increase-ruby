@@ -32,7 +32,7 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
   end
 
   def test_retrieve
-    response = @increase.external_accounts.retrieve("external_account_id")
+    response = @increase.external_accounts.retrieve("external_account_ukk55lr923a3ac0pp7iv")
 
     assert_pattern do
       response => Increase::ExternalAccount
@@ -55,7 +55,7 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
   end
 
   def test_update
-    response = @increase.external_accounts.update("external_account_id")
+    response = @increase.external_accounts.update("external_account_ukk55lr923a3ac0pp7iv")
 
     assert_pattern do
       response => Increase::ExternalAccount

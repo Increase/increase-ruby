@@ -4,7 +4,8 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.inbound_wire_drawdown_requests.retrieve("inbound_wire_drawdown_request_id")
+    response =
+      @increase.inbound_wire_drawdown_requests.retrieve("inbound_wire_drawdown_request_u5a92ikqhz1ytphn799e")
 
     assert_pattern do
       response => Increase::InboundWireDrawdownRequest

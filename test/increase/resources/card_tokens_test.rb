@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::CardTokensTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.card_tokens.retrieve("card_token_id")
+    response = @increase.card_tokens.retrieve("outbound_card_token_zlt0ml6youq3q7vcdlg0")
 
     assert_pattern do
       response => Increase::CardToken
@@ -51,7 +51,7 @@ class Increase::Test::Resources::CardTokensTest < Increase::Test::ResourceTest
   end
 
   def test_capabilities
-    response = @increase.card_tokens.capabilities("card_token_id")
+    response = @increase.card_tokens.capabilities("outbound_card_token_zlt0ml6youq3q7vcdlg0")
 
     assert_pattern do
       response => Increase::CardTokenCapabilities

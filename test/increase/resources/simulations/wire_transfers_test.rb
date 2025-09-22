@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::WireTransfersTest < Increase::Test::ResourceTest
   def test_reverse
-    response = @increase.simulations.wire_transfers.reverse("wire_transfer_id")
+    response = @increase.simulations.wire_transfers.reverse("wire_transfer_5akynk7dqsq25qwk9q2u")
 
     assert_pattern do
       response => Increase::WireTransfer
@@ -48,7 +48,7 @@ class Increase::Test::Resources::Simulations::WireTransfersTest < Increase::Test
   end
 
   def test_submit
-    response = @increase.simulations.wire_transfers.submit("wire_transfer_id")
+    response = @increase.simulations.wire_transfers.submit("wire_transfer_5akynk7dqsq25qwk9q2u")
 
     assert_pattern do
       response => Increase::WireTransfer

@@ -25,7 +25,7 @@ class Increase::Test::Resources::ExportsTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.exports.retrieve("export_id")
+    response = @increase.exports.retrieve("export_8s4m48qz3bclzje0zwh9")
 
     assert_pattern do
       response => Increase::Export

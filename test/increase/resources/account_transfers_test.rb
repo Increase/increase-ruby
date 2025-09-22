@@ -40,7 +40,7 @@ class Increase::Test::Resources::AccountTransfersTest < Increase::Test::Resource
   end
 
   def test_retrieve
-    response = @increase.account_transfers.retrieve("account_transfer_id")
+    response = @increase.account_transfers.retrieve("account_transfer_7k9qe1ysdgqztnt63l7n")
 
     assert_pattern do
       response => Increase::AccountTransfer
@@ -107,7 +107,7 @@ class Increase::Test::Resources::AccountTransfersTest < Increase::Test::Resource
   end
 
   def test_approve
-    response = @increase.account_transfers.approve("account_transfer_id")
+    response = @increase.account_transfers.approve("account_transfer_7k9qe1ysdgqztnt63l7n")
 
     assert_pattern do
       response => Increase::AccountTransfer
@@ -137,7 +137,7 @@ class Increase::Test::Resources::AccountTransfersTest < Increase::Test::Resource
   end
 
   def test_cancel
-    response = @increase.account_transfers.cancel("account_transfer_id")
+    response = @increase.account_transfers.cancel("account_transfer_7k9qe1ysdgqztnt63l7n")
 
     assert_pattern do
       response => Increase::AccountTransfer

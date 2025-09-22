@@ -42,7 +42,7 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
   end
 
   def test_retrieve
-    response = @increase.ach_prenotifications.retrieve("ach_prenotification_id")
+    response = @increase.ach_prenotifications.retrieve("ach_prenotification_ubjf9qqsxl3obbcn1u34")
 
     assert_pattern do
       response => Increase::ACHPrenotification

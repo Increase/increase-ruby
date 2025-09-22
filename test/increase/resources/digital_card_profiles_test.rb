@@ -38,7 +38,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
   end
 
   def test_retrieve
-    response = @increase.digital_card_profiles.retrieve("digital_card_profile_id")
+    response = @increase.digital_card_profiles.retrieve("digital_card_profile_s3puplu90f04xhcwkiga")
 
     assert_pattern do
       response => Increase::DigitalCardProfile
@@ -99,7 +99,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
   end
 
   def test_archive
-    response = @increase.digital_card_profiles.archive("digital_card_profile_id")
+    response = @increase.digital_card_profiles.archive("digital_card_profile_s3puplu90f04xhcwkiga")
 
     assert_pattern do
       response => Increase::DigitalCardProfile
@@ -126,7 +126,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
   end
 
   def test_clone_
-    response = @increase.digital_card_profiles.clone_("digital_card_profile_id")
+    response = @increase.digital_card_profiles.clone_("digital_card_profile_s3puplu90f04xhcwkiga")
 
     assert_pattern do
       response => Increase::DigitalCardProfile

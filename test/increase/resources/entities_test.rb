@@ -33,7 +33,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.entities.retrieve("entity_id")
+    response = @increase.entities.retrieve("entity_n8y8tnk2p9339ti393yi")
 
     assert_pattern do
       response => Increase::Entity
@@ -62,7 +62,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   end
 
   def test_update
-    response = @increase.entities.update("entity_id")
+    response = @increase.entities.update("entity_n8y8tnk2p9339ti393yi")
 
     assert_pattern do
       response => Increase::Entity
@@ -127,7 +127,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   end
 
   def test_archive
-    response = @increase.entities.archive("entity_id")
+    response = @increase.entities.archive("entity_n8y8tnk2p9339ti393yi")
 
     assert_pattern do
       response => Increase::Entity
@@ -158,7 +158,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   def test_archive_beneficial_owner_required_params
     response =
       @increase.entities.archive_beneficial_owner(
-        "entity_id",
+        "entity_n8y8tnk2p9339ti393yi",
         beneficial_owner_id: "entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7"
       )
 
@@ -189,7 +189,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   end
 
   def test_confirm
-    response = @increase.entities.confirm("entity_id")
+    response = @increase.entities.confirm("entity_n8y8tnk2p9339ti393yi")
 
     assert_pattern do
       response => Increase::Entity
@@ -220,7 +220,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   def test_create_beneficial_owner_required_params
     response =
       @increase.entities.create_beneficial_owner(
-        "entity_id",
+        "entity_n8y8tnk2p9339ti393yi",
         beneficial_owner: {
           individual: {
             address: {city: "New York", country: "US", line1: "33 Liberty Street"},
@@ -261,7 +261,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   def test_update_address_required_params
     response =
       @increase.entities.update_address(
-        "entity_id",
+        "entity_n8y8tnk2p9339ti393yi",
         address: {city: "New York", line1: "33 Liberty Street", state: "NY", zip: "10045"}
       )
 
@@ -294,7 +294,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   def test_update_beneficial_owner_address_required_params
     response =
       @increase.entities.update_beneficial_owner_address(
-        "entity_id",
+        "entity_n8y8tnk2p9339ti393yi",
         address: {city: "New York", country: "US", line1: "33 Liberty Street"},
         beneficial_owner_id: "entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7"
       )
@@ -326,7 +326,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
   end
 
   def test_update_industry_code_required_params
-    response = @increase.entities.update_industry_code("entity_id", industry_code: "5132")
+    response = @increase.entities.update_industry_code("entity_n8y8tnk2p9339ti393yi", industry_code: "5132")
 
     assert_pattern do
       response => Increase::Entity

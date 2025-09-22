@@ -26,7 +26,7 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.files.retrieve("file_id")
+    response = @increase.files.retrieve("file_makxrc67oh9l6sg7w9yc")
 
     assert_pattern do
       response => Increase::File

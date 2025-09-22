@@ -5,7 +5,9 @@ require_relative "../../test_helper"
 class Increase::Test::Resources::Simulations::PendingTransactionsTest < Increase::Test::ResourceTest
   def test_release_inbound_funds_hold
     response =
-      @increase.simulations.pending_transactions.release_inbound_funds_hold("pending_transaction_id")
+      @increase.simulations.pending_transactions.release_inbound_funds_hold(
+        "pending_transaction_k1sfetcau2qbvjbzgju4"
+      )
 
     assert_pattern do
       response => Increase::PendingTransaction

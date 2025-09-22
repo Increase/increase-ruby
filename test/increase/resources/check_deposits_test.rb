@@ -41,7 +41,7 @@ class Increase::Test::Resources::CheckDepositsTest < Increase::Test::ResourceTes
   end
 
   def test_retrieve
-    response = @increase.check_deposits.retrieve("check_deposit_id")
+    response = @increase.check_deposits.retrieve("check_deposit_f06n9gpg7sxn8t19lfc1")
 
     assert_pattern do
       response => Increase::CheckDeposit

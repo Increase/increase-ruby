@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::OAuthConnectionsTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.oauth_connections.retrieve("x")
+    response = @increase.oauth_connections.retrieve("connection_dauknoksyr4wilz4e6my")
 
     assert_pattern do
       response => Increase::OAuthConnection

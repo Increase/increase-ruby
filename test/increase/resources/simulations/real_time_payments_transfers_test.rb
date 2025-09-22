@@ -4,7 +4,10 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::RealTimePaymentsTransfersTest < Increase::Test::ResourceTest
   def test_complete
-    response = @increase.simulations.real_time_payments_transfers.complete("real_time_payments_transfer_id")
+    response =
+      @increase.simulations.real_time_payments_transfers.complete(
+        "real_time_payments_transfer_iyuhl5kdn7ssmup83mvq"
+      )
 
     assert_pattern do
       response => Increase::RealTimePaymentsTransfer
