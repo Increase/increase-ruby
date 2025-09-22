@@ -26,7 +26,7 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
   end
 
   def test_retrieve
-    response = @increase.lockboxes.retrieve("lockbox_id")
+    response = @increase.lockboxes.retrieve("lockbox_3xt21ok13q19advds4t5")
 
     assert_pattern do
       response => Increase::Lockbox
@@ -48,7 +48,7 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
   end
 
   def test_update
-    response = @increase.lockboxes.update("lockbox_id")
+    response = @increase.lockboxes.update("lockbox_3xt21ok13q19advds4t5")
 
     assert_pattern do
       response => Increase::Lockbox

@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::InboundMailItemsTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.inbound_mail_items.retrieve("inbound_mail_item_id")
+    response = @increase.inbound_mail_items.retrieve("inbound_mail_item_q6rrg7mmqpplx80zceev")
 
     assert_pattern do
       response => Increase::InboundMailItem

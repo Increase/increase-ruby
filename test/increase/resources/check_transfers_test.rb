@@ -47,7 +47,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
   end
 
   def test_retrieve
-    response = @increase.check_transfers.retrieve("check_transfer_id")
+    response = @increase.check_transfers.retrieve("check_transfer_30b43acfu9vw8fyc4f5")
 
     assert_pattern do
       response => Increase::CheckTransfer
@@ -128,7 +128,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
   end
 
   def test_approve
-    response = @increase.check_transfers.approve("check_transfer_id")
+    response = @increase.check_transfers.approve("check_transfer_30b43acfu9vw8fyc4f5")
 
     assert_pattern do
       response => Increase::CheckTransfer
@@ -165,7 +165,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
   end
 
   def test_cancel
-    response = @increase.check_transfers.cancel("check_transfer_id")
+    response = @increase.check_transfers.cancel("check_transfer_30b43acfu9vw8fyc4f5")
 
     assert_pattern do
       response => Increase::CheckTransfer
@@ -202,7 +202,7 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
   end
 
   def test_stop_payment
-    response = @increase.check_transfers.stop_payment("check_transfer_id")
+    response = @increase.check_transfers.stop_payment("check_transfer_30b43acfu9vw8fyc4f5")
 
     assert_pattern do
       response => Increase::CheckTransfer

@@ -53,7 +53,7 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
   end
 
   def test_retrieve
-    response = @increase.wire_transfers.retrieve("wire_transfer_id")
+    response = @increase.wire_transfers.retrieve("wire_transfer_5akynk7dqsq25qwk9q2u")
 
     assert_pattern do
       response => Increase::WireTransfer
@@ -148,7 +148,7 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
   end
 
   def test_approve
-    response = @increase.wire_transfers.approve("wire_transfer_id")
+    response = @increase.wire_transfers.approve("wire_transfer_5akynk7dqsq25qwk9q2u")
 
     assert_pattern do
       response => Increase::WireTransfer
@@ -192,7 +192,7 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
   end
 
   def test_cancel
-    response = @increase.wire_transfers.cancel("wire_transfer_id")
+    response = @increase.wire_transfers.cancel("wire_transfer_5akynk7dqsq25qwk9q2u")
 
     assert_pattern do
       response => Increase::WireTransfer

@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::CardDetailsTest < Increase::Test::ResourceTest
   def test_update_required_params
-    response = @increase.card_details.update("card_id", pin: "1234")
+    response = @increase.card_details.update("card_oubs0hwk5rn6knuecxg2", pin: "1234")
 
     assert_pattern do
       response => Increase::CardDetailsAPI
@@ -24,7 +24,7 @@ class Increase::Test::Resources::CardDetailsTest < Increase::Test::ResourceTest
   end
 
   def test_create_details_iframe
-    response = @increase.card_details.create_details_iframe("card_id")
+    response = @increase.card_details.create_details_iframe("card_oubs0hwk5rn6knuecxg2")
 
     assert_pattern do
       response => Increase::CardIframeURL
@@ -40,7 +40,7 @@ class Increase::Test::Resources::CardDetailsTest < Increase::Test::ResourceTest
   end
 
   def test_details
-    response = @increase.card_details.details("card_id")
+    response = @increase.card_details.details("card_oubs0hwk5rn6knuecxg2")
 
     assert_pattern do
       response => Increase::CardDetailsAPI

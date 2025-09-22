@@ -47,7 +47,7 @@ class Increase::Test::Resources::CardValidationsTest < Increase::Test::ResourceT
   end
 
   def test_retrieve
-    response = @increase.card_validations.retrieve("card_validation_id")
+    response = @increase.card_validations.retrieve("outbound_card_validation_qqlzagpc6v1x2gcdhe24")
 
     assert_pattern do
       response => Increase::CardValidation

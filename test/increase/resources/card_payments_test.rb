@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::CardPaymentsTest < Increase::Test::ResourceTest
   def test_retrieve
-    response = @increase.card_payments.retrieve("card_payment_id")
+    response = @increase.card_payments.retrieve("card_payment_nd3k2kacrqjli8482ave")
 
     assert_pattern do
       response => Increase::CardPayment

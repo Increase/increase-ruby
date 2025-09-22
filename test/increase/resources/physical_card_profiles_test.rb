@@ -37,7 +37,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
   end
 
   def test_retrieve
-    response = @increase.physical_card_profiles.retrieve("physical_card_profile_id")
+    response = @increase.physical_card_profiles.retrieve("physical_card_profile_m534d5rn9qyy9ufqxoec")
 
     assert_pattern do
       response => Increase::PhysicalCardProfile
@@ -96,7 +96,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
   end
 
   def test_archive
-    response = @increase.physical_card_profiles.archive("physical_card_profile_id")
+    response = @increase.physical_card_profiles.archive("physical_card_profile_m534d5rn9qyy9ufqxoec")
 
     assert_pattern do
       response => Increase::PhysicalCardProfile
@@ -122,7 +122,7 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
   end
 
   def test_clone_
-    response = @increase.physical_card_profiles.clone_("physical_card_profile_id")
+    response = @increase.physical_card_profiles.clone_("physical_card_profile_m534d5rn9qyy9ufqxoec")
 
     assert_pattern do
       response => Increase::PhysicalCardProfile

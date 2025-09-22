@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test::ResourceTest
   def test_acknowledge
-    response = @increase.simulations.ach_transfers.acknowledge("ach_transfer_id")
+    response = @increase.simulations.ach_transfers.acknowledge("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer
@@ -55,7 +55,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
   def test_create_notification_of_change_required_params
     response =
       @increase.simulations.ach_transfers.create_notification_of_change(
-        "ach_transfer_id",
+        "ach_transfer_uoxatyh3lt5evrsdvo7q",
         change_code: :incorrect_routing_number,
         corrected_data: "123456789"
       )
@@ -107,7 +107,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
   end
 
   def test_return_
-    response = @increase.simulations.ach_transfers.return_("ach_transfer_id")
+    response = @increase.simulations.ach_transfers.return_("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer
@@ -156,7 +156,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
   end
 
   def test_settle
-    response = @increase.simulations.ach_transfers.settle("ach_transfer_id")
+    response = @increase.simulations.ach_transfers.settle("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer
@@ -205,7 +205,7 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
   end
 
   def test_submit
-    response = @increase.simulations.ach_transfers.submit("ach_transfer_id")
+    response = @increase.simulations.ach_transfers.submit("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer

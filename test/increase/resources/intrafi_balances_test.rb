@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Increase::Test::Resources::IntrafiBalancesTest < Increase::Test::ResourceTest
   def test_intrafi_balance
-    response = @increase.intrafi_balances.intrafi_balance("account_id")
+    response = @increase.intrafi_balances.intrafi_balance("account_in71c4amph0vgo2qllky")
 
     assert_pattern do
       response => Increase::IntrafiBalance
