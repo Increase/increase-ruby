@@ -2864,7 +2864,7 @@ module Increase
                    nil?: true
 
           # @!attribute surcharge
-          #   Surcharge amount details, if applicable. The amounts positive if the surcharge
+          #   Surcharge amount details, if applicable. The amount is positive if the surcharge
           #   is added to to the overall transaction amount (surcharge), and negative if the
           #   surcharge is deducted from the overall transaction amount (discount).
           #
@@ -2934,7 +2934,7 @@ module Increase
           #
           #   @param purchase_details [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails, nil] Additional details about the card purchase, such as tax and industry-specific fi
           #
-          #   @param surcharge [Increase::Models::Transaction::Source::CardSettlement::Surcharge, nil] Surcharge amount details, if applicable. The amounts positive if the surcharge i
+          #   @param surcharge [Increase::Models::Transaction::Source::CardSettlement::Surcharge, nil] Surcharge amount details, if applicable. The amount is positive if the surcharge
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this Transaction.
           #
@@ -4137,7 +4137,7 @@ module Increase
             #   {Increase::Models::Transaction::Source::CardSettlement::Surcharge} for more
             #   details.
             #
-            #   Surcharge amount details, if applicable. The amounts positive if the surcharge
+            #   Surcharge amount details, if applicable. The amount is positive if the surcharge
             #   is added to to the overall transaction amount (surcharge), and negative if the
             #   surcharge is deducted from the overall transaction amount (discount).
             #
