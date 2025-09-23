@@ -10347,7 +10347,7 @@ module Increase
           end
           attr_writer :purchase_details
 
-          # Surcharge amount details, if applicable. The amounts positive if the surcharge
+          # Surcharge amount details, if applicable. The amount is positive if the surcharge
           # is added to to the overall transaction amount (surcharge), and negative if the
           # surcharge is deducted from the overall transaction amount (discount).
           sig do
@@ -10478,7 +10478,7 @@ module Increase
             # Additional details about the card purchase, such as tax and industry-specific
             # fields.
             purchase_details:,
-            # Surcharge amount details, if applicable. The amounts positive if the surcharge
+            # Surcharge amount details, if applicable. The amount is positive if the surcharge
             # is added to to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
             surcharge:,
@@ -12697,7 +12697,7 @@ module Increase
             sig { returns(Integer) }
             attr_accessor :presentment_amount
 
-            # Surcharge amount details, if applicable. The amounts positive if the surcharge
+            # Surcharge amount details, if applicable. The amount is positive if the surcharge
             # is added to to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
             sig do
