@@ -1007,7 +1007,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1026,7 +1028,7 @@ module Increase
               #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1034,7 +1036,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#dental
             class Dental < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1053,7 +1057,7 @@ module Increase
               #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1061,7 +1065,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#prescription
             class Prescription < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1080,7 +1086,7 @@ module Increase
               #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1088,7 +1094,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#surcharge
             class Surcharge < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1107,7 +1115,7 @@ module Increase
               #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1115,7 +1123,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#total_cumulative
             class TotalCumulative < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1134,7 +1144,7 @@ module Increase
               #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1142,7 +1152,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#total_healthcare
             class TotalHealthcare < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1161,7 +1173,7 @@ module Increase
               #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1169,7 +1181,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#transit
             class Transit < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1188,7 +1202,7 @@ module Increase
               #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1196,7 +1210,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#unknown
             class Unknown < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1215,7 +1231,7 @@ module Increase
               #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -1223,7 +1239,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#vision
             class Vision < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -1242,7 +1260,7 @@ module Increase
               #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2237,7 +2255,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2256,7 +2276,7 @@ module Increase
               #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2264,7 +2284,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#dental
             class Dental < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2283,7 +2305,7 @@ module Increase
               #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2291,7 +2313,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#prescription
             class Prescription < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2310,7 +2334,7 @@ module Increase
               #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2318,7 +2342,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#surcharge
             class Surcharge < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2337,7 +2363,7 @@ module Increase
               #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2345,7 +2371,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#total_cumulative
             class TotalCumulative < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2364,7 +2392,7 @@ module Increase
               #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2372,7 +2400,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#total_healthcare
             class TotalHealthcare < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2391,7 +2421,7 @@ module Increase
               #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2399,7 +2429,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#transit
             class Transit < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2418,7 +2450,7 @@ module Increase
               #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2426,7 +2458,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#unknown
             class Unknown < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2445,7 +2479,7 @@ module Increase
               #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -2453,7 +2487,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#vision
             class Vision < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -2472,7 +2508,7 @@ module Increase
               #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3486,7 +3522,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3505,7 +3543,7 @@ module Increase
               #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3513,7 +3551,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#dental
             class Dental < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3532,7 +3572,7 @@ module Increase
               #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3540,7 +3580,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#prescription
             class Prescription < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3559,7 +3601,7 @@ module Increase
               #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3567,7 +3609,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#surcharge
             class Surcharge < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3586,7 +3630,7 @@ module Increase
               #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3594,7 +3638,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#total_cumulative
             class TotalCumulative < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3613,7 +3659,7 @@ module Increase
               #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3621,7 +3667,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#total_healthcare
             class TotalHealthcare < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3640,7 +3688,7 @@ module Increase
               #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3648,7 +3696,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#transit
             class Transit < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3667,7 +3717,7 @@ module Increase
               #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3675,7 +3725,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#unknown
             class Unknown < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3694,7 +3746,7 @@ module Increase
               #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -3702,7 +3754,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#vision
             class Vision < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -3721,7 +3775,7 @@ module Increase
               #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7234,7 +7288,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7253,7 +7309,7 @@ module Increase
               #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7261,7 +7317,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#dental
             class Dental < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7280,7 +7338,7 @@ module Increase
               #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7288,7 +7346,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#prescription
             class Prescription < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7307,7 +7367,7 @@ module Increase
               #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7315,7 +7375,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#surcharge
             class Surcharge < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7334,7 +7396,7 @@ module Increase
               #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7342,7 +7404,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#total_cumulative
             class TotalCumulative < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7361,7 +7425,7 @@ module Increase
               #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7369,7 +7433,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#total_healthcare
             class TotalHealthcare < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7388,7 +7454,7 @@ module Increase
               #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7396,7 +7462,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#transit
             class Transit < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7415,7 +7483,7 @@ module Increase
               #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7423,7 +7491,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#unknown
             class Unknown < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7442,7 +7512,7 @@ module Increase
               #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
@@ -7450,7 +7520,9 @@ module Increase
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#vision
             class Vision < Increase::Internal::Type::BaseModel
               # @!attribute amount
-              #   The amount in minor units of the `currency` field.
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
               #
               #   @return [Integer]
               required :amount, Integer
@@ -7469,7 +7541,7 @@ module Increase
               #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field.
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
               #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
             end
