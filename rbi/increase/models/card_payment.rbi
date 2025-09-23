@@ -1900,7 +1900,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -1916,7 +1918,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -1938,7 +1942,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -1954,7 +1960,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -1976,7 +1984,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -1992,7 +2002,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -2014,7 +2026,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -2030,7 +2044,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -2052,7 +2068,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -2068,7 +2086,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -2090,7 +2110,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -2106,7 +2128,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -2128,7 +2152,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -2144,7 +2170,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -2166,7 +2194,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -2182,7 +2212,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -2204,7 +2236,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -2220,7 +2254,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4253,7 +4289,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4269,7 +4307,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4291,7 +4331,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4307,7 +4349,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4329,7 +4373,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4345,7 +4391,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4367,7 +4415,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4383,7 +4433,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4405,7 +4457,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4421,7 +4475,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4443,7 +4499,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4459,7 +4517,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4481,7 +4541,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4497,7 +4559,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4519,7 +4583,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4535,7 +4601,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -4557,7 +4625,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -4573,7 +4643,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6731,7 +6803,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6747,7 +6821,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6769,7 +6845,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6785,7 +6863,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6807,7 +6887,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6823,7 +6905,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6845,7 +6929,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6861,7 +6947,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6883,7 +6971,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6899,7 +6989,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6921,7 +7013,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6937,7 +7031,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6959,7 +7055,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -6975,7 +7073,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -6997,7 +7097,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -7013,7 +7115,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -7035,7 +7139,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -7051,7 +7157,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13405,7 +13513,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13421,7 +13531,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13443,7 +13555,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13459,7 +13573,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13481,7 +13597,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13497,7 +13615,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13519,7 +13639,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13535,7 +13657,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13557,7 +13681,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13573,7 +13699,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13595,7 +13723,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13611,7 +13741,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13633,7 +13765,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13649,7 +13783,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13671,7 +13807,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13687,7 +13825,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
@@ -13709,7 +13849,9 @@ module Increase
                   )
                 end
 
-              # The amount in minor units of the `currency` field.
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
               sig { returns(Integer) }
               attr_accessor :amount
 
@@ -13725,7 +13867,9 @@ module Increase
                 )
               end
               def self.new(
-                # The amount in minor units of the `currency` field.
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
                 amount:,
                 # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
                 # amount's currency.
