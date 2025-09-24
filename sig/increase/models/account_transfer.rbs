@@ -14,7 +14,6 @@ module Increase
         destination_account_id: String,
         destination_transaction_id: String?,
         idempotency_key: String?,
-        network: Increase::Models::AccountTransfer::network,
         pending_transaction_id: String?,
         status: Increase::Models::AccountTransfer::status,
         transaction_id: String?,
@@ -46,8 +45,6 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
-      attr_accessor network: Increase::Models::AccountTransfer::network
-
       attr_accessor pending_transaction_id: String?
 
       attr_accessor status: Increase::Models::AccountTransfer::status
@@ -69,7 +66,6 @@ module Increase
         destination_account_id: String,
         destination_transaction_id: String?,
         idempotency_key: String?,
-        network: Increase::Models::AccountTransfer::network,
         pending_transaction_id: String?,
         status: Increase::Models::AccountTransfer::status,
         transaction_id: String?,
@@ -89,7 +85,6 @@ module Increase
         destination_account_id: String,
         destination_transaction_id: String?,
         idempotency_key: String?,
-        network: Increase::Models::AccountTransfer::network,
         pending_transaction_id: String?,
         status: Increase::Models::AccountTransfer::status,
         transaction_id: String?,
@@ -225,25 +220,15 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::AccountTransfer::currency]
       end
 
-      type network = :account
-
-      module Network
-        extend Increase::Internal::Type::Enum
-
-        ACCOUNT: :account
-
-        def self?.values: -> ::Array[Increase::Models::AccountTransfer::network]
-      end
-
       type status = :pending_approval | :canceled | :complete
 
       module Status
         extend Increase::Internal::Type::Enum
 
-        # The transfer is pending approval.
+        # The transfer is pending approval from your team.
         PENDING_APPROVAL: :pending_approval
 
-        # The transfer has been canceled.
+        # The transfer was pending approval from your team and has been canceled.
         CANCELED: :canceled
 
         # The transfer has been completed.
