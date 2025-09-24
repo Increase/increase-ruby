@@ -2,8 +2,8 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::CardDetails#update
-    class CardDetailUpdateParams < Increase::Internal::Type::BaseModel
+    # @see Increase::Resources::Cards#update_pin
+    class CardUpdatePinParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

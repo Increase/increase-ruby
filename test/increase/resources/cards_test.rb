@@ -113,4 +113,60 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
       }
     end
   end
+
+  def test_create_details_iframe
+    response = @increase.cards.create_details_iframe("card_oubs0hwk5rn6knuecxg2")
+
+    assert_pattern do
+      response => Increase::CardIframeURL
+    end
+
+    assert_pattern do
+      response => {
+        expires_at: Time,
+        iframe_url: String,
+        type: Increase::CardIframeURL::Type
+      }
+    end
+  end
+
+  def test_details
+    response = @increase.cards.details("card_oubs0hwk5rn6knuecxg2")
+
+    assert_pattern do
+      response => Increase::CardDetails
+    end
+
+    assert_pattern do
+      response => {
+        card_id: String,
+        expiration_month: Integer,
+        expiration_year: Integer,
+        pin: String,
+        primary_account_number: String,
+        type: Increase::CardDetails::Type,
+        verification_code: String
+      }
+    end
+  end
+
+  def test_update_pin_required_params
+    response = @increase.cards.update_pin("card_oubs0hwk5rn6knuecxg2", pin: "1234")
+
+    assert_pattern do
+      response => Increase::CardDetails
+    end
+
+    assert_pattern do
+      response => {
+        card_id: String,
+        expiration_month: Integer,
+        expiration_year: Integer,
+        pin: String,
+        primary_account_number: String,
+        type: Increase::CardDetails::Type,
+        verification_code: String
+      }
+    end
+  end
 end

@@ -2,13 +2,13 @@
 
 module Increase
   module Models
-    class CardDetailDetailsParams < Increase::Internal::Type::BaseModel
+    class CardDetailsParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Increase::CardDetailDetailsParams, Increase::Internal::AnyHash)
+          T.any(Increase::CardDetailsParams, Increase::Internal::AnyHash)
         end
 
       sig do
