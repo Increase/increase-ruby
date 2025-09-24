@@ -2,13 +2,13 @@
 
 module Increase
   module Models
-    class CardDetailUpdateParams < Increase::Internal::Type::BaseModel
+    class CardUpdatePinParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Increase::CardDetailUpdateParams, Increase::Internal::AnyHash)
+          T.any(Increase::CardUpdatePinParams, Increase::Internal::AnyHash)
         end
 
       # The 4-digit PIN for the card, for use with ATMs.

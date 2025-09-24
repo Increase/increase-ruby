@@ -1,9 +1,9 @@
 module Increase
   module Models
-    type card_detail_update_params =
+    type card_update_pin_params =
       { pin: String } & Increase::Internal::Type::request_parameters
 
-    class CardDetailUpdateParams < Increase::Internal::Type::BaseModel
+    class CardUpdatePinParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

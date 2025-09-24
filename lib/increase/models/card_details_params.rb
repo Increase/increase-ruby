@@ -2,8 +2,8 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::CardDetails#details
-    class CardDetailDetailsParams < Increase::Internal::Type::BaseModel
+    # @see Increase::Resources::Cards#details
+    class CardDetailsParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

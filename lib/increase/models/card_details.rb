@@ -2,8 +2,8 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::CardDetails#update
-    class CardDetailsAPI < Increase::Internal::Type::BaseModel
+    # @see Increase::Resources::Cards#details
+    class CardDetails < Increase::Internal::Type::BaseModel
       # @!attribute card_id
       #   The identifier for the Card for which sensitive details have been returned.
       #
@@ -38,8 +38,8 @@ module Increase
       #   A constant representing the object's type. For this resource it will always be
       #   `card_details`.
       #
-      #   @return [Symbol, Increase::Models::CardDetailsAPI::Type]
-      required :type, enum: -> { Increase::CardDetailsAPI::Type }
+      #   @return [Symbol, Increase::Models::CardDetails::Type]
+      required :type, enum: -> { Increase::CardDetails::Type }
 
       # @!attribute verification_code
       #   The three-digit verification code for the card. It's also known as the Card
@@ -51,7 +51,7 @@ module Increase
 
       # @!method initialize(card_id:, expiration_month:, expiration_year:, pin:, primary_account_number:, type:, verification_code:)
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardDetailsAPI} for more details.
+      #   {Increase::Models::CardDetails} for more details.
       #
       #   An object containing the sensitive details (card number, CVC, PIN, etc) for a
       #   Card. These details are not included in the Card object. If you'd prefer to
@@ -69,14 +69,14 @@ module Increase
       #
       #   @param primary_account_number [String] The card number.
       #
-      #   @param type [Symbol, Increase::Models::CardDetailsAPI::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardDetails::Type] A constant representing the object's type. For this resource it will always be `
       #
       #   @param verification_code [String] The three-digit verification code for the card. It's also known as the Card Veri
 
       # A constant representing the object's type. For this resource it will always be
       # `card_details`.
       #
-      # @see Increase::Models::CardDetailsAPI#type
+      # @see Increase::Models::CardDetails#type
       module Type
         extend Increase::Internal::Type::Enum
 

@@ -1,9 +1,9 @@
 module Increase
   module Models
-    type card_detail_details_params =
+    type card_details_params =
       {  } & Increase::Internal::Type::request_parameters
 
-    class CardDetailDetailsParams < Increase::Internal::Type::BaseModel
+    class CardDetailsParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 

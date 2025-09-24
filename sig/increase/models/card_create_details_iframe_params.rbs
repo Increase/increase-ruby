@@ -1,10 +1,10 @@
 module Increase
   module Models
-    type card_detail_create_details_iframe_params =
+    type card_create_details_iframe_params =
       { physical_card_id: String }
       & Increase::Internal::Type::request_parameters
 
-    class CardDetailCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
+    class CardCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
