@@ -23,8 +23,6 @@ module Increase
 
     attr_reader cards: Increase::Resources::Cards
 
-    attr_reader card_details: Increase::Resources::CardDetails
-
     attr_reader card_payments: Increase::Resources::CardPayments
 
     attr_reader card_purchase_supplements: Increase::Resources::CardPurchaseSupplements

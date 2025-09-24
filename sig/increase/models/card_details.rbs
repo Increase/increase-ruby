@@ -1,17 +1,17 @@
 module Increase
   module Models
-    type card_details_api =
+    type card_details =
       {
         card_id: String,
         expiration_month: Integer,
         expiration_year: Integer,
         pin: String,
         primary_account_number: String,
-        type: Increase::Models::CardDetailsAPI::type_,
+        type: Increase::Models::CardDetails::type_,
         verification_code: String
       }
 
-    class CardDetailsAPI < Increase::Internal::Type::BaseModel
+    class CardDetails < Increase::Internal::Type::BaseModel
       attr_accessor card_id: String
 
       attr_accessor expiration_month: Integer
@@ -22,7 +22,7 @@ module Increase
 
       attr_accessor primary_account_number: String
 
-      attr_accessor type: Increase::Models::CardDetailsAPI::type_
+      attr_accessor type: Increase::Models::CardDetails::type_
 
       attr_accessor verification_code: String
 
@@ -32,7 +32,7 @@ module Increase
         expiration_year: Integer,
         pin: String,
         primary_account_number: String,
-        type: Increase::Models::CardDetailsAPI::type_,
+        type: Increase::Models::CardDetails::type_,
         verification_code: String
       ) -> void
 
@@ -42,7 +42,7 @@ module Increase
         expiration_year: Integer,
         pin: String,
         primary_account_number: String,
-        type: Increase::Models::CardDetailsAPI::type_,
+        type: Increase::Models::CardDetails::type_,
         verification_code: String
       }
 
@@ -53,7 +53,7 @@ module Increase
 
         CARD_DETAILS: :card_details
 
-        def self?.values: -> ::Array[Increase::Models::CardDetailsAPI::type_]
+        def self?.values: -> ::Array[Increase::Models::CardDetails::type_]
       end
     end
   end

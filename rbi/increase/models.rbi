@@ -104,16 +104,14 @@ module Increase
 
   Card = Increase::Models::Card
 
+  CardCreateDetailsIframeParams =
+    Increase::Models::CardCreateDetailsIframeParams
+
   CardCreateParams = Increase::Models::CardCreateParams
 
-  CardDetailCreateDetailsIframeParams =
-    Increase::Models::CardDetailCreateDetailsIframeParams
+  CardDetails = Increase::Models::CardDetails
 
-  CardDetailDetailsParams = Increase::Models::CardDetailDetailsParams
-
-  CardDetailsAPI = Increase::Models::CardDetailsAPI
-
-  CardDetailUpdateParams = Increase::Models::CardDetailUpdateParams
+  CardDetailsParams = Increase::Models::CardDetailsParams
 
   CardIframeURL = Increase::Models::CardIframeURL
 
@@ -160,6 +158,8 @@ module Increase
   CardTokenRetrieveParams = Increase::Models::CardTokenRetrieveParams
 
   CardUpdateParams = Increase::Models::CardUpdateParams
+
+  CardUpdatePinParams = Increase::Models::CardUpdatePinParams
 
   CardValidation = Increase::Models::CardValidation
 

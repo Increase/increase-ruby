@@ -35,9 +35,6 @@ module Increase
     # @return [Increase::Resources::Cards]
     attr_reader :cards
 
-    # @return [Increase::Resources::CardDetails]
-    attr_reader :card_details
-
     # @return [Increase::Resources::CardPayments]
     attr_reader :card_payments
 
@@ -254,7 +251,6 @@ module Increase
       @account_numbers = Increase::Resources::AccountNumbers.new(client: self)
       @account_transfers = Increase::Resources::AccountTransfers.new(client: self)
       @cards = Increase::Resources::Cards.new(client: self)
-      @card_details = Increase::Resources::CardDetails.new(client: self)
       @card_payments = Increase::Resources::CardPayments.new(client: self)
       @card_purchase_supplements = Increase::Resources::CardPurchaseSupplements.new(client: self)
       @physical_cards = Increase::Resources::PhysicalCards.new(client: self)

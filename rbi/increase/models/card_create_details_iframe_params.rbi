@@ -2,19 +2,20 @@
 
 module Increase
   module Models
-    class CardDetailCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
+    class CardCreateDetailsIframeParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Increase::CardDetailCreateDetailsIframeParams,
+            Increase::CardCreateDetailsIframeParams,
             Increase::Internal::AnyHash
           )
         end
 
-      # The identifier of the Physical Card to retrieve details for.
+      # The identifier of the Physical Card to create an iframe for. This will inform
+      # the appearance of the card rendered in the iframe.
       sig { returns(T.nilable(String)) }
       attr_reader :physical_card_id
 
@@ -28,7 +29,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The identifier of the Physical Card to retrieve details for.
+        # The identifier of the Physical Card to create an iframe for. This will inform
+        # the appearance of the card rendered in the iframe.
         physical_card_id: nil,
         request_options: {}
       )
