@@ -15,16 +15,19 @@ module Increase
         ).returns(Increase::AccountTransfer)
       end
       def create(
-        # The identifier for the account that will send the transfer.
+        # The identifier for the originating Account that will send the transfer.
         account_id:,
         # The transfer amount in the minor unit of the account currency. For dollars, for
         # example, this is cents.
         amount:,
-        # The description you choose to give the transfer.
+        # An internal-facing description for the transfer for display in the API and
+        # dashboard. This will also show in the description of the created Transactions.
         description:,
-        # The identifier for the account that will receive the transfer.
+        # The identifier for the destination Account that will receive the transfer.
         destination_account_id:,
-        # Whether the transfer requires explicit approval via the dashboard or API.
+        # Whether the transfer should require explicit approval via the dashboard or API.
+        # For more information, see
+        # [Transfer Approvals](/documentation/transfer-approvals).
         require_approval: nil,
         request_options: {}
       )
@@ -73,7 +76,7 @@ module Increase
       )
       end
 
-      # Approve an Account Transfer
+      # Approves an Account Transfer in status `pending_approval`.
       sig do
         params(
           account_transfer_id: String,
@@ -87,7 +90,7 @@ module Increase
       )
       end
 
-      # Cancel an Account Transfer
+      # Cancels an Account Transfer in status `pending_approval`.
       sig do
         params(
           account_transfer_id: String,

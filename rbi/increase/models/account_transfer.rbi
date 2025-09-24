@@ -8,16 +8,16 @@ module Increase
           T.any(Increase::AccountTransfer, Increase::Internal::AnyHash)
         end
 
-      # The account transfer's identifier.
+      # The Account Transfer's identifier.
       sig { returns(String) }
       attr_accessor :id
 
-      # The Account to which the transfer belongs.
+      # The Account from which the transfer originated.
       sig { returns(String) }
       attr_accessor :account_id
 
-      # The transfer amount in the minor unit of the destination account currency. For
-      # dollars, for example, this is cents.
+      # The transfer amount in cents. This will always be positive and indicates the
+      # amount of money leaving the originating account.
       sig { returns(Integer) }
       attr_accessor :amount
 
@@ -62,20 +62,22 @@ module Increase
       end
       attr_writer :created_by
 
-      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
-      # account currency.
+      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
+      # currency.
       sig { returns(Increase::AccountTransfer::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # The description that will show on the transactions.
+      # An internal-facing description for the transfer for display in the API and
+      # dashboard. This will also show in the description of the created Transactions.
       sig { returns(String) }
       attr_accessor :description
 
-      # The destination account's identifier.
+      # The destination Account's identifier.
       sig { returns(String) }
       attr_accessor :destination_account_id
 
-      # The ID for the transaction receiving the transfer.
+      # The identifier of the Transaction on the destination Account representing the
+      # received funds.
       sig { returns(T.nilable(String)) }
       attr_accessor :destination_transaction_id
 
@@ -84,10 +86,6 @@ module Increase
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
-
-      # The transfer's network.
-      sig { returns(Increase::AccountTransfer::Network::TaggedSymbol) }
-      attr_accessor :network
 
       # The ID for the pending transaction representing the transfer. A pending
       # transaction is created when the transfer
@@ -100,7 +98,8 @@ module Increase
       sig { returns(Increase::AccountTransfer::Status::TaggedSymbol) }
       attr_accessor :status
 
-      # The ID for the transaction funding the transfer.
+      # The identifier of the Transaction on the originating account representing the
+      # transferred funds.
       sig { returns(T.nilable(String)) }
       attr_accessor :transaction_id
 
@@ -109,7 +108,12 @@ module Increase
       sig { returns(Increase::AccountTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
-      # Account transfers move funds between your own accounts at Increase.
+      # Account transfers move funds between your own accounts at Increase (accounting
+      # systems often refer to these as Book Transfers). Account Transfers are free and
+      # synchronous. Upon creation they create two Transactions, one negative on the
+      # originating account and one positive on the destination account (unless the
+      # transfer requires approval, in which case the Transactions will be created when
+      # the transfer is approved).
       sig do
         params(
           id: String,
@@ -125,7 +129,6 @@ module Increase
           destination_account_id: String,
           destination_transaction_id: T.nilable(String),
           idempotency_key: T.nilable(String),
-          network: Increase::AccountTransfer::Network::OrSymbol,
           pending_transaction_id: T.nilable(String),
           status: Increase::AccountTransfer::Status::OrSymbol,
           transaction_id: T.nilable(String),
@@ -133,12 +136,12 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The account transfer's identifier.
+        # The Account Transfer's identifier.
         id:,
-        # The Account to which the transfer belongs.
+        # The Account from which the transfer originated.
         account_id:,
-        # The transfer amount in the minor unit of the destination account currency. For
-        # dollars, for example, this is cents.
+        # The transfer amount in cents. This will always be positive and indicates the
+        # amount of money leaving the originating account.
         amount:,
         # If your account requires approvals for transfers and the transfer was approved,
         # this will contain details of the approval.
@@ -151,21 +154,21 @@ module Increase
         created_at:,
         # What object created the transfer, either via the API or the dashboard.
         created_by:,
-        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
-        # account currency.
+        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
+        # currency.
         currency:,
-        # The description that will show on the transactions.
+        # An internal-facing description for the transfer for display in the API and
+        # dashboard. This will also show in the description of the created Transactions.
         description:,
-        # The destination account's identifier.
+        # The destination Account's identifier.
         destination_account_id:,
-        # The ID for the transaction receiving the transfer.
+        # The identifier of the Transaction on the destination Account representing the
+        # received funds.
         destination_transaction_id:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
-        # The transfer's network.
-        network:,
         # The ID for the pending transaction representing the transfer. A pending
         # transaction is created when the transfer
         # [requires approval](https://increase.com/documentation/transfer-approvals#transfer-approvals)
@@ -173,7 +176,8 @@ module Increase
         pending_transaction_id:,
         # The lifecycle status of the transfer.
         status:,
-        # The ID for the transaction funding the transfer.
+        # The identifier of the Transaction on the originating account representing the
+        # transferred funds.
         transaction_id:,
         # A constant representing the object's type. For this resource it will always be
         # `account_transfer`.
@@ -196,7 +200,6 @@ module Increase
             destination_account_id: String,
             destination_transaction_id: T.nilable(String),
             idempotency_key: T.nilable(String),
-            network: Increase::AccountTransfer::Network::TaggedSymbol,
             pending_transaction_id: T.nilable(String),
             status: Increase::AccountTransfer::Status::TaggedSymbol,
             transaction_id: T.nilable(String),
@@ -518,8 +521,8 @@ module Increase
         end
       end
 
-      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
-      # account currency.
+      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
+      # currency.
       module Currency
         extend Increase::Internal::Type::Enum
 
@@ -554,26 +557,6 @@ module Increase
         end
       end
 
-      # The transfer's network.
-      module Network
-        extend Increase::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Increase::AccountTransfer::Network) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACCOUNT =
-          T.let(:account, Increase::AccountTransfer::Network::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Increase::AccountTransfer::Network::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
       # The lifecycle status of the transfer.
       module Status
         extend Increase::Internal::Type::Enum
@@ -582,14 +565,14 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::AccountTransfer::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The transfer is pending approval.
+        # The transfer is pending approval from your team.
         PENDING_APPROVAL =
           T.let(
             :pending_approval,
             Increase::AccountTransfer::Status::TaggedSymbol
           )
 
-        # The transfer has been canceled.
+        # The transfer was pending approval from your team and has been canceled.
         CANCELED =
           T.let(:canceled, Increase::AccountTransfer::Status::TaggedSymbol)
 
