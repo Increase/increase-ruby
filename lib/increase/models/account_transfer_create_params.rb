@@ -8,7 +8,7 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   The identifier for the account that will send the transfer.
+      #   The identifier for the originating Account that will send the transfer.
       #
       #   @return [String]
       required :account_id, String
@@ -21,19 +21,22 @@ module Increase
       required :amount, Integer
 
       # @!attribute description
-      #   The description you choose to give the transfer.
+      #   An internal-facing description for the transfer for display in the API and
+      #   dashboard. This will also show in the description of the created Transactions.
       #
       #   @return [String]
       required :description, String
 
       # @!attribute destination_account_id
-      #   The identifier for the account that will receive the transfer.
+      #   The identifier for the destination Account that will receive the transfer.
       #
       #   @return [String]
       required :destination_account_id, String
 
       # @!attribute require_approval
-      #   Whether the transfer requires explicit approval via the dashboard or API.
+      #   Whether the transfer should require explicit approval via the dashboard or API.
+      #   For more information, see
+      #   [Transfer Approvals](/documentation/transfer-approvals).
       #
       #   @return [Boolean, nil]
       optional :require_approval, Increase::Internal::Type::Boolean
@@ -42,15 +45,15 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::AccountTransferCreateParams} for more details.
       #
-      #   @param account_id [String] The identifier for the account that will send the transfer.
+      #   @param account_id [String] The identifier for the originating Account that will send the transfer.
       #
       #   @param amount [Integer] The transfer amount in the minor unit of the account currency. For dollars, for
       #
-      #   @param description [String] The description you choose to give the transfer.
+      #   @param description [String] An internal-facing description for the transfer for display in the API and dashb
       #
-      #   @param destination_account_id [String] The identifier for the account that will receive the transfer.
+      #   @param destination_account_id [String] The identifier for the destination Account that will receive the transfer.
       #
-      #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #   @param require_approval [Boolean] Whether the transfer should require explicit approval via the dashboard or API.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

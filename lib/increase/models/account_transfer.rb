@@ -5,20 +5,20 @@ module Increase
     # @see Increase::Resources::AccountTransfers#create
     class AccountTransfer < Increase::Internal::Type::BaseModel
       # @!attribute id
-      #   The account transfer's identifier.
+      #   The Account Transfer's identifier.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute account_id
-      #   The Account to which the transfer belongs.
+      #   The Account from which the transfer originated.
       #
       #   @return [String]
       required :account_id, String
 
       # @!attribute amount
-      #   The transfer amount in the minor unit of the destination account currency. For
-      #   dollars, for example, this is cents.
+      #   The transfer amount in cents. This will always be positive and indicates the
+      #   amount of money leaving the originating account.
       #
       #   @return [Integer]
       required :amount, Integer
@@ -51,26 +51,28 @@ module Increase
       required :created_by, -> { Increase::AccountTransfer::CreatedBy }, nil?: true
 
       # @!attribute currency
-      #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
-      #   account currency.
+      #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
+      #   currency.
       #
       #   @return [Symbol, Increase::Models::AccountTransfer::Currency]
       required :currency, enum: -> { Increase::AccountTransfer::Currency }
 
       # @!attribute description
-      #   The description that will show on the transactions.
+      #   An internal-facing description for the transfer for display in the API and
+      #   dashboard. This will also show in the description of the created Transactions.
       #
       #   @return [String]
       required :description, String
 
       # @!attribute destination_account_id
-      #   The destination account's identifier.
+      #   The destination Account's identifier.
       #
       #   @return [String]
       required :destination_account_id, String
 
       # @!attribute destination_transaction_id
-      #   The ID for the transaction receiving the transfer.
+      #   The identifier of the Transaction on the destination Account representing the
+      #   received funds.
       #
       #   @return [String, nil]
       required :destination_transaction_id, String, nil?: true
@@ -82,12 +84,6 @@ module Increase
       #
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
-
-      # @!attribute network
-      #   The transfer's network.
-      #
-      #   @return [Symbol, Increase::Models::AccountTransfer::Network]
-      required :network, enum: -> { Increase::AccountTransfer::Network }
 
       # @!attribute pending_transaction_id
       #   The ID for the pending transaction representing the transfer. A pending
@@ -105,7 +101,8 @@ module Increase
       required :status, enum: -> { Increase::AccountTransfer::Status }
 
       # @!attribute transaction_id
-      #   The ID for the transaction funding the transfer.
+      #   The identifier of the Transaction on the originating account representing the
+      #   transferred funds.
       #
       #   @return [String, nil]
       required :transaction_id, String, nil?: true
@@ -117,17 +114,22 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountTransfer::Type]
       required :type, enum: -> { Increase::AccountTransfer::Type }
 
-      # @!method initialize(id:, account_id:, amount:, approval:, cancellation:, created_at:, created_by:, currency:, description:, destination_account_id:, destination_transaction_id:, idempotency_key:, network:, pending_transaction_id:, status:, transaction_id:, type:)
+      # @!method initialize(id:, account_id:, amount:, approval:, cancellation:, created_at:, created_by:, currency:, description:, destination_account_id:, destination_transaction_id:, idempotency_key:, pending_transaction_id:, status:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::AccountTransfer} for more details.
       #
-      #   Account transfers move funds between your own accounts at Increase.
+      #   Account transfers move funds between your own accounts at Increase (accounting
+      #   systems often refer to these as Book Transfers). Account Transfers are free and
+      #   synchronous. Upon creation they create two Transactions, one negative on the
+      #   originating account and one positive on the destination account (unless the
+      #   transfer requires approval, in which case the Transactions will be created when
+      #   the transfer is approved).
       #
-      #   @param id [String] The account transfer's identifier.
+      #   @param id [String] The Account Transfer's identifier.
       #
-      #   @param account_id [String] The Account to which the transfer belongs.
+      #   @param account_id [String] The Account from which the transfer originated.
       #
-      #   @param amount [Integer] The transfer amount in the minor unit of the destination account currency. For d
+      #   @param amount [Integer] The transfer amount in cents. This will always be positive and indicates the amo
       #
       #   @param approval [Increase::Models::AccountTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
       #
@@ -137,23 +139,21 @@ module Increase
       #
       #   @param created_by [Increase::Models::AccountTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
       #
-      #   @param currency [Symbol, Increase::Models::AccountTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
+      #   @param currency [Symbol, Increase::Models::AccountTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's c
       #
-      #   @param description [String] The description that will show on the transactions.
+      #   @param description [String] An internal-facing description for the transfer for display in the API and dashb
       #
-      #   @param destination_account_id [String] The destination account's identifier.
+      #   @param destination_account_id [String] The destination Account's identifier.
       #
-      #   @param destination_transaction_id [String, nil] The ID for the transaction receiving the transfer.
+      #   @param destination_transaction_id [String, nil] The identifier of the Transaction on the destination Account representing the re
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
-      #
-      #   @param network [Symbol, Increase::Models::AccountTransfer::Network] The transfer's network.
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer. A pending transact
       #
       #   @param status [Symbol, Increase::Models::AccountTransfer::Status] The lifecycle status of the transfer.
       #
-      #   @param transaction_id [String, nil] The ID for the transaction funding the transfer.
+      #   @param transaction_id [String, nil] The identifier of the Transaction on the originating account representing the tr
       #
       #   @param type [Symbol, Increase::Models::AccountTransfer::Type] A constant representing the object's type. For this resource it will always be `
 
@@ -312,8 +312,8 @@ module Increase
         end
       end
 
-      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
-      # account currency.
+      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
+      # currency.
       #
       # @see Increase::Models::AccountTransfer#currency
       module Currency
@@ -341,28 +341,16 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # The transfer's network.
-      #
-      # @see Increase::Models::AccountTransfer#network
-      module Network
-        extend Increase::Internal::Type::Enum
-
-        ACCOUNT = :account
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
       # The lifecycle status of the transfer.
       #
       # @see Increase::Models::AccountTransfer#status
       module Status
         extend Increase::Internal::Type::Enum
 
-        # The transfer is pending approval.
+        # The transfer is pending approval from your team.
         PENDING_APPROVAL = :pending_approval
 
-        # The transfer has been canceled.
+        # The transfer was pending approval from your team and has been canceled.
         CANCELED = :canceled
 
         # The transfer has been completed.

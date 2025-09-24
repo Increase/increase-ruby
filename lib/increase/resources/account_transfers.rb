@@ -10,15 +10,15 @@ module Increase
       #
       # @overload create(account_id:, amount:, description:, destination_account_id:, require_approval: nil, request_options: {})
       #
-      # @param account_id [String] The identifier for the account that will send the transfer.
+      # @param account_id [String] The identifier for the originating Account that will send the transfer.
       #
       # @param amount [Integer] The transfer amount in the minor unit of the account currency. For dollars, for
       #
-      # @param description [String] The description you choose to give the transfer.
+      # @param description [String] An internal-facing description for the transfer for display in the API and dashb
       #
-      # @param destination_account_id [String] The identifier for the account that will receive the transfer.
+      # @param destination_account_id [String] The identifier for the destination Account that will receive the transfer.
       #
-      # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      # @param require_approval [Boolean] Whether the transfer should require explicit approval via the dashboard or API.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -90,7 +90,7 @@ module Increase
         )
       end
 
-      # Approve an Account Transfer
+      # Approves an Account Transfer in status `pending_approval`.
       #
       # @overload approve(account_transfer_id, request_options: {})
       #
@@ -110,7 +110,7 @@ module Increase
         )
       end
 
-      # Cancel an Account Transfer
+      # Cancels an Account Transfer in status `pending_approval`.
       #
       # @overload cancel(account_transfer_id, request_options: {})
       #

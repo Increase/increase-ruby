@@ -14,7 +14,7 @@ module Increase
           )
         end
 
-      # The identifier for the account that will send the transfer.
+      # The identifier for the originating Account that will send the transfer.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -23,15 +23,18 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # The description you choose to give the transfer.
+      # An internal-facing description for the transfer for display in the API and
+      # dashboard. This will also show in the description of the created Transactions.
       sig { returns(String) }
       attr_accessor :description
 
-      # The identifier for the account that will receive the transfer.
+      # The identifier for the destination Account that will receive the transfer.
       sig { returns(String) }
       attr_accessor :destination_account_id
 
-      # Whether the transfer requires explicit approval via the dashboard or API.
+      # Whether the transfer should require explicit approval via the dashboard or API.
+      # For more information, see
+      # [Transfer Approvals](/documentation/transfer-approvals).
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :require_approval
 
@@ -49,16 +52,19 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The identifier for the account that will send the transfer.
+        # The identifier for the originating Account that will send the transfer.
         account_id:,
         # The transfer amount in the minor unit of the account currency. For dollars, for
         # example, this is cents.
         amount:,
-        # The description you choose to give the transfer.
+        # An internal-facing description for the transfer for display in the API and
+        # dashboard. This will also show in the description of the created Transactions.
         description:,
-        # The identifier for the account that will receive the transfer.
+        # The identifier for the destination Account that will receive the transfer.
         destination_account_id:,
-        # Whether the transfer requires explicit approval via the dashboard or API.
+        # Whether the transfer should require explicit approval via the dashboard or API.
+        # For more information, see
+        # [Transfer Approvals](/documentation/transfer-approvals).
         require_approval: nil,
         request_options: {}
       )

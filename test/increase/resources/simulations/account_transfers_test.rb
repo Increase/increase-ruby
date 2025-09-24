@@ -24,7 +24,6 @@ class Increase::Test::Resources::Simulations::AccountTransfersTest < Increase::T
         destination_account_id: String,
         destination_transaction_id: String | nil,
         idempotency_key: String | nil,
-        network: Increase::AccountTransfer::Network,
         pending_transaction_id: String | nil,
         status: Increase::AccountTransfer::Status,
         transaction_id: String | nil,
