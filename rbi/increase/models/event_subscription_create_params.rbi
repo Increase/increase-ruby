@@ -53,6 +53,21 @@ module Increase
       sig { params(shared_secret: String).void }
       attr_writer :shared_secret
 
+      # The status of the event subscription. Defaults to `active` if not specified.
+      sig do
+        returns(
+          T.nilable(Increase::EventSubscriptionCreateParams::Status::OrSymbol)
+        )
+      end
+      attr_reader :status
+
+      sig do
+        params(
+          status: Increase::EventSubscriptionCreateParams::Status::OrSymbol
+        ).void
+      end
+      attr_writer :status
+
       sig do
         params(
           url: String,
@@ -60,6 +75,7 @@ module Increase
           selected_event_category:
             Increase::EventSubscriptionCreateParams::SelectedEventCategory::OrSymbol,
           shared_secret: String,
+          status: Increase::EventSubscriptionCreateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -75,6 +91,8 @@ module Increase
         # The key that will be used to sign webhooks. If no value is passed, a random
         # string will be used as default.
         shared_secret: nil,
+        # The status of the event subscription. Defaults to `active` if not specified.
+        status: nil,
         request_options: {}
       )
       end
@@ -87,6 +105,7 @@ module Increase
             selected_event_category:
               Increase::EventSubscriptionCreateParams::SelectedEventCategory::OrSymbol,
             shared_secret: String,
+            status: Increase::EventSubscriptionCreateParams::Status::OrSymbol,
             request_options: Increase::RequestOptions
           }
         )
@@ -840,6 +859,41 @@ module Increase
           override.returns(
             T::Array[
               Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The status of the event subscription. Defaults to `active` if not specified.
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::EventSubscriptionCreateParams::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # The subscription is active and Events will be delivered normally.
+        ACTIVE =
+          T.let(
+            :active,
+            Increase::EventSubscriptionCreateParams::Status::TaggedSymbol
+          )
+
+        # The subscription is temporarily disabled and Events will not be delivered.
+        DISABLED =
+          T.let(
+            :disabled,
+            Increase::EventSubscriptionCreateParams::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::EventSubscriptionCreateParams::Status::TaggedSymbol
             ]
           )
         end
