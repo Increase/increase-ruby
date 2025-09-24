@@ -5,7 +5,8 @@ module Increase
         url: String,
         oauth_connection_id: String,
         selected_event_category: Increase::Models::EventSubscriptionCreateParams::selected_event_category,
-        shared_secret: String
+        shared_secret: String,
+        status: Increase::Models::EventSubscriptionCreateParams::status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -29,11 +30,18 @@ module Increase
 
       def shared_secret=: (String) -> String
 
+      attr_reader status: Increase::Models::EventSubscriptionCreateParams::status?
+
+      def status=: (
+        Increase::Models::EventSubscriptionCreateParams::status
+      ) -> Increase::Models::EventSubscriptionCreateParams::status
+
       def initialize: (
         url: String,
         ?oauth_connection_id: String,
         ?selected_event_category: Increase::Models::EventSubscriptionCreateParams::selected_event_category,
         ?shared_secret: String,
+        ?status: Increase::Models::EventSubscriptionCreateParams::status,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -42,6 +50,7 @@ module Increase
         oauth_connection_id: String,
         selected_event_category: Increase::Models::EventSubscriptionCreateParams::selected_event_category,
         shared_secret: String,
+        status: Increase::Models::EventSubscriptionCreateParams::status,
         request_options: Increase::RequestOptions
       }
 
@@ -467,6 +476,20 @@ module Increase
         WIRE_TRANSFER_UPDATED: :"wire_transfer.updated"
 
         def self?.values: -> ::Array[Increase::Models::EventSubscriptionCreateParams::selected_event_category]
+      end
+
+      type status = :active | :disabled
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The subscription is active and Events will be delivered normally.
+        ACTIVE: :active
+
+        # The subscription is temporarily disabled and Events will not be delivered.
+        DISABLED: :disabled
+
+        def self?.values: -> ::Array[Increase::Models::EventSubscriptionCreateParams::status]
       end
     end
   end

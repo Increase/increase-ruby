@@ -6,6 +6,7 @@ module Increase
         ?oauth_connection_id: String,
         ?selected_event_category: Increase::Models::EventSubscriptionCreateParams::selected_event_category,
         ?shared_secret: String,
+        ?status: Increase::Models::EventSubscriptionCreateParams::status,
         ?request_options: Increase::request_opts
       ) -> Increase::EventSubscription
 

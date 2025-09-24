@@ -11,6 +11,7 @@ module Increase
           selected_event_category:
             Increase::EventSubscriptionCreateParams::SelectedEventCategory::OrSymbol,
           shared_secret: String,
+          status: Increase::EventSubscriptionCreateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::EventSubscription)
       end
@@ -26,6 +27,8 @@ module Increase
         # The key that will be used to sign webhooks. If no value is passed, a random
         # string will be used as default.
         shared_secret: nil,
+        # The status of the event subscription. Defaults to `active` if not specified.
+        status: nil,
         request_options: {}
       )
       end
