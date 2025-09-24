@@ -8,7 +8,7 @@ module Increase
       #
       # Create an Event Subscription
       #
-      # @overload create(url:, oauth_connection_id: nil, selected_event_category: nil, shared_secret: nil, request_options: {})
+      # @overload create(url:, oauth_connection_id: nil, selected_event_category: nil, shared_secret: nil, status: nil, request_options: {})
       #
       # @param url [String] The URL you'd like us to send webhooks to.
       #
@@ -17,6 +17,8 @@ module Increase
       # @param selected_event_category [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory] If specified, this subscription will only receive webhooks for Events with the s
       #
       # @param shared_secret [String] The key that will be used to sign webhooks. If no value is passed, a random stri
+      #
+      # @param status [Symbol, Increase::Models::EventSubscriptionCreateParams::Status] The status of the event subscription. Defaults to `active` if not specified.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

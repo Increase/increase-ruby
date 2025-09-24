@@ -35,7 +35,13 @@ module Increase
       #   @return [String, nil]
       optional :shared_secret, String
 
-      # @!method initialize(url:, oauth_connection_id: nil, selected_event_category: nil, shared_secret: nil, request_options: {})
+      # @!attribute status
+      #   The status of the event subscription. Defaults to `active` if not specified.
+      #
+      #   @return [Symbol, Increase::Models::EventSubscriptionCreateParams::Status, nil]
+      optional :status, enum: -> { Increase::EventSubscriptionCreateParams::Status }
+
+      # @!method initialize(url:, oauth_connection_id: nil, selected_event_category: nil, shared_secret: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EventSubscriptionCreateParams} for more details.
       #
@@ -46,6 +52,8 @@ module Increase
       #   @param selected_event_category [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory] If specified, this subscription will only receive webhooks for Events with the s
       #
       #   @param shared_secret [String] The key that will be used to sign webhooks. If no value is passed, a random stri
+      #
+      #   @param status [Symbol, Increase::Models::EventSubscriptionCreateParams::Status] The status of the event subscription. Defaults to `active` if not specified.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -367,6 +375,20 @@ module Increase
 
         # Occurs whenever a Wire Transfer is updated.
         WIRE_TRANSFER_UPDATED = :"wire_transfer.updated"
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The status of the event subscription. Defaults to `active` if not specified.
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The subscription is active and Events will be delivered normally.
+        ACTIVE = :active
+
+        # The subscription is temporarily disabled and Events will not be delivered.
+        DISABLED = :disabled
 
         # @!method self.values
         #   @return [Array<Symbol>]
