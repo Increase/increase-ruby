@@ -112,6 +112,9 @@ module Increase
           # Card Settlement: details will be under the `card_settlement` object.
           CARD_SETTLEMENT = :card_settlement
 
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL = :card_financial
+
           # Card Revenue Payment: details will be under the `card_revenue_payment` object.
           CARD_REVENUE_PAYMENT = :card_revenue_payment
 

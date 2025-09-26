@@ -236,6 +236,13 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL =
+            T.let(
+              :card_financial,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Card Revenue Payment: details will be under the `card_revenue_payment` object.
           CARD_REVENUE_PAYMENT =
             T.let(
