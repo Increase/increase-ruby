@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.93.0 (2025-09-26)
+
+Full Changelog: [v1.92.0...v1.93.0](https://github.com/Increase/increase-ruby/compare/v1.92.0...v1.93.0)
+
+### Features
+
+* **api:** api update ([a760b8c](https://github.com/Increase/increase-ruby/commit/a760b8ca14265f2cd6c924f674b39257e79ce065))
+
+
+### Chores
+
+* allow fast-format to use bsd sed as well ([14b02a4](https://github.com/Increase/increase-ruby/commit/14b02a4f3007334c0cdb7728117529a8ef7f6002))
+
 ## 1.92.0 (2025-09-26)
 
 Full Changelog: [v1.91.1...v1.92.0](https://github.com/Increase/increase-ruby/compare/v1.91.1...v1.92.0)
