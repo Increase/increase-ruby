@@ -10,7 +10,9 @@ module Increase
         # Simulates refunding a card transaction. The full value of the original sandbox
         # transaction is refunded.
         #
-        # @overload create(transaction_id:, request_options: {})
+        # @overload create(pending_transaction_id: nil, transaction_id: nil, request_options: {})
+        #
+        # @param pending_transaction_id [String] The identifier of the Pending Transaction for the refund authorization. If this
         #
         # @param transaction_id [String] The identifier for the Transaction to refund. The Transaction's source must have
         #
@@ -19,7 +21,7 @@ module Increase
         # @return [Increase::Models::Transaction]
         #
         # @see Increase::Models::Simulations::CardRefundCreateParams
-        def create(params)
+        def create(params = {})
           parsed, options = Increase::Simulations::CardRefundCreateParams.dump_request(params)
           @client.request(
             method: :post,
