@@ -2,21 +2,29 @@ module Increase
   module Models
     module Simulations
       type card_refund_create_params =
-        { transaction_id: String }
+        { pending_transaction_id: String, transaction_id: String }
         & Increase::Internal::Type::request_parameters
 
       class CardRefundCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        attr_accessor transaction_id: String
+        attr_reader pending_transaction_id: String?
+
+        def pending_transaction_id=: (String) -> String
+
+        attr_reader transaction_id: String?
+
+        def transaction_id=: (String) -> String
 
         def initialize: (
-          transaction_id: String,
+          ?pending_transaction_id: String,
+          ?transaction_id: String,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          pending_transaction_id: String,
           transaction_id: String,
           request_options: Increase::RequestOptions
         }
