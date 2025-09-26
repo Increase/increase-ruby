@@ -4048,7 +4048,7 @@ module Increase
                     Increase::Transaction::Source::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
                   )
 
-                # Non-authenticated security transaction: Use to identify an electronic commerce transaction that uses data encryption for security however , cardholder authentication is not performed using 3-D Secure.
+                # Non-authenticated security transaction: Use to identify an electronic commerce transaction that uses data encryption for security however, cardholder authentication is not performed using 3-D Secure.
                 NON_AUTHENTICATED_SECURITY_TRANSACTION =
                   T.let(
                     :non_authenticated_security_transaction,
