@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.91.0 (2025-09-26)
+
+Full Changelog: [v1.90.0...v1.91.0](https://github.com/Increase/increase-ruby/compare/v1.90.0...v1.91.0)
+
+### Features
+
+* **api:** api update ([cef39bf](https://github.com/Increase/increase-ruby/commit/cef39bf07ee95816d467d7424fe8f2ae7e19ea6b))
+
+
+### Bug Fixes
+
+* **internal:** use null byte as file separator in the fast formatting script ([43cc7df](https://github.com/Increase/increase-ruby/commit/43cc7df41e43ab4b28837fc157ee2adfc338f79d))
+
+
+### Performance Improvements
+
+* faster code formatting ([8d246f0](https://github.com/Increase/increase-ruby/commit/8d246f096d698f933202fbec1afc1f4a5ecc4e0a))
+
 ## 1.90.0 (2025-09-24)
 
 Full Changelog: [v1.89.0...v1.90.0](https://github.com/Increase/increase-ruby/compare/v1.89.0...v1.90.0)
