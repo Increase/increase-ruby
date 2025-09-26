@@ -11,12 +11,6 @@ module Increase
           description: String,
           front_image_file_id: String,
           program_id: String,
-          back_color:
-            Increase::PhysicalCardProfileCreateParams::BackColor::OrSymbol,
-          card_stock_reference: String,
-          carrier_stock_reference: String,
-          front_color:
-            Increase::PhysicalCardProfileCreateParams::FrontColor::OrSymbol,
           front_text:
             Increase::PhysicalCardProfileCreateParams::FrontText::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -33,16 +27,6 @@ module Increase
         front_image_file_id:,
         # The identifier for the Program that this Physical Card Profile falls under.
         program_id:,
-        # The color of the text on the back of the card. Defaults to "black".
-        back_color: nil,
-        # A reference ID provided by the fulfillment provider for the card stock used.
-        # Only used if you've ordered card stock separately.
-        card_stock_reference: nil,
-        # A reference ID provided by the fulfillment provider for the carrier stock used.
-        # Only used if you've ordered carrier stock separately.
-        carrier_stock_reference: nil,
-        # The color of the design on the front of the card. Defaults to "black".
-        front_color: nil,
         # Text printed on the front of the card. Reach out to
         # [support@increase.com](mailto:support@increase.com) for more information.
         front_text: nil,

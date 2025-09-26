@@ -7,10 +7,6 @@ module Increase
         description: String,
         front_image_file_id: String,
         program_id: String,
-        back_color: Increase::Models::PhysicalCardProfileCreateParams::back_color,
-        card_stock_reference: String,
-        carrier_stock_reference: String,
-        front_color: Increase::Models::PhysicalCardProfileCreateParams::front_color,
         front_text: Increase::PhysicalCardProfileCreateParams::FrontText
       }
       & Increase::Internal::Type::request_parameters
@@ -29,26 +25,6 @@ module Increase
 
       attr_accessor program_id: String
 
-      attr_reader back_color: Increase::Models::PhysicalCardProfileCreateParams::back_color?
-
-      def back_color=: (
-        Increase::Models::PhysicalCardProfileCreateParams::back_color
-      ) -> Increase::Models::PhysicalCardProfileCreateParams::back_color
-
-      attr_reader card_stock_reference: String?
-
-      def card_stock_reference=: (String) -> String
-
-      attr_reader carrier_stock_reference: String?
-
-      def carrier_stock_reference=: (String) -> String
-
-      attr_reader front_color: Increase::Models::PhysicalCardProfileCreateParams::front_color?
-
-      def front_color=: (
-        Increase::Models::PhysicalCardProfileCreateParams::front_color
-      ) -> Increase::Models::PhysicalCardProfileCreateParams::front_color
-
       attr_reader front_text: Increase::PhysicalCardProfileCreateParams::FrontText?
 
       def front_text=: (
@@ -61,10 +37,6 @@ module Increase
         description: String,
         front_image_file_id: String,
         program_id: String,
-        ?back_color: Increase::Models::PhysicalCardProfileCreateParams::back_color,
-        ?card_stock_reference: String,
-        ?carrier_stock_reference: String,
-        ?front_color: Increase::Models::PhysicalCardProfileCreateParams::front_color,
         ?front_text: Increase::PhysicalCardProfileCreateParams::FrontText,
         ?request_options: Increase::request_opts
       ) -> void
@@ -75,41 +47,9 @@ module Increase
         description: String,
         front_image_file_id: String,
         program_id: String,
-        back_color: Increase::Models::PhysicalCardProfileCreateParams::back_color,
-        card_stock_reference: String,
-        carrier_stock_reference: String,
-        front_color: Increase::Models::PhysicalCardProfileCreateParams::front_color,
         front_text: Increase::PhysicalCardProfileCreateParams::FrontText,
         request_options: Increase::RequestOptions
       }
-
-      type back_color = :black | :white
-
-      module BackColor
-        extend Increase::Internal::Type::Enum
-
-        # Black personalization color.
-        BLACK: :black
-
-        # White personalization color.
-        WHITE: :white
-
-        def self?.values: -> ::Array[Increase::Models::PhysicalCardProfileCreateParams::back_color]
-      end
-
-      type front_color = :black | :white
-
-      module FrontColor
-        extend Increase::Internal::Type::Enum
-
-        # Black personalization color.
-        BLACK: :black
-
-        # White personalization color.
-        WHITE: :white
-
-        def self?.values: -> ::Array[Increase::Models::PhysicalCardProfileCreateParams::front_color]
-      end
 
       type front_text = { :line1 => String, :line2 => String }
 
