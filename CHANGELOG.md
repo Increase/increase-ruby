@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.91.1 (2025-09-26)
+
+Full Changelog: [v1.91.0...v1.91.1](https://github.com/Increase/increase-ruby/compare/v1.91.0...v1.91.1)
+
+### Bug Fixes
+
+* shorten multipart boundary sep to less than RFC specificed max length ([5cb2c65](https://github.com/Increase/increase-ruby/commit/5cb2c65146a070d5ecbe1e459858669e598449ad))
+
 ## 1.91.0 (2025-09-26)
 
 Full Changelog: [v1.90.0...v1.91.0](https://github.com/Increase/increase-ruby/compare/v1.90.0...v1.91.0)
