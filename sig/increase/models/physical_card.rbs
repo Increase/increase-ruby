@@ -236,7 +236,7 @@ module Increase
 
         type tracking =
           {
-            number: String,
+            number: String?,
             return_number: String?,
             return_reason: String?,
             shipped_at: Time,
@@ -244,7 +244,7 @@ module Increase
           }
 
         class Tracking < Increase::Internal::Type::BaseModel
-          attr_accessor number: String
+          attr_accessor number: String?
 
           attr_accessor return_number: String?
 
@@ -255,7 +255,7 @@ module Increase
           attr_accessor updates: ::Array[Increase::PhysicalCard::Shipment::Tracking::Update]
 
           def initialize: (
-            number: String,
+            number: String?,
             return_number: String?,
             return_reason: String?,
             shipped_at: Time,
@@ -263,7 +263,7 @@ module Increase
           ) -> void
 
           def to_hash: -> {
-            number: String,
+            number: String?,
             return_number: String?,
             return_reason: String?,
             shipped_at: Time,

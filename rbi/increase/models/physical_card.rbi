@@ -502,8 +502,8 @@ module Increase
               )
             end
 
-          # The tracking number.
-          sig { returns(String) }
+          # The tracking number. Not available for USPS shipments.
+          sig { returns(T.nilable(String)) }
           attr_accessor :number
 
           # For returned shipments, the tracking number of the return shipment.
@@ -531,7 +531,7 @@ module Increase
           # Tracking details for the shipment.
           sig do
             params(
-              number: String,
+              number: T.nilable(String),
               return_number: T.nilable(String),
               return_reason: T.nilable(String),
               shipped_at: Time,
@@ -542,7 +542,7 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The tracking number.
+            # The tracking number. Not available for USPS shipments.
             number:,
             # For returned shipments, the tracking number of the return shipment.
             return_number:,
@@ -560,7 +560,7 @@ module Increase
           sig do
             override.returns(
               {
-                number: String,
+                number: T.nilable(String),
                 return_number: T.nilable(String),
                 return_reason: T.nilable(String),
                 shipped_at: Time,
