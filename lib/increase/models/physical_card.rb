@@ -313,10 +313,10 @@ module Increase
         # @see Increase::Models::PhysicalCard::Shipment#tracking
         class Tracking < Increase::Internal::Type::BaseModel
           # @!attribute number
-          #   The tracking number.
+          #   The tracking number. Not available for USPS shipments.
           #
-          #   @return [String]
-          required :number, String
+          #   @return [String, nil]
+          required :number, String, nil?: true
 
           # @!attribute return_number
           #   For returned shipments, the tracking number of the return shipment.
@@ -351,7 +351,7 @@ module Increase
           #
           #   Tracking details for the shipment.
           #
-          #   @param number [String] The tracking number.
+          #   @param number [String, nil] The tracking number. Not available for USPS shipments.
           #
           #   @param return_number [String, nil] For returned shipments, the tracking number of the return shipment.
           #
