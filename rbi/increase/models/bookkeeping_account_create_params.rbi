@@ -18,7 +18,7 @@ module Increase
       sig { returns(String) }
       attr_accessor :name
 
-      # The entity, if `compliance_category` is `commingled_cash`.
+      # The account, if `compliance_category` is `commingled_cash`.
       sig { returns(T.nilable(String)) }
       attr_reader :account_id
 
@@ -63,7 +63,7 @@ module Increase
       def self.new(
         # The name you choose for the account.
         name:,
-        # The entity, if `compliance_category` is `commingled_cash`.
+        # The account, if `compliance_category` is `commingled_cash`.
         account_id: nil,
         # The account compliance category.
         compliance_category: nil,
