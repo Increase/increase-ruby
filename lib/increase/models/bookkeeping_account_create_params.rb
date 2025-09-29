@@ -14,7 +14,7 @@ module Increase
       required :name, String
 
       # @!attribute account_id
-      #   The entity, if `compliance_category` is `commingled_cash`.
+      #   The account, if `compliance_category` is `commingled_cash`.
       #
       #   @return [String, nil]
       optional :account_id, String
@@ -34,7 +34,7 @@ module Increase
       # @!method initialize(name:, account_id: nil, compliance_category: nil, entity_id: nil, request_options: {})
       #   @param name [String] The name you choose for the account.
       #
-      #   @param account_id [String] The entity, if `compliance_category` is `commingled_cash`.
+      #   @param account_id [String] The account, if `compliance_category` is `commingled_cash`.
       #
       #   @param compliance_category [Symbol, Increase::Models::BookkeepingAccountCreateParams::ComplianceCategory] The account compliance category.
       #
