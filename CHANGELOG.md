@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.95.1 (2025-09-29)
+
+Full Changelog: [v1.95.0...v1.95.1](https://github.com/Increase/increase-ruby/compare/v1.95.0...v1.95.1)
+
+### Bug Fixes
+
+* always send `filename=...` for multipart requests where a file is expected ([990c13f](https://github.com/Increase/increase-ruby/commit/990c13f7c641c20586059d7991e197cb47f67e72))
+
 ## 1.95.0 (2025-09-26)
 
 Full Changelog: [v1.94.0...v1.95.0](https://github.com/Increase/increase-ruby/compare/v1.94.0...v1.95.0)
