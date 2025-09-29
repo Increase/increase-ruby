@@ -20,7 +20,7 @@ module Increase
         grant_type:,
         # The public identifier for your application.
         client_id: nil,
-        # The secret that confirms you own the application. This is redundent given that
+        # The secret that confirms you own the application. This is redundant given that
         # the request is made with your API key but it's a required component of OAuth
         # 2.0.
         client_secret: nil,
