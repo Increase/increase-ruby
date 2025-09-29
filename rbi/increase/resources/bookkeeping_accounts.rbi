@@ -17,7 +17,7 @@ module Increase
       def create(
         # The name you choose for the account.
         name:,
-        # The entity, if `compliance_category` is `commingled_cash`.
+        # The account, if `compliance_category` is `commingled_cash`.
         account_id: nil,
         # The account compliance category.
         compliance_category: nil,
