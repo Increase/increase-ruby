@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.97.1 (2025-09-30)
+
+Full Changelog: [v1.97.0...v1.97.1](https://github.com/Increase/increase-ruby/compare/v1.97.0...v1.97.1)
+
+### Bug Fixes
+
+* coroutine leaks from connection pool ([78dc815](https://github.com/Increase/increase-ruby/commit/78dc8152fc1d9ca7f849cf0d9cce6c49e5d80f96))
+
 ## 1.97.0 (2025-09-29)
 
 Full Changelog: [v1.96.0...v1.97.0](https://github.com/Increase/increase-ruby/compare/v1.96.0...v1.97.0)
