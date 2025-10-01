@@ -1,0 +1,16 @@
+module Increase
+  module Resources
+    class Simulations
+      class CardDisputes
+        def action: (
+          String card_dispute_id,
+          network: Increase::Models::Simulations::CardDisputeActionParams::network,
+          ?visa: Increase::Simulations::CardDisputeActionParams::Visa,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CardDispute
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end

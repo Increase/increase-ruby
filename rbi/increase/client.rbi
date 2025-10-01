@@ -40,6 +40,9 @@ module Increase
     sig { returns(Increase::Resources::CardPurchaseSupplements) }
     attr_reader :card_purchase_supplements
 
+    sig { returns(Increase::Resources::CardDisputes) }
+    attr_reader :card_disputes
+
     sig { returns(Increase::Resources::PhysicalCards) }
     attr_reader :physical_cards
 

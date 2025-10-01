@@ -41,6 +41,9 @@ module Increase
     # @return [Increase::Resources::CardPurchaseSupplements]
     attr_reader :card_purchase_supplements
 
+    # @return [Increase::Resources::CardDisputes]
+    attr_reader :card_disputes
+
     # @return [Increase::Resources::PhysicalCards]
     attr_reader :physical_cards
 
@@ -253,6 +256,7 @@ module Increase
       @cards = Increase::Resources::Cards.new(client: self)
       @card_payments = Increase::Resources::CardPayments.new(client: self)
       @card_purchase_supplements = Increase::Resources::CardPurchaseSupplements.new(client: self)
+      @card_disputes = Increase::Resources::CardDisputes.new(client: self)
       @physical_cards = Increase::Resources::PhysicalCards.new(client: self)
       @digital_card_profiles = Increase::Resources::DigitalCardProfiles.new(client: self)
       @physical_card_profiles = Increase::Resources::PhysicalCardProfiles.new(client: self)
