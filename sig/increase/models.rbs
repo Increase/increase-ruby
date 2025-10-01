@@ -99,6 +99,18 @@ module Increase
 
   class CardDetailsParams = Increase::Models::CardDetailsParams
 
+  class CardDispute = Increase::Models::CardDispute
+
+  class CardDisputeCreateParams = Increase::Models::CardDisputeCreateParams
+
+  class CardDisputeListParams = Increase::Models::CardDisputeListParams
+
+  class CardDisputeRetrieveParams = Increase::Models::CardDisputeRetrieveParams
+
+  class CardDisputeSubmitUserSubmissionParams = Increase::Models::CardDisputeSubmitUserSubmissionParams
+
+  class CardDisputeWithdrawParams = Increase::Models::CardDisputeWithdrawParams
+
   class CardIframeURL = Increase::Models::CardIframeURL
 
   class CardListParams = Increase::Models::CardListParams

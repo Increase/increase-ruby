@@ -1,0 +1,2889 @@
+module Increase
+  module Models
+    type card_dispute_create_params =
+      {
+        disputed_transaction_id: String,
+        network: Increase::Models::CardDisputeCreateParams::network,
+        amount: Integer,
+        attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        visa: Increase::CardDisputeCreateParams::Visa
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class CardDisputeCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor disputed_transaction_id: String
+
+      attr_accessor network: Increase::Models::CardDisputeCreateParams::network
+
+      attr_reader amount: Integer?
+
+      def amount=: (Integer) -> Integer
+
+      attr_reader attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile]?
+
+      def attachment_files=: (
+        ::Array[Increase::CardDisputeCreateParams::AttachmentFile]
+      ) -> ::Array[Increase::CardDisputeCreateParams::AttachmentFile]
+
+      attr_reader visa: Increase::CardDisputeCreateParams::Visa?
+
+      def visa=: (
+        Increase::CardDisputeCreateParams::Visa
+      ) -> Increase::CardDisputeCreateParams::Visa
+
+      def initialize: (
+        disputed_transaction_id: String,
+        network: Increase::Models::CardDisputeCreateParams::network,
+        ?amount: Integer,
+        ?attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        ?visa: Increase::CardDisputeCreateParams::Visa,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        disputed_transaction_id: String,
+        network: Increase::Models::CardDisputeCreateParams::network,
+        amount: Integer,
+        attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        visa: Increase::CardDisputeCreateParams::Visa,
+        request_options: Increase::RequestOptions
+      }
+
+      type network = :visa
+
+      module Network
+        extend Increase::Internal::Type::Enum
+
+        # Visa
+        VISA: :visa
+
+        def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::network]
+      end
+
+      type attachment_file = { file_id: String }
+
+      class AttachmentFile < Increase::Internal::Type::BaseModel
+        attr_accessor file_id: String
+
+        def initialize: (file_id: String) -> void
+
+        def to_hash: -> { file_id: String }
+      end
+
+      type visa =
+        {
+          category: Increase::Models::CardDisputeCreateParams::Visa::category,
+          authorization: Increase::CardDisputeCreateParams::Visa::Authorization,
+          consumer_canceled_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise,
+          consumer_canceled_recurring_transaction: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction,
+          consumer_canceled_services: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices,
+          consumer_counterfeit_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise,
+          consumer_credit_not_processed: Increase::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed,
+          consumer_damaged_or_defective_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise,
+          consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation,
+          consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed,
+          consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived,
+          consumer_non_receipt_of_cash: top,
+          consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted,
+          consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise,
+          consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices,
+          consumer_services_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation,
+          consumer_services_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed,
+          consumer_services_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived,
+          fraud: Increase::CardDisputeCreateParams::Visa::Fraud,
+          processing_error: Increase::CardDisputeCreateParams::Visa::ProcessingError
+        }
+
+      class Visa < Increase::Internal::Type::BaseModel
+        attr_accessor category: Increase::Models::CardDisputeCreateParams::Visa::category
+
+        attr_reader authorization: Increase::CardDisputeCreateParams::Visa::Authorization?
+
+        def authorization=: (
+          Increase::CardDisputeCreateParams::Visa::Authorization
+        ) -> Increase::CardDisputeCreateParams::Visa::Authorization
+
+        attr_reader consumer_canceled_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise?
+
+        def consumer_canceled_merchandise=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise
+
+        attr_reader consumer_canceled_recurring_transaction: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction?
+
+        def consumer_canceled_recurring_transaction=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction
+
+        attr_reader consumer_canceled_services: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices?
+
+        def consumer_canceled_services=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices
+
+        attr_reader consumer_counterfeit_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise?
+
+        def consumer_counterfeit_merchandise=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise
+
+        attr_reader consumer_credit_not_processed: Increase::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed?
+
+        def consumer_credit_not_processed=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed
+
+        attr_reader consumer_damaged_or_defective_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise?
+
+        def consumer_damaged_or_defective_merchandise=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise
+
+        attr_reader consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation?
+
+        def consumer_merchandise_misrepresentation=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation
+
+        attr_reader consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed?
+
+        def consumer_merchandise_not_as_described=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed
+
+        attr_reader consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived?
+
+        def consumer_merchandise_not_received=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived
+
+        attr_reader consumer_non_receipt_of_cash: top?
+
+        def consumer_non_receipt_of_cash=: (top) -> top
+
+        attr_reader consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted?
+
+        def consumer_original_credit_transaction_not_accepted=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted
+
+        attr_reader consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise?
+
+        def consumer_quality_merchandise=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise
+
+        attr_reader consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices?
+
+        def consumer_quality_services=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices
+
+        attr_reader consumer_services_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation?
+
+        def consumer_services_misrepresentation=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation
+
+        attr_reader consumer_services_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed?
+
+        def consumer_services_not_as_described=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed
+
+        attr_reader consumer_services_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived?
+
+        def consumer_services_not_received=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived
+
+        attr_reader fraud: Increase::CardDisputeCreateParams::Visa::Fraud?
+
+        def fraud=: (
+          Increase::CardDisputeCreateParams::Visa::Fraud
+        ) -> Increase::CardDisputeCreateParams::Visa::Fraud
+
+        attr_reader processing_error: Increase::CardDisputeCreateParams::Visa::ProcessingError?
+
+        def processing_error=: (
+          Increase::CardDisputeCreateParams::Visa::ProcessingError
+        ) -> Increase::CardDisputeCreateParams::Visa::ProcessingError
+
+        def initialize: (
+          category: Increase::Models::CardDisputeCreateParams::Visa::category,
+          ?authorization: Increase::CardDisputeCreateParams::Visa::Authorization,
+          ?consumer_canceled_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise,
+          ?consumer_canceled_recurring_transaction: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction,
+          ?consumer_canceled_services: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices,
+          ?consumer_counterfeit_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise,
+          ?consumer_credit_not_processed: Increase::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed,
+          ?consumer_damaged_or_defective_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise,
+          ?consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation,
+          ?consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed,
+          ?consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived,
+          ?consumer_non_receipt_of_cash: top,
+          ?consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted,
+          ?consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise,
+          ?consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices,
+          ?consumer_services_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation,
+          ?consumer_services_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed,
+          ?consumer_services_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived,
+          ?fraud: Increase::CardDisputeCreateParams::Visa::Fraud,
+          ?processing_error: Increase::CardDisputeCreateParams::Visa::ProcessingError
+        ) -> void
+
+        def to_hash: -> {
+          category: Increase::Models::CardDisputeCreateParams::Visa::category,
+          authorization: Increase::CardDisputeCreateParams::Visa::Authorization,
+          consumer_canceled_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise,
+          consumer_canceled_recurring_transaction: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction,
+          consumer_canceled_services: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices,
+          consumer_counterfeit_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise,
+          consumer_credit_not_processed: Increase::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed,
+          consumer_damaged_or_defective_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise,
+          consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation,
+          consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed,
+          consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived,
+          consumer_non_receipt_of_cash: top,
+          consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted,
+          consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise,
+          consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices,
+          consumer_services_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation,
+          consumer_services_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed,
+          consumer_services_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived,
+          fraud: Increase::CardDisputeCreateParams::Visa::Fraud,
+          processing_error: Increase::CardDisputeCreateParams::Visa::ProcessingError
+        }
+
+        type category =
+          :authorization
+          | :consumer_canceled_merchandise
+          | :consumer_canceled_recurring_transaction
+          | :consumer_canceled_services
+          | :consumer_counterfeit_merchandise
+          | :consumer_credit_not_processed
+          | :consumer_damaged_or_defective_merchandise
+          | :consumer_merchandise_misrepresentation
+          | :consumer_merchandise_not_as_described
+          | :consumer_merchandise_not_received
+          | :consumer_non_receipt_of_cash
+          | :consumer_original_credit_transaction_not_accepted
+          | :consumer_quality_merchandise
+          | :consumer_quality_services
+          | :consumer_services_misrepresentation
+          | :consumer_services_not_as_described
+          | :consumer_services_not_received
+          | :fraud
+          | :processing_error
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # Authorization.
+          AUTHORIZATION: :authorization
+
+          # Consumer: canceled merchandise.
+          CONSUMER_CANCELED_MERCHANDISE: :consumer_canceled_merchandise
+
+          # Consumer: canceled recurring transaction.
+          CONSUMER_CANCELED_RECURRING_TRANSACTION: :consumer_canceled_recurring_transaction
+
+          # Consumer: canceled services.
+          CONSUMER_CANCELED_SERVICES: :consumer_canceled_services
+
+          # Consumer: counterfeit merchandise.
+          CONSUMER_COUNTERFEIT_MERCHANDISE: :consumer_counterfeit_merchandise
+
+          # Consumer: credit not processed.
+          CONSUMER_CREDIT_NOT_PROCESSED: :consumer_credit_not_processed
+
+          # Consumer: damaged or defective merchandise.
+          CONSUMER_DAMAGED_OR_DEFECTIVE_MERCHANDISE: :consumer_damaged_or_defective_merchandise
+
+          # Consumer: merchandise misrepresentation.
+          CONSUMER_MERCHANDISE_MISREPRESENTATION: :consumer_merchandise_misrepresentation
+
+          # Consumer: merchandise not as described.
+          CONSUMER_MERCHANDISE_NOT_AS_DESCRIBED: :consumer_merchandise_not_as_described
+
+          # Consumer: merchandise not received.
+          CONSUMER_MERCHANDISE_NOT_RECEIVED: :consumer_merchandise_not_received
+
+          # Consumer: non-receipt of cash.
+          CONSUMER_NON_RECEIPT_OF_CASH: :consumer_non_receipt_of_cash
+
+          # Consumer: Original Credit Transaction (OCT) not accepted.
+          CONSUMER_ORIGINAL_CREDIT_TRANSACTION_NOT_ACCEPTED: :consumer_original_credit_transaction_not_accepted
+
+          # Consumer: merchandise quality issue.
+          CONSUMER_QUALITY_MERCHANDISE: :consumer_quality_merchandise
+
+          # Consumer: services quality issue.
+          CONSUMER_QUALITY_SERVICES: :consumer_quality_services
+
+          # Consumer: services misrepresentation.
+          CONSUMER_SERVICES_MISREPRESENTATION: :consumer_services_misrepresentation
+
+          # Consumer: services not as described.
+          CONSUMER_SERVICES_NOT_AS_DESCRIBED: :consumer_services_not_as_described
+
+          # Consumer: services not received.
+          CONSUMER_SERVICES_NOT_RECEIVED: :consumer_services_not_received
+
+          # Fraud.
+          FRAUD: :fraud
+
+          # Processing error.
+          PROCESSING_ERROR: :processing_error
+
+          def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::category]
+        end
+
+        type authorization =
+          {
+            account_status: Increase::Models::CardDisputeCreateParams::Visa::Authorization::account_status
+          }
+
+        class Authorization < Increase::Internal::Type::BaseModel
+          attr_accessor account_status: Increase::Models::CardDisputeCreateParams::Visa::Authorization::account_status
+
+          def initialize: (
+            account_status: Increase::Models::CardDisputeCreateParams::Visa::Authorization::account_status
+          ) -> void
+
+          def to_hash: -> {
+            account_status: Increase::Models::CardDisputeCreateParams::Visa::Authorization::account_status
+          }
+
+          type account_status = :account_closed | :credit_problem | :fraud
+
+          module AccountStatus
+            extend Increase::Internal::Type::Enum
+
+            # Account closed.
+            ACCOUNT_CLOSED: :account_closed
+
+            # Credit problem.
+            CREDIT_PROBLEM: :credit_problem
+
+            # Fraud.
+            FRAUD: :fraud
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::Authorization::account_status]
+          end
+        end
+
+        type consumer_canceled_merchandise =
+          {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::merchant_resolution_attempted,
+            purchase_explanation: String,
+            received_or_expected_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome,
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation,
+            not_returned: top,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
+          }
+
+        class ConsumerCanceledMerchandise < Increase::Internal::Type::BaseModel
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::merchant_resolution_attempted
+
+          attr_accessor purchase_explanation: String
+
+          attr_accessor received_or_expected_at: Date
+
+          attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome
+
+          attr_reader cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation?
+
+          def cardholder_cancellation=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation
+
+          attr_reader not_returned: top?
+
+          def not_returned=: (top) -> top
+
+          attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted?
+
+          def return_attempted=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted
+
+          attr_reader returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned?
+
+          def returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
+
+          def initialize: (
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::merchant_resolution_attempted,
+            purchase_explanation: String,
+            received_or_expected_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome,
+            ?cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation,
+            ?not_returned: top,
+            ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted,
+            ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
+          ) -> void
+
+          def to_hash: -> {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::merchant_resolution_attempted,
+            purchase_explanation: String,
+            received_or_expected_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome,
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation,
+            not_returned: top,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
+          }
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::merchant_resolution_attempted]
+          end
+
+          type return_outcome = :not_returned | :returned | :return_attempted
+
+          module ReturnOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Not returned.
+            NOT_RETURNED: :not_returned
+
+            # Returned.
+            RETURNED: :returned
+
+            # Return attempted.
+            RETURN_ATTEMPTED: :return_attempted
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome]
+          end
+
+          type cardholder_cancellation =
+            {
+              canceled_at: Date,
+              canceled_prior_to_ship_date: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::canceled_prior_to_ship_date,
+              cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::cancellation_policy_provided,
+              reason: String
+            }
+
+          class CardholderCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor canceled_at: Date
+
+            attr_accessor canceled_prior_to_ship_date: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::canceled_prior_to_ship_date
+
+            attr_accessor cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::cancellation_policy_provided
+
+            attr_accessor reason: String
+
+            def initialize: (
+              canceled_at: Date,
+              canceled_prior_to_ship_date: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::canceled_prior_to_ship_date,
+              cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::cancellation_policy_provided,
+              reason: String
+            ) -> void
+
+            def to_hash: -> {
+              canceled_at: Date,
+              canceled_prior_to_ship_date: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::canceled_prior_to_ship_date,
+              cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::cancellation_policy_provided,
+              reason: String
+            }
+
+            type canceled_prior_to_ship_date =
+              :canceled_prior_to_ship_date | :not_canceled_prior_to_ship_date
+
+            module CanceledPriorToShipDate
+              extend Increase::Internal::Type::Enum
+
+              # Canceled prior to ship date.
+              CANCELED_PRIOR_TO_SHIP_DATE: :canceled_prior_to_ship_date
+
+              # Not canceled prior to ship date.
+              NOT_CANCELED_PRIOR_TO_SHIP_DATE: :not_canceled_prior_to_ship_date
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::canceled_prior_to_ship_date]
+            end
+
+            type cancellation_policy_provided = :not_provided | :provided
+
+            module CancellationPolicyProvided
+              extend Increase::Internal::Type::Enum
+
+              # Not provided.
+              NOT_PROVIDED: :not_provided
+
+              # Provided.
+              PROVIDED: :provided
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::cancellation_policy_provided]
+            end
+          end
+
+          type return_attempted =
+            {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+          class ReturnAttempted < Increase::Internal::Type::BaseModel
+            attr_accessor attempt_explanation: String
+
+            attr_accessor attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::attempt_reason
+
+            attr_accessor attempted_at: Date
+
+            attr_accessor merchandise_disposition: String
+
+            def initialize: (
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            ) -> void
+
+            def to_hash: -> {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+            type attempt_reason =
+              :merchant_not_responding
+              | :no_return_authorization_provided
+              | :no_return_instructions
+              | :requested_not_to_return
+              | :return_not_accepted
+
+            module AttemptReason
+              extend Increase::Internal::Type::Enum
+
+              # Merchant not responding.
+              MERCHANT_NOT_RESPONDING: :merchant_not_responding
+
+              # No return authorization provided.
+              NO_RETURN_AUTHORIZATION_PROVIDED: :no_return_authorization_provided
+
+              # No return instructions.
+              NO_RETURN_INSTRUCTIONS: :no_return_instructions
+
+              # Requested not to return.
+              REQUESTED_NOT_TO_RETURN: :requested_not_to_return
+
+              # Return not accepted.
+              RETURN_NOT_ACCEPTED: :return_not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::attempt_reason]
+            end
+          end
+
+          type returned =
+            {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+          class Returned < Increase::Internal::Type::BaseModel
+            attr_accessor return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::return_method
+
+            attr_accessor returned_at: Date
+
+            attr_reader merchant_received_return_at: Date?
+
+            def merchant_received_return_at=: (Date) -> Date
+
+            attr_reader other_explanation: String?
+
+            def other_explanation=: (String) -> String
+
+            attr_reader tracking_number: String?
+
+            def tracking_number=: (String) -> String
+
+            def initialize: (
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::return_method,
+              returned_at: Date,
+              ?merchant_received_return_at: Date,
+              ?other_explanation: String,
+              ?tracking_number: String
+            ) -> void
+
+            def to_hash: -> {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+            type return_method =
+              :dhl | :face_to_face | :fedex | :other | :postal_service | :ups
+
+            module ReturnMethod
+              extend Increase::Internal::Type::Enum
+
+              # DHL.
+              DHL: :dhl
+
+              # Face-to-face.
+              FACE_TO_FACE: :face_to_face
+
+              # FedEx.
+              FEDEX: :fedex
+
+              # Other.
+              OTHER: :other
+
+              # Postal service.
+              POSTAL_SERVICE: :postal_service
+
+              # UPS.
+              UPS: :ups
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::return_method]
+            end
+          end
+        end
+
+        type consumer_canceled_recurring_transaction =
+          {
+            cancellation_target: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::cancellation_target,
+            merchant_contact_methods: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::MerchantContactMethods,
+            transaction_or_account_canceled_at: Date,
+            other_form_of_payment_explanation: String
+          }
+
+        class ConsumerCanceledRecurringTransaction < Increase::Internal::Type::BaseModel
+          attr_accessor cancellation_target: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::cancellation_target
+
+          attr_accessor merchant_contact_methods: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::MerchantContactMethods
+
+          attr_accessor transaction_or_account_canceled_at: Date
+
+          attr_reader other_form_of_payment_explanation: String?
+
+          def other_form_of_payment_explanation=: (String) -> String
+
+          def initialize: (
+            cancellation_target: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::cancellation_target,
+            merchant_contact_methods: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::MerchantContactMethods,
+            transaction_or_account_canceled_at: Date,
+            ?other_form_of_payment_explanation: String
+          ) -> void
+
+          def to_hash: -> {
+            cancellation_target: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::cancellation_target,
+            merchant_contact_methods: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::MerchantContactMethods,
+            transaction_or_account_canceled_at: Date,
+            other_form_of_payment_explanation: String
+          }
+
+          type cancellation_target = :account | :transaction
+
+          module CancellationTarget
+            extend Increase::Internal::Type::Enum
+
+            # Account.
+            ACCOUNT: :account
+
+            # Transaction.
+            TRANSACTION: :transaction
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::cancellation_target]
+          end
+
+          type merchant_contact_methods =
+            {
+              application_name: String,
+              call_center_phone_number: String,
+              email_address: String,
+              in_person_address: String,
+              mailing_address: String,
+              text_phone_number: String
+            }
+
+          class MerchantContactMethods < Increase::Internal::Type::BaseModel
+            attr_reader application_name: String?
+
+            def application_name=: (String) -> String
+
+            attr_reader call_center_phone_number: String?
+
+            def call_center_phone_number=: (String) -> String
+
+            attr_reader email_address: String?
+
+            def email_address=: (String) -> String
+
+            attr_reader in_person_address: String?
+
+            def in_person_address=: (String) -> String
+
+            attr_reader mailing_address: String?
+
+            def mailing_address=: (String) -> String
+
+            attr_reader text_phone_number: String?
+
+            def text_phone_number=: (String) -> String
+
+            def initialize: (
+              ?application_name: String,
+              ?call_center_phone_number: String,
+              ?email_address: String,
+              ?in_person_address: String,
+              ?mailing_address: String,
+              ?text_phone_number: String
+            ) -> void
+
+            def to_hash: -> {
+              application_name: String,
+              call_center_phone_number: String,
+              email_address: String,
+              in_person_address: String,
+              mailing_address: String,
+              text_phone_number: String
+            }
+          end
+        end
+
+        type consumer_canceled_services =
+          {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation,
+            contracted_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::merchant_resolution_attempted,
+            purchase_explanation: String,
+            service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type,
+            guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation,
+            other: top,
+            timeshare: top
+          }
+
+        class ConsumerCanceledServices < Increase::Internal::Type::BaseModel
+          attr_accessor cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation
+
+          attr_accessor contracted_at: Date
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::merchant_resolution_attempted
+
+          attr_accessor purchase_explanation: String
+
+          attr_accessor service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type
+
+          attr_reader guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation?
+
+          def guaranteed_reservation=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation
+
+          attr_reader other: top?
+
+          def other=: (top) -> top
+
+          attr_reader timeshare: top?
+
+          def timeshare=: (top) -> top
+
+          def initialize: (
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation,
+            contracted_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::merchant_resolution_attempted,
+            purchase_explanation: String,
+            service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type,
+            ?guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation,
+            ?other: top,
+            ?timeshare: top
+          ) -> void
+
+          def to_hash: -> {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation,
+            contracted_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::merchant_resolution_attempted,
+            purchase_explanation: String,
+            service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type,
+            guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation,
+            other: top,
+            timeshare: top
+          }
+
+          type cardholder_cancellation =
+            {
+              canceled_at: Date,
+              cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::cancellation_policy_provided,
+              reason: String
+            }
+
+          class CardholderCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor canceled_at: Date
+
+            attr_accessor cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::cancellation_policy_provided
+
+            attr_accessor reason: String
+
+            def initialize: (
+              canceled_at: Date,
+              cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::cancellation_policy_provided,
+              reason: String
+            ) -> void
+
+            def to_hash: -> {
+              canceled_at: Date,
+              cancellation_policy_provided: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::cancellation_policy_provided,
+              reason: String
+            }
+
+            type cancellation_policy_provided = :not_provided | :provided
+
+            module CancellationPolicyProvided
+              extend Increase::Internal::Type::Enum
+
+              # Not provided.
+              NOT_PROVIDED: :not_provided
+
+              # Provided.
+              PROVIDED: :provided
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::cancellation_policy_provided]
+            end
+          end
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::merchant_resolution_attempted]
+          end
+
+          type service_type = :guaranteed_reservation | :other | :timeshare
+
+          module ServiceType
+            extend Increase::Internal::Type::Enum
+
+            # Guaranteed reservation.
+            GUARANTEED_RESERVATION: :guaranteed_reservation
+
+            # Other.
+            OTHER: :other
+
+            # Timeshare.
+            TIMESHARE: :timeshare
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type]
+          end
+
+          type guaranteed_reservation =
+            {
+              explanation: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::explanation
+            }
+
+          class GuaranteedReservation < Increase::Internal::Type::BaseModel
+            attr_accessor explanation: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::explanation
+
+            def initialize: (
+              explanation: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::explanation
+            ) -> void
+
+            def to_hash: -> {
+              explanation: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::explanation
+            }
+
+            type explanation =
+              :cardholder_canceled_prior_to_service
+              | :cardholder_cancellation_attempt_within_24_hours_of_confirmation
+              | :merchant_billed_no_show
+
+            module Explanation
+              extend Increase::Internal::Type::Enum
+
+              # Cardholder canceled prior to service.
+              CARDHOLDER_CANCELED_PRIOR_TO_SERVICE: :cardholder_canceled_prior_to_service
+
+              # Cardholder cancellation attempt within 24 hours of confirmation.
+              CARDHOLDER_CANCELLATION_ATTEMPT_WITHIN_24_HOURS_OF_CONFIRMATION: :cardholder_cancellation_attempt_within_24_hours_of_confirmation
+
+              # Merchant billed for no-show.
+              MERCHANT_BILLED_NO_SHOW: :merchant_billed_no_show
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::explanation]
+            end
+          end
+        end
+
+        type consumer_counterfeit_merchandise =
+          {
+            counterfeit_explanation: String,
+            disposition_explanation: String,
+            order_explanation: String,
+            received_at: Date
+          }
+
+        class ConsumerCounterfeitMerchandise < Increase::Internal::Type::BaseModel
+          attr_accessor counterfeit_explanation: String
+
+          attr_accessor disposition_explanation: String
+
+          attr_accessor order_explanation: String
+
+          attr_accessor received_at: Date
+
+          def initialize: (
+            counterfeit_explanation: String,
+            disposition_explanation: String,
+            order_explanation: String,
+            received_at: Date
+          ) -> void
+
+          def to_hash: -> {
+            counterfeit_explanation: String,
+            disposition_explanation: String,
+            order_explanation: String,
+            received_at: Date
+          }
+        end
+
+        type consumer_credit_not_processed =
+          { canceled_or_returned_at: Date, credit_expected_at: Date }
+
+        class ConsumerCreditNotProcessed < Increase::Internal::Type::BaseModel
+          attr_reader canceled_or_returned_at: Date?
+
+          def canceled_or_returned_at=: (Date) -> Date
+
+          attr_reader credit_expected_at: Date?
+
+          def credit_expected_at=: (Date) -> Date
+
+          def initialize: (
+            ?canceled_or_returned_at: Date,
+            ?credit_expected_at: Date
+          ) -> void
+
+          def to_hash: -> {
+            canceled_or_returned_at: Date,
+            credit_expected_at: Date
+          }
+        end
+
+        type consumer_damaged_or_defective_merchandise =
+          {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted,
+            order_and_issue_explanation: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome,
+            not_returned: top,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
+          }
+
+        class ConsumerDamagedOrDefectiveMerchandise < Increase::Internal::Type::BaseModel
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted
+
+          attr_accessor order_and_issue_explanation: String
+
+          attr_accessor received_at: Date
+
+          attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome
+
+          attr_reader not_returned: top?
+
+          def not_returned=: (top) -> top
+
+          attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted?
+
+          def return_attempted=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted
+
+          attr_reader returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned?
+
+          def returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
+
+          def initialize: (
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted,
+            order_and_issue_explanation: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome,
+            ?not_returned: top,
+            ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
+            ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
+          ) -> void
+
+          def to_hash: -> {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted,
+            order_and_issue_explanation: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome,
+            not_returned: top,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
+          }
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted]
+          end
+
+          type return_outcome = :not_returned | :returned | :return_attempted
+
+          module ReturnOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Not returned.
+            NOT_RETURNED: :not_returned
+
+            # Returned.
+            RETURNED: :returned
+
+            # Return attempted.
+            RETURN_ATTEMPTED: :return_attempted
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome]
+          end
+
+          type return_attempted =
+            {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+          class ReturnAttempted < Increase::Internal::Type::BaseModel
+            attr_accessor attempt_explanation: String
+
+            attr_accessor attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::attempt_reason
+
+            attr_accessor attempted_at: Date
+
+            attr_accessor merchandise_disposition: String
+
+            def initialize: (
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            ) -> void
+
+            def to_hash: -> {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+            type attempt_reason =
+              :merchant_not_responding
+              | :no_return_authorization_provided
+              | :no_return_instructions
+              | :requested_not_to_return
+              | :return_not_accepted
+
+            module AttemptReason
+              extend Increase::Internal::Type::Enum
+
+              # Merchant not responding.
+              MERCHANT_NOT_RESPONDING: :merchant_not_responding
+
+              # No return authorization provided.
+              NO_RETURN_AUTHORIZATION_PROVIDED: :no_return_authorization_provided
+
+              # No return instructions.
+              NO_RETURN_INSTRUCTIONS: :no_return_instructions
+
+              # Requested not to return.
+              REQUESTED_NOT_TO_RETURN: :requested_not_to_return
+
+              # Return not accepted.
+              RETURN_NOT_ACCEPTED: :return_not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::attempt_reason]
+            end
+          end
+
+          type returned =
+            {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+          class Returned < Increase::Internal::Type::BaseModel
+            attr_accessor return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::return_method
+
+            attr_accessor returned_at: Date
+
+            attr_reader merchant_received_return_at: Date?
+
+            def merchant_received_return_at=: (Date) -> Date
+
+            attr_reader other_explanation: String?
+
+            def other_explanation=: (String) -> String
+
+            attr_reader tracking_number: String?
+
+            def tracking_number=: (String) -> String
+
+            def initialize: (
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::return_method,
+              returned_at: Date,
+              ?merchant_received_return_at: Date,
+              ?other_explanation: String,
+              ?tracking_number: String
+            ) -> void
+
+            def to_hash: -> {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+            type return_method =
+              :dhl | :face_to_face | :fedex | :other | :postal_service | :ups
+
+            module ReturnMethod
+              extend Increase::Internal::Type::Enum
+
+              # DHL.
+              DHL: :dhl
+
+              # Face-to-face.
+              FACE_TO_FACE: :face_to_face
+
+              # FedEx.
+              FEDEX: :fedex
+
+              # Other.
+              OTHER: :other
+
+              # Postal service.
+              POSTAL_SERVICE: :postal_service
+
+              # UPS.
+              UPS: :ups
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::return_method]
+            end
+          end
+        end
+
+        type consumer_merchandise_misrepresentation =
+          {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted,
+            misrepresentation_explanation: String,
+            purchase_explanation: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome,
+            not_returned: top,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
+          }
+
+        class ConsumerMerchandiseMisrepresentation < Increase::Internal::Type::BaseModel
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted
+
+          attr_accessor misrepresentation_explanation: String
+
+          attr_accessor purchase_explanation: String
+
+          attr_accessor received_at: Date
+
+          attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome
+
+          attr_reader not_returned: top?
+
+          def not_returned=: (top) -> top
+
+          attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted?
+
+          def return_attempted=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted
+
+          attr_reader returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned?
+
+          def returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
+
+          def initialize: (
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted,
+            misrepresentation_explanation: String,
+            purchase_explanation: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome,
+            ?not_returned: top,
+            ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
+            ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
+          ) -> void
+
+          def to_hash: -> {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted,
+            misrepresentation_explanation: String,
+            purchase_explanation: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome,
+            not_returned: top,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
+          }
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted]
+          end
+
+          type return_outcome = :not_returned | :returned | :return_attempted
+
+          module ReturnOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Not returned.
+            NOT_RETURNED: :not_returned
+
+            # Returned.
+            RETURNED: :returned
+
+            # Return attempted.
+            RETURN_ATTEMPTED: :return_attempted
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome]
+          end
+
+          type return_attempted =
+            {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+          class ReturnAttempted < Increase::Internal::Type::BaseModel
+            attr_accessor attempt_explanation: String
+
+            attr_accessor attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::attempt_reason
+
+            attr_accessor attempted_at: Date
+
+            attr_accessor merchandise_disposition: String
+
+            def initialize: (
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            ) -> void
+
+            def to_hash: -> {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+            type attempt_reason =
+              :merchant_not_responding
+              | :no_return_authorization_provided
+              | :no_return_instructions
+              | :requested_not_to_return
+              | :return_not_accepted
+
+            module AttemptReason
+              extend Increase::Internal::Type::Enum
+
+              # Merchant not responding.
+              MERCHANT_NOT_RESPONDING: :merchant_not_responding
+
+              # No return authorization provided.
+              NO_RETURN_AUTHORIZATION_PROVIDED: :no_return_authorization_provided
+
+              # No return instructions.
+              NO_RETURN_INSTRUCTIONS: :no_return_instructions
+
+              # Requested not to return.
+              REQUESTED_NOT_TO_RETURN: :requested_not_to_return
+
+              # Return not accepted.
+              RETURN_NOT_ACCEPTED: :return_not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::attempt_reason]
+            end
+          end
+
+          type returned =
+            {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+          class Returned < Increase::Internal::Type::BaseModel
+            attr_accessor return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::return_method
+
+            attr_accessor returned_at: Date
+
+            attr_reader merchant_received_return_at: Date?
+
+            def merchant_received_return_at=: (Date) -> Date
+
+            attr_reader other_explanation: String?
+
+            def other_explanation=: (String) -> String
+
+            attr_reader tracking_number: String?
+
+            def tracking_number=: (String) -> String
+
+            def initialize: (
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::return_method,
+              returned_at: Date,
+              ?merchant_received_return_at: Date,
+              ?other_explanation: String,
+              ?tracking_number: String
+            ) -> void
+
+            def to_hash: -> {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+            type return_method =
+              :dhl | :face_to_face | :fedex | :other | :postal_service | :ups
+
+            module ReturnMethod
+              extend Increase::Internal::Type::Enum
+
+              # DHL.
+              DHL: :dhl
+
+              # Face-to-face.
+              FACE_TO_FACE: :face_to_face
+
+              # FedEx.
+              FEDEX: :fedex
+
+              # Other.
+              OTHER: :other
+
+              # Postal service.
+              POSTAL_SERVICE: :postal_service
+
+              # UPS.
+              UPS: :ups
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::return_method]
+            end
+          end
+        end
+
+        type consumer_merchandise_not_as_described =
+          {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::merchant_resolution_attempted,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::return_outcome,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned
+          }
+
+        class ConsumerMerchandiseNotAsDescribed < Increase::Internal::Type::BaseModel
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::merchant_resolution_attempted
+
+          attr_accessor received_at: Date
+
+          attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::return_outcome
+
+          attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted?
+
+          def return_attempted=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted
+
+          attr_reader returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned?
+
+          def returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned
+
+          def initialize: (
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::merchant_resolution_attempted,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::return_outcome,
+            ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted,
+            ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned
+          ) -> void
+
+          def to_hash: -> {
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::merchant_resolution_attempted,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::return_outcome,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned
+          }
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::merchant_resolution_attempted]
+          end
+
+          type return_outcome = :returned | :return_attempted
+
+          module ReturnOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Returned.
+            RETURNED: :returned
+
+            # Return attempted.
+            RETURN_ATTEMPTED: :return_attempted
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::return_outcome]
+          end
+
+          type return_attempted =
+            {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+          class ReturnAttempted < Increase::Internal::Type::BaseModel
+            attr_accessor attempt_explanation: String
+
+            attr_accessor attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::attempt_reason
+
+            attr_accessor attempted_at: Date
+
+            attr_accessor merchandise_disposition: String
+
+            def initialize: (
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            ) -> void
+
+            def to_hash: -> {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+            type attempt_reason =
+              :merchant_not_responding
+              | :no_return_authorization_provided
+              | :no_return_instructions
+              | :requested_not_to_return
+              | :return_not_accepted
+
+            module AttemptReason
+              extend Increase::Internal::Type::Enum
+
+              # Merchant not responding.
+              MERCHANT_NOT_RESPONDING: :merchant_not_responding
+
+              # No return authorization provided.
+              NO_RETURN_AUTHORIZATION_PROVIDED: :no_return_authorization_provided
+
+              # No return instructions.
+              NO_RETURN_INSTRUCTIONS: :no_return_instructions
+
+              # Requested not to return.
+              REQUESTED_NOT_TO_RETURN: :requested_not_to_return
+
+              # Return not accepted.
+              RETURN_NOT_ACCEPTED: :return_not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::attempt_reason]
+            end
+          end
+
+          type returned =
+            {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+          class Returned < Increase::Internal::Type::BaseModel
+            attr_accessor return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::return_method
+
+            attr_accessor returned_at: Date
+
+            attr_reader merchant_received_return_at: Date?
+
+            def merchant_received_return_at=: (Date) -> Date
+
+            attr_reader other_explanation: String?
+
+            def other_explanation=: (String) -> String
+
+            attr_reader tracking_number: String?
+
+            def tracking_number=: (String) -> String
+
+            def initialize: (
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::return_method,
+              returned_at: Date,
+              ?merchant_received_return_at: Date,
+              ?other_explanation: String,
+              ?tracking_number: String
+            ) -> void
+
+            def to_hash: -> {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+            type return_method =
+              :dhl | :face_to_face | :fedex | :other | :postal_service | :ups
+
+            module ReturnMethod
+              extend Increase::Internal::Type::Enum
+
+              # DHL.
+              DHL: :dhl
+
+              # Face-to-face.
+              FACE_TO_FACE: :face_to_face
+
+              # FedEx.
+              FEDEX: :fedex
+
+              # Other.
+              OTHER: :other
+
+              # Postal service.
+              POSTAL_SERVICE: :postal_service
+
+              # UPS.
+              UPS: :ups
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::return_method]
+            end
+          end
+        end
+
+        type consumer_merchandise_not_received =
+          {
+            cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::cancellation_outcome,
+            delivery_issue: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::delivery_issue,
+            last_expected_receipt_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::merchant_resolution_attempted,
+            purchase_info_and_explanation: String,
+            cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt,
+            delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed,
+            delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
+            merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation,
+            no_cancellation: top
+          }
+
+        class ConsumerMerchandiseNotReceived < Increase::Internal::Type::BaseModel
+          attr_accessor cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::cancellation_outcome
+
+          attr_accessor delivery_issue: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::delivery_issue
+
+          attr_accessor last_expected_receipt_at: Date
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::merchant_resolution_attempted
+
+          attr_accessor purchase_info_and_explanation: String
+
+          attr_reader cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt?
+
+          def cardholder_cancellation_prior_to_expected_receipt=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt
+
+          attr_reader delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed?
+
+          def delayed=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed
+
+          attr_reader delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation?
+
+          def delivered_to_wrong_location=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation
+
+          attr_reader merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation?
+
+          def merchant_cancellation=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation
+
+          attr_reader no_cancellation: top?
+
+          def no_cancellation=: (top) -> top
+
+          def initialize: (
+            cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::cancellation_outcome,
+            delivery_issue: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::delivery_issue,
+            last_expected_receipt_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::merchant_resolution_attempted,
+            purchase_info_and_explanation: String,
+            ?cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt,
+            ?delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed,
+            ?delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
+            ?merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation,
+            ?no_cancellation: top
+          ) -> void
+
+          def to_hash: -> {
+            cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::cancellation_outcome,
+            delivery_issue: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::delivery_issue,
+            last_expected_receipt_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::merchant_resolution_attempted,
+            purchase_info_and_explanation: String,
+            cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt,
+            delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed,
+            delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
+            merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation,
+            no_cancellation: top
+          }
+
+          type cancellation_outcome =
+            :cardholder_cancellation_prior_to_expected_receipt
+            | :merchant_cancellation
+            | :no_cancellation
+
+          module CancellationOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Cardholder cancellation prior to expected receipt.
+            CARDHOLDER_CANCELLATION_PRIOR_TO_EXPECTED_RECEIPT: :cardholder_cancellation_prior_to_expected_receipt
+
+            # Merchant cancellation.
+            MERCHANT_CANCELLATION: :merchant_cancellation
+
+            # No cancellation.
+            NO_CANCELLATION: :no_cancellation
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::cancellation_outcome]
+          end
+
+          type delivery_issue = :delayed | :delivered_to_wrong_location
+
+          module DeliveryIssue
+            extend Increase::Internal::Type::Enum
+
+            # Delayed.
+            DELAYED: :delayed
+
+            # Delivered to wrong location.
+            DELIVERED_TO_WRONG_LOCATION: :delivered_to_wrong_location
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::delivery_issue]
+          end
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::merchant_resolution_attempted]
+          end
+
+          type cardholder_cancellation_prior_to_expected_receipt =
+            { canceled_at: Date, reason: String }
+
+          class CardholderCancellationPriorToExpectedReceipt < Increase::Internal::Type::BaseModel
+            attr_accessor canceled_at: Date
+
+            attr_reader reason: String?
+
+            def reason=: (String) -> String
+
+            def initialize: (canceled_at: Date, ?reason: String) -> void
+
+            def to_hash: -> { canceled_at: Date, reason: String }
+          end
+
+          type delayed =
+            {
+              explanation: String,
+              return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
+              not_returned: top,
+              return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
+              returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
+            }
+
+          class Delayed < Increase::Internal::Type::BaseModel
+            attr_accessor explanation: String
+
+            attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome
+
+            attr_reader not_returned: top?
+
+            def not_returned=: (top) -> top
+
+            attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted?
+
+            def return_attempted=: (
+              Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted
+            ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted
+
+            attr_reader returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned?
+
+            def returned=: (
+              Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
+            ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
+
+            def initialize: (
+              explanation: String,
+              return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
+              ?not_returned: top,
+              ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
+              ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
+            ) -> void
+
+            def to_hash: -> {
+              explanation: String,
+              return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
+              not_returned: top,
+              return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
+              returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
+            }
+
+            type return_outcome = :not_returned | :returned | :return_attempted
+
+            module ReturnOutcome
+              extend Increase::Internal::Type::Enum
+
+              # Not returned.
+              NOT_RETURNED: :not_returned
+
+              # Returned.
+              RETURNED: :returned
+
+              # Return attempted.
+              RETURN_ATTEMPTED: :return_attempted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome]
+            end
+
+            type return_attempted = { attempted_at: Date }
+
+            class ReturnAttempted < Increase::Internal::Type::BaseModel
+              attr_accessor attempted_at: Date
+
+              def initialize: (attempted_at: Date) -> void
+
+              def to_hash: -> { attempted_at: Date }
+            end
+
+            type returned =
+              { merchant_received_return_at: Date, returned_at: Date }
+
+            class Returned < Increase::Internal::Type::BaseModel
+              attr_accessor merchant_received_return_at: Date
+
+              attr_accessor returned_at: Date
+
+              def initialize: (
+                merchant_received_return_at: Date,
+                returned_at: Date
+              ) -> void
+
+              def to_hash: -> {
+                merchant_received_return_at: Date,
+                returned_at: Date
+              }
+            end
+          end
+
+          type delivered_to_wrong_location = { agreed_location: String }
+
+          class DeliveredToWrongLocation < Increase::Internal::Type::BaseModel
+            attr_accessor agreed_location: String
+
+            def initialize: (agreed_location: String) -> void
+
+            def to_hash: -> { agreed_location: String }
+          end
+
+          type merchant_cancellation = { canceled_at: Date }
+
+          class MerchantCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor canceled_at: Date
+
+            def initialize: (canceled_at: Date) -> void
+
+            def to_hash: -> { canceled_at: Date }
+          end
+        end
+
+        type consumer_original_credit_transaction_not_accepted =
+          {
+            explanation: String,
+            reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::reason
+          }
+
+        class ConsumerOriginalCreditTransactionNotAccepted < Increase::Internal::Type::BaseModel
+          attr_accessor explanation: String
+
+          attr_accessor reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::reason
+
+          def initialize: (
+            explanation: String,
+            reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::reason
+          ) -> void
+
+          def to_hash: -> {
+            explanation: String,
+            reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::reason
+          }
+
+          type reason =
+            :prohibited_by_local_laws_or_regulation | :recipient_refused
+
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # Prohibited by local laws or regulation.
+            PROHIBITED_BY_LOCAL_LAWS_OR_REGULATION: :prohibited_by_local_laws_or_regulation
+
+            # Recipient refused.
+            RECIPIENT_REFUSED: :recipient_refused
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::reason]
+          end
+        end
+
+        type consumer_quality_merchandise =
+          {
+            expected_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::merchant_resolution_attempted,
+            purchase_info_and_quality_issue: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome,
+            not_returned: top,
+            ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
+          }
+
+        class ConsumerQualityMerchandise < Increase::Internal::Type::BaseModel
+          attr_accessor expected_at: Date
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::merchant_resolution_attempted
+
+          attr_accessor purchase_info_and_quality_issue: String
+
+          attr_accessor received_at: Date
+
+          attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome
+
+          attr_reader not_returned: top?
+
+          def not_returned=: (top) -> top
+
+          attr_reader ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations?
+
+          def ongoing_negotiations=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations
+
+          attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted?
+
+          def return_attempted=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted
+
+          attr_reader returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned?
+
+          def returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
+
+          def initialize: (
+            expected_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::merchant_resolution_attempted,
+            purchase_info_and_quality_issue: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome,
+            ?not_returned: top,
+            ?ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations,
+            ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted,
+            ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
+          ) -> void
+
+          def to_hash: -> {
+            expected_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::merchant_resolution_attempted,
+            purchase_info_and_quality_issue: String,
+            received_at: Date,
+            return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome,
+            not_returned: top,
+            ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations,
+            return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted,
+            returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
+          }
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::merchant_resolution_attempted]
+          end
+
+          type return_outcome = :not_returned | :returned | :return_attempted
+
+          module ReturnOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Not returned.
+            NOT_RETURNED: :not_returned
+
+            # Returned.
+            RETURNED: :returned
+
+            # Return attempted.
+            RETURN_ATTEMPTED: :return_attempted
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome]
+          end
+
+          type ongoing_negotiations =
+            {
+              explanation: String,
+              issuer_first_notified_at: Date,
+              started_at: Date
+            }
+
+          class OngoingNegotiations < Increase::Internal::Type::BaseModel
+            attr_accessor explanation: String
+
+            attr_accessor issuer_first_notified_at: Date
+
+            attr_accessor started_at: Date
+
+            def initialize: (
+              explanation: String,
+              issuer_first_notified_at: Date,
+              started_at: Date
+            ) -> void
+
+            def to_hash: -> {
+              explanation: String,
+              issuer_first_notified_at: Date,
+              started_at: Date
+            }
+          end
+
+          type return_attempted =
+            {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+          class ReturnAttempted < Increase::Internal::Type::BaseModel
+            attr_accessor attempt_explanation: String
+
+            attr_accessor attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::attempt_reason
+
+            attr_accessor attempted_at: Date
+
+            attr_accessor merchandise_disposition: String
+
+            def initialize: (
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            ) -> void
+
+            def to_hash: -> {
+              attempt_explanation: String,
+              attempt_reason: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::attempt_reason,
+              attempted_at: Date,
+              merchandise_disposition: String
+            }
+
+            type attempt_reason =
+              :merchant_not_responding
+              | :no_return_authorization_provided
+              | :no_return_instructions
+              | :requested_not_to_return
+              | :return_not_accepted
+
+            module AttemptReason
+              extend Increase::Internal::Type::Enum
+
+              # Merchant not responding.
+              MERCHANT_NOT_RESPONDING: :merchant_not_responding
+
+              # No return authorization provided.
+              NO_RETURN_AUTHORIZATION_PROVIDED: :no_return_authorization_provided
+
+              # No return instructions.
+              NO_RETURN_INSTRUCTIONS: :no_return_instructions
+
+              # Requested not to return.
+              REQUESTED_NOT_TO_RETURN: :requested_not_to_return
+
+              # Return not accepted.
+              RETURN_NOT_ACCEPTED: :return_not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::attempt_reason]
+            end
+          end
+
+          type returned =
+            {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+          class Returned < Increase::Internal::Type::BaseModel
+            attr_accessor return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::return_method
+
+            attr_accessor returned_at: Date
+
+            attr_reader merchant_received_return_at: Date?
+
+            def merchant_received_return_at=: (Date) -> Date
+
+            attr_reader other_explanation: String?
+
+            def other_explanation=: (String) -> String
+
+            attr_reader tracking_number: String?
+
+            def tracking_number=: (String) -> String
+
+            def initialize: (
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::return_method,
+              returned_at: Date,
+              ?merchant_received_return_at: Date,
+              ?other_explanation: String,
+              ?tracking_number: String
+            ) -> void
+
+            def to_hash: -> {
+              return_method: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::return_method,
+              returned_at: Date,
+              merchant_received_return_at: Date,
+              other_explanation: String,
+              tracking_number: String
+            }
+
+            type return_method =
+              :dhl | :face_to_face | :fedex | :other | :postal_service | :ups
+
+            module ReturnMethod
+              extend Increase::Internal::Type::Enum
+
+              # DHL.
+              DHL: :dhl
+
+              # Face-to-face.
+              FACE_TO_FACE: :face_to_face
+
+              # FedEx.
+              FEDEX: :fedex
+
+              # Other.
+              OTHER: :other
+
+              # Postal service.
+              POSTAL_SERVICE: :postal_service
+
+              # UPS.
+              UPS: :ups
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::return_method]
+            end
+          end
+        end
+
+        type consumer_quality_services =
+          {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation,
+            non_fiat_currency_or_non_fungible_token_related_and_not_matching_description: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::non_fiat_currency_or_non_fungible_token_related_and_not_matching_description,
+            purchase_info_and_quality_issue: String,
+            services_received_at: Date,
+            cardholder_paid_to_have_work_redone: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone,
+            ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations,
+            restaurant_food_related: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related
+          }
+
+        class ConsumerQualityServices < Increase::Internal::Type::BaseModel
+          attr_accessor cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation
+
+          attr_accessor non_fiat_currency_or_non_fungible_token_related_and_not_matching_description: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::non_fiat_currency_or_non_fungible_token_related_and_not_matching_description
+
+          attr_accessor purchase_info_and_quality_issue: String
+
+          attr_accessor services_received_at: Date
+
+          attr_reader cardholder_paid_to_have_work_redone: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone?
+
+          def cardholder_paid_to_have_work_redone=: (
+            Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone
+          ) -> Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone
+
+          attr_reader ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations?
+
+          def ongoing_negotiations=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations
+
+          attr_reader restaurant_food_related: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related?
+
+          def restaurant_food_related=: (
+            Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related
+          ) -> Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related
+
+          def initialize: (
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation,
+            non_fiat_currency_or_non_fungible_token_related_and_not_matching_description: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::non_fiat_currency_or_non_fungible_token_related_and_not_matching_description,
+            purchase_info_and_quality_issue: String,
+            services_received_at: Date,
+            ?cardholder_paid_to_have_work_redone: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone,
+            ?ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations,
+            ?restaurant_food_related: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related
+          ) -> void
+
+          def to_hash: -> {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation,
+            non_fiat_currency_or_non_fungible_token_related_and_not_matching_description: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::non_fiat_currency_or_non_fungible_token_related_and_not_matching_description,
+            purchase_info_and_quality_issue: String,
+            services_received_at: Date,
+            cardholder_paid_to_have_work_redone: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone,
+            ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations,
+            restaurant_food_related: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related
+          }
+
+          type cardholder_cancellation =
+            {
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            }
+
+          class CardholderCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::accepted_by_merchant
+
+            attr_accessor canceled_at: Date
+
+            attr_accessor reason: String
+
+            def initialize: (
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            ) -> void
+
+            def to_hash: -> {
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            }
+
+            type accepted_by_merchant = :accepted | :not_accepted
+
+            module AcceptedByMerchant
+              extend Increase::Internal::Type::Enum
+
+              # Accepted.
+              ACCEPTED: :accepted
+
+              # Not accepted.
+              NOT_ACCEPTED: :not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::accepted_by_merchant]
+            end
+          end
+
+          type non_fiat_currency_or_non_fungible_token_related_and_not_matching_description =
+            :not_related | :related
+
+          module NonFiatCurrencyOrNonFungibleTokenRelatedAndNotMatchingDescription
+            extend Increase::Internal::Type::Enum
+
+            # Not related.
+            NOT_RELATED: :not_related
+
+            # Related.
+            RELATED: :related
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::non_fiat_currency_or_non_fungible_token_related_and_not_matching_description]
+          end
+
+          type cardholder_paid_to_have_work_redone =
+            :did_not_pay_to_have_work_redone | :paid_to_have_work_redone
+
+          module CardholderPaidToHaveWorkRedone
+            extend Increase::Internal::Type::Enum
+
+            # Cardholder did not pay to have work redone.
+            DID_NOT_PAY_TO_HAVE_WORK_REDONE: :did_not_pay_to_have_work_redone
+
+            # Cardholder paid to have work redone.
+            PAID_TO_HAVE_WORK_REDONE: :paid_to_have_work_redone
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::cardholder_paid_to_have_work_redone]
+          end
+
+          type ongoing_negotiations =
+            {
+              explanation: String,
+              issuer_first_notified_at: Date,
+              started_at: Date
+            }
+
+          class OngoingNegotiations < Increase::Internal::Type::BaseModel
+            attr_accessor explanation: String
+
+            attr_accessor issuer_first_notified_at: Date
+
+            attr_accessor started_at: Date
+
+            def initialize: (
+              explanation: String,
+              issuer_first_notified_at: Date,
+              started_at: Date
+            ) -> void
+
+            def to_hash: -> {
+              explanation: String,
+              issuer_first_notified_at: Date,
+              started_at: Date
+            }
+          end
+
+          type restaurant_food_related = :not_related | :related
+
+          module RestaurantFoodRelated
+            extend Increase::Internal::Type::Enum
+
+            # Not related.
+            NOT_RELATED: :not_related
+
+            # Related.
+            RELATED: :related
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::restaurant_food_related]
+          end
+        end
+
+        type consumer_services_misrepresentation =
+          {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::merchant_resolution_attempted,
+            misrepresentation_explanation: String,
+            purchase_explanation: String,
+            received_at: Date
+          }
+
+        class ConsumerServicesMisrepresentation < Increase::Internal::Type::BaseModel
+          attr_accessor cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::merchant_resolution_attempted
+
+          attr_accessor misrepresentation_explanation: String
+
+          attr_accessor purchase_explanation: String
+
+          attr_accessor received_at: Date
+
+          def initialize: (
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::merchant_resolution_attempted,
+            misrepresentation_explanation: String,
+            purchase_explanation: String,
+            received_at: Date
+          ) -> void
+
+          def to_hash: -> {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::merchant_resolution_attempted,
+            misrepresentation_explanation: String,
+            purchase_explanation: String,
+            received_at: Date
+          }
+
+          type cardholder_cancellation =
+            {
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            }
+
+          class CardholderCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::accepted_by_merchant
+
+            attr_accessor canceled_at: Date
+
+            attr_accessor reason: String
+
+            def initialize: (
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            ) -> void
+
+            def to_hash: -> {
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            }
+
+            type accepted_by_merchant = :accepted | :not_accepted
+
+            module AcceptedByMerchant
+              extend Increase::Internal::Type::Enum
+
+              # Accepted.
+              ACCEPTED: :accepted
+
+              # Not accepted.
+              NOT_ACCEPTED: :not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::accepted_by_merchant]
+            end
+          end
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::merchant_resolution_attempted]
+          end
+        end
+
+        type consumer_services_not_as_described =
+          {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted,
+            received_at: Date
+          }
+
+        class ConsumerServicesNotAsDescribed < Increase::Internal::Type::BaseModel
+          attr_accessor cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted
+
+          attr_accessor received_at: Date
+
+          def initialize: (
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted,
+            received_at: Date
+          ) -> void
+
+          def to_hash: -> {
+            cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted,
+            received_at: Date
+          }
+
+          type cardholder_cancellation =
+            {
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            }
+
+          class CardholderCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::accepted_by_merchant
+
+            attr_accessor canceled_at: Date
+
+            attr_accessor reason: String
+
+            def initialize: (
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            ) -> void
+
+            def to_hash: -> {
+              accepted_by_merchant: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::accepted_by_merchant,
+              canceled_at: Date,
+              reason: String
+            }
+
+            type accepted_by_merchant = :accepted | :not_accepted
+
+            module AcceptedByMerchant
+              extend Increase::Internal::Type::Enum
+
+              # Accepted.
+              ACCEPTED: :accepted
+
+              # Not accepted.
+              NOT_ACCEPTED: :not_accepted
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::accepted_by_merchant]
+            end
+          end
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted]
+          end
+        end
+
+        type consumer_services_not_received =
+          {
+            cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::cancellation_outcome,
+            last_expected_receipt_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::merchant_resolution_attempted,
+            purchase_info_and_explanation: String,
+            cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
+            merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation,
+            no_cancellation: top
+          }
+
+        class ConsumerServicesNotReceived < Increase::Internal::Type::BaseModel
+          attr_accessor cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::cancellation_outcome
+
+          attr_accessor last_expected_receipt_at: Date
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::merchant_resolution_attempted
+
+          attr_accessor purchase_info_and_explanation: String
+
+          attr_reader cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt?
+
+          def cardholder_cancellation_prior_to_expected_receipt=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt
+
+          attr_reader merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation?
+
+          def merchant_cancellation=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation
+
+          attr_reader no_cancellation: top?
+
+          def no_cancellation=: (top) -> top
+
+          def initialize: (
+            cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::cancellation_outcome,
+            last_expected_receipt_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::merchant_resolution_attempted,
+            purchase_info_and_explanation: String,
+            ?cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
+            ?merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation,
+            ?no_cancellation: top
+          ) -> void
+
+          def to_hash: -> {
+            cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::cancellation_outcome,
+            last_expected_receipt_at: Date,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::merchant_resolution_attempted,
+            purchase_info_and_explanation: String,
+            cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
+            merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation,
+            no_cancellation: top
+          }
+
+          type cancellation_outcome =
+            :cardholder_cancellation_prior_to_expected_receipt
+            | :merchant_cancellation
+            | :no_cancellation
+
+          module CancellationOutcome
+            extend Increase::Internal::Type::Enum
+
+            # Cardholder cancellation prior to expected receipt.
+            CARDHOLDER_CANCELLATION_PRIOR_TO_EXPECTED_RECEIPT: :cardholder_cancellation_prior_to_expected_receipt
+
+            # Merchant cancellation.
+            MERCHANT_CANCELLATION: :merchant_cancellation
+
+            # No cancellation.
+            NO_CANCELLATION: :no_cancellation
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::cancellation_outcome]
+          end
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::merchant_resolution_attempted]
+          end
+
+          type cardholder_cancellation_prior_to_expected_receipt =
+            { canceled_at: Date, reason: String }
+
+          class CardholderCancellationPriorToExpectedReceipt < Increase::Internal::Type::BaseModel
+            attr_accessor canceled_at: Date
+
+            attr_reader reason: String?
+
+            def reason=: (String) -> String
+
+            def initialize: (canceled_at: Date, ?reason: String) -> void
+
+            def to_hash: -> { canceled_at: Date, reason: String }
+          end
+
+          type merchant_cancellation = { canceled_at: Date }
+
+          class MerchantCancellation < Increase::Internal::Type::BaseModel
+            attr_accessor canceled_at: Date
+
+            def initialize: (canceled_at: Date) -> void
+
+            def to_hash: -> { canceled_at: Date }
+          end
+        end
+
+        type fraud =
+          {
+            fraud_type: Increase::Models::CardDisputeCreateParams::Visa::Fraud::fraud_type
+          }
+
+        class Fraud < Increase::Internal::Type::BaseModel
+          attr_accessor fraud_type: Increase::Models::CardDisputeCreateParams::Visa::Fraud::fraud_type
+
+          def initialize: (
+            fraud_type: Increase::Models::CardDisputeCreateParams::Visa::Fraud::fraud_type
+          ) -> void
+
+          def to_hash: -> {
+            fraud_type: Increase::Models::CardDisputeCreateParams::Visa::Fraud::fraud_type
+          }
+
+          type fraud_type =
+            :account_or_credentials_takeover
+            | :card_not_received_as_issued
+            | :fraudulent_application
+            | :fraudulent_use_of_account_number
+            | :incorrect_processing
+            | :issuer_reported_counterfeit
+            | :lost
+            | :manipulation_of_account_holder
+            | :merchant_misrepresentation
+            | :miscellaneous
+            | :stolen
+
+          module FraudType
+            extend Increase::Internal::Type::Enum
+
+            # Account or credentials takeover.
+            ACCOUNT_OR_CREDENTIALS_TAKEOVER: :account_or_credentials_takeover
+
+            # Card not received as issued.
+            CARD_NOT_RECEIVED_AS_ISSUED: :card_not_received_as_issued
+
+            # Fraudulent application.
+            FRAUDULENT_APPLICATION: :fraudulent_application
+
+            # Fraudulent use of account number.
+            FRAUDULENT_USE_OF_ACCOUNT_NUMBER: :fraudulent_use_of_account_number
+
+            # Incorrect processing.
+            INCORRECT_PROCESSING: :incorrect_processing
+
+            # Issuer reported counterfeit.
+            ISSUER_REPORTED_COUNTERFEIT: :issuer_reported_counterfeit
+
+            # Lost.
+            LOST: :lost
+
+            # Manipulation of account holder.
+            MANIPULATION_OF_ACCOUNT_HOLDER: :manipulation_of_account_holder
+
+            # Merchant misrepresentation.
+            MERCHANT_MISREPRESENTATION: :merchant_misrepresentation
+
+            # Miscellaneous.
+            MISCELLANEOUS: :miscellaneous
+
+            # Stolen.
+            STOLEN: :stolen
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::Fraud::fraud_type]
+          end
+        end
+
+        type processing_error =
+          {
+            error_reason: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::error_reason,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::merchant_resolution_attempted,
+            duplicate_transaction: Increase::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction,
+            incorrect_amount: Increase::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount,
+            paid_by_other_means: Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans
+          }
+
+        class ProcessingError < Increase::Internal::Type::BaseModel
+          attr_accessor error_reason: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::error_reason
+
+          attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::merchant_resolution_attempted
+
+          attr_reader duplicate_transaction: Increase::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction?
+
+          def duplicate_transaction=: (
+            Increase::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction
+          ) -> Increase::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction
+
+          attr_reader incorrect_amount: Increase::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount?
+
+          def incorrect_amount=: (
+            Increase::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount
+          ) -> Increase::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount
+
+          attr_reader paid_by_other_means: Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans?
+
+          def paid_by_other_means=: (
+            Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans
+          ) -> Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans
+
+          def initialize: (
+            error_reason: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::error_reason,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::merchant_resolution_attempted,
+            ?duplicate_transaction: Increase::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction,
+            ?incorrect_amount: Increase::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount,
+            ?paid_by_other_means: Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans
+          ) -> void
+
+          def to_hash: -> {
+            error_reason: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::error_reason,
+            merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::merchant_resolution_attempted,
+            duplicate_transaction: Increase::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction,
+            incorrect_amount: Increase::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount,
+            paid_by_other_means: Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans
+          }
+
+          type error_reason =
+            :duplicate_transaction | :incorrect_amount | :paid_by_other_means
+
+          module ErrorReason
+            extend Increase::Internal::Type::Enum
+
+            # Duplicate transaction.
+            DUPLICATE_TRANSACTION: :duplicate_transaction
+
+            # Incorrect amount.
+            INCORRECT_AMOUNT: :incorrect_amount
+
+            # Paid by other means.
+            PAID_BY_OTHER_MEANS: :paid_by_other_means
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::error_reason]
+          end
+
+          type merchant_resolution_attempted =
+            :attempted | :prohibited_by_local_law
+
+          module MerchantResolutionAttempted
+            extend Increase::Internal::Type::Enum
+
+            # Attempted.
+            ATTEMPTED: :attempted
+
+            # Prohibited by local law.
+            PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
+
+            def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::merchant_resolution_attempted]
+          end
+
+          type duplicate_transaction = { other_transaction_id: String }
+
+          class DuplicateTransaction < Increase::Internal::Type::BaseModel
+            attr_accessor other_transaction_id: String
+
+            def initialize: (other_transaction_id: String) -> void
+
+            def to_hash: -> { other_transaction_id: String }
+          end
+
+          type incorrect_amount = { expected_amount: Integer }
+
+          class IncorrectAmount < Increase::Internal::Type::BaseModel
+            attr_accessor expected_amount: Integer
+
+            def initialize: (expected_amount: Integer) -> void
+
+            def to_hash: -> { expected_amount: Integer }
+          end
+
+          type paid_by_other_means =
+            {
+              other_form_of_payment_evidence: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::other_form_of_payment_evidence,
+              other_transaction_id: String
+            }
+
+          class PaidByOtherMeans < Increase::Internal::Type::BaseModel
+            attr_accessor other_form_of_payment_evidence: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::other_form_of_payment_evidence
+
+            attr_reader other_transaction_id: String?
+
+            def other_transaction_id=: (String) -> String
+
+            def initialize: (
+              other_form_of_payment_evidence: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::other_form_of_payment_evidence,
+              ?other_transaction_id: String
+            ) -> void
+
+            def to_hash: -> {
+              other_form_of_payment_evidence: Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::other_form_of_payment_evidence,
+              other_transaction_id: String
+            }
+
+            type other_form_of_payment_evidence =
+              :canceled_check
+              | :card_transaction
+              | :cash_receipt
+              | :other
+              | :statement
+              | :voucher
+
+            module OtherFormOfPaymentEvidence
+              extend Increase::Internal::Type::Enum
+
+              # Canceled check.
+              CANCELED_CHECK: :canceled_check
+
+              # Card transaction.
+              CARD_TRANSACTION: :card_transaction
+
+              # Cash receipt.
+              CASH_RECEIPT: :cash_receipt
+
+              # Other.
+              OTHER: :other
+
+              # Statement.
+              STATEMENT: :statement
+
+              # Voucher.
+              VOUCHER: :voucher
+
+              def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::other_form_of_payment_evidence]
+            end
+          end
+        end
+      end
+    end
+  end
+end

@@ -30,6 +30,9 @@ module Increase
       # @return [Increase::Resources::Simulations::CardRefunds]
       attr_reader :card_refunds
 
+      # @return [Increase::Resources::Simulations::CardDisputes]
+      attr_reader :card_disputes
+
       # @return [Increase::Resources::Simulations::PhysicalCards]
       attr_reader :physical_cards
 
@@ -102,6 +105,7 @@ module Increase
         @card_increments = Increase::Resources::Simulations::CardIncrements.new(client: client)
         @card_fuel_confirmations = Increase::Resources::Simulations::CardFuelConfirmations.new(client: client)
         @card_refunds = Increase::Resources::Simulations::CardRefunds.new(client: client)
+        @card_disputes = Increase::Resources::Simulations::CardDisputes.new(client: client)
         @physical_cards = Increase::Resources::Simulations::PhysicalCards.new(client: client)
         @digital_wallet_token_requests =
           Increase::Resources::Simulations::DigitalWalletTokenRequests.new(client: client)

@@ -32,6 +32,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::CardRefunds) }
       attr_reader :card_refunds
 
+      sig { returns(Increase::Resources::Simulations::CardDisputes) }
+      attr_reader :card_disputes
+
       sig { returns(Increase::Resources::Simulations::PhysicalCards) }
       attr_reader :physical_cards
 
