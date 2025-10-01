@@ -97,13 +97,13 @@ module Increase
           # Cashback Payment: details will be under the `cashback_payment` object.
           CASHBACK_PAYMENT = :cashback_payment
 
-          # Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
           CARD_DISPUTE_ACCEPTANCE = :card_dispute_acceptance
 
           # Card Dispute Financial: details will be under the `card_dispute_financial` object.
           CARD_DISPUTE_FINANCIAL = :card_dispute_financial
 
-          # Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS = :card_dispute_loss
 
           # Card Refund: details will be under the `card_refund` object.
