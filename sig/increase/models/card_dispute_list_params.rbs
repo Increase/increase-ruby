@@ -1,0 +1,150 @@
+module Increase
+  module Models
+    type card_dispute_list_params =
+      {
+        created_at: Increase::CardDisputeListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardDisputeListParams::Status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class CardDisputeListParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader created_at: Increase::CardDisputeListParams::CreatedAt?
+
+      def created_at=: (
+        Increase::CardDisputeListParams::CreatedAt
+      ) -> Increase::CardDisputeListParams::CreatedAt
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Increase::CardDisputeListParams::Status?
+
+      def status=: (
+        Increase::CardDisputeListParams::Status
+      ) -> Increase::CardDisputeListParams::Status
+
+      def initialize: (
+        ?created_at: Increase::CardDisputeListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CardDisputeListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Increase::CardDisputeListParams::CreatedAt,
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::CardDisputeListParams::Status,
+        request_options: Increase::RequestOptions
+      }
+
+      type created_at =
+        { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+
+      class CreatedAt < Increase::Internal::Type::BaseModel
+        attr_reader after: Time?
+
+        def after=: (Time) -> Time
+
+        attr_reader before: Time?
+
+        def before=: (Time) -> Time
+
+        attr_reader on_or_after: Time?
+
+        def on_or_after=: (Time) -> Time
+
+        attr_reader on_or_before: Time?
+
+        def on_or_before=: (Time) -> Time
+
+        def initialize: (
+          ?after: Time,
+          ?before: Time,
+          ?on_or_after: Time,
+          ?on_or_before: Time
+        ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
+      end
+
+      type status =
+        { in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_] }
+
+      class Status < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+        ) -> ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+        }
+
+        type in_ =
+          :user_submission_required
+          | :pending_user_submission_reviewing
+          | :pending_user_submission_submitting
+          | :pending_user_withdrawal_submitting
+          | :pending_response
+          | :lost
+          | :won
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # A User Submission is required to continue with the Card Dispute.
+          USER_SUBMISSION_REQUIRED: :user_submission_required
+
+          # The most recent User Submission is being reviewed.
+          PENDING_USER_SUBMISSION_REVIEWING: :pending_user_submission_reviewing
+
+          # The most recent User Submission is being submitted to the network.
+          PENDING_USER_SUBMISSION_SUBMITTING: :pending_user_submission_submitting
+
+          # The user's withdrawal of the Card Dispute is being submitted to the network.
+          PENDING_USER_WITHDRAWAL_SUBMITTING: :pending_user_withdrawal_submitting
+
+          # The Card Dispute is pending a response from the network.
+          PENDING_RESPONSE: :pending_response
+
+          # The Card Dispute has been lost and funds previously credited from the acceptance have been debited.
+          LOST: :lost
+
+          # The Card Dispute has been won and no further action can be taken.
+          WON: :won
+
+          def self?.values: -> ::Array[Increase::Models::CardDisputeListParams::Status::in_]
+        end
+      end
+    end
+  end
+end

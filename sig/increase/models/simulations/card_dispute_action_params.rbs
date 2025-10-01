@@ -1,0 +1,195 @@
+module Increase
+  module Models
+    module Simulations
+      type card_dispute_action_params =
+        {
+          network: Increase::Models::Simulations::CardDisputeActionParams::network,
+          visa: Increase::Simulations::CardDisputeActionParams::Visa
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class CardDisputeActionParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor network: Increase::Models::Simulations::CardDisputeActionParams::network
+
+        attr_reader visa: Increase::Simulations::CardDisputeActionParams::Visa?
+
+        def visa=: (
+          Increase::Simulations::CardDisputeActionParams::Visa
+        ) -> Increase::Simulations::CardDisputeActionParams::Visa
+
+        def initialize: (
+          network: Increase::Models::Simulations::CardDisputeActionParams::network,
+          ?visa: Increase::Simulations::CardDisputeActionParams::Visa,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          network: Increase::Models::Simulations::CardDisputeActionParams::network,
+          visa: Increase::Simulations::CardDisputeActionParams::Visa,
+          request_options: Increase::RequestOptions
+        }
+
+        type network = :visa
+
+        module Network
+          extend Increase::Internal::Type::Enum
+
+          # Visa
+          VISA: :visa
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::CardDisputeActionParams::network]
+        end
+
+        type visa =
+          {
+            action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
+            accept_chargeback: top,
+            accept_user_submission: top,
+            decline_user_prearbitration: top,
+            receive_merchant_prearbitration: top,
+            represent: top,
+            request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
+            time_out_chargeback: top,
+            time_out_merchant_prearbitration: top,
+            time_out_representment: top,
+            time_out_user_prearbitration: top
+          }
+
+        class Visa < Increase::Internal::Type::BaseModel
+          attr_accessor action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action
+
+          attr_reader accept_chargeback: top?
+
+          def accept_chargeback=: (top) -> top
+
+          attr_reader accept_user_submission: top?
+
+          def accept_user_submission=: (top) -> top
+
+          attr_reader decline_user_prearbitration: top?
+
+          def decline_user_prearbitration=: (top) -> top
+
+          attr_reader receive_merchant_prearbitration: top?
+
+          def receive_merchant_prearbitration=: (top) -> top
+
+          attr_reader represent: top?
+
+          def represent=: (top) -> top
+
+          attr_reader request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation?
+
+          def request_further_information=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation
+
+          attr_reader time_out_chargeback: top?
+
+          def time_out_chargeback=: (top) -> top
+
+          attr_reader time_out_merchant_prearbitration: top?
+
+          def time_out_merchant_prearbitration=: (top) -> top
+
+          attr_reader time_out_representment: top?
+
+          def time_out_representment=: (top) -> top
+
+          attr_reader time_out_user_prearbitration: top?
+
+          def time_out_user_prearbitration=: (top) -> top
+
+          def initialize: (
+            action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
+            ?accept_chargeback: top,
+            ?accept_user_submission: top,
+            ?decline_user_prearbitration: top,
+            ?receive_merchant_prearbitration: top,
+            ?represent: top,
+            ?request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
+            ?time_out_chargeback: top,
+            ?time_out_merchant_prearbitration: top,
+            ?time_out_representment: top,
+            ?time_out_user_prearbitration: top
+          ) -> void
+
+          def to_hash: -> {
+            action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
+            accept_chargeback: top,
+            accept_user_submission: top,
+            decline_user_prearbitration: top,
+            receive_merchant_prearbitration: top,
+            represent: top,
+            request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
+            time_out_chargeback: top,
+            time_out_merchant_prearbitration: top,
+            time_out_representment: top,
+            time_out_user_prearbitration: top
+          }
+
+          type action =
+            :accept_chargeback
+            | :accept_user_submission
+            | :decline_user_prearbitration
+            | :receive_merchant_prearbitration
+            | :represent
+            | :request_further_information
+            | :time_out_chargeback
+            | :time_out_merchant_prearbitration
+            | :time_out_representment
+            | :time_out_user_prearbitration
+
+          module Action
+            extend Increase::Internal::Type::Enum
+
+            # Simulate the merchant accepting the chargeback. This will move the dispute to a `won` state.
+            ACCEPT_CHARGEBACK: :accept_chargeback
+
+            # Accept the user's submission and transmit it to the network. This will move the dispute to a `pending_response` state.
+            ACCEPT_USER_SUBMISSION: :accept_user_submission
+
+            # Simulate the merchant declining the user's pre-arbitration. This will move the dispute to a `lost` state.
+            DECLINE_USER_PREARBITRATION: :decline_user_prearbitration
+
+            # Simulate the merchant issuing pre-arbitration. This will move the dispute to a `user_submission_required` state.
+            RECEIVE_MERCHANT_PREARBITRATION: :receive_merchant_prearbitration
+
+            # Simulate the merchant re-presenting the dispute. This will move the dispute to a `user_submission_required` state.
+            REPRESENT: :represent
+
+            # Simulate further information being requested from the user. This will move the dispute to a `user_submission_required` state.
+            REQUEST_FURTHER_INFORMATION: :request_further_information
+
+            # Simulate the merchant timing out responding to the chargeback. This will move the dispute to a `won` state.
+            TIME_OUT_CHARGEBACK: :time_out_chargeback
+
+            # Simulate the user timing out responding to a merchant pre-arbitration. This will move the dispute to a `lost` state.
+            TIME_OUT_MERCHANT_PREARBITRATION: :time_out_merchant_prearbitration
+
+            # Simulate the user timing out responding to a merchant re-presentment. This will move the dispute to a `lost` state.
+            TIME_OUT_REPRESENTMENT: :time_out_representment
+
+            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `win` state.
+            TIME_OUT_USER_PREARBITRATION: :time_out_user_prearbitration
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::CardDisputeActionParams::Visa::action]
+          end
+
+          type request_further_information = { reason: String }
+
+          class RequestFurtherInformation < Increase::Internal::Type::BaseModel
+            attr_accessor reason: String
+
+            def initialize: (reason: String) -> void
+
+            def to_hash: -> { reason: String }
+          end
+        end
+      end
+    end
+  end
+end

@@ -19,6 +19,8 @@ module Increase
 
       attr_reader card_refunds: Increase::Resources::Simulations::CardRefunds
 
+      attr_reader card_disputes: Increase::Resources::Simulations::CardDisputes
+
       attr_reader physical_cards: Increase::Resources::Simulations::PhysicalCards
 
       attr_reader digital_wallet_token_requests: Increase::Resources::Simulations::DigitalWalletTokenRequests

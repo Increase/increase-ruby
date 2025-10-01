@@ -1,0 +1,44 @@
+module Increase
+  module Resources
+    class CardDisputes
+      def create: (
+        disputed_transaction_id: String,
+        network: Increase::Models::CardDisputeCreateParams::network,
+        ?amount: Integer,
+        ?attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        ?visa: Increase::CardDisputeCreateParams::Visa,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDispute
+
+      def retrieve: (
+        String card_dispute_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDispute
+
+      def list: (
+        ?created_at: Increase::CardDisputeListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CardDisputeListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::CardDispute]
+
+      def submit_user_submission: (
+        String card_dispute_id,
+        network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network,
+        ?amount: Integer,
+        ?attachment_files: ::Array[Increase::CardDisputeSubmitUserSubmissionParams::AttachmentFile],
+        ?visa: Increase::CardDisputeSubmitUserSubmissionParams::Visa,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDispute
+
+      def withdraw: (
+        String card_dispute_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDispute
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end
