@@ -201,7 +201,7 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
           CARD_DISPUTE_ACCEPTANCE =
             T.let(
               :card_dispute_acceptance,
@@ -215,7 +215,7 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS =
             T.let(
               :card_dispute_loss,

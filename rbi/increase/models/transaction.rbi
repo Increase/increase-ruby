@@ -310,7 +310,7 @@ module Increase
         end
         attr_writer :ach_transfer_return
 
-        # A Card Dispute Acceptance object. This field will be present in the JSON
+        # A Legacy Card Dispute Acceptance object. This field will be present in the JSON
         # response if and only if `category` is equal to `card_dispute_acceptance`.
         # Contains the details of a successful Card Dispute.
         sig do
@@ -350,9 +350,9 @@ module Increase
         end
         attr_writer :card_dispute_financial
 
-        # A Card Dispute Loss object. This field will be present in the JSON response if
-        # and only if `category` is equal to `card_dispute_loss`. Contains the details of
-        # a lost Card Dispute.
+        # A Legacy Card Dispute Loss object. This field will be present in the JSON
+        # response if and only if `category` is equal to `card_dispute_loss`. Contains the
+        # details of a lost Card Dispute.
         sig do
           returns(T.nilable(Increase::Transaction::Source::CardDisputeLoss))
         end
@@ -1069,7 +1069,7 @@ module Increase
           # the first two business days after the transfer is initiated, but can occur much
           # later.
           ach_transfer_return:,
-          # A Card Dispute Acceptance object. This field will be present in the JSON
+          # A Legacy Card Dispute Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_dispute_acceptance`.
           # Contains the details of a successful Card Dispute.
           card_dispute_acceptance:,
@@ -1077,9 +1077,9 @@ module Increase
           # if and only if `category` is equal to `card_dispute_financial`. Financial event
           # related to a Card Dispute.
           card_dispute_financial:,
-          # A Card Dispute Loss object. This field will be present in the JSON response if
-          # and only if `category` is equal to `card_dispute_loss`. Contains the details of
-          # a lost Card Dispute.
+          # A Legacy Card Dispute Loss object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_dispute_loss`. Contains the
+          # details of a lost Card Dispute.
           card_dispute_loss:,
           # A Card Financial object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_financial`. Card Financials are temporary
@@ -2278,7 +2278,7 @@ module Increase
           sig { returns(String) }
           attr_accessor :transaction_id
 
-          # A Card Dispute Acceptance object. This field will be present in the JSON
+          # A Legacy Card Dispute Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_dispute_acceptance`.
           # Contains the details of a successful Card Dispute.
           sig do
@@ -2570,9 +2570,9 @@ module Increase
           sig { returns(String) }
           attr_accessor :transaction_id
 
-          # A Card Dispute Loss object. This field will be present in the JSON response if
-          # and only if `category` is equal to `card_dispute_loss`. Contains the details of
-          # a lost Card Dispute.
+          # A Legacy Card Dispute Loss object. This field will be present in the JSON
+          # response if and only if `category` is equal to `card_dispute_loss`. Contains the
+          # details of a lost Card Dispute.
           sig do
             params(
               explanation: String,
@@ -10102,7 +10102,7 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
-          # Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
           CARD_DISPUTE_ACCEPTANCE =
             T.let(
               :card_dispute_acceptance,
@@ -10116,7 +10116,7 @@ module Increase
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
-          # Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS =
             T.let(
               :card_dispute_loss,

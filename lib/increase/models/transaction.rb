@@ -216,7 +216,7 @@ module Increase
         required :ach_transfer_return, -> { Increase::Transaction::Source::ACHTransferReturn }, nil?: true
 
         # @!attribute card_dispute_acceptance
-        #   A Card Dispute Acceptance object. This field will be present in the JSON
+        #   A Legacy Card Dispute Acceptance object. This field will be present in the JSON
         #   response if and only if `category` is equal to `card_dispute_acceptance`.
         #   Contains the details of a successful Card Dispute.
         #
@@ -240,9 +240,9 @@ module Increase
                  nil?: true
 
         # @!attribute card_dispute_loss
-        #   A Card Dispute Loss object. This field will be present in the JSON response if
-        #   and only if `category` is equal to `card_dispute_loss`. Contains the details of
-        #   a lost Card Dispute.
+        #   A Legacy Card Dispute Loss object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `card_dispute_loss`. Contains the
+        #   details of a lost Card Dispute.
         #
         #   @return [Increase::Models::Transaction::Source::CardDisputeLoss, nil]
         required :card_dispute_loss, -> { Increase::Transaction::Source::CardDisputeLoss }, nil?: true
@@ -557,11 +557,11 @@ module Increase
         #
         #   @param ach_transfer_return [Increase::Models::Transaction::Source::ACHTransferReturn, nil] An ACH Transfer Return object. This field will be present in the JSON response i
         #
-        #   @param card_dispute_acceptance [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil] A Card Dispute Acceptance object. This field will be present in the JSON respons
+        #   @param card_dispute_acceptance [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil] A Legacy Card Dispute Acceptance object. This field will be present in the JSON
         #
         #   @param card_dispute_financial [Increase::Models::Transaction::Source::CardDisputeFinancial, nil] A Card Dispute Financial object. This field will be present in the JSON response
         #
-        #   @param card_dispute_loss [Increase::Models::Transaction::Source::CardDisputeLoss, nil] A Card Dispute Loss object. This field will be present in the JSON response if a
+        #   @param card_dispute_loss [Increase::Models::Transaction::Source::CardDisputeLoss, nil] A Legacy Card Dispute Loss object. This field will be present in the JSON respon
         #
         #   @param card_financial [Increase::Models::Transaction::Source::CardFinancial, nil] A Card Financial object. This field will be present in the JSON response if and
         #
@@ -1129,7 +1129,7 @@ module Increase
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardDisputeAcceptance} for more details.
           #
-          #   A Card Dispute Acceptance object. This field will be present in the JSON
+          #   A Legacy Card Dispute Acceptance object. This field will be present in the JSON
           #   response if and only if `category` is equal to `card_dispute_acceptance`.
           #   Contains the details of a successful Card Dispute.
           #
@@ -1270,9 +1270,9 @@ module Increase
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardDisputeLoss} for more details.
           #
-          #   A Card Dispute Loss object. This field will be present in the JSON response if
-          #   and only if `category` is equal to `card_dispute_loss`. Contains the details of
-          #   a lost Card Dispute.
+          #   A Legacy Card Dispute Loss object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `card_dispute_loss`. Contains the
+          #   details of a lost Card Dispute.
           #
           #   @param explanation [String] Why the Card Dispute was lost.
           #
@@ -5385,13 +5385,13 @@ module Increase
           # Cashback Payment: details will be under the `cashback_payment` object.
           CASHBACK_PAYMENT = :cashback_payment
 
-          # Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
           CARD_DISPUTE_ACCEPTANCE = :card_dispute_acceptance
 
           # Card Dispute Financial: details will be under the `card_dispute_financial` object.
           CARD_DISPUTE_FINANCIAL = :card_dispute_financial
 
-          # Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS = :card_dispute_loss
 
           # Card Refund: details will be under the `card_refund` object.
