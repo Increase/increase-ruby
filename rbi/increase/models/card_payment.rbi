@@ -14918,13 +14918,18 @@ module Increase
         sig { returns(Integer) }
         attr_accessor :incremented_amount
 
+        # The total refunded amount in the minor unit of the transaction's currency. For
+        # dollars, for example, this is cents.
+        sig { returns(Integer) }
+        attr_accessor :refunded_amount
+
         # The total reversed amount in the minor unit of the transaction's currency. For
         # dollars, for example, this is cents.
         sig { returns(Integer) }
         attr_accessor :reversed_amount
 
-        # The total settled or refunded amount in the minor unit of the transaction's
-        # currency. For dollars, for example, this is cents.
+        # The total settled amount in the minor unit of the transaction's currency. For
+        # dollars, for example, this is cents.
         sig { returns(Integer) }
         attr_accessor :settled_amount
 
@@ -14934,6 +14939,7 @@ module Increase
             authorized_amount: Integer,
             fuel_confirmed_amount: Integer,
             incremented_amount: Integer,
+            refunded_amount: Integer,
             reversed_amount: Integer,
             settled_amount: Integer
           ).returns(T.attached_class)
@@ -14948,11 +14954,14 @@ module Increase
           # The total incrementally updated authorized amount in the minor unit of the
           # transaction's currency. For dollars, for example, this is cents.
           incremented_amount:,
+          # The total refunded amount in the minor unit of the transaction's currency. For
+          # dollars, for example, this is cents.
+          refunded_amount:,
           # The total reversed amount in the minor unit of the transaction's currency. For
           # dollars, for example, this is cents.
           reversed_amount:,
-          # The total settled or refunded amount in the minor unit of the transaction's
-          # currency. For dollars, for example, this is cents.
+          # The total settled amount in the minor unit of the transaction's currency. For
+          # dollars, for example, this is cents.
           settled_amount:
         )
         end
@@ -14963,6 +14972,7 @@ module Increase
               authorized_amount: Integer,
               fuel_confirmed_amount: Integer,
               incremented_amount: Integer,
+              refunded_amount: Integer,
               reversed_amount: Integer,
               settled_amount: Integer
             }

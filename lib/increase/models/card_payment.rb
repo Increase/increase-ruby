@@ -8043,6 +8043,13 @@ module Increase
         #   @return [Integer]
         required :incremented_amount, Integer
 
+        # @!attribute refunded_amount
+        #   The total refunded amount in the minor unit of the transaction's currency. For
+        #   dollars, for example, this is cents.
+        #
+        #   @return [Integer]
+        required :refunded_amount, Integer
+
         # @!attribute reversed_amount
         #   The total reversed amount in the minor unit of the transaction's currency. For
         #   dollars, for example, this is cents.
@@ -8051,13 +8058,13 @@ module Increase
         required :reversed_amount, Integer
 
         # @!attribute settled_amount
-        #   The total settled or refunded amount in the minor unit of the transaction's
-        #   currency. For dollars, for example, this is cents.
+        #   The total settled amount in the minor unit of the transaction's currency. For
+        #   dollars, for example, this is cents.
         #
         #   @return [Integer]
         required :settled_amount, Integer
 
-        # @!method initialize(authorized_amount:, fuel_confirmed_amount:, incremented_amount:, reversed_amount:, settled_amount:)
+        # @!method initialize(authorized_amount:, fuel_confirmed_amount:, incremented_amount:, refunded_amount:, reversed_amount:, settled_amount:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CardPayment::State} for more details.
         #
@@ -8069,9 +8076,11 @@ module Increase
         #
         #   @param incremented_amount [Integer] The total incrementally updated authorized amount in the minor unit of the trans
         #
+        #   @param refunded_amount [Integer] The total refunded amount in the minor unit of the transaction's currency. For d
+        #
         #   @param reversed_amount [Integer] The total reversed amount in the minor unit of the transaction's currency. For d
         #
-        #   @param settled_amount [Integer] The total settled or refunded amount in the minor unit of the transaction's curr
+        #   @param settled_amount [Integer] The total settled amount in the minor unit of the transaction's currency. For do
       end
 
       # A constant representing the object's type. For this resource it will always be

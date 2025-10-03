@@ -5679,6 +5679,7 @@ module Increase
           authorized_amount: Integer,
           fuel_confirmed_amount: Integer,
           incremented_amount: Integer,
+          refunded_amount: Integer,
           reversed_amount: Integer,
           settled_amount: Integer
         }
@@ -5690,6 +5691,8 @@ module Increase
 
         attr_accessor incremented_amount: Integer
 
+        attr_accessor refunded_amount: Integer
+
         attr_accessor reversed_amount: Integer
 
         attr_accessor settled_amount: Integer
@@ -5698,6 +5701,7 @@ module Increase
           authorized_amount: Integer,
           fuel_confirmed_amount: Integer,
           incremented_amount: Integer,
+          refunded_amount: Integer,
           reversed_amount: Integer,
           settled_amount: Integer
         ) -> void
@@ -5706,6 +5710,7 @@ module Increase
           authorized_amount: Integer,
           fuel_confirmed_amount: Integer,
           incremented_amount: Integer,
+          refunded_amount: Integer,
           reversed_amount: Integer,
           settled_amount: Integer
         }
