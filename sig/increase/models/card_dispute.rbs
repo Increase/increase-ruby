@@ -686,7 +686,7 @@ module Increase
               cardholder_no_longer_disputes: Increase::CardDispute::Visa::NetworkEvent::Represented::CardholderNoLongerDisputes?,
               credit_or_reversal_processed: Increase::CardDispute::Visa::NetworkEvent::Represented::CreditOrReversalProcessed?,
               invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?,
-              non_fiat_currency_or_non_fungible_token_as_described: top?,
+              non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?,
               non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?,
               proof_of_cash_disbursement: Increase::CardDispute::Visa::NetworkEvent::Represented::ProofOfCashDisbursement?,
               reason: Increase::Models::CardDispute::Visa::NetworkEvent::Represented::reason,
@@ -700,7 +700,7 @@ module Increase
 
             attr_accessor invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?
 
-            attr_accessor non_fiat_currency_or_non_fungible_token_as_described: top?
+            attr_accessor non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?
 
             attr_accessor non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?
 
@@ -714,7 +714,7 @@ module Increase
               cardholder_no_longer_disputes: Increase::CardDispute::Visa::NetworkEvent::Represented::CardholderNoLongerDisputes?,
               credit_or_reversal_processed: Increase::CardDispute::Visa::NetworkEvent::Represented::CreditOrReversalProcessed?,
               invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?,
-              non_fiat_currency_or_non_fungible_token_as_described: top?,
+              non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?,
               non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?,
               proof_of_cash_disbursement: Increase::CardDispute::Visa::NetworkEvent::Represented::ProofOfCashDisbursement?,
               reason: Increase::Models::CardDispute::Visa::NetworkEvent::Represented::reason,
@@ -725,7 +725,7 @@ module Increase
               cardholder_no_longer_disputes: Increase::CardDispute::Visa::NetworkEvent::Represented::CardholderNoLongerDisputes?,
               credit_or_reversal_processed: Increase::CardDispute::Visa::NetworkEvent::Represented::CreditOrReversalProcessed?,
               invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?,
-              non_fiat_currency_or_non_fungible_token_as_described: top?,
+              non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?,
               non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?,
               proof_of_cash_disbursement: Increase::CardDispute::Visa::NetworkEvent::Represented::ProofOfCashDisbursement?,
               reason: Increase::Models::CardDispute::Visa::NetworkEvent::Represented::reason,
@@ -938,6 +938,14 @@ module Increase
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute::reason]
               end
+            end
+
+            type non_fiat_currency_or_non_fungible_token_as_described = {  }
+
+            class NonFiatCurrencyOrNonFungibleTokenAsDescribed < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type non_fiat_currency_or_non_fungible_token_received =
@@ -1157,7 +1165,7 @@ module Increase
               consumer_merchandise_misrepresentation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation?,
               consumer_merchandise_not_as_described: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotAsDescribed?,
               consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?,
-              consumer_non_receipt_of_cash: top?,
+              consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?,
               consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?,
               consumer_quality_merchandise: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise?,
               consumer_quality_services: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityServices?,
@@ -1191,7 +1199,7 @@ module Increase
 
             attr_accessor consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?
 
-            attr_accessor consumer_non_receipt_of_cash: top?
+            attr_accessor consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?
 
             attr_accessor consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?
 
@@ -1221,7 +1229,7 @@ module Increase
               consumer_merchandise_misrepresentation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation?,
               consumer_merchandise_not_as_described: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotAsDescribed?,
               consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?,
-              consumer_non_receipt_of_cash: top?,
+              consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?,
               consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?,
               consumer_quality_merchandise: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise?,
               consumer_quality_services: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityServices?,
@@ -1244,7 +1252,7 @@ module Increase
               consumer_merchandise_misrepresentation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation?,
               consumer_merchandise_not_as_described: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotAsDescribed?,
               consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?,
-              consumer_non_receipt_of_cash: top?,
+              consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?,
               consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?,
               consumer_quality_merchandise: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise?,
               consumer_quality_services: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityServices?,
@@ -2794,6 +2802,14 @@ module Increase
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::merchant_resolution_attempted]
               end
+            end
+
+            type consumer_non_receipt_of_cash = {  }
+
+            class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type consumer_original_credit_transaction_not_accepted =
