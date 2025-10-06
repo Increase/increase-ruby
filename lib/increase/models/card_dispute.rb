@@ -990,11 +990,9 @@ module Increase
             #   Non-fiat currency or non-fungible token as described details. Present if and
             #   only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
             #
-            #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed, nil]
+            #   @return [Object, nil]
             required :non_fiat_currency_or_non_fungible_token_as_described,
-                     -> {
-                       Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed
-                     },
+                     Increase::Internal::Type::Unknown,
                      nil?: true
 
             # @!attribute non_fiat_currency_or_non_fungible_token_received
@@ -1049,7 +1047,7 @@ module Increase
             #
             #   @param invalid_dispute [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute, nil] Invalid dispute details. Present if and only if `reason` is `invalid_dispute`.
             #
-            #   @param non_fiat_currency_or_non_fungible_token_as_described [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed, nil] Non-fiat currency or non-fungible token as described details. Present if and onl
+            #   @param non_fiat_currency_or_non_fungible_token_as_described [Object, nil] Non-fiat currency or non-fungible token as described details. Present if and onl
             #
             #   @param non_fiat_currency_or_non_fungible_token_received [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived, nil] Non-fiat currency or non-fungible token received details. Present if and only if
             #
@@ -1263,13 +1261,6 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
-            end
-
-            # @see Increase::Models::CardDispute::Visa::NetworkEvent::Represented#non_fiat_currency_or_non_fungible_token_as_described
-            class NonFiatCurrencyOrNonFungibleTokenAsDescribed < Increase::Internal::Type::BaseModel
-              # @!method initialize
-              #   Non-fiat currency or non-fungible token as described details. Present if and
-              #   only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
             end
 
             # @see Increase::Models::CardDispute::Visa::NetworkEvent::Represented#non_fiat_currency_or_non_fungible_token_received
@@ -1665,10 +1656,8 @@ module Increase
             #   Non-receipt of cash. Present if and only if `category` is
             #   `consumer_non_receipt_of_cash`.
             #
-            #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash, nil]
-            required :consumer_non_receipt_of_cash,
-                     -> { Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash },
-                     nil?: true
+            #   @return [Object, nil]
+            required :consumer_non_receipt_of_cash, Increase::Internal::Type::Unknown, nil?: true
 
             # @!attribute consumer_original_credit_transaction_not_accepted
             #   Original Credit Transaction (OCT) not accepted. Present if and only if
@@ -1780,7 +1769,7 @@ module Increase
             #
             #   @param consumer_merchandise_not_received [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived, nil] Merchandise not received. Present if and only if `category` is `consumer_merchan
             #
-            #   @param consumer_non_receipt_of_cash [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash, nil] Non-receipt of cash. Present if and only if `category` is `consumer*non_receipt*
+            #   @param consumer_non_receipt_of_cash [Object, nil] Non-receipt of cash. Present if and only if `category` is `consumer*non_receipt*
             #
             #   @param consumer_original_credit_transaction_not_accepted [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted, nil] Original Credit Transaction (OCT) not accepted. Present if and only if `category
             #
@@ -3681,13 +3670,6 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
-            end
-
-            # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback#consumer_non_receipt_of_cash
-            class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
-              # @!method initialize
-              #   Non-receipt of cash. Present if and only if `category` is
-              #   `consumer_non_receipt_of_cash`.
             end
 
             # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback#consumer_original_credit_transaction_not_accepted
