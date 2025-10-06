@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.100.1 (2025-10-06)
+
+Full Changelog: [v1.100.0...v1.100.1](https://github.com/Increase/increase-ruby/compare/v1.100.0...v1.100.1)
+
+### Bug Fixes
+
+* **client:** handle some Dispute objects as empty rather than unknown ([c542446](https://github.com/Increase/increase-ruby/commit/c542446e2b0b7d60998f5d2fdada16ad2d889743))
+
 ## 1.100.0 (2025-10-03)
 
 Full Changelog: [v1.99.0...v1.100.0](https://github.com/Increase/increase-ruby/compare/v1.99.0...v1.100.0)
