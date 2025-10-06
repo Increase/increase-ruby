@@ -5485,7 +5485,8 @@ module Increase
         # @see Increase::Models::Transaction::Source#check_deposit_acceptance
         class CheckDepositAcceptance < Increase::Internal::Type::BaseModel
           # @!attribute account_number
-          #   The account number printed on the check.
+          #   The account number printed on the check. This is an account at the bank that
+          #   issued the check.
           #
           #   @return [String]
           required :account_number, String
@@ -5518,7 +5519,8 @@ module Increase
           required :currency, enum: -> { Increase::Transaction::Source::CheckDepositAcceptance::Currency }
 
           # @!attribute routing_number
-          #   The routing number printed on the check.
+          #   The routing number printed on the check. This is a routing number for the bank
+          #   that issued the check.
           #
           #   @return [String]
           required :routing_number, String
@@ -5541,7 +5543,7 @@ module Increase
           #   details confirmed. Check Deposits may be returned by the receiving bank, which
           #   will appear as a Check Deposit Return.
           #
-          #   @param account_number [String] The account number printed on the check.
+          #   @param account_number [String] The account number printed on the check. This is an account at the bank that iss
           #
           #   @param amount [Integer] The amount to be deposited in the minor unit of the transaction's currency. For
           #
@@ -5551,7 +5553,7 @@ module Increase
           #
           #   @param currency [Symbol, Increase::Models::Transaction::Source::CheckDepositAcceptance::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
           #
-          #   @param routing_number [String] The routing number printed on the check.
+          #   @param routing_number [String] The routing number printed on the check. This is a routing number for the bank t
           #
           #   @param serial_number [String, nil] The check serial number, if present, for consumer checks. For business checks, t
 
