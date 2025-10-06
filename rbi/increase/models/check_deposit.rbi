@@ -29,7 +29,7 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # If your deposit is successfully parsed and accepted by Increase, this will
+      # Once your deposit is successfully parsed and accepted by Increase, this will
       # contain details of the parsed check.
       sig { returns(T.nilable(Increase::CheckDeposit::DepositAcceptance)) }
       attr_reader :deposit_acceptance
@@ -171,7 +171,7 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the transfer was created.
         created_at:,
-        # If your deposit is successfully parsed and accepted by Increase, this will
+        # Once your deposit is successfully parsed and accepted by Increase, this will
         # contain details of the parsed check.
         deposit_acceptance:,
         # If your deposit is rejected by Increase, this will contain details as to why it
@@ -250,7 +250,8 @@ module Increase
             )
           end
 
-        # The account number printed on the check.
+        # The account number printed on the check. This is an account at the bank that
+        # issued the check.
         sig { returns(String) }
         attr_accessor :account_number
 
@@ -277,7 +278,8 @@ module Increase
         end
         attr_accessor :currency
 
-        # The routing number printed on the check.
+        # The routing number printed on the check. This is a routing number for the bank
+        # that issued the check.
         sig { returns(String) }
         attr_accessor :routing_number
 
@@ -286,7 +288,7 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :serial_number
 
-        # If your deposit is successfully parsed and accepted by Increase, this will
+        # Once your deposit is successfully parsed and accepted by Increase, this will
         # contain details of the parsed check.
         sig do
           params(
@@ -301,7 +303,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # The account number printed on the check.
+          # The account number printed on the check. This is an account at the bank that
+          # issued the check.
           account_number:,
           # The amount to be deposited in the minor unit of the transaction's currency. For
           # dollars, for example, this is cents.
@@ -314,7 +317,8 @@ module Increase
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           # transaction's currency.
           currency:,
-          # The routing number printed on the check.
+          # The routing number printed on the check. This is a routing number for the bank
+          # that issued the check.
           routing_number:,
           # The check serial number, if present, for consumer checks. For business checks,
           # the serial number is usually in the `auxiliary_on_us` field.
