@@ -36,7 +36,7 @@ module Increase
       required :created_at, Time
 
       # @!attribute deposit_acceptance
-      #   If your deposit is successfully parsed and accepted by Increase, this will
+      #   Once your deposit is successfully parsed and accepted by Increase, this will
       #   contain details of the parsed check.
       #
       #   @return [Increase::Models::CheckDeposit::DepositAcceptance, nil]
@@ -139,7 +139,7 @@ module Increase
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
-      #   @param deposit_acceptance [Increase::Models::CheckDeposit::DepositAcceptance, nil] If your deposit is successfully parsed and accepted by Increase, this will conta
+      #   @param deposit_acceptance [Increase::Models::CheckDeposit::DepositAcceptance, nil] Once your deposit is successfully parsed and accepted by Increase, this will con
       #
       #   @param deposit_rejection [Increase::Models::CheckDeposit::DepositRejection, nil] If your deposit is rejected by Increase, this will contain details as to why it
       #
@@ -168,7 +168,8 @@ module Increase
       # @see Increase::Models::CheckDeposit#deposit_acceptance
       class DepositAcceptance < Increase::Internal::Type::BaseModel
         # @!attribute account_number
-        #   The account number printed on the check.
+        #   The account number printed on the check. This is an account at the bank that
+        #   issued the check.
         #
         #   @return [String]
         required :account_number, String
@@ -201,7 +202,8 @@ module Increase
         required :currency, enum: -> { Increase::CheckDeposit::DepositAcceptance::Currency }
 
         # @!attribute routing_number
-        #   The routing number printed on the check.
+        #   The routing number printed on the check. This is a routing number for the bank
+        #   that issued the check.
         #
         #   @return [String]
         required :routing_number, String
@@ -217,10 +219,10 @@ module Increase
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckDeposit::DepositAcceptance} for more details.
         #
-        #   If your deposit is successfully parsed and accepted by Increase, this will
+        #   Once your deposit is successfully parsed and accepted by Increase, this will
         #   contain details of the parsed check.
         #
-        #   @param account_number [String] The account number printed on the check.
+        #   @param account_number [String] The account number printed on the check. This is an account at the bank that iss
         #
         #   @param amount [Integer] The amount to be deposited in the minor unit of the transaction's currency. For
         #
@@ -230,7 +232,7 @@ module Increase
         #
         #   @param currency [Symbol, Increase::Models::CheckDeposit::DepositAcceptance::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
         #
-        #   @param routing_number [String] The routing number printed on the check.
+        #   @param routing_number [String] The routing number printed on the check. This is a routing number for the bank t
         #
         #   @param serial_number [String, nil] The check serial number, if present, for consumer checks. For business checks, t
 

@@ -10334,7 +10334,8 @@ module Increase
               )
             end
 
-          # The account number printed on the check.
+          # The account number printed on the check. This is an account at the bank that
+          # issued the check.
           sig { returns(String) }
           attr_accessor :account_number
 
@@ -10361,7 +10362,8 @@ module Increase
           end
           attr_accessor :currency
 
-          # The routing number printed on the check.
+          # The routing number printed on the check. This is a routing number for the bank
+          # that issued the check.
           sig { returns(String) }
           attr_accessor :routing_number
 
@@ -10388,7 +10390,8 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The account number printed on the check.
+            # The account number printed on the check. This is an account at the bank that
+            # issued the check.
             account_number:,
             # The amount to be deposited in the minor unit of the transaction's currency. For
             # dollars, for example, this is cents.
@@ -10401,7 +10404,8 @@ module Increase
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
             # transaction's currency.
             currency:,
-            # The routing number printed on the check.
+            # The routing number printed on the check. This is a routing number for the bank
+            # that issued the check.
             routing_number:,
             # The check serial number, if present, for consumer checks. For business checks,
             # the serial number is usually in the `auxiliary_on_us` field.
