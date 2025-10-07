@@ -13,6 +13,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :access_token
 
+      # The Group's identifier. A Group is the top-level organization in Increase.
+      sig { returns(String) }
+      attr_accessor :group_id
+
       # The type of OAuth token.
       sig { returns(Increase::OAuthToken::TokenType::TaggedSymbol) }
       attr_accessor :token_type
@@ -28,6 +32,7 @@ module Increase
       sig do
         params(
           access_token: String,
+          group_id: String,
           token_type: Increase::OAuthToken::TokenType::OrSymbol,
           type: Increase::OAuthToken::Type::OrSymbol
         ).returns(T.attached_class)
@@ -36,6 +41,8 @@ module Increase
         # You may use this token in place of an API key to make OAuth requests on a user's
         # behalf.
         access_token:,
+        # The Group's identifier. A Group is the top-level organization in Increase.
+        group_id:,
         # The type of OAuth token.
         token_type:,
         # A constant representing the object's type. For this resource it will always be
@@ -48,6 +55,7 @@ module Increase
         override.returns(
           {
             access_token: String,
+            group_id: String,
             token_type: Increase::OAuthToken::TokenType::TaggedSymbol,
             type: Increase::OAuthToken::Type::TaggedSymbol
           }

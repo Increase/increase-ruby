@@ -13,6 +13,7 @@ class Increase::Test::Resources::OAuthTokensTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         access_token: String,
+        group_id: String,
         token_type: Increase::OAuthToken::TokenType,
         type: Increase::OAuthToken::Type
       }

@@ -11,6 +11,12 @@ module Increase
       #   @return [String]
       required :access_token, String
 
+      # @!attribute group_id
+      #   The Group's identifier. A Group is the top-level organization in Increase.
+      #
+      #   @return [String]
+      required :group_id, String
+
       # @!attribute token_type
       #   The type of OAuth token.
       #
@@ -24,7 +30,7 @@ module Increase
       #   @return [Symbol, Increase::Models::OAuthToken::Type]
       required :type, enum: -> { Increase::OAuthToken::Type }
 
-      # @!method initialize(access_token:, token_type:, type:)
+      # @!method initialize(access_token:, group_id:, token_type:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::OAuthToken} for more details.
       #
@@ -33,6 +39,8 @@ module Increase
       #   [here](/documentation/oauth).
       #
       #   @param access_token [String] You may use this token in place of an API key to make OAuth requests on a user's
+      #
+      #   @param group_id [String] The Group's identifier. A Group is the top-level organization in Increase.
       #
       #   @param token_type [Symbol, Increase::Models::OAuthToken::TokenType] The type of OAuth token.
       #
