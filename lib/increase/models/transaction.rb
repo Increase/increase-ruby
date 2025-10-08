@@ -6820,6 +6820,9 @@ module Increase
             # Account closure
             ACCOUNT_CLOSURE = :account_closure
 
+            # Account revenue payment distribution
+            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION = :account_revenue_payment_distribution
+
             # Bank-drawn check
             BANK_DRAWN_CHECK = :bank_drawn_check
 
@@ -6837,6 +6840,9 @@ module Increase
 
             # Collection receivable
             COLLECTION_RECEIVABLE = :collection_receivable
+
+            # Dishonored ACH return
+            DISHONORED_ACH_RETURN = :dishonored_ach_return
 
             # Empyreal adjustment
             EMPYREAL_ADJUSTMENT = :empyreal_adjustment
@@ -6861,9 +6867,6 @@ module Increase
 
             # Sample funds return
             SAMPLE_FUNDS_RETURN = :sample_funds_return
-
-            # Account revenue payment distribution
-            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION = :account_revenue_payment_distribution
 
             # @!method self.values
             #   @return [Array<Symbol>]
