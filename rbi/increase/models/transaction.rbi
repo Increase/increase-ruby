@@ -12592,6 +12592,13 @@ module Increase
                 Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
               )
 
+            # Account revenue payment distribution
+            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION =
+              T.let(
+                :account_revenue_payment_distribution,
+                Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
+              )
+
             # Bank-drawn check
             BANK_DRAWN_CHECK =
               T.let(
@@ -12631,6 +12638,13 @@ module Increase
             COLLECTION_RECEIVABLE =
               T.let(
                 :collection_receivable,
+                Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
+              )
+
+            # Dishonored ACH return
+            DISHONORED_ACH_RETURN =
+              T.let(
+                :dishonored_ach_return,
                 Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
               )
 
@@ -12687,13 +12701,6 @@ module Increase
             SAMPLE_FUNDS_RETURN =
               T.let(
                 :sample_funds_return,
-                Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
-              )
-
-            # Account revenue payment distribution
-            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION =
-              T.let(
-                :account_revenue_payment_distribution,
                 Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
               )
 
