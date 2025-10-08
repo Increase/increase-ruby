@@ -5043,12 +5043,14 @@ module Increase
 
           type reason =
             :account_closure
+            | :account_revenue_payment_distribution
             | :bank_drawn_check
             | :bank_drawn_check_credit
             | :bank_migration
             | :check_adjustment
             | :collection_payment
             | :collection_receivable
+            | :dishonored_ach_return
             | :empyreal_adjustment
             | :error
             | :error_correction
@@ -5057,13 +5059,15 @@ module Increase
             | :negative_balance_forgiveness
             | :sample_funds
             | :sample_funds_return
-            | :account_revenue_payment_distribution
 
           module Reason
             extend Increase::Internal::Type::Enum
 
             # Account closure
             ACCOUNT_CLOSURE: :account_closure
+
+            # Account revenue payment distribution
+            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION: :account_revenue_payment_distribution
 
             # Bank-drawn check
             BANK_DRAWN_CHECK: :bank_drawn_check
@@ -5082,6 +5086,9 @@ module Increase
 
             # Collection receivable
             COLLECTION_RECEIVABLE: :collection_receivable
+
+            # Dishonored ACH return
+            DISHONORED_ACH_RETURN: :dishonored_ach_return
 
             # Empyreal adjustment
             EMPYREAL_ADJUSTMENT: :empyreal_adjustment
@@ -5106,9 +5113,6 @@ module Increase
 
             # Sample funds return
             SAMPLE_FUNDS_RETURN: :sample_funds_return
-
-            # Account revenue payment distribution
-            ACCOUNT_REVENUE_PAYMENT_DISTRIBUTION: :account_revenue_payment_distribution
 
             def self?.values: -> ::Array[Increase::Models::Transaction::Source::InternalSource::reason]
           end
