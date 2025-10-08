@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.104.0 (2025-10-08)
+
+Full Changelog: [v1.103.0...v1.104.0](https://github.com/Increase/increase-ruby/compare/v1.103.0...v1.104.0)
+
+### Features
+
+* **api:** api update ([5545b1f](https://github.com/Increase/increase-ruby/commit/5545b1f1c1a7e380c58188aeaf0f61ccd10ad6b1))
+
+
+### Chores
+
+* ignore linter error for tests having large collections ([406ab23](https://github.com/Increase/increase-ruby/commit/406ab231f510d6ac99e93568458b3d083b4130de))
+
 ## 1.103.0 (2025-10-07)
 
 Full Changelog: [v1.102.0...v1.103.0](https://github.com/Increase/increase-ruby/compare/v1.102.0...v1.103.0)
