@@ -1142,6 +1142,7 @@ module Increase
 
       type submission =
         {
+          administrative_returns_expected_by: Time?,
           effective_date: Date,
           expected_funds_settlement_at: Time,
           expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule,
@@ -1150,6 +1151,8 @@ module Increase
         }
 
       class Submission < Increase::Internal::Type::BaseModel
+        attr_accessor administrative_returns_expected_by: Time?
+
         attr_accessor effective_date: Date
 
         attr_accessor expected_funds_settlement_at: Time
@@ -1161,6 +1164,7 @@ module Increase
         attr_accessor trace_number: String
 
         def initialize: (
+          administrative_returns_expected_by: Time?,
           effective_date: Date,
           expected_funds_settlement_at: Time,
           expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule,
@@ -1169,6 +1173,7 @@ module Increase
         ) -> void
 
         def to_hash: -> {
+          administrative_returns_expected_by: Time?,
           effective_date: Date,
           expected_funds_settlement_at: Time,
           expected_settlement_schedule: Increase::Models::ACHTransfer::Submission::expected_settlement_schedule,
