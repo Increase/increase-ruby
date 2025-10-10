@@ -1375,6 +1375,17 @@ module Increase
 
       # @see Increase::Models::ACHTransfer#submission
       class Submission < Increase::Internal::Type::BaseModel
+        # @!attribute administrative_returns_expected_by
+        #   The timestamp by which any administrative returns are expected to be received
+        #   by. This follows the NACHA guidelines for return windows, which are: "In
+        #   general, return entries must be received by the RDFI’s ACH Operator by its
+        #   deposit deadline for the return entry to be made available to the ODFI no later
+        #   than the opening of business on the second banking day following the Settlement
+        #   Date of the original entry.".
+        #
+        #   @return [Time, nil]
+        required :administrative_returns_expected_by, Time, nil?: true
+
         # @!attribute effective_date
         #   The ACH transfer's effective date as sent to the Federal Reserve. If a specific
         #   date was configured using `preferred_effective_date`, this will match that
@@ -1418,7 +1429,7 @@ module Increase
         #   @return [String]
         required :trace_number, String
 
-        # @!method initialize(effective_date:, expected_funds_settlement_at:, expected_settlement_schedule:, submitted_at:, trace_number:)
+        # @!method initialize(administrative_returns_expected_by:, effective_date:, expected_funds_settlement_at:, expected_settlement_schedule:, submitted_at:, trace_number:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::ACHTransfer::Submission} for more details.
         #
@@ -1427,6 +1438,8 @@ module Increase
         #   roughly every 30 minutes. The Federal Reserve processes ACH transfers during
         #   weekdays according to their
         #   [posted schedule](https://www.frbservices.org/resources/resource-centers/same-day-ach/fedach-processing-schedule.html).
+        #
+        #   @param administrative_returns_expected_by [Time, nil] The timestamp by which any administrative returns are expected to be received by
         #
         #   @param effective_date [Date] The ACH transfer's effective date as sent to the Federal Reserve. If a specific
         #
