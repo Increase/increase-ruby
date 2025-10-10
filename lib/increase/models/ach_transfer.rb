@@ -1383,8 +1383,8 @@ module Increase
         #   than the opening of business on the second banking day following the Settlement
         #   Date of the original entry.".
         #
-        #   @return [Time, nil]
-        required :administrative_returns_expected_by, Time, nil?: true
+        #   @return [Time]
+        required :administrative_returns_expected_by, Time
 
         # @!attribute effective_date
         #   The ACH transfer's effective date as sent to the Federal Reserve. If a specific
@@ -1439,7 +1439,7 @@ module Increase
         #   weekdays according to their
         #   [posted schedule](https://www.frbservices.org/resources/resource-centers/same-day-ach/fedach-processing-schedule.html).
         #
-        #   @param administrative_returns_expected_by [Time, nil] The timestamp by which any administrative returns are expected to be received by
+        #   @param administrative_returns_expected_by [Time] The timestamp by which any administrative returns are expected to be received by
         #
         #   @param effective_date [Date] The ACH transfer's effective date as sent to the Federal Reserve. If a specific
         #

@@ -2518,7 +2518,7 @@ module Increase
         # deposit deadline for the return entry to be made available to the ODFI no later
         # than the opening of business on the second banking day following the Settlement
         # Date of the original entry.".
-        sig { returns(T.nilable(Time)) }
+        sig { returns(Time) }
         attr_accessor :administrative_returns_expected_by
 
         # The ACH transfer's effective date as sent to the Federal Reserve. If a specific
@@ -2564,7 +2564,7 @@ module Increase
         # [posted schedule](https://www.frbservices.org/resources/resource-centers/same-day-ach/fedach-processing-schedule.html).
         sig do
           params(
-            administrative_returns_expected_by: T.nilable(Time),
+            administrative_returns_expected_by: Time,
             effective_date: Date,
             expected_funds_settlement_at: Time,
             expected_settlement_schedule:
@@ -2609,7 +2609,7 @@ module Increase
         sig do
           override.returns(
             {
-              administrative_returns_expected_by: T.nilable(Time),
+              administrative_returns_expected_by: Time,
               effective_date: Date,
               expected_funds_settlement_at: Time,
               expected_settlement_schedule:
