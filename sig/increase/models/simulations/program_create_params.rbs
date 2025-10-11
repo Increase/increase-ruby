@@ -45,6 +45,7 @@ module Increase
           | :first_internet_bank
           | :global_innovations_bank
           | :grasshopper_bank
+          | :twin_city_bank
 
         module Bank
           extend Increase::Internal::Type::Enum
@@ -63,6 +64,9 @@ module Increase
 
           # Grasshopper Bank
           GRASSHOPPER_BANK: :grasshopper_bank
+
+          # Twin City Bank
+          TWIN_CITY_BANK: :twin_city_bank
 
           def self?.values: -> ::Array[Increase::Models::Simulations::ProgramCreateParams::bank]
         end
