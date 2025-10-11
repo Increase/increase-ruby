@@ -120,6 +120,13 @@ module Increase
               Increase::Simulations::ProgramCreateParams::Bank::TaggedSymbol
             )
 
+          # Twin City Bank
+          TWIN_CITY_BANK =
+            T.let(
+              :twin_city_bank,
+              Increase::Simulations::ProgramCreateParams::Bank::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[
