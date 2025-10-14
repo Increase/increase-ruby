@@ -178,6 +178,9 @@ module Increase
         # Visa: details will be under the `visa` object.
         VISA = :visa
 
+        # Pulse: details will be under the `pulse` object.
+        PULSE = :pulse
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

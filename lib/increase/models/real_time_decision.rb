@@ -902,6 +902,12 @@ module Increase
           #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Category]
           required :category, enum: -> { Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Category }
 
+          # @!attribute pulse
+          #   Fields specific to the `pulse` network.
+          #
+          #   @return [Object, nil]
+          required :pulse, Increase::Internal::Type::Unknown, nil?: true
+
           # @!attribute visa
           #   Fields specific to the `visa` network.
           #
@@ -912,10 +918,12 @@ module Increase
                    },
                    nil?: true
 
-          # @!method initialize(category:, visa:)
+          # @!method initialize(category:, pulse:, visa:)
           #   Fields specific to the `network`.
           #
           #   @param category [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Category] The payment network used to process this card authorization.
+          #
+          #   @param pulse [Object, nil] Fields specific to the `pulse` network.
           #
           #   @param visa [Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -927,6 +935,9 @@ module Increase
 
             # Visa
             VISA = :visa
+
+            # Pulse
+            PULSE = :pulse
 
             # @!method self.values
             #   @return [Array<Symbol>]
