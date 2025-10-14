@@ -1527,6 +1527,13 @@ module Increase
 
           # @see Increase::Models::CardPayment::Element::CardAuthorization#network_identifiers
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
@@ -1549,12 +1556,14 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardAuthorization::NetworkIdentifiers}
             #   for more details.
             #
             #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
             #
@@ -2788,6 +2797,13 @@ module Increase
 
           # @see Increase::Models::CardPayment::Element::CardDecline#network_identifiers
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
@@ -2810,12 +2826,14 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardDecline::NetworkIdentifiers} for
             #   more details.
             #
             #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
             #
@@ -3235,6 +3253,13 @@ module Increase
 
           # @see Increase::Models::CardPayment::Element::CardFuelConfirmation#network_identifiers
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
@@ -3257,12 +3282,14 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardFuelConfirmation::NetworkIdentifiers}
             #   for more details.
             #
             #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
             #
@@ -3856,6 +3883,13 @@ module Increase
 
           # @see Increase::Models::CardPayment::Element::CardIncrement#network_identifiers
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
@@ -3878,12 +3912,14 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardIncrement::NetworkIdentifiers} for
             #   more details.
             #
             #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
             #
@@ -4248,6 +4284,13 @@ module Increase
             #   @return [String]
             required :acquirer_reference_number, String
 
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute transaction_id
             #   A globally unique transaction identifier provided by the card network, used
             #   across multiple life-cycle requests.
@@ -4255,7 +4298,7 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:)
+            # @!method initialize(acquirer_business_id:, acquirer_reference_number:, authorization_identification_response:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardRefund::NetworkIdentifiers} for
             #   more details.
@@ -4265,6 +4308,8 @@ module Increase
             #   @param acquirer_business_id [String] A network assigned business ID that identifies the acquirer that processed this
             #
             #   @param acquirer_reference_number [String] A globally unique identifier for this settlement.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
           end
@@ -5498,6 +5543,13 @@ module Increase
 
           # @see Increase::Models::CardPayment::Element::CardReversal#network_identifiers
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
@@ -5520,12 +5572,14 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardReversal::NetworkIdentifiers} for
             #   more details.
             #
             #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
             #
@@ -5966,6 +6020,13 @@ module Increase
             #   @return [String]
             required :acquirer_reference_number, String
 
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute transaction_id
             #   A globally unique transaction identifier provided by the card network, used
             #   across multiple life-cycle requests.
@@ -5973,7 +6034,7 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(acquirer_business_id:, acquirer_reference_number:, transaction_id:)
+            # @!method initialize(acquirer_business_id:, acquirer_reference_number:, authorization_identification_response:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardSettlement::NetworkIdentifiers} for
             #   more details.
@@ -5983,6 +6044,8 @@ module Increase
             #   @param acquirer_business_id [String] A network assigned business ID that identifies the acquirer that processed this
             #
             #   @param acquirer_reference_number [String] A globally unique identifier for this settlement.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
           end
@@ -7827,6 +7890,13 @@ module Increase
 
           # @see Increase::Models::CardPayment::Element::CardValidation#network_identifiers
           class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            # @!attribute authorization_identification_response
+            #   The randomly generated 6-character Authorization Identification Response code
+            #   sent back to the acquirer in an approved response.
+            #
+            #   @return [String, nil]
+            required :authorization_identification_response, String, nil?: true
+
             # @!attribute retrieval_reference_number
             #   A life-cycle identifier used across e.g., an authorization and a reversal.
             #   Expected to be unique per acquirer within a window of time. For some card
@@ -7849,12 +7919,14 @@ module Increase
             #   @return [String, nil]
             required :transaction_id, String, nil?: true
 
-            # @!method initialize(retrieval_reference_number:, trace_number:, transaction_id:)
+            # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardValidation::NetworkIdentifiers} for
             #   more details.
             #
             #   Network-specific identifiers for a specific request or transaction.
+            #
+            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
             #
             #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
             #
