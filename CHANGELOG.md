@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.107.1 (2025-10-14)
+
+Full Changelog: [v1.107.0...v1.107.1](https://github.com/Increase/increase-ruby/compare/v1.107.0...v1.107.1)
+
+### Bug Fixes
+
+* should not reuse buffers for `IO.copy_stream` interop ([6057a7d](https://github.com/Increase/increase-ruby/commit/6057a7d98d7e3b95ff6358a73e30a4c7ca7109f8))
+
 ## 1.107.0 (2025-10-11)
 
 Full Changelog: [v1.106.0...v1.107.0](https://github.com/Increase/increase-ruby/compare/v1.106.0...v1.107.0)
