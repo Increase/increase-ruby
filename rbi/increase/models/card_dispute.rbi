@@ -244,6 +244,9 @@ module Increase
         # Visa: details will be under the `visa` object.
         VISA = T.let(:visa, Increase::CardDispute::Network::TaggedSymbol)
 
+        # Pulse: details will be under the `pulse` object.
+        PULSE = T.let(:pulse, Increase::CardDispute::Network::TaggedSymbol)
+
         sig do
           override.returns(
             T::Array[Increase::CardDispute::Network::TaggedSymbol]

@@ -812,31 +812,39 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category
 
+            attr_accessor pulse: top?
+
             attr_accessor visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             }
 
-            type category = :visa
+            type category = :visa | :pulse
 
             module Category
               extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
+
+              # Pulse
+              PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category]
             end
@@ -1267,13 +1275,16 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthorizationExpiration::currency]
           end
 
-          type network = :visa
+          type network = :visa | :pulse
 
           module Network
             extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthorizationExpiration::network]
           end
@@ -1670,31 +1681,39 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category
 
+            attr_accessor pulse: top?
+
             attr_accessor visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             }
 
-            type category = :visa
+            type category = :visa | :pulse
 
             module Category
               extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
+
+              # Pulse
+              PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category]
             end
@@ -2245,13 +2264,16 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardFuelConfirmation::currency]
           end
 
-          type network = :visa
+          type network = :visa | :pulse
 
           module Network
             extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardFuelConfirmation::network]
           end
@@ -2588,13 +2610,16 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardIncrement::currency]
           end
 
-          type network = :visa
+          type network = :visa | :pulse
 
           module Network
             extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardIncrement::network]
           end
@@ -3805,13 +3830,16 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardReversal::currency]
           end
 
-          type network = :visa
+          type network = :visa | :pulse
 
           module Network
             extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardReversal::network]
           end
@@ -4131,13 +4159,16 @@ module Increase
             end
           end
 
-          type network = :visa
+          type network = :visa | :pulse
 
           module Network
             extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardSettlement::network]
           end
@@ -5277,31 +5308,39 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category
 
+            attr_accessor pulse: top?
+
             attr_accessor visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category,
+              pulse: top?,
               visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             }
 
-            type category = :visa
+            type category = :visa | :pulse
 
             module Category
               extend Increase::Internal::Type::Enum
 
               # Visa
               VISA: :visa
+
+              # Pulse
+              PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category]
             end
