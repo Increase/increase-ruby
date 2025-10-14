@@ -709,12 +709,15 @@ module Increase
 
         type network_identifiers =
           {
+            authorization_identification_response: String?,
             retrieval_reference_number: String?,
             trace_number: String?,
             transaction_id: String?
           }
 
         class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+          attr_accessor authorization_identification_response: String?
+
           attr_accessor retrieval_reference_number: String?
 
           attr_accessor trace_number: String?
@@ -722,12 +725,14 @@ module Increase
           attr_accessor transaction_id: String?
 
           def initialize: (
+            authorization_identification_response: String?,
             retrieval_reference_number: String?,
             trace_number: String?,
             transaction_id: String?
           ) -> void
 
           def to_hash: -> {
+            authorization_identification_response: String?,
             retrieval_reference_number: String?,
             trace_number: String?,
             transaction_id: String?
