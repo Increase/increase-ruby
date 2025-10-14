@@ -1192,6 +1192,9 @@ module Increase
             # Visa: details will be under the `visa` object.
             VISA = :visa
 
+            # Pulse: details will be under the `pulse` object.
+            PULSE = :pulse
+
             # @!method self.values
             #   @return [Array<Symbol>]
           end
@@ -1962,6 +1965,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Category]
             required :category, enum: -> { Increase::Transaction::Source::CardFinancial::NetworkDetails::Category }
 
+            # @!attribute pulse
+            #   Fields specific to the `pulse` network.
+            #
+            #   @return [Object, nil]
+            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+
             # @!attribute visa
             #   Fields specific to the `visa` network.
             #
@@ -1972,10 +1981,12 @@ module Increase
                      },
                      nil?: true
 
-            # @!method initialize(category:, visa:)
+            # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
             #   @param category [Symbol, Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Category] The payment network used to process this card authorization.
+            #
+            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -1987,6 +1998,9 @@ module Increase
 
               # Visa
               VISA = :visa
+
+              # Pulse
+              PULSE = :pulse
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -4221,6 +4235,9 @@ module Increase
 
             # Visa
             VISA = :visa
+
+            # Pulse
+            PULSE = :pulse
 
             # @!method self.values
             #   @return [Array<Symbol>]

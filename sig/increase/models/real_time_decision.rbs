@@ -518,31 +518,39 @@ module Increase
         type network_details =
           {
             category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category,
+            pulse: top?,
             visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           }
 
         class NetworkDetails < Increase::Internal::Type::BaseModel
           attr_accessor category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category
 
+          attr_accessor pulse: top?
+
           attr_accessor visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
 
           def initialize: (
             category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category,
+            pulse: top?,
             visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           ) -> void
 
           def to_hash: -> {
             category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category,
+            pulse: top?,
             visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           }
 
-          type category = :visa
+          type category = :visa | :pulse
 
           module Category
             extend Increase::Internal::Type::Enum
 
             # Visa
             VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category]
           end

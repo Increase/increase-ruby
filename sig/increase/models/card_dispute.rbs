@@ -109,13 +109,16 @@ module Increase
         end
       end
 
-      type network = :visa
+      type network = :visa | :pulse
 
       module Network
         extend Increase::Internal::Type::Enum
 
         # Visa: details will be under the `visa` object.
         VISA: :visa
+
+        # Pulse: details will be under the `pulse` object.
+        PULSE: :pulse
 
         def self?.values: -> ::Array[Increase::Models::CardDispute::network]
       end

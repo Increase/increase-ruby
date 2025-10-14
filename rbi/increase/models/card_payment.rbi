@@ -2393,6 +2393,10 @@ module Increase
             end
             attr_accessor :category
 
+            # Fields specific to the `pulse` network.
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :pulse
+
             # Fields specific to the `visa` network.
             sig do
               returns(
@@ -2418,6 +2422,7 @@ module Increase
               params(
                 category:
                   Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Category::OrSymbol,
+                pulse: T.nilable(T.anything),
                 visa:
                   T.nilable(
                     Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::OrHash
@@ -2427,6 +2432,8 @@ module Increase
             def self.new(
               # The payment network used to process this card authorization.
               category:,
+              # Fields specific to the `pulse` network.
+              pulse:,
               # Fields specific to the `visa` network.
               visa:
             )
@@ -2437,6 +2444,7 @@ module Increase
                 {
                   category:
                     Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Category::TaggedSymbol,
+                  pulse: T.nilable(T.anything),
                   visa:
                     T.nilable(
                       Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa
@@ -2464,6 +2472,13 @@ module Increase
               VISA =
                 T.let(
                   :visa,
+                  Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Category::TaggedSymbol
+                )
+
+              # Pulse
+              PULSE =
+                T.let(
+                  :pulse,
                   Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Category::TaggedSymbol
                 )
 
@@ -3499,6 +3514,13 @@ module Increase
             VISA =
               T.let(
                 :visa,
+                Increase::CardPayment::Element::CardAuthorizationExpiration::Network::TaggedSymbol
+              )
+
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
                 Increase::CardPayment::Element::CardAuthorizationExpiration::Network::TaggedSymbol
               )
 
@@ -4782,6 +4804,10 @@ module Increase
             end
             attr_accessor :category
 
+            # Fields specific to the `pulse` network.
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :pulse
+
             # Fields specific to the `visa` network.
             sig do
               returns(
@@ -4807,6 +4833,7 @@ module Increase
               params(
                 category:
                   Increase::CardPayment::Element::CardDecline::NetworkDetails::Category::OrSymbol,
+                pulse: T.nilable(T.anything),
                 visa:
                   T.nilable(
                     Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::OrHash
@@ -4816,6 +4843,8 @@ module Increase
             def self.new(
               # The payment network used to process this card authorization.
               category:,
+              # Fields specific to the `pulse` network.
+              pulse:,
               # Fields specific to the `visa` network.
               visa:
             )
@@ -4826,6 +4855,7 @@ module Increase
                 {
                   category:
                     Increase::CardPayment::Element::CardDecline::NetworkDetails::Category::TaggedSymbol,
+                  pulse: T.nilable(T.anything),
                   visa:
                     T.nilable(
                       Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa
@@ -4853,6 +4883,13 @@ module Increase
               VISA =
                 T.let(
                   :visa,
+                  Increase::CardPayment::Element::CardDecline::NetworkDetails::Category::TaggedSymbol
+                )
+
+              # Pulse
+              PULSE =
+                T.let(
+                  :pulse,
                   Increase::CardPayment::Element::CardDecline::NetworkDetails::Category::TaggedSymbol
                 )
 
@@ -6123,6 +6160,13 @@ module Increase
                 Increase::CardPayment::Element::CardFuelConfirmation::Network::TaggedSymbol
               )
 
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
+                Increase::CardPayment::Element::CardFuelConfirmation::Network::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[
@@ -7257,6 +7301,13 @@ module Increase
             VISA =
               T.let(
                 :visa,
+                Increase::CardPayment::Element::CardIncrement::Network::TaggedSymbol
+              )
+
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
                 Increase::CardPayment::Element::CardIncrement::Network::TaggedSymbol
               )
 
@@ -10136,6 +10187,13 @@ module Increase
                 Increase::CardPayment::Element::CardReversal::Network::TaggedSymbol
               )
 
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
+                Increase::CardPayment::Element::CardReversal::Network::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[
@@ -10984,6 +11042,13 @@ module Increase
             VISA =
               T.let(
                 :visa,
+                Increase::CardPayment::Element::CardSettlement::Network::TaggedSymbol
+              )
+
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
                 Increase::CardPayment::Element::CardSettlement::Network::TaggedSymbol
               )
 
@@ -13967,6 +14032,10 @@ module Increase
             end
             attr_accessor :category
 
+            # Fields specific to the `pulse` network.
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :pulse
+
             # Fields specific to the `visa` network.
             sig do
               returns(
@@ -13992,6 +14061,7 @@ module Increase
               params(
                 category:
                   Increase::CardPayment::Element::CardValidation::NetworkDetails::Category::OrSymbol,
+                pulse: T.nilable(T.anything),
                 visa:
                   T.nilable(
                     Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::OrHash
@@ -14001,6 +14071,8 @@ module Increase
             def self.new(
               # The payment network used to process this card authorization.
               category:,
+              # Fields specific to the `pulse` network.
+              pulse:,
               # Fields specific to the `visa` network.
               visa:
             )
@@ -14011,6 +14083,7 @@ module Increase
                 {
                   category:
                     Increase::CardPayment::Element::CardValidation::NetworkDetails::Category::TaggedSymbol,
+                  pulse: T.nilable(T.anything),
                   visa:
                     T.nilable(
                       Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa
@@ -14038,6 +14111,13 @@ module Increase
               VISA =
                 T.let(
                   :visa,
+                  Increase::CardPayment::Element::CardValidation::NetworkDetails::Category::TaggedSymbol
+                )
+
+              # Pulse
+              PULSE =
+                T.let(
+                  :pulse,
                   Increase::CardPayment::Element::CardValidation::NetworkDetails::Category::TaggedSymbol
                 )
 
