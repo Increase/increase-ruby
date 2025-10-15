@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.109.1 (2025-10-15)
+
+Full Changelog: [v1.109.0...v1.109.1](https://github.com/Increase/increase-ruby/compare/v1.109.0...v1.109.1)
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([f4ec8ac](https://github.com/Increase/increase-ruby/commit/f4ec8ac5b3ba72f23c53808f5cdfefaebd36eaef))
+
 ## 1.109.0 (2025-10-14)
 
 Full Changelog: [v1.108.0...v1.109.0](https://github.com/Increase/increase-ruby/compare/v1.108.0...v1.109.0)
