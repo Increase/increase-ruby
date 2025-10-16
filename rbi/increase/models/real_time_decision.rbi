@@ -3002,12 +3002,6 @@ module Increase
         sig { returns(String) }
         attr_accessor :card_id
 
-        # The identifier of the Card Profile that was set via the real time decision. This
-        # will be null until the real time decision is responded to or if the real time
-        # decision did not set a card profile.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :card_profile_id
-
         # Whether or not the provisioning request was approved. This will be null until
         # the real time decision is responded to.
         sig do
@@ -3043,7 +3037,6 @@ module Increase
         sig do
           params(
             card_id: String,
-            card_profile_id: T.nilable(String),
             decision:
               T.nilable(
                 Increase::RealTimeDecision::DigitalWalletToken::Decision::OrSymbol
@@ -3057,10 +3050,6 @@ module Increase
         def self.new(
           # The identifier of the Card that is being tokenized.
           card_id:,
-          # The identifier of the Card Profile that was set via the real time decision. This
-          # will be null until the real time decision is responded to or if the real time
-          # decision did not set a card profile.
-          card_profile_id:,
           # Whether or not the provisioning request was approved. This will be null until
           # the real time decision is responded to.
           decision:,
@@ -3075,7 +3064,6 @@ module Increase
           override.returns(
             {
               card_id: String,
-              card_profile_id: T.nilable(String),
               decision:
                 T.nilable(
                   Increase::RealTimeDecision::DigitalWalletToken::Decision::TaggedSymbol
