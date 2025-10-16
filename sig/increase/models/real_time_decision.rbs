@@ -1095,7 +1095,6 @@ module Increase
       type digital_wallet_token =
         {
           card_id: String,
-          card_profile_id: String?,
           decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?,
           device: Increase::RealTimeDecision::DigitalWalletToken::Device,
           digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet
@@ -1103,8 +1102,6 @@ module Increase
 
       class DigitalWalletToken < Increase::Internal::Type::BaseModel
         attr_accessor card_id: String
-
-        attr_accessor card_profile_id: String?
 
         attr_accessor decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?
 
@@ -1114,7 +1111,6 @@ module Increase
 
         def initialize: (
           card_id: String,
-          card_profile_id: String?,
           decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?,
           device: Increase::RealTimeDecision::DigitalWalletToken::Device,
           digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet
@@ -1122,7 +1118,6 @@ module Increase
 
         def to_hash: -> {
           card_id: String,
-          card_profile_id: String?,
           decision: Increase::Models::RealTimeDecision::DigitalWalletToken::decision?,
           device: Increase::RealTimeDecision::DigitalWalletToken::Device,
           digital_wallet: Increase::Models::RealTimeDecision::DigitalWalletToken::digital_wallet

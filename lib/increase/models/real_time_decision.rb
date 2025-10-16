@@ -1580,14 +1580,6 @@ module Increase
         #   @return [String]
         required :card_id, String
 
-        # @!attribute card_profile_id
-        #   The identifier of the Card Profile that was set via the real time decision. This
-        #   will be null until the real time decision is responded to or if the real time
-        #   decision did not set a card profile.
-        #
-        #   @return [String, nil]
-        required :card_profile_id, String, nil?: true
-
         # @!attribute decision
         #   Whether or not the provisioning request was approved. This will be null until
         #   the real time decision is responded to.
@@ -1607,15 +1599,13 @@ module Increase
         #   @return [Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::DigitalWallet]
         required :digital_wallet, enum: -> { Increase::RealTimeDecision::DigitalWalletToken::DigitalWallet }
 
-        # @!method initialize(card_id:, card_profile_id:, decision:, device:, digital_wallet:)
+        # @!method initialize(card_id:, decision:, device:, digital_wallet:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecision::DigitalWalletToken} for more details.
         #
         #   Fields related to a digital wallet token provisioning attempt.
         #
         #   @param card_id [String] The identifier of the Card that is being tokenized.
-        #
-        #   @param card_profile_id [String, nil] The identifier of the Card Profile that was set via the real time decision. This
         #
         #   @param decision [Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::Decision, nil] Whether or not the provisioning request was approved. This will be null until th
         #
