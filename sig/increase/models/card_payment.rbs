@@ -5758,6 +5758,7 @@ module Increase
           authorized_amount: Integer,
           fuel_confirmed_amount: Integer,
           incremented_amount: Integer,
+          refund_authorized_amount: Integer,
           refunded_amount: Integer,
           reversed_amount: Integer,
           settled_amount: Integer
@@ -5770,6 +5771,8 @@ module Increase
 
         attr_accessor incremented_amount: Integer
 
+        attr_accessor refund_authorized_amount: Integer
+
         attr_accessor refunded_amount: Integer
 
         attr_accessor reversed_amount: Integer
@@ -5780,6 +5783,7 @@ module Increase
           authorized_amount: Integer,
           fuel_confirmed_amount: Integer,
           incremented_amount: Integer,
+          refund_authorized_amount: Integer,
           refunded_amount: Integer,
           reversed_amount: Integer,
           settled_amount: Integer
@@ -5789,6 +5793,7 @@ module Increase
           authorized_amount: Integer,
           fuel_confirmed_amount: Integer,
           incremented_amount: Integer,
+          refund_authorized_amount: Integer,
           refunded_amount: Integer,
           reversed_amount: Integer,
           settled_amount: Integer
