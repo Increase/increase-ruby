@@ -15078,6 +15078,11 @@ module Increase
         sig { returns(Integer) }
         attr_accessor :incremented_amount
 
+        # The total refund authorized amount in the minor unit of the transaction's
+        # currency. For dollars, for example, this is cents.
+        sig { returns(Integer) }
+        attr_accessor :refund_authorized_amount
+
         # The total refunded amount in the minor unit of the transaction's currency. For
         # dollars, for example, this is cents.
         sig { returns(Integer) }
@@ -15099,6 +15104,7 @@ module Increase
             authorized_amount: Integer,
             fuel_confirmed_amount: Integer,
             incremented_amount: Integer,
+            refund_authorized_amount: Integer,
             refunded_amount: Integer,
             reversed_amount: Integer,
             settled_amount: Integer
@@ -15114,6 +15120,9 @@ module Increase
           # The total incrementally updated authorized amount in the minor unit of the
           # transaction's currency. For dollars, for example, this is cents.
           incremented_amount:,
+          # The total refund authorized amount in the minor unit of the transaction's
+          # currency. For dollars, for example, this is cents.
+          refund_authorized_amount:,
           # The total refunded amount in the minor unit of the transaction's currency. For
           # dollars, for example, this is cents.
           refunded_amount:,
@@ -15132,6 +15141,7 @@ module Increase
               authorized_amount: Integer,
               fuel_confirmed_amount: Integer,
               incremented_amount: Integer,
+              refund_authorized_amount: Integer,
               refunded_amount: Integer,
               reversed_amount: Integer,
               settled_amount: Integer

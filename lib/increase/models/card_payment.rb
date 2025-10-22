@@ -8163,6 +8163,13 @@ module Increase
         #   @return [Integer]
         required :incremented_amount, Integer
 
+        # @!attribute refund_authorized_amount
+        #   The total refund authorized amount in the minor unit of the transaction's
+        #   currency. For dollars, for example, this is cents.
+        #
+        #   @return [Integer]
+        required :refund_authorized_amount, Integer
+
         # @!attribute refunded_amount
         #   The total refunded amount in the minor unit of the transaction's currency. For
         #   dollars, for example, this is cents.
@@ -8184,7 +8191,7 @@ module Increase
         #   @return [Integer]
         required :settled_amount, Integer
 
-        # @!method initialize(authorized_amount:, fuel_confirmed_amount:, incremented_amount:, refunded_amount:, reversed_amount:, settled_amount:)
+        # @!method initialize(authorized_amount:, fuel_confirmed_amount:, incremented_amount:, refund_authorized_amount:, refunded_amount:, reversed_amount:, settled_amount:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CardPayment::State} for more details.
         #
@@ -8195,6 +8202,8 @@ module Increase
         #   @param fuel_confirmed_amount [Integer] The total amount from fuel confirmations in the minor unit of the transaction's
         #
         #   @param incremented_amount [Integer] The total incrementally updated authorized amount in the minor unit of the trans
+        #
+        #   @param refund_authorized_amount [Integer] The total refund authorized amount in the minor unit of the transaction's curren
         #
         #   @param refunded_amount [Integer] The total refunded amount in the minor unit of the transaction's currency. For d
         #
