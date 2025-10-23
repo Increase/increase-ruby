@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.113.0 (2025-10-23)
+
+Full Changelog: [v1.112.0...v1.113.0](https://github.com/Increase/increase-ruby/compare/v1.112.0...v1.113.0)
+
+### Features
+
+* **api:** api update ([f6e1c26](https://github.com/Increase/increase-ruby/commit/f6e1c262384c439eeeb7d9914b51d51e6aa5b89b))
+* handle thread interrupts in the core HTTP client ([cbddb16](https://github.com/Increase/increase-ruby/commit/cbddb162a4273e627d3df4acde3a9eeac3652715))
+
 ## 1.112.0 (2025-10-22)
 
 Full Changelog: [v1.111.0...v1.112.0](https://github.com/Increase/increase-ruby/compare/v1.111.0...v1.112.0)
