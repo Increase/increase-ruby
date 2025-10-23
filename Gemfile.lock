@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    increase (1.112.0)
+    increase (1.113.0)
       connection_pool
 
 GEM
