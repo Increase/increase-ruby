@@ -375,7 +375,7 @@ module Increase
         # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
         FULL = T.let(:full, Increase::CheckTransfer::BalanceCheck::TaggedSymbol)
 
-        # No balance check will performed; a zero-dollar Pending Transaction will be created.
+        # No balance check will performed when the check transfer is initiated. A zero-dollar Pending Transaction will be created. The balance will still be checked when the Inbound Check Deposit is created.
         NONE = T.let(:none, Increase::CheckTransfer::BalanceCheck::TaggedSymbol)
 
         sig do
