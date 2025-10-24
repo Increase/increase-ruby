@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.114.0 (2025-10-24)
+
+Full Changelog: [v1.113.0...v1.114.0](https://github.com/Increase/increase-ruby/compare/v1.113.0...v1.114.0)
+
+### Features
+
+* **api:** api update ([67322ef](https://github.com/Increase/increase-ruby/commit/67322ef5131aee957a9fc9cb34b3d0ce89675409))
+
 ## 1.113.0 (2025-10-23)
 
 Full Changelog: [v1.112.0...v1.113.0](https://github.com/Increase/increase-ruby/compare/v1.112.0...v1.113.0)
