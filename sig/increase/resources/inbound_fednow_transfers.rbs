@@ -1,0 +1,21 @@
+module Increase
+  module Resources
+    class InboundFednowTransfers
+      def retrieve: (
+        String inbound_fednow_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::InboundFednowTransfer
+
+      def list: (
+        ?account_id: String,
+        ?account_number_id: String,
+        ?created_at: Increase::InboundFednowTransferListParams::CreatedAt,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::InboundFednowTransfer]
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

@@ -65,6 +65,10 @@ module Increase
 
     attr_reader inbound_real_time_payments_transfers: Increase::Resources::InboundRealTimePaymentsTransfers
 
+    attr_reader fednow_transfers: Increase::Resources::FednowTransfers
+
+    attr_reader inbound_fednow_transfers: Increase::Resources::InboundFednowTransfers
+
     attr_reader check_deposits: Increase::Resources::CheckDeposits
 
     attr_reader lockboxes: Increase::Resources::Lockboxes

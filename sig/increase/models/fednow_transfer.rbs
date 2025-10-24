@@ -1,0 +1,404 @@
+module Increase
+  module Models
+    type fednow_transfer =
+      {
+        id: String,
+        account_id: String,
+        account_number: String,
+        acknowledgement: Increase::FednowTransfer::Acknowledgement?,
+        amount: Integer,
+        created_at: Time,
+        created_by: Increase::FednowTransfer::CreatedBy?,
+        creditor_name: String,
+        currency: Increase::Models::FednowTransfer::currency,
+        debtor_name: String,
+        external_account_id: String?,
+        idempotency_key: String?,
+        pending_transaction_id: String?,
+        rejection: Increase::FednowTransfer::Rejection?,
+        routing_number: String,
+        source_account_number_id: String,
+        status: Increase::Models::FednowTransfer::status,
+        submission: Increase::FednowTransfer::Submission?,
+        transaction_id: String?,
+        type: Increase::Models::FednowTransfer::type_,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
+      }
+
+    class FednowTransfer < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor account_number: String
+
+      attr_accessor acknowledgement: Increase::FednowTransfer::Acknowledgement?
+
+      attr_accessor amount: Integer
+
+      attr_accessor created_at: Time
+
+      attr_accessor created_by: Increase::FednowTransfer::CreatedBy?
+
+      attr_accessor creditor_name: String
+
+      attr_accessor currency: Increase::Models::FednowTransfer::currency
+
+      attr_accessor debtor_name: String
+
+      attr_accessor external_account_id: String?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor pending_transaction_id: String?
+
+      attr_accessor rejection: Increase::FednowTransfer::Rejection?
+
+      attr_accessor routing_number: String
+
+      attr_accessor source_account_number_id: String
+
+      attr_accessor status: Increase::Models::FednowTransfer::status
+
+      attr_accessor submission: Increase::FednowTransfer::Submission?
+
+      attr_accessor transaction_id: String?
+
+      attr_accessor type: Increase::Models::FednowTransfer::type_
+
+      attr_accessor unique_end_to_end_transaction_reference: String
+
+      attr_accessor unstructured_remittance_information: String
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        account_number: String,
+        acknowledgement: Increase::FednowTransfer::Acknowledgement?,
+        amount: Integer,
+        created_at: Time,
+        created_by: Increase::FednowTransfer::CreatedBy?,
+        creditor_name: String,
+        currency: Increase::Models::FednowTransfer::currency,
+        debtor_name: String,
+        external_account_id: String?,
+        idempotency_key: String?,
+        pending_transaction_id: String?,
+        rejection: Increase::FednowTransfer::Rejection?,
+        routing_number: String,
+        source_account_number_id: String,
+        status: Increase::Models::FednowTransfer::status,
+        submission: Increase::FednowTransfer::Submission?,
+        transaction_id: String?,
+        type: Increase::Models::FednowTransfer::type_,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number: String,
+        acknowledgement: Increase::FednowTransfer::Acknowledgement?,
+        amount: Integer,
+        created_at: Time,
+        created_by: Increase::FednowTransfer::CreatedBy?,
+        creditor_name: String,
+        currency: Increase::Models::FednowTransfer::currency,
+        debtor_name: String,
+        external_account_id: String?,
+        idempotency_key: String?,
+        pending_transaction_id: String?,
+        rejection: Increase::FednowTransfer::Rejection?,
+        routing_number: String,
+        source_account_number_id: String,
+        status: Increase::Models::FednowTransfer::status,
+        submission: Increase::FednowTransfer::Submission?,
+        transaction_id: String?,
+        type: Increase::Models::FednowTransfer::type_,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
+      }
+
+      type acknowledgement = { acknowledged_at: Time }
+
+      class Acknowledgement < Increase::Internal::Type::BaseModel
+        attr_accessor acknowledged_at: Time
+
+        def initialize: (acknowledged_at: Time) -> void
+
+        def to_hash: -> { acknowledged_at: Time }
+      end
+
+      type created_by =
+        {
+          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::FednowTransfer::CreatedBy::category,
+          oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::FednowTransfer::CreatedBy::User?
+        }
+
+      class CreatedBy < Increase::Internal::Type::BaseModel
+        attr_accessor api_key: Increase::FednowTransfer::CreatedBy::APIKey?
+
+        attr_accessor category: Increase::Models::FednowTransfer::CreatedBy::category
+
+        attr_accessor oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?
+
+        attr_accessor user: Increase::FednowTransfer::CreatedBy::User?
+
+        def initialize: (
+          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::FednowTransfer::CreatedBy::category,
+          oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::FednowTransfer::CreatedBy::User?
+        ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::FednowTransfer::CreatedBy::category,
+          oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::FednowTransfer::CreatedBy::User?
+        }
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
+        end
+
+        type category = :api_key | :oauth_application | :user
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # An API key. Details will be under the `api_key` object.
+          API_KEY: :api_key
+
+          # An OAuth application you connected to Increase. Details will be under the `oauth_application` object.
+          OAUTH_APPLICATION: :oauth_application
+
+          # A User in the Increase dashboard. Details will be under the `user` object.
+          USER: :user
+
+          def self?.values: -> ::Array[Increase::Models::FednowTransfer::CreatedBy::category]
+        end
+
+        type oauth_application = { name: String }
+
+        class OAuthApplication < Increase::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
+        end
+
+        type user = { email: String }
+
+        class User < Increase::Internal::Type::BaseModel
+          attr_accessor email: String
+
+          def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
+        end
+      end
+
+      type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+
+      module Currency
+        extend Increase::Internal::Type::Enum
+
+        # Canadian Dollar (CAD)
+        CAD: :CAD
+
+        # Swiss Franc (CHF)
+        CHF: :CHF
+
+        # Euro (EUR)
+        EUR: :EUR
+
+        # British Pound (GBP)
+        GBP: :GBP
+
+        # Japanese Yen (JPY)
+        JPY: :JPY
+
+        # US Dollar (USD)
+        USD: :USD
+
+        def self?.values: -> ::Array[Increase::Models::FednowTransfer::currency]
+      end
+
+      type rejection =
+        {
+          reject_reason_additional_information: String?,
+          reject_reason_code: Increase::Models::FednowTransfer::Rejection::reject_reason_code,
+          rejected_at: Time?
+        }
+
+      class Rejection < Increase::Internal::Type::BaseModel
+        attr_accessor reject_reason_additional_information: String?
+
+        attr_accessor reject_reason_code: Increase::Models::FednowTransfer::Rejection::reject_reason_code
+
+        attr_accessor rejected_at: Time?
+
+        def initialize: (
+          reject_reason_additional_information: String?,
+          reject_reason_code: Increase::Models::FednowTransfer::Rejection::reject_reason_code,
+          rejected_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          reject_reason_additional_information: String?,
+          reject_reason_code: Increase::Models::FednowTransfer::Rejection::reject_reason_code,
+          rejected_at: Time?
+        }
+
+        type reject_reason_code =
+          :account_closed
+          | :account_blocked
+          | :invalid_creditor_account_type
+          | :invalid_creditor_account_number
+          | :invalid_creditor_financial_institution_identifier
+          | :end_customer_deceased
+          | :narrative
+          | :transaction_forbidden
+          | :transaction_type_not_supported
+          | :amount_exceeds_bank_limits
+          | :invalid_creditor_address
+          | :invalid_debtor_address
+          | :timeout
+          | :processing_error
+          | :other
+
+        module RejectReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The destination account is closed. Corresponds to the FedNow reason code `AC04`.
+          ACCOUNT_CLOSED: :account_closed
+
+          # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+          ACCOUNT_BLOCKED: :account_blocked
+
+          # The destination account is ineligible to receive FedNow transfers. Corresponds to the FedNow reason code `AC14`.
+          INVALID_CREDITOR_ACCOUNT_TYPE: :invalid_creditor_account_type
+
+          # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+          INVALID_CREDITOR_ACCOUNT_NUMBER: :invalid_creditor_account_number
+
+          # The destination routing number is invalid. Corresponds to the FedNow reason code `RC04`.
+          INVALID_CREDITOR_FINANCIAL_INSTITUTION_IDENTIFIER: :invalid_creditor_financial_institution_identifier
+
+          # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+          END_CUSTOMER_DECEASED: :end_customer_deceased
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+          NARRATIVE: :narrative
+
+          # FedNow transfers are not allowed to the destination account. Corresponds to the FedNow reason code `AG01`.
+          TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # FedNow transfers are not enabled for the destination account. Corresponds to the FedNow reason code `AG03`.
+          TRANSACTION_TYPE_NOT_SUPPORTED: :transaction_type_not_supported
+
+          # The amount is higher than the recipient is authorized to send or receive. Corresponds to the FedNow reason code `E990`.
+          AMOUNT_EXCEEDS_BANK_LIMITS: :amount_exceeds_bank_limits
+
+          # The creditor's address is required, but missing or invalid. Corresponds to the FedNow reason code `BE04`.
+          INVALID_CREDITOR_ADDRESS: :invalid_creditor_address
+
+          # The debtor's address is required, but missing or invalid. Corresponds to the FedNow reason code `BE07`.
+          INVALID_DEBTOR_ADDRESS: :invalid_debtor_address
+
+          # There was a timeout processing the transfer. Corresponds to the FedNow reason code `E997`.
+          TIMEOUT: :timeout
+
+          # The transfer was rejected due to an internal Increase issue. We have been notified.
+          PROCESSING_ERROR: :processing_error
+
+          # Some other error or issue has occurred.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::FednowTransfer::Rejection::reject_reason_code]
+        end
+      end
+
+      type status =
+        :pending_reviewing
+        | :canceled
+        | :reviewing_rejected
+        | :requires_attention
+        | :pending_approval
+        | :pending_submitting
+        | :pending_response
+        | :complete
+        | :rejected
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The transfer is pending review by Increase.
+        PENDING_REVIEWING: :pending_reviewing
+
+        # The transfer has been canceled.
+        CANCELED: :canceled
+
+        # The transfer has been rejected by Increase.
+        REVIEWING_REJECTED: :reviewing_rejected
+
+        # The transfer requires attention from an Increase operator.
+        REQUIRES_ATTENTION: :requires_attention
+
+        # The transfer is pending approval.
+        PENDING_APPROVAL: :pending_approval
+
+        # The transfer is queued to be submitted to FedNow.
+        PENDING_SUBMITTING: :pending_submitting
+
+        # The transfer has been submitted and is pending a response from FedNow.
+        PENDING_RESPONSE: :pending_response
+
+        # The transfer has been sent successfully and is complete.
+        COMPLETE: :complete
+
+        # The transfer was rejected by the network or the recipient's bank.
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[Increase::Models::FednowTransfer::status]
+      end
+
+      type submission = { message_identification: String, submitted_at: Time? }
+
+      class Submission < Increase::Internal::Type::BaseModel
+        attr_accessor message_identification: String
+
+        attr_accessor submitted_at: Time?
+
+        def initialize: (
+          message_identification: String,
+          submitted_at: Time?
+        ) -> void
+
+        def to_hash: -> { message_identification: String, submitted_at: Time? }
+      end
+
+      type type_ = :fednow_transfer
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        FEDNOW_TRANSFER: :fednow_transfer
+
+        def self?.values: -> ::Array[Increase::Models::FednowTransfer::type_]
+      end
+    end
+  end
+end

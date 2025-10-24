@@ -277,6 +277,18 @@ module Increase
 
   class ExternalAccountUpdateParams = Increase::Models::ExternalAccountUpdateParams
 
+  class FednowTransfer = Increase::Models::FednowTransfer
+
+  class FednowTransferApproveParams = Increase::Models::FednowTransferApproveParams
+
+  class FednowTransferCancelParams = Increase::Models::FednowTransferCancelParams
+
+  class FednowTransferCreateParams = Increase::Models::FednowTransferCreateParams
+
+  class FednowTransferListParams = Increase::Models::FednowTransferListParams
+
+  class FednowTransferRetrieveParams = Increase::Models::FednowTransferRetrieveParams
+
   class File = Increase::Models::File
 
   class FileCreateParams = Increase::Models::FileCreateParams
@@ -314,6 +326,12 @@ module Increase
   class InboundCheckDepositRetrieveParams = Increase::Models::InboundCheckDepositRetrieveParams
 
   class InboundCheckDepositReturnParams = Increase::Models::InboundCheckDepositReturnParams
+
+  class InboundFednowTransfer = Increase::Models::InboundFednowTransfer
+
+  class InboundFednowTransferListParams = Increase::Models::InboundFednowTransferListParams
+
+  class InboundFednowTransferRetrieveParams = Increase::Models::InboundFednowTransferRetrieveParams
 
   class InboundMailItem = Increase::Models::InboundMailItem
 

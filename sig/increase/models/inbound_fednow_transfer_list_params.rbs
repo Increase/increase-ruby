@@ -1,0 +1,93 @@
+module Increase
+  module Models
+    type inbound_fednow_transfer_list_params =
+      {
+        account_id: String,
+        account_number_id: String,
+        created_at: Increase::InboundFednowTransferListParams::CreatedAt,
+        cursor: String,
+        limit: Integer
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class InboundFednowTransferListParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader account_number_id: String?
+
+      def account_number_id=: (String) -> String
+
+      attr_reader created_at: Increase::InboundFednowTransferListParams::CreatedAt?
+
+      def created_at=: (
+        Increase::InboundFednowTransferListParams::CreatedAt
+      ) -> Increase::InboundFednowTransferListParams::CreatedAt
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      def initialize: (
+        ?account_id: String,
+        ?account_number_id: String,
+        ?created_at: Increase::InboundFednowTransferListParams::CreatedAt,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        account_number_id: String,
+        created_at: Increase::InboundFednowTransferListParams::CreatedAt,
+        cursor: String,
+        limit: Integer,
+        request_options: Increase::RequestOptions
+      }
+
+      type created_at =
+        { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+
+      class CreatedAt < Increase::Internal::Type::BaseModel
+        attr_reader after: Time?
+
+        def after=: (Time) -> Time
+
+        attr_reader before: Time?
+
+        def before=: (Time) -> Time
+
+        attr_reader on_or_after: Time?
+
+        def on_or_after=: (Time) -> Time
+
+        attr_reader on_or_before: Time?
+
+        def on_or_before=: (Time) -> Time
+
+        def initialize: (
+          ?after: Time,
+          ?before: Time,
+          ?on_or_after: Time,
+          ?on_or_before: Time
+        ) -> void
+
+        def to_hash: -> {
+          after: Time,
+          before: Time,
+          on_or_after: Time,
+          on_or_before: Time
+        }
+      end
+    end
+  end
+end

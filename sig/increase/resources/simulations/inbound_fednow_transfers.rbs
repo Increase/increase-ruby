@@ -1,0 +1,19 @@
+module Increase
+  module Resources
+    class Simulations
+      class InboundFednowTransfers
+        def create: (
+          account_number_id: String,
+          amount: Integer,
+          ?debtor_account_number: String,
+          ?debtor_name: String,
+          ?debtor_routing_number: String,
+          ?unstructured_remittance_information: String,
+          ?request_options: Increase::request_opts
+        ) -> Increase::InboundFednowTransfer
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end
