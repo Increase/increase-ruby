@@ -47,6 +47,8 @@ module Increase
 
       attr_reader inbound_real_time_payments_transfers: Increase::Resources::Simulations::InboundRealTimePaymentsTransfers
 
+      attr_reader inbound_fednow_transfers: Increase::Resources::Simulations::InboundFednowTransfers
+
       attr_reader check_deposits: Increase::Resources::Simulations::CheckDeposits
 
       attr_reader inbound_mail_items: Increase::Resources::Simulations::InboundMailItems
