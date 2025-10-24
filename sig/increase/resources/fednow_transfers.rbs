@@ -1,0 +1,49 @@
+module Increase
+  module Resources
+    class FednowTransfers
+      def create: (
+        account_id: String,
+        amount: Integer,
+        creditor_name: String,
+        debtor_name: String,
+        source_account_number_id: String,
+        unstructured_remittance_information: String,
+        ?account_number: String,
+        ?creditor_address: Increase::FednowTransferCreateParams::CreditorAddress,
+        ?debtor_address: Increase::FednowTransferCreateParams::DebtorAddress,
+        ?external_account_id: String,
+        ?require_approval: bool,
+        ?routing_number: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::FednowTransfer
+
+      def retrieve: (
+        String fednow_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::FednowTransfer
+
+      def list: (
+        ?account_id: String,
+        ?created_at: Increase::FednowTransferListParams::CreatedAt,
+        ?cursor: String,
+        ?external_account_id: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::FednowTransferListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::FednowTransfer]
+
+      def approve: (
+        String fednow_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::FednowTransfer
+
+      def cancel: (
+        String fednow_transfer_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::FednowTransfer
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

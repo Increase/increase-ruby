@@ -84,6 +84,9 @@ module Increase
       end
       attr_reader :inbound_real_time_payments_transfers
 
+      sig { returns(Increase::Resources::Simulations::InboundFednowTransfers) }
+      attr_reader :inbound_fednow_transfers
+
       sig { returns(Increase::Resources::Simulations::CheckDeposits) }
       attr_reader :check_deposits
 

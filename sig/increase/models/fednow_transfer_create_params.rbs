@@ -1,0 +1,155 @@
+module Increase
+  module Models
+    type fednow_transfer_create_params =
+      {
+        account_id: String,
+        amount: Integer,
+        creditor_name: String,
+        debtor_name: String,
+        source_account_number_id: String,
+        unstructured_remittance_information: String,
+        account_number: String,
+        creditor_address: Increase::FednowTransferCreateParams::CreditorAddress,
+        debtor_address: Increase::FednowTransferCreateParams::DebtorAddress,
+        external_account_id: String,
+        require_approval: bool,
+        routing_number: String
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class FednowTransferCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor creditor_name: String
+
+      attr_accessor debtor_name: String
+
+      attr_accessor source_account_number_id: String
+
+      attr_accessor unstructured_remittance_information: String
+
+      attr_reader account_number: String?
+
+      def account_number=: (String) -> String
+
+      attr_reader creditor_address: Increase::FednowTransferCreateParams::CreditorAddress?
+
+      def creditor_address=: (
+        Increase::FednowTransferCreateParams::CreditorAddress
+      ) -> Increase::FednowTransferCreateParams::CreditorAddress
+
+      attr_reader debtor_address: Increase::FednowTransferCreateParams::DebtorAddress?
+
+      def debtor_address=: (
+        Increase::FednowTransferCreateParams::DebtorAddress
+      ) -> Increase::FednowTransferCreateParams::DebtorAddress
+
+      attr_reader external_account_id: String?
+
+      def external_account_id=: (String) -> String
+
+      attr_reader require_approval: bool?
+
+      def require_approval=: (bool) -> bool
+
+      attr_reader routing_number: String?
+
+      def routing_number=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        amount: Integer,
+        creditor_name: String,
+        debtor_name: String,
+        source_account_number_id: String,
+        unstructured_remittance_information: String,
+        ?account_number: String,
+        ?creditor_address: Increase::FednowTransferCreateParams::CreditorAddress,
+        ?debtor_address: Increase::FednowTransferCreateParams::DebtorAddress,
+        ?external_account_id: String,
+        ?require_approval: bool,
+        ?routing_number: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        amount: Integer,
+        creditor_name: String,
+        debtor_name: String,
+        source_account_number_id: String,
+        unstructured_remittance_information: String,
+        account_number: String,
+        creditor_address: Increase::FednowTransferCreateParams::CreditorAddress,
+        debtor_address: Increase::FednowTransferCreateParams::DebtorAddress,
+        external_account_id: String,
+        require_approval: bool,
+        routing_number: String,
+        request_options: Increase::RequestOptions
+      }
+
+      type creditor_address =
+        { city: String, postal_code: String, state: String, :line1 => String }
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_reader line1: String?
+
+        def line1=: (String) -> String
+
+        def initialize: (
+          city: String,
+          postal_code: String,
+          state: String,
+          ?line1: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          postal_code: String,
+          state: String,
+          :line1 => String
+        }
+      end
+
+      type debtor_address =
+        { city: String, postal_code: String, state: String, :line1 => String }
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_reader line1: String?
+
+        def line1=: (String) -> String
+
+        def initialize: (
+          city: String,
+          postal_code: String,
+          state: String,
+          ?line1: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          postal_code: String,
+          state: String,
+          :line1 => String
+        }
+      end
+    end
+  end
+end

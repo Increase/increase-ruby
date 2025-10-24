@@ -1,0 +1,61 @@
+module Increase
+  module Models
+    module Simulations
+      type inbound_fednow_transfer_create_params =
+        {
+          account_number_id: String,
+          amount: Integer,
+          debtor_account_number: String,
+          debtor_name: String,
+          debtor_routing_number: String,
+          unstructured_remittance_information: String
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class InboundFednowTransferCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor account_number_id: String
+
+        attr_accessor amount: Integer
+
+        attr_reader debtor_account_number: String?
+
+        def debtor_account_number=: (String) -> String
+
+        attr_reader debtor_name: String?
+
+        def debtor_name=: (String) -> String
+
+        attr_reader debtor_routing_number: String?
+
+        def debtor_routing_number=: (String) -> String
+
+        attr_reader unstructured_remittance_information: String?
+
+        def unstructured_remittance_information=: (String) -> String
+
+        def initialize: (
+          account_number_id: String,
+          amount: Integer,
+          ?debtor_account_number: String,
+          ?debtor_name: String,
+          ?debtor_routing_number: String,
+          ?unstructured_remittance_information: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          account_number_id: String,
+          amount: Integer,
+          debtor_account_number: String,
+          debtor_name: String,
+          debtor_routing_number: String,
+          unstructured_remittance_information: String,
+          request_options: Increase::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,223 @@
+module Increase
+  module Models
+    type inbound_fednow_transfer =
+      {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        confirmation: Increase::InboundFednowTransfer::Confirmation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::InboundFednowTransfer::currency,
+        debtor_account_number: String,
+        debtor_name: String,
+        debtor_routing_number: String,
+        decline: Increase::InboundFednowTransfer::Decline?,
+        status: Increase::Models::InboundFednowTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::InboundFednowTransfer::type_,
+        unstructured_remittance_information: String?
+      }
+
+    class InboundFednowTransfer < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor account_number_id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor confirmation: Increase::InboundFednowTransfer::Confirmation?
+
+      attr_accessor created_at: Time
+
+      attr_accessor creditor_name: String
+
+      attr_accessor currency: Increase::Models::InboundFednowTransfer::currency
+
+      attr_accessor debtor_account_number: String
+
+      attr_accessor debtor_name: String
+
+      attr_accessor debtor_routing_number: String
+
+      attr_accessor decline: Increase::InboundFednowTransfer::Decline?
+
+      attr_accessor status: Increase::Models::InboundFednowTransfer::status
+
+      attr_accessor transaction_id: String?
+
+      attr_accessor type: Increase::Models::InboundFednowTransfer::type_
+
+      attr_accessor unstructured_remittance_information: String?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        confirmation: Increase::InboundFednowTransfer::Confirmation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::InboundFednowTransfer::currency,
+        debtor_account_number: String,
+        debtor_name: String,
+        debtor_routing_number: String,
+        decline: Increase::InboundFednowTransfer::Decline?,
+        status: Increase::Models::InboundFednowTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::InboundFednowTransfer::type_,
+        unstructured_remittance_information: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        confirmation: Increase::InboundFednowTransfer::Confirmation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::InboundFednowTransfer::currency,
+        debtor_account_number: String,
+        debtor_name: String,
+        debtor_routing_number: String,
+        decline: Increase::InboundFednowTransfer::Decline?,
+        status: Increase::Models::InboundFednowTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::InboundFednowTransfer::type_,
+        unstructured_remittance_information: String?
+      }
+
+      type confirmation = { transfer_id: String }
+
+      class Confirmation < Increase::Internal::Type::BaseModel
+        attr_accessor transfer_id: String
+
+        def initialize: (transfer_id: String) -> void
+
+        def to_hash: -> { transfer_id: String }
+      end
+
+      type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+
+      module Currency
+        extend Increase::Internal::Type::Enum
+
+        # Canadian Dollar (CAD)
+        CAD: :CAD
+
+        # Swiss Franc (CHF)
+        CHF: :CHF
+
+        # Euro (EUR)
+        EUR: :EUR
+
+        # British Pound (GBP)
+        GBP: :GBP
+
+        # Japanese Yen (JPY)
+        JPY: :JPY
+
+        # US Dollar (USD)
+        USD: :USD
+
+        def self?.values: -> ::Array[Increase::Models::InboundFednowTransfer::currency]
+      end
+
+      type decline =
+        {
+          reason: Increase::Models::InboundFednowTransfer::Decline::reason,
+          transfer_id: String
+        }
+
+      class Decline < Increase::Internal::Type::BaseModel
+        attr_accessor reason: Increase::Models::InboundFednowTransfer::Decline::reason
+
+        attr_accessor transfer_id: String
+
+        def initialize: (
+          reason: Increase::Models::InboundFednowTransfer::Decline::reason,
+          transfer_id: String
+        ) -> void
+
+        def to_hash: -> {
+          reason: Increase::Models::InboundFednowTransfer::Decline::reason,
+          transfer_id: String
+        }
+
+        type reason =
+          :account_number_canceled
+          | :account_number_disabled
+          | :account_restricted
+          | :group_locked
+          | :entity_not_active
+          | :fednow_not_enabled
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The account number is canceled.
+          ACCOUNT_NUMBER_CANCELED: :account_number_canceled
+
+          # The account number is disabled.
+          ACCOUNT_NUMBER_DISABLED: :account_number_disabled
+
+          # Your account is restricted.
+          ACCOUNT_RESTRICTED: :account_restricted
+
+          # Your account is inactive.
+          GROUP_LOCKED: :group_locked
+
+          # The account's entity is not active.
+          ENTITY_NOT_ACTIVE: :entity_not_active
+
+          # Your account is not enabled to receive FedNow transfers.
+          FEDNOW_NOT_ENABLED: :fednow_not_enabled
+
+          def self?.values: -> ::Array[Increase::Models::InboundFednowTransfer::Decline::reason]
+        end
+      end
+
+      type status =
+        :pending_confirming
+        | :timed_out
+        | :confirmed
+        | :declined
+        | :requires_attention
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The transfer is pending confirmation.
+        PENDING_CONFIRMING: :pending_confirming
+
+        # The transfer was not responded to in time.
+        TIMED_OUT: :timed_out
+
+        # The transfer has been received successfully and is confirmed.
+        CONFIRMED: :confirmed
+
+        # The transfer has been declined.
+        DECLINED: :declined
+
+        # The transfer requires attention from an Increase operator.
+        REQUIRES_ATTENTION: :requires_attention
+
+        def self?.values: -> ::Array[Increase::Models::InboundFednowTransfer::status]
+      end
+
+      type type_ = :inbound_fednow_transfer
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        INBOUND_FEDNOW_TRANSFER: :inbound_fednow_transfer
+
+        def self?.values: -> ::Array[Increase::Models::InboundFednowTransfer::type_]
+      end
+    end
+  end
+end
