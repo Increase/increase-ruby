@@ -916,6 +916,14 @@ module Increase
                      -> { Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental },
                      nil?: true
 
+            # @!attribute original
+            #   The original pre-authorized amount.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original, nil]
+            required :original,
+                     -> { Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original },
+                     nil?: true
+
             # @!attribute prescription
             #   The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -978,7 +986,7 @@ module Increase
                      -> { Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision },
                      nil?: true
 
-            # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+            # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts}
             #   for more details.
@@ -990,6 +998,8 @@ module Increase
             #   @param clinic [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
             #
             #   @param dental [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #
+            #   @param original [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original, nil] The original pre-authorized amount.
             #
             #   @param prescription [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -1057,6 +1067,35 @@ module Increase
               #   for more details.
               #
               #   The part of this transaction amount that was for dental-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#original
+            class Original < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original}
+              #   for more details.
+              #
+              #   The original pre-authorized amount.
               #
               #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
@@ -2194,6 +2233,14 @@ module Increase
                      -> { Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental },
                      nil?: true
 
+            # @!attribute original
+            #   The original pre-authorized amount.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Original, nil]
+            required :original,
+                     -> { Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Original },
+                     nil?: true
+
             # @!attribute prescription
             #   The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -2250,7 +2297,7 @@ module Increase
                      -> { Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Vision },
                      nil?: true
 
-            # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+            # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts} for
             #   more details.
@@ -2262,6 +2309,8 @@ module Increase
             #   @param clinic [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
             #
             #   @param dental [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #
+            #   @param original [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Original, nil] The original pre-authorized amount.
             #
             #   @param prescription [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -2329,6 +2378,35 @@ module Increase
               #   for more details.
               #
               #   The part of this transaction amount that was for dental-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#original
+            class Original < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Original}
+              #   for more details.
+              #
+              #   The original pre-authorized amount.
               #
               #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
@@ -3493,6 +3571,14 @@ module Increase
                      -> { Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental },
                      nil?: true
 
+            # @!attribute original
+            #   The original pre-authorized amount.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Original, nil]
+            required :original,
+                     -> { Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Original },
+                     nil?: true
+
             # @!attribute prescription
             #   The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -3549,7 +3635,7 @@ module Increase
                      -> { Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision },
                      nil?: true
 
-            # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+            # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts} for
             #   more details.
@@ -3561,6 +3647,8 @@ module Increase
             #   @param clinic [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
             #
             #   @param dental [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #
+            #   @param original [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Original, nil] The original pre-authorized amount.
             #
             #   @param prescription [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -3628,6 +3716,35 @@ module Increase
               #   for more details.
               #
               #   The part of this transaction amount that was for dental-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#original
+            class Original < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Original}
+              #   for more details.
+              #
+              #   The original pre-authorized amount.
               #
               #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
@@ -7301,6 +7418,14 @@ module Increase
                      -> { Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental },
                      nil?: true
 
+            # @!attribute original
+            #   The original pre-authorized amount.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Original, nil]
+            required :original,
+                     -> { Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Original },
+                     nil?: true
+
             # @!attribute prescription
             #   The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -7361,7 +7486,7 @@ module Increase
                      -> { Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Vision },
                      nil?: true
 
-            # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+            # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts} for
             #   more details.
@@ -7373,6 +7498,8 @@ module Increase
             #   @param clinic [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
             #
             #   @param dental [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #
+            #   @param original [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Original, nil] The original pre-authorized amount.
             #
             #   @param prescription [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
             #
@@ -7440,6 +7567,35 @@ module Increase
               #   for more details.
               #
               #   The part of this transaction amount that was for dental-related services.
+              #
+              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #
+              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#original
+            class Original < Increase::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The amount in minor units of the `currency` field. The amount is positive if it
+              #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #   subtracted from the amount (such as a discount).
+              #
+              #   @return [Integer]
+              required :amount, Integer
+
+              # @!attribute currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #   amount's currency.
+              #
+              #   @return [String]
+              required :currency, String
+
+              # @!method initialize(amount:, currency:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Original}
+              #   for more details.
+              #
+              #   The original pre-authorized amount.
               #
               #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
               #
