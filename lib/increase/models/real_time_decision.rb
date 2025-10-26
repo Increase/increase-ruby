@@ -502,6 +502,14 @@ module Increase
                    -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental },
                    nil?: true
 
+          # @!attribute original
+          #   The original pre-authorized amount.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original, nil]
+          required :original,
+                   -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original },
+                   nil?: true
+
           # @!attribute prescription
           #   The part of this transaction amount that was for healthcare prescriptions.
           #
@@ -558,7 +566,7 @@ module Increase
                    -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Vision },
                    nil?: true
 
-          # @!method initialize(clinic:, dental:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
+          # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts} for
           #   more details.
@@ -570,6 +578,8 @@ module Increase
           #   @param clinic [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
           #
           #   @param dental [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+          #
+          #   @param original [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original, nil] The original pre-authorized amount.
           #
           #   @param prescription [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
           #
@@ -637,6 +647,35 @@ module Increase
             #   for more details.
             #
             #   The part of this transaction amount that was for dental-related services.
+            #
+            #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+            #
+            #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts#original
+          class Original < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in minor units of the `currency` field. The amount is positive if it
+            #   is added to the amount (such as an ATM surcharge fee) and negative if it is
+            #   subtracted from the amount (such as a discount).
+            #
+            #   @return [Integer]
+            required :amount, Integer
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            #   amount's currency.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!method initialize(amount:, currency:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original}
+            #   for more details.
+            #
+            #   The original pre-authorized amount.
             #
             #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
             #

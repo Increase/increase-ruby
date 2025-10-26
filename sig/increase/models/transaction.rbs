@@ -1074,6 +1074,7 @@ module Increase
             {
               clinic: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Clinic?,
               dental: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Dental?,
+              original: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Original?,
               prescription: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Prescription?,
               surcharge: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Surcharge?,
               total_cumulative: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::TotalCumulative?,
@@ -1087,6 +1088,8 @@ module Increase
             attr_accessor clinic: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Clinic?
 
             attr_accessor dental: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Dental?
+
+            attr_accessor original: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Original?
 
             attr_accessor prescription: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Prescription?
 
@@ -1105,6 +1108,7 @@ module Increase
             def initialize: (
               clinic: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Clinic?,
               dental: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Dental?,
+              original: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Original?,
               prescription: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Prescription?,
               surcharge: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Surcharge?,
               total_cumulative: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::TotalCumulative?,
@@ -1117,6 +1121,7 @@ module Increase
             def to_hash: -> {
               clinic: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Clinic?,
               dental: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Dental?,
+              original: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Original?,
               prescription: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Prescription?,
               surcharge: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::Surcharge?,
               total_cumulative: Increase::Transaction::Source::CardFinancial::AdditionalAmounts::TotalCumulative?,
@@ -1141,6 +1146,18 @@ module Increase
             type dental = { amount: Integer, currency: String }
 
             class Dental < Increase::Internal::Type::BaseModel
+              attr_accessor amount: Integer
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Integer, currency: String) -> void
+
+              def to_hash: -> { amount: Integer, currency: String }
+            end
+
+            type original = { amount: Integer, currency: String }
+
+            class Original < Increase::Internal::Type::BaseModel
               attr_accessor amount: Integer
 
               attr_accessor currency: String

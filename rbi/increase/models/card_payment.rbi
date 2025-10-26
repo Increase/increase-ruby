@@ -1643,6 +1643,26 @@ module Increase
             end
             attr_writer :dental
 
+            # The original pre-authorized amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original
+                )
+              )
+            end
+            attr_reader :original
+
+            sig do
+              params(
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original::OrHash
+                  )
+              ).void
+            end
+            attr_writer :original
+
             # The part of this transaction amount that was for healthcare prescriptions.
             sig do
               returns(
@@ -1796,6 +1816,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental::OrHash
                   ),
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original::OrHash
+                  ),
                 prescription:
                   T.nilable(
                     Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription::OrHash
@@ -1831,6 +1855,8 @@ module Increase
               clinic:,
               # The part of this transaction amount that was for dental-related services.
               dental:,
+              # The original pre-authorized amount.
+              original:,
               # The part of this transaction amount that was for healthcare prescriptions.
               prescription:,
               # The surcharge amount charged for this transaction by the merchant.
@@ -1858,6 +1884,10 @@ module Increase
                   dental:
                     T.nilable(
                       Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental
+                    ),
+                  original:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original
                     ),
                   prescription:
                     T.nilable(
@@ -1956,6 +1986,48 @@ module Increase
               attr_accessor :currency
 
               # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Original < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The original pre-authorized amount.
               sig do
                 params(amount: Integer, currency: String).returns(
                   T.attached_class
@@ -4066,6 +4138,26 @@ module Increase
             end
             attr_writer :dental
 
+            # The original pre-authorized amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Original
+                )
+              )
+            end
+            attr_reader :original
+
+            sig do
+              params(
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Original::OrHash
+                  )
+              ).void
+            end
+            attr_writer :original
+
             # The part of this transaction amount that was for healthcare prescriptions.
             sig do
               returns(
@@ -4219,6 +4311,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental::OrHash
                   ),
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Original::OrHash
+                  ),
                 prescription:
                   T.nilable(
                     Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription::OrHash
@@ -4254,6 +4350,8 @@ module Increase
               clinic:,
               # The part of this transaction amount that was for dental-related services.
               dental:,
+              # The original pre-authorized amount.
+              original:,
               # The part of this transaction amount that was for healthcare prescriptions.
               prescription:,
               # The surcharge amount charged for this transaction by the merchant.
@@ -4281,6 +4379,10 @@ module Increase
                   dental:
                     T.nilable(
                       Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Dental
+                    ),
+                  original:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Original
                     ),
                   prescription:
                     T.nilable(
@@ -4379,6 +4481,48 @@ module Increase
               attr_accessor :currency
 
               # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Original < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::AdditionalAmounts::Original,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The original pre-authorized amount.
               sig do
                 params(amount: Integer, currency: String).returns(
                   T.attached_class
@@ -6622,6 +6766,26 @@ module Increase
             end
             attr_writer :dental
 
+            # The original pre-authorized amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Original
+                )
+              )
+            end
+            attr_reader :original
+
+            sig do
+              params(
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Original::OrHash
+                  )
+              ).void
+            end
+            attr_writer :original
+
             # The part of this transaction amount that was for healthcare prescriptions.
             sig do
               returns(
@@ -6775,6 +6939,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental::OrHash
                   ),
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Original::OrHash
+                  ),
                 prescription:
                   T.nilable(
                     Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription::OrHash
@@ -6810,6 +6978,8 @@ module Increase
               clinic:,
               # The part of this transaction amount that was for dental-related services.
               dental:,
+              # The original pre-authorized amount.
+              original:,
               # The part of this transaction amount that was for healthcare prescriptions.
               prescription:,
               # The surcharge amount charged for this transaction by the merchant.
@@ -6837,6 +7007,10 @@ module Increase
                   dental:
                     T.nilable(
                       Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental
+                    ),
+                  original:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Original
                     ),
                   prescription:
                     T.nilable(
@@ -6935,6 +7109,48 @@ module Increase
               attr_accessor :currency
 
               # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Original < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardIncrement::AdditionalAmounts::Original,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The original pre-authorized amount.
               sig do
                 params(amount: Integer, currency: String).returns(
                   T.attached_class
@@ -13395,6 +13611,26 @@ module Increase
             end
             attr_writer :dental
 
+            # The original pre-authorized amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Original
+                )
+              )
+            end
+            attr_reader :original
+
+            sig do
+              params(
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Original::OrHash
+                  )
+              ).void
+            end
+            attr_writer :original
+
             # The part of this transaction amount that was for healthcare prescriptions.
             sig do
               returns(
@@ -13548,6 +13784,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental::OrHash
                   ),
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Original::OrHash
+                  ),
                 prescription:
                   T.nilable(
                     Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription::OrHash
@@ -13583,6 +13823,8 @@ module Increase
               clinic:,
               # The part of this transaction amount that was for dental-related services.
               dental:,
+              # The original pre-authorized amount.
+              original:,
               # The part of this transaction amount that was for healthcare prescriptions.
               prescription:,
               # The surcharge amount charged for this transaction by the merchant.
@@ -13610,6 +13852,10 @@ module Increase
                   dental:
                     T.nilable(
                       Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Dental
+                    ),
+                  original:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Original
                     ),
                   prescription:
                     T.nilable(
@@ -13708,6 +13954,48 @@ module Increase
               attr_accessor :currency
 
               # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Original < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::AdditionalAmounts::Original,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The original pre-authorized amount.
               sig do
                 params(amount: Integer, currency: String).returns(
                   T.attached_class
