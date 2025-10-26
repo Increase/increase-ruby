@@ -316,6 +316,7 @@ module Increase
           {
             clinic: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic?,
             dental: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental?,
+            original: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original?,
             prescription: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription?,
             surcharge: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge?,
             total_cumulative: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative?,
@@ -329,6 +330,8 @@ module Increase
           attr_accessor clinic: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic?
 
           attr_accessor dental: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental?
+
+          attr_accessor original: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original?
 
           attr_accessor prescription: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription?
 
@@ -347,6 +350,7 @@ module Increase
           def initialize: (
             clinic: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic?,
             dental: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental?,
+            original: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original?,
             prescription: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription?,
             surcharge: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge?,
             total_cumulative: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative?,
@@ -359,6 +363,7 @@ module Increase
           def to_hash: -> {
             clinic: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic?,
             dental: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Dental?,
+            original: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Original?,
             prescription: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Prescription?,
             surcharge: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::Surcharge?,
             total_cumulative: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::TotalCumulative?,
@@ -383,6 +388,18 @@ module Increase
           type dental = { amount: Integer, currency: String }
 
           class Dental < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type original = { amount: Integer, currency: String }
+
+          class Original < Increase::Internal::Type::BaseModel
             attr_accessor amount: Integer
 
             attr_accessor currency: String
