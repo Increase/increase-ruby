@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.117.0 (2025-10-27)
+
+Full Changelog: [v1.116.0...v1.117.0](https://github.com/Increase/increase-ruby/compare/v1.116.0...v1.117.0)
+
+### Features
+
+* **api:** api update ([fbcaddc](https://github.com/Increase/increase-ruby/commit/fbcaddc862376c22a713461f6babcc01cd1753d1))
+
 ## 1.116.0 (2025-10-27)
 
 Full Changelog: [v1.115.0...v1.116.0](https://github.com/Increase/increase-ruby/compare/v1.115.0...v1.116.0)
