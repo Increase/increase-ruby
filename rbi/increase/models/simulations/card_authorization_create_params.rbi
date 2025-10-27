@@ -636,18 +636,40 @@ module Increase
           end
           attr_accessor :category
 
+          # Details related to refund authorizations.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
+              )
+            )
+          end
+          attr_reader :refund
+
+          sig do
+            params(
+              refund:
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund::OrHash
+            ).void
+          end
+          attr_writer :refund
+
           # Fields specific to a specific type of authorization, such as Automatic Fuel
           # Dispensers, Refund Authorizations, or Cash Disbursements.
           sig do
             params(
               category:
-                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol,
+              refund:
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
             # The processing category describes the intent behind the authorization, such as
             # whether it was used for bill payments or an automatic fuel dispenser.
-            category:
+            category:,
+            # Details related to refund authorizations.
+            refund: nil
           )
           end
 
@@ -655,7 +677,9 @@ module Increase
             override.returns(
               {
                 category:
-                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol
+                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::OrSymbol,
+                refund:
+                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
               }
             )
           end
@@ -740,6 +764,37 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class Refund < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The card payment to link this refund to.
+            sig { returns(T.nilable(String)) }
+            attr_reader :original_card_payment_id
+
+            sig { params(original_card_payment_id: String).void }
+            attr_writer :original_card_payment_id
+
+            # Details related to refund authorizations.
+            sig do
+              params(original_card_payment_id: String).returns(T.attached_class)
+            end
+            def self.new(
+              # The card payment to link this refund to.
+              original_card_payment_id: nil
+            )
+            end
+
+            sig { override.returns({ original_card_payment_id: String }) }
+            def to_hash
             end
           end
         end
