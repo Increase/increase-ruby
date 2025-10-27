@@ -3,6 +3,7 @@ module Increase
     class Simulations
       class CardRefunds
         def create: (
+          ?amount: Integer,
           ?pending_transaction_id: String,
           ?transaction_id: String,
           ?request_options: Increase::request_opts
