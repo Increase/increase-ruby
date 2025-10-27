@@ -300,7 +300,13 @@ module Increase
           required :category,
                    enum: -> { Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category }
 
-          # @!method initialize(category:)
+          # @!attribute refund
+          #   Details related to refund authorizations.
+          #
+          #   @return [Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund, nil]
+          optional :refund, -> { Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund }
+
+          # @!method initialize(category:, refund: nil)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory}
           #   for more details.
@@ -309,6 +315,8 @@ module Increase
           #   Dispensers, Refund Authorizations, or Cash Disbursements.
           #
           #   @param category [Symbol, Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category] The processing category describes the intent behind the authorization, such as w
+          #
+          #   @param refund [Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund] Details related to refund authorizations.
 
           # The processing category describes the intent behind the authorization, such as
           # whether it was used for bill payments or an automatic fuel dispenser.
@@ -343,6 +351,20 @@ module Increase
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory#refund
+          class Refund < Increase::Internal::Type::BaseModel
+            # @!attribute original_card_payment_id
+            #   The card payment to link this refund to.
+            #
+            #   @return [String, nil]
+            optional :original_card_payment_id, String
+
+            # @!method initialize(original_card_payment_id: nil)
+            #   Details related to refund authorizations.
+            #
+            #   @param original_card_payment_id [String] The card payment to link this refund to.
           end
         end
       end

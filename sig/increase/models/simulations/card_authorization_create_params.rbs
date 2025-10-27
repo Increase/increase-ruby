@@ -305,18 +305,27 @@ module Increase
 
         type processing_category =
           {
-            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category,
+            refund: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
           }
 
         class ProcessingCategory < Increase::Internal::Type::BaseModel
           attr_accessor category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
 
+          attr_reader refund: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund?
+
+          def refund=: (
+            Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
+          ) -> Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
+
           def initialize: (
-            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category,
+            ?refund: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
           ) -> void
 
           def to_hash: -> {
-            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category
+            category: Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category,
+            refund: Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Refund
           }
 
           type category =
@@ -357,6 +366,18 @@ module Increase
             CASH_DISBURSEMENT: :cash_disbursement
 
             def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthorizationCreateParams::ProcessingCategory::category]
+          end
+
+          type refund = { original_card_payment_id: String }
+
+          class Refund < Increase::Internal::Type::BaseModel
+            attr_reader original_card_payment_id: String?
+
+            def original_card_payment_id=: (String) -> String
+
+            def initialize: (?original_card_payment_id: String) -> void
+
+            def to_hash: -> { original_card_payment_id: String }
           end
         end
       end
