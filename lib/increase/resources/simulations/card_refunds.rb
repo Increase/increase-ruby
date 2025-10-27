@@ -10,7 +10,9 @@ module Increase
         # Simulates refunding a card transaction. The full value of the original sandbox
         # transaction is refunded.
         #
-        # @overload create(pending_transaction_id: nil, transaction_id: nil, request_options: {})
+        # @overload create(amount: nil, pending_transaction_id: nil, transaction_id: nil, request_options: {})
+        #
+        # @param amount [Integer] The refund amount in cents. Pulled off the `pending_transaction` or the `transac
         #
         # @param pending_transaction_id [String] The identifier of the Pending Transaction for the refund authorization. If this
         #
