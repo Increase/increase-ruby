@@ -618,34 +618,6 @@ module Increase
           )
 
         # Occurs whenever a Card Push Transfer is created.
-        OUTBOUND_CARD_PUSH_TRANSFER_CREATED =
-          T.let(
-            :"outbound_card_push_transfer.created",
-            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
-          )
-
-        # Occurs whenever a Card Push Transfer is updated.
-        OUTBOUND_CARD_PUSH_TRANSFER_UPDATED =
-          T.let(
-            :"outbound_card_push_transfer.updated",
-            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
-          )
-
-        # Occurs whenever a Card Validation is created.
-        OUTBOUND_CARD_VALIDATION_CREATED =
-          T.let(
-            :"outbound_card_validation.created",
-            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
-          )
-
-        # Occurs whenever a Card Validation is updated.
-        OUTBOUND_CARD_VALIDATION_UPDATED =
-          T.let(
-            :"outbound_card_validation.updated",
-            Increase::EventSubscriptionCreateParams::SelectedEventCategory::TaggedSymbol
-          )
-
-        # Occurs whenever a Card Push Transfer is created.
         CARD_PUSH_TRANSFER_CREATED =
           T.let(
             :"card_push_transfer.created",

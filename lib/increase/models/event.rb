@@ -281,18 +281,6 @@ module Increase
         OAUTH_CONNECTION_DEACTIVATED = :"oauth_connection.deactivated"
 
         # Occurs whenever a Card Push Transfer is created.
-        OUTBOUND_CARD_PUSH_TRANSFER_CREATED = :"outbound_card_push_transfer.created"
-
-        # Occurs whenever a Card Push Transfer is updated.
-        OUTBOUND_CARD_PUSH_TRANSFER_UPDATED = :"outbound_card_push_transfer.updated"
-
-        # Occurs whenever a Card Validation is created.
-        OUTBOUND_CARD_VALIDATION_CREATED = :"outbound_card_validation.created"
-
-        # Occurs whenever a Card Validation is updated.
-        OUTBOUND_CARD_VALIDATION_UPDATED = :"outbound_card_validation.updated"
-
-        # Occurs whenever a Card Push Transfer is created.
         CARD_PUSH_TRANSFER_CREATED = :"card_push_transfer.created"
 
         # Occurs whenever a Card Push Transfer is updated.
