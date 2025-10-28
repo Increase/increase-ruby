@@ -185,6 +185,22 @@ module Increase
         end
         attr_writer :card_decline
 
+        # A Card Financial object. This field will be present in the JSON response if and
+        # only if `category` is equal to `card_financial`. Card Financials are temporary
+        # holds placed on a customers funds with the intent to later clear a transaction.
+        sig do
+          returns(T.nilable(Increase::CardPayment::Element::CardFinancial))
+        end
+        attr_reader :card_financial
+
+        sig do
+          params(
+            card_financial:
+              T.nilable(Increase::CardPayment::Element::CardFinancial::OrHash)
+          ).void
+        end
+        attr_writer :card_financial
+
         # A Card Fuel Confirmation object. This field will be present in the JSON response
         # if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
         # Confirmations update the amount of a Card Authorization after a fuel pump
@@ -318,6 +334,8 @@ module Increase
               ),
             card_decline:
               T.nilable(Increase::CardPayment::Element::CardDecline::OrHash),
+            card_financial:
+              T.nilable(Increase::CardPayment::Element::CardFinancial::OrHash),
             card_fuel_confirmation:
               T.nilable(
                 Increase::CardPayment::Element::CardFuelConfirmation::OrHash
@@ -355,6 +373,10 @@ module Increase
           # A Card Decline object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_decline`.
           card_decline:,
+          # A Card Financial object. This field will be present in the JSON response if and
+          # only if `category` is equal to `card_financial`. Card Financials are temporary
+          # holds placed on a customers funds with the intent to later clear a transaction.
+          card_financial:,
           # A Card Fuel Confirmation object. This field will be present in the JSON response
           # if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
           # Confirmations update the amount of a Card Authorization after a fuel pump
@@ -410,6 +432,8 @@ module Increase
                 ),
               card_decline:
                 T.nilable(Increase::CardPayment::Element::CardDecline),
+              card_financial:
+                T.nilable(Increase::CardPayment::Element::CardFinancial),
               card_fuel_confirmation:
                 T.nilable(Increase::CardPayment::Element::CardFuelConfirmation),
               card_increment:
@@ -6097,6 +6121,2235 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+          end
+        end
+
+        class CardFinancial < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CardPayment::Element::CardFinancial,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The Card Financial identifier.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Whether this financial was approved by Increase, the card network through
+          # stand-in processing, or the user through a real-time decision.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::Actioner::TaggedSymbol
+            )
+          end
+          attr_accessor :actioner
+
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::AdditionalAmounts
+            )
+          end
+          attr_reader :additional_amounts
+
+          sig do
+            params(
+              additional_amounts:
+                Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::OrHash
+            ).void
+          end
+          attr_writer :additional_amounts
+
+          # The pending amount in the minor unit of the transaction's currency. For dollars,
+          # for example, this is cents.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The ID of the Card Payment this transaction belongs to.
+          sig { returns(String) }
+          attr_accessor :card_payment_id
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          # transaction's currency.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+            )
+          end
+          attr_accessor :currency
+
+          # If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          # purchase), the identifier of the token that was used.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :digital_wallet_token_id
+
+          # The direction describes the direction the funds will move, either from the
+          # cardholder to the merchant or from the merchant to the cardholder.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::Direction::TaggedSymbol
+            )
+          end
+          attr_accessor :direction
+
+          # The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          # is transacting with.
+          sig { returns(String) }
+          attr_accessor :merchant_acceptor_id
+
+          # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          # card is transacting with.
+          sig { returns(String) }
+          attr_accessor :merchant_category_code
+
+          # The city the merchant resides in.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :merchant_city
+
+          # The country the merchant resides in.
+          sig { returns(String) }
+          attr_accessor :merchant_country
+
+          # The merchant descriptor of the merchant the card is transacting with.
+          sig { returns(String) }
+          attr_accessor :merchant_descriptor
+
+          # The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          # ZIP code, where the first 5 and last 4 are separated by a dash.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :merchant_postal_code
+
+          # The state the merchant resides in.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :merchant_state
+
+          # Fields specific to the `network`.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::NetworkDetails
+            )
+          end
+          attr_reader :network_details
+
+          sig do
+            params(
+              network_details:
+                Increase::CardPayment::Element::CardFinancial::NetworkDetails::OrHash
+            ).void
+          end
+          attr_writer :network_details
+
+          # Network-specific identifiers for a specific request or transaction.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::NetworkIdentifiers
+            )
+          end
+          attr_reader :network_identifiers
+
+          sig do
+            params(
+              network_identifiers:
+                Increase::CardPayment::Element::CardFinancial::NetworkIdentifiers::OrHash
+            ).void
+          end
+          attr_writer :network_identifiers
+
+          # The risk score generated by the card network. For Visa this is the Visa Advanced
+          # Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          # score is from 0 to 999, where 999 is the riskiest.
+          sig { returns(T.nilable(Integer)) }
+          attr_accessor :network_risk_score
+
+          # If the authorization was made in-person with a physical card, the Physical Card
+          # that was used.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :physical_card_id
+
+          # The pending amount in the minor unit of the transaction's presentment currency.
+          sig { returns(Integer) }
+          attr_accessor :presentment_amount
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          # transaction's presentment currency.
+          sig { returns(String) }
+          attr_accessor :presentment_currency
+
+          # The processing category describes the intent behind the financial, such as
+          # whether it was used for bill payments or an automatic fuel dispenser.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+            )
+          end
+          attr_accessor :processing_category
+
+          # The identifier of the Real-Time Decision sent to approve or decline this
+          # transaction.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :real_time_decision_id
+
+          # The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          # is transacting with.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :terminal_id
+
+          # The identifier of the Transaction associated with this Transaction.
+          sig { returns(String) }
+          attr_accessor :transaction_id
+
+          # A constant representing the object's type. For this resource it will always be
+          # `card_financial`.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardFinancial::Type::TaggedSymbol
+            )
+          end
+          attr_accessor :type
+
+          # Fields related to verification of cardholder-provided values.
+          sig do
+            returns(Increase::CardPayment::Element::CardFinancial::Verification)
+          end
+          attr_reader :verification
+
+          sig do
+            params(
+              verification:
+                Increase::CardPayment::Element::CardFinancial::Verification::OrHash
+            ).void
+          end
+          attr_writer :verification
+
+          # A Card Financial object. This field will be present in the JSON response if and
+          # only if `category` is equal to `card_financial`. Card Financials are temporary
+          # holds placed on a customers funds with the intent to later clear a transaction.
+          sig do
+            params(
+              id: String,
+              actioner:
+                Increase::CardPayment::Element::CardFinancial::Actioner::OrSymbol,
+              additional_amounts:
+                Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::OrHash,
+              amount: Integer,
+              card_payment_id: String,
+              currency:
+                Increase::CardPayment::Element::CardFinancial::Currency::OrSymbol,
+              digital_wallet_token_id: T.nilable(String),
+              direction:
+                Increase::CardPayment::Element::CardFinancial::Direction::OrSymbol,
+              merchant_acceptor_id: String,
+              merchant_category_code: String,
+              merchant_city: T.nilable(String),
+              merchant_country: String,
+              merchant_descriptor: String,
+              merchant_postal_code: T.nilable(String),
+              merchant_state: T.nilable(String),
+              network_details:
+                Increase::CardPayment::Element::CardFinancial::NetworkDetails::OrHash,
+              network_identifiers:
+                Increase::CardPayment::Element::CardFinancial::NetworkIdentifiers::OrHash,
+              network_risk_score: T.nilable(Integer),
+              physical_card_id: T.nilable(String),
+              presentment_amount: Integer,
+              presentment_currency: String,
+              processing_category:
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::OrSymbol,
+              real_time_decision_id: T.nilable(String),
+              terminal_id: T.nilable(String),
+              transaction_id: String,
+              type:
+                Increase::CardPayment::Element::CardFinancial::Type::OrSymbol,
+              verification:
+                Increase::CardPayment::Element::CardFinancial::Verification::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The Card Financial identifier.
+            id:,
+            # Whether this financial was approved by Increase, the card network through
+            # stand-in processing, or the user through a real-time decision.
+            actioner:,
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            additional_amounts:,
+            # The pending amount in the minor unit of the transaction's currency. For dollars,
+            # for example, this is cents.
+            amount:,
+            # The ID of the Card Payment this transaction belongs to.
+            card_payment_id:,
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+            # transaction's currency.
+            currency:,
+            # If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+            # purchase), the identifier of the token that was used.
+            digital_wallet_token_id:,
+            # The direction describes the direction the funds will move, either from the
+            # cardholder to the merchant or from the merchant to the cardholder.
+            direction:,
+            # The merchant identifier (commonly abbreviated as MID) of the merchant the card
+            # is transacting with.
+            merchant_acceptor_id:,
+            # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+            # card is transacting with.
+            merchant_category_code:,
+            # The city the merchant resides in.
+            merchant_city:,
+            # The country the merchant resides in.
+            merchant_country:,
+            # The merchant descriptor of the merchant the card is transacting with.
+            merchant_descriptor:,
+            # The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+            # ZIP code, where the first 5 and last 4 are separated by a dash.
+            merchant_postal_code:,
+            # The state the merchant resides in.
+            merchant_state:,
+            # Fields specific to the `network`.
+            network_details:,
+            # Network-specific identifiers for a specific request or transaction.
+            network_identifiers:,
+            # The risk score generated by the card network. For Visa this is the Visa Advanced
+            # Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+            # score is from 0 to 999, where 999 is the riskiest.
+            network_risk_score:,
+            # If the authorization was made in-person with a physical card, the Physical Card
+            # that was used.
+            physical_card_id:,
+            # The pending amount in the minor unit of the transaction's presentment currency.
+            presentment_amount:,
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+            # transaction's presentment currency.
+            presentment_currency:,
+            # The processing category describes the intent behind the financial, such as
+            # whether it was used for bill payments or an automatic fuel dispenser.
+            processing_category:,
+            # The identifier of the Real-Time Decision sent to approve or decline this
+            # transaction.
+            real_time_decision_id:,
+            # The terminal identifier (commonly abbreviated as TID) of the terminal the card
+            # is transacting with.
+            terminal_id:,
+            # The identifier of the Transaction associated with this Transaction.
+            transaction_id:,
+            # A constant representing the object's type. For this resource it will always be
+            # `card_financial`.
+            type:,
+            # Fields related to verification of cardholder-provided values.
+            verification:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                actioner:
+                  Increase::CardPayment::Element::CardFinancial::Actioner::TaggedSymbol,
+                additional_amounts:
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts,
+                amount: Integer,
+                card_payment_id: String,
+                currency:
+                  Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol,
+                digital_wallet_token_id: T.nilable(String),
+                direction:
+                  Increase::CardPayment::Element::CardFinancial::Direction::TaggedSymbol,
+                merchant_acceptor_id: String,
+                merchant_category_code: String,
+                merchant_city: T.nilable(String),
+                merchant_country: String,
+                merchant_descriptor: String,
+                merchant_postal_code: T.nilable(String),
+                merchant_state: T.nilable(String),
+                network_details:
+                  Increase::CardPayment::Element::CardFinancial::NetworkDetails,
+                network_identifiers:
+                  Increase::CardPayment::Element::CardFinancial::NetworkIdentifiers,
+                network_risk_score: T.nilable(Integer),
+                physical_card_id: T.nilable(String),
+                presentment_amount: Integer,
+                presentment_currency: String,
+                processing_category:
+                  Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol,
+                real_time_decision_id: T.nilable(String),
+                terminal_id: T.nilable(String),
+                transaction_id: String,
+                type:
+                  Increase::CardPayment::Element::CardFinancial::Type::TaggedSymbol,
+                verification:
+                  Increase::CardPayment::Element::CardFinancial::Verification
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # Whether this financial was approved by Increase, the card network through
+          # stand-in processing, or the user through a real-time decision.
+          module Actioner
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardFinancial::Actioner
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # This object was actioned by the user through a real-time decision.
+            USER =
+              T.let(
+                :user,
+                Increase::CardPayment::Element::CardFinancial::Actioner::TaggedSymbol
+              )
+
+            # This object was actioned by Increase without user intervention.
+            INCREASE =
+              T.let(
+                :increase,
+                Increase::CardPayment::Element::CardFinancial::Actioner::TaggedSymbol
+              )
+
+            # This object was actioned by the network, through stand-in processing.
+            NETWORK =
+              T.let(
+                :network,
+                Increase::CardPayment::Element::CardFinancial::Actioner::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardFinancial::Actioner::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class AdditionalAmounts < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The part of this transaction amount that was for clinic-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic
+                )
+              )
+            end
+            attr_reader :clinic
+
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic::OrHash
+                  )
+              ).void
+            end
+            attr_writer :clinic
+
+            # The part of this transaction amount that was for dental-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental
+                )
+              )
+            end
+            attr_reader :dental
+
+            sig do
+              params(
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental::OrHash
+                  )
+              ).void
+            end
+            attr_writer :dental
+
+            # The original pre-authorized amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Original
+                )
+              )
+            end
+            attr_reader :original
+
+            sig do
+              params(
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Original::OrHash
+                  )
+              ).void
+            end
+            attr_writer :original
+
+            # The part of this transaction amount that was for healthcare prescriptions.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription
+                )
+              )
+            end
+            attr_reader :prescription
+
+            sig do
+              params(
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription::OrHash
+                  )
+              ).void
+            end
+            attr_writer :prescription
+
+            # The surcharge amount charged for this transaction by the merchant.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge
+                )
+              )
+            end
+            attr_reader :surcharge
+
+            sig do
+              params(
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge::OrHash
+                  )
+              ).void
+            end
+            attr_writer :surcharge
+
+            # The total amount of a series of incremental authorizations, optionally provided.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative
+                )
+              )
+            end
+            attr_reader :total_cumulative
+
+            sig do
+              params(
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_cumulative
+
+            # The total amount of healthcare-related additional amounts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare
+                )
+              )
+            end
+            attr_reader :total_healthcare
+
+            sig do
+              params(
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare::OrHash
+                  )
+              ).void
+            end
+            attr_writer :total_healthcare
+
+            # The part of this transaction amount that was for transit-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit
+                )
+              )
+            end
+            attr_reader :transit
+
+            sig do
+              params(
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit::OrHash
+                  )
+              ).void
+            end
+            attr_writer :transit
+
+            # An unknown additional amount.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown
+                )
+              )
+            end
+            attr_reader :unknown
+
+            sig do
+              params(
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown::OrHash
+                  )
+              ).void
+            end
+            attr_writer :unknown
+
+            # The part of this transaction amount that was for vision-related services.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision
+                )
+              )
+            end
+            attr_reader :vision
+
+            sig do
+              params(
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision::OrHash
+                  )
+              ).void
+            end
+            attr_writer :vision
+
+            # Additional amounts associated with the card authorization, such as ATM
+            # surcharges fees. These are usually a subset of the `amount` field and are used
+            # to provide more detailed information about the transaction.
+            sig do
+              params(
+                clinic:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic::OrHash
+                  ),
+                dental:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental::OrHash
+                  ),
+                original:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Original::OrHash
+                  ),
+                prescription:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription::OrHash
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge::OrHash
+                  ),
+                total_cumulative:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative::OrHash
+                  ),
+                total_healthcare:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare::OrHash
+                  ),
+                transit:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit::OrHash
+                  ),
+                unknown:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown::OrHash
+                  ),
+                vision:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The part of this transaction amount that was for clinic-related services.
+              clinic:,
+              # The part of this transaction amount that was for dental-related services.
+              dental:,
+              # The original pre-authorized amount.
+              original:,
+              # The part of this transaction amount that was for healthcare prescriptions.
+              prescription:,
+              # The surcharge amount charged for this transaction by the merchant.
+              surcharge:,
+              # The total amount of a series of incremental authorizations, optionally provided.
+              total_cumulative:,
+              # The total amount of healthcare-related additional amounts.
+              total_healthcare:,
+              # The part of this transaction amount that was for transit-related services.
+              transit:,
+              # An unknown additional amount.
+              unknown:,
+              # The part of this transaction amount that was for vision-related services.
+              vision:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  clinic:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic
+                    ),
+                  dental:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental
+                    ),
+                  original:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Original
+                    ),
+                  prescription:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription
+                    ),
+                  surcharge:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge
+                    ),
+                  total_cumulative:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative
+                    ),
+                  total_healthcare:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare
+                    ),
+                  transit:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit
+                    ),
+                  unknown:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown
+                    ),
+                  vision:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Clinic < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for clinic-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Dental < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for dental-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Original < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Original,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The original pre-authorized amount.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Prescription < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for healthcare prescriptions.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Surcharge < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The surcharge amount charged for this transaction by the merchant.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalCumulative < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of a series of incremental authorizations, optionally provided.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class TotalHealthcare < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The total amount of healthcare-related additional amounts.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Transit < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for transit-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Unknown < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # An unknown additional amount.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+
+            class Vision < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              sig { returns(Integer) }
+              attr_accessor :amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              sig { returns(String) }
+              attr_accessor :currency
+
+              # The part of this transaction amount that was for vision-related services.
+              sig do
+                params(amount: Integer, currency: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The amount in minor units of the `currency` field. The amount is positive if it
+                # is added to the amount (such as an ATM surcharge fee) and negative if it is
+                # subtracted from the amount (such as a discount).
+                amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+                # amount's currency.
+                currency:
+              )
+              end
+
+              sig { override.returns({ amount: Integer, currency: String }) }
+              def to_hash
+              end
+            end
+          end
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          # transaction's currency.
+          module Currency
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardFinancial::Currency
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Canadian Dollar (CAD)
+            CAD =
+              T.let(
+                :CAD,
+                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+              )
+
+            # Swiss Franc (CHF)
+            CHF =
+              T.let(
+                :CHF,
+                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+              )
+
+            # Euro (EUR)
+            EUR =
+              T.let(
+                :EUR,
+                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+              )
+
+            # British Pound (GBP)
+            GBP =
+              T.let(
+                :GBP,
+                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+              )
+
+            # Japanese Yen (JPY)
+            JPY =
+              T.let(
+                :JPY,
+                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+              )
+
+            # US Dollar (USD)
+            USD =
+              T.let(
+                :USD,
+                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # The direction describes the direction the funds will move, either from the
+          # cardholder to the merchant or from the merchant to the cardholder.
+          module Direction
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardFinancial::Direction
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # A regular card authorization where funds are debited from the cardholder.
+            SETTLEMENT =
+              T.let(
+                :settlement,
+                Increase::CardPayment::Element::CardFinancial::Direction::TaggedSymbol
+              )
+
+            # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
+            REFUND =
+              T.let(
+                :refund,
+                Increase::CardPayment::Element::CardFinancial::Direction::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardFinancial::Direction::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class NetworkDetails < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardFinancial::NetworkDetails,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The payment network used to process this card authorization.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category::TaggedSymbol
+              )
+            end
+            attr_accessor :category
+
+            # Fields specific to the `pulse` network.
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :pulse
+
+            # Fields specific to the `visa` network.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa
+                )
+              )
+            end
+            attr_reader :visa
+
+            sig do
+              params(
+                visa:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::OrHash
+                  )
+              ).void
+            end
+            attr_writer :visa
+
+            # Fields specific to the `network`.
+            sig do
+              params(
+                category:
+                  Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category::OrSymbol,
+                pulse: T.nilable(T.anything),
+                visa:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The payment network used to process this card authorization.
+              category:,
+              # Fields specific to the `pulse` network.
+              pulse:,
+              # Fields specific to the `visa` network.
+              visa:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  category:
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category::TaggedSymbol,
+                  pulse: T.nilable(T.anything),
+                  visa:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The payment network used to process this card authorization.
+            module Category
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Visa
+              VISA =
+                T.let(
+                  :visa,
+                  Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category::TaggedSymbol
+                )
+
+              # Pulse
+              PULSE =
+                T.let(
+                  :pulse,
+                  Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Category::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class Visa < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # For electronic commerce transactions, this identifies the level of security used
+              # in obtaining the customer's payment credential. For mail or telephone order
+              # transactions, identifies the type of mail or telephone order.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :electronic_commerce_indicator
+
+              # The method used to enter the cardholder's primary account number and card
+              # expiration date.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :point_of_service_entry_mode
+
+              # Only present when `actioner: network`. Describes why a card authorization was
+              # approved or declined by Visa through stand-in processing.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :stand_in_processing_reason
+
+              # Fields specific to the `visa` network.
+              sig do
+                params(
+                  electronic_commerce_indicator:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::OrSymbol
+                    ),
+                  point_of_service_entry_mode:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::OrSymbol
+                    ),
+                  stand_in_processing_reason:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    )
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # For electronic commerce transactions, this identifies the level of security used
+                # in obtaining the customer's payment credential. For mail or telephone order
+                # transactions, identifies the type of mail or telephone order.
+                electronic_commerce_indicator:,
+                # The method used to enter the cardholder's primary account number and card
+                # expiration date.
+                point_of_service_entry_mode:,
+                # Only present when `actioner: network`. Describes why a card authorization was
+                # approved or declined by Visa through stand-in processing.
+                stand_in_processing_reason:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    electronic_commerce_indicator:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                      ),
+                    point_of_service_entry_mode:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                      ),
+                    stand_in_processing_reason:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                      )
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # For electronic commerce transactions, this identifies the level of security used
+              # in obtaining the customer's payment credential. For mail or telephone order
+              # transactions, identifies the type of mail or telephone order.
+              module ElectronicCommerceIndicator
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
+                MAIL_PHONE_ORDER =
+                  T.let(
+                    :mail_phone_order,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Recurring transaction: Payment indicator used to indicate a recurring transaction that originates from an acquirer in the US region.
+                RECURRING =
+                  T.let(
+                    :recurring,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Installment payment: Payment indicator used to indicate one purchase of goods or services that is billed to the account in multiple charges over a period of time agreed upon by the cardholder and merchant from transactions that originate from an acquirer in the US region.
+                INSTALLMENT =
+                  T.let(
+                    :installment,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Unknown classification: other mail order: Use to indicate that the type of mail/telephone order is unknown.
+                UNKNOWN_MAIL_PHONE_ORDER =
+                  T.let(
+                    :unknown_mail_phone_order,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Secure electronic commerce transaction: Use to indicate that the electronic commerce transaction has been authenticated using e.g., 3-D Secure
+                SECURE_ELECTRONIC_COMMERCE =
+                  T.let(
+                    :secure_electronic_commerce,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Non-authenticated security transaction at a 3-D Secure-capable merchant, and merchant attempted to authenticate the cardholder using 3-D Secure: Use to identify an electronic commerce transaction where the merchant attempted to authenticate the cardholder using 3-D Secure, but was unable to complete the authentication because the issuer or cardholder does not participate in the 3-D Secure program.
+                NON_AUTHENTICATED_SECURITY_TRANSACTION_AT_3DS_CAPABLE_MERCHANT =
+                  T.let(
+                    :non_authenticated_security_transaction_at_3ds_capable_merchant,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Non-authenticated security transaction: Use to identify an electronic commerce transaction that uses data encryption for security however, cardholder authentication is not performed using 3-D Secure.
+                NON_AUTHENTICATED_SECURITY_TRANSACTION =
+                  T.let(
+                    :non_authenticated_security_transaction,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                # Non-secure transaction: Use to identify an electronic commerce transaction that has no data protection.
+                NON_SECURE_TRANSACTION =
+                  T.let(
+                    :non_secure_transaction,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The method used to enter the cardholder's primary account number and card
+              # expiration date.
+              module PointOfServiceEntryMode
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Unknown
+                UNKNOWN =
+                  T.let(
+                    :unknown,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Manual key entry
+                MANUAL =
+                  T.let(
+                    :manual,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Magnetic stripe read, without card verification value
+                MAGNETIC_STRIPE_NO_CVV =
+                  T.let(
+                    :magnetic_stripe_no_cvv,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Optical code
+                OPTICAL_CODE =
+                  T.let(
+                    :optical_code,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Contact chip card
+                INTEGRATED_CIRCUIT_CARD =
+                  T.let(
+                    :integrated_circuit_card,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Contactless read of chip card
+                CONTACTLESS =
+                  T.let(
+                    :contactless,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Transaction initiated using a credential that has previously been stored on file
+                CREDENTIAL_ON_FILE =
+                  T.let(
+                    :credential_on_file,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Magnetic stripe read
+                MAGNETIC_STRIPE =
+                  T.let(
+                    :magnetic_stripe,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Contactless read of magnetic stripe data
+                CONTACTLESS_MAGNETIC_STRIPE =
+                  T.let(
+                    :contactless_magnetic_stripe,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                # Contact chip card, without card verification value
+                INTEGRATED_CIRCUIT_CARD_NO_CVV =
+                  T.let(
+                    :integrated_circuit_card_no_cvv,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # Only present when `actioner: network`. Describes why a card authorization was
+              # approved or declined by Visa through stand-in processing.
+              module StandInProcessingReason
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Increase failed to process the authorization in a timely manner.
+                ISSUER_ERROR =
+                  T.let(
+                    :issuer_error,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+                INVALID_PHYSICAL_CARD =
+                  T.let(
+                    :invalid_physical_card,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # The 3DS cardholder authentication verification value was invalid.
+                INVALID_CARDHOLDER_AUTHENTICATION_VERIFICATION_VALUE =
+                  T.let(
+                    :invalid_cardholder_authentication_verification_value,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # An internal Visa error occurred. Visa uses this reason code for certain expected occurrences as well, such as Application Transaction Counter (ATC) replays.
+                INTERNAL_VISA_ERROR =
+                  T.let(
+                    :internal_visa_error,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # The merchant has enabled Visa's Transaction Advisory Service and requires further authentication to perform the transaction. In practice this is often utilized at fuel pumps to tell the cardholder to see the cashier.
+                MERCHANT_TRANSACTION_ADVISORY_SERVICE_AUTHENTICATION_REQUIRED =
+                  T.let(
+                    :merchant_transaction_advisory_service_authentication_required,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # The transaction was blocked by Visa's Payment Fraud Disruption service due to fraudulent Acquirer behavior, such as card testing.
+                PAYMENT_FRAUD_DISRUPTION_ACQUIRER_BLOCK =
+                  T.let(
+                    :payment_fraud_disruption_acquirer_block,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # An unspecific reason for stand-in processing.
+                OTHER =
+                  T.let(
+                    :other,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+          end
+
+          class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardFinancial::NetworkIdentifiers,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The randomly generated 6-character Authorization Identification Response code
+            # sent back to the acquirer in an approved response.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :authorization_identification_response
+
+            # A life-cycle identifier used across e.g., an authorization and a reversal.
+            # Expected to be unique per acquirer within a window of time. For some card
+            # networks the retrieval reference number includes the trace counter.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :retrieval_reference_number
+
+            # A counter used to verify an individual authorization. Expected to be unique per
+            # acquirer within a window of time.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :trace_number
+
+            # A globally unique transaction identifier provided by the card network, used
+            # across multiple life-cycle requests.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :transaction_id
+
+            # Network-specific identifiers for a specific request or transaction.
+            sig do
+              params(
+                authorization_identification_response: T.nilable(String),
+                retrieval_reference_number: T.nilable(String),
+                trace_number: T.nilable(String),
+                transaction_id: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The randomly generated 6-character Authorization Identification Response code
+              # sent back to the acquirer in an approved response.
+              authorization_identification_response:,
+              # A life-cycle identifier used across e.g., an authorization and a reversal.
+              # Expected to be unique per acquirer within a window of time. For some card
+              # networks the retrieval reference number includes the trace counter.
+              retrieval_reference_number:,
+              # A counter used to verify an individual authorization. Expected to be unique per
+              # acquirer within a window of time.
+              trace_number:,
+              # A globally unique transaction identifier provided by the card network, used
+              # across multiple life-cycle requests.
+              transaction_id:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  authorization_identification_response: T.nilable(String),
+                  retrieval_reference_number: T.nilable(String),
+                  trace_number: T.nilable(String),
+                  transaction_id: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          # The processing category describes the intent behind the financial, such as
+          # whether it was used for bill payments or an automatic fuel dispenser.
+          module ProcessingCategory
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardFinancial::ProcessingCategory
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Account funding transactions are transactions used to e.g., fund an account or transfer funds between accounts.
+            ACCOUNT_FUNDING =
+              T.let(
+                :account_funding,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # Automatic fuel dispenser authorizations occur when a card is used at a gas pump, prior to the actual transaction amount being known. They are followed by an advice message that updates the amount of the pending transaction.
+            AUTOMATIC_FUEL_DISPENSER =
+              T.let(
+                :automatic_fuel_dispenser,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # A transaction used to pay a bill.
+            BILL_PAYMENT =
+              T.let(
+                :bill_payment,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # Original credit transactions are used to send money to a cardholder.
+            ORIGINAL_CREDIT =
+              T.let(
+                :original_credit,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # A regular purchase.
+            PURCHASE =
+              T.let(
+                :purchase,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # Quasi-cash transactions represent purchases of items which may be convertible to cash.
+            QUASI_CASH =
+              T.let(
+                :quasi_cash,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # A refund card authorization, sometimes referred to as a credit voucher authorization, where funds are credited to the cardholder.
+            REFUND =
+              T.let(
+                :refund,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
+            CASH_DISBURSEMENT =
+              T.let(
+                :cash_disbursement,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # The processing category is unknown.
+            UNKNOWN =
+              T.let(
+                :unknown,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # A constant representing the object's type. For this resource it will always be
+          # `card_financial`.
+          module Type
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardFinancial::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            CARD_FINANCIAL =
+              T.let(
+                :card_financial,
+                Increase::CardPayment::Element::CardFinancial::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardFinancial::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class Verification < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardFinancial::Verification,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Fields related to verification of the Card Verification Code, a 3-digit code on
+            # the back of the card.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode
+              )
+            end
+            attr_reader :card_verification_code
+
+            sig do
+              params(
+                card_verification_code:
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::OrHash
+              ).void
+            end
+            attr_writer :card_verification_code
+
+            # Cardholder address provided in the authorization request and the address on file
+            # we verified it against.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress
+              )
+            end
+            attr_reader :cardholder_address
+
+            sig do
+              params(
+                cardholder_address:
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::OrHash
+              ).void
+            end
+            attr_writer :cardholder_address
+
+            # Fields related to verification of cardholder-provided values.
+            sig do
+              params(
+                card_verification_code:
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::OrHash,
+                cardholder_address:
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Fields related to verification of the Card Verification Code, a 3-digit code on
+              # the back of the card.
+              card_verification_code:,
+              # Cardholder address provided in the authorization request and the address on file
+              # we verified it against.
+              cardholder_address:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  card_verification_code:
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode,
+                  cardholder_address:
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class CardVerificationCode < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The result of verifying the Card Verification Code.
+              sig do
+                returns(
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::TaggedSymbol
+                )
+              end
+              attr_accessor :result
+
+              # Fields related to verification of the Card Verification Code, a 3-digit code on
+              # the back of the card.
+              sig do
+                params(
+                  result:
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The result of verifying the Card Verification Code.
+                result:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    result:
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::TaggedSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The result of verifying the Card Verification Code.
+              module Result
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # No card verification code was provided in the authorization request.
+                NOT_CHECKED =
+                  T.let(
+                    :not_checked,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::TaggedSymbol
+                  )
+
+                # The card verification code matched the one on file.
+                MATCH =
+                  T.let(
+                    :match,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::TaggedSymbol
+                  )
+
+                # The card verification code did not match the one on file.
+                NO_MATCH =
+                  T.let(
+                    :no_match,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            class CardholderAddress < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Line 1 of the address on file for the cardholder.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :actual_line1
+
+              # The postal code of the address on file for the cardholder.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :actual_postal_code
+
+              # The cardholder address line 1 provided for verification in the authorization
+              # request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_line1
+
+              # The postal code provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_postal_code
+
+              # The address verification result returned to the card network.
+              sig do
+                returns(
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+              end
+              attr_accessor :result
+
+              # Cardholder address provided in the authorization request and the address on file
+              # we verified it against.
+              sig do
+                params(
+                  actual_line1: T.nilable(String),
+                  actual_postal_code: T.nilable(String),
+                  provided_line1: T.nilable(String),
+                  provided_postal_code: T.nilable(String),
+                  result:
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Line 1 of the address on file for the cardholder.
+                actual_line1:,
+                # The postal code of the address on file for the cardholder.
+                actual_postal_code:,
+                # The cardholder address line 1 provided for verification in the authorization
+                # request.
+                provided_line1:,
+                # The postal code provided for verification in the authorization request.
+                provided_postal_code:,
+                # The address verification result returned to the card network.
+                result:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    actual_line1: T.nilable(String),
+                    actual_postal_code: T.nilable(String),
+                    provided_line1: T.nilable(String),
+                    provided_postal_code: T.nilable(String),
+                    result:
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The address verification result returned to the card network.
+              module Result
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # No address information was provided in the authorization request.
+                NOT_CHECKED =
+                  T.let(
+                    :not_checked,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                # Postal code matches, but the street address does not match or was not provided.
+                POSTAL_CODE_MATCH_ADDRESS_NO_MATCH =
+                  T.let(
+                    :postal_code_match_address_no_match,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                # Postal code does not match, but the street address matches or was not provided.
+                POSTAL_CODE_NO_MATCH_ADDRESS_MATCH =
+                  T.let(
+                    :postal_code_no_match_address_match,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                # Postal code and street address match.
+                MATCH =
+                  T.let(
+                    :match,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                # Postal code and street address do not match.
+                NO_MATCH =
+                  T.let(
+                    :no_match,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                # Postal code matches, but the street address was not verified. (deprecated)
+                POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
+                  T.let(
+                    :postal_code_match_address_not_checked,
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result::TaggedSymbol
                     ]
                   )
                 end
@@ -15331,6 +17584,13 @@ module Increase
           CARD_FUEL_CONFIRMATION =
             T.let(
               :card_fuel_confirmation,
+              Increase::CardPayment::Element::Category::TaggedSymbol
+            )
+
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL =
+            T.let(
+              :card_financial,
               Increase::CardPayment::Element::Category::TaggedSymbol
             )
 
