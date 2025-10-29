@@ -1212,6 +1212,13 @@ module Increase
               Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
             )
 
+          # Any other reason why this entity is exempt from the requirement to submit beneficial owners. You can only use this exemption after approval from your bank partner.
+          OTHER =
+            T.let(
+              :other,
+              Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[
