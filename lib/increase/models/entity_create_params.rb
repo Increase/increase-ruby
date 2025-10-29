@@ -654,6 +654,9 @@ module Increase
           # A public entity acting on behalf of the federal or a state government.
           PUBLIC_ENTITY = :public_entity
 
+          # Any other reason why this entity is exempt from the requirement to submit beneficial owners. You can only use this exemption after approval from your bank partner.
+          OTHER = :other
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end
