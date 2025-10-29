@@ -21,7 +21,7 @@ module Increase
 
       # @!attribute informational_entity_id
       #   The identifier of an Entity that, while not owning the Account, is associated
-      #   with its activity. Its relationship to your group must be `informational`.
+      #   with its activity. This is generally the beneficiary of the funds.
       #
       #   @return [String, nil]
       optional :informational_entity_id, String

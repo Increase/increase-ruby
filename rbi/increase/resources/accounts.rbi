@@ -19,7 +19,7 @@ module Increase
         # The identifier for the Entity that will own the Account.
         entity_id: nil,
         # The identifier of an Entity that, while not owning the Account, is associated
-        # with its activity. Its relationship to your group must be `informational`.
+        # with its activity. This is generally the beneficiary of the funds.
         informational_entity_id: nil,
         # The identifier for the Program that this Account falls under. Required if you
         # operate more than one Program.
