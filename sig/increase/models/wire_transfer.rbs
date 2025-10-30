@@ -7,23 +7,16 @@ module Increase
         account_number: String,
         amount: Integer,
         approval: Increase::WireTransfer::Approval?,
-        :beneficiary_address_line1 => String?,
-        :beneficiary_address_line2 => String?,
-        :beneficiary_address_line3 => String?,
-        beneficiary_name: String?,
         cancellation: Increase::WireTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::WireTransfer::CreatedBy?,
+        creditor: Increase::WireTransfer::Creditor?,
         currency: Increase::Models::WireTransfer::currency,
+        debtor: Increase::WireTransfer::Debtor?,
         external_account_id: String?,
         idempotency_key: String?,
         inbound_wire_drawdown_request_id: String?,
-        message_to_recipient: String,
         network: Increase::Models::WireTransfer::network,
-        :originator_address_line1 => String?,
-        :originator_address_line2 => String?,
-        :originator_address_line3 => String?,
-        originator_name: String?,
         pending_transaction_id: String?,
         remittance: Increase::WireTransfer::Remittance?,
         reversal: Increase::WireTransfer::Reversal?,
@@ -46,21 +39,17 @@ module Increase
 
       attr_accessor approval: Increase::WireTransfer::Approval?
 
-      attr_accessor beneficiary_address_line1: String?
-
-      attr_accessor beneficiary_address_line2: String?
-
-      attr_accessor beneficiary_address_line3: String?
-
-      attr_accessor beneficiary_name: String?
-
       attr_accessor cancellation: Increase::WireTransfer::Cancellation?
 
       attr_accessor created_at: Time
 
       attr_accessor created_by: Increase::WireTransfer::CreatedBy?
 
+      attr_accessor creditor: Increase::WireTransfer::Creditor?
+
       attr_accessor currency: Increase::Models::WireTransfer::currency
+
+      attr_accessor debtor: Increase::WireTransfer::Debtor?
 
       attr_accessor external_account_id: String?
 
@@ -68,17 +57,7 @@ module Increase
 
       attr_accessor inbound_wire_drawdown_request_id: String?
 
-      attr_accessor message_to_recipient: String
-
       attr_accessor network: Increase::Models::WireTransfer::network
-
-      attr_accessor originator_address_line1: String?
-
-      attr_accessor originator_address_line2: String?
-
-      attr_accessor originator_address_line3: String?
-
-      attr_accessor originator_name: String?
 
       attr_accessor pending_transaction_id: String?
 
@@ -104,23 +83,16 @@ module Increase
         account_number: String,
         amount: Integer,
         approval: Increase::WireTransfer::Approval?,
-        beneficiary_address_line1: String?,
-        beneficiary_address_line2: String?,
-        beneficiary_address_line3: String?,
-        beneficiary_name: String?,
         cancellation: Increase::WireTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::WireTransfer::CreatedBy?,
+        creditor: Increase::WireTransfer::Creditor?,
         currency: Increase::Models::WireTransfer::currency,
+        debtor: Increase::WireTransfer::Debtor?,
         external_account_id: String?,
         idempotency_key: String?,
         inbound_wire_drawdown_request_id: String?,
-        message_to_recipient: String,
         network: Increase::Models::WireTransfer::network,
-        originator_address_line1: String?,
-        originator_address_line2: String?,
-        originator_address_line3: String?,
-        originator_name: String?,
         pending_transaction_id: String?,
         remittance: Increase::WireTransfer::Remittance?,
         reversal: Increase::WireTransfer::Reversal?,
@@ -138,23 +110,16 @@ module Increase
         account_number: String,
         amount: Integer,
         approval: Increase::WireTransfer::Approval?,
-        :beneficiary_address_line1 => String?,
-        :beneficiary_address_line2 => String?,
-        :beneficiary_address_line3 => String?,
-        beneficiary_name: String?,
         cancellation: Increase::WireTransfer::Cancellation?,
         created_at: Time,
         created_by: Increase::WireTransfer::CreatedBy?,
+        creditor: Increase::WireTransfer::Creditor?,
         currency: Increase::Models::WireTransfer::currency,
+        debtor: Increase::WireTransfer::Debtor?,
         external_account_id: String?,
         idempotency_key: String?,
         inbound_wire_drawdown_request_id: String?,
-        message_to_recipient: String,
         network: Increase::Models::WireTransfer::network,
-        :originator_address_line1 => String?,
-        :originator_address_line2 => String?,
-        :originator_address_line3 => String?,
-        originator_name: String?,
         pending_transaction_id: String?,
         remittance: Increase::WireTransfer::Remittance?,
         reversal: Increase::WireTransfer::Reversal?,
@@ -269,6 +234,65 @@ module Increase
         end
       end
 
+      type creditor =
+        { address: Increase::WireTransfer::Creditor::Address?, name: String? }
+
+      class Creditor < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::WireTransfer::Creditor::Address?
+
+        attr_accessor name: String?
+
+        def initialize: (
+          address: Increase::WireTransfer::Creditor::Address?,
+          name: String?
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::WireTransfer::Creditor::Address?,
+          name: String?
+        }
+
+        type address =
+          {
+            unstructured: Increase::WireTransfer::Creditor::Address::Unstructured?
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor unstructured: Increase::WireTransfer::Creditor::Address::Unstructured?
+
+          def initialize: (
+            unstructured: Increase::WireTransfer::Creditor::Address::Unstructured?
+          ) -> void
+
+          def to_hash: -> {
+            unstructured: Increase::WireTransfer::Creditor::Address::Unstructured?
+          }
+
+          type unstructured =
+            { :line1 => String?, :line2 => String?, :line3 => String? }
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            attr_accessor line1: String?
+
+            attr_accessor line2: String?
+
+            attr_accessor line3: String?
+
+            def initialize: (
+              line1: String?,
+              line2: String?,
+              line3: String?
+            ) -> void
+
+            def to_hash: -> {
+              :line1 => String?,
+              :line2 => String?,
+              :line3 => String?
+            }
+          end
+        end
+      end
+
       type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
 
       module Currency
@@ -293,6 +317,65 @@ module Increase
         USD: :USD
 
         def self?.values: -> ::Array[Increase::Models::WireTransfer::currency]
+      end
+
+      type debtor =
+        { address: Increase::WireTransfer::Debtor::Address?, name: String? }
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::WireTransfer::Debtor::Address?
+
+        attr_accessor name: String?
+
+        def initialize: (
+          address: Increase::WireTransfer::Debtor::Address?,
+          name: String?
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::WireTransfer::Debtor::Address?,
+          name: String?
+        }
+
+        type address =
+          {
+            unstructured: Increase::WireTransfer::Debtor::Address::Unstructured?
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor unstructured: Increase::WireTransfer::Debtor::Address::Unstructured?
+
+          def initialize: (
+            unstructured: Increase::WireTransfer::Debtor::Address::Unstructured?
+          ) -> void
+
+          def to_hash: -> {
+            unstructured: Increase::WireTransfer::Debtor::Address::Unstructured?
+          }
+
+          type unstructured =
+            { :line1 => String?, :line2 => String?, :line3 => String? }
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            attr_accessor line1: String?
+
+            attr_accessor line2: String?
+
+            attr_accessor line3: String?
+
+            def initialize: (
+              line1: String?,
+              line2: String?,
+              line3: String?
+            ) -> void
+
+            def to_hash: -> {
+              :line1 => String?,
+              :line2 => String?,
+              :line3 => String?
+            }
+          end
+        end
       end
 
       type network = :wire

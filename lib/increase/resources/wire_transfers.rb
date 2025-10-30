@@ -8,35 +8,23 @@ module Increase
       #
       # Create a Wire Transfer
       #
-      # @overload create(account_id:, amount:, beneficiary_name:, account_number: nil, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, remittance: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
+      # @overload create(account_id:, amount:, creditor:, remittance:, account_number: nil, debtor: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
       #
       # @param account_id [String] The identifier for the account that will send the transfer.
       #
       # @param amount [Integer] The transfer amount in USD cents.
       #
-      # @param beneficiary_name [String] The beneficiary's name.
+      # @param creditor [Increase::Models::WireTransferCreateParams::Creditor] The person or business that is receiving the funds from the transfer.
+      #
+      # @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
       #
       # @param account_number [String] The account number for the destination account.
       #
-      # @param beneficiary_address_line1 [String] The beneficiary's address line 1.
-      #
-      # @param beneficiary_address_line2 [String] The beneficiary's address line 2.
-      #
-      # @param beneficiary_address_line3 [String] The beneficiary's address line 3.
+      # @param debtor [Increase::Models::WireTransferCreateParams::Debtor] The person or business whose funds are being transferred. This is only necessary
       #
       # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
       # @param inbound_wire_drawdown_request_id [String] The ID of an Inbound Wire Drawdown Request in response to which this transfer is
-      #
-      # @param originator_address_line1 [String] The originator's address line 1. This is only necessary if you're transferring f
-      #
-      # @param originator_address_line2 [String] The originator's address line 2. This is only necessary if you're transferring f
-      #
-      # @param originator_address_line3 [String] The originator's address line 3. This is only necessary if you're transferring f
-      #
-      # @param originator_name [String] The originator's name. This is only necessary if you're transferring from a comm
-      #
-      # @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
       #
       # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #

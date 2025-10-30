@@ -4,18 +4,12 @@ module Increase
       {
         account_id: String,
         amount: Integer,
-        beneficiary_name: String,
+        creditor: Increase::WireTransferCreateParams::Creditor,
+        remittance: Increase::WireTransferCreateParams::Remittance,
         account_number: String,
-        :beneficiary_address_line1 => String,
-        :beneficiary_address_line2 => String,
-        :beneficiary_address_line3 => String,
+        debtor: Increase::WireTransferCreateParams::Debtor,
         external_account_id: String,
         inbound_wire_drawdown_request_id: String,
-        :originator_address_line1 => String,
-        :originator_address_line2 => String,
-        :originator_address_line3 => String,
-        originator_name: String,
-        remittance: Increase::WireTransferCreateParams::Remittance,
         require_approval: bool,
         routing_number: String,
         source_account_number_id: String
@@ -30,23 +24,19 @@ module Increase
 
       attr_accessor amount: Integer
 
-      attr_accessor beneficiary_name: String
+      attr_accessor creditor: Increase::WireTransferCreateParams::Creditor
+
+      attr_accessor remittance: Increase::WireTransferCreateParams::Remittance
 
       attr_reader account_number: String?
 
       def account_number=: (String) -> String
 
-      attr_reader beneficiary_address_line1: String?
+      attr_reader debtor: Increase::WireTransferCreateParams::Debtor?
 
-      def beneficiary_address_line1=: (String) -> String
-
-      attr_reader beneficiary_address_line2: String?
-
-      def beneficiary_address_line2=: (String) -> String
-
-      attr_reader beneficiary_address_line3: String?
-
-      def beneficiary_address_line3=: (String) -> String
+      def debtor=: (
+        Increase::WireTransferCreateParams::Debtor
+      ) -> Increase::WireTransferCreateParams::Debtor
 
       attr_reader external_account_id: String?
 
@@ -55,28 +45,6 @@ module Increase
       attr_reader inbound_wire_drawdown_request_id: String?
 
       def inbound_wire_drawdown_request_id=: (String) -> String
-
-      attr_reader originator_address_line1: String?
-
-      def originator_address_line1=: (String) -> String
-
-      attr_reader originator_address_line2: String?
-
-      def originator_address_line2=: (String) -> String
-
-      attr_reader originator_address_line3: String?
-
-      def originator_address_line3=: (String) -> String
-
-      attr_reader originator_name: String?
-
-      def originator_name=: (String) -> String
-
-      attr_reader remittance: Increase::WireTransferCreateParams::Remittance?
-
-      def remittance=: (
-        Increase::WireTransferCreateParams::Remittance
-      ) -> Increase::WireTransferCreateParams::Remittance
 
       attr_reader require_approval: bool?
 
@@ -93,18 +61,12 @@ module Increase
       def initialize: (
         account_id: String,
         amount: Integer,
-        beneficiary_name: String,
+        creditor: Increase::WireTransferCreateParams::Creditor,
+        remittance: Increase::WireTransferCreateParams::Remittance,
         ?account_number: String,
-        ?beneficiary_address_line1: String,
-        ?beneficiary_address_line2: String,
-        ?beneficiary_address_line3: String,
+        ?debtor: Increase::WireTransferCreateParams::Debtor,
         ?external_account_id: String,
         ?inbound_wire_drawdown_request_id: String,
-        ?originator_address_line1: String,
-        ?originator_address_line2: String,
-        ?originator_address_line3: String,
-        ?originator_name: String,
-        ?remittance: Increase::WireTransferCreateParams::Remittance,
         ?require_approval: bool,
         ?routing_number: String,
         ?source_account_number_id: String,
@@ -114,23 +76,87 @@ module Increase
       def to_hash: -> {
         account_id: String,
         amount: Integer,
-        beneficiary_name: String,
+        creditor: Increase::WireTransferCreateParams::Creditor,
+        remittance: Increase::WireTransferCreateParams::Remittance,
         account_number: String,
-        :beneficiary_address_line1 => String,
-        :beneficiary_address_line2 => String,
-        :beneficiary_address_line3 => String,
+        debtor: Increase::WireTransferCreateParams::Debtor,
         external_account_id: String,
         inbound_wire_drawdown_request_id: String,
-        :originator_address_line1 => String,
-        :originator_address_line2 => String,
-        :originator_address_line3 => String,
-        originator_name: String,
-        remittance: Increase::WireTransferCreateParams::Remittance,
         require_approval: bool,
         routing_number: String,
         source_account_number_id: String,
         request_options: Increase::RequestOptions
       }
+
+      type creditor =
+        {
+          name: String,
+          address: Increase::WireTransferCreateParams::Creditor::Address
+        }
+
+      class Creditor < Increase::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_reader address: Increase::WireTransferCreateParams::Creditor::Address?
+
+        def address=: (
+          Increase::WireTransferCreateParams::Creditor::Address
+        ) -> Increase::WireTransferCreateParams::Creditor::Address
+
+        def initialize: (
+          name: String,
+          ?address: Increase::WireTransferCreateParams::Creditor::Address
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          address: Increase::WireTransferCreateParams::Creditor::Address
+        }
+
+        type address =
+          {
+            unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+
+          def initialize: (
+            unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+          ) -> void
+
+          def to_hash: -> {
+            unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+          }
+
+          type unstructured =
+            { :line1 => String, :line2 => String, :line3 => String }
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            attr_accessor line1: String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader line3: String?
+
+            def line3=: (String) -> String
+
+            def initialize: (
+              line1: String,
+              ?line2: String,
+              ?line3: String
+            ) -> void
+
+            def to_hash: -> {
+              :line1 => String,
+              :line2 => String,
+              :line3 => String
+            }
+          end
+        end
+      end
 
       type remittance =
         {
@@ -211,6 +237,76 @@ module Increase
           def initialize: (message: String) -> void
 
           def to_hash: -> { message: String }
+        end
+      end
+
+      type debtor =
+        {
+          name: String,
+          address: Increase::WireTransferCreateParams::Debtor::Address
+        }
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_reader address: Increase::WireTransferCreateParams::Debtor::Address?
+
+        def address=: (
+          Increase::WireTransferCreateParams::Debtor::Address
+        ) -> Increase::WireTransferCreateParams::Debtor::Address
+
+        def initialize: (
+          name: String,
+          ?address: Increase::WireTransferCreateParams::Debtor::Address
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          address: Increase::WireTransferCreateParams::Debtor::Address
+        }
+
+        type address =
+          {
+            unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+
+          def initialize: (
+            unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+          ) -> void
+
+          def to_hash: -> {
+            unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+          }
+
+          type unstructured =
+            { :line1 => String, :line2 => String, :line3 => String }
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            attr_accessor line1: String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader line3: String?
+
+            def line3=: (String) -> String
+
+            def initialize: (
+              line1: String,
+              ?line2: String,
+              ?line3: String
+            ) -> void
+
+            def to_hash: -> {
+              :line1 => String,
+              :line2 => String,
+              :line3 => String
+            }
+          end
         end
       end
     end
