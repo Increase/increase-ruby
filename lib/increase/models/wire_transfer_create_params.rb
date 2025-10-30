@@ -19,11 +19,17 @@ module Increase
       #   @return [Integer]
       required :amount, Integer
 
-      # @!attribute beneficiary_name
-      #   The beneficiary's name.
+      # @!attribute creditor
+      #   The person or business that is receiving the funds from the transfer.
       #
-      #   @return [String]
-      required :beneficiary_name, String
+      #   @return [Increase::Models::WireTransferCreateParams::Creditor]
+      required :creditor, -> { Increase::WireTransferCreateParams::Creditor }
+
+      # @!attribute remittance
+      #   Additional remittance information related to the wire transfer.
+      #
+      #   @return [Increase::Models::WireTransferCreateParams::Remittance]
+      required :remittance, -> { Increase::WireTransferCreateParams::Remittance }
 
       # @!attribute account_number
       #   The account number for the destination account.
@@ -31,23 +37,13 @@ module Increase
       #   @return [String, nil]
       optional :account_number, String
 
-      # @!attribute beneficiary_address_line1
-      #   The beneficiary's address line 1.
+      # @!attribute debtor
+      #   The person or business whose funds are being transferred. This is only necessary
+      #   if you're transferring from a commingled account. Otherwise, we'll use the
+      #   associated entity's details.
       #
-      #   @return [String, nil]
-      optional :beneficiary_address_line1, String
-
-      # @!attribute beneficiary_address_line2
-      #   The beneficiary's address line 2.
-      #
-      #   @return [String, nil]
-      optional :beneficiary_address_line2, String
-
-      # @!attribute beneficiary_address_line3
-      #   The beneficiary's address line 3.
-      #
-      #   @return [String, nil]
-      optional :beneficiary_address_line3, String
+      #   @return [Increase::Models::WireTransferCreateParams::Debtor, nil]
+      optional :debtor, -> { Increase::WireTransferCreateParams::Debtor }
 
       # @!attribute external_account_id
       #   The ID of an External Account to initiate a transfer to. If this parameter is
@@ -62,40 +58,6 @@ module Increase
       #
       #   @return [String, nil]
       optional :inbound_wire_drawdown_request_id, String
-
-      # @!attribute originator_address_line1
-      #   The originator's address line 1. This is only necessary if you're transferring
-      #   from a commingled account. Otherwise, we'll use the associated entity's details.
-      #
-      #   @return [String, nil]
-      optional :originator_address_line1, String
-
-      # @!attribute originator_address_line2
-      #   The originator's address line 2. This is only necessary if you're transferring
-      #   from a commingled account. Otherwise, we'll use the associated entity's details.
-      #
-      #   @return [String, nil]
-      optional :originator_address_line2, String
-
-      # @!attribute originator_address_line3
-      #   The originator's address line 3. This is only necessary if you're transferring
-      #   from a commingled account. Otherwise, we'll use the associated entity's details.
-      #
-      #   @return [String, nil]
-      optional :originator_address_line3, String
-
-      # @!attribute originator_name
-      #   The originator's name. This is only necessary if you're transferring from a
-      #   commingled account. Otherwise, we'll use the associated entity's details.
-      #
-      #   @return [String, nil]
-      optional :originator_name, String
-
-      # @!attribute remittance
-      #   Additional remittance information related to the wire transfer.
-      #
-      #   @return [Increase::Models::WireTransferCreateParams::Remittance, nil]
-      optional :remittance, -> { Increase::WireTransferCreateParams::Remittance }
 
       # @!attribute require_approval
       #   Whether the transfer requires explicit approval via the dashboard or API.
@@ -116,7 +78,7 @@ module Increase
       #   @return [String, nil]
       optional :source_account_number_id, String
 
-      # @!method initialize(account_id:, amount:, beneficiary_name:, account_number: nil, beneficiary_address_line1: nil, beneficiary_address_line2: nil, beneficiary_address_line3: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, originator_address_line1: nil, originator_address_line2: nil, originator_address_line3: nil, originator_name: nil, remittance: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
+      # @!method initialize(account_id:, amount:, creditor:, remittance:, account_number: nil, debtor: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireTransferCreateParams} for more details.
       #
@@ -124,29 +86,17 @@ module Increase
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param beneficiary_name [String] The beneficiary's name.
+      #   @param creditor [Increase::Models::WireTransferCreateParams::Creditor] The person or business that is receiving the funds from the transfer.
+      #
+      #   @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
       #
       #   @param account_number [String] The account number for the destination account.
       #
-      #   @param beneficiary_address_line1 [String] The beneficiary's address line 1.
-      #
-      #   @param beneficiary_address_line2 [String] The beneficiary's address line 2.
-      #
-      #   @param beneficiary_address_line3 [String] The beneficiary's address line 3.
+      #   @param debtor [Increase::Models::WireTransferCreateParams::Debtor] The person or business whose funds are being transferred. This is only necessary
       #
       #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
       #   @param inbound_wire_drawdown_request_id [String] The ID of an Inbound Wire Drawdown Request in response to which this transfer is
-      #
-      #   @param originator_address_line1 [String] The originator's address line 1. This is only necessary if you're transferring f
-      #
-      #   @param originator_address_line2 [String] The originator's address line 2. This is only necessary if you're transferring f
-      #
-      #   @param originator_address_line3 [String] The originator's address line 3. This is only necessary if you're transferring f
-      #
-      #   @param originator_name [String] The originator's name. This is only necessary if you're transferring from a comm
-      #
-      #   @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
       #
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
@@ -155,6 +105,71 @@ module Increase
       #   @param source_account_number_id [String] The ID of an Account Number that will be passed to the wire's recipient
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
+
+      class Creditor < Increase::Internal::Type::BaseModel
+        # @!attribute name
+        #   The person or business's name.
+        #
+        #   @return [String]
+        required :name, String
+
+        # @!attribute address
+        #   The person or business's address.
+        #
+        #   @return [Increase::Models::WireTransferCreateParams::Creditor::Address, nil]
+        optional :address, -> { Increase::WireTransferCreateParams::Creditor::Address }
+
+        # @!method initialize(name:, address: nil)
+        #   The person or business that is receiving the funds from the transfer.
+        #
+        #   @param name [String] The person or business's name.
+        #
+        #   @param address [Increase::Models::WireTransferCreateParams::Creditor::Address] The person or business's address.
+
+        # @see Increase::Models::WireTransferCreateParams::Creditor#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute unstructured
+          #   Unstructured address lines.
+          #
+          #   @return [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured]
+          required :unstructured, -> { Increase::WireTransferCreateParams::Creditor::Address::Unstructured }
+
+          # @!method initialize(unstructured:)
+          #   The person or business's address.
+          #
+          #   @param unstructured [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured] Unstructured address lines.
+
+          # @see Increase::Models::WireTransferCreateParams::Creditor::Address#unstructured
+          class Unstructured < Increase::Internal::Type::BaseModel
+            # @!attribute line1
+            #   The address line 1.
+            #
+            #   @return [String]
+            required :line1, String
+
+            # @!attribute line2
+            #   The address line 2.
+            #
+            #   @return [String, nil]
+            optional :line2, String
+
+            # @!attribute line3
+            #   The address line 3.
+            #
+            #   @return [String, nil]
+            optional :line3, String
+
+            # @!method initialize(line1:, line2: nil, line3: nil)
+            #   Unstructured address lines.
+            #
+            #   @param line1 [String] The address line 1.
+            #
+            #   @param line2 [String] The address line 2.
+            #
+            #   @param line3 [String] The address line 3.
+          end
+        end
+      end
 
       class Remittance < Increase::Internal::Type::BaseModel
         # @!attribute category
@@ -244,7 +259,7 @@ module Increase
         # @see Increase::Models::WireTransferCreateParams::Remittance#unstructured
         class Unstructured < Increase::Internal::Type::BaseModel
           # @!attribute message
-          #   The message to the beneficiary.
+          #   The information.
           #
           #   @return [String]
           required :message, String
@@ -253,7 +268,74 @@ module Increase
           #   Unstructured remittance information. Required if `category` is equal to
           #   `unstructured`.
           #
-          #   @param message [String] The message to the beneficiary.
+          #   @param message [String] The information.
+        end
+      end
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        # @!attribute name
+        #   The person or business's name.
+        #
+        #   @return [String]
+        required :name, String
+
+        # @!attribute address
+        #   The person or business's address.
+        #
+        #   @return [Increase::Models::WireTransferCreateParams::Debtor::Address, nil]
+        optional :address, -> { Increase::WireTransferCreateParams::Debtor::Address }
+
+        # @!method initialize(name:, address: nil)
+        #   The person or business whose funds are being transferred. This is only necessary
+        #   if you're transferring from a commingled account. Otherwise, we'll use the
+        #   associated entity's details.
+        #
+        #   @param name [String] The person or business's name.
+        #
+        #   @param address [Increase::Models::WireTransferCreateParams::Debtor::Address] The person or business's address.
+
+        # @see Increase::Models::WireTransferCreateParams::Debtor#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute unstructured
+          #   Unstructured address lines.
+          #
+          #   @return [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured]
+          required :unstructured, -> { Increase::WireTransferCreateParams::Debtor::Address::Unstructured }
+
+          # @!method initialize(unstructured:)
+          #   The person or business's address.
+          #
+          #   @param unstructured [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured] Unstructured address lines.
+
+          # @see Increase::Models::WireTransferCreateParams::Debtor::Address#unstructured
+          class Unstructured < Increase::Internal::Type::BaseModel
+            # @!attribute line1
+            #   The address line 1.
+            #
+            #   @return [String]
+            required :line1, String
+
+            # @!attribute line2
+            #   The address line 2.
+            #
+            #   @return [String, nil]
+            optional :line2, String
+
+            # @!attribute line3
+            #   The address line 3.
+            #
+            #   @return [String, nil]
+            optional :line3, String
+
+            # @!method initialize(line1:, line2: nil, line3: nil)
+            #   Unstructured address lines.
+            #
+            #   @param line1 [String] The address line 1.
+            #
+            #   @param line2 [String] The address line 2.
+            #
+            #   @param line3 [String] The address line 3.
+          end
         end
       end
     end

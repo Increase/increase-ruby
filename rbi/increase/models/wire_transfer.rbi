@@ -36,22 +36,6 @@ module Increase
       end
       attr_writer :approval
 
-      # The beneficiary's address line 1.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line1
-
-      # The beneficiary's address line 2.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line2
-
-      # The beneficiary's address line 3.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_address_line3
-
-      # The beneficiary's name.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :beneficiary_name
-
       # If your account requires approvals for transfers and the transfer was not
       # approved, this will contain details of the cancellation.
       sig { returns(T.nilable(Increase::WireTransfer::Cancellation)) }
@@ -80,10 +64,30 @@ module Increase
       end
       attr_writer :created_by
 
+      # The person or business that is receiving the funds from the transfer.
+      sig { returns(T.nilable(Increase::WireTransfer::Creditor)) }
+      attr_reader :creditor
+
+      sig do
+        params(
+          creditor: T.nilable(Increase::WireTransfer::Creditor::OrHash)
+        ).void
+      end
+      attr_writer :creditor
+
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       # currency. For wire transfers this is always equal to `usd`.
       sig { returns(Increase::WireTransfer::Currency::TaggedSymbol) }
       attr_accessor :currency
+
+      # The person or business whose funds are being transferred.
+      sig { returns(T.nilable(Increase::WireTransfer::Debtor)) }
+      attr_reader :debtor
+
+      sig do
+        params(debtor: T.nilable(Increase::WireTransfer::Debtor::OrHash)).void
+      end
+      attr_writer :debtor
 
       # The identifier of the External Account the transfer was made to, if any.
       sig { returns(T.nilable(String)) }
@@ -100,29 +104,9 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :inbound_wire_drawdown_request_id
 
-      # The message that will show on the recipient's bank statement.
-      sig { returns(String) }
-      attr_accessor :message_to_recipient
-
       # The transfer's network.
       sig { returns(Increase::WireTransfer::Network::TaggedSymbol) }
       attr_accessor :network
-
-      # The originator's address line 1.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line1
-
-      # The originator's address line 2.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line2
-
-      # The originator's address line 3.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_address_line3
-
-      # The originator's name.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :originator_name
 
       # The ID for the pending transaction representing the transfer. A pending
       # transaction is created when the transfer
@@ -195,23 +179,16 @@ module Increase
           account_number: String,
           amount: Integer,
           approval: T.nilable(Increase::WireTransfer::Approval::OrHash),
-          beneficiary_address_line1: T.nilable(String),
-          beneficiary_address_line2: T.nilable(String),
-          beneficiary_address_line3: T.nilable(String),
-          beneficiary_name: T.nilable(String),
           cancellation: T.nilable(Increase::WireTransfer::Cancellation::OrHash),
           created_at: Time,
           created_by: T.nilable(Increase::WireTransfer::CreatedBy::OrHash),
+          creditor: T.nilable(Increase::WireTransfer::Creditor::OrHash),
           currency: Increase::WireTransfer::Currency::OrSymbol,
+          debtor: T.nilable(Increase::WireTransfer::Debtor::OrHash),
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           inbound_wire_drawdown_request_id: T.nilable(String),
-          message_to_recipient: String,
           network: Increase::WireTransfer::Network::OrSymbol,
-          originator_address_line1: T.nilable(String),
-          originator_address_line2: T.nilable(String),
-          originator_address_line3: T.nilable(String),
-          originator_name: T.nilable(String),
           pending_transaction_id: T.nilable(String),
           remittance: T.nilable(Increase::WireTransfer::Remittance::OrHash),
           reversal: T.nilable(Increase::WireTransfer::Reversal::OrHash),
@@ -235,14 +212,6 @@ module Increase
         # If your account requires approvals for transfers and the transfer was approved,
         # this will contain details of the approval.
         approval:,
-        # The beneficiary's address line 1.
-        beneficiary_address_line1:,
-        # The beneficiary's address line 2.
-        beneficiary_address_line2:,
-        # The beneficiary's address line 3.
-        beneficiary_address_line3:,
-        # The beneficiary's name.
-        beneficiary_name:,
         # If your account requires approvals for transfers and the transfer was not
         # approved, this will contain details of the cancellation.
         cancellation:,
@@ -251,9 +220,13 @@ module Increase
         created_at:,
         # What object created the transfer, either via the API or the dashboard.
         created_by:,
+        # The person or business that is receiving the funds from the transfer.
+        creditor:,
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
         # currency. For wire transfers this is always equal to `usd`.
         currency:,
+        # The person or business whose funds are being transferred.
+        debtor:,
         # The identifier of the External Account the transfer was made to, if any.
         external_account_id:,
         # The idempotency key you chose for this object. This value is unique across
@@ -263,18 +236,8 @@ module Increase
         # The ID of an Inbound Wire Drawdown Request in response to which this transfer
         # was sent.
         inbound_wire_drawdown_request_id:,
-        # The message that will show on the recipient's bank statement.
-        message_to_recipient:,
         # The transfer's network.
         network:,
-        # The originator's address line 1.
-        originator_address_line1:,
-        # The originator's address line 2.
-        originator_address_line2:,
-        # The originator's address line 3.
-        originator_address_line3:,
-        # The originator's name.
-        originator_name:,
         # The ID for the pending transaction representing the transfer. A pending
         # transaction is created when the transfer
         # [requires approval](https://increase.com/documentation/transfer-approvals#transfer-approvals)
@@ -309,23 +272,16 @@ module Increase
             account_number: String,
             amount: Integer,
             approval: T.nilable(Increase::WireTransfer::Approval),
-            beneficiary_address_line1: T.nilable(String),
-            beneficiary_address_line2: T.nilable(String),
-            beneficiary_address_line3: T.nilable(String),
-            beneficiary_name: T.nilable(String),
             cancellation: T.nilable(Increase::WireTransfer::Cancellation),
             created_at: Time,
             created_by: T.nilable(Increase::WireTransfer::CreatedBy),
+            creditor: T.nilable(Increase::WireTransfer::Creditor),
             currency: Increase::WireTransfer::Currency::TaggedSymbol,
+            debtor: T.nilable(Increase::WireTransfer::Debtor),
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
             inbound_wire_drawdown_request_id: T.nilable(String),
-            message_to_recipient: String,
             network: Increase::WireTransfer::Network::TaggedSymbol,
-            originator_address_line1: T.nilable(String),
-            originator_address_line2: T.nilable(String),
-            originator_address_line3: T.nilable(String),
-            originator_name: T.nilable(String),
             pending_transaction_id: T.nilable(String),
             remittance: T.nilable(Increase::WireTransfer::Remittance),
             reversal: T.nilable(Increase::WireTransfer::Reversal),
@@ -647,6 +603,164 @@ module Increase
         end
       end
 
+      class Creditor < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::WireTransfer::Creditor, Increase::Internal::AnyHash)
+          end
+
+        # The person or business's address.
+        sig { returns(T.nilable(Increase::WireTransfer::Creditor::Address)) }
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              T.nilable(Increase::WireTransfer::Creditor::Address::OrHash)
+          ).void
+        end
+        attr_writer :address
+
+        # The person or business's name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The person or business that is receiving the funds from the transfer.
+        sig do
+          params(
+            address:
+              T.nilable(Increase::WireTransfer::Creditor::Address::OrHash),
+            name: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The person or business's address.
+          address:,
+          # The person or business's name.
+          name:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address: T.nilable(Increase::WireTransfer::Creditor::Address),
+              name: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::Creditor::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Unstructured address lines.
+          sig do
+            returns(
+              T.nilable(Increase::WireTransfer::Creditor::Address::Unstructured)
+            )
+          end
+          attr_reader :unstructured
+
+          sig do
+            params(
+              unstructured:
+                T.nilable(
+                  Increase::WireTransfer::Creditor::Address::Unstructured::OrHash
+                )
+            ).void
+          end
+          attr_writer :unstructured
+
+          # The person or business's address.
+          sig do
+            params(
+              unstructured:
+                T.nilable(
+                  Increase::WireTransfer::Creditor::Address::Unstructured::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Unstructured address lines.
+            unstructured:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                unstructured:
+                  T.nilable(
+                    Increase::WireTransfer::Creditor::Address::Unstructured
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::WireTransfer::Creditor::Address::Unstructured,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The first line.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line1
+
+            # The second line.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line2
+
+            # The third line.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line3
+
+            # Unstructured address lines.
+            sig do
+              params(
+                line1: T.nilable(String),
+                line2: T.nilable(String),
+                line3: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The first line.
+              line1:,
+              # The second line.
+              line2:,
+              # The third line.
+              line3:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  line1: T.nilable(String),
+                  line2: T.nilable(String),
+                  line3: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+        end
+      end
+
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       # currency. For wire transfers this is always equal to `usd`.
       module Currency
@@ -680,6 +794,162 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::WireTransfer::Debtor, Increase::Internal::AnyHash)
+          end
+
+        # The person or business's address.
+        sig { returns(T.nilable(Increase::WireTransfer::Debtor::Address)) }
+        attr_reader :address
+
+        sig do
+          params(
+            address: T.nilable(Increase::WireTransfer::Debtor::Address::OrHash)
+          ).void
+        end
+        attr_writer :address
+
+        # The person or business's name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The person or business whose funds are being transferred.
+        sig do
+          params(
+            address: T.nilable(Increase::WireTransfer::Debtor::Address::OrHash),
+            name: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The person or business's address.
+          address:,
+          # The person or business's name.
+          name:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address: T.nilable(Increase::WireTransfer::Debtor::Address),
+              name: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::WireTransfer::Debtor::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Unstructured address lines.
+          sig do
+            returns(
+              T.nilable(Increase::WireTransfer::Debtor::Address::Unstructured)
+            )
+          end
+          attr_reader :unstructured
+
+          sig do
+            params(
+              unstructured:
+                T.nilable(
+                  Increase::WireTransfer::Debtor::Address::Unstructured::OrHash
+                )
+            ).void
+          end
+          attr_writer :unstructured
+
+          # The person or business's address.
+          sig do
+            params(
+              unstructured:
+                T.nilable(
+                  Increase::WireTransfer::Debtor::Address::Unstructured::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Unstructured address lines.
+            unstructured:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                unstructured:
+                  T.nilable(
+                    Increase::WireTransfer::Debtor::Address::Unstructured
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::WireTransfer::Debtor::Address::Unstructured,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The first line.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line1
+
+            # The second line.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line2
+
+            # The third line.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line3
+
+            # Unstructured address lines.
+            sig do
+              params(
+                line1: T.nilable(String),
+                line2: T.nilable(String),
+                line3: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The first line.
+              line1:,
+              # The second line.
+              line2:,
+              # The third line.
+              line3:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  line1: T.nilable(String),
+                  line2: T.nilable(String),
+                  line3: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+          end
         end
       end
 
