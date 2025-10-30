@@ -11,6 +11,8 @@ module Increase
           fulfillment_method:
             Increase::CheckTransferCreateParams::FulfillmentMethod::OrSymbol,
           source_account_number_id: String,
+          balance_check:
+            Increase::CheckTransferCreateParams::BalanceCheck::OrSymbol,
           check_number: String,
           physical_check:
             Increase::CheckTransferCreateParams::PhysicalCheck::OrHash,
@@ -29,6 +31,9 @@ module Increase
         # The identifier of the Account Number from which to send the transfer and print
         # on the check.
         source_account_number_id:,
+        # How the account's available balance should be checked. Please contact
+        # [support@increase.com](mailto:support@increase.com) to enable this parameter.
+        balance_check: nil,
         # The check number Increase should use for the check. This should not contain
         # leading zeroes and must be unique across the `source_account_number`. If this is
         # omitted, Increase will generate a check number for you.
