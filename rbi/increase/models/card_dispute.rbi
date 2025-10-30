@@ -1838,24 +1838,8 @@ module Increase
 
             # Non-fiat currency or non-fungible token as described details. Present if and
             # only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
-            sig do
-              returns(
-                T.nilable(
-                  Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed
-                )
-              )
-            end
-            attr_reader :non_fiat_currency_or_non_fungible_token_as_described
-
-            sig do
-              params(
-                non_fiat_currency_or_non_fungible_token_as_described:
-                  T.nilable(
-                    Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed::OrHash
-                  )
-              ).void
-            end
-            attr_writer :non_fiat_currency_or_non_fungible_token_as_described
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :non_fiat_currency_or_non_fungible_token_as_described
 
             # Non-fiat currency or non-fungible token received details. Present if and only if
             # `reason` is `non_fiat_currency_or_non_fungible_token_received`.
@@ -1948,9 +1932,7 @@ module Increase
                     Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute::OrHash
                   ),
                 non_fiat_currency_or_non_fungible_token_as_described:
-                  T.nilable(
-                    Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed::OrHash
-                  ),
+                  T.nilable(T.anything),
                 non_fiat_currency_or_non_fungible_token_received:
                   T.nilable(
                     Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived::OrHash
@@ -2009,9 +1991,7 @@ module Increase
                       Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute
                     ),
                   non_fiat_currency_or_non_fungible_token_as_described:
-                    T.nilable(
-                      Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed
-                    ),
+                    T.nilable(T.anything),
                   non_fiat_currency_or_non_fungible_token_received:
                     T.nilable(
                       Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived
@@ -2437,26 +2417,6 @@ module Increase
                 end
                 def self.values
                 end
-              end
-            end
-
-            class NonFiatCurrencyOrNonFungibleTokenAsDescribed < Increase::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed,
-                    Increase::Internal::AnyHash
-                  )
-                end
-
-              # Non-fiat currency or non-fungible token as described details. Present if and
-              # only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
-              sig { returns(T.attached_class) }
-              def self.new
-              end
-
-              sig { override.returns({}) }
-              def to_hash
               end
             end
 
@@ -3239,24 +3199,8 @@ module Increase
 
             # Non-receipt of cash. Present if and only if `category` is
             # `consumer_non_receipt_of_cash`.
-            sig do
-              returns(
-                T.nilable(
-                  Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash
-                )
-              )
-            end
-            attr_reader :consumer_non_receipt_of_cash
-
-            sig do
-              params(
-                consumer_non_receipt_of_cash:
-                  T.nilable(
-                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash::OrHash
-                  )
-              ).void
-            end
-            attr_writer :consumer_non_receipt_of_cash
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :consumer_non_receipt_of_cash
 
             # Original Credit Transaction (OCT) not accepted. Present if and only if
             # `category` is `consumer_original_credit_transaction_not_accepted`.
@@ -3472,10 +3416,7 @@ module Increase
                   T.nilable(
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::OrHash
                   ),
-                consumer_non_receipt_of_cash:
-                  T.nilable(
-                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash::OrHash
-                  ),
+                consumer_non_receipt_of_cash: T.nilable(T.anything),
                 consumer_original_credit_transaction_not_accepted:
                   T.nilable(
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted::OrHash
@@ -3615,10 +3556,7 @@ module Increase
                     T.nilable(
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived
                     ),
-                  consumer_non_receipt_of_cash:
-                    T.nilable(
-                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash
-                    ),
+                  consumer_non_receipt_of_cash: T.nilable(T.anything),
                   consumer_original_credit_transaction_not_accepted:
                     T.nilable(
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted
@@ -7401,26 +7339,6 @@ module Increase
                 end
                 def self.values
                 end
-              end
-            end
-
-            class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash,
-                    Increase::Internal::AnyHash
-                  )
-                end
-
-              # Non-receipt of cash. Present if and only if `category` is
-              # `consumer_non_receipt_of_cash`.
-              sig { returns(T.attached_class) }
-              def self.new
-              end
-
-              sig { override.returns({}) }
-              def to_hash
               end
             end
 
