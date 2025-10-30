@@ -19,9 +19,27 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # The beneficiary's name.
-      sig { returns(String) }
-      attr_accessor :beneficiary_name
+      # The person or business that is receiving the funds from the transfer.
+      sig { returns(Increase::WireTransferCreateParams::Creditor) }
+      attr_reader :creditor
+
+      sig do
+        params(
+          creditor: Increase::WireTransferCreateParams::Creditor::OrHash
+        ).void
+      end
+      attr_writer :creditor
+
+      # Additional remittance information related to the wire transfer.
+      sig { returns(Increase::WireTransferCreateParams::Remittance) }
+      attr_reader :remittance
+
+      sig do
+        params(
+          remittance: Increase::WireTransferCreateParams::Remittance::OrHash
+        ).void
+      end
+      attr_writer :remittance
 
       # The account number for the destination account.
       sig { returns(T.nilable(String)) }
@@ -30,26 +48,16 @@ module Increase
       sig { params(account_number: String).void }
       attr_writer :account_number
 
-      # The beneficiary's address line 1.
-      sig { returns(T.nilable(String)) }
-      attr_reader :beneficiary_address_line1
+      # The person or business whose funds are being transferred. This is only necessary
+      # if you're transferring from a commingled account. Otherwise, we'll use the
+      # associated entity's details.
+      sig { returns(T.nilable(Increase::WireTransferCreateParams::Debtor)) }
+      attr_reader :debtor
 
-      sig { params(beneficiary_address_line1: String).void }
-      attr_writer :beneficiary_address_line1
-
-      # The beneficiary's address line 2.
-      sig { returns(T.nilable(String)) }
-      attr_reader :beneficiary_address_line2
-
-      sig { params(beneficiary_address_line2: String).void }
-      attr_writer :beneficiary_address_line2
-
-      # The beneficiary's address line 3.
-      sig { returns(T.nilable(String)) }
-      attr_reader :beneficiary_address_line3
-
-      sig { params(beneficiary_address_line3: String).void }
-      attr_writer :beneficiary_address_line3
+      sig do
+        params(debtor: Increase::WireTransferCreateParams::Debtor::OrHash).void
+      end
+      attr_writer :debtor
 
       # The ID of an External Account to initiate a transfer to. If this parameter is
       # provided, `account_number` and `routing_number` must be absent.
@@ -66,49 +74,6 @@ module Increase
 
       sig { params(inbound_wire_drawdown_request_id: String).void }
       attr_writer :inbound_wire_drawdown_request_id
-
-      # The originator's address line 1. This is only necessary if you're transferring
-      # from a commingled account. Otherwise, we'll use the associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_address_line1
-
-      sig { params(originator_address_line1: String).void }
-      attr_writer :originator_address_line1
-
-      # The originator's address line 2. This is only necessary if you're transferring
-      # from a commingled account. Otherwise, we'll use the associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_address_line2
-
-      sig { params(originator_address_line2: String).void }
-      attr_writer :originator_address_line2
-
-      # The originator's address line 3. This is only necessary if you're transferring
-      # from a commingled account. Otherwise, we'll use the associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_address_line3
-
-      sig { params(originator_address_line3: String).void }
-      attr_writer :originator_address_line3
-
-      # The originator's name. This is only necessary if you're transferring from a
-      # commingled account. Otherwise, we'll use the associated entity's details.
-      sig { returns(T.nilable(String)) }
-      attr_reader :originator_name
-
-      sig { params(originator_name: String).void }
-      attr_writer :originator_name
-
-      # Additional remittance information related to the wire transfer.
-      sig { returns(T.nilable(Increase::WireTransferCreateParams::Remittance)) }
-      attr_reader :remittance
-
-      sig do
-        params(
-          remittance: Increase::WireTransferCreateParams::Remittance::OrHash
-        ).void
-      end
-      attr_writer :remittance
 
       # Whether the transfer requires explicit approval via the dashboard or API.
       sig { returns(T.nilable(T::Boolean)) }
@@ -136,18 +101,12 @@ module Increase
         params(
           account_id: String,
           amount: Integer,
-          beneficiary_name: String,
+          creditor: Increase::WireTransferCreateParams::Creditor::OrHash,
+          remittance: Increase::WireTransferCreateParams::Remittance::OrHash,
           account_number: String,
-          beneficiary_address_line1: String,
-          beneficiary_address_line2: String,
-          beneficiary_address_line3: String,
+          debtor: Increase::WireTransferCreateParams::Debtor::OrHash,
           external_account_id: String,
           inbound_wire_drawdown_request_id: String,
-          originator_address_line1: String,
-          originator_address_line2: String,
-          originator_address_line3: String,
-          originator_name: String,
-          remittance: Increase::WireTransferCreateParams::Remittance::OrHash,
           require_approval: T::Boolean,
           routing_number: String,
           source_account_number_id: String,
@@ -159,36 +118,22 @@ module Increase
         account_id:,
         # The transfer amount in USD cents.
         amount:,
-        # The beneficiary's name.
-        beneficiary_name:,
+        # The person or business that is receiving the funds from the transfer.
+        creditor:,
+        # Additional remittance information related to the wire transfer.
+        remittance:,
         # The account number for the destination account.
         account_number: nil,
-        # The beneficiary's address line 1.
-        beneficiary_address_line1: nil,
-        # The beneficiary's address line 2.
-        beneficiary_address_line2: nil,
-        # The beneficiary's address line 3.
-        beneficiary_address_line3: nil,
+        # The person or business whose funds are being transferred. This is only necessary
+        # if you're transferring from a commingled account. Otherwise, we'll use the
+        # associated entity's details.
+        debtor: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is
         # provided, `account_number` and `routing_number` must be absent.
         external_account_id: nil,
         # The ID of an Inbound Wire Drawdown Request in response to which this transfer is
         # being sent.
         inbound_wire_drawdown_request_id: nil,
-        # The originator's address line 1. This is only necessary if you're transferring
-        # from a commingled account. Otherwise, we'll use the associated entity's details.
-        originator_address_line1: nil,
-        # The originator's address line 2. This is only necessary if you're transferring
-        # from a commingled account. Otherwise, we'll use the associated entity's details.
-        originator_address_line2: nil,
-        # The originator's address line 3. This is only necessary if you're transferring
-        # from a commingled account. Otherwise, we'll use the associated entity's details.
-        originator_address_line3: nil,
-        # The originator's name. This is only necessary if you're transferring from a
-        # commingled account. Otherwise, we'll use the associated entity's details.
-        originator_name: nil,
-        # Additional remittance information related to the wire transfer.
-        remittance: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
@@ -205,18 +150,12 @@ module Increase
           {
             account_id: String,
             amount: Integer,
-            beneficiary_name: String,
+            creditor: Increase::WireTransferCreateParams::Creditor,
+            remittance: Increase::WireTransferCreateParams::Remittance,
             account_number: String,
-            beneficiary_address_line1: String,
-            beneficiary_address_line2: String,
-            beneficiary_address_line3: String,
+            debtor: Increase::WireTransferCreateParams::Debtor,
             external_account_id: String,
             inbound_wire_drawdown_request_id: String,
-            originator_address_line1: String,
-            originator_address_line2: String,
-            originator_address_line3: String,
-            originator_name: String,
-            remittance: Increase::WireTransferCreateParams::Remittance,
             require_approval: T::Boolean,
             routing_number: String,
             source_account_number_id: String,
@@ -225,6 +164,163 @@ module Increase
         )
       end
       def to_hash
+      end
+
+      class Creditor < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireTransferCreateParams::Creditor,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The person or business's name.
+        sig { returns(String) }
+        attr_accessor :name
+
+        # The person or business's address.
+        sig do
+          returns(
+            T.nilable(Increase::WireTransferCreateParams::Creditor::Address)
+          )
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              Increase::WireTransferCreateParams::Creditor::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
+        # The person or business that is receiving the funds from the transfer.
+        sig do
+          params(
+            name: String,
+            address:
+              Increase::WireTransferCreateParams::Creditor::Address::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The person or business's name.
+          name:,
+          # The person or business's address.
+          address: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              name: String,
+              address: Increase::WireTransferCreateParams::Creditor::Address
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::WireTransferCreateParams::Creditor::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Unstructured address lines.
+          sig do
+            returns(
+              Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+            )
+          end
+          attr_reader :unstructured
+
+          sig do
+            params(
+              unstructured:
+                Increase::WireTransferCreateParams::Creditor::Address::Unstructured::OrHash
+            ).void
+          end
+          attr_writer :unstructured
+
+          # The person or business's address.
+          sig do
+            params(
+              unstructured:
+                Increase::WireTransferCreateParams::Creditor::Address::Unstructured::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Unstructured address lines.
+            unstructured:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                unstructured:
+                  Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::WireTransferCreateParams::Creditor::Address::Unstructured,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The address line 1.
+            sig { returns(String) }
+            attr_accessor :line1
+
+            # The address line 2.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line2
+
+            sig { params(line2: String).void }
+            attr_writer :line2
+
+            # The address line 3.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line3
+
+            sig { params(line3: String).void }
+            attr_writer :line3
+
+            # Unstructured address lines.
+            sig do
+              params(line1: String, line2: String, line3: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The address line 1.
+              line1:,
+              # The address line 2.
+              line2: nil,
+              # The address line 3.
+              line3: nil
+            )
+            end
+
+            sig do
+              override.returns({ line1: String, line2: String, line3: String })
+            end
+            def to_hash
+            end
+          end
+        end
       end
 
       class Remittance < Increase::Internal::Type::BaseModel
@@ -415,7 +511,7 @@ module Increase
               )
             end
 
-          # The message to the beneficiary.
+          # The information.
           sig { returns(String) }
           attr_accessor :message
 
@@ -423,13 +519,170 @@ module Increase
           # `unstructured`.
           sig { params(message: String).returns(T.attached_class) }
           def self.new(
-            # The message to the beneficiary.
+            # The information.
             message:
           )
           end
 
           sig { override.returns({ message: String }) }
           def to_hash
+          end
+        end
+      end
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireTransferCreateParams::Debtor,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The person or business's name.
+        sig { returns(String) }
+        attr_accessor :name
+
+        # The person or business's address.
+        sig do
+          returns(
+            T.nilable(Increase::WireTransferCreateParams::Debtor::Address)
+          )
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address: Increase::WireTransferCreateParams::Debtor::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
+        # The person or business whose funds are being transferred. This is only necessary
+        # if you're transferring from a commingled account. Otherwise, we'll use the
+        # associated entity's details.
+        sig do
+          params(
+            name: String,
+            address: Increase::WireTransferCreateParams::Debtor::Address::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The person or business's name.
+          name:,
+          # The person or business's address.
+          address: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              name: String,
+              address: Increase::WireTransferCreateParams::Debtor::Address
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::WireTransferCreateParams::Debtor::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Unstructured address lines.
+          sig do
+            returns(
+              Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+            )
+          end
+          attr_reader :unstructured
+
+          sig do
+            params(
+              unstructured:
+                Increase::WireTransferCreateParams::Debtor::Address::Unstructured::OrHash
+            ).void
+          end
+          attr_writer :unstructured
+
+          # The person or business's address.
+          sig do
+            params(
+              unstructured:
+                Increase::WireTransferCreateParams::Debtor::Address::Unstructured::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Unstructured address lines.
+            unstructured:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                unstructured:
+                  Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Unstructured < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::WireTransferCreateParams::Debtor::Address::Unstructured,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The address line 1.
+            sig { returns(String) }
+            attr_accessor :line1
+
+            # The address line 2.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line2
+
+            sig { params(line2: String).void }
+            attr_writer :line2
+
+            # The address line 3.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line3
+
+            sig { params(line3: String).void }
+            attr_writer :line3
+
+            # Unstructured address lines.
+            sig do
+              params(line1: String, line2: String, line3: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The address line 1.
+              line1:,
+              # The address line 2.
+              line2: nil,
+              # The address line 3.
+              line3: nil
+            )
+            end
+
+            sig do
+              override.returns({ line1: String, line2: String, line3: String })
+            end
+            def to_hash
+            end
           end
         end
       end

@@ -8,18 +8,12 @@ module Increase
         params(
           account_id: String,
           amount: Integer,
-          beneficiary_name: String,
+          creditor: Increase::WireTransferCreateParams::Creditor::OrHash,
+          remittance: Increase::WireTransferCreateParams::Remittance::OrHash,
           account_number: String,
-          beneficiary_address_line1: String,
-          beneficiary_address_line2: String,
-          beneficiary_address_line3: String,
+          debtor: Increase::WireTransferCreateParams::Debtor::OrHash,
           external_account_id: String,
           inbound_wire_drawdown_request_id: String,
-          originator_address_line1: String,
-          originator_address_line2: String,
-          originator_address_line3: String,
-          originator_name: String,
-          remittance: Increase::WireTransferCreateParams::Remittance::OrHash,
           require_approval: T::Boolean,
           routing_number: String,
           source_account_number_id: String,
@@ -31,36 +25,22 @@ module Increase
         account_id:,
         # The transfer amount in USD cents.
         amount:,
-        # The beneficiary's name.
-        beneficiary_name:,
+        # The person or business that is receiving the funds from the transfer.
+        creditor:,
+        # Additional remittance information related to the wire transfer.
+        remittance:,
         # The account number for the destination account.
         account_number: nil,
-        # The beneficiary's address line 1.
-        beneficiary_address_line1: nil,
-        # The beneficiary's address line 2.
-        beneficiary_address_line2: nil,
-        # The beneficiary's address line 3.
-        beneficiary_address_line3: nil,
+        # The person or business whose funds are being transferred. This is only necessary
+        # if you're transferring from a commingled account. Otherwise, we'll use the
+        # associated entity's details.
+        debtor: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is
         # provided, `account_number` and `routing_number` must be absent.
         external_account_id: nil,
         # The ID of an Inbound Wire Drawdown Request in response to which this transfer is
         # being sent.
         inbound_wire_drawdown_request_id: nil,
-        # The originator's address line 1. This is only necessary if you're transferring
-        # from a commingled account. Otherwise, we'll use the associated entity's details.
-        originator_address_line1: nil,
-        # The originator's address line 2. This is only necessary if you're transferring
-        # from a commingled account. Otherwise, we'll use the associated entity's details.
-        originator_address_line2: nil,
-        # The originator's address line 3. This is only necessary if you're transferring
-        # from a commingled account. Otherwise, we'll use the associated entity's details.
-        originator_address_line3: nil,
-        # The originator's name. This is only necessary if you're transferring from a
-        # commingled account. Otherwise, we'll use the associated entity's details.
-        originator_name: nil,
-        # Additional remittance information related to the wire transfer.
-        remittance: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
