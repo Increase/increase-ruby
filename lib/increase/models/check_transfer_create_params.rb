@@ -32,6 +32,13 @@ module Increase
       #   @return [String]
       required :source_account_number_id, String
 
+      # @!attribute balance_check
+      #   How the account's available balance should be checked. Please contact
+      #   [support@increase.com](mailto:support@increase.com) to enable this parameter.
+      #
+      #   @return [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck, nil]
+      optional :balance_check, enum: -> { Increase::CheckTransferCreateParams::BalanceCheck }
+
       # @!attribute check_number
       #   The check number Increase should use for the check. This should not contain
       #   leading zeroes and must be unique across the `source_account_number`. If this is
@@ -62,7 +69,7 @@ module Increase
       #   @return [Increase::Models::CheckTransferCreateParams::ThirdParty, nil]
       optional :third_party, -> { Increase::CheckTransferCreateParams::ThirdParty }
 
-      # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
+      # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckTransferCreateParams} for more details.
       #
@@ -73,6 +80,8 @@ module Increase
       #   @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
       #
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
+      #
+      #   @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. Please contact [support@i
       #
       #   @param check_number [String] The check number Increase should use for the check. This should not contain lead
       #
@@ -93,6 +102,21 @@ module Increase
 
         # Increase will not print a check; you are responsible for printing and mailing a check with the provided account number, routing number, check number, and amount.
         THIRD_PARTY = :third_party
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # How the account's available balance should be checked. Please contact
+      # [support@increase.com](mailto:support@increase.com) to enable this parameter.
+      module BalanceCheck
+        extend Increase::Internal::Type::Enum
+
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        FULL = :full
+
+        # No balance check will performed when the check transfer is initiated. A zero-dollar Pending Transaction will be created. The balance will still be checked when the Inbound Check Deposit is created.
+        NONE = :none
 
         # @!method self.values
         #   @return [Array<Symbol>]
