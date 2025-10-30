@@ -327,8 +327,10 @@ module Increase
         #   if and only if `category` is equal to `user_initiated_hold`. Created when a user
         #   initiates a hold on funds in their account.
         #
-        #   @return [Object, nil]
-        required :user_initiated_hold, Increase::Internal::Type::Unknown, nil?: true
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :user_initiated_hold,
+                 Increase::Internal::Type::HashOf[Increase::Internal::Type::Unknown],
+                 nil?: true
 
         # @!attribute wire_transfer_instruction
         #   A Wire Transfer Instruction object. This field will be present in the JSON
@@ -373,7 +375,7 @@ module Increase
         #
         #   @param swift_transfer_instruction [Increase::Models::PendingTransaction::Source::SwiftTransferInstruction, nil] A Swift Transfer Instruction object. This field will be present in the JSON resp
         #
-        #   @param user_initiated_hold [Object, nil] An User Initiated Hold object. This field will be present in the JSON response i
+        #   @param user_initiated_hold [Hash{Symbol=>Object}, nil] An User Initiated Hold object. This field will be present in the JSON response i
         #
         #   @param wire_transfer_instruction [Increase::Models::PendingTransaction::Source::WireTransferInstruction, nil] A Wire Transfer Instruction object. This field will be present in the JSON respo
 

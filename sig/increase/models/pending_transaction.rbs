@@ -148,7 +148,7 @@ module Increase
           other: top?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
-          user_initiated_hold: top?,
+          user_initiated_hold: ::Hash[Symbol, top]?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
 
@@ -179,7 +179,7 @@ module Increase
 
         attr_accessor swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?
 
-        attr_accessor user_initiated_hold: top?
+        attr_accessor user_initiated_hold: ::Hash[Symbol, top]?
 
         attr_accessor wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
 
@@ -197,7 +197,7 @@ module Increase
           other: top?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
-          user_initiated_hold: top?,
+          user_initiated_hold: ::Hash[Symbol, top]?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         ) -> void
 
@@ -215,7 +215,7 @@ module Increase
           other: top?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
-          user_initiated_hold: top?,
+          user_initiated_hold: ::Hash[Symbol, top]?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
 

@@ -532,7 +532,7 @@ module Increase
         # An User Initiated Hold object. This field will be present in the JSON response
         # if and only if `category` is equal to `user_initiated_hold`. Created when a user
         # initiates a hold on funds in their account.
-        sig { returns(T.nilable(T.anything)) }
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :user_initiated_hold
 
         # A Wire Transfer Instruction object. This field will be present in the JSON
@@ -607,7 +607,7 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::SwiftTransferInstruction::OrHash
               ),
-            user_initiated_hold: T.nilable(T.anything),
+            user_initiated_hold: T.nilable(T::Hash[Symbol, T.anything]),
             wire_transfer_instruction:
               T.nilable(
                 Increase::PendingTransaction::Source::WireTransferInstruction::OrHash
@@ -721,7 +721,7 @@ module Increase
                 T.nilable(
                   Increase::PendingTransaction::Source::SwiftTransferInstruction
                 ),
-              user_initiated_hold: T.nilable(T.anything),
+              user_initiated_hold: T.nilable(T::Hash[Symbol, T.anything]),
               wire_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::WireTransferInstruction
