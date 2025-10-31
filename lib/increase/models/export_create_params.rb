@@ -131,7 +131,14 @@ module Increase
         #   @return [Date, nil]
         optional :effective_date, Date
 
-        # @!method initialize(account_id: nil, effective_date: nil)
+        # @!attribute program_id
+        #   The Program to create a BAI2 report for. If not provided, all open accounts will
+        #   be included.
+        #
+        #   @return [String, nil]
+        optional :program_id, String
+
+        # @!method initialize(account_id: nil, effective_date: nil, program_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::ExportCreateParams::AccountStatementBai2} for more details.
         #
@@ -141,6 +148,8 @@ module Increase
         #   @param account_id [String] The Account to create a BAI2 report for. If not provided, all open accounts will
         #
         #   @param effective_date [Date] The date to create a BAI2 report for. If not provided, the current date will be
+        #
+        #   @param program_id [String] The Program to create a BAI2 report for. If not provided, all open accounts will
       end
 
       class AccountStatementOfx < Increase::Internal::Type::BaseModel
