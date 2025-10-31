@@ -23,13 +23,6 @@ module Increase
       #   @return [Integer]
       required :amount, Integer
 
-      # @!attribute balance_impact
-      #   How the Pending Transaction affects the balance of its Account while its status
-      #   is `pending`.
-      #
-      #   @return [Symbol, Increase::Models::PendingTransaction::BalanceImpact]
-      required :balance_impact, enum: -> { Increase::PendingTransaction::BalanceImpact }
-
       # @!attribute completed_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
       #   Transaction was completed.
@@ -59,6 +52,14 @@ module Increase
       #
       #   @return [String]
       required :description, String
+
+      # @!attribute held_amount
+      #   The amount that this Pending Transaction decrements the available balance of its
+      #   Account. This is usually the same as `amount`, but will differ if the amount is
+      #   positive.
+      #
+      #   @return [Integer]
+      required :held_amount, Integer
 
       # @!attribute route_id
       #   The identifier for the route this Pending Transaction came through. Routes are
@@ -95,7 +96,7 @@ module Increase
       #   @return [Symbol, Increase::Models::PendingTransaction::Type]
       required :type, enum: -> { Increase::PendingTransaction::Type }
 
-      # @!method initialize(id:, account_id:, amount:, balance_impact:, completed_at:, created_at:, currency:, description:, route_id:, route_type:, source:, status:, type:)
+      # @!method initialize(id:, account_id:, amount:, completed_at:, created_at:, currency:, description:, held_amount:, route_id:, route_type:, source:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::PendingTransaction} for more details.
       #
@@ -110,8 +111,6 @@ module Increase
       #
       #   @param amount [Integer] The Pending Transaction amount in the minor unit of its currency. For dollars, f
       #
-      #   @param balance_impact [Symbol, Increase::Models::PendingTransaction::BalanceImpact] How the Pending Transaction affects the balance of its Account while its status
-      #
       #   @param completed_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
@@ -119,6 +118,8 @@ module Increase
       #   @param currency [Symbol, Increase::Models::PendingTransaction::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Pending Tran
       #
       #   @param description [String] For a Pending Transaction related to a transfer, this is the description you pro
+      #
+      #   @param held_amount [Integer] The amount that this Pending Transaction decrements the available balance of its
       #
       #   @param route_id [String, nil] The identifier for the route this Pending Transaction came through. Routes are t
       #
@@ -129,23 +130,6 @@ module Increase
       #   @param status [Symbol, Increase::Models::PendingTransaction::Status] Whether the Pending Transaction has been confirmed and has an associated Transac
       #
       #   @param type [Symbol, Increase::Models::PendingTransaction::Type] A constant representing the object's type. For this resource it will always be `
-
-      # How the Pending Transaction affects the balance of its Account while its status
-      # is `pending`.
-      #
-      # @see Increase::Models::PendingTransaction#balance_impact
-      module BalanceImpact
-        extend Increase::Internal::Type::Enum
-
-        # This Pending Transaction will decrement the available balance on the Account while its status is `pending`.
-        AFFECTS_AVAILABLE_BALANCE = :affects_available_balance
-
-        # This Pending Transaction does not affect the available balance on the Account.
-        NONE = :none
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Pending
       # Transaction's currency. This will match the currency on the Pending
