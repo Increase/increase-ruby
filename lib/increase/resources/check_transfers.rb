@@ -18,7 +18,7 @@ module Increase
       #
       # @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
       #
-      # @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. Please contact [support@i
+      # @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. If omitted, the default b
       #
       # @param check_number [String] The check number Increase should use for the check. This should not contain lead
       #

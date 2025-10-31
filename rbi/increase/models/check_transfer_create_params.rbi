@@ -35,8 +35,8 @@ module Increase
       sig { returns(String) }
       attr_accessor :source_account_number_id
 
-      # How the account's available balance should be checked. Please contact
-      # [support@increase.com](mailto:support@increase.com) to enable this parameter.
+      # How the account's available balance should be checked. If omitted, the default
+      # behavior is `balance_check: full`.
       sig do
         returns(
           T.nilable(Increase::CheckTransferCreateParams::BalanceCheck::OrSymbol)
@@ -126,8 +126,8 @@ module Increase
         # The identifier of the Account Number from which to send the transfer and print
         # on the check.
         source_account_number_id:,
-        # How the account's available balance should be checked. Please contact
-        # [support@increase.com](mailto:support@increase.com) to enable this parameter.
+        # How the account's available balance should be checked. If omitted, the default
+        # behavior is `balance_check: full`.
         balance_check: nil,
         # The check number Increase should use for the check. This should not contain
         # leading zeroes and must be unique across the `source_account_number`. If this is
@@ -206,8 +206,8 @@ module Increase
         end
       end
 
-      # How the account's available balance should be checked. Please contact
-      # [support@increase.com](mailto:support@increase.com) to enable this parameter.
+      # How the account's available balance should be checked. If omitted, the default
+      # behavior is `balance_check: full`.
       module BalanceCheck
         extend Increase::Internal::Type::Enum
 
@@ -217,7 +217,7 @@ module Increase
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount. This is the default behavior if `balance_check` is omitted.
         FULL =
           T.let(
             :full,

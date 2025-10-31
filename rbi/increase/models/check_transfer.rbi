@@ -372,7 +372,7 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::CheckTransfer::BalanceCheck) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount. This is the default behavior if `balance_check` is omitted.
         FULL = T.let(:full, Increase::CheckTransfer::BalanceCheck::TaggedSymbol)
 
         # No balance check will performed when the check transfer is initiated. A zero-dollar Pending Transaction will be created. The balance will still be checked when the Inbound Check Deposit is created.
