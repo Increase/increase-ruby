@@ -258,12 +258,22 @@ module Increase
         sig { params(effective_date: Date).void }
         attr_writer :effective_date
 
+        # The Program to create a BAI2 report for. If not provided, all open accounts will
+        # be included.
+        sig { returns(T.nilable(String)) }
+        attr_reader :program_id
+
+        sig { params(program_id: String).void }
+        attr_writer :program_id
+
         # Options for the created export. Required if `category` is equal to
         # `account_statement_bai2`.
         sig do
-          params(account_id: String, effective_date: Date).returns(
-            T.attached_class
-          )
+          params(
+            account_id: String,
+            effective_date: Date,
+            program_id: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The Account to create a BAI2 report for. If not provided, all open accounts will
@@ -273,11 +283,18 @@ module Increase
           # used. The timezone is UTC. If the current date is used, the report will include
           # intraday balances, otherwise it will include end-of-day balances for the
           # provided date.
-          effective_date: nil
+          effective_date: nil,
+          # The Program to create a BAI2 report for. If not provided, all open accounts will
+          # be included.
+          program_id: nil
         )
         end
 
-        sig { override.returns({ account_id: String, effective_date: Date }) }
+        sig do
+          override.returns(
+            { account_id: String, effective_date: Date, program_id: String }
+          )
+        end
         def to_hash
         end
       end
