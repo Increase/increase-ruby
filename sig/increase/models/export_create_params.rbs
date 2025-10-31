@@ -119,7 +119,8 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::ExportCreateParams::category]
       end
 
-      type account_statement_bai2 = { account_id: String, effective_date: Date }
+      type account_statement_bai2 =
+        { account_id: String, effective_date: Date, program_id: String }
 
       class AccountStatementBai2 < Increase::Internal::Type::BaseModel
         attr_reader account_id: String?
@@ -130,9 +131,21 @@ module Increase
 
         def effective_date=: (Date) -> Date
 
-        def initialize: (?account_id: String, ?effective_date: Date) -> void
+        attr_reader program_id: String?
 
-        def to_hash: -> { account_id: String, effective_date: Date }
+        def program_id=: (String) -> String
+
+        def initialize: (
+          ?account_id: String,
+          ?effective_date: Date,
+          ?program_id: String
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          effective_date: Date,
+          program_id: String
+        }
       end
 
       type account_statement_ofx =
