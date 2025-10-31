@@ -46,40 +46,50 @@ module Increase
         type visa =
           {
             action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
-            accept_chargeback: top,
-            accept_user_submission: top,
-            decline_user_prearbitration: top,
-            receive_merchant_prearbitration: top,
-            represent: top,
+            accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+            accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
+            decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
+            receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+            represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent,
             request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
-            time_out_chargeback: top,
-            time_out_merchant_prearbitration: top,
-            time_out_representment: top,
-            time_out_user_prearbitration: top
+            time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
+            time_out_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration,
+            time_out_representment: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment,
+            time_out_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
           }
 
         class Visa < Increase::Internal::Type::BaseModel
           attr_accessor action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action
 
-          attr_reader accept_chargeback: top?
+          attr_reader accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback?
 
-          def accept_chargeback=: (top) -> top
+          def accept_chargeback=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback
 
-          attr_reader accept_user_submission: top?
+          attr_reader accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission?
 
-          def accept_user_submission=: (top) -> top
+          def accept_user_submission=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission
 
-          attr_reader decline_user_prearbitration: top?
+          attr_reader decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration?
 
-          def decline_user_prearbitration=: (top) -> top
+          def decline_user_prearbitration=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration
 
-          attr_reader receive_merchant_prearbitration: top?
+          attr_reader receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration?
 
-          def receive_merchant_prearbitration=: (top) -> top
+          def receive_merchant_prearbitration=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration
 
-          attr_reader represent: top?
+          attr_reader represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent?
 
-          def represent=: (top) -> top
+          def represent=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::Represent
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::Represent
 
           attr_reader request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation?
 
@@ -87,48 +97,56 @@ module Increase
             Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation
           ) -> Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation
 
-          attr_reader time_out_chargeback: top?
+          attr_reader time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback?
 
-          def time_out_chargeback=: (top) -> top
+          def time_out_chargeback=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback
 
-          attr_reader time_out_merchant_prearbitration: top?
+          attr_reader time_out_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration?
 
-          def time_out_merchant_prearbitration=: (top) -> top
+          def time_out_merchant_prearbitration=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration
 
-          attr_reader time_out_representment: top?
+          attr_reader time_out_representment: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment?
 
-          def time_out_representment=: (top) -> top
+          def time_out_representment=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment
 
-          attr_reader time_out_user_prearbitration: top?
+          attr_reader time_out_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration?
 
-          def time_out_user_prearbitration=: (top) -> top
+          def time_out_user_prearbitration=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
 
           def initialize: (
             action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
-            ?accept_chargeback: top,
-            ?accept_user_submission: top,
-            ?decline_user_prearbitration: top,
-            ?receive_merchant_prearbitration: top,
-            ?represent: top,
+            ?accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+            ?accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
+            ?decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
+            ?receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+            ?represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent,
             ?request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
-            ?time_out_chargeback: top,
-            ?time_out_merchant_prearbitration: top,
-            ?time_out_representment: top,
-            ?time_out_user_prearbitration: top
+            ?time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
+            ?time_out_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration,
+            ?time_out_representment: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment,
+            ?time_out_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
           ) -> void
 
           def to_hash: -> {
             action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
-            accept_chargeback: top,
-            accept_user_submission: top,
-            decline_user_prearbitration: top,
-            receive_merchant_prearbitration: top,
-            represent: top,
+            accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+            accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
+            decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
+            receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+            represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent,
             request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
-            time_out_chargeback: top,
-            time_out_merchant_prearbitration: top,
-            time_out_representment: top,
-            time_out_user_prearbitration: top
+            time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
+            time_out_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration,
+            time_out_representment: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment,
+            time_out_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
           }
 
           type action =
@@ -179,6 +197,46 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::Simulations::CardDisputeActionParams::Visa::action]
           end
 
+          type accept_chargeback = {  }
+
+          class AcceptChargeback < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type accept_user_submission = {  }
+
+          class AcceptUserSubmission < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type decline_user_prearbitration = {  }
+
+          class DeclineUserPrearbitration < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type receive_merchant_prearbitration = {  }
+
+          class ReceiveMerchantPrearbitration < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type represent = {  }
+
+          class Represent < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
           type request_further_information = { reason: String }
 
           class RequestFurtherInformation < Increase::Internal::Type::BaseModel
@@ -187,6 +245,38 @@ module Increase
             def initialize: (reason: String) -> void
 
             def to_hash: -> { reason: String }
+          end
+
+          type time_out_chargeback = {  }
+
+          class TimeOutChargeback < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type time_out_merchant_prearbitration = {  }
+
+          class TimeOutMerchantPrearbitration < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type time_out_representment = {  }
+
+          class TimeOutRepresentment < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type time_out_user_prearbitration = {  }
+
+          class TimeOutUserPrearbitration < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
         end
       end

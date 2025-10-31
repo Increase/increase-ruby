@@ -214,8 +214,8 @@ module Increase
         #   If the category of this Transaction source is equal to `other`, this field will
         #   contain an empty object, otherwise it will contain null.
         #
-        #   @return [Object, nil]
-        required :other, Increase::Internal::Type::Unknown, nil?: true
+        #   @return [Increase::Models::DeclinedTransaction::Source::Other, nil]
+        required :other, -> { Increase::DeclinedTransaction::Source::Other }, nil?: true
 
         # @!attribute wire_decline
         #   A Wire Decline object. This field will be present in the JSON response if and
@@ -248,7 +248,7 @@ module Increase
         #
         #   @param inbound_real_time_payments_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil] An Inbound Real-Time Payments Transfer Decline object. This field will be presen
         #
-        #   @param other [Object, nil] If the category of this Transaction source is equal to `other`, this field will
+        #   @param other [Increase::Models::DeclinedTransaction::Source::Other, nil] If the category of this Transaction source is equal to `other`, this field will
         #
         #   @param wire_decline [Increase::Models::DeclinedTransaction::Source::WireDecline, nil] A Wire Decline object. This field will be present in the JSON response if and on
 
@@ -1185,8 +1185,10 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> { Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -1201,7 +1203,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -1219,6 +1221,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails#visa
@@ -2223,6 +2231,13 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Increase::Models::DeclinedTransaction::Source#other
+        class Other < Increase::Internal::Type::BaseModel
+          # @!method initialize
+          #   If the category of this Transaction source is equal to `other`, this field will
+          #   contain an empty object, otherwise it will contain null.
         end
 
         # @see Increase::Models::DeclinedTransaction::Source#wire_decline

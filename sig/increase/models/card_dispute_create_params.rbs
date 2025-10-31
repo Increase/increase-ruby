@@ -86,7 +86,7 @@ module Increase
           consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation,
           consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed,
           consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived,
-          consumer_non_receipt_of_cash: top,
+          consumer_non_receipt_of_cash: Increase::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash,
           consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted,
           consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise,
           consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices,
@@ -160,9 +160,11 @@ module Increase
           Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived
         ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived
 
-        attr_reader consumer_non_receipt_of_cash: top?
+        attr_reader consumer_non_receipt_of_cash: Increase::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash?
 
-        def consumer_non_receipt_of_cash=: (top) -> top
+        def consumer_non_receipt_of_cash=: (
+          Increase::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash
+        ) -> Increase::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash
 
         attr_reader consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted?
 
@@ -224,7 +226,7 @@ module Increase
           ?consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation,
           ?consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed,
           ?consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived,
-          ?consumer_non_receipt_of_cash: top,
+          ?consumer_non_receipt_of_cash: Increase::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash,
           ?consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted,
           ?consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise,
           ?consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices,
@@ -247,7 +249,7 @@ module Increase
           consumer_merchandise_misrepresentation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation,
           consumer_merchandise_not_as_described: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed,
           consumer_merchandise_not_received: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived,
-          consumer_non_receipt_of_cash: top,
+          consumer_non_receipt_of_cash: Increase::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash,
           consumer_original_credit_transaction_not_accepted: Increase::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted,
           consumer_quality_merchandise: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise,
           consumer_quality_services: Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices,
@@ -383,7 +385,7 @@ module Increase
             received_or_expected_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome,
             cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
           }
@@ -403,9 +405,11 @@ module Increase
             Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation
           ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation
 
-          attr_reader not_returned: top?
+          attr_reader not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned?
 
-          def not_returned=: (top) -> top
+          def not_returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned
 
           attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted?
 
@@ -425,7 +429,7 @@ module Increase
             received_or_expected_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome,
             ?cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation,
-            ?not_returned: top,
+            ?not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned,
             ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted,
             ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
           ) -> void
@@ -436,7 +440,7 @@ module Increase
             received_or_expected_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::return_outcome,
             cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned
           }
@@ -532,6 +536,14 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::cancellation_policy_provided]
             end
+          end
+
+          type not_returned = {  }
+
+          class NotReturned < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type return_attempted =
@@ -775,8 +787,8 @@ module Increase
             purchase_explanation: String,
             service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type,
             guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation,
-            other: top,
-            timeshare: top
+            other: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other,
+            timeshare: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare
           }
 
         class ConsumerCanceledServices < Increase::Internal::Type::BaseModel
@@ -796,13 +808,17 @@ module Increase
             Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation
           ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation
 
-          attr_reader other: top?
+          attr_reader other: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other?
 
-          def other=: (top) -> top
+          def other=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other
 
-          attr_reader timeshare: top?
+          attr_reader timeshare: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare?
 
-          def timeshare=: (top) -> top
+          def timeshare=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare
 
           def initialize: (
             cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation,
@@ -811,8 +827,8 @@ module Increase
             purchase_explanation: String,
             service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type,
             ?guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation,
-            ?other: top,
-            ?timeshare: top
+            ?other: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other,
+            ?timeshare: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare
           ) -> void
 
           def to_hash: -> {
@@ -822,8 +838,8 @@ module Increase
             purchase_explanation: String,
             service_type: Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::service_type,
             guaranteed_reservation: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation,
-            other: top,
-            timeshare: top
+            other: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other,
+            timeshare: Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare
           }
 
           type cardholder_cancellation =
@@ -935,6 +951,22 @@ module Increase
               def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::explanation]
             end
           end
+
+          type other = {  }
+
+          class Other < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type timeshare = {  }
+
+          class Timeshare < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
         end
 
         type consumer_counterfeit_merchandise =
@@ -998,7 +1030,7 @@ module Increase
             order_and_issue_explanation: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
           }
@@ -1012,9 +1044,11 @@ module Increase
 
           attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome
 
-          attr_reader not_returned: top?
+          attr_reader not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned?
 
-          def not_returned=: (top) -> top
+          def not_returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned
 
           attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted?
 
@@ -1033,7 +1067,7 @@ module Increase
             order_and_issue_explanation: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome,
-            ?not_returned: top,
+            ?not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned,
             ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
             ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
           ) -> void
@@ -1043,7 +1077,7 @@ module Increase
             order_and_issue_explanation: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned
           }
@@ -1078,6 +1112,14 @@ module Increase
             RETURN_ATTEMPTED: :return_attempted
 
             def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::return_outcome]
+          end
+
+          type not_returned = {  }
+
+          class NotReturned < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type return_attempted =
@@ -1218,7 +1260,7 @@ module Increase
             purchase_explanation: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
           }
@@ -1234,9 +1276,11 @@ module Increase
 
           attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome
 
-          attr_reader not_returned: top?
+          attr_reader not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned?
 
-          def not_returned=: (top) -> top
+          def not_returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned
 
           attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted?
 
@@ -1256,7 +1300,7 @@ module Increase
             purchase_explanation: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome,
-            ?not_returned: top,
+            ?not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned,
             ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
             ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
           ) -> void
@@ -1267,7 +1311,7 @@ module Increase
             purchase_explanation: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned
           }
@@ -1302,6 +1346,14 @@ module Increase
             RETURN_ATTEMPTED: :return_attempted
 
             def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::return_outcome]
+          end
+
+          type not_returned = {  }
+
+          class NotReturned < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type return_attempted =
@@ -1650,7 +1702,7 @@ module Increase
             delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed,
             delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
             merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation,
-            no_cancellation: top
+            no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation
           }
 
         class ConsumerMerchandiseNotReceived < Increase::Internal::Type::BaseModel
@@ -1688,9 +1740,11 @@ module Increase
             Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation
           ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation
 
-          attr_reader no_cancellation: top?
+          attr_reader no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation?
 
-          def no_cancellation=: (top) -> top
+          def no_cancellation=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation
 
           def initialize: (
             cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::cancellation_outcome,
@@ -1702,7 +1756,7 @@ module Increase
             ?delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed,
             ?delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
             ?merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation,
-            ?no_cancellation: top
+            ?no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation
           ) -> void
 
           def to_hash: -> {
@@ -1715,7 +1769,7 @@ module Increase
             delayed: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed,
             delivered_to_wrong_location: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
             merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation,
-            no_cancellation: top
+            no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation
           }
 
           type cancellation_outcome =
@@ -1786,7 +1840,7 @@ module Increase
             {
               explanation: String,
               return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
-              not_returned: top,
+              not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned,
               return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
               returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
             }
@@ -1796,9 +1850,11 @@ module Increase
 
             attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome
 
-            attr_reader not_returned: top?
+            attr_reader not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned?
 
-            def not_returned=: (top) -> top
+            def not_returned=: (
+              Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned
+            ) -> Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned
 
             attr_reader return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted?
 
@@ -1815,7 +1871,7 @@ module Increase
             def initialize: (
               explanation: String,
               return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
-              ?not_returned: top,
+              ?not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned,
               ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
               ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
             ) -> void
@@ -1823,7 +1879,7 @@ module Increase
             def to_hash: -> {
               explanation: String,
               return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
-              not_returned: top,
+              not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned,
               return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
               returned: Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned
             }
@@ -1843,6 +1899,14 @@ module Increase
               RETURN_ATTEMPTED: :return_attempted
 
               def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::return_outcome]
+            end
+
+            type not_returned = {  }
+
+            class NotReturned < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type return_attempted = { attempted_at: Date }
@@ -1894,6 +1958,22 @@ module Increase
 
             def to_hash: -> { canceled_at: Date }
           end
+
+          type no_cancellation = {  }
+
+          class NoCancellation < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+        end
+
+        type consumer_non_receipt_of_cash = {  }
+
+        class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+          def initialize: -> void
+
+          def to_hash: -> {  }
         end
 
         type consumer_original_credit_transaction_not_accepted =
@@ -1940,7 +2020,7 @@ module Increase
             purchase_info_and_quality_issue: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned,
             ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
@@ -1957,9 +2037,11 @@ module Increase
 
           attr_accessor return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome
 
-          attr_reader not_returned: top?
+          attr_reader not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned?
 
-          def not_returned=: (top) -> top
+          def not_returned=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned
 
           attr_reader ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations?
 
@@ -1985,7 +2067,7 @@ module Increase
             purchase_info_and_quality_issue: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome,
-            ?not_returned: top,
+            ?not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned,
             ?ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations,
             ?return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted,
             ?returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
@@ -1997,7 +2079,7 @@ module Increase
             purchase_info_and_quality_issue: String,
             received_at: Date,
             return_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome,
-            not_returned: top,
+            not_returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned,
             ongoing_negotiations: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations,
             return_attempted: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted,
             returned: Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned
@@ -2033,6 +2115,14 @@ module Increase
             RETURN_ATTEMPTED: :return_attempted
 
             def self?.values: -> ::Array[Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::return_outcome]
+          end
+
+          type not_returned = {  }
+
+          class NotReturned < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type ongoing_negotiations =
@@ -2548,7 +2638,7 @@ module Increase
             purchase_info_and_explanation: String,
             cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
             merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation,
-            no_cancellation: top
+            no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation
           }
 
         class ConsumerServicesNotReceived < Increase::Internal::Type::BaseModel
@@ -2572,9 +2662,11 @@ module Increase
             Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation
           ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation
 
-          attr_reader no_cancellation: top?
+          attr_reader no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation?
 
-          def no_cancellation=: (top) -> top
+          def no_cancellation=: (
+            Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation
+          ) -> Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation
 
           def initialize: (
             cancellation_outcome: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::cancellation_outcome,
@@ -2583,7 +2675,7 @@ module Increase
             purchase_info_and_explanation: String,
             ?cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
             ?merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation,
-            ?no_cancellation: top
+            ?no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation
           ) -> void
 
           def to_hash: -> {
@@ -2593,7 +2685,7 @@ module Increase
             purchase_info_and_explanation: String,
             cardholder_cancellation_prior_to_expected_receipt: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
             merchant_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation,
-            no_cancellation: top
+            no_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation
           }
 
           type cancellation_outcome =
@@ -2654,6 +2746,14 @@ module Increase
             def initialize: (canceled_at: Date) -> void
 
             def to_hash: -> { canceled_at: Date }
+          end
+
+          type no_cancellation = {  }
+
+          class NoCancellation < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
         end
 

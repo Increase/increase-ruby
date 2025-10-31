@@ -292,8 +292,10 @@ module Increase
           #   Visa Card Dispute Network Event, which represents that a chargeback has been
           #   accepted by the merchant.
           #
-          #   @return [Object, nil]
-          required :chargeback_accepted, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackAccepted, nil]
+          required :chargeback_accepted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted },
+                   nil?: true
 
           # @!attribute chargeback_submitted
           #   A Card Dispute Chargeback Submitted Visa Network Event object. This field will
@@ -302,8 +304,10 @@ module Increase
           #   Visa Card Dispute Network Event, which represents that a chargeback has been
           #   submitted to the network.
           #
-          #   @return [Object, nil]
-          required :chargeback_submitted, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackSubmitted, nil]
+          required :chargeback_submitted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted },
+                   nil?: true
 
           # @!attribute chargeback_timed_out
           #   A Card Dispute Chargeback Timed Out Visa Network Event object. This field will
@@ -312,8 +316,10 @@ module Increase
           #   Visa Card Dispute Network Event, which represents that the chargeback has timed
           #   out in the user's favor.
           #
-          #   @return [Object, nil]
-          required :chargeback_timed_out, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackTimedOut, nil]
+          required :chargeback_timed_out,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut },
+                   nil?: true
 
           # @!attribute created_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -336,8 +342,10 @@ module Increase
           #   Dispute Network Event, which represents that the user has declined the
           #   merchant's request for a prearbitration request decision in their favor.
           #
-          #   @return [Object, nil]
-          required :merchant_prearbitration_decline_submitted, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted, nil]
+          required :merchant_prearbitration_decline_submitted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted },
+                   nil?: true
 
           # @!attribute merchant_prearbitration_received
           #   A Card Dispute Merchant Pre-Arbitration Received Visa Network Event object. This
@@ -359,8 +367,10 @@ module Increase
           #   represents that the user has timed out responding to the merchant's
           #   prearbitration request.
           #
-          #   @return [Object, nil]
-          required :merchant_prearbitration_timed_out, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut, nil]
+          required :merchant_prearbitration_timed_out,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut },
+                   nil?: true
 
           # @!attribute represented
           #   A Card Dispute Re-presented Visa Network Event object. This field will be
@@ -379,8 +389,10 @@ module Increase
           #   time-out Visa Card Dispute Network Event, which represents that the user did not
           #   respond to the re-presentment by the merchant within the time limit.
           #
-          #   @return [Object, nil]
-          required :representment_timed_out, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut, nil]
+          required :representment_timed_out,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut },
+                   nil?: true
 
           # @!attribute user_prearbitration_accepted
           #   A Card Dispute User Pre-Arbitration Accepted Visa Network Event object. This
@@ -389,8 +401,10 @@ module Increase
           #   prearbitration accepted Visa Card Dispute Network Event, which represents that
           #   the merchant has accepted the user's prearbitration request in the user's favor.
           #
-          #   @return [Object, nil]
-          required :user_prearbitration_accepted, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted, nil]
+          required :user_prearbitration_accepted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted },
+                   nil?: true
 
           # @!attribute user_prearbitration_declined
           #   A Card Dispute User Pre-Arbitration Declined Visa Network Event object. This
@@ -399,8 +413,10 @@ module Increase
           #   prearbitration declined Visa Card Dispute Network Event, which represents that
           #   the merchant has declined the user's prearbitration request.
           #
-          #   @return [Object, nil]
-          required :user_prearbitration_declined, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined, nil]
+          required :user_prearbitration_declined,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined },
+                   nil?: true
 
           # @!attribute user_prearbitration_submitted
           #   A Card Dispute User Pre-Arbitration Submitted Visa Network Event object. This
@@ -409,8 +425,10 @@ module Increase
           #   prearbitration submitted Visa Card Dispute Network Event, which represents that
           #   the user's request for prearbitration has been submitted to the network.
           #
-          #   @return [Object, nil]
-          required :user_prearbitration_submitted, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted, nil]
+          required :user_prearbitration_submitted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted },
+                   nil?: true
 
           # @!attribute user_prearbitration_timed_out
           #   A Card Dispute User Pre-Arbitration Timed Out Visa Network Event object. This
@@ -419,8 +437,10 @@ module Increase
           #   prearbitration timed out Visa Card Dispute Network Event, which represents that
           #   the merchant has timed out responding to the user's prearbitration request.
           #
-          #   @return [Object, nil]
-          required :user_prearbitration_timed_out, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut, nil]
+          required :user_prearbitration_timed_out,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut },
+                   nil?: true
 
           # @!attribute user_withdrawal_submitted
           #   A Card Dispute User Withdrawal Submitted Visa Network Event object. This field
@@ -429,8 +449,10 @@ module Increase
           #   submitted Visa Card Dispute Network Event, which represents that the user's
           #   request to withdraw the dispute has been submitted to the network.
           #
-          #   @return [Object, nil]
-          required :user_withdrawal_submitted, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted, nil]
+          required :user_withdrawal_submitted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted },
+                   nil?: true
 
           # @!method initialize(attachment_files:, category:, chargeback_accepted:, chargeback_submitted:, chargeback_timed_out:, created_at:, dispute_financial_transaction_id:, merchant_prearbitration_decline_submitted:, merchant_prearbitration_received:, merchant_prearbitration_timed_out:, represented:, representment_timed_out:, user_prearbitration_accepted:, user_prearbitration_declined:, user_prearbitration_submitted:, user_prearbitration_timed_out:, user_withdrawal_submitted:)
           #   Some parameter documentations has been truncated, see
@@ -440,35 +462,35 @@ module Increase
           #
           #   @param category [Symbol, Increase::Models::CardDispute::Visa::NetworkEvent::Category] The category of the user submission. We may add additional possible values for t
           #
-          #   @param chargeback_accepted [Object, nil] A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
+          #   @param chargeback_accepted [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackAccepted, nil] A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
           #
-          #   @param chargeback_submitted [Object, nil] A Card Dispute Chargeback Submitted Visa Network Event object. This field will b
+          #   @param chargeback_submitted [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackSubmitted, nil] A Card Dispute Chargeback Submitted Visa Network Event object. This field will b
           #
-          #   @param chargeback_timed_out [Object, nil] A Card Dispute Chargeback Timed Out Visa Network Event object. This field will b
+          #   @param chargeback_timed_out [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackTimedOut, nil] A Card Dispute Chargeback Timed Out Visa Network Event object. This field will b
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
           #
           #   @param dispute_financial_transaction_id [String, nil] The dispute financial transaction that resulted from the network event, if any.
           #
-          #   @param merchant_prearbitration_decline_submitted [Object, nil] A Card Dispute Merchant Pre-Arbitration Decline Submitted Visa Network Event obj
+          #   @param merchant_prearbitration_decline_submitted [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted, nil] A Card Dispute Merchant Pre-Arbitration Decline Submitted Visa Network Event obj
           #
           #   @param merchant_prearbitration_received [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived, nil] A Card Dispute Merchant Pre-Arbitration Received Visa Network Event object. This
           #
-          #   @param merchant_prearbitration_timed_out [Object, nil] A Card Dispute Merchant Pre-Arbitration Timed Out Visa Network Event object. Thi
+          #   @param merchant_prearbitration_timed_out [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut, nil] A Card Dispute Merchant Pre-Arbitration Timed Out Visa Network Event object. Thi
           #
           #   @param represented [Increase::Models::CardDispute::Visa::NetworkEvent::Represented, nil] A Card Dispute Re-presented Visa Network Event object. This field will be presen
           #
-          #   @param representment_timed_out [Object, nil] A Card Dispute Re-presentment Timed Out Visa Network Event object. This field wi
+          #   @param representment_timed_out [Increase::Models::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut, nil] A Card Dispute Re-presentment Timed Out Visa Network Event object. This field wi
           #
-          #   @param user_prearbitration_accepted [Object, nil] A Card Dispute User Pre-Arbitration Accepted Visa Network Event object. This fie
+          #   @param user_prearbitration_accepted [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted, nil] A Card Dispute User Pre-Arbitration Accepted Visa Network Event object. This fie
           #
-          #   @param user_prearbitration_declined [Object, nil] A Card Dispute User Pre-Arbitration Declined Visa Network Event object. This fie
+          #   @param user_prearbitration_declined [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined, nil] A Card Dispute User Pre-Arbitration Declined Visa Network Event object. This fie
           #
-          #   @param user_prearbitration_submitted [Object, nil] A Card Dispute User Pre-Arbitration Submitted Visa Network Event object. This fi
+          #   @param user_prearbitration_submitted [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted, nil] A Card Dispute User Pre-Arbitration Submitted Visa Network Event object. This fi
           #
-          #   @param user_prearbitration_timed_out [Object, nil] A Card Dispute User Pre-Arbitration Timed Out Visa Network Event object. This fi
+          #   @param user_prearbitration_timed_out [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut, nil] A Card Dispute User Pre-Arbitration Timed Out Visa Network Event object. This fi
           #
-          #   @param user_withdrawal_submitted [Object, nil] A Card Dispute User Withdrawal Submitted Visa Network Event object. This field w
+          #   @param user_withdrawal_submitted [Increase::Models::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted, nil] A Card Dispute User Withdrawal Submitted Visa Network Event object. This field w
 
           class AttachmentFile < Increase::Internal::Type::BaseModel
             # @!attribute file_id
@@ -530,6 +552,47 @@ module Increase
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#chargeback_accepted
+          class ChargebackAccepted < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
+            #   present in the JSON response if and only if `category` is equal to
+            #   `chargeback_accepted`. Contains the details specific to a chargeback accepted
+            #   Visa Card Dispute Network Event, which represents that a chargeback has been
+            #   accepted by the merchant.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#chargeback_submitted
+          class ChargebackSubmitted < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute Chargeback Submitted Visa Network Event object. This field will
+            #   be present in the JSON response if and only if `category` is equal to
+            #   `chargeback_submitted`. Contains the details specific to a chargeback submitted
+            #   Visa Card Dispute Network Event, which represents that a chargeback has been
+            #   submitted to the network.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#chargeback_timed_out
+          class ChargebackTimedOut < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute Chargeback Timed Out Visa Network Event object. This field will
+            #   be present in the JSON response if and only if `category` is equal to
+            #   `chargeback_timed_out`. Contains the details specific to a chargeback timed out
+            #   Visa Card Dispute Network Event, which represents that the chargeback has timed
+            #   out in the user's favor.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#merchant_prearbitration_decline_submitted
+          class MerchantPrearbitrationDeclineSubmitted < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute Merchant Pre-Arbitration Decline Submitted Visa Network Event
+            #   object. This field will be present in the JSON response if and only if
+            #   `category` is equal to `merchant_prearbitration_decline_submitted`. Contains the
+            #   details specific to a merchant prearbitration decline submitted Visa Card
+            #   Dispute Network Event, which represents that the user has declined the
+            #   merchant's request for a prearbitration request decision in their favor.
           end
 
           # @see Increase::Models::CardDispute::Visa::NetworkEvent#merchant_prearbitration_received
@@ -959,6 +1022,17 @@ module Increase
             end
           end
 
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#merchant_prearbitration_timed_out
+          class MerchantPrearbitrationTimedOut < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute Merchant Pre-Arbitration Timed Out Visa Network Event object.
+            #   This field will be present in the JSON response if and only if `category` is
+            #   equal to `merchant_prearbitration_timed_out`. Contains the details specific to a
+            #   merchant prearbitration timed out Visa Card Dispute Network Event, which
+            #   represents that the user has timed out responding to the merchant's
+            #   prearbitration request.
+          end
+
           # @see Increase::Models::CardDispute::Visa::NetworkEvent#represented
           class Represented < Increase::Internal::Type::BaseModel
             # @!attribute cardholder_no_longer_disputes
@@ -993,9 +1067,11 @@ module Increase
             #   Non-fiat currency or non-fungible token as described details. Present if and
             #   only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
             #
-            #   @return [Object, nil]
+            #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed, nil]
             required :non_fiat_currency_or_non_fungible_token_as_described,
-                     Increase::Internal::Type::Unknown,
+                     -> {
+                       Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed
+                     },
                      nil?: true
 
             # @!attribute non_fiat_currency_or_non_fungible_token_received
@@ -1050,7 +1126,7 @@ module Increase
             #
             #   @param invalid_dispute [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute, nil] Invalid dispute details. Present if and only if `reason` is `invalid_dispute`.
             #
-            #   @param non_fiat_currency_or_non_fungible_token_as_described [Object, nil] Non-fiat currency or non-fungible token as described details. Present if and onl
+            #   @param non_fiat_currency_or_non_fungible_token_as_described [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed, nil] Non-fiat currency or non-fungible token as described details. Present if and onl
             #
             #   @param non_fiat_currency_or_non_fungible_token_received [Increase::Models::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived, nil] Non-fiat currency or non-fungible token received details. Present if and only if
             #
@@ -1266,6 +1342,13 @@ module Increase
               end
             end
 
+            # @see Increase::Models::CardDispute::Visa::NetworkEvent::Represented#non_fiat_currency_or_non_fungible_token_as_described
+            class NonFiatCurrencyOrNonFungibleTokenAsDescribed < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Non-fiat currency or non-fungible token as described details. Present if and
+              #   only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
+            end
+
             # @see Increase::Models::CardDispute::Visa::NetworkEvent::Represented#non_fiat_currency_or_non_fungible_token_received
             class NonFiatCurrencyOrNonFungibleTokenReceived < Increase::Internal::Type::BaseModel
               # @!attribute blockchain_transaction_hash
@@ -1363,6 +1446,66 @@ module Increase
               #
               #   @param explanation [String, nil] Explanation of the reversal issued by the merchant.
             end
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#representment_timed_out
+          class RepresentmentTimedOut < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute Re-presentment Timed Out Visa Network Event object. This field
+            #   will be present in the JSON response if and only if `category` is equal to
+            #   `representment_timed_out`. Contains the details specific to a re-presentment
+            #   time-out Visa Card Dispute Network Event, which represents that the user did not
+            #   respond to the re-presentment by the merchant within the time limit.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#user_prearbitration_accepted
+          class UserPrearbitrationAccepted < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute User Pre-Arbitration Accepted Visa Network Event object. This
+            #   field will be present in the JSON response if and only if `category` is equal to
+            #   `user_prearbitration_accepted`. Contains the details specific to a user
+            #   prearbitration accepted Visa Card Dispute Network Event, which represents that
+            #   the merchant has accepted the user's prearbitration request in the user's favor.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#user_prearbitration_declined
+          class UserPrearbitrationDeclined < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute User Pre-Arbitration Declined Visa Network Event object. This
+            #   field will be present in the JSON response if and only if `category` is equal to
+            #   `user_prearbitration_declined`. Contains the details specific to a user
+            #   prearbitration declined Visa Card Dispute Network Event, which represents that
+            #   the merchant has declined the user's prearbitration request.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#user_prearbitration_submitted
+          class UserPrearbitrationSubmitted < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute User Pre-Arbitration Submitted Visa Network Event object. This
+            #   field will be present in the JSON response if and only if `category` is equal to
+            #   `user_prearbitration_submitted`. Contains the details specific to a user
+            #   prearbitration submitted Visa Card Dispute Network Event, which represents that
+            #   the user's request for prearbitration has been submitted to the network.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#user_prearbitration_timed_out
+          class UserPrearbitrationTimedOut < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute User Pre-Arbitration Timed Out Visa Network Event object. This
+            #   field will be present in the JSON response if and only if `category` is equal to
+            #   `user_prearbitration_timed_out`. Contains the details specific to a user
+            #   prearbitration timed out Visa Card Dispute Network Event, which represents that
+            #   the merchant has timed out responding to the user's prearbitration request.
+          end
+
+          # @see Increase::Models::CardDispute::Visa::NetworkEvent#user_withdrawal_submitted
+          class UserWithdrawalSubmitted < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   A Card Dispute User Withdrawal Submitted Visa Network Event object. This field
+            #   will be present in the JSON response if and only if `category` is equal to
+            #   `user_withdrawal_submitted`. Contains the details specific to a user withdrawal
+            #   submitted Visa Card Dispute Network Event, which represents that the user's
+            #   request to withdraw the dispute has been submitted to the network.
           end
         end
 
@@ -1659,8 +1802,10 @@ module Increase
             #   Non-receipt of cash. Present if and only if `category` is
             #   `consumer_non_receipt_of_cash`.
             #
-            #   @return [Object, nil]
-            required :consumer_non_receipt_of_cash, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash, nil]
+            required :consumer_non_receipt_of_cash,
+                     -> { Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash },
+                     nil?: true
 
             # @!attribute consumer_original_credit_transaction_not_accepted
             #   Original Credit Transaction (OCT) not accepted. Present if and only if
@@ -1772,7 +1917,7 @@ module Increase
             #
             #   @param consumer_merchandise_not_received [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived, nil] Merchandise not received. Present if and only if `category` is `consumer_merchan
             #
-            #   @param consumer_non_receipt_of_cash [Object, nil] Non-receipt of cash. Present if and only if `category` is `consumer*non_receipt*
+            #   @param consumer_non_receipt_of_cash [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash, nil] Non-receipt of cash. Present if and only if `category` is `consumer*non_receipt*
             #
             #   @param consumer_original_credit_transaction_not_accepted [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted, nil] Original Credit Transaction (OCT) not accepted. Present if and only if `category
             #
@@ -1913,8 +2058,12 @@ module Increase
               # @!attribute not_returned
               #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
-              #   @return [Object, nil]
-              required :not_returned, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned, nil]
+              required :not_returned,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned
+                       },
+                       nil?: true
 
               # @!attribute purchase_explanation
               #   Purchase explanation.
@@ -1967,7 +2116,7 @@ module Increase
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::MerchantResolutionAttempted] Merchant resolution attempted.
               #
-              #   @param not_returned [Object, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
+              #   @param not_returned [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
               #   @param purchase_explanation [String] Purchase explanation.
               #
@@ -2065,6 +2214,12 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise#not_returned
+              class NotReturned < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               end
 
               # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise#return_attempted
@@ -2374,8 +2529,12 @@ module Increase
               #   Other service type explanation. Present if and only if `service_type` is
               #   `other`.
               #
-              #   @return [Object, nil]
-              required :other, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other, nil]
+              required :other,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other
+                       },
+                       nil?: true
 
               # @!attribute purchase_explanation
               #   Purchase explanation.
@@ -2393,8 +2552,12 @@ module Increase
               # @!attribute timeshare
               #   Timeshare explanation. Present if and only if `service_type` is `timeshare`.
               #
-              #   @return [Object, nil]
-              required :timeshare, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare, nil]
+              required :timeshare,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare
+                       },
+                       nil?: true
 
               # @!method initialize(cardholder_cancellation:, contracted_at:, guaranteed_reservation:, merchant_resolution_attempted:, other:, purchase_explanation:, service_type:, timeshare:)
               #   Some parameter documentations has been truncated, see
@@ -2412,13 +2575,13 @@ module Increase
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::MerchantResolutionAttempted] Merchant resolution attempted.
               #
-              #   @param other [Object, nil] Other service type explanation. Present if and only if `service_type` is `other`
+              #   @param other [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other, nil] Other service type explanation. Present if and only if `service_type` is `other`
               #
               #   @param purchase_explanation [String] Purchase explanation.
               #
               #   @param service_type [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::ServiceType] Service type.
               #
-              #   @param timeshare [Object, nil] Timeshare explanation. Present if and only if `service_type` is `timeshare`.
+              #   @param timeshare [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare, nil] Timeshare explanation. Present if and only if `service_type` is `timeshare`.
 
               # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices#cardholder_cancellation
               class CardholderCancellation < Increase::Internal::Type::BaseModel
@@ -2519,6 +2682,13 @@ module Increase
                 #   @return [Array<Symbol>]
               end
 
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices#other
+              class Other < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Other service type explanation. Present if and only if `service_type` is
+                #   `other`.
+              end
+
               # Service type.
               #
               # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices#service_type
@@ -2536,6 +2706,12 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices#timeshare
+              class Timeshare < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Timeshare explanation. Present if and only if `service_type` is `timeshare`.
               end
             end
 
@@ -2613,8 +2789,12 @@ module Increase
               # @!attribute not_returned
               #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
-              #   @return [Object, nil]
-              required :not_returned, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned, nil]
+              required :not_returned,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned
+                       },
+                       nil?: true
 
               # @!attribute order_and_issue_explanation
               #   Order and issue explanation.
@@ -2665,7 +2845,7 @@ module Increase
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::MerchantResolutionAttempted] Merchant resolution attempted.
               #
-              #   @param not_returned [Object, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
+              #   @param not_returned [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
               #   @param order_and_issue_explanation [String] Order and issue explanation.
               #
@@ -2691,6 +2871,12 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise#not_returned
+              class NotReturned < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               end
 
               # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise#return_attempted
@@ -2870,8 +3056,12 @@ module Increase
               # @!attribute not_returned
               #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
-              #   @return [Object, nil]
-              required :not_returned, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned, nil]
+              required :not_returned,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned
+                       },
+                       nil?: true
 
               # @!attribute purchase_explanation
               #   Purchase explanation.
@@ -2924,7 +3114,7 @@ module Increase
               #
               #   @param misrepresentation_explanation [String] Misrepresentation explanation.
               #
-              #   @param not_returned [Object, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
+              #   @param not_returned [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
               #   @param purchase_explanation [String] Purchase explanation.
               #
@@ -2950,6 +3140,12 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation#not_returned
+              class NotReturned < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               end
 
               # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation#return_attempted
@@ -3419,8 +3615,12 @@ module Increase
               #   No cancellation. Present if and only if `cancellation_outcome` is
               #   `no_cancellation`.
               #
-              #   @return [Object, nil]
-              required :no_cancellation, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation, nil]
+              required :no_cancellation,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation
+                       },
+                       nil?: true
 
               # @!attribute purchase_info_and_explanation
               #   Purchase information and explanation.
@@ -3452,7 +3652,7 @@ module Increase
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::MerchantResolutionAttempted] Merchant resolution attempted.
               #
-              #   @param no_cancellation [Object, nil] No cancellation. Present if and only if `cancellation_outcome` is `no_cancellati
+              #   @param no_cancellation [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation, nil] No cancellation. Present if and only if `cancellation_outcome` is `no_cancellati
               #
               #   @param purchase_info_and_explanation [String] Purchase information and explanation.
 
@@ -3509,8 +3709,12 @@ module Increase
                 # @!attribute not_returned
                 #   Not returned. Present if and only if `return_outcome` is `not_returned`.
                 #
-                #   @return [Object, nil]
-                required :not_returned, Increase::Internal::Type::Unknown, nil?: true
+                #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned, nil]
+                required :not_returned,
+                         -> {
+                           Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned
+                         },
+                         nil?: true
 
                 # @!attribute return_attempted
                 #   Return attempted. Present if and only if `return_outcome` is `return_attempted`.
@@ -3548,13 +3752,19 @@ module Increase
                 #
                 #   @param explanation [String] Explanation.
                 #
-                #   @param not_returned [Object, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
+                #   @param not_returned [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
                 #
                 #   @param return_attempted [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted, nil] Return attempted. Present if and only if `return_outcome` is `return_attempted`.
                 #
                 #   @param return_outcome [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnOutcome] Return outcome.
                 #
                 #   @param returned [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::Returned, nil] Returned. Present if and only if `return_outcome` is `returned`.
+
+                # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed#not_returned
+                class NotReturned < Increase::Internal::Type::BaseModel
+                  # @!method initialize
+                  #   Not returned. Present if and only if `return_outcome` is `not_returned`.
+                end
 
                 # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed#return_attempted
                 class ReturnAttempted < Increase::Internal::Type::BaseModel
@@ -3673,6 +3883,20 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived#no_cancellation
+              class NoCancellation < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   No cancellation. Present if and only if `cancellation_outcome` is
+                #   `no_cancellation`.
+              end
+            end
+
+            # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback#consumer_non_receipt_of_cash
+            class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Non-receipt of cash. Present if and only if `category` is
+              #   `consumer_non_receipt_of_cash`.
             end
 
             # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback#consumer_original_credit_transaction_not_accepted
@@ -3733,8 +3957,12 @@ module Increase
               # @!attribute not_returned
               #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
-              #   @return [Object, nil]
-              required :not_returned, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned, nil]
+              required :not_returned,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned
+                       },
+                       nil?: true
 
               # @!attribute ongoing_negotiations
               #   Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
@@ -3797,7 +4025,7 @@ module Increase
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::MerchantResolutionAttempted] Merchant resolution attempted.
               #
-              #   @param not_returned [Object, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
+              #   @param not_returned [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned, nil] Not returned. Present if and only if `return_outcome` is `not_returned`.
               #
               #   @param ongoing_negotiations [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations, nil] Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
               #
@@ -3825,6 +4053,12 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise#not_returned
+              class NotReturned < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Not returned. Present if and only if `return_outcome` is `not_returned`.
               end
 
               # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise#ongoing_negotiations
@@ -4492,8 +4726,12 @@ module Increase
               #   No cancellation. Present if and only if `cancellation_outcome` is
               #   `no_cancellation`.
               #
-              #   @return [Object, nil]
-              required :no_cancellation, Increase::Internal::Type::Unknown, nil?: true
+              #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation, nil]
+              required :no_cancellation,
+                       -> {
+                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation
+                       },
+                       nil?: true
 
               # @!attribute purchase_info_and_explanation
               #   Purchase information and explanation.
@@ -4519,7 +4757,7 @@ module Increase
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::MerchantResolutionAttempted] Merchant resolution attempted.
               #
-              #   @param no_cancellation [Object, nil] No cancellation. Present if and only if `cancellation_outcome` is `no_cancellati
+              #   @param no_cancellation [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation, nil] No cancellation. Present if and only if `cancellation_outcome` is `no_cancellati
               #
               #   @param purchase_info_and_explanation [String] Purchase information and explanation.
 
@@ -4594,6 +4832,13 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived#no_cancellation
+              class NoCancellation < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   No cancellation. Present if and only if `cancellation_outcome` is
+                #   `no_cancellation`.
               end
             end
 

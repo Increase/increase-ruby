@@ -238,8 +238,9 @@ module Increase
           #   Non-receipt of cash. Required if and only if `category` is
           #   `consumer_non_receipt_of_cash`.
           #
-          #   @return [Object, nil]
-          optional :consumer_non_receipt_of_cash, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash, nil]
+          optional :consumer_non_receipt_of_cash,
+                   -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash }
 
           # @!attribute consumer_original_credit_transaction_not_accepted
           #   Original Credit Transaction (OCT) not accepted. Required if and only if
@@ -333,7 +334,7 @@ module Increase
           #
           #   @param consumer_merchandise_not_received [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived] Merchandise not received. Required if and only if `category` is `consumer_mercha
           #
-          #   @param consumer_non_receipt_of_cash [Object] Non-receipt of cash. Required if and only if `category` is `consumer_non_receipt
+          #   @param consumer_non_receipt_of_cash [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash] Non-receipt of cash. Required if and only if `category` is `consumer_non_receipt
           #
           #   @param consumer_original_credit_transaction_not_accepted [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerOriginalCreditTransactionNotAccepted] Original Credit Transaction (OCT) not accepted. Required if and only if `categor
           #
@@ -490,8 +491,9 @@ module Increase
             # @!attribute not_returned
             #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
-            #   @return [Object, nil]
-            optional :not_returned, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned, nil]
+            optional :not_returned,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned }
 
             # @!attribute return_attempted
             #   Return attempted. Required if and only if `return_outcome` is
@@ -526,7 +528,7 @@ module Increase
             #
             #   @param cardholder_cancellation [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::CardholderCancellation] Cardholder cancellation.
             #
-            #   @param not_returned [Object] Not returned. Required if and only if `return_outcome` is `not_returned`.
+            #   @param not_returned [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
             #   @param return_attempted [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
             #
@@ -637,6 +639,12 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+            end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise#not_returned
+            class NotReturned < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             end
 
             # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise#return_attempted
@@ -938,14 +946,16 @@ module Increase
             #   Other service type explanation. Required if and only if `service_type` is
             #   `other`.
             #
-            #   @return [Object, nil]
-            optional :other, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other, nil]
+            optional :other,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other }
 
             # @!attribute timeshare
             #   Timeshare explanation. Required if and only if `service_type` is `timeshare`.
             #
-            #   @return [Object, nil]
-            optional :timeshare, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare, nil]
+            optional :timeshare,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare }
 
             # @!method initialize(cardholder_cancellation:, contracted_at:, merchant_resolution_attempted:, purchase_explanation:, service_type:, guaranteed_reservation: nil, other: nil, timeshare: nil)
             #   Some parameter documentations has been truncated, see
@@ -967,9 +977,9 @@ module Increase
             #
             #   @param guaranteed_reservation [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::GuaranteedReservation] Guaranteed reservation explanation. Required if and only if `service_type` is `g
             #
-            #   @param other [Object] Other service type explanation. Required if and only if `service_type` is `other
+            #   @param other [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other] Other service type explanation. Required if and only if `service_type` is `other
             #
-            #   @param timeshare [Object] Timeshare explanation. Required if and only if `service_type` is `timeshare`.
+            #   @param timeshare [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare] Timeshare explanation. Required if and only if `service_type` is `timeshare`.
 
             # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices#cardholder_cancellation
             class CardholderCancellation < Increase::Internal::Type::BaseModel
@@ -1088,6 +1098,19 @@ module Increase
                 #   @return [Array<Symbol>]
               end
             end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices#other
+            class Other < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Other service type explanation. Required if and only if `service_type` is
+              #   `other`.
+            end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices#timeshare
+            class Timeshare < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Timeshare explanation. Required if and only if `service_type` is `timeshare`.
+            end
           end
 
           # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback#consumer_counterfeit_merchandise
@@ -1183,8 +1206,9 @@ module Increase
             # @!attribute not_returned
             #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
-            #   @return [Object, nil]
-            optional :not_returned, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned, nil]
+            optional :not_returned,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned }
 
             # @!attribute return_attempted
             #   Return attempted. Required if and only if `return_outcome` is
@@ -1217,7 +1241,7 @@ module Increase
             #
             #   @param return_outcome [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnOutcome] Return outcome.
             #
-            #   @param not_returned [Object] Not returned. Required if and only if `return_outcome` is `not_returned`.
+            #   @param not_returned [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
             #   @param return_attempted [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
             #
@@ -1256,6 +1280,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise#not_returned
+            class NotReturned < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             end
 
             # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise#return_attempted
@@ -1436,8 +1466,9 @@ module Increase
             # @!attribute not_returned
             #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
-            #   @return [Object, nil]
-            optional :not_returned, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned, nil]
+            optional :not_returned,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned }
 
             # @!attribute return_attempted
             #   Return attempted. Required if and only if `return_outcome` is
@@ -1472,7 +1503,7 @@ module Increase
             #
             #   @param return_outcome [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnOutcome] Return outcome.
             #
-            #   @param not_returned [Object] Not returned. Required if and only if `return_outcome` is `not_returned`.
+            #   @param not_returned [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
             #   @param return_attempted [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
             #
@@ -1511,6 +1542,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation#not_returned
+            class NotReturned < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             end
 
             # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation#return_attempted
@@ -1952,8 +1989,9 @@ module Increase
             #   No cancellation. Required if and only if `cancellation_outcome` is
             #   `no_cancellation`.
             #
-            #   @return [Object, nil]
-            optional :no_cancellation, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation, nil]
+            optional :no_cancellation,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation }
 
             # @!method initialize(cancellation_outcome:, delivery_issue:, last_expected_receipt_at:, merchant_resolution_attempted:, purchase_info_and_explanation:, cardholder_cancellation_prior_to_expected_receipt: nil, delayed: nil, delivered_to_wrong_location: nil, merchant_cancellation: nil, no_cancellation: nil)
             #   Some parameter documentations has been truncated, see
@@ -1981,7 +2019,7 @@ module Increase
             #
             #   @param merchant_cancellation [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::MerchantCancellation] Merchant cancellation. Required if and only if `cancellation_outcome` is `mercha
             #
-            #   @param no_cancellation [Object] No cancellation. Required if and only if `cancellation_outcome` is `no_cancellat
+            #   @param no_cancellation [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation] No cancellation. Required if and only if `cancellation_outcome` is `no_cancellat
 
             # Cancellation outcome.
             #
@@ -2075,8 +2113,9 @@ module Increase
               # @!attribute not_returned
               #   Not returned. Required if and only if `return_outcome` is `not_returned`.
               #
-              #   @return [Object, nil]
-              optional :not_returned, Increase::Internal::Type::Unknown
+              #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned, nil]
+              optional :not_returned,
+                       -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned }
 
               # @!attribute return_attempted
               #   Return attempted. Required if and only if `return_outcome` is
@@ -2104,7 +2143,7 @@ module Increase
               #
               #   @param return_outcome [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnOutcome] Return outcome.
               #
-              #   @param not_returned [Object] Not returned. Required if and only if `return_outcome` is `not_returned`.
+              #   @param not_returned [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
               #
               #   @param return_attempted [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
               #
@@ -2127,6 +2166,12 @@ module Increase
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed#not_returned
+              class NotReturned < Increase::Internal::Type::BaseModel
+                # @!method initialize
+                #   Not returned. Required if and only if `return_outcome` is `not_returned`.
               end
 
               # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed#return_attempted
@@ -2196,6 +2241,20 @@ module Increase
               #
               #   @param canceled_at [Date] Canceled at.
             end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived#no_cancellation
+            class NoCancellation < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   No cancellation. Required if and only if `cancellation_outcome` is
+              #   `no_cancellation`.
+            end
+          end
+
+          # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback#consumer_non_receipt_of_cash
+          class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   Non-receipt of cash. Required if and only if `category` is
+            #   `consumer_non_receipt_of_cash`.
           end
 
           # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback#consumer_original_credit_transaction_not_accepted
@@ -2275,8 +2334,9 @@ module Increase
             # @!attribute not_returned
             #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
-            #   @return [Object, nil]
-            optional :not_returned, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned, nil]
+            optional :not_returned,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned }
 
             # @!attribute ongoing_negotiations
             #   Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
@@ -2318,7 +2378,7 @@ module Increase
             #
             #   @param return_outcome [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::ReturnOutcome] Return outcome.
             #
-            #   @param not_returned [Object] Not returned. Required if and only if `return_outcome` is `not_returned`.
+            #   @param not_returned [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
             #   @param ongoing_negotiations [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations] Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
             #
@@ -2359,6 +2419,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise#not_returned
+            class NotReturned < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Not returned. Required if and only if `return_outcome` is `not_returned`.
             end
 
             # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise#ongoing_negotiations
@@ -2999,8 +3065,9 @@ module Increase
             #   No cancellation. Required if and only if `cancellation_outcome` is
             #   `no_cancellation`.
             #
-            #   @return [Object, nil]
-            optional :no_cancellation, Increase::Internal::Type::Unknown
+            #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation, nil]
+            optional :no_cancellation,
+                     -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation }
 
             # @!method initialize(cancellation_outcome:, last_expected_receipt_at:, merchant_resolution_attempted:, purchase_info_and_explanation:, cardholder_cancellation_prior_to_expected_receipt: nil, merchant_cancellation: nil, no_cancellation: nil)
             #   Some parameter documentations has been truncated, see
@@ -3022,7 +3089,7 @@ module Increase
             #
             #   @param merchant_cancellation [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::MerchantCancellation] Merchant cancellation. Required if and only if `cancellation_outcome` is `mercha
             #
-            #   @param no_cancellation [Object] No cancellation. Required if and only if `cancellation_outcome` is `no_cancellat
+            #   @param no_cancellation [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation] No cancellation. Required if and only if `cancellation_outcome` is `no_cancellat
 
             # Cancellation outcome.
             #
@@ -3095,6 +3162,13 @@ module Increase
               #   `merchant_cancellation`.
               #
               #   @param canceled_at [Date] Canceled at.
+            end
+
+            # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived#no_cancellation
+            class NoCancellation < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   No cancellation. Required if and only if `cancellation_outcome` is
+              #   `no_cancellation`.
             end
           end
 

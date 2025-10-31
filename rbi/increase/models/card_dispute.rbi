@@ -434,24 +434,72 @@ module Increase
           # `chargeback_accepted`. Contains the details specific to a chargeback accepted
           # Visa Card Dispute Network Event, which represents that a chargeback has been
           # accepted by the merchant.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :chargeback_accepted
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted
+              )
+            )
+          end
+          attr_reader :chargeback_accepted
+
+          sig do
+            params(
+              chargeback_accepted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted::OrHash
+                )
+            ).void
+          end
+          attr_writer :chargeback_accepted
 
           # A Card Dispute Chargeback Submitted Visa Network Event object. This field will
           # be present in the JSON response if and only if `category` is equal to
           # `chargeback_submitted`. Contains the details specific to a chargeback submitted
           # Visa Card Dispute Network Event, which represents that a chargeback has been
           # submitted to the network.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :chargeback_submitted
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted
+              )
+            )
+          end
+          attr_reader :chargeback_submitted
+
+          sig do
+            params(
+              chargeback_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted::OrHash
+                )
+            ).void
+          end
+          attr_writer :chargeback_submitted
 
           # A Card Dispute Chargeback Timed Out Visa Network Event object. This field will
           # be present in the JSON response if and only if `category` is equal to
           # `chargeback_timed_out`. Contains the details specific to a chargeback timed out
           # Visa Card Dispute Network Event, which represents that the chargeback has timed
           # out in the user's favor.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :chargeback_timed_out
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut
+              )
+            )
+          end
+          attr_reader :chargeback_timed_out
+
+          sig do
+            params(
+              chargeback_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut::OrHash
+                )
+            ).void
+          end
+          attr_writer :chargeback_timed_out
 
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the Visa Card Dispute Network Event was created.
@@ -468,8 +516,24 @@ module Increase
           # details specific to a merchant prearbitration decline submitted Visa Card
           # Dispute Network Event, which represents that the user has declined the
           # merchant's request for a prearbitration request decision in their favor.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :merchant_prearbitration_decline_submitted
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted
+              )
+            )
+          end
+          attr_reader :merchant_prearbitration_decline_submitted
+
+          sig do
+            params(
+              merchant_prearbitration_decline_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted::OrHash
+                )
+            ).void
+          end
+          attr_writer :merchant_prearbitration_decline_submitted
 
           # A Card Dispute Merchant Pre-Arbitration Received Visa Network Event object. This
           # field will be present in the JSON response if and only if `category` is equal to
@@ -501,8 +565,24 @@ module Increase
           # merchant prearbitration timed out Visa Card Dispute Network Event, which
           # represents that the user has timed out responding to the merchant's
           # prearbitration request.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :merchant_prearbitration_timed_out
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut
+              )
+            )
+          end
+          attr_reader :merchant_prearbitration_timed_out
+
+          sig do
+            params(
+              merchant_prearbitration_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut::OrHash
+                )
+            ).void
+          end
+          attr_writer :merchant_prearbitration_timed_out
 
           # A Card Dispute Re-presented Visa Network Event object. This field will be
           # present in the JSON response if and only if `category` is equal to
@@ -531,48 +611,144 @@ module Increase
           # `representment_timed_out`. Contains the details specific to a re-presentment
           # time-out Visa Card Dispute Network Event, which represents that the user did not
           # respond to the re-presentment by the merchant within the time limit.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :representment_timed_out
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut
+              )
+            )
+          end
+          attr_reader :representment_timed_out
+
+          sig do
+            params(
+              representment_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut::OrHash
+                )
+            ).void
+          end
+          attr_writer :representment_timed_out
 
           # A Card Dispute User Pre-Arbitration Accepted Visa Network Event object. This
           # field will be present in the JSON response if and only if `category` is equal to
           # `user_prearbitration_accepted`. Contains the details specific to a user
           # prearbitration accepted Visa Card Dispute Network Event, which represents that
           # the merchant has accepted the user's prearbitration request in the user's favor.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :user_prearbitration_accepted
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted
+              )
+            )
+          end
+          attr_reader :user_prearbitration_accepted
+
+          sig do
+            params(
+              user_prearbitration_accepted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted::OrHash
+                )
+            ).void
+          end
+          attr_writer :user_prearbitration_accepted
 
           # A Card Dispute User Pre-Arbitration Declined Visa Network Event object. This
           # field will be present in the JSON response if and only if `category` is equal to
           # `user_prearbitration_declined`. Contains the details specific to a user
           # prearbitration declined Visa Card Dispute Network Event, which represents that
           # the merchant has declined the user's prearbitration request.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :user_prearbitration_declined
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined
+              )
+            )
+          end
+          attr_reader :user_prearbitration_declined
+
+          sig do
+            params(
+              user_prearbitration_declined:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined::OrHash
+                )
+            ).void
+          end
+          attr_writer :user_prearbitration_declined
 
           # A Card Dispute User Pre-Arbitration Submitted Visa Network Event object. This
           # field will be present in the JSON response if and only if `category` is equal to
           # `user_prearbitration_submitted`. Contains the details specific to a user
           # prearbitration submitted Visa Card Dispute Network Event, which represents that
           # the user's request for prearbitration has been submitted to the network.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :user_prearbitration_submitted
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted
+              )
+            )
+          end
+          attr_reader :user_prearbitration_submitted
+
+          sig do
+            params(
+              user_prearbitration_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted::OrHash
+                )
+            ).void
+          end
+          attr_writer :user_prearbitration_submitted
 
           # A Card Dispute User Pre-Arbitration Timed Out Visa Network Event object. This
           # field will be present in the JSON response if and only if `category` is equal to
           # `user_prearbitration_timed_out`. Contains the details specific to a user
           # prearbitration timed out Visa Card Dispute Network Event, which represents that
           # the merchant has timed out responding to the user's prearbitration request.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :user_prearbitration_timed_out
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut
+              )
+            )
+          end
+          attr_reader :user_prearbitration_timed_out
+
+          sig do
+            params(
+              user_prearbitration_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut::OrHash
+                )
+            ).void
+          end
+          attr_writer :user_prearbitration_timed_out
 
           # A Card Dispute User Withdrawal Submitted Visa Network Event object. This field
           # will be present in the JSON response if and only if `category` is equal to
           # `user_withdrawal_submitted`. Contains the details specific to a user withdrawal
           # submitted Visa Card Dispute Network Event, which represents that the user's
           # request to withdraw the dispute has been submitted to the network.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :user_withdrawal_submitted
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted
+              )
+            )
+          end
+          attr_reader :user_withdrawal_submitted
+
+          sig do
+            params(
+              user_withdrawal_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted::OrHash
+                )
+            ).void
+          end
+          attr_writer :user_withdrawal_submitted
 
           sig do
             params(
@@ -582,27 +758,60 @@ module Increase
                 ],
               category:
                 Increase::CardDispute::Visa::NetworkEvent::Category::OrSymbol,
-              chargeback_accepted: T.nilable(T.anything),
-              chargeback_submitted: T.nilable(T.anything),
-              chargeback_timed_out: T.nilable(T.anything),
+              chargeback_accepted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted::OrHash
+                ),
+              chargeback_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted::OrHash
+                ),
+              chargeback_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut::OrHash
+                ),
               created_at: Time,
               dispute_financial_transaction_id: T.nilable(String),
-              merchant_prearbitration_decline_submitted: T.nilable(T.anything),
+              merchant_prearbitration_decline_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted::OrHash
+                ),
               merchant_prearbitration_received:
                 T.nilable(
                   Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived::OrHash
                 ),
-              merchant_prearbitration_timed_out: T.nilable(T.anything),
+              merchant_prearbitration_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut::OrHash
+                ),
               represented:
                 T.nilable(
                   Increase::CardDispute::Visa::NetworkEvent::Represented::OrHash
                 ),
-              representment_timed_out: T.nilable(T.anything),
-              user_prearbitration_accepted: T.nilable(T.anything),
-              user_prearbitration_declined: T.nilable(T.anything),
-              user_prearbitration_submitted: T.nilable(T.anything),
-              user_prearbitration_timed_out: T.nilable(T.anything),
-              user_withdrawal_submitted: T.nilable(T.anything)
+              representment_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut::OrHash
+                ),
+              user_prearbitration_accepted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted::OrHash
+                ),
+              user_prearbitration_declined:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined::OrHash
+                ),
+              user_prearbitration_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted::OrHash
+                ),
+              user_prearbitration_timed_out:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut::OrHash
+                ),
+              user_withdrawal_submitted:
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted::OrHash
+                )
             ).returns(T.attached_class)
           end
           def self.new(
@@ -709,28 +918,60 @@ module Increase
                   ],
                 category:
                   Increase::CardDispute::Visa::NetworkEvent::Category::TaggedSymbol,
-                chargeback_accepted: T.nilable(T.anything),
-                chargeback_submitted: T.nilable(T.anything),
-                chargeback_timed_out: T.nilable(T.anything),
+                chargeback_accepted:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted
+                  ),
+                chargeback_submitted:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted
+                  ),
+                chargeback_timed_out:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut
+                  ),
                 created_at: Time,
                 dispute_financial_transaction_id: T.nilable(String),
                 merchant_prearbitration_decline_submitted:
-                  T.nilable(T.anything),
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted
+                  ),
                 merchant_prearbitration_received:
                   T.nilable(
                     Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived
                   ),
-                merchant_prearbitration_timed_out: T.nilable(T.anything),
+                merchant_prearbitration_timed_out:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut
+                  ),
                 represented:
                   T.nilable(
                     Increase::CardDispute::Visa::NetworkEvent::Represented
                   ),
-                representment_timed_out: T.nilable(T.anything),
-                user_prearbitration_accepted: T.nilable(T.anything),
-                user_prearbitration_declined: T.nilable(T.anything),
-                user_prearbitration_submitted: T.nilable(T.anything),
-                user_prearbitration_timed_out: T.nilable(T.anything),
-                user_withdrawal_submitted: T.nilable(T.anything)
+                representment_timed_out:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut
+                  ),
+                user_prearbitration_accepted:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted
+                  ),
+                user_prearbitration_declined:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined
+                  ),
+                user_prearbitration_submitted:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted
+                  ),
+                user_prearbitration_timed_out:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut
+                  ),
+                user_withdrawal_submitted:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted
+                  )
               }
             )
           end
@@ -876,6 +1117,99 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class ChargebackAccepted < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
+            # present in the JSON response if and only if `category` is equal to
+            # `chargeback_accepted`. Contains the details specific to a chargeback accepted
+            # Visa Card Dispute Network Event, which represents that a chargeback has been
+            # accepted by the merchant.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class ChargebackSubmitted < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute Chargeback Submitted Visa Network Event object. This field will
+            # be present in the JSON response if and only if `category` is equal to
+            # `chargeback_submitted`. Contains the details specific to a chargeback submitted
+            # Visa Card Dispute Network Event, which represents that a chargeback has been
+            # submitted to the network.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class ChargebackTimedOut < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute Chargeback Timed Out Visa Network Event object. This field will
+            # be present in the JSON response if and only if `category` is equal to
+            # `chargeback_timed_out`. Contains the details specific to a chargeback timed out
+            # Visa Card Dispute Network Event, which represents that the chargeback has timed
+            # out in the user's favor.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class MerchantPrearbitrationDeclineSubmitted < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute Merchant Pre-Arbitration Decline Submitted Visa Network Event
+            # object. This field will be present in the JSON response if and only if
+            # `category` is equal to `merchant_prearbitration_decline_submitted`. Contains the
+            # details specific to a merchant prearbitration decline submitted Visa Card
+            # Dispute Network Event, which represents that the user has declined the
+            # merchant's request for a prearbitration request decision in their favor.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
             end
           end
 
@@ -1765,6 +2099,30 @@ module Increase
             end
           end
 
+          class MerchantPrearbitrationTimedOut < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute Merchant Pre-Arbitration Timed Out Visa Network Event object.
+            # This field will be present in the JSON response if and only if `category` is
+            # equal to `merchant_prearbitration_timed_out`. Contains the details specific to a
+            # merchant prearbitration timed out Visa Card Dispute Network Event, which
+            # represents that the user has timed out responding to the merchant's
+            # prearbitration request.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
           class Represented < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
@@ -1838,8 +2196,24 @@ module Increase
 
             # Non-fiat currency or non-fungible token as described details. Present if and
             # only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
-            sig { returns(T.nilable(T.anything)) }
-            attr_accessor :non_fiat_currency_or_non_fungible_token_as_described
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed
+                )
+              )
+            end
+            attr_reader :non_fiat_currency_or_non_fungible_token_as_described
+
+            sig do
+              params(
+                non_fiat_currency_or_non_fungible_token_as_described:
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed::OrHash
+                  )
+              ).void
+            end
+            attr_writer :non_fiat_currency_or_non_fungible_token_as_described
 
             # Non-fiat currency or non-fungible token received details. Present if and only if
             # `reason` is `non_fiat_currency_or_non_fungible_token_received`.
@@ -1932,7 +2306,9 @@ module Increase
                     Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute::OrHash
                   ),
                 non_fiat_currency_or_non_fungible_token_as_described:
-                  T.nilable(T.anything),
+                  T.nilable(
+                    Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed::OrHash
+                  ),
                 non_fiat_currency_or_non_fungible_token_received:
                   T.nilable(
                     Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived::OrHash
@@ -1991,7 +2367,9 @@ module Increase
                       Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute
                     ),
                   non_fiat_currency_or_non_fungible_token_as_described:
-                    T.nilable(T.anything),
+                    T.nilable(
+                      Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed
+                    ),
                   non_fiat_currency_or_non_fungible_token_received:
                     T.nilable(
                       Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived
@@ -2420,6 +2798,26 @@ module Increase
               end
             end
 
+            class NonFiatCurrencyOrNonFungibleTokenAsDescribed < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Non-fiat currency or non-fungible token as described details. Present if and
+              # only if `reason` is `non_fiat_currency_or_non_fungible_token_as_described`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
+              end
+            end
+
             class NonFiatCurrencyOrNonFungibleTokenReceived < Increase::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
@@ -2604,6 +3002,144 @@ module Increase
               sig { override.returns({ explanation: T.nilable(String) }) }
               def to_hash
               end
+            end
+          end
+
+          class RepresentmentTimedOut < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute Re-presentment Timed Out Visa Network Event object. This field
+            # will be present in the JSON response if and only if `category` is equal to
+            # `representment_timed_out`. Contains the details specific to a re-presentment
+            # time-out Visa Card Dispute Network Event, which represents that the user did not
+            # respond to the re-presentment by the merchant within the time limit.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class UserPrearbitrationAccepted < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute User Pre-Arbitration Accepted Visa Network Event object. This
+            # field will be present in the JSON response if and only if `category` is equal to
+            # `user_prearbitration_accepted`. Contains the details specific to a user
+            # prearbitration accepted Visa Card Dispute Network Event, which represents that
+            # the merchant has accepted the user's prearbitration request in the user's favor.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class UserPrearbitrationDeclined < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute User Pre-Arbitration Declined Visa Network Event object. This
+            # field will be present in the JSON response if and only if `category` is equal to
+            # `user_prearbitration_declined`. Contains the details specific to a user
+            # prearbitration declined Visa Card Dispute Network Event, which represents that
+            # the merchant has declined the user's prearbitration request.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class UserPrearbitrationSubmitted < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute User Pre-Arbitration Submitted Visa Network Event object. This
+            # field will be present in the JSON response if and only if `category` is equal to
+            # `user_prearbitration_submitted`. Contains the details specific to a user
+            # prearbitration submitted Visa Card Dispute Network Event, which represents that
+            # the user's request for prearbitration has been submitted to the network.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class UserPrearbitrationTimedOut < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute User Pre-Arbitration Timed Out Visa Network Event object. This
+            # field will be present in the JSON response if and only if `category` is equal to
+            # `user_prearbitration_timed_out`. Contains the details specific to a user
+            # prearbitration timed out Visa Card Dispute Network Event, which represents that
+            # the merchant has timed out responding to the user's prearbitration request.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class UserWithdrawalSubmitted < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A Card Dispute User Withdrawal Submitted Visa Network Event object. This field
+            # will be present in the JSON response if and only if `category` is equal to
+            # `user_withdrawal_submitted`. Contains the details specific to a user withdrawal
+            # submitted Visa Card Dispute Network Event, which represents that the user's
+            # request to withdraw the dispute has been submitted to the network.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
             end
           end
         end
@@ -3199,8 +3735,24 @@ module Increase
 
             # Non-receipt of cash. Present if and only if `category` is
             # `consumer_non_receipt_of_cash`.
-            sig { returns(T.nilable(T.anything)) }
-            attr_accessor :consumer_non_receipt_of_cash
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash
+                )
+              )
+            end
+            attr_reader :consumer_non_receipt_of_cash
+
+            sig do
+              params(
+                consumer_non_receipt_of_cash:
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash::OrHash
+                  )
+              ).void
+            end
+            attr_writer :consumer_non_receipt_of_cash
 
             # Original Credit Transaction (OCT) not accepted. Present if and only if
             # `category` is `consumer_original_credit_transaction_not_accepted`.
@@ -3416,7 +3968,10 @@ module Increase
                   T.nilable(
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::OrHash
                   ),
-                consumer_non_receipt_of_cash: T.nilable(T.anything),
+                consumer_non_receipt_of_cash:
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash::OrHash
+                  ),
                 consumer_original_credit_transaction_not_accepted:
                   T.nilable(
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted::OrHash
@@ -3556,7 +4111,10 @@ module Increase
                     T.nilable(
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived
                     ),
-                  consumer_non_receipt_of_cash: T.nilable(T.anything),
+                  consumer_non_receipt_of_cash:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash
+                    ),
                   consumer_original_credit_transaction_not_accepted:
                     T.nilable(
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted
@@ -3877,8 +4435,24 @@ module Increase
               attr_accessor :merchant_resolution_attempted
 
               # Not returned. Present if and only if `return_outcome` is `not_returned`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :not_returned
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned
+                  )
+                )
+              end
+              attr_reader :not_returned
+
+              sig do
+                params(
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned::OrHash
+                    )
+                ).void
+              end
+              attr_writer :not_returned
 
               # Purchase explanation.
               sig { returns(String) }
@@ -3946,7 +4520,10 @@ module Increase
                     ),
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::MerchantResolutionAttempted::OrSymbol,
-                  not_returned: T.nilable(T.anything),
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned::OrHash
+                    ),
                   purchase_explanation: String,
                   received_or_expected_at: Date,
                   return_attempted:
@@ -3990,7 +4567,10 @@ module Increase
                       ),
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::MerchantResolutionAttempted::TaggedSymbol,
-                    not_returned: T.nilable(T.anything),
+                    not_returned:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned
+                      ),
                     purchase_explanation: String,
                     received_or_expected_at: Date,
                     return_attempted:
@@ -4192,6 +4772,25 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Not returned. Present if and only if `return_outcome` is `not_returned`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
 
@@ -4761,8 +5360,24 @@ module Increase
 
               # Other service type explanation. Present if and only if `service_type` is
               # `other`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :other
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other
+                  )
+                )
+              end
+              attr_reader :other
+
+              sig do
+                params(
+                  other:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other::OrHash
+                    )
+                ).void
+              end
+              attr_writer :other
 
               # Purchase explanation.
               sig { returns(String) }
@@ -4777,8 +5392,24 @@ module Increase
               attr_accessor :service_type
 
               # Timeshare explanation. Present if and only if `service_type` is `timeshare`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :timeshare
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare
+                  )
+                )
+              end
+              attr_reader :timeshare
+
+              sig do
+                params(
+                  timeshare:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare::OrHash
+                    )
+                ).void
+              end
+              attr_writer :timeshare
 
               # Canceled services. Present if and only if `category` is
               # `consumer_canceled_services`.
@@ -4793,11 +5424,17 @@ module Increase
                     ),
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::MerchantResolutionAttempted::OrSymbol,
-                  other: T.nilable(T.anything),
+                  other:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other::OrHash
+                    ),
                   purchase_explanation: String,
                   service_type:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::ServiceType::OrSymbol,
-                  timeshare: T.nilable(T.anything)
+                  timeshare:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare::OrHash
+                    )
                 ).returns(T.attached_class)
               end
               def self.new(
@@ -4834,11 +5471,17 @@ module Increase
                       ),
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::MerchantResolutionAttempted::TaggedSymbol,
-                    other: T.nilable(T.anything),
+                    other:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other
+                      ),
                     purchase_explanation: String,
                     service_type:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::ServiceType::TaggedSymbol,
-                    timeshare: T.nilable(T.anything)
+                    timeshare:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare
+                      )
                   }
                 )
               end
@@ -5067,6 +5710,26 @@ module Increase
                 end
               end
 
+              class Other < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Other service type explanation. Present if and only if `service_type` is
+                # `other`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
+                end
+              end
+
               # Service type.
               module ServiceType
                 extend Increase::Internal::Type::Enum
@@ -5109,6 +5772,25 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class Timeshare < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Timeshare explanation. Present if and only if `service_type` is `timeshare`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
             end
@@ -5237,8 +5919,24 @@ module Increase
               attr_accessor :merchant_resolution_attempted
 
               # Not returned. Present if and only if `return_outcome` is `not_returned`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :not_returned
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned
+                  )
+                )
+              end
+              attr_reader :not_returned
+
+              sig do
+                params(
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned::OrHash
+                    )
+                ).void
+              end
+              attr_writer :not_returned
 
               # Order and issue explanation.
               sig { returns(String) }
@@ -5302,7 +6000,10 @@ module Increase
                 params(
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::MerchantResolutionAttempted::OrSymbol,
-                  not_returned: T.nilable(T.anything),
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned::OrHash
+                    ),
                   order_and_issue_explanation: String,
                   received_at: Date,
                   return_attempted:
@@ -5340,7 +6041,10 @@ module Increase
                   {
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::MerchantResolutionAttempted::TaggedSymbol,
-                    not_returned: T.nilable(T.anything),
+                    not_returned:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned
+                      ),
                     order_and_issue_explanation: String,
                     received_at: Date,
                     return_attempted:
@@ -5394,6 +6098,25 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Not returned. Present if and only if `return_outcome` is `not_returned`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
 
@@ -5730,8 +6453,24 @@ module Increase
               attr_accessor :misrepresentation_explanation
 
               # Not returned. Present if and only if `return_outcome` is `not_returned`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :not_returned
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned
+                  )
+                )
+              end
+              attr_reader :not_returned
+
+              sig do
+                params(
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned::OrHash
+                    )
+                ).void
+              end
+              attr_writer :not_returned
 
               # Purchase explanation.
               sig { returns(String) }
@@ -5796,7 +6535,10 @@ module Increase
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::MerchantResolutionAttempted::OrSymbol,
                   misrepresentation_explanation: String,
-                  not_returned: T.nilable(T.anything),
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned::OrHash
+                    ),
                   purchase_explanation: String,
                   received_at: Date,
                   return_attempted:
@@ -5837,7 +6579,10 @@ module Increase
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::MerchantResolutionAttempted::TaggedSymbol,
                     misrepresentation_explanation: String,
-                    not_returned: T.nilable(T.anything),
+                    not_returned:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned
+                      ),
                     purchase_explanation: String,
                     received_at: Date,
                     return_attempted:
@@ -5891,6 +6636,25 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Not returned. Present if and only if `return_outcome` is `not_returned`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
 
@@ -6793,8 +7557,24 @@ module Increase
 
               # No cancellation. Present if and only if `cancellation_outcome` is
               # `no_cancellation`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :no_cancellation
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation
+                  )
+                )
+              end
+              attr_reader :no_cancellation
+
+              sig do
+                params(
+                  no_cancellation:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation::OrHash
+                    )
+                ).void
+              end
+              attr_writer :no_cancellation
 
               # Purchase information and explanation.
               sig { returns(String) }
@@ -6827,7 +7607,10 @@ module Increase
                     ),
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::MerchantResolutionAttempted::OrSymbol,
-                  no_cancellation: T.nilable(T.anything),
+                  no_cancellation:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation::OrHash
+                    ),
                   purchase_info_and_explanation: String
                 ).returns(T.attached_class)
               end
@@ -6885,7 +7668,10 @@ module Increase
                       ),
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::MerchantResolutionAttempted::TaggedSymbol,
-                    no_cancellation: T.nilable(T.anything),
+                    no_cancellation:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation
+                      ),
                     purchase_info_and_explanation: String
                   }
                 )
@@ -6993,8 +7779,24 @@ module Increase
                 attr_accessor :explanation
 
                 # Not returned. Present if and only if `return_outcome` is `not_returned`.
-                sig { returns(T.nilable(T.anything)) }
-                attr_accessor :not_returned
+                sig do
+                  returns(
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned
+                    )
+                  )
+                end
+                attr_reader :not_returned
+
+                sig do
+                  params(
+                    not_returned:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned::OrHash
+                      )
+                  ).void
+                end
+                attr_writer :not_returned
 
                 # Return attempted. Present if and only if `return_outcome` is `return_attempted`.
                 sig do
@@ -7048,7 +7850,10 @@ module Increase
                 sig do
                   params(
                     explanation: String,
-                    not_returned: T.nilable(T.anything),
+                    not_returned:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned::OrHash
+                      ),
                     return_attempted:
                       T.nilable(
                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted::OrHash
@@ -7079,7 +7884,10 @@ module Increase
                   override.returns(
                     {
                       explanation: String,
-                      not_returned: T.nilable(T.anything),
+                      not_returned:
+                        T.nilable(
+                          Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned
+                        ),
                       return_attempted:
                         T.nilable(
                           Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted
@@ -7094,6 +7902,25 @@ module Increase
                   )
                 end
                 def to_hash
+                end
+
+                class NotReturned < Increase::Internal::Type::BaseModel
+                  OrHash =
+                    T.type_alias do
+                      T.any(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned,
+                        Increase::Internal::AnyHash
+                      )
+                    end
+
+                  # Not returned. Present if and only if `return_outcome` is `not_returned`.
+                  sig { returns(T.attached_class) }
+                  def self.new
+                  end
+
+                  sig { override.returns({}) }
+                  def to_hash
+                  end
                 end
 
                 class ReturnAttempted < Increase::Internal::Type::BaseModel
@@ -7340,6 +8167,46 @@ module Increase
                 def self.values
                 end
               end
+
+              class NoCancellation < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # No cancellation. Present if and only if `cancellation_outcome` is
+                # `no_cancellation`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
+                end
+              end
+            end
+
+            class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Non-receipt of cash. Present if and only if `category` is
+              # `consumer_non_receipt_of_cash`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
+              end
             end
 
             class ConsumerOriginalCreditTransactionNotAccepted < Increase::Internal::Type::BaseModel
@@ -7453,8 +8320,24 @@ module Increase
               attr_accessor :merchant_resolution_attempted
 
               # Not returned. Present if and only if `return_outcome` is `not_returned`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :not_returned
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned
+                  )
+                )
+              end
+              attr_reader :not_returned
+
+              sig do
+                params(
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned::OrHash
+                    )
+                ).void
+              end
+              attr_writer :not_returned
 
               # Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
               sig do
@@ -7539,7 +8422,10 @@ module Increase
                   expected_at: Date,
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::MerchantResolutionAttempted::OrSymbol,
-                  not_returned: T.nilable(T.anything),
+                  not_returned:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned::OrHash
+                    ),
                   ongoing_negotiations:
                     T.nilable(
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations::OrHash
@@ -7586,7 +8472,10 @@ module Increase
                     expected_at: Date,
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::MerchantResolutionAttempted::TaggedSymbol,
-                    not_returned: T.nilable(T.anything),
+                    not_returned:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned
+                      ),
                     ongoing_negotiations:
                       T.nilable(
                         Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations
@@ -7644,6 +8533,25 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Not returned. Present if and only if `return_outcome` is `not_returned`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
 
@@ -8936,8 +9844,24 @@ module Increase
 
               # No cancellation. Present if and only if `cancellation_outcome` is
               # `no_cancellation`.
-              sig { returns(T.nilable(T.anything)) }
-              attr_accessor :no_cancellation
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation
+                  )
+                )
+              end
+              attr_reader :no_cancellation
+
+              sig do
+                params(
+                  no_cancellation:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation::OrHash
+                    )
+                ).void
+              end
+              attr_writer :no_cancellation
 
               # Purchase information and explanation.
               sig { returns(String) }
@@ -8960,7 +9884,10 @@ module Increase
                     ),
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::MerchantResolutionAttempted::OrSymbol,
-                  no_cancellation: T.nilable(T.anything),
+                  no_cancellation:
+                    T.nilable(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation::OrHash
+                    ),
                   purchase_info_and_explanation: String
                 ).returns(T.attached_class)
               end
@@ -9001,7 +9928,10 @@ module Increase
                       ),
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::MerchantResolutionAttempted::TaggedSymbol,
-                    no_cancellation: T.nilable(T.anything),
+                    no_cancellation:
+                      T.nilable(
+                        Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation
+                      ),
                     purchase_info_and_explanation: String
                   }
                 )
@@ -9157,6 +10087,26 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class NoCancellation < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # No cancellation. Present if and only if `cancellation_outcome` is
+                # `no_cancellation`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
             end

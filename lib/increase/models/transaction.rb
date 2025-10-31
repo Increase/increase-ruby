@@ -485,8 +485,8 @@ module Increase
         #   If the category of this Transaction source is equal to `other`, this field will
         #   contain an empty object, otherwise it will contain null.
         #
-        #   @return [Object, nil]
-        required :other, Increase::Internal::Type::Unknown, nil?: true
+        #   @return [Increase::Models::Transaction::Source::Other, nil]
+        required :other, -> { Increase::Transaction::Source::Other }, nil?: true
 
         # @!attribute real_time_payments_transfer_acknowledgement
         #   A Real-Time Payments Transfer Acknowledgement object. This field will be present
@@ -609,7 +609,7 @@ module Increase
         #
         #   @param internal_source [Increase::Models::Transaction::Source::InternalSource, nil] An Internal Source object. This field will be present in the JSON response if an
         #
-        #   @param other [Object, nil] If the category of this Transaction source is equal to `other`, this field will
+        #   @param other [Increase::Models::Transaction::Source::Other, nil] If the category of this Transaction source is equal to `other`, this field will
         #
         #   @param real_time_payments_transfer_acknowledgement [Increase::Models::Transaction::Source::RealTimePaymentsTransferAcknowledgement, nil] A Real-Time Payments Transfer Acknowledgement object. This field will be present
         #
@@ -2008,8 +2008,12 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> {
+                       Increase::Transaction::Source::CardFinancial::NetworkDetails::Pulse
+                     },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -2026,7 +2030,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::Transaction::Source::CardFinancial::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -2044,6 +2048,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::Transaction::Source::CardFinancial::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::Transaction::Source::CardFinancial::NetworkDetails#visa
@@ -6955,6 +6965,13 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Increase::Models::Transaction::Source#other
+        class Other < Increase::Internal::Type::BaseModel
+          # @!method initialize
+          #   If the category of this Transaction source is equal to `other`, this field will
+          #   contain an empty object, otherwise it will contain null.
         end
 
         # @see Increase::Models::Transaction::Source#real_time_payments_transfer_acknowledgement

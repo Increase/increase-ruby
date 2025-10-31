@@ -284,8 +284,8 @@ module Increase
         #   If the category of this Transaction source is equal to `other`, this field will
         #   contain an empty object, otherwise it will contain null.
         #
-        #   @return [Object, nil]
-        required :other, Increase::Internal::Type::Unknown, nil?: true
+        #   @return [Increase::Models::PendingTransaction::Source::Other, nil]
+        required :other, -> { Increase::PendingTransaction::Source::Other }, nil?: true
 
         # @!attribute real_time_payments_transfer_instruction
         #   A Real-Time Payments Transfer Instruction object. This field will be present in
@@ -353,7 +353,7 @@ module Increase
         #
         #   @param inbound_wire_transfer_reversal [Increase::Models::PendingTransaction::Source::InboundWireTransferReversal, nil] An Inbound Wire Transfer Reversal object. This field will be present in the JSON
         #
-        #   @param other [Object, nil] If the category of this Transaction source is equal to `other`, this field will
+        #   @param other [Increase::Models::PendingTransaction::Source::Other, nil] If the category of this Transaction source is equal to `other`, this field will
         #
         #   @param real_time_payments_transfer_instruction [Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction, nil] A Real-Time Payments Transfer Instruction object. This field will be present in
         #
@@ -1211,8 +1211,10 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> { Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -1227,7 +1229,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -1245,6 +1247,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails#visa
@@ -2057,6 +2065,13 @@ module Increase
           #   and the User requests that it be reversed.
           #
           #   @param inbound_wire_transfer_id [String] The ID of the Inbound Wire Transfer that is being reversed.
+        end
+
+        # @see Increase::Models::PendingTransaction::Source#other
+        class Other < Increase::Internal::Type::BaseModel
+          # @!method initialize
+          #   If the category of this Transaction source is equal to `other`, this field will
+          #   contain an empty object, otherwise it will contain null.
         end
 
         # @see Increase::Models::PendingTransaction::Source#real_time_payments_transfer_instruction

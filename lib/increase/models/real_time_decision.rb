@@ -945,8 +945,12 @@ module Increase
           # @!attribute pulse
           #   Fields specific to the `pulse` network.
           #
-          #   @return [Object, nil]
-          required :pulse, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse, nil]
+          required :pulse,
+                   -> {
+                     Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse
+                   },
+                   nil?: true
 
           # @!attribute visa
           #   Fields specific to the `visa` network.
@@ -963,7 +967,7 @@ module Increase
           #
           #   @param category [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Category] The payment network used to process this card authorization.
           #
-          #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+          #   @param pulse [Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
           #
           #   @param visa [Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -981,6 +985,12 @@ module Increase
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails#pulse
+          class Pulse < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   Fields specific to the `pulse` network.
           end
 
           # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails#visa
@@ -1253,8 +1263,10 @@ module Increase
           # @!attribute initial_authorization
           #   Fields specific to the category `initial_authorization`.
           #
-          #   @return [Object, nil]
-          required :initial_authorization, Increase::Internal::Type::Unknown, nil?: true
+          #   @return [Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization, nil]
+          required :initial_authorization,
+                   -> { Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization },
+                   nil?: true
 
           # @!method initialize(category:, incremental_authorization:, initial_authorization:)
           #   Some parameter documentations has been truncated, see
@@ -1267,7 +1279,7 @@ module Increase
           #
           #   @param incremental_authorization [Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization, nil] Fields specific to the category `incremental_authorization`.
           #
-          #   @param initial_authorization [Object, nil] Fields specific to the category `initial_authorization`.
+          #   @param initial_authorization [Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization, nil] Fields specific to the category `initial_authorization`.
 
           # The type of this request (e.g., an initial authorization or an incremental
           # authorization).
@@ -1311,6 +1323,12 @@ module Increase
             #   @param card_payment_id [String] The card payment for this authorization and increment.
             #
             #   @param original_card_authorization_id [String] The identifier of the card authorization this request is attempting to increment
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails#initial_authorization
+          class InitialAuthorization < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   Fields specific to the category `initial_authorization`.
           end
         end
 
