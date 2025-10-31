@@ -96,10 +96,12 @@ module Increase
       attr_writer :transaction_csv
 
       # Options for the created export. Required if `category` is equal to `vendor_csv`.
-      sig { returns(T.nilable(T.anything)) }
+      sig { returns(T.nilable(Increase::ExportCreateParams::VendorCsv)) }
       attr_reader :vendor_csv
 
-      sig { params(vendor_csv: T.anything).void }
+      sig do
+        params(vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash).void
+      end
       attr_writer :vendor_csv
 
       sig do
@@ -114,7 +116,7 @@ module Increase
             Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::OrHash,
           entity_csv: Increase::ExportCreateParams::EntityCsv::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
-          vendor_csv: T.anything,
+          vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -157,7 +159,7 @@ module Increase
               Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
             entity_csv: Increase::ExportCreateParams::EntityCsv,
             transaction_csv: Increase::ExportCreateParams::TransactionCsv,
-            vendor_csv: T.anything,
+            vendor_csv: Increase::ExportCreateParams::VendorCsv,
             request_options: Increase::RequestOptions
           }
         )
@@ -1023,6 +1025,25 @@ module Increase
           end
           def to_hash
           end
+        end
+      end
+
+      class VendorCsv < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::VendorCsv,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Options for the created export. Required if `category` is equal to `vendor_csv`.
+        sig { returns(T.attached_class) }
+        def self.new
+        end
+
+        sig { override.returns({}) }
+        def to_hash
         end
       end
     end

@@ -1693,8 +1693,24 @@ module Increase
           attr_accessor :category
 
           # Fields specific to the `pulse` network.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :pulse
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse
+              )
+            )
+          end
+          attr_reader :pulse
+
+          sig do
+            params(
+              pulse:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse::OrHash
+                )
+            ).void
+          end
+          attr_writer :pulse
 
           # Fields specific to the `visa` network.
           sig do
@@ -1721,7 +1737,10 @@ module Increase
             params(
               category:
                 Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Category::OrSymbol,
-              pulse: T.nilable(T.anything),
+              pulse:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse::OrHash
+                ),
               visa:
                 T.nilable(
                   Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::OrHash
@@ -1743,7 +1762,10 @@ module Increase
               {
                 category:
                   Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Category::TaggedSymbol,
-                pulse: T.nilable(T.anything),
+                pulse:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse
+                  ),
                 visa:
                   T.nilable(
                     Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa
@@ -1789,6 +1811,25 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class Pulse < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Fields specific to the `pulse` network.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
             end
           end
 
@@ -2337,8 +2378,24 @@ module Increase
           attr_writer :incremental_authorization
 
           # Fields specific to the category `initial_authorization`.
-          sig { returns(T.nilable(T.anything)) }
-          attr_accessor :initial_authorization
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization
+              )
+            )
+          end
+          attr_reader :initial_authorization
+
+          sig do
+            params(
+              initial_authorization:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization::OrHash
+                )
+            ).void
+          end
+          attr_writer :initial_authorization
 
           # Fields specific to the type of request, such as an incremental authorization.
           sig do
@@ -2349,7 +2406,10 @@ module Increase
                 T.nilable(
                   Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization::OrHash
                 ),
-              initial_authorization: T.nilable(T.anything)
+              initial_authorization:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization::OrHash
+                )
             ).returns(T.attached_class)
           end
           def self.new(
@@ -2372,7 +2432,10 @@ module Increase
                   T.nilable(
                     Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization
                   ),
-                initial_authorization: T.nilable(T.anything)
+                initial_authorization:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization
+                  )
               }
             )
           end
@@ -2460,6 +2523,25 @@ module Increase
                 }
               )
             end
+            def to_hash
+            end
+          end
+
+          class InitialAuthorization < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Fields specific to the category `initial_authorization`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
             def to_hash
             end
           end

@@ -56,36 +56,39 @@ module Increase
           #   The parameters for accepting the chargeback. Required if and only if `action` is
           #   `accept_chargeback`.
           #
-          #   @return [Object, nil]
-          optional :accept_chargeback, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptChargeback, nil]
+          optional :accept_chargeback, -> { Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback }
 
           # @!attribute accept_user_submission
           #   The parameters for accepting the user submission. Required if and only if
           #   `action` is `accept_user_submission`.
           #
-          #   @return [Object, nil]
-          optional :accept_user_submission, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission, nil]
+          optional :accept_user_submission,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission }
 
           # @!attribute decline_user_prearbitration
           #   The parameters for declining the prearbitration. Required if and only if
           #   `action` is `decline_user_prearbitration`.
           #
-          #   @return [Object, nil]
-          optional :decline_user_prearbitration, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration, nil]
+          optional :decline_user_prearbitration,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration }
 
           # @!attribute receive_merchant_prearbitration
           #   The parameters for receiving the prearbitration. Required if and only if
           #   `action` is `receive_merchant_prearbitration`.
           #
-          #   @return [Object, nil]
-          optional :receive_merchant_prearbitration, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration, nil]
+          optional :receive_merchant_prearbitration,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration }
 
           # @!attribute represent
           #   The parameters for re-presenting the dispute. Required if and only if `action`
           #   is `represent`.
           #
-          #   @return [Object, nil]
-          optional :represent, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::Represent, nil]
+          optional :represent, -> { Increase::Simulations::CardDisputeActionParams::Visa::Represent }
 
           # @!attribute request_further_information
           #   The parameters for requesting further information from the user. Required if and
@@ -99,29 +102,33 @@ module Increase
           #   The parameters for timing out the chargeback. Required if and only if `action`
           #   is `time_out_chargeback`.
           #
-          #   @return [Object, nil]
-          optional :time_out_chargeback, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback, nil]
+          optional :time_out_chargeback,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback }
 
           # @!attribute time_out_merchant_prearbitration
           #   The parameters for timing out the merchant prearbitration. Required if and only
           #   if `action` is `time_out_merchant_prearbitration`.
           #
-          #   @return [Object, nil]
-          optional :time_out_merchant_prearbitration, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration, nil]
+          optional :time_out_merchant_prearbitration,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration }
 
           # @!attribute time_out_representment
           #   The parameters for timing out the re-presentment. Required if and only if
           #   `action` is `time_out_representment`.
           #
-          #   @return [Object, nil]
-          optional :time_out_representment, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment, nil]
+          optional :time_out_representment,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment }
 
           # @!attribute time_out_user_prearbitration
           #   The parameters for timing out the user prearbitration. Required if and only if
           #   `action` is `time_out_user_prearbitration`.
           #
-          #   @return [Object, nil]
-          optional :time_out_user_prearbitration, Increase::Internal::Type::Unknown
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration, nil]
+          optional :time_out_user_prearbitration,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration }
 
           # @!method initialize(action:, accept_chargeback: nil, accept_user_submission: nil, decline_user_prearbitration: nil, receive_merchant_prearbitration: nil, represent: nil, request_further_information: nil, time_out_chargeback: nil, time_out_merchant_prearbitration: nil, time_out_representment: nil, time_out_user_prearbitration: nil)
           #   Some parameter documentations has been truncated, see
@@ -132,25 +139,25 @@ module Increase
           #
           #   @param action [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Visa::Action] The action to take. Details specific to the action are required under the sub-ob
           #
-          #   @param accept_chargeback [Object] The parameters for accepting the chargeback. Required if and only if `action` is
+          #   @param accept_chargeback [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptChargeback] The parameters for accepting the chargeback. Required if and only if `action` is
           #
-          #   @param accept_user_submission [Object] The parameters for accepting the user submission. Required if and only if `actio
+          #   @param accept_user_submission [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission] The parameters for accepting the user submission. Required if and only if `actio
           #
-          #   @param decline_user_prearbitration [Object] The parameters for declining the prearbitration. Required if and only if `action
+          #   @param decline_user_prearbitration [Increase::Models::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration] The parameters for declining the prearbitration. Required if and only if `action
           #
-          #   @param receive_merchant_prearbitration [Object] The parameters for receiving the prearbitration. Required if and only if `action
+          #   @param receive_merchant_prearbitration [Increase::Models::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration] The parameters for receiving the prearbitration. Required if and only if `action
           #
-          #   @param represent [Object] The parameters for re-presenting the dispute. Required if and only if `action` i
+          #   @param represent [Increase::Models::Simulations::CardDisputeActionParams::Visa::Represent] The parameters for re-presenting the dispute. Required if and only if `action` i
           #
           #   @param request_further_information [Increase::Models::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation] The parameters for requesting further information from the user. Required if and
           #
-          #   @param time_out_chargeback [Object] The parameters for timing out the chargeback. Required if and only if `action` i
+          #   @param time_out_chargeback [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback] The parameters for timing out the chargeback. Required if and only if `action` i
           #
-          #   @param time_out_merchant_prearbitration [Object] The parameters for timing out the merchant prearbitration. Required if and only
+          #   @param time_out_merchant_prearbitration [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration] The parameters for timing out the merchant prearbitration. Required if and only
           #
-          #   @param time_out_representment [Object] The parameters for timing out the re-presentment. Required if and only if `actio
+          #   @param time_out_representment [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment] The parameters for timing out the re-presentment. Required if and only if `actio
           #
-          #   @param time_out_user_prearbitration [Object] The parameters for timing out the user prearbitration. Required if and only if `
+          #   @param time_out_user_prearbitration [Increase::Models::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration] The parameters for timing out the user prearbitration. Required if and only if `
 
           # The action to take. Details specific to the action are required under the
           # sub-object with the same identifier as the action.
@@ -193,6 +200,41 @@ module Increase
             #   @return [Array<Symbol>]
           end
 
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#accept_chargeback
+          class AcceptChargeback < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for accepting the chargeback. Required if and only if `action` is
+            #   `accept_chargeback`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#accept_user_submission
+          class AcceptUserSubmission < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for accepting the user submission. Required if and only if
+            #   `action` is `accept_user_submission`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#decline_user_prearbitration
+          class DeclineUserPrearbitration < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for declining the prearbitration. Required if and only if
+            #   `action` is `decline_user_prearbitration`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#receive_merchant_prearbitration
+          class ReceiveMerchantPrearbitration < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for receiving the prearbitration. Required if and only if
+            #   `action` is `receive_merchant_prearbitration`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#represent
+          class Represent < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for re-presenting the dispute. Required if and only if `action`
+            #   is `represent`.
+          end
+
           # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#request_further_information
           class RequestFurtherInformation < Increase::Internal::Type::BaseModel
             # @!attribute reason
@@ -206,6 +248,34 @@ module Increase
             #   only if `action` is `request_further_information`.
             #
             #   @param reason [String] The reason for requesting further information from the user.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#time_out_chargeback
+          class TimeOutChargeback < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for timing out the chargeback. Required if and only if `action`
+            #   is `time_out_chargeback`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#time_out_merchant_prearbitration
+          class TimeOutMerchantPrearbitration < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for timing out the merchant prearbitration. Required if and only
+            #   if `action` is `time_out_merchant_prearbitration`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#time_out_representment
+          class TimeOutRepresentment < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for timing out the re-presentment. Required if and only if
+            #   `action` is `time_out_representment`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#time_out_user_prearbitration
+          class TimeOutUserPrearbitration < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for timing out the user prearbitration. Required if and only if
+            #   `action` is `time_out_user_prearbitration`.
           end
         end
       end

@@ -71,7 +71,7 @@ module Increase
           card_validation: Increase::CardPayment::Element::CardValidation?,
           category: Increase::Models::CardPayment::Element::category,
           created_at: Time,
-          other: top?
+          other: Increase::CardPayment::Element::Other?
         }
 
       class Element < Increase::Internal::Type::BaseModel
@@ -101,7 +101,7 @@ module Increase
 
         attr_accessor created_at: Time
 
-        attr_accessor other: top?
+        attr_accessor other: Increase::CardPayment::Element::Other?
 
         def initialize: (
           card_authentication: Increase::CardPayment::Element::CardAuthentication?,
@@ -117,7 +117,7 @@ module Increase
           card_validation: Increase::CardPayment::Element::CardValidation?,
           category: Increase::Models::CardPayment::Element::category,
           created_at: Time,
-          other: top?
+          other: Increase::CardPayment::Element::Other?
         ) -> void
 
         def to_hash: -> {
@@ -134,7 +134,7 @@ module Increase
           card_validation: Increase::CardPayment::Element::CardValidation?,
           category: Increase::Models::CardPayment::Element::category,
           created_at: Time,
-          other: top?
+          other: Increase::CardPayment::Element::Other?
         }
 
         type card_authentication =
@@ -834,26 +834,26 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category
 
-            attr_accessor pulse: top?
+            attr_accessor pulse: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse?
 
             attr_accessor visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa?
             }
 
@@ -869,6 +869,14 @@ module Increase
               PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::category]
+            end
+
+            type pulse = {  }
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type visa =
@@ -1725,26 +1733,26 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardDecline::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category
 
-            attr_accessor pulse: top?
+            attr_accessor pulse: Increase::CardPayment::Element::CardDecline::NetworkDetails::Pulse?
 
             attr_accessor visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardDecline::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardDecline::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa?
             }
 
@@ -1760,6 +1768,14 @@ module Increase
               PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::category]
+            end
+
+            type pulse = {  }
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type visa =
@@ -2624,26 +2640,26 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::category
 
-            attr_accessor pulse: top?
+            attr_accessor pulse: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Pulse?
 
             attr_accessor visa: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa?
             }
 
@@ -2659,6 +2675,14 @@ module Increase
               PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::category]
+            end
+
+            type pulse = {  }
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type visa =
@@ -6205,26 +6229,26 @@ module Increase
           type network_details =
             {
               category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardValidation::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category
 
-            attr_accessor pulse: top?
+            attr_accessor pulse: Increase::CardPayment::Element::CardValidation::NetworkDetails::Pulse?
 
             attr_accessor visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardValidation::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::CardPayment::Element::CardValidation::NetworkDetails::Pulse?,
               visa: Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa?
             }
 
@@ -6240,6 +6264,14 @@ module Increase
               PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::category]
+            end
+
+            type pulse = {  }
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type visa =
@@ -6616,6 +6648,14 @@ module Increase
           OTHER: :other
 
           def self?.values: -> ::Array[Increase::Models::CardPayment::Element::category]
+        end
+
+        type other = {  }
+
+        class Other < Increase::Internal::Type::BaseModel
+          def initialize: -> void
+
+          def to_hash: -> {  }
         end
       end
 

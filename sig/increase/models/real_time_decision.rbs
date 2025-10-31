@@ -535,26 +535,26 @@ module Increase
         type network_details =
           {
             category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category,
-            pulse: top?,
+            pulse: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse?,
             visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           }
 
         class NetworkDetails < Increase::Internal::Type::BaseModel
           attr_accessor category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category
 
-          attr_accessor pulse: top?
+          attr_accessor pulse: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse?
 
           attr_accessor visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
 
           def initialize: (
             category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category,
-            pulse: top?,
+            pulse: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse?,
             visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           ) -> void
 
           def to_hash: -> {
             category: Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category,
-            pulse: top?,
+            pulse: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Pulse?,
             visa: Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa?
           }
 
@@ -570,6 +570,14 @@ module Increase
             PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::category]
+          end
+
+          type pulse = {  }
+
+          class Pulse < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type visa =
@@ -804,7 +812,7 @@ module Increase
           {
             category: Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::category,
             incremental_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization?,
-            initial_authorization: top?
+            initial_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization?
           }
 
         class RequestDetails < Increase::Internal::Type::BaseModel
@@ -812,18 +820,18 @@ module Increase
 
           attr_accessor incremental_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization?
 
-          attr_accessor initial_authorization: top?
+          attr_accessor initial_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization?
 
           def initialize: (
             category: Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::category,
             incremental_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization?,
-            initial_authorization: top?
+            initial_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization?
           ) -> void
 
           def to_hash: -> {
             category: Increase::Models::RealTimeDecision::CardAuthorization::RequestDetails::category,
             incremental_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::IncrementalAuthorization?,
-            initial_authorization: top?
+            initial_authorization: Increase::RealTimeDecision::CardAuthorization::RequestDetails::InitialAuthorization?
           }
 
           type category = :initial_authorization | :incremental_authorization
@@ -857,6 +865,14 @@ module Increase
               card_payment_id: String,
               original_card_authorization_id: String
             }
+          end
+
+          type initial_authorization = {  }
+
+          class InitialAuthorization < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
         end
 

@@ -555,10 +555,21 @@ module Increase
 
           # Non-receipt of cash. Required if and only if `category` is
           # `consumer_non_receipt_of_cash`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash
+              )
+            )
+          end
           attr_reader :consumer_non_receipt_of_cash
 
-          sig { params(consumer_non_receipt_of_cash: T.anything).void }
+          sig do
+            params(
+              consumer_non_receipt_of_cash:
+                Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash::OrHash
+            ).void
+          end
           attr_writer :consumer_non_receipt_of_cash
 
           # Original Credit Transaction (OCT) not accepted. Required if and only if
@@ -737,7 +748,8 @@ module Increase
                 Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotAsDescribed::OrHash,
               consumer_merchandise_not_received:
                 Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::OrHash,
-              consumer_non_receipt_of_cash: T.anything,
+              consumer_non_receipt_of_cash:
+                Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash::OrHash,
               consumer_original_credit_transaction_not_accepted:
                 Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerOriginalCreditTransactionNotAccepted::OrHash,
               consumer_quality_merchandise:
@@ -841,7 +853,8 @@ module Increase
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotAsDescribed,
                 consumer_merchandise_not_received:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived,
-                consumer_non_receipt_of_cash: T.anything,
+                consumer_non_receipt_of_cash:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash,
                 consumer_original_credit_transaction_not_accepted:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerOriginalCreditTransactionNotAccepted,
                 consumer_quality_merchandise:
@@ -1160,10 +1173,21 @@ module Increase
             attr_writer :cardholder_cancellation
 
             # Not returned. Required if and only if `return_outcome` is `not_returned`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned
+                )
+              )
+            end
             attr_reader :not_returned
 
-            sig { params(not_returned: T.anything).void }
+            sig do
+              params(
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned::OrHash
+              ).void
+            end
             attr_writer :not_returned
 
             # Return attempted. Required if and only if `return_outcome` is
@@ -1215,7 +1239,8 @@ module Increase
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::ReturnOutcome::OrSymbol,
                 cardholder_cancellation:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::CardholderCancellation::OrHash,
-                not_returned: T.anything,
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned::OrHash,
                 return_attempted:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::ReturnAttempted::OrHash,
                 returned:
@@ -1254,7 +1279,8 @@ module Increase
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::ReturnOutcome::OrSymbol,
                   cardholder_cancellation:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::CardholderCancellation,
-                  not_returned: T.anything,
+                  not_returned:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned,
                   return_attempted:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::ReturnAttempted,
                   returned:
@@ -1493,6 +1519,25 @@ module Increase
                 end
                 def self.values
                 end
+              end
+            end
+
+            class NotReturned < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledMerchandise::NotReturned,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Not returned. Required if and only if `return_outcome` is `not_returned`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
               end
             end
 
@@ -2058,17 +2103,39 @@ module Increase
 
             # Other service type explanation. Required if and only if `service_type` is
             # `other`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other
+                )
+              )
+            end
             attr_reader :other
 
-            sig { params(other: T.anything).void }
+            sig do
+              params(
+                other:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other::OrHash
+              ).void
+            end
             attr_writer :other
 
             # Timeshare explanation. Required if and only if `service_type` is `timeshare`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare
+                )
+              )
+            end
             attr_reader :timeshare
 
-            sig { params(timeshare: T.anything).void }
+            sig do
+              params(
+                timeshare:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare::OrHash
+              ).void
+            end
             attr_writer :timeshare
 
             # Canceled services. Required if and only if `category` is
@@ -2085,8 +2152,10 @@ module Increase
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::ServiceType::OrSymbol,
                 guaranteed_reservation:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::GuaranteedReservation::OrHash,
-                other: T.anything,
-                timeshare: T.anything
+                other:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other::OrHash,
+                timeshare:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare::OrHash
               ).returns(T.attached_class)
             end
             def self.new(
@@ -2124,8 +2193,10 @@ module Increase
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::ServiceType::OrSymbol,
                   guaranteed_reservation:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::GuaranteedReservation,
-                  other: T.anything,
-                  timeshare: T.anything
+                  other:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other,
+                  timeshare:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare
                 }
               )
             end
@@ -2398,6 +2469,45 @@ module Increase
                 end
               end
             end
+
+            class Other < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Other,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Other service type explanation. Required if and only if `service_type` is
+              # `other`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
+              end
+            end
+
+            class Timeshare < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerCanceledServices::Timeshare,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Timeshare explanation. Required if and only if `service_type` is `timeshare`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
+              end
+            end
           end
 
           class ConsumerCounterfeitMerchandise < Increase::Internal::Type::BaseModel
@@ -2543,10 +2653,21 @@ module Increase
             attr_accessor :return_outcome
 
             # Not returned. Required if and only if `return_outcome` is `not_returned`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned
+                )
+              )
+            end
             attr_reader :not_returned
 
-            sig { params(not_returned: T.anything).void }
+            sig do
+              params(
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned::OrHash
+              ).void
+            end
             attr_writer :not_returned
 
             # Return attempted. Required if and only if `return_outcome` is
@@ -2596,7 +2717,8 @@ module Increase
                 received_at: Date,
                 return_outcome:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnOutcome::OrSymbol,
-                not_returned: T.anything,
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned::OrHash,
                 return_attempted:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::OrHash,
                 returned:
@@ -2631,7 +2753,8 @@ module Increase
                   received_at: Date,
                   return_outcome:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnOutcome::OrSymbol,
-                  not_returned: T.anything,
+                  not_returned:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned,
                   return_attempted:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted,
                   returned:
@@ -2722,6 +2845,25 @@ module Increase
                 )
               end
               def self.values
+              end
+            end
+
+            class NotReturned < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Not returned. Required if and only if `return_outcome` is `not_returned`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
               end
             end
 
@@ -3039,10 +3181,21 @@ module Increase
             attr_accessor :return_outcome
 
             # Not returned. Required if and only if `return_outcome` is `not_returned`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned
+                )
+              )
+            end
             attr_reader :not_returned
 
-            sig { params(not_returned: T.anything).void }
+            sig do
+              params(
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned::OrHash
+              ).void
+            end
             attr_writer :not_returned
 
             # Return attempted. Required if and only if `return_outcome` is
@@ -3093,7 +3246,8 @@ module Increase
                 received_at: Date,
                 return_outcome:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnOutcome::OrSymbol,
-                not_returned: T.anything,
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned::OrHash,
                 return_attempted:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnAttempted::OrHash,
                 returned:
@@ -3131,7 +3285,8 @@ module Increase
                   received_at: Date,
                   return_outcome:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnOutcome::OrSymbol,
-                  not_returned: T.anything,
+                  not_returned:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned,
                   return_attempted:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnAttempted,
                   returned:
@@ -3222,6 +3377,25 @@ module Increase
                 )
               end
               def self.values
+              end
+            end
+
+            class NotReturned < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Not returned. Required if and only if `return_outcome` is `not_returned`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
               end
             end
 
@@ -4085,10 +4259,21 @@ module Increase
 
             # No cancellation. Required if and only if `cancellation_outcome` is
             # `no_cancellation`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation
+                )
+              )
+            end
             attr_reader :no_cancellation
 
-            sig { params(no_cancellation: T.anything).void }
+            sig do
+              params(
+                no_cancellation:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation::OrHash
+              ).void
+            end
             attr_writer :no_cancellation
 
             # Merchandise not received. Required if and only if `category` is
@@ -4111,7 +4296,8 @@ module Increase
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation::OrHash,
                 merchant_cancellation:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::MerchantCancellation::OrHash,
-                no_cancellation: T.anything
+                no_cancellation:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation::OrHash
               ).returns(T.attached_class)
             end
             def self.new(
@@ -4161,7 +4347,8 @@ module Increase
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation,
                   merchant_cancellation:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::MerchantCancellation,
-                  no_cancellation: T.anything
+                  no_cancellation:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation
                 }
               )
             end
@@ -4351,10 +4538,21 @@ module Increase
               attr_accessor :return_outcome
 
               # Not returned. Required if and only if `return_outcome` is `not_returned`.
-              sig { returns(T.nilable(T.anything)) }
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned
+                  )
+                )
+              end
               attr_reader :not_returned
 
-              sig { params(not_returned: T.anything).void }
+              sig do
+                params(
+                  not_returned:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned::OrHash
+                ).void
+              end
               attr_writer :not_returned
 
               # Return attempted. Required if and only if `return_outcome` is
@@ -4400,7 +4598,8 @@ module Increase
                   explanation: String,
                   return_outcome:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnOutcome::OrSymbol,
-                  not_returned: T.anything,
+                  not_returned:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned::OrHash,
                   return_attempted:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted::OrHash,
                   returned:
@@ -4428,7 +4627,8 @@ module Increase
                     explanation: String,
                     return_outcome:
                       Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnOutcome::OrSymbol,
-                    not_returned: T.anything,
+                    not_returned:
+                      Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned,
                     return_attempted:
                       Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted,
                     returned:
@@ -4481,6 +4681,25 @@ module Increase
                   )
                 end
                 def self.values
+                end
+              end
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # Not returned. Required if and only if `return_outcome` is `not_returned`.
+                sig { returns(T.attached_class) }
+                def self.new
+                end
+
+                sig { override.returns({}) }
+                def to_hash
                 end
               end
 
@@ -4605,6 +4824,46 @@ module Increase
               sig { override.returns({ canceled_at: Date }) }
               def to_hash
               end
+            end
+
+            class NoCancellation < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # No cancellation. Required if and only if `cancellation_outcome` is
+              # `no_cancellation`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
+              end
+            end
+          end
+
+          class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerNonReceiptOfCash,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Non-receipt of cash. Required if and only if `category` is
+            # `consumer_non_receipt_of_cash`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
             end
           end
 
@@ -4735,10 +4994,21 @@ module Increase
             attr_accessor :return_outcome
 
             # Not returned. Required if and only if `return_outcome` is `not_returned`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned
+                )
+              )
+            end
             attr_reader :not_returned
 
-            sig { params(not_returned: T.anything).void }
+            sig do
+              params(
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned::OrHash
+              ).void
+            end
             attr_writer :not_returned
 
             # Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
@@ -4807,7 +5077,8 @@ module Increase
                 received_at: Date,
                 return_outcome:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::ReturnOutcome::OrSymbol,
-                not_returned: T.anything,
+                not_returned:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned::OrHash,
                 ongoing_negotiations:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations::OrHash,
                 return_attempted:
@@ -4849,7 +5120,8 @@ module Increase
                   received_at: Date,
                   return_outcome:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::ReturnOutcome::OrSymbol,
-                  not_returned: T.anything,
+                  not_returned:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned,
                   ongoing_negotiations:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations,
                   return_attempted:
@@ -4942,6 +5214,25 @@ module Increase
                 )
               end
               def self.values
+              end
+            end
+
+            class NotReturned < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerQualityMerchandise::NotReturned,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Not returned. Required if and only if `return_outcome` is `not_returned`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
               end
             end
 
@@ -6201,10 +6492,21 @@ module Increase
 
             # No cancellation. Required if and only if `cancellation_outcome` is
             # `no_cancellation`.
-            sig { returns(T.nilable(T.anything)) }
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation
+                )
+              )
+            end
             attr_reader :no_cancellation
 
-            sig { params(no_cancellation: T.anything).void }
+            sig do
+              params(
+                no_cancellation:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation::OrHash
+              ).void
+            end
             attr_writer :no_cancellation
 
             # Services not received. Required if and only if `category` is
@@ -6221,7 +6523,8 @@ module Increase
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt::OrHash,
                 merchant_cancellation:
                   Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::MerchantCancellation::OrHash,
-                no_cancellation: T.anything
+                no_cancellation:
+                  Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation::OrHash
               ).returns(T.attached_class)
             end
             def self.new(
@@ -6258,7 +6561,8 @@ module Increase
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt,
                   merchant_cancellation:
                     Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::MerchantCancellation,
-                  no_cancellation: T.anything
+                  no_cancellation:
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation
                 }
               )
             end
@@ -6411,6 +6715,26 @@ module Increase
               end
 
               sig { override.returns({ canceled_at: Date }) }
+              def to_hash
+              end
+            end
+
+            class NoCancellation < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardDisputeSubmitUserSubmissionParams::Visa::Chargeback::ConsumerServicesNotReceived::NoCancellation,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # No cancellation. Required if and only if `cancellation_outcome` is
+              # `no_cancellation`.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
               def to_hash
               end
             end

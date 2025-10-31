@@ -124,42 +124,97 @@ module Increase
 
           # The parameters for accepting the chargeback. Required if and only if `action` is
           # `accept_chargeback`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback
+              )
+            )
+          end
           attr_reader :accept_chargeback
 
-          sig { params(accept_chargeback: T.anything).void }
+          sig do
+            params(
+              accept_chargeback:
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback::OrHash
+            ).void
+          end
           attr_writer :accept_chargeback
 
           # The parameters for accepting the user submission. Required if and only if
           # `action` is `accept_user_submission`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission
+              )
+            )
+          end
           attr_reader :accept_user_submission
 
-          sig { params(accept_user_submission: T.anything).void }
+          sig do
+            params(
+              accept_user_submission:
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission::OrHash
+            ).void
+          end
           attr_writer :accept_user_submission
 
           # The parameters for declining the prearbitration. Required if and only if
           # `action` is `decline_user_prearbitration`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration
+              )
+            )
+          end
           attr_reader :decline_user_prearbitration
 
-          sig { params(decline_user_prearbitration: T.anything).void }
+          sig do
+            params(
+              decline_user_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration::OrHash
+            ).void
+          end
           attr_writer :decline_user_prearbitration
 
           # The parameters for receiving the prearbitration. Required if and only if
           # `action` is `receive_merchant_prearbitration`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration
+              )
+            )
+          end
           attr_reader :receive_merchant_prearbitration
 
-          sig { params(receive_merchant_prearbitration: T.anything).void }
+          sig do
+            params(
+              receive_merchant_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration::OrHash
+            ).void
+          end
           attr_writer :receive_merchant_prearbitration
 
           # The parameters for re-presenting the dispute. Required if and only if `action`
           # is `represent`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::Represent
+              )
+            )
+          end
           attr_reader :represent
 
-          sig { params(represent: T.anything).void }
+          sig do
+            params(
+              represent:
+                Increase::Simulations::CardDisputeActionParams::Visa::Represent::OrHash
+            ).void
+          end
           attr_writer :represent
 
           # The parameters for requesting further information from the user. Required if and
@@ -183,34 +238,78 @@ module Increase
 
           # The parameters for timing out the chargeback. Required if and only if `action`
           # is `time_out_chargeback`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback
+              )
+            )
+          end
           attr_reader :time_out_chargeback
 
-          sig { params(time_out_chargeback: T.anything).void }
+          sig do
+            params(
+              time_out_chargeback:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback::OrHash
+            ).void
+          end
           attr_writer :time_out_chargeback
 
           # The parameters for timing out the merchant prearbitration. Required if and only
           # if `action` is `time_out_merchant_prearbitration`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration
+              )
+            )
+          end
           attr_reader :time_out_merchant_prearbitration
 
-          sig { params(time_out_merchant_prearbitration: T.anything).void }
+          sig do
+            params(
+              time_out_merchant_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration::OrHash
+            ).void
+          end
           attr_writer :time_out_merchant_prearbitration
 
           # The parameters for timing out the re-presentment. Required if and only if
           # `action` is `time_out_representment`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment
+              )
+            )
+          end
           attr_reader :time_out_representment
 
-          sig { params(time_out_representment: T.anything).void }
+          sig do
+            params(
+              time_out_representment:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment::OrHash
+            ).void
+          end
           attr_writer :time_out_representment
 
           # The parameters for timing out the user prearbitration. Required if and only if
           # `action` is `time_out_user_prearbitration`.
-          sig { returns(T.nilable(T.anything)) }
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
+              )
+            )
+          end
           attr_reader :time_out_user_prearbitration
 
-          sig { params(time_out_user_prearbitration: T.anything).void }
+          sig do
+            params(
+              time_out_user_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration::OrHash
+            ).void
+          end
           attr_writer :time_out_user_prearbitration
 
           # The Visa-specific parameters for the taking action on the dispute. Required if
@@ -219,17 +318,26 @@ module Increase
             params(
               action:
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::OrSymbol,
-              accept_chargeback: T.anything,
-              accept_user_submission: T.anything,
-              decline_user_prearbitration: T.anything,
-              receive_merchant_prearbitration: T.anything,
-              represent: T.anything,
+              accept_chargeback:
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback::OrHash,
+              accept_user_submission:
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission::OrHash,
+              decline_user_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration::OrHash,
+              receive_merchant_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration::OrHash,
+              represent:
+                Increase::Simulations::CardDisputeActionParams::Visa::Represent::OrHash,
               request_further_information:
                 Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation::OrHash,
-              time_out_chargeback: T.anything,
-              time_out_merchant_prearbitration: T.anything,
-              time_out_representment: T.anything,
-              time_out_user_prearbitration: T.anything
+              time_out_chargeback:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback::OrHash,
+              time_out_merchant_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration::OrHash,
+              time_out_representment:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment::OrHash,
+              time_out_user_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
@@ -274,17 +382,26 @@ module Increase
               {
                 action:
                   Increase::Simulations::CardDisputeActionParams::Visa::Action::OrSymbol,
-                accept_chargeback: T.anything,
-                accept_user_submission: T.anything,
-                decline_user_prearbitration: T.anything,
-                receive_merchant_prearbitration: T.anything,
-                represent: T.anything,
+                accept_chargeback:
+                  Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+                accept_user_submission:
+                  Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
+                decline_user_prearbitration:
+                  Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
+                receive_merchant_prearbitration:
+                  Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+                represent:
+                  Increase::Simulations::CardDisputeActionParams::Visa::Represent,
                 request_further_information:
                   Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
-                time_out_chargeback: T.anything,
-                time_out_merchant_prearbitration: T.anything,
-                time_out_representment: T.anything,
-                time_out_user_prearbitration: T.anything
+                time_out_chargeback:
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
+                time_out_merchant_prearbitration:
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration,
+                time_out_representment:
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment,
+                time_out_user_prearbitration:
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration
               }
             )
           end
@@ -386,6 +503,106 @@ module Increase
             end
           end
 
+          class AcceptChargeback < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for accepting the chargeback. Required if and only if `action` is
+            # `accept_chargeback`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class AcceptUserSubmission < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for accepting the user submission. Required if and only if
+            # `action` is `accept_user_submission`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class DeclineUserPrearbitration < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for declining the prearbitration. Required if and only if
+            # `action` is `decline_user_prearbitration`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class ReceiveMerchantPrearbitration < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for receiving the prearbitration. Required if and only if
+            # `action` is `receive_merchant_prearbitration`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class Represent < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::Represent,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for re-presenting the dispute. Required if and only if `action`
+            # is `represent`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
           class RequestFurtherInformation < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
@@ -409,6 +626,86 @@ module Increase
             end
 
             sig { override.returns({ reason: String }) }
+            def to_hash
+            end
+          end
+
+          class TimeOutChargeback < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for timing out the chargeback. Required if and only if `action`
+            # is `time_out_chargeback`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class TimeOutMerchantPrearbitration < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutMerchantPrearbitration,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for timing out the merchant prearbitration. Required if and only
+            # if `action` is `time_out_merchant_prearbitration`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class TimeOutRepresentment < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutRepresentment,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for timing out the re-presentment. Required if and only if
+            # `action` is `time_out_representment`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class TimeOutUserPrearbitration < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for timing out the user prearbitration. Required if and only if
+            # `action` is `time_out_user_prearbitration`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
             def to_hash
             end
           end

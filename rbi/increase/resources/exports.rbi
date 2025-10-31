@@ -16,7 +16,7 @@ module Increase
             Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::OrHash,
           entity_csv: Increase::ExportCreateParams::EntityCsv::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
-          vendor_csv: T.anything,
+          vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Export)
       end
