@@ -33,8 +33,8 @@ module Increase
       required :source_account_number_id, String
 
       # @!attribute balance_check
-      #   How the account's available balance should be checked. Please contact
-      #   [support@increase.com](mailto:support@increase.com) to enable this parameter.
+      #   How the account's available balance should be checked. If omitted, the default
+      #   behavior is `balance_check: full`.
       #
       #   @return [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck, nil]
       optional :balance_check, enum: -> { Increase::CheckTransferCreateParams::BalanceCheck }
@@ -81,7 +81,7 @@ module Increase
       #
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
       #
-      #   @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. Please contact [support@i
+      #   @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. If omitted, the default b
       #
       #   @param check_number [String] The check number Increase should use for the check. This should not contain lead
       #
@@ -107,12 +107,12 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # How the account's available balance should be checked. Please contact
-      # [support@increase.com](mailto:support@increase.com) to enable this parameter.
+      # How the account's available balance should be checked. If omitted, the default
+      # behavior is `balance_check: full`.
       module BalanceCheck
         extend Increase::Internal::Type::Enum
 
-        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount.
+        # The available balance of the account must be at least the amount of the check, and a Pending Transaction will be created for the full amount. This is the default behavior if `balance_check` is omitted.
         FULL = :full
 
         # No balance check will performed when the check transfer is initiated. A zero-dollar Pending Transaction will be created. The balance will still be checked when the Inbound Check Deposit is created.
