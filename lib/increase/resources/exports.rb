@@ -26,7 +26,7 @@ module Increase
       # @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv] Options for the created export. Required if `category` is equal to
       # `transaction\_
       #
-      # @param vendor_csv [Object] Options for the created export. Required if `category` is equal to `vendor_csv`.
+      # @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv] Options for the created export. Required if `category` is equal to `vendor_csv`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

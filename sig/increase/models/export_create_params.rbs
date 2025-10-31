@@ -9,7 +9,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
-        vendor_csv: top
+        vendor_csv: Increase::ExportCreateParams::VendorCsv
       }
       & Increase::Internal::Type::request_parameters
 
@@ -55,9 +55,11 @@ module Increase
         Increase::ExportCreateParams::TransactionCsv
       ) -> Increase::ExportCreateParams::TransactionCsv
 
-      attr_reader vendor_csv: top?
+      attr_reader vendor_csv: Increase::ExportCreateParams::VendorCsv?
 
-      def vendor_csv=: (top) -> top
+      def vendor_csv=: (
+        Increase::ExportCreateParams::VendorCsv
+      ) -> Increase::ExportCreateParams::VendorCsv
 
       def initialize: (
         category: Increase::Models::ExportCreateParams::category,
@@ -67,7 +69,7 @@ module Increase
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
         ?transaction_csv: Increase::ExportCreateParams::TransactionCsv,
-        ?vendor_csv: top,
+        ?vendor_csv: Increase::ExportCreateParams::VendorCsv,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -79,7 +81,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
-        vendor_csv: top,
+        vendor_csv: Increase::ExportCreateParams::VendorCsv,
         request_options: Increase::RequestOptions
       }
 
@@ -463,6 +465,14 @@ module Increase
             on_or_before: Time
           }
         end
+      end
+
+      type vendor_csv = {  }
+
+      class VendorCsv < Increase::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
       end
     end
   end

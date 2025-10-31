@@ -199,21 +199,21 @@ module Increase
           {
             attachment_files: ::Array[Increase::CardDispute::Visa::NetworkEvent::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::NetworkEvent::category,
-            chargeback_accepted: top?,
-            chargeback_submitted: top?,
-            chargeback_timed_out: top?,
+            chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
+            chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
+            chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
             created_at: Time,
             dispute_financial_transaction_id: String?,
-            merchant_prearbitration_decline_submitted: top?,
+            merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
             merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
-            merchant_prearbitration_timed_out: top?,
+            merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
             represented: Increase::CardDispute::Visa::NetworkEvent::Represented?,
-            representment_timed_out: top?,
-            user_prearbitration_accepted: top?,
-            user_prearbitration_declined: top?,
-            user_prearbitration_submitted: top?,
-            user_prearbitration_timed_out: top?,
-            user_withdrawal_submitted: top?
+            representment_timed_out: Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut?,
+            user_prearbitration_accepted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted?,
+            user_prearbitration_declined: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined?,
+            user_prearbitration_submitted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted?,
+            user_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut?,
+            user_withdrawal_submitted: Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted?
           }
 
         class NetworkEvent < Increase::Internal::Type::BaseModel
@@ -221,74 +221,74 @@ module Increase
 
           attr_accessor category: Increase::Models::CardDispute::Visa::NetworkEvent::category
 
-          attr_accessor chargeback_accepted: top?
+          attr_accessor chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?
 
-          attr_accessor chargeback_submitted: top?
+          attr_accessor chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?
 
-          attr_accessor chargeback_timed_out: top?
+          attr_accessor chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?
 
           attr_accessor created_at: Time
 
           attr_accessor dispute_financial_transaction_id: String?
 
-          attr_accessor merchant_prearbitration_decline_submitted: top?
+          attr_accessor merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?
 
           attr_accessor merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?
 
-          attr_accessor merchant_prearbitration_timed_out: top?
+          attr_accessor merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?
 
           attr_accessor represented: Increase::CardDispute::Visa::NetworkEvent::Represented?
 
-          attr_accessor representment_timed_out: top?
+          attr_accessor representment_timed_out: Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut?
 
-          attr_accessor user_prearbitration_accepted: top?
+          attr_accessor user_prearbitration_accepted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted?
 
-          attr_accessor user_prearbitration_declined: top?
+          attr_accessor user_prearbitration_declined: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined?
 
-          attr_accessor user_prearbitration_submitted: top?
+          attr_accessor user_prearbitration_submitted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted?
 
-          attr_accessor user_prearbitration_timed_out: top?
+          attr_accessor user_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut?
 
-          attr_accessor user_withdrawal_submitted: top?
+          attr_accessor user_withdrawal_submitted: Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted?
 
           def initialize: (
             attachment_files: ::Array[Increase::CardDispute::Visa::NetworkEvent::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::NetworkEvent::category,
-            chargeback_accepted: top?,
-            chargeback_submitted: top?,
-            chargeback_timed_out: top?,
+            chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
+            chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
+            chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
             created_at: Time,
             dispute_financial_transaction_id: String?,
-            merchant_prearbitration_decline_submitted: top?,
+            merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
             merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
-            merchant_prearbitration_timed_out: top?,
+            merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
             represented: Increase::CardDispute::Visa::NetworkEvent::Represented?,
-            representment_timed_out: top?,
-            user_prearbitration_accepted: top?,
-            user_prearbitration_declined: top?,
-            user_prearbitration_submitted: top?,
-            user_prearbitration_timed_out: top?,
-            user_withdrawal_submitted: top?
+            representment_timed_out: Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut?,
+            user_prearbitration_accepted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted?,
+            user_prearbitration_declined: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined?,
+            user_prearbitration_submitted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted?,
+            user_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut?,
+            user_withdrawal_submitted: Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted?
           ) -> void
 
           def to_hash: -> {
             attachment_files: ::Array[Increase::CardDispute::Visa::NetworkEvent::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::NetworkEvent::category,
-            chargeback_accepted: top?,
-            chargeback_submitted: top?,
-            chargeback_timed_out: top?,
+            chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
+            chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
+            chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
             created_at: Time,
             dispute_financial_transaction_id: String?,
-            merchant_prearbitration_decline_submitted: top?,
+            merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
             merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
-            merchant_prearbitration_timed_out: top?,
+            merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
             represented: Increase::CardDispute::Visa::NetworkEvent::Represented?,
-            representment_timed_out: top?,
-            user_prearbitration_accepted: top?,
-            user_prearbitration_declined: top?,
-            user_prearbitration_submitted: top?,
-            user_prearbitration_timed_out: top?,
-            user_withdrawal_submitted: top?
+            representment_timed_out: Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut?,
+            user_prearbitration_accepted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted?,
+            user_prearbitration_declined: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined?,
+            user_prearbitration_submitted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted?,
+            user_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut?,
+            user_withdrawal_submitted: Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted?
           }
 
           type attachment_file = { file_id: String }
@@ -359,6 +359,38 @@ module Increase
             USER_WITHDRAWAL_SUBMITTED: :user_withdrawal_submitted
 
             def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::NetworkEvent::category]
+          end
+
+          type chargeback_accepted = {  }
+
+          class ChargebackAccepted < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type chargeback_submitted = {  }
+
+          class ChargebackSubmitted < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type chargeback_timed_out = {  }
+
+          class ChargebackTimedOut < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type merchant_prearbitration_decline_submitted = {  }
+
+          class MerchantPrearbitrationDeclineSubmitted < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type merchant_prearbitration_received =
@@ -684,12 +716,20 @@ module Increase
             end
           end
 
+          type merchant_prearbitration_timed_out = {  }
+
+          class MerchantPrearbitrationTimedOut < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
           type represented =
             {
               cardholder_no_longer_disputes: Increase::CardDispute::Visa::NetworkEvent::Represented::CardholderNoLongerDisputes?,
               credit_or_reversal_processed: Increase::CardDispute::Visa::NetworkEvent::Represented::CreditOrReversalProcessed?,
               invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?,
-              non_fiat_currency_or_non_fungible_token_as_described: top?,
+              non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?,
               non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?,
               proof_of_cash_disbursement: Increase::CardDispute::Visa::NetworkEvent::Represented::ProofOfCashDisbursement?,
               reason: Increase::Models::CardDispute::Visa::NetworkEvent::Represented::reason,
@@ -703,7 +743,7 @@ module Increase
 
             attr_accessor invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?
 
-            attr_accessor non_fiat_currency_or_non_fungible_token_as_described: top?
+            attr_accessor non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?
 
             attr_accessor non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?
 
@@ -717,7 +757,7 @@ module Increase
               cardholder_no_longer_disputes: Increase::CardDispute::Visa::NetworkEvent::Represented::CardholderNoLongerDisputes?,
               credit_or_reversal_processed: Increase::CardDispute::Visa::NetworkEvent::Represented::CreditOrReversalProcessed?,
               invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?,
-              non_fiat_currency_or_non_fungible_token_as_described: top?,
+              non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?,
               non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?,
               proof_of_cash_disbursement: Increase::CardDispute::Visa::NetworkEvent::Represented::ProofOfCashDisbursement?,
               reason: Increase::Models::CardDispute::Visa::NetworkEvent::Represented::reason,
@@ -728,7 +768,7 @@ module Increase
               cardholder_no_longer_disputes: Increase::CardDispute::Visa::NetworkEvent::Represented::CardholderNoLongerDisputes?,
               credit_or_reversal_processed: Increase::CardDispute::Visa::NetworkEvent::Represented::CreditOrReversalProcessed?,
               invalid_dispute: Increase::CardDispute::Visa::NetworkEvent::Represented::InvalidDispute?,
-              non_fiat_currency_or_non_fungible_token_as_described: top?,
+              non_fiat_currency_or_non_fungible_token_as_described: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenAsDescribed?,
               non_fiat_currency_or_non_fungible_token_received: Increase::CardDispute::Visa::NetworkEvent::Represented::NonFiatCurrencyOrNonFungibleTokenReceived?,
               proof_of_cash_disbursement: Increase::CardDispute::Visa::NetworkEvent::Represented::ProofOfCashDisbursement?,
               reason: Increase::Models::CardDispute::Visa::NetworkEvent::Represented::reason,
@@ -943,6 +983,14 @@ module Increase
               end
             end
 
+            type non_fiat_currency_or_non_fungible_token_as_described = {  }
+
+            class NonFiatCurrencyOrNonFungibleTokenAsDescribed < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
+            end
+
             type non_fiat_currency_or_non_fungible_token_received =
               {
                 blockchain_transaction_hash: String,
@@ -1025,6 +1073,54 @@ module Increase
 
               def to_hash: -> { explanation: String? }
             end
+          end
+
+          type representment_timed_out = {  }
+
+          class RepresentmentTimedOut < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type user_prearbitration_accepted = {  }
+
+          class UserPrearbitrationAccepted < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type user_prearbitration_declined = {  }
+
+          class UserPrearbitrationDeclined < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type user_prearbitration_submitted = {  }
+
+          class UserPrearbitrationSubmitted < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type user_prearbitration_timed_out = {  }
+
+          class UserPrearbitrationTimedOut < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type user_withdrawal_submitted = {  }
+
+          class UserWithdrawalSubmitted < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
         end
 
@@ -1160,7 +1256,7 @@ module Increase
               consumer_merchandise_misrepresentation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation?,
               consumer_merchandise_not_as_described: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotAsDescribed?,
               consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?,
-              consumer_non_receipt_of_cash: top?,
+              consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?,
               consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?,
               consumer_quality_merchandise: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise?,
               consumer_quality_services: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityServices?,
@@ -1194,7 +1290,7 @@ module Increase
 
             attr_accessor consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?
 
-            attr_accessor consumer_non_receipt_of_cash: top?
+            attr_accessor consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?
 
             attr_accessor consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?
 
@@ -1224,7 +1320,7 @@ module Increase
               consumer_merchandise_misrepresentation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation?,
               consumer_merchandise_not_as_described: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotAsDescribed?,
               consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?,
-              consumer_non_receipt_of_cash: top?,
+              consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?,
               consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?,
               consumer_quality_merchandise: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise?,
               consumer_quality_services: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityServices?,
@@ -1247,7 +1343,7 @@ module Increase
               consumer_merchandise_misrepresentation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation?,
               consumer_merchandise_not_as_described: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotAsDescribed?,
               consumer_merchandise_not_received: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived?,
-              consumer_non_receipt_of_cash: top?,
+              consumer_non_receipt_of_cash: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerNonReceiptOfCash?,
               consumer_original_credit_transaction_not_accepted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerOriginalCreditTransactionNotAccepted?,
               consumer_quality_merchandise: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise?,
               consumer_quality_services: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityServices?,
@@ -1380,7 +1476,7 @@ module Increase
               {
                 cardholder_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::CardholderCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned?,
                 purchase_explanation: String,
                 received_or_expected_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::ReturnAttempted?,
@@ -1393,7 +1489,7 @@ module Increase
 
               attr_accessor merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::merchant_resolution_attempted
 
-              attr_accessor not_returned: top?
+              attr_accessor not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned?
 
               attr_accessor purchase_explanation: String
 
@@ -1408,7 +1504,7 @@ module Increase
               def initialize: (
                 cardholder_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::CardholderCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned?,
                 purchase_explanation: String,
                 received_or_expected_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::ReturnAttempted?,
@@ -1419,7 +1515,7 @@ module Increase
               def to_hash: -> {
                 cardholder_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::CardholderCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::NotReturned?,
                 purchase_explanation: String,
                 received_or_expected_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::ReturnAttempted?,
@@ -1502,6 +1598,14 @@ module Increase
                 PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledMerchandise::merchant_resolution_attempted]
+              end
+
+              type not_returned = {  }
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
               end
 
               type return_attempted =
@@ -1746,10 +1850,10 @@ module Increase
                 contracted_at: Date,
                 guaranteed_reservation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::GuaranteedReservation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::merchant_resolution_attempted,
-                other: top?,
+                other: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other?,
                 purchase_explanation: String,
                 service_type: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::service_type,
-                timeshare: top?
+                timeshare: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare?
               }
 
             class ConsumerCanceledServices < Increase::Internal::Type::BaseModel
@@ -1761,23 +1865,23 @@ module Increase
 
               attr_accessor merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::merchant_resolution_attempted
 
-              attr_accessor other: top?
+              attr_accessor other: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other?
 
               attr_accessor purchase_explanation: String
 
               attr_accessor service_type: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::service_type
 
-              attr_accessor timeshare: top?
+              attr_accessor timeshare: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare?
 
               def initialize: (
                 cardholder_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::CardholderCancellation,
                 contracted_at: Date,
                 guaranteed_reservation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::GuaranteedReservation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::merchant_resolution_attempted,
-                other: top?,
+                other: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other?,
                 purchase_explanation: String,
                 service_type: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::service_type,
-                timeshare: top?
+                timeshare: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare?
               ) -> void
 
               def to_hash: -> {
@@ -1785,10 +1889,10 @@ module Increase
                 contracted_at: Date,
                 guaranteed_reservation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::GuaranteedReservation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::merchant_resolution_attempted,
-                other: top?,
+                other: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Other?,
                 purchase_explanation: String,
                 service_type: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::service_type,
-                timeshare: top?
+                timeshare: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::Timeshare?
               }
 
               type cardholder_cancellation =
@@ -1884,6 +1988,14 @@ module Increase
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::merchant_resolution_attempted]
               end
 
+              type other = {  }
+
+              class Other < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
+              end
+
               type service_type = :guaranteed_reservation | :other | :timeshare
 
               module ServiceType
@@ -1899,6 +2011,14 @@ module Increase
                 TIMESHARE: :timeshare
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerCanceledServices::service_type]
+              end
+
+              type timeshare = {  }
+
+              class Timeshare < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
               end
             end
 
@@ -1956,7 +2076,7 @@ module Increase
             type consumer_damaged_or_defective_merchandise =
               {
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned?,
                 order_and_issue_explanation: String,
                 received_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted?,
@@ -1967,7 +2087,7 @@ module Increase
             class ConsumerDamagedOrDefectiveMerchandise < Increase::Internal::Type::BaseModel
               attr_accessor merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted
 
-              attr_accessor not_returned: top?
+              attr_accessor not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned?
 
               attr_accessor order_and_issue_explanation: String
 
@@ -1981,7 +2101,7 @@ module Increase
 
               def initialize: (
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned?,
                 order_and_issue_explanation: String,
                 received_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted?,
@@ -1991,7 +2111,7 @@ module Increase
 
               def to_hash: -> {
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::NotReturned?,
                 order_and_issue_explanation: String,
                 received_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted?,
@@ -2012,6 +2132,14 @@ module Increase
                 PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerDamagedOrDefectiveMerchandise::merchant_resolution_attempted]
+              end
+
+              type not_returned = {  }
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
               end
 
               type return_attempted =
@@ -2166,7 +2294,7 @@ module Increase
               {
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted,
                 misrepresentation_explanation: String,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned?,
                 purchase_explanation: String,
                 received_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnAttempted?,
@@ -2179,7 +2307,7 @@ module Increase
 
               attr_accessor misrepresentation_explanation: String
 
-              attr_accessor not_returned: top?
+              attr_accessor not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned?
 
               attr_accessor purchase_explanation: String
 
@@ -2194,7 +2322,7 @@ module Increase
               def initialize: (
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted,
                 misrepresentation_explanation: String,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned?,
                 purchase_explanation: String,
                 received_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnAttempted?,
@@ -2205,7 +2333,7 @@ module Increase
               def to_hash: -> {
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted,
                 misrepresentation_explanation: String,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::NotReturned?,
                 purchase_explanation: String,
                 received_at: Date,
                 return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::ReturnAttempted?,
@@ -2226,6 +2354,14 @@ module Increase
                 PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseMisrepresentation::merchant_resolution_attempted]
+              end
+
+              type not_returned = {  }
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
               end
 
               type return_attempted =
@@ -2581,7 +2717,7 @@ module Increase
                 last_expected_receipt_at: Date,
                 merchant_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::MerchantCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::merchant_resolution_attempted,
-                no_cancellation: top?,
+                no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation?,
                 purchase_info_and_explanation: String
               }
 
@@ -2602,7 +2738,7 @@ module Increase
 
               attr_accessor merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::merchant_resolution_attempted
 
-              attr_accessor no_cancellation: top?
+              attr_accessor no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation?
 
               attr_accessor purchase_info_and_explanation: String
 
@@ -2615,7 +2751,7 @@ module Increase
                 last_expected_receipt_at: Date,
                 merchant_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::MerchantCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::merchant_resolution_attempted,
-                no_cancellation: top?,
+                no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation?,
                 purchase_info_and_explanation: String
               ) -> void
 
@@ -2628,7 +2764,7 @@ module Increase
                 last_expected_receipt_at: Date,
                 merchant_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::MerchantCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::merchant_resolution_attempted,
-                no_cancellation: top?,
+                no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::NoCancellation?,
                 purchase_info_and_explanation: String
               }
 
@@ -2668,7 +2804,7 @@ module Increase
               type delayed =
                 {
                   explanation: String,
-                  not_returned: top?,
+                  not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned?,
                   return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted?,
                   return_outcome: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
                   returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::Returned?
@@ -2677,7 +2813,7 @@ module Increase
               class Delayed < Increase::Internal::Type::BaseModel
                 attr_accessor explanation: String
 
-                attr_accessor not_returned: top?
+                attr_accessor not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned?
 
                 attr_accessor return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted?
 
@@ -2687,7 +2823,7 @@ module Increase
 
                 def initialize: (
                   explanation: String,
-                  not_returned: top?,
+                  not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned?,
                   return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted?,
                   return_outcome: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
                   returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::Returned?
@@ -2695,11 +2831,19 @@ module Increase
 
                 def to_hash: -> {
                   explanation: String,
-                  not_returned: top?,
+                  not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::NotReturned?,
                   return_attempted: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted?,
                   return_outcome: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::return_outcome,
                   returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::Delayed::Returned?
                 }
+
+                type not_returned = {  }
+
+                class NotReturned < Increase::Internal::Type::BaseModel
+                  def initialize: -> void
+
+                  def to_hash: -> {  }
+                end
 
                 type return_attempted = { attempted_at: Date }
 
@@ -2797,6 +2941,22 @@ module Increase
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerMerchandiseNotReceived::merchant_resolution_attempted]
               end
+
+              type no_cancellation = {  }
+
+              class NoCancellation < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
+              end
+            end
+
+            type consumer_non_receipt_of_cash = {  }
+
+            class ConsumerNonReceiptOfCash < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type consumer_original_credit_transaction_not_accepted =
@@ -2840,7 +3000,7 @@ module Increase
               {
                 expected_at: Date,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned?,
                 ongoing_negotiations: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations?,
                 purchase_info_and_quality_issue: String,
                 received_at: Date,
@@ -2854,7 +3014,7 @@ module Increase
 
               attr_accessor merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::merchant_resolution_attempted
 
-              attr_accessor not_returned: top?
+              attr_accessor not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned?
 
               attr_accessor ongoing_negotiations: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations?
 
@@ -2871,7 +3031,7 @@ module Increase
               def initialize: (
                 expected_at: Date,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned?,
                 ongoing_negotiations: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations?,
                 purchase_info_and_quality_issue: String,
                 received_at: Date,
@@ -2883,7 +3043,7 @@ module Increase
               def to_hash: -> {
                 expected_at: Date,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::merchant_resolution_attempted,
-                not_returned: top?,
+                not_returned: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::NotReturned?,
                 ongoing_negotiations: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::OngoingNegotiations?,
                 purchase_info_and_quality_issue: String,
                 received_at: Date,
@@ -2905,6 +3065,14 @@ module Increase
                 PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerQualityMerchandise::merchant_resolution_attempted]
+              end
+
+              type not_returned = {  }
+
+              class NotReturned < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
               end
 
               type ongoing_negotiations =
@@ -3424,7 +3592,7 @@ module Increase
                 last_expected_receipt_at: Date,
                 merchant_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::MerchantCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::merchant_resolution_attempted,
-                no_cancellation: top?,
+                no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation?,
                 purchase_info_and_explanation: String
               }
 
@@ -3439,7 +3607,7 @@ module Increase
 
               attr_accessor merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::merchant_resolution_attempted
 
-              attr_accessor no_cancellation: top?
+              attr_accessor no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation?
 
               attr_accessor purchase_info_and_explanation: String
 
@@ -3449,7 +3617,7 @@ module Increase
                 last_expected_receipt_at: Date,
                 merchant_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::MerchantCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::merchant_resolution_attempted,
-                no_cancellation: top?,
+                no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation?,
                 purchase_info_and_explanation: String
               ) -> void
 
@@ -3459,7 +3627,7 @@ module Increase
                 last_expected_receipt_at: Date,
                 merchant_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::MerchantCancellation?,
                 merchant_resolution_attempted: Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::merchant_resolution_attempted,
-                no_cancellation: top?,
+                no_cancellation: Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::NoCancellation?,
                 purchase_info_and_explanation: String
               }
 
@@ -3519,6 +3687,14 @@ module Increase
                 PROHIBITED_BY_LOCAL_LAW: :prohibited_by_local_law
 
                 def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotReceived::merchant_resolution_attempted]
+              end
+
+              type no_cancellation = {  }
+
+              class NoCancellation < Increase::Internal::Type::BaseModel
+                def initialize: -> void
+
+                def to_hash: -> {  }
               end
             end
 

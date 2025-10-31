@@ -205,8 +205,8 @@ module Increase
         #   If the category of this Transaction source is equal to `other`, this field will
         #   contain an empty object, otherwise it will contain null.
         #
-        #   @return [Object, nil]
-        required :other, Increase::Internal::Type::Unknown, nil?: true
+        #   @return [Increase::Models::CardPayment::Element::Other, nil]
+        required :other, -> { Increase::CardPayment::Element::Other }, nil?: true
 
         # @!method initialize(card_authentication:, card_authorization:, card_authorization_expiration:, card_decline:, card_financial:, card_fuel_confirmation:, card_increment:, card_refund:, card_reversal:, card_settlement:, card_validation:, category:, created_at:, other:)
         #   Some parameter documentations has been truncated, see
@@ -238,7 +238,7 @@ module Increase
         #
         #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
         #
-        #   @param other [Object, nil] If the category of this Transaction source is equal to `other`, this field will
+        #   @param other [Increase::Models::CardPayment::Element::Other, nil] If the category of this Transaction source is equal to `other`, this field will
 
         # @see Increase::Models::CardPayment::Element#card_authentication
         class CardAuthentication < Increase::Internal::Type::BaseModel
@@ -1374,8 +1374,10 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> { Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -1392,7 +1394,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -1410,6 +1412,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails#visa
@@ -2684,8 +2692,12 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> {
+                       Increase::CardPayment::Element::CardDecline::NetworkDetails::Pulse
+                     },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -2702,7 +2714,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -2720,6 +2732,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::NetworkDetails#visa
@@ -3940,8 +3958,12 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> {
+                       Increase::CardPayment::Element::CardFinancial::NetworkDetails::Pulse
+                     },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -3958,7 +3980,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -3976,6 +3998,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails#visa
@@ -9026,8 +9054,12 @@ module Increase
             # @!attribute pulse
             #   Fields specific to the `pulse` network.
             #
-            #   @return [Object, nil]
-            required :pulse, Increase::Internal::Type::Unknown, nil?: true
+            #   @return [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Pulse, nil]
+            required :pulse,
+                     -> {
+                       Increase::CardPayment::Element::CardValidation::NetworkDetails::Pulse
+                     },
+                     nil?: true
 
             # @!attribute visa
             #   Fields specific to the `visa` network.
@@ -9044,7 +9076,7 @@ module Increase
             #
             #   @param category [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Category] The payment network used to process this card authorization.
             #
-            #   @param pulse [Object, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
             #
             #   @param visa [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
 
@@ -9062,6 +9094,12 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails#pulse
+            class Pulse < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to the `pulse` network.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::NetworkDetails#visa
@@ -9479,6 +9517,13 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::CardPayment::Element#other
+        class Other < Increase::Internal::Type::BaseModel
+          # @!method initialize
+          #   If the category of this Transaction source is equal to `other`, this field will
+          #   contain an empty object, otherwise it will contain null.
         end
       end
 

@@ -131,7 +131,7 @@ module Increase
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
-          other: top?,
+          other: Increase::PendingTransaction::Source::Other?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
           user_initiated_hold: ::Hash[Symbol, top]?,
@@ -159,7 +159,7 @@ module Increase
 
         attr_accessor inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?
 
-        attr_accessor other: top?
+        attr_accessor other: Increase::PendingTransaction::Source::Other?
 
         attr_accessor real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?
 
@@ -180,7 +180,7 @@ module Increase
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
-          other: top?,
+          other: Increase::PendingTransaction::Source::Other?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
           user_initiated_hold: ::Hash[Symbol, top]?,
@@ -198,7 +198,7 @@ module Increase
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
-          other: top?,
+          other: Increase::PendingTransaction::Source::Other?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
           user_initiated_hold: ::Hash[Symbol, top]?,
@@ -663,26 +663,26 @@ module Increase
           type network_details =
             {
               category: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse?,
               visa: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::category
 
-            attr_accessor pulse: top?
+            attr_accessor pulse: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse?
 
             attr_accessor visa: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse?,
               visa: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Pulse?,
               visa: Increase::PendingTransaction::Source::CardAuthorization::NetworkDetails::Visa?
             }
 
@@ -698,6 +698,14 @@ module Increase
               PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::CardAuthorization::NetworkDetails::category]
+            end
+
+            type pulse = {  }
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type visa =
@@ -1383,6 +1391,14 @@ module Increase
           def initialize: (inbound_wire_transfer_id: String) -> void
 
           def to_hash: -> { inbound_wire_transfer_id: String }
+        end
+
+        type other = {  }
+
+        class Other < Increase::Internal::Type::BaseModel
+          def initialize: -> void
+
+          def to_hash: -> {  }
         end
 
         type real_time_payments_transfer_instruction =

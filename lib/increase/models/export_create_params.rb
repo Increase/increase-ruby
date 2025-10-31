@@ -58,8 +58,8 @@ module Increase
       # @!attribute vendor_csv
       #   Options for the created export. Required if `category` is equal to `vendor_csv`.
       #
-      #   @return [Object, nil]
-      optional :vendor_csv, Increase::Internal::Type::Unknown
+      #   @return [Increase::Models::ExportCreateParams::VendorCsv, nil]
+      optional :vendor_csv, -> { Increase::ExportCreateParams::VendorCsv }
 
       # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -81,7 +81,7 @@ module Increase
       #   @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv] Options for the created export. Required if `category` is equal to
       #   `transaction\_
       #
-      #   @param vendor_csv [Object] Options for the created export. Required if `category` is equal to `vendor_csv`.
+      #   @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv] Options for the created export. Required if `category` is equal to `vendor_csv`.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -488,6 +488,11 @@ module Increase
           #
           #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
         end
+      end
+
+      class VendorCsv < Increase::Internal::Type::BaseModel
+        # @!method initialize
+        #   Options for the created export. Required if `category` is equal to `vendor_csv`.
       end
     end
   end

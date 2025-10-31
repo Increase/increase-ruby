@@ -349,8 +349,16 @@ module Increase
 
         # If the category of this Transaction source is equal to `other`, this field will
         # contain an empty object, otherwise it will contain null.
-        sig { returns(T.nilable(T.anything)) }
-        attr_accessor :other
+        sig { returns(T.nilable(Increase::DeclinedTransaction::Source::Other)) }
+        attr_reader :other
+
+        sig do
+          params(
+            other:
+              T.nilable(Increase::DeclinedTransaction::Source::Other::OrHash)
+          ).void
+        end
+        attr_writer :other
 
         # A Wire Decline object. This field will be present in the JSON response if and
         # only if `category` is equal to `wire_decline`.
@@ -401,7 +409,8 @@ module Increase
               T.nilable(
                 Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::OrHash
               ),
-            other: T.nilable(T.anything),
+            other:
+              T.nilable(Increase::DeclinedTransaction::Source::Other::OrHash),
             wire_decline:
               T.nilable(
                 Increase::DeclinedTransaction::Source::WireDecline::OrHash
@@ -464,7 +473,7 @@ module Increase
                 T.nilable(
                   Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline
                 ),
-              other: T.nilable(T.anything),
+              other: T.nilable(Increase::DeclinedTransaction::Source::Other),
               wire_decline:
                 T.nilable(Increase::DeclinedTransaction::Source::WireDecline)
             }
@@ -2102,8 +2111,24 @@ module Increase
             attr_accessor :category
 
             # Fields specific to the `pulse` network.
-            sig { returns(T.nilable(T.anything)) }
-            attr_accessor :pulse
+            sig do
+              returns(
+                T.nilable(
+                  Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse
+                )
+              )
+            end
+            attr_reader :pulse
+
+            sig do
+              params(
+                pulse:
+                  T.nilable(
+                    Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse::OrHash
+                  )
+              ).void
+            end
+            attr_writer :pulse
 
             # Fields specific to the `visa` network.
             sig do
@@ -2130,7 +2155,10 @@ module Increase
               params(
                 category:
                   Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category::OrSymbol,
-                pulse: T.nilable(T.anything),
+                pulse:
+                  T.nilable(
+                    Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse::OrHash
+                  ),
                 visa:
                   T.nilable(
                     Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::OrHash
@@ -2152,7 +2180,10 @@ module Increase
                 {
                   category:
                     Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category::TaggedSymbol,
-                  pulse: T.nilable(T.anything),
+                  pulse:
+                    T.nilable(
+                      Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse
+                    ),
                   visa:
                     T.nilable(
                       Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa
@@ -2198,6 +2229,25 @@ module Increase
                 )
               end
               def self.values
+              end
+            end
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Fields specific to the `pulse` network.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
               end
             end
 
@@ -4213,6 +4263,26 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+
+        class Other < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::DeclinedTransaction::Source::Other,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # If the category of this Transaction source is equal to `other`, this field will
+          # contain an empty object, otherwise it will contain null.
+          sig { returns(T.attached_class) }
+          def self.new
+          end
+
+          sig { override.returns({}) }
+          def to_hash
           end
         end
 

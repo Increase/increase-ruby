@@ -113,7 +113,7 @@ module Increase
           check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?,
           inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?,
           inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?,
-          other: top?,
+          other: Increase::DeclinedTransaction::Source::Other?,
           wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
         }
 
@@ -132,7 +132,7 @@ module Increase
 
         attr_accessor inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?
 
-        attr_accessor other: top?
+        attr_accessor other: Increase::DeclinedTransaction::Source::Other?
 
         attr_accessor wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
 
@@ -144,7 +144,7 @@ module Increase
           check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?,
           inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?,
           inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?,
-          other: top?,
+          other: Increase::DeclinedTransaction::Source::Other?,
           wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
         ) -> void
 
@@ -156,7 +156,7 @@ module Increase
           check_deposit_rejection: Increase::DeclinedTransaction::Source::CheckDepositRejection?,
           inbound_fednow_transfer_decline: Increase::DeclinedTransaction::Source::InboundFednowTransferDecline?,
           inbound_real_time_payments_transfer_decline: Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline?,
-          other: top?,
+          other: Increase::DeclinedTransaction::Source::Other?,
           wire_decline: Increase::DeclinedTransaction::Source::WireDecline?
         }
 
@@ -716,26 +716,26 @@ module Increase
           type network_details =
             {
               category: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse?,
               visa: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa?
             }
 
           class NetworkDetails < Increase::Internal::Type::BaseModel
             attr_accessor category: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::category
 
-            attr_accessor pulse: top?
+            attr_accessor pulse: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse?
 
             attr_accessor visa: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa?
 
             def initialize: (
               category: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse?,
               visa: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa?
             ) -> void
 
             def to_hash: -> {
               category: Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::category,
-              pulse: top?,
+              pulse: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse?,
               visa: Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa?
             }
 
@@ -751,6 +751,14 @@ module Increase
               PULSE: :pulse
 
               def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::category]
+            end
+
+            type pulse = {  }
+
+            class Pulse < Increase::Internal::Type::BaseModel
+              def initialize: -> void
+
+              def to_hash: -> {  }
             end
 
             type visa =
@@ -1686,6 +1694,14 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::reason]
           end
+        end
+
+        type other = {  }
+
+        class Other < Increase::Internal::Type::BaseModel
+          def initialize: -> void
+
+          def to_hash: -> {  }
         end
 
         type wire_decline =
