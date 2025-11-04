@@ -168,17 +168,17 @@ module Increase
               Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
             )
 
-          # The drawdown request has been sent and the recipient should respond in some way.
-          PENDING_RESPONSE =
-            T.let(
-              :pending_response,
-              Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
-            )
-
           # The drawdown request has been fulfilled by the recipient.
           FULFILLED =
             T.let(
               :fulfilled,
+              Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
+            )
+
+          # The drawdown request has been sent and the recipient should respond in some way.
+          PENDING_RESPONSE =
+            T.let(
+              :pending_response,
               Increase::WireDrawdownRequestListParams::Status::In::TaggedSymbol
             )
 
