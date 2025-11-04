@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.129.1 (2025-11-04)
+
+Full Changelog: [v1.129.0...v1.129.1](https://github.com/Increase/increase-ruby/compare/v1.129.0...v1.129.1)
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([05a53e3](https://github.com/Increase/increase-ruby/commit/05a53e3f30b596d51e1e0c572ef239b0b9b8b018))
+
 ## 1.129.0 (2025-11-04)
 
 Full Changelog: [v1.128.0...v1.129.0](https://github.com/Increase/increase-ruby/compare/v1.128.0...v1.129.0)
