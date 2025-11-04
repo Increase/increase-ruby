@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.129.0 (2025-11-04)
+
+Full Changelog: [v1.128.0...v1.129.0](https://github.com/Increase/increase-ruby/compare/v1.128.0...v1.129.0)
+
+### Features
+
+* **api:** api update ([4a2efb2](https://github.com/Increase/increase-ruby/commit/4a2efb2b33bd395db1c66e459ba895683dc91366))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([eab9d7e](https://github.com/Increase/increase-ruby/commit/eab9d7e7c99706e45739fe8b828ba6b5f8bfe88a))
+* **client:** send user-agent header ([3fa3e13](https://github.com/Increase/increase-ruby/commit/3fa3e1396480c27aaae01a7533b59d3c3279a789))
+
 ## 1.128.0 (2025-10-31)
 
 Full Changelog: [v1.127.0...v1.128.0](https://github.com/Increase/increase-ruby/compare/v1.127.0...v1.128.0)
