@@ -391,16 +391,16 @@ module Increase
             Increase::WireDrawdownRequest::Status::TaggedSymbol
           )
 
+        # The drawdown request has been fulfilled by the recipient.
+        FULFILLED =
+          T.let(:fulfilled, Increase::WireDrawdownRequest::Status::TaggedSymbol)
+
         # The drawdown request has been sent and the recipient should respond in some way.
         PENDING_RESPONSE =
           T.let(
             :pending_response,
             Increase::WireDrawdownRequest::Status::TaggedSymbol
           )
-
-        # The drawdown request has been fulfilled by the recipient.
-        FULFILLED =
-          T.let(:fulfilled, Increase::WireDrawdownRequest::Status::TaggedSymbol)
 
         # The drawdown request has been refused by the recipient.
         REFUSED =
