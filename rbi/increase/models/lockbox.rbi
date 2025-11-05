@@ -22,6 +22,10 @@ module Increase
       sig { params(address: Increase::Lockbox::Address::OrHash).void }
       attr_writer :address
 
+      # Indicates if checks mailed to this lockbox will be deposited.
+      sig { returns(Increase::Lockbox::CheckDepositBehavior::TaggedSymbol) }
+      attr_accessor :check_deposit_behavior
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
       # was created.
       sig { returns(Time) }
@@ -41,10 +45,6 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :recipient_name
 
-      # This indicates if mail can be sent to this address.
-      sig { returns(Increase::Lockbox::Status::TaggedSymbol) }
-      attr_accessor :status
-
       # A constant representing the object's type. For this resource it will always be
       # `lockbox`.
       sig { returns(Increase::Lockbox::Type::TaggedSymbol) }
@@ -57,11 +57,12 @@ module Increase
           id: String,
           account_id: String,
           address: Increase::Lockbox::Address::OrHash,
+          check_deposit_behavior:
+            Increase::Lockbox::CheckDepositBehavior::OrSymbol,
           created_at: Time,
           description: T.nilable(String),
           idempotency_key: T.nilable(String),
           recipient_name: T.nilable(String),
-          status: Increase::Lockbox::Status::OrSymbol,
           type: Increase::Lockbox::Type::OrSymbol
         ).returns(T.attached_class)
       end
@@ -73,6 +74,8 @@ module Increase
         account_id:,
         # The mailing address for the Lockbox.
         address:,
+        # Indicates if checks mailed to this lockbox will be deposited.
+        check_deposit_behavior:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
         # was created.
         created_at:,
@@ -84,8 +87,6 @@ module Increase
         idempotency_key:,
         # The recipient name you choose for the Lockbox.
         recipient_name:,
-        # This indicates if mail can be sent to this address.
-        status:,
         # A constant representing the object's type. For this resource it will always be
         # `lockbox`.
         type:
@@ -98,11 +99,12 @@ module Increase
             id: String,
             account_id: String,
             address: Increase::Lockbox::Address,
+            check_deposit_behavior:
+              Increase::Lockbox::CheckDepositBehavior::TaggedSymbol,
             created_at: Time,
             description: T.nilable(String),
             idempotency_key: T.nilable(String),
             recipient_name: T.nilable(String),
-            status: Increase::Lockbox::Status::TaggedSymbol,
             type: Increase::Lockbox::Type::TaggedSymbol
           }
         )
@@ -191,21 +193,31 @@ module Increase
         end
       end
 
-      # This indicates if mail can be sent to this address.
-      module Status
+      # Indicates if checks mailed to this lockbox will be deposited.
+      module CheckDepositBehavior
         extend Increase::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Increase::Lockbox::Status) }
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::Lockbox::CheckDepositBehavior)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # This Lockbox is active. Checks mailed to it will be deposited automatically.
-        ACTIVE = T.let(:active, Increase::Lockbox::Status::TaggedSymbol)
+        # Checks mailed to this Lockbox will be deposited.
+        ENABLED =
+          T.let(:enabled, Increase::Lockbox::CheckDepositBehavior::TaggedSymbol)
 
-        # This Lockbox is inactive. Checks mailed to it will not be deposited.
-        INACTIVE = T.let(:inactive, Increase::Lockbox::Status::TaggedSymbol)
+        # Checks mailed to this Lockbox will not be deposited.
+        DISABLED =
+          T.let(
+            :disabled,
+            Increase::Lockbox::CheckDepositBehavior::TaggedSymbol
+          )
 
         sig do
-          override.returns(T::Array[Increase::Lockbox::Status::TaggedSymbol])
+          override.returns(
+            T::Array[Increase::Lockbox::CheckDepositBehavior::TaggedSymbol]
+          )
         end
         def self.values
         end

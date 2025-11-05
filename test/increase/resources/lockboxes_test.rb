@@ -15,11 +15,11 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
         id: String,
         account_id: String,
         address: Increase::Lockbox::Address,
+        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
         recipient_name: String | nil,
-        status: Increase::Lockbox::Status,
         type: Increase::Lockbox::Type
       }
     end
@@ -37,11 +37,11 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
         id: String,
         account_id: String,
         address: Increase::Lockbox::Address,
+        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
         recipient_name: String | nil,
-        status: Increase::Lockbox::Status,
         type: Increase::Lockbox::Type
       }
     end
@@ -59,11 +59,11 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
         id: String,
         account_id: String,
         address: Increase::Lockbox::Address,
+        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
         recipient_name: String | nil,
-        status: Increase::Lockbox::Status,
         type: Increase::Lockbox::Type
       }
     end
@@ -88,11 +88,11 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
         id: String,
         account_id: String,
         address: Increase::Lockbox::Address,
+        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
         recipient_name: String | nil,
-        status: Increase::Lockbox::Status,
         type: Increase::Lockbox::Type
       }
     end
