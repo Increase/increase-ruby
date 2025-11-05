@@ -180,21 +180,6 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::PendingTransaction::Currency) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Canadian Dollar (CAD)
-        CAD = T.let(:CAD, Increase::PendingTransaction::Currency::TaggedSymbol)
-
-        # Swiss Franc (CHF)
-        CHF = T.let(:CHF, Increase::PendingTransaction::Currency::TaggedSymbol)
-
-        # Euro (EUR)
-        EUR = T.let(:EUR, Increase::PendingTransaction::Currency::TaggedSymbol)
-
-        # British Pound (GBP)
-        GBP = T.let(:GBP, Increase::PendingTransaction::Currency::TaggedSymbol)
-
-        # Japanese Yen (JPY)
-        JPY = T.let(:JPY, Increase::PendingTransaction::Currency::TaggedSymbol)
-
         # US Dollar (USD)
         USD = T.let(:USD, Increase::PendingTransaction::Currency::TaggedSymbol)
 
@@ -783,41 +768,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::PendingTransaction::Source::AccountTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::PendingTransaction::Source::AccountTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::PendingTransaction::Source::AccountTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::PendingTransaction::Source::AccountTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::PendingTransaction::Source::AccountTransferInstruction::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -2062,41 +2012,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::PendingTransaction::Source::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::PendingTransaction::Source::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::PendingTransaction::Source::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::PendingTransaction::Source::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::PendingTransaction::Source::CardAuthorization::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -3409,41 +3324,6 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::PendingTransaction::Source::CheckDepositInstruction::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::PendingTransaction::Source::CheckDepositInstruction::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::PendingTransaction::Source::CheckDepositInstruction::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::PendingTransaction::Source::CheckDepositInstruction::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::PendingTransaction::Source::CheckDepositInstruction::Currency::TaggedSymbol
-              )
-
             # US Dollar (USD)
             USD =
               T.let(
@@ -3536,41 +3416,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::PendingTransaction::Source::CheckTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::PendingTransaction::Source::CheckTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::PendingTransaction::Source::CheckTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::PendingTransaction::Source::CheckTransferInstruction::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::PendingTransaction::Source::CheckTransferInstruction::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -3761,41 +3606,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::PendingTransaction::Source::InboundFundsHold::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::PendingTransaction::Source::InboundFundsHold::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::PendingTransaction::Source::InboundFundsHold::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::PendingTransaction::Source::InboundFundsHold::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::PendingTransaction::Source::InboundFundsHold::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =

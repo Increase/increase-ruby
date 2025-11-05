@@ -2389,41 +2389,6 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardAuthorization::Currency::TaggedSymbol
-              )
-
             # US Dollar (USD)
             USD =
               T.let(
@@ -3599,41 +3564,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardAuthorizationExpiration::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardAuthorizationExpiration::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardAuthorizationExpiration::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardAuthorizationExpiration::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardAuthorizationExpiration::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -4924,41 +4854,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardDecline::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardDecline::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardDecline::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardDecline::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardDecline::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -7395,41 +7290,6 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardFinancial::Currency::TaggedSymbol
-              )
-
             # US Dollar (USD)
             USD =
               T.let(
@@ -8638,41 +8498,6 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardFuelConfirmation::Currency::TaggedSymbol
-              )
-
             # US Dollar (USD)
             USD =
               T.let(
@@ -9864,41 +9689,6 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardIncrement::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardIncrement::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardIncrement::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardIncrement::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardIncrement::Currency::TaggedSymbol
-              )
-
             # US Dollar (USD)
             USD =
               T.let(
@@ -10408,41 +10198,6 @@ module Increase
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-              # Canadian Dollar (CAD)
-              CAD =
-                T.let(
-                  :CAD,
-                  Increase::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol
-                )
-
-              # Swiss Franc (CHF)
-              CHF =
-                T.let(
-                  :CHF,
-                  Increase::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol
-                )
-
-              # Euro (EUR)
-              EUR =
-                T.let(
-                  :EUR,
-                  Increase::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol
-                )
-
-              # British Pound (GBP)
-              GBP =
-                T.let(
-                  :GBP,
-                  Increase::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol
-                )
-
-              # Japanese Yen (JPY)
-              JPY =
-                T.let(
-                  :JPY,
-                  Increase::CardPayment::Element::CardRefund::Cashback::Currency::TaggedSymbol
-                )
-
               # US Dollar (USD)
               USD =
                 T.let(
@@ -10475,41 +10230,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardRefund::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardRefund::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardRefund::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardRefund::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardRefund::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -10607,41 +10327,6 @@ module Increase
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              # Canadian Dollar (CAD)
-              CAD =
-                T.let(
-                  :CAD,
-                  Increase::CardPayment::Element::CardRefund::Interchange::Currency::TaggedSymbol
-                )
-
-              # Swiss Franc (CHF)
-              CHF =
-                T.let(
-                  :CHF,
-                  Increase::CardPayment::Element::CardRefund::Interchange::Currency::TaggedSymbol
-                )
-
-              # Euro (EUR)
-              EUR =
-                T.let(
-                  :EUR,
-                  Increase::CardPayment::Element::CardRefund::Interchange::Currency::TaggedSymbol
-                )
-
-              # British Pound (GBP)
-              GBP =
-                T.let(
-                  :GBP,
-                  Increase::CardPayment::Element::CardRefund::Interchange::Currency::TaggedSymbol
-                )
-
-              # Japanese Yen (JPY)
-              JPY =
-                T.let(
-                  :JPY,
-                  Increase::CardPayment::Element::CardRefund::Interchange::Currency::TaggedSymbol
-                )
 
               # US Dollar (USD)
               USD =
@@ -12767,41 +12452,6 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardReversal::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardReversal::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardReversal::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardReversal::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardReversal::Currency::TaggedSymbol
-              )
-
             # US Dollar (USD)
             USD =
               T.let(
@@ -13434,41 +13084,6 @@ module Increase
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-              # Canadian Dollar (CAD)
-              CAD =
-                T.let(
-                  :CAD,
-                  Increase::CardPayment::Element::CardSettlement::Cashback::Currency::TaggedSymbol
-                )
-
-              # Swiss Franc (CHF)
-              CHF =
-                T.let(
-                  :CHF,
-                  Increase::CardPayment::Element::CardSettlement::Cashback::Currency::TaggedSymbol
-                )
-
-              # Euro (EUR)
-              EUR =
-                T.let(
-                  :EUR,
-                  Increase::CardPayment::Element::CardSettlement::Cashback::Currency::TaggedSymbol
-                )
-
-              # British Pound (GBP)
-              GBP =
-                T.let(
-                  :GBP,
-                  Increase::CardPayment::Element::CardSettlement::Cashback::Currency::TaggedSymbol
-                )
-
-              # Japanese Yen (JPY)
-              JPY =
-                T.let(
-                  :JPY,
-                  Increase::CardPayment::Element::CardSettlement::Cashback::Currency::TaggedSymbol
-                )
-
               # US Dollar (USD)
               USD =
                 T.let(
@@ -13501,41 +13116,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardSettlement::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardSettlement::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardSettlement::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardSettlement::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardSettlement::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =
@@ -13633,41 +13213,6 @@ module Increase
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              # Canadian Dollar (CAD)
-              CAD =
-                T.let(
-                  :CAD,
-                  Increase::CardPayment::Element::CardSettlement::Interchange::Currency::TaggedSymbol
-                )
-
-              # Swiss Franc (CHF)
-              CHF =
-                T.let(
-                  :CHF,
-                  Increase::CardPayment::Element::CardSettlement::Interchange::Currency::TaggedSymbol
-                )
-
-              # Euro (EUR)
-              EUR =
-                T.let(
-                  :EUR,
-                  Increase::CardPayment::Element::CardSettlement::Interchange::Currency::TaggedSymbol
-                )
-
-              # British Pound (GBP)
-              GBP =
-                T.let(
-                  :GBP,
-                  Increase::CardPayment::Element::CardSettlement::Interchange::Currency::TaggedSymbol
-                )
-
-              # Japanese Yen (JPY)
-              JPY =
-                T.let(
-                  :JPY,
-                  Increase::CardPayment::Element::CardSettlement::Interchange::Currency::TaggedSymbol
-                )
 
               # US Dollar (USD)
               USD =
@@ -16708,41 +16253,6 @@ module Increase
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Canadian Dollar (CAD)
-            CAD =
-              T.let(
-                :CAD,
-                Increase::CardPayment::Element::CardValidation::Currency::TaggedSymbol
-              )
-
-            # Swiss Franc (CHF)
-            CHF =
-              T.let(
-                :CHF,
-                Increase::CardPayment::Element::CardValidation::Currency::TaggedSymbol
-              )
-
-            # Euro (EUR)
-            EUR =
-              T.let(
-                :EUR,
-                Increase::CardPayment::Element::CardValidation::Currency::TaggedSymbol
-              )
-
-            # British Pound (GBP)
-            GBP =
-              T.let(
-                :GBP,
-                Increase::CardPayment::Element::CardValidation::Currency::TaggedSymbol
-              )
-
-            # Japanese Yen (JPY)
-            JPY =
-              T.let(
-                :JPY,
-                Increase::CardPayment::Element::CardValidation::Currency::TaggedSymbol
-              )
 
             # US Dollar (USD)
             USD =

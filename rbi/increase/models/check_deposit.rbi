@@ -354,41 +354,6 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # Canadian Dollar (CAD)
-          CAD =
-            T.let(
-              :CAD,
-              Increase::CheckDeposit::DepositAcceptance::Currency::TaggedSymbol
-            )
-
-          # Swiss Franc (CHF)
-          CHF =
-            T.let(
-              :CHF,
-              Increase::CheckDeposit::DepositAcceptance::Currency::TaggedSymbol
-            )
-
-          # Euro (EUR)
-          EUR =
-            T.let(
-              :EUR,
-              Increase::CheckDeposit::DepositAcceptance::Currency::TaggedSymbol
-            )
-
-          # British Pound (GBP)
-          GBP =
-            T.let(
-              :GBP,
-              Increase::CheckDeposit::DepositAcceptance::Currency::TaggedSymbol
-            )
-
-          # Japanese Yen (JPY)
-          JPY =
-            T.let(
-              :JPY,
-              Increase::CheckDeposit::DepositAcceptance::Currency::TaggedSymbol
-            )
-
           # US Dollar (USD)
           USD =
             T.let(
@@ -511,41 +476,6 @@ module Increase
               T.all(Symbol, Increase::CheckDeposit::DepositRejection::Currency)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Canadian Dollar (CAD)
-          CAD =
-            T.let(
-              :CAD,
-              Increase::CheckDeposit::DepositRejection::Currency::TaggedSymbol
-            )
-
-          # Swiss Franc (CHF)
-          CHF =
-            T.let(
-              :CHF,
-              Increase::CheckDeposit::DepositRejection::Currency::TaggedSymbol
-            )
-
-          # Euro (EUR)
-          EUR =
-            T.let(
-              :EUR,
-              Increase::CheckDeposit::DepositRejection::Currency::TaggedSymbol
-            )
-
-          # British Pound (GBP)
-          GBP =
-            T.let(
-              :GBP,
-              Increase::CheckDeposit::DepositRejection::Currency::TaggedSymbol
-            )
-
-          # Japanese Yen (JPY)
-          JPY =
-            T.let(
-              :JPY,
-              Increase::CheckDeposit::DepositRejection::Currency::TaggedSymbol
-            )
 
           # US Dollar (USD)
           USD =
@@ -767,41 +697,6 @@ module Increase
               T.all(Symbol, Increase::CheckDeposit::DepositReturn::Currency)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Canadian Dollar (CAD)
-          CAD =
-            T.let(
-              :CAD,
-              Increase::CheckDeposit::DepositReturn::Currency::TaggedSymbol
-            )
-
-          # Swiss Franc (CHF)
-          CHF =
-            T.let(
-              :CHF,
-              Increase::CheckDeposit::DepositReturn::Currency::TaggedSymbol
-            )
-
-          # Euro (EUR)
-          EUR =
-            T.let(
-              :EUR,
-              Increase::CheckDeposit::DepositReturn::Currency::TaggedSymbol
-            )
-
-          # British Pound (GBP)
-          GBP =
-            T.let(
-              :GBP,
-              Increase::CheckDeposit::DepositReturn::Currency::TaggedSymbol
-            )
-
-          # Japanese Yen (JPY)
-          JPY =
-            T.let(
-              :JPY,
-              Increase::CheckDeposit::DepositReturn::Currency::TaggedSymbol
-            )
 
           # US Dollar (USD)
           USD =
@@ -1216,41 +1111,6 @@ module Increase
               T.all(Symbol, Increase::CheckDeposit::InboundFundsHold::Currency)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Canadian Dollar (CAD)
-          CAD =
-            T.let(
-              :CAD,
-              Increase::CheckDeposit::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # Swiss Franc (CHF)
-          CHF =
-            T.let(
-              :CHF,
-              Increase::CheckDeposit::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # Euro (EUR)
-          EUR =
-            T.let(
-              :EUR,
-              Increase::CheckDeposit::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # British Pound (GBP)
-          GBP =
-            T.let(
-              :GBP,
-              Increase::CheckDeposit::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # Japanese Yen (JPY)
-          JPY =
-            T.let(
-              :JPY,
-              Increase::CheckDeposit::InboundFundsHold::Currency::TaggedSymbol
-            )
 
           # US Dollar (USD)
           USD =
