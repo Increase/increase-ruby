@@ -1072,21 +1072,6 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::ACHTransfer::Currency) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Canadian Dollar (CAD)
-        CAD = T.let(:CAD, Increase::ACHTransfer::Currency::TaggedSymbol)
-
-        # Swiss Franc (CHF)
-        CHF = T.let(:CHF, Increase::ACHTransfer::Currency::TaggedSymbol)
-
-        # Euro (EUR)
-        EUR = T.let(:EUR, Increase::ACHTransfer::Currency::TaggedSymbol)
-
-        # British Pound (GBP)
-        GBP = T.let(:GBP, Increase::ACHTransfer::Currency::TaggedSymbol)
-
-        # Japanese Yen (JPY)
-        JPY = T.let(:JPY, Increase::ACHTransfer::Currency::TaggedSymbol)
-
         # US Dollar (USD)
         USD = T.let(:USD, Increase::ACHTransfer::Currency::TaggedSymbol)
 
@@ -1301,41 +1286,6 @@ module Increase
               T.all(Symbol, Increase::ACHTransfer::InboundFundsHold::Currency)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Canadian Dollar (CAD)
-          CAD =
-            T.let(
-              :CAD,
-              Increase::ACHTransfer::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # Swiss Franc (CHF)
-          CHF =
-            T.let(
-              :CHF,
-              Increase::ACHTransfer::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # Euro (EUR)
-          EUR =
-            T.let(
-              :EUR,
-              Increase::ACHTransfer::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # British Pound (GBP)
-          GBP =
-            T.let(
-              :GBP,
-              Increase::ACHTransfer::InboundFundsHold::Currency::TaggedSymbol
-            )
-
-          # Japanese Yen (JPY)
-          JPY =
-            T.let(
-              :JPY,
-              Increase::ACHTransfer::InboundFundsHold::Currency::TaggedSymbol
-            )
 
           # US Dollar (USD)
           USD =

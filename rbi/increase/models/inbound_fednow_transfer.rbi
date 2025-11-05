@@ -217,26 +217,6 @@ module Increase
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Canadian Dollar (CAD)
-        CAD =
-          T.let(:CAD, Increase::InboundFednowTransfer::Currency::TaggedSymbol)
-
-        # Swiss Franc (CHF)
-        CHF =
-          T.let(:CHF, Increase::InboundFednowTransfer::Currency::TaggedSymbol)
-
-        # Euro (EUR)
-        EUR =
-          T.let(:EUR, Increase::InboundFednowTransfer::Currency::TaggedSymbol)
-
-        # British Pound (GBP)
-        GBP =
-          T.let(:GBP, Increase::InboundFednowTransfer::Currency::TaggedSymbol)
-
-        # Japanese Yen (JPY)
-        JPY =
-          T.let(:JPY, Increase::InboundFednowTransfer::Currency::TaggedSymbol)
-
         # US Dollar (USD)
         USD =
           T.let(:USD, Increase::InboundFednowTransfer::Currency::TaggedSymbol)

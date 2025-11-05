@@ -111,21 +111,6 @@ module Increase
       module Currency
         extend Increase::Internal::Type::Enum
 
-        # Canadian Dollar (CAD)
-        CAD = :CAD
-
-        # Swiss Franc (CHF)
-        CHF = :CHF
-
-        # Euro (EUR)
-        EUR = :EUR
-
-        # British Pound (GBP)
-        GBP = :GBP
-
-        # Japanese Yen (JPY)
-        JPY = :JPY
-
         # US Dollar (USD)
         USD = :USD
 
@@ -722,21 +707,6 @@ module Increase
           # @see Increase::Models::Transaction::Source::AccountTransferIntention#currency
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
 
             # US Dollar (USD)
             USD = :USD
@@ -1958,21 +1928,6 @@ module Increase
           module Currency
             extend Increase::Internal::Type::Enum
 
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
             # US Dollar (USD)
             USD = :USD
 
@@ -2697,21 +2652,6 @@ module Increase
             module Currency
               extend Increase::Internal::Type::Enum
 
-              # Canadian Dollar (CAD)
-              CAD = :CAD
-
-              # Swiss Franc (CHF)
-              CHF = :CHF
-
-              # Euro (EUR)
-              EUR = :EUR
-
-              # British Pound (GBP)
-              GBP = :GBP
-
-              # Japanese Yen (JPY)
-              JPY = :JPY
-
               # US Dollar (USD)
               USD = :USD
 
@@ -2726,21 +2666,6 @@ module Increase
           # @see Increase::Models::Transaction::Source::CardRefund#currency
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
 
             # US Dollar (USD)
             USD = :USD
@@ -2792,21 +2717,6 @@ module Increase
             # @see Increase::Models::Transaction::Source::CardRefund::Interchange#currency
             module Currency
               extend Increase::Internal::Type::Enum
-
-              # Canadian Dollar (CAD)
-              CAD = :CAD
-
-              # Swiss Franc (CHF)
-              CHF = :CHF
-
-              # Euro (EUR)
-              EUR = :EUR
-
-              # British Pound (GBP)
-              GBP = :GBP
-
-              # Japanese Yen (JPY)
-              JPY = :JPY
 
               # US Dollar (USD)
               USD = :USD
@@ -3911,21 +3821,6 @@ module Increase
           module Currency
             extend Increase::Internal::Type::Enum
 
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
             # US Dollar (USD)
             USD = :USD
 
@@ -4176,21 +4071,6 @@ module Increase
             module Currency
               extend Increase::Internal::Type::Enum
 
-              # Canadian Dollar (CAD)
-              CAD = :CAD
-
-              # Swiss Franc (CHF)
-              CHF = :CHF
-
-              # Euro (EUR)
-              EUR = :EUR
-
-              # British Pound (GBP)
-              GBP = :GBP
-
-              # Japanese Yen (JPY)
-              JPY = :JPY
-
               # US Dollar (USD)
               USD = :USD
 
@@ -4205,21 +4085,6 @@ module Increase
           # @see Increase::Models::Transaction::Source::CardSettlement#currency
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
 
             # US Dollar (USD)
             USD = :USD
@@ -4271,21 +4136,6 @@ module Increase
             # @see Increase::Models::Transaction::Source::CardSettlement::Interchange#currency
             module Currency
               extend Increase::Internal::Type::Enum
-
-              # Canadian Dollar (CAD)
-              CAD = :CAD
-
-              # Swiss Franc (CHF)
-              CHF = :CHF
-
-              # Euro (EUR)
-              EUR = :EUR
-
-              # British Pound (GBP)
-              GBP = :GBP
-
-              # Japanese Yen (JPY)
-              JPY = :JPY
 
               # US Dollar (USD)
               USD = :USD
@@ -5434,21 +5284,6 @@ module Increase
           module Currency
             extend Increase::Internal::Type::Enum
 
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
             # US Dollar (USD)
             USD = :USD
 
@@ -5658,21 +5493,6 @@ module Increase
           module Currency
             extend Increase::Internal::Type::Enum
 
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
             # US Dollar (USD)
             USD = :USD
 
@@ -5752,21 +5572,6 @@ module Increase
           # @see Increase::Models::Transaction::Source::CheckDepositReturn#currency
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
 
             # US Dollar (USD)
             USD = :USD
@@ -6027,21 +5832,6 @@ module Increase
           # @see Increase::Models::Transaction::Source::FeePayment#currency
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
 
             # US Dollar (USD)
             USD = :USD
@@ -6432,21 +6222,6 @@ module Increase
           module Currency
             extend Increase::Internal::Type::Enum
 
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
             # US Dollar (USD)
             USD = :USD
 
@@ -6815,21 +6590,6 @@ module Increase
           module Currency
             extend Increase::Internal::Type::Enum
 
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
-
             # US Dollar (USD)
             USD = :USD
 
@@ -6881,21 +6641,6 @@ module Increase
           # @see Increase::Models::Transaction::Source::InternalSource#currency
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD = :CAD
-
-            # Swiss Franc (CHF)
-            CHF = :CHF
-
-            # Euro (EUR)
-            EUR = :EUR
-
-            # British Pound (GBP)
-            GBP = :GBP
-
-            # Japanese Yen (JPY)
-            JPY = :JPY
 
             # US Dollar (USD)
             USD = :USD
