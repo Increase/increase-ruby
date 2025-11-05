@@ -76,25 +76,10 @@ module Increase
         type: Increase::Models::PendingTransaction::type_
       }
 
-      type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+      type currency = :USD
 
       module Currency
         extend Increase::Internal::Type::Enum
-
-        # Canadian Dollar (CAD)
-        CAD: :CAD
-
-        # Swiss Franc (CHF)
-        CHF: :CHF
-
-        # Euro (EUR)
-        EUR: :EUR
-
-        # British Pound (GBP)
-        GBP: :GBP
-
-        # Japanese Yen (JPY)
-        JPY: :JPY
 
         # US Dollar (USD)
         USD: :USD
@@ -231,25 +216,10 @@ module Increase
             transfer_id: String
           }
 
-          type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+          type currency = :USD
 
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD: :CAD
-
-            # Swiss Franc (CHF)
-            CHF: :CHF
-
-            # Euro (EUR)
-            EUR: :EUR
-
-            # British Pound (GBP)
-            GBP: :GBP
-
-            # Japanese Yen (JPY)
-            JPY: :JPY
 
             # US Dollar (USD)
             USD: :USD
@@ -620,25 +590,10 @@ module Increase
             end
           end
 
-          type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+          type currency = :USD
 
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD: :CAD
-
-            # Swiss Franc (CHF)
-            CHF: :CHF
-
-            # Euro (EUR)
-            EUR: :EUR
-
-            # British Pound (GBP)
-            GBP: :GBP
-
-            # Japanese Yen (JPY)
-            JPY: :JPY
 
             # US Dollar (USD)
             USD: :USD
@@ -1185,25 +1140,10 @@ module Increase
             front_image_file_id: String
           }
 
-          type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+          type currency = :USD
 
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD: :CAD
-
-            # Swiss Franc (CHF)
-            CHF: :CHF
-
-            # Euro (EUR)
-            EUR: :EUR
-
-            # British Pound (GBP)
-            GBP: :GBP
-
-            # Japanese Yen (JPY)
-            JPY: :JPY
 
             # US Dollar (USD)
             USD: :USD
@@ -1238,25 +1178,10 @@ module Increase
             transfer_id: String
           }
 
-          type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+          type currency = :USD
 
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD: :CAD
-
-            # Swiss Franc (CHF)
-            CHF: :CHF
-
-            # Euro (EUR)
-            EUR: :EUR
-
-            # British Pound (GBP)
-            GBP: :GBP
-
-            # Japanese Yen (JPY)
-            JPY: :JPY
 
             # US Dollar (USD)
             USD: :USD
@@ -1331,25 +1256,10 @@ module Increase
             type: Increase::Models::PendingTransaction::Source::InboundFundsHold::type_
           }
 
-          type currency = :CAD | :CHF | :EUR | :GBP | :JPY | :USD
+          type currency = :USD
 
           module Currency
             extend Increase::Internal::Type::Enum
-
-            # Canadian Dollar (CAD)
-            CAD: :CAD
-
-            # Swiss Franc (CHF)
-            CHF: :CHF
-
-            # Euro (EUR)
-            EUR: :EUR
-
-            # British Pound (GBP)
-            GBP: :GBP
-
-            # Japanese Yen (JPY)
-            JPY: :JPY
 
             # US Dollar (USD)
             USD: :USD

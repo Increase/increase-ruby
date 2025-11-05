@@ -243,21 +243,6 @@ module Increase
         module Currency
           extend Increase::Internal::Type::Enum
 
-          # Canadian Dollar (CAD)
-          CAD = :CAD
-
-          # Swiss Franc (CHF)
-          CHF = :CHF
-
-          # Euro (EUR)
-          EUR = :EUR
-
-          # British Pound (GBP)
-          GBP = :GBP
-
-          # Japanese Yen (JPY)
-          JPY = :JPY
-
           # US Dollar (USD)
           USD = :USD
 
@@ -332,21 +317,6 @@ module Increase
         # @see Increase::Models::CheckDeposit::DepositRejection#currency
         module Currency
           extend Increase::Internal::Type::Enum
-
-          # Canadian Dollar (CAD)
-          CAD = :CAD
-
-          # Swiss Franc (CHF)
-          CHF = :CHF
-
-          # Euro (EUR)
-          EUR = :EUR
-
-          # British Pound (GBP)
-          GBP = :GBP
-
-          # Japanese Yen (JPY)
-          JPY = :JPY
 
           # US Dollar (USD)
           USD = :USD
@@ -466,21 +436,6 @@ module Increase
         # @see Increase::Models::CheckDeposit::DepositReturn#currency
         module Currency
           extend Increase::Internal::Type::Enum
-
-          # Canadian Dollar (CAD)
-          CAD = :CAD
-
-          # Swiss Franc (CHF)
-          CHF = :CHF
-
-          # Euro (EUR)
-          EUR = :EUR
-
-          # British Pound (GBP)
-          GBP = :GBP
-
-          # Japanese Yen (JPY)
-          JPY = :JPY
 
           # US Dollar (USD)
           USD = :USD
@@ -709,21 +664,6 @@ module Increase
         # @see Increase::Models::CheckDeposit::InboundFundsHold#currency
         module Currency
           extend Increase::Internal::Type::Enum
-
-          # Canadian Dollar (CAD)
-          CAD = :CAD
-
-          # Swiss Franc (CHF)
-          CHF = :CHF
-
-          # Euro (EUR)
-          EUR = :EUR
-
-          # British Pound (GBP)
-          GBP = :GBP
-
-          # Japanese Yen (JPY)
-          JPY = :JPY
 
           # US Dollar (USD)
           USD = :USD
