@@ -23,6 +23,12 @@ module Increase
       #   @return [Increase::Models::Lockbox::Address]
       required :address, -> { Increase::Lockbox::Address }
 
+      # @!attribute check_deposit_behavior
+      #   Indicates if checks mailed to this lockbox will be deposited.
+      #
+      #   @return [Symbol, Increase::Models::Lockbox::CheckDepositBehavior]
+      required :check_deposit_behavior, enum: -> { Increase::Lockbox::CheckDepositBehavior }
+
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
       #   was created.
@@ -50,12 +56,6 @@ module Increase
       #   @return [String, nil]
       required :recipient_name, String, nil?: true
 
-      # @!attribute status
-      #   This indicates if mail can be sent to this address.
-      #
-      #   @return [Symbol, Increase::Models::Lockbox::Status]
-      required :status, enum: -> { Increase::Lockbox::Status }
-
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `lockbox`.
@@ -63,7 +63,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Lockbox::Type]
       required :type, enum: -> { Increase::Lockbox::Type }
 
-      # @!method initialize(id:, account_id:, address:, created_at:, description:, idempotency_key:, recipient_name:, status:, type:)
+      # @!method initialize(id:, account_id:, address:, check_deposit_behavior:, created_at:, description:, idempotency_key:, recipient_name:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Lockbox} for more details.
       #
@@ -76,6 +76,8 @@ module Increase
       #
       #   @param address [Increase::Models::Lockbox::Address] The mailing address for the Lockbox.
       #
+      #   @param check_deposit_behavior [Symbol, Increase::Models::Lockbox::CheckDepositBehavior] Indicates if checks mailed to this lockbox will be deposited.
+      #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
       #
       #   @param description [String, nil] The description you choose for the Lockbox.
@@ -83,8 +85,6 @@ module Increase
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param recipient_name [String, nil] The recipient name you choose for the Lockbox.
-      #
-      #   @param status [Symbol, Increase::Models::Lockbox::Status] This indicates if mail can be sent to this address.
       #
       #   @param type [Symbol, Increase::Models::Lockbox::Type] A constant representing the object's type. For this resource it will always be `
 
@@ -149,17 +149,17 @@ module Increase
         #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
       end
 
-      # This indicates if mail can be sent to this address.
+      # Indicates if checks mailed to this lockbox will be deposited.
       #
-      # @see Increase::Models::Lockbox#status
-      module Status
+      # @see Increase::Models::Lockbox#check_deposit_behavior
+      module CheckDepositBehavior
         extend Increase::Internal::Type::Enum
 
-        # This Lockbox is active. Checks mailed to it will be deposited automatically.
-        ACTIVE = :active
+        # Checks mailed to this Lockbox will be deposited.
+        ENABLED = :enabled
 
-        # This Lockbox is inactive. Checks mailed to it will not be deposited.
-        INACTIVE = :inactive
+        # Checks mailed to this Lockbox will not be deposited.
+        DISABLED = :disabled
 
         # @!method self.values
         #   @return [Array<Symbol>]

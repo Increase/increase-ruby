@@ -51,15 +51,15 @@ module Increase
 
       # Update a Lockbox
       #
-      # @overload update(lockbox_id, description: nil, recipient_name: nil, status: nil, request_options: {})
+      # @overload update(lockbox_id, check_deposit_behavior: nil, description: nil, recipient_name: nil, request_options: {})
       #
       # @param lockbox_id [String] The identifier of the Lockbox.
+      #
+      # @param check_deposit_behavior [Symbol, Increase::Models::LockboxUpdateParams::CheckDepositBehavior] This indicates if checks mailed to this lockbox will be deposited.
       #
       # @param description [String] The description you choose for the Lockbox.
       #
       # @param recipient_name [String] The recipient name you choose for the Lockbox.
-      #
-      # @param status [Symbol, Increase::Models::LockboxUpdateParams::Status] This indicates if checks can be sent to the Lockbox.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

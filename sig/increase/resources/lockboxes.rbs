@@ -15,9 +15,9 @@ module Increase
 
       def update: (
         String lockbox_id,
+        ?check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         ?description: String,
         ?recipient_name: String,
-        ?status: Increase::Models::LockboxUpdateParams::status,
         ?request_options: Increase::request_opts
       ) -> Increase::Lockbox
 
