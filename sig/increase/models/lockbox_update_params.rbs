@@ -2,15 +2,21 @@ module Increase
   module Models
     type lockbox_update_params =
       {
+        check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         description: String,
-        recipient_name: String,
-        status: Increase::Models::LockboxUpdateParams::status
+        recipient_name: String
       }
       & Increase::Internal::Type::request_parameters
 
     class LockboxUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_reader check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior?
+
+      def check_deposit_behavior=: (
+        Increase::Models::LockboxUpdateParams::check_deposit_behavior
+      ) -> Increase::Models::LockboxUpdateParams::check_deposit_behavior
 
       attr_reader description: String?
 
@@ -20,38 +26,32 @@ module Increase
 
       def recipient_name=: (String) -> String
 
-      attr_reader status: Increase::Models::LockboxUpdateParams::status?
-
-      def status=: (
-        Increase::Models::LockboxUpdateParams::status
-      ) -> Increase::Models::LockboxUpdateParams::status
-
       def initialize: (
+        ?check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         ?description: String,
         ?recipient_name: String,
-        ?status: Increase::Models::LockboxUpdateParams::status,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         description: String,
         recipient_name: String,
-        status: Increase::Models::LockboxUpdateParams::status,
         request_options: Increase::RequestOptions
       }
 
-      type status = :active | :inactive
+      type check_deposit_behavior = :enabled | :disabled
 
-      module Status
+      module CheckDepositBehavior
         extend Increase::Internal::Type::Enum
 
-        # This Lockbox is active. Checks mailed to it will be deposited automatically.
-        ACTIVE: :active
+        # Checks mailed to this Lockbox will be deposited.
+        ENABLED: :enabled
 
-        # This Lockbox is inactive. Checks mailed to it will not be deposited.
-        INACTIVE: :inactive
+        # Checks mailed to this Lockbox will not be deposited.
+        DISABLED: :disabled
 
-        def self?.values: -> ::Array[Increase::Models::LockboxUpdateParams::status]
+        def self?.values: -> ::Array[Increase::Models::LockboxUpdateParams::check_deposit_behavior]
       end
     end
   end

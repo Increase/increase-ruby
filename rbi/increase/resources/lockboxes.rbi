@@ -41,21 +41,22 @@ module Increase
       sig do
         params(
           lockbox_id: String,
+          check_deposit_behavior:
+            Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol,
           description: String,
           recipient_name: String,
-          status: Increase::LockboxUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Lockbox)
       end
       def update(
         # The identifier of the Lockbox.
         lockbox_id,
+        # This indicates if checks mailed to this lockbox will be deposited.
+        check_deposit_behavior: nil,
         # The description you choose for the Lockbox.
         description: nil,
         # The recipient name you choose for the Lockbox.
         recipient_name: nil,
-        # This indicates if checks can be sent to the Lockbox.
-        status: nil,
         request_options: {}
       )
       end

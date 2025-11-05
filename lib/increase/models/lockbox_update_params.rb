@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute check_deposit_behavior
+      #   This indicates if checks mailed to this lockbox will be deposited.
+      #
+      #   @return [Symbol, Increase::Models::LockboxUpdateParams::CheckDepositBehavior, nil]
+      optional :check_deposit_behavior, enum: -> { Increase::LockboxUpdateParams::CheckDepositBehavior }
+
       # @!attribute description
       #   The description you choose for the Lockbox.
       #
@@ -19,30 +25,24 @@ module Increase
       #   @return [String, nil]
       optional :recipient_name, String
 
-      # @!attribute status
-      #   This indicates if checks can be sent to the Lockbox.
+      # @!method initialize(check_deposit_behavior: nil, description: nil, recipient_name: nil, request_options: {})
+      #   @param check_deposit_behavior [Symbol, Increase::Models::LockboxUpdateParams::CheckDepositBehavior] This indicates if checks mailed to this lockbox will be deposited.
       #
-      #   @return [Symbol, Increase::Models::LockboxUpdateParams::Status, nil]
-      optional :status, enum: -> { Increase::LockboxUpdateParams::Status }
-
-      # @!method initialize(description: nil, recipient_name: nil, status: nil, request_options: {})
       #   @param description [String] The description you choose for the Lockbox.
       #
       #   @param recipient_name [String] The recipient name you choose for the Lockbox.
       #
-      #   @param status [Symbol, Increase::Models::LockboxUpdateParams::Status] This indicates if checks can be sent to the Lockbox.
-      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
-      # This indicates if checks can be sent to the Lockbox.
-      module Status
+      # This indicates if checks mailed to this lockbox will be deposited.
+      module CheckDepositBehavior
         extend Increase::Internal::Type::Enum
 
-        # This Lockbox is active. Checks mailed to it will be deposited automatically.
-        ACTIVE = :active
+        # Checks mailed to this Lockbox will be deposited.
+        ENABLED = :enabled
 
-        # This Lockbox is inactive. Checks mailed to it will not be deposited.
-        INACTIVE = :inactive
+        # Checks mailed to this Lockbox will not be deposited.
+        DISABLED = :disabled
 
         # @!method self.values
         #   @return [Array<Symbol>]

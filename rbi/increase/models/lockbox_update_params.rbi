@@ -11,6 +11,24 @@ module Increase
           T.any(Increase::LockboxUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # This indicates if checks mailed to this lockbox will be deposited.
+      sig do
+        returns(
+          T.nilable(
+            Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol
+          )
+        )
+      end
+      attr_reader :check_deposit_behavior
+
+      sig do
+        params(
+          check_deposit_behavior:
+            Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol
+        ).void
+      end
+      attr_writer :check_deposit_behavior
+
       # The description you choose for the Lockbox.
       sig { returns(T.nilable(String)) }
       attr_reader :description
@@ -25,32 +43,22 @@ module Increase
       sig { params(recipient_name: String).void }
       attr_writer :recipient_name
 
-      # This indicates if checks can be sent to the Lockbox.
-      sig do
-        returns(T.nilable(Increase::LockboxUpdateParams::Status::OrSymbol))
-      end
-      attr_reader :status
-
-      sig do
-        params(status: Increase::LockboxUpdateParams::Status::OrSymbol).void
-      end
-      attr_writer :status
-
       sig do
         params(
+          check_deposit_behavior:
+            Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol,
           description: String,
           recipient_name: String,
-          status: Increase::LockboxUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # This indicates if checks mailed to this lockbox will be deposited.
+        check_deposit_behavior: nil,
         # The description you choose for the Lockbox.
         description: nil,
         # The recipient name you choose for the Lockbox.
         recipient_name: nil,
-        # This indicates if checks can be sent to the Lockbox.
-        status: nil,
         request_options: {}
       )
       end
@@ -58,9 +66,10 @@ module Increase
       sig do
         override.returns(
           {
+            check_deposit_behavior:
+              Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol,
             description: String,
             recipient_name: String,
-            status: Increase::LockboxUpdateParams::Status::OrSymbol,
             request_options: Increase::RequestOptions
           }
         )
@@ -68,25 +77,35 @@ module Increase
       def to_hash
       end
 
-      # This indicates if checks can be sent to the Lockbox.
-      module Status
+      # This indicates if checks mailed to this lockbox will be deposited.
+      module CheckDepositBehavior
         extend Increase::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Increase::LockboxUpdateParams::Status) }
+          T.type_alias do
+            T.all(Symbol, Increase::LockboxUpdateParams::CheckDepositBehavior)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # This Lockbox is active. Checks mailed to it will be deposited automatically.
-        ACTIVE =
-          T.let(:active, Increase::LockboxUpdateParams::Status::TaggedSymbol)
+        # Checks mailed to this Lockbox will be deposited.
+        ENABLED =
+          T.let(
+            :enabled,
+            Increase::LockboxUpdateParams::CheckDepositBehavior::TaggedSymbol
+          )
 
-        # This Lockbox is inactive. Checks mailed to it will not be deposited.
-        INACTIVE =
-          T.let(:inactive, Increase::LockboxUpdateParams::Status::TaggedSymbol)
+        # Checks mailed to this Lockbox will not be deposited.
+        DISABLED =
+          T.let(
+            :disabled,
+            Increase::LockboxUpdateParams::CheckDepositBehavior::TaggedSymbol
+          )
 
         sig do
           override.returns(
-            T::Array[Increase::LockboxUpdateParams::Status::TaggedSymbol]
+            T::Array[
+              Increase::LockboxUpdateParams::CheckDepositBehavior::TaggedSymbol
+            ]
           )
         end
         def self.values
