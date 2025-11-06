@@ -10,7 +10,8 @@ module Increase
         check_number: String,
         physical_check: Increase::CheckTransferCreateParams::PhysicalCheck,
         require_approval: bool,
-        third_party: Increase::CheckTransferCreateParams::ThirdParty
+        third_party: Increase::CheckTransferCreateParams::ThirdParty,
+        valid_until_date: Date
       }
       & Increase::Internal::Type::request_parameters
 
@@ -52,6 +53,10 @@ module Increase
         Increase::CheckTransferCreateParams::ThirdParty
       ) -> Increase::CheckTransferCreateParams::ThirdParty
 
+      attr_reader valid_until_date: Date?
+
+      def valid_until_date=: (Date) -> Date
+
       def initialize: (
         account_id: String,
         amount: Integer,
@@ -62,6 +67,7 @@ module Increase
         ?physical_check: Increase::CheckTransferCreateParams::PhysicalCheck,
         ?require_approval: bool,
         ?third_party: Increase::CheckTransferCreateParams::ThirdParty,
+        ?valid_until_date: Date,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -75,6 +81,7 @@ module Increase
         physical_check: Increase::CheckTransferCreateParams::PhysicalCheck,
         require_approval: bool,
         third_party: Increase::CheckTransferCreateParams::ThirdParty,
+        valid_until_date: Date,
         request_options: Increase::RequestOptions
       }
 

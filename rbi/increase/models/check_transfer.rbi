@@ -180,6 +180,12 @@ module Increase
       sig { returns(Increase::CheckTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # If set, the check will be valid on or before this date. After this date, the
+      # check transfer will be stopped and deposits will not be accepted. For checks
+      # printed by Increase, this date is included on the check as its expiry.
+      sig { returns(T.nilable(Date)) }
+      attr_accessor :valid_until_date
+
       # Check Transfers move funds from your Increase account by mailing a physical
       # check.
       sig do
@@ -212,7 +218,8 @@ module Increase
             T.nilable(Increase::CheckTransfer::StopPaymentRequest::OrHash),
           submission: T.nilable(Increase::CheckTransfer::Submission::OrHash),
           third_party: T.nilable(Increase::CheckTransfer::ThirdParty::OrHash),
-          type: Increase::CheckTransfer::Type::OrSymbol
+          type: Increase::CheckTransfer::Type::OrSymbol,
+          valid_until_date: T.nilable(Date)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -279,7 +286,11 @@ module Increase
         third_party:,
         # A constant representing the object's type. For this resource it will always be
         # `check_transfer`.
-        type:
+        type:,
+        # If set, the check will be valid on or before this date. After this date, the
+        # check transfer will be stopped and deposits will not be accepted. For checks
+        # printed by Increase, this date is included on the check as its expiry.
+        valid_until_date:
       )
       end
 
@@ -312,7 +323,8 @@ module Increase
               T.nilable(Increase::CheckTransfer::StopPaymentRequest),
             submission: T.nilable(Increase::CheckTransfer::Submission),
             third_party: T.nilable(Increase::CheckTransfer::ThirdParty),
-            type: Increase::CheckTransfer::Type::TaggedSymbol
+            type: Increase::CheckTransfer::Type::TaggedSymbol,
+            valid_until_date: T.nilable(Date)
           }
         )
       end

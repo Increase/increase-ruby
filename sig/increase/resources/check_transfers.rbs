@@ -11,6 +11,7 @@ module Increase
         ?physical_check: Increase::CheckTransferCreateParams::PhysicalCheck,
         ?require_approval: bool,
         ?third_party: Increase::CheckTransferCreateParams::ThirdParty,
+        ?valid_until_date: Date,
         ?request_options: Increase::request_opts
       ) -> Increase::CheckTransfer
 

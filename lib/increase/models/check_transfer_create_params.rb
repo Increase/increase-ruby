@@ -69,7 +69,15 @@ module Increase
       #   @return [Increase::Models::CheckTransferCreateParams::ThirdParty, nil]
       optional :third_party, -> { Increase::CheckTransferCreateParams::ThirdParty }
 
-      # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
+      # @!attribute valid_until_date
+      #   If provided, the check will be valid on or before this date. After this date,
+      #   the check transfer will be stopped and deposits will not be accepted. For checks
+      #   printed by Increase, this date is included on the check as its expiry.
+      #
+      #   @return [Date, nil]
+      optional :valid_until_date, Date
+
+      # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, valid_until_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckTransferCreateParams} for more details.
       #
@@ -90,6 +98,8 @@ module Increase
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty] Details relating to the custom fulfillment you will perform. This is required if
+      #
+      #   @param valid_until_date [Date] If provided, the check will be valid on or before this date. After this date, th
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
