@@ -98,18 +98,26 @@ module Increase
         #   @return [String, nil]
         required :back_file_id, String, nil?: true
 
+        # @!attribute check_deposit_id
+        #   The identifier of the Check Deposit if this check was deposited.
+        #
+        #   @return [String, nil]
+        required :check_deposit_id, String, nil?: true
+
         # @!attribute front_file_id
         #   The identifier for the File containing the front of the check.
         #
         #   @return [String, nil]
         required :front_file_id, String, nil?: true
 
-        # @!method initialize(amount:, back_file_id:, front_file_id:)
+        # @!method initialize(amount:, back_file_id:, check_deposit_id:, front_file_id:)
         #   Inbound Mail Item Checks represent the checks in an Inbound Mail Item.
         #
         #   @param amount [Integer] The amount of the check.
         #
         #   @param back_file_id [String, nil] The identifier for the File containing the back of the check.
+        #
+        #   @param check_deposit_id [String, nil] The identifier of the Check Deposit if this check was deposited.
         #
         #   @param front_file_id [String, nil] The identifier for the File containing the front of the check.
       end
