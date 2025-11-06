@@ -126,6 +126,10 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :back_file_id
 
+        # The identifier of the Check Deposit if this check was deposited.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :check_deposit_id
+
         # The identifier for the File containing the front of the check.
         sig { returns(T.nilable(String)) }
         attr_accessor :front_file_id
@@ -135,6 +139,7 @@ module Increase
           params(
             amount: Integer,
             back_file_id: T.nilable(String),
+            check_deposit_id: T.nilable(String),
             front_file_id: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -143,6 +148,8 @@ module Increase
           amount:,
           # The identifier for the File containing the back of the check.
           back_file_id:,
+          # The identifier of the Check Deposit if this check was deposited.
+          check_deposit_id:,
           # The identifier for the File containing the front of the check.
           front_file_id:
         )
@@ -153,6 +160,7 @@ module Increase
             {
               amount: Integer,
               back_file_id: T.nilable(String),
+              check_deposit_id: T.nilable(String),
               front_file_id: T.nilable(String)
             }
           )

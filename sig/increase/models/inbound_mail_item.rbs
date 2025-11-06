@@ -57,24 +57,33 @@ module Increase
       }
 
       type check =
-        { amount: Integer, back_file_id: String?, front_file_id: String? }
+        {
+          amount: Integer,
+          back_file_id: String?,
+          check_deposit_id: String?,
+          front_file_id: String?
+        }
 
       class Check < Increase::Internal::Type::BaseModel
         attr_accessor amount: Integer
 
         attr_accessor back_file_id: String?
 
+        attr_accessor check_deposit_id: String?
+
         attr_accessor front_file_id: String?
 
         def initialize: (
           amount: Integer,
           back_file_id: String?,
+          check_deposit_id: String?,
           front_file_id: String?
         ) -> void
 
         def to_hash: -> {
           amount: Integer,
           back_file_id: String?,
+          check_deposit_id: String?,
           front_file_id: String?
         }
       end
