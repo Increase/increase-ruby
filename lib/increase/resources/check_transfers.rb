@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Check Transfer
       #
-      # @overload create(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, request_options: {})
+      # @overload create(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, valid_until_date: nil, request_options: {})
       #
       # @param account_id [String] The identifier for the account that will send the transfer.
       #
@@ -27,6 +27,8 @@ module Increase
       # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
       # @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty] Details relating to the custom fulfillment you will perform. This is required if
+      #
+      # @param valid_until_date [Date] If provided, the check will be valid on or before this date. After this date, th
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

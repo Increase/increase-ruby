@@ -25,7 +25,8 @@ module Increase
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?,
         submission: Increase::CheckTransfer::Submission?,
         third_party: Increase::CheckTransfer::ThirdParty?,
-        type: Increase::Models::CheckTransfer::type_
+        type: Increase::Models::CheckTransfer::type_,
+        valid_until_date: Date?
       }
 
     class CheckTransfer < Increase::Internal::Type::BaseModel
@@ -77,6 +78,8 @@ module Increase
 
       attr_accessor type: Increase::Models::CheckTransfer::type_
 
+      attr_accessor valid_until_date: Date?
+
       def initialize: (
         id: String,
         account_id: String,
@@ -101,7 +104,8 @@ module Increase
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?,
         submission: Increase::CheckTransfer::Submission?,
         third_party: Increase::CheckTransfer::ThirdParty?,
-        type: Increase::Models::CheckTransfer::type_
+        type: Increase::Models::CheckTransfer::type_,
+        valid_until_date: Date?
       ) -> void
 
       def to_hash: -> {
@@ -128,7 +132,8 @@ module Increase
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest?,
         submission: Increase::CheckTransfer::Submission?,
         third_party: Increase::CheckTransfer::ThirdParty?,
-        type: Increase::Models::CheckTransfer::type_
+        type: Increase::Models::CheckTransfer::type_,
+        valid_until_date: Date?
       }
 
       type approval = { approved_at: Time, approved_by: String? }
