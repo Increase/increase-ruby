@@ -164,7 +164,15 @@ module Increase
       #   @return [Symbol, Increase::Models::CheckTransfer::Type]
       required :type, enum: -> { Increase::CheckTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, approved_inbound_check_deposit_id:, balance_check:, cancellation:, check_number:, created_at:, created_by:, currency:, fulfillment_method:, idempotency_key:, mailing:, pending_transaction_id:, physical_check:, routing_number:, source_account_number_id:, status:, stop_payment_request:, submission:, third_party:, type:)
+      # @!attribute valid_until_date
+      #   If set, the check will be valid on or before this date. After this date, the
+      #   check transfer will be stopped and deposits will not be accepted. For checks
+      #   printed by Increase, this date is included on the check as its expiry.
+      #
+      #   @return [Date, nil]
+      required :valid_until_date, Date, nil?: true
+
+      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, approved_inbound_check_deposit_id:, balance_check:, cancellation:, check_number:, created_at:, created_by:, currency:, fulfillment_method:, idempotency_key:, mailing:, pending_transaction_id:, physical_check:, routing_number:, source_account_number_id:, status:, stop_payment_request:, submission:, third_party:, type:, valid_until_date:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckTransfer} for more details.
       #
@@ -218,6 +226,8 @@ module Increase
       #   @param third_party [Increase::Models::CheckTransfer::ThirdParty, nil] Details relating to the custom fulfillment you will perform. Will be present if
       #
       #   @param type [Symbol, Increase::Models::CheckTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param valid_until_date [Date, nil] If set, the check will be valid on or before this date. After this date, the che
 
       # @see Increase::Models::CheckTransfer#approval
       class Approval < Increase::Internal::Type::BaseModel

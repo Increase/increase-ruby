@@ -41,7 +41,8 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
         submission: Increase::CheckTransfer::Submission | nil,
         third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type
+        type: Increase::CheckTransfer::Type,
+        valid_until_date: Date | nil
       }
     end
   end
@@ -78,7 +79,8 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
         submission: Increase::CheckTransfer::Submission | nil,
         third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type
+        type: Increase::CheckTransfer::Type,
+        valid_until_date: Date | nil
       }
     end
   end
@@ -122,7 +124,8 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
         submission: Increase::CheckTransfer::Submission | nil,
         third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type
+        type: Increase::CheckTransfer::Type,
+        valid_until_date: Date | nil
       }
     end
   end
@@ -159,7 +162,8 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
         submission: Increase::CheckTransfer::Submission | nil,
         third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type
+        type: Increase::CheckTransfer::Type,
+        valid_until_date: Date | nil
       }
     end
   end
@@ -196,7 +200,8 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
         submission: Increase::CheckTransfer::Submission | nil,
         third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type
+        type: Increase::CheckTransfer::Type,
+        valid_until_date: Date | nil
       }
     end
   end
@@ -233,7 +238,8 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
         stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
         submission: Increase::CheckTransfer::Submission | nil,
         third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type
+        type: Increase::CheckTransfer::Type,
+        valid_until_date: Date | nil
       }
     end
   end

@@ -18,6 +18,7 @@ module Increase
             Increase::CheckTransferCreateParams::PhysicalCheck::OrHash,
           require_approval: T::Boolean,
           third_party: Increase::CheckTransferCreateParams::ThirdParty::OrHash,
+          valid_until_date: Date,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::CheckTransfer)
       end
@@ -48,6 +49,10 @@ module Increase
         # `fulfillment_method` is equal to `third_party`. It must not be included if any
         # other `fulfillment_method` is provided.
         third_party: nil,
+        # If provided, the check will be valid on or before this date. After this date,
+        # the check transfer will be stopped and deposits will not be accepted. For checks
+        # printed by Increase, this date is included on the check as its expiry.
+        valid_until_date: nil,
         request_options: {}
       )
       end
