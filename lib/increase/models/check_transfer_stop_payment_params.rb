@@ -28,6 +28,9 @@ module Increase
         # The check was not authorized.
         NOT_AUTHORIZED = :not_authorized
 
+        # The check was stopped for `valid_until_date` being in the past.
+        VALID_UNTIL_DATE_PASSED = :valid_until_date_passed
+
         # The check was stopped for another reason.
         UNKNOWN = :unknown
 
