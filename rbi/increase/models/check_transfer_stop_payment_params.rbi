@@ -77,6 +77,13 @@ module Increase
             Increase::CheckTransferStopPaymentParams::Reason::TaggedSymbol
           )
 
+        # The check was stopped for `valid_until_date` being in the past.
+        VALID_UNTIL_DATE_PASSED =
+          T.let(
+            :valid_until_date_passed,
+            Increase::CheckTransferStopPaymentParams::Reason::TaggedSymbol
+          )
+
         # The check was stopped for another reason.
         UNKNOWN =
           T.let(

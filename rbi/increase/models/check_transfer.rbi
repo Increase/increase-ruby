@@ -181,8 +181,9 @@ module Increase
       attr_accessor :type
 
       # If set, the check will be valid on or before this date. After this date, the
-      # check transfer will be stopped and deposits will not be accepted. For checks
-      # printed by Increase, this date is included on the check as its expiry.
+      # check transfer will be automatically stopped and deposits will not be accepted.
+      # For checks printed by Increase, this date is included on the check as its
+      # expiry.
       sig { returns(T.nilable(Date)) }
       attr_accessor :valid_until_date
 
@@ -288,8 +289,9 @@ module Increase
         # `check_transfer`.
         type:,
         # If set, the check will be valid on or before this date. After this date, the
-        # check transfer will be stopped and deposits will not be accepted. For checks
-        # printed by Increase, this date is included on the check as its expiry.
+        # check transfer will be automatically stopped and deposits will not be accepted.
+        # For checks printed by Increase, this date is included on the check as its
+        # expiry.
         valid_until_date:
       )
       end
@@ -1433,6 +1435,13 @@ module Increase
           NOT_AUTHORIZED =
             T.let(
               :not_authorized,
+              Increase::CheckTransfer::StopPaymentRequest::Reason::TaggedSymbol
+            )
+
+          # The check was stopped for `valid_until_date` being in the past.
+          VALID_UNTIL_DATE_PASSED =
+            T.let(
+              :valid_until_date_passed,
               Increase::CheckTransfer::StopPaymentRequest::Reason::TaggedSymbol
             )
 
