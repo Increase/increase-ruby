@@ -764,14 +764,17 @@ module Increase
         # The transfer has been canceled.
         CANCELED = :canceled
 
-        # The transfer is pending submission.
-        PENDING_SUBMISSION = :pending_submission
+        # The transfer is pending review.
+        PENDING_REVIEWING = :pending_reviewing
 
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
 
         # The transfer has been rejected.
         REJECTED = :rejected
+
+        # The transfer is pending submission.
+        PENDING_SUBMISSION = :pending_submission
 
         # The check is queued for mailing.
         PENDING_MAILING = :pending_mailing
