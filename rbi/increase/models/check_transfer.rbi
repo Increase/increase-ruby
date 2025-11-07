@@ -1280,10 +1280,10 @@ module Increase
         CANCELED =
           T.let(:canceled, Increase::CheckTransfer::Status::TaggedSymbol)
 
-        # The transfer is pending submission.
-        PENDING_SUBMISSION =
+        # The transfer is pending review.
+        PENDING_REVIEWING =
           T.let(
-            :pending_submission,
+            :pending_reviewing,
             Increase::CheckTransfer::Status::TaggedSymbol
           )
 
@@ -1297,6 +1297,13 @@ module Increase
         # The transfer has been rejected.
         REJECTED =
           T.let(:rejected, Increase::CheckTransfer::Status::TaggedSymbol)
+
+        # The transfer is pending submission.
+        PENDING_SUBMISSION =
+          T.let(
+            :pending_submission,
+            Increase::CheckTransfer::Status::TaggedSymbol
+          )
 
         # The check is queued for mailing.
         PENDING_MAILING =
