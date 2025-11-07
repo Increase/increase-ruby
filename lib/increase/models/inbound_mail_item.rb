@@ -110,7 +110,13 @@ module Increase
         #   @return [String, nil]
         required :front_file_id, String, nil?: true
 
-        # @!method initialize(amount:, back_file_id:, check_deposit_id:, front_file_id:)
+        # @!attribute status
+        #   The status of the Inbound Mail Item Check.
+        #
+        #   @return [Symbol, Increase::Models::InboundMailItem::Check::Status, nil]
+        required :status, enum: -> { Increase::InboundMailItem::Check::Status }, nil?: true
+
+        # @!method initialize(amount:, back_file_id:, check_deposit_id:, front_file_id:, status:)
         #   Inbound Mail Item Checks represent the checks in an Inbound Mail Item.
         #
         #   @param amount [Integer] The amount of the check.
@@ -120,6 +126,27 @@ module Increase
         #   @param check_deposit_id [String, nil] The identifier of the Check Deposit if this check was deposited.
         #
         #   @param front_file_id [String, nil] The identifier for the File containing the front of the check.
+        #
+        #   @param status [Symbol, Increase::Models::InboundMailItem::Check::Status, nil] The status of the Inbound Mail Item Check.
+
+        # The status of the Inbound Mail Item Check.
+        #
+        # @see Increase::Models::InboundMailItem::Check#status
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          # The check is pending processing.
+          PENDING = :pending
+
+          # The check has been deposited.
+          DEPOSITED = :deposited
+
+          # The check has been ignored.
+          IGNORED = :ignored
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # If the mail item has been rejected, why it was rejected.
