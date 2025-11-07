@@ -64,6 +64,9 @@ module Increase
         # An image of a government-issued ID.
         IDENTITY_DOCUMENT = :identity_document
 
+        # A supplemental document for a Loan Application.
+        LOAN_APPLICATION_SUPPLEMENTAL_DOCUMENT = :loan_application_supplemental_document
+
         # A file purpose not covered by any of the other cases.
         OTHER = :other
 

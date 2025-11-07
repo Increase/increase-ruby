@@ -197,6 +197,13 @@ module Increase
         INCREASE_STATEMENT =
           T.let(:increase_statement, Increase::File::Purpose::TaggedSymbol)
 
+        # A supplemental document for a Loan Application.
+        LOAN_APPLICATION_SUPPLEMENTAL_DOCUMENT =
+          T.let(
+            :loan_application_supplemental_document,
+            Increase::File::Purpose::TaggedSymbol
+          )
+
         # A file purpose not covered by any of the other cases.
         OTHER = T.let(:other, Increase::File::Purpose::TaggedSymbol)
 

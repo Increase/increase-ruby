@@ -116,6 +116,13 @@ module Increase
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
+        # A supplemental document for a Loan Application.
+        LOAN_APPLICATION_SUPPLEMENTAL_DOCUMENT =
+          T.let(
+            :loan_application_supplemental_document,
+            Increase::FileCreateParams::Purpose::TaggedSymbol
+          )
+
         # A file purpose not covered by any of the other cases.
         OTHER = T.let(:other, Increase::FileCreateParams::Purpose::TaggedSymbol)
 
