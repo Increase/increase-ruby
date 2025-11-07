@@ -61,7 +61,8 @@ module Increase
           amount: Integer,
           back_file_id: String?,
           check_deposit_id: String?,
-          front_file_id: String?
+          front_file_id: String?,
+          status: Increase::Models::InboundMailItem::Check::status?
         }
 
       class Check < Increase::Internal::Type::BaseModel
@@ -73,19 +74,40 @@ module Increase
 
         attr_accessor front_file_id: String?
 
+        attr_accessor status: Increase::Models::InboundMailItem::Check::status?
+
         def initialize: (
           amount: Integer,
           back_file_id: String?,
           check_deposit_id: String?,
-          front_file_id: String?
+          front_file_id: String?,
+          status: Increase::Models::InboundMailItem::Check::status?
         ) -> void
 
         def to_hash: -> {
           amount: Integer,
           back_file_id: String?,
           check_deposit_id: String?,
-          front_file_id: String?
+          front_file_id: String?,
+          status: Increase::Models::InboundMailItem::Check::status?
         }
+
+        type status = :pending | :deposited | :ignored
+
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          # The check is pending processing.
+          PENDING: :pending
+
+          # The check has been deposited.
+          DEPOSITED: :deposited
+
+          # The check has been ignored.
+          IGNORED: :ignored
+
+          def self?.values: -> ::Array[Increase::Models::InboundMailItem::Check::status]
+        end
       end
 
       type rejection_reason =

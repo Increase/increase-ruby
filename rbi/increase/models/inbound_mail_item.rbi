@@ -134,13 +134,23 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :front_file_id
 
+        # The status of the Inbound Mail Item Check.
+        sig do
+          returns(
+            T.nilable(Increase::InboundMailItem::Check::Status::TaggedSymbol)
+          )
+        end
+        attr_accessor :status
+
         # Inbound Mail Item Checks represent the checks in an Inbound Mail Item.
         sig do
           params(
             amount: Integer,
             back_file_id: T.nilable(String),
             check_deposit_id: T.nilable(String),
-            front_file_id: T.nilable(String)
+            front_file_id: T.nilable(String),
+            status:
+              T.nilable(Increase::InboundMailItem::Check::Status::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -151,7 +161,9 @@ module Increase
           # The identifier of the Check Deposit if this check was deposited.
           check_deposit_id:,
           # The identifier for the File containing the front of the check.
-          front_file_id:
+          front_file_id:,
+          # The status of the Inbound Mail Item Check.
+          status:
         )
         end
 
@@ -161,11 +173,55 @@ module Increase
               amount: Integer,
               back_file_id: T.nilable(String),
               check_deposit_id: T.nilable(String),
-              front_file_id: T.nilable(String)
+              front_file_id: T.nilable(String),
+              status:
+                T.nilable(
+                  Increase::InboundMailItem::Check::Status::TaggedSymbol
+                )
             }
           )
         end
         def to_hash
+        end
+
+        # The status of the Inbound Mail Item Check.
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::InboundMailItem::Check::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The check is pending processing.
+          PENDING =
+            T.let(
+              :pending,
+              Increase::InboundMailItem::Check::Status::TaggedSymbol
+            )
+
+          # The check has been deposited.
+          DEPOSITED =
+            T.let(
+              :deposited,
+              Increase::InboundMailItem::Check::Status::TaggedSymbol
+            )
+
+          # The check has been ignored.
+          IGNORED =
+            T.let(
+              :ignored,
+              Increase::InboundMailItem::Check::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[Increase::InboundMailItem::Check::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
 
