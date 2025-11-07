@@ -122,7 +122,8 @@ module Increase
         )
       end
 
-      # Cancel a pending Check Transfer
+      # Cancel a Check Transfer with the `pending_approval` status. See
+      # [Transfer Approvals](/documentation/transfer-approvals) for more information.
       #
       # @overload cancel(check_transfer_id, request_options: {})
       #
