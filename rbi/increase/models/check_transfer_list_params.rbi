@@ -260,10 +260,10 @@ module Increase
               Increase::CheckTransferListParams::Status::In::TaggedSymbol
             )
 
-          # The transfer is pending review.
-          PENDING_REVIEWING =
+          # The transfer is pending submission.
+          PENDING_SUBMISSION =
             T.let(
-              :pending_reviewing,
+              :pending_submission,
               Increase::CheckTransferListParams::Status::In::TaggedSymbol
             )
 
@@ -278,13 +278,6 @@ module Increase
           REJECTED =
             T.let(
               :rejected,
-              Increase::CheckTransferListParams::Status::In::TaggedSymbol
-            )
-
-          # The transfer is pending submission.
-          PENDING_SUBMISSION =
-            T.let(
-              :pending_submission,
               Increase::CheckTransferListParams::Status::In::TaggedSymbol
             )
 
