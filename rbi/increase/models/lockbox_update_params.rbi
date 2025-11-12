@@ -101,6 +101,13 @@ module Increase
             Increase::LockboxUpdateParams::CheckDepositBehavior::TaggedSymbol
           )
 
+        # Checks mailed to this Lockbox will be pending until actioned.
+        PEND_FOR_PROCESSING =
+          T.let(
+            :pend_for_processing,
+            Increase::LockboxUpdateParams::CheckDepositBehavior::TaggedSymbol
+          )
+
         sig do
           override.returns(
             T::Array[

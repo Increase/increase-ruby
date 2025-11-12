@@ -55,6 +55,30 @@ module Increase
         )
       end
 
+      # Action a Inbound Mail Item
+      #
+      # @overload action(inbound_mail_item_id, checks:, request_options: {})
+      #
+      # @param inbound_mail_item_id [String] The identifier of the Inbound Mail Item to action.
+      #
+      # @param checks [Array<Increase::Models::InboundMailItemActionParams::Check>] The actions to perform on the Inbound Mail Item.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::InboundMailItem]
+      #
+      # @see Increase::Models::InboundMailItemActionParams
+      def action(inbound_mail_item_id, params)
+        parsed, options = Increase::InboundMailItemActionParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["inbound_mail_items/%1$s/action", inbound_mail_item_id],
+          body: parsed,
+          model: Increase::InboundMailItem,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Increase::Client]

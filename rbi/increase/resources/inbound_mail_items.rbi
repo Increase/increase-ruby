@@ -40,6 +40,24 @@ module Increase
       )
       end
 
+      # Action a Inbound Mail Item
+      sig do
+        params(
+          inbound_mail_item_id: String,
+          checks:
+            T::Array[Increase::InboundMailItemActionParams::Check::OrHash],
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::InboundMailItem)
+      end
+      def action(
+        # The identifier of the Inbound Mail Item to action.
+        inbound_mail_item_id,
+        # The actions to perform on the Inbound Mail Item.
+        checks:,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)

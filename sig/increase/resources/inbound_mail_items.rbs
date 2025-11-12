@@ -14,6 +14,12 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::InboundMailItem]
 
+      def action: (
+        String inbound_mail_item_id,
+        checks: ::Array[Increase::InboundMailItemActionParams::Check],
+        ?request_options: Increase::request_opts
+      ) -> Increase::InboundMailItem
+
       def initialize: (client: Increase::Client) -> void
     end
   end

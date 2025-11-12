@@ -98,7 +98,7 @@ module Increase
         }
       end
 
-      type check_deposit_behavior = :enabled | :disabled
+      type check_deposit_behavior = :enabled | :disabled | :pend_for_processing
 
       module CheckDepositBehavior
         extend Increase::Internal::Type::Enum
@@ -108,6 +108,9 @@ module Increase
 
         # Checks mailed to this Lockbox will not be deposited.
         DISABLED: :disabled
+
+        # Checks mailed to this Lockbox will be pending until actioned.
+        PEND_FOR_PROCESSING: :pend_for_processing
 
         def self?.values: -> ::Array[Increase::Models::Lockbox::check_deposit_behavior]
       end
