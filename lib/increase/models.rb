@@ -376,6 +376,8 @@ module Increase
 
   InboundMailItem = Increase::Models::InboundMailItem
 
+  InboundMailItemActionParams = Increase::Models::InboundMailItemActionParams
+
   InboundMailItemListParams = Increase::Models::InboundMailItemListParams
 
   InboundMailItemRetrieveParams = Increase::Models::InboundMailItemRetrieveParams

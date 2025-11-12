@@ -161,6 +161,9 @@ module Increase
         # Checks mailed to this Lockbox will not be deposited.
         DISABLED = :disabled
 
+        # Checks mailed to this Lockbox will be pending until actioned.
+        PEND_FOR_PROCESSING = :pend_for_processing
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

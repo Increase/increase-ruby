@@ -1,0 +1,62 @@
+module Increase
+  module Models
+    type inbound_mail_item_action_params =
+      { checks: ::Array[Increase::InboundMailItemActionParams::Check] }
+      & Increase::Internal::Type::request_parameters
+
+    class InboundMailItemActionParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor checks: ::Array[Increase::InboundMailItemActionParams::Check]
+
+      def initialize: (
+        checks: ::Array[Increase::InboundMailItemActionParams::Check],
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        checks: ::Array[Increase::InboundMailItemActionParams::Check],
+        request_options: Increase::RequestOptions
+      }
+
+      type check =
+        {
+          action: Increase::Models::InboundMailItemActionParams::Check::action,
+          account: String
+        }
+
+      class Check < Increase::Internal::Type::BaseModel
+        attr_accessor action: Increase::Models::InboundMailItemActionParams::Check::action
+
+        attr_reader account: String?
+
+        def account=: (String) -> String
+
+        def initialize: (
+          action: Increase::Models::InboundMailItemActionParams::Check::action,
+          ?account: String
+        ) -> void
+
+        def to_hash: -> {
+          action: Increase::Models::InboundMailItemActionParams::Check::action,
+          account: String
+        }
+
+        type action = :deposit | :ignore
+
+        module Action
+          extend Increase::Internal::Type::Enum
+
+          # The check will be deposited.
+          DEPOSIT: :deposit
+
+          # The check will be ignored.
+          IGNORE: :ignore
+
+          def self?.values: -> ::Array[Increase::Models::InboundMailItemActionParams::Check::action]
+        end
+      end
+    end
+  end
+end
