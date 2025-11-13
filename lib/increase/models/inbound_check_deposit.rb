@@ -237,6 +237,9 @@ module Increase
           # The recipient was not able to process the check. This usually happens for e.g., low quality images.
           NON_CONFORMING_ITEM = :non_conforming_item
 
+          # The check has already been deposited elsewhere and so this is a duplicate.
+          PAID = :paid
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

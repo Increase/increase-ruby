@@ -11364,6 +11364,13 @@ module Increase
                 Increase::Transaction::Source::InboundCheckAdjustment::Reason::TaggedSymbol
               )
 
+            # The check has already been deposited elsewhere and so this is a duplicate.
+            PAID =
+              T.let(
+                :paid,
+                Increase::Transaction::Source::InboundCheckAdjustment::Reason::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[
