@@ -11,13 +11,15 @@ module Increase
       required :id, String
 
       # @!attribute back_image_file_id
-      #   The identifier of the File containing the physical card's back image.
+      #   The identifier of the File containing the physical card's back image. This will
+      #   be missing until the image has been post-processed.
       #
       #   @return [String, nil]
       required :back_image_file_id, String, nil?: true
 
       # @!attribute carrier_image_file_id
-      #   The identifier of the File containing the physical card's carrier image.
+      #   The identifier of the File containing the physical card's carrier image. This
+      #   will be missing until the image has been post-processed.
       #
       #   @return [String, nil]
       required :carrier_image_file_id, String, nil?: true
@@ -48,7 +50,8 @@ module Increase
       required :description, String
 
       # @!attribute front_image_file_id
-      #   The identifier of the File containing the physical card's front image.
+      #   The identifier of the File containing the physical card's front image. This will
+      #   be missing until the image has been post-processed.
       #
       #   @return [String, nil]
       required :front_image_file_id, String, nil?: true
@@ -97,9 +100,9 @@ module Increase
       #
       #   @param id [String] The Card Profile identifier.
       #
-      #   @param back_image_file_id [String, nil] The identifier of the File containing the physical card's back image.
+      #   @param back_image_file_id [String, nil] The identifier of the File containing the physical card's back image. This will
       #
-      #   @param carrier_image_file_id [String, nil] The identifier of the File containing the physical card's carrier image.
+      #   @param carrier_image_file_id [String, nil] The identifier of the File containing the physical card's carrier image. This wi
       #
       #   @param contact_phone [String, nil] A phone number the user can contact to receive support for their card.
       #
@@ -109,7 +112,7 @@ module Increase
       #
       #   @param description [String] A description you can use to identify the Physical Card Profile.
       #
-      #   @param front_image_file_id [String, nil] The identifier of the File containing the physical card's front image.
+      #   @param front_image_file_id [String, nil] The identifier of the File containing the physical card's front image. This will
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
