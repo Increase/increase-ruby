@@ -12,11 +12,13 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
-      # The identifier of the File containing the physical card's back image.
+      # The identifier of the File containing the physical card's back image. This will
+      # be missing until the image has been post-processed.
       sig { returns(T.nilable(String)) }
       attr_accessor :back_image_file_id
 
-      # The identifier of the File containing the physical card's carrier image.
+      # The identifier of the File containing the physical card's carrier image. This
+      # will be missing until the image has been post-processed.
       sig { returns(T.nilable(String)) }
       attr_accessor :carrier_image_file_id
 
@@ -37,7 +39,8 @@ module Increase
       sig { returns(String) }
       attr_accessor :description
 
-      # The identifier of the File containing the physical card's front image.
+      # The identifier of the File containing the physical card's front image. This will
+      # be missing until the image has been post-processed.
       sig { returns(T.nilable(String)) }
       attr_accessor :front_image_file_id
 
@@ -88,9 +91,11 @@ module Increase
       def self.new(
         # The Card Profile identifier.
         id:,
-        # The identifier of the File containing the physical card's back image.
+        # The identifier of the File containing the physical card's back image. This will
+        # be missing until the image has been post-processed.
         back_image_file_id:,
-        # The identifier of the File containing the physical card's carrier image.
+        # The identifier of the File containing the physical card's carrier image. This
+        # will be missing until the image has been post-processed.
         carrier_image_file_id:,
         # A phone number the user can contact to receive support for their card.
         contact_phone:,
@@ -101,7 +106,8 @@ module Increase
         creator:,
         # A description you can use to identify the Physical Card Profile.
         description:,
-        # The identifier of the File containing the physical card's front image.
+        # The identifier of the File containing the physical card's front image. This will
+        # be missing until the image has been post-processed.
         front_image_file_id:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
