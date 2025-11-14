@@ -343,7 +343,7 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
-          # A card image to be printed on the front of a physical card. This must be a 2100x1340 pixel PNG with no other color but black.
+          # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with no other color but black.
           PHYSICAL_CARD_FRONT =
             T.let(
               :physical_card_front,
