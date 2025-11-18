@@ -8,9 +8,7 @@ module Increase
       #
       # Create a Card Push Transfer
       #
-      # @overload create(amount:, business_application_identifier:, card_token_id:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, require_approval: nil, request_options: {})
-      #
-      # @param amount [Integer] The transfer amount in USD cents. For Card Push transfers, must be positive.
+      # @overload create(business_application_identifier:, card_token_id:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, require_approval: nil, request_options: {})
       #
       # @param business_application_identifier [Symbol, Increase::Models::CardPushTransferCreateParams::BusinessApplicationIdentifier] The Business Application Identifier describes the type of transaction being perf
       #
@@ -27,6 +25,8 @@ module Increase
       # @param merchant_postal_code [String] The postal code of the merchant (generally your business) sending the transfer.
       #
       # @param merchant_state [String] The state of the merchant (generally your business) sending the transfer.
+      #
+      # @param presentment_amount [Increase::Models::CardPushTransferCreateParams::PresentmentAmount] The amount to transfer. The receiving bank will convert this to the cardholder's
       #
       # @param recipient_name [String] The name of the funds recipient.
       #

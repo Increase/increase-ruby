@@ -4811,7 +4811,7 @@ module Increase
 
           # The transfer amount in USD cents.
           sig { returns(Integer) }
-          attr_accessor :amount
+          attr_accessor :settlement_amount
 
           # The identifier of the Card Push Transfer that led to this Transaction.
           sig { returns(String) }
@@ -4822,19 +4822,23 @@ module Increase
           # A Card Push Transfer Acceptance is created when an Outbound Card Push Transfer
           # sent from Increase is accepted by the receiving bank.
           sig do
-            params(amount: Integer, transfer_id: String).returns(
+            params(settlement_amount: Integer, transfer_id: String).returns(
               T.attached_class
             )
           end
           def self.new(
             # The transfer amount in USD cents.
-            amount:,
+            settlement_amount:,
             # The identifier of the Card Push Transfer that led to this Transaction.
             transfer_id:
           )
           end
 
-          sig { override.returns({ amount: Integer, transfer_id: String }) }
+          sig do
+            override.returns(
+              { settlement_amount: Integer, transfer_id: String }
+            )
+          end
           def to_hash
           end
         end

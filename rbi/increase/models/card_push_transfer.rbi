@@ -28,10 +28,6 @@ module Increase
       sig { returns(String) }
       attr_accessor :account_id
 
-      # The transfer amount in USD cents.
-      sig { returns(Integer) }
-      attr_accessor :amount
-
       # If your account requires approvals for transfers and the transfer was approved,
       # this will contain details of the approval.
       sig { returns(T.nilable(Increase::CardPushTransfer::Approval)) }
@@ -83,11 +79,6 @@ module Increase
       end
       attr_writer :created_by
 
-      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
-      # currency.
-      sig { returns(Increase::CardPushTransfer::Currency::TaggedSymbol) }
-      attr_accessor :currency
-
       # If the transfer is rejected by the card network or the destination financial
       # institution, this will contain supplemental details.
       sig { returns(T.nilable(Increase::CardPushTransfer::Decline)) }
@@ -135,6 +126,20 @@ module Increase
       # The state of the merchant (generally your business) sending the transfer.
       sig { returns(String) }
       attr_accessor :merchant_state
+
+      # The amount that was transferred. The receiving bank will have converted this to
+      # the cardholder's currency. The amount that is applied to your Increase account
+      # matches the currency of your account.
+      sig { returns(Increase::CardPushTransfer::PresentmentAmount) }
+      attr_reader :presentment_amount
+
+      sig do
+        params(
+          presentment_amount:
+            Increase::CardPushTransfer::PresentmentAmount::OrHash
+        ).void
+      end
+      attr_writer :presentment_amount
 
       # The name of the funds recipient.
       sig { returns(String) }
@@ -191,7 +196,6 @@ module Increase
           id: String,
           acceptance: T.nilable(Increase::CardPushTransfer::Acceptance::OrHash),
           account_id: String,
-          amount: Integer,
           approval: T.nilable(Increase::CardPushTransfer::Approval::OrHash),
           business_application_identifier:
             Increase::CardPushTransfer::BusinessApplicationIdentifier::OrSymbol,
@@ -199,7 +203,6 @@ module Increase
             T.nilable(Increase::CardPushTransfer::Cancellation::OrHash),
           created_at: Time,
           created_by: T.nilable(Increase::CardPushTransfer::CreatedBy::OrHash),
-          currency: Increase::CardPushTransfer::Currency::OrSymbol,
           decline: T.nilable(Increase::CardPushTransfer::Decline::OrHash),
           idempotency_key: T.nilable(String),
           merchant_category_code: String,
@@ -208,6 +211,8 @@ module Increase
           merchant_name_prefix: String,
           merchant_postal_code: String,
           merchant_state: String,
+          presentment_amount:
+            Increase::CardPushTransfer::PresentmentAmount::OrHash,
           recipient_name: String,
           sender_address_city: String,
           sender_address_line1: String,
@@ -228,8 +233,6 @@ module Increase
         acceptance:,
         # The Account from which the transfer was sent.
         account_id:,
-        # The transfer amount in USD cents.
-        amount:,
         # If your account requires approvals for transfers and the transfer was approved,
         # this will contain details of the approval.
         approval:,
@@ -245,9 +248,6 @@ module Increase
         created_at:,
         # What object created the transfer, either via the API or the dashboard.
         created_by:,
-        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
-        # currency.
-        currency:,
         # If the transfer is rejected by the card network or the destination financial
         # institution, this will contain supplemental details.
         decline:,
@@ -273,6 +273,10 @@ module Increase
         merchant_postal_code:,
         # The state of the merchant (generally your business) sending the transfer.
         merchant_state:,
+        # The amount that was transferred. The receiving bank will have converted this to
+        # the cardholder's currency. The amount that is applied to your Increase account
+        # matches the currency of your account.
+        presentment_amount:,
         # The name of the funds recipient.
         recipient_name:,
         # The city of the sender.
@@ -304,14 +308,12 @@ module Increase
             id: String,
             acceptance: T.nilable(Increase::CardPushTransfer::Acceptance),
             account_id: String,
-            amount: Integer,
             approval: T.nilable(Increase::CardPushTransfer::Approval),
             business_application_identifier:
               Increase::CardPushTransfer::BusinessApplicationIdentifier::TaggedSymbol,
             cancellation: T.nilable(Increase::CardPushTransfer::Cancellation),
             created_at: Time,
             created_by: T.nilable(Increase::CardPushTransfer::CreatedBy),
-            currency: Increase::CardPushTransfer::Currency::TaggedSymbol,
             decline: T.nilable(Increase::CardPushTransfer::Decline),
             idempotency_key: T.nilable(String),
             merchant_category_code: String,
@@ -320,6 +322,7 @@ module Increase
             merchant_name_prefix: String,
             merchant_postal_code: String,
             merchant_state: String,
+            presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
             recipient_name: String,
             sender_address_city: String,
             sender_address_line1: String,
@@ -368,6 +371,10 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :network_transaction_identifier
 
+        # The transfer amount in USD cents.
+        sig { returns(Integer) }
+        attr_accessor :settlement_amount
+
         # If the transfer is accepted by the recipient bank, this will contain
         # supplemental details.
         sig do
@@ -378,7 +385,8 @@ module Increase
               T.nilable(
                 Increase::CardPushTransfer::Acceptance::CardVerificationValue2Result::OrSymbol
               ),
-            network_transaction_identifier: T.nilable(String)
+            network_transaction_identifier: T.nilable(String),
+            settlement_amount: Integer
           ).returns(T.attached_class)
         end
         def self.new(
@@ -390,7 +398,9 @@ module Increase
           # The result of the Card Verification Value 2 match.
           card_verification_value2_result:,
           # A unique identifier for the transaction on the card network.
-          network_transaction_identifier:
+          network_transaction_identifier:,
+          # The transfer amount in USD cents.
+          settlement_amount:
         )
         end
 
@@ -403,7 +413,8 @@ module Increase
                 T.nilable(
                   Increase::CardPushTransfer::Acceptance::CardVerificationValue2Result::TaggedSymbol
                 ),
-              network_transaction_identifier: T.nilable(String)
+              network_transaction_identifier: T.nilable(String),
+              settlement_amount: Integer
             }
           )
         end
@@ -886,27 +897,6 @@ module Increase
         end
       end
 
-      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
-      # currency.
-      module Currency
-        extend Increase::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Increase::CardPushTransfer::Currency) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        # US Dollar (USD)
-        USD = T.let(:USD, Increase::CardPushTransfer::Currency::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Increase::CardPushTransfer::Currency::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
       class Decline < Increase::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -1271,6 +1261,1204 @@ module Increase
             override.returns(
               T::Array[
                 Increase::CardPushTransfer::Decline::Reason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      class PresentmentAmount < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CardPushTransfer::PresentmentAmount,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+        sig do
+          returns(
+            Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+          )
+        end
+        attr_accessor :currency
+
+        # The amount value represented as a string containing a decimal number in major
+        # units (so e.g., "12.34" for $12.34).
+        sig { returns(String) }
+        attr_accessor :value
+
+        # The amount that was transferred. The receiving bank will have converted this to
+        # the cardholder's currency. The amount that is applied to your Increase account
+        # matches the currency of your account.
+        sig do
+          params(
+            currency:
+              Increase::CardPushTransfer::PresentmentAmount::Currency::OrSymbol,
+            value: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+          currency:,
+          # The amount value represented as a string containing a decimal number in major
+          # units (so e.g., "12.34" for $12.34).
+          value:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              currency:
+                Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol,
+              value: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+        module Currency
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::CardPushTransfer::PresentmentAmount::Currency
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # AFN
+          AFN =
+            T.let(
+              :AFN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # EUR
+          EUR =
+            T.let(
+              :EUR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ALL
+          ALL =
+            T.let(
+              :ALL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # DZD
+          DZD =
+            T.let(
+              :DZD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # USD
+          USD =
+            T.let(
+              :USD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # AOA
+          AOA =
+            T.let(
+              :AOA,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ARS
+          ARS =
+            T.let(
+              :ARS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # AMD
+          AMD =
+            T.let(
+              :AMD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # AWG
+          AWG =
+            T.let(
+              :AWG,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # AUD
+          AUD =
+            T.let(
+              :AUD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # AZN
+          AZN =
+            T.let(
+              :AZN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BSD
+          BSD =
+            T.let(
+              :BSD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BHD
+          BHD =
+            T.let(
+              :BHD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BDT
+          BDT =
+            T.let(
+              :BDT,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BBD
+          BBD =
+            T.let(
+              :BBD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BYN
+          BYN =
+            T.let(
+              :BYN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BZD
+          BZD =
+            T.let(
+              :BZD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BMD
+          BMD =
+            T.let(
+              :BMD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # INR
+          INR =
+            T.let(
+              :INR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BTN
+          BTN =
+            T.let(
+              :BTN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BOB
+          BOB =
+            T.let(
+              :BOB,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BOV
+          BOV =
+            T.let(
+              :BOV,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BAM
+          BAM =
+            T.let(
+              :BAM,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BWP
+          BWP =
+            T.let(
+              :BWP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # NOK
+          NOK =
+            T.let(
+              :NOK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BRL
+          BRL =
+            T.let(
+              :BRL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BND
+          BND =
+            T.let(
+              :BND,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BGN
+          BGN =
+            T.let(
+              :BGN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BIF
+          BIF =
+            T.let(
+              :BIF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CVE
+          CVE =
+            T.let(
+              :CVE,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KHR
+          KHR =
+            T.let(
+              :KHR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CAD
+          CAD =
+            T.let(
+              :CAD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KYD
+          KYD =
+            T.let(
+              :KYD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CLP
+          CLP =
+            T.let(
+              :CLP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CLF
+          CLF =
+            T.let(
+              :CLF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CNY
+          CNY =
+            T.let(
+              :CNY,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # COP
+          COP =
+            T.let(
+              :COP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # COU
+          COU =
+            T.let(
+              :COU,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KMF
+          KMF =
+            T.let(
+              :KMF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CDF
+          CDF =
+            T.let(
+              :CDF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # NZD
+          NZD =
+            T.let(
+              :NZD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CRC
+          CRC =
+            T.let(
+              :CRC,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CUP
+          CUP =
+            T.let(
+              :CUP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CZK
+          CZK =
+            T.let(
+              :CZK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # DKK
+          DKK =
+            T.let(
+              :DKK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # DJF
+          DJF =
+            T.let(
+              :DJF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # DOP
+          DOP =
+            T.let(
+              :DOP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # EGP
+          EGP =
+            T.let(
+              :EGP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SVC
+          SVC =
+            T.let(
+              :SVC,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ERN
+          ERN =
+            T.let(
+              :ERN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SZL
+          SZL =
+            T.let(
+              :SZL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ETB
+          ETB =
+            T.let(
+              :ETB,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # FKP
+          FKP =
+            T.let(
+              :FKP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # FJD
+          FJD =
+            T.let(
+              :FJD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GMD
+          GMD =
+            T.let(
+              :GMD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GEL
+          GEL =
+            T.let(
+              :GEL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GHS
+          GHS =
+            T.let(
+              :GHS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GIP
+          GIP =
+            T.let(
+              :GIP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GTQ
+          GTQ =
+            T.let(
+              :GTQ,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GBP
+          GBP =
+            T.let(
+              :GBP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GNF
+          GNF =
+            T.let(
+              :GNF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # GYD
+          GYD =
+            T.let(
+              :GYD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # HTG
+          HTG =
+            T.let(
+              :HTG,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # HNL
+          HNL =
+            T.let(
+              :HNL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # HKD
+          HKD =
+            T.let(
+              :HKD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # HUF
+          HUF =
+            T.let(
+              :HUF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ISK
+          ISK =
+            T.let(
+              :ISK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # IDR
+          IDR =
+            T.let(
+              :IDR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # IRR
+          IRR =
+            T.let(
+              :IRR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # IQD
+          IQD =
+            T.let(
+              :IQD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ILS
+          ILS =
+            T.let(
+              :ILS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # JMD
+          JMD =
+            T.let(
+              :JMD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # JPY
+          JPY =
+            T.let(
+              :JPY,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # JOD
+          JOD =
+            T.let(
+              :JOD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KZT
+          KZT =
+            T.let(
+              :KZT,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KES
+          KES =
+            T.let(
+              :KES,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KPW
+          KPW =
+            T.let(
+              :KPW,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KRW
+          KRW =
+            T.let(
+              :KRW,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KWD
+          KWD =
+            T.let(
+              :KWD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # KGS
+          KGS =
+            T.let(
+              :KGS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # LAK
+          LAK =
+            T.let(
+              :LAK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # LBP
+          LBP =
+            T.let(
+              :LBP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # LSL
+          LSL =
+            T.let(
+              :LSL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ZAR
+          ZAR =
+            T.let(
+              :ZAR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # LRD
+          LRD =
+            T.let(
+              :LRD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # LYD
+          LYD =
+            T.let(
+              :LYD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CHF
+          CHF =
+            T.let(
+              :CHF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MOP
+          MOP =
+            T.let(
+              :MOP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MKD
+          MKD =
+            T.let(
+              :MKD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MGA
+          MGA =
+            T.let(
+              :MGA,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MWK
+          MWK =
+            T.let(
+              :MWK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MYR
+          MYR =
+            T.let(
+              :MYR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MVR
+          MVR =
+            T.let(
+              :MVR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MRU
+          MRU =
+            T.let(
+              :MRU,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MUR
+          MUR =
+            T.let(
+              :MUR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MXN
+          MXN =
+            T.let(
+              :MXN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MXV
+          MXV =
+            T.let(
+              :MXV,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MDL
+          MDL =
+            T.let(
+              :MDL,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MNT
+          MNT =
+            T.let(
+              :MNT,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MAD
+          MAD =
+            T.let(
+              :MAD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MZN
+          MZN =
+            T.let(
+              :MZN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # MMK
+          MMK =
+            T.let(
+              :MMK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # NAD
+          NAD =
+            T.let(
+              :NAD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # NPR
+          NPR =
+            T.let(
+              :NPR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # NIO
+          NIO =
+            T.let(
+              :NIO,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # NGN
+          NGN =
+            T.let(
+              :NGN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # OMR
+          OMR =
+            T.let(
+              :OMR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PKR
+          PKR =
+            T.let(
+              :PKR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PAB
+          PAB =
+            T.let(
+              :PAB,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PGK
+          PGK =
+            T.let(
+              :PGK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PYG
+          PYG =
+            T.let(
+              :PYG,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PEN
+          PEN =
+            T.let(
+              :PEN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PHP
+          PHP =
+            T.let(
+              :PHP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # PLN
+          PLN =
+            T.let(
+              :PLN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # QAR
+          QAR =
+            T.let(
+              :QAR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # RON
+          RON =
+            T.let(
+              :RON,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # RUB
+          RUB =
+            T.let(
+              :RUB,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # RWF
+          RWF =
+            T.let(
+              :RWF,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SHP
+          SHP =
+            T.let(
+              :SHP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # WST
+          WST =
+            T.let(
+              :WST,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # STN
+          STN =
+            T.let(
+              :STN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SAR
+          SAR =
+            T.let(
+              :SAR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # RSD
+          RSD =
+            T.let(
+              :RSD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SCR
+          SCR =
+            T.let(
+              :SCR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SLE
+          SLE =
+            T.let(
+              :SLE,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SGD
+          SGD =
+            T.let(
+              :SGD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SBD
+          SBD =
+            T.let(
+              :SBD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SOS
+          SOS =
+            T.let(
+              :SOS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SSP
+          SSP =
+            T.let(
+              :SSP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # LKR
+          LKR =
+            T.let(
+              :LKR,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SDG
+          SDG =
+            T.let(
+              :SDG,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SRD
+          SRD =
+            T.let(
+              :SRD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SEK
+          SEK =
+            T.let(
+              :SEK,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CHE
+          CHE =
+            T.let(
+              :CHE,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # CHW
+          CHW =
+            T.let(
+              :CHW,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # SYP
+          SYP =
+            T.let(
+              :SYP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TWD
+          TWD =
+            T.let(
+              :TWD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TJS
+          TJS =
+            T.let(
+              :TJS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TZS
+          TZS =
+            T.let(
+              :TZS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # THB
+          THB =
+            T.let(
+              :THB,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TOP
+          TOP =
+            T.let(
+              :TOP,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TTD
+          TTD =
+            T.let(
+              :TTD,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TND
+          TND =
+            T.let(
+              :TND,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TRY
+          TRY =
+            T.let(
+              :TRY,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # TMT
+          TMT =
+            T.let(
+              :TMT,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # UGX
+          UGX =
+            T.let(
+              :UGX,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # UAH
+          UAH =
+            T.let(
+              :UAH,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # AED
+          AED =
+            T.let(
+              :AED,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # USN
+          USN =
+            T.let(
+              :USN,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # UYU
+          UYU =
+            T.let(
+              :UYU,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # UYI
+          UYI =
+            T.let(
+              :UYI,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # UYW
+          UYW =
+            T.let(
+              :UYW,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # UZS
+          UZS =
+            T.let(
+              :UZS,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # VUV
+          VUV =
+            T.let(
+              :VUV,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # VES
+          VES =
+            T.let(
+              :VES,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # VED
+          VED =
+            T.let(
+              :VED,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # VND
+          VND =
+            T.let(
+              :VND,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # YER
+          YER =
+            T.let(
+              :YER,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ZMW
+          ZMW =
+            T.let(
+              :ZMW,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # ZWG
+          ZWG =
+            T.let(
+              :ZWG,
+              Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::CardPushTransfer::PresentmentAmount::Currency::TaggedSymbol
               ]
             )
           end

@@ -6,7 +6,6 @@ module Increase
       # Create a Card Push Transfer
       sig do
         params(
-          amount: Integer,
           business_application_identifier:
             Increase::CardPushTransferCreateParams::BusinessApplicationIdentifier::OrSymbol,
           card_token_id: String,
@@ -16,6 +15,8 @@ module Increase
           merchant_name_prefix: String,
           merchant_postal_code: String,
           merchant_state: String,
+          presentment_amount:
+            Increase::CardPushTransferCreateParams::PresentmentAmount::OrHash,
           recipient_name: String,
           sender_address_city: String,
           sender_address_line1: String,
@@ -28,8 +29,6 @@ module Increase
         ).returns(Increase::CardPushTransfer)
       end
       def create(
-        # The transfer amount in USD cents. For Card Push transfers, must be positive.
-        amount:,
         # The Business Application Identifier describes the type of transaction being
         # performed. Your program must be approved for the specified Business Application
         # Identifier in order to use it.
@@ -55,6 +54,10 @@ module Increase
         merchant_postal_code:,
         # The state of the merchant (generally your business) sending the transfer.
         merchant_state:,
+        # The amount to transfer. The receiving bank will convert this to the cardholder's
+        # currency. The amount that is applied to your Increase account matches the
+        # currency of your account.
+        presentment_amount:,
         # The name of the funds recipient.
         recipient_name:,
         # The city of the sender.
