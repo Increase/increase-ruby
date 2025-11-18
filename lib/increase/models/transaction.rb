@@ -2421,11 +2421,11 @@ module Increase
 
         # @see Increase::Models::Transaction::Source#card_push_transfer_acceptance
         class CardPushTransferAcceptance < Increase::Internal::Type::BaseModel
-          # @!attribute amount
+          # @!attribute settlement_amount
           #   The transfer amount in USD cents.
           #
           #   @return [Integer]
-          required :amount, Integer
+          required :settlement_amount, Integer
 
           # @!attribute transfer_id
           #   The identifier of the Card Push Transfer that led to this Transaction.
@@ -2433,13 +2433,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!method initialize(amount:, transfer_id:)
+          # @!method initialize(settlement_amount:, transfer_id:)
           #   A Card Push Transfer Acceptance object. This field will be present in the JSON
           #   response if and only if `category` is equal to `card_push_transfer_acceptance`.
           #   A Card Push Transfer Acceptance is created when an Outbound Card Push Transfer
           #   sent from Increase is accepted by the receiving bank.
           #
-          #   @param amount [Integer] The transfer amount in USD cents.
+          #   @param settlement_amount [Integer] The transfer amount in USD cents.
           #
           #   @param transfer_id [String] The identifier of the Card Push Transfer that led to this Transaction.
         end

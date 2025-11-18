@@ -2,7 +2,6 @@ module Increase
   module Models
     type card_push_transfer_create_params =
       {
-        amount: Integer,
         business_application_identifier: Increase::Models::CardPushTransferCreateParams::business_application_identifier,
         card_token_id: String,
         merchant_category_code: String,
@@ -11,6 +10,7 @@ module Increase
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        presentment_amount: Increase::CardPushTransferCreateParams::PresentmentAmount,
         recipient_name: String,
         sender_address_city: String,
         :sender_address_line1 => String,
@@ -25,8 +25,6 @@ module Increase
     class CardPushTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
-
-      attr_accessor amount: Integer
 
       attr_accessor business_application_identifier: Increase::Models::CardPushTransferCreateParams::business_application_identifier
 
@@ -43,6 +41,8 @@ module Increase
       attr_accessor merchant_postal_code: String
 
       attr_accessor merchant_state: String
+
+      attr_accessor presentment_amount: Increase::CardPushTransferCreateParams::PresentmentAmount
 
       attr_accessor recipient_name: String
 
@@ -63,7 +63,6 @@ module Increase
       def require_approval=: (bool) -> bool
 
       def initialize: (
-        amount: Integer,
         business_application_identifier: Increase::Models::CardPushTransferCreateParams::business_application_identifier,
         card_token_id: String,
         merchant_category_code: String,
@@ -72,6 +71,7 @@ module Increase
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        presentment_amount: Increase::CardPushTransferCreateParams::PresentmentAmount,
         recipient_name: String,
         sender_address_city: String,
         sender_address_line1: String,
@@ -84,7 +84,6 @@ module Increase
       ) -> void
 
       def to_hash: -> {
-        amount: Integer,
         business_application_identifier: Increase::Models::CardPushTransferCreateParams::business_application_identifier,
         card_token_id: String,
         merchant_category_code: String,
@@ -93,6 +92,7 @@ module Increase
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        presentment_amount: Increase::CardPushTransferCreateParams::PresentmentAmount,
         recipient_name: String,
         sender_address_city: String,
         :sender_address_line1 => String,
@@ -166,6 +166,676 @@ module Increase
         WALLET_TRANSFER: :wallet_transfer
 
         def self?.values: -> ::Array[Increase::Models::CardPushTransferCreateParams::business_application_identifier]
+      end
+
+      type presentment_amount =
+        {
+          currency: Increase::Models::CardPushTransferCreateParams::PresentmentAmount::currency,
+          value: String
+        }
+
+      class PresentmentAmount < Increase::Internal::Type::BaseModel
+        attr_accessor currency: Increase::Models::CardPushTransferCreateParams::PresentmentAmount::currency
+
+        attr_accessor value: String
+
+        def initialize: (
+          currency: Increase::Models::CardPushTransferCreateParams::PresentmentAmount::currency,
+          value: String
+        ) -> void
+
+        def to_hash: -> {
+          currency: Increase::Models::CardPushTransferCreateParams::PresentmentAmount::currency,
+          value: String
+        }
+
+        type currency =
+          :AFN
+          | :EUR
+          | :ALL
+          | :DZD
+          | :USD
+          | :AOA
+          | :ARS
+          | :AMD
+          | :AWG
+          | :AUD
+          | :AZN
+          | :BSD
+          | :BHD
+          | :BDT
+          | :BBD
+          | :BYN
+          | :BZD
+          | :BMD
+          | :INR
+          | :BTN
+          | :BOB
+          | :BOV
+          | :BAM
+          | :BWP
+          | :NOK
+          | :BRL
+          | :BND
+          | :BGN
+          | :BIF
+          | :CVE
+          | :KHR
+          | :CAD
+          | :KYD
+          | :CLP
+          | :CLF
+          | :CNY
+          | :COP
+          | :COU
+          | :KMF
+          | :CDF
+          | :NZD
+          | :CRC
+          | :CUP
+          | :CZK
+          | :DKK
+          | :DJF
+          | :DOP
+          | :EGP
+          | :SVC
+          | :ERN
+          | :SZL
+          | :ETB
+          | :FKP
+          | :FJD
+          | :GMD
+          | :GEL
+          | :GHS
+          | :GIP
+          | :GTQ
+          | :GBP
+          | :GNF
+          | :GYD
+          | :HTG
+          | :HNL
+          | :HKD
+          | :HUF
+          | :ISK
+          | :IDR
+          | :IRR
+          | :IQD
+          | :ILS
+          | :JMD
+          | :JPY
+          | :JOD
+          | :KZT
+          | :KES
+          | :KPW
+          | :KRW
+          | :KWD
+          | :KGS
+          | :LAK
+          | :LBP
+          | :LSL
+          | :ZAR
+          | :LRD
+          | :LYD
+          | :CHF
+          | :MOP
+          | :MKD
+          | :MGA
+          | :MWK
+          | :MYR
+          | :MVR
+          | :MRU
+          | :MUR
+          | :MXN
+          | :MXV
+          | :MDL
+          | :MNT
+          | :MAD
+          | :MZN
+          | :MMK
+          | :NAD
+          | :NPR
+          | :NIO
+          | :NGN
+          | :OMR
+          | :PKR
+          | :PAB
+          | :PGK
+          | :PYG
+          | :PEN
+          | :PHP
+          | :PLN
+          | :QAR
+          | :RON
+          | :RUB
+          | :RWF
+          | :SHP
+          | :WST
+          | :STN
+          | :SAR
+          | :RSD
+          | :SCR
+          | :SLE
+          | :SGD
+          | :SBD
+          | :SOS
+          | :SSP
+          | :LKR
+          | :SDG
+          | :SRD
+          | :SEK
+          | :CHE
+          | :CHW
+          | :SYP
+          | :TWD
+          | :TJS
+          | :TZS
+          | :THB
+          | :TOP
+          | :TTD
+          | :TND
+          | :TRY
+          | :TMT
+          | :UGX
+          | :UAH
+          | :AED
+          | :USN
+          | :UYU
+          | :UYI
+          | :UYW
+          | :UZS
+          | :VUV
+          | :VES
+          | :VED
+          | :VND
+          | :YER
+          | :ZMW
+          | :ZWG
+
+        module Currency
+          extend Increase::Internal::Type::Enum
+
+          # AFN
+          AFN: :AFN
+
+          # EUR
+          EUR: :EUR
+
+          # ALL
+          ALL: :ALL
+
+          # DZD
+          DZD: :DZD
+
+          # USD
+          USD: :USD
+
+          # AOA
+          AOA: :AOA
+
+          # ARS
+          ARS: :ARS
+
+          # AMD
+          AMD: :AMD
+
+          # AWG
+          AWG: :AWG
+
+          # AUD
+          AUD: :AUD
+
+          # AZN
+          AZN: :AZN
+
+          # BSD
+          BSD: :BSD
+
+          # BHD
+          BHD: :BHD
+
+          # BDT
+          BDT: :BDT
+
+          # BBD
+          BBD: :BBD
+
+          # BYN
+          BYN: :BYN
+
+          # BZD
+          BZD: :BZD
+
+          # BMD
+          BMD: :BMD
+
+          # INR
+          INR: :INR
+
+          # BTN
+          BTN: :BTN
+
+          # BOB
+          BOB: :BOB
+
+          # BOV
+          BOV: :BOV
+
+          # BAM
+          BAM: :BAM
+
+          # BWP
+          BWP: :BWP
+
+          # NOK
+          NOK: :NOK
+
+          # BRL
+          BRL: :BRL
+
+          # BND
+          BND: :BND
+
+          # BGN
+          BGN: :BGN
+
+          # BIF
+          BIF: :BIF
+
+          # CVE
+          CVE: :CVE
+
+          # KHR
+          KHR: :KHR
+
+          # CAD
+          CAD: :CAD
+
+          # KYD
+          KYD: :KYD
+
+          # CLP
+          CLP: :CLP
+
+          # CLF
+          CLF: :CLF
+
+          # CNY
+          CNY: :CNY
+
+          # COP
+          COP: :COP
+
+          # COU
+          COU: :COU
+
+          # KMF
+          KMF: :KMF
+
+          # CDF
+          CDF: :CDF
+
+          # NZD
+          NZD: :NZD
+
+          # CRC
+          CRC: :CRC
+
+          # CUP
+          CUP: :CUP
+
+          # CZK
+          CZK: :CZK
+
+          # DKK
+          DKK: :DKK
+
+          # DJF
+          DJF: :DJF
+
+          # DOP
+          DOP: :DOP
+
+          # EGP
+          EGP: :EGP
+
+          # SVC
+          SVC: :SVC
+
+          # ERN
+          ERN: :ERN
+
+          # SZL
+          SZL: :SZL
+
+          # ETB
+          ETB: :ETB
+
+          # FKP
+          FKP: :FKP
+
+          # FJD
+          FJD: :FJD
+
+          # GMD
+          GMD: :GMD
+
+          # GEL
+          GEL: :GEL
+
+          # GHS
+          GHS: :GHS
+
+          # GIP
+          GIP: :GIP
+
+          # GTQ
+          GTQ: :GTQ
+
+          # GBP
+          GBP: :GBP
+
+          # GNF
+          GNF: :GNF
+
+          # GYD
+          GYD: :GYD
+
+          # HTG
+          HTG: :HTG
+
+          # HNL
+          HNL: :HNL
+
+          # HKD
+          HKD: :HKD
+
+          # HUF
+          HUF: :HUF
+
+          # ISK
+          ISK: :ISK
+
+          # IDR
+          IDR: :IDR
+
+          # IRR
+          IRR: :IRR
+
+          # IQD
+          IQD: :IQD
+
+          # ILS
+          ILS: :ILS
+
+          # JMD
+          JMD: :JMD
+
+          # JPY
+          JPY: :JPY
+
+          # JOD
+          JOD: :JOD
+
+          # KZT
+          KZT: :KZT
+
+          # KES
+          KES: :KES
+
+          # KPW
+          KPW: :KPW
+
+          # KRW
+          KRW: :KRW
+
+          # KWD
+          KWD: :KWD
+
+          # KGS
+          KGS: :KGS
+
+          # LAK
+          LAK: :LAK
+
+          # LBP
+          LBP: :LBP
+
+          # LSL
+          LSL: :LSL
+
+          # ZAR
+          ZAR: :ZAR
+
+          # LRD
+          LRD: :LRD
+
+          # LYD
+          LYD: :LYD
+
+          # CHF
+          CHF: :CHF
+
+          # MOP
+          MOP: :MOP
+
+          # MKD
+          MKD: :MKD
+
+          # MGA
+          MGA: :MGA
+
+          # MWK
+          MWK: :MWK
+
+          # MYR
+          MYR: :MYR
+
+          # MVR
+          MVR: :MVR
+
+          # MRU
+          MRU: :MRU
+
+          # MUR
+          MUR: :MUR
+
+          # MXN
+          MXN: :MXN
+
+          # MXV
+          MXV: :MXV
+
+          # MDL
+          MDL: :MDL
+
+          # MNT
+          MNT: :MNT
+
+          # MAD
+          MAD: :MAD
+
+          # MZN
+          MZN: :MZN
+
+          # MMK
+          MMK: :MMK
+
+          # NAD
+          NAD: :NAD
+
+          # NPR
+          NPR: :NPR
+
+          # NIO
+          NIO: :NIO
+
+          # NGN
+          NGN: :NGN
+
+          # OMR
+          OMR: :OMR
+
+          # PKR
+          PKR: :PKR
+
+          # PAB
+          PAB: :PAB
+
+          # PGK
+          PGK: :PGK
+
+          # PYG
+          PYG: :PYG
+
+          # PEN
+          PEN: :PEN
+
+          # PHP
+          PHP: :PHP
+
+          # PLN
+          PLN: :PLN
+
+          # QAR
+          QAR: :QAR
+
+          # RON
+          RON: :RON
+
+          # RUB
+          RUB: :RUB
+
+          # RWF
+          RWF: :RWF
+
+          # SHP
+          SHP: :SHP
+
+          # WST
+          WST: :WST
+
+          # STN
+          STN: :STN
+
+          # SAR
+          SAR: :SAR
+
+          # RSD
+          RSD: :RSD
+
+          # SCR
+          SCR: :SCR
+
+          # SLE
+          SLE: :SLE
+
+          # SGD
+          SGD: :SGD
+
+          # SBD
+          SBD: :SBD
+
+          # SOS
+          SOS: :SOS
+
+          # SSP
+          SSP: :SSP
+
+          # LKR
+          LKR: :LKR
+
+          # SDG
+          SDG: :SDG
+
+          # SRD
+          SRD: :SRD
+
+          # SEK
+          SEK: :SEK
+
+          # CHE
+          CHE: :CHE
+
+          # CHW
+          CHW: :CHW
+
+          # SYP
+          SYP: :SYP
+
+          # TWD
+          TWD: :TWD
+
+          # TJS
+          TJS: :TJS
+
+          # TZS
+          TZS: :TZS
+
+          # THB
+          THB: :THB
+
+          # TOP
+          TOP: :TOP
+
+          # TTD
+          TTD: :TTD
+
+          # TND
+          TND: :TND
+
+          # TRY
+          TRY: :TRY
+
+          # TMT
+          TMT: :TMT
+
+          # UGX
+          UGX: :UGX
+
+          # UAH
+          UAH: :UAH
+
+          # AED
+          AED: :AED
+
+          # USN
+          USN: :USN
+
+          # UYU
+          UYU: :UYU
+
+          # UYI
+          UYI: :UYI
+
+          # UYW
+          UYW: :UYW
+
+          # UZS
+          UZS: :UZS
+
+          # VUV
+          VUV: :VUV
+
+          # VES
+          VES: :VES
+
+          # VED
+          VED: :VED
+
+          # VND
+          VND: :VND
+
+          # YER
+          YER: :YER
+
+          # ZMW
+          ZMW: :ZMW
+
+          # ZWG
+          ZWG: :ZWG
+
+          def self?.values: -> ::Array[Increase::Models::CardPushTransferCreateParams::PresentmentAmount::currency]
+        end
       end
     end
   end

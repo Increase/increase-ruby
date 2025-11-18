@@ -23,12 +23,6 @@ module Increase
       #   @return [String]
       required :account_id, String
 
-      # @!attribute amount
-      #   The transfer amount in USD cents.
-      #
-      #   @return [Integer]
-      required :amount, Integer
-
       # @!attribute approval
       #   If your account requires approvals for transfers and the transfer was approved,
       #   this will contain details of the approval.
@@ -64,13 +58,6 @@ module Increase
       #
       #   @return [Increase::Models::CardPushTransfer::CreatedBy, nil]
       required :created_by, -> { Increase::CardPushTransfer::CreatedBy }, nil?: true
-
-      # @!attribute currency
-      #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
-      #   currency.
-      #
-      #   @return [Symbol, Increase::Models::CardPushTransfer::Currency]
-      required :currency, enum: -> { Increase::CardPushTransfer::Currency }
 
       # @!attribute decline
       #   If the transfer is rejected by the card network or the destination financial
@@ -128,6 +115,14 @@ module Increase
       #
       #   @return [String]
       required :merchant_state, String
+
+      # @!attribute presentment_amount
+      #   The amount that was transferred. The receiving bank will have converted this to
+      #   the cardholder's currency. The amount that is applied to your Increase account
+      #   matches the currency of your account.
+      #
+      #   @return [Increase::Models::CardPushTransfer::PresentmentAmount]
+      required :presentment_amount, -> { Increase::CardPushTransfer::PresentmentAmount }
 
       # @!attribute recipient_name
       #   The name of the funds recipient.
@@ -191,7 +186,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPushTransfer::Type]
       required :type, enum: -> { Increase::CardPushTransfer::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, amount:, approval:, business_application_identifier:, cancellation:, created_at:, created_by:, currency:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardPushTransfer} for more details.
       #
@@ -203,8 +198,6 @@ module Increase
       #
       #   @param account_id [String] The Account from which the transfer was sent.
       #
-      #   @param amount [Integer] The transfer amount in USD cents.
-      #
       #   @param approval [Increase::Models::CardPushTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
       #
       #   @param business_application_identifier [Symbol, Increase::Models::CardPushTransfer::BusinessApplicationIdentifier] The Business Application Identifier describes the type of transaction being perf
@@ -214,8 +207,6 @@ module Increase
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
       #   @param created_by [Increase::Models::CardPushTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
-      #
-      #   @param currency [Symbol, Increase::Models::CardPushTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's c
       #
       #   @param decline [Increase::Models::CardPushTransfer::Decline, nil] If the transfer is rejected by the card network or the destination financial ins
       #
@@ -232,6 +223,8 @@ module Increase
       #   @param merchant_postal_code [String] The postal code of the merchant (generally your business) sending the transfer.
       #
       #   @param merchant_state [String] The state of the merchant (generally your business) sending the transfer.
+      #
+      #   @param presentment_amount [Increase::Models::CardPushTransfer::PresentmentAmount] The amount that was transferred. The receiving bank will have converted this to
       #
       #   @param recipient_name [String] The name of the funds recipient.
       #
@@ -282,7 +275,13 @@ module Increase
         #   @return [String, nil]
         required :network_transaction_identifier, String, nil?: true
 
-        # @!method initialize(accepted_at:, authorization_identification_response:, card_verification_value2_result:, network_transaction_identifier:)
+        # @!attribute settlement_amount
+        #   The transfer amount in USD cents.
+        #
+        #   @return [Integer]
+        required :settlement_amount, Integer
+
+        # @!method initialize(accepted_at:, authorization_identification_response:, card_verification_value2_result:, network_transaction_identifier:, settlement_amount:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CardPushTransfer::Acceptance} for more details.
         #
@@ -296,6 +295,8 @@ module Increase
         #   @param card_verification_value2_result [Symbol, Increase::Models::CardPushTransfer::Acceptance::CardVerificationValue2Result, nil] The result of the Card Verification Value 2 match.
         #
         #   @param network_transaction_identifier [String, nil] A unique identifier for the transaction on the card network.
+        #
+        #   @param settlement_amount [Integer] The transfer amount in USD cents.
 
         # The result of the Card Verification Value 2 match.
         #
@@ -527,20 +528,6 @@ module Increase
         end
       end
 
-      # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
-      # currency.
-      #
-      # @see Increase::Models::CardPushTransfer#currency
-      module Currency
-        extend Increase::Internal::Type::Enum
-
-        # US Dollar (USD)
-        USD = :USD
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
       # @see Increase::Models::CardPushTransfer#decline
       class Decline < Increase::Internal::Type::BaseModel
         # @!attribute declined_at
@@ -707,6 +694,524 @@ module Increase
 
           # An order has been placed to revoke all authorizations for this cardholder.
           REVOCATION_OF_ALL_AUTHORIZATIONS_ORDER = :revocation_of_all_authorizations_order
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      # @see Increase::Models::CardPushTransfer#presentment_amount
+      class PresentmentAmount < Increase::Internal::Type::BaseModel
+        # @!attribute currency
+        #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+        #
+        #   @return [Symbol, Increase::Models::CardPushTransfer::PresentmentAmount::Currency]
+        required :currency, enum: -> { Increase::CardPushTransfer::PresentmentAmount::Currency }
+
+        # @!attribute value
+        #   The amount value represented as a string containing a decimal number in major
+        #   units (so e.g., "12.34" for $12.34).
+        #
+        #   @return [String]
+        required :value, String
+
+        # @!method initialize(currency:, value:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::CardPushTransfer::PresentmentAmount} for more details.
+        #
+        #   The amount that was transferred. The receiving bank will have converted this to
+        #   the cardholder's currency. The amount that is applied to your Increase account
+        #   matches the currency of your account.
+        #
+        #   @param currency [Symbol, Increase::Models::CardPushTransfer::PresentmentAmount::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+        #
+        #   @param value [String] The amount value represented as a string containing a decimal number in major un
+
+        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+        #
+        # @see Increase::Models::CardPushTransfer::PresentmentAmount#currency
+        module Currency
+          extend Increase::Internal::Type::Enum
+
+          # AFN
+          AFN = :AFN
+
+          # EUR
+          EUR = :EUR
+
+          # ALL
+          ALL = :ALL
+
+          # DZD
+          DZD = :DZD
+
+          # USD
+          USD = :USD
+
+          # AOA
+          AOA = :AOA
+
+          # ARS
+          ARS = :ARS
+
+          # AMD
+          AMD = :AMD
+
+          # AWG
+          AWG = :AWG
+
+          # AUD
+          AUD = :AUD
+
+          # AZN
+          AZN = :AZN
+
+          # BSD
+          BSD = :BSD
+
+          # BHD
+          BHD = :BHD
+
+          # BDT
+          BDT = :BDT
+
+          # BBD
+          BBD = :BBD
+
+          # BYN
+          BYN = :BYN
+
+          # BZD
+          BZD = :BZD
+
+          # BMD
+          BMD = :BMD
+
+          # INR
+          INR = :INR
+
+          # BTN
+          BTN = :BTN
+
+          # BOB
+          BOB = :BOB
+
+          # BOV
+          BOV = :BOV
+
+          # BAM
+          BAM = :BAM
+
+          # BWP
+          BWP = :BWP
+
+          # NOK
+          NOK = :NOK
+
+          # BRL
+          BRL = :BRL
+
+          # BND
+          BND = :BND
+
+          # BGN
+          BGN = :BGN
+
+          # BIF
+          BIF = :BIF
+
+          # CVE
+          CVE = :CVE
+
+          # KHR
+          KHR = :KHR
+
+          # CAD
+          CAD = :CAD
+
+          # KYD
+          KYD = :KYD
+
+          # CLP
+          CLP = :CLP
+
+          # CLF
+          CLF = :CLF
+
+          # CNY
+          CNY = :CNY
+
+          # COP
+          COP = :COP
+
+          # COU
+          COU = :COU
+
+          # KMF
+          KMF = :KMF
+
+          # CDF
+          CDF = :CDF
+
+          # NZD
+          NZD = :NZD
+
+          # CRC
+          CRC = :CRC
+
+          # CUP
+          CUP = :CUP
+
+          # CZK
+          CZK = :CZK
+
+          # DKK
+          DKK = :DKK
+
+          # DJF
+          DJF = :DJF
+
+          # DOP
+          DOP = :DOP
+
+          # EGP
+          EGP = :EGP
+
+          # SVC
+          SVC = :SVC
+
+          # ERN
+          ERN = :ERN
+
+          # SZL
+          SZL = :SZL
+
+          # ETB
+          ETB = :ETB
+
+          # FKP
+          FKP = :FKP
+
+          # FJD
+          FJD = :FJD
+
+          # GMD
+          GMD = :GMD
+
+          # GEL
+          GEL = :GEL
+
+          # GHS
+          GHS = :GHS
+
+          # GIP
+          GIP = :GIP
+
+          # GTQ
+          GTQ = :GTQ
+
+          # GBP
+          GBP = :GBP
+
+          # GNF
+          GNF = :GNF
+
+          # GYD
+          GYD = :GYD
+
+          # HTG
+          HTG = :HTG
+
+          # HNL
+          HNL = :HNL
+
+          # HKD
+          HKD = :HKD
+
+          # HUF
+          HUF = :HUF
+
+          # ISK
+          ISK = :ISK
+
+          # IDR
+          IDR = :IDR
+
+          # IRR
+          IRR = :IRR
+
+          # IQD
+          IQD = :IQD
+
+          # ILS
+          ILS = :ILS
+
+          # JMD
+          JMD = :JMD
+
+          # JPY
+          JPY = :JPY
+
+          # JOD
+          JOD = :JOD
+
+          # KZT
+          KZT = :KZT
+
+          # KES
+          KES = :KES
+
+          # KPW
+          KPW = :KPW
+
+          # KRW
+          KRW = :KRW
+
+          # KWD
+          KWD = :KWD
+
+          # KGS
+          KGS = :KGS
+
+          # LAK
+          LAK = :LAK
+
+          # LBP
+          LBP = :LBP
+
+          # LSL
+          LSL = :LSL
+
+          # ZAR
+          ZAR = :ZAR
+
+          # LRD
+          LRD = :LRD
+
+          # LYD
+          LYD = :LYD
+
+          # CHF
+          CHF = :CHF
+
+          # MOP
+          MOP = :MOP
+
+          # MKD
+          MKD = :MKD
+
+          # MGA
+          MGA = :MGA
+
+          # MWK
+          MWK = :MWK
+
+          # MYR
+          MYR = :MYR
+
+          # MVR
+          MVR = :MVR
+
+          # MRU
+          MRU = :MRU
+
+          # MUR
+          MUR = :MUR
+
+          # MXN
+          MXN = :MXN
+
+          # MXV
+          MXV = :MXV
+
+          # MDL
+          MDL = :MDL
+
+          # MNT
+          MNT = :MNT
+
+          # MAD
+          MAD = :MAD
+
+          # MZN
+          MZN = :MZN
+
+          # MMK
+          MMK = :MMK
+
+          # NAD
+          NAD = :NAD
+
+          # NPR
+          NPR = :NPR
+
+          # NIO
+          NIO = :NIO
+
+          # NGN
+          NGN = :NGN
+
+          # OMR
+          OMR = :OMR
+
+          # PKR
+          PKR = :PKR
+
+          # PAB
+          PAB = :PAB
+
+          # PGK
+          PGK = :PGK
+
+          # PYG
+          PYG = :PYG
+
+          # PEN
+          PEN = :PEN
+
+          # PHP
+          PHP = :PHP
+
+          # PLN
+          PLN = :PLN
+
+          # QAR
+          QAR = :QAR
+
+          # RON
+          RON = :RON
+
+          # RUB
+          RUB = :RUB
+
+          # RWF
+          RWF = :RWF
+
+          # SHP
+          SHP = :SHP
+
+          # WST
+          WST = :WST
+
+          # STN
+          STN = :STN
+
+          # SAR
+          SAR = :SAR
+
+          # RSD
+          RSD = :RSD
+
+          # SCR
+          SCR = :SCR
+
+          # SLE
+          SLE = :SLE
+
+          # SGD
+          SGD = :SGD
+
+          # SBD
+          SBD = :SBD
+
+          # SOS
+          SOS = :SOS
+
+          # SSP
+          SSP = :SSP
+
+          # LKR
+          LKR = :LKR
+
+          # SDG
+          SDG = :SDG
+
+          # SRD
+          SRD = :SRD
+
+          # SEK
+          SEK = :SEK
+
+          # CHE
+          CHE = :CHE
+
+          # CHW
+          CHW = :CHW
+
+          # SYP
+          SYP = :SYP
+
+          # TWD
+          TWD = :TWD
+
+          # TJS
+          TJS = :TJS
+
+          # TZS
+          TZS = :TZS
+
+          # THB
+          THB = :THB
+
+          # TOP
+          TOP = :TOP
+
+          # TTD
+          TTD = :TTD
+
+          # TND
+          TND = :TND
+
+          # TRY
+          TRY = :TRY
+
+          # TMT
+          TMT = :TMT
+
+          # UGX
+          UGX = :UGX
+
+          # UAH
+          UAH = :UAH
+
+          # AED
+          AED = :AED
+
+          # USN
+          USN = :USN
+
+          # UYU
+          UYU = :UYU
+
+          # UYI
+          UYI = :UYI
+
+          # UYW
+          UYW = :UYW
+
+          # UZS
+          UZS = :UZS
+
+          # VUV
+          VUV = :VUV
+
+          # VES
+          VES = :VES
+
+          # VED
+          VED = :VED
+
+          # VND
+          VND = :VND
+
+          # YER
+          YER = :YER
+
+          # ZMW
+          ZMW = :ZMW
+
+          # ZWG
+          ZWG = :ZWG
 
           # @!method self.values
           #   @return [Array<Symbol>]
