@@ -1660,16 +1660,19 @@ module Increase
         end
 
         type card_push_transfer_acceptance =
-          { amount: Integer, transfer_id: String }
+          { settlement_amount: Integer, transfer_id: String }
 
         class CardPushTransferAcceptance < Increase::Internal::Type::BaseModel
-          attr_accessor amount: Integer
+          attr_accessor settlement_amount: Integer
 
           attr_accessor transfer_id: String
 
-          def initialize: (amount: Integer, transfer_id: String) -> void
+          def initialize: (
+            settlement_amount: Integer,
+            transfer_id: String
+          ) -> void
 
-          def to_hash: -> { amount: Integer, transfer_id: String }
+          def to_hash: -> { settlement_amount: Integer, transfer_id: String }
         end
 
         type card_refund =

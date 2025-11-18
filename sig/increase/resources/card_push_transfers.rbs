@@ -2,7 +2,6 @@ module Increase
   module Resources
     class CardPushTransfers
       def create: (
-        amount: Integer,
         business_application_identifier: Increase::Models::CardPushTransferCreateParams::business_application_identifier,
         card_token_id: String,
         merchant_category_code: String,
@@ -11,6 +10,7 @@ module Increase
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        presentment_amount: Increase::CardPushTransferCreateParams::PresentmentAmount,
         recipient_name: String,
         sender_address_city: String,
         sender_address_line1: String,
