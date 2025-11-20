@@ -255,7 +255,18 @@ module Increase
           #   @return [String, nil]
           optional :line2, String
 
-          # @!method initialize(city:, line1:, postal_code:, state:, line2: nil)
+          # @!attribute name
+          #   The name component of the check's destination address. Defaults to the provided
+          #   `recipient_name` parameter if `name` is not provided.
+          #
+          #   @return [String, nil]
+          optional :name, String
+
+          # @!method initialize(city:, line1:, postal_code:, state:, line2: nil, name: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress} for
+          #   more details.
+          #
           #   Details for where Increase will mail the check.
           #
           #   @param city [String] The city component of the check's destination address.
@@ -267,6 +278,8 @@ module Increase
           #   @param state [String] The US state component of the check's destination address.
           #
           #   @param line2 [String] The second line of the address component of the check's destination address.
+          #
+          #   @param name [String] The name component of the check's destination address. Defaults to the provided
         end
 
         class Payer < Increase::Internal::Type::BaseModel
