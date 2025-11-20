@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.145.0 (2025-11-20)
+
+Full Changelog: [v1.144.0...v1.145.0](https://github.com/Increase/increase-ruby/compare/v1.144.0...v1.145.0)
+
+### Features
+
+* **api:** api update ([23e90fa](https://github.com/Increase/increase-ruby/commit/23e90fabd425c1c2a443a37a2da93d95e946db28))
+
+
+### Chores
+
+* explicitly require "base64" gem ([c05d43e](https://github.com/Increase/increase-ruby/commit/c05d43e30d1cbc9139f453be1f347ef874659795))
+
 ## 1.144.0 (2025-11-18)
 
 Full Changelog: [v1.143.0...v1.144.0](https://github.com/Increase/increase-ruby/compare/v1.143.0...v1.144.0)
