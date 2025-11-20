@@ -487,6 +487,14 @@ module Increase
           sig { params(line2: String).void }
           attr_writer :line2
 
+          # The name component of the check's destination address. Defaults to the provided
+          # `recipient_name` parameter if `name` is not provided.
+          sig { returns(T.nilable(String)) }
+          attr_reader :name
+
+          sig { params(name: String).void }
+          attr_writer :name
+
           # Details for where Increase will mail the check.
           sig do
             params(
@@ -494,7 +502,8 @@ module Increase
               line1: String,
               postal_code: String,
               state: String,
-              line2: String
+              line2: String,
+              name: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -507,7 +516,10 @@ module Increase
             # The US state component of the check's destination address.
             state:,
             # The second line of the address component of the check's destination address.
-            line2: nil
+            line2: nil,
+            # The name component of the check's destination address. Defaults to the provided
+            # `recipient_name` parameter if `name` is not provided.
+            name: nil
           )
           end
 
@@ -518,7 +530,8 @@ module Increase
                 line1: String,
                 postal_code: String,
                 state: String,
-                line2: String
+                line2: String,
+                name: String
               }
             )
           end
