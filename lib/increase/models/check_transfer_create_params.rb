@@ -262,7 +262,15 @@ module Increase
           #   @return [String, nil]
           optional :name, String
 
-          # @!method initialize(city:, line1:, postal_code:, state:, line2: nil, name: nil)
+          # @!attribute phone
+          #   The phone number to associate with the check's destination address. Will be
+          #   supplied to FedEx as the contact phone number for the recipient to be used in
+          #   case of delivery issues.
+          #
+          #   @return [String, nil]
+          optional :phone, String
+
+          # @!method initialize(city:, line1:, postal_code:, state:, line2: nil, name: nil, phone: nil)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress} for
           #   more details.
@@ -280,6 +288,8 @@ module Increase
           #   @param line2 [String] The second line of the address component of the check's destination address.
           #
           #   @param name [String] The name component of the check's destination address. Defaults to the provided
+          #
+          #   @param phone [String] The phone number to associate with the check's destination address. Will be supp
         end
 
         class Payer < Increase::Internal::Type::BaseModel
