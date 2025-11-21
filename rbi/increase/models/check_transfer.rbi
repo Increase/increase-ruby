@@ -961,6 +961,11 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :name
 
+          # The phone number to be used in case of delivery issues at the check's mailing
+          # address. Only used for FedEx overnight shipping.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :phone
+
           # The postal code of the check's destination.
           sig { returns(T.nilable(String)) }
           attr_accessor :postal_code
@@ -976,6 +981,7 @@ module Increase
               line1: T.nilable(String),
               line2: T.nilable(String),
               name: T.nilable(String),
+              phone: T.nilable(String),
               postal_code: T.nilable(String),
               state: T.nilable(String)
             ).returns(T.attached_class)
@@ -989,6 +995,9 @@ module Increase
             line2:,
             # The name component of the check's mailing address.
             name:,
+            # The phone number to be used in case of delivery issues at the check's mailing
+            # address. Only used for FedEx overnight shipping.
+            phone:,
             # The postal code of the check's destination.
             postal_code:,
             # The state of the check's destination.
@@ -1003,6 +1012,7 @@ module Increase
                 line1: T.nilable(String),
                 line2: T.nilable(String),
                 name: T.nilable(String),
+                phone: T.nilable(String),
                 postal_code: T.nilable(String),
                 state: T.nilable(String)
               }

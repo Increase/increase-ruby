@@ -589,6 +589,13 @@ module Increase
           #   @return [String, nil]
           required :name, String, nil?: true
 
+          # @!attribute phone
+          #   The phone number to be used in case of delivery issues at the check's mailing
+          #   address. Only used for FedEx overnight shipping.
+          #
+          #   @return [String, nil]
+          required :phone, String, nil?: true
+
           # @!attribute postal_code
           #   The postal code of the check's destination.
           #
@@ -601,7 +608,11 @@ module Increase
           #   @return [String, nil]
           required :state, String, nil?: true
 
-          # @!method initialize(city:, line1:, line2:, name:, postal_code:, state:)
+          # @!method initialize(city:, line1:, line2:, name:, phone:, postal_code:, state:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress} for more
+          #   details.
+          #
           #   Details for where Increase will mail the check.
           #
           #   @param city [String, nil] The city of the check's destination.
@@ -611,6 +622,8 @@ module Increase
           #   @param line2 [String, nil] The second line of the address of the check's destination.
           #
           #   @param name [String, nil] The name component of the check's mailing address.
+          #
+          #   @param phone [String, nil] The phone number to be used in case of delivery issues at the check's mailing ad
           #
           #   @param postal_code [String, nil] The postal code of the check's destination.
           #
