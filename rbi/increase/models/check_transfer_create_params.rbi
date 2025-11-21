@@ -495,6 +495,15 @@ module Increase
           sig { params(name: String).void }
           attr_writer :name
 
+          # The phone number to associate with the check's destination address. Will be
+          # supplied to FedEx as the contact phone number for the recipient to be used in
+          # case of delivery issues.
+          sig { returns(T.nilable(String)) }
+          attr_reader :phone
+
+          sig { params(phone: String).void }
+          attr_writer :phone
+
           # Details for where Increase will mail the check.
           sig do
             params(
@@ -503,7 +512,8 @@ module Increase
               postal_code: String,
               state: String,
               line2: String,
-              name: String
+              name: String,
+              phone: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -519,7 +529,11 @@ module Increase
             line2: nil,
             # The name component of the check's destination address. Defaults to the provided
             # `recipient_name` parameter if `name` is not provided.
-            name: nil
+            name: nil,
+            # The phone number to associate with the check's destination address. Will be
+            # supplied to FedEx as the contact phone number for the recipient to be used in
+            # case of delivery issues.
+            phone: nil
           )
           end
 
@@ -531,7 +545,8 @@ module Increase
                 postal_code: String,
                 state: String,
                 line2: String,
-                name: String
+                name: String,
+                phone: String
               }
             )
           end
