@@ -263,9 +263,9 @@ module Increase
           optional :name, String
 
           # @!attribute phone
-          #   The phone number to associate with the check's destination address. Will be
-          #   supplied to FedEx as the contact phone number for the recipient to be used in
-          #   case of delivery issues.
+          #   The phone number to associate with the check's destination address. Only used if
+          #   shipping method is `fedex_overnight`. Will be supplied to FedEx as the contact
+          #   phone number for the recipient to be used in case of delivery issues.
           #
           #   @return [String, nil]
           optional :phone, String
@@ -289,7 +289,7 @@ module Increase
           #
           #   @param name [String] The name component of the check's destination address. Defaults to the provided
           #
-          #   @param phone [String] The phone number to associate with the check's destination address. Will be supp
+          #   @param phone [String] The phone number to associate with the check's destination address. Only used if
         end
 
         class Payer < Increase::Internal::Type::BaseModel
