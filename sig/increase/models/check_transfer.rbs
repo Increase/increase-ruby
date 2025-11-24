@@ -304,6 +304,7 @@ module Increase
       type physical_check =
         {
           attachment_file_id: String?,
+          check_voucher_image_file_id: String?,
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
@@ -317,6 +318,8 @@ module Increase
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
         attr_accessor attachment_file_id: String?
+
+        attr_accessor check_voucher_image_file_id: String?
 
         attr_accessor mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress
 
@@ -338,6 +341,7 @@ module Increase
 
         def initialize: (
           attachment_file_id: String?,
+          check_voucher_image_file_id: String?,
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
@@ -351,6 +355,7 @@ module Increase
 
         def to_hash: -> {
           attachment_file_id: String?,
+          check_voucher_image_file_id: String?,
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,

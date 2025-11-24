@@ -301,6 +301,15 @@ module Increase
         sig { params(attachment_file_id: String).void }
         attr_writer :attachment_file_id
 
+        # The ID of a File to be used as the check voucher image. This must have
+        # `purpose: check_voucher_image`. For details on pricing and restrictions, see
+        # https://increase.com/documentation/originating-checks#printing-checks .
+        sig { returns(T.nilable(String)) }
+        attr_reader :check_voucher_image_file_id
+
+        sig { params(check_voucher_image_file_id: String).void }
+        attr_writer :check_voucher_image_file_id
+
         # The descriptor that will be printed on the letter included with the check.
         sig { returns(T.nilable(String)) }
         attr_reader :note
@@ -389,6 +398,7 @@ module Increase
             memo: String,
             recipient_name: String,
             attachment_file_id: String,
+            check_voucher_image_file_id: String,
             note: String,
             payer:
               T::Array[
@@ -412,6 +422,10 @@ module Increase
           # `purpose: check_attachment`. For details on pricing and restrictions, see
           # https://increase.com/documentation/originating-checks#printing-checks .
           attachment_file_id: nil,
+          # The ID of a File to be used as the check voucher image. This must have
+          # `purpose: check_voucher_image`. For details on pricing and restrictions, see
+          # https://increase.com/documentation/originating-checks#printing-checks .
+          check_voucher_image_file_id: nil,
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
           # The payer of the check. This will be printed on the top-left portion of the
@@ -439,6 +453,7 @@ module Increase
               memo: String,
               recipient_name: String,
               attachment_file_id: String,
+              check_voucher_image_file_id: String,
               note: String,
               payer:
                 T::Array[
