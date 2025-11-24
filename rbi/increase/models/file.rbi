@@ -174,6 +174,10 @@ module Increase
         CHECK_ATTACHMENT =
           T.let(:check_attachment, Increase::File::Purpose::TaggedSymbol)
 
+        # An image to be used as the check voucher image, which is printed in the middle of the trifold area of a check. This must be a 2550x1100 pixel PNG.
+        CHECK_VOUCHER_IMAGE =
+          T.let(:check_voucher_image, Increase::File::Purpose::TaggedSymbol)
+
         # A scanned mail item sent to Increase.
         INBOUND_MAIL_ITEM =
           T.let(:inbound_mail_item, Increase::File::Purpose::TaggedSymbol)

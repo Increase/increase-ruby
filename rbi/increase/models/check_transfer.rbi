@@ -786,6 +786,10 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :attachment_file_id
 
+        # The ID of the file for the check voucher image.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :check_voucher_image_file_id
+
         # Details for where Increase will mail the check.
         sig { returns(Increase::CheckTransfer::PhysicalCheck::MailingAddress) }
         attr_reader :mailing_address
@@ -861,6 +865,7 @@ module Increase
         sig do
           params(
             attachment_file_id: T.nilable(String),
+            check_voucher_image_file_id: T.nilable(String),
             mailing_address:
               Increase::CheckTransfer::PhysicalCheck::MailingAddress::OrHash,
             memo: T.nilable(String),
@@ -886,6 +891,8 @@ module Increase
         def self.new(
           # The ID of the file for the check attachment.
           attachment_file_id:,
+          # The ID of the file for the check voucher image.
+          check_voucher_image_file_id:,
           # Details for where Increase will mail the check.
           mailing_address:,
           # The descriptor that will be printed on the memo field on the check.
@@ -913,6 +920,7 @@ module Increase
           override.returns(
             {
               attachment_file_id: T.nilable(String),
+              check_voucher_image_file_id: T.nilable(String),
               mailing_address:
                 Increase::CheckTransfer::PhysicalCheck::MailingAddress,
               memo: T.nilable(String),

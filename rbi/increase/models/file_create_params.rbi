@@ -105,6 +105,13 @@ module Increase
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
+        # An image to be used as the check voucher image, which is printed in the middle of the trifold area of a check. This must be a 2550x1100 pixel PNG.
+        CHECK_VOUCHER_IMAGE =
+          T.let(
+            :check_voucher_image,
+            Increase::FileCreateParams::Purpose::TaggedSymbol
+          )
+
         # IRS Form SS-4.
         FORM_SS_4 =
           T.let(:form_ss_4, Increase::FileCreateParams::Purpose::TaggedSymbol)
