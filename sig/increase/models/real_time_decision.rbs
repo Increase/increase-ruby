@@ -508,14 +508,53 @@ module Increase
           def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthorization::decision]
         end
 
-        type decline = { reason: String }
+        type decline =
+          {
+            reason: Increase::Models::RealTimeDecision::CardAuthorization::Decline::reason
+          }
 
         class Decline < Increase::Internal::Type::BaseModel
-          attr_accessor reason: String
+          attr_accessor reason: Increase::Models::RealTimeDecision::CardAuthorization::Decline::reason
 
-          def initialize: (reason: String) -> void
+          def initialize: (
+            reason: Increase::Models::RealTimeDecision::CardAuthorization::Decline::reason
+          ) -> void
 
-          def to_hash: -> { reason: String }
+          def to_hash: -> {
+            reason: Increase::Models::RealTimeDecision::CardAuthorization::Decline::reason
+          }
+
+          type reason =
+            :insufficient_funds
+            | :transaction_never_allowed
+            | :exceeds_approval_limit
+            | :card_temporarily_disabled
+            | :suspected_fraud
+            | :other
+
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
+            INSUFFICIENT_FUNDS: :insufficient_funds
+
+            # This type of transaction is not allowed for this card. This transaction should not be retried.
+            TRANSACTION_NEVER_ALLOWED: :transaction_never_allowed
+
+            # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
+            EXCEEDS_APPROVAL_LIMIT: :exceeds_approval_limit
+
+            # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
+            CARD_TEMPORARILY_DISABLED: :card_temporarily_disabled
+
+            # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
+            SUSPECTED_FRAUD: :suspected_fraud
+
+            # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
+            OTHER: :other
+
+            def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthorization::Decline::reason]
+          end
         end
 
         type direction = :settlement | :refund
