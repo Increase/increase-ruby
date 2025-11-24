@@ -907,14 +907,42 @@ module Increase
           # @!attribute reason
           #   The reason the authorization was declined.
           #
-          #   @return [String]
-          required :reason, String
+          #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::Decline::Reason]
+          required :reason, enum: -> { Increase::RealTimeDecision::CardAuthorization::Decline::Reason }
 
           # @!method initialize(reason:)
           #   Present if and only if `decision` is `decline`. Contains information related to
           #   the reason the authorization was declined.
           #
-          #   @param reason [String] The reason the authorization was declined.
+          #   @param reason [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::Decline::Reason] The reason the authorization was declined.
+
+          # The reason the authorization was declined.
+          #
+          # @see Increase::Models::RealTimeDecision::CardAuthorization::Decline#reason
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
+            INSUFFICIENT_FUNDS = :insufficient_funds
+
+            # This type of transaction is not allowed for this card. This transaction should not be retried.
+            TRANSACTION_NEVER_ALLOWED = :transaction_never_allowed
+
+            # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
+            EXCEEDS_APPROVAL_LIMIT = :exceeds_approval_limit
+
+            # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
+            CARD_TEMPORARILY_DISABLED = :card_temporarily_disabled
+
+            # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
+            SUSPECTED_FRAUD = :suspected_fraud
+
+            # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
+            OTHER = :other
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # The direction describes the direction the funds will move, either from the

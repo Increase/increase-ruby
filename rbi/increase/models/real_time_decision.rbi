@@ -1619,20 +1619,102 @@ module Increase
             end
 
           # The reason the authorization was declined.
-          sig { returns(String) }
+          sig do
+            returns(
+              Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+            )
+          end
           attr_accessor :reason
 
           # Present if and only if `decision` is `decline`. Contains information related to
           # the reason the authorization was declined.
-          sig { params(reason: String).returns(T.attached_class) }
+          sig do
+            params(
+              reason:
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::OrSymbol
+            ).returns(T.attached_class)
+          end
           def self.new(
             # The reason the authorization was declined.
             reason:
           )
           end
 
-          sig { override.returns({ reason: String }) }
+          sig do
+            override.returns(
+              {
+                reason:
+                  Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              }
+            )
+          end
           def to_hash
+          end
+
+          # The reason the authorization was declined.
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::RealTimeDecision::CardAuthorization::Decline::Reason
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The cardholder does not have sufficient funds to cover the transaction. The merchant may attempt to process the transaction again.
+            INSUFFICIENT_FUNDS =
+              T.let(
+                :insufficient_funds,
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # This type of transaction is not allowed for this card. This transaction should not be retried.
+            TRANSACTION_NEVER_ALLOWED =
+              T.let(
+                :transaction_never_allowed,
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The transaction amount exceeds the cardholder's approval limit. The merchant may attempt to process the transaction again.
+            EXCEEDS_APPROVAL_LIMIT =
+              T.let(
+                :exceeds_approval_limit,
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The card has been temporarily disabled or not yet activated. The merchant may attempt to process the transaction again.
+            CARD_TEMPORARILY_DISABLED =
+              T.let(
+                :card_temporarily_disabled,
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The transaction is suspected to be fraudulent. The merchant may attempt to process the transaction again.
+            SUSPECTED_FRAUD =
+              T.let(
+                :suspected_fraud,
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
+            OTHER =
+              T.let(
+                :other,
+                Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::RealTimeDecision::CardAuthorization::Decline::Reason::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
