@@ -475,6 +475,12 @@ module Increase
         #   @return [String, nil]
         required :attachment_file_id, String, nil?: true
 
+        # @!attribute check_voucher_image_file_id
+        #   The ID of the file for the check voucher image.
+        #
+        #   @return [String, nil]
+        required :check_voucher_image_file_id, String, nil?: true
+
         # @!attribute mailing_address
         #   Details for where Increase will mail the check.
         #
@@ -536,7 +542,7 @@ module Increase
         required :tracking_updates,
                  -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate] }
 
-        # @!method initialize(attachment_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
+        # @!method initialize(attachment_file_id:, check_voucher_image_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransfer::PhysicalCheck} for more details.
         #
@@ -544,6 +550,8 @@ module Increase
         #   be present if and only if `fulfillment_method` is equal to `physical_check`.
         #
         #   @param attachment_file_id [String, nil] The ID of the file for the check attachment.
+        #
+        #   @param check_voucher_image_file_id [String, nil] The ID of the file for the check voucher image.
         #
         #   @param mailing_address [Increase::Models::CheckTransfer::PhysicalCheck::MailingAddress] Details for where Increase will mail the check.
         #

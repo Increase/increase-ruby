@@ -160,6 +160,14 @@ module Increase
         #   @return [String, nil]
         optional :attachment_file_id, String
 
+        # @!attribute check_voucher_image_file_id
+        #   The ID of a File to be used as the check voucher image. This must have
+        #   `purpose: check_voucher_image`. For details on pricing and restrictions, see
+        #   https://increase.com/documentation/originating-checks#printing-checks .
+        #
+        #   @return [String, nil]
+        optional :check_voucher_image_file_id, String
+
         # @!attribute note
         #   The descriptor that will be printed on the letter included with the check.
         #
@@ -197,7 +205,7 @@ module Increase
         #   @return [String, nil]
         optional :signature_text, String
 
-        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, note: nil, payer: nil, return_address: nil, shipping_method: nil, signature_text: nil)
+        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, payer: nil, return_address: nil, shipping_method: nil, signature_text: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
         #
@@ -212,6 +220,8 @@ module Increase
         #   @param recipient_name [String] The name that will be printed on the check in the 'To:' field.
         #
         #   @param attachment_file_id [String] The ID of a File to be attached to the check. This must have `purpose: check_att
+        #
+        #   @param check_voucher_image_file_id [String] The ID of a File to be used as the check voucher image. This must have `purpose:
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.
         #

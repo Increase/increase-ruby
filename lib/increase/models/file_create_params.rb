@@ -58,6 +58,9 @@ module Increase
         # A document to be printed on an additional page and mailed with a check that you've requested Increase print.
         CHECK_ATTACHMENT = :check_attachment
 
+        # An image to be used as the check voucher image, which is printed in the middle of the trifold area of a check. This must be a 2550x1100 pixel PNG.
+        CHECK_VOUCHER_IMAGE = :check_voucher_image
+
         # IRS Form SS-4.
         FORM_SS_4 = :form_ss_4
 
