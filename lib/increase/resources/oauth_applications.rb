@@ -40,7 +40,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::OAuthApplication>]
+      # @return [Increase::Models::OAuthApplicationListResponse]
       #
       # @see Increase::Models::OAuthApplicationListParams
       def list(params = {})
@@ -49,8 +49,7 @@ module Increase
           method: :get,
           path: "oauth_applications",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::OAuthApplication,
+          model: Increase::Models::OAuthApplicationListResponse,
           options: options
         )
       end

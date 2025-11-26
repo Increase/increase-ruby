@@ -1,0 +1,22 @@
+module Increase
+  module Models
+    type fednow_transfer_list_response =
+      { data: ::Array[Increase::FednowTransfer], next_cursor: String? }
+
+    class FednowTransferListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::FednowTransfer]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::FednowTransfer],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Increase::FednowTransfer],
+        next_cursor: String?
+      }
+    end
+  end
+end

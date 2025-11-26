@@ -89,7 +89,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::ACHPrenotification>]
+      # @return [Increase::Models::ACHPrenotificationListResponse]
       #
       # @see Increase::Models::ACHPrenotificationListParams
       def list(params = {})
@@ -98,8 +98,7 @@ module Increase
           method: :get,
           path: "ach_prenotifications",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::ACHPrenotification,
+          model: Increase::Models::ACHPrenotificationListResponse,
           options: options
         )
       end

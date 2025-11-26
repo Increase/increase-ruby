@@ -63,31 +63,13 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     response = @increase.card_disputes.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::CardDispute
+      response => Increase::Models::CardDisputeListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        amount: Integer,
-        card_id: String,
-        created_at: Time,
-        disputed_transaction_id: String,
-        idempotency_key: String | nil,
-        loss: Increase::CardDispute::Loss | nil,
-        network: Increase::CardDispute::Network,
-        status: Increase::CardDispute::Status,
-        type: Increase::CardDispute::Type,
-        user_submission_required_by: Time | nil,
-        visa: Increase::CardDispute::Visa | nil,
-        win: Increase::CardDispute::Win | nil
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::CardDispute]),
+        next_cursor: String | nil
       }
     end
   end

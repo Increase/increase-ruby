@@ -27,25 +27,13 @@ class Increase::Test::Resources::CardTokensTest < Increase::Test::ResourceTest
     response = @increase.card_tokens.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::CardToken
+      response => Increase::Models::CardTokenListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        created_at: Time,
-        expiration_date: Date,
-        last4: String,
-        length: Integer,
-        prefix: String,
-        type: Increase::CardToken::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::CardToken]),
+        next_cursor: String | nil
       }
     end
   end

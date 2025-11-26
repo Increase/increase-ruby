@@ -102,7 +102,7 @@ module Increase
           limit: Integer,
           status: Increase::CardPushTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::CardPushTransfer])
+        ).returns(Increase::Models::CardPushTransferListResponse)
       end
       def list(
         # Filter Card Push Transfers to ones belonging to the specified Account.

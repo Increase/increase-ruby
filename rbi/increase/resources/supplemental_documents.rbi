@@ -28,9 +28,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(
-          Increase::Internal::Page[Increase::EntitySupplementalDocument]
-        )
+        ).returns(Increase::Models::SupplementalDocumentListResponse)
       end
       def list(
         # The identifier of the Entity to list supplemental documents for.

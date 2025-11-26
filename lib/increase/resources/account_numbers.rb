@@ -110,7 +110,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::AccountNumber>]
+      # @return [Increase::Models::AccountNumberListResponse]
       #
       # @see Increase::Models::AccountNumberListParams
       def list(params = {})
@@ -119,8 +119,7 @@ module Increase
           method: :get,
           path: "account_numbers",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::AccountNumber,
+          model: Increase::Models::AccountNumberListResponse,
           options: options
         )
       end

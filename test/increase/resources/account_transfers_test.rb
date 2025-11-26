@@ -71,34 +71,13 @@ class Increase::Test::Resources::AccountTransfersTest < Increase::Test::Resource
     response = @increase.account_transfers.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::AccountTransfer
+      response => Increase::Models::AccountTransferListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        amount: Integer,
-        approval: Increase::AccountTransfer::Approval | nil,
-        cancellation: Increase::AccountTransfer::Cancellation | nil,
-        created_at: Time,
-        created_by: Increase::AccountTransfer::CreatedBy | nil,
-        currency: Increase::AccountTransfer::Currency,
-        description: String,
-        destination_account_id: String,
-        destination_transaction_id: String | nil,
-        idempotency_key: String | nil,
-        pending_transaction_id: String | nil,
-        status: Increase::AccountTransfer::Status,
-        transaction_id: String | nil,
-        type: Increase::AccountTransfer::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::AccountTransfer]),
+        next_cursor: String | nil
       }
     end
   end

@@ -89,43 +89,13 @@ class Increase::Test::Resources::CheckTransfersTest < Increase::Test::ResourceTe
     response = @increase.check_transfers.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::CheckTransfer
+      response => Increase::Models::CheckTransferListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        account_number: String,
-        amount: Integer,
-        approval: Increase::CheckTransfer::Approval | nil,
-        approved_inbound_check_deposit_id: String | nil,
-        balance_check: Increase::CheckTransfer::BalanceCheck | nil,
-        cancellation: Increase::CheckTransfer::Cancellation | nil,
-        check_number: String,
-        created_at: Time,
-        created_by: Increase::CheckTransfer::CreatedBy | nil,
-        currency: Increase::CheckTransfer::Currency,
-        fulfillment_method: Increase::CheckTransfer::FulfillmentMethod,
-        idempotency_key: String | nil,
-        mailing: Increase::CheckTransfer::Mailing | nil,
-        pending_transaction_id: String | nil,
-        physical_check: Increase::CheckTransfer::PhysicalCheck | nil,
-        routing_number: String,
-        source_account_number_id: String | nil,
-        status: Increase::CheckTransfer::Status,
-        stop_payment_request: Increase::CheckTransfer::StopPaymentRequest | nil,
-        submission: Increase::CheckTransfer::Submission | nil,
-        third_party: Increase::CheckTransfer::ThirdParty | nil,
-        type: Increase::CheckTransfer::Type,
-        valid_until_date: Date | nil
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::CheckTransfer]),
+        next_cursor: String | nil
       }
     end
   end

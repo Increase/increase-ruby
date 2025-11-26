@@ -30,7 +30,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::RealTimePaymentsTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::RealTimePaymentsTransfer]
+      ) -> Increase::Models::RealTimePaymentsTransferListResponse
 
       def approve: (
         String real_time_payments_transfer_id,

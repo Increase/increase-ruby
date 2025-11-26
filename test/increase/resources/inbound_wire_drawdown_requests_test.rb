@@ -42,39 +42,13 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
     response = @increase.inbound_wire_drawdown_requests.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::InboundWireDrawdownRequest
+      response => Increase::Models::InboundWireDrawdownRequestListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        amount: Integer,
-        created_at: Time,
-        creditor_account_number: String,
-        creditor_address_line1: String | nil,
-        creditor_address_line2: String | nil,
-        creditor_address_line3: String | nil,
-        creditor_name: String | nil,
-        creditor_routing_number: String,
-        currency: String,
-        debtor_address_line1: String | nil,
-        debtor_address_line2: String | nil,
-        debtor_address_line3: String | nil,
-        debtor_name: String | nil,
-        end_to_end_identification: String | nil,
-        input_message_accountability_data: String | nil,
-        instruction_identification: String | nil,
-        recipient_account_number_id: String,
-        type: Increase::InboundWireDrawdownRequest::Type,
-        unique_end_to_end_transaction_reference: String | nil,
-        unstructured_remittance_information: String | nil
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::InboundWireDrawdownRequest]),
+        next_cursor: String | nil
       }
     end
   end

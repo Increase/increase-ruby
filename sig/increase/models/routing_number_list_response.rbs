@@ -2,114 +2,136 @@ module Increase
   module Models
     type routing_number_list_response =
       {
-        ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
-        fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers,
-        name: String,
-        real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
-        routing_number: String,
-        type: Increase::Models::RoutingNumberListResponse::type_,
-        wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
+        data: ::Array[Increase::Models::RoutingNumberListResponse::Data],
+        next_cursor: String?
       }
 
     class RoutingNumberListResponse < Increase::Internal::Type::BaseModel
-      attr_accessor ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers
+      attr_accessor data: ::Array[Increase::Models::RoutingNumberListResponse::Data]
 
-      attr_accessor fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers
-
-      attr_accessor name: String
-
-      attr_accessor real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers
-
-      attr_accessor routing_number: String
-
-      attr_accessor type: Increase::Models::RoutingNumberListResponse::type_
-
-      attr_accessor wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
+      attr_accessor next_cursor: String?
 
       def initialize: (
-        ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
-        fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers,
-        name: String,
-        real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
-        routing_number: String,
-        type: Increase::Models::RoutingNumberListResponse::type_,
-        wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
+        data: ::Array[Increase::Models::RoutingNumberListResponse::Data],
+        next_cursor: String?
       ) -> void
 
       def to_hash: -> {
-        ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
-        fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers,
-        name: String,
-        real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
-        routing_number: String,
-        type: Increase::Models::RoutingNumberListResponse::type_,
-        wire_transfers: Increase::Models::RoutingNumberListResponse::wire_transfers
+        data: ::Array[Increase::Models::RoutingNumberListResponse::Data],
+        next_cursor: String?
       }
 
-      type ach_transfers = :supported | :not_supported
+      type data =
+        {
+          ach_transfers: Increase::Models::RoutingNumberListResponse::Data::ach_transfers,
+          fednow_transfers: Increase::Models::RoutingNumberListResponse::Data::fednow_transfers,
+          name: String,
+          real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::Data::real_time_payments_transfers,
+          routing_number: String,
+          type: Increase::Models::RoutingNumberListResponse::Data::type_,
+          wire_transfers: Increase::Models::RoutingNumberListResponse::Data::wire_transfers
+        }
 
-      module ACHTransfers
-        extend Increase::Internal::Type::Enum
+      class Data < Increase::Internal::Type::BaseModel
+        attr_accessor ach_transfers: Increase::Models::RoutingNumberListResponse::Data::ach_transfers
 
-        # The routing number can receive this transfer type.
-        SUPPORTED: :supported
+        attr_accessor fednow_transfers: Increase::Models::RoutingNumberListResponse::Data::fednow_transfers
 
-        # The routing number cannot receive this transfer type.
-        NOT_SUPPORTED: :not_supported
+        attr_accessor name: String
 
-        def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::ach_transfers]
-      end
+        attr_accessor real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::Data::real_time_payments_transfers
 
-      type fednow_transfers = :supported | :not_supported
+        attr_accessor routing_number: String
 
-      module FednowTransfers
-        extend Increase::Internal::Type::Enum
+        attr_accessor type: Increase::Models::RoutingNumberListResponse::Data::type_
 
-        # The routing number can receive this transfer type.
-        SUPPORTED: :supported
+        attr_accessor wire_transfers: Increase::Models::RoutingNumberListResponse::Data::wire_transfers
 
-        # The routing number cannot receive this transfer type.
-        NOT_SUPPORTED: :not_supported
+        def initialize: (
+          ach_transfers: Increase::Models::RoutingNumberListResponse::Data::ach_transfers,
+          fednow_transfers: Increase::Models::RoutingNumberListResponse::Data::fednow_transfers,
+          name: String,
+          real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::Data::real_time_payments_transfers,
+          routing_number: String,
+          type: Increase::Models::RoutingNumberListResponse::Data::type_,
+          wire_transfers: Increase::Models::RoutingNumberListResponse::Data::wire_transfers
+        ) -> void
 
-        def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::fednow_transfers]
-      end
+        def to_hash: -> {
+          ach_transfers: Increase::Models::RoutingNumberListResponse::Data::ach_transfers,
+          fednow_transfers: Increase::Models::RoutingNumberListResponse::Data::fednow_transfers,
+          name: String,
+          real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::Data::real_time_payments_transfers,
+          routing_number: String,
+          type: Increase::Models::RoutingNumberListResponse::Data::type_,
+          wire_transfers: Increase::Models::RoutingNumberListResponse::Data::wire_transfers
+        }
 
-      type real_time_payments_transfers = :supported | :not_supported
+        type ach_transfers = :supported | :not_supported
 
-      module RealTimePaymentsTransfers
-        extend Increase::Internal::Type::Enum
+        module ACHTransfers
+          extend Increase::Internal::Type::Enum
 
-        # The routing number can receive this transfer type.
-        SUPPORTED: :supported
+          # The routing number can receive this transfer type.
+          SUPPORTED: :supported
 
-        # The routing number cannot receive this transfer type.
-        NOT_SUPPORTED: :not_supported
+          # The routing number cannot receive this transfer type.
+          NOT_SUPPORTED: :not_supported
 
-        def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::real_time_payments_transfers]
-      end
+          def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::Data::ach_transfers]
+        end
 
-      type type_ = :routing_number
+        type fednow_transfers = :supported | :not_supported
 
-      module Type
-        extend Increase::Internal::Type::Enum
+        module FednowTransfers
+          extend Increase::Internal::Type::Enum
 
-        ROUTING_NUMBER: :routing_number
+          # The routing number can receive this transfer type.
+          SUPPORTED: :supported
 
-        def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::type_]
-      end
+          # The routing number cannot receive this transfer type.
+          NOT_SUPPORTED: :not_supported
 
-      type wire_transfers = :supported | :not_supported
+          def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::Data::fednow_transfers]
+        end
 
-      module WireTransfers
-        extend Increase::Internal::Type::Enum
+        type real_time_payments_transfers = :supported | :not_supported
 
-        # The routing number can receive this transfer type.
-        SUPPORTED: :supported
+        module RealTimePaymentsTransfers
+          extend Increase::Internal::Type::Enum
 
-        # The routing number cannot receive this transfer type.
-        NOT_SUPPORTED: :not_supported
+          # The routing number can receive this transfer type.
+          SUPPORTED: :supported
 
-        def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::wire_transfers]
+          # The routing number cannot receive this transfer type.
+          NOT_SUPPORTED: :not_supported
+
+          def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::Data::real_time_payments_transfers]
+        end
+
+        type type_ = :routing_number
+
+        module Type
+          extend Increase::Internal::Type::Enum
+
+          ROUTING_NUMBER: :routing_number
+
+          def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::Data::type_]
+        end
+
+        type wire_transfers = :supported | :not_supported
+
+        module WireTransfers
+          extend Increase::Internal::Type::Enum
+
+          # The routing number can receive this transfer type.
+          SUPPORTED: :supported
+
+          # The routing number cannot receive this transfer type.
+          NOT_SUPPORTED: :not_supported
+
+          def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::Data::wire_transfers]
+        end
       end
     end
   end

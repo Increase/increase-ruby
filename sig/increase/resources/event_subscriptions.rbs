@@ -26,7 +26,7 @@ module Increase
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::EventSubscription]
+      ) -> Increase::Models::EventSubscriptionListResponse
 
       def initialize: (client: Increase::Client) -> void
     end

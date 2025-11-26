@@ -70,7 +70,7 @@ module Increase
           limit: Integer,
           status: Increase::ExportListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Export])
+        ).returns(Increase::Models::ExportListResponse)
       end
       def list(
         category: nil,

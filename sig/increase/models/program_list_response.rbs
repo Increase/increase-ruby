@@ -1,0 +1,19 @@
+module Increase
+  module Models
+    type program_list_response =
+      { data: ::Array[Increase::Program], next_cursor: String? }
+
+    class ProgramListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::Program]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::Program],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> { data: ::Array[Increase::Program], next_cursor: String? }
+    end
+  end
+end

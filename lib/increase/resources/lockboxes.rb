@@ -96,7 +96,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::Lockbox>]
+      # @return [Increase::Models::LockboxListResponse]
       #
       # @see Increase::Models::LockboxListParams
       def list(params = {})
@@ -105,8 +105,7 @@ module Increase
           method: :get,
           path: "lockboxes",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::Lockbox,
+          model: Increase::Models::LockboxListResponse,
           options: options
         )
       end

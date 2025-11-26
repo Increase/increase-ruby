@@ -35,7 +35,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::CardPushTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::CardPushTransfer]
+      ) -> Increase::Models::CardPushTransferListResponse
 
       def approve: (
         String card_push_transfer_id,

@@ -26,24 +26,13 @@ class Increase::Test::Resources::EventsTest < Increase::Test::ResourceTest
     response = @increase.events.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::Event
+      response => Increase::Models::EventListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        associated_object_id: String,
-        associated_object_type: String,
-        category: Increase::Event::Category,
-        created_at: Time,
-        type: Increase::Event::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::Event]),
+        next_cursor: String | nil
       }
     end
   end

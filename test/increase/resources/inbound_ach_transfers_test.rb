@@ -47,45 +47,13 @@ class Increase::Test::Resources::InboundACHTransfersTest < Increase::Test::Resou
     response = @increase.inbound_ach_transfers.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::InboundACHTransfer
+      response => Increase::Models::InboundACHTransferListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        acceptance: Increase::InboundACHTransfer::Acceptance | nil,
-        account_id: String,
-        account_number_id: String,
-        addenda: Increase::InboundACHTransfer::Addenda | nil,
-        amount: Integer,
-        automatically_resolves_at: Time,
-        created_at: Time,
-        decline: Increase::InboundACHTransfer::Decline | nil,
-        direction: Increase::InboundACHTransfer::Direction,
-        effective_date: Date,
-        international_addenda: Increase::InboundACHTransfer::InternationalAddenda | nil,
-        notification_of_change: Increase::InboundACHTransfer::NotificationOfChange | nil,
-        originator_company_descriptive_date: String | nil,
-        originator_company_discretionary_data: String | nil,
-        originator_company_entry_description: String,
-        originator_company_id: String,
-        originator_company_name: String,
-        originator_routing_number: String,
-        receiver_id_number: String | nil,
-        receiver_name: String | nil,
-        settlement: Increase::InboundACHTransfer::Settlement,
-        standard_entry_class_code: Increase::InboundACHTransfer::StandardEntryClassCode,
-        status: Increase::InboundACHTransfer::Status,
-        trace_number: String,
-        transfer_return: Increase::InboundACHTransfer::TransferReturn | nil,
-        type: Increase::InboundACHTransfer::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::InboundACHTransfer]),
+        next_cursor: String | nil
       }
     end
   end

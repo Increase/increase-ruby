@@ -84,39 +84,13 @@ class Increase::Test::Resources::CardValidationsTest < Increase::Test::ResourceT
     response = @increase.card_validations.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::CardValidation
+      response => Increase::Models::CardValidationListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        acceptance: Increase::CardValidation::Acceptance | nil,
-        account_id: String,
-        card_token_id: String,
-        cardholder_first_name: String | nil,
-        cardholder_last_name: String | nil,
-        cardholder_middle_name: String | nil,
-        cardholder_postal_code: String | nil,
-        cardholder_street_address: String | nil,
-        created_at: Time,
-        created_by: Increase::CardValidation::CreatedBy | nil,
-        decline: Increase::CardValidation::Decline | nil,
-        idempotency_key: String | nil,
-        merchant_category_code: String,
-        merchant_city_name: String,
-        merchant_name: String,
-        merchant_postal_code: String,
-        merchant_state: String,
-        status: Increase::CardValidation::Status,
-        submission: Increase::CardValidation::Submission | nil,
-        type: Increase::CardValidation::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::CardValidation]),
+        next_cursor: String | nil
       }
     end
   end

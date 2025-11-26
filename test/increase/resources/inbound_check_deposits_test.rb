@@ -40,38 +40,13 @@ class Increase::Test::Resources::InboundCheckDepositsTest < Increase::Test::Reso
     response = @increase.inbound_check_deposits.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::InboundCheckDeposit
+      response => Increase::Models::InboundCheckDepositListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        accepted_at: Time | nil,
-        account_id: String,
-        account_number_id: String | nil,
-        adjustments: ^(Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit::Adjustment]),
-        amount: Integer,
-        back_image_file_id: String | nil,
-        bank_of_first_deposit_routing_number: String | nil,
-        check_number: String | nil,
-        check_transfer_id: String | nil,
-        created_at: Time,
-        currency: Increase::InboundCheckDeposit::Currency,
-        declined_at: Time | nil,
-        declined_transaction_id: String | nil,
-        deposit_return: Increase::InboundCheckDeposit::DepositReturn | nil,
-        front_image_file_id: String | nil,
-        payee_name_analysis: Increase::InboundCheckDeposit::PayeeNameAnalysis,
-        status: Increase::InboundCheckDeposit::Status,
-        transaction_id: String | nil,
-        type: Increase::InboundCheckDeposit::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::InboundCheckDeposit]),
+        next_cursor: String | nil
       }
     end
   end

@@ -1,0 +1,25 @@
+module Increase
+  module Models
+    type inbound_wire_drawdown_request_list_response =
+      {
+        data: ::Array[Increase::InboundWireDrawdownRequest],
+        next_cursor: String?
+      }
+
+    class InboundWireDrawdownRequestListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::InboundWireDrawdownRequest]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::InboundWireDrawdownRequest],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Increase::InboundWireDrawdownRequest],
+        next_cursor: String?
+      }
+    end
+  end
+end

@@ -59,7 +59,7 @@ module Increase
           limit: Integer,
           status: Increase::CardDisputeListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::CardDispute])
+        ).returns(Increase::Models::CardDisputeListResponse)
       end
       def list(
         created_at: nil,

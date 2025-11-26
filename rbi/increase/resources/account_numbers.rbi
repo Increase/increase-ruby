@@ -82,7 +82,7 @@ module Increase
           limit: Integer,
           status: Increase::AccountNumberListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::AccountNumber])
+        ).returns(Increase::Models::AccountNumberListResponse)
       end
       def list(
         # Filter Account Numbers to those belonging to the specified Account.

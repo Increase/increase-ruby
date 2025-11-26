@@ -44,42 +44,13 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
     response = @increase.inbound_wire_transfers.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::InboundWireTransfer
+      response => Increase::Models::InboundWireTransferListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        account_number_id: String,
-        amount: Integer,
-        created_at: Time,
-        creditor_address_line1: String | nil,
-        creditor_address_line2: String | nil,
-        creditor_address_line3: String | nil,
-        creditor_name: String | nil,
-        debtor_address_line1: String | nil,
-        debtor_address_line2: String | nil,
-        debtor_address_line3: String | nil,
-        debtor_name: String | nil,
-        description: String,
-        end_to_end_identification: String | nil,
-        input_message_accountability_data: String | nil,
-        instructing_agent_routing_number: String | nil,
-        instruction_identification: String | nil,
-        reversal: Increase::InboundWireTransfer::Reversal | nil,
-        status: Increase::InboundWireTransfer::Status,
-        type: Increase::InboundWireTransfer::Type,
-        unique_end_to_end_transaction_reference: String | nil,
-        unstructured_remittance_information: String | nil,
-        wire_drawdown_request_id: String | nil
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::InboundWireTransfer]),
+        next_cursor: String | nil
       }
     end
   end

@@ -54,28 +54,13 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
     response = @increase.intrafi_exclusions.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::IntrafiExclusion
+      response => Increase::Models::IntrafiExclusionListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        bank_name: String,
-        created_at: Time,
-        entity_id: String,
-        excluded_at: Time | nil,
-        fdic_certificate_number: String | nil,
-        idempotency_key: String | nil,
-        status: Increase::IntrafiExclusion::Status,
-        submitted_at: Time | nil,
-        type: Increase::IntrafiExclusion::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::IntrafiExclusion]),
+        next_cursor: String | nil
       }
     end
   end

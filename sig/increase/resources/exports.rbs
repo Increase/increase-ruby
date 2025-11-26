@@ -26,7 +26,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::ExportListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Export]
+      ) -> Increase::Models::ExportListResponse
 
       def initialize: (client: Increase::Client) -> void
     end

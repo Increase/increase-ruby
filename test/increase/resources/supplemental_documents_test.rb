@@ -29,23 +29,13 @@ class Increase::Test::Resources::SupplementalDocumentsTest < Increase::Test::Res
     response = @increase.supplemental_documents.list(entity_id: "entity_id")
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::EntitySupplementalDocument
+      response => Increase::Models::SupplementalDocumentListResponse
     end
 
     assert_pattern do
-      row => {
-        created_at: Time,
-        entity_id: String,
-        file_id: String,
-        idempotency_key: String | nil,
-        type: Increase::EntitySupplementalDocument::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        next_cursor: String | nil
       }
     end
   end

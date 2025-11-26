@@ -85,31 +85,13 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
     response = @increase.cards.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::Card
+      response => Increase::Models::CardListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        billing_address: Increase::Card::BillingAddress,
-        created_at: Time,
-        description: String | nil,
-        digital_wallet: Increase::Card::DigitalWallet | nil,
-        entity_id: String | nil,
-        expiration_month: Integer,
-        expiration_year: Integer,
-        idempotency_key: String | nil,
-        last4: String,
-        status: Increase::Card::Status,
-        type: Increase::Card::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::Card]),
+        next_cursor: String | nil
       }
     end
   end
