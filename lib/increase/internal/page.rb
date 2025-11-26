@@ -10,21 +10,21 @@ module Increase
     #   end
     #
     # @example
-    #   page.auto_paging_each do |account|
-    #     puts(account)
+    #   page.auto_paging_each do |item|
+    #     puts(item)
     #   end
     class Page
       include Increase::Internal::Type::BasePage
 
-      # @return [Array<generic<Elem>>, nil]
+      # @return [Object]
       attr_accessor :data
 
-      # @return [String, nil]
+      # @return [Object]
       attr_accessor :next_cursor
 
       # @return [Boolean]
       def next_page?
-        !data.to_a.empty? && !next_cursor.to_s.empty?
+        !empty? && !next_cursor.nil?
       end
 
       # @raise [Increase::HTTP::Error]
@@ -35,7 +35,7 @@ module Increase
           raise RuntimeError.new(message)
         end
 
-        req = Increase::Internal::Util.deep_merge(@req, {query: {cursor: next_cursor}})
+        req = Increase::Internal::Util.deep_merge(@req, {query: {":cursor": next_cursor}})
         @client.request(req)
       end
 
@@ -49,7 +49,7 @@ module Increase
 
         page = self
         loop do
-          page.data&.each(&blk)
+          page.each(&blk)
 
           break unless page.next_page?
           page = page.next_page
@@ -65,12 +65,8 @@ module Increase
       def initialize(client:, req:, headers:, page_data:)
         super
 
-        case page_data
-        in {data: Array => data}
-          @data = data.map { Increase::Internal::Type::Converter.coerce(@model, _1) }
-        else
-        end
-        @next_cursor = page_data[:next_cursor]
+        @data = page_data[:":data"]
+        @next_cursor = page_data[:":next_cursor"]
       end
 
       # @api private
@@ -79,7 +75,7 @@ module Increase
       def inspect
         model = Increase::Internal::Type::Converter.inspect(@model, depth: 1)
 
-        "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)} next_cursor=#{next_cursor.inspect}>"
+        "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)}>"
       end
     end
   end

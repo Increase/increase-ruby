@@ -30,28 +30,13 @@ class Increase::Test::Resources::TransactionsTest < Increase::Test::ResourceTest
     response = @increase.transactions.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::Transaction
+      response => Increase::Models::TransactionListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        amount: Integer,
-        created_at: Time,
-        currency: Increase::Transaction::Currency,
-        description: String,
-        route_id: String | nil,
-        route_type: Increase::Transaction::RouteType | nil,
-        source: Increase::Transaction::Source,
-        type: Increase::Transaction::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::Transaction]),
+        next_cursor: String | nil
       }
     end
   end

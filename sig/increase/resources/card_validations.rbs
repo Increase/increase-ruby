@@ -30,7 +30,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::CardValidationListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::CardValidation]
+      ) -> Increase::Models::CardValidationListResponse
 
       def initialize: (client: Increase::Client) -> void
     end

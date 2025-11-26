@@ -29,27 +29,13 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
     response = @increase.digital_wallet_tokens.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::DigitalWalletToken
+      response => Increase::Models::DigitalWalletTokenListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        card_id: String,
-        cardholder: Increase::DigitalWalletToken::Cardholder,
-        created_at: Time,
-        device: Increase::DigitalWalletToken::Device,
-        status: Increase::DigitalWalletToken::Status,
-        token_requestor: Increase::DigitalWalletToken::TokenRequestor,
-        type: Increase::DigitalWalletToken::Type,
-        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken]),
+        next_cursor: String | nil
       }
     end
   end

@@ -1,0 +1,25 @@
+module Increase
+  module Models
+    type inbound_real_time_payments_transfer_list_response =
+      {
+        data: ::Array[Increase::InboundRealTimePaymentsTransfer],
+        next_cursor: String?
+      }
+
+    class InboundRealTimePaymentsTransferListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::InboundRealTimePaymentsTransfer]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::InboundRealTimePaymentsTransfer],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Increase::InboundRealTimePaymentsTransfer],
+        next_cursor: String?
+      }
+    end
+  end
+end

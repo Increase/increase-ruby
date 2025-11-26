@@ -15,7 +15,7 @@ module Increase
         ?status: Increase::InboundWireTransferListParams::Status,
         ?wire_drawdown_request_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::InboundWireTransfer]
+      ) -> Increase::Models::InboundWireTransferListResponse
 
       def reverse: (
         String inbound_wire_transfer_id,

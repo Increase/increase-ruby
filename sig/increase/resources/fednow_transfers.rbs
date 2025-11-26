@@ -31,7 +31,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::FednowTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::FednowTransfer]
+      ) -> Increase::Models::FednowTransferListResponse
 
       def approve: (
         String fednow_transfer_id,

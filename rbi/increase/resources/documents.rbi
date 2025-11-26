@@ -51,7 +51,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Document])
+        ).returns(Increase::Models::DocumentListResponse)
       end
       def list(
         category: nil,

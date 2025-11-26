@@ -49,26 +49,13 @@ class Increase::Test::Resources::ExportsTest < Increase::Test::ResourceTest
     response = @increase.exports.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::Export
+      response => Increase::Models::ExportListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        category: Increase::Export::Category,
-        created_at: Time,
-        file_download_url: String | nil,
-        file_id: String | nil,
-        idempotency_key: String | nil,
-        status: Increase::Export::Status,
-        type: Increase::Export::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::Export]),
+        next_cursor: String | nil
       }
     end
   end

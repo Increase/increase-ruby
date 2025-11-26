@@ -54,26 +54,13 @@ class Increase::Test::Resources::IntrafiAccountEnrollmentsTest < Increase::Test:
     response = @increase.intrafi_account_enrollments.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::IntrafiAccountEnrollment
+      response => Increase::Models::IntrafiAccountEnrollmentListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        created_at: Time,
-        email_address: String | nil,
-        idempotency_key: String | nil,
-        intrafi_id: String,
-        status: Increase::IntrafiAccountEnrollment::Status,
-        type: Increase::IntrafiAccountEnrollment::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::IntrafiAccountEnrollment]),
+        next_cursor: String | nil
       }
     end
   end

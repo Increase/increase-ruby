@@ -90,43 +90,13 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
     response = @increase.real_time_payments_transfers.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::RealTimePaymentsTransfer
+      response => Increase::Models::RealTimePaymentsTransferListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
-        amount: Integer,
-        approval: Increase::RealTimePaymentsTransfer::Approval | nil,
-        cancellation: Increase::RealTimePaymentsTransfer::Cancellation | nil,
-        created_at: Time,
-        created_by: Increase::RealTimePaymentsTransfer::CreatedBy | nil,
-        creditor_name: String,
-        currency: Increase::RealTimePaymentsTransfer::Currency,
-        debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
-        external_account_id: String | nil,
-        idempotency_key: String | nil,
-        pending_transaction_id: String | nil,
-        rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
-        source_account_number_id: String,
-        status: Increase::RealTimePaymentsTransfer::Status,
-        submission: Increase::RealTimePaymentsTransfer::Submission | nil,
-        transaction_id: String | nil,
-        type: Increase::RealTimePaymentsTransfer::Type,
-        ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::RealTimePaymentsTransfer]),
+        next_cursor: String | nil
       }
     end
   end

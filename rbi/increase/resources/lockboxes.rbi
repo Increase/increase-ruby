@@ -70,7 +70,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Lockbox])
+        ).returns(Increase::Models::LockboxListResponse)
       end
       def list(
         # Filter Lockboxes to those associated with the provided Account.

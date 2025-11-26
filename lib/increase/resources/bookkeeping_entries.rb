@@ -38,7 +38,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::BookkeepingEntry>]
+      # @return [Increase::Models::BookkeepingEntryListResponse]
       #
       # @see Increase::Models::BookkeepingEntryListParams
       def list(params = {})
@@ -47,8 +47,7 @@ module Increase
           method: :get,
           path: "bookkeeping_entries",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::BookkeepingEntry,
+          model: Increase::Models::BookkeepingEntryListResponse,
           options: options
         )
       end

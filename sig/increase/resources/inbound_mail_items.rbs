@@ -12,7 +12,7 @@ module Increase
         ?limit: Integer,
         ?lockbox_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::InboundMailItem]
+      ) -> Increase::Models::InboundMailItemListResponse
 
       def action: (
         String inbound_mail_item_id,

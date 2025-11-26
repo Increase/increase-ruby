@@ -78,38 +78,13 @@ class Increase::Test::Resources::ACHPrenotificationsTest < Increase::Test::Resou
     response = @increase.ach_prenotifications.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::ACHPrenotification
+      response => Increase::Models::ACHPrenotificationListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String | nil,
-        account_number: String,
-        addendum: String | nil,
-        company_descriptive_date: String | nil,
-        company_discretionary_data: String | nil,
-        company_entry_description: String | nil,
-        company_name: String | nil,
-        created_at: Time,
-        credit_debit_indicator: Increase::ACHPrenotification::CreditDebitIndicator | nil,
-        effective_date: Time | nil,
-        idempotency_key: String | nil,
-        individual_id: String | nil,
-        individual_name: String | nil,
-        notifications_of_change: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification::NotificationsOfChange]),
-        prenotification_return: Increase::ACHPrenotification::PrenotificationReturn | nil,
-        routing_number: String,
-        standard_entry_class_code: Increase::ACHPrenotification::StandardEntryClassCode | nil,
-        status: Increase::ACHPrenotification::Status,
-        type: Increase::ACHPrenotification::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::ACHPrenotification]),
+        next_cursor: String | nil
       }
     end
   end

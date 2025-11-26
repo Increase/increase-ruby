@@ -25,7 +25,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::DigitalWalletToken])
+        ).returns(Increase::Models::DigitalWalletTokenListResponse)
       end
       def list(
         # Filter Digital Wallet Tokens to ones belonging to the specified Card.

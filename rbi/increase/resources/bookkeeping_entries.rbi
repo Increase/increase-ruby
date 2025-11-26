@@ -24,7 +24,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::BookkeepingEntry])
+        ).returns(Increase::Models::BookkeepingEntryListResponse)
       end
       def list(
         # The identifier for the Bookkeeping Account to filter by.

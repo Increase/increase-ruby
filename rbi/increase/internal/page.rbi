@@ -7,10 +7,10 @@ module Increase
 
       Elem = type_member
 
-      sig { returns(T.nilable(T::Array[Elem])) }
+      sig { returns(T.anything) }
       attr_accessor :data
 
-      sig { returns(T.nilable(String)) }
+      sig { returns(T.anything) }
       attr_accessor :next_cursor
 
       # @api private

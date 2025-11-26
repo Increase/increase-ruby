@@ -1,0 +1,22 @@
+module Increase
+  module Models
+    type check_deposit_list_response =
+      { data: ::Array[Increase::CheckDeposit], next_cursor: String? }
+
+    class CheckDepositListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::CheckDeposit]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::CheckDeposit],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Increase::CheckDeposit],
+        next_cursor: String?
+      }
+    end
+  end
+end

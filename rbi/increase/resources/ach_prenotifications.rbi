@@ -80,7 +80,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::ACHPrenotification])
+        ).returns(Increase::Models::ACHPrenotificationListResponse)
       end
       def list(
         created_at: nil,

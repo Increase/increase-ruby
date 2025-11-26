@@ -71,7 +71,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::EventSubscription])
+        ).returns(Increase::Models::EventSubscriptionListResponse)
       end
       def list(
         # Return the page of entries after this one.

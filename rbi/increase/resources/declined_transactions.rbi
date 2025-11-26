@@ -28,7 +28,7 @@ module Increase
           limit: Integer,
           route_id: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::DeclinedTransaction])
+        ).returns(Increase::Models::DeclinedTransactionListResponse)
       end
       def list(
         # Filter Declined Transactions to ones belonging to the specified Account.

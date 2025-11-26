@@ -78,36 +78,13 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
     response = @increase.wire_drawdown_requests.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::WireDrawdownRequest
+      response => Increase::Models::WireDrawdownRequestListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_number_id: String,
-        amount: Integer,
-        created_at: Time,
-        creditor_address: Increase::WireDrawdownRequest::CreditorAddress,
-        creditor_name: String,
-        currency: String,
-        debtor_account_number: String,
-        debtor_address: Increase::WireDrawdownRequest::DebtorAddress,
-        debtor_external_account_id: String | nil,
-        debtor_name: String,
-        debtor_routing_number: String,
-        fulfillment_inbound_wire_transfer_id: String | nil,
-        idempotency_key: String | nil,
-        status: Increase::WireDrawdownRequest::Status,
-        submission: Increase::WireDrawdownRequest::Submission | nil,
-        type: Increase::WireDrawdownRequest::Type,
-        unstructured_remittance_information: String
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::WireDrawdownRequest]),
+        next_cursor: String | nil
       }
     end
   end
