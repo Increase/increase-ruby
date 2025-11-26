@@ -14,7 +14,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::InboundACHTransferListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundACHTransferListResponse
+      ) -> Increase::Internal::Page[Increase::InboundACHTransfer]
 
       def create_notification_of_change: (
         String inbound_ach_transfer_id,

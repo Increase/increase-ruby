@@ -42,7 +42,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::EventListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::Event>]
       #
       # @see Increase::Models::EventListParams
       def list(params = {})
@@ -51,7 +51,8 @@ module Increase
           method: :get,
           path: "events",
           query: parsed,
-          model: Increase::Models::EventListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::Event,
           options: options
         )
       end

@@ -119,7 +119,7 @@ module Increase
           limit: Integer,
           status: Increase::ACHTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::ACHTransferListResponse)
+        ).returns(Increase::Internal::Page[Increase::ACHTransfer])
       end
       def list(
         # Filter ACH Transfers to those that originated from the specified Account.

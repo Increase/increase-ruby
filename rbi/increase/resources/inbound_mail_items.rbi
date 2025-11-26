@@ -25,7 +25,7 @@ module Increase
           limit: Integer,
           lockbox_id: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::InboundMailItemListResponse)
+        ).returns(Increase::Internal::Page[Increase::InboundMailItem])
       end
       def list(
         created_at: nil,

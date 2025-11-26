@@ -51,13 +51,27 @@ class Increase::Test::Resources::DocumentsTest < Increase::Test::ResourceTest
     response = @increase.documents.list
 
     assert_pattern do
-      response => Increase::Models::DocumentListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::Document
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::Document]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_verification_letter: Increase::Document::AccountVerificationLetter | nil,
+        category: Increase::Document::Category,
+        created_at: Time,
+        entity_id: String | nil,
+        file_id: String,
+        funding_instructions: Increase::Document::FundingInstructions | nil,
+        idempotency_key: String | nil,
+        type: Increase::Document::Type
       }
     end
   end

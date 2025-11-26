@@ -75,7 +75,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::CheckDepositListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::CheckDeposit>]
       #
       # @see Increase::Models::CheckDepositListParams
       def list(params = {})
@@ -84,7 +84,8 @@ module Increase
           method: :get,
           path: "check_deposits",
           query: parsed,
-          model: Increase::Models::CheckDepositListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::CheckDeposit,
           options: options
         )
       end

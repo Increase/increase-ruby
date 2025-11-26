@@ -53,13 +53,25 @@ class Increase::Test::Resources::BookkeepingEntrySetsTest < Increase::Test::Reso
     response = @increase.bookkeeping_entry_sets.list
 
     assert_pattern do
-      response => Increase::Models::BookkeepingEntrySetListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::BookkeepingEntrySet
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntrySet]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        created_at: Time,
+        date: Time,
+        entries: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntrySet::Entry]),
+        idempotency_key: String | nil,
+        transaction_id: String | nil,
+        type: Increase::BookkeepingEntrySet::Type
       }
     end
   end

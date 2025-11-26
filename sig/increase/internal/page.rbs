@@ -3,9 +3,9 @@ module Increase
     class Page[Elem]
       include Increase::Internal::Type::BasePage[Elem]
 
-      attr_accessor data: top
+      attr_accessor data: ::Array[Elem]?
 
-      attr_accessor next_cursor: top
+      attr_accessor next_cursor: String?
 
       def inspect: -> String
     end

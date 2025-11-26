@@ -13,7 +13,7 @@ module Increase
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundCheckDepositListResponse
+      ) -> Increase::Internal::Page[Increase::InboundCheckDeposit]
 
       def decline: (
         String inbound_check_deposit_id,

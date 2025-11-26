@@ -10,7 +10,7 @@ module Increase
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::ProgramListResponse
+      ) -> Increase::Internal::Page[Increase::Program]
 
       def initialize: (client: Increase::Client) -> void
     end

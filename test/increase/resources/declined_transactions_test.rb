@@ -30,13 +30,28 @@ class Increase::Test::Resources::DeclinedTransactionsTest < Increase::Test::Reso
     response = @increase.declined_transactions.list
 
     assert_pattern do
-      response => Increase::Models::DeclinedTransactionListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::DeclinedTransaction
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::DeclinedTransaction]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        amount: Integer,
+        created_at: Time,
+        currency: Increase::DeclinedTransaction::Currency,
+        description: String,
+        route_id: String | nil,
+        route_type: Increase::DeclinedTransaction::RouteType | nil,
+        source: Increase::DeclinedTransaction::Source,
+        type: Increase::DeclinedTransaction::Type
       }
     end
   end

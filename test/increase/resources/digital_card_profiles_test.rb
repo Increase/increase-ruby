@@ -68,13 +68,32 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
     response = @increase.digital_card_profiles.list
 
     assert_pattern do
-      response => Increase::Models::DigitalCardProfileListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::DigitalCardProfile
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalCardProfile]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        app_icon_file_id: String,
+        background_image_file_id: String,
+        card_description: String,
+        contact_email: String | nil,
+        contact_phone: String | nil,
+        contact_website: String | nil,
+        created_at: Time,
+        description: String,
+        idempotency_key: String | nil,
+        issuer_name: String,
+        status: Increase::DigitalCardProfile::Status,
+        text_color: Increase::DigitalCardProfile::TextColor,
+        type: Increase::DigitalCardProfile::Type
       }
     end
   end

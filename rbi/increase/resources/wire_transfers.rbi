@@ -76,7 +76,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::WireTransferListResponse)
+        ).returns(Increase::Internal::Page[Increase::WireTransfer])
       end
       def list(
         # Filter Wire Transfers to those belonging to the specified Account.

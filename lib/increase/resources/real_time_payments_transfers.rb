@@ -91,7 +91,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::RealTimePaymentsTransferListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::RealTimePaymentsTransfer>]
       #
       # @see Increase::Models::RealTimePaymentsTransferListParams
       def list(params = {})
@@ -100,7 +100,8 @@ module Increase
           method: :get,
           path: "real_time_payments_transfers",
           query: parsed,
-          model: Increase::Models::RealTimePaymentsTransferListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::RealTimePaymentsTransfer,
           options: options
         )
       end

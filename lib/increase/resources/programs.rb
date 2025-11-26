@@ -36,7 +36,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::ProgramListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::Program>]
       #
       # @see Increase::Models::ProgramListParams
       def list(params = {})
@@ -45,7 +45,8 @@ module Increase
           method: :get,
           path: "programs",
           query: parsed,
-          model: Increase::Models::ProgramListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::Program,
           options: options
         )
       end

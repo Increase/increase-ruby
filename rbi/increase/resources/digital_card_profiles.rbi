@@ -64,7 +64,7 @@ module Increase
           limit: Integer,
           status: Increase::DigitalCardProfileListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::DigitalCardProfileListResponse)
+        ).returns(Increase::Internal::Page[Increase::DigitalCardProfile])
       end
       def list(
         # Return the page of entries after this one.

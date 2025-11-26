@@ -43,7 +43,7 @@ module Increase
           limit: Integer,
           status: Increase::IntrafiAccountEnrollmentListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::IntrafiAccountEnrollmentListResponse)
+        ).returns(Increase::Internal::Page[Increase::IntrafiAccountEnrollment])
       end
       def list(
         # Filter IntraFi Account Enrollments to the one belonging to an account.

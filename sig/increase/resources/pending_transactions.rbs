@@ -22,7 +22,7 @@ module Increase
         ?route_id: String,
         ?status: Increase::PendingTransactionListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PendingTransactionListResponse
+      ) -> Increase::Internal::Page[Increase::PendingTransaction]
 
       def release: (
         String pending_transaction_id,

@@ -44,7 +44,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundACHTransferListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::InboundACHTransfer>]
       #
       # @see Increase::Models::InboundACHTransferListParams
       def list(params = {})
@@ -53,7 +53,8 @@ module Increase
           method: :get,
           path: "inbound_ach_transfers",
           query: parsed,
-          model: Increase::Models::InboundACHTransferListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::InboundACHTransfer,
           options: options
         )
       end

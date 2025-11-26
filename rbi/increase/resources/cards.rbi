@@ -90,7 +90,7 @@ module Increase
           limit: Integer,
           status: Increase::CardListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::CardListResponse)
+        ).returns(Increase::Internal::Page[Increase::Card])
       end
       def list(
         # Filter Cards to ones belonging to the specified Account.

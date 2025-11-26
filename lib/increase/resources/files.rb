@@ -74,7 +74,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::FileListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::File>]
       #
       # @see Increase::Models::FileListParams
       def list(params = {})
@@ -83,7 +83,8 @@ module Increase
           method: :get,
           path: "files",
           query: parsed,
-          model: Increase::Models::FileListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::File,
           options: options
         )
       end

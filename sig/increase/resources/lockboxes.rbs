@@ -28,7 +28,7 @@ module Increase
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::LockboxListResponse
+      ) -> Increase::Internal::Page[Increase::Lockbox]
 
       def initialize: (client: Increase::Client) -> void
     end

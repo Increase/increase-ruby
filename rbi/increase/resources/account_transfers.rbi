@@ -56,7 +56,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::AccountTransferListResponse)
+        ).returns(Increase::Internal::Page[Increase::AccountTransfer])
       end
       def list(
         # Filter Account Transfers to those that originated from the specified Account.

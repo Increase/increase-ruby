@@ -44,7 +44,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::SupplementalDocumentListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::EntitySupplementalDocument>]
       #
       # @see Increase::Models::SupplementalDocumentListParams
       def list(params)
@@ -53,7 +53,8 @@ module Increase
           method: :get,
           path: "entity_supplemental_documents",
           query: parsed,
-          model: Increase::Models::SupplementalDocumentListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::EntitySupplementalDocument,
           options: options
         )
       end

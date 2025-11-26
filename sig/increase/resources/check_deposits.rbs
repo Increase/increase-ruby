@@ -22,7 +22,7 @@ module Increase
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CheckDepositListResponse
+      ) -> Increase::Internal::Page[Increase::CheckDeposit]
 
       def initialize: (client: Increase::Client) -> void
     end

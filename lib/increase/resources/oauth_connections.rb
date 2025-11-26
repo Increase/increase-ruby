@@ -40,7 +40,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::OAuthConnectionListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::OAuthConnection>]
       #
       # @see Increase::Models::OAuthConnectionListParams
       def list(params = {})
@@ -49,7 +49,8 @@ module Increase
           method: :get,
           path: "oauth_connections",
           query: parsed,
-          model: Increase::Models::OAuthConnectionListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::OAuthConnection,
           options: options
         )
       end

@@ -21,7 +21,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::RoutingNumberListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::RoutingNumberListResponse>]
       #
       # @see Increase::Models::RoutingNumberListParams
       def list(params)
@@ -30,6 +30,7 @@ module Increase
           method: :get,
           path: "routing_numbers",
           query: parsed,
+          page: Increase::Internal::Page,
           model: Increase::Models::RoutingNumberListResponse,
           options: options
         )

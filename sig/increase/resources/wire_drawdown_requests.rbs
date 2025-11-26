@@ -26,7 +26,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::WireDrawdownRequestListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::WireDrawdownRequestListResponse
+      ) -> Increase::Internal::Page[Increase::WireDrawdownRequest]
 
       def initialize: (client: Increase::Client) -> void
     end

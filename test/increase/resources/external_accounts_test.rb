@@ -81,13 +81,28 @@ class Increase::Test::Resources::ExternalAccountsTest < Increase::Test::Resource
     response = @increase.external_accounts.list
 
     assert_pattern do
-      response => Increase::Models::ExternalAccountListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::ExternalAccount
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::ExternalAccount]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_holder: Increase::ExternalAccount::AccountHolder,
+        account_number: String,
+        created_at: Time,
+        description: String,
+        funding: Increase::ExternalAccount::Funding,
+        idempotency_key: String | nil,
+        routing_number: String,
+        status: Increase::ExternalAccount::Status,
+        type: Increase::ExternalAccount::Type
       }
     end
   end
