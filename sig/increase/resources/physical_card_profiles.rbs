@@ -22,7 +22,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::PhysicalCardProfileListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::PhysicalCardProfileListResponse
+      ) -> Increase::Internal::Page[Increase::PhysicalCardProfile]
 
       def archive: (
         String physical_card_profile_id,

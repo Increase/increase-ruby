@@ -42,7 +42,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::IntrafiExclusionListResponse)
+        ).returns(Increase::Internal::Page[Increase::IntrafiExclusion])
       end
       def list(
         # Return the page of entries after this one.

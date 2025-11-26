@@ -64,7 +64,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::IntrafiExclusionListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::IntrafiExclusion>]
       #
       # @see Increase::Models::IntrafiExclusionListParams
       def list(params = {})
@@ -73,7 +73,8 @@ module Increase
           method: :get,
           path: "intrafi_exclusions",
           query: parsed,
-          model: Increase::Models::IntrafiExclusionListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::IntrafiExclusion,
           options: options
         )
       end

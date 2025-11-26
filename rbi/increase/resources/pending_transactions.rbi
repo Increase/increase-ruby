@@ -53,7 +53,7 @@ module Increase
           route_id: String,
           status: Increase::PendingTransactionListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::PendingTransactionListResponse)
+        ).returns(Increase::Internal::Page[Increase::PendingTransaction])
       end
       def list(
         # Filter pending transactions to those belonging to the specified Account.

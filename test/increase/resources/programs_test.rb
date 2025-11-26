@@ -29,13 +29,27 @@ class Increase::Test::Resources::ProgramsTest < Increase::Test::ResourceTest
     response = @increase.programs.list
 
     assert_pattern do
-      response => Increase::Models::ProgramListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::Program
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::Program]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        bank: Increase::Program::Bank,
+        billing_account_id: String | nil,
+        created_at: Time,
+        default_digital_card_profile_id: String | nil,
+        interest_rate: String,
+        name: String,
+        type: Increase::Program::Type,
+        updated_at: Time
       }
     end
   end

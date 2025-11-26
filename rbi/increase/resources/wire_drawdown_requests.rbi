@@ -69,7 +69,7 @@ module Increase
           limit: Integer,
           status: Increase::WireDrawdownRequestListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::WireDrawdownRequestListResponse)
+        ).returns(Increase::Internal::Page[Increase::WireDrawdownRequest])
       end
       def list(
         # Return the page of entries after this one.

@@ -82,7 +82,7 @@ module Increase
           limit: Integer,
           status: Increase::CheckTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::CheckTransferListResponse)
+        ).returns(Increase::Internal::Page[Increase::CheckTransfer])
       end
       def list(
         # Filter Check Transfers to those that originated from the specified Account.

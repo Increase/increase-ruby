@@ -94,13 +94,34 @@ class Increase::Test::Resources::AccountsTest < Increase::Test::ResourceTest
     response = @increase.accounts.list
 
     assert_pattern do
-      response => Increase::Models::AccountListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::Account
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::Account]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_revenue_rate: String | nil,
+        bank: Increase::Account::Bank,
+        closed_at: Time | nil,
+        created_at: Time,
+        currency: Increase::Account::Currency,
+        entity_id: String,
+        idempotency_key: String | nil,
+        informational_entity_id: String | nil,
+        interest_accrued: String,
+        interest_accrued_at: Date | nil,
+        interest_rate: String,
+        name: String,
+        program_id: String,
+        status: Increase::Account::Status,
+        type: Increase::Account::Type
       }
     end
   end

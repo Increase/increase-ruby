@@ -94,13 +94,34 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
     response = @increase.entities.list
 
     assert_pattern do
-      response => Increase::Models::EntityListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::Entity
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::Entity]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        corporation: Increase::Entity::Corporation | nil,
+        created_at: Time,
+        description: String | nil,
+        details_confirmed_at: Time | nil,
+        government_authority: Increase::Entity::GovernmentAuthority | nil,
+        idempotency_key: String | nil,
+        joint: Increase::Entity::Joint | nil,
+        natural_person: Increase::Entity::NaturalPerson | nil,
+        risk_rating: Increase::Entity::RiskRating | nil,
+        status: Increase::Entity::Status,
+        structure: Increase::Entity::Structure,
+        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
+        trust: Increase::Entity::Trust | nil,
+        type: Increase::Entity::Type
       }
     end
   end

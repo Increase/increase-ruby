@@ -93,7 +93,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::FednowTransferListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::FednowTransfer>]
       #
       # @see Increase::Models::FednowTransferListParams
       def list(params = {})
@@ -102,7 +102,8 @@ module Increase
           method: :get,
           path: "fednow_transfers",
           query: parsed,
-          model: Increase::Models::FednowTransferListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::FednowTransfer,
           options: options
         )
       end

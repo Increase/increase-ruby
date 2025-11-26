@@ -124,7 +124,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::EntityListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::Entity>]
       #
       # @see Increase::Models::EntityListParams
       def list(params = {})
@@ -133,7 +133,8 @@ module Increase
           method: :get,
           path: "entities",
           query: parsed,
-          model: Increase::Models::EntityListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::Entity,
           options: options
         )
       end

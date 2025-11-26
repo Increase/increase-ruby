@@ -23,7 +23,9 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::InboundWireDrawdownRequestListResponse)
+        ).returns(
+          Increase::Internal::Page[Increase::InboundWireDrawdownRequest]
+        )
       end
       def list(
         # Return the page of entries after this one.

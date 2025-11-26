@@ -26,7 +26,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::CardPurchaseSupplementListResponse)
+        ).returns(Increase::Internal::Page[Increase::CardPurchaseSupplement])
       end
       def list(
         # Filter Card Purchase Supplements to ones belonging to the specified Card

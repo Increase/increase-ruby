@@ -26,7 +26,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::EventListResponse)
+        ).returns(Increase::Internal::Page[Increase::Event])
       end
       def list(
         # Filter Events to those belonging to the object with the provided identifier.

@@ -77,7 +77,7 @@ module Increase
           limit: Integer,
           status: Increase::CardValidationListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::CardValidationListResponse)
+        ).returns(Increase::Internal::Page[Increase::CardValidation])
       end
       def list(
         # Filter Card Validations to ones belonging to the specified Account.

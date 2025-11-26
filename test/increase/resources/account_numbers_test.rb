@@ -80,13 +80,29 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
     response = @increase.account_numbers.list
 
     assert_pattern do
-      response => Increase::Models::AccountNumberListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::AccountNumber
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::AccountNumber]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        account_number: String,
+        created_at: Time,
+        idempotency_key: String | nil,
+        inbound_ach: Increase::AccountNumber::InboundACH,
+        inbound_checks: Increase::AccountNumber::InboundChecks,
+        name: String,
+        routing_number: String,
+        status: Increase::AccountNumber::Status,
+        type: Increase::AccountNumber::Type
       }
     end
   end

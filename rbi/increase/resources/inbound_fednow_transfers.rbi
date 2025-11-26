@@ -27,7 +27,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::InboundFednowTransferListResponse)
+        ).returns(Increase::Internal::Page[Increase::InboundFednowTransfer])
       end
       def list(
         # Filter Inbound FedNow Transfers to those belonging to the specified Account.

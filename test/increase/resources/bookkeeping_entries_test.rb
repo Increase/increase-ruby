@@ -26,13 +26,24 @@ class Increase::Test::Resources::BookkeepingEntriesTest < Increase::Test::Resour
     response = @increase.bookkeeping_entries.list
 
     assert_pattern do
-      response => Increase::Models::BookkeepingEntryListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::BookkeepingEntry
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingEntry]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        amount: Integer,
+        created_at: Time,
+        entry_set_id: String,
+        type: Increase::BookkeepingEntry::Type
       }
     end
   end

@@ -47,7 +47,7 @@ module Increase
           limit: Integer,
           transaction_id: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::BookkeepingEntrySetListResponse)
+        ).returns(Increase::Internal::Page[Increase::BookkeepingEntrySet])
       end
       def list(
         # Return the page of entries after this one.

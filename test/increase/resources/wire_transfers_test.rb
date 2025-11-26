@@ -87,13 +87,42 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
     response = @increase.wire_transfers.list
 
     assert_pattern do
-      response => Increase::Models::WireTransferListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::WireTransfer
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::WireTransfer]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        account_number: String,
+        amount: Integer,
+        approval: Increase::WireTransfer::Approval | nil,
+        cancellation: Increase::WireTransfer::Cancellation | nil,
+        created_at: Time,
+        created_by: Increase::WireTransfer::CreatedBy | nil,
+        creditor: Increase::WireTransfer::Creditor | nil,
+        currency: Increase::WireTransfer::Currency,
+        debtor: Increase::WireTransfer::Debtor | nil,
+        external_account_id: String | nil,
+        idempotency_key: String | nil,
+        inbound_wire_drawdown_request_id: String | nil,
+        network: Increase::WireTransfer::Network,
+        pending_transaction_id: String | nil,
+        remittance: Increase::WireTransfer::Remittance | nil,
+        reversal: Increase::WireTransfer::Reversal | nil,
+        routing_number: String,
+        source_account_number_id: String | nil,
+        status: Increase::WireTransfer::Status,
+        submission: Increase::WireTransfer::Submission | nil,
+        transaction_id: String | nil,
+        type: Increase::WireTransfer::Type
       }
     end
   end

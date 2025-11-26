@@ -13,7 +13,7 @@ module Increase
         ?cursor: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::InboundRealTimePaymentsTransferListResponse
+      ) -> Increase::Internal::Page[Increase::InboundRealTimePaymentsTransfer]
 
       def initialize: (client: Increase::Client) -> void
     end

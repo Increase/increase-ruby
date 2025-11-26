@@ -85,13 +85,40 @@ class Increase::Test::Resources::FednowTransfersTest < Increase::Test::ResourceT
     response = @increase.fednow_transfers.list
 
     assert_pattern do
-      response => Increase::Models::FednowTransferListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::FednowTransfer
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::FednowTransfer]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        account_number: String,
+        acknowledgement: Increase::FednowTransfer::Acknowledgement | nil,
+        amount: Integer,
+        created_at: Time,
+        created_by: Increase::FednowTransfer::CreatedBy | nil,
+        creditor_name: String,
+        currency: Increase::FednowTransfer::Currency,
+        debtor_name: String,
+        external_account_id: String | nil,
+        idempotency_key: String | nil,
+        pending_transaction_id: String | nil,
+        rejection: Increase::FednowTransfer::Rejection | nil,
+        routing_number: String,
+        source_account_number_id: String,
+        status: Increase::FednowTransfer::Status,
+        submission: Increase::FednowTransfer::Submission | nil,
+        transaction_id: String | nil,
+        type: Increase::FednowTransfer::Type,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
       }
     end
   end

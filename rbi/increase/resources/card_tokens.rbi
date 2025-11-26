@@ -24,7 +24,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::CardTokenListResponse)
+        ).returns(Increase::Internal::Page[Increase::CardToken])
       end
       def list(
         created_at: nil,

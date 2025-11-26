@@ -95,7 +95,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::EventSubscriptionListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::EventSubscription>]
       #
       # @see Increase::Models::EventSubscriptionListParams
       def list(params = {})
@@ -104,7 +104,8 @@ module Increase
           method: :get,
           path: "event_subscriptions",
           query: parsed,
-          model: Increase::Models::EventSubscriptionListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::EventSubscription,
           options: options
         )
       end

@@ -29,7 +29,7 @@ module Increase
           status: Increase::InboundWireTransferListParams::Status::OrHash,
           wire_drawdown_request_id: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::InboundWireTransferListResponse)
+        ).returns(Increase::Internal::Page[Increase::InboundWireTransfer])
       end
       def list(
         # Filter Inbound Wire Transfers to ones belonging to the specified Account.

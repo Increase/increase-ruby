@@ -29,13 +29,27 @@ class Increase::Test::Resources::CardPaymentsTest < Increase::Test::ResourceTest
     response = @increase.card_payments.list
 
     assert_pattern do
-      response => Increase::Models::CardPaymentListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::CardPayment
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        card_id: String,
+        created_at: Time,
+        digital_wallet_token_id: String | nil,
+        elements: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element]),
+        physical_card_id: String | nil,
+        state: Increase::CardPayment::State,
+        type: Increase::CardPayment::Type
       }
     end
   end
