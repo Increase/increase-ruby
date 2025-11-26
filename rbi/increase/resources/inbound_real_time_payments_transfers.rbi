@@ -27,7 +27,9 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::InboundRealTimePaymentsTransferListResponse)
+        ).returns(
+          Increase::Internal::Page[Increase::InboundRealTimePaymentsTransfer]
+        )
       end
       def list(
         # Filter Inbound Real-Time Payments Transfers to those belonging to the specified

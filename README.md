@@ -31,9 +31,41 @@ increase = Increase::Client.new(
   environment: "sandbox" # defaults to "production"
 )
 
-account = increase.accounts.create(name: "New Account!")
+account = increase.accounts.create(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+)
 
 puts(account.id)
+```
+
+### Pagination
+
+List methods in the Increase API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```ruby
+page = increase.accounts.list
+
+# Fetch single item from page.
+account = page.data[0]
+puts(account.id)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |account|
+  puts(account.id)
+end
+```
+
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.data[0].id)
+end
 ```
 
 ### File uploads
@@ -106,7 +138,12 @@ increase = Increase::Client.new(
 )
 
 # Or, configure per-request:
-increase.accounts.create(name: "New Account!", request_options: {max_retries: 5})
+increase.accounts.create(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i",
+  request_options: {max_retries: 5}
+)
 ```
 
 ### Timeouts
@@ -120,7 +157,12 @@ increase = Increase::Client.new(
 )
 
 # Or, configure per-request:
-increase.accounts.create(name: "New Account!", request_options: {timeout: 5})
+increase.accounts.create(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i",
+  request_options: {timeout: 5}
+)
 ```
 
 On timeout, `Increase::Errors::APITimeoutError` is raised.
@@ -153,6 +195,8 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 account =
   increase.accounts.create(
     name: "New Account!",
+    entity_id: "entity_n8y8tnk2p9339ti393yi",
+    program_id: "program_i2v2os4mwza1oetokh9i",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -198,17 +242,29 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-increase.accounts.create(name: "New Account!")
+increase.accounts.create(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-increase.accounts.create(name: "New Account!")
+increase.accounts.create(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+)
 
 # You can also splat a full Params class:
-params = Increase::AccountCreateParams.new(name: "New Account!")
+params = Increase::AccountCreateParams.new(
+  name: "New Account!",
+  entity_id: "entity_n8y8tnk2p9339ti393yi",
+  program_id: "program_i2v2os4mwza1oetokh9i"
+)
 increase.accounts.create(**params)
 ```
 

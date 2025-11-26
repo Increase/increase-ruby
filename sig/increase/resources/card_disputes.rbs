@@ -22,7 +22,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::CardDisputeListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::CardDisputeListResponse
+      ) -> Increase::Internal::Page[Increase::CardDispute]
 
       def submit_user_submission: (
         String card_dispute_id,

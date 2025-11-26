@@ -70,13 +70,26 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
     response = @increase.event_subscriptions.list
 
     assert_pattern do
-      response => Increase::Models::EventSubscriptionListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::EventSubscription
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::EventSubscription]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        created_at: Time,
+        idempotency_key: String | nil,
+        oauth_connection_id: String | nil,
+        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
+        status: Increase::EventSubscription::Status,
+        type: Increase::EventSubscription::Type,
+        url: String
       }
     end
   end

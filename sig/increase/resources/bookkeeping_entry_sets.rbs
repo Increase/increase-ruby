@@ -19,7 +19,7 @@ module Increase
         ?limit: Integer,
         ?transaction_id: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::BookkeepingEntrySetListResponse
+      ) -> Increase::Internal::Page[Increase::BookkeepingEntrySet]
 
       def initialize: (client: Increase::Client) -> void
     end

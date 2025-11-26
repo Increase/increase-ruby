@@ -75,7 +75,7 @@ module Increase
           program_id: String,
           status: Increase::AccountListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::AccountListResponse)
+        ).returns(Increase::Internal::Page[Increase::Account])
       end
       def list(
         created_at: nil,

@@ -105,13 +105,45 @@ class Increase::Test::Resources::CardPushTransfersTest < Increase::Test::Resourc
     response = @increase.card_push_transfers.list
 
     assert_pattern do
-      response => Increase::Models::CardPushTransferListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::CardPushTransfer
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::CardPushTransfer]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        acceptance: Increase::CardPushTransfer::Acceptance | nil,
+        account_id: String,
+        approval: Increase::CardPushTransfer::Approval | nil,
+        business_application_identifier: Increase::CardPushTransfer::BusinessApplicationIdentifier,
+        cancellation: Increase::CardPushTransfer::Cancellation | nil,
+        created_at: Time,
+        created_by: Increase::CardPushTransfer::CreatedBy | nil,
+        decline: Increase::CardPushTransfer::Decline | nil,
+        idempotency_key: String | nil,
+        merchant_category_code: String,
+        merchant_city_name: String,
+        merchant_name: String,
+        merchant_name_prefix: String,
+        merchant_postal_code: String,
+        merchant_state: String,
+        presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
+        recipient_name: String,
+        sender_address_city: String,
+        sender_address_line1: String,
+        sender_address_postal_code: String,
+        sender_address_state: String,
+        sender_name: String,
+        source_account_number_id: String,
+        status: Increase::CardPushTransfer::Status,
+        submission: Increase::CardPushTransfer::Submission | nil,
+        type: Increase::CardPushTransfer::Type
       }
     end
   end

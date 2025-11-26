@@ -67,7 +67,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::PhysicalCardListResponse)
+        ).returns(Increase::Internal::Page[Increase::PhysicalCard])
       end
       def list(
         # Filter Physical Cards to ones belonging to the specified Card.

@@ -13,7 +13,9 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::RoutingNumberListResponse)
+        ).returns(
+          Increase::Internal::Page[Increase::Models::RoutingNumberListResponse]
+        )
       end
       def list(
         # Filter financial institutions by routing number.

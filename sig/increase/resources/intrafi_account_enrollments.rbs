@@ -19,7 +19,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::IntrafiAccountEnrollmentListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::IntrafiAccountEnrollmentListResponse
+      ) -> Increase::Internal::Page[Increase::IntrafiAccountEnrollment]
 
       def unenroll: (
         String intrafi_account_enrollment_id,

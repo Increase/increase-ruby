@@ -12,7 +12,7 @@ module Increase
         ?limit: Integer,
         ?statement_period_start: Increase::AccountStatementListParams::StatementPeriodStart,
         ?request_options: Increase::request_opts
-      ) -> Increase::Models::AccountStatementListResponse
+      ) -> Increase::Internal::Page[Increase::AccountStatement]
 
       def initialize: (client: Increase::Client) -> void
     end

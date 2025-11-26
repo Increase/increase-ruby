@@ -26,7 +26,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::CardPaymentListResponse)
+        ).returns(Increase::Internal::Page[Increase::CardPayment])
       end
       def list(
         # Filter Card Payments to ones belonging to the specified Account.

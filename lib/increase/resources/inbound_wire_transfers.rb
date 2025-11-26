@@ -46,7 +46,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundWireTransferListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::InboundWireTransfer>]
       #
       # @see Increase::Models::InboundWireTransferListParams
       def list(params = {})
@@ -55,7 +55,8 @@ module Increase
           method: :get,
           path: "inbound_wire_transfers",
           query: parsed,
-          model: Increase::Models::InboundWireTransferListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::InboundWireTransfer,
           options: options
         )
       end

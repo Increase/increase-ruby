@@ -25,7 +25,7 @@ module Increase
           oauth_application_id: String,
           status: Increase::OAuthConnectionListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Models::OAuthConnectionListResponse)
+        ).returns(Increase::Internal::Page[Increase::OAuthConnection])
       end
       def list(
         # Return the page of entries after this one.

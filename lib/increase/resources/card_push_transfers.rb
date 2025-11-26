@@ -101,7 +101,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::CardPushTransferListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::CardPushTransfer>]
       #
       # @see Increase::Models::CardPushTransferListParams
       def list(params = {})
@@ -110,7 +110,8 @@ module Increase
           method: :get,
           path: "card_push_transfers",
           query: parsed,
-          model: Increase::Models::CardPushTransferListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::CardPushTransfer,
           options: options
         )
       end

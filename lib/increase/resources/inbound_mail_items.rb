@@ -40,7 +40,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Models::InboundMailItemListResponse]
+      # @return [Increase::Internal::Page<Increase::Models::InboundMailItem>]
       #
       # @see Increase::Models::InboundMailItemListParams
       def list(params = {})
@@ -49,7 +49,8 @@ module Increase
           method: :get,
           path: "inbound_mail_items",
           query: parsed,
-          model: Increase::Models::InboundMailItemListResponse,
+          page: Increase::Internal::Page,
+          model: Increase::InboundMailItem,
           options: options
         )
       end

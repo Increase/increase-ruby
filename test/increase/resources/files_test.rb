@@ -51,13 +51,27 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
     response = @increase.files.list
 
     assert_pattern do
-      response => Increase::Models::FileListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::File
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::File]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        created_at: Time,
+        description: String | nil,
+        direction: Increase::File::Direction,
+        filename: String | nil,
+        idempotency_key: String | nil,
+        mime_type: String,
+        purpose: Increase::File::Purpose,
+        type: Increase::File::Type
       }
     end
   end

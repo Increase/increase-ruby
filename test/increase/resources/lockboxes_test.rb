@@ -73,13 +73,27 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
     response = @increase.lockboxes.list
 
     assert_pattern do
-      response => Increase::Models::LockboxListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::Lockbox
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::Lockbox]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        address: Increase::Lockbox::Address,
+        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
+        created_at: Time,
+        description: String | nil,
+        idempotency_key: String | nil,
+        recipient_name: String | nil,
+        type: Increase::Lockbox::Type
       }
     end
   end

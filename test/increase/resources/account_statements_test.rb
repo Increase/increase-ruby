@@ -29,13 +29,27 @@ class Increase::Test::Resources::AccountStatementsTest < Increase::Test::Resourc
     response = @increase.account_statements.list
 
     assert_pattern do
-      response => Increase::Models::AccountStatementListResponse
+      response => Increase::Internal::Page
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Increase::AccountStatement
     end
 
     assert_pattern do
-      response => {
-        data: ^(Increase::Internal::Type::ArrayOf[Increase::AccountStatement]),
-        next_cursor: String | nil
+      row => {
+        id: String,
+        account_id: String,
+        created_at: Time,
+        ending_balance: Integer,
+        file_id: String,
+        starting_balance: Integer,
+        statement_period_end: Time,
+        statement_period_start: Time,
+        type: Increase::AccountStatement::Type
       }
     end
   end
