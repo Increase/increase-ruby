@@ -1,0 +1,22 @@
+module Increase
+  module Models
+    type pending_transaction_list_response =
+      { data: ::Array[Increase::PendingTransaction], next_cursor: String? }
+
+    class PendingTransactionListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::PendingTransaction]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::PendingTransaction],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Increase::PendingTransaction],
+        next_cursor: String?
+      }
+    end
+  end
+end

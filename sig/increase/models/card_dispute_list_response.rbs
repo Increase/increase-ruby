@@ -1,0 +1,22 @@
+module Increase
+  module Models
+    type card_dispute_list_response =
+      { data: ::Array[Increase::CardDispute], next_cursor: String? }
+
+    class CardDisputeListResponse < Increase::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Increase::CardDispute]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        data: ::Array[Increase::CardDispute],
+        next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Increase::CardDispute],
+        next_cursor: String?
+      }
+    end
+  end
+end

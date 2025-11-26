@@ -60,31 +60,13 @@ class Increase::Test::Resources::PendingTransactionsTest < Increase::Test::Resou
     response = @increase.pending_transactions.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::PendingTransaction
+      response => Increase::Models::PendingTransactionListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String,
-        amount: Integer,
-        completed_at: Time | nil,
-        created_at: Time,
-        currency: Increase::PendingTransaction::Currency,
-        description: String,
-        held_amount: Integer,
-        route_id: String | nil,
-        route_type: Increase::PendingTransaction::RouteType | nil,
-        source: Increase::PendingTransaction::Source,
-        status: Increase::PendingTransaction::Status,
-        type: Increase::PendingTransaction::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::PendingTransaction]),
+        next_cursor: String | nil
       }
     end
   end

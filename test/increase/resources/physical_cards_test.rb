@@ -87,27 +87,13 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
     response = @increase.physical_cards.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::PhysicalCard
+      response => Increase::Models::PhysicalCardListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        card_id: String,
-        cardholder: Increase::PhysicalCard::Cardholder,
-        created_at: Time,
-        idempotency_key: String | nil,
-        physical_card_profile_id: String | nil,
-        shipment: Increase::PhysicalCard::Shipment,
-        status: Increase::PhysicalCard::Status,
-        type: Increase::PhysicalCard::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::PhysicalCard]),
+        next_cursor: String | nil
       }
     end
   end

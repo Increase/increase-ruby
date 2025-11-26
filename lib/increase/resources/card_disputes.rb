@@ -75,7 +75,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::CardDispute>]
+      # @return [Increase::Models::CardDisputeListResponse]
       #
       # @see Increase::Models::CardDisputeListParams
       def list(params = {})
@@ -84,8 +84,7 @@ module Increase
           method: :get,
           path: "card_disputes",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::CardDispute,
+          model: Increase::Models::CardDisputeListResponse,
           options: options
         )
       end

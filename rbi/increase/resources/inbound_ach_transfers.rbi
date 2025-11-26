@@ -27,7 +27,7 @@ module Increase
           limit: Integer,
           status: Increase::InboundACHTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::InboundACHTransfer])
+        ).returns(Increase::Models::InboundACHTransferListResponse)
       end
       def list(
         # Filter Inbound ACH Transfers to ones belonging to the specified Account.

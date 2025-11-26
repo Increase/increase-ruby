@@ -128,7 +128,7 @@ module Increase
           limit: Integer,
           status: Increase::EntityListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Entity])
+        ).returns(Increase::Models::EntityListResponse)
       end
       def list(
         created_at: nil,

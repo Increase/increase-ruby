@@ -51,7 +51,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::BookkeepingAccount])
+        ).returns(Increase::Models::BookkeepingAccountListResponse)
       end
       def list(
         # Return the page of entries after this one.

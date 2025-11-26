@@ -31,7 +31,7 @@ module Increase
         ?program_id: String,
         ?status: Increase::AccountListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Account]
+      ) -> Increase::Models::AccountListResponse
 
       def balance: (
         String account_id,

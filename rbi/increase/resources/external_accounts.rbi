@@ -81,7 +81,7 @@ module Increase
           routing_number: String,
           status: Increase::ExternalAccountListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::ExternalAccount])
+        ).returns(Increase::Models::ExternalAccountListResponse)
       end
       def list(
         # Return the page of entries after this one.

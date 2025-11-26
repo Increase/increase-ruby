@@ -91,7 +91,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::CardValidation>]
+      # @return [Increase::Models::CardValidationListResponse]
       #
       # @see Increase::Models::CardValidationListParams
       def list(params = {})
@@ -100,8 +100,7 @@ module Increase
           method: :get,
           path: "card_validations",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::CardValidation,
+          model: Increase::Models::CardValidationListResponse,
           options: options
         )
       end

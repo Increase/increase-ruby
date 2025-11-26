@@ -52,7 +52,7 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::CheckDeposit])
+        ).returns(Increase::Models::CheckDepositListResponse)
       end
       def list(
         # Filter Check Deposits to those belonging to the specified Account.

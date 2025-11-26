@@ -39,7 +39,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::EntityListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Entity]
+      ) -> Increase::Models::EntityListResponse
 
       def archive: (
         String entity_id,

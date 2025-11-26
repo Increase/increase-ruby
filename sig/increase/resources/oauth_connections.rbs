@@ -12,7 +12,7 @@ module Increase
         ?oauth_application_id: String,
         ?status: Increase::OAuthConnectionListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::OAuthConnection]
+      ) -> Increase::Models::OAuthConnectionListResponse
 
       def initialize: (client: Increase::Client) -> void
     end

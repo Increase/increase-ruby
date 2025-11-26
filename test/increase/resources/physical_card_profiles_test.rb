@@ -66,31 +66,13 @@ class Increase::Test::Resources::PhysicalCardProfilesTest < Increase::Test::Reso
     response = @increase.physical_card_profiles.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::PhysicalCardProfile
+      response => Increase::Models::PhysicalCardProfileListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        back_image_file_id: String | nil,
-        carrier_image_file_id: String | nil,
-        contact_phone: String | nil,
-        created_at: Time,
-        creator: Increase::PhysicalCardProfile::Creator,
-        description: String,
-        front_image_file_id: String | nil,
-        idempotency_key: String | nil,
-        is_default: Increase::Internal::Type::Boolean,
-        program_id: String,
-        status: Increase::PhysicalCardProfile::Status,
-        type: Increase::PhysicalCardProfile::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::PhysicalCardProfile]),
+        next_cursor: String | nil
       }
     end
   end

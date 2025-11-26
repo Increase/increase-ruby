@@ -27,25 +27,13 @@ class Increase::Test::Resources::OAuthConnectionsTest < Increase::Test::Resource
     response = @increase.oauth_connections.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::OAuthConnection
+      response => Increase::Models::OAuthConnectionListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        created_at: Time,
-        deleted_at: Time | nil,
-        group_id: String,
-        oauth_application_id: String,
-        status: Increase::OAuthConnection::Status,
-        type: Increase::OAuthConnection::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::OAuthConnection]),
+        next_cursor: String | nil
       }
     end
   end

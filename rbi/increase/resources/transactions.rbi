@@ -27,7 +27,7 @@ module Increase
           limit: Integer,
           route_id: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Transaction])
+        ).returns(Increase::Models::TransactionListResponse)
       end
       def list(
         # Filter Transactions for those belonging to the specified Account.

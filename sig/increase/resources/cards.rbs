@@ -33,7 +33,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::CardListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Card]
+      ) -> Increase::Models::CardListResponse
 
       def create_details_iframe: (
         String card_id,

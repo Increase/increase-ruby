@@ -78,7 +78,7 @@ module Increase
           limit: Integer,
           status: Increase::FednowTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::FednowTransfer])
+        ).returns(Increase::Models::FednowTransferListResponse)
       end
       def list(
         # Filter FedNow Transfers to those that originated from the specified Account.

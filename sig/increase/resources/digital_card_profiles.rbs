@@ -25,7 +25,7 @@ module Increase
         ?limit: Integer,
         ?status: Increase::DigitalCardProfileListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::DigitalCardProfile]
+      ) -> Increase::Models::DigitalCardProfileListResponse
 
       def archive: (
         String digital_card_profile_id,

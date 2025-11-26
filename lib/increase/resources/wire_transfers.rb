@@ -89,7 +89,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::WireTransfer>]
+      # @return [Increase::Models::WireTransferListResponse]
       #
       # @see Increase::Models::WireTransferListParams
       def list(params = {})
@@ -98,8 +98,7 @@ module Increase
           method: :get,
           path: "wire_transfers",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::WireTransfer,
+          model: Increase::Models::WireTransferListResponse,
           options: options
         )
       end

@@ -51,25 +51,13 @@ class Increase::Test::Resources::BookkeepingAccountsTest < Increase::Test::Resou
     response = @increase.bookkeeping_accounts.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::BookkeepingAccount
+      response => Increase::Models::BookkeepingAccountListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        account_id: String | nil,
-        compliance_category: Increase::BookkeepingAccount::ComplianceCategory | nil,
-        entity_id: String | nil,
-        idempotency_key: String | nil,
-        name: String,
-        type: Increase::BookkeepingAccount::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::BookkeepingAccount]),
+        next_cursor: String | nil
       }
     end
   end

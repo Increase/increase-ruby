@@ -50,7 +50,7 @@ module Increase
           limit: Integer,
           purpose: Increase::FileListParams::Purpose::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::File])
+        ).returns(Increase::Models::FileListResponse)
       end
       def list(
         created_at: nil,

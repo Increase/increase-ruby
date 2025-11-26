@@ -26,7 +26,7 @@ module Increase
           statement_period_start:
             Increase::AccountStatementListParams::StatementPeriodStart::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::AccountStatement])
+        ).returns(Increase::Models::AccountStatementListResponse)
       end
       def list(
         # Filter Account Statements to those belonging to the specified Account.

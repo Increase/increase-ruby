@@ -27,7 +27,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::InboundCheckDeposit])
+        ).returns(Increase::Models::InboundCheckDepositListResponse)
       end
       def list(
         # Filter Inbound Check Deposits to those belonging to the specified Account.

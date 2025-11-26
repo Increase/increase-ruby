@@ -25,7 +25,7 @@ module Increase
           limit: Integer,
           status: Increase::OAuthApplicationListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::OAuthApplication])
+        ).returns(Increase::Models::OAuthApplicationListResponse)
       end
       def list(
         created_at: nil,

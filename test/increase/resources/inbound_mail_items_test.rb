@@ -29,27 +29,13 @@ class Increase::Test::Resources::InboundMailItemsTest < Increase::Test::Resource
     response = @increase.inbound_mail_items.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::InboundMailItem
+      response => Increase::Models::InboundMailItemListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
-        created_at: Time,
-        file_id: String,
-        lockbox_id: String | nil,
-        recipient_name: String | nil,
-        rejection_reason: Increase::InboundMailItem::RejectionReason | nil,
-        status: Increase::InboundMailItem::Status,
-        type: Increase::InboundMailItem::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem]),
+        next_cursor: String | nil
       }
     end
   end

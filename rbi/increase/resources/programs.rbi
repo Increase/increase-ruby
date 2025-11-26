@@ -23,7 +23,7 @@ module Increase
           cursor: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Program])
+        ).returns(Increase::Models::ProgramListResponse)
       end
       def list(
         # Return the page of entries after this one.

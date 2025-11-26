@@ -31,7 +31,7 @@ module Increase
         ?routing_number: String,
         ?status: Increase::ExternalAccountListParams::Status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::ExternalAccount]
+      ) -> Increase::Models::ExternalAccountListResponse
 
       def initialize: (client: Increase::Client) -> void
     end

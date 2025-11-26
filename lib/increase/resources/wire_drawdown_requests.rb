@@ -83,7 +83,7 @@ module Increase
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Increase::Internal::Page<Increase::Models::WireDrawdownRequest>]
+      # @return [Increase::Models::WireDrawdownRequestListResponse]
       #
       # @see Increase::Models::WireDrawdownRequestListParams
       def list(params = {})
@@ -92,8 +92,7 @@ module Increase
           method: :get,
           path: "wire_drawdown_requests",
           query: parsed,
-          page: Increase::Internal::Page,
-          model: Increase::WireDrawdownRequest,
+          model: Increase::Models::WireDrawdownRequestListResponse,
           options: options
         )
       end

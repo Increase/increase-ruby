@@ -80,7 +80,7 @@ module Increase
           limit: Integer,
           status: Increase::RealTimePaymentsTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::RealTimePaymentsTransfer])
+        ).returns(Increase::Models::RealTimePaymentsTransferListResponse)
       end
       def list(
         # Filter Real-Time Payments Transfers to those belonging to the specified Account.

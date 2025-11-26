@@ -26,24 +26,13 @@ class Increase::Test::Resources::CardPurchaseSupplementsTest < Increase::Test::R
     response = @increase.card_purchase_supplements.list
 
     assert_pattern do
-      response => Increase::Internal::Page
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Increase::CardPurchaseSupplement
+      response => Increase::Models::CardPurchaseSupplementListResponse
     end
 
     assert_pattern do
-      row => {
-        id: String,
-        card_payment_id: String | nil,
-        invoice: Increase::CardPurchaseSupplement::Invoice | nil,
-        line_items: ^(Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement::LineItem]) | nil,
-        transaction_id: String,
-        type: Increase::CardPurchaseSupplement::Type
+      response => {
+        data: ^(Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement]),
+        next_cursor: String | nil
       }
     end
   end
