@@ -510,9 +510,9 @@ module Increase
           sig { params(name: String).void }
           attr_writer :name
 
-          # The phone number to associate with the check's destination address. Only used if
-          # shipping method is `fedex_overnight`. Will be supplied to FedEx as the contact
-          # phone number for the recipient to be used in case of delivery issues.
+          # The phone number to associate with the check's destination address. The number
+          # is only used when `shipping_method` is `fedex_overnight` and will be supplied to
+          # FedEx to be used in case of delivery issues.
           sig { returns(T.nilable(String)) }
           attr_reader :phone
 
@@ -545,9 +545,9 @@ module Increase
             # The name component of the check's destination address. Defaults to the provided
             # `recipient_name` parameter if `name` is not provided.
             name: nil,
-            # The phone number to associate with the check's destination address. Only used if
-            # shipping method is `fedex_overnight`. Will be supplied to FedEx as the contact
-            # phone number for the recipient to be used in case of delivery issues.
+            # The phone number to associate with the check's destination address. The number
+            # is only used when `shipping_method` is `fedex_overnight` and will be supplied to
+            # FedEx to be used in case of delivery issues.
             phone: nil
           )
           end
