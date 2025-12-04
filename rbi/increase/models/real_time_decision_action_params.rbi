@@ -498,6 +498,16 @@ module Increase
           end
           attr_writer :cardholder_address_verification_result
 
+          # If the transaction supports partial approvals
+          # (`partial_approval_capability: supported`) the `partial_amount` can be provided
+          # in the transaction's settlement currency to approve a lower amount than was
+          # requested.
+          sig { returns(T.nilable(Integer)) }
+          attr_reader :partial_amount
+
+          sig { params(partial_amount: Integer).void }
+          attr_writer :partial_amount
+
           # If your application approves the authorization, this contains metadata about
           # your decision to approve. Your response here is advisory to the acquiring bank.
           # The bank may choose to reverse the authorization if you approve the transaction
@@ -505,7 +515,8 @@ module Increase
           sig do
             params(
               cardholder_address_verification_result:
-                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::OrHash
+                Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::OrHash,
+              partial_amount: Integer
             ).returns(T.attached_class)
           end
           def self.new(
@@ -515,7 +526,12 @@ module Increase
             # information, see our
             # [Address Verification System Codes and Overrides](https://increase.com/documentation/address-verification-system-codes-and-overrides)
             # guide.
-            cardholder_address_verification_result: nil
+            cardholder_address_verification_result: nil,
+            # If the transaction supports partial approvals
+            # (`partial_approval_capability: supported`) the `partial_amount` can be provided
+            # in the transaction's settlement currency to approve a lower amount than was
+            # requested.
+            partial_amount: nil
           )
           end
 
@@ -523,7 +539,8 @@ module Increase
             override.returns(
               {
                 cardholder_address_verification_result:
-                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
+                  Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult,
+                partial_amount: Integer
               }
             )
           end

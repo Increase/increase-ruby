@@ -463,6 +463,25 @@ module Increase
         end
         attr_writer :additional_amounts
 
+        # Present if and only if `decision` is `approve`. Contains information related to
+        # the approval of the authorization.
+        sig do
+          returns(
+            T.nilable(Increase::RealTimeDecision::CardAuthorization::Approval)
+          )
+        end
+        attr_reader :approval
+
+        sig do
+          params(
+            approval:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthorization::Approval::OrHash
+              )
+          ).void
+        end
+        attr_writer :approval
+
         # The identifier of the Card that is being authorized.
         sig { returns(String) }
         attr_accessor :card_id
@@ -577,6 +596,14 @@ module Increase
         sig { returns(T.nilable(Integer)) }
         attr_accessor :network_risk_score
 
+        # Whether or not the authorization supports partial approvals.
+        sig do
+          returns(
+            Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability::TaggedSymbol
+          )
+        end
+        attr_accessor :partial_approval_capability
+
         # If the authorization was made in-person with a physical card, the Physical Card
         # that was used.
         sig { returns(T.nilable(String)) }
@@ -656,6 +683,10 @@ module Increase
             account_id: String,
             additional_amounts:
               Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts::OrHash,
+            approval:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthorization::Approval::OrHash
+              ),
             card_id: String,
             decision:
               T.nilable(
@@ -680,6 +711,8 @@ module Increase
             network_identifiers:
               Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers::OrHash,
             network_risk_score: T.nilable(Integer),
+            partial_approval_capability:
+              Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability::OrSymbol,
             physical_card_id: T.nilable(String),
             presentment_amount: Integer,
             presentment_currency: String,
@@ -702,6 +735,9 @@ module Increase
           # surcharges fees. These are usually a subset of the `amount` field and are used
           # to provide more detailed information about the transaction.
           additional_amounts:,
+          # Present if and only if `decision` is `approve`. Contains information related to
+          # the approval of the authorization.
+          approval:,
           # The identifier of the Card that is being authorized.
           card_id:,
           # Whether or not the authorization was approved.
@@ -740,6 +776,8 @@ module Increase
           # Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
           # score is from 0 to 999, where 999 is the riskiest.
           network_risk_score:,
+          # Whether or not the authorization supports partial approvals.
+          partial_approval_capability:,
           # If the authorization was made in-person with a physical card, the Physical Card
           # that was used.
           physical_card_id:,
@@ -778,6 +816,10 @@ module Increase
               account_id: String,
               additional_amounts:
                 Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts,
+              approval:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthorization::Approval
+                ),
               card_id: String,
               decision:
                 T.nilable(
@@ -802,6 +844,8 @@ module Increase
               network_identifiers:
                 Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
               network_risk_score: T.nilable(Integer),
+              partial_approval_capability:
+                Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability::TaggedSymbol,
               physical_card_id: T.nilable(String),
               presentment_amount: Integer,
               presentment_currency: String,
@@ -1571,6 +1615,37 @@ module Increase
           end
         end
 
+        class Approval < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthorization::Approval,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # If the authorization was partially approved, this field contains the approved
+          # amount in the minor unit of the settlement currency.
+          sig { returns(T.nilable(Integer)) }
+          attr_accessor :partial_amount
+
+          # Present if and only if `decision` is `approve`. Contains information related to
+          # the approval of the authorization.
+          sig do
+            params(partial_amount: T.nilable(Integer)).returns(T.attached_class)
+          end
+          def self.new(
+            # If the authorization was partially approved, this field contains the approved
+            # amount in the minor unit of the settlement currency.
+            partial_amount:
+          )
+          end
+
+          sig { override.returns({ partial_amount: T.nilable(Integer) }) }
+          def to_hash
+          end
+        end
+
         # Whether or not the authorization was approved.
         module Decision
           extend Increase::Internal::Type::Enum
@@ -2330,6 +2405,44 @@ module Increase
             )
           end
           def to_hash
+          end
+        end
+
+        # Whether or not the authorization supports partial approvals.
+        module PartialApprovalCapability
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # This transaction supports partial approvals.
+          SUPPORTED =
+            T.let(
+              :supported,
+              Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability::TaggedSymbol
+            )
+
+          # This transaction does not support partial approvals.
+          NOT_SUPPORTED =
+            T.let(
+              :not_supported,
+              Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecision::CardAuthorization::PartialApprovalCapability::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 
