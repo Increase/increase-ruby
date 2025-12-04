@@ -170,6 +170,7 @@ module Increase
         {
           account_id: String,
           additional_amounts: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts,
+          approval: Increase::RealTimeDecision::CardAuthorization::Approval?,
           card_id: String,
           decision: Increase::Models::RealTimeDecision::CardAuthorization::decision?,
           decline: Increase::RealTimeDecision::CardAuthorization::Decline?,
@@ -185,6 +186,7 @@ module Increase
           network_details: Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
           network_identifiers: Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
           network_risk_score: Integer?,
+          partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability,
           physical_card_id: String?,
           presentment_amount: Integer,
           presentment_currency: String,
@@ -201,6 +203,8 @@ module Increase
         attr_accessor account_id: String
 
         attr_accessor additional_amounts: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts
+
+        attr_accessor approval: Increase::RealTimeDecision::CardAuthorization::Approval?
 
         attr_accessor card_id: String
 
@@ -232,6 +236,8 @@ module Increase
 
         attr_accessor network_risk_score: Integer?
 
+        attr_accessor partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability
+
         attr_accessor physical_card_id: String?
 
         attr_accessor presentment_amount: Integer
@@ -255,6 +261,7 @@ module Increase
         def initialize: (
           account_id: String,
           additional_amounts: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts,
+          approval: Increase::RealTimeDecision::CardAuthorization::Approval?,
           card_id: String,
           decision: Increase::Models::RealTimeDecision::CardAuthorization::decision?,
           decline: Increase::RealTimeDecision::CardAuthorization::Decline?,
@@ -270,6 +277,7 @@ module Increase
           network_details: Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
           network_identifiers: Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
           network_risk_score: Integer?,
+          partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability,
           physical_card_id: String?,
           presentment_amount: Integer,
           presentment_currency: String,
@@ -285,6 +293,7 @@ module Increase
         def to_hash: -> {
           account_id: String,
           additional_amounts: Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts,
+          approval: Increase::RealTimeDecision::CardAuthorization::Approval?,
           card_id: String,
           decision: Increase::Models::RealTimeDecision::CardAuthorization::decision?,
           decline: Increase::RealTimeDecision::CardAuthorization::Decline?,
@@ -300,6 +309,7 @@ module Increase
           network_details: Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
           network_identifiers: Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
           network_risk_score: Integer?,
+          partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability,
           physical_card_id: String?,
           presentment_amount: Integer,
           presentment_currency: String,
@@ -492,6 +502,16 @@ module Increase
 
             def to_hash: -> { amount: Integer, currency: String }
           end
+        end
+
+        type approval = { partial_amount: Integer? }
+
+        class Approval < Increase::Internal::Type::BaseModel
+          attr_accessor partial_amount: Integer?
+
+          def initialize: (partial_amount: Integer?) -> void
+
+          def to_hash: -> { partial_amount: Integer? }
         end
 
         type decision = :approve | :decline
@@ -801,6 +821,20 @@ module Increase
             trace_number: String?,
             transaction_id: String?
           }
+        end
+
+        type partial_approval_capability = :supported | :not_supported
+
+        module PartialApprovalCapability
+          extend Increase::Internal::Type::Enum
+
+          # This transaction supports partial approvals.
+          SUPPORTED: :supported
+
+          # This transaction does not support partial approvals.
+          NOT_SUPPORTED: :not_supported
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability]
         end
 
         type processing_category =

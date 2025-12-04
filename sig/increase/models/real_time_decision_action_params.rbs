@@ -177,7 +177,8 @@ module Increase
 
         type approval =
           {
-            cardholder_address_verification_result: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
+            cardholder_address_verification_result: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult,
+            partial_amount: Integer
           }
 
         class Approval < Increase::Internal::Type::BaseModel
@@ -187,12 +188,18 @@ module Increase
             Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
           ) -> Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
 
+          attr_reader partial_amount: Integer?
+
+          def partial_amount=: (Integer) -> Integer
+
           def initialize: (
-            ?cardholder_address_verification_result: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
+            ?cardholder_address_verification_result: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult,
+            ?partial_amount: Integer
           ) -> void
 
           def to_hash: -> {
-            cardholder_address_verification_result: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult
+            cardholder_address_verification_result: Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult,
+            partial_amount: Integer
           }
 
           type cardholder_address_verification_result =
