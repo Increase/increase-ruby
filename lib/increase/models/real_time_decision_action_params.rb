@@ -196,7 +196,16 @@ module Increase
           optional :cardholder_address_verification_result,
                    -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult }
 
-          # @!method initialize(cardholder_address_verification_result: nil)
+          # @!attribute partial_amount
+          #   If the transaction supports partial approvals
+          #   (`partial_approval_capability: supported`) the `partial_amount` can be provided
+          #   in the transaction's settlement currency to approve a lower amount than was
+          #   requested.
+          #
+          #   @return [Integer, nil]
+          optional :partial_amount, Integer
+
+          # @!method initialize(cardholder_address_verification_result: nil, partial_amount: nil)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval}
           #   for more details.
@@ -207,6 +216,8 @@ module Increase
           #   but indicate the address does not match.
           #
           #   @param cardholder_address_verification_result [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult] Your decisions on whether or not each provided address component is a match. You
+          #
+          #   @param partial_amount [Integer] If the transaction supports partial approvals (`partial_approval_capability: sup
 
           # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval#cardholder_address_verification_result
           class CardholderAddressVerificationResult < Increase::Internal::Type::BaseModel
