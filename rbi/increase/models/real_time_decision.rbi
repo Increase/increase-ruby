@@ -2516,6 +2516,13 @@ module Increase
               Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
             )
 
+          # A balance inquiry transaction is used to check the balance of an account associated with a card.
+          BALANCE_INQUIRY =
+            T.let(
+              :balance_inquiry,
+              Increase::RealTimeDecision::CardAuthorization::ProcessingCategory::TaggedSymbol
+            )
+
           # The processing category is unknown.
           UNKNOWN =
             T.let(

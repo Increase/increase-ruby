@@ -2689,6 +2689,13 @@ module Increase
                 Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
               )
 
+            # A balance inquiry transaction is used to check the balance of an account associated with a card.
+            BALANCE_INQUIRY =
+              T.let(
+                :balance_inquiry,
+                Increase::DeclinedTransaction::Source::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
             # The processing category is unknown.
             UNKNOWN =
               T.let(

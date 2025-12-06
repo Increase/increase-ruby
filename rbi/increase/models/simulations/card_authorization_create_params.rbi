@@ -756,6 +756,13 @@ module Increase
                 Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
               )
 
+            # A balance inquiry transaction is used to check the balance of an account associated with a card.
+            BALANCE_INQUIRY =
+              T.let(
+                :balance_inquiry,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[
