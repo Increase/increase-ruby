@@ -1451,6 +1451,9 @@ module Increase
             # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
             CASH_DISBURSEMENT = :cash_disbursement
 
+            # A balance inquiry transaction is used to check the balance of an account associated with a card.
+            BALANCE_INQUIRY = :balance_inquiry
+
             # The processing category is unknown.
             UNKNOWN = :unknown
 

@@ -3092,6 +3092,13 @@ module Increase
                 Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
               )
 
+            # A balance inquiry transaction is used to check the balance of an account associated with a card.
+            BALANCE_INQUIRY =
+              T.let(
+                :balance_inquiry,
+                Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
+              )
+
             # The processing category is unknown.
             UNKNOWN =
               T.let(
@@ -5558,6 +5565,13 @@ module Increase
                 Increase::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
               )
 
+            # A balance inquiry transaction is used to check the balance of an account associated with a card.
+            BALANCE_INQUIRY =
+              T.let(
+                :balance_inquiry,
+                Increase::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
             # The processing category is unknown.
             UNKNOWN =
               T.let(
@@ -7990,6 +8004,13 @@ module Increase
             CASH_DISBURSEMENT =
               T.let(
                 :cash_disbursement,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # A balance inquiry transaction is used to check the balance of an account associated with a card.
+            BALANCE_INQUIRY =
+              T.let(
+                :balance_inquiry,
                 Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
               )
 
