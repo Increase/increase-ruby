@@ -27,6 +27,8 @@ module Increase
             Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::OrHash,
           card_authorization:
             Increase::RealTimeDecisionActionParams::CardAuthorization::OrHash,
+          card_balance_inquiry:
+            Increase::RealTimeDecisionActionParams::CardBalanceInquiry::OrHash,
           digital_wallet_authentication:
             Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::OrHash,
           digital_wallet_token:
@@ -46,6 +48,9 @@ module Increase
         # If the Real-Time Decision relates to a card authorization attempt, this object
         # contains your response to the authorization.
         card_authorization: nil,
+        # If the Real-Time Decision relates to a card balance inquiry attempt, this object
+        # contains your response to the inquiry.
+        card_balance_inquiry: nil,
         # If the Real-Time Decision relates to a digital wallet authentication attempt,
         # this object contains your response to the authentication.
         digital_wallet_authentication: nil,

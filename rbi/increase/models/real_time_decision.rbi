@@ -54,6 +54,18 @@ module Increase
       end
       attr_writer :card_authorization
 
+      # Fields related to a card balance inquiry.
+      sig { returns(T.nilable(Increase::RealTimeDecision::CardBalanceInquiry)) }
+      attr_reader :card_balance_inquiry
+
+      sig do
+        params(
+          card_balance_inquiry:
+            T.nilable(Increase::RealTimeDecision::CardBalanceInquiry::OrHash)
+        ).void
+      end
+      attr_writer :card_balance_inquiry
+
       # The category of the Real-Time Decision.
       sig { returns(Increase::RealTimeDecision::Category::TaggedSymbol) }
       attr_accessor :category
@@ -122,6 +134,8 @@ module Increase
             ),
           card_authorization:
             T.nilable(Increase::RealTimeDecision::CardAuthorization::OrHash),
+          card_balance_inquiry:
+            T.nilable(Increase::RealTimeDecision::CardBalanceInquiry::OrHash),
           category: Increase::RealTimeDecision::Category::OrSymbol,
           created_at: Time,
           digital_wallet_authentication:
@@ -144,6 +158,8 @@ module Increase
         card_authentication_challenge:,
         # Fields related to a card authorization.
         card_authorization:,
+        # Fields related to a card balance inquiry.
+        card_balance_inquiry:,
         # The category of the Real-Time Decision.
         category:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -176,6 +192,8 @@ module Increase
               ),
             card_authorization:
               T.nilable(Increase::RealTimeDecision::CardAuthorization),
+            card_balance_inquiry:
+              T.nilable(Increase::RealTimeDecision::CardBalanceInquiry),
             category: Increase::RealTimeDecision::Category::TaggedSymbol,
             created_at: Time,
             digital_wallet_authentication:
@@ -3057,6 +3075,2004 @@ module Increase
         end
       end
 
+      class CardBalanceInquiry < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecision::CardBalanceInquiry,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The identifier of the Account the authorization will debit.
+        sig { returns(String) }
+        attr_accessor :account_id
+
+        # Additional amounts associated with the card authorization, such as ATM
+        # surcharges fees. These are usually a subset of the `amount` field and are used
+        # to provide more detailed information about the transaction.
+        sig do
+          returns(
+            Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts
+          )
+        end
+        attr_reader :additional_amounts
+
+        sig do
+          params(
+            additional_amounts:
+              Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::OrHash
+          ).void
+        end
+        attr_writer :additional_amounts
+
+        # Present if and only if `decision` is `approve`. Contains information related to
+        # the approval of the balance inquiry.
+        sig do
+          returns(
+            T.nilable(Increase::RealTimeDecision::CardBalanceInquiry::Approval)
+          )
+        end
+        attr_reader :approval
+
+        sig do
+          params(
+            approval:
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::Approval::OrHash
+              )
+          ).void
+        end
+        attr_writer :approval
+
+        # The identifier of the Card that is being authorized.
+        sig { returns(String) }
+        attr_accessor :card_id
+
+        # Whether or not the authorization was approved.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecision::CardBalanceInquiry::Decision::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :decision
+
+        # If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+        # purchase), the identifier of the token that was used.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :digital_wallet_token_id
+
+        # The merchant identifier (commonly abbreviated as MID) of the merchant the card
+        # is transacting with.
+        sig { returns(String) }
+        attr_accessor :merchant_acceptor_id
+
+        # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+        # card is transacting with.
+        sig { returns(String) }
+        attr_accessor :merchant_category_code
+
+        # The city the merchant resides in.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :merchant_city
+
+        # The country the merchant resides in.
+        sig { returns(String) }
+        attr_accessor :merchant_country
+
+        # The merchant descriptor of the merchant the card is transacting with.
+        sig { returns(String) }
+        attr_accessor :merchant_descriptor
+
+        # The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+        # ZIP code, where the first 5 and last 4 are separated by a dash.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :merchant_postal_code
+
+        # The state the merchant resides in.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :merchant_state
+
+        # Fields specific to the `network`.
+        sig do
+          returns(
+            Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails
+          )
+        end
+        attr_reader :network_details
+
+        sig do
+          params(
+            network_details:
+              Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::OrHash
+          ).void
+        end
+        attr_writer :network_details
+
+        # Network-specific identifiers for a specific request or transaction.
+        sig do
+          returns(
+            Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers
+          )
+        end
+        attr_reader :network_identifiers
+
+        sig do
+          params(
+            network_identifiers:
+              Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers::OrHash
+          ).void
+        end
+        attr_writer :network_identifiers
+
+        # The risk score generated by the card network. For Visa this is the Visa Advanced
+        # Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+        # score is from 0 to 999, where 999 is the riskiest.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :network_risk_score
+
+        # If the authorization was made in-person with a physical card, the Physical Card
+        # that was used.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :physical_card_id
+
+        # The terminal identifier (commonly abbreviated as TID) of the terminal the card
+        # is transacting with.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :terminal_id
+
+        # The identifier of the Card Payment this authorization will belong to. Available
+        # in the API once the card authorization has completed.
+        sig { returns(String) }
+        attr_accessor :upcoming_card_payment_id
+
+        # Fields related to verification of cardholder-provided values.
+        sig do
+          returns(Increase::RealTimeDecision::CardBalanceInquiry::Verification)
+        end
+        attr_reader :verification
+
+        sig do
+          params(
+            verification:
+              Increase::RealTimeDecision::CardBalanceInquiry::Verification::OrHash
+          ).void
+        end
+        attr_writer :verification
+
+        # Fields related to a card balance inquiry.
+        sig do
+          params(
+            account_id: String,
+            additional_amounts:
+              Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::OrHash,
+            approval:
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::Approval::OrHash
+              ),
+            card_id: String,
+            decision:
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::Decision::OrSymbol
+              ),
+            digital_wallet_token_id: T.nilable(String),
+            merchant_acceptor_id: String,
+            merchant_category_code: String,
+            merchant_city: T.nilable(String),
+            merchant_country: String,
+            merchant_descriptor: String,
+            merchant_postal_code: T.nilable(String),
+            merchant_state: T.nilable(String),
+            network_details:
+              Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::OrHash,
+            network_identifiers:
+              Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers::OrHash,
+            network_risk_score: T.nilable(Integer),
+            physical_card_id: T.nilable(String),
+            terminal_id: T.nilable(String),
+            upcoming_card_payment_id: String,
+            verification:
+              Increase::RealTimeDecision::CardBalanceInquiry::Verification::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The identifier of the Account the authorization will debit.
+          account_id:,
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          additional_amounts:,
+          # Present if and only if `decision` is `approve`. Contains information related to
+          # the approval of the balance inquiry.
+          approval:,
+          # The identifier of the Card that is being authorized.
+          card_id:,
+          # Whether or not the authorization was approved.
+          decision:,
+          # If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          # purchase), the identifier of the token that was used.
+          digital_wallet_token_id:,
+          # The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          # is transacting with.
+          merchant_acceptor_id:,
+          # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          # card is transacting with.
+          merchant_category_code:,
+          # The city the merchant resides in.
+          merchant_city:,
+          # The country the merchant resides in.
+          merchant_country:,
+          # The merchant descriptor of the merchant the card is transacting with.
+          merchant_descriptor:,
+          # The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          # ZIP code, where the first 5 and last 4 are separated by a dash.
+          merchant_postal_code:,
+          # The state the merchant resides in.
+          merchant_state:,
+          # Fields specific to the `network`.
+          network_details:,
+          # Network-specific identifiers for a specific request or transaction.
+          network_identifiers:,
+          # The risk score generated by the card network. For Visa this is the Visa Advanced
+          # Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          # score is from 0 to 999, where 999 is the riskiest.
+          network_risk_score:,
+          # If the authorization was made in-person with a physical card, the Physical Card
+          # that was used.
+          physical_card_id:,
+          # The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          # is transacting with.
+          terminal_id:,
+          # The identifier of the Card Payment this authorization will belong to. Available
+          # in the API once the card authorization has completed.
+          upcoming_card_payment_id:,
+          # Fields related to verification of cardholder-provided values.
+          verification:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              account_id: String,
+              additional_amounts:
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts,
+              approval:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::Approval
+                ),
+              card_id: String,
+              decision:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::Decision::TaggedSymbol
+                ),
+              digital_wallet_token_id: T.nilable(String),
+              merchant_acceptor_id: String,
+              merchant_category_code: String,
+              merchant_city: T.nilable(String),
+              merchant_country: String,
+              merchant_descriptor: String,
+              merchant_postal_code: T.nilable(String),
+              merchant_state: T.nilable(String),
+              network_details:
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails,
+              network_identifiers:
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers,
+              network_risk_score: T.nilable(Integer),
+              physical_card_id: T.nilable(String),
+              terminal_id: T.nilable(String),
+              upcoming_card_payment_id: String,
+              verification:
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class AdditionalAmounts < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The part of this transaction amount that was for clinic-related services.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic
+              )
+            )
+          end
+          attr_reader :clinic
+
+          sig do
+            params(
+              clinic:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic::OrHash
+                )
+            ).void
+          end
+          attr_writer :clinic
+
+          # The part of this transaction amount that was for dental-related services.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental
+              )
+            )
+          end
+          attr_reader :dental
+
+          sig do
+            params(
+              dental:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental::OrHash
+                )
+            ).void
+          end
+          attr_writer :dental
+
+          # The original pre-authorized amount.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original
+              )
+            )
+          end
+          attr_reader :original
+
+          sig do
+            params(
+              original:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original::OrHash
+                )
+            ).void
+          end
+          attr_writer :original
+
+          # The part of this transaction amount that was for healthcare prescriptions.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription
+              )
+            )
+          end
+          attr_reader :prescription
+
+          sig do
+            params(
+              prescription:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription::OrHash
+                )
+            ).void
+          end
+          attr_writer :prescription
+
+          # The surcharge amount charged for this transaction by the merchant.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge
+              )
+            )
+          end
+          attr_reader :surcharge
+
+          sig do
+            params(
+              surcharge:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge::OrHash
+                )
+            ).void
+          end
+          attr_writer :surcharge
+
+          # The total amount of a series of incremental authorizations, optionally provided.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative
+              )
+            )
+          end
+          attr_reader :total_cumulative
+
+          sig do
+            params(
+              total_cumulative:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative::OrHash
+                )
+            ).void
+          end
+          attr_writer :total_cumulative
+
+          # The total amount of healthcare-related additional amounts.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare
+              )
+            )
+          end
+          attr_reader :total_healthcare
+
+          sig do
+            params(
+              total_healthcare:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare::OrHash
+                )
+            ).void
+          end
+          attr_writer :total_healthcare
+
+          # The part of this transaction amount that was for transit-related services.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit
+              )
+            )
+          end
+          attr_reader :transit
+
+          sig do
+            params(
+              transit:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit::OrHash
+                )
+            ).void
+          end
+          attr_writer :transit
+
+          # An unknown additional amount.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown
+              )
+            )
+          end
+          attr_reader :unknown
+
+          sig do
+            params(
+              unknown:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown::OrHash
+                )
+            ).void
+          end
+          attr_writer :unknown
+
+          # The part of this transaction amount that was for vision-related services.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision
+              )
+            )
+          end
+          attr_reader :vision
+
+          sig do
+            params(
+              vision:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision::OrHash
+                )
+            ).void
+          end
+          attr_writer :vision
+
+          # Additional amounts associated with the card authorization, such as ATM
+          # surcharges fees. These are usually a subset of the `amount` field and are used
+          # to provide more detailed information about the transaction.
+          sig do
+            params(
+              clinic:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic::OrHash
+                ),
+              dental:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental::OrHash
+                ),
+              original:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original::OrHash
+                ),
+              prescription:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription::OrHash
+                ),
+              surcharge:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge::OrHash
+                ),
+              total_cumulative:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative::OrHash
+                ),
+              total_healthcare:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare::OrHash
+                ),
+              transit:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit::OrHash
+                ),
+              unknown:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown::OrHash
+                ),
+              vision:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The part of this transaction amount that was for clinic-related services.
+            clinic:,
+            # The part of this transaction amount that was for dental-related services.
+            dental:,
+            # The original pre-authorized amount.
+            original:,
+            # The part of this transaction amount that was for healthcare prescriptions.
+            prescription:,
+            # The surcharge amount charged for this transaction by the merchant.
+            surcharge:,
+            # The total amount of a series of incremental authorizations, optionally provided.
+            total_cumulative:,
+            # The total amount of healthcare-related additional amounts.
+            total_healthcare:,
+            # The part of this transaction amount that was for transit-related services.
+            transit:,
+            # An unknown additional amount.
+            unknown:,
+            # The part of this transaction amount that was for vision-related services.
+            vision:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                clinic:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic
+                  ),
+                dental:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental
+                  ),
+                original:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original
+                  ),
+                prescription:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription
+                  ),
+                surcharge:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge
+                  ),
+                total_cumulative:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative
+                  ),
+                total_healthcare:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare
+                  ),
+                transit:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit
+                  ),
+                unknown:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown
+                  ),
+                vision:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Clinic < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The part of this transaction amount that was for clinic-related services.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Dental < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The part of this transaction amount that was for dental-related services.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Original < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The original pre-authorized amount.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Prescription < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The part of this transaction amount that was for healthcare prescriptions.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Surcharge < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The surcharge amount charged for this transaction by the merchant.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class TotalCumulative < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The total amount of a series of incremental authorizations, optionally provided.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class TotalHealthcare < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The total amount of healthcare-related additional amounts.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Transit < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The part of this transaction amount that was for transit-related services.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Unknown < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # An unknown additional amount.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+
+          class Vision < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The amount in minor units of the `currency` field. The amount is positive if it
+            # is added to the amount (such as an ATM surcharge fee) and negative if it is
+            # subtracted from the amount (such as a discount).
+            sig { returns(Integer) }
+            attr_accessor :amount
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+            # amount's currency.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # The part of this transaction amount that was for vision-related services.
+            sig do
+              params(amount: Integer, currency: String).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The amount in minor units of the `currency` field. The amount is positive if it
+              # is added to the amount (such as an ATM surcharge fee) and negative if it is
+              # subtracted from the amount (such as a discount).
+              amount:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              # amount's currency.
+              currency:
+            )
+            end
+
+            sig { override.returns({ amount: Integer, currency: String }) }
+            def to_hash
+            end
+          end
+        end
+
+        class Approval < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardBalanceInquiry::Approval,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # If the balance inquiry was approved, this field contains the balance in the
+          # minor unit of the settlement currency.
+          sig { returns(Integer) }
+          attr_accessor :balance
+
+          # Present if and only if `decision` is `approve`. Contains information related to
+          # the approval of the balance inquiry.
+          sig { params(balance: Integer).returns(T.attached_class) }
+          def self.new(
+            # If the balance inquiry was approved, this field contains the balance in the
+            # minor unit of the settlement currency.
+            balance:
+          )
+          end
+
+          sig { override.returns({ balance: Integer }) }
+          def to_hash
+          end
+        end
+
+        # Whether or not the authorization was approved.
+        module Decision
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecision::CardBalanceInquiry::Decision
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Approve the authorization.
+          APPROVE =
+            T.let(
+              :approve,
+              Increase::RealTimeDecision::CardBalanceInquiry::Decision::TaggedSymbol
+            )
+
+          # Decline the authorization.
+          DECLINE =
+            T.let(
+              :decline,
+              Increase::RealTimeDecision::CardBalanceInquiry::Decision::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecision::CardBalanceInquiry::Decision::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        class NetworkDetails < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The payment network used to process this card authorization.
+          sig do
+            returns(
+              Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category::TaggedSymbol
+            )
+          end
+          attr_accessor :category
+
+          # Fields specific to the `pulse` network.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse
+              )
+            )
+          end
+          attr_reader :pulse
+
+          sig do
+            params(
+              pulse:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse::OrHash
+                )
+            ).void
+          end
+          attr_writer :pulse
+
+          # Fields specific to the `visa` network.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa
+              )
+            )
+          end
+          attr_reader :visa
+
+          sig do
+            params(
+              visa:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::OrHash
+                )
+            ).void
+          end
+          attr_writer :visa
+
+          # Fields specific to the `network`.
+          sig do
+            params(
+              category:
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category::OrSymbol,
+              pulse:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse::OrHash
+                ),
+              visa:
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The payment network used to process this card authorization.
+            category:,
+            # Fields specific to the `pulse` network.
+            pulse:,
+            # Fields specific to the `visa` network.
+            visa:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                category:
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category::TaggedSymbol,
+                pulse:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse
+                  ),
+                visa:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The payment network used to process this card authorization.
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Visa
+            VISA =
+              T.let(
+                :visa,
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category::TaggedSymbol
+              )
+
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Category::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class Pulse < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Fields specific to the `pulse` network.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class Visa < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # For electronic commerce transactions, this identifies the level of security used
+            # in obtaining the customer's payment credential. For mail or telephone order
+            # transactions, identifies the type of mail or telephone order.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+              )
+            end
+            attr_accessor :electronic_commerce_indicator
+
+            # The method used to enter the cardholder's primary account number and card
+            # expiration date.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+              )
+            end
+            attr_accessor :point_of_service_entry_mode
+
+            # Only present when `actioner: network`. Describes why a card authorization was
+            # approved or declined by Visa through stand-in processing.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+              )
+            end
+            attr_accessor :stand_in_processing_reason
+
+            # Fields specific to the `visa` network.
+            sig do
+              params(
+                electronic_commerce_indicator:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::OrSymbol
+                  ),
+                point_of_service_entry_mode:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::OrSymbol
+                  ),
+                stand_in_processing_reason:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # For electronic commerce transactions, this identifies the level of security used
+              # in obtaining the customer's payment credential. For mail or telephone order
+              # transactions, identifies the type of mail or telephone order.
+              electronic_commerce_indicator:,
+              # The method used to enter the cardholder's primary account number and card
+              # expiration date.
+              point_of_service_entry_mode:,
+              # Only present when `actioner: network`. Describes why a card authorization was
+              # approved or declined by Visa through stand-in processing.
+              stand_in_processing_reason:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  electronic_commerce_indicator:
+                    T.nilable(
+                      Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                    ),
+                  point_of_service_entry_mode:
+                    T.nilable(
+                      Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                    ),
+                  stand_in_processing_reason:
+                    T.nilable(
+                      Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # For electronic commerce transactions, this identifies the level of security used
+            # in obtaining the customer's payment credential. For mail or telephone order
+            # transactions, identifies the type of mail or telephone order.
+            module ElectronicCommerceIndicator
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
+              MAIL_PHONE_ORDER =
+                T.let(
+                  :mail_phone_order,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Recurring transaction: Payment indicator used to indicate a recurring transaction that originates from an acquirer in the US region.
+              RECURRING =
+                T.let(
+                  :recurring,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Installment payment: Payment indicator used to indicate one purchase of goods or services that is billed to the account in multiple charges over a period of time agreed upon by the cardholder and merchant from transactions that originate from an acquirer in the US region.
+              INSTALLMENT =
+                T.let(
+                  :installment,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Unknown classification: other mail order: Use to indicate that the type of mail/telephone order is unknown.
+              UNKNOWN_MAIL_PHONE_ORDER =
+                T.let(
+                  :unknown_mail_phone_order,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Secure electronic commerce transaction: Use to indicate that the electronic commerce transaction has been authenticated using e.g., 3-D Secure
+              SECURE_ELECTRONIC_COMMERCE =
+                T.let(
+                  :secure_electronic_commerce,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Non-authenticated security transaction at a 3-D Secure-capable merchant, and merchant attempted to authenticate the cardholder using 3-D Secure: Use to identify an electronic commerce transaction where the merchant attempted to authenticate the cardholder using 3-D Secure, but was unable to complete the authentication because the issuer or cardholder does not participate in the 3-D Secure program.
+              NON_AUTHENTICATED_SECURITY_TRANSACTION_AT_3DS_CAPABLE_MERCHANT =
+                T.let(
+                  :non_authenticated_security_transaction_at_3ds_capable_merchant,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Non-authenticated security transaction: Use to identify an electronic commerce transaction that uses data encryption for security however, cardholder authentication is not performed using 3-D Secure.
+              NON_AUTHENTICATED_SECURITY_TRANSACTION =
+                T.let(
+                  :non_authenticated_security_transaction,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Non-secure transaction: Use to identify an electronic commerce transaction that has no data protection.
+              NON_SECURE_TRANSACTION =
+                T.let(
+                  :non_secure_transaction,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The method used to enter the cardholder's primary account number and card
+            # expiration date.
+            module PointOfServiceEntryMode
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Unknown
+              UNKNOWN =
+                T.let(
+                  :unknown,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Manual key entry
+              MANUAL =
+                T.let(
+                  :manual,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Magnetic stripe read, without card verification value
+              MAGNETIC_STRIPE_NO_CVV =
+                T.let(
+                  :magnetic_stripe_no_cvv,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Optical code
+              OPTICAL_CODE =
+                T.let(
+                  :optical_code,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contact chip card
+              INTEGRATED_CIRCUIT_CARD =
+                T.let(
+                  :integrated_circuit_card,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contactless read of chip card
+              CONTACTLESS =
+                T.let(
+                  :contactless,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Transaction initiated using a credential that has previously been stored on file
+              CREDENTIAL_ON_FILE =
+                T.let(
+                  :credential_on_file,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Magnetic stripe read
+              MAGNETIC_STRIPE =
+                T.let(
+                  :magnetic_stripe,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contactless read of magnetic stripe data
+              CONTACTLESS_MAGNETIC_STRIPE =
+                T.let(
+                  :contactless_magnetic_stripe,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contact chip card, without card verification value
+              INTEGRATED_CIRCUIT_CARD_NO_CVV =
+                T.let(
+                  :integrated_circuit_card_no_cvv,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # Only present when `actioner: network`. Describes why a card authorization was
+            # approved or declined by Visa through stand-in processing.
+            module StandInProcessingReason
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Increase failed to process the authorization in a timely manner.
+              ISSUER_ERROR =
+                T.let(
+                  :issuer_error,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+              INVALID_PHYSICAL_CARD =
+                T.let(
+                  :invalid_physical_card,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # The 3DS cardholder authentication verification value was invalid.
+              INVALID_CARDHOLDER_AUTHENTICATION_VERIFICATION_VALUE =
+                T.let(
+                  :invalid_cardholder_authentication_verification_value,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # An internal Visa error occurred. Visa uses this reason code for certain expected occurrences as well, such as Application Transaction Counter (ATC) replays.
+              INTERNAL_VISA_ERROR =
+                T.let(
+                  :internal_visa_error,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # The merchant has enabled Visa's Transaction Advisory Service and requires further authentication to perform the transaction. In practice this is often utilized at fuel pumps to tell the cardholder to see the cashier.
+              MERCHANT_TRANSACTION_ADVISORY_SERVICE_AUTHENTICATION_REQUIRED =
+                T.let(
+                  :merchant_transaction_advisory_service_authentication_required,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # The transaction was blocked by Visa's Payment Fraud Disruption service due to fraudulent Acquirer behavior, such as card testing.
+              PAYMENT_FRAUD_DISRUPTION_ACQUIRER_BLOCK =
+                T.let(
+                  :payment_fraud_disruption_acquirer_block,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # An unspecific reason for stand-in processing.
+              OTHER =
+                T.let(
+                  :other,
+                  Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+
+        class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The randomly generated 6-character Authorization Identification Response code
+          # sent back to the acquirer in an approved response.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :authorization_identification_response
+
+          # A life-cycle identifier used across e.g., an authorization and a reversal.
+          # Expected to be unique per acquirer within a window of time. For some card
+          # networks the retrieval reference number includes the trace counter.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :retrieval_reference_number
+
+          # A counter used to verify an individual authorization. Expected to be unique per
+          # acquirer within a window of time.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :trace_number
+
+          # A globally unique transaction identifier provided by the card network, used
+          # across multiple life-cycle requests.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :transaction_id
+
+          # Network-specific identifiers for a specific request or transaction.
+          sig do
+            params(
+              authorization_identification_response: T.nilable(String),
+              retrieval_reference_number: T.nilable(String),
+              trace_number: T.nilable(String),
+              transaction_id: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The randomly generated 6-character Authorization Identification Response code
+            # sent back to the acquirer in an approved response.
+            authorization_identification_response:,
+            # A life-cycle identifier used across e.g., an authorization and a reversal.
+            # Expected to be unique per acquirer within a window of time. For some card
+            # networks the retrieval reference number includes the trace counter.
+            retrieval_reference_number:,
+            # A counter used to verify an individual authorization. Expected to be unique per
+            # acquirer within a window of time.
+            trace_number:,
+            # A globally unique transaction identifier provided by the card network, used
+            # across multiple life-cycle requests.
+            transaction_id:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                authorization_identification_response: T.nilable(String),
+                retrieval_reference_number: T.nilable(String),
+                trace_number: T.nilable(String),
+                transaction_id: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class Verification < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Fields related to verification of the Card Verification Code, a 3-digit code on
+          # the back of the card.
+          sig do
+            returns(
+              Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode
+            )
+          end
+          attr_reader :card_verification_code
+
+          sig do
+            params(
+              card_verification_code:
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::OrHash
+            ).void
+          end
+          attr_writer :card_verification_code
+
+          # Cardholder address provided in the authorization request and the address on file
+          # we verified it against.
+          sig do
+            returns(
+              Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+            )
+          end
+          attr_reader :cardholder_address
+
+          sig do
+            params(
+              cardholder_address:
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::OrHash
+            ).void
+          end
+          attr_writer :cardholder_address
+
+          # Fields related to verification of cardholder-provided values.
+          sig do
+            params(
+              card_verification_code:
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::OrHash,
+              cardholder_address:
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Fields related to verification of the Card Verification Code, a 3-digit code on
+            # the back of the card.
+            card_verification_code:,
+            # Cardholder address provided in the authorization request and the address on file
+            # we verified it against.
+            cardholder_address:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card_verification_code:
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
+                cardholder_address:
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class CardVerificationCode < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The result of verifying the Card Verification Code.
+            sig do
+              returns(
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::TaggedSymbol
+              )
+            end
+            attr_accessor :result
+
+            # Fields related to verification of the Card Verification Code, a 3-digit code on
+            # the back of the card.
+            sig do
+              params(
+                result:
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The result of verifying the Card Verification Code.
+              result:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  result:
+                    Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The result of verifying the Card Verification Code.
+            module Result
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # No card verification code was provided in the authorization request.
+              NOT_CHECKED =
+                T.let(
+                  :not_checked,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::TaggedSymbol
+                )
+
+              # The card verification code matched the one on file.
+              MATCH =
+                T.let(
+                  :match,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::TaggedSymbol
+                )
+
+              # The card verification code did not match the one on file.
+              NO_MATCH =
+                T.let(
+                  :no_match,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::Result::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class CardholderAddress < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Line 1 of the address on file for the cardholder.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :actual_line1
+
+            # The postal code of the address on file for the cardholder.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :actual_postal_code
+
+            # The cardholder address line 1 provided for verification in the authorization
+            # request.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :provided_line1
+
+            # The postal code provided for verification in the authorization request.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :provided_postal_code
+
+            # The address verification result returned to the card network.
+            sig do
+              returns(
+                Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+            end
+            attr_accessor :result
+
+            # Cardholder address provided in the authorization request and the address on file
+            # we verified it against.
+            sig do
+              params(
+                actual_line1: T.nilable(String),
+                actual_postal_code: T.nilable(String),
+                provided_line1: T.nilable(String),
+                provided_postal_code: T.nilable(String),
+                result:
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Line 1 of the address on file for the cardholder.
+              actual_line1:,
+              # The postal code of the address on file for the cardholder.
+              actual_postal_code:,
+              # The cardholder address line 1 provided for verification in the authorization
+              # request.
+              provided_line1:,
+              # The postal code provided for verification in the authorization request.
+              provided_postal_code:,
+              # The address verification result returned to the card network.
+              result:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  actual_line1: T.nilable(String),
+                  actual_postal_code: T.nilable(String),
+                  provided_line1: T.nilable(String),
+                  provided_postal_code: T.nilable(String),
+                  result:
+                    Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The address verification result returned to the card network.
+            module Result
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # No address information was provided in the authorization request.
+              NOT_CHECKED =
+                T.let(
+                  :not_checked,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              # Postal code matches, but the street address does not match or was not provided.
+              POSTAL_CODE_MATCH_ADDRESS_NO_MATCH =
+                T.let(
+                  :postal_code_match_address_no_match,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              # Postal code does not match, but the street address matches or was not provided.
+              POSTAL_CODE_NO_MATCH_ADDRESS_MATCH =
+                T.let(
+                  :postal_code_no_match_address_match,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              # Postal code and street address match.
+              MATCH =
+                T.let(
+                  :match,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              # Postal code and street address do not match.
+              NO_MATCH =
+                T.let(
+                  :no_match,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              # Postal code matches, but the street address was not verified. (deprecated)
+              POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
+                T.let(
+                  :postal_code_match_address_not_checked,
+                  Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::Result::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+      end
+
       # The category of the Real-Time Decision.
       module Category
         extend Increase::Internal::Type::Enum
@@ -3069,6 +5085,13 @@ module Increase
         CARD_AUTHORIZATION_REQUESTED =
           T.let(
             :card_authorization_requested,
+            Increase::RealTimeDecision::Category::TaggedSymbol
+          )
+
+        # A balance inquiry is being made on a card.
+        CARD_BALANCE_INQUIRY_REQUESTED =
+          T.let(
+            :card_balance_inquiry_requested,
             Increase::RealTimeDecision::Category::TaggedSymbol
           )
 

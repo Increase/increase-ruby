@@ -5,6 +5,7 @@ module Increase
         card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
+        card_balance_inquiry: Increase::RealTimeDecisionActionParams::CardBalanceInquiry,
         digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
         digital_wallet_token: Increase::RealTimeDecisionActionParams::DigitalWalletToken
       }
@@ -32,6 +33,12 @@ module Increase
         Increase::RealTimeDecisionActionParams::CardAuthorization
       ) -> Increase::RealTimeDecisionActionParams::CardAuthorization
 
+      attr_reader card_balance_inquiry: Increase::RealTimeDecisionActionParams::CardBalanceInquiry?
+
+      def card_balance_inquiry=: (
+        Increase::RealTimeDecisionActionParams::CardBalanceInquiry
+      ) -> Increase::RealTimeDecisionActionParams::CardBalanceInquiry
+
       attr_reader digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication?
 
       def digital_wallet_authentication=: (
@@ -48,6 +55,7 @@ module Increase
         ?card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         ?card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         ?card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
+        ?card_balance_inquiry: Increase::RealTimeDecisionActionParams::CardBalanceInquiry,
         ?digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
         ?digital_wallet_token: Increase::RealTimeDecisionActionParams::DigitalWalletToken,
         ?request_options: Increase::request_opts
@@ -57,6 +65,7 @@ module Increase
         card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
+        card_balance_inquiry: Increase::RealTimeDecisionActionParams::CardBalanceInquiry,
         digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
         digital_wallet_token: Increase::RealTimeDecisionActionParams::DigitalWalletToken,
         request_options: Increase::RequestOptions
@@ -300,6 +309,56 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline::reason]
           end
+        end
+      end
+
+      type card_balance_inquiry =
+        {
+          decision: Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::decision,
+          approval: Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+        }
+
+      class CardBalanceInquiry < Increase::Internal::Type::BaseModel
+        attr_accessor decision: Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::decision
+
+        attr_reader approval: Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval?
+
+        def approval=: (
+          Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+        ) -> Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+
+        def initialize: (
+          decision: Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::decision,
+          ?approval: Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+        ) -> void
+
+        def to_hash: -> {
+          decision: Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::decision,
+          approval: Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+        }
+
+        type decision = :approve | :decline
+
+        module Decision
+          extend Increase::Internal::Type::Enum
+
+          # Approve the authorization.
+          APPROVE: :approve
+
+          # Decline the authorization.
+          DECLINE: :decline
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::decision]
+        end
+
+        type approval = { balance: Integer }
+
+        class Approval < Increase::Internal::Type::BaseModel
+          attr_accessor balance: Integer
+
+          def initialize: (balance: Integer) -> void
+
+          def to_hash: -> { balance: Integer }
         end
       end
 

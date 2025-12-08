@@ -11,6 +11,7 @@ module Increase
         ?card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         ?card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         ?card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
+        ?card_balance_inquiry: Increase::RealTimeDecisionActionParams::CardBalanceInquiry,
         ?digital_wallet_authentication: Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
         ?digital_wallet_token: Increase::RealTimeDecisionActionParams::DigitalWalletToken,
         ?request_options: Increase::request_opts
