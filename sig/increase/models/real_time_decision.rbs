@@ -6,6 +6,7 @@ module Increase
         card_authentication: Increase::RealTimeDecision::CardAuthentication?,
         card_authentication_challenge: Increase::RealTimeDecision::CardAuthenticationChallenge?,
         card_authorization: Increase::RealTimeDecision::CardAuthorization?,
+        card_balance_inquiry: Increase::RealTimeDecision::CardBalanceInquiry?,
         category: Increase::Models::RealTimeDecision::category,
         created_at: Time,
         digital_wallet_authentication: Increase::RealTimeDecision::DigitalWalletAuthentication?,
@@ -23,6 +24,8 @@ module Increase
       attr_accessor card_authentication_challenge: Increase::RealTimeDecision::CardAuthenticationChallenge?
 
       attr_accessor card_authorization: Increase::RealTimeDecision::CardAuthorization?
+
+      attr_accessor card_balance_inquiry: Increase::RealTimeDecision::CardBalanceInquiry?
 
       attr_accessor category: Increase::Models::RealTimeDecision::category
 
@@ -43,6 +46,7 @@ module Increase
         card_authentication: Increase::RealTimeDecision::CardAuthentication?,
         card_authentication_challenge: Increase::RealTimeDecision::CardAuthenticationChallenge?,
         card_authorization: Increase::RealTimeDecision::CardAuthorization?,
+        card_balance_inquiry: Increase::RealTimeDecision::CardBalanceInquiry?,
         category: Increase::Models::RealTimeDecision::category,
         created_at: Time,
         digital_wallet_authentication: Increase::RealTimeDecision::DigitalWalletAuthentication?,
@@ -57,6 +61,7 @@ module Increase
         card_authentication: Increase::RealTimeDecision::CardAuthentication?,
         card_authentication_challenge: Increase::RealTimeDecision::CardAuthenticationChallenge?,
         card_authorization: Increase::RealTimeDecision::CardAuthorization?,
+        card_balance_inquiry: Increase::RealTimeDecision::CardBalanceInquiry?,
         category: Increase::Models::RealTimeDecision::category,
         created_at: Time,
         digital_wallet_authentication: Increase::RealTimeDecision::DigitalWalletAuthentication?,
@@ -1079,8 +1084,684 @@ module Increase
         end
       end
 
+      type card_balance_inquiry =
+        {
+          account_id: String,
+          additional_amounts: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts,
+          approval: Increase::RealTimeDecision::CardBalanceInquiry::Approval?,
+          card_id: String,
+          decision: Increase::Models::RealTimeDecision::CardBalanceInquiry::decision?,
+          digital_wallet_token_id: String?,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_city: String?,
+          merchant_country: String,
+          merchant_descriptor: String,
+          merchant_postal_code: String?,
+          merchant_state: String?,
+          network_details: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails,
+          network_identifiers: Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers,
+          network_risk_score: Integer?,
+          physical_card_id: String?,
+          terminal_id: String?,
+          upcoming_card_payment_id: String,
+          verification: Increase::RealTimeDecision::CardBalanceInquiry::Verification
+        }
+
+      class CardBalanceInquiry < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String
+
+        attr_accessor additional_amounts: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts
+
+        attr_accessor approval: Increase::RealTimeDecision::CardBalanceInquiry::Approval?
+
+        attr_accessor card_id: String
+
+        attr_accessor decision: Increase::Models::RealTimeDecision::CardBalanceInquiry::decision?
+
+        attr_accessor digital_wallet_token_id: String?
+
+        attr_accessor merchant_acceptor_id: String
+
+        attr_accessor merchant_category_code: String
+
+        attr_accessor merchant_city: String?
+
+        attr_accessor merchant_country: String
+
+        attr_accessor merchant_descriptor: String
+
+        attr_accessor merchant_postal_code: String?
+
+        attr_accessor merchant_state: String?
+
+        attr_accessor network_details: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails
+
+        attr_accessor network_identifiers: Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers
+
+        attr_accessor network_risk_score: Integer?
+
+        attr_accessor physical_card_id: String?
+
+        attr_accessor terminal_id: String?
+
+        attr_accessor upcoming_card_payment_id: String
+
+        attr_accessor verification: Increase::RealTimeDecision::CardBalanceInquiry::Verification
+
+        def initialize: (
+          account_id: String,
+          additional_amounts: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts,
+          approval: Increase::RealTimeDecision::CardBalanceInquiry::Approval?,
+          card_id: String,
+          decision: Increase::Models::RealTimeDecision::CardBalanceInquiry::decision?,
+          digital_wallet_token_id: String?,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_city: String?,
+          merchant_country: String,
+          merchant_descriptor: String,
+          merchant_postal_code: String?,
+          merchant_state: String?,
+          network_details: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails,
+          network_identifiers: Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers,
+          network_risk_score: Integer?,
+          physical_card_id: String?,
+          terminal_id: String?,
+          upcoming_card_payment_id: String,
+          verification: Increase::RealTimeDecision::CardBalanceInquiry::Verification
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          additional_amounts: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts,
+          approval: Increase::RealTimeDecision::CardBalanceInquiry::Approval?,
+          card_id: String,
+          decision: Increase::Models::RealTimeDecision::CardBalanceInquiry::decision?,
+          digital_wallet_token_id: String?,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_city: String?,
+          merchant_country: String,
+          merchant_descriptor: String,
+          merchant_postal_code: String?,
+          merchant_state: String?,
+          network_details: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails,
+          network_identifiers: Increase::RealTimeDecision::CardBalanceInquiry::NetworkIdentifiers,
+          network_risk_score: Integer?,
+          physical_card_id: String?,
+          terminal_id: String?,
+          upcoming_card_payment_id: String,
+          verification: Increase::RealTimeDecision::CardBalanceInquiry::Verification
+        }
+
+        type additional_amounts =
+          {
+            clinic: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic?,
+            dental: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental?,
+            original: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original?,
+            prescription: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription?,
+            surcharge: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge?,
+            total_cumulative: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative?,
+            total_healthcare: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare?,
+            transit: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit?,
+            unknown: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown?,
+            vision: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision?
+          }
+
+        class AdditionalAmounts < Increase::Internal::Type::BaseModel
+          attr_accessor clinic: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic?
+
+          attr_accessor dental: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental?
+
+          attr_accessor original: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original?
+
+          attr_accessor prescription: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription?
+
+          attr_accessor surcharge: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge?
+
+          attr_accessor total_cumulative: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative?
+
+          attr_accessor total_healthcare: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare?
+
+          attr_accessor transit: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit?
+
+          attr_accessor unknown: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown?
+
+          attr_accessor vision: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision?
+
+          def initialize: (
+            clinic: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic?,
+            dental: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental?,
+            original: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original?,
+            prescription: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription?,
+            surcharge: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge?,
+            total_cumulative: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative?,
+            total_healthcare: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare?,
+            transit: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit?,
+            unknown: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown?,
+            vision: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision?
+          ) -> void
+
+          def to_hash: -> {
+            clinic: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic?,
+            dental: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Dental?,
+            original: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Original?,
+            prescription: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Prescription?,
+            surcharge: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Surcharge?,
+            total_cumulative: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalCumulative?,
+            total_healthcare: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare?,
+            transit: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Transit?,
+            unknown: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Unknown?,
+            vision: Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Vision?
+          }
+
+          type clinic = { amount: Integer, currency: String }
+
+          class Clinic < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type dental = { amount: Integer, currency: String }
+
+          class Dental < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type original = { amount: Integer, currency: String }
+
+          class Original < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type prescription = { amount: Integer, currency: String }
+
+          class Prescription < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type surcharge = { amount: Integer, currency: String }
+
+          class Surcharge < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type total_cumulative = { amount: Integer, currency: String }
+
+          class TotalCumulative < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type total_healthcare = { amount: Integer, currency: String }
+
+          class TotalHealthcare < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type transit = { amount: Integer, currency: String }
+
+          class Transit < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type unknown = { amount: Integer, currency: String }
+
+          class Unknown < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+
+          type vision = { amount: Integer, currency: String }
+
+          class Vision < Increase::Internal::Type::BaseModel
+            attr_accessor amount: Integer
+
+            attr_accessor currency: String
+
+            def initialize: (amount: Integer, currency: String) -> void
+
+            def to_hash: -> { amount: Integer, currency: String }
+          end
+        end
+
+        type approval = { balance: Integer }
+
+        class Approval < Increase::Internal::Type::BaseModel
+          attr_accessor balance: Integer
+
+          def initialize: (balance: Integer) -> void
+
+          def to_hash: -> { balance: Integer }
+        end
+
+        type decision = :approve | :decline
+
+        module Decision
+          extend Increase::Internal::Type::Enum
+
+          # Approve the authorization.
+          APPROVE: :approve
+
+          # Decline the authorization.
+          DECLINE: :decline
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::decision]
+        end
+
+        type network_details =
+          {
+            category: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::category,
+            pulse: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse?,
+            visa: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa?
+          }
+
+        class NetworkDetails < Increase::Internal::Type::BaseModel
+          attr_accessor category: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::category
+
+          attr_accessor pulse: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse?
+
+          attr_accessor visa: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa?
+
+          def initialize: (
+            category: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::category,
+            pulse: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse?,
+            visa: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa?
+          ) -> void
+
+          def to_hash: -> {
+            category: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::category,
+            pulse: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Pulse?,
+            visa: Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa?
+          }
+
+          type category = :visa | :pulse
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # Visa
+            VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
+
+            def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::category]
+          end
+
+          type pulse = {  }
+
+          class Pulse < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type visa =
+            {
+              electronic_commerce_indicator: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::electronic_commerce_indicator?,
+              point_of_service_entry_mode: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::point_of_service_entry_mode?,
+              stand_in_processing_reason: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::stand_in_processing_reason?
+            }
+
+          class Visa < Increase::Internal::Type::BaseModel
+            attr_accessor electronic_commerce_indicator: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::electronic_commerce_indicator?
+
+            attr_accessor point_of_service_entry_mode: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::point_of_service_entry_mode?
+
+            attr_accessor stand_in_processing_reason: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::stand_in_processing_reason?
+
+            def initialize: (
+              electronic_commerce_indicator: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::electronic_commerce_indicator?,
+              point_of_service_entry_mode: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::point_of_service_entry_mode?,
+              stand_in_processing_reason: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::stand_in_processing_reason?
+            ) -> void
+
+            def to_hash: -> {
+              electronic_commerce_indicator: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::electronic_commerce_indicator?,
+              point_of_service_entry_mode: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::point_of_service_entry_mode?,
+              stand_in_processing_reason: Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::stand_in_processing_reason?
+            }
+
+            type electronic_commerce_indicator =
+              :mail_phone_order
+              | :recurring
+              | :installment
+              | :unknown_mail_phone_order
+              | :secure_electronic_commerce
+              | :non_authenticated_security_transaction_at_3ds_capable_merchant
+              | :non_authenticated_security_transaction
+              | :non_secure_transaction
+
+            module ElectronicCommerceIndicator
+              extend Increase::Internal::Type::Enum
+
+              # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
+              MAIL_PHONE_ORDER: :mail_phone_order
+
+              # Recurring transaction: Payment indicator used to indicate a recurring transaction that originates from an acquirer in the US region.
+              RECURRING: :recurring
+
+              # Installment payment: Payment indicator used to indicate one purchase of goods or services that is billed to the account in multiple charges over a period of time agreed upon by the cardholder and merchant from transactions that originate from an acquirer in the US region.
+              INSTALLMENT: :installment
+
+              # Unknown classification: other mail order: Use to indicate that the type of mail/telephone order is unknown.
+              UNKNOWN_MAIL_PHONE_ORDER: :unknown_mail_phone_order
+
+              # Secure electronic commerce transaction: Use to indicate that the electronic commerce transaction has been authenticated using e.g., 3-D Secure
+              SECURE_ELECTRONIC_COMMERCE: :secure_electronic_commerce
+
+              # Non-authenticated security transaction at a 3-D Secure-capable merchant, and merchant attempted to authenticate the cardholder using 3-D Secure: Use to identify an electronic commerce transaction where the merchant attempted to authenticate the cardholder using 3-D Secure, but was unable to complete the authentication because the issuer or cardholder does not participate in the 3-D Secure program.
+              NON_AUTHENTICATED_SECURITY_TRANSACTION_AT_3DS_CAPABLE_MERCHANT: :non_authenticated_security_transaction_at_3ds_capable_merchant
+
+              # Non-authenticated security transaction: Use to identify an electronic commerce transaction that uses data encryption for security however, cardholder authentication is not performed using 3-D Secure.
+              NON_AUTHENTICATED_SECURITY_TRANSACTION: :non_authenticated_security_transaction
+
+              # Non-secure transaction: Use to identify an electronic commerce transaction that has no data protection.
+              NON_SECURE_TRANSACTION: :non_secure_transaction
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::electronic_commerce_indicator]
+            end
+
+            type point_of_service_entry_mode =
+              :unknown
+              | :manual
+              | :magnetic_stripe_no_cvv
+              | :optical_code
+              | :integrated_circuit_card
+              | :contactless
+              | :credential_on_file
+              | :magnetic_stripe
+              | :contactless_magnetic_stripe
+              | :integrated_circuit_card_no_cvv
+
+            module PointOfServiceEntryMode
+              extend Increase::Internal::Type::Enum
+
+              # Unknown
+              UNKNOWN: :unknown
+
+              # Manual key entry
+              MANUAL: :manual
+
+              # Magnetic stripe read, without card verification value
+              MAGNETIC_STRIPE_NO_CVV: :magnetic_stripe_no_cvv
+
+              # Optical code
+              OPTICAL_CODE: :optical_code
+
+              # Contact chip card
+              INTEGRATED_CIRCUIT_CARD: :integrated_circuit_card
+
+              # Contactless read of chip card
+              CONTACTLESS: :contactless
+
+              # Transaction initiated using a credential that has previously been stored on file
+              CREDENTIAL_ON_FILE: :credential_on_file
+
+              # Magnetic stripe read
+              MAGNETIC_STRIPE: :magnetic_stripe
+
+              # Contactless read of magnetic stripe data
+              CONTACTLESS_MAGNETIC_STRIPE: :contactless_magnetic_stripe
+
+              # Contact chip card, without card verification value
+              INTEGRATED_CIRCUIT_CARD_NO_CVV: :integrated_circuit_card_no_cvv
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::point_of_service_entry_mode]
+            end
+
+            type stand_in_processing_reason =
+              :issuer_error
+              | :invalid_physical_card
+              | :invalid_cardholder_authentication_verification_value
+              | :internal_visa_error
+              | :merchant_transaction_advisory_service_authentication_required
+              | :payment_fraud_disruption_acquirer_block
+              | :other
+
+            module StandInProcessingReason
+              extend Increase::Internal::Type::Enum
+
+              # Increase failed to process the authorization in a timely manner.
+              ISSUER_ERROR: :issuer_error
+
+              # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+              INVALID_PHYSICAL_CARD: :invalid_physical_card
+
+              # The 3DS cardholder authentication verification value was invalid.
+              INVALID_CARDHOLDER_AUTHENTICATION_VERIFICATION_VALUE: :invalid_cardholder_authentication_verification_value
+
+              # An internal Visa error occurred. Visa uses this reason code for certain expected occurrences as well, such as Application Transaction Counter (ATC) replays.
+              INTERNAL_VISA_ERROR: :internal_visa_error
+
+              # The merchant has enabled Visa's Transaction Advisory Service and requires further authentication to perform the transaction. In practice this is often utilized at fuel pumps to tell the cardholder to see the cashier.
+              MERCHANT_TRANSACTION_ADVISORY_SERVICE_AUTHENTICATION_REQUIRED: :merchant_transaction_advisory_service_authentication_required
+
+              # The transaction was blocked by Visa's Payment Fraud Disruption service due to fraudulent Acquirer behavior, such as card testing.
+              PAYMENT_FRAUD_DISRUPTION_ACQUIRER_BLOCK: :payment_fraud_disruption_acquirer_block
+
+              # An unspecific reason for stand-in processing.
+              OTHER: :other
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::stand_in_processing_reason]
+            end
+          end
+        end
+
+        type network_identifiers =
+          {
+            authorization_identification_response: String?,
+            retrieval_reference_number: String?,
+            trace_number: String?,
+            transaction_id: String?
+          }
+
+        class NetworkIdentifiers < Increase::Internal::Type::BaseModel
+          attr_accessor authorization_identification_response: String?
+
+          attr_accessor retrieval_reference_number: String?
+
+          attr_accessor trace_number: String?
+
+          attr_accessor transaction_id: String?
+
+          def initialize: (
+            authorization_identification_response: String?,
+            retrieval_reference_number: String?,
+            trace_number: String?,
+            transaction_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            authorization_identification_response: String?,
+            retrieval_reference_number: String?,
+            trace_number: String?,
+            transaction_id: String?
+          }
+        end
+
+        type verification =
+          {
+            card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
+            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+          }
+
+        class Verification < Increase::Internal::Type::BaseModel
+          attr_accessor card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode
+
+          attr_accessor cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+
+          def initialize: (
+            card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
+            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+          ) -> void
+
+          def to_hash: -> {
+            card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
+            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+          }
+
+          type card_verification_code =
+            {
+              result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::result
+            }
+
+          class CardVerificationCode < Increase::Internal::Type::BaseModel
+            attr_accessor result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::result
+
+            def initialize: (
+              result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::result
+            ) -> void
+
+            def to_hash: -> {
+              result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::result
+            }
+
+            type result = :not_checked | :match | :no_match
+
+            module Result
+              extend Increase::Internal::Type::Enum
+
+              # No card verification code was provided in the authorization request.
+              NOT_CHECKED: :not_checked
+
+              # The card verification code matched the one on file.
+              MATCH: :match
+
+              # The card verification code did not match the one on file.
+              NO_MATCH: :no_match
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode::result]
+            end
+          end
+
+          type cardholder_address =
+            {
+              :actual_line1 => String?,
+              actual_postal_code: String?,
+              :provided_line1 => String?,
+              provided_postal_code: String?,
+              result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::result
+            }
+
+          class CardholderAddress < Increase::Internal::Type::BaseModel
+            attr_accessor actual_line1: String?
+
+            attr_accessor actual_postal_code: String?
+
+            attr_accessor provided_line1: String?
+
+            attr_accessor provided_postal_code: String?
+
+            attr_accessor result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::result
+
+            def initialize: (
+              actual_line1: String?,
+              actual_postal_code: String?,
+              provided_line1: String?,
+              provided_postal_code: String?,
+              result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::result
+            ) -> void
+
+            def to_hash: -> {
+              :actual_line1 => String?,
+              actual_postal_code: String?,
+              :provided_line1 => String?,
+              provided_postal_code: String?,
+              result: Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::result
+            }
+
+            type result =
+              :not_checked
+              | :postal_code_match_address_no_match
+              | :postal_code_no_match_address_match
+              | :match
+              | :no_match
+              | :postal_code_match_address_not_checked
+
+            module Result
+              extend Increase::Internal::Type::Enum
+
+              # No address information was provided in the authorization request.
+              NOT_CHECKED: :not_checked
+
+              # Postal code matches, but the street address does not match or was not provided.
+              POSTAL_CODE_MATCH_ADDRESS_NO_MATCH: :postal_code_match_address_no_match
+
+              # Postal code does not match, but the street address matches or was not provided.
+              POSTAL_CODE_NO_MATCH_ADDRESS_MATCH: :postal_code_no_match_address_match
+
+              # Postal code and street address match.
+              MATCH: :match
+
+              # Postal code and street address do not match.
+              NO_MATCH: :no_match
+
+              # Postal code matches, but the street address was not verified. (deprecated)
+              POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED: :postal_code_match_address_not_checked
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::result]
+            end
+          end
+        end
+      end
+
       type category =
         :card_authorization_requested
+        | :card_balance_inquiry_requested
         | :card_authentication_requested
         | :card_authentication_challenge_requested
         | :digital_wallet_token_requested
@@ -1091,6 +1772,9 @@ module Increase
 
         # A card is being authorized.
         CARD_AUTHORIZATION_REQUESTED: :card_authorization_requested
+
+        # A balance inquiry is being made on a card.
+        CARD_BALANCE_INQUIRY_REQUESTED: :card_balance_inquiry_requested
 
         # 3DS authentication is requested.
         CARD_AUTHENTICATION_REQUESTED: :card_authentication_requested

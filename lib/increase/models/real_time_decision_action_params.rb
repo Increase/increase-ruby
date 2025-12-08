@@ -29,6 +29,13 @@ module Increase
       #   @return [Increase::Models::RealTimeDecisionActionParams::CardAuthorization, nil]
       optional :card_authorization, -> { Increase::RealTimeDecisionActionParams::CardAuthorization }
 
+      # @!attribute card_balance_inquiry
+      #   If the Real-Time Decision relates to a card balance inquiry attempt, this object
+      #   contains your response to the inquiry.
+      #
+      #   @return [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry, nil]
+      optional :card_balance_inquiry, -> { Increase::RealTimeDecisionActionParams::CardBalanceInquiry }
+
       # @!attribute digital_wallet_authentication
       #   If the Real-Time Decision relates to a digital wallet authentication attempt,
       #   this object contains your response to the authentication.
@@ -44,7 +51,7 @@ module Increase
       #   @return [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken, nil]
       optional :digital_wallet_token, -> { Increase::RealTimeDecisionActionParams::DigitalWalletToken }
 
-      # @!method initialize(card_authentication: nil, card_authentication_challenge: nil, card_authorization: nil, digital_wallet_authentication: nil, digital_wallet_token: nil, request_options: {})
+      # @!method initialize(card_authentication: nil, card_authentication_challenge: nil, card_authorization: nil, card_balance_inquiry: nil, digital_wallet_authentication: nil, digital_wallet_token: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::RealTimeDecisionActionParams} for more details.
       #
@@ -53,6 +60,8 @@ module Increase
       #   @param card_authentication_challenge [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge] If the Real-Time Decision relates to 3DS card authentication challenge delivery,
       #
       #   @param card_authorization [Increase::Models::RealTimeDecisionActionParams::CardAuthorization] If the Real-Time Decision relates to a card authorization attempt, this object c
+      #
+      #   @param card_balance_inquiry [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry] If the Real-Time Decision relates to a card balance inquiry attempt, this object
       #
       #   @param digital_wallet_authentication [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication] If the Real-Time Decision relates to a digital wallet authentication attempt, th
       #
@@ -328,6 +337,64 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+      end
+
+      class CardBalanceInquiry < Increase::Internal::Type::BaseModel
+        # @!attribute decision
+        #   Whether the card balance inquiry should be approved or declined.
+        #
+        #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Decision]
+        required :decision, enum: -> { Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision }
+
+        # @!attribute approval
+        #   If your application approves the balance inquiry, this contains metadata about
+        #   your decision to approve.
+        #
+        #   @return [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Approval, nil]
+        optional :approval, -> { Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval }
+
+        # @!method initialize(decision:, approval: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry} for more
+        #   details.
+        #
+        #   If the Real-Time Decision relates to a card balance inquiry attempt, this object
+        #   contains your response to the inquiry.
+        #
+        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Decision] Whether the card balance inquiry should be approved or declined.
+        #
+        #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Approval] If your application approves the balance inquiry, this contains metadata about y
+
+        # Whether the card balance inquiry should be approved or declined.
+        #
+        # @see Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry#decision
+        module Decision
+          extend Increase::Internal::Type::Enum
+
+          # Approve the authorization.
+          APPROVE = :approve
+
+          # Decline the authorization.
+          DECLINE = :decline
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry#approval
+        class Approval < Increase::Internal::Type::BaseModel
+          # @!attribute balance
+          #   The balance on the card in the settlement currency of the transaction.
+          #
+          #   @return [Integer]
+          required :balance, Integer
+
+          # @!method initialize(balance:)
+          #   If your application approves the balance inquiry, this contains metadata about
+          #   your decision to approve.
+          #
+          #   @param balance [Integer] The balance on the card in the settlement currency of the transaction.
         end
       end
 

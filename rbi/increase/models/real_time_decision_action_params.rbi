@@ -67,6 +67,23 @@ module Increase
       end
       attr_writer :card_authorization
 
+      # If the Real-Time Decision relates to a card balance inquiry attempt, this object
+      # contains your response to the inquiry.
+      sig do
+        returns(
+          T.nilable(Increase::RealTimeDecisionActionParams::CardBalanceInquiry)
+        )
+      end
+      attr_reader :card_balance_inquiry
+
+      sig do
+        params(
+          card_balance_inquiry:
+            Increase::RealTimeDecisionActionParams::CardBalanceInquiry::OrHash
+        ).void
+      end
+      attr_writer :card_balance_inquiry
+
       # If the Real-Time Decision relates to a digital wallet authentication attempt,
       # this object contains your response to the authentication.
       sig do
@@ -111,6 +128,8 @@ module Increase
             Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::OrHash,
           card_authorization:
             Increase::RealTimeDecisionActionParams::CardAuthorization::OrHash,
+          card_balance_inquiry:
+            Increase::RealTimeDecisionActionParams::CardBalanceInquiry::OrHash,
           digital_wallet_authentication:
             Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::OrHash,
           digital_wallet_token:
@@ -128,6 +147,9 @@ module Increase
         # If the Real-Time Decision relates to a card authorization attempt, this object
         # contains your response to the authorization.
         card_authorization: nil,
+        # If the Real-Time Decision relates to a card balance inquiry attempt, this object
+        # contains your response to the inquiry.
+        card_balance_inquiry: nil,
         # If the Real-Time Decision relates to a digital wallet authentication attempt,
         # this object contains your response to the authentication.
         digital_wallet_authentication: nil,
@@ -147,6 +169,8 @@ module Increase
               Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
             card_authorization:
               Increase::RealTimeDecisionActionParams::CardAuthorization,
+            card_balance_inquiry:
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry,
             digital_wallet_authentication:
               Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication,
             digital_wallet_token:
@@ -794,6 +818,140 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+      end
+
+      class CardBalanceInquiry < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Whether the card balance inquiry should be approved or declined.
+        sig do
+          returns(
+            Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision::OrSymbol
+          )
+        end
+        attr_accessor :decision
+
+        # If your application approves the balance inquiry, this contains metadata about
+        # your decision to approve.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+            )
+          )
+        end
+        attr_reader :approval
+
+        sig do
+          params(
+            approval:
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval::OrHash
+          ).void
+        end
+        attr_writer :approval
+
+        # If the Real-Time Decision relates to a card balance inquiry attempt, this object
+        # contains your response to the inquiry.
+        sig do
+          params(
+            decision:
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision::OrSymbol,
+            approval:
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Whether the card balance inquiry should be approved or declined.
+          decision:,
+          # If your application approves the balance inquiry, this contains metadata about
+          # your decision to approve.
+          approval: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              decision:
+                Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision::OrSymbol,
+              approval:
+                Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Whether the card balance inquiry should be approved or declined.
+        module Decision
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Approve the authorization.
+          APPROVE =
+            T.let(
+              :approve,
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision::TaggedSymbol
+            )
+
+          # Decline the authorization.
+          DECLINE =
+            T.let(
+              :decline,
+              Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Decision::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        class Approval < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The balance on the card in the settlement currency of the transaction.
+          sig { returns(Integer) }
+          attr_accessor :balance
+
+          # If your application approves the balance inquiry, this contains metadata about
+          # your decision to approve.
+          sig { params(balance: Integer).returns(T.attached_class) }
+          def self.new(
+            # The balance on the card in the settlement currency of the transaction.
+            balance:
+          )
+          end
+
+          sig { override.returns({ balance: Integer }) }
+          def to_hash
           end
         end
       end

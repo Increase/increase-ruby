@@ -739,6 +739,13 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Real-Time Decision is created in response to a card balance inquiry.
+          REAL_TIME_DECISION_CARD_BALANCE_INQUIRY_REQUESTED =
+            T.let(
+              :"real_time_decision.card_balance_inquiry_requested",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Real-Time Decision is created in response to a digital wallet provisioning attempt.
           REAL_TIME_DECISION_DIGITAL_WALLET_TOKEN_REQUESTED =
             T.let(
