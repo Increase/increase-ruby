@@ -1057,6 +1057,9 @@ module Increase
           # Oscilar. See https://oscilar.com for more information.
           OSCILAR = :oscilar
 
+          # Persona. See https://withpersona.com for more information.
+          PERSONA = :persona
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

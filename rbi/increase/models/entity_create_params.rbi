@@ -2857,6 +2857,13 @@ module Increase
               Increase::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol
             )
 
+          # Persona. See https://withpersona.com for more information.
+          PERSONA =
+            T.let(
+              :persona,
+              Increase::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

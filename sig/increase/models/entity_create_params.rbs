@@ -1262,7 +1262,7 @@ module Increase
           vendor: Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor
         }
 
-        type vendor = :alloy | :middesk | :oscilar
+        type vendor = :alloy | :middesk | :oscilar | :persona
 
         module Vendor
           extend Increase::Internal::Type::Enum
@@ -1275,6 +1275,9 @@ module Increase
 
           # Oscilar. See https://oscilar.com for more information.
           OSCILAR: :oscilar
+
+          # Persona. See https://withpersona.com for more information.
+          PERSONA: :persona
 
           def self?.values: -> ::Array[Increase::Models::EntityCreateParams::ThirdPartyVerification::vendor]
         end
