@@ -7,6 +7,8 @@ module Increase
 
       attr_reader card_authorizations: Increase::Resources::Simulations::CardAuthorizations
 
+      attr_reader card_balance_inquiries: Increase::Resources::Simulations::CardBalanceInquiries
+
       attr_reader card_authorization_expirations: Increase::Resources::Simulations::CardAuthorizationExpirations
 
       attr_reader card_settlements: Increase::Resources::Simulations::CardSettlements
