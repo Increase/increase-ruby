@@ -12,6 +12,9 @@ module Increase
       # @return [Increase::Resources::Simulations::CardAuthorizations]
       attr_reader :card_authorizations
 
+      # @return [Increase::Resources::Simulations::CardBalanceInquiries]
+      attr_reader :card_balance_inquiries
+
       # @return [Increase::Resources::Simulations::CardAuthorizationExpirations]
       attr_reader :card_authorization_expirations
 
@@ -101,6 +104,7 @@ module Increase
         @interest_payments = Increase::Resources::Simulations::InterestPayments.new(client: client)
         @account_transfers = Increase::Resources::Simulations::AccountTransfers.new(client: client)
         @card_authorizations = Increase::Resources::Simulations::CardAuthorizations.new(client: client)
+        @card_balance_inquiries = Increase::Resources::Simulations::CardBalanceInquiries.new(client: client)
         @card_authorization_expirations =
           Increase::Resources::Simulations::CardAuthorizationExpirations.new(client: client)
         @card_settlements = Increase::Resources::Simulations::CardSettlements.new(client: client)

@@ -1,0 +1,294 @@
+module Increase
+  module Models
+    module Simulations
+      type card_balance_inquiry_create_params =
+        {
+          balance: Integer,
+          card_id: String,
+          decline_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason,
+          digital_wallet_token_id: String,
+          event_subscription_id: String,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_city: String,
+          merchant_country: String,
+          merchant_descriptor: String,
+          merchant_state: String,
+          network_details: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails,
+          network_risk_score: Integer,
+          physical_card_id: String,
+          terminal_id: String
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class CardBalanceInquiryCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_reader balance: Integer?
+
+        def balance=: (Integer) -> Integer
+
+        attr_reader card_id: String?
+
+        def card_id=: (String) -> String
+
+        attr_reader decline_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason?
+
+        def decline_reason=: (
+          Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason
+        ) -> Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason
+
+        attr_reader digital_wallet_token_id: String?
+
+        def digital_wallet_token_id=: (String) -> String
+
+        attr_reader event_subscription_id: String?
+
+        def event_subscription_id=: (String) -> String
+
+        attr_reader merchant_acceptor_id: String?
+
+        def merchant_acceptor_id=: (String) -> String
+
+        attr_reader merchant_category_code: String?
+
+        def merchant_category_code=: (String) -> String
+
+        attr_reader merchant_city: String?
+
+        def merchant_city=: (String) -> String
+
+        attr_reader merchant_country: String?
+
+        def merchant_country=: (String) -> String
+
+        attr_reader merchant_descriptor: String?
+
+        def merchant_descriptor=: (String) -> String
+
+        attr_reader merchant_state: String?
+
+        def merchant_state=: (String) -> String
+
+        attr_reader network_details: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails?
+
+        def network_details=: (
+          Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails
+        ) -> Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails
+
+        attr_reader network_risk_score: Integer?
+
+        def network_risk_score=: (Integer) -> Integer
+
+        attr_reader physical_card_id: String?
+
+        def physical_card_id=: (String) -> String
+
+        attr_reader terminal_id: String?
+
+        def terminal_id=: (String) -> String
+
+        def initialize: (
+          ?balance: Integer,
+          ?card_id: String,
+          ?decline_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason,
+          ?digital_wallet_token_id: String,
+          ?event_subscription_id: String,
+          ?merchant_acceptor_id: String,
+          ?merchant_category_code: String,
+          ?merchant_city: String,
+          ?merchant_country: String,
+          ?merchant_descriptor: String,
+          ?merchant_state: String,
+          ?network_details: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails,
+          ?network_risk_score: Integer,
+          ?physical_card_id: String,
+          ?terminal_id: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          balance: Integer,
+          card_id: String,
+          decline_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason,
+          digital_wallet_token_id: String,
+          event_subscription_id: String,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_city: String,
+          merchant_country: String,
+          merchant_descriptor: String,
+          merchant_state: String,
+          network_details: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails,
+          network_risk_score: Integer,
+          physical_card_id: String,
+          terminal_id: String,
+          request_options: Increase::RequestOptions
+        }
+
+        type decline_reason =
+          :account_closed
+          | :card_not_active
+          | :card_canceled
+          | :physical_card_not_active
+          | :entity_not_active
+          | :group_locked
+          | :insufficient_funds
+          | :cvv2_mismatch
+          | :pin_mismatch
+          | :card_expiration_mismatch
+          | :transaction_not_allowed
+          | :breaches_limit
+          | :webhook_declined
+          | :webhook_timed_out
+          | :declined_by_stand_in_processing
+          | :invalid_physical_card
+          | :missing_original_authorization
+          | :failed_3ds_authentication
+          | :suspected_card_testing
+          | :suspected_fraud
+
+        module DeclineReason
+          extend Increase::Internal::Type::Enum
+
+          # The account has been closed.
+          ACCOUNT_CLOSED: :account_closed
+
+          # The Card was not active.
+          CARD_NOT_ACTIVE: :card_not_active
+
+          # The Card has been canceled.
+          CARD_CANCELED: :card_canceled
+
+          # The Physical Card was not active.
+          PHYSICAL_CARD_NOT_ACTIVE: :physical_card_not_active
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE: :entity_not_active
+
+          # The account was inactive.
+          GROUP_LOCKED: :group_locked
+
+          # The Card's Account did not have a sufficient available balance.
+          INSUFFICIENT_FUNDS: :insufficient_funds
+
+          # The given CVV2 did not match the card's value.
+          CVV2_MISMATCH: :cvv2_mismatch
+
+          # The given PIN did not match the card's value.
+          PIN_MISMATCH: :pin_mismatch
+
+          # The given expiration date did not match the card's value. Only applies when a CVV2 is present.
+          CARD_EXPIRATION_MISMATCH: :card_expiration_mismatch
+
+          # The attempted card transaction is not allowed per Increase's terms.
+          TRANSACTION_NOT_ALLOWED: :transaction_not_allowed
+
+          # The transaction was blocked by a Limit.
+          BREACHES_LIMIT: :breaches_limit
+
+          # Your application declined the transaction via webhook.
+          WEBHOOK_DECLINED: :webhook_declined
+
+          # Your application webhook did not respond without the required timeout.
+          WEBHOOK_TIMED_OUT: :webhook_timed_out
+
+          # Declined by stand-in processing.
+          DECLINED_BY_STAND_IN_PROCESSING: :declined_by_stand_in_processing
+
+          # The card read had an invalid CVV, dCVV, or authorization request cryptogram.
+          INVALID_PHYSICAL_CARD: :invalid_physical_card
+
+          # The original card authorization for this incremental authorization does not exist.
+          MISSING_ORIGINAL_AUTHORIZATION: :missing_original_authorization
+
+          # The transaction was declined because the 3DS authentication failed.
+          FAILED_3DS_AUTHENTICATION: :failed_3ds_authentication
+
+          # The transaction was suspected to be used by a card tester to test for valid card numbers.
+          SUSPECTED_CARD_TESTING: :suspected_card_testing
+
+          # The transaction was suspected to be fraudulent. Please reach out to support@increase.com for more information.
+          SUSPECTED_FRAUD: :suspected_fraud
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason]
+        end
+
+        type network_details =
+          {
+            visa: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa
+          }
+
+        class NetworkDetails < Increase::Internal::Type::BaseModel
+          attr_accessor visa: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa
+
+          def initialize: (
+            visa: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa
+          ) -> void
+
+          def to_hash: -> {
+            visa: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa
+          }
+
+          type visa =
+            {
+              stand_in_processing_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+            }
+
+          class Visa < Increase::Internal::Type::BaseModel
+            attr_reader stand_in_processing_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason?
+
+            def stand_in_processing_reason=: (
+              Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+            ) -> Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+
+            def initialize: (
+              ?stand_in_processing_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+            ) -> void
+
+            def to_hash: -> {
+              stand_in_processing_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason
+            }
+
+            type stand_in_processing_reason =
+              :issuer_error
+              | :invalid_physical_card
+              | :invalid_cardholder_authentication_verification_value
+              | :internal_visa_error
+              | :merchant_transaction_advisory_service_authentication_required
+              | :payment_fraud_disruption_acquirer_block
+              | :other
+
+            module StandInProcessingReason
+              extend Increase::Internal::Type::Enum
+
+              # Increase failed to process the authorization in a timely manner.
+              ISSUER_ERROR: :issuer_error
+
+              # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+              INVALID_PHYSICAL_CARD: :invalid_physical_card
+
+              # The 3DS cardholder authentication verification value was invalid.
+              INVALID_CARDHOLDER_AUTHENTICATION_VERIFICATION_VALUE: :invalid_cardholder_authentication_verification_value
+
+              # An internal Visa error occurred. Visa uses this reason code for certain expected occurrences as well, such as Application Transaction Counter (ATC) replays.
+              INTERNAL_VISA_ERROR: :internal_visa_error
+
+              # The merchant has enabled Visa's Transaction Advisory Service and requires further authentication to perform the transaction. In practice this is often utilized at fuel pumps to tell the cardholder to see the cashier.
+              MERCHANT_TRANSACTION_ADVISORY_SERVICE_AUTHENTICATION_REQUIRED: :merchant_transaction_advisory_service_authentication_required
+
+              # The transaction was blocked by Visa's Payment Fraud Disruption service due to fraudulent Acquirer behavior, such as card testing.
+              PAYMENT_FRAUD_DISRUPTION_ACQUIRER_BLOCK: :payment_fraud_disruption_acquirer_block
+
+              # An unspecific reason for stand-in processing.
+              OTHER: :other
+
+              def self?.values: -> ::Array[Increase::Models::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::stand_in_processing_reason]
+            end
+          end
+        end
+      end
+    end
+  end
+end
