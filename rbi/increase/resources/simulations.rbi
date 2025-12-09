@@ -12,6 +12,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::CardAuthorizations) }
       attr_reader :card_authorizations
 
+      sig { returns(Increase::Resources::Simulations::CardBalanceInquiries) }
+      attr_reader :card_balance_inquiries
+
       sig do
         returns(Increase::Resources::Simulations::CardAuthorizationExpirations)
       end

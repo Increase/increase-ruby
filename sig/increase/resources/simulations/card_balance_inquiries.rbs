@@ -1,0 +1,28 @@
+module Increase
+  module Resources
+    class Simulations
+      class CardBalanceInquiries
+        def create: (
+          ?balance: Integer,
+          ?card_id: String,
+          ?decline_reason: Increase::Models::Simulations::CardBalanceInquiryCreateParams::decline_reason,
+          ?digital_wallet_token_id: String,
+          ?event_subscription_id: String,
+          ?merchant_acceptor_id: String,
+          ?merchant_category_code: String,
+          ?merchant_city: String,
+          ?merchant_country: String,
+          ?merchant_descriptor: String,
+          ?merchant_state: String,
+          ?network_details: Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails,
+          ?network_risk_score: Integer,
+          ?physical_card_id: String,
+          ?terminal_id: String,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CardPayment
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end
