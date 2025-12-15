@@ -132,6 +132,7 @@ module Increase
           name: String,
           tax_identifier: String,
           beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
+          email: String,
           incorporation_state: String,
           industry_code: String,
           website: String
@@ -152,6 +153,10 @@ module Increase
           Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
         ) -> Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason
 
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
         attr_reader incorporation_state: String?
 
         def incorporation_state=: (String) -> String
@@ -170,6 +175,7 @@ module Increase
           name: String,
           tax_identifier: String,
           ?beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
+          ?email: String,
           ?incorporation_state: String,
           ?industry_code: String,
           ?website: String
@@ -181,6 +187,7 @@ module Increase
           name: String,
           tax_identifier: String,
           beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
+          email: String,
           incorporation_state: String,
           industry_code: String,
           website: String
