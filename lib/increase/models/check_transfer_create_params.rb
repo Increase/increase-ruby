@@ -273,9 +273,9 @@ module Increase
           optional :name, String
 
           # @!attribute phone
-          #   The phone number to associate with the check's destination address. The number
-          #   is only used when `shipping_method` is `fedex_overnight` and will be supplied to
-          #   FedEx to be used in case of delivery issues.
+          #   The phone number to associate with the check's destination address. The phone
+          #   number is only used when `shipping_method` is `fedex_overnight` and will be
+          #   supplied to FedEx to be used in case of delivery issues.
           #
           #   @return [String, nil]
           optional :phone, String
@@ -299,7 +299,7 @@ module Increase
           #
           #   @param name [String] The name component of the check's destination address. Defaults to the provided
           #
-          #   @param phone [String] The phone number to associate with the check's destination address. The number i
+          #   @param phone [String] The phone number to associate with the check's destination address. The phone nu
         end
 
         class Payer < Increase::Internal::Type::BaseModel
@@ -351,7 +351,19 @@ module Increase
           #   @return [String, nil]
           optional :line2, String
 
-          # @!method initialize(city:, line1:, name:, postal_code:, state:, line2: nil)
+          # @!attribute phone
+          #   The phone number to associate with the shipper. The phone number is only used
+          #   when `shipping_method` is `fedex_overnight` and will be supplied to FedEx to be
+          #   used in case of delivery issues.
+          #
+          #   @return [String, nil]
+          optional :phone, String
+
+          # @!method initialize(city:, line1:, name:, postal_code:, state:, line2: nil, phone: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress} for
+          #   more details.
+          #
           #   The return address to be printed on the check. If omitted this will default to
           #   an Increase-owned address that will mark checks as delivery failed and shred
           #   them.
@@ -367,6 +379,8 @@ module Increase
           #   @param state [String] The US state of the return address.
           #
           #   @param line2 [String] The second line of the return address.
+          #
+          #   @param phone [String] The phone number to associate with the shipper. The phone number is only used wh
         end
 
         # How to ship the check. For details on pricing, timing, and restrictions, see
