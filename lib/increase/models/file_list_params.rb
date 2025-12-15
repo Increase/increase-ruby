@@ -134,7 +134,7 @@ module Increase
           # An image of a check that was mailed to a recipient.
           MAILED_CHECK_IMAGE = :mailed_check_image
 
-          # A document to be printed on an additional page and mailed with a check that you've requested Increase print.
+          # A document to be printed on an additional page and mailed with a check that you've requested Increase print. This must be a PDF whose pages are all US letter size and all have the same orientation.
           CHECK_ATTACHMENT = :check_attachment
 
           # An image to be used as the check voucher image, which is printed in the middle of the trifold area of a check. This must be a 2550x1100 pixel PNG.

@@ -98,7 +98,7 @@ module Increase
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
-        # A document to be printed on an additional page and mailed with a check that you've requested Increase print.
+        # A document to be printed on an additional page and mailed with a check that you've requested Increase print. This must be a PDF whose pages are all US letter size and all have the same orientation.
         CHECK_ATTACHMENT =
           T.let(
             :check_attachment,
