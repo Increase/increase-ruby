@@ -310,6 +310,14 @@ module Increase
         end
         attr_writer :beneficial_ownership_exemption_reason
 
+        # An email address for the business. Not every program requires an email for
+        # submitted Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :email
+
+        sig { params(email: String).void }
+        attr_writer :email
+
         # The two-letter United States Postal Service (USPS) abbreviation for the
         # corporation's state of incorporation.
         sig { returns(T.nilable(String)) }
@@ -348,6 +356,7 @@ module Increase
             tax_identifier: String,
             beneficial_ownership_exemption_reason:
               Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol,
+            email: String,
             incorporation_state: String,
             industry_code: String,
             website: String
@@ -369,6 +378,9 @@ module Increase
           # provide the justification. If a reason is provided, you do not need to submit a
           # list of beneficial owners.
           beneficial_ownership_exemption_reason: nil,
+          # An email address for the business. Not every program requires an email for
+          # submitted Entities.
+          email: nil,
           # The two-letter United States Postal Service (USPS) abbreviation for the
           # corporation's state of incorporation.
           incorporation_state: nil,
@@ -394,6 +406,7 @@ module Increase
               tax_identifier: String,
               beneficial_ownership_exemption_reason:
                 Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol,
+              email: String,
               incorporation_state: String,
               industry_code: String,
               website: String

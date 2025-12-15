@@ -95,6 +95,7 @@ module Increase
         {
           address: Increase::Entity::Corporation::Address,
           beneficial_owners: ::Array[Increase::Entity::Corporation::BeneficialOwner],
+          email: String?,
           incorporation_state: String?,
           industry_code: String?,
           name: String,
@@ -106,6 +107,8 @@ module Increase
         attr_accessor address: Increase::Entity::Corporation::Address
 
         attr_accessor beneficial_owners: ::Array[Increase::Entity::Corporation::BeneficialOwner]
+
+        attr_accessor email: String?
 
         attr_accessor incorporation_state: String?
 
@@ -120,6 +123,7 @@ module Increase
         def initialize: (
           address: Increase::Entity::Corporation::Address,
           beneficial_owners: ::Array[Increase::Entity::Corporation::BeneficialOwner],
+          email: String?,
           incorporation_state: String?,
           industry_code: String?,
           name: String,
@@ -130,6 +134,7 @@ module Increase
         def to_hash: -> {
           address: Increase::Entity::Corporation::Address,
           beneficial_owners: ::Array[Increase::Entity::Corporation::BeneficialOwner],
+          email: String?,
           incorporation_state: String?,
           industry_code: String?,
           name: String,

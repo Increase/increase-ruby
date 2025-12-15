@@ -250,6 +250,10 @@ module Increase
         end
         attr_accessor :beneficial_owners
 
+        # An email address for the business.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
         # The two-letter United States Postal Service (USPS) abbreviation for the
         # corporation's state of incorporation.
         sig { returns(T.nilable(String)) }
@@ -279,6 +283,7 @@ module Increase
             address: Increase::Entity::Corporation::Address::OrHash,
             beneficial_owners:
               T::Array[Increase::Entity::Corporation::BeneficialOwner::OrHash],
+            email: T.nilable(String),
             incorporation_state: T.nilable(String),
             industry_code: T.nilable(String),
             name: String,
@@ -292,6 +297,8 @@ module Increase
           # The identifying details of anyone controlling or owning 25% or more of the
           # corporation.
           beneficial_owners:,
+          # An email address for the business.
+          email:,
           # The two-letter United States Postal Service (USPS) abbreviation for the
           # corporation's state of incorporation.
           incorporation_state:,
@@ -313,6 +320,7 @@ module Increase
               address: Increase::Entity::Corporation::Address,
               beneficial_owners:
                 T::Array[Increase::Entity::Corporation::BeneficialOwner],
+              email: T.nilable(String),
               incorporation_state: T.nilable(String),
               industry_code: T.nilable(String),
               name: String,

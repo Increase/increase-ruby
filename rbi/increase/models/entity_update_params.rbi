@@ -179,6 +179,14 @@ module Increase
         end
         attr_writer :address
 
+        # An email address for the business. Not every program requires an email for
+        # submitted Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :email
+
+        sig { params(email: String).void }
+        attr_writer :email
+
         # The North American Industry Classification System (NAICS) code for the
         # corporation's primary line of business. This is a number, like `5132` for
         # `Software Publishers`. A full list of classification codes is available
@@ -201,6 +209,7 @@ module Increase
         sig do
           params(
             address: Increase::EntityUpdateParams::Corporation::Address::OrHash,
+            email: String,
             industry_code: String,
             name: String
           ).returns(T.attached_class)
@@ -209,6 +218,9 @@ module Increase
           # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           # are disallowed.
           address: nil,
+          # An email address for the business. Not every program requires an email for
+          # submitted Entities.
+          email: nil,
           # The North American Industry Classification System (NAICS) code for the
           # corporation's primary line of business. This is a number, like `5132` for
           # `Software Publishers`. A full list of classification codes is available
@@ -223,6 +235,7 @@ module Increase
           override.returns(
             {
               address: Increase::EntityUpdateParams::Corporation::Address,
+              email: String,
               industry_code: String,
               name: String
             }
