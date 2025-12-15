@@ -264,7 +264,8 @@ module Increase
             name: String,
             postal_code: String,
             state: String,
-            :line2 => String
+            :line2 => String,
+            phone: String
           }
 
         class ReturnAddress < Increase::Internal::Type::BaseModel
@@ -282,13 +283,18 @@ module Increase
 
           def line2=: (String) -> String
 
+          attr_reader phone: String?
+
+          def phone=: (String) -> String
+
           def initialize: (
             city: String,
             line1: String,
             name: String,
             postal_code: String,
             state: String,
-            ?line2: String
+            ?line2: String,
+            ?phone: String
           ) -> void
 
           def to_hash: -> {
@@ -297,7 +303,8 @@ module Increase
             name: String,
             postal_code: String,
             state: String,
-            :line2 => String
+            :line2 => String,
+            phone: String
           }
         end
 

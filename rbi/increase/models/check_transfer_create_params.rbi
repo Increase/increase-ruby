@@ -510,9 +510,9 @@ module Increase
           sig { params(name: String).void }
           attr_writer :name
 
-          # The phone number to associate with the check's destination address. The number
-          # is only used when `shipping_method` is `fedex_overnight` and will be supplied to
-          # FedEx to be used in case of delivery issues.
+          # The phone number to associate with the check's destination address. The phone
+          # number is only used when `shipping_method` is `fedex_overnight` and will be
+          # supplied to FedEx to be used in case of delivery issues.
           sig { returns(T.nilable(String)) }
           attr_reader :phone
 
@@ -545,9 +545,9 @@ module Increase
             # The name component of the check's destination address. Defaults to the provided
             # `recipient_name` parameter if `name` is not provided.
             name: nil,
-            # The phone number to associate with the check's destination address. The number
-            # is only used when `shipping_method` is `fedex_overnight` and will be supplied to
-            # FedEx to be used in case of delivery issues.
+            # The phone number to associate with the check's destination address. The phone
+            # number is only used when `shipping_method` is `fedex_overnight` and will be
+            # supplied to FedEx to be used in case of delivery issues.
             phone: nil
           )
           end
@@ -630,6 +630,15 @@ module Increase
           sig { params(line2: String).void }
           attr_writer :line2
 
+          # The phone number to associate with the shipper. The phone number is only used
+          # when `shipping_method` is `fedex_overnight` and will be supplied to FedEx to be
+          # used in case of delivery issues.
+          sig { returns(T.nilable(String)) }
+          attr_reader :phone
+
+          sig { params(phone: String).void }
+          attr_writer :phone
+
           # The return address to be printed on the check. If omitted this will default to
           # an Increase-owned address that will mark checks as delivery failed and shred
           # them.
@@ -640,7 +649,8 @@ module Increase
               name: String,
               postal_code: String,
               state: String,
-              line2: String
+              line2: String,
+              phone: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -655,7 +665,11 @@ module Increase
             # The US state of the return address.
             state:,
             # The second line of the return address.
-            line2: nil
+            line2: nil,
+            # The phone number to associate with the shipper. The phone number is only used
+            # when `shipping_method` is `fedex_overnight` and will be supplied to FedEx to be
+            # used in case of delivery issues.
+            phone: nil
           )
           end
 
@@ -667,7 +681,8 @@ module Increase
                 name: String,
                 postal_code: String,
                 state: String,
-                line2: String
+                line2: String,
+                phone: String
               }
             )
           end
