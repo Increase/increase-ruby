@@ -165,6 +165,13 @@ module Increase
         optional :beneficial_ownership_exemption_reason,
                  enum: -> { Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason }
 
+        # @!attribute email
+        #   An email address for the business. Not every program requires an email for
+        #   submitted Entities.
+        #
+        #   @return [String, nil]
+        optional :email, String
+
         # @!attribute incorporation_state
         #   The two-letter United States Postal Service (USPS) abbreviation for the
         #   corporation's state of incorporation.
@@ -187,7 +194,7 @@ module Increase
         #   @return [String, nil]
         optional :website, String
 
-        # @!method initialize(address:, beneficial_owners:, name:, tax_identifier:, beneficial_ownership_exemption_reason: nil, incorporation_state: nil, industry_code: nil, website: nil)
+        # @!method initialize(address:, beneficial_owners:, name:, tax_identifier:, beneficial_ownership_exemption_reason: nil, email: nil, incorporation_state: nil, industry_code: nil, website: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityCreateParams::Corporation} for more details.
         #
@@ -203,6 +210,8 @@ module Increase
         #   @param tax_identifier [String] The Employer Identification Number (EIN) for the corporation.
         #
         #   @param beneficial_ownership_exemption_reason [Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason] If the entity is exempt from the requirement to submit beneficial owners, provid
+        #
+        #   @param email [String] An email address for the business. Not every program requires an email for submi
         #
         #   @param incorporation_state [String] The two-letter United States Postal Service (USPS) abbreviation for the corporat
         #

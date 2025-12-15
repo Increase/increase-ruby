@@ -169,6 +169,12 @@ module Increase
         required :beneficial_owners,
                  -> { Increase::Internal::Type::ArrayOf[Increase::Entity::Corporation::BeneficialOwner] }
 
+        # @!attribute email
+        #   An email address for the business.
+        #
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
         # @!attribute incorporation_state
         #   The two-letter United States Postal Service (USPS) abbreviation for the
         #   corporation's state of incorporation.
@@ -201,7 +207,7 @@ module Increase
         #   @return [String, nil]
         required :website, String, nil?: true
 
-        # @!method initialize(address:, beneficial_owners:, incorporation_state:, industry_code:, name:, tax_identifier:, website:)
+        # @!method initialize(address:, beneficial_owners:, email:, incorporation_state:, industry_code:, name:, tax_identifier:, website:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Entity::Corporation} for more details.
         #
@@ -211,6 +217,8 @@ module Increase
         #   @param address [Increase::Models::Entity::Corporation::Address] The corporation's address.
         #
         #   @param beneficial_owners [Array<Increase::Models::Entity::Corporation::BeneficialOwner>] The identifying details of anyone controlling or owning 25% or more of the corpo
+        #
+        #   @param email [String, nil] An email address for the business.
         #
         #   @param incorporation_state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the corporat
         #

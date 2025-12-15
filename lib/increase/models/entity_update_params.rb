@@ -86,6 +86,13 @@ module Increase
         #   @return [Increase::Models::EntityUpdateParams::Corporation::Address, nil]
         optional :address, -> { Increase::EntityUpdateParams::Corporation::Address }
 
+        # @!attribute email
+        #   An email address for the business. Not every program requires an email for
+        #   submitted Entities.
+        #
+        #   @return [String, nil]
+        optional :email, String
+
         # @!attribute industry_code
         #   The North American Industry Classification System (NAICS) code for the
         #   corporation's primary line of business. This is a number, like `5132` for
@@ -101,7 +108,7 @@ module Increase
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(address: nil, industry_code: nil, name: nil)
+        # @!method initialize(address: nil, email: nil, industry_code: nil, name: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
         #
@@ -109,6 +116,8 @@ module Increase
         #   the entity is not a corporation, the request will fail.
         #
         #   @param address [Increase::Models::EntityUpdateParams::Corporation::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
+        #   @param email [String] An email address for the business. Not every program requires an email for submi
         #
         #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
         #
