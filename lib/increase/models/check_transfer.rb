@@ -778,6 +778,9 @@ module Increase
             # The check has been delivered.
             DELIVERED = :delivered
 
+            # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the check will be returned to sender.
+            DELIVERY_ISSUE = :delivery_issue
+
             # Delivery failed and the check was returned to sender.
             RETURNED_TO_SENDER = :returned_to_sender
 

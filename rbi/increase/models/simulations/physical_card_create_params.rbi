@@ -129,6 +129,13 @@ module Increase
               Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
             )
 
+          # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the physical card will be returned to sender.
+          DELIVERY_ISSUE =
+            T.let(
+              :delivery_issue,
+              Increase::Simulations::PhysicalCardCreateParams::Category::TaggedSymbol
+            )
+
           # Delivery failed and the physical card was returned to sender.
           RETURNED_TO_SENDER =
             T.let(
