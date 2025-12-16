@@ -6301,9 +6301,9 @@ module Increase
           required :return_reason_additional_information, String, nil?: true
 
           # @!attribute return_reason_code
-          #   A code provided by the sending bank giving a reason for the reversal. It will
-          #   generally be one of the codes defined in the ISO20022
-          #   `ExternalReturnReason1Code` code set, but this is not enforced by the network.
+          #   A code provided by the sending bank giving a reason for the reversal. The common
+          #   return reason codes are
+          #   [documented here](/documentation/wire-reversals#reversal-reason-codes).
           #
           #   @return [String, nil]
           required :return_reason_code, String, nil?: true
@@ -6356,7 +6356,7 @@ module Increase
           #
           #   @param return_reason_additional_information [String, nil] Additional information about the reason for the reversal.
           #
-          #   @param return_reason_code [String, nil] A code provided by the sending bank giving a reason for the reversal. It will ge
+          #   @param return_reason_code [String, nil] A code provided by the sending bank giving a reason for the reversal. The common
           #
           #   @param return_reason_code_description [String, nil] An Increase-generated description of the `return_reason_code`.
           #
