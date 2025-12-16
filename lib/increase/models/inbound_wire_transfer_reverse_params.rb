@@ -28,6 +28,9 @@ module Increase
         # The recipient of the wire transfer requested the funds be returned to the sender.
         CREDITOR_REQUEST = :creditor_request
 
+        # The account cannot currently receive inbound wires.
+        TRANSACTION_FORBIDDEN = :transaction_forbidden
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

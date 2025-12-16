@@ -20,7 +20,7 @@ module Increase
         request_options: Increase::RequestOptions
       }
 
-      type reason = :duplicate | :creditor_request
+      type reason = :duplicate | :creditor_request | :transaction_forbidden
 
       module Reason
         extend Increase::Internal::Type::Enum
@@ -30,6 +30,9 @@ module Increase
 
         # The recipient of the wire transfer requested the funds be returned to the sender.
         CREDITOR_REQUEST: :creditor_request
+
+        # The account cannot currently receive inbound wires.
+        TRANSACTION_FORBIDDEN: :transaction_forbidden
 
         def self?.values: -> ::Array[Increase::Models::InboundWireTransferReverseParams::reason]
       end
