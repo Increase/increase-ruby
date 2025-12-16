@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.164.1 (2025-12-16)
+
+Full Changelog: [v1.164.0...v1.164.1](https://github.com/Increase/increase-ruby/compare/v1.164.0...v1.164.1)
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([23336c2](https://github.com/Increase/increase-ruby/commit/23336c2005c8dbb3784632e2295d6c4d13c737e7))
+
 ## 1.164.0 (2025-12-16)
 
 Full Changelog: [v1.163.0...v1.164.0](https://github.com/Increase/increase-ruby/compare/v1.163.0...v1.164.0)
