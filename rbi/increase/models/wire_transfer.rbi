@@ -1202,9 +1202,9 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :return_reason_additional_information
 
-        # A code provided by the sending bank giving a reason for the reversal. It will
-        # generally be one of the codes defined in the ISO20022
-        # `ExternalReturnReason1Code` code set, but this is not enforced by the network.
+        # A code provided by the sending bank giving a reason for the reversal. The common
+        # return reason codes are
+        # [documented here](/documentation/wire-reversals#reversal-reason-codes).
         sig { returns(T.nilable(String)) }
         attr_accessor :return_reason_code
 
@@ -1262,9 +1262,9 @@ module Increase
           instruction_identification:,
           # Additional information about the reason for the reversal.
           return_reason_additional_information:,
-          # A code provided by the sending bank giving a reason for the reversal. It will
-          # generally be one of the codes defined in the ISO20022
-          # `ExternalReturnReason1Code` code set, but this is not enforced by the network.
+          # A code provided by the sending bank giving a reason for the reversal. The common
+          # return reason codes are
+          # [documented here](/documentation/wire-reversals#reversal-reason-codes).
           return_reason_code:,
           # An Increase-generated description of the `return_reason_code`.
           return_reason_code_description:,
