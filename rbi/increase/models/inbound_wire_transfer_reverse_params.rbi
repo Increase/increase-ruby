@@ -69,6 +69,13 @@ module Increase
             Increase::InboundWireTransferReverseParams::Reason::TaggedSymbol
           )
 
+        # The account cannot currently receive inbound wires.
+        TRANSACTION_FORBIDDEN =
+          T.let(
+            :transaction_forbidden,
+            Increase::InboundWireTransferReverseParams::Reason::TaggedSymbol
+          )
+
         sig do
           override.returns(
             T::Array[
