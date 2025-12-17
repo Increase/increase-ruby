@@ -154,6 +154,25 @@ module Increase
         DASHBOARD_TABLE_CSV =
           T.let(:dashboard_table_csv, Increase::Export::Category::TaggedSymbol)
 
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER =
+          T.let(
+            :account_verification_letter,
+            Increase::Export::Category::TaggedSymbol
+          )
+
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS =
+          T.let(:funding_instructions, Increase::Export::Category::TaggedSymbol)
+
+        # A PDF of an Internal Revenue Service Form 1099-INT.
+        FORM_1099_INT =
+          T.let(:form_1099_int, Increase::Export::Category::TaggedSymbol)
+
+        # A PDF of an Internal Revenue Service Form 1099-MISC.
+        FORM_1099_MISC =
+          T.let(:form_1099_misc, Increase::Export::Category::TaggedSymbol)
+
         sig do
           override.returns(T::Array[Increase::Export::Category::TaggedSymbol])
         end
