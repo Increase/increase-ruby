@@ -115,6 +115,18 @@ module Increase
         # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
         DASHBOARD_TABLE_CSV = :dashboard_table_csv
 
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
+
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS = :funding_instructions
+
+        # A PDF of an Internal Revenue Service Form 1099-INT.
+        FORM_1099_INT = :form_1099_int
+
+        # A PDF of an Internal Revenue Service Form 1099-MISC.
+        FORM_1099_MISC = :form_1099_misc
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end
