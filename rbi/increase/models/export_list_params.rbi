@@ -219,6 +219,34 @@ module Increase
               Increase::ExportListParams::Category::In::TaggedSymbol
             )
 
+          # A PDF of an account verification letter.
+          ACCOUNT_VERIFICATION_LETTER =
+            T.let(
+              :account_verification_letter,
+              Increase::ExportListParams::Category::In::TaggedSymbol
+            )
+
+          # A PDF of funding instructions.
+          FUNDING_INSTRUCTIONS =
+            T.let(
+              :funding_instructions,
+              Increase::ExportListParams::Category::In::TaggedSymbol
+            )
+
+          # A PDF of an Internal Revenue Service Form 1099-INT.
+          FORM_1099_INT =
+            T.let(
+              :form_1099_int,
+              Increase::ExportListParams::Category::In::TaggedSymbol
+            )
+
+          # A PDF of an Internal Revenue Service Form 1099-MISC.
+          FORM_1099_MISC =
+            T.let(
+              :form_1099_misc,
+              Increase::ExportListParams::Category::In::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[Increase::ExportListParams::Category::In::TaggedSymbol]
