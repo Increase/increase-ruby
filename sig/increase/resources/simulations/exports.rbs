@@ -1,0 +1,14 @@
+module Increase
+  module Resources
+    class Simulations
+      class Exports
+        def create: (
+          account_id: String,
+          ?request_options: Increase::request_opts
+        ) -> Increase::Export
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end

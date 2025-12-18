@@ -5,9 +5,11 @@ module Increase
         category: Increase::Models::ExportCreateParams::category,
         :account_statement_bai2 => Increase::ExportCreateParams::AccountStatementBai2,
         account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
+        account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
         balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
+        funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         vendor_csv: Increase::ExportCreateParams::VendorCsv
       }
@@ -31,6 +33,12 @@ module Increase
         Increase::ExportCreateParams::AccountStatementOfx
       ) -> Increase::ExportCreateParams::AccountStatementOfx
 
+      attr_reader account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter?
+
+      def account_verification_letter=: (
+        Increase::ExportCreateParams::AccountVerificationLetter
+      ) -> Increase::ExportCreateParams::AccountVerificationLetter
+
       attr_reader balance_csv: Increase::ExportCreateParams::BalanceCsv?
 
       def balance_csv=: (
@@ -49,6 +57,12 @@ module Increase
         Increase::ExportCreateParams::EntityCsv
       ) -> Increase::ExportCreateParams::EntityCsv
 
+      attr_reader funding_instructions: Increase::ExportCreateParams::FundingInstructions?
+
+      def funding_instructions=: (
+        Increase::ExportCreateParams::FundingInstructions
+      ) -> Increase::ExportCreateParams::FundingInstructions
+
       attr_reader transaction_csv: Increase::ExportCreateParams::TransactionCsv?
 
       def transaction_csv=: (
@@ -65,9 +79,11 @@ module Increase
         category: Increase::Models::ExportCreateParams::category,
         ?account_statement_bai2: Increase::ExportCreateParams::AccountStatementBai2,
         ?account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
+        ?account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
         ?balance_csv: Increase::ExportCreateParams::BalanceCsv,
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
+        ?funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         ?transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         ?vendor_csv: Increase::ExportCreateParams::VendorCsv,
         ?request_options: Increase::request_opts
@@ -77,9 +93,11 @@ module Increase
         category: Increase::Models::ExportCreateParams::category,
         :account_statement_bai2 => Increase::ExportCreateParams::AccountStatementBai2,
         account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
+        account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
         balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
+        funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         vendor_csv: Increase::ExportCreateParams::VendorCsv,
         request_options: Increase::RequestOptions
@@ -93,6 +111,8 @@ module Increase
         | :bookkeeping_account_balance_csv
         | :entity_csv
         | :vendor_csv
+        | :account_verification_letter
+        | :funding_instructions
 
       module Category
         extend Increase::Internal::Type::Enum
@@ -117,6 +137,12 @@ module Increase
 
         # Export a CSV of vendors added to the third-party risk management dashboard.
         VENDOR_CSV: :vendor_csv
+
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
+
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS: :funding_instructions
 
         def self?.values: -> ::Array[Increase::Models::ExportCreateParams::category]
       end
@@ -209,6 +235,21 @@ module Increase
             on_or_before: Time
           }
         end
+      end
+
+      type account_verification_letter =
+        { account_number_id: String, balance_date: Date }
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        attr_reader balance_date: Date?
+
+        def balance_date=: (Date) -> Date
+
+        def initialize: (account_number_id: String, ?balance_date: Date) -> void
+
+        def to_hash: -> { account_number_id: String, balance_date: Date }
       end
 
       type balance_csv =
@@ -395,6 +436,16 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
           end
         end
+      end
+
+      type funding_instructions = { account_number_id: String }
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        def initialize: (account_number_id: String) -> void
+
+        def to_hash: -> { account_number_id: String }
       end
 
       type transaction_csv =

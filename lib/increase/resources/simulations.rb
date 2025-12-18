@@ -93,6 +93,9 @@ module Increase
       # @return [Increase::Resources::Simulations::Documents]
       attr_reader :documents
 
+      # @return [Increase::Resources::Simulations::Exports]
+      attr_reader :exports
+
       # @return [Increase::Resources::Simulations::CardTokens]
       attr_reader :card_tokens
 
@@ -136,6 +139,7 @@ module Increase
         @programs = Increase::Resources::Simulations::Programs.new(client: client)
         @account_statements = Increase::Resources::Simulations::AccountStatements.new(client: client)
         @documents = Increase::Resources::Simulations::Documents.new(client: client)
+        @exports = Increase::Resources::Simulations::Exports.new(client: client)
         @card_tokens = Increase::Resources::Simulations::CardTokens.new(client: client)
       end
     end
