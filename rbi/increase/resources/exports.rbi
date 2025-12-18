@@ -11,10 +11,14 @@ module Increase
             Increase::ExportCreateParams::AccountStatementBai2::OrHash,
           account_statement_ofx:
             Increase::ExportCreateParams::AccountStatementOfx::OrHash,
+          account_verification_letter:
+            Increase::ExportCreateParams::AccountVerificationLetter::OrHash,
           balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash,
           bookkeeping_account_balance_csv:
             Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::OrHash,
           entity_csv: Increase::ExportCreateParams::EntityCsv::OrHash,
+          funding_instructions:
+            Increase::ExportCreateParams::FundingInstructions::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
           vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -30,6 +34,9 @@ module Increase
         # `account_statement_ofx`.
         account_statement_ofx: nil,
         # Options for the created export. Required if `category` is equal to
+        # `account_verification_letter`.
+        account_verification_letter: nil,
+        # Options for the created export. Required if `category` is equal to
         # `balance_csv`.
         balance_csv: nil,
         # Options for the created export. Required if `category` is equal to
@@ -37,6 +44,9 @@ module Increase
         bookkeeping_account_balance_csv: nil,
         # Options for the created export. Required if `category` is equal to `entity_csv`.
         entity_csv: nil,
+        # Options for the created export. Required if `category` is equal to
+        # `funding_instructions`.
+        funding_instructions: nil,
         # Options for the created export. Required if `category` is equal to
         # `transaction_csv`.
         transaction_csv: nil,

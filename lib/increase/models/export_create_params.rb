@@ -27,6 +27,13 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::AccountStatementOfx, nil]
       optional :account_statement_ofx, -> { Increase::ExportCreateParams::AccountStatementOfx }
 
+      # @!attribute account_verification_letter
+      #   Options for the created export. Required if `category` is equal to
+      #   `account_verification_letter`.
+      #
+      #   @return [Increase::Models::ExportCreateParams::AccountVerificationLetter, nil]
+      optional :account_verification_letter, -> { Increase::ExportCreateParams::AccountVerificationLetter }
+
       # @!attribute balance_csv
       #   Options for the created export. Required if `category` is equal to
       #   `balance_csv`.
@@ -48,6 +55,13 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::EntityCsv, nil]
       optional :entity_csv, -> { Increase::ExportCreateParams::EntityCsv }
 
+      # @!attribute funding_instructions
+      #   Options for the created export. Required if `category` is equal to
+      #   `funding_instructions`.
+      #
+      #   @return [Increase::Models::ExportCreateParams::FundingInstructions, nil]
+      optional :funding_instructions, -> { Increase::ExportCreateParams::FundingInstructions }
+
       # @!attribute transaction_csv
       #   Options for the created export. Required if `category` is equal to
       #   `transaction_csv`.
@@ -61,7 +75,7 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::VendorCsv, nil]
       optional :vendor_csv, -> { Increase::ExportCreateParams::VendorCsv }
 
-      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
+      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportCreateParams} for more details.
       #
@@ -71,12 +85,16 @@ module Increase
       #
       #   @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx] Options for the created export. Required if `category` is equal to `account_stat
       #
+      #   @param account_verification_letter [Increase::Models::ExportCreateParams::AccountVerificationLetter] Options for the created export. Required if `category` is equal to `account_veri
+      #
       #   @param balance_csv [Increase::Models::ExportCreateParams::BalanceCsv] Options for the created export. Required if `category` is equal to `balance_csv`
       #
       #   @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv] Options for the created export. Required if `category` is equal to
       #   `bookkeeping\_
       #
       #   @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv] Options for the created export. Required if `category` is equal to `entity_csv`.
+      #
+      #   @param funding_instructions [Increase::Models::ExportCreateParams::FundingInstructions] Options for the created export. Required if `category` is equal to `funding_inst
       #
       #   @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv] Options for the created export. Required if `category` is equal to
       #   `transaction\_
@@ -109,6 +127,12 @@ module Increase
 
         # Export a CSV of vendors added to the third-party risk management dashboard.
         VENDOR_CSV = :vendor_csv
+
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
+
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS = :funding_instructions
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -218,6 +242,28 @@ module Increase
           #
           #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
         end
+      end
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The Account Number to create a letter for.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!attribute balance_date
+        #   The date of the balance to include in the letter. Defaults to the current date.
+        #
+        #   @return [Date, nil]
+        optional :balance_date, Date
+
+        # @!method initialize(account_number_id:, balance_date: nil)
+        #   Options for the created export. Required if `category` is equal to
+        #   `account_verification_letter`.
+        #
+        #   @param account_number_id [String] The Account Number to create a letter for.
+        #
+        #   @param balance_date [Date] The date of the balance to include in the letter. Defaults to the current date.
       end
 
       class BalanceCsv < Increase::Internal::Type::BaseModel
@@ -412,6 +458,20 @@ module Increase
             #   @return [Array<Symbol>]
           end
         end
+      end
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The Account Number to create funding instructions for.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!method initialize(account_number_id:)
+        #   Options for the created export. Required if `category` is equal to
+        #   `funding_instructions`.
+        #
+        #   @param account_number_id [String] The Account Number to create funding instructions for.
       end
 
       class TransactionCsv < Increase::Internal::Type::BaseModel

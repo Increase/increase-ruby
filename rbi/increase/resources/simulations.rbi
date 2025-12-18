@@ -105,6 +105,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::Documents) }
       attr_reader :documents
 
+      sig { returns(Increase::Resources::Simulations::Exports) }
+      attr_reader :exports
+
       sig { returns(Increase::Resources::Simulations::CardTokens) }
       attr_reader :card_tokens
 
