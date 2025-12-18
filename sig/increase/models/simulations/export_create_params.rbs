@@ -1,0 +1,25 @@
+module Increase
+  module Models
+    module Simulations
+      type export_create_params =
+        { account_id: String } & Increase::Internal::Type::request_parameters
+
+      class ExportCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor account_id: String
+
+        def initialize: (
+          account_id: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          request_options: Increase::RequestOptions
+        }
+      end
+    end
+  end
+end

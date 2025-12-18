@@ -46,6 +46,23 @@ module Increase
       attr_writer :account_statement_ofx
 
       # Options for the created export. Required if `category` is equal to
+      # `account_verification_letter`.
+      sig do
+        returns(
+          T.nilable(Increase::ExportCreateParams::AccountVerificationLetter)
+        )
+      end
+      attr_reader :account_verification_letter
+
+      sig do
+        params(
+          account_verification_letter:
+            Increase::ExportCreateParams::AccountVerificationLetter::OrHash
+        ).void
+      end
+      attr_writer :account_verification_letter
+
+      # Options for the created export. Required if `category` is equal to
       # `balance_csv`.
       sig { returns(T.nilable(Increase::ExportCreateParams::BalanceCsv)) }
       attr_reader :balance_csv
@@ -84,6 +101,21 @@ module Increase
       attr_writer :entity_csv
 
       # Options for the created export. Required if `category` is equal to
+      # `funding_instructions`.
+      sig do
+        returns(T.nilable(Increase::ExportCreateParams::FundingInstructions))
+      end
+      attr_reader :funding_instructions
+
+      sig do
+        params(
+          funding_instructions:
+            Increase::ExportCreateParams::FundingInstructions::OrHash
+        ).void
+      end
+      attr_writer :funding_instructions
+
+      # Options for the created export. Required if `category` is equal to
       # `transaction_csv`.
       sig { returns(T.nilable(Increase::ExportCreateParams::TransactionCsv)) }
       attr_reader :transaction_csv
@@ -111,10 +143,14 @@ module Increase
             Increase::ExportCreateParams::AccountStatementBai2::OrHash,
           account_statement_ofx:
             Increase::ExportCreateParams::AccountStatementOfx::OrHash,
+          account_verification_letter:
+            Increase::ExportCreateParams::AccountVerificationLetter::OrHash,
           balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash,
           bookkeeping_account_balance_csv:
             Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::OrHash,
           entity_csv: Increase::ExportCreateParams::EntityCsv::OrHash,
+          funding_instructions:
+            Increase::ExportCreateParams::FundingInstructions::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
           vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -130,6 +166,9 @@ module Increase
         # `account_statement_ofx`.
         account_statement_ofx: nil,
         # Options for the created export. Required if `category` is equal to
+        # `account_verification_letter`.
+        account_verification_letter: nil,
+        # Options for the created export. Required if `category` is equal to
         # `balance_csv`.
         balance_csv: nil,
         # Options for the created export. Required if `category` is equal to
@@ -137,6 +176,9 @@ module Increase
         bookkeeping_account_balance_csv: nil,
         # Options for the created export. Required if `category` is equal to `entity_csv`.
         entity_csv: nil,
+        # Options for the created export. Required if `category` is equal to
+        # `funding_instructions`.
+        funding_instructions: nil,
         # Options for the created export. Required if `category` is equal to
         # `transaction_csv`.
         transaction_csv: nil,
@@ -154,10 +196,14 @@ module Increase
               Increase::ExportCreateParams::AccountStatementBai2,
             account_statement_ofx:
               Increase::ExportCreateParams::AccountStatementOfx,
+            account_verification_letter:
+              Increase::ExportCreateParams::AccountVerificationLetter,
             balance_csv: Increase::ExportCreateParams::BalanceCsv,
             bookkeeping_account_balance_csv:
               Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
             entity_csv: Increase::ExportCreateParams::EntityCsv,
+            funding_instructions:
+              Increase::ExportCreateParams::FundingInstructions,
             transaction_csv: Increase::ExportCreateParams::TransactionCsv,
             vendor_csv: Increase::ExportCreateParams::VendorCsv,
             request_options: Increase::RequestOptions
@@ -221,6 +267,20 @@ module Increase
         VENDOR_CSV =
           T.let(
             :vendor_csv,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER =
+          T.let(
+            :account_verification_letter,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS =
+          T.let(
+            :funding_instructions,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
@@ -439,6 +499,48 @@ module Increase
           end
           def to_hash
           end
+        end
+      end
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::AccountVerificationLetter,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The Account Number to create a letter for.
+        sig { returns(String) }
+        attr_accessor :account_number_id
+
+        # The date of the balance to include in the letter. Defaults to the current date.
+        sig { returns(T.nilable(Date)) }
+        attr_reader :balance_date
+
+        sig { params(balance_date: Date).void }
+        attr_writer :balance_date
+
+        # Options for the created export. Required if `category` is equal to
+        # `account_verification_letter`.
+        sig do
+          params(account_number_id: String, balance_date: Date).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The Account Number to create a letter for.
+          account_number_id:,
+          # The date of the balance to include in the letter. Defaults to the current date.
+          balance_date: nil
+        )
+        end
+
+        sig do
+          override.returns({ account_number_id: String, balance_date: Date })
+        end
+        def to_hash
         end
       end
 
@@ -872,6 +974,33 @@ module Increase
             def self.values
             end
           end
+        end
+      end
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::FundingInstructions,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The Account Number to create funding instructions for.
+        sig { returns(String) }
+        attr_accessor :account_number_id
+
+        # Options for the created export. Required if `category` is equal to
+        # `funding_instructions`.
+        sig { params(account_number_id: String).returns(T.attached_class) }
+        def self.new(
+          # The Account Number to create funding instructions for.
+          account_number_id:
+        )
+        end
+
+        sig { override.returns({ account_number_id: String }) }
+        def to_hash
         end
       end
 

@@ -62,10 +62,10 @@ module Increase
       #   Some parameter documentations has been truncated, see {Increase::Models::Export}
       #   for more details.
       #
-      #   Exports are batch summaries of your Increase data. You can make them from the
-      #   API or dashboard. Since they can take a while, they are generated
-      #   asynchronously. We send a webhook when they are ready. For more information,
-      #   please read our
+      #   Exports are generated files. Some exports can contain a lot of data, like a CSV
+      #   of your transactions. Others can be a single document, like a tax form. Since
+      #   they can take a while, they are generated asynchronously. We send a webhook when
+      #   they are ready. For more information, please read our
       #   [Exports documentation](https://increase.com/documentation/exports).
       #
       #   @param id [String] The Export identifier.
