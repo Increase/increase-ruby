@@ -209,14 +209,6 @@ module Increase
 
   class DigitalWalletTokenRetrieveParams = Increase::Models::DigitalWalletTokenRetrieveParams
 
-  class Document = Increase::Models::Document
-
-  class DocumentCreateParams = Increase::Models::DocumentCreateParams
-
-  class DocumentListParams = Increase::Models::DocumentListParams
-
-  class DocumentRetrieveParams = Increase::Models::DocumentRetrieveParams
-
   class Entity = Increase::Models::Entity
 
   class EntityArchiveBeneficialOwnerParams = Increase::Models::EntityArchiveBeneficialOwnerParams

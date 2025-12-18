@@ -136,9 +136,6 @@ module Increase
     sig { returns(Increase::Resources::FileLinks) }
     attr_reader :file_links
 
-    sig { returns(Increase::Resources::Documents) }
-    attr_reader :documents
-
     sig { returns(Increase::Resources::Exports) }
     attr_reader :exports
 

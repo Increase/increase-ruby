@@ -102,9 +102,6 @@ module Increase
       sig { returns(Increase::Resources::Simulations::AccountStatements) }
       attr_reader :account_statements
 
-      sig { returns(Increase::Resources::Simulations::Documents) }
-      attr_reader :documents
-
       sig { returns(Increase::Resources::Simulations::Exports) }
       attr_reader :exports
 
