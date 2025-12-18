@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.166.1 (2025-12-18)
+
+Full Changelog: [v1.166.0...v1.166.1](https://github.com/Increase/increase-ruby/compare/v1.166.0...v1.166.1)
+
+### Bug Fixes
+
+* issue where json.parse errors when receiving HTTP 204 with nobody ([35cc667](https://github.com/Increase/increase-ruby/commit/35cc6675facca611a5d519a87fa7affc8a0bbb8e))
+
 ## 1.166.0 (2025-12-17)
 
 Full Changelog: [v1.165.0...v1.166.0](https://github.com/Increase/increase-ruby/compare/v1.165.0...v1.166.0)
