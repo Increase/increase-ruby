@@ -137,9 +137,6 @@ module Increase
     # @return [Increase::Resources::FileLinks]
     attr_reader :file_links
 
-    # @return [Increase::Resources::Documents]
-    attr_reader :documents
-
     # @return [Increase::Resources::Exports]
     attr_reader :exports
 
@@ -295,7 +292,6 @@ module Increase
       @account_statements = Increase::Resources::AccountStatements.new(client: self)
       @files = Increase::Resources::Files.new(client: self)
       @file_links = Increase::Resources::FileLinks.new(client: self)
-      @documents = Increase::Resources::Documents.new(client: self)
       @exports = Increase::Resources::Exports.new(client: self)
       @events = Increase::Resources::Events.new(client: self)
       @event_subscriptions = Increase::Resources::EventSubscriptions.new(client: self)

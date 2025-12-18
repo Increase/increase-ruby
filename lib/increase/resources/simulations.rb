@@ -90,9 +90,6 @@ module Increase
       # @return [Increase::Resources::Simulations::AccountStatements]
       attr_reader :account_statements
 
-      # @return [Increase::Resources::Simulations::Documents]
-      attr_reader :documents
-
       # @return [Increase::Resources::Simulations::Exports]
       attr_reader :exports
 
@@ -138,7 +135,6 @@ module Increase
         @inbound_mail_items = Increase::Resources::Simulations::InboundMailItems.new(client: client)
         @programs = Increase::Resources::Simulations::Programs.new(client: client)
         @account_statements = Increase::Resources::Simulations::AccountStatements.new(client: client)
-        @documents = Increase::Resources::Simulations::Documents.new(client: client)
         @exports = Increase::Resources::Simulations::Exports.new(client: client)
         @card_tokens = Increase::Resources::Simulations::CardTokens.new(client: client)
       end
