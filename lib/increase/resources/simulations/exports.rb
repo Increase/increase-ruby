@@ -4,11 +4,19 @@ module Increase
   module Resources
     class Simulations
       class Exports
-        # Simulates a tax form export being generated.
+        # Some parameter documentations has been truncated, see
+        # {Increase::Models::Simulations::ExportCreateParams} for more details.
         #
-        # @overload create(account_id:, request_options: {})
+        # Many exports are created by you via POST /exports or in the Dashboard. Some
+        # exports are created automatically by Increase. For example, tax documents are
+        # published once a year. In sandbox, you can trigger the arrival of an export that
+        # would normally only be created automatically via this simulation.
         #
-        # @param account_id [String] The identifier of the Account the tax document is for.
+        # @overload create(category:, form_1099_int: nil, request_options: {})
+        #
+        # @param category [Symbol, Increase::Models::Simulations::ExportCreateParams::Category] The type of Export to create.
+        #
+        # @param form_1099_int [Increase::Models::Simulations::ExportCreateParams::Form1099Int] Options for the created export. Required if `category` is equal to `form_1099_in
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
