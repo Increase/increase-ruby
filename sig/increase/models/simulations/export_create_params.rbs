@@ -2,23 +2,56 @@ module Increase
   module Models
     module Simulations
       type export_create_params =
-        { account_id: String } & Increase::Internal::Type::request_parameters
+        {
+          category: Increase::Models::Simulations::ExportCreateParams::category,
+          :form_1099_int => Increase::Simulations::ExportCreateParams::Form1099Int
+        }
+        & Increase::Internal::Type::request_parameters
 
       class ExportCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        attr_accessor account_id: String
+        attr_accessor category: Increase::Models::Simulations::ExportCreateParams::category
+
+        attr_reader form_1099_int: Increase::Simulations::ExportCreateParams::Form1099Int?
+
+        def form_1099_int=: (
+          Increase::Simulations::ExportCreateParams::Form1099Int
+        ) -> Increase::Simulations::ExportCreateParams::Form1099Int
 
         def initialize: (
-          account_id: String,
+          category: Increase::Models::Simulations::ExportCreateParams::category,
+          ?form_1099_int: Increase::Simulations::ExportCreateParams::Form1099Int,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
-          account_id: String,
+          category: Increase::Models::Simulations::ExportCreateParams::category,
+          :form_1099_int => Increase::Simulations::ExportCreateParams::Form1099Int,
           request_options: Increase::RequestOptions
         }
+
+        type category = :form_1099_int
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # A PDF of an Internal Revenue Service Form 1099-INT.
+          FORM_1099_INT: :form_1099_int
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::ExportCreateParams::category]
+        end
+
+        type form1099_int = { account_id: String }
+
+        class Form1099Int < Increase::Internal::Type::BaseModel
+          attr_accessor account_id: String
+
+          def initialize: (account_id: String) -> void
+
+          def to_hash: -> { account_id: String }
+        end
       end
     end
   end

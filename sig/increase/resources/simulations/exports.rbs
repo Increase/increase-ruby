@@ -3,7 +3,8 @@ module Increase
     class Simulations
       class Exports
         def create: (
-          account_id: String,
+          category: Increase::Models::Simulations::ExportCreateParams::category,
+          ?form_1099_int: Increase::Simulations::ExportCreateParams::Form1099Int,
           ?request_options: Increase::request_opts
         ) -> Increase::Export
 
