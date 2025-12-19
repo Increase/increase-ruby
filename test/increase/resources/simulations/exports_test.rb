@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::ExportsTest < Increase::Test::ResourceTest
   def test_create_required_params
-    response = @increase.simulations.exports.create(account_id: "account_in71c4amph0vgo2qllky")
+    response = @increase.simulations.exports.create(category: :form_1099_int)
 
     assert_pattern do
       response => Increase::Export
