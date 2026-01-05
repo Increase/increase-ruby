@@ -30,6 +30,13 @@ module Increase
       optional :attachment_files,
                -> { Increase::Internal::Type::ArrayOf[Increase::CardDisputeSubmitUserSubmissionParams::AttachmentFile] }
 
+      # @!attribute explanation
+      #   The free-form explanation provided to Increase to provide more context for the
+      #   user submission. This field is not sent directly to the card networks.
+      #
+      #   @return [String, nil]
+      optional :explanation, String
+
       # @!attribute visa
       #   The Visa-specific parameters for the dispute. Required if and only if `network`
       #   is `visa`.
@@ -37,7 +44,7 @@ module Increase
       #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa, nil]
       optional :visa, -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa }
 
-      # @!method initialize(network:, amount: nil, attachment_files: nil, visa: nil, request_options: {})
+      # @!method initialize(network:, amount: nil, attachment_files: nil, explanation: nil, visa: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDisputeSubmitUserSubmissionParams} for more details.
       #
@@ -46,6 +53,8 @@ module Increase
       #   @param amount [Integer] The adjusted monetary amount of the part of the transaction that is being disput
       #
       #   @param attachment_files [Array<Increase::Models::CardDisputeSubmitUserSubmissionParams::AttachmentFile>] The files to be attached to the user submission.
+      #
+      #   @param explanation [String] The free-form explanation provided to Increase to provide more context for the u
       #
       #   @param visa [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa] The Visa-specific parameters for the dispute. Required if and only if `network`
       #

@@ -1150,6 +1150,7 @@ module Increase
             category: Increase::Models::CardDispute::Visa::UserSubmission::category,
             chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
             created_at: Time,
+            explanation: String?,
             further_information_requested_at: Time?,
             further_information_requested_reason: String?,
             merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
@@ -1171,6 +1172,8 @@ module Increase
 
           attr_accessor created_at: Time
 
+          attr_accessor explanation: String?
+
           attr_accessor further_information_requested_at: Time?
 
           attr_accessor further_information_requested_reason: String?
@@ -1190,6 +1193,7 @@ module Increase
             category: Increase::Models::CardDispute::Visa::UserSubmission::category,
             chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
             created_at: Time,
+            explanation: String?,
             further_information_requested_at: Time?,
             further_information_requested_reason: String?,
             merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
@@ -1205,6 +1209,7 @@ module Increase
             category: Increase::Models::CardDispute::Visa::UserSubmission::category,
             chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
             created_at: Time,
+            explanation: String?,
             further_information_requested_at: Time?,
             further_information_requested_reason: String?,
             merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
