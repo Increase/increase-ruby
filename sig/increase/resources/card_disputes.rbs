@@ -6,6 +6,7 @@ module Increase
         network: Increase::Models::CardDisputeCreateParams::network,
         ?amount: Integer,
         ?attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        ?explanation: String,
         ?visa: Increase::CardDisputeCreateParams::Visa,
         ?request_options: Increase::request_opts
       ) -> Increase::CardDispute
@@ -29,6 +30,7 @@ module Increase
         network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network,
         ?amount: Integer,
         ?attachment_files: ::Array[Increase::CardDisputeSubmitUserSubmissionParams::AttachmentFile],
+        ?explanation: String,
         ?visa: Increase::CardDisputeSubmitUserSubmissionParams::Visa,
         ?request_options: Increase::request_opts
       ) -> Increase::CardDispute
