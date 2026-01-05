@@ -6,6 +6,7 @@ module Increase
         network: Increase::Models::CardDisputeCreateParams::network,
         amount: Integer,
         attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        explanation: String,
         visa: Increase::CardDisputeCreateParams::Visa
       }
       & Increase::Internal::Type::request_parameters
@@ -28,6 +29,10 @@ module Increase
         ::Array[Increase::CardDisputeCreateParams::AttachmentFile]
       ) -> ::Array[Increase::CardDisputeCreateParams::AttachmentFile]
 
+      attr_reader explanation: String?
+
+      def explanation=: (String) -> String
+
       attr_reader visa: Increase::CardDisputeCreateParams::Visa?
 
       def visa=: (
@@ -39,6 +44,7 @@ module Increase
         network: Increase::Models::CardDisputeCreateParams::network,
         ?amount: Integer,
         ?attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        ?explanation: String,
         ?visa: Increase::CardDisputeCreateParams::Visa,
         ?request_options: Increase::request_opts
       ) -> void
@@ -48,6 +54,7 @@ module Increase
         network: Increase::Models::CardDisputeCreateParams::network,
         amount: Integer,
         attachment_files: ::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+        explanation: String,
         visa: Increase::CardDisputeCreateParams::Visa,
         request_options: Increase::RequestOptions
       }

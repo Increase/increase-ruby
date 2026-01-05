@@ -47,6 +47,14 @@ module Increase
       end
       attr_writer :attachment_files
 
+      # The free-form explanation provided to Increase to provide more context for the
+      # user submission. This field is not sent directly to the card networks.
+      sig { returns(T.nilable(String)) }
+      attr_reader :explanation
+
+      sig { params(explanation: String).void }
+      attr_writer :explanation
+
       # The Visa-specific parameters for the dispute. Required if and only if `network`
       # is `visa`.
       sig { returns(T.nilable(Increase::CardDisputeCreateParams::Visa)) }
@@ -62,6 +70,7 @@ module Increase
           amount: Integer,
           attachment_files:
             T::Array[Increase::CardDisputeCreateParams::AttachmentFile::OrHash],
+          explanation: String,
           visa: Increase::CardDisputeCreateParams::Visa::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -80,6 +89,9 @@ module Increase
         amount: nil,
         # The files to be attached to the initial dispute submission.
         attachment_files: nil,
+        # The free-form explanation provided to Increase to provide more context for the
+        # user submission. This field is not sent directly to the card networks.
+        explanation: nil,
         # The Visa-specific parameters for the dispute. Required if and only if `network`
         # is `visa`.
         visa: nil,
@@ -95,6 +107,7 @@ module Increase
             amount: Integer,
             attachment_files:
               T::Array[Increase::CardDisputeCreateParams::AttachmentFile],
+            explanation: String,
             visa: Increase::CardDisputeCreateParams::Visa,
             request_options: Increase::RequestOptions
           }

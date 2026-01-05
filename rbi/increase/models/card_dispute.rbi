@@ -3256,6 +3256,11 @@ module Increase
           sig { returns(Time) }
           attr_accessor :created_at
 
+          # The free-form explanation provided to Increase to provide more context for the
+          # user submission. This field is not sent directly to the card networks.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :explanation
+
           # The date and time at which Increase requested further information from the user
           # for the Visa Card Dispute.
           sig { returns(T.nilable(Time)) }
@@ -3340,6 +3345,7 @@ module Increase
                   Increase::CardDispute::Visa::UserSubmission::Chargeback::OrHash
                 ),
               created_at: Time,
+              explanation: T.nilable(String),
               further_information_requested_at: T.nilable(Time),
               further_information_requested_reason: T.nilable(String),
               merchant_prearbitration_decline:
@@ -3376,6 +3382,9 @@ module Increase
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             # the Visa Card Dispute User Submission was created.
             created_at:,
+            # The free-form explanation provided to Increase to provide more context for the
+            # user submission. This field is not sent directly to the card networks.
+            explanation:,
             # The date and time at which Increase requested further information from the user
             # for the Visa Card Dispute.
             further_information_requested_at:,
@@ -3416,6 +3425,7 @@ module Increase
                     Increase::CardDispute::Visa::UserSubmission::Chargeback
                   ),
                 created_at: Time,
+                explanation: T.nilable(String),
                 further_information_requested_at: T.nilable(Time),
                 further_information_requested_reason: T.nilable(String),
                 merchant_prearbitration_decline:

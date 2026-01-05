@@ -1576,6 +1576,13 @@ module Increase
           #   @return [Time]
           required :created_at, Time
 
+          # @!attribute explanation
+          #   The free-form explanation provided to Increase to provide more context for the
+          #   user submission. This field is not sent directly to the card networks.
+          #
+          #   @return [String, nil]
+          required :explanation, String, nil?: true
+
           # @!attribute further_information_requested_at
           #   The date and time at which Increase requested further information from the user
           #   for the Visa Card Dispute.
@@ -1625,7 +1632,7 @@ module Increase
                    -> { Increase::CardDispute::Visa::UserSubmission::UserPrearbitration },
                    nil?: true
 
-          # @!method initialize(accepted_at:, amount:, attachment_files:, category:, chargeback:, created_at:, further_information_requested_at:, further_information_requested_reason:, merchant_prearbitration_decline:, status:, updated_at:, user_prearbitration:)
+          # @!method initialize(accepted_at:, amount:, attachment_files:, category:, chargeback:, created_at:, explanation:, further_information_requested_at:, further_information_requested_reason:, merchant_prearbitration_decline:, status:, updated_at:, user_prearbitration:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardDispute::Visa::UserSubmission} for more details.
           #
@@ -1640,6 +1647,8 @@ module Increase
           #   @param chargeback [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback, nil] A Visa Card Dispute Chargeback User Submission Chargeback Details object. This f
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+          #
+          #   @param explanation [String, nil] The free-form explanation provided to Increase to provide more context for the u
           #
           #   @param further_information_requested_at [Time, nil] The date and time at which Increase requested further information from the user
           #
