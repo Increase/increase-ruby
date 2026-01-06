@@ -10,6 +10,7 @@ module Increase
         ?natural_person: Increase::EntityCreateParams::NaturalPerson,
         ?risk_rating: Increase::EntityCreateParams::RiskRating,
         ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
+        ?terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
         ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
         ?trust: Increase::EntityCreateParams::Trust,
         ?request_options: Increase::request_opts

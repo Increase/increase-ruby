@@ -101,6 +101,23 @@ module Increase
       end
       attr_writer :supplemental_documents
 
+      # The terms that the Entity agreed to. Not all programs are required to submit
+      # this data.
+      sig do
+        returns(
+          T.nilable(T::Array[Increase::EntityCreateParams::TermsAgreement])
+        )
+      end
+      attr_reader :terms_agreements
+
+      sig do
+        params(
+          terms_agreements:
+            T::Array[Increase::EntityCreateParams::TermsAgreement::OrHash]
+        ).void
+      end
+      attr_writer :terms_agreements
+
       # If you are using a third-party service for identity verification, you can use
       # this field to associate this Entity with the identifier that represents them in
       # that service.
@@ -139,6 +156,8 @@ module Increase
             T::Array[
               Increase::EntityCreateParams::SupplementalDocument::OrHash
             ],
+          terms_agreements:
+            T::Array[Increase::EntityCreateParams::TermsAgreement::OrHash],
           third_party_verification:
             Increase::EntityCreateParams::ThirdPartyVerification::OrHash,
           trust: Increase::EntityCreateParams::Trust::OrHash,
@@ -169,6 +188,9 @@ module Increase
         risk_rating: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
+        # The terms that the Entity agreed to. Not all programs are required to submit
+        # this data.
+        terms_agreements: nil,
         # If you are using a third-party service for identity verification, you can use
         # this field to associate this Entity with the identifier that represents them in
         # that service.
@@ -193,6 +215,8 @@ module Increase
             risk_rating: Increase::EntityCreateParams::RiskRating,
             supplemental_documents:
               T::Array[Increase::EntityCreateParams::SupplementalDocument],
+            terms_agreements:
+              T::Array[Increase::EntityCreateParams::TermsAgreement],
             third_party_verification:
               Increase::EntityCreateParams::ThirdPartyVerification,
             trust: Increase::EntityCreateParams::Trust,
@@ -2781,6 +2805,53 @@ module Increase
         end
 
         sig { override.returns({ file_id: String }) }
+        def to_hash
+        end
+      end
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::TermsAgreement,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The timestamp of when the Entity agreed to the terms.
+        sig { returns(Time) }
+        attr_accessor :agreed_at
+
+        # The IP address the Entity accessed reviewed the terms from.
+        sig { returns(String) }
+        attr_accessor :ip_address
+
+        # The URL of the terms agreement. This link will be provided by your bank partner.
+        sig { returns(String) }
+        attr_accessor :terms_url
+
+        sig do
+          params(
+            agreed_at: Time,
+            ip_address: String,
+            terms_url: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The timestamp of when the Entity agreed to the terms.
+          agreed_at:,
+          # The IP address the Entity accessed reviewed the terms from.
+          ip_address:,
+          # The URL of the terms agreement. This link will be provided by your bank partner.
+          terms_url:
+        )
+        end
+
+        sig do
+          override.returns(
+            { agreed_at: Time, ip_address: String, terms_url: String }
+          )
+        end
         def to_hash
         end
       end

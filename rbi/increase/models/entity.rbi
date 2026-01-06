@@ -100,6 +100,11 @@ module Increase
       sig { returns(T::Array[Increase::EntitySupplementalDocument]) }
       attr_accessor :supplemental_documents
 
+      # The terms that the Entity agreed to. Not all programs are required to submit
+      # this data.
+      sig { returns(T::Array[Increase::Entity::TermsAgreement]) }
+      attr_accessor :terms_agreements
+
       # If you are using a third-party service for identity verification, you can use
       # this field to associate this Entity with the identifier that represents them in
       # that service.
@@ -145,6 +150,7 @@ module Increase
           structure: Increase::Entity::Structure::OrSymbol,
           supplemental_documents:
             T::Array[Increase::EntitySupplementalDocument::OrHash],
+          terms_agreements: T::Array[Increase::Entity::TermsAgreement::OrHash],
           third_party_verification:
             T.nilable(Increase::Entity::ThirdPartyVerification::OrHash),
           trust: T.nilable(Increase::Entity::Trust::OrHash),
@@ -188,6 +194,9 @@ module Increase
         # first 10 documents for an entity. If an entity has more than 10 documents, use
         # the GET /entity_supplemental_documents list endpoint to retrieve them.
         supplemental_documents:,
+        # The terms that the Entity agreed to. Not all programs are required to submit
+        # this data.
+        terms_agreements:,
         # If you are using a third-party service for identity verification, you can use
         # this field to associate this Entity with the identifier that represents them in
         # that service.
@@ -218,6 +227,7 @@ module Increase
             structure: Increase::Entity::Structure::TaggedSymbol,
             supplemental_documents:
               T::Array[Increase::EntitySupplementalDocument],
+            terms_agreements: T::Array[Increase::Entity::TermsAgreement],
             third_party_verification:
               T.nilable(Increase::Entity::ThirdPartyVerification),
             trust: T.nilable(Increase::Entity::Trust),
@@ -1727,6 +1737,50 @@ module Increase
           override.returns(T::Array[Increase::Entity::Structure::TaggedSymbol])
         end
         def self.values
+        end
+      end
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Entity::TermsAgreement, Increase::Internal::AnyHash)
+          end
+
+        # The timestamp of when the Entity agreed to the terms.
+        sig { returns(Time) }
+        attr_accessor :agreed_at
+
+        # The IP address the Entity accessed reviewed the terms from.
+        sig { returns(String) }
+        attr_accessor :ip_address
+
+        # The URL of the terms agreement. This link will be provided by your bank partner.
+        sig { returns(String) }
+        attr_accessor :terms_url
+
+        sig do
+          params(
+            agreed_at: Time,
+            ip_address: String,
+            terms_url: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The timestamp of when the Entity agreed to the terms.
+          agreed_at:,
+          # The IP address the Entity accessed reviewed the terms from.
+          ip_address:,
+          # The URL of the terms agreement. This link will be provided by your bank partner.
+          terms_url:
+        )
+        end
+
+        sig do
+          override.returns(
+            { agreed_at: Time, ip_address: String, terms_url: String }
+          )
+        end
+        def to_hash
         end
       end
 

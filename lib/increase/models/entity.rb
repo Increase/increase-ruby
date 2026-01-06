@@ -93,6 +93,13 @@ module Increase
       required :supplemental_documents,
                -> { Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument] }
 
+      # @!attribute terms_agreements
+      #   The terms that the Entity agreed to. Not all programs are required to submit
+      #   this data.
+      #
+      #   @return [Array<Increase::Models::Entity::TermsAgreement>]
+      required :terms_agreements, -> { Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement] }
+
       # @!attribute third_party_verification
       #   If you are using a third-party service for identity verification, you can use
       #   this field to associate this Entity with the identifier that represents them in
@@ -114,7 +121,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Entity::Type]
       required :type, enum: -> { Increase::Entity::Type }
 
-      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, third_party_verification:, trust:, type:)
+      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Entity}
       #   for more details.
       #
@@ -146,6 +153,8 @@ module Increase
       #   @param structure [Symbol, Increase::Models::Entity::Structure] The entity's legal structure.
       #
       #   @param supplemental_documents [Array<Increase::Models::EntitySupplementalDocument>] Additional documentation associated with the entity. This is limited to the firs
+      #
+      #   @param terms_agreements [Array<Increase::Models::Entity::TermsAgreement>] The terms that the Entity agreed to. Not all programs are required to submit thi
       #
       #   @param third_party_verification [Increase::Models::Entity::ThirdPartyVerification, nil] If you are using a third-party service for identity verification, you can use th
       #
@@ -1025,6 +1034,36 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        # @!attribute agreed_at
+        #   The timestamp of when the Entity agreed to the terms.
+        #
+        #   @return [Time]
+        required :agreed_at, Time
+
+        # @!attribute ip_address
+        #   The IP address the Entity accessed reviewed the terms from.
+        #
+        #   @return [String]
+        required :ip_address, String
+
+        # @!attribute terms_url
+        #   The URL of the terms agreement. This link will be provided by your bank partner.
+        #
+        #   @return [String]
+        required :terms_url, String
+
+        # @!method initialize(agreed_at:, ip_address:, terms_url:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Entity::TermsAgreement} for more details.
+        #
+        #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
+        #
+        #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
+        #
+        #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
 
       # @see Increase::Models::Entity#third_party_verification
