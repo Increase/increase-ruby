@@ -25,6 +25,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -54,6 +55,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -83,6 +85,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -119,6 +122,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -148,6 +152,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -181,6 +186,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -210,6 +216,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -251,6 +258,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -284,6 +292,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -318,6 +327,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type
@@ -347,6 +357,7 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,
         supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
+        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
         type: Increase::Entity::Type

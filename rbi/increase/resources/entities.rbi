@@ -18,6 +18,8 @@ module Increase
             T::Array[
               Increase::EntityCreateParams::SupplementalDocument::OrHash
             ],
+          terms_agreements:
+            T::Array[Increase::EntityCreateParams::TermsAgreement::OrHash],
           third_party_verification:
             Increase::EntityCreateParams::ThirdPartyVerification::OrHash,
           trust: Increase::EntityCreateParams::Trust::OrHash,
@@ -48,6 +50,9 @@ module Increase
         risk_rating: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
+        # The terms that the Entity agreed to. Not all programs are required to submit
+        # this data.
+        terms_agreements: nil,
         # If you are using a third-party service for identity verification, you can use
         # this field to associate this Entity with the identifier that represents them in
         # that service.
