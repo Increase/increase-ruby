@@ -15,6 +15,7 @@ module Increase
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
+        terms_agreements: ::Array[Increase::Entity::TermsAgreement],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
         type: Increase::Models::Entity::type_
@@ -47,6 +48,8 @@ module Increase
 
       attr_accessor supplemental_documents: ::Array[Increase::EntitySupplementalDocument]
 
+      attr_accessor terms_agreements: ::Array[Increase::Entity::TermsAgreement]
+
       attr_accessor third_party_verification: Increase::Entity::ThirdPartyVerification?
 
       attr_accessor trust: Increase::Entity::Trust?
@@ -67,6 +70,7 @@ module Increase
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
+        terms_agreements: ::Array[Increase::Entity::TermsAgreement],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
         type: Increase::Models::Entity::type_
@@ -86,6 +90,7 @@ module Increase
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
+        terms_agreements: ::Array[Increase::Entity::TermsAgreement],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
         type: Increase::Models::Entity::type_
@@ -797,6 +802,29 @@ module Increase
         GOVERNMENT_AUTHORITY: :government_authority
 
         def self?.values: -> ::Array[Increase::Models::Entity::structure]
+      end
+
+      type terms_agreement =
+        { agreed_at: Time, ip_address: String, terms_url: String }
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        attr_accessor agreed_at: Time
+
+        attr_accessor ip_address: String
+
+        attr_accessor terms_url: String
+
+        def initialize: (
+          agreed_at: Time,
+          ip_address: String,
+          terms_url: String
+        ) -> void
+
+        def to_hash: -> {
+          agreed_at: Time,
+          ip_address: String,
+          terms_url: String
+        }
       end
 
       type third_party_verification =

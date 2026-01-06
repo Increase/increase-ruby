@@ -8,7 +8,7 @@ module Increase
       #
       # Create an Entity
       #
-      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param structure [Symbol, Increase::Models::EntityCreateParams::Structure] The type of Entity to create.
       #
@@ -25,6 +25,8 @@ module Increase
       # @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       # @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
+      #
+      # @param terms_agreements [Array<Increase::Models::EntityCreateParams::TermsAgreement>] The terms that the Entity agreed to. Not all programs are required to submit thi
       #
       # @param third_party_verification [Increase::Models::EntityCreateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
       #

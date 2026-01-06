@@ -63,6 +63,14 @@ module Increase
       optional :supplemental_documents,
                -> { Increase::Internal::Type::ArrayOf[Increase::EntityCreateParams::SupplementalDocument] }
 
+      # @!attribute terms_agreements
+      #   The terms that the Entity agreed to. Not all programs are required to submit
+      #   this data.
+      #
+      #   @return [Array<Increase::Models::EntityCreateParams::TermsAgreement>, nil]
+      optional :terms_agreements,
+               -> { Increase::Internal::Type::ArrayOf[Increase::EntityCreateParams::TermsAgreement] }
+
       # @!attribute third_party_verification
       #   If you are using a third-party service for identity verification, you can use
       #   this field to associate this Entity with the identifier that represents them in
@@ -78,7 +86,7 @@ module Increase
       #   @return [Increase::Models::EntityCreateParams::Trust, nil]
       optional :trust, -> { Increase::EntityCreateParams::Trust }
 
-      # @!method initialize(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityCreateParams} for more details.
       #
@@ -97,6 +105,8 @@ module Increase
       #   @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
       #
       #   @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
+      #
+      #   @param terms_agreements [Array<Increase::Models::EntityCreateParams::TermsAgreement>] The terms that the Entity agreed to. Not all programs are required to submit thi
       #
       #   @param third_party_verification [Increase::Models::EntityCreateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
       #
@@ -1512,6 +1522,36 @@ module Increase
 
         # @!method initialize(file_id:)
         #   @param file_id [String] The identifier of the File containing the document.
+      end
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        # @!attribute agreed_at
+        #   The timestamp of when the Entity agreed to the terms.
+        #
+        #   @return [Time]
+        required :agreed_at, Time
+
+        # @!attribute ip_address
+        #   The IP address the Entity accessed reviewed the terms from.
+        #
+        #   @return [String]
+        required :ip_address, String
+
+        # @!attribute terms_url
+        #   The URL of the terms agreement. This link will be provided by your bank partner.
+        #
+        #   @return [String]
+        required :terms_url, String
+
+        # @!method initialize(agreed_at:, ip_address:, terms_url:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityCreateParams::TermsAgreement} for more details.
+        #
+        #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
+        #
+        #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
+        #
+        #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
 
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
