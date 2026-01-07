@@ -187,6 +187,14 @@ module Increase
         sig { params(email: String).void }
         attr_writer :email
 
+        # The two-letter United States Postal Service (USPS) abbreviation for the
+        # corporation's state of incorporation.
+        sig { returns(T.nilable(String)) }
+        attr_reader :incorporation_state
+
+        sig { params(incorporation_state: String).void }
+        attr_writer :incorporation_state
+
         # The North American Industry Classification System (NAICS) code for the
         # corporation's primary line of business. This is a number, like `5132` for
         # `Software Publishers`. A full list of classification codes is available
@@ -210,6 +218,7 @@ module Increase
           params(
             address: Increase::EntityUpdateParams::Corporation::Address::OrHash,
             email: String,
+            incorporation_state: String,
             industry_code: String,
             name: String
           ).returns(T.attached_class)
@@ -221,6 +230,9 @@ module Increase
           # An email address for the business. Not every program requires an email for
           # submitted Entities.
           email: nil,
+          # The two-letter United States Postal Service (USPS) abbreviation for the
+          # corporation's state of incorporation.
+          incorporation_state: nil,
           # The North American Industry Classification System (NAICS) code for the
           # corporation's primary line of business. This is a number, like `5132` for
           # `Software Publishers`. A full list of classification codes is available
@@ -236,6 +248,7 @@ module Increase
             {
               address: Increase::EntityUpdateParams::Corporation::Address,
               email: String,
+              incorporation_state: String,
               industry_code: String,
               name: String
             }
