@@ -4600,6 +4600,12 @@ module Increase
               required :cardholder_cancellation,
                        -> { Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::CardholderCancellation }
 
+              # @!attribute explanation
+              #   Explanation of what was ordered and was not as described.
+              #
+              #   @return [String]
+              required :explanation, String
+
               # @!attribute merchant_resolution_attempted
               #   Merchant resolution attempted.
               #
@@ -4613,11 +4619,13 @@ module Increase
               #   @return [Date]
               required :received_at, Date
 
-              # @!method initialize(cardholder_cancellation:, merchant_resolution_attempted:, received_at:)
+              # @!method initialize(cardholder_cancellation:, explanation:, merchant_resolution_attempted:, received_at:)
               #   Services not as described. Present if and only if `category` is
               #   `consumer_services_not_as_described`.
               #
               #   @param cardholder_cancellation [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::CardholderCancellation] Cardholder cancellation.
+              #
+              #   @param explanation [String] Explanation of what was ordered and was not as described.
               #
               #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::MerchantResolutionAttempted] Merchant resolution attempted.
               #

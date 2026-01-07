@@ -9599,6 +9599,10 @@ module Increase
               end
               attr_writer :cardholder_cancellation
 
+              # Explanation of what was ordered and was not as described.
+              sig { returns(String) }
+              attr_accessor :explanation
+
               # Merchant resolution attempted.
               sig do
                 returns(
@@ -9617,6 +9621,7 @@ module Increase
                 params(
                   cardholder_cancellation:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::CardholderCancellation::OrHash,
+                  explanation: String,
                   merchant_resolution_attempted:
                     Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::MerchantResolutionAttempted::OrSymbol,
                   received_at: Date
@@ -9625,6 +9630,8 @@ module Increase
               def self.new(
                 # Cardholder cancellation.
                 cardholder_cancellation:,
+                # Explanation of what was ordered and was not as described.
+                explanation:,
                 # Merchant resolution attempted.
                 merchant_resolution_attempted:,
                 # Received at.
@@ -9637,6 +9644,7 @@ module Increase
                   {
                     cardholder_cancellation:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::CardholderCancellation,
+                    explanation: String,
                     merchant_resolution_attempted:
                       Increase::CardDispute::Visa::UserSubmission::Chargeback::ConsumerServicesNotAsDescribed::MerchantResolutionAttempted::TaggedSymbol,
                     received_at: Date

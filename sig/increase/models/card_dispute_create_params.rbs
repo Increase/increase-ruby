@@ -2557,6 +2557,7 @@ module Increase
         type consumer_services_not_as_described =
           {
             cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation,
+            explanation: String,
             merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted,
             received_at: Date
           }
@@ -2564,18 +2565,22 @@ module Increase
         class ConsumerServicesNotAsDescribed < Increase::Internal::Type::BaseModel
           attr_accessor cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation
 
+          attr_accessor explanation: String
+
           attr_accessor merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted
 
           attr_accessor received_at: Date
 
           def initialize: (
             cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation,
+            explanation: String,
             merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted,
             received_at: Date
           ) -> void
 
           def to_hash: -> {
             cardholder_cancellation: Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation,
+            explanation: String,
             merchant_resolution_attempted: Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::merchant_resolution_attempted,
             received_at: Date
           }
