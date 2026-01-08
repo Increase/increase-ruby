@@ -1,0 +1,15 @@
+module Increase
+  module Models
+    type swift_transfer_cancel_params =
+      {  } & Increase::Internal::Type::request_parameters
+
+    class SwiftTransferCancelParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Increase::request_opts) -> void
+
+      def to_hash: -> { request_options: Increase::RequestOptions }
+    end
+  end
+end
