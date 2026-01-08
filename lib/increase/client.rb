@@ -104,6 +104,9 @@ module Increase
     # @return [Increase::Resources::InboundFednowTransfers]
     attr_reader :inbound_fednow_transfers
 
+    # @return [Increase::Resources::SwiftTransfers]
+    attr_reader :swift_transfers
+
     # @return [Increase::Resources::CheckDeposits]
     attr_reader :check_deposits
 
@@ -281,6 +284,7 @@ module Increase
         Increase::Resources::InboundRealTimePaymentsTransfers.new(client: self)
       @fednow_transfers = Increase::Resources::FednowTransfers.new(client: self)
       @inbound_fednow_transfers = Increase::Resources::InboundFednowTransfers.new(client: self)
+      @swift_transfers = Increase::Resources::SwiftTransfers.new(client: self)
       @check_deposits = Increase::Resources::CheckDeposits.new(client: self)
       @lockboxes = Increase::Resources::Lockboxes.new(client: self)
       @inbound_mail_items = Increase::Resources::InboundMailItems.new(client: self)

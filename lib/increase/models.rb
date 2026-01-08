@@ -509,6 +509,18 @@ module Increase
 
   SupplementalDocumentListParams = Increase::Models::SupplementalDocumentListParams
 
+  SwiftTransfer = Increase::Models::SwiftTransfer
+
+  SwiftTransferApproveParams = Increase::Models::SwiftTransferApproveParams
+
+  SwiftTransferCancelParams = Increase::Models::SwiftTransferCancelParams
+
+  SwiftTransferCreateParams = Increase::Models::SwiftTransferCreateParams
+
+  SwiftTransferListParams = Increase::Models::SwiftTransferListParams
+
+  SwiftTransferRetrieveParams = Increase::Models::SwiftTransferRetrieveParams
+
   Transaction = Increase::Models::Transaction
 
   TransactionListParams = Increase::Models::TransactionListParams
