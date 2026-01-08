@@ -69,6 +69,8 @@ module Increase
 
     attr_reader inbound_fednow_transfers: Increase::Resources::InboundFednowTransfers
 
+    attr_reader swift_transfers: Increase::Resources::SwiftTransfers
+
     attr_reader check_deposits: Increase::Resources::CheckDeposits
 
     attr_reader lockboxes: Increase::Resources::Lockboxes

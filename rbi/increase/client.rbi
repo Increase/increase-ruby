@@ -103,6 +103,9 @@ module Increase
     sig { returns(Increase::Resources::InboundFednowTransfers) }
     attr_reader :inbound_fednow_transfers
 
+    sig { returns(Increase::Resources::SwiftTransfers) }
+    attr_reader :swift_transfers
+
     sig { returns(Increase::Resources::CheckDeposits) }
     attr_reader :check_deposits
 

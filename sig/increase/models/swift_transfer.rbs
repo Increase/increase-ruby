@@ -1,0 +1,349 @@
+module Increase
+  module Models
+    type swift_transfer =
+      {
+        id: String,
+        account_id: String,
+        account_number: String,
+        amount: Integer,
+        bank_identification_code: String,
+        created_at: Time,
+        created_by: Increase::SwiftTransfer::CreatedBy,
+        creditor_address: Increase::SwiftTransfer::CreditorAddress,
+        creditor_name: String,
+        debtor_address: Increase::SwiftTransfer::DebtorAddress,
+        debtor_name: String,
+        idempotency_key: String?,
+        instructed_amount: Integer,
+        instructed_currency: Increase::Models::SwiftTransfer::instructed_currency,
+        pending_transaction_id: String?,
+        routing_number: String?,
+        source_account_number_id: String,
+        status: Increase::Models::SwiftTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::SwiftTransfer::type_,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
+      }
+
+    class SwiftTransfer < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor account_number: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor bank_identification_code: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor created_by: Increase::SwiftTransfer::CreatedBy
+
+      attr_accessor creditor_address: Increase::SwiftTransfer::CreditorAddress
+
+      attr_accessor creditor_name: String
+
+      attr_accessor debtor_address: Increase::SwiftTransfer::DebtorAddress
+
+      attr_accessor debtor_name: String
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor instructed_amount: Integer
+
+      attr_accessor instructed_currency: Increase::Models::SwiftTransfer::instructed_currency
+
+      attr_accessor pending_transaction_id: String?
+
+      attr_accessor routing_number: String?
+
+      attr_accessor source_account_number_id: String
+
+      attr_accessor status: Increase::Models::SwiftTransfer::status
+
+      attr_accessor transaction_id: String?
+
+      attr_accessor type: Increase::Models::SwiftTransfer::type_
+
+      attr_accessor unique_end_to_end_transaction_reference: String
+
+      attr_accessor unstructured_remittance_information: String
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        account_number: String,
+        amount: Integer,
+        bank_identification_code: String,
+        created_at: Time,
+        created_by: Increase::SwiftTransfer::CreatedBy,
+        creditor_address: Increase::SwiftTransfer::CreditorAddress,
+        creditor_name: String,
+        debtor_address: Increase::SwiftTransfer::DebtorAddress,
+        debtor_name: String,
+        idempotency_key: String?,
+        instructed_amount: Integer,
+        instructed_currency: Increase::Models::SwiftTransfer::instructed_currency,
+        pending_transaction_id: String?,
+        routing_number: String?,
+        source_account_number_id: String,
+        status: Increase::Models::SwiftTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::SwiftTransfer::type_,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number: String,
+        amount: Integer,
+        bank_identification_code: String,
+        created_at: Time,
+        created_by: Increase::SwiftTransfer::CreatedBy,
+        creditor_address: Increase::SwiftTransfer::CreditorAddress,
+        creditor_name: String,
+        debtor_address: Increase::SwiftTransfer::DebtorAddress,
+        debtor_name: String,
+        idempotency_key: String?,
+        instructed_amount: Integer,
+        instructed_currency: Increase::Models::SwiftTransfer::instructed_currency,
+        pending_transaction_id: String?,
+        routing_number: String?,
+        source_account_number_id: String,
+        status: Increase::Models::SwiftTransfer::status,
+        transaction_id: String?,
+        type: Increase::Models::SwiftTransfer::type_,
+        unique_end_to_end_transaction_reference: String,
+        unstructured_remittance_information: String
+      }
+
+      type created_by =
+        {
+          api_key: Increase::SwiftTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::SwiftTransfer::CreatedBy::category,
+          oauth_application: Increase::SwiftTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::SwiftTransfer::CreatedBy::User?
+        }
+
+      class CreatedBy < Increase::Internal::Type::BaseModel
+        attr_accessor api_key: Increase::SwiftTransfer::CreatedBy::APIKey?
+
+        attr_accessor category: Increase::Models::SwiftTransfer::CreatedBy::category
+
+        attr_accessor oauth_application: Increase::SwiftTransfer::CreatedBy::OAuthApplication?
+
+        attr_accessor user: Increase::SwiftTransfer::CreatedBy::User?
+
+        def initialize: (
+          api_key: Increase::SwiftTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::SwiftTransfer::CreatedBy::category,
+          oauth_application: Increase::SwiftTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::SwiftTransfer::CreatedBy::User?
+        ) -> void
+
+        def to_hash: -> {
+          api_key: Increase::SwiftTransfer::CreatedBy::APIKey?,
+          category: Increase::Models::SwiftTransfer::CreatedBy::category,
+          oauth_application: Increase::SwiftTransfer::CreatedBy::OAuthApplication?,
+          user: Increase::SwiftTransfer::CreatedBy::User?
+        }
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
+        end
+
+        type category = :api_key | :oauth_application | :user
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # An API key. Details will be under the `api_key` object.
+          API_KEY: :api_key
+
+          # An OAuth application you connected to Increase. Details will be under the `oauth_application` object.
+          OAUTH_APPLICATION: :oauth_application
+
+          # A User in the Increase dashboard. Details will be under the `user` object.
+          USER: :user
+
+          def self?.values: -> ::Array[Increase::Models::SwiftTransfer::CreatedBy::category]
+        end
+
+        type oauth_application = { name: String }
+
+        class OAuthApplication < Increase::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          def initialize: (name: String) -> void
+
+          def to_hash: -> { name: String }
+        end
+
+        type user = { email: String }
+
+        class User < Increase::Internal::Type::BaseModel
+          attr_accessor email: String
+
+          def initialize: (email: String) -> void
+
+          def to_hash: -> { email: String }
+        end
+      end
+
+      type creditor_address =
+        {
+          city: String?,
+          country: String,
+          :line1 => String,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String
+
+        attr_accessor line1: String
+
+        attr_accessor line2: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          country: String,
+          line1: String,
+          line2: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String,
+          :line1 => String,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
+      end
+
+      type debtor_address =
+        {
+          city: String?,
+          country: String,
+          :line1 => String,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String
+
+        attr_accessor line1: String
+
+        attr_accessor line2: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          country: String,
+          line1: String,
+          line2: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String,
+          :line1 => String,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
+      end
+
+      type instructed_currency = :USD
+
+      module InstructedCurrency
+        extend Increase::Internal::Type::Enum
+
+        # United States Dollar
+        USD: :USD
+
+        def self?.values: -> ::Array[Increase::Models::SwiftTransfer::instructed_currency]
+      end
+
+      type status =
+        :pending_approval
+        | :canceled
+        | :pending_reviewing
+        | :requires_attention
+        | :pending_initiating
+        | :initiated
+        | :rejected
+        | :returned
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The transfer is pending approval.
+        PENDING_APPROVAL: :pending_approval
+
+        # The transfer has been canceled.
+        CANCELED: :canceled
+
+        # The transfer is pending review by Increase.
+        PENDING_REVIEWING: :pending_reviewing
+
+        # The transfer requires attention from an Increase operator.
+        REQUIRES_ATTENTION: :requires_attention
+
+        # The transfer is pending initiation.
+        PENDING_INITIATING: :pending_initiating
+
+        # The transfer has been initiated.
+        INITIATED: :initiated
+
+        # The transfer has been rejected by Increase.
+        REJECTED: :rejected
+
+        # The transfer has been returned.
+        RETURNED: :returned
+
+        def self?.values: -> ::Array[Increase::Models::SwiftTransfer::status]
+      end
+
+      type type_ = :swift_transfer
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        SWIFT_TRANSFER: :swift_transfer
+
+        def self?.values: -> ::Array[Increase::Models::SwiftTransfer::type_]
+      end
+    end
+  end
+end
