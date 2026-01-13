@@ -90,6 +90,32 @@ puts(file.id)
 
 Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
 
+### Webhook verification
+
+Verifying webhook signatures is _optional but encouraged_.
+
+For more information about webhooks, see [the API docs](https://increase.com/documentation/webhooks#events-and-webhooks).
+
+### Parsing webhook payloads
+
+For most use cases, you will likely want to verify the webhook and parse the payload at the same time. To achieve this, we provide the method `Increase::Webhooks.unwrap`, which parses a webhook request and verifies that it was sent by Increase. This method will raise an error if the signature is invalid.
+
+Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first). The `.unwrap()` method will parse this JSON for you into an event object after verifying the webhook was sent from Increase.
+
+```ruby
+require 'sinatra'
+
+post '/webhook' do
+  request.body.rewind
+
+  event = Increase::Webhooks.unwrap(
+    request.body.read,
+    request.get_header('Increase-Webhook-Signature'),
+    "your webhook secret"
+  )
+end
+```
+
 ### Handling errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Increase::Errors::APIError` will be thrown:
