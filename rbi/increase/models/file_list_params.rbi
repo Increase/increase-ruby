@@ -389,6 +389,13 @@ module Increase
           EXPORT =
             T.let(:export, Increase::FileListParams::Purpose::In::TaggedSymbol)
 
+          # A fee statement.
+          FEE_STATEMENT =
+            T.let(
+              :fee_statement,
+              Increase::FileListParams::Purpose::In::TaggedSymbol
+            )
+
           # An attachment to an Unusual Activity Report.
           UNUSUAL_ACTIVITY_REPORT_ATTACHMENT =
             T.let(
