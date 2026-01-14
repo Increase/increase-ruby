@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.176.0 (2026-01-14)
+
+Full Changelog: [v1.175.0...v1.176.0](https://github.com/Increase/increase-ruby/compare/v1.175.0...v1.176.0)
+
+### Features
+
+* **api:** api update ([24826b1](https://github.com/Increase/increase-ruby/commit/24826b1ba2ca802a5211618a873ca6ff3424b0b1))
+
+
+### Chores
+
+* move `cgi` into dependencies for ruby 4 ([0e8a6bc](https://github.com/Increase/increase-ruby/commit/0e8a6bc96473cf0540c8a0be18c4c4ef915de00e))
+
 ## 1.175.0 (2026-01-08)
 
 Full Changelog: [v1.174.0...v1.175.0](https://github.com/Increase/increase-ruby/compare/v1.174.0...v1.175.0)
