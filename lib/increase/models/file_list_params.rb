@@ -191,6 +191,9 @@ module Increase
           # The results of an Export you requested via the dashboard or API.
           EXPORT = :export
 
+          # A fee statement.
+          FEE_STATEMENT = :fee_statement
+
           # An attachment to an Unusual Activity Report.
           UNUSUAL_ACTIVITY_REPORT_ATTACHMENT = :unusual_activity_report_attachment
 
