@@ -252,6 +252,10 @@ module Increase
         # The results of an Export you requested via the dashboard or API.
         EXPORT = T.let(:export, Increase::File::Purpose::TaggedSymbol)
 
+        # A fee statement.
+        FEE_STATEMENT =
+          T.let(:fee_statement, Increase::File::Purpose::TaggedSymbol)
+
         # An attachment to an Unusual Activity Report.
         UNUSUAL_ACTIVITY_REPORT_ATTACHMENT =
           T.let(
