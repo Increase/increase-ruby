@@ -42,6 +42,13 @@ module Increase
       )
       end
 
+      sig { params(payload: String).returns(T.anything) }
+      def unwrap(
+        # The raw webhook payload as a string
+        payload
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)
