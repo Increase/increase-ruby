@@ -285,6 +285,8 @@ module Increase
   EventSubscriptionUpdateParams =
     Increase::Models::EventSubscriptionUpdateParams
 
+  EventUnwrapParams = Increase::Models::EventUnwrapParams
+
   Export = Increase::Models::Export
 
   ExportCreateParams = Increase::Models::ExportCreateParams
@@ -563,6 +565,12 @@ module Increase
   TransactionListParams = Increase::Models::TransactionListParams
 
   TransactionRetrieveParams = Increase::Models::TransactionRetrieveParams
+
+  UnwrapWebhookEvent =
+    T.let(
+      Increase::Models::UnwrapWebhookEvent,
+      Increase::Internal::Type::Converter
+    )
 
   WireDrawdownRequest = Increase::Models::WireDrawdownRequest
 
