@@ -1,0 +1,5 @@
+module Increase
+  module Models
+    UnwrapWebhookEvent: Increase::Internal::Type::Converter
+  end
+end

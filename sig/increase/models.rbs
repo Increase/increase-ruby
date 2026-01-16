@@ -251,6 +251,8 @@ module Increase
 
   class EventSubscriptionUpdateParams = Increase::Models::EventSubscriptionUpdateParams
 
+  class EventUnwrapParams = Increase::Models::EventUnwrapParams
+
   class Export = Increase::Models::Export
 
   class ExportCreateParams = Increase::Models::ExportCreateParams
@@ -484,6 +486,8 @@ module Increase
   class TransactionListParams = Increase::Models::TransactionListParams
 
   class TransactionRetrieveParams = Increase::Models::TransactionRetrieveParams
+
+  UnwrapWebhookEvent: Increase::Internal::Type::Converter
 
   class WireDrawdownRequest = Increase::Models::WireDrawdownRequest
 
