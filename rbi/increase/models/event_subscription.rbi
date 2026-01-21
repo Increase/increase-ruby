@@ -688,6 +688,20 @@ module Increase
             Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
           )
 
+        # Occurs whenever a Physical Check is created.
+        PHYSICAL_CHECK_CREATED =
+          T.let(
+            :"physical_check.created",
+            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
+          )
+
+        # Occurs whenever a Physical Check is updated.
+        PHYSICAL_CHECK_UPDATED =
+          T.let(
+            :"physical_check.updated",
+            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
+          )
+
         # Occurs whenever a Program is created.
         PROGRAM_CREATED =
           T.let(

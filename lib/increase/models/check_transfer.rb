@@ -913,16 +913,6 @@ module Increase
 
       # @see Increase::Models::CheckTransfer#submission
       class Submission < Increase::Internal::Type::BaseModel
-        # @!attribute address_correction_action
-        #   Per USPS requirements, Increase will standardize the address to USPS standards
-        #   and check it against the USPS National Change of Address (NCOA) database before
-        #   mailing it. This indicates what modifications, if any, were made to the address
-        #   before printing and mailing the check.
-        #
-        #   @return [Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction]
-        required :address_correction_action,
-                 enum: -> { Increase::CheckTransfer::Submission::AddressCorrectionAction }
-
         # @!attribute submitted_address
         #   The address we submitted to the printer. This is what is physically printed on
         #   the check.
@@ -931,47 +921,20 @@ module Increase
         required :submitted_address, -> { Increase::CheckTransfer::Submission::SubmittedAddress }
 
         # @!attribute submitted_at
-        #   When this check transfer was submitted to our check printer.
+        #   When this check was submitted to our check printer.
         #
         #   @return [Time]
         required :submitted_at, Time
 
-        # @!method initialize(address_correction_action:, submitted_address:, submitted_at:)
+        # @!method initialize(submitted_address:, submitted_at:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransfer::Submission} for more details.
         #
         #   After the transfer is submitted, this will contain supplemental details.
         #
-        #   @param address_correction_action [Symbol, Increase::Models::CheckTransfer::Submission::AddressCorrectionAction] Per USPS requirements, Increase will standardize the address to USPS standards a
-        #
         #   @param submitted_address [Increase::Models::CheckTransfer::Submission::SubmittedAddress] The address we submitted to the printer. This is what is physically printed on t
         #
-        #   @param submitted_at [Time] When this check transfer was submitted to our check printer.
-
-        # Per USPS requirements, Increase will standardize the address to USPS standards
-        # and check it against the USPS National Change of Address (NCOA) database before
-        # mailing it. This indicates what modifications, if any, were made to the address
-        # before printing and mailing the check.
-        #
-        # @see Increase::Models::CheckTransfer::Submission#address_correction_action
-        module AddressCorrectionAction
-          extend Increase::Internal::Type::Enum
-
-          # No address correction took place.
-          NONE = :none
-
-          # The address was standardized.
-          STANDARDIZATION = :standardization
-
-          # The address was first standardized and then changed because the recipient moved.
-          STANDARDIZATION_WITH_ADDRESS_CHANGE = :standardization_with_address_change
-
-          # An error occurred while correcting the address. This typically means the USPS could not find that address. The address was not changed.
-          ERROR = :error
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param submitted_at [Time] When this check was submitted to our check printer.
 
         # @see Increase::Models::CheckTransfer::Submission#submitted_address
         class SubmittedAddress < Increase::Internal::Type::BaseModel
