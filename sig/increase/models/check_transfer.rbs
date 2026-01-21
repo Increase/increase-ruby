@@ -661,53 +661,24 @@ module Increase
 
       type submission =
         {
-          address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
           submitted_at: Time
         }
 
       class Submission < Increase::Internal::Type::BaseModel
-        attr_accessor address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action
-
         attr_accessor submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress
 
         attr_accessor submitted_at: Time
 
         def initialize: (
-          address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
           submitted_at: Time
         ) -> void
 
         def to_hash: -> {
-          address_correction_action: Increase::Models::CheckTransfer::Submission::address_correction_action,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
           submitted_at: Time
         }
-
-        type address_correction_action =
-          :none
-          | :standardization
-          | :standardization_with_address_change
-          | :error
-
-        module AddressCorrectionAction
-          extend Increase::Internal::Type::Enum
-
-          # No address correction took place.
-          NONE: :none
-
-          # The address was standardized.
-          STANDARDIZATION: :standardization
-
-          # The address was first standardized and then changed because the recipient moved.
-          STANDARDIZATION_WITH_ADDRESS_CHANGE: :standardization_with_address_change
-
-          # An error occurred while correcting the address. This typically means the USPS could not find that address. The address was not changed.
-          ERROR: :error
-
-          def self?.values: -> ::Array[Increase::Models::CheckTransfer::Submission::address_correction_action]
-        end
 
         type submitted_address =
           {
