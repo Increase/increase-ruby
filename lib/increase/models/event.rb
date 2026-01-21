@@ -310,6 +310,12 @@ module Increase
         # Occurs whenever a Physical Card Profile is updated.
         PHYSICAL_CARD_PROFILE_UPDATED = :"physical_card_profile.updated"
 
+        # Occurs whenever a Physical Check is created.
+        PHYSICAL_CHECK_CREATED = :"physical_check.created"
+
+        # Occurs whenever a Physical Check is updated.
+        PHYSICAL_CHECK_UPDATED = :"physical_check.updated"
+
         # Occurs whenever a Program is created.
         PROGRAM_CREATED = :"program.created"
 

@@ -1529,17 +1529,6 @@ module Increase
             )
           end
 
-        # Per USPS requirements, Increase will standardize the address to USPS standards
-        # and check it against the USPS National Change of Address (NCOA) database before
-        # mailing it. This indicates what modifications, if any, were made to the address
-        # before printing and mailing the check.
-        sig do
-          returns(
-            Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol
-          )
-        end
-        attr_accessor :address_correction_action
-
         # The address we submitted to the printer. This is what is physically printed on
         # the check.
         sig { returns(Increase::CheckTransfer::Submission::SubmittedAddress) }
@@ -1553,30 +1542,23 @@ module Increase
         end
         attr_writer :submitted_address
 
-        # When this check transfer was submitted to our check printer.
+        # When this check was submitted to our check printer.
         sig { returns(Time) }
         attr_accessor :submitted_at
 
         # After the transfer is submitted, this will contain supplemental details.
         sig do
           params(
-            address_correction_action:
-              Increase::CheckTransfer::Submission::AddressCorrectionAction::OrSymbol,
             submitted_address:
               Increase::CheckTransfer::Submission::SubmittedAddress::OrHash,
             submitted_at: Time
           ).returns(T.attached_class)
         end
         def self.new(
-          # Per USPS requirements, Increase will standardize the address to USPS standards
-          # and check it against the USPS National Change of Address (NCOA) database before
-          # mailing it. This indicates what modifications, if any, were made to the address
-          # before printing and mailing the check.
-          address_correction_action:,
           # The address we submitted to the printer. This is what is physically printed on
           # the check.
           submitted_address:,
-          # When this check transfer was submitted to our check printer.
+          # When this check was submitted to our check printer.
           submitted_at:
         )
         end
@@ -1584,8 +1566,6 @@ module Increase
         sig do
           override.returns(
             {
-              address_correction_action:
-                Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol,
               submitted_address:
                 Increase::CheckTransfer::Submission::SubmittedAddress,
               submitted_at: Time
@@ -1593,61 +1573,6 @@ module Increase
           )
         end
         def to_hash
-        end
-
-        # Per USPS requirements, Increase will standardize the address to USPS standards
-        # and check it against the USPS National Change of Address (NCOA) database before
-        # mailing it. This indicates what modifications, if any, were made to the address
-        # before printing and mailing the check.
-        module AddressCorrectionAction
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::CheckTransfer::Submission::AddressCorrectionAction
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # No address correction took place.
-          NONE =
-            T.let(
-              :none,
-              Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol
-            )
-
-          # The address was standardized.
-          STANDARDIZATION =
-            T.let(
-              :standardization,
-              Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol
-            )
-
-          # The address was first standardized and then changed because the recipient moved.
-          STANDARDIZATION_WITH_ADDRESS_CHANGE =
-            T.let(
-              :standardization_with_address_change,
-              Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol
-            )
-
-          # An error occurred while correcting the address. This typically means the USPS could not find that address. The address was not changed.
-          ERROR =
-            T.let(
-              :error,
-              Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::CheckTransfer::Submission::AddressCorrectionAction::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         class SubmittedAddress < Increase::Internal::Type::BaseModel
