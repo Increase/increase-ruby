@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.178.0 (2026-01-21)
+
+Full Changelog: [v1.177.0...v1.178.0](https://github.com/Increase/increase-ruby/compare/v1.177.0...v1.178.0)
+
+### Features
+
+* **api:** api update ([36361bc](https://github.com/Increase/increase-ruby/commit/36361bcbef8213d9aeb54e6f4b90dae74bcb21e0))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([3a61451](https://github.com/Increase/increase-ruby/commit/3a61451c76a17f7b56580c139e06db98bf4ea402))
+
 ## 1.177.0 (2026-01-16)
 
 Full Changelog: [v1.176.0...v1.177.0](https://github.com/Increase/increase-ruby/compare/v1.176.0...v1.177.0)
