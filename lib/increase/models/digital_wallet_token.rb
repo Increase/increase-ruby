@@ -35,6 +35,14 @@ module Increase
       #   @return [Increase::Models::DigitalWalletToken::Device]
       required :device, -> { Increase::DigitalWalletToken::Device }
 
+      # @!attribute dynamic_primary_account_number
+      #   The redacted Dynamic Primary Account Number.
+      #
+      #   @return [Increase::Models::DigitalWalletToken::DynamicPrimaryAccountNumber, nil]
+      required :dynamic_primary_account_number,
+               -> { Increase::DigitalWalletToken::DynamicPrimaryAccountNumber },
+               nil?: true
+
       # @!attribute status
       #   This indicates if payments can be made with the Digital Wallet Token.
       #
@@ -60,7 +68,7 @@ module Increase
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
-      # @!method initialize(id:, card_id:, cardholder:, created_at:, device:, status:, token_requestor:, type:, updates:)
+      # @!method initialize(id:, card_id:, cardholder:, created_at:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::DigitalWalletToken} for more details.
       #
@@ -77,6 +85,8 @@ module Increase
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
       #   @param device [Increase::Models::DigitalWalletToken::Device] The device that was used to create the Digital Wallet Token.
+      #
+      #   @param dynamic_primary_account_number [Increase::Models::DigitalWalletToken::DynamicPrimaryAccountNumber, nil] The redacted Dynamic Primary Account Number.
       #
       #   @param status [Symbol, Increase::Models::DigitalWalletToken::Status] This indicates if payments can be made with the Digital Wallet Token.
       #
@@ -173,6 +183,28 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # @see Increase::Models::DigitalWalletToken#dynamic_primary_account_number
+      class DynamicPrimaryAccountNumber < Increase::Internal::Type::BaseModel
+        # @!attribute first6
+        #   The first 6 digits of the token's Dynamic Primary Account Number.
+        #
+        #   @return [String]
+        required :first6, String
+
+        # @!attribute last4
+        #   The last 4 digits of the token's Dynamic Primary Account Number.
+        #
+        #   @return [String]
+        required :last4, String
+
+        # @!method initialize(first6:, last4:)
+        #   The redacted Dynamic Primary Account Number.
+        #
+        #   @param first6 [String] The first 6 digits of the token's Dynamic Primary Account Number.
+        #
+        #   @param last4 [String] The last 4 digits of the token's Dynamic Primary Account Number.
       end
 
       # This indicates if payments can be made with the Digital Wallet Token.
