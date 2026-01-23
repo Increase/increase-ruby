@@ -7,6 +7,7 @@ module Increase
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
         device: Increase::DigitalWalletToken::Device,
+        dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
         status: Increase::Models::DigitalWalletToken::status,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
@@ -24,6 +25,8 @@ module Increase
 
       attr_accessor device: Increase::DigitalWalletToken::Device
 
+      attr_accessor dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?
+
       attr_accessor status: Increase::Models::DigitalWalletToken::status
 
       attr_accessor token_requestor: Increase::Models::DigitalWalletToken::token_requestor
@@ -38,6 +41,7 @@ module Increase
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
         device: Increase::DigitalWalletToken::Device,
+        dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
         status: Increase::Models::DigitalWalletToken::status,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
@@ -50,6 +54,7 @@ module Increase
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
         device: Increase::DigitalWalletToken::Device,
+        dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
         status: Increase::Models::DigitalWalletToken::status,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
@@ -140,6 +145,19 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Device::device_type]
         end
+      end
+
+      type dynamic_primary_account_number =
+        { :first6 => String, :last4 => String }
+
+      class DynamicPrimaryAccountNumber < Increase::Internal::Type::BaseModel
+        attr_accessor first6: String
+
+        attr_accessor last4: String
+
+        def initialize: (first6: String, last4: String) -> void
+
+        def to_hash: -> { :first6 => String, :last4 => String }
       end
 
       type status = :active | :inactive | :suspended | :deactivated
