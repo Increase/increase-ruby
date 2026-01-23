@@ -39,6 +39,24 @@ module Increase
       sig { params(device: Increase::DigitalWalletToken::Device::OrHash).void }
       attr_writer :device
 
+      # The redacted Dynamic Primary Account Number.
+      sig do
+        returns(
+          T.nilable(Increase::DigitalWalletToken::DynamicPrimaryAccountNumber)
+        )
+      end
+      attr_reader :dynamic_primary_account_number
+
+      sig do
+        params(
+          dynamic_primary_account_number:
+            T.nilable(
+              Increase::DigitalWalletToken::DynamicPrimaryAccountNumber::OrHash
+            )
+        ).void
+      end
+      attr_writer :dynamic_primary_account_number
+
       # This indicates if payments can be made with the Digital Wallet Token.
       sig { returns(Increase::DigitalWalletToken::Status::TaggedSymbol) }
       attr_accessor :status
@@ -68,6 +86,10 @@ module Increase
           cardholder: Increase::DigitalWalletToken::Cardholder::OrHash,
           created_at: Time,
           device: Increase::DigitalWalletToken::Device::OrHash,
+          dynamic_primary_account_number:
+            T.nilable(
+              Increase::DigitalWalletToken::DynamicPrimaryAccountNumber::OrHash
+            ),
           status: Increase::DigitalWalletToken::Status::OrSymbol,
           token_requestor:
             Increase::DigitalWalletToken::TokenRequestor::OrSymbol,
@@ -87,6 +109,8 @@ module Increase
         created_at:,
         # The device that was used to create the Digital Wallet Token.
         device:,
+        # The redacted Dynamic Primary Account Number.
+        dynamic_primary_account_number:,
         # This indicates if payments can be made with the Digital Wallet Token.
         status:,
         # The digital wallet app being used.
@@ -107,6 +131,10 @@ module Increase
             cardholder: Increase::DigitalWalletToken::Cardholder,
             created_at: Time,
             device: Increase::DigitalWalletToken::Device,
+            dynamic_primary_account_number:
+              T.nilable(
+                Increase::DigitalWalletToken::DynamicPrimaryAccountNumber
+              ),
             status: Increase::DigitalWalletToken::Status::TaggedSymbol,
             token_requestor:
               Increase::DigitalWalletToken::TokenRequestor::TaggedSymbol,
@@ -297,6 +325,38 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      class DynamicPrimaryAccountNumber < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletToken::DynamicPrimaryAccountNumber,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The first 6 digits of the token's Dynamic Primary Account Number.
+        sig { returns(String) }
+        attr_accessor :first6
+
+        # The last 4 digits of the token's Dynamic Primary Account Number.
+        sig { returns(String) }
+        attr_accessor :last4
+
+        # The redacted Dynamic Primary Account Number.
+        sig { params(first6: String, last4: String).returns(T.attached_class) }
+        def self.new(
+          # The first 6 digits of the token's Dynamic Primary Account Number.
+          first6:,
+          # The last 4 digits of the token's Dynamic Primary Account Number.
+          last4:
+        )
+        end
+
+        sig { override.returns({ first6: String, last4: String }) }
+        def to_hash
         end
       end
 
