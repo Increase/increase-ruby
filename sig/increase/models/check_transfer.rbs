@@ -278,27 +278,14 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::CheckTransfer::fulfillment_method]
       end
 
-      type mailing =
-        { image_id: String?, mailed_at: Time, tracking_number: String? }
+      type mailing = { mailed_at: Time }
 
       class Mailing < Increase::Internal::Type::BaseModel
-        attr_accessor image_id: String?
-
         attr_accessor mailed_at: Time
 
-        attr_accessor tracking_number: String?
+        def initialize: (mailed_at: Time) -> void
 
-        def initialize: (
-          image_id: String?,
-          mailed_at: Time,
-          tracking_number: String?
-        ) -> void
-
-        def to_hash: -> {
-          image_id: String?,
-          mailed_at: Time,
-          tracking_number: String?
-        }
+        def to_hash: -> { mailed_at: Time }
       end
 
       type physical_check =
@@ -661,23 +648,33 @@ module Increase
 
       type submission =
         {
+          preview_file_id: String?,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
-          submitted_at: Time
+          submitted_at: Time,
+          tracking_number: String?
         }
 
       class Submission < Increase::Internal::Type::BaseModel
+        attr_accessor preview_file_id: String?
+
         attr_accessor submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress
 
         attr_accessor submitted_at: Time
 
+        attr_accessor tracking_number: String?
+
         def initialize: (
+          preview_file_id: String?,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
-          submitted_at: Time
+          submitted_at: Time,
+          tracking_number: String?
         ) -> void
 
         def to_hash: -> {
+          preview_file_id: String?,
           submitted_address: Increase::CheckTransfer::Submission::SubmittedAddress,
-          submitted_at: Time
+          submitted_at: Time,
+          tracking_number: String?
         }
 
         type submitted_address =
