@@ -433,13 +433,6 @@ module Increase
 
       # @see Increase::Models::CheckTransfer#mailing
       class Mailing < Increase::Internal::Type::BaseModel
-        # @!attribute image_id
-        #   The ID of the file corresponding to an image of the check that was mailed, if
-        #   available.
-        #
-        #   @return [String, nil]
-        required :image_id, String, nil?: true
-
         # @!attribute mailed_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the check was mailed.
@@ -447,24 +440,14 @@ module Increase
         #   @return [Time]
         required :mailed_at, Time
 
-        # @!attribute tracking_number
-        #   The tracking number of the shipment, if available for the shipping method.
-        #
-        #   @return [String, nil]
-        required :tracking_number, String, nil?: true
-
-        # @!method initialize(image_id:, mailed_at:, tracking_number:)
+        # @!method initialize(mailed_at:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransfer::Mailing} for more details.
         #
         #   If the check has been mailed by Increase, this will contain details of the
         #   shipment.
         #
-        #   @param image_id [String, nil] The ID of the file corresponding to an image of the check that was mailed, if av
-        #
         #   @param mailed_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #
-        #   @param tracking_number [String, nil] The tracking number of the shipment, if available for the shipping method.
       end
 
       # @see Increase::Models::CheckTransfer#physical_check
@@ -913,6 +896,13 @@ module Increase
 
       # @see Increase::Models::CheckTransfer#submission
       class Submission < Increase::Internal::Type::BaseModel
+        # @!attribute preview_file_id
+        #   The ID of the file corresponding to an image of the check that was mailed, if
+        #   available.
+        #
+        #   @return [String, nil]
+        required :preview_file_id, String, nil?: true
+
         # @!attribute submitted_address
         #   The address we submitted to the printer. This is what is physically printed on
         #   the check.
@@ -926,15 +916,25 @@ module Increase
         #   @return [Time]
         required :submitted_at, Time
 
-        # @!method initialize(submitted_address:, submitted_at:)
+        # @!attribute tracking_number
+        #   The tracking number for the check shipment.
+        #
+        #   @return [String, nil]
+        required :tracking_number, String, nil?: true
+
+        # @!method initialize(preview_file_id:, submitted_address:, submitted_at:, tracking_number:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransfer::Submission} for more details.
         #
         #   After the transfer is submitted, this will contain supplemental details.
         #
+        #   @param preview_file_id [String, nil] The ID of the file corresponding to an image of the check that was mailed, if av
+        #
         #   @param submitted_address [Increase::Models::CheckTransfer::Submission::SubmittedAddress] The address we submitted to the printer. This is what is physically printed on t
         #
         #   @param submitted_at [Time] When this check was submitted to our check printer.
+        #
+        #   @param tracking_number [String, nil] The tracking number for the check shipment.
 
         # @see Increase::Models::CheckTransfer::Submission#submitted_address
         class SubmittedAddress < Increase::Internal::Type::BaseModel

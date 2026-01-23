@@ -725,50 +725,22 @@ module Increase
             T.any(Increase::CheckTransfer::Mailing, Increase::Internal::AnyHash)
           end
 
-        # The ID of the file corresponding to an image of the check that was mailed, if
-        # available.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :image_id
-
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the check was mailed.
         sig { returns(Time) }
         attr_accessor :mailed_at
 
-        # The tracking number of the shipment, if available for the shipping method.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :tracking_number
-
         # If the check has been mailed by Increase, this will contain details of the
         # shipment.
-        sig do
-          params(
-            image_id: T.nilable(String),
-            mailed_at: Time,
-            tracking_number: T.nilable(String)
-          ).returns(T.attached_class)
-        end
+        sig { params(mailed_at: Time).returns(T.attached_class) }
         def self.new(
-          # The ID of the file corresponding to an image of the check that was mailed, if
-          # available.
-          image_id:,
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the check was mailed.
-          mailed_at:,
-          # The tracking number of the shipment, if available for the shipping method.
-          tracking_number:
+          mailed_at:
         )
         end
 
-        sig do
-          override.returns(
-            {
-              image_id: T.nilable(String),
-              mailed_at: Time,
-              tracking_number: T.nilable(String)
-            }
-          )
-        end
+        sig { override.returns({ mailed_at: Time }) }
         def to_hash
         end
       end
@@ -1529,6 +1501,11 @@ module Increase
             )
           end
 
+        # The ID of the file corresponding to an image of the check that was mailed, if
+        # available.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :preview_file_id
+
         # The address we submitted to the printer. This is what is physically printed on
         # the check.
         sig { returns(Increase::CheckTransfer::Submission::SubmittedAddress) }
@@ -1546,29 +1523,42 @@ module Increase
         sig { returns(Time) }
         attr_accessor :submitted_at
 
+        # The tracking number for the check shipment.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :tracking_number
+
         # After the transfer is submitted, this will contain supplemental details.
         sig do
           params(
+            preview_file_id: T.nilable(String),
             submitted_address:
               Increase::CheckTransfer::Submission::SubmittedAddress::OrHash,
-            submitted_at: Time
+            submitted_at: Time,
+            tracking_number: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
+          # The ID of the file corresponding to an image of the check that was mailed, if
+          # available.
+          preview_file_id:,
           # The address we submitted to the printer. This is what is physically printed on
           # the check.
           submitted_address:,
           # When this check was submitted to our check printer.
-          submitted_at:
+          submitted_at:,
+          # The tracking number for the check shipment.
+          tracking_number:
         )
         end
 
         sig do
           override.returns(
             {
+              preview_file_id: T.nilable(String),
               submitted_address:
                 Increase::CheckTransfer::Submission::SubmittedAddress,
-              submitted_at: Time
+              submitted_at: Time,
+              tracking_number: T.nilable(String)
             }
           )
         end
