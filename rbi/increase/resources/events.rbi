@@ -42,7 +42,7 @@ module Increase
       )
       end
 
-      sig { params(payload: String).returns(T.anything) }
+      sig { params(payload: String).returns(Increase::UnwrapWebhookEvent) }
       def unwrap(
         # The raw webhook payload as a string
         payload

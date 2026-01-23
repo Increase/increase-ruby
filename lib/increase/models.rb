@@ -529,7 +529,6 @@ module Increase
 
   TransactionRetrieveParams = Increase::Models::TransactionRetrieveParams
 
-  # @type [Increase::Internal::Type::Converter]
   UnwrapWebhookEvent = Increase::Models::UnwrapWebhookEvent
 
   WireDrawdownRequest = Increase::Models::WireDrawdownRequest
