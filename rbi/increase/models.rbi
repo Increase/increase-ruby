@@ -566,11 +566,7 @@ module Increase
 
   TransactionRetrieveParams = Increase::Models::TransactionRetrieveParams
 
-  UnwrapWebhookEvent =
-    T.let(
-      Increase::Models::UnwrapWebhookEvent,
-      Increase::Internal::Type::Converter
-    )
+  UnwrapWebhookEvent = Increase::Models::UnwrapWebhookEvent
 
   WireDrawdownRequest = Increase::Models::WireDrawdownRequest
 

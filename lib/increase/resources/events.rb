@@ -59,7 +59,7 @@ module Increase
 
       # @param payload [String] The raw webhook payload as a string
       #
-      # @return [Object]
+      # @return [Increase::Models::UnwrapWebhookEvent]
       def unwrap(payload)
         parsed = JSON.parse(payload, symbolize_names: true)
         Increase::Internal::Type::Converter.coerce(Increase::Models::UnwrapWebhookEvent, parsed)
