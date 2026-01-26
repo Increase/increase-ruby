@@ -478,6 +478,13 @@ module Increase
               Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
             )
 
+          # The maker of the check requested its return.
+          REFER_TO_MAKER =
+            T.let(
+              :refer_to_maker,
+              Increase::InboundCheckDeposit::DepositReturn::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[
