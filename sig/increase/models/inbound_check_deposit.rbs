@@ -214,6 +214,7 @@ module Increase
           | :duplicate_presentment
           | :endorsement_missing
           | :endorsement_irregular
+          | :refer_to_maker
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -232,6 +233,9 @@ module Increase
 
           # The check was not endorsed by the payee.
           ENDORSEMENT_IRREGULAR: :endorsement_irregular
+
+          # The maker of the check requested its return.
+          REFER_TO_MAKER: :refer_to_maker
 
           def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::DepositReturn::reason]
         end
