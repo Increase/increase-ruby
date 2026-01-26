@@ -37,6 +37,9 @@ module Increase
         # The check was not endorsed by the payee.
         ENDORSEMENT_IRREGULAR = :endorsement_irregular
 
+        # The maker of the check requested its return.
+        REFER_TO_MAKER = :refer_to_maker
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end
