@@ -1699,7 +1699,15 @@ module Increase
             required :cardholder_address,
                      -> { Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress }
 
-            # @!method initialize(card_verification_code:, cardholder_address:)
+            # @!attribute cardholder_name
+            #   Cardholder name provided in the authorization request.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderName, nil]
+            required :cardholder_name,
+                     -> { Increase::CardPayment::Element::CardAuthorization::Verification::CardholderName },
+                     nil?: true
+
+            # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardAuthorization::Verification} for
             #   more details.
@@ -1709,6 +1717,8 @@ module Increase
             #   @param card_verification_code [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
             #
             #   @param cardholder_address [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -1824,6 +1834,36 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification#cardholder_name
+            class CardholderName < Increase::Internal::Type::BaseModel
+              # @!attribute provided_first_name
+              #   The first name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_first_name, String, nil?: true
+
+              # @!attribute provided_last_name
+              #   The last name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_last_name, String, nil?: true
+
+              # @!attribute provided_middle_name
+              #   The middle name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_middle_name, String, nil?: true
+
+              # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
+              #   Cardholder name provided in the authorization request.
+              #
+              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #
+              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #
+              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -2849,7 +2889,15 @@ module Increase
             required :cardholder_address,
                      -> { Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress }
 
-            # @!method initialize(card_verification_code:, cardholder_address:)
+            # @!attribute cardholder_name
+            #   Cardholder name provided in the authorization request.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName, nil]
+            required :cardholder_name,
+                     -> { Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName },
+                     nil?: true
+
+            # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification} for
             #   more details.
@@ -2859,6 +2907,8 @@ module Increase
             #   @param card_verification_code [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
             #
             #   @param cardholder_address [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -2974,6 +3024,36 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification#cardholder_name
+            class CardholderName < Increase::Internal::Type::BaseModel
+              # @!attribute provided_first_name
+              #   The first name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_first_name, String, nil?: true
+
+              # @!attribute provided_last_name
+              #   The last name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_last_name, String, nil?: true
+
+              # @!attribute provided_middle_name
+              #   The middle name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_middle_name, String, nil?: true
+
+              # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
+              #   Cardholder name provided in the authorization request.
+              #
+              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #
+              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #
+              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -4121,7 +4201,15 @@ module Increase
             required :cardholder_address,
                      -> { Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress }
 
-            # @!method initialize(card_verification_code:, cardholder_address:)
+            # @!attribute cardholder_name
+            #   Cardholder name provided in the authorization request.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderName, nil]
+            required :cardholder_name,
+                     -> { Increase::CardPayment::Element::CardDecline::Verification::CardholderName },
+                     nil?: true
+
+            # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardDecline::Verification} for more
             #   details.
@@ -4131,6 +4219,8 @@ module Increase
             #   @param card_verification_code [Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
             #
             #   @param cardholder_address [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardDecline::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -4246,6 +4336,36 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardDecline::Verification#cardholder_name
+            class CardholderName < Increase::Internal::Type::BaseModel
+              # @!attribute provided_first_name
+              #   The first name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_first_name, String, nil?: true
+
+              # @!attribute provided_last_name
+              #   The last name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_last_name, String, nil?: true
+
+              # @!attribute provided_middle_name
+              #   The middle name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_middle_name, String, nil?: true
+
+              # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
+              #   Cardholder name provided in the authorization request.
+              #
+              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #
+              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #
+              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -5289,7 +5409,15 @@ module Increase
             required :cardholder_address,
                      -> { Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress }
 
-            # @!method initialize(card_verification_code:, cardholder_address:)
+            # @!attribute cardholder_name
+            #   Cardholder name provided in the authorization request.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderName, nil]
+            required :cardholder_name,
+                     -> { Increase::CardPayment::Element::CardFinancial::Verification::CardholderName },
+                     nil?: true
+
+            # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardFinancial::Verification} for more
             #   details.
@@ -5299,6 +5427,8 @@ module Increase
             #   @param card_verification_code [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
             #
             #   @param cardholder_address [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -5414,6 +5544,36 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardFinancial::Verification#cardholder_name
+            class CardholderName < Increase::Internal::Type::BaseModel
+              # @!attribute provided_first_name
+              #   The first name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_first_name, String, nil?: true
+
+              # @!attribute provided_last_name
+              #   The last name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_last_name, String, nil?: true
+
+              # @!attribute provided_middle_name
+              #   The middle name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_middle_name, String, nil?: true
+
+              # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
+              #   Cardholder name provided in the authorization request.
+              #
+              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #
+              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #
+              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -10197,7 +10357,15 @@ module Increase
             required :cardholder_address,
                      -> { Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress }
 
-            # @!method initialize(card_verification_code:, cardholder_address:)
+            # @!attribute cardholder_name
+            #   Cardholder name provided in the authorization request.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderName, nil]
+            required :cardholder_name,
+                     -> { Increase::CardPayment::Element::CardValidation::Verification::CardholderName },
+                     nil?: true
+
+            # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardValidation::Verification} for more
             #   details.
@@ -10207,6 +10375,8 @@ module Increase
             #   @param card_verification_code [Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
             #
             #   @param cardholder_address [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardValidation::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -10322,6 +10492,36 @@ module Increase
                 # @!method self.values
                 #   @return [Array<Symbol>]
               end
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardValidation::Verification#cardholder_name
+            class CardholderName < Increase::Internal::Type::BaseModel
+              # @!attribute provided_first_name
+              #   The first name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_first_name, String, nil?: true
+
+              # @!attribute provided_last_name
+              #   The last name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_last_name, String, nil?: true
+
+              # @!attribute provided_middle_name
+              #   The middle name provided for verification in the authorization request.
+              #
+              #   @return [String, nil]
+              required :provided_middle_name, String, nil?: true
+
+              # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
+              #   Cardholder name provided in the authorization request.
+              #
+              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #
+              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #
+              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
         end

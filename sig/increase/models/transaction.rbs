@@ -1540,7 +1540,8 @@ module Increase
           type verification =
             {
               card_verification_code: Increase::Transaction::Source::CardFinancial::Verification::CardVerificationCode,
-              cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress
+              cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress,
+              cardholder_name: Increase::Transaction::Source::CardFinancial::Verification::CardholderName?
             }
 
           class Verification < Increase::Internal::Type::BaseModel
@@ -1548,14 +1549,18 @@ module Increase
 
             attr_accessor cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress
 
+            attr_accessor cardholder_name: Increase::Transaction::Source::CardFinancial::Verification::CardholderName?
+
             def initialize: (
               card_verification_code: Increase::Transaction::Source::CardFinancial::Verification::CardVerificationCode,
-              cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress
+              cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress,
+              cardholder_name: Increase::Transaction::Source::CardFinancial::Verification::CardholderName?
             ) -> void
 
             def to_hash: -> {
               card_verification_code: Increase::Transaction::Source::CardFinancial::Verification::CardVerificationCode,
-              cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress
+              cardholder_address: Increase::Transaction::Source::CardFinancial::Verification::CardholderAddress,
+              cardholder_name: Increase::Transaction::Source::CardFinancial::Verification::CardholderName?
             }
 
             type card_verification_code =
@@ -1659,6 +1664,33 @@ module Increase
 
                 def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardFinancial::Verification::CardholderAddress::result]
               end
+            end
+
+            type cardholder_name =
+              {
+                provided_first_name: String?,
+                provided_last_name: String?,
+                provided_middle_name: String?
+              }
+
+            class CardholderName < Increase::Internal::Type::BaseModel
+              attr_accessor provided_first_name: String?
+
+              attr_accessor provided_last_name: String?
+
+              attr_accessor provided_middle_name: String?
+
+              def initialize: (
+                provided_first_name: String?,
+                provided_last_name: String?,
+                provided_middle_name: String?
+              ) -> void
+
+              def to_hash: -> {
+                provided_first_name: String?,
+                provided_last_name: String?,
+                provided_middle_name: String?
+              }
             end
           end
         end

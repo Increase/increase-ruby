@@ -961,7 +961,8 @@ module Increase
         type verification =
           {
             card_verification_code: Increase::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode,
-            cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress
+            cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress,
+            cardholder_name: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderName?
           }
 
         class Verification < Increase::Internal::Type::BaseModel
@@ -969,14 +970,18 @@ module Increase
 
           attr_accessor cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress
 
+          attr_accessor cardholder_name: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderName?
+
           def initialize: (
             card_verification_code: Increase::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode,
-            cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress
+            cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress,
+            cardholder_name: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderName?
           ) -> void
 
           def to_hash: -> {
             card_verification_code: Increase::RealTimeDecision::CardAuthorization::Verification::CardVerificationCode,
-            cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress
+            cardholder_address: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderAddress,
+            cardholder_name: Increase::RealTimeDecision::CardAuthorization::Verification::CardholderName?
           }
 
           type card_verification_code =
@@ -1080,6 +1085,33 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthorization::Verification::CardholderAddress::result]
             end
+          end
+
+          type cardholder_name =
+            {
+              provided_first_name: String?,
+              provided_last_name: String?,
+              provided_middle_name: String?
+            }
+
+          class CardholderName < Increase::Internal::Type::BaseModel
+            attr_accessor provided_first_name: String?
+
+            attr_accessor provided_last_name: String?
+
+            attr_accessor provided_middle_name: String?
+
+            def initialize: (
+              provided_first_name: String?,
+              provided_last_name: String?,
+              provided_middle_name: String?
+            ) -> void
+
+            def to_hash: -> {
+              provided_first_name: String?,
+              provided_last_name: String?,
+              provided_middle_name: String?
+            }
           end
         end
       end
@@ -1636,7 +1668,8 @@ module Increase
         type verification =
           {
             card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
-            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress,
+            cardholder_name: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderName?
           }
 
         class Verification < Increase::Internal::Type::BaseModel
@@ -1644,14 +1677,18 @@ module Increase
 
           attr_accessor cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
 
+          attr_accessor cardholder_name: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderName?
+
           def initialize: (
             card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
-            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress,
+            cardholder_name: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderName?
           ) -> void
 
           def to_hash: -> {
             card_verification_code: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardVerificationCode,
-            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress
+            cardholder_address: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress,
+            cardholder_name: Increase::RealTimeDecision::CardBalanceInquiry::Verification::CardholderName?
           }
 
           type card_verification_code =
@@ -1755,6 +1792,33 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardBalanceInquiry::Verification::CardholderAddress::result]
             end
+          end
+
+          type cardholder_name =
+            {
+              provided_first_name: String?,
+              provided_last_name: String?,
+              provided_middle_name: String?
+            }
+
+          class CardholderName < Increase::Internal::Type::BaseModel
+            attr_accessor provided_first_name: String?
+
+            attr_accessor provided_last_name: String?
+
+            attr_accessor provided_middle_name: String?
+
+            def initialize: (
+              provided_first_name: String?,
+              provided_last_name: String?,
+              provided_middle_name: String?
+            ) -> void
+
+            def to_hash: -> {
+              provided_first_name: String?,
+              provided_last_name: String?,
+              provided_middle_name: String?
+            }
           end
         end
       end
