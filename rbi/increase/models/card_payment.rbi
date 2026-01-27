@@ -3223,13 +3223,37 @@ module Increase
             end
             attr_writer :cardholder_address
 
+            # Cardholder name provided in the authorization request.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthorization::Verification::CardholderName
+                )
+              )
+            end
+            attr_reader :cardholder_name
+
+            sig do
+              params(
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::Verification::CardholderName::OrHash
+                  )
+              ).void
+            end
+            attr_writer :cardholder_name
+
             # Fields related to verification of cardholder-provided values.
             sig do
               params(
                 card_verification_code:
                   Increase::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::OrHash,
                 cardholder_address:
-                  Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::OrHash
+                  Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::OrHash,
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::Verification::CardholderName::OrHash
+                  )
               ).returns(T.attached_class)
             end
             def self.new(
@@ -3238,7 +3262,9 @@ module Increase
               card_verification_code:,
               # Cardholder address provided in the authorization request and the address on file
               # we verified it against.
-              cardholder_address:
+              cardholder_address:,
+              # Cardholder name provided in the authorization request.
+              cardholder_name:
             )
             end
 
@@ -3248,7 +3274,11 @@ module Increase
                   card_verification_code:
                     Increase::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode,
                   cardholder_address:
-                    Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress
+                    Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress,
+                  cardholder_name:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::Verification::CardholderName
+                    )
                 }
               )
             end
@@ -3483,6 +3513,58 @@ module Increase
                 end
                 def self.values
                 end
+              end
+            end
+
+            class CardholderName < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthorization::Verification::CardholderName,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The first name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_first_name
+
+              # The last name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_last_name
+
+              # The middle name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_middle_name
+
+              # Cardholder name provided in the authorization request.
+              sig do
+                params(
+                  provided_first_name: T.nilable(String),
+                  provided_last_name: T.nilable(String),
+                  provided_middle_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The first name provided for verification in the authorization request.
+                provided_first_name:,
+                # The last name provided for verification in the authorization request.
+                provided_last_name:,
+                # The middle name provided for verification in the authorization request.
+                provided_middle_name:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    provided_first_name: T.nilable(String),
+                    provided_last_name: T.nilable(String),
+                    provided_middle_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
               end
             end
           end
@@ -5419,13 +5501,37 @@ module Increase
             end
             attr_writer :cardholder_address
 
+            # Cardholder name provided in the authorization request.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName
+                )
+              )
+            end
+            attr_reader :cardholder_name
+
+            sig do
+              params(
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName::OrHash
+                  )
+              ).void
+            end
+            attr_writer :cardholder_name
+
             # Fields related to verification of cardholder-provided values.
             sig do
               params(
                 card_verification_code:
                   Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode::OrHash,
                 cardholder_address:
-                  Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress::OrHash
+                  Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress::OrHash,
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName::OrHash
+                  )
               ).returns(T.attached_class)
             end
             def self.new(
@@ -5434,7 +5540,9 @@ module Increase
               card_verification_code:,
               # Cardholder address provided in the authorization request and the address on file
               # we verified it against.
-              cardholder_address:
+              cardholder_address:,
+              # Cardholder name provided in the authorization request.
+              cardholder_name:
             )
             end
 
@@ -5444,7 +5552,11 @@ module Increase
                   card_verification_code:
                     Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode,
                   cardholder_address:
-                    Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress
+                    Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress,
+                  cardholder_name:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName
+                    )
                 }
               )
             end
@@ -5679,6 +5791,58 @@ module Increase
                 end
                 def self.values
                 end
+              end
+            end
+
+            class CardholderName < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The first name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_first_name
+
+              # The last name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_last_name
+
+              # The middle name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_middle_name
+
+              # Cardholder name provided in the authorization request.
+              sig do
+                params(
+                  provided_first_name: T.nilable(String),
+                  provided_last_name: T.nilable(String),
+                  provided_middle_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The first name provided for verification in the authorization request.
+                provided_first_name:,
+                # The last name provided for verification in the authorization request.
+                provided_last_name:,
+                # The middle name provided for verification in the authorization request.
+                provided_middle_name:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    provided_first_name: T.nilable(String),
+                    provided_last_name: T.nilable(String),
+                    provided_middle_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
               end
             end
           end
@@ -7888,13 +8052,37 @@ module Increase
             end
             attr_writer :cardholder_address
 
+            # Cardholder name provided in the authorization request.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardDecline::Verification::CardholderName
+                )
+              )
+            end
+            attr_reader :cardholder_name
+
+            sig do
+              params(
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::Verification::CardholderName::OrHash
+                  )
+              ).void
+            end
+            attr_writer :cardholder_name
+
             # Fields related to verification of cardholder-provided values.
             sig do
               params(
                 card_verification_code:
                   Increase::CardPayment::Element::CardDecline::Verification::CardVerificationCode::OrHash,
                 cardholder_address:
-                  Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress::OrHash
+                  Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress::OrHash,
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::Verification::CardholderName::OrHash
+                  )
               ).returns(T.attached_class)
             end
             def self.new(
@@ -7903,7 +8091,9 @@ module Increase
               card_verification_code:,
               # Cardholder address provided in the authorization request and the address on file
               # we verified it against.
-              cardholder_address:
+              cardholder_address:,
+              # Cardholder name provided in the authorization request.
+              cardholder_name:
             )
             end
 
@@ -7913,7 +8103,11 @@ module Increase
                   card_verification_code:
                     Increase::CardPayment::Element::CardDecline::Verification::CardVerificationCode,
                   cardholder_address:
-                    Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress
+                    Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress,
+                  cardholder_name:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::Verification::CardholderName
+                    )
                 }
               )
             end
@@ -8148,6 +8342,58 @@ module Increase
                 end
                 def self.values
                 end
+              end
+            end
+
+            class CardholderName < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardDecline::Verification::CardholderName,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The first name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_first_name
+
+              # The last name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_last_name
+
+              # The middle name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_middle_name
+
+              # Cardholder name provided in the authorization request.
+              sig do
+                params(
+                  provided_first_name: T.nilable(String),
+                  provided_last_name: T.nilable(String),
+                  provided_middle_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The first name provided for verification in the authorization request.
+                provided_first_name:,
+                # The last name provided for verification in the authorization request.
+                provided_last_name:,
+                # The middle name provided for verification in the authorization request.
+                provided_middle_name:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    provided_first_name: T.nilable(String),
+                    provided_last_name: T.nilable(String),
+                    provided_middle_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
               end
             end
           end
@@ -10130,13 +10376,37 @@ module Increase
             end
             attr_writer :cardholder_address
 
+            # Cardholder name provided in the authorization request.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardholderName
+                )
+              )
+            end
+            attr_reader :cardholder_name
+
+            sig do
+              params(
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderName::OrHash
+                  )
+              ).void
+            end
+            attr_writer :cardholder_name
+
             # Fields related to verification of cardholder-provided values.
             sig do
               params(
                 card_verification_code:
                   Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::OrHash,
                 cardholder_address:
-                  Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::OrHash
+                  Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::OrHash,
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderName::OrHash
+                  )
               ).returns(T.attached_class)
             end
             def self.new(
@@ -10145,7 +10415,9 @@ module Increase
               card_verification_code:,
               # Cardholder address provided in the authorization request and the address on file
               # we verified it against.
-              cardholder_address:
+              cardholder_address:,
+              # Cardholder name provided in the authorization request.
+              cardholder_name:
             )
             end
 
@@ -10155,7 +10427,11 @@ module Increase
                   card_verification_code:
                     Increase::CardPayment::Element::CardFinancial::Verification::CardVerificationCode,
                   cardholder_address:
-                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress,
+                  cardholder_name:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::Verification::CardholderName
+                    )
                 }
               )
             end
@@ -10390,6 +10666,58 @@ module Increase
                 end
                 def self.values
                 end
+              end
+            end
+
+            class CardholderName < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardFinancial::Verification::CardholderName,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The first name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_first_name
+
+              # The last name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_last_name
+
+              # The middle name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_middle_name
+
+              # Cardholder name provided in the authorization request.
+              sig do
+                params(
+                  provided_first_name: T.nilable(String),
+                  provided_last_name: T.nilable(String),
+                  provided_middle_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The first name provided for verification in the authorization request.
+                provided_first_name:,
+                # The last name provided for verification in the authorization request.
+                provided_last_name:,
+                # The middle name provided for verification in the authorization request.
+                provided_middle_name:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    provided_first_name: T.nilable(String),
+                    provided_last_name: T.nilable(String),
+                    provided_middle_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
               end
             end
           end
@@ -18967,13 +19295,37 @@ module Increase
             end
             attr_writer :cardholder_address
 
+            # Cardholder name provided in the authorization request.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardValidation::Verification::CardholderName
+                )
+              )
+            end
+            attr_reader :cardholder_name
+
+            sig do
+              params(
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::Verification::CardholderName::OrHash
+                  )
+              ).void
+            end
+            attr_writer :cardholder_name
+
             # Fields related to verification of cardholder-provided values.
             sig do
               params(
                 card_verification_code:
                   Increase::CardPayment::Element::CardValidation::Verification::CardVerificationCode::OrHash,
                 cardholder_address:
-                  Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress::OrHash
+                  Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress::OrHash,
+                cardholder_name:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::Verification::CardholderName::OrHash
+                  )
               ).returns(T.attached_class)
             end
             def self.new(
@@ -18982,7 +19334,9 @@ module Increase
               card_verification_code:,
               # Cardholder address provided in the authorization request and the address on file
               # we verified it against.
-              cardholder_address:
+              cardholder_address:,
+              # Cardholder name provided in the authorization request.
+              cardholder_name:
             )
             end
 
@@ -18992,7 +19346,11 @@ module Increase
                   card_verification_code:
                     Increase::CardPayment::Element::CardValidation::Verification::CardVerificationCode,
                   cardholder_address:
-                    Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress
+                    Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress,
+                  cardholder_name:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::Verification::CardholderName
+                    )
                 }
               )
             end
@@ -19227,6 +19585,58 @@ module Increase
                 end
                 def self.values
                 end
+              end
+            end
+
+            class CardholderName < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardValidation::Verification::CardholderName,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The first name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_first_name
+
+              # The last name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_last_name
+
+              # The middle name provided for verification in the authorization request.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :provided_middle_name
+
+              # Cardholder name provided in the authorization request.
+              sig do
+                params(
+                  provided_first_name: T.nilable(String),
+                  provided_last_name: T.nilable(String),
+                  provided_middle_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The first name provided for verification in the authorization request.
+                provided_first_name:,
+                # The last name provided for verification in the authorization request.
+                provided_last_name:,
+                # The middle name provided for verification in the authorization request.
+                provided_middle_name:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    provided_first_name: T.nilable(String),
+                    provided_last_name: T.nilable(String),
+                    provided_middle_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
               end
             end
           end
