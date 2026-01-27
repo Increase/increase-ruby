@@ -12300,6 +12300,13 @@ module Increase
                 Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
               )
 
+            # General ledger transfer
+            GENERAL_LEDGER_TRANSFER =
+              T.let(
+                :general_ledger_transfer,
+                Increase::Transaction::Source::InternalSource::Reason::TaggedSymbol
+              )
+
             # Interest
             INTEREST =
               T.let(
