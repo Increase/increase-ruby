@@ -6701,6 +6701,9 @@ module Increase
             # Fees
             FEES = :fees
 
+            # General ledger transfer
+            GENERAL_LEDGER_TRANSFER = :general_ledger_transfer
+
             # Interest
             INTEREST = :interest
 
