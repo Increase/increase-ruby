@@ -4865,6 +4865,7 @@ module Increase
             | :error
             | :error_correction
             | :fees
+            | :general_ledger_transfer
             | :interest
             | :negative_balance_forgiveness
             | :sample_funds
@@ -4911,6 +4912,9 @@ module Increase
 
             # Fees
             FEES: :fees
+
+            # General ledger transfer
+            GENERAL_LEDGER_TRANSFER: :general_ledger_transfer
 
             # Interest
             INTEREST: :interest
