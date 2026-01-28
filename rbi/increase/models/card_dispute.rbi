@@ -80,6 +80,18 @@ module Increase
       sig { params(win: T.nilable(Increase::CardDispute::Win::OrHash)).void }
       attr_writer :win
 
+      # If the Card Dispute has been withdrawn, this will contain details of the
+      # withdrawal.
+      sig { returns(T.nilable(Increase::CardDispute::Withdrawal)) }
+      attr_reader :withdrawal
+
+      sig do
+        params(
+          withdrawal: T.nilable(Increase::CardDispute::Withdrawal::OrHash)
+        ).void
+      end
+      attr_writer :withdrawal
+
       # If unauthorized activity occurs on a card, you can create a Card Dispute and
       # we'll work with the card networks to return the funds if appropriate.
       sig do
@@ -96,7 +108,8 @@ module Increase
           type: Increase::CardDispute::Type::OrSymbol,
           user_submission_required_by: T.nilable(Time),
           visa: T.nilable(Increase::CardDispute::Visa::OrHash),
-          win: T.nilable(Increase::CardDispute::Win::OrHash)
+          win: T.nilable(Increase::CardDispute::Win::OrHash),
+          withdrawal: T.nilable(Increase::CardDispute::Withdrawal::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -136,7 +149,10 @@ module Increase
         visa:,
         # If the Card Dispute's status is `won`, this will contain details of the won
         # dispute.
-        win:
+        win:,
+        # If the Card Dispute has been withdrawn, this will contain details of the
+        # withdrawal.
+        withdrawal:
       )
       end
 
@@ -155,7 +171,8 @@ module Increase
             type: Increase::CardDispute::Type::TaggedSymbol,
             user_submission_required_by: T.nilable(Time),
             visa: T.nilable(Increase::CardDispute::Visa),
-            win: T.nilable(Increase::CardDispute::Win)
+            win: T.nilable(Increase::CardDispute::Win),
+            withdrawal: T.nilable(Increase::CardDispute::Withdrawal)
           }
         )
       end
@@ -11063,6 +11080,33 @@ module Increase
         end
 
         sig { override.returns({ won_at: Time }) }
+        def to_hash
+        end
+      end
+
+      class Withdrawal < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CardDispute::Withdrawal,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The explanation for the withdrawal of the Card Dispute.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :explanation
+
+        # If the Card Dispute has been withdrawn, this will contain details of the
+        # withdrawal.
+        sig { params(explanation: T.nilable(String)).returns(T.attached_class) }
+        def self.new(
+          # The explanation for the withdrawal of the Card Dispute.
+          explanation:
+        )
+        end
+
+        sig { override.returns({ explanation: T.nilable(String) }) }
         def to_hash
         end
       end

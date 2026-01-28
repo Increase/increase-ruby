@@ -125,12 +125,15 @@ module Increase
       sig do
         params(
           card_dispute_id: String,
+          explanation: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::CardDispute)
       end
       def withdraw(
         # The identifier of the Card Dispute to withdraw.
         card_dispute_id,
+        # The explanation for withdrawing the Card Dispute.
+        explanation: nil,
         request_options: {}
       )
       end
