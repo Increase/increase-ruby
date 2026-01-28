@@ -37,6 +37,7 @@ module Increase
 
       def withdraw: (
         String card_dispute_id,
+        ?explanation: String,
         ?request_options: Increase::request_opts
       ) -> Increase::CardDispute
 

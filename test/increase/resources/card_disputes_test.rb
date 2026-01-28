@@ -28,7 +28,8 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         type: Increase::CardDispute::Type,
         user_submission_required_by: Time | nil,
         visa: Increase::CardDispute::Visa | nil,
-        win: Increase::CardDispute::Win | nil
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
       }
     end
   end
@@ -54,7 +55,8 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         type: Increase::CardDispute::Type,
         user_submission_required_by: Time | nil,
         visa: Increase::CardDispute::Visa | nil,
-        win: Increase::CardDispute::Win | nil
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
       }
     end
   end
@@ -87,7 +89,8 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         type: Increase::CardDispute::Type,
         user_submission_required_by: Time | nil,
         visa: Increase::CardDispute::Visa | nil,
-        win: Increase::CardDispute::Win | nil
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
       }
     end
   end
@@ -114,7 +117,8 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         type: Increase::CardDispute::Type,
         user_submission_required_by: Time | nil,
         visa: Increase::CardDispute::Visa | nil,
-        win: Increase::CardDispute::Win | nil
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
       }
     end
   end
@@ -140,7 +144,8 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         type: Increase::CardDispute::Type,
         user_submission_required_by: Time | nil,
         visa: Increase::CardDispute::Visa | nil,
-        win: Increase::CardDispute::Win | nil
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
       }
     end
   end

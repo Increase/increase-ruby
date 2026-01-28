@@ -93,7 +93,14 @@ module Increase
       #   @return [Increase::Models::CardDispute::Win, nil]
       required :win, -> { Increase::CardDispute::Win }, nil?: true
 
-      # @!method initialize(id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, status:, type:, user_submission_required_by:, visa:, win:)
+      # @!attribute withdrawal
+      #   If the Card Dispute has been withdrawn, this will contain details of the
+      #   withdrawal.
+      #
+      #   @return [Increase::Models::CardDispute::Withdrawal, nil]
+      required :withdrawal, -> { Increase::CardDispute::Withdrawal }, nil?: true
+
+      # @!method initialize(id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDispute} for more details.
       #
@@ -125,6 +132,8 @@ module Increase
       #   @param visa [Increase::Models::CardDispute::Visa, nil] Card Dispute information for card payments processed over Visa's network. This f
       #
       #   @param win [Increase::Models::CardDispute::Win, nil] If the Card Dispute's status is `won`, this will contain details of the won disp
+      #
+      #   @param withdrawal [Increase::Models::CardDispute::Withdrawal, nil] If the Card Dispute has been withdrawn, this will contain details of the withdra
 
       # @see Increase::Models::CardDispute#loss
       class Loss < Increase::Internal::Type::BaseModel
@@ -5280,6 +5289,21 @@ module Increase
         #   dispute.
         #
         #   @param won_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      end
+
+      # @see Increase::Models::CardDispute#withdrawal
+      class Withdrawal < Increase::Internal::Type::BaseModel
+        # @!attribute explanation
+        #   The explanation for the withdrawal of the Card Dispute.
+        #
+        #   @return [String, nil]
+        required :explanation, String, nil?: true
+
+        # @!method initialize(explanation:)
+        #   If the Card Dispute has been withdrawn, this will contain details of the
+        #   withdrawal.
+        #
+        #   @param explanation [String, nil] The explanation for the withdrawal of the Card Dispute.
       end
     end
   end

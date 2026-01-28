@@ -1,15 +1,25 @@
 module Increase
   module Models
     type card_dispute_withdraw_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { explanation: String } & Increase::Internal::Type::request_parameters
 
     class CardDisputeWithdrawParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_reader explanation: String?
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def explanation=: (String) -> String
+
+      def initialize: (
+        ?explanation: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        explanation: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end
