@@ -14,7 +14,8 @@ module Increase
         type: Increase::Models::CardDispute::type_,
         user_submission_required_by: Time?,
         visa: Increase::CardDispute::Visa?,
-        win: Increase::CardDispute::Win?
+        win: Increase::CardDispute::Win?,
+        withdrawal: Increase::CardDispute::Withdrawal?
       }
 
     class CardDispute < Increase::Internal::Type::BaseModel
@@ -44,6 +45,8 @@ module Increase
 
       attr_accessor win: Increase::CardDispute::Win?
 
+      attr_accessor withdrawal: Increase::CardDispute::Withdrawal?
+
       def initialize: (
         id: String,
         amount: Integer,
@@ -57,7 +60,8 @@ module Increase
         type: Increase::Models::CardDispute::type_,
         user_submission_required_by: Time?,
         visa: Increase::CardDispute::Visa?,
-        win: Increase::CardDispute::Win?
+        win: Increase::CardDispute::Win?,
+        withdrawal: Increase::CardDispute::Withdrawal?
       ) -> void
 
       def to_hash: -> {
@@ -73,7 +77,8 @@ module Increase
         type: Increase::Models::CardDispute::type_,
         user_submission_required_by: Time?,
         visa: Increase::CardDispute::Visa?,
-        win: Increase::CardDispute::Win?
+        win: Increase::CardDispute::Win?,
+        withdrawal: Increase::CardDispute::Withdrawal?
       }
 
       type loss =
@@ -4096,6 +4101,16 @@ module Increase
         def initialize: (won_at: Time) -> void
 
         def to_hash: -> { won_at: Time }
+      end
+
+      type withdrawal = { explanation: String? }
+
+      class Withdrawal < Increase::Internal::Type::BaseModel
+        attr_accessor explanation: String?
+
+        def initialize: (explanation: String?) -> void
+
+        def to_hash: -> { explanation: String? }
       end
     end
   end

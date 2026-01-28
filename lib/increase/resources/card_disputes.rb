@@ -129,9 +129,11 @@ module Increase
 
       # Withdraw a Card Dispute
       #
-      # @overload withdraw(card_dispute_id, request_options: {})
+      # @overload withdraw(card_dispute_id, explanation: nil, request_options: {})
       #
       # @param card_dispute_id [String] The identifier of the Card Dispute to withdraw.
+      #
+      # @param explanation [String] The explanation for withdrawing the Card Dispute.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -139,11 +141,13 @@ module Increase
       #
       # @see Increase::Models::CardDisputeWithdrawParams
       def withdraw(card_dispute_id, params = {})
+        parsed, options = Increase::CardDisputeWithdrawParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["card_disputes/%1$s/withdraw", card_dispute_id],
+          body: parsed,
           model: Increase::CardDispute,
-          options: params[:request_options]
+          options: options
         )
       end
 
