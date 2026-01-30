@@ -8,7 +8,9 @@ module Increase
         params(
           name: String,
           entity_id: String,
+          funding: Increase::AccountCreateParams::Funding::OrSymbol,
           informational_entity_id: String,
+          loan: Increase::AccountCreateParams::Loan::OrHash,
           program_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Account)
@@ -18,9 +20,13 @@ module Increase
         name:,
         # The identifier for the Entity that will own the Account.
         entity_id: nil,
+        # Whether the Account is funded by a loan or by deposits.
+        funding: nil,
         # The identifier of an Entity that, while not owning the Account, is associated
         # with its activity. This is generally the beneficiary of the funds.
         informational_entity_id: nil,
+        # The loan details for the account.
+        loan: nil,
         # The identifier for the Program that this Account falls under. Required if you
         # operate more than one Program.
         program_id: nil,
@@ -46,6 +52,7 @@ module Increase
       sig do
         params(
           account_id: String,
+          loan: Increase::AccountUpdateParams::Loan::OrHash,
           name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Account)
@@ -53,6 +60,8 @@ module Increase
       def update(
         # The identifier of the Account to update.
         account_id,
+        # The loan details for the account.
+        loan: nil,
         # The new name of the Account.
         name: nil,
         request_options: {}

@@ -35,6 +35,12 @@ module Increase
       #   @return [String]
       required :file_id, String
 
+      # @!attribute loan
+      #   The loan balances.
+      #
+      #   @return [Increase::Models::AccountStatement::Loan, nil]
+      required :loan, -> { Increase::AccountStatement::Loan }, nil?: true
+
       # @!attribute starting_balance
       #   The Account's balance at the start of its statement period.
       #
@@ -62,7 +68,7 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountStatement::Type]
       required :type, enum: -> { Increase::AccountStatement::Type }
 
-      # @!method initialize(id:, account_id:, created_at:, ending_balance:, file_id:, starting_balance:, statement_period_end:, statement_period_start:, type:)
+      # @!method initialize(id:, account_id:, created_at:, ending_balance:, file_id:, loan:, starting_balance:, statement_period_end:, statement_period_start:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::AccountStatement} for more details.
       #
@@ -80,6 +86,8 @@ module Increase
       #
       #   @param file_id [String] The identifier of the File containing a PDF of the statement.
       #
+      #   @param loan [Increase::Models::AccountStatement::Loan, nil] The loan balances.
+      #
       #   @param starting_balance [Integer] The Account's balance at the start of its statement period.
       #
       #   @param statement_period_end [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the end
@@ -87,6 +95,40 @@ module Increase
       #   @param statement_period_start [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the sta
       #
       #   @param type [Symbol, Increase::Models::AccountStatement::Type] A constant representing the object's type. For this resource it will always be `
+
+      # @see Increase::Models::AccountStatement#loan
+      class Loan < Increase::Internal::Type::BaseModel
+        # @!attribute due_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
+        #   payment is due.
+        #
+        #   @return [Time, nil]
+        required :due_at, Time, nil?: true
+
+        # @!attribute due_balance
+        #   The total amount due on the loan.
+        #
+        #   @return [Integer]
+        required :due_balance, Integer
+
+        # @!attribute past_due_balance
+        #   The amount past due on the loan.
+        #
+        #   @return [Integer]
+        required :past_due_balance, Integer
+
+        # @!method initialize(due_at:, due_balance:, past_due_balance:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::AccountStatement::Loan} for more details.
+        #
+        #   The loan balances.
+        #
+        #   @param due_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan pa
+        #
+        #   @param due_balance [Integer] The total amount due on the loan.
+        #
+        #   @param past_due_balance [Integer] The amount past due on the loan.
+      end
 
       # A constant representing the object's type. For this resource it will always be
       # `account_statement`.

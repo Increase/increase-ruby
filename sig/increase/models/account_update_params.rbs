@@ -1,25 +1,44 @@
 module Increase
   module Models
     type account_update_params =
-      { name: String } & Increase::Internal::Type::request_parameters
+      { loan: Increase::AccountUpdateParams::Loan, name: String }
+      & Increase::Internal::Type::request_parameters
 
     class AccountUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_reader loan: Increase::AccountUpdateParams::Loan?
+
+      def loan=: (
+        Increase::AccountUpdateParams::Loan
+      ) -> Increase::AccountUpdateParams::Loan
 
       attr_reader name: String?
 
       def name=: (String) -> String
 
       def initialize: (
+        ?loan: Increase::AccountUpdateParams::Loan,
         ?name: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        loan: Increase::AccountUpdateParams::Loan,
         name: String,
         request_options: Increase::RequestOptions
       }
+
+      type loan = { credit_limit: Integer }
+
+      class Loan < Increase::Internal::Type::BaseModel
+        attr_accessor credit_limit: Integer
+
+        def initialize: (credit_limit: Integer) -> void
+
+        def to_hash: -> { credit_limit: Integer }
+      end
     end
   end
 end

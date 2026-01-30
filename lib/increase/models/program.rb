@@ -43,6 +43,12 @@ module Increase
       #   @return [String]
       required :interest_rate, String
 
+      # @!attribute lending
+      #   The lending details for the program.
+      #
+      #   @return [Increase::Models::Program::Lending, nil]
+      required :lending, -> { Increase::Program::Lending }, nil?: true
+
       # @!attribute name
       #   The name of the Program.
       #
@@ -63,7 +69,7 @@ module Increase
       #   @return [Time]
       required :updated_at, Time
 
-      # @!method initialize(id:, bank:, billing_account_id:, created_at:, default_digital_card_profile_id:, interest_rate:, name:, type:, updated_at:)
+      # @!method initialize(id:, bank:, billing_account_id:, created_at:, default_digital_card_profile_id:, interest_rate:, lending:, name:, type:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Program} for more details.
       #
@@ -83,6 +89,8 @@ module Increase
       #   @param default_digital_card_profile_id [String, nil] The default configuration for digital cards attached to this Program.
       #
       #   @param interest_rate [String] The Interest Rate currently being earned on the accounts in this program, as a s
+      #
+      #   @param lending [Increase::Models::Program::Lending, nil] The lending details for the program.
       #
       #   @param name [String] The name of the Program.
       #
@@ -107,6 +115,20 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::Program#lending
+      class Lending < Increase::Internal::Type::BaseModel
+        # @!attribute maximum_extendable_credit
+        #   The maximum extendable credit of the program.
+        #
+        #   @return [Integer]
+        required :maximum_extendable_credit, Integer
+
+        # @!method initialize(maximum_extendable_credit:)
+        #   The lending details for the program.
+        #
+        #   @param maximum_extendable_credit [Integer] The maximum extendable credit of the program.
       end
 
       # A constant representing the object's type. For this resource it will always be

@@ -4,7 +4,9 @@ module Increase
       def create: (
         name: String,
         ?entity_id: String,
+        ?funding: Increase::Models::AccountCreateParams::funding,
         ?informational_entity_id: String,
+        ?loan: Increase::AccountCreateParams::Loan,
         ?program_id: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Account
@@ -16,6 +18,7 @@ module Increase
 
       def update: (
         String account_id,
+        ?loan: Increase::AccountUpdateParams::Loan,
         ?name: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Account

@@ -29,6 +29,15 @@ module Increase
       sig { returns(String) }
       attr_accessor :file_id
 
+      # The loan balances.
+      sig { returns(T.nilable(Increase::AccountStatement::Loan)) }
+      attr_reader :loan
+
+      sig do
+        params(loan: T.nilable(Increase::AccountStatement::Loan::OrHash)).void
+      end
+      attr_writer :loan
+
       # The Account's balance at the start of its statement period.
       sig { returns(Integer) }
       attr_accessor :starting_balance
@@ -58,6 +67,7 @@ module Increase
           created_at: Time,
           ending_balance: Integer,
           file_id: String,
+          loan: T.nilable(Increase::AccountStatement::Loan::OrHash),
           starting_balance: Integer,
           statement_period_end: Time,
           statement_period_start: Time,
@@ -76,6 +86,8 @@ module Increase
         ending_balance:,
         # The identifier of the File containing a PDF of the statement.
         file_id:,
+        # The loan balances.
+        loan:,
         # The Account's balance at the start of its statement period.
         starting_balance:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the end
@@ -98,6 +110,7 @@ module Increase
             created_at: Time,
             ending_balance: Integer,
             file_id: String,
+            loan: T.nilable(Increase::AccountStatement::Loan),
             starting_balance: Integer,
             statement_period_end: Time,
             statement_period_start: Time,
@@ -106,6 +119,57 @@ module Increase
         )
       end
       def to_hash
+      end
+
+      class Loan < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::AccountStatement::Loan, Increase::Internal::AnyHash)
+          end
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
+        # payment is due.
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :due_at
+
+        # The total amount due on the loan.
+        sig { returns(Integer) }
+        attr_accessor :due_balance
+
+        # The amount past due on the loan.
+        sig { returns(Integer) }
+        attr_accessor :past_due_balance
+
+        # The loan balances.
+        sig do
+          params(
+            due_at: T.nilable(Time),
+            due_balance: Integer,
+            past_due_balance: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
+          # payment is due.
+          due_at:,
+          # The total amount due on the loan.
+          due_balance:,
+          # The amount past due on the loan.
+          past_due_balance:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              due_at: T.nilable(Time),
+              due_balance: Integer,
+              past_due_balance: Integer
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be

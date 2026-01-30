@@ -5,6 +5,7 @@ module Increase
         account_id: String,
         available_balance: Integer,
         current_balance: Integer,
+        loan: Increase::BalanceLookup::Loan?,
         type: Increase::Models::BalanceLookup::type_
       }
 
@@ -15,12 +16,15 @@ module Increase
 
       attr_accessor current_balance: Integer
 
+      attr_accessor loan: Increase::BalanceLookup::Loan?
+
       attr_accessor type: Increase::Models::BalanceLookup::type_
 
       def initialize: (
         account_id: String,
         available_balance: Integer,
         current_balance: Integer,
+        loan: Increase::BalanceLookup::Loan?,
         type: Increase::Models::BalanceLookup::type_
       ) -> void
 
@@ -28,8 +32,32 @@ module Increase
         account_id: String,
         available_balance: Integer,
         current_balance: Integer,
+        loan: Increase::BalanceLookup::Loan?,
         type: Increase::Models::BalanceLookup::type_
       }
+
+      type loan =
+        { due_at: Time?, due_balance: Integer, past_due_balance: Integer }
+
+      class Loan < Increase::Internal::Type::BaseModel
+        attr_accessor due_at: Time?
+
+        attr_accessor due_balance: Integer
+
+        attr_accessor past_due_balance: Integer
+
+        def initialize: (
+          due_at: Time?,
+          due_balance: Integer,
+          past_due_balance: Integer
+        ) -> void
+
+        def to_hash: -> {
+          due_at: Time?,
+          due_balance: Integer,
+          past_due_balance: Integer
+        }
+      end
 
       type type_ = :balance_lookup
 

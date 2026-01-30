@@ -17,6 +17,7 @@ class Increase::Test::Resources::Simulations::AccountStatementsTest < Increase::
         created_at: Time,
         ending_balance: Integer,
         file_id: String,
+        loan: Increase::AccountStatement::Loan | nil,
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
