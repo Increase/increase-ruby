@@ -9,11 +9,13 @@ module Increase
         created_at: Time,
         currency: Increase::Models::Account::currency,
         entity_id: String,
+        funding: Increase::Models::Account::funding?,
         idempotency_key: String?,
         informational_entity_id: String?,
         interest_accrued: String,
         interest_accrued_at: Date?,
         interest_rate: String,
+        loan: Increase::Account::Loan?,
         name: String,
         program_id: String,
         status: Increase::Models::Account::status,
@@ -35,6 +37,8 @@ module Increase
 
       attr_accessor entity_id: String
 
+      attr_accessor funding: Increase::Models::Account::funding?
+
       attr_accessor idempotency_key: String?
 
       attr_accessor informational_entity_id: String?
@@ -44,6 +48,8 @@ module Increase
       attr_accessor interest_accrued_at: Date?
 
       attr_accessor interest_rate: String
+
+      attr_accessor loan: Increase::Account::Loan?
 
       attr_accessor name: String
 
@@ -61,11 +67,13 @@ module Increase
         created_at: Time,
         currency: Increase::Models::Account::currency,
         entity_id: String,
+        funding: Increase::Models::Account::funding?,
         idempotency_key: String?,
         informational_entity_id: String?,
         interest_accrued: String,
         interest_accrued_at: Date?,
         interest_rate: String,
+        loan: Increase::Account::Loan?,
         name: String,
         program_id: String,
         status: Increase::Models::Account::status,
@@ -80,11 +88,13 @@ module Increase
         created_at: Time,
         currency: Increase::Models::Account::currency,
         entity_id: String,
+        funding: Increase::Models::Account::funding?,
         idempotency_key: String?,
         informational_entity_id: String?,
         interest_accrued: String,
         interest_accrued_at: Date?,
         interest_rate: String,
+        loan: Increase::Account::Loan?,
         name: String,
         program_id: String,
         status: Increase::Models::Account::status,
@@ -117,6 +127,71 @@ module Increase
         USD: :USD
 
         def self?.values: -> ::Array[Increase::Models::Account::currency]
+      end
+
+      type funding = :loan | :deposits
+
+      module Funding
+        extend Increase::Internal::Type::Enum
+
+        # An account funded by a loan. Before opening a loan account, contact support@increase.com to set up a loan program.
+        LOAN: :loan
+
+        # An account funded by deposits.
+        DEPOSITS: :deposits
+
+        def self?.values: -> ::Array[Increase::Models::Account::funding]
+      end
+
+      type loan =
+        {
+          credit_limit: Integer,
+          grace_period_days: Integer,
+          maturity_date: Date?,
+          statement_day_of_month: Integer,
+          statement_payment_type: Increase::Models::Account::Loan::statement_payment_type
+        }
+
+      class Loan < Increase::Internal::Type::BaseModel
+        attr_accessor credit_limit: Integer
+
+        attr_accessor grace_period_days: Integer
+
+        attr_accessor maturity_date: Date?
+
+        attr_accessor statement_day_of_month: Integer
+
+        attr_accessor statement_payment_type: Increase::Models::Account::Loan::statement_payment_type
+
+        def initialize: (
+          credit_limit: Integer,
+          grace_period_days: Integer,
+          maturity_date: Date?,
+          statement_day_of_month: Integer,
+          statement_payment_type: Increase::Models::Account::Loan::statement_payment_type
+        ) -> void
+
+        def to_hash: -> {
+          credit_limit: Integer,
+          grace_period_days: Integer,
+          maturity_date: Date?,
+          statement_day_of_month: Integer,
+          statement_payment_type: Increase::Models::Account::Loan::statement_payment_type
+        }
+
+        type statement_payment_type = :balance | :interest_until_maturity
+
+        module StatementPaymentType
+          extend Increase::Internal::Type::Enum
+
+          # The borrower must pay the full balance of the loan at the end of the statement period.
+          BALANCE: :balance
+
+          # The borrower must pay the accrued interest at the end of the statement period.
+          INTEREST_UNTIL_MATURITY: :interest_until_maturity
+
+          def self?.values: -> ::Array[Increase::Models::Account::Loan::statement_payment_type]
+        end
       end
 
       type status = :closed | :open

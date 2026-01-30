@@ -24,6 +24,12 @@ module Increase
       #   @return [Integer]
       required :current_balance, Integer
 
+      # @!attribute loan
+      #   The loan balances for the Account.
+      #
+      #   @return [Increase::Models::BalanceLookup::Loan, nil]
+      required :loan, -> { Increase::BalanceLookup::Loan }, nil?: true
+
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `balance_lookup`.
@@ -31,7 +37,7 @@ module Increase
       #   @return [Symbol, Increase::Models::BalanceLookup::Type]
       required :type, enum: -> { Increase::BalanceLookup::Type }
 
-      # @!method initialize(account_id:, available_balance:, current_balance:, type:)
+      # @!method initialize(account_id:, available_balance:, current_balance:, loan:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::BalanceLookup} for more details.
       #
@@ -44,7 +50,43 @@ module Increase
       #
       #   @param current_balance [Integer] The Account's current balance, representing the sum of all posted Transactions o
       #
+      #   @param loan [Increase::Models::BalanceLookup::Loan, nil] The loan balances for the Account.
+      #
       #   @param type [Symbol, Increase::Models::BalanceLookup::Type] A constant representing the object's type. For this resource it will always be `
+
+      # @see Increase::Models::BalanceLookup#loan
+      class Loan < Increase::Internal::Type::BaseModel
+        # @!attribute due_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
+        #   payment is due.
+        #
+        #   @return [Time, nil]
+        required :due_at, Time, nil?: true
+
+        # @!attribute due_balance
+        #   The total amount due on the loan.
+        #
+        #   @return [Integer]
+        required :due_balance, Integer
+
+        # @!attribute past_due_balance
+        #   The amount past due on the loan.
+        #
+        #   @return [Integer]
+        required :past_due_balance, Integer
+
+        # @!method initialize(due_at:, due_balance:, past_due_balance:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::BalanceLookup::Loan} for more details.
+        #
+        #   The loan balances for the Account.
+        #
+        #   @param due_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan pa
+        #
+        #   @param due_balance [Integer] The total amount due on the loan.
+        #
+        #   @param past_due_balance [Integer] The amount past due on the loan.
+      end
 
       # A constant representing the object's type. For this resource it will always be
       # `balance_lookup`.

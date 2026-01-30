@@ -8,6 +8,7 @@ module Increase
         created_at: Time,
         default_digital_card_profile_id: String?,
         interest_rate: String,
+        lending: Increase::Program::Lending?,
         name: String,
         type: Increase::Models::Program::type_,
         updated_at: Time
@@ -26,6 +27,8 @@ module Increase
 
       attr_accessor interest_rate: String
 
+      attr_accessor lending: Increase::Program::Lending?
+
       attr_accessor name: String
 
       attr_accessor type: Increase::Models::Program::type_
@@ -39,6 +42,7 @@ module Increase
         created_at: Time,
         default_digital_card_profile_id: String?,
         interest_rate: String,
+        lending: Increase::Program::Lending?,
         name: String,
         type: Increase::Models::Program::type_,
         updated_at: Time
@@ -51,6 +55,7 @@ module Increase
         created_at: Time,
         default_digital_card_profile_id: String?,
         interest_rate: String,
+        lending: Increase::Program::Lending?,
         name: String,
         type: Increase::Models::Program::type_,
         updated_at: Time
@@ -71,6 +76,16 @@ module Increase
         GRASSHOPPER_BANK: :grasshopper_bank
 
         def self?.values: -> ::Array[Increase::Models::Program::bank]
+      end
+
+      type lending = { maximum_extendable_credit: Integer }
+
+      class Lending < Increase::Internal::Type::BaseModel
+        attr_accessor maximum_extendable_credit: Integer
+
+        def initialize: (maximum_extendable_credit: Integer) -> void
+
+        def to_hash: -> { maximum_extendable_credit: Integer }
       end
 
       type type_ = :program

@@ -33,6 +33,15 @@ module Increase
       sig { returns(String) }
       attr_accessor :interest_rate
 
+      # The lending details for the program.
+      sig { returns(T.nilable(Increase::Program::Lending)) }
+      attr_reader :lending
+
+      sig do
+        params(lending: T.nilable(Increase::Program::Lending::OrHash)).void
+      end
+      attr_writer :lending
+
       # The name of the Program.
       sig { returns(String) }
       attr_accessor :name
@@ -59,6 +68,7 @@ module Increase
           created_at: Time,
           default_digital_card_profile_id: T.nilable(String),
           interest_rate: String,
+          lending: T.nilable(Increase::Program::Lending::OrHash),
           name: String,
           type: Increase::Program::Type::OrSymbol,
           updated_at: Time
@@ -80,6 +90,8 @@ module Increase
         # string containing a decimal number. For example, a 1% interest rate would be
         # represented as "0.01".
         interest_rate:,
+        # The lending details for the program.
+        lending:,
         # The name of the Program.
         name:,
         # A constant representing the object's type. For this resource it will always be
@@ -100,6 +112,7 @@ module Increase
             created_at: Time,
             default_digital_card_profile_id: T.nilable(String),
             interest_rate: String,
+            lending: T.nilable(Increase::Program::Lending),
             name: String,
             type: Increase::Program::Type::TaggedSymbol,
             updated_at: Time
@@ -131,6 +144,31 @@ module Increase
           override.returns(T::Array[Increase::Program::Bank::TaggedSymbol])
         end
         def self.values
+        end
+      end
+
+      class Lending < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Program::Lending, Increase::Internal::AnyHash)
+          end
+
+        # The maximum extendable credit of the program.
+        sig { returns(Integer) }
+        attr_accessor :maximum_extendable_credit
+
+        # The lending details for the program.
+        sig do
+          params(maximum_extendable_credit: Integer).returns(T.attached_class)
+        end
+        def self.new(
+          # The maximum extendable credit of the program.
+          maximum_extendable_credit:
+        )
+        end
+
+        sig { override.returns({ maximum_extendable_credit: Integer }) }
+        def to_hash
         end
       end
 

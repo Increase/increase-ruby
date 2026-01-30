@@ -36,6 +36,13 @@ module Increase
         end
         attr_writer :bank
 
+        # The maximum extendable credit of the program being added.
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :lending_maximum_extendable_credit
+
+        sig { params(lending_maximum_extendable_credit: Integer).void }
+        attr_writer :lending_maximum_extendable_credit
+
         # The identifier of the Account the Program should be added to is for.
         sig { returns(T.nilable(String)) }
         attr_reader :reserve_account_id
@@ -47,6 +54,7 @@ module Increase
           params(
             name: String,
             bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
+            lending_maximum_extendable_credit: Integer,
             reserve_account_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -56,6 +64,8 @@ module Increase
           name:,
           # The bank for the program's accounts, defaults to First Internet Bank.
           bank: nil,
+          # The maximum extendable credit of the program being added.
+          lending_maximum_extendable_credit: nil,
           # The identifier of the Account the Program should be added to is for.
           reserve_account_id: nil,
           request_options: {}
@@ -67,6 +77,7 @@ module Increase
             {
               name: String,
               bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
+              lending_maximum_extendable_credit: Integer,
               reserve_account_id: String,
               request_options: Increase::RequestOptions
             }

@@ -5,6 +5,7 @@ module Increase
         def create: (
           name: String,
           ?bank: Increase::Models::Simulations::ProgramCreateParams::bank,
+          ?lending_maximum_extendable_credit: Integer,
           ?reserve_account_id: String,
           ?request_options: Increase::request_opts
         ) -> Increase::Program

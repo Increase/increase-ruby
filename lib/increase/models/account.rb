@@ -52,6 +52,12 @@ module Increase
       #   @return [String]
       required :entity_id, String
 
+      # @!attribute funding
+      #   Whether the Account is funded by a loan or by deposits.
+      #
+      #   @return [Symbol, Increase::Models::Account::Funding, nil]
+      required :funding, enum: -> { Increase::Account::Funding }, nil?: true
+
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
       #   Increase and is used to ensure that a request is only processed once. Learn more
@@ -89,6 +95,12 @@ module Increase
       #   @return [String]
       required :interest_rate, String
 
+      # @!attribute loan
+      #   The Account's loan-related information, if the Account is a loan account.
+      #
+      #   @return [Increase::Models::Account::Loan, nil]
+      required :loan, -> { Increase::Account::Loan }, nil?: true
+
       # @!attribute name
       #   The name you choose for the Account.
       #
@@ -115,7 +127,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Account::Type]
       required :type, enum: -> { Increase::Account::Type }
 
-      # @!method initialize(id:, account_revenue_rate:, bank:, closed_at:, created_at:, currency:, entity_id:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, name:, program_id:, status:, type:)
+      # @!method initialize(id:, account_revenue_rate:, bank:, closed_at:, created_at:, currency:, entity_id:, funding:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, loan:, name:, program_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Account} for more details.
       #
@@ -136,6 +148,8 @@ module Increase
       #
       #   @param entity_id [String] The identifier for the Entity the Account belongs to.
       #
+      #   @param funding [Symbol, Increase::Models::Account::Funding, nil] Whether the Account is funded by a loan or by deposits.
+      #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param informational_entity_id [String, nil] The identifier of an Entity that, while not owning the Account, is associated wi
@@ -145,6 +159,8 @@ module Increase
       #   @param interest_accrued_at [Date, nil] The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which inte
       #
       #   @param interest_rate [String] The interest rate currently being earned on the account, as a string containing
+      #
+      #   @param loan [Increase::Models::Account::Loan, nil] The Account's loan-related information, if the Account is a loan account.
       #
       #   @param name [String] The name you choose for the Account.
       #
@@ -185,6 +201,88 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # Whether the Account is funded by a loan or by deposits.
+      #
+      # @see Increase::Models::Account#funding
+      module Funding
+        extend Increase::Internal::Type::Enum
+
+        # An account funded by a loan. Before opening a loan account, contact support@increase.com to set up a loan program.
+        LOAN = :loan
+
+        # An account funded by deposits.
+        DEPOSITS = :deposits
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::Account#loan
+      class Loan < Increase::Internal::Type::BaseModel
+        # @!attribute credit_limit
+        #   The maximum amount of money that can be borrowed on the Account.
+        #
+        #   @return [Integer]
+        required :credit_limit, Integer
+
+        # @!attribute grace_period_days
+        #   The number of days after the statement date that the Account can be past due
+        #   before being considered delinquent.
+        #
+        #   @return [Integer]
+        required :grace_period_days, Integer
+
+        # @!attribute maturity_date
+        #   The date on which the loan matures.
+        #
+        #   @return [Date, nil]
+        required :maturity_date, Date, nil?: true
+
+        # @!attribute statement_day_of_month
+        #   The day of the month on which the loan statement is generated.
+        #
+        #   @return [Integer]
+        required :statement_day_of_month, Integer
+
+        # @!attribute statement_payment_type
+        #   The type of payment for the loan.
+        #
+        #   @return [Symbol, Increase::Models::Account::Loan::StatementPaymentType]
+        required :statement_payment_type, enum: -> { Increase::Account::Loan::StatementPaymentType }
+
+        # @!method initialize(credit_limit:, grace_period_days:, maturity_date:, statement_day_of_month:, statement_payment_type:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Account::Loan} for more details.
+        #
+        #   The Account's loan-related information, if the Account is a loan account.
+        #
+        #   @param credit_limit [Integer] The maximum amount of money that can be borrowed on the Account.
+        #
+        #   @param grace_period_days [Integer] The number of days after the statement date that the Account can be past due bef
+        #
+        #   @param maturity_date [Date, nil] The date on which the loan matures.
+        #
+        #   @param statement_day_of_month [Integer] The day of the month on which the loan statement is generated.
+        #
+        #   @param statement_payment_type [Symbol, Increase::Models::Account::Loan::StatementPaymentType] The type of payment for the loan.
+
+        # The type of payment for the loan.
+        #
+        # @see Increase::Models::Account::Loan#statement_payment_type
+        module StatementPaymentType
+          extend Increase::Internal::Type::Enum
+
+          # The borrower must pay the full balance of the loan at the end of the statement period.
+          BALANCE = :balance
+
+          # The borrower must pay the accrued interest at the end of the statement period.
+          INTEREST_UNTIL_MATURITY = :interest_until_maturity
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # The status of the Account.
