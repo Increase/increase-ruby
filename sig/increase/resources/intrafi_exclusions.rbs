@@ -2,8 +2,8 @@ module Increase
   module Resources
     class IntrafiExclusions
       def create: (
-        bank_name: String,
         entity_id: String,
+        fdic_certificate_number: String,
         ?request_options: Increase::request_opts
       ) -> Increase::IntrafiExclusion
 

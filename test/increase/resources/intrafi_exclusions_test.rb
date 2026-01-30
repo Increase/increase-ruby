@@ -5,7 +5,10 @@ require_relative "../test_helper"
 class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::ResourceTest
   def test_create_required_params
     response =
-      @increase.intrafi_exclusions.create(bank_name: "Example Bank", entity_id: "entity_n8y8tnk2p9339ti393yi")
+      @increase.intrafi_exclusions.create(
+        entity_id: "entity_n8y8tnk2p9339ti393yi",
+        fdic_certificate_number: "314159"
+      )
 
     assert_pattern do
       response => Increase::IntrafiExclusion
@@ -14,7 +17,7 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
     assert_pattern do
       response => {
         id: String,
-        bank_name: String,
+        bank_name: String | nil,
         created_at: Time,
         entity_id: String,
         excluded_at: Time | nil,
@@ -37,7 +40,7 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
     assert_pattern do
       response => {
         id: String,
-        bank_name: String,
+        bank_name: String | nil,
         created_at: Time,
         entity_id: String,
         excluded_at: Time | nil,
@@ -67,7 +70,7 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
     assert_pattern do
       row => {
         id: String,
-        bank_name: String,
+        bank_name: String | nil,
         created_at: Time,
         entity_id: String,
         excluded_at: Time | nil,
@@ -90,7 +93,7 @@ class Increase::Test::Resources::IntrafiExclusionsTest < Increase::Test::Resourc
     assert_pattern do
       response => {
         id: String,
-        bank_name: String,
+        bank_name: String | nil,
         created_at: Time,
         entity_id: String,
         excluded_at: Time | nil,

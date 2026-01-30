@@ -3,13 +3,16 @@
 module Increase
   module Resources
     class IntrafiExclusions
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::IntrafiExclusionCreateParams} for more details.
+      #
       # Create an IntraFi Exclusion
       #
-      # @overload create(bank_name:, entity_id:, request_options: {})
-      #
-      # @param bank_name [String] The name of the financial institution to be excluded.
+      # @overload create(entity_id:, fdic_certificate_number:, request_options: {})
       #
       # @param entity_id [String] The identifier of the Entity whose deposits will be excluded.
+      #
+      # @param fdic_certificate_number [String] The FDIC certificate number of the financial institution to be excluded. An FDIC
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

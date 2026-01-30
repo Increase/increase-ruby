@@ -3,7 +3,7 @@ module Increase
     type intrafi_exclusion =
       {
         id: String,
-        bank_name: String,
+        bank_name: String?,
         created_at: Time,
         entity_id: String,
         excluded_at: Time?,
@@ -17,7 +17,7 @@ module Increase
     class IntrafiExclusion < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor bank_name: String
+      attr_accessor bank_name: String?
 
       attr_accessor created_at: Time
 
@@ -37,7 +37,7 @@ module Increase
 
       def initialize: (
         id: String,
-        bank_name: String,
+        bank_name: String?,
         created_at: Time,
         entity_id: String,
         excluded_at: Time?,
@@ -50,7 +50,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
-        bank_name: String,
+        bank_name: String?,
         created_at: Time,
         entity_id: String,
         excluded_at: Time?,

@@ -13,7 +13,7 @@ module Increase
       attr_accessor :id
 
       # The name of the excluded institution.
-      sig { returns(String) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :bank_name
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -60,7 +60,7 @@ module Increase
       sig do
         params(
           id: String,
-          bank_name: String,
+          bank_name: T.nilable(String),
           created_at: Time,
           entity_id: String,
           excluded_at: T.nilable(Time),
@@ -104,7 +104,7 @@ module Increase
         override.returns(
           {
             id: String,
-            bank_name: String,
+            bank_name: T.nilable(String),
             created_at: Time,
             entity_id: String,
             excluded_at: T.nilable(Time),
