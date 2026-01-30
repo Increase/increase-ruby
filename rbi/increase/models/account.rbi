@@ -41,7 +41,7 @@ module Increase
       attr_accessor :entity_id
 
       # Whether the Account is funded by a loan or by deposits.
-      sig { returns(T.nilable(Increase::Account::Funding::TaggedSymbol)) }
+      sig { returns(Increase::Account::Funding::TaggedSymbol) }
       attr_accessor :funding
 
       # The idempotency key you chose for this object. This value is unique across
@@ -107,7 +107,7 @@ module Increase
           created_at: Time,
           currency: Increase::Account::Currency::OrSymbol,
           entity_id: String,
-          funding: T.nilable(Increase::Account::Funding::OrSymbol),
+          funding: Increase::Account::Funding::OrSymbol,
           idempotency_key: T.nilable(String),
           informational_entity_id: T.nilable(String),
           interest_accrued: String,
@@ -185,7 +185,7 @@ module Increase
             created_at: Time,
             currency: Increase::Account::Currency::TaggedSymbol,
             entity_id: String,
-            funding: T.nilable(Increase::Account::Funding::TaggedSymbol),
+            funding: Increase::Account::Funding::TaggedSymbol,
             idempotency_key: T.nilable(String),
             informational_entity_id: T.nilable(String),
             interest_accrued: String,
