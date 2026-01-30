@@ -7,6 +7,7 @@ module Increase
         created_at: Time,
         ending_balance: Integer,
         file_id: String,
+        loan: Increase::AccountStatement::Loan?,
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
@@ -24,6 +25,8 @@ module Increase
 
       attr_accessor file_id: String
 
+      attr_accessor loan: Increase::AccountStatement::Loan?
+
       attr_accessor starting_balance: Integer
 
       attr_accessor statement_period_end: Time
@@ -38,6 +41,7 @@ module Increase
         created_at: Time,
         ending_balance: Integer,
         file_id: String,
+        loan: Increase::AccountStatement::Loan?,
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
@@ -50,11 +54,35 @@ module Increase
         created_at: Time,
         ending_balance: Integer,
         file_id: String,
+        loan: Increase::AccountStatement::Loan?,
         starting_balance: Integer,
         statement_period_end: Time,
         statement_period_start: Time,
         type: Increase::Models::AccountStatement::type_
       }
+
+      type loan =
+        { due_at: Time?, due_balance: Integer, past_due_balance: Integer }
+
+      class Loan < Increase::Internal::Type::BaseModel
+        attr_accessor due_at: Time?
+
+        attr_accessor due_balance: Integer
+
+        attr_accessor past_due_balance: Integer
+
+        def initialize: (
+          due_at: Time?,
+          due_balance: Integer,
+          past_due_balance: Integer
+        ) -> void
+
+        def to_hash: -> {
+          due_at: Time?,
+          due_balance: Integer,
+          past_due_balance: Integer
+        }
+      end
 
       type type_ = :account_statement
 

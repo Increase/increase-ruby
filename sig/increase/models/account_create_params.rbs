@@ -4,7 +4,9 @@ module Increase
       {
         name: String,
         entity_id: String,
+        funding: Increase::Models::AccountCreateParams::funding,
         informational_entity_id: String,
+        loan: Increase::AccountCreateParams::Loan,
         program_id: String
       }
       & Increase::Internal::Type::request_parameters
@@ -19,9 +21,21 @@ module Increase
 
       def entity_id=: (String) -> String
 
+      attr_reader funding: Increase::Models::AccountCreateParams::funding?
+
+      def funding=: (
+        Increase::Models::AccountCreateParams::funding
+      ) -> Increase::Models::AccountCreateParams::funding
+
       attr_reader informational_entity_id: String?
 
       def informational_entity_id=: (String) -> String
+
+      attr_reader loan: Increase::AccountCreateParams::Loan?
+
+      def loan=: (
+        Increase::AccountCreateParams::Loan
+      ) -> Increase::AccountCreateParams::Loan
 
       attr_reader program_id: String?
 
@@ -30,7 +44,9 @@ module Increase
       def initialize: (
         name: String,
         ?entity_id: String,
+        ?funding: Increase::Models::AccountCreateParams::funding,
         ?informational_entity_id: String,
+        ?loan: Increase::AccountCreateParams::Loan,
         ?program_id: String,
         ?request_options: Increase::request_opts
       ) -> void
@@ -38,10 +54,79 @@ module Increase
       def to_hash: -> {
         name: String,
         entity_id: String,
+        funding: Increase::Models::AccountCreateParams::funding,
         informational_entity_id: String,
+        loan: Increase::AccountCreateParams::Loan,
         program_id: String,
         request_options: Increase::RequestOptions
       }
+
+      type funding = :loan | :deposits
+
+      module Funding
+        extend Increase::Internal::Type::Enum
+
+        # An account funded by a loan. Before opening a loan account, contact support@increase.com to set up a loan program.
+        LOAN: :loan
+
+        # An account funded by deposits.
+        DEPOSITS: :deposits
+
+        def self?.values: -> ::Array[Increase::Models::AccountCreateParams::funding]
+      end
+
+      type loan =
+        {
+          credit_limit: Integer,
+          grace_period_days: Integer,
+          statement_day_of_month: Integer,
+          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type,
+          maturity_date: Date
+        }
+
+      class Loan < Increase::Internal::Type::BaseModel
+        attr_accessor credit_limit: Integer
+
+        attr_accessor grace_period_days: Integer
+
+        attr_accessor statement_day_of_month: Integer
+
+        attr_accessor statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type
+
+        attr_reader maturity_date: Date?
+
+        def maturity_date=: (Date) -> Date
+
+        def initialize: (
+          credit_limit: Integer,
+          grace_period_days: Integer,
+          statement_day_of_month: Integer,
+          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type,
+          ?maturity_date: Date
+        ) -> void
+
+        def to_hash: -> {
+          credit_limit: Integer,
+          grace_period_days: Integer,
+          statement_day_of_month: Integer,
+          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type,
+          maturity_date: Date
+        }
+
+        type statement_payment_type = :balance | :interest_until_maturity
+
+        module StatementPaymentType
+          extend Increase::Internal::Type::Enum
+
+          # The borrower must pay the full balance of the loan at the end of the statement period.
+          BALANCE: :balance
+
+          # The borrower must pay the accrued interest at the end of the statement period.
+          INTEREST_UNTIL_MATURITY: :interest_until_maturity
+
+          def self?.values: -> ::Array[Increase::Models::AccountCreateParams::Loan::statement_payment_type]
+        end
+      end
     end
   end
 end

@@ -8,13 +8,17 @@ module Increase
       #
       # Create an Account
       #
-      # @overload create(name:, entity_id: nil, informational_entity_id: nil, program_id: nil, request_options: {})
+      # @overload create(name:, entity_id: nil, funding: nil, informational_entity_id: nil, loan: nil, program_id: nil, request_options: {})
       #
       # @param name [String] The name you choose for the Account.
       #
       # @param entity_id [String] The identifier for the Entity that will own the Account.
       #
+      # @param funding [Symbol, Increase::Models::AccountCreateParams::Funding] Whether the Account is funded by a loan or by deposits.
+      #
       # @param informational_entity_id [String] The identifier of an Entity that, while not owning the Account, is associated wi
+      #
+      # @param loan [Increase::Models::AccountCreateParams::Loan] The loan details for the account.
       #
       # @param program_id [String] The identifier for the Program that this Account falls under. Required if you op
       #
@@ -56,9 +60,11 @@ module Increase
 
       # Update an Account
       #
-      # @overload update(account_id, name: nil, request_options: {})
+      # @overload update(account_id, loan: nil, name: nil, request_options: {})
       #
       # @param account_id [String] The identifier of the Account to update.
+      #
+      # @param loan [Increase::Models::AccountUpdateParams::Loan] The loan details for the account.
       #
       # @param name [String] The new name of the Account.
       #

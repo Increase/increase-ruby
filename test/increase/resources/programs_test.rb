@@ -18,6 +18,7 @@ class Increase::Test::Resources::ProgramsTest < Increase::Test::ResourceTest
         created_at: Time,
         default_digital_card_profile_id: String | nil,
         interest_rate: String,
+        lending: Increase::Program::Lending | nil,
         name: String,
         type: Increase::Program::Type,
         updated_at: Time
@@ -47,6 +48,7 @@ class Increase::Test::Resources::ProgramsTest < Increase::Test::ResourceTest
         created_at: Time,
         default_digital_card_profile_id: String | nil,
         interest_rate: String,
+        lending: Increase::Program::Lending | nil,
         name: String,
         type: Increase::Program::Type,
         updated_at: Time

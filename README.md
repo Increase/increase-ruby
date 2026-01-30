@@ -273,25 +273,25 @@ increase.accounts.create(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :active
-puts(Increase::AccountNumberUpdateParams::Status::ACTIVE)
+# :loan
+puts(Increase::AccountCreateParams::Funding::LOAN)
 
-# Revealed type: `T.all(Increase::AccountNumberUpdateParams::Status, Symbol)`
-T.reveal_type(Increase::AccountNumberUpdateParams::Status::ACTIVE)
+# Revealed type: `T.all(Increase::AccountCreateParams::Funding, Symbol)`
+T.reveal_type(Increase::AccountCreateParams::Funding::LOAN)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-increase.account_numbers.update(
-  status: Increase::AccountNumberUpdateParams::Status::ACTIVE,
+increase.accounts.create(
+  funding: Increase::AccountCreateParams::Funding::LOAN,
   # …
 )
 
 # Literal values are also permissible:
-increase.account_numbers.update(
-  status: :active,
+increase.accounts.create(
+  funding: :loan,
   # …
 )
 ```

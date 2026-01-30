@@ -12,6 +12,7 @@ module Increase
           params(
             name: String,
             bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
+            lending_maximum_extendable_credit: Integer,
             reserve_account_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::Program)
@@ -21,6 +22,8 @@ module Increase
           name:,
           # The bank for the program's accounts, defaults to First Internet Bank.
           bank: nil,
+          # The maximum extendable credit of the program being added.
+          lending_maximum_extendable_credit: nil,
           # The identifier of the Account the Program should be added to is for.
           reserve_account_id: nil,
           request_options: {}

@@ -20,16 +20,24 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank, nil]
         optional :bank, enum: -> { Increase::Simulations::ProgramCreateParams::Bank }
 
+        # @!attribute lending_maximum_extendable_credit
+        #   The maximum extendable credit of the program being added.
+        #
+        #   @return [Integer, nil]
+        optional :lending_maximum_extendable_credit, Integer
+
         # @!attribute reserve_account_id
         #   The identifier of the Account the Program should be added to is for.
         #
         #   @return [String, nil]
         optional :reserve_account_id, String
 
-        # @!method initialize(name:, bank: nil, reserve_account_id: nil, request_options: {})
+        # @!method initialize(name:, bank: nil, lending_maximum_extendable_credit: nil, reserve_account_id: nil, request_options: {})
         #   @param name [String] The name of the program being added.
         #
         #   @param bank [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank] The bank for the program's accounts, defaults to First Internet Bank.
+        #
+        #   @param lending_maximum_extendable_credit [Integer] The maximum extendable credit of the program being added.
         #
         #   @param reserve_account_id [String] The identifier of the Account the Program should be added to is for.
         #
