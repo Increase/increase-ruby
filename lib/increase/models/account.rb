@@ -55,8 +55,8 @@ module Increase
       # @!attribute funding
       #   Whether the Account is funded by a loan or by deposits.
       #
-      #   @return [Symbol, Increase::Models::Account::Funding, nil]
-      required :funding, enum: -> { Increase::Account::Funding }, nil?: true
+      #   @return [Symbol, Increase::Models::Account::Funding]
+      required :funding, enum: -> { Increase::Account::Funding }
 
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
@@ -148,7 +148,7 @@ module Increase
       #
       #   @param entity_id [String] The identifier for the Entity the Account belongs to.
       #
-      #   @param funding [Symbol, Increase::Models::Account::Funding, nil] Whether the Account is funded by a loan or by deposits.
+      #   @param funding [Symbol, Increase::Models::Account::Funding] Whether the Account is funded by a loan or by deposits.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
