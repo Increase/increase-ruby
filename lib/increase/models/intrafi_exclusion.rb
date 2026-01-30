@@ -113,6 +113,9 @@ module Increase
         # The exclusion has been removed from the IntraFi network.
         ARCHIVED = :archived
 
+        # The exclusion wasn't eligible to be added to the IntraFi network.
+        INELIGIBLE = :ineligible
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

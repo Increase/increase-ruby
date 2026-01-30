@@ -61,7 +61,7 @@ module Increase
         type: Increase::Models::IntrafiExclusion::type_
       }
 
-      type status = :pending | :completed | :archived
+      type status = :pending | :completed | :archived | :ineligible
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -74,6 +74,9 @@ module Increase
 
         # The exclusion has been removed from the IntraFi network.
         ARCHIVED: :archived
+
+        # The exclusion wasn't eligible to be added to the IntraFi network.
+        INELIGIBLE: :ineligible
 
         def self?.values: -> ::Array[Increase::Models::IntrafiExclusion::status]
       end
