@@ -139,6 +139,10 @@ module Increase
         ARCHIVED =
           T.let(:archived, Increase::IntrafiExclusion::Status::TaggedSymbol)
 
+        # The exclusion wasn't eligible to be added to the IntraFi network.
+        INELIGIBLE =
+          T.let(:ineligible, Increase::IntrafiExclusion::Status::TaggedSymbol)
+
         sig do
           override.returns(
             T::Array[Increase::IntrafiExclusion::Status::TaggedSymbol]
