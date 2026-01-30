@@ -9,7 +9,7 @@ module Increase
         created_at: Time,
         currency: Increase::Models::Account::currency,
         entity_id: String,
-        funding: Increase::Models::Account::funding?,
+        funding: Increase::Models::Account::funding,
         idempotency_key: String?,
         informational_entity_id: String?,
         interest_accrued: String,
@@ -37,7 +37,7 @@ module Increase
 
       attr_accessor entity_id: String
 
-      attr_accessor funding: Increase::Models::Account::funding?
+      attr_accessor funding: Increase::Models::Account::funding
 
       attr_accessor idempotency_key: String?
 
@@ -67,7 +67,7 @@ module Increase
         created_at: Time,
         currency: Increase::Models::Account::currency,
         entity_id: String,
-        funding: Increase::Models::Account::funding?,
+        funding: Increase::Models::Account::funding,
         idempotency_key: String?,
         informational_entity_id: String?,
         interest_accrued: String,
@@ -88,7 +88,7 @@ module Increase
         created_at: Time,
         currency: Increase::Models::Account::currency,
         entity_id: String,
-        funding: Increase::Models::Account::funding?,
+        funding: Increase::Models::Account::funding,
         idempotency_key: String?,
         informational_entity_id: String?,
         interest_accrued: String,
