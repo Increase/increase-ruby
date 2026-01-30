@@ -13,8 +13,8 @@ module Increase
       # @!attribute bank_name
       #   The name of the excluded institution.
       #
-      #   @return [String]
-      required :bank_name, String
+      #   @return [String, nil]
+      required :bank_name, String, nil?: true
 
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -80,7 +80,7 @@ module Increase
       #
       #   @param id [String] The identifier of this exclusion request.
       #
-      #   @param bank_name [String] The name of the excluded institution.
+      #   @param bank_name [String, nil] The name of the excluded institution.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #

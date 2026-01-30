@@ -1,26 +1,26 @@
 module Increase
   module Models
     type intrafi_exclusion_create_params =
-      { bank_name: String, entity_id: String }
+      { entity_id: String, fdic_certificate_number: String }
       & Increase::Internal::Type::request_parameters
 
     class IntrafiExclusionCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_accessor bank_name: String
-
       attr_accessor entity_id: String
 
+      attr_accessor fdic_certificate_number: String
+
       def initialize: (
-        bank_name: String,
         entity_id: String,
+        fdic_certificate_number: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
-        bank_name: String,
         entity_id: String,
+        fdic_certificate_number: String,
         request_options: Increase::RequestOptions
       }
     end
