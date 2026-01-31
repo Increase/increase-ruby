@@ -553,7 +553,7 @@ module Increase
             )
           end
 
-        # Filter exported Transactions to the specified Account.
+        # Filter exported Balances to the specified Account.
         sig { returns(T.nilable(String)) }
         attr_reader :account_id
 
@@ -576,7 +576,7 @@ module Increase
         end
         attr_writer :created_at
 
-        # Filter exported Transactions to the specified Program.
+        # Filter exported Balances to the specified Program.
         sig { returns(T.nilable(String)) }
         attr_reader :program_id
 
@@ -594,11 +594,11 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # Filter exported Transactions to the specified Account.
+          # Filter exported Balances to the specified Account.
           account_id: nil,
           # Filter results by time range on the `created_at` attribute.
           created_at: nil,
-          # Filter exported Transactions to the specified Program.
+          # Filter exported Balances to the specified Program.
           program_id: nil
         )
         end
@@ -705,7 +705,8 @@ module Increase
             )
           end
 
-        # Filter exported Transactions to the specified Bookkeeping Account.
+        # Filter exported Bookkeeping Account Balances to the specified Bookkeeping
+        # Account.
         sig { returns(T.nilable(String)) }
         attr_reader :bookkeeping_account_id
 
@@ -740,7 +741,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # Filter exported Transactions to the specified Bookkeeping Account.
+          # Filter exported Bookkeeping Account Balances to the specified Bookkeeping
+          # Account.
           bookkeeping_account_id: nil,
           # Filter results by time range on the `created_at` attribute.
           created_at: nil

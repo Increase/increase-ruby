@@ -268,7 +268,7 @@ module Increase
 
       class BalanceCsv < Increase::Internal::Type::BaseModel
         # @!attribute account_id
-        #   Filter exported Transactions to the specified Account.
+        #   Filter exported Balances to the specified Account.
         #
         #   @return [String, nil]
         optional :account_id, String
@@ -280,7 +280,7 @@ module Increase
         optional :created_at, -> { Increase::ExportCreateParams::BalanceCsv::CreatedAt }
 
         # @!attribute program_id
-        #   Filter exported Transactions to the specified Program.
+        #   Filter exported Balances to the specified Program.
         #
         #   @return [String, nil]
         optional :program_id, String
@@ -289,11 +289,11 @@ module Increase
         #   Options for the created export. Required if `category` is equal to
         #   `balance_csv`.
         #
-        #   @param account_id [String] Filter exported Transactions to the specified Account.
+        #   @param account_id [String] Filter exported Balances to the specified Account.
         #
         #   @param created_at [Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
         #
-        #   @param program_id [String] Filter exported Transactions to the specified Program.
+        #   @param program_id [String] Filter exported Balances to the specified Program.
 
         # @see Increase::Models::ExportCreateParams::BalanceCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -343,7 +343,8 @@ module Increase
 
       class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
         # @!attribute bookkeeping_account_id
-        #   Filter exported Transactions to the specified Bookkeeping Account.
+        #   Filter exported Bookkeeping Account Balances to the specified Bookkeeping
+        #   Account.
         #
         #   @return [String, nil]
         optional :bookkeeping_account_id, String
@@ -355,10 +356,14 @@ module Increase
         optional :created_at, -> { Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt }
 
         # @!method initialize(bookkeeping_account_id: nil, created_at: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv} for more
+        #   details.
+        #
         #   Options for the created export. Required if `category` is equal to
         #   `bookkeeping_account_balance_csv`.
         #
-        #   @param bookkeeping_account_id [String] Filter exported Transactions to the specified Bookkeeping Account.
+        #   @param bookkeeping_account_id [String] Filter exported Bookkeeping Account Balances to the specified Bookkeeping Accoun
         #
         #   @param created_at [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
 
