@@ -415,54 +415,8 @@ module Increase
       end
 
       class EntityCsv < Increase::Internal::Type::BaseModel
-        # @!attribute status
-        #   Entity statuses to filter by.
-        #
-        #   @return [Increase::Models::ExportCreateParams::EntityCsv::Status, nil]
-        optional :status, -> { Increase::ExportCreateParams::EntityCsv::Status }
-
-        # @!method initialize(status: nil)
+        # @!method initialize
         #   Options for the created export. Required if `category` is equal to `entity_csv`.
-        #
-        #   @param status [Increase::Models::ExportCreateParams::EntityCsv::Status] Entity statuses to filter by.
-
-        # @see Increase::Models::ExportCreateParams::EntityCsv#status
-        class Status < Increase::Internal::Type::BaseModel
-          # @!attribute in_
-          #   Entity statuses to filter by. For GET requests, this should be encoded as a
-          #   comma-delimited string, such as `?in=one,two,three`.
-          #
-          #   @return [Array<Symbol, Increase::Models::ExportCreateParams::EntityCsv::Status::In>]
-          required :in_,
-                   -> {
-                     Increase::Internal::Type::ArrayOf[enum: Increase::ExportCreateParams::EntityCsv::Status::In]
-                   },
-                   api_name: :in
-
-          # @!method initialize(in_:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::ExportCreateParams::EntityCsv::Status} for more details.
-          #
-          #   Entity statuses to filter by.
-          #
-          #   @param in_ [Array<Symbol, Increase::Models::ExportCreateParams::EntityCsv::Status::In>] Entity statuses to filter by. For GET requests, this should be encoded as a comm
-
-          module In
-            extend Increase::Internal::Type::Enum
-
-            # The entity is active.
-            ACTIVE = :active
-
-            # The entity is archived, and can no longer be used to create accounts.
-            ARCHIVED = :archived
-
-            # The entity is temporarily disabled and cannot be used for financial activity.
-            DISABLED = :disabled
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-        end
       end
 
       class FundingInstructions < Increase::Internal::Type::BaseModel
