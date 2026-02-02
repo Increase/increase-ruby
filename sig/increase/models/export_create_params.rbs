@@ -255,8 +255,7 @@ module Increase
       type balance_csv =
         {
           account_id: String,
-          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt,
-          program_id: String
+          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
         }
 
       class BalanceCsv < Increase::Internal::Type::BaseModel
@@ -270,20 +269,14 @@ module Increase
           Increase::ExportCreateParams::BalanceCsv::CreatedAt
         ) -> Increase::ExportCreateParams::BalanceCsv::CreatedAt
 
-        attr_reader program_id: String?
-
-        def program_id=: (String) -> String
-
         def initialize: (
           ?account_id: String,
-          ?created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt,
-          ?program_id: String
+          ?created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
         ) -> void
 
         def to_hash: -> {
           account_id: String,
-          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt,
-          program_id: String
+          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
         }
 
         type created_at =
