@@ -385,57 +385,12 @@ module Increase
         end
       end
 
-      type entity_csv =
-        { status: Increase::ExportCreateParams::EntityCsv::Status }
+      type entity_csv = {  }
 
       class EntityCsv < Increase::Internal::Type::BaseModel
-        attr_reader status: Increase::ExportCreateParams::EntityCsv::Status?
+        def initialize: -> void
 
-        def status=: (
-          Increase::ExportCreateParams::EntityCsv::Status
-        ) -> Increase::ExportCreateParams::EntityCsv::Status
-
-        def initialize: (
-          ?status: Increase::ExportCreateParams::EntityCsv::Status
-        ) -> void
-
-        def to_hash: -> {
-          status: Increase::ExportCreateParams::EntityCsv::Status
-        }
-
-        type status =
-          {
-            in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
-          }
-
-        class Status < Increase::Internal::Type::BaseModel
-          attr_accessor in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
-
-          def initialize: (
-            in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
-          ) -> void
-
-          def to_hash: -> {
-            in_: ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
-          }
-
-          type in_ = :active | :archived | :disabled
-
-          module In
-            extend Increase::Internal::Type::Enum
-
-            # The entity is active.
-            ACTIVE: :active
-
-            # The entity is archived, and can no longer be used to create accounts.
-            ARCHIVED: :archived
-
-            # The entity is temporarily disabled and cannot be used for financial activity.
-            DISABLED: :disabled
-
-            def self?.values: -> ::Array[Increase::Models::ExportCreateParams::EntityCsv::Status::in_]
-          end
-        end
+        def to_hash: -> {  }
       end
 
       type funding_instructions = { account_number_id: String }
