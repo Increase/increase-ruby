@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.192.1 (2026-02-02)
+
+Full Changelog: [v1.192.0...v1.192.1](https://github.com/Increase/increase-ruby/compare/v1.192.0...v1.192.1)
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([3fca76b](https://github.com/Increase/increase-ruby/commit/3fca76b749a1836451c60452d86ffddc9bb8ce6c))
+
 ## 1.192.0 (2026-01-31)
 
 Full Changelog: [v1.191.0...v1.192.0](https://github.com/Increase/increase-ruby/compare/v1.191.0...v1.192.0)
