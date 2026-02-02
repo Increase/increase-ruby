@@ -126,6 +126,24 @@ module Increase
         # Occurs whenever an ACH Transfer is updated.
         ACH_TRANSFER_UPDATED = :"ach_transfer.updated"
 
+        # Occurs whenever a Blockchain Address is created.
+        BLOCKCHAIN_ADDRESS_CREATED = :"blockchain_address.created"
+
+        # Occurs whenever a Blockchain Address is updated.
+        BLOCKCHAIN_ADDRESS_UPDATED = :"blockchain_address.updated"
+
+        # Occurs whenever a Blockchain Off-Ramp Transfer is created.
+        BLOCKCHAIN_OFFRAMP_TRANSFER_CREATED = :"blockchain_offramp_transfer.created"
+
+        # Occurs whenever a Blockchain Off-Ramp Transfer is updated.
+        BLOCKCHAIN_OFFRAMP_TRANSFER_UPDATED = :"blockchain_offramp_transfer.updated"
+
+        # Occurs whenever a Blockchain On-Ramp Transfer is created.
+        BLOCKCHAIN_ONRAMP_TRANSFER_CREATED = :"blockchain_onramp_transfer.created"
+
+        # Occurs whenever a Blockchain On-Ramp Transfer is updated.
+        BLOCKCHAIN_ONRAMP_TRANSFER_UPDATED = :"blockchain_onramp_transfer.updated"
+
         # Occurs whenever a Bookkeeping Account is created.
         BOOKKEEPING_ACCOUNT_CREATED = :"bookkeeping_account.created"
 

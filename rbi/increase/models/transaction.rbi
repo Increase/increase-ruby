@@ -295,6 +295,50 @@ module Increase
         end
         attr_writer :ach_transfer_return
 
+        # A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
+        # the JSON response if and only if `category` is equal to
+        # `blockchain_offramp_transfer_settlement`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Transaction::Source::BlockchainOfframpTransferSettlement
+            )
+          )
+        end
+        attr_reader :blockchain_offramp_transfer_settlement
+
+        sig do
+          params(
+            blockchain_offramp_transfer_settlement:
+              T.nilable(
+                Increase::Transaction::Source::BlockchainOfframpTransferSettlement::OrHash
+              )
+          ).void
+        end
+        attr_writer :blockchain_offramp_transfer_settlement
+
+        # A Blockchain On-Ramp Transfer Intention object. This field will be present in
+        # the JSON response if and only if `category` is equal to
+        # `blockchain_onramp_transfer_intention`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Transaction::Source::BlockchainOnrampTransferIntention
+            )
+          )
+        end
+        attr_reader :blockchain_onramp_transfer_intention
+
+        sig do
+          params(
+            blockchain_onramp_transfer_intention:
+              T.nilable(
+                Increase::Transaction::Source::BlockchainOnrampTransferIntention::OrHash
+              )
+          ).void
+        end
+        attr_writer :blockchain_onramp_transfer_intention
+
         # A Legacy Card Dispute Acceptance object. This field will be present in the JSON
         # response if and only if `category` is equal to `card_dispute_acceptance`.
         # Contains the details of a successful Card Dispute.
@@ -927,6 +971,14 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::ACHTransferReturn::OrHash
               ),
+            blockchain_offramp_transfer_settlement:
+              T.nilable(
+                Increase::Transaction::Source::BlockchainOfframpTransferSettlement::OrHash
+              ),
+            blockchain_onramp_transfer_intention:
+              T.nilable(
+                Increase::Transaction::Source::BlockchainOnrampTransferIntention::OrHash
+              ),
             card_dispute_acceptance:
               T.nilable(
                 Increase::Transaction::Source::CardDisputeAcceptance::OrHash
@@ -1061,6 +1113,14 @@ module Increase
           # the first two business days after the transfer is initiated, but can occur much
           # later.
           ach_transfer_return:,
+          # A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `blockchain_offramp_transfer_settlement`.
+          blockchain_offramp_transfer_settlement:,
+          # A Blockchain On-Ramp Transfer Intention object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `blockchain_onramp_transfer_intention`.
+          blockchain_onramp_transfer_intention:,
           # A Legacy Card Dispute Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_dispute_acceptance`.
           # Contains the details of a successful Card Dispute.
@@ -1236,6 +1296,14 @@ module Increase
                 T.nilable(Increase::Transaction::Source::ACHTransferRejection),
               ach_transfer_return:
                 T.nilable(Increase::Transaction::Source::ACHTransferReturn),
+              blockchain_offramp_transfer_settlement:
+                T.nilable(
+                  Increase::Transaction::Source::BlockchainOfframpTransferSettlement
+                ),
+              blockchain_onramp_transfer_intention:
+                T.nilable(
+                  Increase::Transaction::Source::BlockchainOnrampTransferIntention
+                ),
               card_dispute_acceptance:
                 T.nilable(Increase::Transaction::Source::CardDisputeAcceptance),
               card_dispute_financial:
@@ -2213,6 +2281,92 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+
+        class BlockchainOfframpTransferSettlement < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::BlockchainOfframpTransferSettlement,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the Blockchain Address the funds were received at.
+          sig { returns(String) }
+          attr_accessor :source_blockchain_address_id
+
+          # The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `blockchain_offramp_transfer_settlement`.
+          sig do
+            params(
+              source_blockchain_address_id: String,
+              transfer_id: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The identifier of the Blockchain Address the funds were received at.
+            source_blockchain_address_id:,
+            # The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig do
+            override.returns(
+              { source_blockchain_address_id: String, transfer_id: String }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class BlockchainOnrampTransferIntention < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::BlockchainOnrampTransferIntention,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The blockchain address the funds were sent to.
+          sig { returns(String) }
+          attr_accessor :destination_blockchain_address
+
+          # The identifier of the Blockchain On-Ramp Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A Blockchain On-Ramp Transfer Intention object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `blockchain_onramp_transfer_intention`.
+          sig do
+            params(
+              destination_blockchain_address: String,
+              transfer_id: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The blockchain address the funds were sent to.
+            destination_blockchain_address:,
+            # The identifier of the Blockchain On-Ramp Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig do
+            override.returns(
+              { destination_blockchain_address: String, transfer_id: String }
+            )
+          end
+          def to_hash
           end
         end
 
@@ -10218,6 +10372,20 @@ module Increase
           ACCOUNT_REVENUE_PAYMENT =
             T.let(
               :account_revenue_payment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION =
+            T.let(
+              :blockchain_onramp_transfer_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT =
+            T.let(
+              :blockchain_offramp_transfer_settlement,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 

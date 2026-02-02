@@ -221,6 +221,48 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Blockchain Address is created.
+          BLOCKCHAIN_ADDRESS_CREATED =
+            T.let(
+              :"blockchain_address.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Blockchain Address is updated.
+          BLOCKCHAIN_ADDRESS_UPDATED =
+            T.let(
+              :"blockchain_address.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Blockchain Off-Ramp Transfer is created.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_CREATED =
+            T.let(
+              :"blockchain_offramp_transfer.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Blockchain Off-Ramp Transfer is updated.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_UPDATED =
+            T.let(
+              :"blockchain_offramp_transfer.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Blockchain On-Ramp Transfer is created.
+          BLOCKCHAIN_ONRAMP_TRANSFER_CREATED =
+            T.let(
+              :"blockchain_onramp_transfer.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Blockchain On-Ramp Transfer is updated.
+          BLOCKCHAIN_ONRAMP_TRANSFER_UPDATED =
+            T.let(
+              :"blockchain_onramp_transfer.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Bookkeeping Account is created.
           BOOKKEEPING_ACCOUNT_CREATED =
             T.let(

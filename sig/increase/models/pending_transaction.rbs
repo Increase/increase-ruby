@@ -108,6 +108,8 @@ module Increase
         {
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
+          blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?,
+          blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
@@ -127,6 +129,10 @@ module Increase
         attr_accessor account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?
 
         attr_accessor ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?
+
+        attr_accessor blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?
+
+        attr_accessor blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?
 
         attr_accessor card_authorization: Increase::PendingTransaction::Source::CardAuthorization?
 
@@ -157,6 +163,8 @@ module Increase
         def initialize: (
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
+          blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?,
+          blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
@@ -175,6 +183,8 @@ module Increase
         def to_hash: -> {
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
+          blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?,
+          blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
@@ -238,6 +248,52 @@ module Increase
           def initialize: (amount: Integer, transfer_id: String) -> void
 
           def to_hash: -> { amount: Integer, transfer_id: String }
+        end
+
+        type blockchain_offramp_transfer_intention =
+          { source_blockchain_address_id: String, transfer_id: String }
+
+        class BlockchainOfframpTransferIntention < Increase::Internal::Type::BaseModel
+          attr_accessor source_blockchain_address_id: String
+
+          attr_accessor transfer_id: String
+
+          def initialize: (
+            source_blockchain_address_id: String,
+            transfer_id: String
+          ) -> void
+
+          def to_hash: -> {
+            source_blockchain_address_id: String,
+            transfer_id: String
+          }
+        end
+
+        type blockchain_onramp_transfer_instruction =
+          {
+            amount: Integer,
+            destination_blockchain_address: String,
+            transfer_id: String
+          }
+
+        class BlockchainOnrampTransferInstruction < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor destination_blockchain_address: String
+
+          attr_accessor transfer_id: String
+
+          def initialize: (
+            amount: Integer,
+            destination_blockchain_address: String,
+            transfer_id: String
+          ) -> void
+
+          def to_hash: -> {
+            amount: Integer,
+            destination_blockchain_address: String,
+            transfer_id: String
+          }
         end
 
         type card_authorization =
@@ -1090,6 +1146,8 @@ module Increase
           | :inbound_wire_transfer_reversal
           | :swift_transfer_instruction
           | :card_push_transfer_instruction
+          | :blockchain_onramp_transfer_instruction
+          | :blockchain_offramp_transfer_intention
           | :other
 
         module Category
@@ -1133,6 +1191,12 @@ module Increase
 
           # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
           CARD_PUSH_TRANSFER_INSTRUCTION: :card_push_transfer_instruction
+
+          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION: :blockchain_onramp_transfer_instruction
+
+          # Blockchain Off-Ramp Transfer Intention: details will be under the `blockchain_offramp_transfer_intention` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INTENTION: :blockchain_offramp_transfer_intention
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other

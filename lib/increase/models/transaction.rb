@@ -200,6 +200,26 @@ module Increase
         #   @return [Increase::Models::Transaction::Source::ACHTransferReturn, nil]
         required :ach_transfer_return, -> { Increase::Transaction::Source::ACHTransferReturn }, nil?: true
 
+        # @!attribute blockchain_offramp_transfer_settlement
+        #   A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
+        #   the JSON response if and only if `category` is equal to
+        #   `blockchain_offramp_transfer_settlement`.
+        #
+        #   @return [Increase::Models::Transaction::Source::BlockchainOfframpTransferSettlement, nil]
+        required :blockchain_offramp_transfer_settlement,
+                 -> { Increase::Transaction::Source::BlockchainOfframpTransferSettlement },
+                 nil?: true
+
+        # @!attribute blockchain_onramp_transfer_intention
+        #   A Blockchain On-Ramp Transfer Intention object. This field will be present in
+        #   the JSON response if and only if `category` is equal to
+        #   `blockchain_onramp_transfer_intention`.
+        #
+        #   @return [Increase::Models::Transaction::Source::BlockchainOnrampTransferIntention, nil]
+        required :blockchain_onramp_transfer_intention,
+                 -> { Increase::Transaction::Source::BlockchainOnrampTransferIntention },
+                 nil?: true
+
         # @!attribute card_dispute_acceptance
         #   A Legacy Card Dispute Acceptance object. This field will be present in the JSON
         #   response if and only if `category` is equal to `card_dispute_acceptance`.
@@ -523,7 +543,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_financial:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fednow_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_fednow_transfer_confirmation:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
+        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, blockchain_offramp_transfer_settlement:, blockchain_onramp_transfer_intention:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_financial:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fednow_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_fednow_transfer_confirmation:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -541,6 +561,10 @@ module Increase
         #   @param ach_transfer_rejection [Increase::Models::Transaction::Source::ACHTransferRejection, nil] An ACH Transfer Rejection object. This field will be present in the JSON respons
         #
         #   @param ach_transfer_return [Increase::Models::Transaction::Source::ACHTransferReturn, nil] An ACH Transfer Return object. This field will be present in the JSON response i
+        #
+        #   @param blockchain_offramp_transfer_settlement [Increase::Models::Transaction::Source::BlockchainOfframpTransferSettlement, nil] A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
+        #
+        #   @param blockchain_onramp_transfer_intention [Increase::Models::Transaction::Source::BlockchainOnrampTransferIntention, nil] A Blockchain On-Ramp Transfer Intention object. This field will be present in th
         #
         #   @param card_dispute_acceptance [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil] A Legacy Card Dispute Acceptance object. This field will be present in the JSON
         #
@@ -1077,6 +1101,58 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Increase::Models::Transaction::Source#blockchain_offramp_transfer_settlement
+        class BlockchainOfframpTransferSettlement < Increase::Internal::Type::BaseModel
+          # @!attribute source_blockchain_address_id
+          #   The identifier of the Blockchain Address the funds were received at.
+          #
+          #   @return [String]
+          required :source_blockchain_address_id, String
+
+          # @!attribute transfer_id
+          #   The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(source_blockchain_address_id:, transfer_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::Transaction::Source::BlockchainOfframpTransferSettlement} for
+          #   more details.
+          #
+          #   A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `blockchain_offramp_transfer_settlement`.
+          #
+          #   @param source_blockchain_address_id [String] The identifier of the Blockchain Address the funds were received at.
+          #
+          #   @param transfer_id [String] The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+        end
+
+        # @see Increase::Models::Transaction::Source#blockchain_onramp_transfer_intention
+        class BlockchainOnrampTransferIntention < Increase::Internal::Type::BaseModel
+          # @!attribute destination_blockchain_address
+          #   The blockchain address the funds were sent to.
+          #
+          #   @return [String]
+          required :destination_blockchain_address, String
+
+          # @!attribute transfer_id
+          #   The identifier of the Blockchain On-Ramp Transfer that led to this Transaction.
+          #
+          #   @return [String]
+          required :transfer_id, String
+
+          # @!method initialize(destination_blockchain_address:, transfer_id:)
+          #   A Blockchain On-Ramp Transfer Intention object. This field will be present in
+          #   the JSON response if and only if `category` is equal to
+          #   `blockchain_onramp_transfer_intention`.
+          #
+          #   @param destination_blockchain_address [String] The blockchain address the funds were sent to.
+          #
+          #   @param transfer_id [String] The identifier of the Blockchain On-Ramp Transfer that led to this Transaction.
         end
 
         # @see Increase::Models::Transaction::Source#card_dispute_acceptance
@@ -5446,6 +5522,12 @@ module Increase
 
           # Account Revenue Payment: details will be under the `account_revenue_payment` object.
           ACCOUNT_REVENUE_PAYMENT = :account_revenue_payment
+
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION = :blockchain_onramp_transfer_intention
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT = :blockchain_offramp_transfer_settlement
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
