@@ -851,131 +851,13 @@ module Increase
             )
           end
 
-        # Entity statuses to filter by.
-        sig do
-          returns(T.nilable(Increase::ExportCreateParams::EntityCsv::Status))
-        end
-        attr_reader :status
-
-        sig do
-          params(
-            status: Increase::ExportCreateParams::EntityCsv::Status::OrHash
-          ).void
-        end
-        attr_writer :status
-
         # Options for the created export. Required if `category` is equal to `entity_csv`.
-        sig do
-          params(
-            status: Increase::ExportCreateParams::EntityCsv::Status::OrHash
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Entity statuses to filter by.
-          status: nil
-        )
+        sig { returns(T.attached_class) }
+        def self.new
         end
 
-        sig do
-          override.returns(
-            { status: Increase::ExportCreateParams::EntityCsv::Status }
-          )
-        end
+        sig { override.returns({}) }
         def to_hash
-        end
-
-        class Status < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::ExportCreateParams::EntityCsv::Status,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # Entity statuses to filter by. For GET requests, this should be encoded as a
-          # comma-delimited string, such as `?in=one,two,three`.
-          sig do
-            returns(
-              T::Array[
-                Increase::ExportCreateParams::EntityCsv::Status::In::OrSymbol
-              ]
-            )
-          end
-          attr_accessor :in_
-
-          # Entity statuses to filter by.
-          sig do
-            params(
-              in_:
-                T::Array[
-                  Increase::ExportCreateParams::EntityCsv::Status::In::OrSymbol
-                ]
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Entity statuses to filter by. For GET requests, this should be encoded as a
-            # comma-delimited string, such as `?in=one,two,three`.
-            in_:
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                in_:
-                  T::Array[
-                    Increase::ExportCreateParams::EntityCsv::Status::In::OrSymbol
-                  ]
-              }
-            )
-          end
-          def to_hash
-          end
-
-          module In
-            extend Increase::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Increase::ExportCreateParams::EntityCsv::Status::In
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # The entity is active.
-            ACTIVE =
-              T.let(
-                :active,
-                Increase::ExportCreateParams::EntityCsv::Status::In::TaggedSymbol
-              )
-
-            # The entity is archived, and can no longer be used to create accounts.
-            ARCHIVED =
-              T.let(
-                :archived,
-                Increase::ExportCreateParams::EntityCsv::Status::In::TaggedSymbol
-              )
-
-            # The entity is temporarily disabled and cannot be used for financial activity.
-            DISABLED =
-              T.let(
-                :disabled,
-                Increase::ExportCreateParams::EntityCsv::Status::In::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Increase::ExportCreateParams::EntityCsv::Status::In::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
         end
       end
 
