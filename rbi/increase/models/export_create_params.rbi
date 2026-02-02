@@ -576,30 +576,20 @@ module Increase
         end
         attr_writer :created_at
 
-        # Filter exported Balances to the specified Program.
-        sig { returns(T.nilable(String)) }
-        attr_reader :program_id
-
-        sig { params(program_id: String).void }
-        attr_writer :program_id
-
         # Options for the created export. Required if `category` is equal to
         # `balance_csv`.
         sig do
           params(
             account_id: String,
             created_at:
-              Increase::ExportCreateParams::BalanceCsv::CreatedAt::OrHash,
-            program_id: String
+              Increase::ExportCreateParams::BalanceCsv::CreatedAt::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           # Filter exported Balances to the specified Account.
           account_id: nil,
           # Filter results by time range on the `created_at` attribute.
-          created_at: nil,
-          # Filter exported Balances to the specified Program.
-          program_id: nil
+          created_at: nil
         )
         end
 
@@ -607,8 +597,7 @@ module Increase
           override.returns(
             {
               account_id: String,
-              created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt,
-              program_id: String
+              created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
             }
           )
         end

@@ -279,21 +279,13 @@ module Increase
         #   @return [Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt, nil]
         optional :created_at, -> { Increase::ExportCreateParams::BalanceCsv::CreatedAt }
 
-        # @!attribute program_id
-        #   Filter exported Balances to the specified Program.
-        #
-        #   @return [String, nil]
-        optional :program_id, String
-
-        # @!method initialize(account_id: nil, created_at: nil, program_id: nil)
+        # @!method initialize(account_id: nil, created_at: nil)
         #   Options for the created export. Required if `category` is equal to
         #   `balance_csv`.
         #
         #   @param account_id [String] Filter exported Balances to the specified Account.
         #
         #   @param created_at [Increase::Models::ExportCreateParams::BalanceCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
-        #
-        #   @param program_id [String] Filter exported Balances to the specified Program.
 
         # @see Increase::Models::ExportCreateParams::BalanceCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
