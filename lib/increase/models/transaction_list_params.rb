@@ -187,6 +187,12 @@ module Increase
           # Account Revenue Payment: details will be under the `account_revenue_payment` object.
           ACCOUNT_REVENUE_PAYMENT = :account_revenue_payment
 
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION = :blockchain_onramp_transfer_intention
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT = :blockchain_offramp_transfer_settlement
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
