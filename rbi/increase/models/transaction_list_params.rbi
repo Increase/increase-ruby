@@ -411,6 +411,20 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION =
+            T.let(
+              :blockchain_onramp_transfer_intention,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT =
+            T.let(
+              :blockchain_offramp_transfer_settlement,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER =
             T.let(
