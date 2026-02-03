@@ -212,6 +212,13 @@ module Increase
         sig { params(name: String).void }
         attr_writer :name
 
+        # The Employer Identification Number (EIN) for the corporation.
+        sig { returns(T.nilable(String)) }
+        attr_reader :tax_identifier
+
+        sig { params(tax_identifier: String).void }
+        attr_writer :tax_identifier
+
         # Details of the corporation entity to update. If you specify this parameter and
         # the entity is not a corporation, the request will fail.
         sig do
@@ -220,7 +227,8 @@ module Increase
             email: String,
             incorporation_state: String,
             industry_code: String,
-            name: String
+            name: String,
+            tax_identifier: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -239,7 +247,9 @@ module Increase
           # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
           industry_code: nil,
           # The legal name of the corporation.
-          name: nil
+          name: nil,
+          # The Employer Identification Number (EIN) for the corporation.
+          tax_identifier: nil
         )
         end
 
@@ -250,7 +260,8 @@ module Increase
               email: String,
               incorporation_state: String,
               industry_code: String,
-              name: String
+              name: String,
+              tax_identifier: String
             }
           )
         end
