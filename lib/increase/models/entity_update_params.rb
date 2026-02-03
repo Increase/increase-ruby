@@ -115,7 +115,13 @@ module Increase
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, name: nil)
+        # @!attribute tax_identifier
+        #   The Employer Identification Number (EIN) for the corporation.
+        #
+        #   @return [String, nil]
+        optional :tax_identifier, String
+
+        # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, name: nil, tax_identifier: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
         #
@@ -131,6 +137,8 @@ module Increase
         #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
         #
         #   @param name [String] The legal name of the corporation.
+        #
+        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the corporation.
 
         # @see Increase::Models::EntityUpdateParams::Corporation#address
         class Address < Increase::Internal::Type::BaseModel
