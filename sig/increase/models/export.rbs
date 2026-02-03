@@ -12,12 +12,11 @@ module Increase
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
-        file_download_url: String?,
-        file_id: String?,
         :form_1099_int => Increase::Export::Form1099Int?,
         :form_1099_misc => Increase::Export::Form1099Misc?,
         funding_instructions: Increase::Export::FundingInstructions?,
         idempotency_key: String?,
+        result: Increase::Export::Result?,
         status: Increase::Models::Export::status,
         transaction_csv: Increase::Export::TransactionCsv?,
         type: Increase::Models::Export::type_,
@@ -45,10 +44,6 @@ module Increase
 
       attr_accessor entity_csv: Increase::Export::EntityCsv?
 
-      attr_accessor file_download_url: String?
-
-      attr_accessor file_id: String?
-
       attr_accessor form_1099_int: Increase::Export::Form1099Int?
 
       attr_accessor form_1099_misc: Increase::Export::Form1099Misc?
@@ -56,6 +51,8 @@ module Increase
       attr_accessor funding_instructions: Increase::Export::FundingInstructions?
 
       attr_accessor idempotency_key: String?
+
+      attr_accessor result: Increase::Export::Result?
 
       attr_accessor status: Increase::Models::Export::status
 
@@ -76,12 +73,11 @@ module Increase
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
-        file_download_url: String?,
-        file_id: String?,
         form_1099_int: Increase::Export::Form1099Int?,
         form_1099_misc: Increase::Export::Form1099Misc?,
         funding_instructions: Increase::Export::FundingInstructions?,
         idempotency_key: String?,
+        result: Increase::Export::Result?,
         status: Increase::Models::Export::status,
         transaction_csv: Increase::Export::TransactionCsv?,
         type: Increase::Models::Export::type_,
@@ -99,12 +95,11 @@ module Increase
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
-        file_download_url: String?,
-        file_id: String?,
         :form_1099_int => Increase::Export::Form1099Int?,
         :form_1099_misc => Increase::Export::Form1099Misc?,
         funding_instructions: Increase::Export::FundingInstructions?,
         idempotency_key: String?,
+        result: Increase::Export::Result?,
         status: Increase::Models::Export::status,
         transaction_csv: Increase::Export::TransactionCsv?,
         type: Increase::Models::Export::type_,
@@ -380,6 +375,16 @@ module Increase
         def initialize: (account_number_id: String) -> void
 
         def to_hash: -> { account_number_id: String }
+      end
+
+      type result = { file_id: String }
+
+      class Result < Increase::Internal::Type::BaseModel
+        attr_accessor file_id: String
+
+        def initialize: (file_id: String) -> void
+
+        def to_hash: -> { file_id: String }
       end
 
       type status = :pending | :complete | :failed

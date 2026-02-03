@@ -74,20 +74,6 @@ module Increase
       #   @return [Increase::Models::Export::EntityCsv, nil]
       required :entity_csv, -> { Increase::Export::EntityCsv }, nil?: true
 
-      # @!attribute file_download_url
-      #   A URL at which the Export's file can be downloaded. This will be present when
-      #   the Export's status transitions to `complete`.
-      #
-      #   @return [String, nil]
-      required :file_download_url, String, nil?: true
-
-      # @!attribute file_id
-      #   The File containing the contents of the Export. This will be present when the
-      #   Export's status transitions to `complete`.
-      #
-      #   @return [String, nil]
-      required :file_id, String, nil?: true
-
       # @!attribute form_1099_int
       #   Details of the Form 1099-INT export. This field will be present when the
       #   `category` is equal to `form_1099_int`.
@@ -117,6 +103,13 @@ module Increase
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
+      # @!attribute result
+      #   The result of the Export. This will be present when the Export's status
+      #   transitions to `complete`.
+      #
+      #   @return [Increase::Models::Export::Result, nil]
+      required :result, -> { Increase::Export::Result }, nil?: true
+
       # @!attribute status
       #   The status of the Export.
       #
@@ -144,7 +137,7 @@ module Increase
       #   @return [Increase::Models::Export::VendorCsv, nil]
       required :vendor_csv, -> { Increase::Export::VendorCsv }, nil?: true
 
-      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, file_download_url:, file_id:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, status:, transaction_csv:, type:, vendor_csv:)
+      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Export}
       #   for more details.
       #
@@ -174,10 +167,6 @@ module Increase
       #
       #   @param entity_csv [Increase::Models::Export::EntityCsv, nil] Details of the entity CSV export. This field will be present when the `category`
       #
-      #   @param file_download_url [String, nil] A URL at which the Export's file can be downloaded. This will be present when th
-      #
-      #   @param file_id [String, nil] The File containing the contents of the Export. This will be present when the Ex
-      #
       #   @param form_1099_int [Increase::Models::Export::Form1099Int, nil] Details of the Form 1099-INT export. This field will be present when the `catego
       #
       #   @param form_1099_misc [Increase::Models::Export::Form1099Misc, nil] Details of the Form 1099-MISC export. This field will be present when the `categ
@@ -185,6 +174,8 @@ module Increase
       #   @param funding_instructions [Increase::Models::Export::FundingInstructions, nil] Details of the funding instructions export. This field will be present when the
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #
+      #   @param result [Increase::Models::Export::Result, nil] The result of the Export. This will be present when the Export's status transiti
       #
       #   @param status [Symbol, Increase::Models::Export::Status] The status of the Export.
       #
@@ -527,6 +518,21 @@ module Increase
         #   `category` is equal to `funding_instructions`.
         #
         #   @param account_number_id [String] The Account Number to create funding instructions for.
+      end
+
+      # @see Increase::Models::Export#result
+      class Result < Increase::Internal::Type::BaseModel
+        # @!attribute file_id
+        #   The File containing the contents of the Export.
+        #
+        #   @return [String]
+        required :file_id, String
+
+        # @!method initialize(file_id:)
+        #   The result of the Export. This will be present when the Export's status
+        #   transitions to `complete`.
+        #
+        #   @param file_id [String] The File containing the contents of the Export.
       end
 
       # The status of the Export.
