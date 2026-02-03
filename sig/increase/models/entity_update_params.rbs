@@ -84,7 +84,8 @@ module Increase
           email: String,
           incorporation_state: String,
           industry_code: String,
-          name: String
+          name: String,
+          tax_identifier: String
         }
 
       class Corporation < Increase::Internal::Type::BaseModel
@@ -110,12 +111,17 @@ module Increase
 
         def name=: (String) -> String
 
+        attr_reader tax_identifier: String?
+
+        def tax_identifier=: (String) -> String
+
         def initialize: (
           ?address: Increase::EntityUpdateParams::Corporation::Address,
           ?email: String,
           ?incorporation_state: String,
           ?industry_code: String,
-          ?name: String
+          ?name: String,
+          ?tax_identifier: String
         ) -> void
 
         def to_hash: -> {
@@ -123,7 +129,8 @@ module Increase
           email: String,
           incorporation_state: String,
           industry_code: String,
-          name: String
+          name: String,
+          tax_identifier: String
         }
 
         type address =
