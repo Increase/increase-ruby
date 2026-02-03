@@ -3,53 +3,251 @@ module Increase
     type export =
       {
         id: String,
+        :account_statement_bai2 => Increase::Export::AccountStatementBai2?,
+        account_statement_ofx: Increase::Export::AccountStatementOfx?,
+        account_verification_letter: Increase::Export::AccountVerificationLetter?,
+        balance_csv: Increase::Export::BalanceCsv?,
+        bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?,
         category: Increase::Models::Export::category,
         created_at: Time,
+        dashboard_table_csv: Increase::Export::DashboardTableCsv?,
+        entity_csv: Increase::Export::EntityCsv?,
         file_download_url: String?,
         file_id: String?,
+        :form_1099_int => Increase::Export::Form1099Int?,
+        :form_1099_misc => Increase::Export::Form1099Misc?,
+        funding_instructions: Increase::Export::FundingInstructions?,
         idempotency_key: String?,
         status: Increase::Models::Export::status,
-        type: Increase::Models::Export::type_
+        transaction_csv: Increase::Export::TransactionCsv?,
+        type: Increase::Models::Export::type_,
+        vendor_csv: Increase::Export::VendorCsv?
       }
 
     class Export < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor account_statement_bai2: Increase::Export::AccountStatementBai2?
+
+      attr_accessor account_statement_ofx: Increase::Export::AccountStatementOfx?
+
+      attr_accessor account_verification_letter: Increase::Export::AccountVerificationLetter?
+
+      attr_accessor balance_csv: Increase::Export::BalanceCsv?
+
+      attr_accessor bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?
+
       attr_accessor category: Increase::Models::Export::category
 
       attr_accessor created_at: Time
+
+      attr_accessor dashboard_table_csv: Increase::Export::DashboardTableCsv?
+
+      attr_accessor entity_csv: Increase::Export::EntityCsv?
 
       attr_accessor file_download_url: String?
 
       attr_accessor file_id: String?
 
+      attr_accessor form_1099_int: Increase::Export::Form1099Int?
+
+      attr_accessor form_1099_misc: Increase::Export::Form1099Misc?
+
+      attr_accessor funding_instructions: Increase::Export::FundingInstructions?
+
       attr_accessor idempotency_key: String?
 
       attr_accessor status: Increase::Models::Export::status
 
+      attr_accessor transaction_csv: Increase::Export::TransactionCsv?
+
       attr_accessor type: Increase::Models::Export::type_
+
+      attr_accessor vendor_csv: Increase::Export::VendorCsv?
 
       def initialize: (
         id: String,
+        account_statement_bai2: Increase::Export::AccountStatementBai2?,
+        account_statement_ofx: Increase::Export::AccountStatementOfx?,
+        account_verification_letter: Increase::Export::AccountVerificationLetter?,
+        balance_csv: Increase::Export::BalanceCsv?,
+        bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?,
         category: Increase::Models::Export::category,
         created_at: Time,
+        dashboard_table_csv: Increase::Export::DashboardTableCsv?,
+        entity_csv: Increase::Export::EntityCsv?,
         file_download_url: String?,
         file_id: String?,
+        form_1099_int: Increase::Export::Form1099Int?,
+        form_1099_misc: Increase::Export::Form1099Misc?,
+        funding_instructions: Increase::Export::FundingInstructions?,
         idempotency_key: String?,
         status: Increase::Models::Export::status,
-        type: Increase::Models::Export::type_
+        transaction_csv: Increase::Export::TransactionCsv?,
+        type: Increase::Models::Export::type_,
+        vendor_csv: Increase::Export::VendorCsv?
       ) -> void
 
       def to_hash: -> {
         id: String,
+        :account_statement_bai2 => Increase::Export::AccountStatementBai2?,
+        account_statement_ofx: Increase::Export::AccountStatementOfx?,
+        account_verification_letter: Increase::Export::AccountVerificationLetter?,
+        balance_csv: Increase::Export::BalanceCsv?,
+        bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?,
         category: Increase::Models::Export::category,
         created_at: Time,
+        dashboard_table_csv: Increase::Export::DashboardTableCsv?,
+        entity_csv: Increase::Export::EntityCsv?,
         file_download_url: String?,
         file_id: String?,
+        :form_1099_int => Increase::Export::Form1099Int?,
+        :form_1099_misc => Increase::Export::Form1099Misc?,
+        funding_instructions: Increase::Export::FundingInstructions?,
         idempotency_key: String?,
         status: Increase::Models::Export::status,
-        type: Increase::Models::Export::type_
+        transaction_csv: Increase::Export::TransactionCsv?,
+        type: Increase::Models::Export::type_,
+        vendor_csv: Increase::Export::VendorCsv?
       }
+
+      type account_statement_bai2 =
+        { account_id: String?, effective_date: Date?, program_id: String? }
+
+      class AccountStatementBai2 < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String?
+
+        attr_accessor effective_date: Date?
+
+        attr_accessor program_id: String?
+
+        def initialize: (
+          account_id: String?,
+          effective_date: Date?,
+          program_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String?,
+          effective_date: Date?,
+          program_id: String?
+        }
+      end
+
+      type account_statement_ofx =
+        {
+          account_id: String,
+          created_at: Increase::Export::AccountStatementOfx::CreatedAt?
+        }
+
+      class AccountStatementOfx < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String
+
+        attr_accessor created_at: Increase::Export::AccountStatementOfx::CreatedAt?
+
+        def initialize: (
+          account_id: String,
+          created_at: Increase::Export::AccountStatementOfx::CreatedAt?
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          created_at: Increase::Export::AccountStatementOfx::CreatedAt?
+        }
+
+        type created_at = { after: Time?, before: Time? }
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          attr_accessor after: Time?
+
+          attr_accessor before: Time?
+
+          def initialize: (after: Time?, before: Time?) -> void
+
+          def to_hash: -> { after: Time?, before: Time? }
+        end
+      end
+
+      type account_verification_letter =
+        { account_number_id: String, balance_date: Date? }
+
+      class AccountVerificationLetter < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        attr_accessor balance_date: Date?
+
+        def initialize: (account_number_id: String, balance_date: Date?) -> void
+
+        def to_hash: -> { account_number_id: String, balance_date: Date? }
+      end
+
+      type balance_csv =
+        {
+          account_id: String?,
+          created_at: Increase::Export::BalanceCsv::CreatedAt?
+        }
+
+      class BalanceCsv < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String?
+
+        attr_accessor created_at: Increase::Export::BalanceCsv::CreatedAt?
+
+        def initialize: (
+          account_id: String?,
+          created_at: Increase::Export::BalanceCsv::CreatedAt?
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String?,
+          created_at: Increase::Export::BalanceCsv::CreatedAt?
+        }
+
+        type created_at = { after: Time?, before: Time? }
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          attr_accessor after: Time?
+
+          attr_accessor before: Time?
+
+          def initialize: (after: Time?, before: Time?) -> void
+
+          def to_hash: -> { after: Time?, before: Time? }
+        end
+      end
+
+      type bookkeeping_account_balance_csv =
+        {
+          bookkeeping_account_id: String?,
+          created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+        }
+
+      class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
+        attr_accessor bookkeeping_account_id: String?
+
+        attr_accessor created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+
+        def initialize: (
+          bookkeeping_account_id: String?,
+          created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+        ) -> void
+
+        def to_hash: -> {
+          bookkeeping_account_id: String?,
+          created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+        }
+
+        type created_at = { after: Time?, before: Time? }
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          attr_accessor after: Time?
+
+          attr_accessor before: Time?
+
+          def initialize: (after: Time?, before: Time?) -> void
+
+          def to_hash: -> { after: Time?, before: Time? }
+        end
+      end
 
       type category =
         :account_statement_ofx
@@ -107,6 +305,83 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::Export::category]
       end
 
+      type dashboard_table_csv = {  }
+
+      class DashboardTableCsv < Increase::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
+      end
+
+      type entity_csv = {  }
+
+      class EntityCsv < Increase::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
+      end
+
+      type form1099_int =
+        {
+          account_id: String,
+          corrected: bool,
+          description: String,
+          year: Integer
+        }
+
+      class Form1099Int < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String
+
+        attr_accessor corrected: bool
+
+        attr_accessor description: String
+
+        attr_accessor year: Integer
+
+        def initialize: (
+          account_id: String,
+          corrected: bool,
+          description: String,
+          year: Integer
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          corrected: bool,
+          description: String,
+          year: Integer
+        }
+      end
+
+      type form1099_misc =
+        { account_id: String, corrected: bool, year: Integer }
+
+      class Form1099Misc < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String
+
+        attr_accessor corrected: bool
+
+        attr_accessor year: Integer
+
+        def initialize: (
+          account_id: String,
+          corrected: bool,
+          year: Integer
+        ) -> void
+
+        def to_hash: -> { account_id: String, corrected: bool, year: Integer }
+      end
+
+      type funding_instructions = { account_number_id: String }
+
+      class FundingInstructions < Increase::Internal::Type::BaseModel
+        attr_accessor account_number_id: String
+
+        def initialize: (account_number_id: String) -> void
+
+        def to_hash: -> { account_number_id: String }
+      end
+
       type status = :pending | :complete | :failed
 
       module Status
@@ -124,6 +399,40 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::Export::status]
       end
 
+      type transaction_csv =
+        {
+          account_id: String?,
+          created_at: Increase::Export::TransactionCsv::CreatedAt?
+        }
+
+      class TransactionCsv < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String?
+
+        attr_accessor created_at: Increase::Export::TransactionCsv::CreatedAt?
+
+        def initialize: (
+          account_id: String?,
+          created_at: Increase::Export::TransactionCsv::CreatedAt?
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String?,
+          created_at: Increase::Export::TransactionCsv::CreatedAt?
+        }
+
+        type created_at = { after: Time?, before: Time? }
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          attr_accessor after: Time?
+
+          attr_accessor before: Time?
+
+          def initialize: (after: Time?, before: Time?) -> void
+
+          def to_hash: -> { after: Time?, before: Time? }
+        end
+      end
+
       type type_ = :export
 
       module Type
@@ -132,6 +441,14 @@ module Increase
         EXPORT: :export
 
         def self?.values: -> ::Array[Increase::Models::Export::type_]
+      end
+
+      type vendor_csv = {  }
+
+      class VendorCsv < Increase::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
       end
     end
   end
