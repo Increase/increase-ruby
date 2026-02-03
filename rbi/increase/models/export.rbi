@@ -106,16 +106,6 @@ module Increase
       end
       attr_writer :entity_csv
 
-      # A URL at which the Export's file can be downloaded. This will be present when
-      # the Export's status transitions to `complete`.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :file_download_url
-
-      # The File containing the contents of the Export. This will be present when the
-      # Export's status transitions to `complete`.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :file_id
-
       # Details of the Form 1099-INT export. This field will be present when the
       # `category` is equal to `form_1099_int`.
       sig { returns(T.nilable(Increase::Export::Form1099Int)) }
@@ -158,6 +148,14 @@ module Increase
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
+
+      # The result of the Export. This will be present when the Export's status
+      # transitions to `complete`.
+      sig { returns(T.nilable(Increase::Export::Result)) }
+      attr_reader :result
+
+      sig { params(result: T.nilable(Increase::Export::Result::OrHash)).void }
+      attr_writer :result
 
       # The status of the Export.
       sig { returns(Increase::Export::Status::TaggedSymbol) }
@@ -212,13 +210,12 @@ module Increase
           dashboard_table_csv:
             T.nilable(Increase::Export::DashboardTableCsv::OrHash),
           entity_csv: T.nilable(Increase::Export::EntityCsv::OrHash),
-          file_download_url: T.nilable(String),
-          file_id: T.nilable(String),
           form_1099_int: T.nilable(Increase::Export::Form1099Int::OrHash),
           form_1099_misc: T.nilable(Increase::Export::Form1099Misc::OrHash),
           funding_instructions:
             T.nilable(Increase::Export::FundingInstructions::OrHash),
           idempotency_key: T.nilable(String),
+          result: T.nilable(Increase::Export::Result::OrHash),
           status: Increase::Export::Status::OrSymbol,
           transaction_csv: T.nilable(Increase::Export::TransactionCsv::OrHash),
           type: Increase::Export::Type::OrSymbol,
@@ -254,12 +251,6 @@ module Increase
         # Details of the entity CSV export. This field will be present when the `category`
         # is equal to `entity_csv`.
         entity_csv:,
-        # A URL at which the Export's file can be downloaded. This will be present when
-        # the Export's status transitions to `complete`.
-        file_download_url:,
-        # The File containing the contents of the Export. This will be present when the
-        # Export's status transitions to `complete`.
-        file_id:,
         # Details of the Form 1099-INT export. This field will be present when the
         # `category` is equal to `form_1099_int`.
         form_1099_int:,
@@ -273,6 +264,9 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
+        # The result of the Export. This will be present when the Export's status
+        # transitions to `complete`.
+        result:,
         # The status of the Export.
         status:,
         # Details of the transaction CSV export. This field will be present when the
@@ -304,13 +298,12 @@ module Increase
             created_at: Time,
             dashboard_table_csv: T.nilable(Increase::Export::DashboardTableCsv),
             entity_csv: T.nilable(Increase::Export::EntityCsv),
-            file_download_url: T.nilable(String),
-            file_id: T.nilable(String),
             form_1099_int: T.nilable(Increase::Export::Form1099Int),
             form_1099_misc: T.nilable(Increase::Export::Form1099Misc),
             funding_instructions:
               T.nilable(Increase::Export::FundingInstructions),
             idempotency_key: T.nilable(String),
+            result: T.nilable(Increase::Export::Result),
             status: Increase::Export::Status::TaggedSymbol,
             transaction_csv: T.nilable(Increase::Export::TransactionCsv),
             type: Increase::Export::Type::TaggedSymbol,
@@ -953,6 +946,30 @@ module Increase
         end
 
         sig { override.returns({ account_number_id: String }) }
+        def to_hash
+        end
+      end
+
+      class Result < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Export::Result, Increase::Internal::AnyHash)
+          end
+
+        # The File containing the contents of the Export.
+        sig { returns(String) }
+        attr_accessor :file_id
+
+        # The result of the Export. This will be present when the Export's status
+        # transitions to `complete`.
+        sig { params(file_id: String).returns(T.attached_class) }
+        def self.new(
+          # The File containing the contents of the Export.
+          file_id:
+        )
+        end
+
+        sig { override.returns({ file_id: String }) }
         def to_hash
         end
       end
