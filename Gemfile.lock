@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    increase (1.197.0)
+    increase (1.198.0)
       cgi
       connection_pool
 
