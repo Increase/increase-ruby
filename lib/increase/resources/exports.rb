@@ -73,13 +73,17 @@ module Increase
       #
       # List Exports
       #
-      # @overload list(category: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
+      # @overload list(category: nil, created_at: nil, cursor: nil, form_1099_int: nil, form_1099_misc: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
-      # @param category [Increase::Models::ExportListParams::Category]
+      # @param category [Symbol, Increase::Models::ExportListParams::Category] Filter Exports for those with the specified category.
       #
       # @param created_at [Increase::Models::ExportListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
+      #
+      # @param form_1099_int [Increase::Models::ExportListParams::Form1099Int]
+      #
+      # @param form_1099_misc [Increase::Models::ExportListParams::Form1099Misc]
       #
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
       #

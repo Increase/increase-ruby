@@ -8,9 +8,10 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute category
+      #   Filter Exports for those with the specified category.
       #
-      #   @return [Increase::Models::ExportListParams::Category, nil]
-      optional :category, -> { Increase::ExportListParams::Category }
+      #   @return [Symbol, Increase::Models::ExportListParams::Category, nil]
+      optional :category, enum: -> { Increase::ExportListParams::Category }
 
       # @!attribute created_at
       #
@@ -22,6 +23,16 @@ module Increase
       #
       #   @return [String, nil]
       optional :cursor, String
+
+      # @!attribute form_1099_int
+      #
+      #   @return [Increase::Models::ExportListParams::Form1099Int, nil]
+      optional :form_1099_int, -> { Increase::ExportListParams::Form1099Int }
+
+      # @!attribute form_1099_misc
+      #
+      #   @return [Increase::Models::ExportListParams::Form1099Misc, nil]
+      optional :form_1099_misc, -> { Increase::ExportListParams::Form1099Misc }
 
       # @!attribute idempotency_key
       #   Filter records to the one with the specified `idempotency_key` you chose for
@@ -44,15 +55,19 @@ module Increase
       #   @return [Increase::Models::ExportListParams::Status, nil]
       optional :status, -> { Increase::ExportListParams::Status }
 
-      # @!method initialize(category: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
+      # @!method initialize(category: nil, created_at: nil, cursor: nil, form_1099_int: nil, form_1099_misc: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportListParams} for more details.
       #
-      #   @param category [Increase::Models::ExportListParams::Category]
+      #   @param category [Symbol, Increase::Models::ExportListParams::Category] Filter Exports for those with the specified category.
       #
       #   @param created_at [Increase::Models::ExportListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
+      #
+      #   @param form_1099_int [Increase::Models::ExportListParams::Form1099Int]
+      #
+      #   @param form_1099_misc [Increase::Models::ExportListParams::Form1099Misc]
       #
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
       #
@@ -62,65 +77,48 @@ module Increase
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
-      class Category < Increase::Internal::Type::BaseModel
-        # @!attribute in_
-        #   Filter Exports for those with the specified category or categories. For GET
-        #   requests, this should be encoded as a comma-delimited string, such as
-        #   `?in=one,two,three`.
-        #
-        #   @return [Array<Symbol, Increase::Models::ExportListParams::Category::In>, nil]
-        optional :in_,
-                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::ExportListParams::Category::In] },
-                 api_name: :in
+      # Filter Exports for those with the specified category.
+      module Category
+        extend Increase::Internal::Type::Enum
 
-        # @!method initialize(in_: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::ExportListParams::Category} for more details.
-        #
-        #   @param in_ [Array<Symbol, Increase::Models::ExportListParams::Category::In>] Filter Exports for those with the specified category or categories. For GET requ
+        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
+        ACCOUNT_STATEMENT_OFX = :account_statement_ofx
 
-        module In
-          extend Increase::Internal::Type::Enum
+        # Export a BAI2 file of transactions and balances for a given date and optional Account.
+        ACCOUNT_STATEMENT_BAI2 = :account_statement_bai2
 
-          # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
-          ACCOUNT_STATEMENT_OFX = :account_statement_ofx
+        # Export a CSV of all transactions for a given time range.
+        TRANSACTION_CSV = :transaction_csv
 
-          # Export a BAI2 file of transactions and balances for a given date and optional Account.
-          ACCOUNT_STATEMENT_BAI2 = :account_statement_bai2
+        # Export a CSV of account balances for the dates in a given range.
+        BALANCE_CSV = :balance_csv
 
-          # Export a CSV of all transactions for a given time range.
-          TRANSACTION_CSV = :transaction_csv
+        # Export a CSV of bookkeeping account balances for the dates in a given range.
+        BOOKKEEPING_ACCOUNT_BALANCE_CSV = :bookkeeping_account_balance_csv
 
-          # Export a CSV of account balances for the dates in a given range.
-          BALANCE_CSV = :balance_csv
+        # Export a CSV of entities with a given status.
+        ENTITY_CSV = :entity_csv
 
-          # Export a CSV of bookkeeping account balances for the dates in a given range.
-          BOOKKEEPING_ACCOUNT_BALANCE_CSV = :bookkeeping_account_balance_csv
+        # Export a CSV of vendors added to the third-party risk management dashboard.
+        VENDOR_CSV = :vendor_csv
 
-          # Export a CSV of entities with a given status.
-          ENTITY_CSV = :entity_csv
+        # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
+        DASHBOARD_TABLE_CSV = :dashboard_table_csv
 
-          # Export a CSV of vendors added to the third-party risk management dashboard.
-          VENDOR_CSV = :vendor_csv
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
 
-          # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
-          DASHBOARD_TABLE_CSV = :dashboard_table_csv
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS = :funding_instructions
 
-          # A PDF of an account verification letter.
-          ACCOUNT_VERIFICATION_LETTER = :account_verification_letter
+        # A PDF of an Internal Revenue Service Form 1099-INT.
+        FORM_1099_INT = :form_1099_int
 
-          # A PDF of funding instructions.
-          FUNDING_INSTRUCTIONS = :funding_instructions
+        # A PDF of an Internal Revenue Service Form 1099-MISC.
+        FORM_1099_MISC = :form_1099_misc
 
-          # A PDF of an Internal Revenue Service Form 1099-INT.
-          FORM_1099_INT = :form_1099_int
-
-          # A PDF of an Internal Revenue Service Form 1099-MISC.
-          FORM_1099_MISC = :form_1099_misc
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       class CreatedAt < Increase::Internal::Type::BaseModel
@@ -163,6 +161,28 @@ module Increase
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+      end
+
+      class Form1099Int < Increase::Internal::Type::BaseModel
+        # @!attribute account_id
+        #   Filter Form 1099-INT Exports to those for the specified Account.
+        #
+        #   @return [String, nil]
+        optional :account_id, String
+
+        # @!method initialize(account_id: nil)
+        #   @param account_id [String] Filter Form 1099-INT Exports to those for the specified Account.
+      end
+
+      class Form1099Misc < Increase::Internal::Type::BaseModel
+        # @!attribute account_id
+        #   Filter Form 1099-MISC Exports to those for the specified Account.
+        #
+        #   @return [String, nil]
+        optional :account_id, String
+
+        # @!method initialize(account_id: nil)
+        #   @param account_id [String] Filter Form 1099-MISC Exports to those for the specified Account.
       end
 
       class Status < Increase::Internal::Type::BaseModel
