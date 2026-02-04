@@ -71,7 +71,7 @@ module Increase
       end
       attr_writer :natural_person
 
-      # An assessment of the entity’s potential risk of involvement in financial crimes,
+      # An assessment of the entity's potential risk of involvement in financial crimes,
       # such as money laundering.
       sig { returns(T.nilable(Increase::EntityCreateParams::RiskRating)) }
       attr_reader :risk_rating
@@ -183,7 +183,7 @@ module Increase
         # `social_security_number` or `individual_taxpayer_identification_number`
         # identification methods.
         natural_person: nil,
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # An assessment of the entity's potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
         # Additional documentation associated with the entity.
@@ -2713,7 +2713,7 @@ module Increase
         end
         attr_accessor :rating
 
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # An assessment of the entity's potential risk of involvement in financial crimes,
         # such as money laundering.
         sig do
           params(
