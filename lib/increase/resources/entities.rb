@@ -22,7 +22,7 @@ module Increase
       #
       # @param natural_person [Increase::Models::EntityCreateParams::NaturalPerson] Details of the natural person entity to create. Required if `structure` is equal
       #
-      # @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
+      # @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity's potential risk of involvement in financial crimes,
       #
       # @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
       #
