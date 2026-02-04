@@ -2,9 +2,11 @@ module Increase
   module Models
     type export_list_params =
       {
-        category: Increase::ExportListParams::Category,
+        category: Increase::Models::ExportListParams::category,
         created_at: Increase::ExportListParams::CreatedAt,
         cursor: String,
+        :form_1099_int => Increase::ExportListParams::Form1099Int,
+        :form_1099_misc => Increase::ExportListParams::Form1099Misc,
         idempotency_key: String,
         limit: Integer,
         status: Increase::ExportListParams::Status
@@ -15,11 +17,11 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader category: Increase::ExportListParams::Category?
+      attr_reader category: Increase::Models::ExportListParams::category?
 
       def category=: (
-        Increase::ExportListParams::Category
-      ) -> Increase::ExportListParams::Category
+        Increase::Models::ExportListParams::category
+      ) -> Increase::Models::ExportListParams::category
 
       attr_reader created_at: Increase::ExportListParams::CreatedAt?
 
@@ -30,6 +32,18 @@ module Increase
       attr_reader cursor: String?
 
       def cursor=: (String) -> String
+
+      attr_reader form_1099_int: Increase::ExportListParams::Form1099Int?
+
+      def form_1099_int=: (
+        Increase::ExportListParams::Form1099Int
+      ) -> Increase::ExportListParams::Form1099Int
+
+      attr_reader form_1099_misc: Increase::ExportListParams::Form1099Misc?
+
+      def form_1099_misc=: (
+        Increase::ExportListParams::Form1099Misc
+      ) -> Increase::ExportListParams::Form1099Misc
 
       attr_reader idempotency_key: String?
 
@@ -46,9 +60,11 @@ module Increase
       ) -> Increase::ExportListParams::Status
 
       def initialize: (
-        ?category: Increase::ExportListParams::Category,
+        ?category: Increase::Models::ExportListParams::category,
         ?created_at: Increase::ExportListParams::CreatedAt,
         ?cursor: String,
+        ?form_1099_int: Increase::ExportListParams::Form1099Int,
+        ?form_1099_misc: Increase::ExportListParams::Form1099Misc,
         ?idempotency_key: String,
         ?limit: Integer,
         ?status: Increase::ExportListParams::Status,
@@ -56,9 +72,11 @@ module Increase
       ) -> void
 
       def to_hash: -> {
-        category: Increase::ExportListParams::Category,
+        category: Increase::Models::ExportListParams::category,
         created_at: Increase::ExportListParams::CreatedAt,
         cursor: String,
+        :form_1099_int => Increase::ExportListParams::Form1099Int,
+        :form_1099_misc => Increase::ExportListParams::Form1099Misc,
         idempotency_key: String,
         limit: Integer,
         status: Increase::ExportListParams::Status,
@@ -66,78 +84,59 @@ module Increase
       }
 
       type category =
-        { in_: ::Array[Increase::Models::ExportListParams::Category::in_] }
+        :account_statement_ofx
+        | :account_statement_bai2
+        | :transaction_csv
+        | :balance_csv
+        | :bookkeeping_account_balance_csv
+        | :entity_csv
+        | :vendor_csv
+        | :dashboard_table_csv
+        | :account_verification_letter
+        | :funding_instructions
+        | :form_1099_int
+        | :form_1099_misc
 
-      class Category < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::ExportListParams::Category::in_]?
+      module Category
+        extend Increase::Internal::Type::Enum
 
-        def in_=: (
-          ::Array[Increase::Models::ExportListParams::Category::in_]
-        ) -> ::Array[Increase::Models::ExportListParams::Category::in_]
+        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
+        ACCOUNT_STATEMENT_OFX: :account_statement_ofx
 
-        def initialize: (
-          ?in_: ::Array[Increase::Models::ExportListParams::Category::in_]
-        ) -> void
+        # Export a BAI2 file of transactions and balances for a given date and optional Account.
+        ACCOUNT_STATEMENT_BAI2: :account_statement_bai2
 
-        def to_hash: -> {
-          in_: ::Array[Increase::Models::ExportListParams::Category::in_]
-        }
+        # Export a CSV of all transactions for a given time range.
+        TRANSACTION_CSV: :transaction_csv
 
-        type in_ =
-          :account_statement_ofx
-          | :account_statement_bai2
-          | :transaction_csv
-          | :balance_csv
-          | :bookkeeping_account_balance_csv
-          | :entity_csv
-          | :vendor_csv
-          | :dashboard_table_csv
-          | :account_verification_letter
-          | :funding_instructions
-          | :form_1099_int
-          | :form_1099_misc
+        # Export a CSV of account balances for the dates in a given range.
+        BALANCE_CSV: :balance_csv
 
-        module In
-          extend Increase::Internal::Type::Enum
+        # Export a CSV of bookkeeping account balances for the dates in a given range.
+        BOOKKEEPING_ACCOUNT_BALANCE_CSV: :bookkeeping_account_balance_csv
 
-          # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
-          ACCOUNT_STATEMENT_OFX: :account_statement_ofx
+        # Export a CSV of entities with a given status.
+        ENTITY_CSV: :entity_csv
 
-          # Export a BAI2 file of transactions and balances for a given date and optional Account.
-          ACCOUNT_STATEMENT_BAI2: :account_statement_bai2
+        # Export a CSV of vendors added to the third-party risk management dashboard.
+        VENDOR_CSV: :vendor_csv
 
-          # Export a CSV of all transactions for a given time range.
-          TRANSACTION_CSV: :transaction_csv
+        # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
+        DASHBOARD_TABLE_CSV: :dashboard_table_csv
 
-          # Export a CSV of account balances for the dates in a given range.
-          BALANCE_CSV: :balance_csv
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
 
-          # Export a CSV of bookkeeping account balances for the dates in a given range.
-          BOOKKEEPING_ACCOUNT_BALANCE_CSV: :bookkeeping_account_balance_csv
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS: :funding_instructions
 
-          # Export a CSV of entities with a given status.
-          ENTITY_CSV: :entity_csv
+        # A PDF of an Internal Revenue Service Form 1099-INT.
+        FORM_1099_INT: :form_1099_int
 
-          # Export a CSV of vendors added to the third-party risk management dashboard.
-          VENDOR_CSV: :vendor_csv
+        # A PDF of an Internal Revenue Service Form 1099-MISC.
+        FORM_1099_MISC: :form_1099_misc
 
-          # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
-          DASHBOARD_TABLE_CSV: :dashboard_table_csv
-
-          # A PDF of an account verification letter.
-          ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
-
-          # A PDF of funding instructions.
-          FUNDING_INSTRUCTIONS: :funding_instructions
-
-          # A PDF of an Internal Revenue Service Form 1099-INT.
-          FORM_1099_INT: :form_1099_int
-
-          # A PDF of an Internal Revenue Service Form 1099-MISC.
-          FORM_1099_MISC: :form_1099_misc
-
-          def self?.values: -> ::Array[Increase::Models::ExportListParams::Category::in_]
-        end
+        def self?.values: -> ::Array[Increase::Models::ExportListParams::category]
       end
 
       type created_at =
@@ -173,6 +172,30 @@ module Increase
           on_or_after: Time,
           on_or_before: Time
         }
+      end
+
+      type form1099_int = { account_id: String }
+
+      class Form1099Int < Increase::Internal::Type::BaseModel
+        attr_reader account_id: String?
+
+        def account_id=: (String) -> String
+
+        def initialize: (?account_id: String) -> void
+
+        def to_hash: -> { account_id: String }
+      end
+
+      type form1099_misc = { account_id: String }
+
+      class Form1099Misc < Increase::Internal::Type::BaseModel
+        attr_reader account_id: String?
+
+        def account_id=: (String) -> String
+
+        def initialize: (?account_id: String) -> void
+
+        def to_hash: -> { account_id: String }
       end
 
       type status =

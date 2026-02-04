@@ -21,9 +21,11 @@ module Increase
       ) -> Increase::Export
 
       def list: (
-        ?category: Increase::ExportListParams::Category,
+        ?category: Increase::Models::ExportListParams::category,
         ?created_at: Increase::ExportListParams::CreatedAt,
         ?cursor: String,
+        ?form_1099_int: Increase::ExportListParams::Form1099Int,
+        ?form_1099_misc: Increase::ExportListParams::Form1099Misc,
         ?idempotency_key: String,
         ?limit: Integer,
         ?status: Increase::ExportListParams::Status,

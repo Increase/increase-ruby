@@ -73,9 +73,11 @@ module Increase
       # List Exports
       sig do
         params(
-          category: Increase::ExportListParams::Category::OrHash,
+          category: Increase::ExportListParams::Category::OrSymbol,
           created_at: Increase::ExportListParams::CreatedAt::OrHash,
           cursor: String,
+          form_1099_int: Increase::ExportListParams::Form1099Int::OrHash,
+          form_1099_misc: Increase::ExportListParams::Form1099Misc::OrHash,
           idempotency_key: String,
           limit: Integer,
           status: Increase::ExportListParams::Status::OrHash,
@@ -83,10 +85,13 @@ module Increase
         ).returns(Increase::Internal::Page[Increase::Export])
       end
       def list(
+        # Filter Exports for those with the specified category.
         category: nil,
         created_at: nil,
         # Return the page of entries after this one.
         cursor: nil,
+        form_1099_int: nil,
+        form_1099_misc: nil,
         # Filter records to the one with the specified `idempotency_key` you chose for
         # that object. This value is unique across Increase and is used to ensure that a
         # request is only processed once. Learn more about
