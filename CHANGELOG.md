@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.199.0 (2026-02-04)
+
+Full Changelog: [v1.198.0...v1.199.0](https://github.com/Increase/increase-ruby/compare/v1.198.0...v1.199.0)
+
+### Features
+
+* **api:** api update ([de7b766](https://github.com/Increase/increase-ruby/commit/de7b766b843c02c8e043f8d298f77427ca7c3485))
+
+
+### Chores
+
+* **docs:** remove www prefix ([fa1ee72](https://github.com/Increase/increase-ruby/commit/fa1ee72b443b9f47e715ab1ef545b05fa027643a))
+
 ## 1.198.0 (2026-02-04)
 
 Full Changelog: [v1.197.0...v1.198.0](https://github.com/Increase/increase-ruby/compare/v1.197.0...v1.198.0)
