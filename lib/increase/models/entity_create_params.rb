@@ -50,7 +50,7 @@ module Increase
       optional :natural_person, -> { Increase::EntityCreateParams::NaturalPerson }
 
       # @!attribute risk_rating
-      #   An assessment of the entity’s potential risk of involvement in financial crimes,
+      #   An assessment of the entity's potential risk of involvement in financial crimes,
       #   such as money laundering.
       #
       #   @return [Increase::Models::EntityCreateParams::RiskRating, nil]
@@ -102,7 +102,7 @@ module Increase
       #
       #   @param natural_person [Increase::Models::EntityCreateParams::NaturalPerson] Details of the natural person entity to create. Required if `structure` is equal
       #
-      #   @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
+      #   @param risk_rating [Increase::Models::EntityCreateParams::RiskRating] An assessment of the entity's potential risk of involvement in financial crimes,
       #
       #   @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>] Additional documentation associated with the entity.
       #
@@ -1486,7 +1486,7 @@ module Increase
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityCreateParams::RiskRating} for more details.
         #
-        #   An assessment of the entity’s potential risk of involvement in financial crimes,
+        #   An assessment of the entity's potential risk of involvement in financial crimes,
         #   such as money laundering.
         #
         #   @param rated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk ra

@@ -45,7 +45,7 @@ module Increase
         # `social_security_number` or `individual_taxpayer_identification_number`
         # identification methods.
         natural_person: nil,
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
+        # An assessment of the entity's potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
         # Additional documentation associated with the entity.
