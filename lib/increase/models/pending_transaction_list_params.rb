@@ -130,6 +130,9 @@ module Increase
           # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
           BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION = :blockchain_onramp_transfer_instruction
 
+          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION = :blockchain_offramp_transfer_instruction
+
           # Blockchain Off-Ramp Transfer Intention: details will be under the `blockchain_offramp_transfer_intention` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER_INTENTION = :blockchain_offramp_transfer_intention
 
