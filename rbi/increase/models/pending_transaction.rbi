@@ -277,6 +277,28 @@ module Increase
         end
         attr_writer :ach_transfer_instruction
 
+        # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
+        # the JSON response if and only if `category` is equal to
+        # `blockchain_offramp_transfer_instruction`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction
+            )
+          )
+        end
+        attr_reader :blockchain_offramp_transfer_instruction
+
+        sig do
+          params(
+            blockchain_offramp_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction::OrHash
+              )
+          ).void
+        end
+        attr_writer :blockchain_offramp_transfer_instruction
+
         # A Blockchain Off-Ramp Transfer Intention object. This field will be present in
         # the JSON response if and only if `category` is equal to
         # `blockchain_offramp_transfer_intention`.
@@ -573,6 +595,10 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::ACHTransferInstruction::OrHash
               ),
+            blockchain_offramp_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction::OrHash
+              ),
             blockchain_offramp_transfer_intention:
               T.nilable(
                 Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention::OrHash
@@ -634,6 +660,10 @@ module Increase
           # An ACH Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `ach_transfer_instruction`.
           ach_transfer_instruction:,
+          # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `blockchain_offramp_transfer_instruction`.
+          blockchain_offramp_transfer_instruction:,
           # A Blockchain Off-Ramp Transfer Intention object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `blockchain_offramp_transfer_intention`.
@@ -702,6 +732,10 @@ module Increase
               ach_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::ACHTransferInstruction
+                ),
+              blockchain_offramp_transfer_instruction:
+                T.nilable(
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction
                 ),
               blockchain_offramp_transfer_intention:
                 T.nilable(
@@ -889,6 +923,49 @@ module Increase
           end
 
           sig { override.returns({ amount: Integer, transfer_id: String }) }
+          def to_hash
+          end
+        end
+
+        class BlockchainOfframpTransferInstruction < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the Blockchain Address the funds were received at.
+          sig { returns(String) }
+          attr_accessor :source_blockchain_address_id
+
+          # The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
+          # the JSON response if and only if `category` is equal to
+          # `blockchain_offramp_transfer_instruction`.
+          sig do
+            params(
+              source_blockchain_address_id: String,
+              transfer_id: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The identifier of the Blockchain Address the funds were received at.
+            source_blockchain_address_id:,
+            # The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig do
+            override.returns(
+              { source_blockchain_address_id: String, transfer_id: String }
+            )
+          end
           def to_hash
           end
         end
@@ -3472,6 +3549,13 @@ module Increase
           BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION =
             T.let(
               :blockchain_onramp_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION =
+            T.let(
+              :blockchain_offramp_transfer_instruction,
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 

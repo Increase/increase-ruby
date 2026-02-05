@@ -293,6 +293,13 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION =
+            T.let(
+              :blockchain_offramp_transfer_instruction,
+              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Blockchain Off-Ramp Transfer Intention: details will be under the `blockchain_offramp_transfer_intention` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER_INTENTION =
             T.let(
