@@ -300,13 +300,6 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
-          # Blockchain Off-Ramp Transfer Intention: details will be under the `blockchain_offramp_transfer_intention` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INTENTION =
-            T.let(
-              :blockchain_offramp_transfer_intention,
-              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
-            )
-
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER =
             T.let(

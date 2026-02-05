@@ -109,7 +109,6 @@ module Increase
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
-          blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
@@ -132,8 +131,6 @@ module Increase
         attr_accessor ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?
 
         attr_accessor blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?
-
-        attr_accessor blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?
 
         attr_accessor blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?
 
@@ -167,7 +164,6 @@ module Increase
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
-          blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
@@ -188,7 +184,6 @@ module Increase
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
-          blockchain_offramp_transfer_intention: Increase::PendingTransaction::Source::BlockchainOfframpTransferIntention?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
@@ -259,25 +254,6 @@ module Increase
           { source_blockchain_address_id: String, transfer_id: String }
 
         class BlockchainOfframpTransferInstruction < Increase::Internal::Type::BaseModel
-          attr_accessor source_blockchain_address_id: String
-
-          attr_accessor transfer_id: String
-
-          def initialize: (
-            source_blockchain_address_id: String,
-            transfer_id: String
-          ) -> void
-
-          def to_hash: -> {
-            source_blockchain_address_id: String,
-            transfer_id: String
-          }
-        end
-
-        type blockchain_offramp_transfer_intention =
-          { source_blockchain_address_id: String, transfer_id: String }
-
-        class BlockchainOfframpTransferIntention < Increase::Internal::Type::BaseModel
           attr_accessor source_blockchain_address_id: String
 
           attr_accessor transfer_id: String
@@ -1172,7 +1148,6 @@ module Increase
           | :card_push_transfer_instruction
           | :blockchain_onramp_transfer_instruction
           | :blockchain_offramp_transfer_instruction
-          | :blockchain_offramp_transfer_intention
           | :other
 
         module Category
@@ -1222,9 +1197,6 @@ module Increase
 
           # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION: :blockchain_offramp_transfer_instruction
-
-          # Blockchain Off-Ramp Transfer Intention: details will be under the `blockchain_offramp_transfer_intention` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INTENTION: :blockchain_offramp_transfer_intention
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
