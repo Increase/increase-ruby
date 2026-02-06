@@ -213,7 +213,9 @@ module Increase
       end
       attr_writer :settlement
 
-      # The Standard Entry Class (SEC) code to use for the transfer.
+      # The
+      # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      # to use for the transfer.
       sig do
         returns(Increase::ACHTransfer::StandardEntryClassCode::TaggedSymbol)
       end
@@ -381,7 +383,9 @@ module Increase
         # A subhash containing information about when and how the transfer settled at the
         # Federal Reserve.
         settlement:,
-        # The Standard Entry Class (SEC) code to use for the transfer.
+        # The
+        # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+        # to use for the transfer.
         standard_entry_class_code:,
         # The descriptor that will show on the recipient's bank statement.
         statement_descriptor:,
@@ -2345,7 +2349,9 @@ module Increase
         end
       end
 
-      # The Standard Entry Class (SEC) code to use for the transfer.
+      # The
+      # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      # to use for the transfer.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
@@ -2355,28 +2361,28 @@ module Increase
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Corporate Credit and Debit (CCD).
+        # Corporate Credit and Debit (CCD) is used for business-to-business payments.
         CORPORATE_CREDIT_OR_DEBIT =
           T.let(
             :corporate_credit_or_debit,
             Increase::ACHTransfer::StandardEntryClassCode::TaggedSymbol
           )
 
-        # Corporate Trade Exchange (CTX).
+        # Corporate Trade Exchange (CTX) allows for including extensive remittance information with business-to-business payments.
         CORPORATE_TRADE_EXCHANGE =
           T.let(
             :corporate_trade_exchange,
             Increase::ACHTransfer::StandardEntryClassCode::TaggedSymbol
           )
 
-        # Prearranged Payments and Deposits (PPD).
+        # Prearranged Payments and Deposits (PPD) is used for credits or debits originated by an organization to a consumer, such as payroll direct deposits.
         PREARRANGED_PAYMENTS_AND_DEPOSIT =
           T.let(
             :prearranged_payments_and_deposit,
             Increase::ACHTransfer::StandardEntryClassCode::TaggedSymbol
           )
 
-        # Internet Initiated (WEB).
+        # Internet Initiated (WEB) is used for consumer payments initiated or authorized via the Internet. Debits can only be initiated by non-consumers to debit a consumer’s account. Credits can only be used for consumer to consumer transactions.
         INTERNET_INITIATED =
           T.let(
             :internet_initiated,

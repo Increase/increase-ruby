@@ -52,7 +52,9 @@ module Increase
         # The name of therecipient. This value is informational and not verified by the
         # recipient's bank.
         individual_name: nil,
-        # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+        # The
+        # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+        # to use for the ACH Prenotification.
         standard_entry_class_code: nil,
         request_options: {}
       )

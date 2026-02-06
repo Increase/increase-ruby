@@ -207,7 +207,9 @@ module Increase
       required :settlement, -> { Increase::ACHTransfer::Settlement }, nil?: true
 
       # @!attribute standard_entry_class_code
-      #   The Standard Entry Class (SEC) code to use for the transfer.
+      #   The
+      #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      #   to use for the transfer.
       #
       #   @return [Symbol, Increase::Models::ACHTransfer::StandardEntryClassCode]
       required :standard_entry_class_code, enum: -> { Increase::ACHTransfer::StandardEntryClassCode }
@@ -314,7 +316,7 @@ module Increase
       #
       #   @param settlement [Increase::Models::ACHTransfer::Settlement, nil] A subhash containing information about when and how the transfer settled at the
       #
-      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHTransfer::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the transfer.
+      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHTransfer::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
       #
       #   @param statement_descriptor [String] The descriptor that will show on the recipient's bank statement.
       #
@@ -1284,22 +1286,24 @@ module Increase
         #   @param settled_at [Time] When the funds for this transfer have settled at the destination bank at the Fed
       end
 
-      # The Standard Entry Class (SEC) code to use for the transfer.
+      # The
+      # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      # to use for the transfer.
       #
       # @see Increase::Models::ACHTransfer#standard_entry_class_code
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
-        # Corporate Credit and Debit (CCD).
+        # Corporate Credit and Debit (CCD) is used for business-to-business payments.
         CORPORATE_CREDIT_OR_DEBIT = :corporate_credit_or_debit
 
-        # Corporate Trade Exchange (CTX).
+        # Corporate Trade Exchange (CTX) allows for including extensive remittance information with business-to-business payments.
         CORPORATE_TRADE_EXCHANGE = :corporate_trade_exchange
 
-        # Prearranged Payments and Deposits (PPD).
+        # Prearranged Payments and Deposits (PPD) is used for credits or debits originated by an organization to a consumer, such as payroll direct deposits.
         PREARRANGED_PAYMENTS_AND_DEPOSIT = :prearranged_payments_and_deposit
 
-        # Internet Initiated (WEB).
+        # Internet Initiated (WEB) is used for consumer payments initiated or authorized via the Internet. Debits can only be initiated by non-consumers to debit a consumer’s account. Credits can only be used for consumer to consumer transactions.
         INTERNET_INITIATED = :internet_initiated
 
         # @!method self.values

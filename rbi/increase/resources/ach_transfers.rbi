@@ -57,8 +57,9 @@ module Increase
         # The data you choose to associate with the transfer. This is included in the
         # transfer data sent to the receiving bank.
         company_discretionary_data: nil,
-        # A description of the transfer. This is included in the transfer data sent to the
-        # receiving bank.
+        # A description of the transfer, included in the transfer data sent to the
+        # receiving bank. Standardized formatting may be required, for example `PAYROLL`
+        # for payroll-related Prearranged Payments and Deposits (PPD) credit transfers.
         company_entry_description: nil,
         # The name by which the recipient knows you. This is included in the transfer data
         # sent to the receiving bank.
@@ -86,7 +87,9 @@ module Increase
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
         # destination account.
         routing_number: nil,
-        # The Standard Entry Class (SEC) code to use for the transfer.
+        # The
+        # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+        # to use for the transfer.
         standard_entry_class_code: nil,
         # The timing of the transaction.
         transaction_timing: nil,
