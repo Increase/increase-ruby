@@ -47,17 +47,11 @@ module Increase
         module Bank
           extend Increase::Internal::Type::Enum
 
-          # Blue Ridge Bank, N.A.
-          BLUE_RIDGE_BANK = :blue_ridge_bank
-
           # Core Bank
           CORE_BANK = :core_bank
 
           # First Internet Bank of Indiana
           FIRST_INTERNET_BANK = :first_internet_bank
-
-          # Global Innovations Bank
-          GLOBAL_INNOVATIONS_BANK = :global_innovations_bank
 
           # Grasshopper Bank
           GRASSHOPPER_BANK = :grasshopper_bank
