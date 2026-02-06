@@ -63,8 +63,9 @@ module Increase
       sig { params(company_discretionary_data: String).void }
       attr_writer :company_discretionary_data
 
-      # A description of the transfer. This is included in the transfer data sent to the
-      # receiving bank.
+      # A description of the transfer, included in the transfer data sent to the
+      # receiving bank. Standardized formatting may be required, for example `PAYROLL`
+      # for payroll-related Prearranged Payments and Deposits (PPD) credit transfers.
       sig { returns(T.nilable(String)) }
       attr_reader :company_entry_description
 
@@ -168,7 +169,9 @@ module Increase
       sig { params(routing_number: String).void }
       attr_writer :routing_number
 
-      # The Standard Entry Class (SEC) code to use for the transfer.
+      # The
+      # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      # to use for the transfer.
       sig do
         returns(
           T.nilable(
@@ -257,8 +260,9 @@ module Increase
         # The data you choose to associate with the transfer. This is included in the
         # transfer data sent to the receiving bank.
         company_discretionary_data: nil,
-        # A description of the transfer. This is included in the transfer data sent to the
-        # receiving bank.
+        # A description of the transfer, included in the transfer data sent to the
+        # receiving bank. Standardized formatting may be required, for example `PAYROLL`
+        # for payroll-related Prearranged Payments and Deposits (PPD) credit transfers.
         company_entry_description: nil,
         # The name by which the recipient knows you. This is included in the transfer data
         # sent to the receiving bank.
@@ -286,7 +290,9 @@ module Increase
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
         # destination account.
         routing_number: nil,
-        # The Standard Entry Class (SEC) code to use for the transfer.
+        # The
+        # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+        # to use for the transfer.
         standard_entry_class_code: nil,
         # The timing of the transaction.
         transaction_timing: nil,
@@ -826,7 +832,9 @@ module Increase
         end
       end
 
-      # The Standard Entry Class (SEC) code to use for the transfer.
+      # The
+      # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      # to use for the transfer.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
@@ -839,28 +847,28 @@ module Increase
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Corporate Credit and Debit (CCD).
+        # Corporate Credit and Debit (CCD) is used for business-to-business payments.
         CORPORATE_CREDIT_OR_DEBIT =
           T.let(
             :corporate_credit_or_debit,
             Increase::ACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
           )
 
-        # Corporate Trade Exchange (CTX).
+        # Corporate Trade Exchange (CTX) allows for including extensive remittance information with business-to-business payments.
         CORPORATE_TRADE_EXCHANGE =
           T.let(
             :corporate_trade_exchange,
             Increase::ACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
           )
 
-        # Prearranged Payments and Deposits (PPD).
+        # Prearranged Payments and Deposits (PPD) is used for credits or debits originated by an organization to a consumer, such as payroll direct deposits.
         PREARRANGED_PAYMENTS_AND_DEPOSIT =
           T.let(
             :prearranged_payments_and_deposit,
             Increase::ACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
           )
 
-        # Internet Initiated (WEB).
+        # Internet Initiated (WEB) is used for consumer payments initiated or authorized via the Internet. Debits can only be initiated by non-consumers to debit a consumer’s account. Credits can only be used for consumer to consumer transactions.
         INTERNET_INITIATED =
           T.let(
             :internet_initiated,
