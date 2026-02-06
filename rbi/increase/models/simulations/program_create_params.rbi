@@ -96,13 +96,6 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # Blue Ridge Bank, N.A.
-          BLUE_RIDGE_BANK =
-            T.let(
-              :blue_ridge_bank,
-              Increase::Simulations::ProgramCreateParams::Bank::TaggedSymbol
-            )
-
           # Core Bank
           CORE_BANK =
             T.let(
@@ -114,13 +107,6 @@ module Increase
           FIRST_INTERNET_BANK =
             T.let(
               :first_internet_bank,
-              Increase::Simulations::ProgramCreateParams::Bank::TaggedSymbol
-            )
-
-          # Global Innovations Bank
-          GLOBAL_INNOVATIONS_BANK =
-            T.let(
-              :global_innovations_bank,
               Increase::Simulations::ProgramCreateParams::Bank::TaggedSymbol
             )
 
