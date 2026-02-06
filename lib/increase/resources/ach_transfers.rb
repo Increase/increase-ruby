@@ -24,7 +24,7 @@ module Increase
       #
       # @param company_discretionary_data [String] The data you choose to associate with the transfer. This is included in the tran
       #
-      # @param company_entry_description [String] A description of the transfer. This is included in the transfer data sent to the
+      # @param company_entry_description [String] A description of the transfer, included in the transfer data sent to the receivi
       #
       # @param company_name [String] The name by which the recipient knows you. This is included in the transfer data
       #
@@ -44,7 +44,7 @@ module Increase
       #
       # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
       #
-      # @param standard_entry_class_code [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the transfer.
+      # @param standard_entry_class_code [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
       #
       # @param transaction_timing [Symbol, Increase::Models::ACHTransferCreateParams::TransactionTiming] The timing of the transaction.
       #

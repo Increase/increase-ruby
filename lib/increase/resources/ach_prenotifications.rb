@@ -34,7 +34,7 @@ module Increase
       #
       # @param individual_name [String] The name of therecipient. This value is informational and not verified by the re
       #
-      # @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      # @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

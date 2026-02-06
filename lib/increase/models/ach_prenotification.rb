@@ -115,7 +115,9 @@ module Increase
       required :routing_number, String
 
       # @!attribute standard_entry_class_code
-      #   The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      #   The
+      #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      #   to use for the ACH Prenotification.
       #
       #   @return [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil]
       required :standard_entry_class_code,
@@ -176,7 +178,7 @@ module Increase
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
       #
-      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil] The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
       #
       #   @param status [Symbol, Increase::Models::ACHPrenotification::Status] The lifecycle status of the ACH Prenotification.
       #
@@ -558,22 +560,24 @@ module Increase
         end
       end
 
-      # The Standard Entry Class (SEC) code to use for the ACH Prenotification.
+      # The
+      # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      # to use for the ACH Prenotification.
       #
       # @see Increase::Models::ACHPrenotification#standard_entry_class_code
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
-        # Corporate Credit and Debit (CCD).
+        # Corporate Credit and Debit (CCD) is used for business-to-business payments.
         CORPORATE_CREDIT_OR_DEBIT = :corporate_credit_or_debit
 
-        # Corporate Trade Exchange (CTX).
+        # Corporate Trade Exchange (CTX) allows for including extensive remittance information with business-to-business payments.
         CORPORATE_TRADE_EXCHANGE = :corporate_trade_exchange
 
-        # Prearranged Payments and Deposits (PPD).
+        # Prearranged Payments and Deposits (PPD) is used for credits or debits originated by an organization to a consumer, such as payroll direct deposits.
         PREARRANGED_PAYMENTS_AND_DEPOSIT = :prearranged_payments_and_deposit
 
-        # Internet Initiated (WEB).
+        # Internet Initiated (WEB) is used for consumer payments initiated or authorized via the Internet. Debits can only be initiated by non-consumers to debit a consumer’s account. Credits can only be used for consumer to consumer transactions.
         INTERNET_INITIATED = :internet_initiated
 
         # @!method self.values
