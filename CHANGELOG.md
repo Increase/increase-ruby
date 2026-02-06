@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.202.1 (2026-02-06)
+
+Full Changelog: [v1.202.0...v1.202.1](https://github.com/Increase/increase-ruby/compare/v1.202.0...v1.202.1)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([3e86c14](https://github.com/Increase/increase-ruby/commit/3e86c148869c291677ffd1169c01629efcbd017c))
+
 ## 1.202.0 (2026-02-06)
 
 Full Changelog: [v1.201.0...v1.202.0](https://github.com/Increase/increase-ruby/compare/v1.201.0...v1.202.0)
