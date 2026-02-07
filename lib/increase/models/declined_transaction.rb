@@ -138,20 +138,6 @@ module Increase
 
       # @see Increase::Models::DeclinedTransaction#source
       class Source < Increase::Internal::Type::BaseModel
-        # @!attribute ach_decline
-        #   An ACH Decline object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `ach_decline`.
-        #
-        #   @return [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil]
-        required :ach_decline, -> { Increase::DeclinedTransaction::Source::ACHDecline }, nil?: true
-
-        # @!attribute card_decline
-        #   A Card Decline object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_decline`.
-        #
-        #   @return [Increase::Models::DeclinedTransaction::Source::CardDecline, nil]
-        required :card_decline, -> { Increase::DeclinedTransaction::Source::CardDecline }, nil?: true
-
         # @!attribute category
         #   The type of the resource. We may add additional possible values for this enum
         #   over time; your application should be able to handle such additions gracefully.
@@ -159,19 +145,33 @@ module Increase
         #   @return [Symbol, Increase::Models::DeclinedTransaction::Source::Category]
         required :category, enum: -> { Increase::DeclinedTransaction::Source::Category }
 
+        # @!attribute ach_decline
+        #   An ACH Decline object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `ach_decline`.
+        #
+        #   @return [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil]
+        optional :ach_decline, -> { Increase::DeclinedTransaction::Source::ACHDecline }, nil?: true
+
+        # @!attribute card_decline
+        #   A Card Decline object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_decline`.
+        #
+        #   @return [Increase::Models::DeclinedTransaction::Source::CardDecline, nil]
+        optional :card_decline, -> { Increase::DeclinedTransaction::Source::CardDecline }, nil?: true
+
         # @!attribute check_decline
         #   A Check Decline object. This field will be present in the JSON response if and
         #   only if `category` is equal to `check_decline`.
         #
         #   @return [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil]
-        required :check_decline, -> { Increase::DeclinedTransaction::Source::CheckDecline }, nil?: true
+        optional :check_decline, -> { Increase::DeclinedTransaction::Source::CheckDecline }, nil?: true
 
         # @!attribute check_deposit_rejection
         #   A Check Deposit Rejection object. This field will be present in the JSON
         #   response if and only if `category` is equal to `check_deposit_rejection`.
         #
         #   @return [Increase::Models::DeclinedTransaction::Source::CheckDepositRejection, nil]
-        required :check_deposit_rejection,
+        optional :check_deposit_rejection,
                  -> { Increase::DeclinedTransaction::Source::CheckDepositRejection },
                  nil?: true
 
@@ -181,7 +181,7 @@ module Increase
         #   `inbound_fednow_transfer_decline`.
         #
         #   @return [Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline, nil]
-        required :inbound_fednow_transfer_decline,
+        optional :inbound_fednow_transfer_decline,
                  -> { Increase::DeclinedTransaction::Source::InboundFednowTransferDecline },
                  nil?: true
 
@@ -191,7 +191,7 @@ module Increase
         #   `inbound_real_time_payments_transfer_decline`.
         #
         #   @return [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil]
-        required :inbound_real_time_payments_transfer_decline,
+        optional :inbound_real_time_payments_transfer_decline,
                  -> { Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline },
                  nil?: true
 
@@ -200,16 +200,16 @@ module Increase
         #   contain an empty object, otherwise it will contain null.
         #
         #   @return [Increase::Models::DeclinedTransaction::Source::Other, nil]
-        required :other, -> { Increase::DeclinedTransaction::Source::Other }, nil?: true
+        optional :other, -> { Increase::DeclinedTransaction::Source::Other }, nil?: true
 
         # @!attribute wire_decline
         #   A Wire Decline object. This field will be present in the JSON response if and
         #   only if `category` is equal to `wire_decline`.
         #
         #   @return [Increase::Models::DeclinedTransaction::Source::WireDecline, nil]
-        required :wire_decline, -> { Increase::DeclinedTransaction::Source::WireDecline }, nil?: true
+        optional :wire_decline, -> { Increase::DeclinedTransaction::Source::WireDecline }, nil?: true
 
-        # @!method initialize(ach_decline:, card_decline:, category:, check_decline:, check_deposit_rejection:, inbound_fednow_transfer_decline:, inbound_real_time_payments_transfer_decline:, other:, wire_decline:)
+        # @!method initialize(category:, ach_decline: nil, card_decline: nil, check_decline: nil, check_deposit_rejection: nil, inbound_fednow_transfer_decline: nil, inbound_real_time_payments_transfer_decline: nil, other: nil, wire_decline: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::DeclinedTransaction::Source} for more details.
         #
@@ -219,11 +219,11 @@ module Increase
         #   additional undocumented keys may appear in this object. These should be treated
         #   as deprecated and will be removed in the future.
         #
+        #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
+        #
         #   @param ach_decline [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil] An ACH Decline object. This field will be present in the JSON response if and on
         #
         #   @param card_decline [Increase::Models::DeclinedTransaction::Source::CardDecline, nil] A Card Decline object. This field will be present in the JSON response if and on
-        #
-        #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
         #
         #   @param check_decline [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil] A Check Decline object. This field will be present in the JSON response if and o
         #
@@ -236,6 +236,41 @@ module Increase
         #   @param other [Increase::Models::DeclinedTransaction::Source::Other, nil] If the category of this Transaction source is equal to `other`, this field will
         #
         #   @param wire_decline [Increase::Models::DeclinedTransaction::Source::WireDecline, nil] A Wire Decline object. This field will be present in the JSON response if and on
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        #
+        # @see Increase::Models::DeclinedTransaction::Source#category
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # ACH Decline: details will be under the `ach_decline` object.
+          ACH_DECLINE = :ach_decline
+
+          # Card Decline: details will be under the `card_decline` object.
+          CARD_DECLINE = :card_decline
+
+          # Check Decline: details will be under the `check_decline` object.
+          CHECK_DECLINE = :check_decline
+
+          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
+          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE = :inbound_real_time_payments_transfer_decline
+
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE = :inbound_fednow_transfer_decline
+
+          # Wire Decline: details will be under the `wire_decline` object.
+          WIRE_DECLINE = :wire_decline
+
+          # Check Deposit Rejection: details will be under the `check_deposit_rejection` object.
+          CHECK_DEPOSIT_REJECTION = :check_deposit_rejection
+
+          # The Declined Transaction was made for an undocumented or deprecated reason.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # @see Increase::Models::DeclinedTransaction::Source#ach_decline
         class ACHDecline < Increase::Internal::Type::BaseModel
@@ -1734,41 +1769,6 @@ module Increase
               #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        #
-        # @see Increase::Models::DeclinedTransaction::Source#category
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # ACH Decline: details will be under the `ach_decline` object.
-          ACH_DECLINE = :ach_decline
-
-          # Card Decline: details will be under the `card_decline` object.
-          CARD_DECLINE = :card_decline
-
-          # Check Decline: details will be under the `check_decline` object.
-          CHECK_DECLINE = :check_decline
-
-          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE = :inbound_real_time_payments_transfer_decline
-
-          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
-          INBOUND_FEDNOW_TRANSFER_DECLINE = :inbound_fednow_transfer_decline
-
-          # Wire Decline: details will be under the `wire_decline` object.
-          WIRE_DECLINE = :wire_decline
-
-          # Check Deposit Rejection: details will be under the `check_deposit_rejection` object.
-          CHECK_DEPOSIT_REJECTION = :check_deposit_rejection
-
-          # The Declined Transaction was made for an undocumented or deprecated reason.
-          OTHER = :other
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::DeclinedTransaction::Source#check_decline

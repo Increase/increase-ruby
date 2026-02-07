@@ -167,12 +167,19 @@ module Increase
 
       # @see Increase::Models::PendingTransaction#source
       class Source < Increase::Internal::Type::BaseModel
+        # @!attribute category
+        #   The type of the resource. We may add additional possible values for this enum
+        #   over time; your application should be able to handle such additions gracefully.
+        #
+        #   @return [Symbol, Increase::Models::PendingTransaction::Source::Category]
+        required :category, enum: -> { Increase::PendingTransaction::Source::Category }
+
         # @!attribute account_transfer_instruction
         #   An Account Transfer Instruction object. This field will be present in the JSON
         #   response if and only if `category` is equal to `account_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::AccountTransferInstruction, nil]
-        required :account_transfer_instruction,
+        optional :account_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::AccountTransferInstruction },
                  nil?: true
 
@@ -181,7 +188,7 @@ module Increase
         #   response if and only if `category` is equal to `ach_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::ACHTransferInstruction, nil]
-        required :ach_transfer_instruction,
+        optional :ach_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::ACHTransferInstruction },
                  nil?: true
 
@@ -191,7 +198,7 @@ module Increase
         #   `blockchain_offramp_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::BlockchainOfframpTransferInstruction, nil]
-        required :blockchain_offramp_transfer_instruction,
+        optional :blockchain_offramp_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction },
                  nil?: true
 
@@ -201,7 +208,7 @@ module Increase
         #   `blockchain_onramp_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::BlockchainOnrampTransferInstruction, nil]
-        required :blockchain_onramp_transfer_instruction,
+        optional :blockchain_onramp_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction },
                  nil?: true
 
@@ -212,7 +219,7 @@ module Increase
         #   transaction.
         #
         #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization, nil]
-        required :card_authorization,
+        optional :card_authorization,
                  -> {
                    Increase::PendingTransaction::Source::CardAuthorization
                  },
@@ -223,23 +230,16 @@ module Increase
         #   response if and only if `category` is equal to `card_push_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::CardPushTransferInstruction, nil]
-        required :card_push_transfer_instruction,
+        optional :card_push_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::CardPushTransferInstruction },
                  nil?: true
-
-        # @!attribute category
-        #   The type of the resource. We may add additional possible values for this enum
-        #   over time; your application should be able to handle such additions gracefully.
-        #
-        #   @return [Symbol, Increase::Models::PendingTransaction::Source::Category]
-        required :category, enum: -> { Increase::PendingTransaction::Source::Category }
 
         # @!attribute check_deposit_instruction
         #   A Check Deposit Instruction object. This field will be present in the JSON
         #   response if and only if `category` is equal to `check_deposit_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::CheckDepositInstruction, nil]
-        required :check_deposit_instruction,
+        optional :check_deposit_instruction,
                  -> { Increase::PendingTransaction::Source::CheckDepositInstruction },
                  nil?: true
 
@@ -248,7 +248,7 @@ module Increase
         #   response if and only if `category` is equal to `check_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::CheckTransferInstruction, nil]
-        required :check_transfer_instruction,
+        optional :check_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::CheckTransferInstruction },
                  nil?: true
 
@@ -257,7 +257,7 @@ module Increase
         #   response if and only if `category` is equal to `fednow_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::FednowTransferInstruction, nil]
-        required :fednow_transfer_instruction,
+        optional :fednow_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::FednowTransferInstruction },
                  nil?: true
 
@@ -268,7 +268,7 @@ module Increase
         #   be clawed back by the sending institution.
         #
         #   @return [Increase::Models::PendingTransaction::Source::InboundFundsHold, nil]
-        required :inbound_funds_hold,
+        optional :inbound_funds_hold,
                  -> {
                    Increase::PendingTransaction::Source::InboundFundsHold
                  },
@@ -281,7 +281,7 @@ module Increase
         #   and the User requests that it be reversed.
         #
         #   @return [Increase::Models::PendingTransaction::Source::InboundWireTransferReversal, nil]
-        required :inbound_wire_transfer_reversal,
+        optional :inbound_wire_transfer_reversal,
                  -> { Increase::PendingTransaction::Source::InboundWireTransferReversal },
                  nil?: true
 
@@ -290,7 +290,7 @@ module Increase
         #   contain an empty object, otherwise it will contain null.
         #
         #   @return [Increase::Models::PendingTransaction::Source::Other, nil]
-        required :other, -> { Increase::PendingTransaction::Source::Other }, nil?: true
+        optional :other, -> { Increase::PendingTransaction::Source::Other }, nil?: true
 
         # @!attribute real_time_payments_transfer_instruction
         #   A Real-Time Payments Transfer Instruction object. This field will be present in
@@ -298,7 +298,7 @@ module Increase
         #   `real_time_payments_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::RealTimePaymentsTransferInstruction, nil]
-        required :real_time_payments_transfer_instruction,
+        optional :real_time_payments_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction },
                  nil?: true
 
@@ -307,7 +307,7 @@ module Increase
         #   response if and only if `category` is equal to `swift_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::SwiftTransferInstruction, nil]
-        required :swift_transfer_instruction,
+        optional :swift_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::SwiftTransferInstruction },
                  nil?: true
 
@@ -317,7 +317,7 @@ module Increase
         #   initiates a hold on funds in their account.
         #
         #   @return [Hash{Symbol=>Object}, nil]
-        required :user_initiated_hold,
+        optional :user_initiated_hold,
                  Increase::Internal::Type::HashOf[Increase::Internal::Type::Unknown],
                  nil?: true
 
@@ -326,17 +326,19 @@ module Increase
         #   response if and only if `category` is equal to `wire_transfer_instruction`.
         #
         #   @return [Increase::Models::PendingTransaction::Source::WireTransferInstruction, nil]
-        required :wire_transfer_instruction,
+        optional :wire_transfer_instruction,
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(account_transfer_instruction:, ach_transfer_instruction:, blockchain_offramp_transfer_instruction:, blockchain_onramp_transfer_instruction:, card_authorization:, card_push_transfer_instruction:, category:, check_deposit_instruction:, check_transfer_instruction:, fednow_transfer_instruction:, inbound_funds_hold:, inbound_wire_transfer_reversal:, other:, real_time_payments_transfer_instruction:, swift_transfer_instruction:, user_initiated_hold:, wire_transfer_instruction:)
+        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer_instruction: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, swift_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::PendingTransaction::Source} for more details.
         #
         #   This is an object giving more details on the network-level event that caused the
         #   Pending Transaction. For example, for a card transaction this lists the
         #   merchant's industry and location.
+        #
+        #   @param category [Symbol, Increase::Models::PendingTransaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
         #
         #   @param account_transfer_instruction [Increase::Models::PendingTransaction::Source::AccountTransferInstruction, nil] An Account Transfer Instruction object. This field will be present in the JSON r
         #
@@ -349,8 +351,6 @@ module Increase
         #   @param card_authorization [Increase::Models::PendingTransaction::Source::CardAuthorization, nil] A Card Authorization object. This field will be present in the JSON response if
         #
         #   @param card_push_transfer_instruction [Increase::Models::PendingTransaction::Source::CardPushTransferInstruction, nil] A Card Push Transfer Instruction object. This field will be present in the JSON
-        #
-        #   @param category [Symbol, Increase::Models::PendingTransaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
         #
         #   @param check_deposit_instruction [Increase::Models::PendingTransaction::Source::CheckDepositInstruction, nil] A Check Deposit Instruction object. This field will be present in the JSON respo
         #
@@ -371,6 +371,65 @@ module Increase
         #   @param user_initiated_hold [Hash{Symbol=>Object}, nil] An User Initiated Hold object. This field will be present in the JSON response i
         #
         #   @param wire_transfer_instruction [Increase::Models::PendingTransaction::Source::WireTransferInstruction, nil] A Wire Transfer Instruction object. This field will be present in the JSON respo
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        #
+        # @see Increase::Models::PendingTransaction::Source#category
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
+          ACCOUNT_TRANSFER_INSTRUCTION = :account_transfer_instruction
+
+          # ACH Transfer Instruction: details will be under the `ach_transfer_instruction` object.
+          ACH_TRANSFER_INSTRUCTION = :ach_transfer_instruction
+
+          # Card Authorization: details will be under the `card_authorization` object.
+          CARD_AUTHORIZATION = :card_authorization
+
+          # Check Deposit Instruction: details will be under the `check_deposit_instruction` object.
+          CHECK_DEPOSIT_INSTRUCTION = :check_deposit_instruction
+
+          # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
+          CHECK_TRANSFER_INSTRUCTION = :check_transfer_instruction
+
+          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
+          FEDNOW_TRANSFER_INSTRUCTION = :fednow_transfer_instruction
+
+          # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
+          INBOUND_FUNDS_HOLD = :inbound_funds_hold
+
+          # User Initiated Hold: details will be under the `user_initiated_hold` object.
+          USER_INITIATED_HOLD = :user_initiated_hold
+
+          # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
+          REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION = :real_time_payments_transfer_instruction
+
+          # Wire Transfer Instruction: details will be under the `wire_transfer_instruction` object.
+          WIRE_TRANSFER_INSTRUCTION = :wire_transfer_instruction
+
+          # Inbound Wire Transfer Reversal: details will be under the `inbound_wire_transfer_reversal` object.
+          INBOUND_WIRE_TRANSFER_REVERSAL = :inbound_wire_transfer_reversal
+
+          # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
+          SWIFT_TRANSFER_INSTRUCTION = :swift_transfer_instruction
+
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION = :card_push_transfer_instruction
+
+          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION = :blockchain_onramp_transfer_instruction
+
+          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION = :blockchain_offramp_transfer_instruction
+
+          # The Pending Transaction was made for an undocumented or deprecated reason.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # @see Increase::Models::PendingTransaction::Source#account_transfer_instruction
         class AccountTransferInstruction < Increase::Internal::Type::BaseModel
@@ -1773,65 +1832,6 @@ module Increase
           #   @param amount [Integer] The transfer amount in USD cents.
           #
           #   @param transfer_id [String] The identifier of the Card Push Transfer that led to this Pending Transaction.
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        #
-        # @see Increase::Models::PendingTransaction::Source#category
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
-          ACCOUNT_TRANSFER_INSTRUCTION = :account_transfer_instruction
-
-          # ACH Transfer Instruction: details will be under the `ach_transfer_instruction` object.
-          ACH_TRANSFER_INSTRUCTION = :ach_transfer_instruction
-
-          # Card Authorization: details will be under the `card_authorization` object.
-          CARD_AUTHORIZATION = :card_authorization
-
-          # Check Deposit Instruction: details will be under the `check_deposit_instruction` object.
-          CHECK_DEPOSIT_INSTRUCTION = :check_deposit_instruction
-
-          # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
-          CHECK_TRANSFER_INSTRUCTION = :check_transfer_instruction
-
-          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
-          FEDNOW_TRANSFER_INSTRUCTION = :fednow_transfer_instruction
-
-          # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
-          INBOUND_FUNDS_HOLD = :inbound_funds_hold
-
-          # User Initiated Hold: details will be under the `user_initiated_hold` object.
-          USER_INITIATED_HOLD = :user_initiated_hold
-
-          # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
-          REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION = :real_time_payments_transfer_instruction
-
-          # Wire Transfer Instruction: details will be under the `wire_transfer_instruction` object.
-          WIRE_TRANSFER_INSTRUCTION = :wire_transfer_instruction
-
-          # Inbound Wire Transfer Reversal: details will be under the `inbound_wire_transfer_reversal` object.
-          INBOUND_WIRE_TRANSFER_REVERSAL = :inbound_wire_transfer_reversal
-
-          # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
-          SWIFT_TRANSFER_INSTRUCTION = :swift_transfer_instruction
-
-          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
-          CARD_PUSH_TRANSFER_INSTRUCTION = :card_push_transfer_instruction
-
-          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
-          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION = :blockchain_onramp_transfer_instruction
-
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION = :blockchain_offramp_transfer_instruction
-
-          # The Pending Transaction was made for an undocumented or deprecated reason.
-          OTHER = :other
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::PendingTransaction::Source#check_deposit_instruction

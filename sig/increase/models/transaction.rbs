@@ -91,6 +91,7 @@ module Increase
 
       type source =
         {
+          category: Increase::Models::Transaction::Source::category,
           account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
           account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
           ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
@@ -107,7 +108,6 @@ module Increase
           card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
           card_settlement: Increase::Transaction::Source::CardSettlement?,
           cashback_payment: Increase::Transaction::Source::CashbackPayment?,
-          category: Increase::Models::Transaction::Source::category,
           check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
@@ -133,6 +133,8 @@ module Increase
         }
 
       class Source < Increase::Internal::Type::BaseModel
+        attr_accessor category: Increase::Models::Transaction::Source::category
+
         attr_accessor account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?
 
         attr_accessor account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?
@@ -164,8 +166,6 @@ module Increase
         attr_accessor card_settlement: Increase::Transaction::Source::CardSettlement?
 
         attr_accessor cashback_payment: Increase::Transaction::Source::CashbackPayment?
-
-        attr_accessor category: Increase::Models::Transaction::Source::category
 
         attr_accessor check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?
 
@@ -212,48 +212,49 @@ module Increase
         attr_accessor wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
 
         def initialize: (
-          account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
-          account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
-          ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
-          ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
-          ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
-          blockchain_offramp_transfer_settlement: Increase::Transaction::Source::BlockchainOfframpTransferSettlement?,
-          blockchain_onramp_transfer_intention: Increase::Transaction::Source::BlockchainOnrampTransferIntention?,
-          card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
-          card_dispute_financial: Increase::Transaction::Source::CardDisputeFinancial?,
-          card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
-          card_financial: Increase::Transaction::Source::CardFinancial?,
-          card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
-          card_refund: Increase::Transaction::Source::CardRefund?,
-          card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
-          card_settlement: Increase::Transaction::Source::CardSettlement?,
-          cashback_payment: Increase::Transaction::Source::CashbackPayment?,
           category: Increase::Models::Transaction::Source::category,
-          check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
-          check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
-          check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
-          fednow_transfer_acknowledgement: Increase::Transaction::Source::FednowTransferAcknowledgement?,
-          fee_payment: Increase::Transaction::Source::FeePayment?,
-          inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
-          inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
-          inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
-          inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
-          inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
-          inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
-          inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
-          inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
-          inbound_wire_transfer_reversal: Increase::Transaction::Source::InboundWireTransferReversal?,
-          interest_payment: Increase::Transaction::Source::InterestPayment?,
-          internal_source: Increase::Transaction::Source::InternalSource?,
-          other: Increase::Transaction::Source::Other?,
-          real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
-          sample_funds: Increase::Transaction::Source::SampleFunds?,
-          swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
-          swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
-          wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
+          ?account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
+          ?account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
+          ?ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
+          ?ach_transfer_rejection: Increase::Transaction::Source::ACHTransferRejection?,
+          ?ach_transfer_return: Increase::Transaction::Source::ACHTransferReturn?,
+          ?blockchain_offramp_transfer_settlement: Increase::Transaction::Source::BlockchainOfframpTransferSettlement?,
+          ?blockchain_onramp_transfer_intention: Increase::Transaction::Source::BlockchainOnrampTransferIntention?,
+          ?card_dispute_acceptance: Increase::Transaction::Source::CardDisputeAcceptance?,
+          ?card_dispute_financial: Increase::Transaction::Source::CardDisputeFinancial?,
+          ?card_dispute_loss: Increase::Transaction::Source::CardDisputeLoss?,
+          ?card_financial: Increase::Transaction::Source::CardFinancial?,
+          ?card_push_transfer_acceptance: Increase::Transaction::Source::CardPushTransferAcceptance?,
+          ?card_refund: Increase::Transaction::Source::CardRefund?,
+          ?card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
+          ?card_settlement: Increase::Transaction::Source::CardSettlement?,
+          ?cashback_payment: Increase::Transaction::Source::CashbackPayment?,
+          ?check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
+          ?check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
+          ?check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
+          ?fednow_transfer_acknowledgement: Increase::Transaction::Source::FednowTransferAcknowledgement?,
+          ?fee_payment: Increase::Transaction::Source::FeePayment?,
+          ?inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
+          ?inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
+          ?inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
+          ?inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
+          ?inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
+          ?inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
+          ?inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
+          ?inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
+          ?inbound_wire_transfer_reversal: Increase::Transaction::Source::InboundWireTransferReversal?,
+          ?interest_payment: Increase::Transaction::Source::InterestPayment?,
+          ?internal_source: Increase::Transaction::Source::InternalSource?,
+          ?other: Increase::Transaction::Source::Other?,
+          ?real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
+          ?sample_funds: Increase::Transaction::Source::SampleFunds?,
+          ?swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
+          ?swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
+          ?wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         ) -> void
 
         def to_hash: -> {
+          category: Increase::Models::Transaction::Source::category,
           account_revenue_payment: Increase::Transaction::Source::AccountRevenuePayment?,
           account_transfer_intention: Increase::Transaction::Source::AccountTransferIntention?,
           ach_transfer_intention: Increase::Transaction::Source::ACHTransferIntention?,
@@ -270,7 +271,6 @@ module Increase
           card_revenue_payment: Increase::Transaction::Source::CardRevenuePayment?,
           card_settlement: Increase::Transaction::Source::CardSettlement?,
           cashback_payment: Increase::Transaction::Source::CashbackPayment?,
-          category: Increase::Models::Transaction::Source::category,
           check_deposit_acceptance: Increase::Transaction::Source::CheckDepositAcceptance?,
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
@@ -294,6 +294,166 @@ module Increase
           swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         }
+
+        type category =
+          :account_transfer_intention
+          | :ach_transfer_intention
+          | :ach_transfer_rejection
+          | :ach_transfer_return
+          | :cashback_payment
+          | :card_dispute_acceptance
+          | :card_dispute_financial
+          | :card_dispute_loss
+          | :card_refund
+          | :card_settlement
+          | :card_financial
+          | :card_revenue_payment
+          | :check_deposit_acceptance
+          | :check_deposit_return
+          | :fednow_transfer_acknowledgement
+          | :check_transfer_deposit
+          | :fee_payment
+          | :inbound_ach_transfer
+          | :inbound_ach_transfer_return_intention
+          | :inbound_check_deposit_return_intention
+          | :inbound_check_adjustment
+          | :inbound_fednow_transfer_confirmation
+          | :inbound_real_time_payments_transfer_confirmation
+          | :inbound_wire_reversal
+          | :inbound_wire_transfer
+          | :inbound_wire_transfer_reversal
+          | :interest_payment
+          | :internal_source
+          | :real_time_payments_transfer_acknowledgement
+          | :sample_funds
+          | :wire_transfer_intention
+          | :swift_transfer_intention
+          | :swift_transfer_return
+          | :card_push_transfer_acceptance
+          | :account_revenue_payment
+          | :blockchain_onramp_transfer_intention
+          | :blockchain_offramp_transfer_settlement
+          | :other
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # Account Transfer Intention: details will be under the `account_transfer_intention` object.
+          ACCOUNT_TRANSFER_INTENTION: :account_transfer_intention
+
+          # ACH Transfer Intention: details will be under the `ach_transfer_intention` object.
+          ACH_TRANSFER_INTENTION: :ach_transfer_intention
+
+          # ACH Transfer Rejection: details will be under the `ach_transfer_rejection` object.
+          ACH_TRANSFER_REJECTION: :ach_transfer_rejection
+
+          # ACH Transfer Return: details will be under the `ach_transfer_return` object.
+          ACH_TRANSFER_RETURN: :ach_transfer_return
+
+          # Cashback Payment: details will be under the `cashback_payment` object.
+          CASHBACK_PAYMENT: :cashback_payment
+
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          CARD_DISPUTE_ACCEPTANCE: :card_dispute_acceptance
+
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL: :card_dispute_financial
+
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          CARD_DISPUTE_LOSS: :card_dispute_loss
+
+          # Card Refund: details will be under the `card_refund` object.
+          CARD_REFUND: :card_refund
+
+          # Card Settlement: details will be under the `card_settlement` object.
+          CARD_SETTLEMENT: :card_settlement
+
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL: :card_financial
+
+          # Card Revenue Payment: details will be under the `card_revenue_payment` object.
+          CARD_REVENUE_PAYMENT: :card_revenue_payment
+
+          # Check Deposit Acceptance: details will be under the `check_deposit_acceptance` object.
+          CHECK_DEPOSIT_ACCEPTANCE: :check_deposit_acceptance
+
+          # Check Deposit Return: details will be under the `check_deposit_return` object.
+          CHECK_DEPOSIT_RETURN: :check_deposit_return
+
+          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
+          FEDNOW_TRANSFER_ACKNOWLEDGEMENT: :fednow_transfer_acknowledgement
+
+          # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
+          CHECK_TRANSFER_DEPOSIT: :check_transfer_deposit
+
+          # Fee Payment: details will be under the `fee_payment` object.
+          FEE_PAYMENT: :fee_payment
+
+          # Inbound ACH Transfer Intention: details will be under the `inbound_ach_transfer` object.
+          INBOUND_ACH_TRANSFER: :inbound_ach_transfer
+
+          # Inbound ACH Transfer Return Intention: details will be under the `inbound_ach_transfer_return_intention` object.
+          INBOUND_ACH_TRANSFER_RETURN_INTENTION: :inbound_ach_transfer_return_intention
+
+          # Inbound Check Deposit Return Intention: details will be under the `inbound_check_deposit_return_intention` object.
+          INBOUND_CHECK_DEPOSIT_RETURN_INTENTION: :inbound_check_deposit_return_intention
+
+          # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
+          INBOUND_CHECK_ADJUSTMENT: :inbound_check_adjustment
+
+          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
+          INBOUND_FEDNOW_TRANSFER_CONFIRMATION: :inbound_fednow_transfer_confirmation
+
+          # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
+          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION: :inbound_real_time_payments_transfer_confirmation
+
+          # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
+          INBOUND_WIRE_REVERSAL: :inbound_wire_reversal
+
+          # Inbound Wire Transfer Intention: details will be under the `inbound_wire_transfer` object.
+          INBOUND_WIRE_TRANSFER: :inbound_wire_transfer
+
+          # Inbound Wire Transfer Reversal Intention: details will be under the `inbound_wire_transfer_reversal` object.
+          INBOUND_WIRE_TRANSFER_REVERSAL: :inbound_wire_transfer_reversal
+
+          # Interest Payment: details will be under the `interest_payment` object.
+          INTEREST_PAYMENT: :interest_payment
+
+          # Internal Source: details will be under the `internal_source` object.
+          INTERNAL_SOURCE: :internal_source
+
+          # Real-Time Payments Transfer Acknowledgement: details will be under the `real_time_payments_transfer_acknowledgement` object.
+          REAL_TIME_PAYMENTS_TRANSFER_ACKNOWLEDGEMENT: :real_time_payments_transfer_acknowledgement
+
+          # Sample Funds: details will be under the `sample_funds` object.
+          SAMPLE_FUNDS: :sample_funds
+
+          # Wire Transfer Intention: details will be under the `wire_transfer_intention` object.
+          WIRE_TRANSFER_INTENTION: :wire_transfer_intention
+
+          # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
+          SWIFT_TRANSFER_INTENTION: :swift_transfer_intention
+
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN: :swift_transfer_return
+
+          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
+          CARD_PUSH_TRANSFER_ACCEPTANCE: :card_push_transfer_acceptance
+
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT: :account_revenue_payment
+
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION: :blockchain_onramp_transfer_intention
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT: :blockchain_offramp_transfer_settlement
+
+          # The Transaction was made for an undocumented or deprecated reason.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::Transaction::Source::category]
+        end
 
         type account_revenue_payment =
           {
@@ -3874,166 +4034,6 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::Transaction::Source::CashbackPayment::currency]
           end
-        end
-
-        type category =
-          :account_transfer_intention
-          | :ach_transfer_intention
-          | :ach_transfer_rejection
-          | :ach_transfer_return
-          | :cashback_payment
-          | :card_dispute_acceptance
-          | :card_dispute_financial
-          | :card_dispute_loss
-          | :card_refund
-          | :card_settlement
-          | :card_financial
-          | :card_revenue_payment
-          | :check_deposit_acceptance
-          | :check_deposit_return
-          | :fednow_transfer_acknowledgement
-          | :check_transfer_deposit
-          | :fee_payment
-          | :inbound_ach_transfer
-          | :inbound_ach_transfer_return_intention
-          | :inbound_check_deposit_return_intention
-          | :inbound_check_adjustment
-          | :inbound_fednow_transfer_confirmation
-          | :inbound_real_time_payments_transfer_confirmation
-          | :inbound_wire_reversal
-          | :inbound_wire_transfer
-          | :inbound_wire_transfer_reversal
-          | :interest_payment
-          | :internal_source
-          | :real_time_payments_transfer_acknowledgement
-          | :sample_funds
-          | :wire_transfer_intention
-          | :swift_transfer_intention
-          | :swift_transfer_return
-          | :card_push_transfer_acceptance
-          | :account_revenue_payment
-          | :blockchain_onramp_transfer_intention
-          | :blockchain_offramp_transfer_settlement
-          | :other
-
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # Account Transfer Intention: details will be under the `account_transfer_intention` object.
-          ACCOUNT_TRANSFER_INTENTION: :account_transfer_intention
-
-          # ACH Transfer Intention: details will be under the `ach_transfer_intention` object.
-          ACH_TRANSFER_INTENTION: :ach_transfer_intention
-
-          # ACH Transfer Rejection: details will be under the `ach_transfer_rejection` object.
-          ACH_TRANSFER_REJECTION: :ach_transfer_rejection
-
-          # ACH Transfer Return: details will be under the `ach_transfer_return` object.
-          ACH_TRANSFER_RETURN: :ach_transfer_return
-
-          # Cashback Payment: details will be under the `cashback_payment` object.
-          CASHBACK_PAYMENT: :cashback_payment
-
-          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
-          CARD_DISPUTE_ACCEPTANCE: :card_dispute_acceptance
-
-          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
-          CARD_DISPUTE_FINANCIAL: :card_dispute_financial
-
-          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
-          CARD_DISPUTE_LOSS: :card_dispute_loss
-
-          # Card Refund: details will be under the `card_refund` object.
-          CARD_REFUND: :card_refund
-
-          # Card Settlement: details will be under the `card_settlement` object.
-          CARD_SETTLEMENT: :card_settlement
-
-          # Card Financial: details will be under the `card_financial` object.
-          CARD_FINANCIAL: :card_financial
-
-          # Card Revenue Payment: details will be under the `card_revenue_payment` object.
-          CARD_REVENUE_PAYMENT: :card_revenue_payment
-
-          # Check Deposit Acceptance: details will be under the `check_deposit_acceptance` object.
-          CHECK_DEPOSIT_ACCEPTANCE: :check_deposit_acceptance
-
-          # Check Deposit Return: details will be under the `check_deposit_return` object.
-          CHECK_DEPOSIT_RETURN: :check_deposit_return
-
-          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
-          FEDNOW_TRANSFER_ACKNOWLEDGEMENT: :fednow_transfer_acknowledgement
-
-          # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
-          CHECK_TRANSFER_DEPOSIT: :check_transfer_deposit
-
-          # Fee Payment: details will be under the `fee_payment` object.
-          FEE_PAYMENT: :fee_payment
-
-          # Inbound ACH Transfer Intention: details will be under the `inbound_ach_transfer` object.
-          INBOUND_ACH_TRANSFER: :inbound_ach_transfer
-
-          # Inbound ACH Transfer Return Intention: details will be under the `inbound_ach_transfer_return_intention` object.
-          INBOUND_ACH_TRANSFER_RETURN_INTENTION: :inbound_ach_transfer_return_intention
-
-          # Inbound Check Deposit Return Intention: details will be under the `inbound_check_deposit_return_intention` object.
-          INBOUND_CHECK_DEPOSIT_RETURN_INTENTION: :inbound_check_deposit_return_intention
-
-          # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
-          INBOUND_CHECK_ADJUSTMENT: :inbound_check_adjustment
-
-          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
-          INBOUND_FEDNOW_TRANSFER_CONFIRMATION: :inbound_fednow_transfer_confirmation
-
-          # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION: :inbound_real_time_payments_transfer_confirmation
-
-          # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
-          INBOUND_WIRE_REVERSAL: :inbound_wire_reversal
-
-          # Inbound Wire Transfer Intention: details will be under the `inbound_wire_transfer` object.
-          INBOUND_WIRE_TRANSFER: :inbound_wire_transfer
-
-          # Inbound Wire Transfer Reversal Intention: details will be under the `inbound_wire_transfer_reversal` object.
-          INBOUND_WIRE_TRANSFER_REVERSAL: :inbound_wire_transfer_reversal
-
-          # Interest Payment: details will be under the `interest_payment` object.
-          INTEREST_PAYMENT: :interest_payment
-
-          # Internal Source: details will be under the `internal_source` object.
-          INTERNAL_SOURCE: :internal_source
-
-          # Real-Time Payments Transfer Acknowledgement: details will be under the `real_time_payments_transfer_acknowledgement` object.
-          REAL_TIME_PAYMENTS_TRANSFER_ACKNOWLEDGEMENT: :real_time_payments_transfer_acknowledgement
-
-          # Sample Funds: details will be under the `sample_funds` object.
-          SAMPLE_FUNDS: :sample_funds
-
-          # Wire Transfer Intention: details will be under the `wire_transfer_intention` object.
-          WIRE_TRANSFER_INTENTION: :wire_transfer_intention
-
-          # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
-          SWIFT_TRANSFER_INTENTION: :swift_transfer_intention
-
-          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
-          SWIFT_TRANSFER_RETURN: :swift_transfer_return
-
-          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
-          CARD_PUSH_TRANSFER_ACCEPTANCE: :card_push_transfer_acceptance
-
-          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
-          ACCOUNT_REVENUE_PAYMENT: :account_revenue_payment
-
-          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
-          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION: :blockchain_onramp_transfer_intention
-
-          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT: :blockchain_offramp_transfer_settlement
-
-          # The Transaction was made for an undocumented or deprecated reason.
-          OTHER: :other
-
-          def self?.values: -> ::Array[Increase::Models::Transaction::Source::category]
         end
 
         type check_deposit_acceptance =

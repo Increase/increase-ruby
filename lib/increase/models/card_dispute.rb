@@ -294,42 +294,6 @@ module Increase
           #   @return [Symbol, Increase::Models::CardDispute::Visa::NetworkEvent::Category]
           required :category, enum: -> { Increase::CardDispute::Visa::NetworkEvent::Category }
 
-          # @!attribute chargeback_accepted
-          #   A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
-          #   present in the JSON response if and only if `category` is equal to
-          #   `chargeback_accepted`. Contains the details specific to a chargeback accepted
-          #   Visa Card Dispute Network Event, which represents that a chargeback has been
-          #   accepted by the merchant.
-          #
-          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackAccepted, nil]
-          required :chargeback_accepted,
-                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted },
-                   nil?: true
-
-          # @!attribute chargeback_submitted
-          #   A Card Dispute Chargeback Submitted Visa Network Event object. This field will
-          #   be present in the JSON response if and only if `category` is equal to
-          #   `chargeback_submitted`. Contains the details specific to a chargeback submitted
-          #   Visa Card Dispute Network Event, which represents that a chargeback has been
-          #   submitted to the network.
-          #
-          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackSubmitted, nil]
-          required :chargeback_submitted,
-                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted },
-                   nil?: true
-
-          # @!attribute chargeback_timed_out
-          #   A Card Dispute Chargeback Timed Out Visa Network Event object. This field will
-          #   be present in the JSON response if and only if `category` is equal to
-          #   `chargeback_timed_out`. Contains the details specific to a chargeback timed out
-          #   Visa Card Dispute Network Event, which represents that the chargeback has timed
-          #   out in the user's favor.
-          #
-          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackTimedOut, nil]
-          required :chargeback_timed_out,
-                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut },
-                   nil?: true
-
           # @!attribute created_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           #   the Visa Card Dispute Network Event was created.
@@ -343,6 +307,42 @@ module Increase
           #   @return [String, nil]
           required :dispute_financial_transaction_id, String, nil?: true
 
+          # @!attribute chargeback_accepted
+          #   A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `chargeback_accepted`. Contains the details specific to a chargeback accepted
+          #   Visa Card Dispute Network Event, which represents that a chargeback has been
+          #   accepted by the merchant.
+          #
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackAccepted, nil]
+          optional :chargeback_accepted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted },
+                   nil?: true
+
+          # @!attribute chargeback_submitted
+          #   A Card Dispute Chargeback Submitted Visa Network Event object. This field will
+          #   be present in the JSON response if and only if `category` is equal to
+          #   `chargeback_submitted`. Contains the details specific to a chargeback submitted
+          #   Visa Card Dispute Network Event, which represents that a chargeback has been
+          #   submitted to the network.
+          #
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackSubmitted, nil]
+          optional :chargeback_submitted,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted },
+                   nil?: true
+
+          # @!attribute chargeback_timed_out
+          #   A Card Dispute Chargeback Timed Out Visa Network Event object. This field will
+          #   be present in the JSON response if and only if `category` is equal to
+          #   `chargeback_timed_out`. Contains the details specific to a chargeback timed out
+          #   Visa Card Dispute Network Event, which represents that the chargeback has timed
+          #   out in the user's favor.
+          #
+          #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackTimedOut, nil]
+          optional :chargeback_timed_out,
+                   -> { Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut },
+                   nil?: true
+
           # @!attribute merchant_prearbitration_decline_submitted
           #   A Card Dispute Merchant Pre-Arbitration Decline Submitted Visa Network Event
           #   object. This field will be present in the JSON response if and only if
@@ -352,7 +352,7 @@ module Increase
           #   merchant's request for a prearbitration request decision in their favor.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted, nil]
-          required :merchant_prearbitration_decline_submitted,
+          optional :merchant_prearbitration_decline_submitted,
                    -> { Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted },
                    nil?: true
 
@@ -364,7 +364,7 @@ module Increase
           #   the merchant has issued a prearbitration request in the user's favor.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived, nil]
-          required :merchant_prearbitration_received,
+          optional :merchant_prearbitration_received,
                    -> { Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived },
                    nil?: true
 
@@ -377,7 +377,7 @@ module Increase
           #   prearbitration request.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut, nil]
-          required :merchant_prearbitration_timed_out,
+          optional :merchant_prearbitration_timed_out,
                    -> { Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut },
                    nil?: true
 
@@ -389,7 +389,7 @@ module Increase
           #   chargeback and has re-presented the payment.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::Represented, nil]
-          required :represented, -> { Increase::CardDispute::Visa::NetworkEvent::Represented }, nil?: true
+          optional :represented, -> { Increase::CardDispute::Visa::NetworkEvent::Represented }, nil?: true
 
           # @!attribute representment_timed_out
           #   A Card Dispute Re-presentment Timed Out Visa Network Event object. This field
@@ -399,7 +399,7 @@ module Increase
           #   respond to the re-presentment by the merchant within the time limit.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut, nil]
-          required :representment_timed_out,
+          optional :representment_timed_out,
                    -> { Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut },
                    nil?: true
 
@@ -411,7 +411,7 @@ module Increase
           #   the merchant has accepted the user's prearbitration request in the user's favor.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted, nil]
-          required :user_prearbitration_accepted,
+          optional :user_prearbitration_accepted,
                    -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted },
                    nil?: true
 
@@ -423,7 +423,7 @@ module Increase
           #   the merchant has declined the user's prearbitration request.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined, nil]
-          required :user_prearbitration_declined,
+          optional :user_prearbitration_declined,
                    -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined },
                    nil?: true
 
@@ -435,7 +435,7 @@ module Increase
           #   the user's request for prearbitration has been submitted to the network.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted, nil]
-          required :user_prearbitration_submitted,
+          optional :user_prearbitration_submitted,
                    -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted },
                    nil?: true
 
@@ -447,7 +447,7 @@ module Increase
           #   the merchant has timed out responding to the user's prearbitration request.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut, nil]
-          required :user_prearbitration_timed_out,
+          optional :user_prearbitration_timed_out,
                    -> { Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut },
                    nil?: true
 
@@ -459,11 +459,11 @@ module Increase
           #   request to withdraw the dispute has been submitted to the network.
           #
           #   @return [Increase::Models::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted, nil]
-          required :user_withdrawal_submitted,
+          optional :user_withdrawal_submitted,
                    -> { Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted },
                    nil?: true
 
-          # @!method initialize(attachment_files:, category:, chargeback_accepted:, chargeback_submitted:, chargeback_timed_out:, created_at:, dispute_financial_transaction_id:, merchant_prearbitration_decline_submitted:, merchant_prearbitration_received:, merchant_prearbitration_timed_out:, represented:, representment_timed_out:, user_prearbitration_accepted:, user_prearbitration_declined:, user_prearbitration_submitted:, user_prearbitration_timed_out:, user_withdrawal_submitted:)
+          # @!method initialize(attachment_files:, category:, created_at:, dispute_financial_transaction_id:, chargeback_accepted: nil, chargeback_submitted: nil, chargeback_timed_out: nil, merchant_prearbitration_decline_submitted: nil, merchant_prearbitration_received: nil, merchant_prearbitration_timed_out: nil, represented: nil, representment_timed_out: nil, user_prearbitration_accepted: nil, user_prearbitration_declined: nil, user_prearbitration_submitted: nil, user_prearbitration_timed_out: nil, user_withdrawal_submitted: nil)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardDispute::Visa::NetworkEvent} for more details.
           #
@@ -471,15 +471,15 @@ module Increase
           #
           #   @param category [Symbol, Increase::Models::CardDispute::Visa::NetworkEvent::Category] The category of the user submission. We may add additional possible values for t
           #
+          #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+          #
+          #   @param dispute_financial_transaction_id [String, nil] The dispute financial transaction that resulted from the network event, if any.
+          #
           #   @param chargeback_accepted [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackAccepted, nil] A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
           #
           #   @param chargeback_submitted [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackSubmitted, nil] A Card Dispute Chargeback Submitted Visa Network Event object. This field will b
           #
           #   @param chargeback_timed_out [Increase::Models::CardDispute::Visa::NetworkEvent::ChargebackTimedOut, nil] A Card Dispute Chargeback Timed Out Visa Network Event object. This field will b
-          #
-          #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-          #
-          #   @param dispute_financial_transaction_id [String, nil] The dispute financial transaction that resulted from the network event, if any.
           #
           #   @param merchant_prearbitration_decline_submitted [Increase::Models::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted, nil] A Card Dispute Merchant Pre-Arbitration Decline Submitted Visa Network Event obj
           #
@@ -1569,15 +1569,6 @@ module Increase
           #   @return [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Category]
           required :category, enum: -> { Increase::CardDispute::Visa::UserSubmission::Category }
 
-          # @!attribute chargeback
-          #   A Visa Card Dispute Chargeback User Submission Chargeback Details object. This
-          #   field will be present in the JSON response if and only if `category` is equal to
-          #   `chargeback`. Contains the details specific to a Visa chargeback User Submission
-          #   for a Card Dispute.
-          #
-          #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback, nil]
-          required :chargeback, -> { Increase::CardDispute::Visa::UserSubmission::Chargeback }, nil?: true
-
           # @!attribute created_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           #   the Visa Card Dispute User Submission was created.
@@ -1606,17 +1597,6 @@ module Increase
           #   @return [String, nil]
           required :further_information_requested_reason, String, nil?: true
 
-          # @!attribute merchant_prearbitration_decline
-          #   A Visa Card Dispute Merchant Pre-Arbitration Decline User Submission object.
-          #   This field will be present in the JSON response if and only if `category` is
-          #   equal to `merchant_prearbitration_decline`. Contains the details specific to a
-          #   merchant prearbitration decline Visa Card Dispute User Submission.
-          #
-          #   @return [Increase::Models::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline, nil]
-          required :merchant_prearbitration_decline,
-                   -> { Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline },
-                   nil?: true
-
           # @!attribute status
           #   The status of the Visa Card Dispute User Submission.
           #
@@ -1630,6 +1610,26 @@ module Increase
           #   @return [Time]
           required :updated_at, Time
 
+          # @!attribute chargeback
+          #   A Visa Card Dispute Chargeback User Submission Chargeback Details object. This
+          #   field will be present in the JSON response if and only if `category` is equal to
+          #   `chargeback`. Contains the details specific to a Visa chargeback User Submission
+          #   for a Card Dispute.
+          #
+          #   @return [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback, nil]
+          optional :chargeback, -> { Increase::CardDispute::Visa::UserSubmission::Chargeback }, nil?: true
+
+          # @!attribute merchant_prearbitration_decline
+          #   A Visa Card Dispute Merchant Pre-Arbitration Decline User Submission object.
+          #   This field will be present in the JSON response if and only if `category` is
+          #   equal to `merchant_prearbitration_decline`. Contains the details specific to a
+          #   merchant prearbitration decline Visa Card Dispute User Submission.
+          #
+          #   @return [Increase::Models::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline, nil]
+          optional :merchant_prearbitration_decline,
+                   -> { Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline },
+                   nil?: true
+
           # @!attribute user_prearbitration
           #   A Visa Card Dispute User-Initiated Pre-Arbitration User Submission object. This
           #   field will be present in the JSON response if and only if `category` is equal to
@@ -1637,11 +1637,11 @@ module Increase
           #   pre-arbitration Visa Card Dispute User Submission.
           #
           #   @return [Increase::Models::CardDispute::Visa::UserSubmission::UserPrearbitration, nil]
-          required :user_prearbitration,
+          optional :user_prearbitration,
                    -> { Increase::CardDispute::Visa::UserSubmission::UserPrearbitration },
                    nil?: true
 
-          # @!method initialize(accepted_at:, amount:, attachment_files:, category:, chargeback:, created_at:, explanation:, further_information_requested_at:, further_information_requested_reason:, merchant_prearbitration_decline:, status:, updated_at:, user_prearbitration:)
+          # @!method initialize(accepted_at:, amount:, attachment_files:, category:, created_at:, explanation:, further_information_requested_at:, further_information_requested_reason:, status:, updated_at:, chargeback: nil, merchant_prearbitration_decline: nil, user_prearbitration: nil)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardDispute::Visa::UserSubmission} for more details.
           #
@@ -1653,8 +1653,6 @@ module Increase
           #
           #   @param category [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Category] The category of the user submission. We may add additional possible values for t
           #
-          #   @param chargeback [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback, nil] A Visa Card Dispute Chargeback User Submission Chargeback Details object. This f
-          #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
           #
           #   @param explanation [String, nil] The free-form explanation provided to Increase to provide more context for the u
@@ -1663,11 +1661,13 @@ module Increase
           #
           #   @param further_information_requested_reason [String, nil] The reason for Increase requesting further information from the user for the Vis
           #
-          #   @param merchant_prearbitration_decline [Increase::Models::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline, nil] A Visa Card Dispute Merchant Pre-Arbitration Decline User Submission object. Thi
-          #
           #   @param status [Symbol, Increase::Models::CardDispute::Visa::UserSubmission::Status] The status of the Visa Card Dispute User Submission.
           #
           #   @param updated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+          #
+          #   @param chargeback [Increase::Models::CardDispute::Visa::UserSubmission::Chargeback, nil] A Visa Card Dispute Chargeback User Submission Chargeback Details object. This f
+          #
+          #   @param merchant_prearbitration_decline [Increase::Models::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline, nil] A Visa Card Dispute Merchant Pre-Arbitration Decline User Submission object. Thi
           #
           #   @param user_prearbitration [Increase::Models::CardDispute::Visa::UserSubmission::UserPrearbitration, nil] A Visa Card Dispute User-Initiated Pre-Arbitration User Submission object. This
 
@@ -1698,6 +1698,28 @@ module Increase
 
             # Visa Card Dispute User-Initiated Pre-Arbitration User Submission: details will be under the `user_prearbitration` object.
             USER_PREARBITRATION = :user_prearbitration
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # The status of the Visa Card Dispute User Submission.
+          #
+          # @see Increase::Models::CardDispute::Visa::UserSubmission#status
+          module Status
+            extend Increase::Internal::Type::Enum
+
+            # The User Submission was abandoned.
+            ABANDONED = :abandoned
+
+            # The User Submission was accepted.
+            ACCEPTED = :accepted
+
+            # Further information is requested, please resubmit with the requested information.
+            FURTHER_INFORMATION_REQUESTED = :further_information_requested
+
+            # The User Submission is pending review.
+            PENDING_REVIEWING = :pending_reviewing
 
             # @!method self.values
             #   @return [Array<Symbol>]
@@ -5129,28 +5151,6 @@ module Increase
             #   merchant prearbitration decline Visa Card Dispute User Submission.
             #
             #   @param reason [String] The reason the user declined the merchant's request for pre-arbitration in their
-          end
-
-          # The status of the Visa Card Dispute User Submission.
-          #
-          # @see Increase::Models::CardDispute::Visa::UserSubmission#status
-          module Status
-            extend Increase::Internal::Type::Enum
-
-            # The User Submission was abandoned.
-            ABANDONED = :abandoned
-
-            # The User Submission was accepted.
-            ACCEPTED = :accepted
-
-            # Further information is requested, please resubmit with the requested information.
-            FURTHER_INFORMATION_REQUESTED = :further_information_requested
-
-            # The User Submission is pending review.
-            PENDING_REVIEWING = :pending_reviewing
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
           end
 
           # @see Increase::Models::CardDispute::Visa::UserSubmission#user_prearbitration

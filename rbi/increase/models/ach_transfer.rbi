@@ -546,10 +546,10 @@ module Increase
           # over time; your application should be able to handle such additions gracefully.
           category:,
           # Unstructured `payment_related_information` passed through with the transfer.
-          freeform:,
+          freeform: nil,
           # Structured ASC X12 820 remittance advice records. Please reach out to
           # [support@increase.com](mailto:support@increase.com) for more information.
-          payment_order_remittance_advice:
+          payment_order_remittance_advice: nil
         )
         end
 
@@ -862,6 +862,12 @@ module Increase
             T.any(Increase::ACHTransfer::CreatedBy, Increase::Internal::AnyHash)
           end
 
+        # The type of object that created this transfer.
+        sig do
+          returns(Increase::ACHTransfer::CreatedBy::Category::TaggedSymbol)
+        end
+        attr_accessor :category
+
         # If present, details about the API key that created the transfer.
         sig { returns(T.nilable(Increase::ACHTransfer::CreatedBy::APIKey)) }
         attr_reader :api_key
@@ -872,12 +878,6 @@ module Increase
           ).void
         end
         attr_writer :api_key
-
-        # The type of object that created this transfer.
-        sig do
-          returns(Increase::ACHTransfer::CreatedBy::Category::TaggedSymbol)
-        end
-        attr_accessor :category
 
         # If present, details about the OAuth Application that created the transfer.
         sig do
@@ -909,9 +909,9 @@ module Increase
         # What object created the transfer, either via the API or the dashboard.
         sig do
           params(
+            category: Increase::ACHTransfer::CreatedBy::Category::OrSymbol,
             api_key:
               T.nilable(Increase::ACHTransfer::CreatedBy::APIKey::OrHash),
-            category: Increase::ACHTransfer::CreatedBy::Category::OrSymbol,
             oauth_application:
               T.nilable(
                 Increase::ACHTransfer::CreatedBy::OAuthApplication::OrHash
@@ -920,23 +920,23 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # If present, details about the API key that created the transfer.
-          api_key:,
           # The type of object that created this transfer.
           category:,
+          # If present, details about the API key that created the transfer.
+          api_key: nil,
           # If present, details about the OAuth Application that created the transfer.
-          oauth_application:,
+          oauth_application: nil,
           # If present, details about the User that created the transfer.
-          user:
+          user: nil
         )
         end
 
         sig do
           override.returns(
             {
-              api_key: T.nilable(Increase::ACHTransfer::CreatedBy::APIKey),
               category:
                 Increase::ACHTransfer::CreatedBy::Category::TaggedSymbol,
+              api_key: T.nilable(Increase::ACHTransfer::CreatedBy::APIKey),
               oauth_application:
                 T.nilable(Increase::ACHTransfer::CreatedBy::OAuthApplication),
               user: T.nilable(Increase::ACHTransfer::CreatedBy::User)
@@ -944,34 +944,6 @@ module Increase
           )
         end
         def to_hash
-        end
-
-        class APIKey < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::ACHTransfer::CreatedBy::APIKey,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # The description set for the API key when it was created.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :description
-
-          # If present, details about the API key that created the transfer.
-          sig do
-            params(description: T.nilable(String)).returns(T.attached_class)
-          end
-          def self.new(
-            # The description set for the API key when it was created.
-            description:
-          )
-          end
-
-          sig { override.returns({ description: T.nilable(String) }) }
-          def to_hash
-          end
         end
 
         # The type of object that created this transfer.
@@ -1011,6 +983,34 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::ACHTransfer::CreatedBy::APIKey,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The description set for the API key when it was created.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :description
+
+          # If present, details about the API key that created the transfer.
+          sig do
+            params(description: T.nilable(String)).returns(T.attached_class)
+          end
+          def self.new(
+            # The description set for the API key when it was created.
+            description:
+          )
+          end
+
+          sig { override.returns({ description: T.nilable(String) }) }
+          def to_hash
           end
         end
 

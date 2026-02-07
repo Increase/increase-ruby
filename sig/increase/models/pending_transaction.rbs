@@ -106,13 +106,13 @@ module Increase
 
       type source =
         {
+          category: Increase::Models::PendingTransaction::Source::category,
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
-          category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
@@ -126,6 +126,8 @@ module Increase
         }
 
       class Source < Increase::Internal::Type::BaseModel
+        attr_accessor category: Increase::Models::PendingTransaction::Source::category
+
         attr_accessor account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?
 
         attr_accessor ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?
@@ -137,8 +139,6 @@ module Increase
         attr_accessor card_authorization: Increase::PendingTransaction::Source::CardAuthorization?
 
         attr_accessor card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?
-
-        attr_accessor category: Increase::Models::PendingTransaction::Source::category
 
         attr_accessor check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?
 
@@ -161,33 +161,33 @@ module Increase
         attr_accessor wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
 
         def initialize: (
-          account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
-          ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
-          blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
-          blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
-          card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
-          card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
           category: Increase::Models::PendingTransaction::Source::category,
-          check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
-          check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
-          fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
-          inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
-          inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
-          other: Increase::PendingTransaction::Source::Other?,
-          real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
-          swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
-          user_initiated_hold: ::Hash[Symbol, top]?,
-          wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
+          ?account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
+          ?ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
+          ?blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
+          ?blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
+          ?card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
+          ?card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
+          ?check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
+          ?check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
+          ?fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
+          ?inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
+          ?inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
+          ?other: Increase::PendingTransaction::Source::Other?,
+          ?real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
+          ?swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          ?user_initiated_hold: ::Hash[Symbol, top]?,
+          ?wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         ) -> void
 
         def to_hash: -> {
+          category: Increase::Models::PendingTransaction::Source::category,
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
           blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
-          category: Increase::Models::PendingTransaction::Source::category,
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
@@ -199,6 +199,78 @@ module Increase
           user_initiated_hold: ::Hash[Symbol, top]?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
+
+        type category =
+          :account_transfer_instruction
+          | :ach_transfer_instruction
+          | :card_authorization
+          | :check_deposit_instruction
+          | :check_transfer_instruction
+          | :fednow_transfer_instruction
+          | :inbound_funds_hold
+          | :user_initiated_hold
+          | :real_time_payments_transfer_instruction
+          | :wire_transfer_instruction
+          | :inbound_wire_transfer_reversal
+          | :swift_transfer_instruction
+          | :card_push_transfer_instruction
+          | :blockchain_onramp_transfer_instruction
+          | :blockchain_offramp_transfer_instruction
+          | :other
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
+          ACCOUNT_TRANSFER_INSTRUCTION: :account_transfer_instruction
+
+          # ACH Transfer Instruction: details will be under the `ach_transfer_instruction` object.
+          ACH_TRANSFER_INSTRUCTION: :ach_transfer_instruction
+
+          # Card Authorization: details will be under the `card_authorization` object.
+          CARD_AUTHORIZATION: :card_authorization
+
+          # Check Deposit Instruction: details will be under the `check_deposit_instruction` object.
+          CHECK_DEPOSIT_INSTRUCTION: :check_deposit_instruction
+
+          # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
+          CHECK_TRANSFER_INSTRUCTION: :check_transfer_instruction
+
+          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
+          FEDNOW_TRANSFER_INSTRUCTION: :fednow_transfer_instruction
+
+          # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
+          INBOUND_FUNDS_HOLD: :inbound_funds_hold
+
+          # User Initiated Hold: details will be under the `user_initiated_hold` object.
+          USER_INITIATED_HOLD: :user_initiated_hold
+
+          # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
+          REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION: :real_time_payments_transfer_instruction
+
+          # Wire Transfer Instruction: details will be under the `wire_transfer_instruction` object.
+          WIRE_TRANSFER_INSTRUCTION: :wire_transfer_instruction
+
+          # Inbound Wire Transfer Reversal: details will be under the `inbound_wire_transfer_reversal` object.
+          INBOUND_WIRE_TRANSFER_REVERSAL: :inbound_wire_transfer_reversal
+
+          # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
+          SWIFT_TRANSFER_INSTRUCTION: :swift_transfer_instruction
+
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION: :card_push_transfer_instruction
+
+          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION: :blockchain_onramp_transfer_instruction
+
+          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION: :blockchain_offramp_transfer_instruction
+
+          # The Pending Transaction was made for an undocumented or deprecated reason.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::category]
+        end
 
         type account_transfer_instruction =
           {
@@ -1130,78 +1202,6 @@ module Increase
           def initialize: (amount: Integer, transfer_id: String) -> void
 
           def to_hash: -> { amount: Integer, transfer_id: String }
-        end
-
-        type category =
-          :account_transfer_instruction
-          | :ach_transfer_instruction
-          | :card_authorization
-          | :check_deposit_instruction
-          | :check_transfer_instruction
-          | :fednow_transfer_instruction
-          | :inbound_funds_hold
-          | :user_initiated_hold
-          | :real_time_payments_transfer_instruction
-          | :wire_transfer_instruction
-          | :inbound_wire_transfer_reversal
-          | :swift_transfer_instruction
-          | :card_push_transfer_instruction
-          | :blockchain_onramp_transfer_instruction
-          | :blockchain_offramp_transfer_instruction
-          | :other
-
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
-          ACCOUNT_TRANSFER_INSTRUCTION: :account_transfer_instruction
-
-          # ACH Transfer Instruction: details will be under the `ach_transfer_instruction` object.
-          ACH_TRANSFER_INSTRUCTION: :ach_transfer_instruction
-
-          # Card Authorization: details will be under the `card_authorization` object.
-          CARD_AUTHORIZATION: :card_authorization
-
-          # Check Deposit Instruction: details will be under the `check_deposit_instruction` object.
-          CHECK_DEPOSIT_INSTRUCTION: :check_deposit_instruction
-
-          # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
-          CHECK_TRANSFER_INSTRUCTION: :check_transfer_instruction
-
-          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
-          FEDNOW_TRANSFER_INSTRUCTION: :fednow_transfer_instruction
-
-          # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
-          INBOUND_FUNDS_HOLD: :inbound_funds_hold
-
-          # User Initiated Hold: details will be under the `user_initiated_hold` object.
-          USER_INITIATED_HOLD: :user_initiated_hold
-
-          # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
-          REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION: :real_time_payments_transfer_instruction
-
-          # Wire Transfer Instruction: details will be under the `wire_transfer_instruction` object.
-          WIRE_TRANSFER_INSTRUCTION: :wire_transfer_instruction
-
-          # Inbound Wire Transfer Reversal: details will be under the `inbound_wire_transfer_reversal` object.
-          INBOUND_WIRE_TRANSFER_REVERSAL: :inbound_wire_transfer_reversal
-
-          # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
-          SWIFT_TRANSFER_INSTRUCTION: :swift_transfer_instruction
-
-          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
-          CARD_PUSH_TRANSFER_INSTRUCTION: :card_push_transfer_instruction
-
-          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
-          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION: :blockchain_onramp_transfer_instruction
-
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION: :blockchain_offramp_transfer_instruction
-
-          # The Pending Transaction was made for an undocumented or deprecated reason.
-          OTHER: :other
-
-          def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::category]
         end
 
         type check_deposit_instruction =

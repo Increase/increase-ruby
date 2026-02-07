@@ -207,6 +207,13 @@ module Increase
             )
           end
 
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        sig do
+          returns(Increase::DeclinedTransaction::Source::Category::TaggedSymbol)
+        end
+        attr_accessor :category
+
         # An ACH Decline object. This field will be present in the JSON response if and
         # only if `category` is equal to `ach_decline`.
         sig do
@@ -240,13 +247,6 @@ module Increase
           ).void
         end
         attr_writer :card_decline
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        sig do
-          returns(Increase::DeclinedTransaction::Source::Category::TaggedSymbol)
-        end
-        attr_accessor :category
 
         # A Check Decline object. This field will be present in the JSON response if and
         # only if `category` is equal to `check_decline`.
@@ -369,6 +369,7 @@ module Increase
         # as deprecated and will be removed in the future.
         sig do
           params(
+            category: Increase::DeclinedTransaction::Source::Category::OrSymbol,
             ach_decline:
               T.nilable(
                 Increase::DeclinedTransaction::Source::ACHDecline::OrHash
@@ -377,7 +378,6 @@ module Increase
               T.nilable(
                 Increase::DeclinedTransaction::Source::CardDecline::OrHash
               ),
-            category: Increase::DeclinedTransaction::Source::Category::OrSymbol,
             check_decline:
               T.nilable(
                 Increase::DeclinedTransaction::Source::CheckDecline::OrHash
@@ -403,47 +403,47 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # An ACH Decline object. This field will be present in the JSON response if and
-          # only if `category` is equal to `ach_decline`.
-          ach_decline:,
-          # A Card Decline object. This field will be present in the JSON response if and
-          # only if `category` is equal to `card_decline`.
-          card_decline:,
           # The type of the resource. We may add additional possible values for this enum
           # over time; your application should be able to handle such additions gracefully.
           category:,
+          # An ACH Decline object. This field will be present in the JSON response if and
+          # only if `category` is equal to `ach_decline`.
+          ach_decline: nil,
+          # A Card Decline object. This field will be present in the JSON response if and
+          # only if `category` is equal to `card_decline`.
+          card_decline: nil,
           # A Check Decline object. This field will be present in the JSON response if and
           # only if `category` is equal to `check_decline`.
-          check_decline:,
+          check_decline: nil,
           # A Check Deposit Rejection object. This field will be present in the JSON
           # response if and only if `category` is equal to `check_deposit_rejection`.
-          check_deposit_rejection:,
+          check_deposit_rejection: nil,
           # An Inbound FedNow Transfer Decline object. This field will be present in the
           # JSON response if and only if `category` is equal to
           # `inbound_fednow_transfer_decline`.
-          inbound_fednow_transfer_decline:,
+          inbound_fednow_transfer_decline: nil,
           # An Inbound Real-Time Payments Transfer Decline object. This field will be
           # present in the JSON response if and only if `category` is equal to
           # `inbound_real_time_payments_transfer_decline`.
-          inbound_real_time_payments_transfer_decline:,
+          inbound_real_time_payments_transfer_decline: nil,
           # If the category of this Transaction source is equal to `other`, this field will
           # contain an empty object, otherwise it will contain null.
-          other:,
+          other: nil,
           # A Wire Decline object. This field will be present in the JSON response if and
           # only if `category` is equal to `wire_decline`.
-          wire_decline:
+          wire_decline: nil
         )
         end
 
         sig do
           override.returns(
             {
+              category:
+                Increase::DeclinedTransaction::Source::Category::TaggedSymbol,
               ach_decline:
                 T.nilable(Increase::DeclinedTransaction::Source::ACHDecline),
               card_decline:
                 T.nilable(Increase::DeclinedTransaction::Source::CardDecline),
-              category:
-                Increase::DeclinedTransaction::Source::Category::TaggedSymbol,
               check_decline:
                 T.nilable(Increase::DeclinedTransaction::Source::CheckDecline),
               check_deposit_rejection:
@@ -465,6 +465,84 @@ module Increase
           )
         end
         def to_hash
+        end
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::DeclinedTransaction::Source::Category)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # ACH Decline: details will be under the `ach_decline` object.
+          ACH_DECLINE =
+            T.let(
+              :ach_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Decline: details will be under the `card_decline` object.
+          CARD_DECLINE =
+            T.let(
+              :card_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Decline: details will be under the `check_decline` object.
+          CHECK_DECLINE =
+            T.let(
+              :check_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
+          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE =
+            T.let(
+              :inbound_real_time_payments_transfer_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
+          INBOUND_FEDNOW_TRANSFER_DECLINE =
+            T.let(
+              :inbound_fednow_transfer_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Wire Decline: details will be under the `wire_decline` object.
+          WIRE_DECLINE =
+            T.let(
+              :wire_decline,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Deposit Rejection: details will be under the `check_deposit_rejection` object.
+          CHECK_DEPOSIT_REJECTION =
+            T.let(
+              :check_deposit_rejection,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          # The Declined Transaction was made for an undocumented or deprecated reason.
+          OTHER =
+            T.let(
+              :other,
+              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::DeclinedTransaction::Source::Category::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         class ACHDecline < Increase::Internal::Type::BaseModel
@@ -3332,84 +3410,6 @@ module Increase
               def to_hash
               end
             end
-          end
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Increase::DeclinedTransaction::Source::Category)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # ACH Decline: details will be under the `ach_decline` object.
-          ACH_DECLINE =
-            T.let(
-              :ach_decline,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Decline: details will be under the `card_decline` object.
-          CARD_DECLINE =
-            T.let(
-              :card_decline,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Decline: details will be under the `check_decline` object.
-          CHECK_DECLINE =
-            T.let(
-              :check_decline,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Real-Time Payments Transfer Decline: details will be under the `inbound_real_time_payments_transfer_decline` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_DECLINE =
-            T.let(
-              :inbound_real_time_payments_transfer_decline,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound FedNow Transfer Decline: details will be under the `inbound_fednow_transfer_decline` object.
-          INBOUND_FEDNOW_TRANSFER_DECLINE =
-            T.let(
-              :inbound_fednow_transfer_decline,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Wire Decline: details will be under the `wire_decline` object.
-          WIRE_DECLINE =
-            T.let(
-              :wire_decline,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Deposit Rejection: details will be under the `check_deposit_rejection` object.
-          CHECK_DEPOSIT_REJECTION =
-            T.let(
-              :check_deposit_rejection,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          # The Declined Transaction was made for an undocumented or deprecated reason.
-          OTHER =
-            T.let(
-              :other,
-              Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::DeclinedTransaction::Source::Category::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
 

@@ -361,18 +361,18 @@ module Increase
         #   Unstructured `payment_related_information` passed through with the transfer.
         #
         #   @return [Increase::Models::ACHTransfer::Addenda::Freeform, nil]
-        required :freeform, -> { Increase::ACHTransfer::Addenda::Freeform }, nil?: true
+        optional :freeform, -> { Increase::ACHTransfer::Addenda::Freeform }, nil?: true
 
         # @!attribute payment_order_remittance_advice
         #   Structured ASC X12 820 remittance advice records. Please reach out to
         #   [support@increase.com](mailto:support@increase.com) for more information.
         #
         #   @return [Increase::Models::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice, nil]
-        required :payment_order_remittance_advice,
+        optional :payment_order_remittance_advice,
                  -> { Increase::ACHTransfer::Addenda::PaymentOrderRemittanceAdvice },
                  nil?: true
 
-        # @!method initialize(category:, freeform:, payment_order_remittance_advice:)
+        # @!method initialize(category:, freeform: nil, payment_order_remittance_advice: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::ACHTransfer::Addenda} for more details.
         #
@@ -529,54 +529,40 @@ module Increase
 
       # @see Increase::Models::ACHTransfer#created_by
       class CreatedBy < Increase::Internal::Type::BaseModel
-        # @!attribute api_key
-        #   If present, details about the API key that created the transfer.
-        #
-        #   @return [Increase::Models::ACHTransfer::CreatedBy::APIKey, nil]
-        required :api_key, -> { Increase::ACHTransfer::CreatedBy::APIKey }, nil?: true
-
         # @!attribute category
         #   The type of object that created this transfer.
         #
         #   @return [Symbol, Increase::Models::ACHTransfer::CreatedBy::Category]
         required :category, enum: -> { Increase::ACHTransfer::CreatedBy::Category }
 
+        # @!attribute api_key
+        #   If present, details about the API key that created the transfer.
+        #
+        #   @return [Increase::Models::ACHTransfer::CreatedBy::APIKey, nil]
+        optional :api_key, -> { Increase::ACHTransfer::CreatedBy::APIKey }, nil?: true
+
         # @!attribute oauth_application
         #   If present, details about the OAuth Application that created the transfer.
         #
         #   @return [Increase::Models::ACHTransfer::CreatedBy::OAuthApplication, nil]
-        required :oauth_application, -> { Increase::ACHTransfer::CreatedBy::OAuthApplication }, nil?: true
+        optional :oauth_application, -> { Increase::ACHTransfer::CreatedBy::OAuthApplication }, nil?: true
 
         # @!attribute user
         #   If present, details about the User that created the transfer.
         #
         #   @return [Increase::Models::ACHTransfer::CreatedBy::User, nil]
-        required :user, -> { Increase::ACHTransfer::CreatedBy::User }, nil?: true
+        optional :user, -> { Increase::ACHTransfer::CreatedBy::User }, nil?: true
 
-        # @!method initialize(api_key:, category:, oauth_application:, user:)
+        # @!method initialize(category:, api_key: nil, oauth_application: nil, user: nil)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param api_key [Increase::Models::ACHTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
-        #
         #   @param category [Symbol, Increase::Models::ACHTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #
+        #   @param api_key [Increase::Models::ACHTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
         #
         #   @param oauth_application [Increase::Models::ACHTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
         #
         #   @param user [Increase::Models::ACHTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
-
-        # @see Increase::Models::ACHTransfer::CreatedBy#api_key
-        class APIKey < Increase::Internal::Type::BaseModel
-          # @!attribute description
-          #   The description set for the API key when it was created.
-          #
-          #   @return [String, nil]
-          required :description, String, nil?: true
-
-          # @!method initialize(description:)
-          #   If present, details about the API key that created the transfer.
-          #
-          #   @param description [String, nil] The description set for the API key when it was created.
-        end
 
         # The type of object that created this transfer.
         #
@@ -595,6 +581,20 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::ACHTransfer::CreatedBy#api_key
+        class APIKey < Increase::Internal::Type::BaseModel
+          # @!attribute description
+          #   The description set for the API key when it was created.
+          #
+          #   @return [String, nil]
+          required :description, String, nil?: true
+
+          # @!method initialize(description:)
+          #   If present, details about the API key that created the transfer.
+          #
+          #   @param description [String, nil] The description set for the API key when it was created.
         end
 
         # @see Increase::Models::ACHTransfer::CreatedBy#oauth_application

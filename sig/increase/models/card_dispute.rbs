@@ -204,11 +204,11 @@ module Increase
           {
             attachment_files: ::Array[Increase::CardDispute::Visa::NetworkEvent::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::NetworkEvent::category,
+            created_at: Time,
+            dispute_financial_transaction_id: String?,
             chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
             chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
             chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
-            created_at: Time,
-            dispute_financial_transaction_id: String?,
             merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
             merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
             merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
@@ -226,15 +226,15 @@ module Increase
 
           attr_accessor category: Increase::Models::CardDispute::Visa::NetworkEvent::category
 
+          attr_accessor created_at: Time
+
+          attr_accessor dispute_financial_transaction_id: String?
+
           attr_accessor chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?
 
           attr_accessor chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?
 
           attr_accessor chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?
-
-          attr_accessor created_at: Time
-
-          attr_accessor dispute_financial_transaction_id: String?
 
           attr_accessor merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?
 
@@ -259,31 +259,31 @@ module Increase
           def initialize: (
             attachment_files: ::Array[Increase::CardDispute::Visa::NetworkEvent::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::NetworkEvent::category,
-            chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
-            chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
-            chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
             created_at: Time,
             dispute_financial_transaction_id: String?,
-            merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
-            merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
-            merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
-            represented: Increase::CardDispute::Visa::NetworkEvent::Represented?,
-            representment_timed_out: Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut?,
-            user_prearbitration_accepted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted?,
-            user_prearbitration_declined: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined?,
-            user_prearbitration_submitted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted?,
-            user_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut?,
-            user_withdrawal_submitted: Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted?
+            ?chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
+            ?chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
+            ?chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
+            ?merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
+            ?merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
+            ?merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
+            ?represented: Increase::CardDispute::Visa::NetworkEvent::Represented?,
+            ?representment_timed_out: Increase::CardDispute::Visa::NetworkEvent::RepresentmentTimedOut?,
+            ?user_prearbitration_accepted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationAccepted?,
+            ?user_prearbitration_declined: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationDeclined?,
+            ?user_prearbitration_submitted: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationSubmitted?,
+            ?user_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::UserPrearbitrationTimedOut?,
+            ?user_withdrawal_submitted: Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted?
           ) -> void
 
           def to_hash: -> {
             attachment_files: ::Array[Increase::CardDispute::Visa::NetworkEvent::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::NetworkEvent::category,
+            created_at: Time,
+            dispute_financial_transaction_id: String?,
             chargeback_accepted: Increase::CardDispute::Visa::NetworkEvent::ChargebackAccepted?,
             chargeback_submitted: Increase::CardDispute::Visa::NetworkEvent::ChargebackSubmitted?,
             chargeback_timed_out: Increase::CardDispute::Visa::NetworkEvent::ChargebackTimedOut?,
-            created_at: Time,
-            dispute_financial_transaction_id: String?,
             merchant_prearbitration_decline_submitted: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationDeclineSubmitted?,
             merchant_prearbitration_received: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationReceived?,
             merchant_prearbitration_timed_out: Increase::CardDispute::Visa::NetworkEvent::MerchantPrearbitrationTimedOut?,
@@ -1153,14 +1153,14 @@ module Increase
             amount: Integer?,
             attachment_files: ::Array[Increase::CardDispute::Visa::UserSubmission::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::UserSubmission::category,
-            chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
             created_at: Time,
             explanation: String?,
             further_information_requested_at: Time?,
             further_information_requested_reason: String?,
-            merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
             status: Increase::Models::CardDispute::Visa::UserSubmission::status,
             updated_at: Time,
+            chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
+            merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
             user_prearbitration: Increase::CardDispute::Visa::UserSubmission::UserPrearbitration?
           }
 
@@ -1173,8 +1173,6 @@ module Increase
 
           attr_accessor category: Increase::Models::CardDispute::Visa::UserSubmission::category
 
-          attr_accessor chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?
-
           attr_accessor created_at: Time
 
           attr_accessor explanation: String?
@@ -1183,11 +1181,13 @@ module Increase
 
           attr_accessor further_information_requested_reason: String?
 
-          attr_accessor merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?
-
           attr_accessor status: Increase::Models::CardDispute::Visa::UserSubmission::status
 
           attr_accessor updated_at: Time
+
+          attr_accessor chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?
+
+          attr_accessor merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?
 
           attr_accessor user_prearbitration: Increase::CardDispute::Visa::UserSubmission::UserPrearbitration?
 
@@ -1196,15 +1196,15 @@ module Increase
             amount: Integer?,
             attachment_files: ::Array[Increase::CardDispute::Visa::UserSubmission::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::UserSubmission::category,
-            chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
             created_at: Time,
             explanation: String?,
             further_information_requested_at: Time?,
             further_information_requested_reason: String?,
-            merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
             status: Increase::Models::CardDispute::Visa::UserSubmission::status,
             updated_at: Time,
-            user_prearbitration: Increase::CardDispute::Visa::UserSubmission::UserPrearbitration?
+            ?chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
+            ?merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
+            ?user_prearbitration: Increase::CardDispute::Visa::UserSubmission::UserPrearbitration?
           ) -> void
 
           def to_hash: -> {
@@ -1212,14 +1212,14 @@ module Increase
             amount: Integer?,
             attachment_files: ::Array[Increase::CardDispute::Visa::UserSubmission::AttachmentFile],
             category: Increase::Models::CardDispute::Visa::UserSubmission::category,
-            chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
             created_at: Time,
             explanation: String?,
             further_information_requested_at: Time?,
             further_information_requested_reason: String?,
-            merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
             status: Increase::Models::CardDispute::Visa::UserSubmission::status,
             updated_at: Time,
+            chargeback: Increase::CardDispute::Visa::UserSubmission::Chargeback?,
+            merchant_prearbitration_decline: Increase::CardDispute::Visa::UserSubmission::MerchantPrearbitrationDecline?,
             user_prearbitration: Increase::CardDispute::Visa::UserSubmission::UserPrearbitration?
           }
 
@@ -1251,6 +1251,30 @@ module Increase
             USER_PREARBITRATION: :user_prearbitration
 
             def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::category]
+          end
+
+          type status =
+            :abandoned
+            | :accepted
+            | :further_information_requested
+            | :pending_reviewing
+
+          module Status
+            extend Increase::Internal::Type::Enum
+
+            # The User Submission was abandoned.
+            ABANDONED: :abandoned
+
+            # The User Submission was accepted.
+            ACCEPTED: :accepted
+
+            # Further information is requested, please resubmit with the requested information.
+            FURTHER_INFORMATION_REQUESTED: :further_information_requested
+
+            # The User Submission is pending review.
+            PENDING_REVIEWING: :pending_reviewing
+
+            def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::status]
           end
 
           type chargeback =
@@ -3937,30 +3961,6 @@ module Increase
             def initialize: (reason: String) -> void
 
             def to_hash: -> { reason: String }
-          end
-
-          type status =
-            :abandoned
-            | :accepted
-            | :further_information_requested
-            | :pending_reviewing
-
-          module Status
-            extend Increase::Internal::Type::Enum
-
-            # The User Submission was abandoned.
-            ABANDONED: :abandoned
-
-            # The User Submission was accepted.
-            ACCEPTED: :accepted
-
-            # Further information is requested, please resubmit with the requested information.
-            FURTHER_INFORMATION_REQUESTED: :further_information_requested
-
-            # The User Submission is pending review.
-            PENDING_REVIEWING: :pending_reviewing
-
-            def self?.values: -> ::Array[Increase::Models::CardDispute::Visa::UserSubmission::status]
           end
 
           type user_prearbitration =
