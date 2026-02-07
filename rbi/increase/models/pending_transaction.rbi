@@ -235,6 +235,13 @@ module Increase
             )
           end
 
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        sig do
+          returns(Increase::PendingTransaction::Source::Category::TaggedSymbol)
+        end
+        attr_accessor :category
+
         # An Account Transfer Instruction object. This field will be present in the JSON
         # response if and only if `category` is equal to `account_transfer_instruction`.
         sig do
@@ -362,13 +369,6 @@ module Increase
           ).void
         end
         attr_writer :card_push_transfer_instruction
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        sig do
-          returns(Increase::PendingTransaction::Source::Category::TaggedSymbol)
-        end
-        attr_accessor :category
 
         # A Check Deposit Instruction object. This field will be present in the JSON
         # response if and only if `category` is equal to `check_deposit_instruction`.
@@ -565,6 +565,7 @@ module Increase
         # merchant's industry and location.
         sig do
           params(
+            category: Increase::PendingTransaction::Source::Category::OrSymbol,
             account_transfer_instruction:
               T.nilable(
                 Increase::PendingTransaction::Source::AccountTransferInstruction::OrHash
@@ -589,7 +590,6 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::CardPushTransferInstruction::OrHash
               ),
-            category: Increase::PendingTransaction::Source::Category::OrSymbol,
             check_deposit_instruction:
               T.nilable(
                 Increase::PendingTransaction::Source::CheckDepositInstruction::OrHash
@@ -628,73 +628,75 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # The type of the resource. We may add additional possible values for this enum
+          # over time; your application should be able to handle such additions gracefully.
+          category:,
           # An Account Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `account_transfer_instruction`.
-          account_transfer_instruction:,
+          account_transfer_instruction: nil,
           # An ACH Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `ach_transfer_instruction`.
-          ach_transfer_instruction:,
+          ach_transfer_instruction: nil,
           # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `blockchain_offramp_transfer_instruction`.
-          blockchain_offramp_transfer_instruction:,
+          blockchain_offramp_transfer_instruction: nil,
           # A Blockchain On-Ramp Transfer Instruction object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `blockchain_onramp_transfer_instruction`.
-          blockchain_onramp_transfer_instruction:,
+          blockchain_onramp_transfer_instruction: nil,
           # A Card Authorization object. This field will be present in the JSON response if
           # and only if `category` is equal to `card_authorization`. Card Authorizations are
           # temporary holds placed on a customers funds with the intent to later clear a
           # transaction.
-          card_authorization:,
+          card_authorization: nil,
           # A Card Push Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_push_transfer_instruction`.
-          card_push_transfer_instruction:,
-          # The type of the resource. We may add additional possible values for this enum
-          # over time; your application should be able to handle such additions gracefully.
-          category:,
+          card_push_transfer_instruction: nil,
           # A Check Deposit Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `check_deposit_instruction`.
-          check_deposit_instruction:,
+          check_deposit_instruction: nil,
           # A Check Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `check_transfer_instruction`.
-          check_transfer_instruction:,
+          check_transfer_instruction: nil,
           # A FedNow Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `fednow_transfer_instruction`.
-          fednow_transfer_instruction:,
+          fednow_transfer_instruction: nil,
           # An Inbound Funds Hold object. This field will be present in the JSON response if
           # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
           # certain transaction types to account for return windows where funds might still
           # be clawed back by the sending institution.
-          inbound_funds_hold:,
+          inbound_funds_hold: nil,
           # An Inbound Wire Transfer Reversal object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_wire_transfer_reversal`.
           # An Inbound Wire Transfer Reversal is created when Increase has received a wire
           # and the User requests that it be reversed.
-          inbound_wire_transfer_reversal:,
+          inbound_wire_transfer_reversal: nil,
           # If the category of this Transaction source is equal to `other`, this field will
           # contain an empty object, otherwise it will contain null.
-          other:,
+          other: nil,
           # A Real-Time Payments Transfer Instruction object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `real_time_payments_transfer_instruction`.
-          real_time_payments_transfer_instruction:,
+          real_time_payments_transfer_instruction: nil,
           # A Swift Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `swift_transfer_instruction`.
-          swift_transfer_instruction:,
+          swift_transfer_instruction: nil,
           # An User Initiated Hold object. This field will be present in the JSON response
           # if and only if `category` is equal to `user_initiated_hold`. Created when a user
           # initiates a hold on funds in their account.
-          user_initiated_hold:,
+          user_initiated_hold: nil,
           # A Wire Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `wire_transfer_instruction`.
-          wire_transfer_instruction:
+          wire_transfer_instruction: nil
         )
         end
 
         sig do
           override.returns(
             {
+              category:
+                Increase::PendingTransaction::Source::Category::TaggedSymbol,
               account_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::AccountTransferInstruction
@@ -719,8 +721,6 @@ module Increase
                 T.nilable(
                   Increase::PendingTransaction::Source::CardPushTransferInstruction
                 ),
-              category:
-                Increase::PendingTransaction::Source::Category::TaggedSymbol,
               check_deposit_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::CheckDepositInstruction
@@ -759,6 +759,140 @@ module Increase
           )
         end
         def to_hash
+        end
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::PendingTransaction::Source::Category)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
+          ACCOUNT_TRANSFER_INSTRUCTION =
+            T.let(
+              :account_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # ACH Transfer Instruction: details will be under the `ach_transfer_instruction` object.
+          ACH_TRANSFER_INSTRUCTION =
+            T.let(
+              :ach_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Authorization: details will be under the `card_authorization` object.
+          CARD_AUTHORIZATION =
+            T.let(
+              :card_authorization,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Deposit Instruction: details will be under the `check_deposit_instruction` object.
+          CHECK_DEPOSIT_INSTRUCTION =
+            T.let(
+              :check_deposit_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
+          CHECK_TRANSFER_INSTRUCTION =
+            T.let(
+              :check_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
+          FEDNOW_TRANSFER_INSTRUCTION =
+            T.let(
+              :fednow_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
+          INBOUND_FUNDS_HOLD =
+            T.let(
+              :inbound_funds_hold,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # User Initiated Hold: details will be under the `user_initiated_hold` object.
+          USER_INITIATED_HOLD =
+            T.let(
+              :user_initiated_hold,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
+          REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION =
+            T.let(
+              :real_time_payments_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Wire Transfer Instruction: details will be under the `wire_transfer_instruction` object.
+          WIRE_TRANSFER_INSTRUCTION =
+            T.let(
+              :wire_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Wire Transfer Reversal: details will be under the `inbound_wire_transfer_reversal` object.
+          INBOUND_WIRE_TRANSFER_REVERSAL =
+            T.let(
+              :inbound_wire_transfer_reversal,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
+          SWIFT_TRANSFER_INSTRUCTION =
+            T.let(
+              :swift_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
+          CARD_PUSH_TRANSFER_INSTRUCTION =
+            T.let(
+              :card_push_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION =
+            T.let(
+              :blockchain_onramp_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION =
+            T.let(
+              :blockchain_offramp_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # The Pending Transaction was made for an undocumented or deprecated reason.
+          OTHER =
+            T.let(
+              :other,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::PendingTransaction::Source::Category::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         class AccountTransferInstruction < Increase::Internal::Type::BaseModel
@@ -3363,140 +3497,6 @@ module Increase
 
           sig { override.returns({ amount: Integer, transfer_id: String }) }
           def to_hash
-          end
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Increase::PendingTransaction::Source::Category)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Account Transfer Instruction: details will be under the `account_transfer_instruction` object.
-          ACCOUNT_TRANSFER_INSTRUCTION =
-            T.let(
-              :account_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # ACH Transfer Instruction: details will be under the `ach_transfer_instruction` object.
-          ACH_TRANSFER_INSTRUCTION =
-            T.let(
-              :ach_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Authorization: details will be under the `card_authorization` object.
-          CARD_AUTHORIZATION =
-            T.let(
-              :card_authorization,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Deposit Instruction: details will be under the `check_deposit_instruction` object.
-          CHECK_DEPOSIT_INSTRUCTION =
-            T.let(
-              :check_deposit_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Transfer Instruction: details will be under the `check_transfer_instruction` object.
-          CHECK_TRANSFER_INSTRUCTION =
-            T.let(
-              :check_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
-          FEDNOW_TRANSFER_INSTRUCTION =
-            T.let(
-              :fednow_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
-          INBOUND_FUNDS_HOLD =
-            T.let(
-              :inbound_funds_hold,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # User Initiated Hold: details will be under the `user_initiated_hold` object.
-          USER_INITIATED_HOLD =
-            T.let(
-              :user_initiated_hold,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Real-Time Payments Transfer Instruction: details will be under the `real_time_payments_transfer_instruction` object.
-          REAL_TIME_PAYMENTS_TRANSFER_INSTRUCTION =
-            T.let(
-              :real_time_payments_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Wire Transfer Instruction: details will be under the `wire_transfer_instruction` object.
-          WIRE_TRANSFER_INSTRUCTION =
-            T.let(
-              :wire_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Wire Transfer Reversal: details will be under the `inbound_wire_transfer_reversal` object.
-          INBOUND_WIRE_TRANSFER_REVERSAL =
-            T.let(
-              :inbound_wire_transfer_reversal,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Swift Transfer Instruction: details will be under the `swift_transfer_instruction` object.
-          SWIFT_TRANSFER_INSTRUCTION =
-            T.let(
-              :swift_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Push Transfer Instruction: details will be under the `card_push_transfer_instruction` object.
-          CARD_PUSH_TRANSFER_INSTRUCTION =
-            T.let(
-              :card_push_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
-          BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION =
-            T.let(
-              :blockchain_onramp_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION =
-            T.let(
-              :blockchain_offramp_transfer_instruction,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          # The Pending Transaction was made for an undocumented or deprecated reason.
-          OTHER =
-            T.let(
-              :other,
-              Increase::PendingTransaction::Source::Category::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::PendingTransaction::Source::Category::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
 

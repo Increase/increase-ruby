@@ -133,44 +133,34 @@ module Increase
 
       type created_by =
         {
-          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
           category: Increase::Models::FednowTransfer::CreatedBy::category,
+          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
           oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
           user: Increase::FednowTransfer::CreatedBy::User?
         }
 
       class CreatedBy < Increase::Internal::Type::BaseModel
-        attr_accessor api_key: Increase::FednowTransfer::CreatedBy::APIKey?
-
         attr_accessor category: Increase::Models::FednowTransfer::CreatedBy::category
+
+        attr_accessor api_key: Increase::FednowTransfer::CreatedBy::APIKey?
 
         attr_accessor oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?
 
         attr_accessor user: Increase::FednowTransfer::CreatedBy::User?
 
         def initialize: (
-          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
           category: Increase::Models::FednowTransfer::CreatedBy::category,
-          oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
-          user: Increase::FednowTransfer::CreatedBy::User?
+          ?api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
+          ?oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
+          ?user: Increase::FednowTransfer::CreatedBy::User?
         ) -> void
 
         def to_hash: -> {
-          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
           category: Increase::Models::FednowTransfer::CreatedBy::category,
+          api_key: Increase::FednowTransfer::CreatedBy::APIKey?,
           oauth_application: Increase::FednowTransfer::CreatedBy::OAuthApplication?,
           user: Increase::FednowTransfer::CreatedBy::User?
         }
-
-        type api_key = { description: String? }
-
-        class APIKey < Increase::Internal::Type::BaseModel
-          attr_accessor description: String?
-
-          def initialize: (description: String?) -> void
-
-          def to_hash: -> { description: String? }
-        end
 
         type category = :api_key | :oauth_application | :user
 
@@ -187,6 +177,16 @@ module Increase
           USER: :user
 
           def self?.values: -> ::Array[Increase::Models::FednowTransfer::CreatedBy::category]
+        end
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type oauth_application = { name: String }

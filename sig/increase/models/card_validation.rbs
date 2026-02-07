@@ -290,44 +290,34 @@ module Increase
 
       type created_by =
         {
-          api_key: Increase::CardValidation::CreatedBy::APIKey?,
           category: Increase::Models::CardValidation::CreatedBy::category,
+          api_key: Increase::CardValidation::CreatedBy::APIKey?,
           oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
           user: Increase::CardValidation::CreatedBy::User?
         }
 
       class CreatedBy < Increase::Internal::Type::BaseModel
-        attr_accessor api_key: Increase::CardValidation::CreatedBy::APIKey?
-
         attr_accessor category: Increase::Models::CardValidation::CreatedBy::category
+
+        attr_accessor api_key: Increase::CardValidation::CreatedBy::APIKey?
 
         attr_accessor oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?
 
         attr_accessor user: Increase::CardValidation::CreatedBy::User?
 
         def initialize: (
-          api_key: Increase::CardValidation::CreatedBy::APIKey?,
           category: Increase::Models::CardValidation::CreatedBy::category,
-          oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
-          user: Increase::CardValidation::CreatedBy::User?
+          ?api_key: Increase::CardValidation::CreatedBy::APIKey?,
+          ?oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
+          ?user: Increase::CardValidation::CreatedBy::User?
         ) -> void
 
         def to_hash: -> {
-          api_key: Increase::CardValidation::CreatedBy::APIKey?,
           category: Increase::Models::CardValidation::CreatedBy::category,
+          api_key: Increase::CardValidation::CreatedBy::APIKey?,
           oauth_application: Increase::CardValidation::CreatedBy::OAuthApplication?,
           user: Increase::CardValidation::CreatedBy::User?
         }
-
-        type api_key = { description: String? }
-
-        class APIKey < Increase::Internal::Type::BaseModel
-          attr_accessor description: String?
-
-          def initialize: (description: String?) -> void
-
-          def to_hash: -> { description: String? }
-        end
 
         type category = :api_key | :oauth_application | :user
 
@@ -344,6 +334,16 @@ module Increase
           USER: :user
 
           def self?.values: -> ::Array[Increase::Models::CardValidation::CreatedBy::category]
+        end
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type oauth_application = { name: String }

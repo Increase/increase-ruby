@@ -157,44 +157,34 @@ module Increase
 
       type created_by =
         {
-          api_key: Increase::WireTransfer::CreatedBy::APIKey?,
           category: Increase::Models::WireTransfer::CreatedBy::category,
+          api_key: Increase::WireTransfer::CreatedBy::APIKey?,
           oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
           user: Increase::WireTransfer::CreatedBy::User?
         }
 
       class CreatedBy < Increase::Internal::Type::BaseModel
-        attr_accessor api_key: Increase::WireTransfer::CreatedBy::APIKey?
-
         attr_accessor category: Increase::Models::WireTransfer::CreatedBy::category
+
+        attr_accessor api_key: Increase::WireTransfer::CreatedBy::APIKey?
 
         attr_accessor oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?
 
         attr_accessor user: Increase::WireTransfer::CreatedBy::User?
 
         def initialize: (
-          api_key: Increase::WireTransfer::CreatedBy::APIKey?,
           category: Increase::Models::WireTransfer::CreatedBy::category,
-          oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
-          user: Increase::WireTransfer::CreatedBy::User?
+          ?api_key: Increase::WireTransfer::CreatedBy::APIKey?,
+          ?oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
+          ?user: Increase::WireTransfer::CreatedBy::User?
         ) -> void
 
         def to_hash: -> {
-          api_key: Increase::WireTransfer::CreatedBy::APIKey?,
           category: Increase::Models::WireTransfer::CreatedBy::category,
+          api_key: Increase::WireTransfer::CreatedBy::APIKey?,
           oauth_application: Increase::WireTransfer::CreatedBy::OAuthApplication?,
           user: Increase::WireTransfer::CreatedBy::User?
         }
-
-        type api_key = { description: String? }
-
-        class APIKey < Increase::Internal::Type::BaseModel
-          attr_accessor description: String?
-
-          def initialize: (description: String?) -> void
-
-          def to_hash: -> { description: String? }
-        end
 
         type category = :api_key | :oauth_application | :user
 
@@ -211,6 +201,16 @@ module Increase
           USER: :user
 
           def self?.values: -> ::Array[Increase::Models::WireTransfer::CreatedBy::category]
+        end
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type oauth_application = { name: String }
@@ -389,8 +389,8 @@ module Increase
 
         def initialize: (
           category: Increase::Models::WireTransfer::Remittance::category,
-          tax: Increase::WireTransfer::Remittance::Tax?,
-          unstructured: Increase::WireTransfer::Remittance::Unstructured?
+          ?tax: Increase::WireTransfer::Remittance::Tax?,
+          ?unstructured: Increase::WireTransfer::Remittance::Unstructured?
         ) -> void
 
         def to_hash: -> {

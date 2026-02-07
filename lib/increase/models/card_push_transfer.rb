@@ -427,23 +427,23 @@ module Increase
 
       # @see Increase::Models::CardPushTransfer#created_by
       class CreatedBy < Increase::Internal::Type::BaseModel
-        # @!attribute api_key
-        #   If present, details about the API key that created the transfer.
-        #
-        #   @return [Increase::Models::CardPushTransfer::CreatedBy::APIKey, nil]
-        required :api_key, -> { Increase::CardPushTransfer::CreatedBy::APIKey }, nil?: true
-
         # @!attribute category
         #   The type of object that created this transfer.
         #
         #   @return [Symbol, Increase::Models::CardPushTransfer::CreatedBy::Category]
         required :category, enum: -> { Increase::CardPushTransfer::CreatedBy::Category }
 
+        # @!attribute api_key
+        #   If present, details about the API key that created the transfer.
+        #
+        #   @return [Increase::Models::CardPushTransfer::CreatedBy::APIKey, nil]
+        optional :api_key, -> { Increase::CardPushTransfer::CreatedBy::APIKey }, nil?: true
+
         # @!attribute oauth_application
         #   If present, details about the OAuth Application that created the transfer.
         #
         #   @return [Increase::Models::CardPushTransfer::CreatedBy::OAuthApplication, nil]
-        required :oauth_application,
+        optional :oauth_application,
                  -> {
                    Increase::CardPushTransfer::CreatedBy::OAuthApplication
                  },
@@ -453,32 +453,18 @@ module Increase
         #   If present, details about the User that created the transfer.
         #
         #   @return [Increase::Models::CardPushTransfer::CreatedBy::User, nil]
-        required :user, -> { Increase::CardPushTransfer::CreatedBy::User }, nil?: true
+        optional :user, -> { Increase::CardPushTransfer::CreatedBy::User }, nil?: true
 
-        # @!method initialize(api_key:, category:, oauth_application:, user:)
+        # @!method initialize(category:, api_key: nil, oauth_application: nil, user: nil)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param api_key [Increase::Models::CardPushTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
-        #
         #   @param category [Symbol, Increase::Models::CardPushTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #
+        #   @param api_key [Increase::Models::CardPushTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
         #
         #   @param oauth_application [Increase::Models::CardPushTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
         #
         #   @param user [Increase::Models::CardPushTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
-
-        # @see Increase::Models::CardPushTransfer::CreatedBy#api_key
-        class APIKey < Increase::Internal::Type::BaseModel
-          # @!attribute description
-          #   The description set for the API key when it was created.
-          #
-          #   @return [String, nil]
-          required :description, String, nil?: true
-
-          # @!method initialize(description:)
-          #   If present, details about the API key that created the transfer.
-          #
-          #   @param description [String, nil] The description set for the API key when it was created.
-        end
 
         # The type of object that created this transfer.
         #
@@ -497,6 +483,20 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::CardPushTransfer::CreatedBy#api_key
+        class APIKey < Increase::Internal::Type::BaseModel
+          # @!attribute description
+          #   The description set for the API key when it was created.
+          #
+          #   @return [String, nil]
+          required :description, String, nil?: true
+
+          # @!method initialize(description:)
+          #   If present, details about the API key that created the transfer.
+          #
+          #   @param description [String, nil] The description set for the API key when it was created.
         end
 
         # @see Increase::Models::CardPushTransfer::CreatedBy#oauth_application
