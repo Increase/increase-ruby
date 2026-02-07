@@ -1818,7 +1818,7 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to NSF.
+          # Code R01. Insufficient funds in the receiving account. Sometimes abbreviated to "NSF."
           INSUFFICIENT_FUND =
             T.let(
               :insufficient_fund,
@@ -1846,21 +1846,21 @@ module Increase
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R16. The account at the receiving bank was frozen per the Office of Foreign Assets Control.
+          # Code R16. This return code has two separate meanings. (1) The receiving bank froze the account or (2) the Office of Foreign Assets Control (OFAC) instructed the receiving bank to return the entry.
           ACCOUNT_FROZEN_ENTRY_RETURNED_PER_OFAC_INSTRUCTION =
             T.let(
               :account_frozen_entry_returned_per_ofac_instruction,
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R23. The receiving bank account refused a credit transfer.
+          # Code R23. The receiving bank refused the credit transfer.
           CREDIT_ENTRY_REFUSED_BY_RECEIVER =
             T.let(
               :credit_entry_refused_by_receiver,
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R05. The receiving bank rejected because of an incorrect Standard Entry Class code.
+          # Code R05. The receiving bank rejected because of an incorrect Standard Entry Class code. Consumer accounts cannot be debited as `corporate_credit_or_debit` or `corporate_trade_exchange`.
           UNAUTHORIZED_DEBIT_TO_CONSUMER_ACCOUNT_USING_CORPORATE_SEC_CODE =
             T.let(
               :unauthorized_debit_to_consumer_account_using_corporate_sec_code,
@@ -1881,7 +1881,7 @@ module Increase
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R20. The receiving bank account does not perform transfers.
+          # Code R20. The account is not eligible for ACH, such as a savings account with transaction limits.
           NON_TRANSACTION_ACCOUNT =
             T.let(
               :non_transaction_account,
@@ -1916,7 +1916,7 @@ module Increase
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R07. The customer at the receiving institution informed their bank that they have revoked authorization for a previously authorized transfer.
+          # Code R07. The customer revoked their authorization for a previously authorized transfer.
           AUTHORIZATION_REVOKED_BY_CUSTOMER =
             T.let(
               :authorization_revoked_by_customer,
@@ -1937,7 +1937,7 @@ module Increase
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R45. The individual name field was invalid.
+          # Code R45. A rare return reason. The individual name field was invalid.
           ENR_INVALID_INDIVIDUAL_NAME =
             T.let(
               :enr_invalid_individual_name,
@@ -2245,7 +2245,7 @@ module Increase
               Increase::ACHTransfer::Return::ReturnReasonCode::TaggedSymbol
             )
 
-          # Code R33. A rare return reason. Return of a Destroyed Check ("XKC") entry.
+          # Code R33. A rare return reason. Return of a destroyed check ("XCK") entry.
           RETURN_OF_XCK_ENTRY =
             T.let(
               :return_of_xck_entry,
