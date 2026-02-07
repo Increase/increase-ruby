@@ -117,44 +117,34 @@ module Increase
 
       type created_by =
         {
-          api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
           category: Increase::Models::AccountTransfer::CreatedBy::category,
+          api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
           oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
           user: Increase::AccountTransfer::CreatedBy::User?
         }
 
       class CreatedBy < Increase::Internal::Type::BaseModel
-        attr_accessor api_key: Increase::AccountTransfer::CreatedBy::APIKey?
-
         attr_accessor category: Increase::Models::AccountTransfer::CreatedBy::category
+
+        attr_accessor api_key: Increase::AccountTransfer::CreatedBy::APIKey?
 
         attr_accessor oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?
 
         attr_accessor user: Increase::AccountTransfer::CreatedBy::User?
 
         def initialize: (
-          api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
           category: Increase::Models::AccountTransfer::CreatedBy::category,
-          oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
-          user: Increase::AccountTransfer::CreatedBy::User?
+          ?api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
+          ?oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
+          ?user: Increase::AccountTransfer::CreatedBy::User?
         ) -> void
 
         def to_hash: -> {
-          api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
           category: Increase::Models::AccountTransfer::CreatedBy::category,
+          api_key: Increase::AccountTransfer::CreatedBy::APIKey?,
           oauth_application: Increase::AccountTransfer::CreatedBy::OAuthApplication?,
           user: Increase::AccountTransfer::CreatedBy::User?
         }
-
-        type api_key = { description: String? }
-
-        class APIKey < Increase::Internal::Type::BaseModel
-          attr_accessor description: String?
-
-          def initialize: (description: String?) -> void
-
-          def to_hash: -> { description: String? }
-        end
 
         type category = :api_key | :oauth_application | :user
 
@@ -171,6 +161,16 @@ module Increase
           USER: :user
 
           def self?.values: -> ::Array[Increase::Models::AccountTransfer::CreatedBy::category]
+        end
+
+        type api_key = { description: String? }
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          def initialize: (description: String?) -> void
+
+          def to_hash: -> { description: String? }
         end
 
         type oauth_application = { name: String }

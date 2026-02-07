@@ -139,6 +139,13 @@ module Increase
 
       # @see Increase::Models::Transaction#source
       class Source < Increase::Internal::Type::BaseModel
+        # @!attribute category
+        #   The type of the resource. We may add additional possible values for this enum
+        #   over time; your application should be able to handle such additions gracefully.
+        #
+        #   @return [Symbol, Increase::Models::Transaction::Source::Category]
+        required :category, enum: -> { Increase::Transaction::Source::Category }
+
         # @!attribute account_revenue_payment
         #   An Account Revenue Payment object. This field will be present in the JSON
         #   response if and only if `category` is equal to `account_revenue_payment`. An
@@ -146,7 +153,7 @@ module Increase
         #   Account revenue is a type of non-interest income.
         #
         #   @return [Increase::Models::Transaction::Source::AccountRevenuePayment, nil]
-        required :account_revenue_payment,
+        optional :account_revenue_payment,
                  -> {
                    Increase::Transaction::Source::AccountRevenuePayment
                  },
@@ -159,7 +166,7 @@ module Increase
         #   decrements the source account, and the other increments the destination account.
         #
         #   @return [Increase::Models::Transaction::Source::AccountTransferIntention, nil]
-        required :account_transfer_intention,
+        optional :account_transfer_intention,
                  -> { Increase::Transaction::Source::AccountTransferIntention },
                  nil?: true
 
@@ -170,7 +177,7 @@ module Increase
         #   move money into or out of an Increase account via the ACH network.
         #
         #   @return [Increase::Models::Transaction::Source::ACHTransferIntention, nil]
-        required :ach_transfer_intention,
+        optional :ach_transfer_intention,
                  -> {
                    Increase::Transaction::Source::ACHTransferIntention
                  },
@@ -183,7 +190,7 @@ module Increase
         #   offsets the ACH Transfer Intention. These rejections are rare.
         #
         #   @return [Increase::Models::Transaction::Source::ACHTransferRejection, nil]
-        required :ach_transfer_rejection,
+        optional :ach_transfer_rejection,
                  -> {
                    Increase::Transaction::Source::ACHTransferRejection
                  },
@@ -198,7 +205,7 @@ module Increase
         #   later.
         #
         #   @return [Increase::Models::Transaction::Source::ACHTransferReturn, nil]
-        required :ach_transfer_return, -> { Increase::Transaction::Source::ACHTransferReturn }, nil?: true
+        optional :ach_transfer_return, -> { Increase::Transaction::Source::ACHTransferReturn }, nil?: true
 
         # @!attribute blockchain_offramp_transfer_settlement
         #   A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
@@ -206,7 +213,7 @@ module Increase
         #   `blockchain_offramp_transfer_settlement`.
         #
         #   @return [Increase::Models::Transaction::Source::BlockchainOfframpTransferSettlement, nil]
-        required :blockchain_offramp_transfer_settlement,
+        optional :blockchain_offramp_transfer_settlement,
                  -> { Increase::Transaction::Source::BlockchainOfframpTransferSettlement },
                  nil?: true
 
@@ -216,7 +223,7 @@ module Increase
         #   `blockchain_onramp_transfer_intention`.
         #
         #   @return [Increase::Models::Transaction::Source::BlockchainOnrampTransferIntention, nil]
-        required :blockchain_onramp_transfer_intention,
+        optional :blockchain_onramp_transfer_intention,
                  -> { Increase::Transaction::Source::BlockchainOnrampTransferIntention },
                  nil?: true
 
@@ -226,7 +233,7 @@ module Increase
         #   Contains the details of a successful Card Dispute.
         #
         #   @return [Increase::Models::Transaction::Source::CardDisputeAcceptance, nil]
-        required :card_dispute_acceptance,
+        optional :card_dispute_acceptance,
                  -> {
                    Increase::Transaction::Source::CardDisputeAcceptance
                  },
@@ -238,7 +245,7 @@ module Increase
         #   related to a Card Dispute.
         #
         #   @return [Increase::Models::Transaction::Source::CardDisputeFinancial, nil]
-        required :card_dispute_financial,
+        optional :card_dispute_financial,
                  -> {
                    Increase::Transaction::Source::CardDisputeFinancial
                  },
@@ -250,7 +257,7 @@ module Increase
         #   details of a lost Card Dispute.
         #
         #   @return [Increase::Models::Transaction::Source::CardDisputeLoss, nil]
-        required :card_dispute_loss, -> { Increase::Transaction::Source::CardDisputeLoss }, nil?: true
+        optional :card_dispute_loss, -> { Increase::Transaction::Source::CardDisputeLoss }, nil?: true
 
         # @!attribute card_financial
         #   A Card Financial object. This field will be present in the JSON response if and
@@ -258,7 +265,7 @@ module Increase
         #   holds placed on a customers funds with the intent to later clear a transaction.
         #
         #   @return [Increase::Models::Transaction::Source::CardFinancial, nil]
-        required :card_financial, -> { Increase::Transaction::Source::CardFinancial }, nil?: true
+        optional :card_financial, -> { Increase::Transaction::Source::CardFinancial }, nil?: true
 
         # @!attribute card_push_transfer_acceptance
         #   A Card Push Transfer Acceptance object. This field will be present in the JSON
@@ -267,7 +274,7 @@ module Increase
         #   sent from Increase is accepted by the receiving bank.
         #
         #   @return [Increase::Models::Transaction::Source::CardPushTransferAcceptance, nil]
-        required :card_push_transfer_acceptance,
+        optional :card_push_transfer_acceptance,
                  -> { Increase::Transaction::Source::CardPushTransferAcceptance },
                  nil?: true
 
@@ -279,7 +286,7 @@ module Increase
         #   transaction.
         #
         #   @return [Increase::Models::Transaction::Source::CardRefund, nil]
-        required :card_refund, -> { Increase::Transaction::Source::CardRefund }, nil?: true
+        optional :card_refund, -> { Increase::Transaction::Source::CardRefund }, nil?: true
 
         # @!attribute card_revenue_payment
         #   A Card Revenue Payment object. This field will be present in the JSON response
@@ -287,7 +294,7 @@ module Increase
         #   Payments reflect earnings from fees on card transactions.
         #
         #   @return [Increase::Models::Transaction::Source::CardRevenuePayment, nil]
-        required :card_revenue_payment, -> { Increase::Transaction::Source::CardRevenuePayment }, nil?: true
+        optional :card_revenue_payment, -> { Increase::Transaction::Source::CardRevenuePayment }, nil?: true
 
         # @!attribute card_settlement
         #   A Card Settlement object. This field will be present in the JSON response if and
@@ -297,7 +304,7 @@ module Increase
         #   without first authorizing it.
         #
         #   @return [Increase::Models::Transaction::Source::CardSettlement, nil]
-        required :card_settlement, -> { Increase::Transaction::Source::CardSettlement }, nil?: true
+        optional :card_settlement, -> { Increase::Transaction::Source::CardSettlement }, nil?: true
 
         # @!attribute cashback_payment
         #   A Cashback Payment object. This field will be present in the JSON response if
@@ -306,14 +313,7 @@ module Increase
         #   usually paid monthly for the prior month's transactions.
         #
         #   @return [Increase::Models::Transaction::Source::CashbackPayment, nil]
-        required :cashback_payment, -> { Increase::Transaction::Source::CashbackPayment }, nil?: true
-
-        # @!attribute category
-        #   The type of the resource. We may add additional possible values for this enum
-        #   over time; your application should be able to handle such additions gracefully.
-        #
-        #   @return [Symbol, Increase::Models::Transaction::Source::Category]
-        required :category, enum: -> { Increase::Transaction::Source::Category }
+        optional :cashback_payment, -> { Increase::Transaction::Source::CashbackPayment }, nil?: true
 
         # @!attribute check_deposit_acceptance
         #   A Check Deposit Acceptance object. This field will be present in the JSON
@@ -323,7 +323,7 @@ module Increase
         #   will appear as a Check Deposit Return.
         #
         #   @return [Increase::Models::Transaction::Source::CheckDepositAcceptance, nil]
-        required :check_deposit_acceptance,
+        optional :check_deposit_acceptance,
                  -> { Increase::Transaction::Source::CheckDepositAcceptance },
                  nil?: true
 
@@ -336,7 +336,7 @@ module Increase
         #   checks are returned within the first 7 days after the deposit is made.
         #
         #   @return [Increase::Models::Transaction::Source::CheckDepositReturn, nil]
-        required :check_deposit_return, -> { Increase::Transaction::Source::CheckDepositReturn }, nil?: true
+        optional :check_deposit_return, -> { Increase::Transaction::Source::CheckDepositReturn }, nil?: true
 
         # @!attribute check_transfer_deposit
         #   A Check Transfer Deposit object. This field will be present in the JSON response
@@ -345,7 +345,7 @@ module Increase
         #   bank account. These types of checks are not pre-registered.
         #
         #   @return [Increase::Models::Transaction::Source::CheckTransferDeposit, nil]
-        required :check_transfer_deposit,
+        optional :check_transfer_deposit,
                  -> {
                    Increase::Transaction::Source::CheckTransferDeposit
                  },
@@ -358,7 +358,7 @@ module Increase
         #   when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
         #
         #   @return [Increase::Models::Transaction::Source::FednowTransferAcknowledgement, nil]
-        required :fednow_transfer_acknowledgement,
+        optional :fednow_transfer_acknowledgement,
                  -> { Increase::Transaction::Source::FednowTransferAcknowledgement },
                  nil?: true
 
@@ -368,7 +368,7 @@ module Increase
         #   made to Increase.
         #
         #   @return [Increase::Models::Transaction::Source::FeePayment, nil]
-        required :fee_payment, -> { Increase::Transaction::Source::FeePayment }, nil?: true
+        optional :fee_payment, -> { Increase::Transaction::Source::FeePayment }, nil?: true
 
         # @!attribute inbound_ach_transfer
         #   An Inbound ACH Transfer Intention object. This field will be present in the JSON
@@ -377,7 +377,7 @@ module Increase
         #   another bank and received by Increase.
         #
         #   @return [Increase::Models::Transaction::Source::InboundACHTransfer, nil]
-        required :inbound_ach_transfer, -> { Increase::Transaction::Source::InboundACHTransfer }, nil?: true
+        optional :inbound_ach_transfer, -> { Increase::Transaction::Source::InboundACHTransfer }, nil?: true
 
         # @!attribute inbound_ach_transfer_return_intention
         #   An Inbound ACH Transfer Return Intention object. This field will be present in
@@ -387,7 +387,7 @@ module Increase
         #   returned by Increase.
         #
         #   @return [Increase::Models::Transaction::Source::InboundACHTransferReturnIntention, nil]
-        required :inbound_ach_transfer_return_intention,
+        optional :inbound_ach_transfer_return_intention,
                  -> { Increase::Transaction::Source::InboundACHTransferReturnIntention },
                  nil?: true
 
@@ -398,7 +398,7 @@ module Increase
         #   check or return deposited through Check21.
         #
         #   @return [Increase::Models::Transaction::Source::InboundCheckAdjustment, nil]
-        required :inbound_check_adjustment,
+        optional :inbound_check_adjustment,
                  -> { Increase::Transaction::Source::InboundCheckAdjustment },
                  nil?: true
 
@@ -410,7 +410,7 @@ module Increase
         #   requests that it be returned.
         #
         #   @return [Increase::Models::Transaction::Source::InboundCheckDepositReturnIntention, nil]
-        required :inbound_check_deposit_return_intention,
+        optional :inbound_check_deposit_return_intention,
                  -> { Increase::Transaction::Source::InboundCheckDepositReturnIntention },
                  nil?: true
 
@@ -422,7 +422,7 @@ module Increase
         #   Increase.
         #
         #   @return [Increase::Models::Transaction::Source::InboundFednowTransferConfirmation, nil]
-        required :inbound_fednow_transfer_confirmation,
+        optional :inbound_fednow_transfer_confirmation,
                  -> { Increase::Transaction::Source::InboundFednowTransferConfirmation },
                  nil?: true
 
@@ -434,7 +434,7 @@ module Increase
         #   initiated at another bank and received by Increase.
         #
         #   @return [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation, nil]
-        required :inbound_real_time_payments_transfer_confirmation,
+        optional :inbound_real_time_payments_transfer_confirmation,
                  -> { Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation },
                  nil?: true
 
@@ -446,7 +446,7 @@ module Increase
         #   the original destination account details were incorrect.
         #
         #   @return [Increase::Models::Transaction::Source::InboundWireReversal, nil]
-        required :inbound_wire_reversal, -> { Increase::Transaction::Source::InboundWireReversal }, nil?: true
+        optional :inbound_wire_reversal, -> { Increase::Transaction::Source::InboundWireReversal }, nil?: true
 
         # @!attribute inbound_wire_transfer
         #   An Inbound Wire Transfer Intention object. This field will be present in the
@@ -455,7 +455,7 @@ module Increase
         #   another bank and received by Increase.
         #
         #   @return [Increase::Models::Transaction::Source::InboundWireTransfer, nil]
-        required :inbound_wire_transfer, -> { Increase::Transaction::Source::InboundWireTransfer }, nil?: true
+        optional :inbound_wire_transfer, -> { Increase::Transaction::Source::InboundWireTransfer }, nil?: true
 
         # @!attribute inbound_wire_transfer_reversal
         #   An Inbound Wire Transfer Reversal Intention object. This field will be present
@@ -465,7 +465,7 @@ module Increase
         #   reversed.
         #
         #   @return [Increase::Models::Transaction::Source::InboundWireTransferReversal, nil]
-        required :inbound_wire_transfer_reversal,
+        optional :inbound_wire_transfer_reversal,
                  -> { Increase::Transaction::Source::InboundWireTransferReversal },
                  nil?: true
 
@@ -476,7 +476,7 @@ module Increase
         #   monthly.
         #
         #   @return [Increase::Models::Transaction::Source::InterestPayment, nil]
-        required :interest_payment, -> { Increase::Transaction::Source::InterestPayment }, nil?: true
+        optional :interest_payment, -> { Increase::Transaction::Source::InterestPayment }, nil?: true
 
         # @!attribute internal_source
         #   An Internal Source object. This field will be present in the JSON response if
@@ -484,14 +484,14 @@ module Increase
         #   user and Increase. See the `reason` attribute for more information.
         #
         #   @return [Increase::Models::Transaction::Source::InternalSource, nil]
-        required :internal_source, -> { Increase::Transaction::Source::InternalSource }, nil?: true
+        optional :internal_source, -> { Increase::Transaction::Source::InternalSource }, nil?: true
 
         # @!attribute other
         #   If the category of this Transaction source is equal to `other`, this field will
         #   contain an empty object, otherwise it will contain null.
         #
         #   @return [Increase::Models::Transaction::Source::Other, nil]
-        required :other, -> { Increase::Transaction::Source::Other }, nil?: true
+        optional :other, -> { Increase::Transaction::Source::Other }, nil?: true
 
         # @!attribute real_time_payments_transfer_acknowledgement
         #   A Real-Time Payments Transfer Acknowledgement object. This field will be present
@@ -501,7 +501,7 @@ module Increase
         #   is acknowledged by the receiving bank.
         #
         #   @return [Increase::Models::Transaction::Source::RealTimePaymentsTransferAcknowledgement, nil]
-        required :real_time_payments_transfer_acknowledgement,
+        optional :real_time_payments_transfer_acknowledgement,
                  -> { Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement },
                  nil?: true
 
@@ -511,7 +511,7 @@ module Increase
         #   purposes.
         #
         #   @return [Increase::Models::Transaction::Source::SampleFunds, nil]
-        required :sample_funds, -> { Increase::Transaction::Source::SampleFunds }, nil?: true
+        optional :sample_funds, -> { Increase::Transaction::Source::SampleFunds }, nil?: true
 
         # @!attribute swift_transfer_intention
         #   A Swift Transfer Intention object. This field will be present in the JSON
@@ -519,7 +519,7 @@ module Increase
         #   Swift Transfer initiated via Increase.
         #
         #   @return [Increase::Models::Transaction::Source::SwiftTransferIntention, nil]
-        required :swift_transfer_intention,
+        optional :swift_transfer_intention,
                  -> { Increase::Transaction::Source::SwiftTransferIntention },
                  nil?: true
 
@@ -529,7 +529,7 @@ module Increase
         #   Return is created when a Swift Transfer is returned by the receiving bank.
         #
         #   @return [Increase::Models::Transaction::Source::SwiftTransferReturn, nil]
-        required :swift_transfer_return, -> { Increase::Transaction::Source::SwiftTransferReturn }, nil?: true
+        optional :swift_transfer_return, -> { Increase::Transaction::Source::SwiftTransferReturn }, nil?: true
 
         # @!attribute wire_transfer_intention
         #   A Wire Transfer Intention object. This field will be present in the JSON
@@ -537,13 +537,13 @@ module Increase
         #   Transfer initiated via Increase and sent to a different bank.
         #
         #   @return [Increase::Models::Transaction::Source::WireTransferIntention, nil]
-        required :wire_transfer_intention,
+        optional :wire_transfer_intention,
                  -> {
                    Increase::Transaction::Source::WireTransferIntention
                  },
                  nil?: true
 
-        # @!method initialize(account_revenue_payment:, account_transfer_intention:, ach_transfer_intention:, ach_transfer_rejection:, ach_transfer_return:, blockchain_offramp_transfer_settlement:, blockchain_onramp_transfer_intention:, card_dispute_acceptance:, card_dispute_financial:, card_dispute_loss:, card_financial:, card_push_transfer_acceptance:, card_refund:, card_revenue_payment:, card_settlement:, cashback_payment:, category:, check_deposit_acceptance:, check_deposit_return:, check_transfer_deposit:, fednow_transfer_acknowledgement:, fee_payment:, inbound_ach_transfer:, inbound_ach_transfer_return_intention:, inbound_check_adjustment:, inbound_check_deposit_return_intention:, inbound_fednow_transfer_confirmation:, inbound_real_time_payments_transfer_confirmation:, inbound_wire_reversal:, inbound_wire_transfer:, inbound_wire_transfer_reversal:, interest_payment:, internal_source:, other:, real_time_payments_transfer_acknowledgement:, sample_funds:, swift_transfer_intention:, swift_transfer_return:, wire_transfer_intention:)
+        # @!method initialize(category:, account_revenue_payment: nil, account_transfer_intention: nil, ach_transfer_intention: nil, ach_transfer_rejection: nil, ach_transfer_return: nil, blockchain_offramp_transfer_settlement: nil, blockchain_onramp_transfer_intention: nil, card_dispute_acceptance: nil, card_dispute_financial: nil, card_dispute_loss: nil, card_financial: nil, card_push_transfer_acceptance: nil, card_refund: nil, card_revenue_payment: nil, card_settlement: nil, cashback_payment: nil, check_deposit_acceptance: nil, check_deposit_return: nil, check_transfer_deposit: nil, fednow_transfer_acknowledgement: nil, fee_payment: nil, inbound_ach_transfer: nil, inbound_ach_transfer_return_intention: nil, inbound_check_adjustment: nil, inbound_check_deposit_return_intention: nil, inbound_fednow_transfer_confirmation: nil, inbound_real_time_payments_transfer_confirmation: nil, inbound_wire_reversal: nil, inbound_wire_transfer: nil, inbound_wire_transfer_reversal: nil, interest_payment: nil, internal_source: nil, other: nil, real_time_payments_transfer_acknowledgement: nil, sample_funds: nil, swift_transfer_intention: nil, swift_transfer_return: nil, wire_transfer_intention: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Transaction::Source} for more details.
         #
@@ -551,6 +551,8 @@ module Increase
         #   Transaction. Note that for backwards compatibility reasons, additional
         #   undocumented keys may appear in this object. These should be treated as
         #   deprecated and will be removed in the future.
+        #
+        #   @param category [Symbol, Increase::Models::Transaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
         #
         #   @param account_revenue_payment [Increase::Models::Transaction::Source::AccountRevenuePayment, nil] An Account Revenue Payment object. This field will be present in the JSON respon
         #
@@ -583,8 +585,6 @@ module Increase
         #   @param card_settlement [Increase::Models::Transaction::Source::CardSettlement, nil] A Card Settlement object. This field will be present in the JSON response if and
         #
         #   @param cashback_payment [Increase::Models::Transaction::Source::CashbackPayment, nil] A Cashback Payment object. This field will be present in the JSON response if an
-        #
-        #   @param category [Symbol, Increase::Models::Transaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
         #
         #   @param check_deposit_acceptance [Increase::Models::Transaction::Source::CheckDepositAcceptance, nil] A Check Deposit Acceptance object. This field will be present in the JSON respon
         #
@@ -629,6 +629,131 @@ module Increase
         #   @param swift_transfer_return [Increase::Models::Transaction::Source::SwiftTransferReturn, nil] A Swift Transfer Return object. This field will be present in the JSON response
         #
         #   @param wire_transfer_intention [Increase::Models::Transaction::Source::WireTransferIntention, nil] A Wire Transfer Intention object. This field will be present in the JSON respons
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        #
+        # @see Increase::Models::Transaction::Source#category
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # Account Transfer Intention: details will be under the `account_transfer_intention` object.
+          ACCOUNT_TRANSFER_INTENTION = :account_transfer_intention
+
+          # ACH Transfer Intention: details will be under the `ach_transfer_intention` object.
+          ACH_TRANSFER_INTENTION = :ach_transfer_intention
+
+          # ACH Transfer Rejection: details will be under the `ach_transfer_rejection` object.
+          ACH_TRANSFER_REJECTION = :ach_transfer_rejection
+
+          # ACH Transfer Return: details will be under the `ach_transfer_return` object.
+          ACH_TRANSFER_RETURN = :ach_transfer_return
+
+          # Cashback Payment: details will be under the `cashback_payment` object.
+          CASHBACK_PAYMENT = :cashback_payment
+
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          CARD_DISPUTE_ACCEPTANCE = :card_dispute_acceptance
+
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL = :card_dispute_financial
+
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          CARD_DISPUTE_LOSS = :card_dispute_loss
+
+          # Card Refund: details will be under the `card_refund` object.
+          CARD_REFUND = :card_refund
+
+          # Card Settlement: details will be under the `card_settlement` object.
+          CARD_SETTLEMENT = :card_settlement
+
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL = :card_financial
+
+          # Card Revenue Payment: details will be under the `card_revenue_payment` object.
+          CARD_REVENUE_PAYMENT = :card_revenue_payment
+
+          # Check Deposit Acceptance: details will be under the `check_deposit_acceptance` object.
+          CHECK_DEPOSIT_ACCEPTANCE = :check_deposit_acceptance
+
+          # Check Deposit Return: details will be under the `check_deposit_return` object.
+          CHECK_DEPOSIT_RETURN = :check_deposit_return
+
+          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
+          FEDNOW_TRANSFER_ACKNOWLEDGEMENT = :fednow_transfer_acknowledgement
+
+          # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
+          CHECK_TRANSFER_DEPOSIT = :check_transfer_deposit
+
+          # Fee Payment: details will be under the `fee_payment` object.
+          FEE_PAYMENT = :fee_payment
+
+          # Inbound ACH Transfer Intention: details will be under the `inbound_ach_transfer` object.
+          INBOUND_ACH_TRANSFER = :inbound_ach_transfer
+
+          # Inbound ACH Transfer Return Intention: details will be under the `inbound_ach_transfer_return_intention` object.
+          INBOUND_ACH_TRANSFER_RETURN_INTENTION = :inbound_ach_transfer_return_intention
+
+          # Inbound Check Deposit Return Intention: details will be under the `inbound_check_deposit_return_intention` object.
+          INBOUND_CHECK_DEPOSIT_RETURN_INTENTION = :inbound_check_deposit_return_intention
+
+          # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
+          INBOUND_CHECK_ADJUSTMENT = :inbound_check_adjustment
+
+          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
+          INBOUND_FEDNOW_TRANSFER_CONFIRMATION = :inbound_fednow_transfer_confirmation
+
+          # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
+          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION = :inbound_real_time_payments_transfer_confirmation
+
+          # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
+          INBOUND_WIRE_REVERSAL = :inbound_wire_reversal
+
+          # Inbound Wire Transfer Intention: details will be under the `inbound_wire_transfer` object.
+          INBOUND_WIRE_TRANSFER = :inbound_wire_transfer
+
+          # Inbound Wire Transfer Reversal Intention: details will be under the `inbound_wire_transfer_reversal` object.
+          INBOUND_WIRE_TRANSFER_REVERSAL = :inbound_wire_transfer_reversal
+
+          # Interest Payment: details will be under the `interest_payment` object.
+          INTEREST_PAYMENT = :interest_payment
+
+          # Internal Source: details will be under the `internal_source` object.
+          INTERNAL_SOURCE = :internal_source
+
+          # Real-Time Payments Transfer Acknowledgement: details will be under the `real_time_payments_transfer_acknowledgement` object.
+          REAL_TIME_PAYMENTS_TRANSFER_ACKNOWLEDGEMENT = :real_time_payments_transfer_acknowledgement
+
+          # Sample Funds: details will be under the `sample_funds` object.
+          SAMPLE_FUNDS = :sample_funds
+
+          # Wire Transfer Intention: details will be under the `wire_transfer_intention` object.
+          WIRE_TRANSFER_INTENTION = :wire_transfer_intention
+
+          # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
+          SWIFT_TRANSFER_INTENTION = :swift_transfer_intention
+
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN = :swift_transfer_return
+
+          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
+          CARD_PUSH_TRANSFER_ACCEPTANCE = :card_push_transfer_acceptance
+
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT = :account_revenue_payment
+
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION = :blockchain_onramp_transfer_intention
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT = :blockchain_offramp_transfer_settlement
+
+          # The Transaction was made for an undocumented or deprecated reason.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # @see Increase::Models::Transaction::Source#account_revenue_payment
         class AccountRevenuePayment < Increase::Internal::Type::BaseModel
@@ -5409,131 +5534,6 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        #
-        # @see Increase::Models::Transaction::Source#category
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # Account Transfer Intention: details will be under the `account_transfer_intention` object.
-          ACCOUNT_TRANSFER_INTENTION = :account_transfer_intention
-
-          # ACH Transfer Intention: details will be under the `ach_transfer_intention` object.
-          ACH_TRANSFER_INTENTION = :ach_transfer_intention
-
-          # ACH Transfer Rejection: details will be under the `ach_transfer_rejection` object.
-          ACH_TRANSFER_REJECTION = :ach_transfer_rejection
-
-          # ACH Transfer Return: details will be under the `ach_transfer_return` object.
-          ACH_TRANSFER_RETURN = :ach_transfer_return
-
-          # Cashback Payment: details will be under the `cashback_payment` object.
-          CASHBACK_PAYMENT = :cashback_payment
-
-          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
-          CARD_DISPUTE_ACCEPTANCE = :card_dispute_acceptance
-
-          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
-          CARD_DISPUTE_FINANCIAL = :card_dispute_financial
-
-          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
-          CARD_DISPUTE_LOSS = :card_dispute_loss
-
-          # Card Refund: details will be under the `card_refund` object.
-          CARD_REFUND = :card_refund
-
-          # Card Settlement: details will be under the `card_settlement` object.
-          CARD_SETTLEMENT = :card_settlement
-
-          # Card Financial: details will be under the `card_financial` object.
-          CARD_FINANCIAL = :card_financial
-
-          # Card Revenue Payment: details will be under the `card_revenue_payment` object.
-          CARD_REVENUE_PAYMENT = :card_revenue_payment
-
-          # Check Deposit Acceptance: details will be under the `check_deposit_acceptance` object.
-          CHECK_DEPOSIT_ACCEPTANCE = :check_deposit_acceptance
-
-          # Check Deposit Return: details will be under the `check_deposit_return` object.
-          CHECK_DEPOSIT_RETURN = :check_deposit_return
-
-          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
-          FEDNOW_TRANSFER_ACKNOWLEDGEMENT = :fednow_transfer_acknowledgement
-
-          # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
-          CHECK_TRANSFER_DEPOSIT = :check_transfer_deposit
-
-          # Fee Payment: details will be under the `fee_payment` object.
-          FEE_PAYMENT = :fee_payment
-
-          # Inbound ACH Transfer Intention: details will be under the `inbound_ach_transfer` object.
-          INBOUND_ACH_TRANSFER = :inbound_ach_transfer
-
-          # Inbound ACH Transfer Return Intention: details will be under the `inbound_ach_transfer_return_intention` object.
-          INBOUND_ACH_TRANSFER_RETURN_INTENTION = :inbound_ach_transfer_return_intention
-
-          # Inbound Check Deposit Return Intention: details will be under the `inbound_check_deposit_return_intention` object.
-          INBOUND_CHECK_DEPOSIT_RETURN_INTENTION = :inbound_check_deposit_return_intention
-
-          # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
-          INBOUND_CHECK_ADJUSTMENT = :inbound_check_adjustment
-
-          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
-          INBOUND_FEDNOW_TRANSFER_CONFIRMATION = :inbound_fednow_transfer_confirmation
-
-          # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION = :inbound_real_time_payments_transfer_confirmation
-
-          # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
-          INBOUND_WIRE_REVERSAL = :inbound_wire_reversal
-
-          # Inbound Wire Transfer Intention: details will be under the `inbound_wire_transfer` object.
-          INBOUND_WIRE_TRANSFER = :inbound_wire_transfer
-
-          # Inbound Wire Transfer Reversal Intention: details will be under the `inbound_wire_transfer_reversal` object.
-          INBOUND_WIRE_TRANSFER_REVERSAL = :inbound_wire_transfer_reversal
-
-          # Interest Payment: details will be under the `interest_payment` object.
-          INTEREST_PAYMENT = :interest_payment
-
-          # Internal Source: details will be under the `internal_source` object.
-          INTERNAL_SOURCE = :internal_source
-
-          # Real-Time Payments Transfer Acknowledgement: details will be under the `real_time_payments_transfer_acknowledgement` object.
-          REAL_TIME_PAYMENTS_TRANSFER_ACKNOWLEDGEMENT = :real_time_payments_transfer_acknowledgement
-
-          # Sample Funds: details will be under the `sample_funds` object.
-          SAMPLE_FUNDS = :sample_funds
-
-          # Wire Transfer Intention: details will be under the `wire_transfer_intention` object.
-          WIRE_TRANSFER_INTENTION = :wire_transfer_intention
-
-          # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
-          SWIFT_TRANSFER_INTENTION = :swift_transfer_intention
-
-          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
-          SWIFT_TRANSFER_RETURN = :swift_transfer_return
-
-          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
-          CARD_PUSH_TRANSFER_ACCEPTANCE = :card_push_transfer_acceptance
-
-          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
-          ACCOUNT_REVENUE_PAYMENT = :account_revenue_payment
-
-          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
-          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION = :blockchain_onramp_transfer_intention
-
-          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT = :blockchain_offramp_transfer_settlement
-
-          # The Transaction was made for an undocumented or deprecated reason.
-          OTHER = :other
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::Transaction::Source#check_deposit_acceptance

@@ -309,6 +309,12 @@ module Increase
             )
           end
 
+        # The type of object that created this transfer.
+        sig do
+          returns(Increase::AccountTransfer::CreatedBy::Category::TaggedSymbol)
+        end
+        attr_accessor :category
+
         # If present, details about the API key that created the transfer.
         sig { returns(T.nilable(Increase::AccountTransfer::CreatedBy::APIKey)) }
         attr_reader :api_key
@@ -320,12 +326,6 @@ module Increase
           ).void
         end
         attr_writer :api_key
-
-        # The type of object that created this transfer.
-        sig do
-          returns(Increase::AccountTransfer::CreatedBy::Category::TaggedSymbol)
-        end
-        attr_accessor :category
 
         # If present, details about the OAuth Application that created the transfer.
         sig do
@@ -359,9 +359,9 @@ module Increase
         # What object created the transfer, either via the API or the dashboard.
         sig do
           params(
+            category: Increase::AccountTransfer::CreatedBy::Category::OrSymbol,
             api_key:
               T.nilable(Increase::AccountTransfer::CreatedBy::APIKey::OrHash),
-            category: Increase::AccountTransfer::CreatedBy::Category::OrSymbol,
             oauth_application:
               T.nilable(
                 Increase::AccountTransfer::CreatedBy::OAuthApplication::OrHash
@@ -370,23 +370,23 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # If present, details about the API key that created the transfer.
-          api_key:,
           # The type of object that created this transfer.
           category:,
+          # If present, details about the API key that created the transfer.
+          api_key: nil,
           # If present, details about the OAuth Application that created the transfer.
-          oauth_application:,
+          oauth_application: nil,
           # If present, details about the User that created the transfer.
-          user:
+          user: nil
         )
         end
 
         sig do
           override.returns(
             {
-              api_key: T.nilable(Increase::AccountTransfer::CreatedBy::APIKey),
               category:
                 Increase::AccountTransfer::CreatedBy::Category::TaggedSymbol,
+              api_key: T.nilable(Increase::AccountTransfer::CreatedBy::APIKey),
               oauth_application:
                 T.nilable(
                   Increase::AccountTransfer::CreatedBy::OAuthApplication
@@ -396,34 +396,6 @@ module Increase
           )
         end
         def to_hash
-        end
-
-        class APIKey < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::AccountTransfer::CreatedBy::APIKey,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # The description set for the API key when it was created.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :description
-
-          # If present, details about the API key that created the transfer.
-          sig do
-            params(description: T.nilable(String)).returns(T.attached_class)
-          end
-          def self.new(
-            # The description set for the API key when it was created.
-            description:
-          )
-          end
-
-          sig { override.returns({ description: T.nilable(String) }) }
-          def to_hash
-          end
         end
 
         # The type of object that created this transfer.
@@ -465,6 +437,34 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+
+        class APIKey < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::AccountTransfer::CreatedBy::APIKey,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The description set for the API key when it was created.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :description
+
+          # If present, details about the API key that created the transfer.
+          sig do
+            params(description: T.nilable(String)).returns(T.attached_class)
+          end
+          def self.new(
+            # The description set for the API key when it was created.
+            description:
+          )
+          end
+
+          sig { override.returns({ description: T.nilable(String) }) }
+          def to_hash
           end
         end
 

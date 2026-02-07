@@ -190,6 +190,11 @@ module Increase
             T.any(Increase::Transaction::Source, Increase::Internal::AnyHash)
           end
 
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        sig { returns(Increase::Transaction::Source::Category::TaggedSymbol) }
+        attr_accessor :category
+
         # An Account Revenue Payment object. This field will be present in the JSON
         # response if and only if `category` is equal to `account_revenue_payment`. An
         # Account Revenue Payment represents a payment made to an account from the bank.
@@ -498,11 +503,6 @@ module Increase
           ).void
         end
         attr_writer :cashback_payment
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        sig { returns(Increase::Transaction::Source::Category::TaggedSymbol) }
-        attr_accessor :category
 
         # A Check Deposit Acceptance object. This field will be present in the JSON
         # response if and only if `category` is equal to `check_deposit_acceptance`. A
@@ -951,6 +951,7 @@ module Increase
         # deprecated and will be removed in the future.
         sig do
           params(
+            category: Increase::Transaction::Source::Category::OrSymbol,
             account_revenue_payment:
               T.nilable(
                 Increase::Transaction::Source::AccountRevenuePayment::OrHash
@@ -1005,7 +1006,6 @@ module Increase
               T.nilable(Increase::Transaction::Source::CardSettlement::OrHash),
             cashback_payment:
               T.nilable(Increase::Transaction::Source::CashbackPayment::OrHash),
-            category: Increase::Transaction::Source::Category::OrSymbol,
             check_deposit_acceptance:
               T.nilable(
                 Increase::Transaction::Source::CheckDepositAcceptance::OrHash
@@ -1086,204 +1086,205 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # The type of the resource. We may add additional possible values for this enum
+          # over time; your application should be able to handle such additions gracefully.
+          category:,
           # An Account Revenue Payment object. This field will be present in the JSON
           # response if and only if `category` is equal to `account_revenue_payment`. An
           # Account Revenue Payment represents a payment made to an account from the bank.
           # Account revenue is a type of non-interest income.
-          account_revenue_payment:,
+          account_revenue_payment: nil,
           # An Account Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `account_transfer_intention`. Two
           # Account Transfer Intentions are created from each Account Transfer. One
           # decrements the source account, and the other increments the destination account.
-          account_transfer_intention:,
+          account_transfer_intention: nil,
           # An ACH Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `ach_transfer_intention`. An ACH
           # Transfer Intention is created from an ACH Transfer. It reflects the intention to
           # move money into or out of an Increase account via the ACH network.
-          ach_transfer_intention:,
+          ach_transfer_intention: nil,
           # An ACH Transfer Rejection object. This field will be present in the JSON
           # response if and only if `category` is equal to `ach_transfer_rejection`. An ACH
           # Transfer Rejection is created when an ACH Transfer is rejected by Increase. It
           # offsets the ACH Transfer Intention. These rejections are rare.
-          ach_transfer_rejection:,
+          ach_transfer_rejection: nil,
           # An ACH Transfer Return object. This field will be present in the JSON response
           # if and only if `category` is equal to `ach_transfer_return`. An ACH Transfer
           # Return is created when an ACH Transfer is returned by the receiving bank. It
           # offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
           # the first two business days after the transfer is initiated, but can occur much
           # later.
-          ach_transfer_return:,
+          ach_transfer_return: nil,
           # A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `blockchain_offramp_transfer_settlement`.
-          blockchain_offramp_transfer_settlement:,
+          blockchain_offramp_transfer_settlement: nil,
           # A Blockchain On-Ramp Transfer Intention object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `blockchain_onramp_transfer_intention`.
-          blockchain_onramp_transfer_intention:,
+          blockchain_onramp_transfer_intention: nil,
           # A Legacy Card Dispute Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_dispute_acceptance`.
           # Contains the details of a successful Card Dispute.
-          card_dispute_acceptance:,
+          card_dispute_acceptance: nil,
           # A Card Dispute Financial object. This field will be present in the JSON response
           # if and only if `category` is equal to `card_dispute_financial`. Financial event
           # related to a Card Dispute.
-          card_dispute_financial:,
+          card_dispute_financial: nil,
           # A Legacy Card Dispute Loss object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_dispute_loss`. Contains the
           # details of a lost Card Dispute.
-          card_dispute_loss:,
+          card_dispute_loss: nil,
           # A Card Financial object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_financial`. Card Financials are temporary
           # holds placed on a customers funds with the intent to later clear a transaction.
-          card_financial:,
+          card_financial: nil,
           # A Card Push Transfer Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_push_transfer_acceptance`.
           # A Card Push Transfer Acceptance is created when an Outbound Card Push Transfer
           # sent from Increase is accepted by the receiving bank.
-          card_push_transfer_acceptance:,
+          card_push_transfer_acceptance: nil,
           # A Card Refund object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_refund`. Card Refunds move money back to
           # the cardholder. While they are usually connected to a Card Settlement an
           # acquirer can also refund money directly to a card without relation to a
           # transaction.
-          card_refund:,
+          card_refund: nil,
           # A Card Revenue Payment object. This field will be present in the JSON response
           # if and only if `category` is equal to `card_revenue_payment`. Card Revenue
           # Payments reflect earnings from fees on card transactions.
-          card_revenue_payment:,
+          card_revenue_payment: nil,
           # A Card Settlement object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_settlement`. Card Settlements are card
           # transactions that have cleared and settled. While a settlement is usually
           # preceded by an authorization, an acquirer can also directly clear a transaction
           # without first authorizing it.
-          card_settlement:,
+          card_settlement: nil,
           # A Cashback Payment object. This field will be present in the JSON response if
           # and only if `category` is equal to `cashback_payment`. A Cashback Payment
           # represents the cashback paid to a cardholder for a given period. Cashback is
           # usually paid monthly for the prior month's transactions.
-          cashback_payment:,
-          # The type of the resource. We may add additional possible values for this enum
-          # over time; your application should be able to handle such additions gracefully.
-          category:,
+          cashback_payment: nil,
           # A Check Deposit Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `check_deposit_acceptance`. A
           # Check Deposit Acceptance is created when a Check Deposit is processed and its
           # details confirmed. Check Deposits may be returned by the receiving bank, which
           # will appear as a Check Deposit Return.
-          check_deposit_acceptance:,
+          check_deposit_acceptance: nil,
           # A Check Deposit Return object. This field will be present in the JSON response
           # if and only if `category` is equal to `check_deposit_return`. A Check Deposit
           # Return is created when a Check Deposit is returned by the bank holding the
           # account it was drawn against. Check Deposits may be returned for a variety of
           # reasons, including insufficient funds or a mismatched account number. Usually,
           # checks are returned within the first 7 days after the deposit is made.
-          check_deposit_return:,
+          check_deposit_return: nil,
           # A Check Transfer Deposit object. This field will be present in the JSON response
           # if and only if `category` is equal to `check_transfer_deposit`. An Inbound Check
           # is a check drawn on an Increase account that has been deposited by an external
           # bank account. These types of checks are not pre-registered.
-          check_transfer_deposit:,
+          check_transfer_deposit: nil,
           # A FedNow Transfer Acknowledgement object. This field will be present in the JSON
           # response if and only if `category` is equal to
           # `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
           # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
-          fednow_transfer_acknowledgement:,
+          fednow_transfer_acknowledgement: nil,
           # A Fee Payment object. This field will be present in the JSON response if and
           # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
           # made to Increase.
-          fee_payment:,
+          fee_payment: nil,
           # An Inbound ACH Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_ach_transfer`. An
           # Inbound ACH Transfer Intention is created when an ACH transfer is initiated at
           # another bank and received by Increase.
-          inbound_ach_transfer:,
+          inbound_ach_transfer: nil,
           # An Inbound ACH Transfer Return Intention object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `inbound_ach_transfer_return_intention`. An Inbound ACH Transfer Return
           # Intention is created when an ACH transfer is initiated at another bank and
           # returned by Increase.
-          inbound_ach_transfer_return_intention:,
+          inbound_ach_transfer_return_intention: nil,
           # An Inbound Check Adjustment object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_check_adjustment`. An
           # Inbound Check Adjustment is created when Increase receives an adjustment for a
           # check or return deposited through Check21.
-          inbound_check_adjustment:,
+          inbound_check_adjustment: nil,
           # An Inbound Check Deposit Return Intention object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `inbound_check_deposit_return_intention`. An Inbound Check Deposit Return
           # Intention is created when Increase receives an Inbound Check and the User
           # requests that it be returned.
-          inbound_check_deposit_return_intention:,
+          inbound_check_deposit_return_intention: nil,
           # An Inbound FedNow Transfer Confirmation object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `inbound_fednow_transfer_confirmation`. An Inbound FedNow Transfer Confirmation
           # is created when a FedNow transfer is initiated at another bank and received by
           # Increase.
-          inbound_fednow_transfer_confirmation:,
+          inbound_fednow_transfer_confirmation: nil,
           # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
           # present in the JSON response if and only if `category` is equal to
           # `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
           # Payments Transfer Confirmation is created when a Real-Time Payments transfer is
           # initiated at another bank and received by Increase.
-          inbound_real_time_payments_transfer_confirmation:,
+          inbound_real_time_payments_transfer_confirmation: nil,
           # An Inbound Wire Reversal object. This field will be present in the JSON response
           # if and only if `category` is equal to `inbound_wire_reversal`. An Inbound Wire
           # Reversal represents a reversal of a wire transfer that was initiated via
           # Increase. The other bank is sending the money back. This most often happens when
           # the original destination account details were incorrect.
-          inbound_wire_reversal:,
+          inbound_wire_reversal: nil,
           # An Inbound Wire Transfer Intention object. This field will be present in the
           # JSON response if and only if `category` is equal to `inbound_wire_transfer`. An
           # Inbound Wire Transfer Intention is created when a wire transfer is initiated at
           # another bank and received by Increase.
-          inbound_wire_transfer:,
+          inbound_wire_transfer: nil,
           # An Inbound Wire Transfer Reversal Intention object. This field will be present
           # in the JSON response if and only if `category` is equal to
           # `inbound_wire_transfer_reversal`. An Inbound Wire Transfer Reversal Intention is
           # created when Increase has received a wire and the User requests that it be
           # reversed.
-          inbound_wire_transfer_reversal:,
+          inbound_wire_transfer_reversal: nil,
           # An Interest Payment object. This field will be present in the JSON response if
           # and only if `category` is equal to `interest_payment`. An Interest Payment
           # represents a payment of interest on an account. Interest is usually paid
           # monthly.
-          interest_payment:,
+          interest_payment: nil,
           # An Internal Source object. This field will be present in the JSON response if
           # and only if `category` is equal to `internal_source`. A transaction between the
           # user and Increase. See the `reason` attribute for more information.
-          internal_source:,
+          internal_source: nil,
           # If the category of this Transaction source is equal to `other`, this field will
           # contain an empty object, otherwise it will contain null.
-          other:,
+          other: nil,
           # A Real-Time Payments Transfer Acknowledgement object. This field will be present
           # in the JSON response if and only if `category` is equal to
           # `real_time_payments_transfer_acknowledgement`. A Real-Time Payments Transfer
           # Acknowledgement is created when a Real-Time Payments Transfer sent from Increase
           # is acknowledged by the receiving bank.
-          real_time_payments_transfer_acknowledgement:,
+          real_time_payments_transfer_acknowledgement: nil,
           # A Sample Funds object. This field will be present in the JSON response if and
           # only if `category` is equal to `sample_funds`. Sample funds for testing
           # purposes.
-          sample_funds:,
+          sample_funds: nil,
           # A Swift Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `swift_transfer_intention`. A
           # Swift Transfer initiated via Increase.
-          swift_transfer_intention:,
+          swift_transfer_intention: nil,
           # A Swift Transfer Return object. This field will be present in the JSON response
           # if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
           # Return is created when a Swift Transfer is returned by the receiving bank.
-          swift_transfer_return:,
+          swift_transfer_return: nil,
           # A Wire Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `wire_transfer_intention`. A Wire
           # Transfer initiated via Increase and sent to a different bank.
-          wire_transfer_intention:
+          wire_transfer_intention: nil
         )
         end
 
         sig do
           override.returns(
             {
+              category: Increase::Transaction::Source::Category::TaggedSymbol,
               account_revenue_payment:
                 T.nilable(Increase::Transaction::Source::AccountRevenuePayment),
               account_transfer_intention:
@@ -1323,7 +1324,6 @@ module Increase
                 T.nilable(Increase::Transaction::Source::CardSettlement),
               cashback_payment:
                 T.nilable(Increase::Transaction::Source::CashbackPayment),
-              category: Increase::Transaction::Source::Category::TaggedSymbol,
               check_deposit_acceptance:
                 T.nilable(
                   Increase::Transaction::Source::CheckDepositAcceptance
@@ -1390,6 +1390,289 @@ module Increase
           )
         end
         def to_hash
+        end
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::Transaction::Source::Category)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Account Transfer Intention: details will be under the `account_transfer_intention` object.
+          ACCOUNT_TRANSFER_INTENTION =
+            T.let(
+              :account_transfer_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # ACH Transfer Intention: details will be under the `ach_transfer_intention` object.
+          ACH_TRANSFER_INTENTION =
+            T.let(
+              :ach_transfer_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # ACH Transfer Rejection: details will be under the `ach_transfer_rejection` object.
+          ACH_TRANSFER_REJECTION =
+            T.let(
+              :ach_transfer_rejection,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # ACH Transfer Return: details will be under the `ach_transfer_return` object.
+          ACH_TRANSFER_RETURN =
+            T.let(
+              :ach_transfer_return,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Cashback Payment: details will be under the `cashback_payment` object.
+          CASHBACK_PAYMENT =
+            T.let(
+              :cashback_payment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
+          CARD_DISPUTE_ACCEPTANCE =
+            T.let(
+              :card_dispute_acceptance,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
+          CARD_DISPUTE_FINANCIAL =
+            T.let(
+              :card_dispute_financial,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
+          CARD_DISPUTE_LOSS =
+            T.let(
+              :card_dispute_loss,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Refund: details will be under the `card_refund` object.
+          CARD_REFUND =
+            T.let(
+              :card_refund,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Settlement: details will be under the `card_settlement` object.
+          CARD_SETTLEMENT =
+            T.let(
+              :card_settlement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL =
+            T.let(
+              :card_financial,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Revenue Payment: details will be under the `card_revenue_payment` object.
+          CARD_REVENUE_PAYMENT =
+            T.let(
+              :card_revenue_payment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Deposit Acceptance: details will be under the `check_deposit_acceptance` object.
+          CHECK_DEPOSIT_ACCEPTANCE =
+            T.let(
+              :check_deposit_acceptance,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Deposit Return: details will be under the `check_deposit_return` object.
+          CHECK_DEPOSIT_RETURN =
+            T.let(
+              :check_deposit_return,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
+          FEDNOW_TRANSFER_ACKNOWLEDGEMENT =
+            T.let(
+              :fednow_transfer_acknowledgement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
+          CHECK_TRANSFER_DEPOSIT =
+            T.let(
+              :check_transfer_deposit,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Fee Payment: details will be under the `fee_payment` object.
+          FEE_PAYMENT =
+            T.let(
+              :fee_payment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound ACH Transfer Intention: details will be under the `inbound_ach_transfer` object.
+          INBOUND_ACH_TRANSFER =
+            T.let(
+              :inbound_ach_transfer,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound ACH Transfer Return Intention: details will be under the `inbound_ach_transfer_return_intention` object.
+          INBOUND_ACH_TRANSFER_RETURN_INTENTION =
+            T.let(
+              :inbound_ach_transfer_return_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Check Deposit Return Intention: details will be under the `inbound_check_deposit_return_intention` object.
+          INBOUND_CHECK_DEPOSIT_RETURN_INTENTION =
+            T.let(
+              :inbound_check_deposit_return_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
+          INBOUND_CHECK_ADJUSTMENT =
+            T.let(
+              :inbound_check_adjustment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
+          INBOUND_FEDNOW_TRANSFER_CONFIRMATION =
+            T.let(
+              :inbound_fednow_transfer_confirmation,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
+          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION =
+            T.let(
+              :inbound_real_time_payments_transfer_confirmation,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
+          INBOUND_WIRE_REVERSAL =
+            T.let(
+              :inbound_wire_reversal,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Wire Transfer Intention: details will be under the `inbound_wire_transfer` object.
+          INBOUND_WIRE_TRANSFER =
+            T.let(
+              :inbound_wire_transfer,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound Wire Transfer Reversal Intention: details will be under the `inbound_wire_transfer_reversal` object.
+          INBOUND_WIRE_TRANSFER_REVERSAL =
+            T.let(
+              :inbound_wire_transfer_reversal,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Interest Payment: details will be under the `interest_payment` object.
+          INTEREST_PAYMENT =
+            T.let(
+              :interest_payment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Internal Source: details will be under the `internal_source` object.
+          INTERNAL_SOURCE =
+            T.let(
+              :internal_source,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Real-Time Payments Transfer Acknowledgement: details will be under the `real_time_payments_transfer_acknowledgement` object.
+          REAL_TIME_PAYMENTS_TRANSFER_ACKNOWLEDGEMENT =
+            T.let(
+              :real_time_payments_transfer_acknowledgement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Sample Funds: details will be under the `sample_funds` object.
+          SAMPLE_FUNDS =
+            T.let(
+              :sample_funds,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Wire Transfer Intention: details will be under the `wire_transfer_intention` object.
+          WIRE_TRANSFER_INTENTION =
+            T.let(
+              :wire_transfer_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
+          SWIFT_TRANSFER_INTENTION =
+            T.let(
+              :swift_transfer_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
+          SWIFT_TRANSFER_RETURN =
+            T.let(
+              :swift_transfer_return,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
+          CARD_PUSH_TRANSFER_ACCEPTANCE =
+            T.let(
+              :card_push_transfer_acceptance,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
+          ACCOUNT_REVENUE_PAYMENT =
+            T.let(
+              :account_revenue_payment,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
+          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION =
+            T.let(
+              :blockchain_onramp_transfer_intention,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT =
+            T.let(
+              :blockchain_offramp_transfer_settlement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # The Transaction was made for an undocumented or deprecated reason.
+          OTHER =
+            T.let(:other, Increase::Transaction::Source::Category::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Increase::Transaction::Source::Category::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
 
         class AccountRevenuePayment < Increase::Internal::Type::BaseModel
@@ -10116,289 +10399,6 @@ module Increase
             end
             def self.values
             end
-          end
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Increase::Transaction::Source::Category)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Account Transfer Intention: details will be under the `account_transfer_intention` object.
-          ACCOUNT_TRANSFER_INTENTION =
-            T.let(
-              :account_transfer_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # ACH Transfer Intention: details will be under the `ach_transfer_intention` object.
-          ACH_TRANSFER_INTENTION =
-            T.let(
-              :ach_transfer_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # ACH Transfer Rejection: details will be under the `ach_transfer_rejection` object.
-          ACH_TRANSFER_REJECTION =
-            T.let(
-              :ach_transfer_rejection,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # ACH Transfer Return: details will be under the `ach_transfer_return` object.
-          ACH_TRANSFER_RETURN =
-            T.let(
-              :ach_transfer_return,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Cashback Payment: details will be under the `cashback_payment` object.
-          CASHBACK_PAYMENT =
-            T.let(
-              :cashback_payment,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Legacy Card Dispute Acceptance: details will be under the `card_dispute_acceptance` object.
-          CARD_DISPUTE_ACCEPTANCE =
-            T.let(
-              :card_dispute_acceptance,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Dispute Financial: details will be under the `card_dispute_financial` object.
-          CARD_DISPUTE_FINANCIAL =
-            T.let(
-              :card_dispute_financial,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
-          CARD_DISPUTE_LOSS =
-            T.let(
-              :card_dispute_loss,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Refund: details will be under the `card_refund` object.
-          CARD_REFUND =
-            T.let(
-              :card_refund,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Settlement: details will be under the `card_settlement` object.
-          CARD_SETTLEMENT =
-            T.let(
-              :card_settlement,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Financial: details will be under the `card_financial` object.
-          CARD_FINANCIAL =
-            T.let(
-              :card_financial,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Revenue Payment: details will be under the `card_revenue_payment` object.
-          CARD_REVENUE_PAYMENT =
-            T.let(
-              :card_revenue_payment,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Deposit Acceptance: details will be under the `check_deposit_acceptance` object.
-          CHECK_DEPOSIT_ACCEPTANCE =
-            T.let(
-              :check_deposit_acceptance,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Deposit Return: details will be under the `check_deposit_return` object.
-          CHECK_DEPOSIT_RETURN =
-            T.let(
-              :check_deposit_return,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
-          FEDNOW_TRANSFER_ACKNOWLEDGEMENT =
-            T.let(
-              :fednow_transfer_acknowledgement,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
-          CHECK_TRANSFER_DEPOSIT =
-            T.let(
-              :check_transfer_deposit,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Fee Payment: details will be under the `fee_payment` object.
-          FEE_PAYMENT =
-            T.let(
-              :fee_payment,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound ACH Transfer Intention: details will be under the `inbound_ach_transfer` object.
-          INBOUND_ACH_TRANSFER =
-            T.let(
-              :inbound_ach_transfer,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound ACH Transfer Return Intention: details will be under the `inbound_ach_transfer_return_intention` object.
-          INBOUND_ACH_TRANSFER_RETURN_INTENTION =
-            T.let(
-              :inbound_ach_transfer_return_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Check Deposit Return Intention: details will be under the `inbound_check_deposit_return_intention` object.
-          INBOUND_CHECK_DEPOSIT_RETURN_INTENTION =
-            T.let(
-              :inbound_check_deposit_return_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Check Adjustment: details will be under the `inbound_check_adjustment` object.
-          INBOUND_CHECK_ADJUSTMENT =
-            T.let(
-              :inbound_check_adjustment,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
-          INBOUND_FEDNOW_TRANSFER_CONFIRMATION =
-            T.let(
-              :inbound_fednow_transfer_confirmation,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
-          INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION =
-            T.let(
-              :inbound_real_time_payments_transfer_confirmation,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Wire Reversal: details will be under the `inbound_wire_reversal` object.
-          INBOUND_WIRE_REVERSAL =
-            T.let(
-              :inbound_wire_reversal,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Wire Transfer Intention: details will be under the `inbound_wire_transfer` object.
-          INBOUND_WIRE_TRANSFER =
-            T.let(
-              :inbound_wire_transfer,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Inbound Wire Transfer Reversal Intention: details will be under the `inbound_wire_transfer_reversal` object.
-          INBOUND_WIRE_TRANSFER_REVERSAL =
-            T.let(
-              :inbound_wire_transfer_reversal,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Interest Payment: details will be under the `interest_payment` object.
-          INTEREST_PAYMENT =
-            T.let(
-              :interest_payment,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Internal Source: details will be under the `internal_source` object.
-          INTERNAL_SOURCE =
-            T.let(
-              :internal_source,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Real-Time Payments Transfer Acknowledgement: details will be under the `real_time_payments_transfer_acknowledgement` object.
-          REAL_TIME_PAYMENTS_TRANSFER_ACKNOWLEDGEMENT =
-            T.let(
-              :real_time_payments_transfer_acknowledgement,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Sample Funds: details will be under the `sample_funds` object.
-          SAMPLE_FUNDS =
-            T.let(
-              :sample_funds,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Wire Transfer Intention: details will be under the `wire_transfer_intention` object.
-          WIRE_TRANSFER_INTENTION =
-            T.let(
-              :wire_transfer_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Swift Transfer Intention: details will be under the `swift_transfer_intention` object.
-          SWIFT_TRANSFER_INTENTION =
-            T.let(
-              :swift_transfer_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Swift Transfer Return: details will be under the `swift_transfer_return` object.
-          SWIFT_TRANSFER_RETURN =
-            T.let(
-              :swift_transfer_return,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Card Push Transfer Acceptance: details will be under the `card_push_transfer_acceptance` object.
-          CARD_PUSH_TRANSFER_ACCEPTANCE =
-            T.let(
-              :card_push_transfer_acceptance,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Account Revenue Payment: details will be under the `account_revenue_payment` object.
-          ACCOUNT_REVENUE_PAYMENT =
-            T.let(
-              :account_revenue_payment,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Blockchain On-Ramp Transfer Intention: details will be under the `blockchain_onramp_transfer_intention` object.
-          BLOCKCHAIN_ONRAMP_TRANSFER_INTENTION =
-            T.let(
-              :blockchain_onramp_transfer_intention,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT =
-            T.let(
-              :blockchain_offramp_transfer_settlement,
-              Increase::Transaction::Source::Category::TaggedSymbol
-            )
-
-          # The Transaction was made for an undocumented or deprecated reason.
-          OTHER =
-            T.let(:other, Increase::Transaction::Source::Category::TaggedSymbol)
-
-          sig do
-            override.returns(
-              T::Array[Increase::Transaction::Source::Category::TaggedSymbol]
-            )
-          end
-          def self.values
           end
         end
 

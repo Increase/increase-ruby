@@ -86,117 +86,6 @@ module Increase
       #   @param type [Symbol, Increase::Models::CardPayment::Type] A constant representing the object's type. For this resource it will always be `
 
       class Element < Increase::Internal::Type::BaseModel
-        # @!attribute card_authentication
-        #   A Card Authentication object. This field will be present in the JSON response if
-        #   and only if `category` is equal to `card_authentication`. Card Authentications
-        #   are attempts to authenticate a transaction or a card with 3DS.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardAuthentication, nil]
-        required :card_authentication, -> { Increase::CardPayment::Element::CardAuthentication }, nil?: true
-
-        # @!attribute card_authorization
-        #   A Card Authorization object. This field will be present in the JSON response if
-        #   and only if `category` is equal to `card_authorization`. Card Authorizations are
-        #   temporary holds placed on a customers funds with the intent to later clear a
-        #   transaction.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardAuthorization, nil]
-        required :card_authorization, -> { Increase::CardPayment::Element::CardAuthorization }, nil?: true
-
-        # @!attribute card_authorization_expiration
-        #   A Card Authorization Expiration object. This field will be present in the JSON
-        #   response if and only if `category` is equal to `card_authorization_expiration`.
-        #   Card Authorization Expirations are cancellations of authorizations that were
-        #   never settled by the acquirer.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardAuthorizationExpiration, nil]
-        required :card_authorization_expiration,
-                 -> { Increase::CardPayment::Element::CardAuthorizationExpiration },
-                 nil?: true
-
-        # @!attribute card_balance_inquiry
-        #   A Card Balance Inquiry object. This field will be present in the JSON response
-        #   if and only if `category` is equal to `card_balance_inquiry`. Card Balance
-        #   Inquiries are transactions that allow merchants to check the available balance
-        #   on a card without placing a hold on funds, commonly used when a customer
-        #   requests their balance at an ATM.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardBalanceInquiry, nil]
-        required :card_balance_inquiry, -> { Increase::CardPayment::Element::CardBalanceInquiry }, nil?: true
-
-        # @!attribute card_decline
-        #   A Card Decline object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_decline`.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardDecline, nil]
-        required :card_decline, -> { Increase::CardPayment::Element::CardDecline }, nil?: true
-
-        # @!attribute card_financial
-        #   A Card Financial object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_financial`. Card Financials are temporary
-        #   holds placed on a customers funds with the intent to later clear a transaction.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardFinancial, nil]
-        required :card_financial, -> { Increase::CardPayment::Element::CardFinancial }, nil?: true
-
-        # @!attribute card_fuel_confirmation
-        #   A Card Fuel Confirmation object. This field will be present in the JSON response
-        #   if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
-        #   Confirmations update the amount of a Card Authorization after a fuel pump
-        #   transaction is completed.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardFuelConfirmation, nil]
-        required :card_fuel_confirmation,
-                 -> {
-                   Increase::CardPayment::Element::CardFuelConfirmation
-                 },
-                 nil?: true
-
-        # @!attribute card_increment
-        #   A Card Increment object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_increment`. Card Increments increase the
-        #   pending amount of an authorized transaction.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardIncrement, nil]
-        required :card_increment, -> { Increase::CardPayment::Element::CardIncrement }, nil?: true
-
-        # @!attribute card_refund
-        #   A Card Refund object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_refund`. Card Refunds move money back to
-        #   the cardholder. While they are usually connected to a Card Settlement an
-        #   acquirer can also refund money directly to a card without relation to a
-        #   transaction.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardRefund, nil]
-        required :card_refund, -> { Increase::CardPayment::Element::CardRefund }, nil?: true
-
-        # @!attribute card_reversal
-        #   A Card Reversal object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_reversal`. Card Reversals cancel parts of
-        #   or the entirety of an existing Card Authorization.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardReversal, nil]
-        required :card_reversal, -> { Increase::CardPayment::Element::CardReversal }, nil?: true
-
-        # @!attribute card_settlement
-        #   A Card Settlement object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_settlement`. Card Settlements are card
-        #   transactions that have cleared and settled. While a settlement is usually
-        #   preceded by an authorization, an acquirer can also directly clear a transaction
-        #   without first authorizing it.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardSettlement, nil]
-        required :card_settlement, -> { Increase::CardPayment::Element::CardSettlement }, nil?: true
-
-        # @!attribute card_validation
-        #   An Inbound Card Validation object. This field will be present in the JSON
-        #   response if and only if `category` is equal to `card_validation`. Inbound Card
-        #   Validations are requests from a merchant to verify that a card number and
-        #   optionally its address and/or Card Verification Value are valid.
-        #
-        #   @return [Increase::Models::CardPayment::Element::CardValidation, nil]
-        required :card_validation, -> { Increase::CardPayment::Element::CardValidation }, nil?: true
-
         # @!attribute category
         #   The type of the resource. We may add additional possible values for this enum
         #   over time; your application should be able to handle such additions gracefully.
@@ -211,16 +100,131 @@ module Increase
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute card_authentication
+        #   A Card Authentication object. This field will be present in the JSON response if
+        #   and only if `category` is equal to `card_authentication`. Card Authentications
+        #   are attempts to authenticate a transaction or a card with 3DS.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardAuthentication, nil]
+        optional :card_authentication, -> { Increase::CardPayment::Element::CardAuthentication }, nil?: true
+
+        # @!attribute card_authorization
+        #   A Card Authorization object. This field will be present in the JSON response if
+        #   and only if `category` is equal to `card_authorization`. Card Authorizations are
+        #   temporary holds placed on a customers funds with the intent to later clear a
+        #   transaction.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardAuthorization, nil]
+        optional :card_authorization, -> { Increase::CardPayment::Element::CardAuthorization }, nil?: true
+
+        # @!attribute card_authorization_expiration
+        #   A Card Authorization Expiration object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `card_authorization_expiration`.
+        #   Card Authorization Expirations are cancellations of authorizations that were
+        #   never settled by the acquirer.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardAuthorizationExpiration, nil]
+        optional :card_authorization_expiration,
+                 -> { Increase::CardPayment::Element::CardAuthorizationExpiration },
+                 nil?: true
+
+        # @!attribute card_balance_inquiry
+        #   A Card Balance Inquiry object. This field will be present in the JSON response
+        #   if and only if `category` is equal to `card_balance_inquiry`. Card Balance
+        #   Inquiries are transactions that allow merchants to check the available balance
+        #   on a card without placing a hold on funds, commonly used when a customer
+        #   requests their balance at an ATM.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardBalanceInquiry, nil]
+        optional :card_balance_inquiry, -> { Increase::CardPayment::Element::CardBalanceInquiry }, nil?: true
+
+        # @!attribute card_decline
+        #   A Card Decline object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_decline`.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardDecline, nil]
+        optional :card_decline, -> { Increase::CardPayment::Element::CardDecline }, nil?: true
+
+        # @!attribute card_financial
+        #   A Card Financial object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_financial`. Card Financials are temporary
+        #   holds placed on a customers funds with the intent to later clear a transaction.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardFinancial, nil]
+        optional :card_financial, -> { Increase::CardPayment::Element::CardFinancial }, nil?: true
+
+        # @!attribute card_fuel_confirmation
+        #   A Card Fuel Confirmation object. This field will be present in the JSON response
+        #   if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
+        #   Confirmations update the amount of a Card Authorization after a fuel pump
+        #   transaction is completed.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardFuelConfirmation, nil]
+        optional :card_fuel_confirmation,
+                 -> {
+                   Increase::CardPayment::Element::CardFuelConfirmation
+                 },
+                 nil?: true
+
+        # @!attribute card_increment
+        #   A Card Increment object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_increment`. Card Increments increase the
+        #   pending amount of an authorized transaction.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardIncrement, nil]
+        optional :card_increment, -> { Increase::CardPayment::Element::CardIncrement }, nil?: true
+
+        # @!attribute card_refund
+        #   A Card Refund object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_refund`. Card Refunds move money back to
+        #   the cardholder. While they are usually connected to a Card Settlement an
+        #   acquirer can also refund money directly to a card without relation to a
+        #   transaction.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardRefund, nil]
+        optional :card_refund, -> { Increase::CardPayment::Element::CardRefund }, nil?: true
+
+        # @!attribute card_reversal
+        #   A Card Reversal object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_reversal`. Card Reversals cancel parts of
+        #   or the entirety of an existing Card Authorization.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardReversal, nil]
+        optional :card_reversal, -> { Increase::CardPayment::Element::CardReversal }, nil?: true
+
+        # @!attribute card_settlement
+        #   A Card Settlement object. This field will be present in the JSON response if and
+        #   only if `category` is equal to `card_settlement`. Card Settlements are card
+        #   transactions that have cleared and settled. While a settlement is usually
+        #   preceded by an authorization, an acquirer can also directly clear a transaction
+        #   without first authorizing it.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardSettlement, nil]
+        optional :card_settlement, -> { Increase::CardPayment::Element::CardSettlement }, nil?: true
+
+        # @!attribute card_validation
+        #   An Inbound Card Validation object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `card_validation`. Inbound Card
+        #   Validations are requests from a merchant to verify that a card number and
+        #   optionally its address and/or Card Verification Value are valid.
+        #
+        #   @return [Increase::Models::CardPayment::Element::CardValidation, nil]
+        optional :card_validation, -> { Increase::CardPayment::Element::CardValidation }, nil?: true
+
         # @!attribute other
         #   If the category of this Transaction source is equal to `other`, this field will
         #   contain an empty object, otherwise it will contain null.
         #
         #   @return [Increase::Models::CardPayment::Element::Other, nil]
-        required :other, -> { Increase::CardPayment::Element::Other }, nil?: true
+        optional :other, -> { Increase::CardPayment::Element::Other }, nil?: true
 
-        # @!method initialize(card_authentication:, card_authorization:, card_authorization_expiration:, card_balance_inquiry:, card_decline:, card_financial:, card_fuel_confirmation:, card_increment:, card_refund:, card_reversal:, card_settlement:, card_validation:, category:, created_at:, other:)
+        # @!method initialize(category:, created_at:, card_authentication: nil, card_authorization: nil, card_authorization_expiration: nil, card_balance_inquiry: nil, card_decline: nil, card_financial: nil, card_fuel_confirmation: nil, card_increment: nil, card_refund: nil, card_reversal: nil, card_settlement: nil, card_validation: nil, other: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CardPayment::Element} for more details.
+        #
+        #   @param category [Symbol, Increase::Models::CardPayment::Element::Category] The type of the resource. We may add additional possible values for this enum ov
+        #
+        #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
         #
         #   @param card_authentication [Increase::Models::CardPayment::Element::CardAuthentication, nil] A Card Authentication object. This field will be present in the JSON response if
         #
@@ -246,11 +250,57 @@ module Increase
         #
         #   @param card_validation [Increase::Models::CardPayment::Element::CardValidation, nil] An Inbound Card Validation object. This field will be present in the JSON respon
         #
-        #   @param category [Symbol, Increase::Models::CardPayment::Element::Category] The type of the resource. We may add additional possible values for this enum ov
-        #
-        #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
-        #
         #   @param other [Increase::Models::CardPayment::Element::Other, nil] If the category of this Transaction source is equal to `other`, this field will
+
+        # The type of the resource. We may add additional possible values for this enum
+        # over time; your application should be able to handle such additions gracefully.
+        #
+        # @see Increase::Models::CardPayment::Element#category
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # Card Authorization: details will be under the `card_authorization` object.
+          CARD_AUTHORIZATION = :card_authorization
+
+          # Card Authentication: details will be under the `card_authentication` object.
+          CARD_AUTHENTICATION = :card_authentication
+
+          # Card Balance Inquiry: details will be under the `card_balance_inquiry` object.
+          CARD_BALANCE_INQUIRY = :card_balance_inquiry
+
+          # Inbound Card Validation: details will be under the `card_validation` object.
+          CARD_VALIDATION = :card_validation
+
+          # Card Decline: details will be under the `card_decline` object.
+          CARD_DECLINE = :card_decline
+
+          # Card Reversal: details will be under the `card_reversal` object.
+          CARD_REVERSAL = :card_reversal
+
+          # Card Authorization Expiration: details will be under the `card_authorization_expiration` object.
+          CARD_AUTHORIZATION_EXPIRATION = :card_authorization_expiration
+
+          # Card Increment: details will be under the `card_increment` object.
+          CARD_INCREMENT = :card_increment
+
+          # Card Settlement: details will be under the `card_settlement` object.
+          CARD_SETTLEMENT = :card_settlement
+
+          # Card Refund: details will be under the `card_refund` object.
+          CARD_REFUND = :card_refund
+
+          # Card Fuel Confirmation: details will be under the `card_fuel_confirmation` object.
+          CARD_FUEL_CONFIRMATION = :card_fuel_confirmation
+
+          # Card Financial: details will be under the `card_financial` object.
+          CARD_FINANCIAL = :card_financial
+
+          # Unknown card payment element.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # @see Increase::Models::CardPayment::Element#card_authentication
         class CardAuthentication < Increase::Internal::Type::BaseModel
@@ -10524,56 +10574,6 @@ module Increase
               #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
             end
           end
-        end
-
-        # The type of the resource. We may add additional possible values for this enum
-        # over time; your application should be able to handle such additions gracefully.
-        #
-        # @see Increase::Models::CardPayment::Element#category
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # Card Authorization: details will be under the `card_authorization` object.
-          CARD_AUTHORIZATION = :card_authorization
-
-          # Card Authentication: details will be under the `card_authentication` object.
-          CARD_AUTHENTICATION = :card_authentication
-
-          # Card Balance Inquiry: details will be under the `card_balance_inquiry` object.
-          CARD_BALANCE_INQUIRY = :card_balance_inquiry
-
-          # Inbound Card Validation: details will be under the `card_validation` object.
-          CARD_VALIDATION = :card_validation
-
-          # Card Decline: details will be under the `card_decline` object.
-          CARD_DECLINE = :card_decline
-
-          # Card Reversal: details will be under the `card_reversal` object.
-          CARD_REVERSAL = :card_reversal
-
-          # Card Authorization Expiration: details will be under the `card_authorization_expiration` object.
-          CARD_AUTHORIZATION_EXPIRATION = :card_authorization_expiration
-
-          # Card Increment: details will be under the `card_increment` object.
-          CARD_INCREMENT = :card_increment
-
-          # Card Settlement: details will be under the `card_settlement` object.
-          CARD_SETTLEMENT = :card_settlement
-
-          # Card Refund: details will be under the `card_refund` object.
-          CARD_REFUND = :card_refund
-
-          # Card Fuel Confirmation: details will be under the `card_fuel_confirmation` object.
-          CARD_FUEL_CONFIRMATION = :card_fuel_confirmation
-
-          # Card Financial: details will be under the `card_financial` object.
-          CARD_FINANCIAL = :card_financial
-
-          # Unknown card payment element.
-          OTHER = :other
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::CardPayment::Element#other
