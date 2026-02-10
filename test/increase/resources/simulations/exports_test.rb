@@ -22,6 +22,7 @@ class Increase::Test::Resources::Simulations::ExportsTest < Increase::Test::Reso
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv | nil,
         entity_csv: Increase::Export::EntityCsv | nil,
+        fee_csv: Increase::Export::FeeCsv | nil,
         form_1099_int: Increase::Export::Form1099Int | nil,
         form_1099_misc: Increase::Export::Form1099Misc | nil,
         funding_instructions: Increase::Export::FundingInstructions | nil,

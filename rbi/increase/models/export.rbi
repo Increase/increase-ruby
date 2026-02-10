@@ -106,6 +106,14 @@ module Increase
       end
       attr_writer :entity_csv
 
+      # Details of the fee CSV export. This field will be present when the `category` is
+      # equal to `fee_csv`.
+      sig { returns(T.nilable(Increase::Export::FeeCsv)) }
+      attr_reader :fee_csv
+
+      sig { params(fee_csv: T.nilable(Increase::Export::FeeCsv::OrHash)).void }
+      attr_writer :fee_csv
+
       # Details of the Form 1099-INT export. This field will be present when the
       # `category` is equal to `form_1099_int`.
       sig { returns(T.nilable(Increase::Export::Form1099Int)) }
@@ -222,6 +230,7 @@ module Increase
           dashboard_table_csv:
             T.nilable(Increase::Export::DashboardTableCsv::OrHash),
           entity_csv: T.nilable(Increase::Export::EntityCsv::OrHash),
+          fee_csv: T.nilable(Increase::Export::FeeCsv::OrHash),
           form_1099_int: T.nilable(Increase::Export::Form1099Int::OrHash),
           form_1099_misc: T.nilable(Increase::Export::Form1099Misc::OrHash),
           funding_instructions:
@@ -264,6 +273,9 @@ module Increase
         # Details of the entity CSV export. This field will be present when the `category`
         # is equal to `entity_csv`.
         entity_csv:,
+        # Details of the fee CSV export. This field will be present when the `category` is
+        # equal to `fee_csv`.
+        fee_csv:,
         # Details of the Form 1099-INT export. This field will be present when the
         # `category` is equal to `form_1099_int`.
         form_1099_int:,
@@ -314,6 +326,7 @@ module Increase
             created_at: Time,
             dashboard_table_csv: T.nilable(Increase::Export::DashboardTableCsv),
             entity_csv: T.nilable(Increase::Export::EntityCsv),
+            fee_csv: T.nilable(Increase::Export::FeeCsv),
             form_1099_int: T.nilable(Increase::Export::Form1099Int),
             form_1099_misc: T.nilable(Increase::Export::Form1099Misc),
             funding_instructions:
@@ -792,6 +805,9 @@ module Increase
         FORM_1099_MISC =
           T.let(:form_1099_misc, Increase::Export::Category::TaggedSymbol)
 
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV = T.let(:fee_csv, Increase::Export::Category::TaggedSymbol)
+
         # A PDF of a voided check.
         VOIDED_CHECK =
           T.let(:voided_check, Increase::Export::Category::TaggedSymbol)
@@ -837,6 +853,88 @@ module Increase
 
         sig { override.returns({}) }
         def to_hash
+        end
+      end
+
+      class FeeCsv < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Export::FeeCsv, Increase::Internal::AnyHash)
+          end
+
+        # Filter fees by their created date. The time range must not include any fees that
+        # are part of an open fee statement.
+        sig { returns(T.nilable(Increase::Export::FeeCsv::CreatedAt)) }
+        attr_reader :created_at
+
+        sig do
+          params(
+            created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt::OrHash)
+          ).void
+        end
+        attr_writer :created_at
+
+        # Details of the fee CSV export. This field will be present when the `category` is
+        # equal to `fee_csv`.
+        sig do
+          params(
+            created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt::OrHash)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Filter fees by their created date. The time range must not include any fees that
+          # are part of an open fee statement.
+          created_at:
+        )
+        end
+
+        sig do
+          override.returns(
+            { created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt) }
+          )
+        end
+        def to_hash
+        end
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Export::FeeCsv::CreatedAt,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Filter fees created after this time.
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :after
+
+          # Filter fees created before this time.
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :before
+
+          # Filter fees by their created date. The time range must not include any fees that
+          # are part of an open fee statement.
+          sig do
+            params(after: T.nilable(Time), before: T.nilable(Time)).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # Filter fees created after this time.
+            after:,
+            # Filter fees created before this time.
+            before:
+          )
+          end
+
+          sig do
+            override.returns(
+              { after: T.nilable(Time), before: T.nilable(Time) }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
