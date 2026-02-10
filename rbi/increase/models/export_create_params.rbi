@@ -136,6 +136,18 @@ module Increase
       end
       attr_writer :vendor_csv
 
+      # Options for the created export. Required if `category` is equal to
+      # `voided_check`.
+      sig { returns(T.nilable(Increase::ExportCreateParams::VoidedCheck)) }
+      attr_reader :voided_check
+
+      sig do
+        params(
+          voided_check: Increase::ExportCreateParams::VoidedCheck::OrHash
+        ).void
+      end
+      attr_writer :voided_check
+
       sig do
         params(
           category: Increase::ExportCreateParams::Category::OrSymbol,
@@ -153,6 +165,7 @@ module Increase
             Increase::ExportCreateParams::FundingInstructions::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
           vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash,
+          voided_check: Increase::ExportCreateParams::VoidedCheck::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -184,6 +197,9 @@ module Increase
         transaction_csv: nil,
         # Options for the created export. Required if `category` is equal to `vendor_csv`.
         vendor_csv: nil,
+        # Options for the created export. Required if `category` is equal to
+        # `voided_check`.
+        voided_check: nil,
         request_options: {}
       )
       end
@@ -206,6 +222,7 @@ module Increase
               Increase::ExportCreateParams::FundingInstructions,
             transaction_csv: Increase::ExportCreateParams::TransactionCsv,
             vendor_csv: Increase::ExportCreateParams::VendorCsv,
+            voided_check: Increase::ExportCreateParams::VoidedCheck,
             request_options: Increase::RequestOptions
           }
         )
@@ -281,6 +298,13 @@ module Increase
         FUNDING_INSTRUCTIONS =
           T.let(
             :funding_instructions,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # A PDF of a voided check.
+        VOIDED_CHECK =
+          T.let(
+            :voided_check,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
@@ -1035,6 +1059,91 @@ module Increase
 
         sig { override.returns({}) }
         def to_hash
+        end
+      end
+
+      class VoidedCheck < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::VoidedCheck,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The Account Number for the voided check.
+        sig { returns(String) }
+        attr_accessor :account_number_id
+
+        # The payer information to be printed on the check.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Increase::ExportCreateParams::VoidedCheck::Payer]
+            )
+          )
+        end
+        attr_reader :payer
+
+        sig do
+          params(
+            payer:
+              T::Array[Increase::ExportCreateParams::VoidedCheck::Payer::OrHash]
+          ).void
+        end
+        attr_writer :payer
+
+        # Options for the created export. Required if `category` is equal to
+        # `voided_check`.
+        sig do
+          params(
+            account_number_id: String,
+            payer:
+              T::Array[Increase::ExportCreateParams::VoidedCheck::Payer::OrHash]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The Account Number for the voided check.
+          account_number_id:,
+          # The payer information to be printed on the check.
+          payer: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              account_number_id: String,
+              payer: T::Array[Increase::ExportCreateParams::VoidedCheck::Payer]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Payer < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::VoidedCheck::Payer,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :line
+
+          sig { params(line: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            line:
+          )
+          end
+
+          sig { override.returns({ line: String }) }
+          def to_hash
+          end
         end
       end
     end

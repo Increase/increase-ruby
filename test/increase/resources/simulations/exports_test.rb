@@ -30,7 +30,8 @@ class Increase::Test::Resources::Simulations::ExportsTest < Increase::Test::Reso
         status: Increase::Export::Status,
         transaction_csv: Increase::Export::TransactionCsv | nil,
         type: Increase::Export::Type,
-        vendor_csv: Increase::Export::VendorCsv | nil
+        vendor_csv: Increase::Export::VendorCsv | nil,
+        voided_check: Increase::Export::VoidedCheck | nil
       }
     end
   end

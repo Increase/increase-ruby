@@ -137,7 +137,14 @@ module Increase
       #   @return [Increase::Models::Export::VendorCsv, nil]
       required :vendor_csv, -> { Increase::Export::VendorCsv }, nil?: true
 
-      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:)
+      # @!attribute voided_check
+      #   Details of the voided check export. This field will be present when the
+      #   `category` is equal to `voided_check`.
+      #
+      #   @return [Increase::Models::Export::VoidedCheck, nil]
+      required :voided_check, -> { Increase::Export::VoidedCheck }, nil?: true
+
+      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:, voided_check:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Export}
       #   for more details.
       #
@@ -184,6 +191,8 @@ module Increase
       #   @param type [Symbol, Increase::Models::Export::Type] A constant representing the object's type. For this resource it will always be `
       #
       #   @param vendor_csv [Increase::Models::Export::VendorCsv, nil] Details of the vendor CSV export. This field will be present when the `category`
+      #
+      #   @param voided_check [Increase::Models::Export::VoidedCheck, nil] Details of the voided check export. This field will be present when the `categor
 
       # @see Increase::Models::Export#account_statement_bai2
       class AccountStatementBai2 < Increase::Internal::Type::BaseModel
@@ -417,6 +426,9 @@ module Increase
         # A PDF of an Internal Revenue Service Form 1099-MISC.
         FORM_1099_MISC = :form_1099_misc
 
+        # A PDF of a voided check.
+        VOIDED_CHECK = :voided_check
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end
@@ -617,6 +629,40 @@ module Increase
         # @!method initialize
         #   Details of the vendor CSV export. This field will be present when the `category`
         #   is equal to `vendor_csv`.
+      end
+
+      # @see Increase::Models::Export#voided_check
+      class VoidedCheck < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The Account Number for the voided check.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!attribute payer
+        #   The payer information printed on the check.
+        #
+        #   @return [Array<Increase::Models::Export::VoidedCheck::Payer>]
+        required :payer, -> { Increase::Internal::Type::ArrayOf[Increase::Export::VoidedCheck::Payer] }
+
+        # @!method initialize(account_number_id:, payer:)
+        #   Details of the voided check export. This field will be present when the
+        #   `category` is equal to `voided_check`.
+        #
+        #   @param account_number_id [String] The Account Number for the voided check.
+        #
+        #   @param payer [Array<Increase::Models::Export::VoidedCheck::Payer>] The payer information printed on the check.
+
+        class Payer < Increase::Internal::Type::BaseModel
+          # @!attribute line
+          #   The contents of the line.
+          #
+          #   @return [String]
+          required :line, String
+
+          # @!method initialize(line:)
+          #   @param line [String] The contents of the line.
+        end
       end
     end
   end
