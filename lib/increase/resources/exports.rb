@@ -8,7 +8,7 @@ module Increase
       #
       # Create an Export
       #
-      # @overload create(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
+      # @overload create(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
       #
       # @param category [Symbol, Increase::Models::ExportCreateParams::Category] The type of Export to create.
       #
@@ -31,6 +31,8 @@ module Increase
       # `transaction\_
       #
       # @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv] Options for the created export. Required if `category` is equal to `vendor_csv`.
+      #
+      # @param voided_check [Increase::Models::ExportCreateParams::VoidedCheck] Options for the created export. Required if `category` is equal to `voided_check
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

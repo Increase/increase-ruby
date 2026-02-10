@@ -217,6 +217,13 @@ module Increase
             Increase::ExportListParams::Category::TaggedSymbol
           )
 
+        # A PDF of a voided check.
+        VOIDED_CHECK =
+          T.let(
+            :voided_check,
+            Increase::ExportListParams::Category::TaggedSymbol
+          )
+
         sig do
           override.returns(
             T::Array[Increase::ExportListParams::Category::TaggedSymbol]
