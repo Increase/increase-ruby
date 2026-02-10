@@ -13,6 +13,7 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
     assert_pattern do
       response => {
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
         amount: Integer,
@@ -57,6 +58,7 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
     assert_pattern do
       row => {
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
         amount: Integer,
@@ -98,6 +100,7 @@ class Increase::Test::Resources::InboundWireTransfersTest < Increase::Test::Reso
     assert_pattern do
       response => {
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
         amount: Integer,
