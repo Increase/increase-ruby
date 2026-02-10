@@ -3,6 +3,7 @@ module Increase
     type inbound_wire_transfer =
       {
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance?,
         account_id: String,
         account_number_id: String,
         amount: Integer,
@@ -30,6 +31,8 @@ module Increase
 
     class InboundWireTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor acceptance: Increase::InboundWireTransfer::Acceptance?
 
       attr_accessor account_id: String
 
@@ -79,6 +82,7 @@ module Increase
 
       def initialize: (
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance?,
         account_id: String,
         account_number_id: String,
         amount: Integer,
@@ -106,6 +110,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance?,
         account_id: String,
         account_number_id: String,
         amount: Integer,
@@ -130,6 +135,18 @@ module Increase
         unstructured_remittance_information: String?,
         wire_drawdown_request_id: String?
       }
+
+      type acceptance = { accepted_at: Time, transaction_id: String }
+
+      class Acceptance < Increase::Internal::Type::BaseModel
+        attr_accessor accepted_at: Time
+
+        attr_accessor transaction_id: String
+
+        def initialize: (accepted_at: Time, transaction_id: String) -> void
+
+        def to_hash: -> { accepted_at: Time, transaction_id: String }
+      end
 
       type reversal =
         {

@@ -12,6 +12,18 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # If the transfer is accepted, this will contain details of the acceptance.
+      sig { returns(T.nilable(Increase::InboundWireTransfer::Acceptance)) }
+      attr_reader :acceptance
+
+      sig do
+        params(
+          acceptance:
+            T.nilable(Increase::InboundWireTransfer::Acceptance::OrHash)
+        ).void
+      end
+      attr_writer :acceptance
+
       # The Account to which the transfer belongs.
       sig { returns(String) }
       attr_accessor :account_id
@@ -84,8 +96,7 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :instruction_identification
 
-      # Information about the reversal of the inbound wire transfer if it has been
-      # reversed.
+      # If the transfer is reversed, this will contain details of the reversal.
       sig { returns(T.nilable(Increase::InboundWireTransfer::Reversal)) }
       attr_reader :reversal
 
@@ -124,6 +135,8 @@ module Increase
       sig do
         params(
           id: String,
+          acceptance:
+            T.nilable(Increase::InboundWireTransfer::Acceptance::OrHash),
           account_id: String,
           account_number_id: String,
           amount: Integer,
@@ -152,6 +165,8 @@ module Increase
       def self.new(
         # The inbound wire transfer's identifier.
         id:,
+        # If the transfer is accepted, this will contain details of the acceptance.
+        acceptance:,
         # The Account to which the transfer belongs.
         account_id:,
         # The identifier of the Account Number to which this transfer was sent.
@@ -190,8 +205,7 @@ module Increase
         instructing_agent_routing_number:,
         # The sending bank's identifier for the wire transfer.
         instruction_identification:,
-        # Information about the reversal of the inbound wire transfer if it has been
-        # reversed.
+        # If the transfer is reversed, this will contain details of the reversal.
         reversal:,
         # The status of the transfer.
         status:,
@@ -213,6 +227,7 @@ module Increase
         override.returns(
           {
             id: String,
+            acceptance: T.nilable(Increase::InboundWireTransfer::Acceptance),
             account_id: String,
             account_number_id: String,
             amount: Integer,
@@ -242,6 +257,44 @@ module Increase
       def to_hash
       end
 
+      class Acceptance < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::InboundWireTransfer::Acceptance,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the transfer was accepted.
+        sig { returns(Time) }
+        attr_accessor :accepted_at
+
+        # The identifier of the transaction for the accepted transfer.
+        sig { returns(String) }
+        attr_accessor :transaction_id
+
+        # If the transfer is accepted, this will contain details of the acceptance.
+        sig do
+          params(accepted_at: Time, transaction_id: String).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the transfer was accepted.
+          accepted_at:,
+          # The identifier of the transaction for the accepted transfer.
+          transaction_id:
+        )
+        end
+
+        sig { override.returns({ accepted_at: Time, transaction_id: String }) }
+        def to_hash
+        end
+      end
+
       class Reversal < Increase::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -262,8 +315,7 @@ module Increase
         sig { returns(Time) }
         attr_accessor :reversed_at
 
-        # Information about the reversal of the inbound wire transfer if it has been
-        # reversed.
+        # If the transfer is reversed, this will contain details of the reversal.
         sig do
           params(
             reason: Increase::InboundWireTransfer::Reversal::Reason::OrSymbol,

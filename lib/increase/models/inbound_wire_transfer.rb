@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute acceptance
+      #   If the transfer is accepted, this will contain details of the acceptance.
+      #
+      #   @return [Increase::Models::InboundWireTransfer::Acceptance, nil]
+      required :acceptance, -> { Increase::InboundWireTransfer::Acceptance }, nil?: true
+
       # @!attribute account_id
       #   The Account to which the transfer belongs.
       #
@@ -117,8 +123,7 @@ module Increase
       required :instruction_identification, String, nil?: true
 
       # @!attribute reversal
-      #   Information about the reversal of the inbound wire transfer if it has been
-      #   reversed.
+      #   If the transfer is reversed, this will contain details of the reversal.
       #
       #   @return [Increase::Models::InboundWireTransfer::Reversal, nil]
       required :reversal, -> { Increase::InboundWireTransfer::Reversal }, nil?: true
@@ -156,7 +161,7 @@ module Increase
       #   @return [String, nil]
       required :wire_drawdown_request_id, String, nil?: true
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
+      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundWireTransfer} for more details.
       #
@@ -164,6 +169,8 @@ module Increase
       #   your account.
       #
       #   @param id [String] The inbound wire transfer's identifier.
+      #
+      #   @param acceptance [Increase::Models::InboundWireTransfer::Acceptance, nil] If the transfer is accepted, this will contain details of the acceptance.
       #
       #   @param account_id [String] The Account to which the transfer belongs.
       #
@@ -199,7 +206,7 @@ module Increase
       #
       #   @param instruction_identification [String, nil] The sending bank's identifier for the wire transfer.
       #
-      #   @param reversal [Increase::Models::InboundWireTransfer::Reversal, nil] Information about the reversal of the inbound wire transfer if it has been rever
+      #   @param reversal [Increase::Models::InboundWireTransfer::Reversal, nil] If the transfer is reversed, this will contain details of the reversal.
       #
       #   @param status [Symbol, Increase::Models::InboundWireTransfer::Status] The status of the transfer.
       #
@@ -210,6 +217,32 @@ module Increase
       #   @param unstructured_remittance_information [String, nil] A free-form message set by the sender.
       #
       #   @param wire_drawdown_request_id [String, nil] The wire drawdown request the inbound wire transfer is fulfilling.
+
+      # @see Increase::Models::InboundWireTransfer#acceptance
+      class Acceptance < Increase::Internal::Type::BaseModel
+        # @!attribute accepted_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the transfer was accepted.
+        #
+        #   @return [Time]
+        required :accepted_at, Time
+
+        # @!attribute transaction_id
+        #   The identifier of the transaction for the accepted transfer.
+        #
+        #   @return [String]
+        required :transaction_id, String
+
+        # @!method initialize(accepted_at:, transaction_id:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::InboundWireTransfer::Acceptance} for more details.
+        #
+        #   If the transfer is accepted, this will contain details of the acceptance.
+        #
+        #   @param accepted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #
+        #   @param transaction_id [String] The identifier of the transaction for the accepted transfer.
+      end
 
       # @see Increase::Models::InboundWireTransfer#reversal
       class Reversal < Increase::Internal::Type::BaseModel
@@ -230,8 +263,7 @@ module Increase
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::InboundWireTransfer::Reversal} for more details.
         #
-        #   Information about the reversal of the inbound wire transfer if it has been
-        #   reversed.
+        #   If the transfer is reversed, this will contain details of the reversal.
         #
         #   @param reason [Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason] The reason for the reversal.
         #
