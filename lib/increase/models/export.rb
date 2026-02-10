@@ -74,6 +74,13 @@ module Increase
       #   @return [Increase::Models::Export::EntityCsv, nil]
       required :entity_csv, -> { Increase::Export::EntityCsv }, nil?: true
 
+      # @!attribute fee_csv
+      #   Details of the fee CSV export. This field will be present when the `category` is
+      #   equal to `fee_csv`.
+      #
+      #   @return [Increase::Models::Export::FeeCsv, nil]
+      required :fee_csv, -> { Increase::Export::FeeCsv }, nil?: true
+
       # @!attribute form_1099_int
       #   Details of the Form 1099-INT export. This field will be present when the
       #   `category` is equal to `form_1099_int`.
@@ -144,7 +151,7 @@ module Increase
       #   @return [Increase::Models::Export::VoidedCheck, nil]
       required :voided_check, -> { Increase::Export::VoidedCheck }, nil?: true
 
-      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:, voided_check:)
+      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, fee_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:, voided_check:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Export}
       #   for more details.
       #
@@ -173,6 +180,8 @@ module Increase
       #   @param dashboard_table_csv [Increase::Models::Export::DashboardTableCsv, nil] Details of the dashboard table CSV export. This field will be present when the `
       #
       #   @param entity_csv [Increase::Models::Export::EntityCsv, nil] Details of the entity CSV export. This field will be present when the `category`
+      #
+      #   @param fee_csv [Increase::Models::Export::FeeCsv, nil] Details of the fee CSV export. This field will be present when the `category` is
       #
       #   @param form_1099_int [Increase::Models::Export::Form1099Int, nil] Details of the Form 1099-INT export. This field will be present when the `catego
       #
@@ -426,6 +435,9 @@ module Increase
         # A PDF of an Internal Revenue Service Form 1099-MISC.
         FORM_1099_MISC = :form_1099_misc
 
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV = :fee_csv
+
         # A PDF of a voided check.
         VOIDED_CHECK = :voided_check
 
@@ -445,6 +457,48 @@ module Increase
         # @!method initialize
         #   Details of the entity CSV export. This field will be present when the `category`
         #   is equal to `entity_csv`.
+      end
+
+      # @see Increase::Models::Export#fee_csv
+      class FeeCsv < Increase::Internal::Type::BaseModel
+        # @!attribute created_at
+        #   Filter fees by their created date. The time range must not include any fees that
+        #   are part of an open fee statement.
+        #
+        #   @return [Increase::Models::Export::FeeCsv::CreatedAt, nil]
+        required :created_at, -> { Increase::Export::FeeCsv::CreatedAt }, nil?: true
+
+        # @!method initialize(created_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Export::FeeCsv} for more details.
+        #
+        #   Details of the fee CSV export. This field will be present when the `category` is
+        #   equal to `fee_csv`.
+        #
+        #   @param created_at [Increase::Models::Export::FeeCsv::CreatedAt, nil] Filter fees by their created date. The time range must not include any fees that
+
+        # @see Increase::Models::Export::FeeCsv#created_at
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          # @!attribute after
+          #   Filter fees created after this time.
+          #
+          #   @return [Time, nil]
+          required :after, Time, nil?: true
+
+          # @!attribute before
+          #   Filter fees created before this time.
+          #
+          #   @return [Time, nil]
+          required :before, Time, nil?: true
+
+          # @!method initialize(after:, before:)
+          #   Filter fees by their created date. The time range must not include any fees that
+          #   are part of an open fee statement.
+          #
+          #   @param after [Time, nil] Filter fees created after this time.
+          #
+          #   @param before [Time, nil] Filter fees created before this time.
+        end
       end
 
       # @see Increase::Models::Export#form_1099_int
