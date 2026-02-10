@@ -12,6 +12,7 @@ module Increase
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
+        fee_csv: Increase::Export::FeeCsv?,
         :form_1099_int => Increase::Export::Form1099Int?,
         :form_1099_misc => Increase::Export::Form1099Misc?,
         funding_instructions: Increase::Export::FundingInstructions?,
@@ -45,6 +46,8 @@ module Increase
 
       attr_accessor entity_csv: Increase::Export::EntityCsv?
 
+      attr_accessor fee_csv: Increase::Export::FeeCsv?
+
       attr_accessor form_1099_int: Increase::Export::Form1099Int?
 
       attr_accessor form_1099_misc: Increase::Export::Form1099Misc?
@@ -76,6 +79,7 @@ module Increase
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
+        fee_csv: Increase::Export::FeeCsv?,
         form_1099_int: Increase::Export::Form1099Int?,
         form_1099_misc: Increase::Export::Form1099Misc?,
         funding_instructions: Increase::Export::FundingInstructions?,
@@ -99,6 +103,7 @@ module Increase
         created_at: Time,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
+        fee_csv: Increase::Export::FeeCsv?,
         :form_1099_int => Increase::Export::Form1099Int?,
         :form_1099_misc => Increase::Export::Form1099Misc?,
         funding_instructions: Increase::Export::FundingInstructions?,
@@ -262,6 +267,7 @@ module Increase
         | :funding_instructions
         | :form_1099_int
         | :form_1099_misc
+        | :fee_csv
         | :voided_check
 
       module Category
@@ -303,6 +309,9 @@ module Increase
         # A PDF of an Internal Revenue Service Form 1099-MISC.
         FORM_1099_MISC: :form_1099_misc
 
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV: :fee_csv
+
         # A PDF of a voided check.
         VOIDED_CHECK: :voided_check
 
@@ -323,6 +332,30 @@ module Increase
         def initialize: -> void
 
         def to_hash: -> {  }
+      end
+
+      type fee_csv = { created_at: Increase::Export::FeeCsv::CreatedAt? }
+
+      class FeeCsv < Increase::Internal::Type::BaseModel
+        attr_accessor created_at: Increase::Export::FeeCsv::CreatedAt?
+
+        def initialize: (
+          created_at: Increase::Export::FeeCsv::CreatedAt?
+        ) -> void
+
+        def to_hash: -> { created_at: Increase::Export::FeeCsv::CreatedAt? }
+
+        type created_at = { after: Time?, before: Time? }
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          attr_accessor after: Time?
+
+          attr_accessor before: Time?
+
+          def initialize: (after: Time?, before: Time?) -> void
+
+          def to_hash: -> { after: Time?, before: Time? }
+        end
       end
 
       type form1099_int =

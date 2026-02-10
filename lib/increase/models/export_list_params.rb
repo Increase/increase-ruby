@@ -117,6 +117,9 @@ module Increase
         # A PDF of an Internal Revenue Service Form 1099-MISC.
         FORM_1099_MISC = :form_1099_misc
 
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV = :fee_csv
+
         # A PDF of a voided check.
         VOIDED_CHECK = :voided_check
 

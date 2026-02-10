@@ -217,6 +217,10 @@ module Increase
             Increase::ExportListParams::Category::TaggedSymbol
           )
 
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV =
+          T.let(:fee_csv, Increase::ExportListParams::Category::TaggedSymbol)
+
         # A PDF of a voided check.
         VOIDED_CHECK =
           T.let(
