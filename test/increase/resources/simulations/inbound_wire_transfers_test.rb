@@ -17,6 +17,7 @@ class Increase::Test::Resources::Simulations::InboundWireTransfersTest < Increas
     assert_pattern do
       response => {
         id: String,
+        acceptance: Increase::InboundWireTransfer::Acceptance | nil,
         account_id: String,
         account_number_id: String,
         amount: Integer,
