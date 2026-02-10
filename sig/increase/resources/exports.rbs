@@ -12,6 +12,7 @@ module Increase
         ?funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         ?transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         ?vendor_csv: Increase::ExportCreateParams::VendorCsv,
+        ?voided_check: Increase::ExportCreateParams::VoidedCheck,
         ?request_options: Increase::request_opts
       ) -> Increase::Export
 

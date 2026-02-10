@@ -21,6 +21,7 @@ module Increase
             Increase::ExportCreateParams::FundingInstructions::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
           vendor_csv: Increase::ExportCreateParams::VendorCsv::OrHash,
+          voided_check: Increase::ExportCreateParams::VoidedCheck::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Export)
       end
@@ -52,6 +53,9 @@ module Increase
         transaction_csv: nil,
         # Options for the created export. Required if `category` is equal to `vendor_csv`.
         vendor_csv: nil,
+        # Options for the created export. Required if `category` is equal to
+        # `voided_check`.
+        voided_check: nil,
         request_options: {}
       )
       end

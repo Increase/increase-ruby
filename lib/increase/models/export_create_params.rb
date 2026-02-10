@@ -75,7 +75,14 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::VendorCsv, nil]
       optional :vendor_csv, -> { Increase::ExportCreateParams::VendorCsv }
 
-      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, request_options: {})
+      # @!attribute voided_check
+      #   Options for the created export. Required if `category` is equal to
+      #   `voided_check`.
+      #
+      #   @return [Increase::Models::ExportCreateParams::VoidedCheck, nil]
+      optional :voided_check, -> { Increase::ExportCreateParams::VoidedCheck }
+
+      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportCreateParams} for more details.
       #
@@ -100,6 +107,8 @@ module Increase
       #   `transaction\_
       #
       #   @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv] Options for the created export. Required if `category` is equal to `vendor_csv`.
+      #
+      #   @param voided_check [Increase::Models::ExportCreateParams::VoidedCheck] Options for the created export. Required if `category` is equal to `voided_check
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -133,6 +142,9 @@ module Increase
 
         # A PDF of funding instructions.
         FUNDING_INSTRUCTIONS = :funding_instructions
+
+        # A PDF of a voided check.
+        VOIDED_CHECK = :voided_check
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -496,6 +508,40 @@ module Increase
       class VendorCsv < Increase::Internal::Type::BaseModel
         # @!method initialize
         #   Options for the created export. Required if `category` is equal to `vendor_csv`.
+      end
+
+      class VoidedCheck < Increase::Internal::Type::BaseModel
+        # @!attribute account_number_id
+        #   The Account Number for the voided check.
+        #
+        #   @return [String]
+        required :account_number_id, String
+
+        # @!attribute payer
+        #   The payer information to be printed on the check.
+        #
+        #   @return [Array<Increase::Models::ExportCreateParams::VoidedCheck::Payer>, nil]
+        optional :payer,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::ExportCreateParams::VoidedCheck::Payer] }
+
+        # @!method initialize(account_number_id:, payer: nil)
+        #   Options for the created export. Required if `category` is equal to
+        #   `voided_check`.
+        #
+        #   @param account_number_id [String] The Account Number for the voided check.
+        #
+        #   @param payer [Array<Increase::Models::ExportCreateParams::VoidedCheck::Payer>] The payer information to be printed on the check.
+
+        class Payer < Increase::Internal::Type::BaseModel
+          # @!attribute line
+          #   The contents of the line.
+          #
+          #   @return [String]
+          required :line, String
+
+          # @!method initialize(line:)
+          #   @param line [String] The contents of the line.
+        end
       end
     end
   end

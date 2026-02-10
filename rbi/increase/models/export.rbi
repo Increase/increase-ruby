@@ -188,6 +188,18 @@ module Increase
       end
       attr_writer :vendor_csv
 
+      # Details of the voided check export. This field will be present when the
+      # `category` is equal to `voided_check`.
+      sig { returns(T.nilable(Increase::Export::VoidedCheck)) }
+      attr_reader :voided_check
+
+      sig do
+        params(
+          voided_check: T.nilable(Increase::Export::VoidedCheck::OrHash)
+        ).void
+      end
+      attr_writer :voided_check
+
       # Exports are generated files. Some exports can contain a lot of data, like a CSV
       # of your transactions. Others can be a single document, like a tax form. Since
       # they can take a while, they are generated asynchronously. We send a webhook when
@@ -219,7 +231,8 @@ module Increase
           status: Increase::Export::Status::OrSymbol,
           transaction_csv: T.nilable(Increase::Export::TransactionCsv::OrHash),
           type: Increase::Export::Type::OrSymbol,
-          vendor_csv: T.nilable(Increase::Export::VendorCsv::OrHash)
+          vendor_csv: T.nilable(Increase::Export::VendorCsv::OrHash),
+          voided_check: T.nilable(Increase::Export::VoidedCheck::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -277,7 +290,10 @@ module Increase
         type:,
         # Details of the vendor CSV export. This field will be present when the `category`
         # is equal to `vendor_csv`.
-        vendor_csv:
+        vendor_csv:,
+        # Details of the voided check export. This field will be present when the
+        # `category` is equal to `voided_check`.
+        voided_check:
       )
       end
 
@@ -307,7 +323,8 @@ module Increase
             status: Increase::Export::Status::TaggedSymbol,
             transaction_csv: T.nilable(Increase::Export::TransactionCsv),
             type: Increase::Export::Type::TaggedSymbol,
-            vendor_csv: T.nilable(Increase::Export::VendorCsv)
+            vendor_csv: T.nilable(Increase::Export::VendorCsv),
+            voided_check: T.nilable(Increase::Export::VoidedCheck)
           }
         )
       end
@@ -775,6 +792,10 @@ module Increase
         FORM_1099_MISC =
           T.let(:form_1099_misc, Increase::Export::Category::TaggedSymbol)
 
+        # A PDF of a voided check.
+        VOIDED_CHECK =
+          T.let(:voided_check, Increase::Export::Category::TaggedSymbol)
+
         sig do
           override.returns(T::Array[Increase::Export::Category::TaggedSymbol])
         end
@@ -1117,6 +1138,73 @@ module Increase
 
         sig { override.returns({}) }
         def to_hash
+        end
+      end
+
+      class VoidedCheck < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Export::VoidedCheck, Increase::Internal::AnyHash)
+          end
+
+        # The Account Number for the voided check.
+        sig { returns(String) }
+        attr_accessor :account_number_id
+
+        # The payer information printed on the check.
+        sig { returns(T::Array[Increase::Export::VoidedCheck::Payer]) }
+        attr_accessor :payer
+
+        # Details of the voided check export. This field will be present when the
+        # `category` is equal to `voided_check`.
+        sig do
+          params(
+            account_number_id: String,
+            payer: T::Array[Increase::Export::VoidedCheck::Payer::OrHash]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The Account Number for the voided check.
+          account_number_id:,
+          # The payer information printed on the check.
+          payer:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              account_number_id: String,
+              payer: T::Array[Increase::Export::VoidedCheck::Payer]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Payer < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Export::VoidedCheck::Payer,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :line
+
+          sig { params(line: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            line:
+          )
+          end
+
+          sig { override.returns({ line: String }) }
+          def to_hash
+          end
         end
       end
     end

@@ -117,6 +117,9 @@ module Increase
         # A PDF of an Internal Revenue Service Form 1099-MISC.
         FORM_1099_MISC = :form_1099_misc
 
+        # A PDF of a voided check.
+        VOIDED_CHECK = :voided_check
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end
