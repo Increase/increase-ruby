@@ -262,7 +262,7 @@ module Increase
         # @!attribute card_financial
         #   A Card Financial object. This field will be present in the JSON response if and
         #   only if `category` is equal to `card_financial`. Card Financials are temporary
-        #   holds placed on a customers funds with the intent to later clear a transaction.
+        #   holds placed on a customer's funds with the intent to later clear a transaction.
         #
         #   @return [Increase::Models::Transaction::Source::CardFinancial, nil]
         optional :card_financial, -> { Increase::Transaction::Source::CardFinancial }, nil?: true
@@ -281,7 +281,7 @@ module Increase
         # @!attribute card_refund
         #   A Card Refund object. This field will be present in the JSON response if and
         #   only if `category` is equal to `card_refund`. Card Refunds move money back to
-        #   the cardholder. While they are usually connected to a Card Settlement an
+        #   the cardholder. While they are usually connected to a Card Settlement, an
         #   acquirer can also refund money directly to a card without relation to a
         #   transaction.
         #
@@ -1644,7 +1644,7 @@ module Increase
           #
           #   A Card Financial object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_financial`. Card Financials are temporary
-          #   holds placed on a customers funds with the intent to later clear a transaction.
+          #   holds placed on a customer's funds with the intent to later clear a transaction.
           #
           #   @param id [String] The Card Financial identifier.
           #
@@ -2724,7 +2724,7 @@ module Increase
           required :currency, enum: -> { Increase::Transaction::Source::CardRefund::Currency }
 
           # @!attribute interchange
-          #   Interchange assessed as a part of this transaciton.
+          #   Interchange assessed as a part of this transaction.
           #
           #   @return [Increase::Models::Transaction::Source::CardRefund::Interchange, nil]
           required :interchange, -> { Increase::Transaction::Source::CardRefund::Interchange }, nil?: true
@@ -2821,7 +2821,7 @@ module Increase
           #
           #   A Card Refund object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_refund`. Card Refunds move money back to
-          #   the cardholder. While they are usually connected to a Card Settlement an
+          #   the cardholder. While they are usually connected to a Card Settlement, an
           #   acquirer can also refund money directly to a card without relation to a
           #   transaction.
           #
@@ -2835,7 +2835,7 @@ module Increase
           #
           #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
           #
-          #   @param interchange [Increase::Models::Transaction::Source::CardRefund::Interchange, nil] Interchange assessed as a part of this transaciton.
+          #   @param interchange [Increase::Models::Transaction::Source::CardRefund::Interchange, nil] Interchange assessed as a part of this transaction.
           #
           #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
           #
@@ -2947,7 +2947,7 @@ module Increase
             #   {Increase::Models::Transaction::Source::CardRefund::Interchange} for more
             #   details.
             #
-            #   Interchange assessed as a part of this transaciton.
+            #   Interchange assessed as a part of this transaction.
             #
             #   @param amount [String] The interchange amount given as a string containing a decimal number in major un
             #
@@ -4206,7 +4206,7 @@ module Increase
 
           # @!attribute surcharge
           #   Surcharge amount details, if applicable. The amount is positive if the surcharge
-          #   is added to to the overall transaction amount (surcharge), and negative if the
+          #   is added to the overall transaction amount (surcharge), and negative if the
           #   surcharge is deducted from the overall transaction amount (discount).
           #
           #   @return [Increase::Models::Transaction::Source::CardSettlement::Surcharge, nil]
@@ -5446,7 +5446,7 @@ module Increase
             #   details.
             #
             #   Surcharge amount details, if applicable. The amount is positive if the surcharge
-            #   is added to to the overall transaction amount (surcharge), and negative if the
+            #   is added to the overall transaction amount (surcharge), and negative if the
             #   surcharge is deducted from the overall transaction amount (discount).
             #
             #   @param amount [Integer] The surcharge amount in the minor unit of the transaction's settlement currency.

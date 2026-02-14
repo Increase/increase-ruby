@@ -37,7 +37,7 @@ module Increase
       attr_accessor :contact_website
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-      # the Card Dispute was created.
+      # the Digital Card Profile was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -110,7 +110,7 @@ module Increase
         # A website the user can visit to view and receive support for their card.
         contact_website:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-        # the Card Dispute was created.
+        # the Digital Card Profile was created.
         created_at:,
         # A description you can use to identify the Card Profile.
         description:,

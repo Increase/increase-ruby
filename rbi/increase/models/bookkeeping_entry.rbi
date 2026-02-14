@@ -25,7 +25,7 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The identifier for the Account the Entry belongs to.
+      # The identifier for the Entry Set the Entry belongs to.
       sig { returns(String) }
       attr_accessor :entry_set_id
 
@@ -57,7 +57,7 @@ module Increase
         amount:,
         # When the entry set was created.
         created_at:,
-        # The identifier for the Account the Entry belongs to.
+        # The identifier for the Entry Set the Entry belongs to.
         entry_set_id:,
         # A constant representing the object's type. For this resource it will always be
         # `bookkeeping_entry`.

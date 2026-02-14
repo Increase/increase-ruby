@@ -24,7 +24,7 @@ module Increase
       required :created_at, Time
 
       # @!attribute ending_balance
-      #   The Account's balance at the start of its statement period.
+      #   The Account's balance at the end of its statement period.
       #
       #   @return [Integer]
       required :ending_balance, Integer
@@ -82,7 +82,7 @@ module Increase
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
       #
-      #   @param ending_balance [Integer] The Account's balance at the start of its statement period.
+      #   @param ending_balance [Integer] The Account's balance at the end of its statement period.
       #
       #   @param file_id [String] The identifier of the File containing a PDF of the statement.
       #

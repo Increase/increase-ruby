@@ -22,7 +22,7 @@ module Increase
       sig { returns(Increase::BookkeepingBalanceLookup::Type::TaggedSymbol) }
       attr_accessor :type
 
-      # Represents a request to lookup the balance of an Bookkeeping Account at a given
+      # Represents a request to lookup the balance of a Bookkeeping Account at a given
       # point in time.
       sig do
         params(

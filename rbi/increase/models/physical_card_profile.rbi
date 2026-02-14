@@ -27,7 +27,7 @@ module Increase
       attr_accessor :contact_phone
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-      # the Card Dispute was created.
+      # the Physical Card Profile was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -100,7 +100,7 @@ module Increase
         # A phone number the user can contact to receive support for their card.
         contact_phone:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-        # the Card Dispute was created.
+        # the Physical Card Profile was created.
         created_at:,
         # The creator of this Physical Card Profile.
         creator:,

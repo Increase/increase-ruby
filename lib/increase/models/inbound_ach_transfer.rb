@@ -886,7 +886,7 @@ module Increase
         required :updated_account_number, String, nil?: true
 
         # @!attribute updated_routing_number
-        #   The new account number provided in the notification of change.
+        #   The new routing number provided in the notification of change.
         #
         #   @return [String, nil]
         required :updated_routing_number, String, nil?: true
@@ -897,7 +897,7 @@ module Increase
         #
         #   @param updated_account_number [String, nil] The new account number provided in the notification of change.
         #
-        #   @param updated_routing_number [String, nil] The new account number provided in the notification of change.
+        #   @param updated_routing_number [String, nil] The new routing number provided in the notification of change.
       end
 
       # @see Increase::Models::InboundACHTransfer#settlement

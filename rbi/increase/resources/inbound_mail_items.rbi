@@ -40,7 +40,7 @@ module Increase
       )
       end
 
-      # Action a Inbound Mail Item
+      # Action an Inbound Mail Item
       sig do
         params(
           inbound_mail_item_id: String,
