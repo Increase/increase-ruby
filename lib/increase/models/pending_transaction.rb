@@ -215,7 +215,7 @@ module Increase
         # @!attribute card_authorization
         #   A Card Authorization object. This field will be present in the JSON response if
         #   and only if `category` is equal to `card_authorization`. Card Authorizations are
-        #   temporary holds placed on a customers funds with the intent to later clear a
+        #   temporary holds placed on a customer's funds with the intent to later clear a
         #   transaction.
         #
         #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization, nil]
@@ -770,7 +770,7 @@ module Increase
           #
           #   A Card Authorization object. This field will be present in the JSON response if
           #   and only if `category` is equal to `card_authorization`. Card Authorizations are
-          #   temporary holds placed on a customers funds with the intent to later clear a
+          #   temporary holds placed on a customer's funds with the intent to later clear a
           #   transaction.
           #
           #   @param id [String] The Card Authorization identifier.

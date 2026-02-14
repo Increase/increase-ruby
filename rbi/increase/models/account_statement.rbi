@@ -21,7 +21,7 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The Account's balance at the start of its statement period.
+      # The Account's balance at the end of its statement period.
       sig { returns(Integer) }
       attr_accessor :ending_balance
 
@@ -82,7 +82,7 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
         # Statement was created.
         created_at:,
-        # The Account's balance at the start of its statement period.
+        # The Account's balance at the end of its statement period.
         ending_balance:,
         # The identifier of the File containing a PDF of the statement.
         file_id:,

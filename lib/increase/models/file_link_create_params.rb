@@ -15,7 +15,7 @@ module Increase
 
       # @!attribute expires_at
       #   The time at which the File Link will expire. The default is 1 hour from the time
-      #   of the request. The maxiumum is 1 day from the time of the request.
+      #   of the request. The maximum is 1 day from the time of the request.
       #
       #   @return [Time, nil]
       optional :expires_at, Time

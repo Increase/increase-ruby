@@ -2547,7 +2547,7 @@ module Increase
         attr_accessor :sender_reference
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-        # the transfer was submitted to card network.
+        # the transfer was submitted to the card network.
         sig { returns(Time) }
         attr_accessor :submitted_at
 
@@ -2573,7 +2573,7 @@ module Increase
           # A unique reference for the transfer.
           sender_reference:,
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-          # the transfer was submitted to card network.
+          # the transfer was submitted to the card network.
           submitted_at:,
           # A 6-digit trace number that identifies the transfer within a small window of
           # time.

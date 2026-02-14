@@ -28,7 +28,7 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::BookkeepingBalanceLookup} for more details.
       #
-      #   Represents a request to lookup the balance of an Bookkeeping Account at a given
+      #   Represents a request to lookup the balance of a Bookkeeping Account at a given
       #   point in time.
       #
       #   @param balance [Integer] The Bookkeeping Account's current balance, representing the sum of all Bookkeepi

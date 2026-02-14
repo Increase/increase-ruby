@@ -1485,7 +1485,7 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :updated_account_number
 
-        # The new account number provided in the notification of change.
+        # The new routing number provided in the notification of change.
         sig { returns(T.nilable(String)) }
         attr_accessor :updated_routing_number
 
@@ -1500,7 +1500,7 @@ module Increase
         def self.new(
           # The new account number provided in the notification of change.
           updated_account_number:,
-          # The new account number provided in the notification of change.
+          # The new routing number provided in the notification of change.
           updated_routing_number:
         )
         end
