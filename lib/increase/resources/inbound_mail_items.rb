@@ -55,7 +55,7 @@ module Increase
         )
       end
 
-      # Action a Inbound Mail Item
+      # Action an Inbound Mail Item
       #
       # @overload action(inbound_mail_item_id, checks:, request_options: {})
       #

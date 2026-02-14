@@ -18,7 +18,7 @@ module Increase
 
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-      #   the inbound wire drawdown requested was created.
+      #   the inbound wire drawdown request was created.
       #
       #   @return [Time]
       required :created_at, Time

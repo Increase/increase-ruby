@@ -149,7 +149,7 @@ module Increase
       required :individual_id, String, nil?: true
 
       # @!attribute individual_name
-      #   The name of the transfer recipient. This value is information and not verified
+      #   The name of the transfer recipient. This value is informational and not verified
       #   by the recipient's bank.
       #
       #   @return [String, nil]
@@ -300,7 +300,7 @@ module Increase
       #
       #   @param individual_id [String, nil] Your identifier for the transfer recipient.
       #
-      #   @param individual_name [String, nil] The name of the transfer recipient. This value is information and not verified b
+      #   @param individual_name [String, nil] The name of the transfer recipient. This value is informational and not verified
       #
       #   @param network [Symbol, Increase::Models::ACHTransfer::Network] The transfer's network.
       #
@@ -1371,7 +1371,7 @@ module Increase
 
         # @!attribute expected_funds_settlement_at
         #   When the transfer is expected to settle in the recipient's account. Credits may
-        #   be available sooner, at the receiving banks discretion. The FedACH schedule is
+        #   be available sooner, at the receiving bank's discretion. The FedACH schedule is
         #   published
         #   [here](https://www.frbservices.org/resources/resource-centers/same-day-ach/fedach-processing-schedule.html).
         #

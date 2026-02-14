@@ -1269,7 +1269,7 @@ module Increase
 
         # @!attribute submitted_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-        #   the transfer was submitted to card network.
+        #   the transfer was submitted to the card network.
         #
         #   @return [Time]
         required :submitted_at, Time

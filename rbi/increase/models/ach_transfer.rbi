@@ -152,7 +152,7 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :individual_id
 
-      # The name of the transfer recipient. This value is information and not verified
+      # The name of the transfer recipient. This value is informational and not verified
       # by the recipient's bank.
       sig { returns(T.nilable(String)) }
       attr_accessor :individual_name
@@ -358,7 +358,7 @@ module Increase
         inbound_funds_hold:,
         # Your identifier for the transfer recipient.
         individual_id:,
-        # The name of the transfer recipient. This value is information and not verified
+        # The name of the transfer recipient. This value is informational and not verified
         # by the recipient's bank.
         individual_name:,
         # The transfer's network.
@@ -2485,7 +2485,7 @@ module Increase
         attr_accessor :effective_date
 
         # When the transfer is expected to settle in the recipient's account. Credits may
-        # be available sooner, at the receiving banks discretion. The FedACH schedule is
+        # be available sooner, at the receiving bank's discretion. The FedACH schedule is
         # published
         # [here](https://www.frbservices.org/resources/resource-centers/same-day-ach/fedach-processing-schedule.html).
         sig { returns(Time) }
@@ -2543,7 +2543,7 @@ module Increase
           # settlement schedule) at the time the transfer was submitted.
           effective_date:,
           # When the transfer is expected to settle in the recipient's account. Credits may
-          # be available sooner, at the receiving banks discretion. The FedACH schedule is
+          # be available sooner, at the receiving bank's discretion. The FedACH schedule is
           # published
           # [here](https://www.frbservices.org/resources/resource-centers/same-day-ach/fedach-processing-schedule.html).
           expected_funds_settlement_at:,

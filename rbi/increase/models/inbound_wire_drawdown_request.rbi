@@ -20,7 +20,7 @@ module Increase
       attr_accessor :amount
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-      # the inbound wire drawdown requested was created.
+      # the inbound wire drawdown request was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -138,7 +138,7 @@ module Increase
         # The amount being requested in cents.
         amount:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
-        # the inbound wire drawdown requested was created.
+        # the inbound wire drawdown request was created.
         created_at:,
         # The creditor's account number.
         creditor_account_number:,

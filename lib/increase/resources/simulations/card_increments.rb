@@ -14,7 +14,7 @@ module Increase
         #
         # @param amount [Integer] The amount of the increment in minor units in the card authorization's currency.
         #
-        # @param card_payment_id [String] The identifier of the Card Payment to create a increment on.
+        # @param card_payment_id [String] The identifier of the Card Payment to create an increment on.
         #
         # @param event_subscription_id [String] The identifier of the Event Subscription to use. If provided, will override the
         #

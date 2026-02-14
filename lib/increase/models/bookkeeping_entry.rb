@@ -30,7 +30,7 @@ module Increase
       required :created_at, Time
 
       # @!attribute entry_set_id
-      #   The identifier for the Account the Entry belongs to.
+      #   The identifier for the Entry Set the Entry belongs to.
       #
       #   @return [String]
       required :entry_set_id, String
@@ -58,7 +58,7 @@ module Increase
       #
       #   @param created_at [Time] When the entry set was created.
       #
-      #   @param entry_set_id [String] The identifier for the Account the Entry belongs to.
+      #   @param entry_set_id [String] The identifier for the Entry Set the Entry belongs to.
       #
       #   @param type [Symbol, Increase::Models::BookkeepingEntry::Type] A constant representing the object's type. For this resource it will always be `
 

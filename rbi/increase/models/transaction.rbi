@@ -402,7 +402,7 @@ module Increase
 
         # A Card Financial object. This field will be present in the JSON response if and
         # only if `category` is equal to `card_financial`. Card Financials are temporary
-        # holds placed on a customers funds with the intent to later clear a transaction.
+        # holds placed on a customer's funds with the intent to later clear a transaction.
         sig { returns(T.nilable(Increase::Transaction::Source::CardFinancial)) }
         attr_reader :card_financial
 
@@ -437,7 +437,7 @@ module Increase
 
         # A Card Refund object. This field will be present in the JSON response if and
         # only if `category` is equal to `card_refund`. Card Refunds move money back to
-        # the cardholder. While they are usually connected to a Card Settlement an
+        # the cardholder. While they are usually connected to a Card Settlement, an
         # acquirer can also refund money directly to a card without relation to a
         # transaction.
         sig { returns(T.nilable(Increase::Transaction::Source::CardRefund)) }
@@ -1138,7 +1138,7 @@ module Increase
           card_dispute_loss: nil,
           # A Card Financial object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_financial`. Card Financials are temporary
-          # holds placed on a customers funds with the intent to later clear a transaction.
+          # holds placed on a customer's funds with the intent to later clear a transaction.
           card_financial: nil,
           # A Card Push Transfer Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_push_transfer_acceptance`.
@@ -1147,7 +1147,7 @@ module Increase
           card_push_transfer_acceptance: nil,
           # A Card Refund object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_refund`. Card Refunds move money back to
-          # the cardholder. While they are usually connected to a Card Settlement an
+          # the cardholder. While they are usually connected to a Card Settlement, an
           # acquirer can also refund money directly to a card without relation to a
           # transaction.
           card_refund: nil,
@@ -3205,7 +3205,7 @@ module Increase
 
           # A Card Financial object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_financial`. Card Financials are temporary
-          # holds placed on a customers funds with the intent to later clear a transaction.
+          # holds placed on a customer's funds with the intent to later clear a transaction.
           sig do
             params(
               id: String,
@@ -5419,7 +5419,7 @@ module Increase
           end
           attr_accessor :currency
 
-          # Interchange assessed as a part of this transaciton.
+          # Interchange assessed as a part of this transaction.
           sig do
             returns(
               T.nilable(Increase::Transaction::Source::CardRefund::Interchange)
@@ -5527,7 +5527,7 @@ module Increase
 
           # A Card Refund object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_refund`. Card Refunds move money back to
-          # the cardholder. While they are usually connected to a Card Settlement an
+          # the cardholder. While they are usually connected to a Card Settlement, an
           # acquirer can also refund money directly to a card without relation to a
           # transaction.
           sig do
@@ -5578,7 +5578,7 @@ module Increase
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
             # transaction's settlement currency.
             currency:,
-            # Interchange assessed as a part of this transaciton.
+            # Interchange assessed as a part of this transaction.
             interchange:,
             # The merchant identifier (commonly abbreviated as MID) of the merchant the card
             # is transacting with.
@@ -5800,7 +5800,7 @@ module Increase
             end
             attr_accessor :currency
 
-            # Interchange assessed as a part of this transaciton.
+            # Interchange assessed as a part of this transaction.
             sig do
               params(
                 amount: String,
@@ -7972,7 +7972,7 @@ module Increase
           attr_writer :purchase_details
 
           # Surcharge amount details, if applicable. The amount is positive if the surcharge
-          # is added to to the overall transaction amount (surcharge), and negative if the
+          # is added to the overall transaction amount (surcharge), and negative if the
           # surcharge is deducted from the overall transaction amount (discount).
           sig do
             returns(
@@ -8103,7 +8103,7 @@ module Increase
             # fields.
             purchase_details:,
             # Surcharge amount details, if applicable. The amount is positive if the surcharge
-            # is added to to the overall transaction amount (surcharge), and negative if the
+            # is added to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
             surcharge:,
             # The identifier of the Transaction associated with this Transaction.
@@ -10234,7 +10234,7 @@ module Increase
             attr_accessor :presentment_amount
 
             # Surcharge amount details, if applicable. The amount is positive if the surcharge
-            # is added to to the overall transaction amount (surcharge), and negative if the
+            # is added to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
             sig do
               params(amount: Integer, presentment_amount: Integer).returns(

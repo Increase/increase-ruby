@@ -142,7 +142,7 @@ module Increase
 
         # A Card Authorization object. This field will be present in the JSON response if
         # and only if `category` is equal to `card_authorization`. Card Authorizations are
-        # temporary holds placed on a customers funds with the intent to later clear a
+        # temporary holds placed on a customer's funds with the intent to later clear a
         # transaction.
         sig do
           returns(T.nilable(Increase::CardPayment::Element::CardAuthorization))
@@ -217,7 +217,7 @@ module Increase
 
         # A Card Financial object. This field will be present in the JSON response if and
         # only if `category` is equal to `card_financial`. Card Financials are temporary
-        # holds placed on a customers funds with the intent to later clear a transaction.
+        # holds placed on a customer's funds with the intent to later clear a transaction.
         sig do
           returns(T.nilable(Increase::CardPayment::Element::CardFinancial))
         end
@@ -270,7 +270,7 @@ module Increase
 
         # A Card Refund object. This field will be present in the JSON response if and
         # only if `category` is equal to `card_refund`. Card Refunds move money back to
-        # the cardholder. While they are usually connected to a Card Settlement an
+        # the cardholder. While they are usually connected to a Card Settlement, an
         # acquirer can also refund money directly to a card without relation to a
         # transaction.
         sig { returns(T.nilable(Increase::CardPayment::Element::CardRefund)) }
@@ -399,7 +399,7 @@ module Increase
           card_authentication: nil,
           # A Card Authorization object. This field will be present in the JSON response if
           # and only if `category` is equal to `card_authorization`. Card Authorizations are
-          # temporary holds placed on a customers funds with the intent to later clear a
+          # temporary holds placed on a customer's funds with the intent to later clear a
           # transaction.
           card_authorization: nil,
           # A Card Authorization Expiration object. This field will be present in the JSON
@@ -418,7 +418,7 @@ module Increase
           card_decline: nil,
           # A Card Financial object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_financial`. Card Financials are temporary
-          # holds placed on a customers funds with the intent to later clear a transaction.
+          # holds placed on a customer's funds with the intent to later clear a transaction.
           card_financial: nil,
           # A Card Fuel Confirmation object. This field will be present in the JSON response
           # if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
@@ -431,7 +431,7 @@ module Increase
           card_increment: nil,
           # A Card Refund object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_refund`. Card Refunds move money back to
-          # the cardholder. While they are usually connected to a Card Settlement an
+          # the cardholder. While they are usually connected to a Card Settlement, an
           # acquirer can also refund money directly to a card without relation to a
           # transaction.
           card_refund: nil,
@@ -1554,7 +1554,7 @@ module Increase
 
           # A Card Authorization object. This field will be present in the JSON response if
           # and only if `category` is equal to `card_authorization`. Card Authorizations are
-          # temporary holds placed on a customers funds with the intent to later clear a
+          # temporary holds placed on a customer's funds with the intent to later clear a
           # transaction.
           sig do
             params(
@@ -8713,7 +8713,7 @@ module Increase
 
           # A Card Financial object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_financial`. Card Financials are temporary
-          # holds placed on a customers funds with the intent to later clear a transaction.
+          # holds placed on a customer's funds with the intent to later clear a transaction.
           sig do
             params(
               id: String,
@@ -12381,7 +12381,7 @@ module Increase
           end
           attr_accessor :currency
 
-          # Interchange assessed as a part of this transaciton.
+          # Interchange assessed as a part of this transaction.
           sig do
             returns(
               T.nilable(Increase::CardPayment::Element::CardRefund::Interchange)
@@ -12489,7 +12489,7 @@ module Increase
 
           # A Card Refund object. This field will be present in the JSON response if and
           # only if `category` is equal to `card_refund`. Card Refunds move money back to
-          # the cardholder. While they are usually connected to a Card Settlement an
+          # the cardholder. While they are usually connected to a Card Settlement, an
           # acquirer can also refund money directly to a card without relation to a
           # transaction.
           sig do
@@ -12540,7 +12540,7 @@ module Increase
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
             # transaction's settlement currency.
             currency:,
-            # Interchange assessed as a part of this transaciton.
+            # Interchange assessed as a part of this transaction.
             interchange:,
             # The merchant identifier (commonly abbreviated as MID) of the merchant the card
             # is transacting with.
@@ -12762,7 +12762,7 @@ module Increase
             end
             attr_accessor :currency
 
-            # Interchange assessed as a part of this transaciton.
+            # Interchange assessed as a part of this transaction.
             sig do
               params(
                 amount: String,
@@ -15311,7 +15311,7 @@ module Increase
           attr_writer :purchase_details
 
           # Surcharge amount details, if applicable. The amount is positive if the surcharge
-          # is added to to the overall transaction amount (surcharge), and negative if the
+          # is added to the overall transaction amount (surcharge), and negative if the
           # surcharge is deducted from the overall transaction amount (discount).
           sig do
             returns(
@@ -15442,7 +15442,7 @@ module Increase
             # fields.
             purchase_details:,
             # Surcharge amount details, if applicable. The amount is positive if the surcharge
-            # is added to to the overall transaction amount (surcharge), and negative if the
+            # is added to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
             surcharge:,
             # The identifier of the Transaction associated with this Transaction.
@@ -17573,7 +17573,7 @@ module Increase
             attr_accessor :presentment_amount
 
             # Surcharge amount details, if applicable. The amount is positive if the surcharge
-            # is added to to the overall transaction amount (surcharge), and negative if the
+            # is added to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
             sig do
               params(amount: Integer, presentment_amount: Integer).returns(
