@@ -50,9 +50,11 @@ module Increase
         # Simulates the submission of a [Check Deposit](#check-deposits) to the Federal
         # Reserve. This Check Deposit must first have a `status` of `pending`.
         #
-        # @overload submit(check_deposit_id, request_options: {})
+        # @overload submit(check_deposit_id, scan: nil, request_options: {})
         #
         # @param check_deposit_id [String] The identifier of the Check Deposit you wish to submit.
+        #
+        # @param scan [Increase::Models::Simulations::CheckDepositSubmitParams::Scan] If set, the simulation will use these values for the check's scanned MICR data.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -60,11 +62,13 @@ module Increase
         #
         # @see Increase::Models::Simulations::CheckDepositSubmitParams
         def submit(check_deposit_id, params = {})
+          parsed, options = Increase::Simulations::CheckDepositSubmitParams.dump_request(params)
           @client.request(
             method: :post,
             path: ["simulations/check_deposits/%1$s/submit", check_deposit_id],
+            body: parsed,
             model: Increase::CheckDeposit,
-            options: params[:request_options]
+            options: options
           )
         end
 
