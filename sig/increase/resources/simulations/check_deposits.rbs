@@ -14,6 +14,7 @@ module Increase
 
         def submit: (
           String check_deposit_id,
+          ?scan: Increase::Simulations::CheckDepositSubmitParams::Scan,
           ?request_options: Increase::request_opts
         ) -> Increase::CheckDeposit
 
