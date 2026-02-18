@@ -40,12 +40,15 @@ module Increase
         sig do
           params(
             check_deposit_id: String,
+            scan: Increase::Simulations::CheckDepositSubmitParams::Scan::OrHash,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::CheckDeposit)
         end
         def submit(
           # The identifier of the Check Deposit you wish to submit.
           check_deposit_id,
+          # If set, the simulation will use these values for the check's scanned MICR data.
+          scan: nil,
           request_options: {}
         )
         end

@@ -2,15 +2,57 @@ module Increase
   module Models
     module Simulations
       type check_deposit_submit_params =
-        {  } & Increase::Internal::Type::request_parameters
+        { scan: Increase::Simulations::CheckDepositSubmitParams::Scan }
+        & Increase::Internal::Type::request_parameters
 
       class CheckDepositSubmitParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Increase::request_opts) -> void
+        attr_reader scan: Increase::Simulations::CheckDepositSubmitParams::Scan?
 
-        def to_hash: -> { request_options: Increase::RequestOptions }
+        def scan=: (
+          Increase::Simulations::CheckDepositSubmitParams::Scan
+        ) -> Increase::Simulations::CheckDepositSubmitParams::Scan
+
+        def initialize: (
+          ?scan: Increase::Simulations::CheckDepositSubmitParams::Scan,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          scan: Increase::Simulations::CheckDepositSubmitParams::Scan,
+          request_options: Increase::RequestOptions
+        }
+
+        type scan =
+          {
+            account_number: String,
+            routing_number: String,
+            auxiliary_on_us: String
+          }
+
+        class Scan < Increase::Internal::Type::BaseModel
+          attr_accessor account_number: String
+
+          attr_accessor routing_number: String
+
+          attr_reader auxiliary_on_us: String?
+
+          def auxiliary_on_us=: (String) -> String
+
+          def initialize: (
+            account_number: String,
+            routing_number: String,
+            ?auxiliary_on_us: String
+          ) -> void
+
+          def to_hash: -> {
+            account_number: String,
+            routing_number: String,
+            auxiliary_on_us: String
+          }
+        end
       end
     end
   end
