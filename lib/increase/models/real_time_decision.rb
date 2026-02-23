@@ -1103,7 +1103,21 @@ module Increase
                      },
                      nil?: true
 
-            # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:)
+            # @!attribute terminal_entry_capability
+            #   The capability of the terminal being used to read the card. Shows whether a
+            #   terminal can e.g., accept chip cards or if it only supports magnetic stripe
+            #   reads. This reflects the highest capability of the terminal — for example, a
+            #   terminal that supports both chip and magnetic stripe will be identified as
+            #   chip-capable.
+            #
+            #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability, nil]
+            required :terminal_entry_capability,
+                     enum: -> {
+                       Increase::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability
+                     },
+                     nil?: true
+
+            # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa}
             #   for more details.
@@ -1115,6 +1129,8 @@ module Increase
             #   @param point_of_service_entry_mode [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
             #
             #   @param stand_in_processing_reason [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+            #
+            #   @param terminal_entry_capability [Symbol, Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
 
             # For electronic commerce transactions, this identifies the level of security used
             # in obtaining the customer's payment credential. For mail or telephone order
@@ -1223,6 +1239,44 @@ module Increase
 
               # An unspecific reason for stand-in processing.
               OTHER = :other
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The capability of the terminal being used to read the card. Shows whether a
+            # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+            # reads. This reflects the highest capability of the terminal — for example, a
+            # terminal that supports both chip and magnetic stripe will be identified as
+            # chip-capable.
+            #
+            # @see Increase::Models::RealTimeDecision::CardAuthorization::NetworkDetails::Visa#terminal_entry_capability
+            module TerminalEntryCapability
+              extend Increase::Internal::Type::Enum
+
+              # Unknown
+              UNKNOWN = :unknown
+
+              # No terminal was used for this transaction.
+              TERMINAL_NOT_USED = :terminal_not_used
+
+              # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+              MAGNETIC_STRIPE = :magnetic_stripe
+
+              # The terminal can only read barcodes.
+              BARCODE = :barcode
+
+              # The terminal can only read cards via Optical Character Recognition.
+              OPTICAL_CHARACTER_RECOGNITION = :optical_character_recognition
+
+              # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+              CHIP_OR_CONTACTLESS = :chip_or_contactless
+
+              # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+              CONTACTLESS_ONLY = :contactless_only
+
+              # The terminal has no card reading capability.
+              NO_CAPABILITY = :no_capability
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -2325,7 +2379,21 @@ module Increase
                      },
                      nil?: true
 
-            # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:)
+            # @!attribute terminal_entry_capability
+            #   The capability of the terminal being used to read the card. Shows whether a
+            #   terminal can e.g., accept chip cards or if it only supports magnetic stripe
+            #   reads. This reflects the highest capability of the terminal — for example, a
+            #   terminal that supports both chip and magnetic stripe will be identified as
+            #   chip-capable.
+            #
+            #   @return [Symbol, Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability, nil]
+            required :terminal_entry_capability,
+                     enum: -> {
+                       Increase::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability
+                     },
+                     nil?: true
+
+            # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa}
             #   for more details.
@@ -2337,6 +2405,8 @@ module Increase
             #   @param point_of_service_entry_mode [Symbol, Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
             #
             #   @param stand_in_processing_reason [Symbol, Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+            #
+            #   @param terminal_entry_capability [Symbol, Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
 
             # For electronic commerce transactions, this identifies the level of security used
             # in obtaining the customer's payment credential. For mail or telephone order
@@ -2445,6 +2515,44 @@ module Increase
 
               # An unspecific reason for stand-in processing.
               OTHER = :other
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The capability of the terminal being used to read the card. Shows whether a
+            # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+            # reads. This reflects the highest capability of the terminal — for example, a
+            # terminal that supports both chip and magnetic stripe will be identified as
+            # chip-capable.
+            #
+            # @see Increase::Models::RealTimeDecision::CardBalanceInquiry::NetworkDetails::Visa#terminal_entry_capability
+            module TerminalEntryCapability
+              extend Increase::Internal::Type::Enum
+
+              # Unknown
+              UNKNOWN = :unknown
+
+              # No terminal was used for this transaction.
+              TERMINAL_NOT_USED = :terminal_not_used
+
+              # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+              MAGNETIC_STRIPE = :magnetic_stripe
+
+              # The terminal can only read barcodes.
+              BARCODE = :barcode
+
+              # The terminal can only read cards via Optical Character Recognition.
+              OPTICAL_CHARACTER_RECOGNITION = :optical_character_recognition
+
+              # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+              CHIP_OR_CONTACTLESS = :chip_or_contactless
+
+              # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+              CONTACTLESS_ONLY = :contactless_only
+
+              # The terminal has no card reading capability.
+              NO_CAPABILITY = :no_capability
 
               # @!method self.values
               #   @return [Array<Symbol>]
