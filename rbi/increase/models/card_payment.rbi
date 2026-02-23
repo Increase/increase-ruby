@@ -2790,6 +2790,20 @@ module Increase
               end
               attr_accessor :stand_in_processing_reason
 
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :terminal_entry_capability
+
               # Fields specific to the `visa` network.
               sig do
                 params(
@@ -2804,6 +2818,10 @@ module Increase
                   stand_in_processing_reason:
                     T.nilable(
                       Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    ),
+                  terminal_entry_capability:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
                     )
                 ).returns(T.attached_class)
               end
@@ -2817,7 +2835,13 @@ module Increase
                 point_of_service_entry_mode:,
                 # Only present when `actioner: network`. Describes why a card authorization was
                 # approved or declined by Visa through stand-in processing.
-                stand_in_processing_reason:
+                stand_in_processing_reason:,
+                # The capability of the terminal being used to read the card. Shows whether a
+                # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+                # reads. This reflects the highest capability of the terminal — for example, a
+                # terminal that supports both chip and magnetic stripe will be identified as
+                # chip-capable.
+                terminal_entry_capability:
               )
               end
 
@@ -2835,6 +2859,10 @@ module Increase
                     stand_in_processing_reason:
                       T.nilable(
                         Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                      ),
+                    terminal_entry_capability:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                       )
                   }
                 )
@@ -3086,6 +3114,90 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              module TerminalEntryCapability
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Unknown
+                UNKNOWN =
+                  T.let(
+                    :unknown,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # No terminal was used for this transaction.
+                TERMINAL_NOT_USED =
+                  T.let(
+                    :terminal_not_used,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+                MAGNETIC_STRIPE =
+                  T.let(
+                    :magnetic_stripe,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read barcodes.
+                BARCODE =
+                  T.let(
+                    :barcode,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read cards via Optical Character Recognition.
+                OPTICAL_CHARACTER_RECOGNITION =
+                  T.let(
+                    :optical_character_recognition,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+                CHIP_OR_CONTACTLESS =
+                  T.let(
+                    :chip_or_contactless,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+                CONTACTLESS_ONLY =
+                  T.let(
+                    :contactless_only,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal has no card reading capability.
+                NO_CAPABILITY =
+                  T.let(
+                    :no_capability,
+                    Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                     ]
                   )
                 end
@@ -5163,6 +5275,20 @@ module Increase
               end
               attr_accessor :stand_in_processing_reason
 
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :terminal_entry_capability
+
               # Fields specific to the `visa` network.
               sig do
                 params(
@@ -5177,6 +5303,10 @@ module Increase
                   stand_in_processing_reason:
                     T.nilable(
                       Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    ),
+                  terminal_entry_capability:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
                     )
                 ).returns(T.attached_class)
               end
@@ -5190,7 +5320,13 @@ module Increase
                 point_of_service_entry_mode:,
                 # Only present when `actioner: network`. Describes why a card authorization was
                 # approved or declined by Visa through stand-in processing.
-                stand_in_processing_reason:
+                stand_in_processing_reason:,
+                # The capability of the terminal being used to read the card. Shows whether a
+                # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+                # reads. This reflects the highest capability of the terminal — for example, a
+                # terminal that supports both chip and magnetic stripe will be identified as
+                # chip-capable.
+                terminal_entry_capability:
               )
               end
 
@@ -5208,6 +5344,10 @@ module Increase
                     stand_in_processing_reason:
                       T.nilable(
                         Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                      ),
+                    terminal_entry_capability:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                       )
                   }
                 )
@@ -5459,6 +5599,90 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              module TerminalEntryCapability
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Unknown
+                UNKNOWN =
+                  T.let(
+                    :unknown,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # No terminal was used for this transaction.
+                TERMINAL_NOT_USED =
+                  T.let(
+                    :terminal_not_used,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+                MAGNETIC_STRIPE =
+                  T.let(
+                    :magnetic_stripe,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read barcodes.
+                BARCODE =
+                  T.let(
+                    :barcode,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read cards via Optical Character Recognition.
+                OPTICAL_CHARACTER_RECOGNITION =
+                  T.let(
+                    :optical_character_recognition,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+                CHIP_OR_CONTACTLESS =
+                  T.let(
+                    :chip_or_contactless,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+                CONTACTLESS_ONLY =
+                  T.let(
+                    :contactless_only,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal has no card reading capability.
+                NO_CAPABILITY =
+                  T.let(
+                    :no_capability,
+                    Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                     ]
                   )
                 end
@@ -7419,6 +7643,20 @@ module Increase
               end
               attr_accessor :stand_in_processing_reason
 
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :terminal_entry_capability
+
               # Fields specific to the `visa` network.
               sig do
                 params(
@@ -7433,6 +7671,10 @@ module Increase
                   stand_in_processing_reason:
                     T.nilable(
                       Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    ),
+                  terminal_entry_capability:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
                     )
                 ).returns(T.attached_class)
               end
@@ -7446,7 +7688,13 @@ module Increase
                 point_of_service_entry_mode:,
                 # Only present when `actioner: network`. Describes why a card authorization was
                 # approved or declined by Visa through stand-in processing.
-                stand_in_processing_reason:
+                stand_in_processing_reason:,
+                # The capability of the terminal being used to read the card. Shows whether a
+                # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+                # reads. This reflects the highest capability of the terminal — for example, a
+                # terminal that supports both chip and magnetic stripe will be identified as
+                # chip-capable.
+                terminal_entry_capability:
               )
               end
 
@@ -7464,6 +7712,10 @@ module Increase
                     stand_in_processing_reason:
                       T.nilable(
                         Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                      ),
+                    terminal_entry_capability:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                       )
                   }
                 )
@@ -7715,6 +7967,90 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              module TerminalEntryCapability
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Unknown
+                UNKNOWN =
+                  T.let(
+                    :unknown,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # No terminal was used for this transaction.
+                TERMINAL_NOT_USED =
+                  T.let(
+                    :terminal_not_used,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+                MAGNETIC_STRIPE =
+                  T.let(
+                    :magnetic_stripe,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read barcodes.
+                BARCODE =
+                  T.let(
+                    :barcode,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read cards via Optical Character Recognition.
+                OPTICAL_CHARACTER_RECOGNITION =
+                  T.let(
+                    :optical_character_recognition,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+                CHIP_OR_CONTACTLESS =
+                  T.let(
+                    :chip_or_contactless,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+                CONTACTLESS_ONLY =
+                  T.let(
+                    :contactless_only,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal has no card reading capability.
+                NO_CAPABILITY =
+                  T.let(
+                    :no_capability,
+                    Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                     ]
                   )
                 end
@@ -9943,6 +10279,20 @@ module Increase
               end
               attr_accessor :stand_in_processing_reason
 
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :terminal_entry_capability
+
               # Fields specific to the `visa` network.
               sig do
                 params(
@@ -9957,6 +10307,10 @@ module Increase
                   stand_in_processing_reason:
                     T.nilable(
                       Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    ),
+                  terminal_entry_capability:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
                     )
                 ).returns(T.attached_class)
               end
@@ -9970,7 +10324,13 @@ module Increase
                 point_of_service_entry_mode:,
                 # Only present when `actioner: network`. Describes why a card authorization was
                 # approved or declined by Visa through stand-in processing.
-                stand_in_processing_reason:
+                stand_in_processing_reason:,
+                # The capability of the terminal being used to read the card. Shows whether a
+                # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+                # reads. This reflects the highest capability of the terminal — for example, a
+                # terminal that supports both chip and magnetic stripe will be identified as
+                # chip-capable.
+                terminal_entry_capability:
               )
               end
 
@@ -9988,6 +10348,10 @@ module Increase
                     stand_in_processing_reason:
                       T.nilable(
                         Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                      ),
+                    terminal_entry_capability:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                       )
                   }
                 )
@@ -10239,6 +10603,90 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              module TerminalEntryCapability
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Unknown
+                UNKNOWN =
+                  T.let(
+                    :unknown,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # No terminal was used for this transaction.
+                TERMINAL_NOT_USED =
+                  T.let(
+                    :terminal_not_used,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+                MAGNETIC_STRIPE =
+                  T.let(
+                    :magnetic_stripe,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read barcodes.
+                BARCODE =
+                  T.let(
+                    :barcode,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read cards via Optical Character Recognition.
+                OPTICAL_CHARACTER_RECOGNITION =
+                  T.let(
+                    :optical_character_recognition,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+                CHIP_OR_CONTACTLESS =
+                  T.let(
+                    :chip_or_contactless,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+                CONTACTLESS_ONLY =
+                  T.let(
+                    :contactless_only,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal has no card reading capability.
+                NO_CAPABILITY =
+                  T.let(
+                    :no_capability,
+                    Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                     ]
                   )
                 end
@@ -18957,6 +19405,20 @@ module Increase
               end
               attr_accessor :stand_in_processing_reason
 
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :terminal_entry_capability
+
               # Fields specific to the `visa` network.
               sig do
                 params(
@@ -18971,6 +19433,10 @@ module Increase
                   stand_in_processing_reason:
                     T.nilable(
                       Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    ),
+                  terminal_entry_capability:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
                     )
                 ).returns(T.attached_class)
               end
@@ -18984,7 +19450,13 @@ module Increase
                 point_of_service_entry_mode:,
                 # Only present when `actioner: network`. Describes why a card authorization was
                 # approved or declined by Visa through stand-in processing.
-                stand_in_processing_reason:
+                stand_in_processing_reason:,
+                # The capability of the terminal being used to read the card. Shows whether a
+                # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+                # reads. This reflects the highest capability of the terminal — for example, a
+                # terminal that supports both chip and magnetic stripe will be identified as
+                # chip-capable.
+                terminal_entry_capability:
               )
               end
 
@@ -19002,6 +19474,10 @@ module Increase
                     stand_in_processing_reason:
                       T.nilable(
                         Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                      ),
+                    terminal_entry_capability:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                       )
                   }
                 )
@@ -19253,6 +19729,90 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              module TerminalEntryCapability
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Unknown
+                UNKNOWN =
+                  T.let(
+                    :unknown,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # No terminal was used for this transaction.
+                TERMINAL_NOT_USED =
+                  T.let(
+                    :terminal_not_used,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+                MAGNETIC_STRIPE =
+                  T.let(
+                    :magnetic_stripe,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read barcodes.
+                BARCODE =
+                  T.let(
+                    :barcode,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal can only read cards via Optical Character Recognition.
+                OPTICAL_CHARACTER_RECOGNITION =
+                  T.let(
+                    :optical_character_recognition,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+                CHIP_OR_CONTACTLESS =
+                  T.let(
+                    :chip_or_contactless,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+                CONTACTLESS_ONLY =
+                  T.let(
+                    :contactless_only,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                # The terminal has no card reading capability.
+                NO_CAPABILITY =
+                  T.let(
+                    :no_capability,
+                    Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                     ]
                   )
                 end
