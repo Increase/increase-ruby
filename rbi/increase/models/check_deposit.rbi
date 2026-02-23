@@ -575,6 +575,13 @@ module Increase
               Increase::CheckDeposit::DepositRejection::Reason::TaggedSymbol
             )
 
+          # The check is not a U.S. domestic check and cannot be processed.
+          INTERNATIONAL =
+            T.let(
+              :international,
+              Increase::CheckDeposit::DepositRejection::Reason::TaggedSymbol
+            )
+
           # The check was rejected for an unknown reason.
           UNKNOWN =
             T.let(
