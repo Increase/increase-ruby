@@ -361,6 +361,9 @@ module Increase
           # The check was rejected at the user's request.
           REQUESTED_BY_USER = :requested_by_user
 
+          # The check is not a U.S. domestic check and cannot be processed.
+          INTERNATIONAL = :international
+
           # The check was rejected for an unknown reason.
           UNKNOWN = :unknown
 
