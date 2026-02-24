@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Wire Drawdown Request
       #
-      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, request_options: {})
+      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
       #
       # @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
@@ -29,6 +29,8 @@ module Increase
       # @param debtor_external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
       # @param debtor_routing_number [String] The debtor's routing number.
+      #
+      # @param end_to_end_identification [String] A free-form reference string set by the sender mirrored back in the subsequent w
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -12,6 +12,7 @@ module Increase
         ?debtor_account_number: String,
         ?debtor_external_account_id: String,
         ?debtor_routing_number: String,
+        ?end_to_end_identification: String,
         ?request_options: Increase::request_opts
       ) -> Increase::WireDrawdownRequest
 

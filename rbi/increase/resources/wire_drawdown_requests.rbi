@@ -18,6 +18,7 @@ module Increase
           debtor_account_number: String,
           debtor_external_account_id: String,
           debtor_routing_number: String,
+          end_to_end_identification: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::WireDrawdownRequest)
       end
@@ -43,6 +44,9 @@ module Increase
         debtor_external_account_id: nil,
         # The debtor's routing number.
         debtor_routing_number: nil,
+        # A free-form reference string set by the sender mirrored back in the subsequent
+        # wire transfer.
+        end_to_end_identification: nil,
         request_options: {}
       )
       end

@@ -11,7 +11,8 @@ module Increase
         unstructured_remittance_information: String,
         debtor_account_number: String,
         debtor_external_account_id: String,
-        debtor_routing_number: String
+        debtor_routing_number: String,
+        end_to_end_identification: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -45,6 +46,10 @@ module Increase
 
       def debtor_routing_number=: (String) -> String
 
+      attr_reader end_to_end_identification: String?
+
+      def end_to_end_identification=: (String) -> String
+
       def initialize: (
         account_number_id: String,
         amount: Integer,
@@ -56,6 +61,7 @@ module Increase
         ?debtor_account_number: String,
         ?debtor_external_account_id: String,
         ?debtor_routing_number: String,
+        ?end_to_end_identification: String,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -70,6 +76,7 @@ module Increase
         debtor_account_number: String,
         debtor_external_account_id: String,
         debtor_routing_number: String,
+        end_to_end_identification: String,
         request_options: Increase::RequestOptions
       }
 
