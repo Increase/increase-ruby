@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.214.1 (2026-02-26)
+
+Full Changelog: [v1.214.0...v1.214.1](https://github.com/Increase/increase-ruby/compare/v1.214.0...v1.214.1)
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([3a0feb8](https://github.com/Increase/increase-ruby/commit/3a0feb8c07b9060f4d369c4a1ed9318cf0027b47))
+
 ## 1.214.0 (2026-02-24)
 
 Full Changelog: [v1.213.0...v1.214.0](https://github.com/Increase/increase-ruby/compare/v1.213.0...v1.214.0)
