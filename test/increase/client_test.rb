@@ -119,19 +119,21 @@ class IncreaseTest < Minitest::Test
   end
 
   def test_client_retry_after_date
+    time_now = Time.now
+
     stub_request(:post, "http://localhost/accounts").to_return_json(
       status: 500,
-      headers: {"retry-after" => (Time.now + 10).httpdate},
+      headers: {"retry-after" => (time_now + 10).httpdate},
       body: {"type" => "internal_server_error"}
     )
 
     increase = Increase::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
+    Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(Increase::Errors::InternalServerError) do
-      Thread.current.thread_variable_set(:time_now, Time.now)
       increase.accounts.create(name: "New Account!")
-      Thread.current.thread_variable_set(:time_now, nil)
     end
+    Thread.current.thread_variable_set(:time_now, nil)
 
     assert_requested(:any, /./, times: 2)
     assert_in_delta(10, Thread.current.thread_variable_get(:mock_sleep).last, 1.0)
