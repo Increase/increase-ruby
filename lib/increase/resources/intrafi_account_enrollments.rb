@@ -71,10 +71,11 @@ module Increase
       # @see Increase::Models::IntrafiAccountEnrollmentListParams
       def list(params = {})
         parsed, options = Increase::IntrafiAccountEnrollmentListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "intrafi_account_enrollments",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::IntrafiAccountEnrollment,
           options: options

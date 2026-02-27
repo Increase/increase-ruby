@@ -47,10 +47,11 @@ module Increase
       # @see Increase::Models::CardPaymentListParams
       def list(params = {})
         parsed, options = Increase::CardPaymentListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "card_payments",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::CardPayment,
           options: options

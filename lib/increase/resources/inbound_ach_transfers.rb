@@ -49,10 +49,11 @@ module Increase
       # @see Increase::Models::InboundACHTransferListParams
       def list(params = {})
         parsed, options = Increase::InboundACHTransferListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "inbound_ach_transfers",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::InboundACHTransfer,
           options: options

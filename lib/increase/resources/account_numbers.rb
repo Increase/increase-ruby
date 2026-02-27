@@ -115,10 +115,11 @@ module Increase
       # @see Increase::Models::AccountNumberListParams
       def list(params = {})
         parsed, options = Increase::AccountNumberListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "account_numbers",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::AccountNumber,
           options: options

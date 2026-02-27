@@ -43,10 +43,11 @@ module Increase
       # @see Increase::Models::CardTokenListParams
       def list(params = {})
         parsed, options = Increase::CardTokenListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "card_tokens",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::CardToken,
           options: options

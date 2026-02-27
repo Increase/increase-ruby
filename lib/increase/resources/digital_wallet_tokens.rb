@@ -45,10 +45,11 @@ module Increase
       # @see Increase::Models::DigitalWalletTokenListParams
       def list(params = {})
         parsed, options = Increase::DigitalWalletTokenListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "digital_wallet_tokens",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::DigitalWalletToken,
           options: options

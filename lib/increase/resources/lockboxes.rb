@@ -101,10 +101,11 @@ module Increase
       # @see Increase::Models::LockboxListParams
       def list(params = {})
         parsed, options = Increase::LockboxListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "lockboxes",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::Lockbox,
           options: options

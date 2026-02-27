@@ -131,10 +131,11 @@ module Increase
       # @see Increase::Models::EntityListParams
       def list(params = {})
         parsed, options = Increase::EntityListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "entities",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::Entity,
           options: options

@@ -47,10 +47,11 @@ module Increase
       # @see Increase::Models::InboundCheckDepositListParams
       def list(params = {})
         parsed, options = Increase::InboundCheckDepositListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "inbound_check_deposits",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::InboundCheckDeposit,
           options: options

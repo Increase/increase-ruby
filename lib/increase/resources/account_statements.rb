@@ -45,10 +45,11 @@ module Increase
       # @see Increase::Models::AccountStatementListParams
       def list(params = {})
         parsed, options = Increase::AccountStatementListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "account_statements",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::AccountStatement,
           options: options

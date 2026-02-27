@@ -49,10 +49,11 @@ module Increase
       # @see Increase::Models::SupplementalDocumentListParams
       def list(params)
         parsed, options = Increase::SupplementalDocumentListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "entity_supplemental_documents",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::EntitySupplementalDocument,
           options: options

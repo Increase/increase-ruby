@@ -94,10 +94,11 @@ module Increase
       # @see Increase::Models::ACHPrenotificationListParams
       def list(params = {})
         parsed, options = Increase::ACHPrenotificationListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "ach_prenotifications",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::ACHPrenotification,
           options: options

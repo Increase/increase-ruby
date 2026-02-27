@@ -90,10 +90,11 @@ module Increase
       # @see Increase::Models::WireDrawdownRequestListParams
       def list(params = {})
         parsed, options = Increase::WireDrawdownRequestListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "wire_drawdown_requests",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::WireDrawdownRequest,
           options: options
