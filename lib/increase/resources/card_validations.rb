@@ -96,10 +96,11 @@ module Increase
       # @see Increase::Models::CardValidationListParams
       def list(params = {})
         parsed, options = Increase::CardValidationListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "card_validations",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::CardValidation,
           options: options

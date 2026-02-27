@@ -45,10 +45,11 @@ module Increase
       # @see Increase::Models::OAuthApplicationListParams
       def list(params = {})
         parsed, options = Increase::OAuthApplicationListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "oauth_applications",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::OAuthApplication,
           options: options

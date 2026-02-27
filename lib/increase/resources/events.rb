@@ -47,10 +47,11 @@ module Increase
       # @see Increase::Models::EventListParams
       def list(params = {})
         parsed, options = Increase::EventListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "events",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::Event,
           options: options

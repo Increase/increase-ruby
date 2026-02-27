@@ -100,10 +100,11 @@ module Increase
       # @see Increase::Models::ExportListParams
       def list(params = {})
         parsed, options = Increase::ExportListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "exports",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::Export,
           options: options

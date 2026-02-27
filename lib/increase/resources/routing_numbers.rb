@@ -26,10 +26,11 @@ module Increase
       # @see Increase::Models::RoutingNumberListParams
       def list(params)
         parsed, options = Increase::RoutingNumberListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "routing_numbers",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::Models::RoutingNumberListResponse,
           options: options

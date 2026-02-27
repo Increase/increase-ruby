@@ -45,10 +45,11 @@ module Increase
       # @see Increase::Models::InboundMailItemListParams
       def list(params = {})
         parsed, options = Increase::InboundMailItemListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "inbound_mail_items",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::InboundMailItem,
           options: options

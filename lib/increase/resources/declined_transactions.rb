@@ -49,10 +49,11 @@ module Increase
       # @see Increase::Models::DeclinedTransactionListParams
       def list(params = {})
         parsed, options = Increase::DeclinedTransactionListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "declined_transactions",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::DeclinedTransaction,
           options: options

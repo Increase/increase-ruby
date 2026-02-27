@@ -110,10 +110,11 @@ module Increase
       # @see Increase::Models::ExternalAccountListParams
       def list(params = {})
         parsed, options = Increase::ExternalAccountListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "external_accounts",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::ExternalAccount,
           options: options

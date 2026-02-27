@@ -47,10 +47,11 @@ module Increase
       # @see Increase::Models::InboundRealTimePaymentsTransferListParams
       def list(params = {})
         parsed, options = Increase::InboundRealTimePaymentsTransferListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "inbound_real_time_payments_transfers",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::InboundRealTimePaymentsTransfer,
           options: options

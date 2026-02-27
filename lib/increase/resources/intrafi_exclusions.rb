@@ -72,10 +72,11 @@ module Increase
       # @see Increase::Models::IntrafiExclusionListParams
       def list(params = {})
         parsed, options = Increase::IntrafiExclusionListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "intrafi_exclusions",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::IntrafiExclusion,
           options: options

@@ -84,10 +84,11 @@ module Increase
       # @see Increase::Models::PendingTransactionListParams
       def list(params = {})
         parsed, options = Increase::PendingTransactionListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "pending_transactions",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::PendingTransaction,
           options: options
