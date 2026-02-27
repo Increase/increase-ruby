@@ -80,10 +80,11 @@ module Increase
       # @see Increase::Models::CheckDepositListParams
       def list(params = {})
         parsed, options = Increase::CheckDepositListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "check_deposits",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::CheckDeposit,
           options: options

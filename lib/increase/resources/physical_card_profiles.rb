@@ -80,10 +80,11 @@ module Increase
       # @see Increase::Models::PhysicalCardProfileListParams
       def list(params = {})
         parsed, options = Increase::PhysicalCardProfileListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "physical_card_profiles",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::PhysicalCardProfile,
           options: options

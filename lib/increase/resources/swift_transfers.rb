@@ -98,10 +98,11 @@ module Increase
       # @see Increase::Models::SwiftTransferListParams
       def list(params = {})
         parsed, options = Increase::SwiftTransferListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "swift_transfers",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::SwiftTransfer,
           options: options

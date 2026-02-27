@@ -100,10 +100,11 @@ module Increase
       # @see Increase::Models::EventSubscriptionListParams
       def list(params = {})
         parsed, options = Increase::EventSubscriptionListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "event_subscriptions",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::EventSubscription,
           options: options

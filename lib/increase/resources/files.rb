@@ -79,10 +79,11 @@ module Increase
       # @see Increase::Models::FileListParams
       def list(params = {})
         parsed, options = Increase::FileListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "files",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::File,
           options: options

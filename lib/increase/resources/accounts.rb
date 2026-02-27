@@ -114,10 +114,11 @@ module Increase
       # @see Increase::Models::AccountListParams
       def list(params = {})
         parsed, options = Increase::AccountListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "accounts",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::Account,
           options: options
@@ -140,10 +141,11 @@ module Increase
       # @see Increase::Models::AccountBalanceParams
       def balance(account_id, params = {})
         parsed, options = Increase::AccountBalanceParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["accounts/%1$s/balance", account_id],
-          query: parsed,
+          query: query,
           model: Increase::BalanceLookup,
           options: options
         )

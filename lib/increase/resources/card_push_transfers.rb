@@ -106,10 +106,11 @@ module Increase
       # @see Increase::Models::CardPushTransferListParams
       def list(params = {})
         parsed, options = Increase::CardPushTransferListParams.dump_request(params)
+        query = Increase::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "card_push_transfers",
-          query: parsed,
+          query: query,
           page: Increase::Internal::Page,
           model: Increase::CardPushTransfer,
           options: options
