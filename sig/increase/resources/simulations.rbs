@@ -21,6 +21,8 @@ module Increase
 
       attr_reader card_refunds: Increase::Resources::Simulations::CardRefunds
 
+      attr_reader card_authentications: Increase::Resources::Simulations::CardAuthentications
+
       attr_reader card_disputes: Increase::Resources::Simulations::CardDisputes
 
       attr_reader physical_cards: Increase::Resources::Simulations::PhysicalCards
