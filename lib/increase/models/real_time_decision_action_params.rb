@@ -110,7 +110,14 @@ module Increase
         #   @return [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result]
         required :result, enum: -> { Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result }
 
-        # @!method initialize(result:)
+        # @!attribute success
+        #   If your application was able to deliver the one-time code, this contains
+        #   metadata about the delivery.
+        #
+        #   @return [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success, nil]
+        optional :success, -> { Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success }
+
+        # @!method initialize(result:, success: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge}
         #   for more details.
@@ -119,6 +126,8 @@ module Increase
         #   this object contains your response.
         #
         #   @param result [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result] Whether the card authentication challenge was successfully delivered to the card
+        #
+        #   @param success [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success] If your application was able to deliver the one-time code, this contains metadat
 
         # Whether the card authentication challenge was successfully delivered to the
         # cardholder.
@@ -135,6 +144,34 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge#success
+        class Success < Increase::Internal::Type::BaseModel
+          # @!attribute email
+          #   The email address that was used to deliver the one-time code to the cardholder.
+          #
+          #   @return [String, nil]
+          optional :email, String
+
+          # @!attribute phone
+          #   The phone number that was used to deliver the one-time code to the cardholder
+          #   via SMS.
+          #
+          #   @return [String, nil]
+          optional :phone, String
+
+          # @!method initialize(email: nil, phone: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success}
+          #   for more details.
+          #
+          #   If your application was able to deliver the one-time code, this contains
+          #   metadata about the delivery.
+          #
+          #   @param email [String] The email address that was used to deliver the one-time code to the cardholder.
+          #
+          #   @param phone [String] The phone number that was used to deliver the one-time code to the cardholder vi
         end
       end
 

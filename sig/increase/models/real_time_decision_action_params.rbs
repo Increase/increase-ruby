@@ -107,18 +107,27 @@ module Increase
 
       type card_authentication_challenge =
         {
-          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result,
+          success: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
         }
 
       class CardAuthenticationChallenge < Increase::Internal::Type::BaseModel
         attr_accessor result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
 
+        attr_reader success: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success?
+
+        def success=: (
+          Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
+        ) -> Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
+
         def initialize: (
-          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result,
+          ?success: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
         ) -> void
 
         def to_hash: -> {
-          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result
+          result: Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result,
+          success: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
         }
 
         type result = :success | :failure
@@ -133,6 +142,22 @@ module Increase
           FAILURE: :failure
 
           def self?.values: -> ::Array[Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::result]
+        end
+
+        type success = { email: String, phone: String }
+
+        class Success < Increase::Internal::Type::BaseModel
+          attr_reader email: String?
+
+          def email=: (String) -> String
+
+          attr_reader phone: String?
+
+          def phone=: (String) -> String
+
+          def initialize: (?email: String, ?phone: String) -> void
+
+          def to_hash: -> { email: String, phone: String }
         end
       end
 

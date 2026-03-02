@@ -288,18 +288,42 @@ module Increase
         end
         attr_accessor :result
 
+        # If your application was able to deliver the one-time code, this contains
+        # metadata about the delivery.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
+            )
+          )
+        end
+        attr_reader :success
+
+        sig do
+          params(
+            success:
+              Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success::OrHash
+          ).void
+        end
+        attr_writer :success
+
         # If the Real-Time Decision relates to 3DS card authentication challenge delivery,
         # this object contains your response.
         sig do
           params(
             result:
-              Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result::OrSymbol
+              Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result::OrSymbol,
+            success:
+              Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           # Whether the card authentication challenge was successfully delivered to the
           # cardholder.
-          result:
+          result:,
+          # If your application was able to deliver the one-time code, this contains
+          # metadata about the delivery.
+          success: nil
         )
         end
 
@@ -307,7 +331,9 @@ module Increase
           override.returns(
             {
               result:
-                Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result::OrSymbol
+                Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result::OrSymbol,
+              success:
+                Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success
             }
           )
         end
@@ -350,6 +376,47 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+
+        class Success < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The email address that was used to deliver the one-time code to the cardholder.
+          sig { returns(T.nilable(String)) }
+          attr_reader :email
+
+          sig { params(email: String).void }
+          attr_writer :email
+
+          # The phone number that was used to deliver the one-time code to the cardholder
+          # via SMS.
+          sig { returns(T.nilable(String)) }
+          attr_reader :phone
+
+          sig { params(phone: String).void }
+          attr_writer :phone
+
+          # If your application was able to deliver the one-time code, this contains
+          # metadata about the delivery.
+          sig { params(email: String, phone: String).returns(T.attached_class) }
+          def self.new(
+            # The email address that was used to deliver the one-time code to the cardholder.
+            email: nil,
+            # The phone number that was used to deliver the one-time code to the cardholder
+            # via SMS.
+            phone: nil
+          )
+          end
+
+          sig { override.returns({ email: String, phone: String }) }
+          def to_hash
           end
         end
       end
