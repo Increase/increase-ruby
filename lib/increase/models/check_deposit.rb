@@ -42,6 +42,14 @@ module Increase
       #   @return [Increase::Models::CheckDeposit::DepositAcceptance, nil]
       required :deposit_acceptance, -> { Increase::CheckDeposit::DepositAcceptance }, nil?: true
 
+      # @!attribute deposit_adjustments
+      #   If the deposit or the return was adjusted by the receiving institution, this
+      #   will contain details of the adjustments.
+      #
+      #   @return [Array<Increase::Models::CheckDeposit::DepositAdjustment>]
+      required :deposit_adjustments,
+               -> { Increase::Internal::Type::ArrayOf[Increase::CheckDeposit::DepositAdjustment] }
+
       # @!attribute deposit_rejection
       #   If your deposit is rejected by Increase, this will contain details as to why it
       #   was rejected.
@@ -123,7 +131,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CheckDeposit::Type]
       required :type, enum: -> { Increase::CheckDeposit::Type }
 
-      # @!method initialize(id:, account_id:, amount:, back_image_file_id:, created_at:, deposit_acceptance:, deposit_rejection:, deposit_return:, deposit_submission:, description:, front_image_file_id:, idempotency_key:, inbound_funds_hold:, inbound_mail_item_id:, lockbox_id:, status:, transaction_id:, type:)
+      # @!method initialize(id:, account_id:, amount:, back_image_file_id:, created_at:, deposit_acceptance:, deposit_adjustments:, deposit_rejection:, deposit_return:, deposit_submission:, description:, front_image_file_id:, idempotency_key:, inbound_funds_hold:, inbound_mail_item_id:, lockbox_id:, status:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckDeposit} for more details.
       #
@@ -140,6 +148,8 @@ module Increase
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
       #   @param deposit_acceptance [Increase::Models::CheckDeposit::DepositAcceptance, nil] Once your deposit is successfully parsed and accepted by Increase, this will con
+      #
+      #   @param deposit_adjustments [Array<Increase::Models::CheckDeposit::DepositAdjustment>] If the deposit or the return was adjusted by the receiving institution, this wil
       #
       #   @param deposit_rejection [Increase::Models::CheckDeposit::DepositRejection, nil] If your deposit is rejected by Increase, this will contain details as to why it
       #
@@ -245,6 +255,66 @@ module Increase
 
           # US Dollar (USD)
           USD = :USD
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      class DepositAdjustment < Increase::Internal::Type::BaseModel
+        # @!attribute adjusted_at
+        #   The time at which the adjustment was received.
+        #
+        #   @return [Time]
+        required :adjusted_at, Time
+
+        # @!attribute amount
+        #   The amount of the adjustment.
+        #
+        #   @return [Integer]
+        required :amount, Integer
+
+        # @!attribute reason
+        #   The reason for the adjustment.
+        #
+        #   @return [Symbol, Increase::Models::CheckDeposit::DepositAdjustment::Reason]
+        required :reason, enum: -> { Increase::CheckDeposit::DepositAdjustment::Reason }
+
+        # @!attribute transaction_id
+        #   The id of the transaction for the adjustment.
+        #
+        #   @return [String]
+        required :transaction_id, String
+
+        # @!method initialize(adjusted_at:, amount:, reason:, transaction_id:)
+        #   @param adjusted_at [Time] The time at which the adjustment was received.
+        #
+        #   @param amount [Integer] The amount of the adjustment.
+        #
+        #   @param reason [Symbol, Increase::Models::CheckDeposit::DepositAdjustment::Reason] The reason for the adjustment.
+        #
+        #   @param transaction_id [String] The id of the transaction for the adjustment.
+
+        # The reason for the adjustment.
+        #
+        # @see Increase::Models::CheckDeposit::DepositAdjustment#reason
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
+          LATE_RETURN = :late_return
+
+          # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
+          WRONG_PAYEE_CREDIT = :wrong_payee_credit
+
+          # The check was deposited with a different amount than what was written on the check.
+          ADJUSTED_AMOUNT = :adjusted_amount
+
+          # The recipient was not able to process the check. This usually happens for e.g., low quality images.
+          NON_CONFORMING_ITEM = :non_conforming_item
+
+          # The check has already been deposited elsewhere and so this is a duplicate.
+          PAID = :paid
 
           # @!method self.values
           #   @return [Array<Symbol>]
