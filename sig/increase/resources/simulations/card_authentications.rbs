@@ -1,0 +1,32 @@
+module Increase
+  module Resources
+    class Simulations
+      class CardAuthentications
+        def create: (
+          card_id: String,
+          ?category: Increase::Models::Simulations::CardAuthenticationCreateParams::category,
+          ?device_channel: Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel,
+          ?merchant_acceptor_id: String,
+          ?merchant_category_code: String,
+          ?merchant_country: String,
+          ?merchant_name: String,
+          ?purchase_amount: Integer,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CardPayment
+
+        def challenge_attempts: (
+          String card_payment_id,
+          one_time_code: String,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CardPayment
+
+        def challenges: (
+          String card_payment_id,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CardPayment
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end
