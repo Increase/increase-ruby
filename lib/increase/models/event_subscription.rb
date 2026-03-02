@@ -40,15 +40,6 @@ module Increase
                -> { Increase::Internal::Type::ArrayOf[Increase::EventSubscription::SelectedEventCategory] },
                nil?: true
 
-      # @!attribute selected_event_category
-      #   If specified, this subscription will only receive webhooks for Events with the
-      #   specified `category`.
-      #
-      #   @return [Symbol, Increase::Models::EventSubscription::SelectedEventCategory, nil]
-      required :selected_event_category,
-               enum: -> { Increase::EventSubscription::SelectedEventCategory },
-               nil?: true
-
       # @!attribute status
       #   This indicates if we'll send notifications to this subscription.
       #
@@ -68,7 +59,7 @@ module Increase
       #   @return [String]
       required :url, String
 
-      # @!method initialize(id:, created_at:, idempotency_key:, oauth_connection_id:, selected_event_categories:, selected_event_category:, status:, type:, url:)
+      # @!method initialize(id:, created_at:, idempotency_key:, oauth_connection_id:, selected_event_categories:, status:, type:, url:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EventSubscription} for more details.
       #
@@ -88,8 +79,6 @@ module Increase
       #   @param oauth_connection_id [String, nil] If specified, this subscription will only receive webhooks for Events associated
       #
       #   @param selected_event_categories [Array<Increase::Models::EventSubscription::SelectedEventCategory>, nil] If specified, this subscription will only receive webhooks for Events with the s
-      #
-      #   @param selected_event_category [Symbol, Increase::Models::EventSubscription::SelectedEventCategory, nil] If specified, this subscription will only receive webhooks for Events with the s
       #
       #   @param status [Symbol, Increase::Models::EventSubscription::Status] This indicates if we'll send notifications to this subscription.
       #

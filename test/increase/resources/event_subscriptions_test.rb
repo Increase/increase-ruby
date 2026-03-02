@@ -17,7 +17,6 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
         selected_event_categories: ^(Increase::Internal::Type::ArrayOf[Increase::EventSubscription::SelectedEventCategory]) | nil,
-        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
         status: Increase::EventSubscription::Status,
         type: Increase::EventSubscription::Type,
         url: String
@@ -39,7 +38,6 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
         selected_event_categories: ^(Increase::Internal::Type::ArrayOf[Increase::EventSubscription::SelectedEventCategory]) | nil,
-        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
         status: Increase::EventSubscription::Status,
         type: Increase::EventSubscription::Type,
         url: String
@@ -61,7 +59,6 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
         selected_event_categories: ^(Increase::Internal::Type::ArrayOf[Increase::EventSubscription::SelectedEventCategory]) | nil,
-        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
         status: Increase::EventSubscription::Status,
         type: Increase::EventSubscription::Type,
         url: String
@@ -90,7 +87,6 @@ class Increase::Test::Resources::EventSubscriptionsTest < Increase::Test::Resour
         idempotency_key: String | nil,
         oauth_connection_id: String | nil,
         selected_event_categories: ^(Increase::Internal::Type::ArrayOf[Increase::EventSubscription::SelectedEventCategory]) | nil,
-        selected_event_category: Increase::EventSubscription::SelectedEventCategory | nil,
         status: Increase::EventSubscription::Status,
         type: Increase::EventSubscription::Type,
         url: String

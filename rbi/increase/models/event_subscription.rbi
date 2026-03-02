@@ -38,17 +38,6 @@ module Increase
       end
       attr_accessor :selected_event_categories
 
-      # If specified, this subscription will only receive webhooks for Events with the
-      # specified `category`.
-      sig do
-        returns(
-          T.nilable(
-            Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
-          )
-        )
-      end
-      attr_accessor :selected_event_category
-
       # This indicates if we'll send notifications to this subscription.
       sig { returns(Increase::EventSubscription::Status::TaggedSymbol) }
       attr_accessor :status
@@ -80,10 +69,6 @@ module Increase
                 Increase::EventSubscription::SelectedEventCategory::OrHash
               ]
             ),
-          selected_event_category:
-            T.nilable(
-              Increase::EventSubscription::SelectedEventCategory::OrSymbol
-            ),
           status: Increase::EventSubscription::Status::OrSymbol,
           type: Increase::EventSubscription::Type::OrSymbol,
           url: String
@@ -104,9 +89,6 @@ module Increase
         # If specified, this subscription will only receive webhooks for Events with the
         # specified `category`.
         selected_event_categories:,
-        # If specified, this subscription will only receive webhooks for Events with the
-        # specified `category`.
-        selected_event_category:,
         # This indicates if we'll send notifications to this subscription.
         status:,
         # A constant representing the object's type. For this resource it will always be
@@ -127,10 +109,6 @@ module Increase
             selected_event_categories:
               T.nilable(
                 T::Array[Increase::EventSubscription::SelectedEventCategory]
-              ),
-            selected_event_category:
-              T.nilable(
-                Increase::EventSubscription::SelectedEventCategory::TaggedSymbol
               ),
             status: Increase::EventSubscription::Status::TaggedSymbol,
             type: Increase::EventSubscription::Type::TaggedSymbol,
