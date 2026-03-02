@@ -9,6 +9,7 @@ module Increase
         amount: Integer,
         created_at: Time,
         created_by: Increase::FednowTransfer::CreatedBy?,
+        creditor_address: Increase::FednowTransfer::CreditorAddress?,
         creditor_name: String,
         currency: Increase::Models::FednowTransfer::currency,
         debtor_name: String,
@@ -40,6 +41,8 @@ module Increase
       attr_accessor created_at: Time
 
       attr_accessor created_by: Increase::FednowTransfer::CreatedBy?
+
+      attr_accessor creditor_address: Increase::FednowTransfer::CreditorAddress?
 
       attr_accessor creditor_name: String
 
@@ -79,6 +82,7 @@ module Increase
         amount: Integer,
         created_at: Time,
         created_by: Increase::FednowTransfer::CreatedBy?,
+        creditor_address: Increase::FednowTransfer::CreditorAddress?,
         creditor_name: String,
         currency: Increase::Models::FednowTransfer::currency,
         debtor_name: String,
@@ -104,6 +108,7 @@ module Increase
         amount: Integer,
         created_at: Time,
         created_by: Increase::FednowTransfer::CreatedBy?,
+        creditor_address: Increase::FednowTransfer::CreditorAddress?,
         creditor_name: String,
         currency: Increase::Models::FednowTransfer::currency,
         debtor_name: String,
@@ -208,6 +213,38 @@ module Increase
 
           def to_hash: -> { email: String }
         end
+      end
+
+      type creditor_address =
+        {
+          city: String?,
+          :line1 => String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          line1: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          :line1 => String?,
+          postal_code: String?,
+          state: String?
+        }
       end
 
       type currency = :USD

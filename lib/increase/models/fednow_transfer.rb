@@ -48,6 +48,12 @@ module Increase
       #   @return [Increase::Models::FednowTransfer::CreatedBy, nil]
       required :created_by, -> { Increase::FednowTransfer::CreatedBy }, nil?: true
 
+      # @!attribute creditor_address
+      #   The creditor's address.
+      #
+      #   @return [Increase::Models::FednowTransfer::CreditorAddress, nil]
+      required :creditor_address, -> { Increase::FednowTransfer::CreditorAddress }, nil?: true
+
       # @!attribute creditor_name
       #   The name of the transfer's recipient. This is set by the sender when creating
       #   the transfer.
@@ -149,7 +155,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_address:, creditor_name:, currency:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::FednowTransfer} for more details.
       #
@@ -169,6 +175,8 @@ module Increase
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
       #   @param created_by [Increase::Models::FednowTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
+      #
+      #   @param creditor_address [Increase::Models::FednowTransfer::CreditorAddress, nil] The creditor's address.
       #
       #   @param creditor_name [String] The name of the transfer's recipient. This is set by the sender when creating th
       #
@@ -312,6 +320,44 @@ module Increase
           #
           #   @param email [String] The email address of the User.
         end
+      end
+
+      # @see Increase::Models::FednowTransfer#creditor_address
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        # @!attribute city
+        #   The city, district, town, or village of the address.
+        #
+        #   @return [String, nil]
+        required :city, String, nil?: true
+
+        # @!attribute line1
+        #   The first line of the address.
+        #
+        #   @return [String, nil]
+        required :line1, String, nil?: true
+
+        # @!attribute postal_code
+        #   The ZIP code of the address.
+        #
+        #   @return [String, nil]
+        required :postal_code, String, nil?: true
+
+        # @!attribute state
+        #   The address state.
+        #
+        #   @return [String, nil]
+        required :state, String, nil?: true
+
+        # @!method initialize(city:, line1:, postal_code:, state:)
+        #   The creditor's address.
+        #
+        #   @param city [String, nil] The city, district, town, or village of the address.
+        #
+        #   @param line1 [String, nil] The first line of the address.
+        #
+        #   @param postal_code [String, nil] The ZIP code of the address.
+        #
+        #   @param state [String, nil] The address state.
       end
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
