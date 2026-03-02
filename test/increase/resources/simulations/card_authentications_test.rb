@@ -1,0 +1,78 @@
+# frozen_string_literal: true
+
+require_relative "../../test_helper"
+
+class Increase::Test::Resources::Simulations::CardAuthenticationsTest < Increase::Test::ResourceTest
+  def test_create_required_params
+    response = @increase.simulations.card_authentications.create(card_id: "card_oubs0hwk5rn6knuecxg2")
+
+    assert_pattern do
+      response => Increase::CardPayment
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        card_id: String,
+        created_at: Time,
+        digital_wallet_token_id: String | nil,
+        elements: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element]),
+        physical_card_id: String | nil,
+        scheme_fees: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::SchemeFee]),
+        state: Increase::CardPayment::State,
+        type: Increase::CardPayment::Type
+      }
+    end
+  end
+
+  def test_challenge_attempts_required_params
+    response =
+      @increase.simulations.card_authentications.challenge_attempts(
+        "card_payment_nd3k2kacrqjli8482ave",
+        one_time_code: "123456"
+      )
+
+    assert_pattern do
+      response => Increase::CardPayment
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        card_id: String,
+        created_at: Time,
+        digital_wallet_token_id: String | nil,
+        elements: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element]),
+        physical_card_id: String | nil,
+        scheme_fees: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::SchemeFee]),
+        state: Increase::CardPayment::State,
+        type: Increase::CardPayment::Type
+      }
+    end
+  end
+
+  def test_challenges
+    response = @increase.simulations.card_authentications.challenges("card_payment_nd3k2kacrqjli8482ave")
+
+    assert_pattern do
+      response => Increase::CardPayment
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        card_id: String,
+        created_at: Time,
+        digital_wallet_token_id: String | nil,
+        elements: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::Element]),
+        physical_card_id: String | nil,
+        scheme_fees: ^(Increase::Internal::Type::ArrayOf[Increase::CardPayment::SchemeFee]),
+        state: Increase::CardPayment::State,
+        type: Increase::CardPayment::Type
+      }
+    end
+  end
+end

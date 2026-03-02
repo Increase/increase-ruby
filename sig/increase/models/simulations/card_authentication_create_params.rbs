@@ -1,0 +1,112 @@
+module Increase
+  module Models
+    module Simulations
+      type card_authentication_create_params =
+        {
+          card_id: String,
+          category: Increase::Models::Simulations::CardAuthenticationCreateParams::category,
+          device_channel: Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_country: String,
+          merchant_name: String,
+          purchase_amount: Integer
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class CardAuthenticationCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor card_id: String
+
+        attr_reader category: Increase::Models::Simulations::CardAuthenticationCreateParams::category?
+
+        def category=: (
+          Increase::Models::Simulations::CardAuthenticationCreateParams::category
+        ) -> Increase::Models::Simulations::CardAuthenticationCreateParams::category
+
+        attr_reader device_channel: Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel?
+
+        def device_channel=: (
+          Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel
+        ) -> Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel
+
+        attr_reader merchant_acceptor_id: String?
+
+        def merchant_acceptor_id=: (String) -> String
+
+        attr_reader merchant_category_code: String?
+
+        def merchant_category_code=: (String) -> String
+
+        attr_reader merchant_country: String?
+
+        def merchant_country=: (String) -> String
+
+        attr_reader merchant_name: String?
+
+        def merchant_name=: (String) -> String
+
+        attr_reader purchase_amount: Integer?
+
+        def purchase_amount=: (Integer) -> Integer
+
+        def initialize: (
+          card_id: String,
+          ?category: Increase::Models::Simulations::CardAuthenticationCreateParams::category,
+          ?device_channel: Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel,
+          ?merchant_acceptor_id: String,
+          ?merchant_category_code: String,
+          ?merchant_country: String,
+          ?merchant_name: String,
+          ?purchase_amount: Integer,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          card_id: String,
+          category: Increase::Models::Simulations::CardAuthenticationCreateParams::category,
+          device_channel: Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_country: String,
+          merchant_name: String,
+          purchase_amount: Integer,
+          request_options: Increase::RequestOptions
+        }
+
+        type category = :payment_authentication | :non_payment_authentication
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The authentication attempt is for a payment.
+          PAYMENT_AUTHENTICATION: :payment_authentication
+
+          # The authentication attempt is not for a payment.
+          NON_PAYMENT_AUTHENTICATION: :non_payment_authentication
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthenticationCreateParams::category]
+        end
+
+        type device_channel = :app | :browser | :three_ds_requestor_initiated
+
+        module DeviceChannel
+          extend Increase::Internal::Type::Enum
+
+          # The authentication attempt was made from an app.
+          APP: :app
+
+          # The authentication attempt was made from a browser.
+          BROWSER: :browser
+
+          # The authentication attempt was initiated by the 3DS Requestor.
+          THREE_DS_REQUESTOR_INITIATED: :three_ds_requestor_initiated
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::CardAuthenticationCreateParams::device_channel]
+        end
+      end
+    end
+  end
+end

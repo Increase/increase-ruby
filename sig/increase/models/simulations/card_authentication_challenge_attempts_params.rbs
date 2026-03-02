@@ -1,0 +1,25 @@
+module Increase
+  module Models
+    module Simulations
+      type card_authentication_challenge_attempts_params =
+        { one_time_code: String } & Increase::Internal::Type::request_parameters
+
+      class CardAuthenticationChallengeAttemptsParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor one_time_code: String
+
+        def initialize: (
+          one_time_code: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          one_time_code: String,
+          request_options: Increase::RequestOptions
+        }
+      end
+    end
+  end
+end
