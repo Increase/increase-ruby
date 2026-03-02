@@ -53,6 +53,18 @@ module Increase
       end
       attr_writer :created_by
 
+      # The creditor's address.
+      sig { returns(T.nilable(Increase::FednowTransfer::CreditorAddress)) }
+      attr_reader :creditor_address
+
+      sig do
+        params(
+          creditor_address:
+            T.nilable(Increase::FednowTransfer::CreditorAddress::OrHash)
+        ).void
+      end
+      attr_writer :creditor_address
+
       # The name of the transfer's recipient. This is set by the sender when creating
       # the transfer.
       sig { returns(String) }
@@ -150,6 +162,8 @@ module Increase
           amount: Integer,
           created_at: Time,
           created_by: T.nilable(Increase::FednowTransfer::CreatedBy::OrHash),
+          creditor_address:
+            T.nilable(Increase::FednowTransfer::CreditorAddress::OrHash),
           creditor_name: String,
           currency: Increase::FednowTransfer::Currency::OrSymbol,
           debtor_name: String,
@@ -184,6 +198,8 @@ module Increase
         created_at:,
         # What object created the transfer, either via the API or the dashboard.
         created_by:,
+        # The creditor's address.
+        creditor_address:,
         # The name of the transfer's recipient. This is set by the sender when creating
         # the transfer.
         creditor_name:,
@@ -239,6 +255,8 @@ module Increase
             amount: Integer,
             created_at: Time,
             created_by: T.nilable(Increase::FednowTransfer::CreatedBy),
+            creditor_address:
+              T.nilable(Increase::FednowTransfer::CreditorAddress),
             creditor_name: String,
             currency: Increase::FednowTransfer::Currency::TaggedSymbol,
             debtor_name: String,
@@ -505,6 +523,66 @@ module Increase
           sig { override.returns({ email: String }) }
           def to_hash
           end
+        end
+      end
+
+      class CreditorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::FednowTransfer::CreditorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The city, district, town, or village of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # The first line of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line1
+
+        # The ZIP code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The address state.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The creditor's address.
+        sig do
+          params(
+            city: T.nilable(String),
+            line1: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city, district, town, or village of the address.
+          city:,
+          # The first line of the address.
+          line1:,
+          # The ZIP code of the address.
+          postal_code:,
+          # The address state.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: T.nilable(String),
+              line1: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
 
