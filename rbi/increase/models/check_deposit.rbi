@@ -42,6 +42,11 @@ module Increase
       end
       attr_writer :deposit_acceptance
 
+      # If the deposit or the return was adjusted by the receiving institution, this
+      # will contain details of the adjustments.
+      sig { returns(T::Array[Increase::CheckDeposit::DepositAdjustment]) }
+      attr_accessor :deposit_adjustments
+
       # If your deposit is rejected by Increase, this will contain details as to why it
       # was rejected.
       sig { returns(T.nilable(Increase::CheckDeposit::DepositRejection)) }
@@ -141,6 +146,8 @@ module Increase
           created_at: Time,
           deposit_acceptance:
             T.nilable(Increase::CheckDeposit::DepositAcceptance::OrHash),
+          deposit_adjustments:
+            T::Array[Increase::CheckDeposit::DepositAdjustment::OrHash],
           deposit_rejection:
             T.nilable(Increase::CheckDeposit::DepositRejection::OrHash),
           deposit_return:
@@ -174,6 +181,9 @@ module Increase
         # Once your deposit is successfully parsed and accepted by Increase, this will
         # contain details of the parsed check.
         deposit_acceptance:,
+        # If the deposit or the return was adjusted by the receiving institution, this
+        # will contain details of the adjustments.
+        deposit_adjustments:,
         # If your deposit is rejected by Increase, this will contain details as to why it
         # was rejected.
         deposit_rejection:,
@@ -220,6 +230,8 @@ module Increase
             created_at: Time,
             deposit_acceptance:
               T.nilable(Increase::CheckDeposit::DepositAcceptance),
+            deposit_adjustments:
+              T::Array[Increase::CheckDeposit::DepositAdjustment],
             deposit_rejection:
               T.nilable(Increase::CheckDeposit::DepositRejection),
             deposit_return: T.nilable(Increase::CheckDeposit::DepositReturn),
@@ -365,6 +377,126 @@ module Increase
             override.returns(
               T::Array[
                 Increase::CheckDeposit::DepositAcceptance::Currency::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      class DepositAdjustment < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CheckDeposit::DepositAdjustment,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The time at which the adjustment was received.
+        sig { returns(Time) }
+        attr_accessor :adjusted_at
+
+        # The amount of the adjustment.
+        sig { returns(Integer) }
+        attr_accessor :amount
+
+        # The reason for the adjustment.
+        sig do
+          returns(
+            Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
+          )
+        end
+        attr_accessor :reason
+
+        # The id of the transaction for the adjustment.
+        sig { returns(String) }
+        attr_accessor :transaction_id
+
+        sig do
+          params(
+            adjusted_at: Time,
+            amount: Integer,
+            reason: Increase::CheckDeposit::DepositAdjustment::Reason::OrSymbol,
+            transaction_id: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The time at which the adjustment was received.
+          adjusted_at:,
+          # The amount of the adjustment.
+          amount:,
+          # The reason for the adjustment.
+          reason:,
+          # The id of the transaction for the adjustment.
+          transaction_id:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              adjusted_at: Time,
+              amount: Integer,
+              reason:
+                Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol,
+              transaction_id: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The reason for the adjustment.
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::CheckDeposit::DepositAdjustment::Reason)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
+          LATE_RETURN =
+            T.let(
+              :late_return,
+              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
+            )
+
+          # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
+          WRONG_PAYEE_CREDIT =
+            T.let(
+              :wrong_payee_credit,
+              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
+            )
+
+          # The check was deposited with a different amount than what was written on the check.
+          ADJUSTED_AMOUNT =
+            T.let(
+              :adjusted_amount,
+              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
+            )
+
+          # The recipient was not able to process the check. This usually happens for e.g., low quality images.
+          NON_CONFORMING_ITEM =
+            T.let(
+              :non_conforming_item,
+              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
+            )
+
+          # The check has already been deposited elsewhere and so this is a duplicate.
+          PAID =
+            T.let(
+              :paid,
+              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
               ]
             )
           end
