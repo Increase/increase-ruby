@@ -8,8 +8,10 @@ module Increase
         params(
           url: String,
           oauth_connection_id: String,
-          selected_event_category:
-            Increase::EventSubscriptionCreateParams::SelectedEventCategory::OrSymbol,
+          selected_event_categories:
+            T::Array[
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::OrHash
+            ],
           shared_secret: String,
           status: Increase::EventSubscriptionCreateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
@@ -22,8 +24,9 @@ module Increase
         # with the specified OAuth Connection.
         oauth_connection_id: nil,
         # If specified, this subscription will only receive webhooks for Events with the
-        # specified `category`.
-        selected_event_category: nil,
+        # specified `category`. If specifying a Real-Time Decision event category, only
+        # one Event Category can be specified for the Event Subscription.
+        selected_event_categories: nil,
         # The key that will be used to sign webhooks. If no value is passed, a random
         # string will be used as default.
         shared_secret: nil,
