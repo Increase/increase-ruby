@@ -210,6 +210,13 @@ module Increase
         type card_authentication =
           {
             id: String,
+            billing_address_city: String?,
+            billing_address_country: String?,
+            :billing_address_line1 => String?,
+            :billing_address_line2 => String?,
+            :billing_address_line3 => String?,
+            billing_address_postal_code: String?,
+            billing_address_state: String?,
             card_id: String,
             card_payment_id: String,
             cardholder_email: String?,
@@ -232,6 +239,20 @@ module Increase
 
         class CardAuthentication < Increase::Internal::Type::BaseModel
           attr_accessor id: String
+
+          attr_accessor billing_address_city: String?
+
+          attr_accessor billing_address_country: String?
+
+          attr_accessor billing_address_line1: String?
+
+          attr_accessor billing_address_line2: String?
+
+          attr_accessor billing_address_line3: String?
+
+          attr_accessor billing_address_postal_code: String?
+
+          attr_accessor billing_address_state: String?
 
           attr_accessor card_id: String
 
@@ -271,6 +292,13 @@ module Increase
 
           def initialize: (
             id: String,
+            billing_address_city: String?,
+            billing_address_country: String?,
+            billing_address_line1: String?,
+            billing_address_line2: String?,
+            billing_address_line3: String?,
+            billing_address_postal_code: String?,
+            billing_address_state: String?,
             card_id: String,
             card_payment_id: String,
             cardholder_email: String?,
@@ -293,6 +321,13 @@ module Increase
 
           def to_hash: -> {
             id: String,
+            billing_address_city: String?,
+            billing_address_country: String?,
+            :billing_address_line1 => String?,
+            :billing_address_line2 => String?,
+            :billing_address_line3 => String?,
+            billing_address_postal_code: String?,
+            billing_address_state: String?,
             card_id: String,
             card_payment_id: String,
             cardholder_email: String?,
