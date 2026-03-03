@@ -225,7 +225,7 @@ module Increase
             challenge: Increase::CardPayment::Element::CardAuthentication::Challenge?,
             created_at: Time,
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
-            device_channel: Increase::Models::CardPayment::Element::CardAuthentication::device_channel?,
+            device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_country: String,
@@ -270,7 +270,7 @@ module Increase
 
           attr_accessor deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?
 
-          attr_accessor device_channel: Increase::Models::CardPayment::Element::CardAuthentication::device_channel?
+          attr_accessor device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel
 
           attr_accessor merchant_acceptor_id: String
 
@@ -307,7 +307,7 @@ module Increase
             challenge: Increase::CardPayment::Element::CardAuthentication::Challenge?,
             created_at: Time,
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
-            device_channel: Increase::Models::CardPayment::Element::CardAuthentication::device_channel?,
+            device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_country: String,
@@ -336,7 +336,7 @@ module Increase
             challenge: Increase::CardPayment::Element::CardAuthentication::Challenge?,
             created_at: Time,
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
-            device_channel: Increase::Models::CardPayment::Element::CardAuthentication::device_channel?,
+            device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_country: String,
@@ -484,21 +484,94 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::deny_reason]
           end
 
-          type device_channel = :app | :browser | :three_ds_requestor_initiated
+          type device_channel =
+            {
+              browser: Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser?,
+              category: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::category
+            }
 
-          module DeviceChannel
-            extend Increase::Internal::Type::Enum
+          class DeviceChannel < Increase::Internal::Type::BaseModel
+            attr_accessor browser: Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser?
 
-            # The authentication attempt was made from an app.
-            APP: :app
+            attr_accessor category: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::category
 
-            # The authentication attempt was made from a browser.
-            BROWSER: :browser
+            def initialize: (
+              browser: Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser?,
+              category: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::category
+            ) -> void
 
-            # The authentication attempt was initiated by the 3DS Requestor.
-            THREE_DS_REQUESTOR_INITIATED: :three_ds_requestor_initiated
+            def to_hash: -> {
+              browser: Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser?,
+              category: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::category
+            }
 
-            def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::device_channel]
+            type browser =
+              {
+                accept_header: String?,
+                ip_address: String?,
+                javascript_enabled: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::javascript_enabled?,
+                language: String?,
+                user_agent: String?
+              }
+
+            class Browser < Increase::Internal::Type::BaseModel
+              attr_accessor accept_header: String?
+
+              attr_accessor ip_address: String?
+
+              attr_accessor javascript_enabled: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::javascript_enabled?
+
+              attr_accessor language: String?
+
+              attr_accessor user_agent: String?
+
+              def initialize: (
+                accept_header: String?,
+                ip_address: String?,
+                javascript_enabled: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::javascript_enabled?,
+                language: String?,
+                user_agent: String?
+              ) -> void
+
+              def to_hash: -> {
+                accept_header: String?,
+                ip_address: String?,
+                javascript_enabled: Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::javascript_enabled?,
+                language: String?,
+                user_agent: String?
+              }
+
+              type javascript_enabled = :enabled | :disabled
+
+              module JavascriptEnabled
+                extend Increase::Internal::Type::Enum
+
+                # JavaScript is enabled in the cardholder's browser.
+                ENABLED: :enabled
+
+                # JavaScript is not enabled in the cardholder's browser.
+                DISABLED: :disabled
+
+                def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::javascript_enabled]
+              end
+            end
+
+            type category = :app | :browser | :three_ds_requestor_initiated
+
+            module Category
+              extend Increase::Internal::Type::Enum
+
+              # The authentication attempt was made from an app.
+              APP: :app
+
+              # The authentication attempt was made from a browser.
+              BROWSER: :browser
+
+              # The authentication attempt was initiated by the 3DS Requestor.
+              THREE_DS_REQUESTOR_INITIATED: :three_ds_requestor_initiated
+
+              def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::category]
+            end
           end
 
           type status =
