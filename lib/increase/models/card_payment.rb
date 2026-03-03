@@ -330,6 +330,18 @@ module Increase
           #   @return [String]
           required :card_payment_id, String
 
+          # @!attribute cardholder_email
+          #   The email address of the cardholder.
+          #
+          #   @return [String, nil]
+          required :cardholder_email, String, nil?: true
+
+          # @!attribute cardholder_name
+          #   The name of the cardholder.
+          #
+          #   @return [String, nil]
+          required :cardholder_name, String, nil?: true
+
           # @!attribute category
           #   The category of the card authentication attempt.
           #
@@ -432,7 +444,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, card_id:, card_payment_id:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
+          # @!method initialize(id:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -445,6 +457,10 @@ module Increase
           #   @param card_id [String] The identifier of the Card.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
+          #
+          #   @param cardholder_email [String, nil] The email address of the cardholder.
+          #
+          #   @param cardholder_name [String, nil] The name of the cardholder.
           #
           #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Category, nil] The category of the card authentication attempt.
           #

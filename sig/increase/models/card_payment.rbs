@@ -212,6 +212,8 @@ module Increase
             id: String,
             card_id: String,
             card_payment_id: String,
+            cardholder_email: String?,
+            cardholder_name: String?,
             category: Increase::Models::CardPayment::Element::CardAuthentication::category?,
             challenge: Increase::CardPayment::Element::CardAuthentication::Challenge?,
             created_at: Time,
@@ -234,6 +236,10 @@ module Increase
           attr_accessor card_id: String
 
           attr_accessor card_payment_id: String
+
+          attr_accessor cardholder_email: String?
+
+          attr_accessor cardholder_name: String?
 
           attr_accessor category: Increase::Models::CardPayment::Element::CardAuthentication::category?
 
@@ -267,6 +273,8 @@ module Increase
             id: String,
             card_id: String,
             card_payment_id: String,
+            cardholder_email: String?,
+            cardholder_name: String?,
             category: Increase::Models::CardPayment::Element::CardAuthentication::category?,
             challenge: Increase::CardPayment::Element::CardAuthentication::Challenge?,
             created_at: Time,
@@ -287,6 +295,8 @@ module Increase
             id: String,
             card_id: String,
             card_payment_id: String,
+            cardholder_email: String?,
+            cardholder_name: String?,
             category: Increase::Models::CardPayment::Element::CardAuthentication::category?,
             challenge: Increase::CardPayment::Element::CardAuthentication::Challenge?,
             created_at: Time,
