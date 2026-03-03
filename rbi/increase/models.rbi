@@ -243,8 +243,6 @@ module Increase
 
   EntityArchiveParams = Increase::Models::EntityArchiveParams
 
-  EntityConfirmParams = Increase::Models::EntityConfirmParams
-
   EntityCreateBeneficialOwnerParams =
     Increase::Models::EntityCreateBeneficialOwnerParams
 
@@ -256,13 +254,8 @@ module Increase
 
   EntitySupplementalDocument = Increase::Models::EntitySupplementalDocument
 
-  EntityUpdateAddressParams = Increase::Models::EntityUpdateAddressParams
-
   EntityUpdateBeneficialOwnerAddressParams =
     Increase::Models::EntityUpdateBeneficialOwnerAddressParams
-
-  EntityUpdateIndustryCodeParams =
-    Increase::Models::EntityUpdateIndustryCodeParams
 
   EntityUpdateParams = Increase::Models::EntityUpdateParams
 

@@ -186,26 +186,6 @@ module Increase
       )
       end
 
-      # Depending on your program, you may be required to re-confirm an Entity's details
-      # on a recurring basis. After making any required updates, call this endpoint to
-      # record that your user confirmed their details.
-      sig do
-        params(
-          entity_id: String,
-          confirmed_at: Time,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Entity)
-      end
-      def confirm(
-        # The identifier of the Entity to confirm the details of.
-        entity_id,
-        # When your user confirmed the Entity's details. If not provided, the current time
-        # will be used.
-        confirmed_at: nil,
-        request_options: {}
-      )
-      end
-
       # Create a beneficial owner for a corporate Entity
       sig do
         params(
@@ -221,24 +201,6 @@ module Increase
         # The identifying details of anyone controlling or owning 25% or more of the
         # corporation.
         beneficial_owner:,
-        request_options: {}
-      )
-      end
-
-      # Update a Natural Person or Corporation's address
-      sig do
-        params(
-          entity_id: String,
-          address: Increase::EntityUpdateAddressParams::Address::OrHash,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Entity)
-      end
-      def update_address(
-        # The identifier of the Entity whose address is being updated.
-        entity_id,
-        # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
-        # are disallowed.
-        address:,
         request_options: {}
       )
       end
@@ -263,27 +225,6 @@ module Increase
         # The identifying details of anyone controlling or owning 25% or more of the
         # corporation.
         beneficial_owner_id:,
-        request_options: {}
-      )
-      end
-
-      # Update the industry code for a corporate Entity
-      sig do
-        params(
-          entity_id: String,
-          industry_code: String,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Entity)
-      end
-      def update_industry_code(
-        # The identifier of the Entity to update. This endpoint only accepts `corporation`
-        # entities.
-        entity_id,
-        # The North American Industry Classification System (NAICS) code for the
-        # corporation's primary line of business. This is a number, like `5132` for
-        # `Software Publishers`. A full list of classification codes is available
-        # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
-        industry_code:,
         request_options: {}
       )
       end

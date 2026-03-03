@@ -193,35 +193,6 @@ module Increase
       end
 
       # Some parameter documentations has been truncated, see
-      # {Increase::Models::EntityConfirmParams} for more details.
-      #
-      # Depending on your program, you may be required to re-confirm an Entity's details
-      # on a recurring basis. After making any required updates, call this endpoint to
-      # record that your user confirmed their details.
-      #
-      # @overload confirm(entity_id, confirmed_at: nil, request_options: {})
-      #
-      # @param entity_id [String] The identifier of the Entity to confirm the details of.
-      #
-      # @param confirmed_at [Time] When your user confirmed the Entity's details. If not provided, the current time
-      #
-      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Increase::Models::Entity]
-      #
-      # @see Increase::Models::EntityConfirmParams
-      def confirm(entity_id, params = {})
-        parsed, options = Increase::EntityConfirmParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: ["entities/%1$s/confirm", entity_id],
-          body: parsed,
-          model: Increase::Entity,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
       # {Increase::Models::EntityCreateBeneficialOwnerParams} for more details.
       #
       # Create a beneficial owner for a corporate Entity
@@ -242,33 +213,6 @@ module Increase
         @client.request(
           method: :post,
           path: ["entities/%1$s/create_beneficial_owner", entity_id],
-          body: parsed,
-          model: Increase::Entity,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::EntityUpdateAddressParams} for more details.
-      #
-      # Update a Natural Person or Corporation's address
-      #
-      # @overload update_address(entity_id, address:, request_options: {})
-      #
-      # @param entity_id [String] The identifier of the Entity whose address is being updated.
-      #
-      # @param address [Increase::Models::EntityUpdateAddressParams::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
-      #
-      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Increase::Models::Entity]
-      #
-      # @see Increase::Models::EntityUpdateAddressParams
-      def update_address(entity_id, params)
-        parsed, options = Increase::EntityUpdateAddressParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: ["entities/%1$s/update_address", entity_id],
           body: parsed,
           model: Increase::Entity,
           options: options
@@ -298,33 +242,6 @@ module Increase
         @client.request(
           method: :post,
           path: ["entities/%1$s/update_beneficial_owner_address", entity_id],
-          body: parsed,
-          model: Increase::Entity,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::EntityUpdateIndustryCodeParams} for more details.
-      #
-      # Update the industry code for a corporate Entity
-      #
-      # @overload update_industry_code(entity_id, industry_code:, request_options: {})
-      #
-      # @param entity_id [String] The identifier of the Entity to update. This endpoint only accepts `corporation`
-      #
-      # @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
-      #
-      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Increase::Models::Entity]
-      #
-      # @see Increase::Models::EntityUpdateIndustryCodeParams
-      def update_industry_code(entity_id, params)
-        parsed, options = Increase::EntityUpdateIndustryCodeParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: ["entities/%1$s/update_industry_code", entity_id],
           body: parsed,
           model: Increase::Entity,
           options: options

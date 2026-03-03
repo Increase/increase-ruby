@@ -53,21 +53,9 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
-      def confirm: (
-        String entity_id,
-        ?confirmed_at: Time,
-        ?request_options: Increase::request_opts
-      ) -> Increase::Entity
-
       def create_beneficial_owner: (
         String entity_id,
         beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
-        ?request_options: Increase::request_opts
-      ) -> Increase::Entity
-
-      def update_address: (
-        String entity_id,
-        address: Increase::EntityUpdateAddressParams::Address,
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
@@ -75,12 +63,6 @@ module Increase
         String entity_id,
         address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
         beneficial_owner_id: String,
-        ?request_options: Increase::request_opts
-      ) -> Increase::Entity
-
-      def update_industry_code: (
-        String entity_id,
-        industry_code: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
