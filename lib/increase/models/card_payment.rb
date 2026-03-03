@@ -429,10 +429,8 @@ module Increase
           # @!attribute device_channel
           #   The device channel of the card authentication attempt.
           #
-          #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel, nil]
-          required :device_channel,
-                   enum: -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel },
-                   nil?: true
+          #   @return [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel]
+          required :device_channel, -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel }
 
           # @!attribute merchant_acceptor_id
           #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
@@ -533,7 +531,7 @@ module Increase
           #
           #   @param deny_reason [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DenyReason, nil] The reason why this authentication attempt was denied, if it was.
           #
-          #   @param device_channel [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel, nil] The device channel of the card authentication attempt.
+          #   @param device_channel [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel] The device channel of the card authentication attempt.
           #
           #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
           #
@@ -711,23 +709,114 @@ module Increase
             #   @return [Array<Symbol>]
           end
 
-          # The device channel of the card authentication attempt.
-          #
           # @see Increase::Models::CardPayment::Element::CardAuthentication#device_channel
-          module DeviceChannel
-            extend Increase::Internal::Type::Enum
+          class DeviceChannel < Increase::Internal::Type::BaseModel
+            # @!attribute browser
+            #   Fields specific to the browser device channel.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser, nil]
+            required :browser,
+                     -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser },
+                     nil?: true
 
-            # The authentication attempt was made from an app.
-            APP = :app
+            # @!attribute category
+            #   The category of the device channel.
+            #
+            #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Category]
+            required :category,
+                     enum: -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category }
 
-            # The authentication attempt was made from a browser.
-            BROWSER = :browser
+            # @!method initialize(browser:, category:)
+            #   The device channel of the card authentication attempt.
+            #
+            #   @param browser [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser, nil] Fields specific to the browser device channel.
+            #
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Category] The category of the device channel.
 
-            # The authentication attempt was initiated by the 3DS Requestor.
-            THREE_DS_REQUESTOR_INITIATED = :three_ds_requestor_initiated
+            # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel#browser
+            class Browser < Increase::Internal::Type::BaseModel
+              # @!attribute accept_header
+              #   The accept header from the cardholder's browser.
+              #
+              #   @return [String, nil]
+              required :accept_header, String, nil?: true
 
-            # @!method self.values
-            #   @return [Array<Symbol>]
+              # @!attribute ip_address
+              #   The IP address of the cardholder's browser.
+              #
+              #   @return [String, nil]
+              required :ip_address, String, nil?: true
+
+              # @!attribute javascript_enabled
+              #   Whether JavaScript is enabled in the cardholder's browser.
+              #
+              #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled, nil]
+              required :javascript_enabled,
+                       enum: -> {
+                         Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled
+                       },
+                       nil?: true
+
+              # @!attribute language
+              #   The language of the cardholder's browser.
+              #
+              #   @return [String, nil]
+              required :language, String, nil?: true
+
+              # @!attribute user_agent
+              #   The user agent of the cardholder's browser.
+              #
+              #   @return [String, nil]
+              required :user_agent, String, nil?: true
+
+              # @!method initialize(accept_header:, ip_address:, javascript_enabled:, language:, user_agent:)
+              #   Fields specific to the browser device channel.
+              #
+              #   @param accept_header [String, nil] The accept header from the cardholder's browser.
+              #
+              #   @param ip_address [String, nil] The IP address of the cardholder's browser.
+              #
+              #   @param javascript_enabled [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled, nil] Whether JavaScript is enabled in the cardholder's browser.
+              #
+              #   @param language [String, nil] The language of the cardholder's browser.
+              #
+              #   @param user_agent [String, nil] The user agent of the cardholder's browser.
+
+              # Whether JavaScript is enabled in the cardholder's browser.
+              #
+              # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser#javascript_enabled
+              module JavascriptEnabled
+                extend Increase::Internal::Type::Enum
+
+                # JavaScript is enabled in the cardholder's browser.
+                ENABLED = :enabled
+
+                # JavaScript is not enabled in the cardholder's browser.
+                DISABLED = :disabled
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            # The category of the device channel.
+            #
+            # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel#category
+            module Category
+              extend Increase::Internal::Type::Enum
+
+              # The authentication attempt was made from an app.
+              APP = :app
+
+              # The authentication attempt was made from a browser.
+              BROWSER = :browser
+
+              # The authentication attempt was initiated by the 3DS Requestor.
+              THREE_DS_REQUESTOR_INITIATED = :three_ds_requestor_initiated
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
           end
 
           # The status of the card authentication.

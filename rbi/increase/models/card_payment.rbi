@@ -725,12 +725,18 @@ module Increase
           # The device channel of the card authentication attempt.
           sig do
             returns(
-              T.nilable(
-                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
-              )
+              Increase::CardPayment::Element::CardAuthentication::DeviceChannel
             )
           end
-          attr_accessor :device_channel
+          attr_reader :device_channel
+
+          sig do
+            params(
+              device_channel:
+                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::OrHash
+            ).void
+          end
+          attr_writer :device_channel
 
           # The merchant identifier (commonly abbreviated as MID) of the merchant the card
           # is transacting with.
@@ -812,9 +818,7 @@ module Increase
                   Increase::CardPayment::Element::CardAuthentication::DenyReason::OrSymbol
                 ),
               device_channel:
-                T.nilable(
-                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::OrSymbol
-                ),
+                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::OrHash,
               merchant_acceptor_id: String,
               merchant_category_code: String,
               merchant_country: String,
@@ -926,9 +930,7 @@ module Increase
                     Increase::CardPayment::Element::CardAuthentication::DenyReason::TaggedSymbol
                   ),
                 device_channel:
-                  T.nilable(
-                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
-                  ),
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
                 merchant_acceptor_id: String,
                 merchant_category_code: String,
                 merchant_country: String,
@@ -1274,48 +1276,238 @@ module Increase
             end
           end
 
-          # The device channel of the card authentication attempt.
-          module DeviceChannel
-            extend Increase::Internal::Type::Enum
-
-            TaggedSymbol =
+          class DeviceChannel < Increase::Internal::Type::BaseModel
+            OrHash =
               T.type_alias do
-                T.all(
-                  Symbol,
-                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel
+                T.any(
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
+                  Increase::Internal::AnyHash
                 )
               end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # The authentication attempt was made from an app.
-            APP =
-              T.let(
-                :app,
-                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
+            # Fields specific to the browser device channel.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser
+                )
               )
+            end
+            attr_reader :browser
 
-            # The authentication attempt was made from a browser.
-            BROWSER =
-              T.let(
-                :browser,
-                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
-              )
+            sig do
+              params(
+                browser:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::OrHash
+                  )
+              ).void
+            end
+            attr_writer :browser
 
-            # The authentication attempt was initiated by the 3DS Requestor.
-            THREE_DS_REQUESTOR_INITIATED =
-              T.let(
-                :three_ds_requestor_initiated,
-                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
+            # The category of the device channel.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
               )
+            end
+            attr_accessor :category
+
+            # The device channel of the card authentication attempt.
+            sig do
+              params(
+                browser:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::OrHash
+                  ),
+                category:
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Fields specific to the browser device channel.
+              browser:,
+              # The category of the device channel.
+              category:
+            )
+            end
 
             sig do
               override.returns(
-                T::Array[
-                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::TaggedSymbol
-                ]
+                {
+                  browser:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser
+                    ),
+                  category:
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                }
               )
             end
-            def self.values
+            def to_hash
+            end
+
+            class Browser < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The accept header from the cardholder's browser.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :accept_header
+
+              # The IP address of the cardholder's browser.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :ip_address
+
+              # Whether JavaScript is enabled in the cardholder's browser.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :javascript_enabled
+
+              # The language of the cardholder's browser.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :language
+
+              # The user agent of the cardholder's browser.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :user_agent
+
+              # Fields specific to the browser device channel.
+              sig do
+                params(
+                  accept_header: T.nilable(String),
+                  ip_address: T.nilable(String),
+                  javascript_enabled:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::OrSymbol
+                    ),
+                  language: T.nilable(String),
+                  user_agent: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The accept header from the cardholder's browser.
+                accept_header:,
+                # The IP address of the cardholder's browser.
+                ip_address:,
+                # Whether JavaScript is enabled in the cardholder's browser.
+                javascript_enabled:,
+                # The language of the cardholder's browser.
+                language:,
+                # The user agent of the cardholder's browser.
+                user_agent:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    accept_header: T.nilable(String),
+                    ip_address: T.nilable(String),
+                    javascript_enabled:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                      ),
+                    language: T.nilable(String),
+                    user_agent: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Whether JavaScript is enabled in the cardholder's browser.
+              module JavascriptEnabled
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # JavaScript is enabled in the cardholder's browser.
+                ENABLED =
+                  T.let(
+                    :enabled,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                  )
+
+                # JavaScript is not enabled in the cardholder's browser.
+                DISABLED =
+                  T.let(
+                    :disabled,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            # The category of the device channel.
+            module Category
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The authentication attempt was made from an app.
+              APP =
+                T.let(
+                  :app,
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                )
+
+              # The authentication attempt was made from a browser.
+              BROWSER =
+                T.let(
+                  :browser,
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                )
+
+              # The authentication attempt was initiated by the 3DS Requestor.
+              THREE_DS_REQUESTOR_INITIATED =
+                T.let(
+                  :three_ds_requestor_initiated,
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
           end
 
