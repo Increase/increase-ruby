@@ -432,6 +432,9 @@ module Increase
           # Persona. See https://withpersona.com for more information.
           PERSONA = :persona
 
+          # Taktile. See https://taktile.com for more information.
+          TAKTILE = :taktile
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

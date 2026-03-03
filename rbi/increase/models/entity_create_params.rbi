@@ -2948,6 +2948,13 @@ module Increase
               Increase::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol
             )
 
+          # Taktile. See https://taktile.com for more information.
+          TAKTILE =
+            T.let(
+              :taktile,
+              Increase::EntityCreateParams::ThirdPartyVerification::Vendor::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[
