@@ -367,7 +367,7 @@ module Increase
           vendor: Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor
         }
 
-        type vendor = :alloy | :middesk | :oscilar | :persona
+        type vendor = :alloy | :middesk | :oscilar | :persona | :taktile
 
         module Vendor
           extend Increase::Internal::Type::Enum
@@ -383,6 +383,9 @@ module Increase
 
           # Persona. See https://withpersona.com for more information.
           PERSONA: :persona
+
+          # Taktile. See https://taktile.com for more information.
+          TAKTILE: :taktile
 
           def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::ThirdPartyVerification::vendor]
         end
