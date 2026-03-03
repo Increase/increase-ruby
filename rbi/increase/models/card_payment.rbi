@@ -626,6 +626,41 @@ module Increase
           sig { returns(String) }
           attr_accessor :id
 
+          # The city of the cardholder billing address associated with the card used for
+          # this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_city
+
+          # The country of the cardholder billing address associated with the card used for
+          # this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_country
+
+          # The first line of the cardholder billing address associated with the card used
+          # for this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_line1
+
+          # The second line of the cardholder billing address associated with the card used
+          # for this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_line2
+
+          # The third line of the cardholder billing address associated with the card used
+          # for this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_line3
+
+          # The postal code of the cardholder billing address associated with the card used
+          # for this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_postal_code
+
+          # The US state of the cardholder billing address associated with the card used for
+          # this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_address_state
+
           # The identifier of the Card.
           sig { returns(String) }
           attr_accessor :card_id
@@ -752,6 +787,13 @@ module Increase
           sig do
             params(
               id: String,
+              billing_address_city: T.nilable(String),
+              billing_address_country: T.nilable(String),
+              billing_address_line1: T.nilable(String),
+              billing_address_line2: T.nilable(String),
+              billing_address_line3: T.nilable(String),
+              billing_address_postal_code: T.nilable(String),
+              billing_address_state: T.nilable(String),
               card_id: String,
               card_payment_id: String,
               cardholder_email: T.nilable(String),
@@ -789,6 +831,27 @@ module Increase
           def self.new(
             # The Card Authentication identifier.
             id:,
+            # The city of the cardholder billing address associated with the card used for
+            # this purchase.
+            billing_address_city:,
+            # The country of the cardholder billing address associated with the card used for
+            # this purchase.
+            billing_address_country:,
+            # The first line of the cardholder billing address associated with the card used
+            # for this purchase.
+            billing_address_line1:,
+            # The second line of the cardholder billing address associated with the card used
+            # for this purchase.
+            billing_address_line2:,
+            # The third line of the cardholder billing address associated with the card used
+            # for this purchase.
+            billing_address_line3:,
+            # The postal code of the cardholder billing address associated with the card used
+            # for this purchase.
+            billing_address_postal_code:,
+            # The US state of the cardholder billing address associated with the card used for
+            # this purchase.
+            billing_address_state:,
             # The identifier of the Card.
             card_id:,
             # The ID of the Card Payment this transaction belongs to.
@@ -838,6 +901,13 @@ module Increase
             override.returns(
               {
                 id: String,
+                billing_address_city: T.nilable(String),
+                billing_address_country: T.nilable(String),
+                billing_address_line1: T.nilable(String),
+                billing_address_line2: T.nilable(String),
+                billing_address_line3: T.nilable(String),
+                billing_address_postal_code: T.nilable(String),
+                billing_address_state: T.nilable(String),
                 card_id: String,
                 card_payment_id: String,
                 cardholder_email: T.nilable(String),
