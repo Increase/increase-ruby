@@ -634,6 +634,14 @@ module Increase
           sig { returns(String) }
           attr_accessor :card_payment_id
 
+          # The email address of the cardholder.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :cardholder_email
+
+          # The name of the cardholder.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :cardholder_name
+
           # The category of the card authentication attempt.
           sig do
             returns(
@@ -746,6 +754,8 @@ module Increase
               id: String,
               card_id: String,
               card_payment_id: String,
+              cardholder_email: T.nilable(String),
+              cardholder_name: T.nilable(String),
               category:
                 T.nilable(
                   Increase::CardPayment::Element::CardAuthentication::Category::OrSymbol
@@ -783,6 +793,10 @@ module Increase
             card_id:,
             # The ID of the Card Payment this transaction belongs to.
             card_payment_id:,
+            # The email address of the cardholder.
+            cardholder_email:,
+            # The name of the cardholder.
+            cardholder_name:,
             # The category of the card authentication attempt.
             category:,
             # Details about the challenge, if one was requested.
@@ -826,6 +840,8 @@ module Increase
                 id: String,
                 card_id: String,
                 card_payment_id: String,
+                cardholder_email: T.nilable(String),
+                cardholder_name: T.nilable(String),
                 category:
                   T.nilable(
                     Increase::CardPayment::Element::CardAuthentication::Category::TaggedSymbol
