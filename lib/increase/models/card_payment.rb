@@ -318,6 +318,55 @@ module Increase
           #   @return [String]
           required :id, String
 
+          # @!attribute billing_address_city
+          #   The city of the cardholder billing address associated with the card used for
+          #   this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_city, String, nil?: true
+
+          # @!attribute billing_address_country
+          #   The country of the cardholder billing address associated with the card used for
+          #   this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_country, String, nil?: true
+
+          # @!attribute billing_address_line1
+          #   The first line of the cardholder billing address associated with the card used
+          #   for this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_line1, String, nil?: true
+
+          # @!attribute billing_address_line2
+          #   The second line of the cardholder billing address associated with the card used
+          #   for this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_line2, String, nil?: true
+
+          # @!attribute billing_address_line3
+          #   The third line of the cardholder billing address associated with the card used
+          #   for this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_line3, String, nil?: true
+
+          # @!attribute billing_address_postal_code
+          #   The postal code of the cardholder billing address associated with the card used
+          #   for this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_postal_code, String, nil?: true
+
+          # @!attribute billing_address_state
+          #   The US state of the cardholder billing address associated with the card used for
+          #   this purchase.
+          #
+          #   @return [String, nil]
+          required :billing_address_state, String, nil?: true
+
           # @!attribute card_id
           #   The identifier of the Card.
           #
@@ -444,7 +493,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
+          # @!method initialize(id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -453,6 +502,20 @@ module Increase
           #   are attempts to authenticate a transaction or a card with 3DS.
           #
           #   @param id [String] The Card Authentication identifier.
+          #
+          #   @param billing_address_city [String, nil] The city of the cardholder billing address associated with the card used for thi
+          #
+          #   @param billing_address_country [String, nil] The country of the cardholder billing address associated with the card used for
+          #
+          #   @param billing_address_line1 [String, nil] The first line of the cardholder billing address associated with the card used f
+          #
+          #   @param billing_address_line2 [String, nil] The second line of the cardholder billing address associated with the card used
+          #
+          #   @param billing_address_line3 [String, nil] The third line of the cardholder billing address associated with the card used f
+          #
+          #   @param billing_address_postal_code [String, nil] The postal code of the cardholder billing address associated with the card used
+          #
+          #   @param billing_address_state [String, nil] The US state of the cardholder billing address associated with the card used for
           #
           #   @param card_id [String] The identifier of the Card.
           #
