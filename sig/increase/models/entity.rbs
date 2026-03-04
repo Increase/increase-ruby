@@ -189,7 +189,7 @@ module Increase
             beneficial_owner_id: String,
             company_title: String?,
             individual: Increase::Entity::Corporation::BeneficialOwner::Individual,
-            prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
+            prongs: ::Array[Increase::Models::Entity::Corporation::BeneficialOwner::prong]
           }
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
@@ -199,20 +199,20 @@ module Increase
 
           attr_accessor individual: Increase::Entity::Corporation::BeneficialOwner::Individual
 
-          attr_accessor prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
+          attr_accessor prongs: ::Array[Increase::Models::Entity::Corporation::BeneficialOwner::prong]
 
           def initialize: (
             beneficial_owner_id: String,
             company_title: String?,
             individual: Increase::Entity::Corporation::BeneficialOwner::Individual,
-            prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
+            prongs: ::Array[Increase::Models::Entity::Corporation::BeneficialOwner::prong]
           ) -> void
 
           def to_hash: -> {
             beneficial_owner_id: String,
             company_title: String?,
             individual: Increase::Entity::Corporation::BeneficialOwner::Individual,
-            prong: Increase::Models::Entity::Corporation::BeneficialOwner::prong
+            prongs: ::Array[Increase::Models::Entity::Corporation::BeneficialOwner::prong]
           }
 
           type individual =
