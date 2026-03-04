@@ -308,20 +308,21 @@ module Increase
           #   @return [Increase::Models::Entity::Corporation::BeneficialOwner::Individual]
           required :individual, -> { Increase::Entity::Corporation::BeneficialOwner::Individual }
 
-          # @!attribute prong
+          # @!attribute prongs
           #   Why this person is considered a beneficial owner of the entity.
           #
-          #   @return [Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Prong]
-          required :prong, enum: -> { Increase::Entity::Corporation::BeneficialOwner::Prong }
+          #   @return [Array<Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Prong>]
+          required :prongs,
+                   -> { Increase::Internal::Type::ArrayOf[enum: Increase::Entity::Corporation::BeneficialOwner::Prong] }
 
-          # @!method initialize(beneficial_owner_id:, company_title:, individual:, prong:)
+          # @!method initialize(beneficial_owner_id:, company_title:, individual:, prongs:)
           #   @param beneficial_owner_id [String] The identifier of this beneficial owner.
           #
           #   @param company_title [String, nil] This person's role or title within the entity.
           #
           #   @param individual [Increase::Models::Entity::Corporation::BeneficialOwner::Individual] Personal details for the beneficial owner.
           #
-          #   @param prong [Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Prong] Why this person is considered a beneficial owner of the entity.
+          #   @param prongs [Array<Symbol, Increase::Models::Entity::Corporation::BeneficialOwner::Prong>] Why this person is considered a beneficial owner of the entity.
 
           # @see Increase::Models::Entity::Corporation::BeneficialOwner#individual
           class Individual < Increase::Internal::Type::BaseModel
@@ -477,9 +478,6 @@ module Increase
             end
           end
 
-          # Why this person is considered a beneficial owner of the entity.
-          #
-          # @see Increase::Models::Entity::Corporation::BeneficialOwner#prong
           module Prong
             extend Increase::Internal::Type::Enum
 
