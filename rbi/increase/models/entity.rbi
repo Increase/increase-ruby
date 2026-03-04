@@ -446,10 +446,12 @@ module Increase
           # Why this person is considered a beneficial owner of the entity.
           sig do
             returns(
-              Increase::Entity::Corporation::BeneficialOwner::Prong::TaggedSymbol
+              T::Array[
+                Increase::Entity::Corporation::BeneficialOwner::Prong::TaggedSymbol
+              ]
             )
           end
-          attr_accessor :prong
+          attr_accessor :prongs
 
           sig do
             params(
@@ -457,8 +459,10 @@ module Increase
               company_title: T.nilable(String),
               individual:
                 Increase::Entity::Corporation::BeneficialOwner::Individual::OrHash,
-              prong:
-                Increase::Entity::Corporation::BeneficialOwner::Prong::OrSymbol
+              prongs:
+                T::Array[
+                  Increase::Entity::Corporation::BeneficialOwner::Prong::OrSymbol
+                ]
             ).returns(T.attached_class)
           end
           def self.new(
@@ -469,7 +473,7 @@ module Increase
             # Personal details for the beneficial owner.
             individual:,
             # Why this person is considered a beneficial owner of the entity.
-            prong:
+            prongs:
           )
           end
 
@@ -480,8 +484,10 @@ module Increase
                 company_title: T.nilable(String),
                 individual:
                   Increase::Entity::Corporation::BeneficialOwner::Individual,
-                prong:
-                  Increase::Entity::Corporation::BeneficialOwner::Prong::TaggedSymbol
+                prongs:
+                  T::Array[
+                    Increase::Entity::Corporation::BeneficialOwner::Prong::TaggedSymbol
+                  ]
               }
             )
           end
@@ -765,7 +771,6 @@ module Increase
             end
           end
 
-          # Why this person is considered a beneficial owner of the entity.
           module Prong
             extend Increase::Internal::Type::Enum
 
