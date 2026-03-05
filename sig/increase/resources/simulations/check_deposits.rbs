@@ -2,6 +2,13 @@ module Increase
   module Resources
     class Simulations
       class CheckDeposits
+        def adjustment: (
+          String check_deposit_id,
+          ?amount: Integer,
+          ?reason: Increase::Models::Simulations::CheckDepositAdjustmentParams::reason,
+          ?request_options: Increase::request_opts
+        ) -> Increase::CheckDeposit
+
         def reject: (
           String check_deposit_id,
           ?request_options: Increase::request_opts
