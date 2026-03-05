@@ -1387,8 +1387,11 @@ module Increase
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR = :issuer_error
 
-                # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+                # The physical card read had an invalid CVV or dCVV.
                 INVALID_PHYSICAL_CARD = :invalid_physical_card
+
+                # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+                INVALID_CRYPTOGRAM = :invalid_cryptogram
 
                 # The 3DS cardholder authentication verification value was invalid.
                 INVALID_CARDHOLDER_AUTHENTICATION_VERIFICATION_VALUE =
@@ -1619,11 +1622,14 @@ module Increase
             # Declined by stand-in processing.
             DECLINED_BY_STAND_IN_PROCESSING = :declined_by_stand_in_processing
 
-            # The card read had an invalid CVV, dCVV, or authorization request cryptogram.
+            # The card read had an invalid CVV or dCVV.
             INVALID_PHYSICAL_CARD = :invalid_physical_card
 
             # The original card authorization for this incremental authorization does not exist.
             MISSING_ORIGINAL_AUTHORIZATION = :missing_original_authorization
+
+            # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+            INVALID_CRYPTOGRAM = :invalid_cryptogram
 
             # The transaction was declined because the 3DS authentication failed.
             FAILED_3DS_AUTHENTICATION = :failed_3ds_authentication

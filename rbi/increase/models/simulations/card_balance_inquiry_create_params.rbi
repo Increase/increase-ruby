@@ -361,7 +361,7 @@ module Increase
               Increase::Simulations::CardBalanceInquiryCreateParams::DeclineReason::TaggedSymbol
             )
 
-          # The card read had an invalid CVV, dCVV, or authorization request cryptogram.
+          # The card read had an invalid CVV or dCVV.
           INVALID_PHYSICAL_CARD =
             T.let(
               :invalid_physical_card,
@@ -372,6 +372,13 @@ module Increase
           MISSING_ORIGINAL_AUTHORIZATION =
             T.let(
               :missing_original_authorization,
+              Increase::Simulations::CardBalanceInquiryCreateParams::DeclineReason::TaggedSymbol
+            )
+
+          # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+          INVALID_CRYPTOGRAM =
+            T.let(
+              :invalid_cryptogram,
               Increase::Simulations::CardBalanceInquiryCreateParams::DeclineReason::TaggedSymbol
             )
 
@@ -527,10 +534,17 @@ module Increase
                   Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
                 )
 
-              # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+              # The physical card read had an invalid CVV or dCVV.
               INVALID_PHYSICAL_CARD =
                 T.let(
                   :invalid_physical_card,
+                  Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                )
+
+              # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+              INVALID_CRYPTOGRAM =
+                T.let(
+                  :invalid_cryptogram,
                   Increase::Simulations::CardBalanceInquiryCreateParams::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
                 )
 

@@ -2600,10 +2600,17 @@ module Increase
                     Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
                   )
 
-                # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+                # The physical card read had an invalid CVV or dCVV.
                 INVALID_PHYSICAL_CARD =
                   T.let(
                     :invalid_physical_card,
+                    Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  )
+
+                # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+                INVALID_CRYPTOGRAM =
+                  T.let(
+                    :invalid_cryptogram,
                     Increase::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
                   )
 
@@ -3089,7 +3096,7 @@ module Increase
                 Increase::DeclinedTransaction::Source::CardDecline::Reason::TaggedSymbol
               )
 
-            # The card read had an invalid CVV, dCVV, or authorization request cryptogram.
+            # The card read had an invalid CVV or dCVV.
             INVALID_PHYSICAL_CARD =
               T.let(
                 :invalid_physical_card,
@@ -3100,6 +3107,13 @@ module Increase
             MISSING_ORIGINAL_AUTHORIZATION =
               T.let(
                 :missing_original_authorization,
+                Increase::DeclinedTransaction::Source::CardDecline::Reason::TaggedSymbol
+              )
+
+            # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+            INVALID_CRYPTOGRAM =
+              T.let(
+                :invalid_cryptogram,
                 Increase::DeclinedTransaction::Source::CardDecline::Reason::TaggedSymbol
               )
 
