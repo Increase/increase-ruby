@@ -41,6 +41,37 @@ module Increase
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Increase::Models::Simulations::InboundCheckDepositAdjustmentParams} for more
+        # details.
+        #
+        # Simulates an adjustment on an Inbound Check Deposit. The Inbound Check Deposit
+        # must have a `status` of `accepted`.
+        #
+        # @overload adjustment(inbound_check_deposit_id, amount: nil, reason: nil, request_options: {})
+        #
+        # @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to adjust.
+        #
+        # @param amount [Integer] The adjustment amount in cents. Defaults to the amount of the Inbound Check Depo
+        #
+        # @param reason [Symbol, Increase::Models::Simulations::InboundCheckDepositAdjustmentParams::Reason] The reason for the adjustment. Defaults to `wrong_payee_credit`.
+        #
+        # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Increase::Models::InboundCheckDeposit]
+        #
+        # @see Increase::Models::Simulations::InboundCheckDepositAdjustmentParams
+        def adjustment(inbound_check_deposit_id, params = {})
+          parsed, options = Increase::Simulations::InboundCheckDepositAdjustmentParams.dump_request(params)
+          @client.request(
+            method: :post,
+            path: ["simulations/inbound_check_deposits/%1$s/adjustment", inbound_check_deposit_id],
+            body: parsed,
+            model: Increase::InboundCheckDeposit,
+            options: options
+          )
+        end
+
         # @api private
         #
         # @param client [Increase::Client]
