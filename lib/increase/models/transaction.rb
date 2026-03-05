@@ -2365,8 +2365,11 @@ module Increase
                 # Increase failed to process the authorization in a timely manner.
                 ISSUER_ERROR = :issuer_error
 
-                # The physical card read had an invalid CVV, dCVV, or authorization request cryptogram.
+                # The physical card read had an invalid CVV or dCVV.
                 INVALID_PHYSICAL_CARD = :invalid_physical_card
+
+                # The card's authorization request cryptogram was invalid. The cryptogram can be from a physical card or a Digital Wallet Token purchase.
+                INVALID_CRYPTOGRAM = :invalid_cryptogram
 
                 # The 3DS cardholder authentication verification value was invalid.
                 INVALID_CARDHOLDER_AUTHENTICATION_VERIFICATION_VALUE =
