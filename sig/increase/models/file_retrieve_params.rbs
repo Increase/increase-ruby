@@ -1,15 +1,23 @@
 module Increase
   module Models
     type file_retrieve_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { file_id: String } & Increase::Internal::Type::request_parameters
 
     class FileRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_accessor file_id: String
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def initialize: (
+        file_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

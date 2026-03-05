@@ -1,21 +1,28 @@
 module Increase
   module Models
     type physical_card_update_params =
-      { status: Increase::Models::PhysicalCardUpdateParams::status }
+      {
+        physical_card_id: String,
+        status: Increase::Models::PhysicalCardUpdateParams::status
+      }
       & Increase::Internal::Type::request_parameters
 
     class PhysicalCardUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      attr_accessor physical_card_id: String
+
       attr_accessor status: Increase::Models::PhysicalCardUpdateParams::status
 
       def initialize: (
+        physical_card_id: String,
         status: Increase::Models::PhysicalCardUpdateParams::status,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        physical_card_id: String,
         status: Increase::Models::PhysicalCardUpdateParams::status,
         request_options: Increase::RequestOptions
       }

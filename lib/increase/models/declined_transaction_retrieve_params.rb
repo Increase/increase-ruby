@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute declined_transaction_id
+      #   The identifier of the Declined Transaction.
+      #
+      #   @return [String]
+      required :declined_transaction_id, String
+
+      # @!method initialize(declined_transaction_id:, request_options: {})
+      #   @param declined_transaction_id [String] The identifier of the Declined Transaction.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

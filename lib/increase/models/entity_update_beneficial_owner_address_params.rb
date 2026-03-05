@@ -7,6 +7,13 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute entity_id
+      #   The identifier of the Entity associated with the Beneficial Owner whose address
+      #   is being updated.
+      #
+      #   @return [String]
+      required :entity_id, String
+
       # @!attribute address
       #   The individual's physical address. Mail receiving locations like PO Boxes and
       #   PMB's are disallowed.
@@ -21,9 +28,11 @@ module Increase
       #   @return [String]
       required :beneficial_owner_id, String
 
-      # @!method initialize(address:, beneficial_owner_id:, request_options: {})
+      # @!method initialize(entity_id:, address:, beneficial_owner_id:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityUpdateBeneficialOwnerAddressParams} for more details.
+      #
+      #   @param entity_id [String] The identifier of the Entity associated with the Beneficial Owner whose address
       #
       #   @param address [Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
       #

@@ -14,18 +14,25 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound Mail Item to action.
+      sig { returns(String) }
+      attr_accessor :inbound_mail_item_id
+
       # The actions to perform on the Inbound Mail Item.
       sig { returns(T::Array[Increase::InboundMailItemActionParams::Check]) }
       attr_accessor :checks
 
       sig do
         params(
+          inbound_mail_item_id: String,
           checks:
             T::Array[Increase::InboundMailItemActionParams::Check::OrHash],
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Inbound Mail Item to action.
+        inbound_mail_item_id:,
         # The actions to perform on the Inbound Mail Item.
         checks:,
         request_options: {}
@@ -35,6 +42,7 @@ module Increase
       sig do
         override.returns(
           {
+            inbound_mail_item_id: String,
             checks: T::Array[Increase::InboundMailItemActionParams::Check],
             request_options: Increase::RequestOptions
           }

@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute digital_card_profile_id
+      #   The identifier of the Digital Card Profile to clone.
+      #
+      #   @return [String]
+      required :digital_card_profile_id, String
+
       # @!attribute app_icon_file_id
       #   The identifier of the File containing the card's icon image.
       #
@@ -61,7 +67,9 @@ module Increase
       #   @return [Increase::Models::DigitalCardProfileCloneParams::TextColor, nil]
       optional :text_color, -> { Increase::DigitalCardProfileCloneParams::TextColor }
 
-      # @!method initialize(app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_phone: nil, contact_website: nil, description: nil, issuer_name: nil, text_color: nil, request_options: {})
+      # @!method initialize(digital_card_profile_id:, app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_phone: nil, contact_website: nil, description: nil, issuer_name: nil, text_color: nil, request_options: {})
+      #   @param digital_card_profile_id [String] The identifier of the Digital Card Profile to clone.
+      #
       #   @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
       #
       #   @param background_image_file_id [String] The identifier of the File containing the card's front image.

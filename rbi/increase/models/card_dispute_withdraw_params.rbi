@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Card Dispute to withdraw.
+      sig { returns(String) }
+      attr_accessor :card_dispute_id
+
       # The explanation for withdrawing the Card Dispute.
       sig { returns(T.nilable(String)) }
       attr_reader :explanation
@@ -23,11 +27,14 @@ module Increase
 
       sig do
         params(
+          card_dispute_id: String,
           explanation: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Card Dispute to withdraw.
+        card_dispute_id:,
         # The explanation for withdrawing the Card Dispute.
         explanation: nil,
         request_options: {}
@@ -36,7 +43,11 @@ module Increase
 
       sig do
         override.returns(
-          { explanation: String, request_options: Increase::RequestOptions }
+          {
+            card_dispute_id: String,
+            explanation: String,
+            request_options: Increase::RequestOptions
+          }
         )
       end
       def to_hash

@@ -2,6 +2,7 @@ module Increase
   module Models
     type card_update_params =
       {
+        card_id: String,
         billing_address: Increase::CardUpdateParams::BillingAddress,
         description: String,
         digital_wallet: Increase::CardUpdateParams::DigitalWallet,
@@ -13,6 +14,8 @@ module Increase
     class CardUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor card_id: String
 
       attr_reader billing_address: Increase::CardUpdateParams::BillingAddress?
 
@@ -41,6 +44,7 @@ module Increase
       ) -> Increase::Models::CardUpdateParams::status
 
       def initialize: (
+        card_id: String,
         ?billing_address: Increase::CardUpdateParams::BillingAddress,
         ?description: String,
         ?digital_wallet: Increase::CardUpdateParams::DigitalWallet,
@@ -50,6 +54,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        card_id: String,
         billing_address: Increase::CardUpdateParams::BillingAddress,
         description: String,
         digital_wallet: Increase::CardUpdateParams::DigitalWallet,

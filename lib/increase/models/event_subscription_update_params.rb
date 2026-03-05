@@ -7,13 +7,21 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute event_subscription_id
+      #   The identifier of the Event Subscription.
+      #
+      #   @return [String]
+      required :event_subscription_id, String
+
       # @!attribute status
       #   The status to update the Event Subscription with.
       #
       #   @return [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status, nil]
       optional :status, enum: -> { Increase::EventSubscriptionUpdateParams::Status }
 
-      # @!method initialize(status: nil, request_options: {})
+      # @!method initialize(event_subscription_id:, status: nil, request_options: {})
+      #   @param event_subscription_id [String] The identifier of the Event Subscription.
+      #
       #   @param status [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status] The status to update the Event Subscription with.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

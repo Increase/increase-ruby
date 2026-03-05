@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The identifier of the ACH Transfer you wish to return.
+        sig { returns(String) }
+        attr_accessor :ach_transfer_id
+
         # The reason why the Federal Reserve or destination bank returned this transfer.
         # Defaults to `no_account`.
         sig do
@@ -36,12 +40,15 @@ module Increase
 
         sig do
           params(
+            ach_transfer_id: String,
             reason:
               Increase::Simulations::ACHTransferReturnParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # The identifier of the ACH Transfer you wish to return.
+          ach_transfer_id:,
           # The reason why the Federal Reserve or destination bank returned this transfer.
           # Defaults to `no_account`.
           reason: nil,
@@ -52,6 +59,7 @@ module Increase
         sig do
           override.returns(
             {
+              ach_transfer_id: String,
               reason:
                 Increase::Simulations::ACHTransferReturnParams::Reason::OrSymbol,
               request_options: Increase::RequestOptions

@@ -1,15 +1,24 @@
 module Increase
   module Models
     type inbound_wire_drawdown_request_retrieve_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { inbound_wire_drawdown_request_id: String }
+      & Increase::Internal::Type::request_parameters
 
     class InboundWireDrawdownRequestRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_accessor inbound_wire_drawdown_request_id: String
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def initialize: (
+        inbound_wire_drawdown_request_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        inbound_wire_drawdown_request_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

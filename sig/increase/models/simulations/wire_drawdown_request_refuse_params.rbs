@@ -2,15 +2,24 @@ module Increase
   module Models
     module Simulations
       type wire_drawdown_request_refuse_params =
-        {  } & Increase::Internal::Type::request_parameters
+        { wire_drawdown_request_id: String }
+        & Increase::Internal::Type::request_parameters
 
       class WireDrawdownRequestRefuseParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Increase::request_opts) -> void
+        attr_accessor wire_drawdown_request_id: String
 
-        def to_hash: -> { request_options: Increase::RequestOptions }
+        def initialize: (
+          wire_drawdown_request_id: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          wire_drawdown_request_id: String,
+          request_options: Increase::RequestOptions
+        }
       end
     end
   end

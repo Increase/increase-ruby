@@ -14,6 +14,11 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound ACH Transfer to return to the originating
+      # financial institution.
+      sig { returns(String) }
+      attr_accessor :inbound_ach_transfer_id
+
       # The reason why this transfer will be returned. The most usual return codes are
       # `payment_stopped` for debits and `credit_entry_refused_by_receiver` for credits.
       sig do
@@ -25,12 +30,16 @@ module Increase
 
       sig do
         params(
+          inbound_ach_transfer_id: String,
           reason:
             Increase::InboundACHTransferTransferReturnParams::Reason::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Inbound ACH Transfer to return to the originating
+        # financial institution.
+        inbound_ach_transfer_id:,
         # The reason why this transfer will be returned. The most usual return codes are
         # `payment_stopped` for debits and `credit_entry_refused_by_receiver` for credits.
         reason:,
@@ -41,6 +50,7 @@ module Increase
       sig do
         override.returns(
           {
+            inbound_ach_transfer_id: String,
             reason:
               Increase::InboundACHTransferTransferReturnParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions

@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute card_id
+      #   The identifier of the Card to create an iframe for.
+      #
+      #   @return [String]
+      required :card_id, String
+
       # @!attribute physical_card_id
       #   The identifier of the Physical Card to create an iframe for. This will inform
       #   the appearance of the card rendered in the iframe.
@@ -14,9 +20,11 @@ module Increase
       #   @return [String, nil]
       optional :physical_card_id, String
 
-      # @!method initialize(physical_card_id: nil, request_options: {})
+      # @!method initialize(card_id:, physical_card_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardCreateDetailsIframeParams} for more details.
+      #
+      #   @param card_id [String] The identifier of the Card to create an iframe for.
       #
       #   @param physical_card_id [String] The identifier of the Physical Card to create an iframe for. This will inform th
       #

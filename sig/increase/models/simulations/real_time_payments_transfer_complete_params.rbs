@@ -3,6 +3,7 @@ module Increase
     module Simulations
       type real_time_payments_transfer_complete_params =
         {
+          real_time_payments_transfer_id: String,
           rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
         }
         & Increase::Internal::Type::request_parameters
@@ -11,6 +12,8 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        attr_accessor real_time_payments_transfer_id: String
+
         attr_reader rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection?
 
         def rejection=: (
@@ -18,11 +21,13 @@ module Increase
         ) -> Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection
 
         def initialize: (
+          real_time_payments_transfer_id: String,
           ?rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          real_time_payments_transfer_id: String,
           rejection: Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
           request_options: Increase::RequestOptions
         }

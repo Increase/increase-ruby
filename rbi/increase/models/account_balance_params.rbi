@@ -11,6 +11,10 @@ module Increase
           T.any(Increase::AccountBalanceParams, Increase::Internal::AnyHash)
         end
 
+      # The identifier of the Account to retrieve.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The moment to query the balance at. If not set, returns the current balances.
       sig { returns(T.nilable(Time)) }
       attr_reader :at_time
@@ -20,11 +24,14 @@ module Increase
 
       sig do
         params(
+          account_id: String,
           at_time: Time,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Account to retrieve.
+        account_id:,
         # The moment to query the balance at. If not set, returns the current balances.
         at_time: nil,
         request_options: {}
@@ -33,7 +40,11 @@ module Increase
 
       sig do
         override.returns(
-          { at_time: Time, request_options: Increase::RequestOptions }
+          {
+            account_id: String,
+            at_time: Time,
+            request_options: Increase::RequestOptions
+          }
         )
       end
       def to_hash

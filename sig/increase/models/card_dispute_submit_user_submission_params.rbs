@@ -2,6 +2,7 @@ module Increase
   module Models
     type card_dispute_submit_user_submission_params =
       {
+        card_dispute_id: String,
         network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network,
         amount: Integer,
         attachment_files: ::Array[Increase::CardDisputeSubmitUserSubmissionParams::AttachmentFile],
@@ -13,6 +14,8 @@ module Increase
     class CardDisputeSubmitUserSubmissionParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor card_dispute_id: String
 
       attr_accessor network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network
 
@@ -37,6 +40,7 @@ module Increase
       ) -> Increase::CardDisputeSubmitUserSubmissionParams::Visa
 
       def initialize: (
+        card_dispute_id: String,
         network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network,
         ?amount: Integer,
         ?attachment_files: ::Array[Increase::CardDisputeSubmitUserSubmissionParams::AttachmentFile],
@@ -46,6 +50,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        card_dispute_id: String,
         network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network,
         amount: Integer,
         attachment_files: ::Array[Increase::CardDisputeSubmitUserSubmissionParams::AttachmentFile],

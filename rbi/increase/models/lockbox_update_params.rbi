@@ -11,6 +11,10 @@ module Increase
           T.any(Increase::LockboxUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # The identifier of the Lockbox.
+      sig { returns(String) }
+      attr_accessor :lockbox_id
+
       # This indicates if checks mailed to this lockbox will be deposited.
       sig do
         returns(
@@ -45,6 +49,7 @@ module Increase
 
       sig do
         params(
+          lockbox_id: String,
           check_deposit_behavior:
             Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol,
           description: String,
@@ -53,6 +58,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Lockbox.
+        lockbox_id:,
         # This indicates if checks mailed to this lockbox will be deposited.
         check_deposit_behavior: nil,
         # The description you choose for the Lockbox.
@@ -66,6 +73,7 @@ module Increase
       sig do
         override.returns(
           {
+            lockbox_id: String,
             check_deposit_behavior:
               Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol,
             description: String,

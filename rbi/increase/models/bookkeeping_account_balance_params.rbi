@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Bookkeeping Account to retrieve.
+      sig { returns(String) }
+      attr_accessor :bookkeeping_account_id
+
       # The moment to query the balance at. If not set, returns the current balances.
       sig { returns(T.nilable(Time)) }
       attr_reader :at_time
@@ -23,11 +27,14 @@ module Increase
 
       sig do
         params(
+          bookkeeping_account_id: String,
           at_time: Time,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Bookkeeping Account to retrieve.
+        bookkeeping_account_id:,
         # The moment to query the balance at. If not set, returns the current balances.
         at_time: nil,
         request_options: {}
@@ -36,7 +43,11 @@ module Increase
 
       sig do
         override.returns(
-          { at_time: Time, request_options: Increase::RequestOptions }
+          {
+            bookkeeping_account_id: String,
+            at_time: Time,
+            request_options: Increase::RequestOptions
+          }
         )
       end
       def to_hash

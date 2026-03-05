@@ -3,6 +3,7 @@ module Increase
     module Simulations
       type ach_transfer_settle_params =
         {
+          ach_transfer_id: String,
           inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior
         }
         & Increase::Internal::Type::request_parameters
@@ -11,6 +12,8 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        attr_accessor ach_transfer_id: String
+
         attr_reader inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior?
 
         def inbound_funds_hold_behavior=: (
@@ -18,11 +21,13 @@ module Increase
         ) -> Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior
 
         def initialize: (
+          ach_transfer_id: String,
           ?inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          ach_transfer_id: String,
           inbound_funds_hold_behavior: Increase::Models::Simulations::ACHTransferSettleParams::inbound_funds_hold_behavior,
           request_options: Increase::RequestOptions
         }

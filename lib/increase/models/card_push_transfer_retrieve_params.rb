@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute card_push_transfer_id
+      #   The identifier of the Card Push Transfer.
+      #
+      #   @return [String]
+      required :card_push_transfer_id, String
+
+      # @!method initialize(card_push_transfer_id:, request_options: {})
+      #   @param card_push_transfer_id [String] The identifier of the Card Push Transfer.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

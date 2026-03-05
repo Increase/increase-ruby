@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute program_id
+      #   The identifier of the Program to retrieve.
+      #
+      #   @return [String]
+      required :program_id, String
+
+      # @!method initialize(program_id:, request_options: {})
+      #   @param program_id [String] The identifier of the Program to retrieve.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Physical Card Profile to clone.
+      sig { returns(String) }
+      attr_accessor :physical_card_profile_id
+
       # The identifier of the File containing the physical card's carrier image.
       sig { returns(T.nilable(String)) }
       attr_reader :carrier_image_file_id
@@ -66,6 +70,7 @@ module Increase
 
       sig do
         params(
+          physical_card_profile_id: String,
           carrier_image_file_id: String,
           contact_phone: String,
           description: String,
@@ -77,6 +82,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Physical Card Profile to clone.
+        physical_card_profile_id:,
         # The identifier of the File containing the physical card's carrier image.
         carrier_image_file_id: nil,
         # A phone number the user can contact to receive support for their card.
@@ -97,6 +104,7 @@ module Increase
       sig do
         override.returns(
           {
+            physical_card_profile_id: String,
             carrier_image_file_id: String,
             contact_phone: String,
             description: String,

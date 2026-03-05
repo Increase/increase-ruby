@@ -7,13 +7,21 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute inbound_check_deposit_id
+      #   The identifier of the Inbound Check Deposit to return.
+      #
+      #   @return [String]
+      required :inbound_check_deposit_id, String
+
       # @!attribute reason
       #   The reason to return the Inbound Check Deposit.
       #
       #   @return [Symbol, Increase::Models::InboundCheckDepositReturnParams::Reason]
       required :reason, enum: -> { Increase::InboundCheckDepositReturnParams::Reason }
 
-      # @!method initialize(reason:, request_options: {})
+      # @!method initialize(inbound_check_deposit_id:, reason:, request_options: {})
+      #   @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to return.
+      #
       #   @param reason [Symbol, Increase::Models::InboundCheckDepositReturnParams::Reason] The reason to return the Inbound Check Deposit.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

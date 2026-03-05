@@ -8,6 +8,12 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute ach_transfer_id
+        #   The identifier of the ACH Transfer you wish to return.
+        #
+        #   @return [String]
+        required :ach_transfer_id, String
+
         # @!attribute reason
         #   The reason why the Federal Reserve or destination bank returned this transfer.
         #   Defaults to `no_account`.
@@ -15,9 +21,11 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason, nil]
         optional :reason, enum: -> { Increase::Simulations::ACHTransferReturnParams::Reason }
 
-        # @!method initialize(reason: nil, request_options: {})
+        # @!method initialize(ach_transfer_id:, reason: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::ACHTransferReturnParams} for more details.
+        #
+        #   @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to return.
         #
         #   @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason] The reason why the Federal Reserve or destination bank returned this transfer. D
         #

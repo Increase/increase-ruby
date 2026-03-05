@@ -2,6 +2,7 @@ module Increase
   module Models
     type lockbox_update_params =
       {
+        lockbox_id: String,
         check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         description: String,
         recipient_name: String
@@ -11,6 +12,8 @@ module Increase
     class LockboxUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor lockbox_id: String
 
       attr_reader check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior?
 
@@ -27,6 +30,7 @@ module Increase
       def recipient_name=: (String) -> String
 
       def initialize: (
+        lockbox_id: String,
         ?check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         ?description: String,
         ?recipient_name: String,
@@ -34,6 +38,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        lockbox_id: String,
         check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
         description: String,
         recipient_name: String,

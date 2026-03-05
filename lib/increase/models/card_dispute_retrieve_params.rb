@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute card_dispute_id
+      #   The identifier of the Card Dispute.
+      #
+      #   @return [String]
+      required :card_dispute_id, String
+
+      # @!method initialize(card_dispute_id:, request_options: {})
+      #   @param card_dispute_id [String] The identifier of the Card Dispute.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

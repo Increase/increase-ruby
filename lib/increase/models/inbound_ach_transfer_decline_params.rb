@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute inbound_ach_transfer_id
+      #   The identifier of the Inbound ACH Transfer to decline.
+      #
+      #   @return [String]
+      required :inbound_ach_transfer_id, String
+
       # @!attribute reason
       #   The reason why this transfer will be returned. If this parameter is unset, the
       #   return codes will be `payment_stopped` for debits and
@@ -15,9 +21,11 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundACHTransferDeclineParams::Reason, nil]
       optional :reason, enum: -> { Increase::InboundACHTransferDeclineParams::Reason }
 
-      # @!method initialize(reason: nil, request_options: {})
+      # @!method initialize(inbound_ach_transfer_id:, reason: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundACHTransferDeclineParams} for more details.
+      #
+      #   @param inbound_ach_transfer_id [String] The identifier of the Inbound ACH Transfer to decline.
       #
       #   @param reason [Symbol, Increase::Models::InboundACHTransferDeclineParams::Reason] The reason why this transfer will be returned. If this parameter is unset, the r
       #

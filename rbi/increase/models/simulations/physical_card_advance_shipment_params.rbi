@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The Physical Card you would like to action.
+        sig { returns(String) }
+        attr_accessor :physical_card_id
+
         # The shipment status to move the Physical Card to.
         sig do
           returns(
@@ -25,12 +29,15 @@ module Increase
 
         sig do
           params(
+            physical_card_id: String,
             shipment_status:
               Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # The Physical Card you would like to action.
+          physical_card_id:,
           # The shipment status to move the Physical Card to.
           shipment_status:,
           request_options: {}
@@ -40,6 +47,7 @@ module Increase
         sig do
           override.returns(
             {
+              physical_card_id: String,
               shipment_status:
                 Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus::OrSymbol,
               request_options: Increase::RequestOptions

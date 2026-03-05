@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Card Dispute to submit a user submission for.
+      sig { returns(String) }
+      attr_accessor :card_dispute_id
+
       # The network of the Card Dispute. Details specific to the network are required
       # under the sub-object with the same identifier as the network.
       sig do
@@ -81,6 +85,7 @@ module Increase
 
       sig do
         params(
+          card_dispute_id: String,
           network:
             Increase::CardDisputeSubmitUserSubmissionParams::Network::OrSymbol,
           amount: Integer,
@@ -94,6 +99,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Card Dispute to submit a user submission for.
+        card_dispute_id:,
         # The network of the Card Dispute. Details specific to the network are required
         # under the sub-object with the same identifier as the network.
         network:,
@@ -117,6 +124,7 @@ module Increase
       sig do
         override.returns(
           {
+            card_dispute_id: String,
             network:
               Increase::CardDisputeSubmitUserSubmissionParams::Network::OrSymbol,
             amount: Integer,

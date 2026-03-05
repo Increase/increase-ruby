@@ -14,15 +14,31 @@ module Increase
           )
         end
 
+      # The identifier of the Wire Transfer to approve.
+      sig { returns(String) }
+      attr_accessor :wire_transfer_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          wire_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the Wire Transfer to approve.
+        wire_transfer_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            wire_transfer_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

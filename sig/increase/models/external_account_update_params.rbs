@@ -2,6 +2,7 @@ module Increase
   module Models
     type external_account_update_params =
       {
+        external_account_id: String,
         account_holder: Increase::Models::ExternalAccountUpdateParams::account_holder,
         description: String,
         funding: Increase::Models::ExternalAccountUpdateParams::funding,
@@ -12,6 +13,8 @@ module Increase
     class ExternalAccountUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor external_account_id: String
 
       attr_reader account_holder: Increase::Models::ExternalAccountUpdateParams::account_holder?
 
@@ -36,6 +39,7 @@ module Increase
       ) -> Increase::Models::ExternalAccountUpdateParams::status
 
       def initialize: (
+        external_account_id: String,
         ?account_holder: Increase::Models::ExternalAccountUpdateParams::account_holder,
         ?description: String,
         ?funding: Increase::Models::ExternalAccountUpdateParams::funding,
@@ -44,6 +48,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        external_account_id: String,
         account_holder: Increase::Models::ExternalAccountUpdateParams::account_holder,
         description: String,
         funding: Increase::Models::ExternalAccountUpdateParams::funding,

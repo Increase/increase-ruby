@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The dispute you would like to action.
+        sig { returns(String) }
+        attr_accessor :card_dispute_id
+
         # The network of the Card Dispute. Details specific to the network are required
         # under the sub-object with the same identifier as the network.
         sig do
@@ -42,6 +46,7 @@ module Increase
 
         sig do
           params(
+            card_dispute_id: String,
             network:
               Increase::Simulations::CardDisputeActionParams::Network::OrSymbol,
             visa: Increase::Simulations::CardDisputeActionParams::Visa::OrHash,
@@ -49,6 +54,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # The dispute you would like to action.
+          card_dispute_id:,
           # The network of the Card Dispute. Details specific to the network are required
           # under the sub-object with the same identifier as the network.
           network:,
@@ -62,6 +69,7 @@ module Increase
         sig do
           override.returns(
             {
+              card_dispute_id: String,
               network:
                 Increase::Simulations::CardDisputeActionParams::Network::OrSymbol,
               visa: Increase::Simulations::CardDisputeActionParams::Visa,

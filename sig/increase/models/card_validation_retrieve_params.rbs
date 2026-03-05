@@ -1,15 +1,24 @@
 module Increase
   module Models
     type card_validation_retrieve_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { card_validation_id: String }
+      & Increase::Internal::Type::request_parameters
 
     class CardValidationRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_accessor card_validation_id: String
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def initialize: (
+        card_validation_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        card_validation_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end
