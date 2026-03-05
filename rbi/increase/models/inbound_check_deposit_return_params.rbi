@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound Check Deposit to return.
+      sig { returns(String) }
+      attr_accessor :inbound_check_deposit_id
+
       # The reason to return the Inbound Check Deposit.
       sig do
         returns(Increase::InboundCheckDepositReturnParams::Reason::OrSymbol)
@@ -22,11 +26,14 @@ module Increase
 
       sig do
         params(
+          inbound_check_deposit_id: String,
           reason: Increase::InboundCheckDepositReturnParams::Reason::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Inbound Check Deposit to return.
+        inbound_check_deposit_id:,
         # The reason to return the Inbound Check Deposit.
         reason:,
         request_options: {}
@@ -36,6 +43,7 @@ module Increase
       sig do
         override.returns(
           {
+            inbound_check_deposit_id: String,
             reason: Increase::InboundCheckDepositReturnParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions
           }

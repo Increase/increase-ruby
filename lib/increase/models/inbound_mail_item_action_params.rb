@@ -7,13 +7,21 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute inbound_mail_item_id
+      #   The identifier of the Inbound Mail Item to action.
+      #
+      #   @return [String]
+      required :inbound_mail_item_id, String
+
       # @!attribute checks
       #   The actions to perform on the Inbound Mail Item.
       #
       #   @return [Array<Increase::Models::InboundMailItemActionParams::Check>]
       required :checks, -> { Increase::Internal::Type::ArrayOf[Increase::InboundMailItemActionParams::Check] }
 
-      # @!method initialize(checks:, request_options: {})
+      # @!method initialize(inbound_mail_item_id:, checks:, request_options: {})
+      #   @param inbound_mail_item_id [String] The identifier of the Inbound Mail Item to action.
+      #
       #   @param checks [Array<Increase::Models::InboundMailItemActionParams::Check>] The actions to perform on the Inbound Mail Item.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute card_id
+      #   The card identifier.
+      #
+      #   @return [String]
+      required :card_id, String
+
       # @!attribute billing_address
       #   The card's updated billing address.
       #
@@ -40,9 +46,11 @@ module Increase
       #   @return [Symbol, Increase::Models::CardUpdateParams::Status, nil]
       optional :status, enum: -> { Increase::CardUpdateParams::Status }
 
-      # @!method initialize(billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
+      # @!method initialize(card_id:, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardUpdateParams} for more details.
+      #
+      #   @param card_id [String] The card identifier.
       #
       #   @param billing_address [Increase::Models::CardUpdateParams::BillingAddress] The card's updated billing address.
       #

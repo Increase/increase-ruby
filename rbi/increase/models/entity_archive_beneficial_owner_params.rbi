@@ -14,6 +14,11 @@ module Increase
           )
         end
 
+      # The identifier of the Entity associated with the Beneficial Owner that is being
+      # archived.
+      sig { returns(String) }
+      attr_accessor :entity_id
+
       # The identifying details of anyone controlling or owning 25% or more of the
       # corporation.
       sig { returns(String) }
@@ -21,11 +26,15 @@ module Increase
 
       sig do
         params(
+          entity_id: String,
           beneficial_owner_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Entity associated with the Beneficial Owner that is being
+        # archived.
+        entity_id:,
         # The identifying details of anyone controlling or owning 25% or more of the
         # corporation.
         beneficial_owner_id:,
@@ -36,6 +45,7 @@ module Increase
       sig do
         override.returns(
           {
+            entity_id: String,
             beneficial_owner_id: String,
             request_options: Increase::RequestOptions
           }

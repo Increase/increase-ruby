@@ -8,6 +8,12 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute physical_card_id
+        #   The Physical Card you would like to action.
+        #
+        #   @return [String]
+        required :physical_card_id, String
+
         # @!attribute shipment_status
         #   The shipment status to move the Physical Card to.
         #
@@ -15,7 +21,9 @@ module Increase
         required :shipment_status,
                  enum: -> { Increase::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus }
 
-        # @!method initialize(shipment_status:, request_options: {})
+        # @!method initialize(physical_card_id:, shipment_status:, request_options: {})
+        #   @param physical_card_id [String] The Physical Card you would like to action.
+        #
         #   @param shipment_status [Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus] The shipment status to move the Physical Card to.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

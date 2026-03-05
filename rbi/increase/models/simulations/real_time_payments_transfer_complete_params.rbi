@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The identifier of the Real-Time Payments Transfer you wish to complete.
+        sig { returns(String) }
+        attr_accessor :real_time_payments_transfer_id
+
         # If set, the simulation will reject the transfer.
         sig do
           returns(
@@ -35,12 +39,15 @@ module Increase
 
         sig do
           params(
+            real_time_payments_transfer_id: String,
             rejection:
               Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::OrHash,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # The identifier of the Real-Time Payments Transfer you wish to complete.
+          real_time_payments_transfer_id:,
           # If set, the simulation will reject the transfer.
           rejection: nil,
           request_options: {}
@@ -50,6 +57,7 @@ module Increase
         sig do
           override.returns(
             {
+              real_time_payments_transfer_id: String,
               rejection:
                 Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection,
               request_options: Increase::RequestOptions

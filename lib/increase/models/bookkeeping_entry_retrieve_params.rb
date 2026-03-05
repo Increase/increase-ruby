@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute bookkeeping_entry_id
+      #   The identifier of the Bookkeeping Entry.
+      #
+      #   @return [String]
+      required :bookkeeping_entry_id, String
+
+      # @!method initialize(bookkeeping_entry_id:, request_options: {})
+      #   @param bookkeeping_entry_id [String] The identifier of the Bookkeeping Entry.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

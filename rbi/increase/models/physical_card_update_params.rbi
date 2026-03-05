@@ -11,17 +11,24 @@ module Increase
           T.any(Increase::PhysicalCardUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # The Physical Card identifier.
+      sig { returns(String) }
+      attr_accessor :physical_card_id
+
       # The status to update the Physical Card to.
       sig { returns(Increase::PhysicalCardUpdateParams::Status::OrSymbol) }
       attr_accessor :status
 
       sig do
         params(
+          physical_card_id: String,
           status: Increase::PhysicalCardUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The Physical Card identifier.
+        physical_card_id:,
         # The status to update the Physical Card to.
         status:,
         request_options: {}
@@ -31,6 +38,7 @@ module Increase
       sig do
         override.returns(
           {
+            physical_card_id: String,
             status: Increase::PhysicalCardUpdateParams::Status::OrSymbol,
             request_options: Increase::RequestOptions
           }

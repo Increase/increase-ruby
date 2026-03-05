@@ -11,15 +11,28 @@ module Increase
           T.any(Increase::LockboxRetrieveParams, Increase::Internal::AnyHash)
         end
 
+      # The identifier of the Lockbox to retrieve.
+      sig { returns(String) }
+      attr_accessor :lockbox_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          lockbox_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the Lockbox to retrieve.
+        lockbox_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          { lockbox_id: String, request_options: Increase::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

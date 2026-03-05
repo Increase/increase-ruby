@@ -14,15 +14,31 @@ module Increase
           )
         end
 
+      # The identifier of the OAuth Connection.
+      sig { returns(String) }
+      attr_accessor :oauth_connection_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          oauth_connection_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the OAuth Connection.
+        oauth_connection_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            oauth_connection_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

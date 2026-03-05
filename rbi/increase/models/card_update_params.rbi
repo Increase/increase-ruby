@@ -11,6 +11,10 @@ module Increase
           T.any(Increase::CardUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # The card identifier.
+      sig { returns(String) }
+      attr_accessor :card_id
+
       # The card's updated billing address.
       sig { returns(T.nilable(Increase::CardUpdateParams::BillingAddress)) }
       attr_reader :billing_address
@@ -59,6 +63,7 @@ module Increase
 
       sig do
         params(
+          card_id: String,
           billing_address: Increase::CardUpdateParams::BillingAddress::OrHash,
           description: String,
           digital_wallet: Increase::CardUpdateParams::DigitalWallet::OrHash,
@@ -68,6 +73,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The card identifier.
+        card_id:,
         # The card's updated billing address.
         billing_address: nil,
         # The description you choose to give the card.
@@ -88,6 +95,7 @@ module Increase
       sig do
         override.returns(
           {
+            card_id: String,
             billing_address: Increase::CardUpdateParams::BillingAddress,
             description: String,
             digital_wallet: Increase::CardUpdateParams::DigitalWallet,

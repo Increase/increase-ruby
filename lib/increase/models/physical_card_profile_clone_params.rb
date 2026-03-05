@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute physical_card_profile_id
+      #   The identifier of the Physical Card Profile to clone.
+      #
+      #   @return [String]
+      required :physical_card_profile_id, String
+
       # @!attribute carrier_image_file_id
       #   The identifier of the File containing the physical card's carrier image.
       #
@@ -44,9 +50,11 @@ module Increase
       #   @return [String, nil]
       optional :program_id, String
 
-      # @!method initialize(carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, program_id: nil, request_options: {})
+      # @!method initialize(physical_card_profile_id:, carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, program_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::PhysicalCardProfileCloneParams} for more details.
+      #
+      #   @param physical_card_profile_id [String] The identifier of the Physical Card Profile to clone.
       #
       #   @param carrier_image_file_id [String] The identifier of the File containing the physical card's carrier image.
       #

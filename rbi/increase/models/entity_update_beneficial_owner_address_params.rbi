@@ -14,6 +14,11 @@ module Increase
           )
         end
 
+      # The identifier of the Entity associated with the Beneficial Owner whose address
+      # is being updated.
+      sig { returns(String) }
+      attr_accessor :entity_id
+
       # The individual's physical address. Mail receiving locations like PO Boxes and
       # PMB's are disallowed.
       sig do
@@ -36,6 +41,7 @@ module Increase
 
       sig do
         params(
+          entity_id: String,
           address:
             Increase::EntityUpdateBeneficialOwnerAddressParams::Address::OrHash,
           beneficial_owner_id: String,
@@ -43,6 +49,9 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Entity associated with the Beneficial Owner whose address
+        # is being updated.
+        entity_id:,
         # The individual's physical address. Mail receiving locations like PO Boxes and
         # PMB's are disallowed.
         address:,
@@ -56,6 +65,7 @@ module Increase
       sig do
         override.returns(
           {
+            entity_id: String,
             address:
               Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
             beneficial_owner_id: String,

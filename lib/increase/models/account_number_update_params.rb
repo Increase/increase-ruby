@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute account_number_id
+      #   The identifier of the Account Number.
+      #
+      #   @return [String]
+      required :account_number_id, String
+
       # @!attribute inbound_ach
       #   Options related to how this Account Number handles inbound ACH transfers.
       #
@@ -32,9 +38,11 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountNumberUpdateParams::Status, nil]
       optional :status, enum: -> { Increase::AccountNumberUpdateParams::Status }
 
-      # @!method initialize(inbound_ach: nil, inbound_checks: nil, name: nil, status: nil, request_options: {})
+      # @!method initialize(account_number_id:, inbound_ach: nil, inbound_checks: nil, name: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::AccountNumberUpdateParams} for more details.
+      #
+      #   @param account_number_id [String] The identifier of the Account Number.
       #
       #   @param inbound_ach [Increase::Models::AccountNumberUpdateParams::InboundACH] Options related to how this Account Number handles inbound ACH transfers.
       #

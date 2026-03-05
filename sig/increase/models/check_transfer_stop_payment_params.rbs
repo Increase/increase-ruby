@@ -1,12 +1,17 @@
 module Increase
   module Models
     type check_transfer_stop_payment_params =
-      { reason: Increase::Models::CheckTransferStopPaymentParams::reason }
+      {
+        check_transfer_id: String,
+        reason: Increase::Models::CheckTransferStopPaymentParams::reason
+      }
       & Increase::Internal::Type::request_parameters
 
     class CheckTransferStopPaymentParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor check_transfer_id: String
 
       attr_reader reason: Increase::Models::CheckTransferStopPaymentParams::reason?
 
@@ -15,11 +20,13 @@ module Increase
       ) -> Increase::Models::CheckTransferStopPaymentParams::reason
 
       def initialize: (
+        check_transfer_id: String,
         ?reason: Increase::Models::CheckTransferStopPaymentParams::reason,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        check_transfer_id: String,
         reason: Increase::Models::CheckTransferStopPaymentParams::reason,
         request_options: Increase::RequestOptions
       }

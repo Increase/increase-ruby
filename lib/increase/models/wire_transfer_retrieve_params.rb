@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute wire_transfer_id
+      #   The identifier of the Wire Transfer.
+      #
+      #   @return [String]
+      required :wire_transfer_id, String
+
+      # @!method initialize(wire_transfer_id:, request_options: {})
+      #   @param wire_transfer_id [String] The identifier of the Wire Transfer.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

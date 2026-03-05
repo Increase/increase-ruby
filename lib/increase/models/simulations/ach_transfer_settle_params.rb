@@ -8,6 +8,12 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute ach_transfer_id
+        #   The identifier of the ACH Transfer you wish to become settled.
+        #
+        #   @return [String]
+        required :ach_transfer_id, String
+
         # @!attribute inbound_funds_hold_behavior
         #   The behavior of the inbound funds hold that is created when the ACH Transfer is
         #   settled. If no behavior is specified, the inbound funds hold will be released
@@ -17,9 +23,11 @@ module Increase
         optional :inbound_funds_hold_behavior,
                  enum: -> { Increase::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior }
 
-        # @!method initialize(inbound_funds_hold_behavior: nil, request_options: {})
+        # @!method initialize(ach_transfer_id:, inbound_funds_hold_behavior: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::ACHTransferSettleParams} for more details.
+        #
+        #   @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to become settled.
         #
         #   @param inbound_funds_hold_behavior [Symbol, Increase::Models::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior] The behavior of the inbound funds hold that is created when the ACH Transfer is
         #

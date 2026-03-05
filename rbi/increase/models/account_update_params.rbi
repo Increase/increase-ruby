@@ -11,6 +11,10 @@ module Increase
           T.any(Increase::AccountUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # The identifier of the Account to update.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The loan details for the account.
       sig { returns(T.nilable(Increase::AccountUpdateParams::Loan)) }
       attr_reader :loan
@@ -27,12 +31,15 @@ module Increase
 
       sig do
         params(
+          account_id: String,
           loan: Increase::AccountUpdateParams::Loan::OrHash,
           name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Account to update.
+        account_id:,
         # The loan details for the account.
         loan: nil,
         # The new name of the Account.
@@ -44,6 +51,7 @@ module Increase
       sig do
         override.returns(
           {
+            account_id: String,
             loan: Increase::AccountUpdateParams::Loan,
             name: String,
             request_options: Increase::RequestOptions

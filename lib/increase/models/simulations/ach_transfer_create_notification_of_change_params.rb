@@ -8,6 +8,13 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute ach_transfer_id
+        #   The identifier of the ACH Transfer you wish to create a notification of change
+        #   for.
+        #
+        #   @return [String]
+        required :ach_transfer_id, String
+
         # @!attribute change_code
         #   The reason for the notification of change.
         #
@@ -21,7 +28,13 @@ module Increase
         #   @return [String]
         required :corrected_data, String
 
-        # @!method initialize(change_code:, corrected_data:, request_options: {})
+        # @!method initialize(ach_transfer_id:, change_code:, corrected_data:, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams} for
+        #   more details.
+        #
+        #   @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to create a notification of change f
+        #
         #   @param change_code [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode] The reason for the notification of change.
         #
         #   @param corrected_data [String] The corrected data for the notification of change (e.g., a new routing number).

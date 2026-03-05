@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Event Subscription.
+      sig { returns(String) }
+      attr_accessor :event_subscription_id
+
       # The status to update the Event Subscription with.
       sig do
         returns(
@@ -31,11 +35,14 @@ module Increase
 
       sig do
         params(
+          event_subscription_id: String,
           status: Increase::EventSubscriptionUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Event Subscription.
+        event_subscription_id:,
         # The status to update the Event Subscription with.
         status: nil,
         request_options: {}
@@ -45,6 +52,7 @@ module Increase
       sig do
         override.returns(
           {
+            event_subscription_id: String,
             status: Increase::EventSubscriptionUpdateParams::Status::OrSymbol,
             request_options: Increase::RequestOptions
           }

@@ -11,15 +11,28 @@ module Increase
           T.any(Increase::FileRetrieveParams, Increase::Internal::AnyHash)
         end
 
+      # The identifier of the File.
+      sig { returns(String) }
+      attr_accessor :file_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          file_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the File.
+        file_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          { file_id: String, request_options: Increase::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

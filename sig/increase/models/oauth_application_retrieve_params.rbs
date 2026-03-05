@@ -1,15 +1,24 @@
 module Increase
   module Models
     type oauth_application_retrieve_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { oauth_application_id: String }
+      & Increase::Internal::Type::request_parameters
 
     class OAuthApplicationRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_accessor oauth_application_id: String
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def initialize: (
+        oauth_application_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        oauth_application_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

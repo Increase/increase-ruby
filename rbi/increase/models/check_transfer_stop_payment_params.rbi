@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Check Transfer.
+      sig { returns(String) }
+      attr_accessor :check_transfer_id
+
       # The reason why this transfer should be stopped.
       sig do
         returns(
@@ -31,11 +35,14 @@ module Increase
 
       sig do
         params(
+          check_transfer_id: String,
           reason: Increase::CheckTransferStopPaymentParams::Reason::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Check Transfer.
+        check_transfer_id:,
         # The reason why this transfer should be stopped.
         reason: nil,
         request_options: {}
@@ -45,6 +52,7 @@ module Increase
       sig do
         override.returns(
           {
+            check_transfer_id: String,
             reason: Increase::CheckTransferStopPaymentParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions
           }

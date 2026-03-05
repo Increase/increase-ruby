@@ -7,13 +7,21 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute inbound_wire_transfer_id
+      #   The identifier of the Inbound Wire Transfer to reverse.
+      #
+      #   @return [String]
+      required :inbound_wire_transfer_id, String
+
       # @!attribute reason
       #   Reason for the reversal.
       #
       #   @return [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason]
       required :reason, enum: -> { Increase::InboundWireTransferReverseParams::Reason }
 
-      # @!method initialize(reason:, request_options: {})
+      # @!method initialize(inbound_wire_transfer_id:, reason:, request_options: {})
+      #   @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
+      #
       #   @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

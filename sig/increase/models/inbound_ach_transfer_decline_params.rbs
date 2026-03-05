@@ -1,12 +1,17 @@
 module Increase
   module Models
     type inbound_ach_transfer_decline_params =
-      { reason: Increase::Models::InboundACHTransferDeclineParams::reason }
+      {
+        inbound_ach_transfer_id: String,
+        reason: Increase::Models::InboundACHTransferDeclineParams::reason
+      }
       & Increase::Internal::Type::request_parameters
 
     class InboundACHTransferDeclineParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor inbound_ach_transfer_id: String
 
       attr_reader reason: Increase::Models::InboundACHTransferDeclineParams::reason?
 
@@ -15,11 +20,13 @@ module Increase
       ) -> Increase::Models::InboundACHTransferDeclineParams::reason
 
       def initialize: (
+        inbound_ach_transfer_id: String,
         ?reason: Increase::Models::InboundACHTransferDeclineParams::reason,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        inbound_ach_transfer_id: String,
         reason: Increase::Models::InboundACHTransferDeclineParams::reason,
         request_options: Increase::RequestOptions
       }

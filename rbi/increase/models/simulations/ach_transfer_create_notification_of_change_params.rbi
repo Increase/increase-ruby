@@ -15,6 +15,11 @@ module Increase
             )
           end
 
+        # The identifier of the ACH Transfer you wish to create a notification of change
+        # for.
+        sig { returns(String) }
+        attr_accessor :ach_transfer_id
+
         # The reason for the notification of change.
         sig do
           returns(
@@ -29,6 +34,7 @@ module Increase
 
         sig do
           params(
+            ach_transfer_id: String,
             change_code:
               Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode::OrSymbol,
             corrected_data: String,
@@ -36,6 +42,9 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # The identifier of the ACH Transfer you wish to create a notification of change
+          # for.
+          ach_transfer_id:,
           # The reason for the notification of change.
           change_code:,
           # The corrected data for the notification of change (e.g., a new routing number).
@@ -47,6 +56,7 @@ module Increase
         sig do
           override.returns(
             {
+              ach_transfer_id: String,
               change_code:
                 Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode::OrSymbol,
               corrected_data: String,

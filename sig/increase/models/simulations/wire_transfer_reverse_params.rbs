@@ -2,15 +2,24 @@ module Increase
   module Models
     module Simulations
       type wire_transfer_reverse_params =
-        {  } & Increase::Internal::Type::request_parameters
+        { wire_transfer_id: String }
+        & Increase::Internal::Type::request_parameters
 
       class WireTransferReverseParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Increase::request_opts) -> void
+        attr_accessor wire_transfer_id: String
 
-        def to_hash: -> { request_options: Increase::RequestOptions }
+        def initialize: (
+          wire_transfer_id: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          wire_transfer_id: String,
+          request_options: Increase::RequestOptions
+        }
       end
     end
   end

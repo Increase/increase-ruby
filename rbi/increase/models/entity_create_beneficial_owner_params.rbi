@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Entity to associate with the new Beneficial Owner.
+      sig { returns(String) }
+      attr_accessor :entity_id
+
       # The identifying details of anyone controlling or owning 25% or more of the
       # corporation.
       sig do
@@ -31,12 +35,15 @@ module Increase
 
       sig do
         params(
+          entity_id: String,
           beneficial_owner:
             Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Entity to associate with the new Beneficial Owner.
+        entity_id:,
         # The identifying details of anyone controlling or owning 25% or more of the
         # corporation.
         beneficial_owner:,
@@ -47,6 +54,7 @@ module Increase
       sig do
         override.returns(
           {
+            entity_id: String,
             beneficial_owner:
               Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
             request_options: Increase::RequestOptions

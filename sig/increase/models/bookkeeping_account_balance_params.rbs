@@ -1,22 +1,27 @@
 module Increase
   module Models
     type bookkeeping_account_balance_params =
-      { at_time: Time } & Increase::Internal::Type::request_parameters
+      { bookkeeping_account_id: String, at_time: Time }
+      & Increase::Internal::Type::request_parameters
 
     class BookkeepingAccountBalanceParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor bookkeeping_account_id: String
 
       attr_reader at_time: Time?
 
       def at_time=: (Time) -> Time
 
       def initialize: (
+        bookkeeping_account_id: String,
         ?at_time: Time,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        bookkeeping_account_id: String,
         at_time: Time,
         request_options: Increase::RequestOptions
       }

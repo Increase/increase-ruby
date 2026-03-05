@@ -14,17 +14,24 @@ module Increase
           )
         end
 
+      # The bookkeeping account you would like to update.
+      sig { returns(String) }
+      attr_accessor :bookkeeping_account_id
+
       # The name you choose for the account.
       sig { returns(String) }
       attr_accessor :name
 
       sig do
         params(
+          bookkeeping_account_id: String,
           name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The bookkeeping account you would like to update.
+        bookkeeping_account_id:,
         # The name you choose for the account.
         name:,
         request_options: {}
@@ -33,7 +40,11 @@ module Increase
 
       sig do
         override.returns(
-          { name: String, request_options: Increase::RequestOptions }
+          {
+            bookkeeping_account_id: String,
+            name: String,
+            request_options: Increase::RequestOptions
+          }
         )
       end
       def to_hash

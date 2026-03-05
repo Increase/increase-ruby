@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute lockbox_id
+      #   The identifier of the Lockbox.
+      #
+      #   @return [String]
+      required :lockbox_id, String
+
       # @!attribute check_deposit_behavior
       #   This indicates if checks mailed to this lockbox will be deposited.
       #
@@ -25,7 +31,9 @@ module Increase
       #   @return [String, nil]
       optional :recipient_name, String
 
-      # @!method initialize(check_deposit_behavior: nil, description: nil, recipient_name: nil, request_options: {})
+      # @!method initialize(lockbox_id:, check_deposit_behavior: nil, description: nil, recipient_name: nil, request_options: {})
+      #   @param lockbox_id [String] The identifier of the Lockbox.
+      #
       #   @param check_deposit_behavior [Symbol, Increase::Models::LockboxUpdateParams::CheckDepositBehavior] This indicates if checks mailed to this lockbox will be deposited.
       #
       #   @param description [String] The description you choose for the Lockbox.

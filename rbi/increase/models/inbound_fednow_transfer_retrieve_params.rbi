@@ -14,15 +14,31 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound FedNow Transfer to get details for.
+      sig { returns(String) }
+      attr_accessor :inbound_fednow_transfer_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          inbound_fednow_transfer_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the Inbound FedNow Transfer to get details for.
+        inbound_fednow_transfer_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            inbound_fednow_transfer_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

@@ -1,21 +1,28 @@
 module Increase
   module Models
     type inbound_mail_item_action_params =
-      { checks: ::Array[Increase::InboundMailItemActionParams::Check] }
+      {
+        inbound_mail_item_id: String,
+        checks: ::Array[Increase::InboundMailItemActionParams::Check]
+      }
       & Increase::Internal::Type::request_parameters
 
     class InboundMailItemActionParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      attr_accessor inbound_mail_item_id: String
+
       attr_accessor checks: ::Array[Increase::InboundMailItemActionParams::Check]
 
       def initialize: (
+        inbound_mail_item_id: String,
         checks: ::Array[Increase::InboundMailItemActionParams::Check],
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        inbound_mail_item_id: String,
         checks: ::Array[Increase::InboundMailItemActionParams::Check],
         request_options: Increase::RequestOptions
       }

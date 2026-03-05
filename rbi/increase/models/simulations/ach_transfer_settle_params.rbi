@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The identifier of the ACH Transfer you wish to become settled.
+        sig { returns(String) }
+        attr_accessor :ach_transfer_id
+
         # The behavior of the inbound funds hold that is created when the ACH Transfer is
         # settled. If no behavior is specified, the inbound funds hold will be released
         # immediately in order for the funds to be available for use.
@@ -37,12 +41,15 @@ module Increase
 
         sig do
           params(
+            ach_transfer_id: String,
             inbound_funds_hold_behavior:
               Increase::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # The identifier of the ACH Transfer you wish to become settled.
+          ach_transfer_id:,
           # The behavior of the inbound funds hold that is created when the ACH Transfer is
           # settled. If no behavior is specified, the inbound funds hold will be released
           # immediately in order for the funds to be available for use.
@@ -54,6 +61,7 @@ module Increase
         sig do
           override.returns(
             {
+              ach_transfer_id: String,
               inbound_funds_hold_behavior:
                 Increase::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior::OrSymbol,
               request_options: Increase::RequestOptions

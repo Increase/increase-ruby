@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute ach_prenotification_id
+      #   The identifier of the ACH Prenotification to retrieve.
+      #
+      #   @return [String]
+      required :ach_prenotification_id, String
+
+      # @!method initialize(ach_prenotification_id:, request_options: {})
+      #   @param ach_prenotification_id [String] The identifier of the ACH Prenotification to retrieve.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

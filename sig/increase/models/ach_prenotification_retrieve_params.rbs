@@ -1,15 +1,24 @@
 module Increase
   module Models
     type ach_prenotification_retrieve_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { ach_prenotification_id: String }
+      & Increase::Internal::Type::request_parameters
 
     class ACHPrenotificationRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_accessor ach_prenotification_id: String
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def initialize: (
+        ach_prenotification_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        ach_prenotification_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

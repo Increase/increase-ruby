@@ -3,6 +3,7 @@ module Increase
     module Simulations
       type physical_card_advance_shipment_params =
         {
+          physical_card_id: String,
           shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::shipment_status
         }
         & Increase::Internal::Type::request_parameters
@@ -11,14 +12,18 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        attr_accessor physical_card_id: String
+
         attr_accessor shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::shipment_status
 
         def initialize: (
+          physical_card_id: String,
           shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::shipment_status,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          physical_card_id: String,
           shipment_status: Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::shipment_status,
           request_options: Increase::RequestOptions
         }

@@ -8,13 +8,21 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute check_deposit_id
+        #   The identifier of the Check Deposit you wish to submit.
+        #
+        #   @return [String]
+        required :check_deposit_id, String
+
         # @!attribute scan
         #   If set, the simulation will use these values for the check's scanned MICR data.
         #
         #   @return [Increase::Models::Simulations::CheckDepositSubmitParams::Scan, nil]
         optional :scan, -> { Increase::Simulations::CheckDepositSubmitParams::Scan }
 
-        # @!method initialize(scan: nil, request_options: {})
+        # @!method initialize(check_deposit_id:, scan: nil, request_options: {})
+        #   @param check_deposit_id [String] The identifier of the Check Deposit you wish to submit.
+        #
         #   @param scan [Increase::Models::Simulations::CheckDepositSubmitParams::Scan] If set, the simulation will use these values for the check's scanned MICR data.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

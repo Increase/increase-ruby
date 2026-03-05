@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The identifier of the Account to update.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute loan
       #   The loan details for the account.
       #
@@ -19,7 +25,9 @@ module Increase
       #   @return [String, nil]
       optional :name, String
 
-      # @!method initialize(loan: nil, name: nil, request_options: {})
+      # @!method initialize(account_id:, loan: nil, name: nil, request_options: {})
+      #   @param account_id [String] The identifier of the Account to update.
+      #
       #   @param loan [Increase::Models::AccountUpdateParams::Loan] The loan details for the account.
       #
       #   @param name [String] The new name of the Account.

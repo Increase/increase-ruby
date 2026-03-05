@@ -2,12 +2,17 @@ module Increase
   module Models
     module Simulations
       type check_deposit_submit_params =
-        { scan: Increase::Simulations::CheckDepositSubmitParams::Scan }
+        {
+          check_deposit_id: String,
+          scan: Increase::Simulations::CheckDepositSubmitParams::Scan
+        }
         & Increase::Internal::Type::request_parameters
 
       class CheckDepositSubmitParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
+
+        attr_accessor check_deposit_id: String
 
         attr_reader scan: Increase::Simulations::CheckDepositSubmitParams::Scan?
 
@@ -16,11 +21,13 @@ module Increase
         ) -> Increase::Simulations::CheckDepositSubmitParams::Scan
 
         def initialize: (
+          check_deposit_id: String,
           ?scan: Increase::Simulations::CheckDepositSubmitParams::Scan,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          check_deposit_id: String,
           scan: Increase::Simulations::CheckDepositSubmitParams::Scan,
           request_options: Increase::RequestOptions
         }

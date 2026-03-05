@@ -11,15 +11,28 @@ module Increase
           T.any(Increase::AccountCloseParams, Increase::Internal::AnyHash)
         end
 
+      # The identifier of the Account to close. The account must have a zero balance.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          account_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the Account to close. The account must have a zero balance.
+        account_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          { account_id: String, request_options: Increase::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

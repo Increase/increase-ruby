@@ -1,15 +1,24 @@
 module Increase
   module Models
     type intrafi_account_enrollment_retrieve_params =
-      {  } & Increase::Internal::Type::request_parameters
+      { intrafi_account_enrollment_id: String }
+      & Increase::Internal::Type::request_parameters
 
     class IntrafiAccountEnrollmentRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Increase::request_opts) -> void
+      attr_accessor intrafi_account_enrollment_id: String
 
-      def to_hash: -> { request_options: Increase::RequestOptions }
+      def initialize: (
+        intrafi_account_enrollment_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        intrafi_account_enrollment_id: String,
+        request_options: Increase::RequestOptions
+      }
     end
   end
 end

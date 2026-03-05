@@ -15,15 +15,33 @@ module Increase
             )
           end
 
+        # The pending transaction to release. The pending transaction must have a
+        # `inbound_funds_hold` source.
+        sig { returns(String) }
+        attr_accessor :pending_transaction_id
+
         sig do
-          params(request_options: Increase::RequestOptions::OrHash).returns(
-            T.attached_class
-          )
+          params(
+            pending_transaction_id: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(T.attached_class)
         end
-        def self.new(request_options: {})
+        def self.new(
+          # The pending transaction to release. The pending transaction must have a
+          # `inbound_funds_hold` source.
+          pending_transaction_id:,
+          request_options: {}
+        )
         end
 
-        sig { override.returns({ request_options: Increase::RequestOptions }) }
+        sig do
+          override.returns(
+            {
+              pending_transaction_id: String,
+              request_options: Increase::RequestOptions
+            }
+          )
+        end
         def to_hash
         end
       end

@@ -1,21 +1,25 @@
 module Increase
   module Models
     type entity_archive_beneficial_owner_params =
-      { beneficial_owner_id: String }
+      { entity_id: String, beneficial_owner_id: String }
       & Increase::Internal::Type::request_parameters
 
     class EntityArchiveBeneficialOwnerParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      attr_accessor entity_id: String
+
       attr_accessor beneficial_owner_id: String
 
       def initialize: (
+        entity_id: String,
         beneficial_owner_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        entity_id: String,
         beneficial_owner_id: String,
         request_options: Increase::RequestOptions
       }

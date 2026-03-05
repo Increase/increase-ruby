@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute card_dispute_id
+      #   The identifier of the Card Dispute to submit a user submission for.
+      #
+      #   @return [String]
+      required :card_dispute_id, String
+
       # @!attribute network
       #   The network of the Card Dispute. Details specific to the network are required
       #   under the sub-object with the same identifier as the network.
@@ -44,9 +50,11 @@ module Increase
       #   @return [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa, nil]
       optional :visa, -> { Increase::CardDisputeSubmitUserSubmissionParams::Visa }
 
-      # @!method initialize(network:, amount: nil, attachment_files: nil, explanation: nil, visa: nil, request_options: {})
+      # @!method initialize(card_dispute_id:, network:, amount: nil, attachment_files: nil, explanation: nil, visa: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDisputeSubmitUserSubmissionParams} for more details.
+      #
+      #   @param card_dispute_id [String] The identifier of the Card Dispute to submit a user submission for.
       #
       #   @param network [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Network] The network of the Card Dispute. Details specific to the network are required un
       #

@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute real_time_decision_id
+      #   The identifier of the Real-Time Decision.
+      #
+      #   @return [String]
+      required :real_time_decision_id, String
+
       # @!attribute card_authentication
       #   If the Real-Time Decision relates to a 3DS card authentication attempt, this
       #   object contains your response to the authentication.
@@ -51,9 +57,11 @@ module Increase
       #   @return [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken, nil]
       optional :digital_wallet_token, -> { Increase::RealTimeDecisionActionParams::DigitalWalletToken }
 
-      # @!method initialize(card_authentication: nil, card_authentication_challenge: nil, card_authorization: nil, card_balance_inquiry: nil, digital_wallet_authentication: nil, digital_wallet_token: nil, request_options: {})
+      # @!method initialize(real_time_decision_id:, card_authentication: nil, card_authentication_challenge: nil, card_authorization: nil, card_balance_inquiry: nil, digital_wallet_authentication: nil, digital_wallet_token: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::RealTimeDecisionActionParams} for more details.
+      #
+      #   @param real_time_decision_id [String] The identifier of the Real-Time Decision.
       #
       #   @param card_authentication [Increase::Models::RealTimeDecisionActionParams::CardAuthentication] If the Real-Time Decision relates to a 3DS card authentication attempt, this obj
       #

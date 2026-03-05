@@ -3,6 +3,7 @@ module Increase
     module Simulations
       type physical_card_create_params =
         {
+          physical_card_id: String,
           category: Increase::Models::Simulations::PhysicalCardCreateParams::category,
           carrier_estimated_delivery_at: Time,
           city: String,
@@ -14,6 +15,8 @@ module Increase
       class PhysicalCardCreateParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
+
+        attr_accessor physical_card_id: String
 
         attr_accessor category: Increase::Models::Simulations::PhysicalCardCreateParams::category
 
@@ -34,6 +37,7 @@ module Increase
         def state=: (String) -> String
 
         def initialize: (
+          physical_card_id: String,
           category: Increase::Models::Simulations::PhysicalCardCreateParams::category,
           ?carrier_estimated_delivery_at: Time,
           ?city: String,
@@ -43,6 +47,7 @@ module Increase
         ) -> void
 
         def to_hash: -> {
+          physical_card_id: String,
           category: Increase::Models::Simulations::PhysicalCardCreateParams::category,
           carrier_estimated_delivery_at: Time,
           city: String,
