@@ -626,6 +626,11 @@ module Increase
           sig { returns(String) }
           attr_accessor :id
 
+          # A unique identifier assigned by the Access Control Server (us) for this
+          # transaction.
+          sig { returns(String) }
+          attr_accessor :access_control_server_transaction_id
+
           # The city of the cardholder billing address associated with the card used for
           # this purchase.
           sig { returns(T.nilable(String)) }
@@ -738,6 +743,11 @@ module Increase
           end
           attr_writer :device_channel
 
+          # A unique identifier assigned by the Directory Server (the card network) for this
+          # transaction.
+          sig { returns(String) }
+          attr_accessor :directory_server_transaction_id
+
           # The merchant identifier (commonly abbreviated as MID) of the merchant the card
           # is transacting with.
           sig { returns(String) }
@@ -804,6 +814,34 @@ module Increase
           sig { returns(String) }
           attr_accessor :requestor_url
 
+          # The city of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_city
+
+          # The country of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_country
+
+          # The first line of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_line1
+
+          # The second line of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_line2
+
+          # The third line of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_line3
+
+          # The postal code of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_postal_code
+
+          # The US state of the shipping address associated with this purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :shipping_address_state
+
           # The status of the card authentication.
           sig do
             returns(
@@ -811,6 +849,21 @@ module Increase
             )
           end
           attr_accessor :status
+
+          # A unique identifier assigned by the 3DS Server initiating the authentication
+          # attempt for this transaction.
+          sig { returns(String) }
+          attr_accessor :three_d_secure_server_transaction_id
+
+          # The type of transaction being authenticated.
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :transaction_type
 
           # A constant representing the object's type. For this resource it will always be
           # `card_authentication`.
@@ -827,6 +880,7 @@ module Increase
           sig do
             params(
               id: String,
+              access_control_server_transaction_id: String,
               billing_address_city: T.nilable(String),
               billing_address_country: T.nilable(String),
               billing_address_line1: T.nilable(String),
@@ -853,6 +907,7 @@ module Increase
                 ),
               device_channel:
                 Increase::CardPayment::Element::CardAuthentication::DeviceChannel::OrHash,
+              directory_server_transaction_id: String,
               merchant_acceptor_id: String,
               merchant_category_code: String,
               merchant_country: String,
@@ -871,8 +926,20 @@ module Increase
                 ),
               requestor_name: String,
               requestor_url: String,
+              shipping_address_city: T.nilable(String),
+              shipping_address_country: T.nilable(String),
+              shipping_address_line1: T.nilable(String),
+              shipping_address_line2: T.nilable(String),
+              shipping_address_line3: T.nilable(String),
+              shipping_address_postal_code: T.nilable(String),
+              shipping_address_state: T.nilable(String),
               status:
                 Increase::CardPayment::Element::CardAuthentication::Status::OrSymbol,
+              three_d_secure_server_transaction_id: String,
+              transaction_type:
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::TransactionType::OrSymbol
+                ),
               type:
                 Increase::CardPayment::Element::CardAuthentication::Type::OrSymbol
             ).returns(T.attached_class)
@@ -880,6 +947,9 @@ module Increase
           def self.new(
             # The Card Authentication identifier.
             id:,
+            # A unique identifier assigned by the Access Control Server (us) for this
+            # transaction.
+            access_control_server_transaction_id:,
             # The city of the cardholder billing address associated with the card used for
             # this purchase.
             billing_address_city:,
@@ -920,6 +990,9 @@ module Increase
             deny_reason:,
             # The device channel of the card authentication attempt.
             device_channel:,
+            # A unique identifier assigned by the Directory Server (the card network) for this
+            # transaction.
+            directory_server_transaction_id:,
             # The merchant identifier (commonly abbreviated as MID) of the merchant the card
             # is transacting with.
             merchant_acceptor_id:,
@@ -950,8 +1023,27 @@ module Increase
             requestor_name:,
             # The URL of the 3DS requestor.
             requestor_url:,
+            # The city of the shipping address associated with this purchase.
+            shipping_address_city:,
+            # The country of the shipping address associated with this purchase.
+            shipping_address_country:,
+            # The first line of the shipping address associated with this purchase.
+            shipping_address_line1:,
+            # The second line of the shipping address associated with this purchase.
+            shipping_address_line2:,
+            # The third line of the shipping address associated with this purchase.
+            shipping_address_line3:,
+            # The postal code of the shipping address associated with this purchase.
+            shipping_address_postal_code:,
+            # The US state of the shipping address associated with this purchase.
+            shipping_address_state:,
             # The status of the card authentication.
             status:,
+            # A unique identifier assigned by the 3DS Server initiating the authentication
+            # attempt for this transaction.
+            three_d_secure_server_transaction_id:,
+            # The type of transaction being authenticated.
+            transaction_type:,
             # A constant representing the object's type. For this resource it will always be
             # `card_authentication`.
             type:
@@ -962,6 +1054,7 @@ module Increase
             override.returns(
               {
                 id: String,
+                access_control_server_transaction_id: String,
                 billing_address_city: T.nilable(String),
                 billing_address_country: T.nilable(String),
                 billing_address_line1: T.nilable(String),
@@ -988,6 +1081,7 @@ module Increase
                   ),
                 device_channel:
                   Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
+                directory_server_transaction_id: String,
                 merchant_acceptor_id: String,
                 merchant_category_code: String,
                 merchant_country: String,
@@ -1006,8 +1100,20 @@ module Increase
                   ),
                 requestor_name: String,
                 requestor_url: String,
+                shipping_address_city: T.nilable(String),
+                shipping_address_country: T.nilable(String),
+                shipping_address_line1: T.nilable(String),
+                shipping_address_line2: T.nilable(String),
+                shipping_address_line3: T.nilable(String),
+                shipping_address_postal_code: T.nilable(String),
+                shipping_address_state: T.nilable(String),
                 status:
                   Increase::CardPayment::Element::CardAuthentication::Status::TaggedSymbol,
+                three_d_secure_server_transaction_id: String,
+                transaction_type:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+                  ),
                 type:
                   Increase::CardPayment::Element::CardAuthentication::Type::TaggedSymbol
               }
@@ -1381,6 +1487,26 @@ module Increase
             end
             attr_accessor :category
 
+            # Fields specific to merchant initiated transactions.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated
+                )
+              )
+            end
+            attr_reader :merchant_initiated
+
+            sig do
+              params(
+                merchant_initiated:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::OrHash
+                  )
+              ).void
+            end
+            attr_writer :merchant_initiated
+
             # The device channel of the card authentication attempt.
             sig do
               params(
@@ -1389,14 +1515,20 @@ module Increase
                     Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::OrHash
                   ),
                 category:
-                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::OrSymbol
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::OrSymbol,
+                merchant_initiated:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::OrHash
+                  )
               ).returns(T.attached_class)
             end
             def self.new(
               # Fields specific to the browser device channel.
               browser:,
               # The category of the device channel.
-              category:
+              category:,
+              # Fields specific to merchant initiated transactions.
+              merchant_initiated:
             )
             end
 
@@ -1408,7 +1540,11 @@ module Increase
                       Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Browser
                     ),
                   category:
-                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category::TaggedSymbol,
+                  merchant_initiated:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated
+                    )
                 }
               )
             end
@@ -1575,6 +1711,205 @@ module Increase
                 )
               end
               def self.values
+              end
+            end
+
+            class MerchantInitiated < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The merchant initiated indicator for the transaction.
+              sig do
+                returns(
+                  Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+              end
+              attr_accessor :indicator
+
+              # Fields specific to merchant initiated transactions.
+              sig do
+                params(
+                  indicator:
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The merchant initiated indicator for the transaction.
+                indicator:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    indicator:
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The merchant initiated indicator for the transaction.
+              module Indicator
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Recurring transaction.
+                RECURRING_TRANSACTION =
+                  T.let(
+                    :recurring_transaction,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Installment transaction.
+                INSTALLMENT_TRANSACTION =
+                  T.let(
+                    :installment_transaction,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Add card.
+                ADD_CARD =
+                  T.let(
+                    :add_card,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Maintain card information.
+                MAINTAIN_CARD_INFORMATION =
+                  T.let(
+                    :maintain_card_information,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Account verification.
+                ACCOUNT_VERIFICATION =
+                  T.let(
+                    :account_verification,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Split or delayed shipment.
+                SPLIT_DELAYED_SHIPMENT =
+                  T.let(
+                    :split_delayed_shipment,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Top up.
+                TOP_UP =
+                  T.let(
+                    :top_up,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Mail order.
+                MAIL_ORDER =
+                  T.let(
+                    :mail_order,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Telephone order.
+                TELEPHONE_ORDER =
+                  T.let(
+                    :telephone_order,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Whitelist status check.
+                WHITELIST_STATUS_CHECK =
+                  T.let(
+                    :whitelist_status_check,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Other payment.
+                OTHER_PAYMENT =
+                  T.let(
+                    :other_payment,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Billing agreement.
+                BILLING_AGREEMENT =
+                  T.let(
+                    :billing_agreement,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Device binding status check.
+                DEVICE_BINDING_STATUS_CHECK =
+                  T.let(
+                    :device_binding_status_check,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Card security code status check.
+                CARD_SECURITY_CODE_STATUS_CHECK =
+                  T.let(
+                    :card_security_code_status_check,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Delayed shipment.
+                DELAYED_SHIPMENT =
+                  T.let(
+                    :delayed_shipment,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Split payment.
+                SPLIT_PAYMENT =
+                  T.let(
+                    :split_payment,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # FIDO credential deletion.
+                FIDO_CREDENTIAL_DELETION =
+                  T.let(
+                    :fido_credential_deletion,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # FIDO credential registration.
+                FIDO_CREDENTIAL_REGISTRATION =
+                  T.let(
+                    :fido_credential_registration,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                # Decoupled authentication fallback.
+                DECOUPLED_AUTHENTICATION_FALLBACK =
+                  T.let(
+                    :decoupled_authentication_fallback,
+                    Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
               end
             end
           end
@@ -1820,6 +2155,65 @@ module Increase
               override.returns(
                 T::Array[
                   Increase::CardPayment::Element::CardAuthentication::Status::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # The type of transaction being authenticated.
+          module TransactionType
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardAuthentication::TransactionType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Purchase of goods or services.
+            GOODS_SERVICE_PURCHASE =
+              T.let(
+                :goods_service_purchase,
+                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+              )
+
+            # Check acceptance.
+            CHECK_ACCEPTANCE =
+              T.let(
+                :check_acceptance,
+                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+              )
+
+            # Account funding.
+            ACCOUNT_FUNDING =
+              T.let(
+                :account_funding,
+                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+              )
+
+            # Quasi-cash transaction.
+            QUASI_CASH_TRANSACTION =
+              T.let(
+                :quasi_cash_transaction,
+                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+              )
+
+            # Prepaid activation and load.
+            PREPAID_ACTIVATION_AND_LOAD =
+              T.let(
+                :prepaid_activation_and_load,
+                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
                 ]
               )
             end
