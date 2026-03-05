@@ -2,6 +2,7 @@ module Increase
   module Models
     type entity_create_beneficial_owner_params =
       {
+        entity_id: String,
         beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner
       }
       & Increase::Internal::Type::request_parameters
@@ -10,14 +11,18 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      attr_accessor entity_id: String
+
       attr_accessor beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner
 
       def initialize: (
+        entity_id: String,
         beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        entity_id: String,
         beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
         request_options: Increase::RequestOptions
       }

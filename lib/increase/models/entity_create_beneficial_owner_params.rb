@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute entity_id
+      #   The identifier of the Entity to associate with the new Beneficial Owner.
+      #
+      #   @return [String]
+      required :entity_id, String
+
       # @!attribute beneficial_owner
       #   The identifying details of anyone controlling or owning 25% or more of the
       #   corporation.
@@ -14,9 +20,11 @@ module Increase
       #   @return [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner]
       required :beneficial_owner, -> { Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner }
 
-      # @!method initialize(beneficial_owner:, request_options: {})
+      # @!method initialize(entity_id:, beneficial_owner:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityCreateBeneficialOwnerParams} for more details.
+      #
+      #   @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner.
       #
       #   @param beneficial_owner [Increase::Models::EntityCreateBeneficialOwnerParams::BeneficialOwner] The identifying details of anyone controlling or owning 25% or more of the corpo
       #

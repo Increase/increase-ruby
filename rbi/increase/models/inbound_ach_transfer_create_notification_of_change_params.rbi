@@ -14,6 +14,11 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound ACH Transfer for which to create a notification of
+      # change.
+      sig { returns(String) }
+      attr_accessor :inbound_ach_transfer_id
+
       # The updated account number to send in the notification of change.
       sig { returns(T.nilable(String)) }
       attr_reader :updated_account_number
@@ -30,12 +35,16 @@ module Increase
 
       sig do
         params(
+          inbound_ach_transfer_id: String,
           updated_account_number: String,
           updated_routing_number: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Inbound ACH Transfer for which to create a notification of
+        # change.
+        inbound_ach_transfer_id:,
         # The updated account number to send in the notification of change.
         updated_account_number: nil,
         # The updated routing number to send in the notification of change.
@@ -47,6 +56,7 @@ module Increase
       sig do
         override.returns(
           {
+            inbound_ach_transfer_id: String,
             updated_account_number: String,
             updated_routing_number: String,
             request_options: Increase::RequestOptions

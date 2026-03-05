@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The external account identifier.
+      sig { returns(String) }
+      attr_accessor :external_account_id
+
       # The type of entity that owns the External Account.
       sig do
         returns(
@@ -71,6 +75,7 @@ module Increase
 
       sig do
         params(
+          external_account_id: String,
           account_holder:
             Increase::ExternalAccountUpdateParams::AccountHolder::OrSymbol,
           description: String,
@@ -80,6 +85,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The external account identifier.
+        external_account_id:,
         # The type of entity that owns the External Account.
         account_holder: nil,
         # The description you choose to give the external account.
@@ -95,6 +102,7 @@ module Increase
       sig do
         override.returns(
           {
+            external_account_id: String,
             account_holder:
               Increase::ExternalAccountUpdateParams::AccountHolder::OrSymbol,
             description: String,

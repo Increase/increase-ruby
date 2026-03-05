@@ -8,6 +8,12 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute card_dispute_id
+        #   The dispute you would like to action.
+        #
+        #   @return [String]
+        required :card_dispute_id, String
+
         # @!attribute network
         #   The network of the Card Dispute. Details specific to the network are required
         #   under the sub-object with the same identifier as the network.
@@ -22,9 +28,11 @@ module Increase
         #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa, nil]
         optional :visa, -> { Increase::Simulations::CardDisputeActionParams::Visa }
 
-        # @!method initialize(network:, visa: nil, request_options: {})
+        # @!method initialize(card_dispute_id:, network:, visa: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::CardDisputeActionParams} for more details.
+        #
+        #   @param card_dispute_id [String] The dispute you would like to action.
         #
         #   @param network [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Network] The network of the Card Dispute. Details specific to the network are required un
         #

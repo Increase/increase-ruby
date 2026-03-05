@@ -8,7 +8,15 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        # @!method initialize(request_options: {})
+        # @!attribute card_payment_id
+        #   The identifier of the Card Payment to be challenged.
+        #
+        #   @return [String]
+        required :card_payment_id, String
+
+        # @!method initialize(card_payment_id:, request_options: {})
+        #   @param card_payment_id [String] The identifier of the Card Payment to be challenged.
+        #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end
     end

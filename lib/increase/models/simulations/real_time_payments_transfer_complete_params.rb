@@ -8,13 +8,21 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute real_time_payments_transfer_id
+        #   The identifier of the Real-Time Payments Transfer you wish to complete.
+        #
+        #   @return [String]
+        required :real_time_payments_transfer_id, String
+
         # @!attribute rejection
         #   If set, the simulation will reject the transfer.
         #
         #   @return [Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection, nil]
         optional :rejection, -> { Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection }
 
-        # @!method initialize(rejection: nil, request_options: {})
+        # @!method initialize(real_time_payments_transfer_id:, rejection: nil, request_options: {})
+        #   @param real_time_payments_transfer_id [String] The identifier of the Real-Time Payments Transfer you wish to complete.
+        #
         #   @param rejection [Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection] If set, the simulation will reject the transfer.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

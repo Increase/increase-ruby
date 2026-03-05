@@ -14,15 +14,35 @@ module Increase
           )
         end
 
+      # The identifier of the IntraFi Exclusion request to archive. It may take 5
+      # business days for an exclusion removal to be processed. Removing an exclusion
+      # does not guarantee that funds will be swept to the previously-excluded bank.
+      sig { returns(String) }
+      attr_accessor :intrafi_exclusion_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          intrafi_exclusion_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the IntraFi Exclusion request to archive. It may take 5
+        # business days for an exclusion removal to be processed. Removing an exclusion
+        # does not guarantee that funds will be swept to the previously-excluded bank.
+        intrafi_exclusion_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            intrafi_exclusion_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

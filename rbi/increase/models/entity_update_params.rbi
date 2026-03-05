@@ -11,6 +11,10 @@ module Increase
           T.any(Increase::EntityUpdateParams, Increase::Internal::AnyHash)
         end
 
+      # The entity identifier.
+      sig { returns(String) }
+      attr_accessor :entity_id
+
       # Details of the corporation entity to update. If you specify this parameter and
       # the entity is not a corporation, the request will fail.
       sig { returns(T.nilable(Increase::EntityUpdateParams::Corporation)) }
@@ -97,6 +101,7 @@ module Increase
 
       sig do
         params(
+          entity_id: String,
           corporation: Increase::EntityUpdateParams::Corporation::OrHash,
           details_confirmed_at: Time,
           government_authority:
@@ -110,6 +115,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The entity identifier.
+        entity_id:,
         # Details of the corporation entity to update. If you specify this parameter and
         # the entity is not a corporation, the request will fail.
         corporation: nil,
@@ -140,6 +147,7 @@ module Increase
       sig do
         override.returns(
           {
+            entity_id: String,
             corporation: Increase::EntityUpdateParams::Corporation,
             details_confirmed_at: Time,
             government_authority:

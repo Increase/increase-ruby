@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The identifier of the Check Deposit you wish to submit.
+        sig { returns(String) }
+        attr_accessor :check_deposit_id
+
         # If set, the simulation will use these values for the check's scanned MICR data.
         sig do
           returns(
@@ -32,11 +36,14 @@ module Increase
 
         sig do
           params(
+            check_deposit_id: String,
             scan: Increase::Simulations::CheckDepositSubmitParams::Scan::OrHash,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # The identifier of the Check Deposit you wish to submit.
+          check_deposit_id:,
           # If set, the simulation will use these values for the check's scanned MICR data.
           scan: nil,
           request_options: {}
@@ -46,6 +53,7 @@ module Increase
         sig do
           override.returns(
             {
+              check_deposit_id: String,
               scan: Increase::Simulations::CheckDepositSubmitParams::Scan,
               request_options: Increase::RequestOptions
             }

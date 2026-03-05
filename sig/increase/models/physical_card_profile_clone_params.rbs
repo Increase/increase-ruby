@@ -2,6 +2,7 @@ module Increase
   module Models
     type physical_card_profile_clone_params =
       {
+        physical_card_profile_id: String,
         carrier_image_file_id: String,
         contact_phone: String,
         description: String,
@@ -14,6 +15,8 @@ module Increase
     class PhysicalCardProfileCloneParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor physical_card_profile_id: String
 
       attr_reader carrier_image_file_id: String?
 
@@ -42,6 +45,7 @@ module Increase
       def program_id=: (String) -> String
 
       def initialize: (
+        physical_card_profile_id: String,
         ?carrier_image_file_id: String,
         ?contact_phone: String,
         ?description: String,
@@ -52,6 +56,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        physical_card_profile_id: String,
         carrier_image_file_id: String,
         contact_phone: String,
         description: String,

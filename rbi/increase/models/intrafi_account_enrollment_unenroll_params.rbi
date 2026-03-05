@@ -14,15 +14,31 @@ module Increase
           )
         end
 
+      # The Identifier of the IntraFi Account Enrollment to remove from IntraFi.
+      sig { returns(String) }
+      attr_accessor :intrafi_account_enrollment_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          intrafi_account_enrollment_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The Identifier of the IntraFi Account Enrollment to remove from IntraFi.
+        intrafi_account_enrollment_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            intrafi_account_enrollment_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

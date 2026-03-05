@@ -7,13 +7,21 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute physical_card_id
+      #   The Physical Card identifier.
+      #
+      #   @return [String]
+      required :physical_card_id, String
+
       # @!attribute status
       #   The status to update the Physical Card to.
       #
       #   @return [Symbol, Increase::Models::PhysicalCardUpdateParams::Status]
       required :status, enum: -> { Increase::PhysicalCardUpdateParams::Status }
 
-      # @!method initialize(status:, request_options: {})
+      # @!method initialize(physical_card_id:, status:, request_options: {})
+      #   @param physical_card_id [String] The Physical Card identifier.
+      #
       #   @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute inbound_wire_drawdown_request_id
+      #   The identifier of the Inbound Wire Drawdown Request to retrieve.
+      #
+      #   @return [String]
+      required :inbound_wire_drawdown_request_id, String
+
+      # @!method initialize(inbound_wire_drawdown_request_id:, request_options: {})
+      #   @param inbound_wire_drawdown_request_id [String] The identifier of the Inbound Wire Drawdown Request to retrieve.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

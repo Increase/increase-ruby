@@ -2,6 +2,7 @@ module Increase
   module Models
     type entity_update_params =
       {
+        entity_id: String,
         corporation: Increase::EntityUpdateParams::Corporation,
         details_confirmed_at: Time,
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
@@ -15,6 +16,8 @@ module Increase
     class EntityUpdateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor entity_id: String
 
       attr_reader corporation: Increase::EntityUpdateParams::Corporation?
 
@@ -57,6 +60,7 @@ module Increase
       ) -> Increase::EntityUpdateParams::Trust
 
       def initialize: (
+        entity_id: String,
         ?corporation: Increase::EntityUpdateParams::Corporation,
         ?details_confirmed_at: Time,
         ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
@@ -68,6 +72,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        entity_id: String,
         corporation: Increase::EntityUpdateParams::Corporation,
         details_confirmed_at: Time,
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,

@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Card to create an iframe for.
+      sig { returns(String) }
+      attr_accessor :card_id
+
       # The identifier of the Physical Card to create an iframe for. This will inform
       # the appearance of the card rendered in the iframe.
       sig { returns(T.nilable(String)) }
@@ -24,11 +28,14 @@ module Increase
 
       sig do
         params(
+          card_id: String,
           physical_card_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Card to create an iframe for.
+        card_id:,
         # The identifier of the Physical Card to create an iframe for. This will inform
         # the appearance of the card rendered in the iframe.
         physical_card_id: nil,
@@ -39,6 +46,7 @@ module Increase
       sig do
         override.returns(
           {
+            card_id: String,
             physical_card_id: String,
             request_options: Increase::RequestOptions
           }

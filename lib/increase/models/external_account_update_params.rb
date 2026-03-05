@@ -7,6 +7,12 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      # @!attribute external_account_id
+      #   The external account identifier.
+      #
+      #   @return [String]
+      required :external_account_id, String
+
       # @!attribute account_holder
       #   The type of entity that owns the External Account.
       #
@@ -31,7 +37,9 @@ module Increase
       #   @return [Symbol, Increase::Models::ExternalAccountUpdateParams::Status, nil]
       optional :status, enum: -> { Increase::ExternalAccountUpdateParams::Status }
 
-      # @!method initialize(account_holder: nil, description: nil, funding: nil, status: nil, request_options: {})
+      # @!method initialize(external_account_id:, account_holder: nil, description: nil, funding: nil, status: nil, request_options: {})
+      #   @param external_account_id [String] The external account identifier.
+      #
       #   @param account_holder [Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder] The type of entity that owns the External Account.
       #
       #   @param description [String] The description you choose to give the external account.

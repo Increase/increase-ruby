@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound Wire Transfer to reverse.
+      sig { returns(String) }
+      attr_accessor :inbound_wire_transfer_id
+
       # Reason for the reversal.
       sig do
         returns(Increase::InboundWireTransferReverseParams::Reason::OrSymbol)
@@ -22,11 +26,14 @@ module Increase
 
       sig do
         params(
+          inbound_wire_transfer_id: String,
           reason: Increase::InboundWireTransferReverseParams::Reason::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Inbound Wire Transfer to reverse.
+        inbound_wire_transfer_id:,
         # Reason for the reversal.
         reason:,
         request_options: {}
@@ -36,6 +43,7 @@ module Increase
       sig do
         override.returns(
           {
+            inbound_wire_transfer_id: String,
             reason:
               Increase::InboundWireTransferReverseParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions

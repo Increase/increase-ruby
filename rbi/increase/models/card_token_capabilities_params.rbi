@@ -14,15 +14,28 @@ module Increase
           )
         end
 
+      # The identifier of the Card Token.
+      sig { returns(String) }
+      attr_accessor :card_token_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          card_token_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the Card Token.
+        card_token_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          { card_token_id: String, request_options: Increase::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

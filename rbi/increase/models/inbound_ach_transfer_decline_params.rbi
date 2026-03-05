@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound ACH Transfer to decline.
+      sig { returns(String) }
+      attr_accessor :inbound_ach_transfer_id
+
       # The reason why this transfer will be returned. If this parameter is unset, the
       # return codes will be `payment_stopped` for debits and
       # `credit_entry_refused_by_receiver` for credits.
@@ -33,11 +37,14 @@ module Increase
 
       sig do
         params(
+          inbound_ach_transfer_id: String,
           reason: Increase::InboundACHTransferDeclineParams::Reason::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Inbound ACH Transfer to decline.
+        inbound_ach_transfer_id:,
         # The reason why this transfer will be returned. If this parameter is unset, the
         # return codes will be `payment_stopped` for debits and
         # `credit_entry_refused_by_receiver` for credits.
@@ -49,6 +56,7 @@ module Increase
       sig do
         override.returns(
           {
+            inbound_ach_transfer_id: String,
             reason: Increase::InboundACHTransferDeclineParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions
           }

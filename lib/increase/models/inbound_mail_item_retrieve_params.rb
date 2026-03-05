@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute inbound_mail_item_id
+      #   The identifier of the Inbound Mail Item to retrieve.
+      #
+      #   @return [String]
+      required :inbound_mail_item_id, String
+
+      # @!method initialize(inbound_mail_item_id:, request_options: {})
+      #   @param inbound_mail_item_id [String] The identifier of the Inbound Mail Item to retrieve.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

@@ -7,7 +7,15 @@ module Increase
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute event_subscription_id
+      #   The identifier of the Event Subscription.
+      #
+      #   @return [String]
+      required :event_subscription_id, String
+
+      # @!method initialize(event_subscription_id:, request_options: {})
+      #   @param event_subscription_id [String] The identifier of the Event Subscription.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
   end

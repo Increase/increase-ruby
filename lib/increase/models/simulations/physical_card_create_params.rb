@@ -8,6 +8,12 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        # @!attribute physical_card_id
+        #   The Physical Card you would like to action.
+        #
+        #   @return [String]
+        required :physical_card_id, String
+
         # @!attribute category
         #   The type of tracking event.
         #
@@ -39,9 +45,11 @@ module Increase
         #   @return [String, nil]
         optional :state, String
 
-        # @!method initialize(category:, carrier_estimated_delivery_at: nil, city: nil, postal_code: nil, state: nil, request_options: {})
+        # @!method initialize(physical_card_id:, category:, carrier_estimated_delivery_at: nil, city: nil, postal_code: nil, state: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::PhysicalCardCreateParams} for more details.
+        #
+        #   @param physical_card_id [String] The Physical Card you would like to action.
         #
         #   @param category [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category] The type of tracking event.
         #

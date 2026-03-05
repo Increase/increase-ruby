@@ -14,15 +14,31 @@ module Increase
           )
         end
 
+      # The identifier of the Inbound Check Deposit to get details for.
+      sig { returns(String) }
+      attr_accessor :inbound_check_deposit_id
+
       sig do
-        params(request_options: Increase::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          inbound_check_deposit_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The identifier of the Inbound Check Deposit to get details for.
+        inbound_check_deposit_id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Increase::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            inbound_check_deposit_id: String,
+            request_options: Increase::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Digital Card Profile to clone.
+      sig { returns(String) }
+      attr_accessor :digital_card_profile_id
+
       # The identifier of the File containing the card's icon image.
       sig { returns(T.nilable(String)) }
       attr_reader :app_icon_file_id
@@ -85,6 +89,7 @@ module Increase
 
       sig do
         params(
+          digital_card_profile_id: String,
           app_icon_file_id: String,
           background_image_file_id: String,
           card_description: String,
@@ -99,6 +104,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Digital Card Profile to clone.
+        digital_card_profile_id:,
         # The identifier of the File containing the card's icon image.
         app_icon_file_id: nil,
         # The identifier of the File containing the card's front image.
@@ -124,6 +131,7 @@ module Increase
       sig do
         override.returns(
           {
+            digital_card_profile_id: String,
             app_icon_file_id: String,
             background_image_file_id: String,
             card_description: String,

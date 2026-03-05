@@ -3,6 +3,7 @@ module Increase
     module Simulations
       type ach_transfer_create_notification_of_change_params =
         {
+          ach_transfer_id: String,
           change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::change_code,
           corrected_data: String
         }
@@ -12,17 +13,21 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        attr_accessor ach_transfer_id: String
+
         attr_accessor change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::change_code
 
         attr_accessor corrected_data: String
 
         def initialize: (
+          ach_transfer_id: String,
           change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::change_code,
           corrected_data: String,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          ach_transfer_id: String,
           change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::change_code,
           corrected_data: String,
           request_options: Increase::RequestOptions

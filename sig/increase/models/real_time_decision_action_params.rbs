@@ -2,6 +2,7 @@ module Increase
   module Models
     type real_time_decision_action_params =
       {
+        real_time_decision_id: String,
         card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
@@ -14,6 +15,8 @@ module Increase
     class RealTimeDecisionActionParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
+
+      attr_accessor real_time_decision_id: String
 
       attr_reader card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication?
 
@@ -52,6 +55,7 @@ module Increase
       ) -> Increase::RealTimeDecisionActionParams::DigitalWalletToken
 
       def initialize: (
+        real_time_decision_id: String,
         ?card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         ?card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         ?card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,
@@ -62,6 +66,7 @@ module Increase
       ) -> void
 
       def to_hash: -> {
+        real_time_decision_id: String,
         card_authentication: Increase::RealTimeDecisionActionParams::CardAuthentication,
         card_authentication_challenge: Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge,
         card_authorization: Increase::RealTimeDecisionActionParams::CardAuthorization,

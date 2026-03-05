@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Real-Time Decision.
+      sig { returns(String) }
+      attr_accessor :real_time_decision_id
+
       # If the Real-Time Decision relates to a 3DS card authentication attempt, this
       # object contains your response to the authentication.
       sig do
@@ -122,6 +126,7 @@ module Increase
 
       sig do
         params(
+          real_time_decision_id: String,
           card_authentication:
             Increase::RealTimeDecisionActionParams::CardAuthentication::OrHash,
           card_authentication_challenge:
@@ -138,6 +143,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Real-Time Decision.
+        real_time_decision_id:,
         # If the Real-Time Decision relates to a 3DS card authentication attempt, this
         # object contains your response to the authentication.
         card_authentication: nil,
@@ -163,6 +170,7 @@ module Increase
       sig do
         override.returns(
           {
+            real_time_decision_id: String,
             card_authentication:
               Increase::RealTimeDecisionActionParams::CardAuthentication,
             card_authentication_challenge:

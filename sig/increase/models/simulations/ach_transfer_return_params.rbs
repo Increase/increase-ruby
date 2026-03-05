@@ -3,6 +3,7 @@ module Increase
     module Simulations
       type ach_transfer_return_params =
         {
+          ach_transfer_id: String,
           reason: Increase::Models::Simulations::ACHTransferReturnParams::reason
         }
         & Increase::Internal::Type::request_parameters
@@ -11,6 +12,8 @@ module Increase
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
+        attr_accessor ach_transfer_id: String
+
         attr_reader reason: Increase::Models::Simulations::ACHTransferReturnParams::reason?
 
         def reason=: (
@@ -18,11 +21,13 @@ module Increase
         ) -> Increase::Models::Simulations::ACHTransferReturnParams::reason
 
         def initialize: (
+          ach_transfer_id: String,
           ?reason: Increase::Models::Simulations::ACHTransferReturnParams::reason,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
+          ach_transfer_id: String,
           reason: Increase::Models::Simulations::ACHTransferReturnParams::reason,
           request_options: Increase::RequestOptions
         }

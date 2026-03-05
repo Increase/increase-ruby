@@ -14,6 +14,10 @@ module Increase
           )
         end
 
+      # The identifier of the Account Number.
+      sig { returns(String) }
+      attr_accessor :account_number_id
+
       # Options related to how this Account Number handles inbound ACH transfers.
       sig do
         returns(T.nilable(Increase::AccountNumberUpdateParams::InboundACH))
@@ -66,6 +70,7 @@ module Increase
 
       sig do
         params(
+          account_number_id: String,
           inbound_ach: Increase::AccountNumberUpdateParams::InboundACH::OrHash,
           inbound_checks:
             Increase::AccountNumberUpdateParams::InboundChecks::OrHash,
@@ -75,6 +80,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
+        # The identifier of the Account Number.
+        account_number_id:,
         # Options related to how this Account Number handles inbound ACH transfers.
         inbound_ach: nil,
         # Options related to how this Account Number should handle inbound check
@@ -91,6 +98,7 @@ module Increase
       sig do
         override.returns(
           {
+            account_number_id: String,
             inbound_ach: Increase::AccountNumberUpdateParams::InboundACH,
             inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks,
             name: String,

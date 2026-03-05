@@ -15,6 +15,10 @@ module Increase
             )
           end
 
+        # The Physical Card you would like to action.
+        sig { returns(String) }
+        attr_accessor :physical_card_id
+
         # The type of tracking event.
         sig do
           returns(
@@ -54,6 +58,7 @@ module Increase
 
         sig do
           params(
+            physical_card_id: String,
             category:
               Increase::Simulations::PhysicalCardCreateParams::Category::OrSymbol,
             carrier_estimated_delivery_at: Time,
@@ -64,6 +69,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # The Physical Card you would like to action.
+          physical_card_id:,
           # The type of tracking event.
           category:,
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
@@ -82,6 +89,7 @@ module Increase
         sig do
           override.returns(
             {
+              physical_card_id: String,
               category:
                 Increase::Simulations::PhysicalCardCreateParams::Category::OrSymbol,
               carrier_estimated_delivery_at: Time,

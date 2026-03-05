@@ -2,15 +2,24 @@ module Increase
   module Models
     module Simulations
       type pending_transaction_release_inbound_funds_hold_params =
-        {  } & Increase::Internal::Type::request_parameters
+        { pending_transaction_id: String }
+        & Increase::Internal::Type::request_parameters
 
       class PendingTransactionReleaseInboundFundsHoldParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Increase::request_opts) -> void
+        attr_accessor pending_transaction_id: String
 
-        def to_hash: -> { request_options: Increase::RequestOptions }
+        def initialize: (
+          pending_transaction_id: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          pending_transaction_id: String,
+          request_options: Increase::RequestOptions
+        }
       end
     end
   end

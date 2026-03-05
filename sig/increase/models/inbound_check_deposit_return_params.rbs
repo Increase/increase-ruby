@@ -1,21 +1,28 @@
 module Increase
   module Models
     type inbound_check_deposit_return_params =
-      { reason: Increase::Models::InboundCheckDepositReturnParams::reason }
+      {
+        inbound_check_deposit_id: String,
+        reason: Increase::Models::InboundCheckDepositReturnParams::reason
+      }
       & Increase::Internal::Type::request_parameters
 
     class InboundCheckDepositReturnParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
+      attr_accessor inbound_check_deposit_id: String
+
       attr_accessor reason: Increase::Models::InboundCheckDepositReturnParams::reason
 
       def initialize: (
+        inbound_check_deposit_id: String,
         reason: Increase::Models::InboundCheckDepositReturnParams::reason,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
+        inbound_check_deposit_id: String,
         reason: Increase::Models::InboundCheckDepositReturnParams::reason,
         request_options: Increase::RequestOptions
       }
