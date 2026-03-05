@@ -75,6 +75,7 @@ module Increase
           external_account_id: String,
           idempotency_key: String,
           limit: Integer,
+          status: Increase::WireTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Internal::Page[Increase::WireTransfer])
       end
@@ -94,6 +95,7 @@ module Increase
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
+        status: nil,
         request_options: {}
       )
       end

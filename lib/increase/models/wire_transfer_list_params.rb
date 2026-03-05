@@ -46,7 +46,12 @@ module Increase
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!method initialize(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, request_options: {})
+      # @!attribute status
+      #
+      #   @return [Increase::Models::WireTransferListParams::Status, nil]
+      optional :status, -> { Increase::WireTransferListParams::Status }
+
+      # @!method initialize(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireTransferListParams} for more details.
       #
@@ -61,6 +66,8 @@ module Increase
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #
+      #   @param status [Increase::Models::WireTransferListParams::Status]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -104,6 +111,57 @@ module Increase
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+      end
+
+      class Status < Increase::Internal::Type::BaseModel
+        # @!attribute in_
+        #   Return results whose value is in the provided list. For GET requests, this
+        #   should be encoded as a comma-delimited string, such as `?in=one,two,three`.
+        #
+        #   @return [Array<Symbol, Increase::Models::WireTransferListParams::Status::In>, nil]
+        optional :in_,
+                 -> { Increase::Internal::Type::ArrayOf[enum: Increase::WireTransferListParams::Status::In] },
+                 api_name: :in
+
+        # @!method initialize(in_: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::WireTransferListParams::Status} for more details.
+        #
+        #   @param in_ [Array<Symbol, Increase::Models::WireTransferListParams::Status::In>] Return results whose value is in the provided list. For GET requests, this shoul
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # The transfer is pending approval.
+          PENDING_APPROVAL = :pending_approval
+
+          # The transfer has been canceled.
+          CANCELED = :canceled
+
+          # The transfer is pending review by Increase.
+          PENDING_REVIEWING = :pending_reviewing
+
+          # The transfer has been rejected by Increase.
+          REJECTED = :rejected
+
+          # The transfer requires attention from an Increase operator.
+          REQUIRES_ATTENTION = :requires_attention
+
+          # The transfer is pending creation.
+          PENDING_CREATING = :pending_creating
+
+          # The transfer has been reversed.
+          REVERSED = :reversed
+
+          # The transfer has been submitted to Fedwire.
+          SUBMITTED = :submitted
+
+          # The transfer has been acknowledged by Fedwire and can be considered complete.
+          COMPLETE = :complete
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end
