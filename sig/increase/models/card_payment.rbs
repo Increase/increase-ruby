@@ -234,6 +234,10 @@ module Increase
             purchase_amount: Integer?,
             purchase_currency: String?,
             real_time_decision_id: String?,
+            requestor_authentication_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_authentication_indicator?,
+            requestor_challenge_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_challenge_indicator?,
+            requestor_name: String,
+            requestor_url: String,
             status: Increase::Models::CardPayment::Element::CardAuthentication::status,
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           }
@@ -289,6 +293,14 @@ module Increase
 
           attr_accessor real_time_decision_id: String?
 
+          attr_accessor requestor_authentication_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_authentication_indicator?
+
+          attr_accessor requestor_challenge_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_challenge_indicator?
+
+          attr_accessor requestor_name: String
+
+          attr_accessor requestor_url: String
+
           attr_accessor status: Increase::Models::CardPayment::Element::CardAuthentication::status
 
           attr_accessor type: Increase::Models::CardPayment::Element::CardAuthentication::type_
@@ -319,6 +331,10 @@ module Increase
             purchase_amount: Integer?,
             purchase_currency: String?,
             real_time_decision_id: String?,
+            requestor_authentication_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_authentication_indicator?,
+            requestor_challenge_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_challenge_indicator?,
+            requestor_name: String,
+            requestor_url: String,
             status: Increase::Models::CardPayment::Element::CardAuthentication::status,
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           ) -> void
@@ -349,6 +365,10 @@ module Increase
             purchase_amount: Integer?,
             purchase_currency: String?,
             real_time_decision_id: String?,
+            requestor_authentication_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_authentication_indicator?,
+            requestor_challenge_indicator: Increase::Models::CardPayment::Element::CardAuthentication::requestor_challenge_indicator?,
+            requestor_name: String,
+            requestor_url: String,
             status: Increase::Models::CardPayment::Element::CardAuthentication::status,
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           }
@@ -577,6 +597,86 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::category]
             end
+          end
+
+          type requestor_authentication_indicator =
+            :payment_transaction
+            | :recurring_transaction
+            | :installment_transaction
+            | :add_card
+            | :maintain_card
+            | :emv_token_cardholder_verification
+            | :billing_agreement
+
+          module RequestorAuthenticationIndicator
+            extend Increase::Internal::Type::Enum
+
+            # The authentication is for a payment transaction.
+            PAYMENT_TRANSACTION: :payment_transaction
+
+            # The authentication is for a recurring transaction.
+            RECURRING_TRANSACTION: :recurring_transaction
+
+            # The authentication is for an installment transaction.
+            INSTALLMENT_TRANSACTION: :installment_transaction
+
+            # The authentication is for adding a card.
+            ADD_CARD: :add_card
+
+            # The authentication is for maintaining a card.
+            MAINTAIN_CARD: :maintain_card
+
+            # The authentication is for EMV token cardholder verification.
+            EMV_TOKEN_CARDHOLDER_VERIFICATION: :emv_token_cardholder_verification
+
+            # The authentication is for a billing agreement.
+            BILLING_AGREEMENT: :billing_agreement
+
+            def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::requestor_authentication_indicator]
+          end
+
+          type requestor_challenge_indicator =
+            :no_preference
+            | :no_challenge_requested
+            | :challenge_requested_3ds_requestor_preference
+            | :challenge_requested_mandate
+            | :no_challenge_requested_transactional_risk_analysis_already_performed
+            | :no_challenge_requested_data_share_only
+            | :no_challenge_requested_strong_consumer_authentication_already_performed
+            | :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required
+            | :challenge_requested_whitelist_prompt_requested_if_challenge_required
+
+          module RequestorChallengeIndicator
+            extend Increase::Internal::Type::Enum
+
+            # No preference.
+            NO_PREFERENCE: :no_preference
+
+            # No challenge requested.
+            NO_CHALLENGE_REQUESTED: :no_challenge_requested
+
+            # Challenge requested, 3DS Requestor preference.
+            CHALLENGE_REQUESTED_3DS_REQUESTOR_PREFERENCE: :challenge_requested_3ds_requestor_preference
+
+            # Challenge requested, mandate.
+            CHALLENGE_REQUESTED_MANDATE: :challenge_requested_mandate
+
+            # No challenge requested, transactional risk analysis already performed.
+            NO_CHALLENGE_REQUESTED_TRANSACTIONAL_RISK_ANALYSIS_ALREADY_PERFORMED: :no_challenge_requested_transactional_risk_analysis_already_performed
+
+            # No challenge requested, data share only.
+            NO_CHALLENGE_REQUESTED_DATA_SHARE_ONLY: :no_challenge_requested_data_share_only
+
+            # No challenge requested, strong consumer authentication already performed.
+            NO_CHALLENGE_REQUESTED_STRONG_CONSUMER_AUTHENTICATION_ALREADY_PERFORMED: :no_challenge_requested_strong_consumer_authentication_already_performed
+
+            # No challenge requested, utilize whitelist exemption if no challenge required.
+            NO_CHALLENGE_REQUESTED_UTILIZE_WHITELIST_EXEMPTION_IF_NO_CHALLENGE_REQUIRED: :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required
+
+            # Challenge requested, whitelist prompt requested if challenge required.
+            CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED: :challenge_requested_whitelist_prompt_requested_if_challenge_required
+
+            def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::requestor_challenge_indicator]
           end
 
           type status =
