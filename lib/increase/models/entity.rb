@@ -290,11 +290,11 @@ module Increase
         end
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
-          # @!attribute beneficial_owner_id
+          # @!attribute id
           #   The identifier of this beneficial owner.
           #
           #   @return [String]
-          required :beneficial_owner_id, String
+          required :id, String
 
           # @!attribute company_title
           #   This person's role or title within the entity.
@@ -315,8 +315,8 @@ module Increase
           required :prongs,
                    -> { Increase::Internal::Type::ArrayOf[enum: Increase::Entity::Corporation::BeneficialOwner::Prong] }
 
-          # @!method initialize(beneficial_owner_id:, company_title:, individual:, prongs:)
-          #   @param beneficial_owner_id [String] The identifier of this beneficial owner.
+          # @!method initialize(id:, company_title:, individual:, prongs:)
+          #   @param id [String] The identifier of this beneficial owner.
           #
           #   @param company_title [String, nil] This person's role or title within the entity.
           #

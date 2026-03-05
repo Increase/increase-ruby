@@ -423,7 +423,7 @@ module Increase
 
           # The identifier of this beneficial owner.
           sig { returns(String) }
-          attr_accessor :beneficial_owner_id
+          attr_accessor :id
 
           # This person's role or title within the entity.
           sig { returns(T.nilable(String)) }
@@ -455,7 +455,7 @@ module Increase
 
           sig do
             params(
-              beneficial_owner_id: String,
+              id: String,
               company_title: T.nilable(String),
               individual:
                 Increase::Entity::Corporation::BeneficialOwner::Individual::OrHash,
@@ -467,7 +467,7 @@ module Increase
           end
           def self.new(
             # The identifier of this beneficial owner.
-            beneficial_owner_id:,
+            id:,
             # This person's role or title within the entity.
             company_title:,
             # Personal details for the beneficial owner.
@@ -480,7 +480,7 @@ module Increase
           sig do
             override.returns(
               {
-                beneficial_owner_id: String,
+                id: String,
                 company_title: T.nilable(String),
                 individual:
                   Increase::Entity::Corporation::BeneficialOwner::Individual,
