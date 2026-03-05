@@ -35,6 +35,29 @@ module Increase
         )
         end
 
+        # Simulates an adjustment on an Inbound Check Deposit. The Inbound Check Deposit
+        # must have a `status` of `accepted`.
+        sig do
+          params(
+            inbound_check_deposit_id: String,
+            amount: Integer,
+            reason:
+              Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::OrSymbol,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::InboundCheckDeposit)
+        end
+        def adjustment(
+          # The identifier of the Inbound Check Deposit to adjust.
+          inbound_check_deposit_id,
+          # The adjustment amount in cents. Defaults to the amount of the Inbound Check
+          # Deposit.
+          amount: nil,
+          # The reason for the adjustment. Defaults to `wrong_payee_credit`.
+          reason: nil,
+          request_options: {}
+        )
+        end
+
         # @api private
         sig { params(client: Increase::Client).returns(T.attached_class) }
         def self.new(client:)
