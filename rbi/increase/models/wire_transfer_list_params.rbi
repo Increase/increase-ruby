@@ -60,6 +60,14 @@ module Increase
       sig { params(limit: Integer).void }
       attr_writer :limit
 
+      sig { returns(T.nilable(Increase::WireTransferListParams::Status)) }
+      attr_reader :status
+
+      sig do
+        params(status: Increase::WireTransferListParams::Status::OrHash).void
+      end
+      attr_writer :status
+
       sig do
         params(
           account_id: String,
@@ -68,6 +76,7 @@ module Increase
           external_account_id: String,
           idempotency_key: String,
           limit: Integer,
+          status: Increase::WireTransferListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -87,6 +96,7 @@ module Increase
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
+        status: nil,
         request_options: {}
       )
       end
@@ -100,6 +110,7 @@ module Increase
             external_account_id: String,
             idempotency_key: String,
             limit: Integer,
+            status: Increase::WireTransferListParams::Status,
             request_options: Increase::RequestOptions
           }
         )
@@ -178,6 +189,142 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class Status < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireTransferListParams::Status,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Return results whose value is in the provided list. For GET requests, this
+        # should be encoded as a comma-delimited string, such as `?in=one,two,three`.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Increase::WireTransferListParams::Status::In::OrSymbol]
+            )
+          )
+        end
+        attr_reader :in_
+
+        sig do
+          params(
+            in_:
+              T::Array[Increase::WireTransferListParams::Status::In::OrSymbol]
+          ).void
+        end
+        attr_writer :in_
+
+        sig do
+          params(
+            in_:
+              T::Array[Increase::WireTransferListParams::Status::In::OrSymbol]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Return results whose value is in the provided list. For GET requests, this
+          # should be encoded as a comma-delimited string, such as `?in=one,two,three`.
+          in_: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              in_:
+                T::Array[Increase::WireTransferListParams::Status::In::OrSymbol]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::WireTransferListParams::Status::In)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The transfer is pending approval.
+          PENDING_APPROVAL =
+            T.let(
+              :pending_approval,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer has been canceled.
+          CANCELED =
+            T.let(
+              :canceled,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer is pending review by Increase.
+          PENDING_REVIEWING =
+            T.let(
+              :pending_reviewing,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer has been rejected by Increase.
+          REJECTED =
+            T.let(
+              :rejected,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer requires attention from an Increase operator.
+          REQUIRES_ATTENTION =
+            T.let(
+              :requires_attention,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer is pending creation.
+          PENDING_CREATING =
+            T.let(
+              :pending_creating,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer has been reversed.
+          REVERSED =
+            T.let(
+              :reversed,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer has been submitted to Fedwire.
+          SUBMITTED =
+            T.let(
+              :submitted,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          # The transfer has been acknowledged by Fedwire and can be considered complete.
+          COMPLETE =
+            T.let(
+              :complete,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::WireTransferListParams::Status::In::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

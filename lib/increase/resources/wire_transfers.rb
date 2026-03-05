@@ -73,7 +73,7 @@ module Increase
       #
       # List Wire Transfers
       #
-      # @overload list(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, request_options: {})
+      # @overload list(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
       # @param account_id [String] Filter Wire Transfers to those belonging to the specified Account.
       #
@@ -86,6 +86,8 @@ module Increase
       # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #
+      # @param status [Increase::Models::WireTransferListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

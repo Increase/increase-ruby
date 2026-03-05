@@ -28,6 +28,7 @@ module Increase
         ?external_account_id: String,
         ?idempotency_key: String,
         ?limit: Integer,
+        ?status: Increase::WireTransferListParams::Status,
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::WireTransfer]
 

@@ -7,7 +7,8 @@ module Increase
         cursor: String,
         external_account_id: String,
         idempotency_key: String,
-        limit: Integer
+        limit: Integer,
+        status: Increase::WireTransferListParams::Status
       }
       & Increase::Internal::Type::request_parameters
 
@@ -41,6 +42,12 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
+      attr_reader status: Increase::WireTransferListParams::Status?
+
+      def status=: (
+        Increase::WireTransferListParams::Status
+      ) -> Increase::WireTransferListParams::Status
+
       def initialize: (
         ?account_id: String,
         ?created_at: Increase::WireTransferListParams::CreatedAt,
@@ -48,6 +55,7 @@ module Increase
         ?external_account_id: String,
         ?idempotency_key: String,
         ?limit: Integer,
+        ?status: Increase::WireTransferListParams::Status,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -58,6 +66,7 @@ module Increase
         external_account_id: String,
         idempotency_key: String,
         limit: Integer,
+        status: Increase::WireTransferListParams::Status,
         request_options: Increase::RequestOptions
       }
 
@@ -94,6 +103,69 @@ module Increase
           on_or_after: Time,
           on_or_before: Time
         }
+      end
+
+      type status =
+        { in_: ::Array[Increase::Models::WireTransferListParams::Status::in_] }
+
+      class Status < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::WireTransferListParams::Status::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::WireTransferListParams::Status::in_]
+        ) -> ::Array[Increase::Models::WireTransferListParams::Status::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::WireTransferListParams::Status::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::WireTransferListParams::Status::in_]
+        }
+
+        type in_ =
+          :pending_approval
+          | :canceled
+          | :pending_reviewing
+          | :rejected
+          | :requires_attention
+          | :pending_creating
+          | :reversed
+          | :submitted
+          | :complete
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # The transfer is pending approval.
+          PENDING_APPROVAL: :pending_approval
+
+          # The transfer has been canceled.
+          CANCELED: :canceled
+
+          # The transfer is pending review by Increase.
+          PENDING_REVIEWING: :pending_reviewing
+
+          # The transfer has been rejected by Increase.
+          REJECTED: :rejected
+
+          # The transfer requires attention from an Increase operator.
+          REQUIRES_ATTENTION: :requires_attention
+
+          # The transfer is pending creation.
+          PENDING_CREATING: :pending_creating
+
+          # The transfer has been reversed.
+          REVERSED: :reversed
+
+          # The transfer has been submitted to Fedwire.
+          SUBMITTED: :submitted
+
+          # The transfer has been acknowledged by Fedwire and can be considered complete.
+          COMPLETE: :complete
+
+          def self?.values: -> ::Array[Increase::Models::WireTransferListParams::Status::in_]
+        end
       end
     end
   end
