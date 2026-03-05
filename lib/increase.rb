@@ -313,6 +313,7 @@ require_relative "increase/models/simulations/digital_wallet_token_request_creat
 require_relative "increase/models/simulations/digital_wallet_token_request_create_response"
 require_relative "increase/models/simulations/export_create_params"
 require_relative "increase/models/simulations/inbound_ach_transfer_create_params"
+require_relative "increase/models/simulations/inbound_check_deposit_adjustment_params"
 require_relative "increase/models/simulations/inbound_check_deposit_create_params"
 require_relative "increase/models/simulations/inbound_fednow_transfer_create_params"
 require_relative "increase/models/simulations/inbound_mail_item_create_params"
