@@ -485,6 +485,39 @@ module Increase
           #   @return [String, nil]
           required :real_time_decision_id, String, nil?: true
 
+          # @!attribute requestor_authentication_indicator
+          #   The 3DS requestor authentication indicator describes why the authentication
+          #   attempt is performed, such as for a recurring transaction.
+          #
+          #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator, nil]
+          required :requestor_authentication_indicator,
+                   enum: -> {
+                     Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator
+                   },
+                   nil?: true
+
+          # @!attribute requestor_challenge_indicator
+          #   Indicates whether a challenge is requested for this transaction.
+          #
+          #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator, nil]
+          required :requestor_challenge_indicator,
+                   enum: -> {
+                     Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator
+                   },
+                   nil?: true
+
+          # @!attribute requestor_name
+          #   The name of the 3DS requestor.
+          #
+          #   @return [String]
+          required :requestor_name, String
+
+          # @!attribute requestor_url
+          #   The URL of the 3DS requestor.
+          #
+          #   @return [String]
+          required :requestor_url, String
+
           # @!attribute status
           #   The status of the card authentication.
           #
@@ -498,7 +531,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
+          # @!method initialize(id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, status:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -555,6 +588,14 @@ module Increase
           #   @param purchase_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the authenticati
           #
           #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this authent
+          #
+          #   @param requestor_authentication_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator, nil] The 3DS requestor authentication indicator describes why the authentication atte
+          #
+          #   @param requestor_challenge_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator, nil] Indicates whether a challenge is requested for this transaction.
+          #
+          #   @param requestor_name [String] The name of the 3DS requestor.
+          #
+          #   @param requestor_url [String] The URL of the 3DS requestor.
           #
           #   @param status [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status] The status of the card authentication.
           #
@@ -826,6 +867,79 @@ module Increase
               # @!method self.values
               #   @return [Array<Symbol>]
             end
+          end
+
+          # The 3DS requestor authentication indicator describes why the authentication
+          # attempt is performed, such as for a recurring transaction.
+          #
+          # @see Increase::Models::CardPayment::Element::CardAuthentication#requestor_authentication_indicator
+          module RequestorAuthenticationIndicator
+            extend Increase::Internal::Type::Enum
+
+            # The authentication is for a payment transaction.
+            PAYMENT_TRANSACTION = :payment_transaction
+
+            # The authentication is for a recurring transaction.
+            RECURRING_TRANSACTION = :recurring_transaction
+
+            # The authentication is for an installment transaction.
+            INSTALLMENT_TRANSACTION = :installment_transaction
+
+            # The authentication is for adding a card.
+            ADD_CARD = :add_card
+
+            # The authentication is for maintaining a card.
+            MAINTAIN_CARD = :maintain_card
+
+            # The authentication is for EMV token cardholder verification.
+            EMV_TOKEN_CARDHOLDER_VERIFICATION = :emv_token_cardholder_verification
+
+            # The authentication is for a billing agreement.
+            BILLING_AGREEMENT = :billing_agreement
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # Indicates whether a challenge is requested for this transaction.
+          #
+          # @see Increase::Models::CardPayment::Element::CardAuthentication#requestor_challenge_indicator
+          module RequestorChallengeIndicator
+            extend Increase::Internal::Type::Enum
+
+            # No preference.
+            NO_PREFERENCE = :no_preference
+
+            # No challenge requested.
+            NO_CHALLENGE_REQUESTED = :no_challenge_requested
+
+            # Challenge requested, 3DS Requestor preference.
+            CHALLENGE_REQUESTED_3DS_REQUESTOR_PREFERENCE = :challenge_requested_3ds_requestor_preference
+
+            # Challenge requested, mandate.
+            CHALLENGE_REQUESTED_MANDATE = :challenge_requested_mandate
+
+            # No challenge requested, transactional risk analysis already performed.
+            NO_CHALLENGE_REQUESTED_TRANSACTIONAL_RISK_ANALYSIS_ALREADY_PERFORMED =
+              :no_challenge_requested_transactional_risk_analysis_already_performed
+
+            # No challenge requested, data share only.
+            NO_CHALLENGE_REQUESTED_DATA_SHARE_ONLY = :no_challenge_requested_data_share_only
+
+            # No challenge requested, strong consumer authentication already performed.
+            NO_CHALLENGE_REQUESTED_STRONG_CONSUMER_AUTHENTICATION_ALREADY_PERFORMED =
+              :no_challenge_requested_strong_consumer_authentication_already_performed
+
+            # No challenge requested, utilize whitelist exemption if no challenge required.
+            NO_CHALLENGE_REQUESTED_UTILIZE_WHITELIST_EXEMPTION_IF_NO_CHALLENGE_REQUIRED =
+              :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required
+
+            # Challenge requested, whitelist prompt requested if challenge required.
+            CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED =
+              :challenge_requested_whitelist_prompt_requested_if_challenge_required
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # The status of the card authentication.

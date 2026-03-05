@@ -775,6 +775,35 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :real_time_decision_id
 
+          # The 3DS requestor authentication indicator describes why the authentication
+          # attempt is performed, such as for a recurring transaction.
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :requestor_authentication_indicator
+
+          # Indicates whether a challenge is requested for this transaction.
+          sig do
+            returns(
+              T.nilable(
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :requestor_challenge_indicator
+
+          # The name of the 3DS requestor.
+          sig { returns(String) }
+          attr_accessor :requestor_name
+
+          # The URL of the 3DS requestor.
+          sig { returns(String) }
+          attr_accessor :requestor_url
+
           # The status of the card authentication.
           sig do
             returns(
@@ -832,6 +861,16 @@ module Increase
               purchase_amount: T.nilable(Integer),
               purchase_currency: T.nilable(String),
               real_time_decision_id: T.nilable(String),
+              requestor_authentication_indicator:
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::OrSymbol
+                ),
+              requestor_challenge_indicator:
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::OrSymbol
+                ),
+              requestor_name: String,
+              requestor_url: String,
               status:
                 Increase::CardPayment::Element::CardAuthentication::Status::OrSymbol,
               type:
@@ -902,6 +941,15 @@ module Increase
             # The identifier of the Real-Time Decision sent to approve or decline this
             # authentication attempt.
             real_time_decision_id:,
+            # The 3DS requestor authentication indicator describes why the authentication
+            # attempt is performed, such as for a recurring transaction.
+            requestor_authentication_indicator:,
+            # Indicates whether a challenge is requested for this transaction.
+            requestor_challenge_indicator:,
+            # The name of the 3DS requestor.
+            requestor_name:,
+            # The URL of the 3DS requestor.
+            requestor_url:,
             # The status of the card authentication.
             status:,
             # A constant representing the object's type. For this resource it will always be
@@ -948,6 +996,16 @@ module Increase
                 purchase_amount: T.nilable(Integer),
                 purchase_currency: T.nilable(String),
                 real_time_decision_id: T.nilable(String),
+                requestor_authentication_indicator:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+                  ),
+                requestor_challenge_indicator:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+                  ),
+                requestor_name: String,
+                requestor_url: String,
                 status:
                   Increase::CardPayment::Element::CardAuthentication::Status::TaggedSymbol,
                 type:
@@ -1518,6 +1576,167 @@ module Increase
               end
               def self.values
               end
+            end
+          end
+
+          # The 3DS requestor authentication indicator describes why the authentication
+          # attempt is performed, such as for a recurring transaction.
+          module RequestorAuthenticationIndicator
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The authentication is for a payment transaction.
+            PAYMENT_TRANSACTION =
+              T.let(
+                :payment_transaction,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            # The authentication is for a recurring transaction.
+            RECURRING_TRANSACTION =
+              T.let(
+                :recurring_transaction,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            # The authentication is for an installment transaction.
+            INSTALLMENT_TRANSACTION =
+              T.let(
+                :installment_transaction,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            # The authentication is for adding a card.
+            ADD_CARD =
+              T.let(
+                :add_card,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            # The authentication is for maintaining a card.
+            MAINTAIN_CARD =
+              T.let(
+                :maintain_card,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            # The authentication is for EMV token cardholder verification.
+            EMV_TOKEN_CARDHOLDER_VERIFICATION =
+              T.let(
+                :emv_token_cardholder_verification,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            # The authentication is for a billing agreement.
+            BILLING_AGREEMENT =
+              T.let(
+                :billing_agreement,
+                Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # Indicates whether a challenge is requested for this transaction.
+          module RequestorChallengeIndicator
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # No preference.
+            NO_PREFERENCE =
+              T.let(
+                :no_preference,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # No challenge requested.
+            NO_CHALLENGE_REQUESTED =
+              T.let(
+                :no_challenge_requested,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # Challenge requested, 3DS Requestor preference.
+            CHALLENGE_REQUESTED_3DS_REQUESTOR_PREFERENCE =
+              T.let(
+                :challenge_requested_3ds_requestor_preference,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # Challenge requested, mandate.
+            CHALLENGE_REQUESTED_MANDATE =
+              T.let(
+                :challenge_requested_mandate,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # No challenge requested, transactional risk analysis already performed.
+            NO_CHALLENGE_REQUESTED_TRANSACTIONAL_RISK_ANALYSIS_ALREADY_PERFORMED =
+              T.let(
+                :no_challenge_requested_transactional_risk_analysis_already_performed,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # No challenge requested, data share only.
+            NO_CHALLENGE_REQUESTED_DATA_SHARE_ONLY =
+              T.let(
+                :no_challenge_requested_data_share_only,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # No challenge requested, strong consumer authentication already performed.
+            NO_CHALLENGE_REQUESTED_STRONG_CONSUMER_AUTHENTICATION_ALREADY_PERFORMED =
+              T.let(
+                :no_challenge_requested_strong_consumer_authentication_already_performed,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # No challenge requested, utilize whitelist exemption if no challenge required.
+            NO_CHALLENGE_REQUESTED_UTILIZE_WHITELIST_EXEMPTION_IF_NO_CHALLENGE_REQUIRED =
+              T.let(
+                :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            # Challenge requested, whitelist prompt requested if challenge required.
+            CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED =
+              T.let(
+                :challenge_requested_whitelist_prompt_requested_if_challenge_required,
+                Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
 
