@@ -458,6 +458,13 @@ module Increase
           #   @return [String]
           required :merchant_name, String
 
+          # @!attribute prior_card_authentication_id
+          #   The ID of a prior Card Authentication that the requestor used to authenticate
+          #   this cardholder for a previous transaction.
+          #
+          #   @return [String, nil]
+          required :prior_card_authentication_id, String, nil?: true
+
           # @!attribute purchase_amount
           #   The purchase amount in minor units.
           #
@@ -491,7 +498,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
+          # @!method initialize(id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, real_time_decision_id:, status:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -540,6 +547,8 @@ module Increase
           #   @param merchant_country [String] The country the merchant resides in.
           #
           #   @param merchant_name [String] The name of the merchant.
+          #
+          #   @param prior_card_authentication_id [String, nil] The ID of a prior Card Authentication that the requestor used to authenticate th
           #
           #   @param purchase_amount [Integer, nil] The purchase amount in minor units.
           #
