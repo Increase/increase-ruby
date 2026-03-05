@@ -318,6 +318,13 @@ module Increase
           #   @return [String]
           required :id, String
 
+          # @!attribute access_control_server_transaction_id
+          #   A unique identifier assigned by the Access Control Server (us) for this
+          #   transaction.
+          #
+          #   @return [String]
+          required :access_control_server_transaction_id, String
+
           # @!attribute billing_address_city
           #   The city of the cardholder billing address associated with the card used for
           #   this purchase.
@@ -432,6 +439,13 @@ module Increase
           #   @return [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel]
           required :device_channel, -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel }
 
+          # @!attribute directory_server_transaction_id
+          #   A unique identifier assigned by the Directory Server (the card network) for this
+          #   transaction.
+          #
+          #   @return [String]
+          required :directory_server_transaction_id, String
+
           # @!attribute merchant_acceptor_id
           #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
           #   is transacting with.
@@ -518,11 +532,68 @@ module Increase
           #   @return [String]
           required :requestor_url, String
 
+          # @!attribute shipping_address_city
+          #   The city of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_city, String, nil?: true
+
+          # @!attribute shipping_address_country
+          #   The country of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_country, String, nil?: true
+
+          # @!attribute shipping_address_line1
+          #   The first line of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_line1, String, nil?: true
+
+          # @!attribute shipping_address_line2
+          #   The second line of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_line2, String, nil?: true
+
+          # @!attribute shipping_address_line3
+          #   The third line of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_line3, String, nil?: true
+
+          # @!attribute shipping_address_postal_code
+          #   The postal code of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_postal_code, String, nil?: true
+
+          # @!attribute shipping_address_state
+          #   The US state of the shipping address associated with this purchase.
+          #
+          #   @return [String, nil]
+          required :shipping_address_state, String, nil?: true
+
           # @!attribute status
           #   The status of the card authentication.
           #
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status]
           required :status, enum: -> { Increase::CardPayment::Element::CardAuthentication::Status }
+
+          # @!attribute three_d_secure_server_transaction_id
+          #   A unique identifier assigned by the 3DS Server initiating the authentication
+          #   attempt for this transaction.
+          #
+          #   @return [String]
+          required :three_d_secure_server_transaction_id, String
+
+          # @!attribute transaction_type
+          #   The type of transaction being authenticated.
+          #
+          #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::TransactionType, nil]
+          required :transaction_type,
+                   enum: -> { Increase::CardPayment::Element::CardAuthentication::TransactionType },
+                   nil?: true
 
           # @!attribute type
           #   A constant representing the object's type. For this resource it will always be
@@ -531,7 +602,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, status:, type:)
+          # @!method initialize(id:, access_control_server_transaction_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_id:, transaction_type:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -540,6 +611,8 @@ module Increase
           #   are attempts to authenticate a transaction or a card with 3DS.
           #
           #   @param id [String] The Card Authentication identifier.
+          #
+          #   @param access_control_server_transaction_id [String] A unique identifier assigned by the Access Control Server (us) for this transact
           #
           #   @param billing_address_city [String, nil] The city of the cardholder billing address associated with the card used for thi
           #
@@ -573,6 +646,8 @@ module Increase
           #
           #   @param device_channel [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel] The device channel of the card authentication attempt.
           #
+          #   @param directory_server_transaction_id [String] A unique identifier assigned by the Directory Server (the card network) for this
+          #
           #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
           #
           #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
@@ -597,7 +672,25 @@ module Increase
           #
           #   @param requestor_url [String] The URL of the 3DS requestor.
           #
+          #   @param shipping_address_city [String, nil] The city of the shipping address associated with this purchase.
+          #
+          #   @param shipping_address_country [String, nil] The country of the shipping address associated with this purchase.
+          #
+          #   @param shipping_address_line1 [String, nil] The first line of the shipping address associated with this purchase.
+          #
+          #   @param shipping_address_line2 [String, nil] The second line of the shipping address associated with this purchase.
+          #
+          #   @param shipping_address_line3 [String, nil] The third line of the shipping address associated with this purchase.
+          #
+          #   @param shipping_address_postal_code [String, nil] The postal code of the shipping address associated with this purchase.
+          #
+          #   @param shipping_address_state [String, nil] The US state of the shipping address associated with this purchase.
+          #
           #   @param status [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status] The status of the card authentication.
+          #
+          #   @param three_d_secure_server_transaction_id [String] A unique identifier assigned by the 3DS Server initiating the authentication att
+          #
+          #   @param transaction_type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::TransactionType, nil] The type of transaction being authenticated.
           #
           #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type] A constant representing the object's type. For this resource it will always be `
 
@@ -776,12 +869,24 @@ module Increase
             required :category,
                      enum: -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel::Category }
 
-            # @!method initialize(browser:, category:)
+            # @!attribute merchant_initiated
+            #   Fields specific to merchant initiated transactions.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated, nil]
+            required :merchant_initiated,
+                     -> {
+                       Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated
+                     },
+                     nil?: true
+
+            # @!method initialize(browser:, category:, merchant_initiated:)
             #   The device channel of the card authentication attempt.
             #
             #   @param browser [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser, nil] Fields specific to the browser device channel.
             #
             #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Category] The category of the device channel.
+            #
+            #   @param merchant_initiated [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated, nil] Fields specific to merchant initiated transactions.
 
             # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel#browser
             class Browser < Increase::Internal::Type::BaseModel
@@ -866,6 +971,88 @@ module Increase
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel#merchant_initiated
+            class MerchantInitiated < Increase::Internal::Type::BaseModel
+              # @!attribute indicator
+              #   The merchant initiated indicator for the transaction.
+              #
+              #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator]
+              required :indicator,
+                       enum: -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator }
+
+              # @!method initialize(indicator:)
+              #   Fields specific to merchant initiated transactions.
+              #
+              #   @param indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator] The merchant initiated indicator for the transaction.
+
+              # The merchant initiated indicator for the transaction.
+              #
+              # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated#indicator
+              module Indicator
+                extend Increase::Internal::Type::Enum
+
+                # Recurring transaction.
+                RECURRING_TRANSACTION = :recurring_transaction
+
+                # Installment transaction.
+                INSTALLMENT_TRANSACTION = :installment_transaction
+
+                # Add card.
+                ADD_CARD = :add_card
+
+                # Maintain card information.
+                MAINTAIN_CARD_INFORMATION = :maintain_card_information
+
+                # Account verification.
+                ACCOUNT_VERIFICATION = :account_verification
+
+                # Split or delayed shipment.
+                SPLIT_DELAYED_SHIPMENT = :split_delayed_shipment
+
+                # Top up.
+                TOP_UP = :top_up
+
+                # Mail order.
+                MAIL_ORDER = :mail_order
+
+                # Telephone order.
+                TELEPHONE_ORDER = :telephone_order
+
+                # Whitelist status check.
+                WHITELIST_STATUS_CHECK = :whitelist_status_check
+
+                # Other payment.
+                OTHER_PAYMENT = :other_payment
+
+                # Billing agreement.
+                BILLING_AGREEMENT = :billing_agreement
+
+                # Device binding status check.
+                DEVICE_BINDING_STATUS_CHECK = :device_binding_status_check
+
+                # Card security code status check.
+                CARD_SECURITY_CODE_STATUS_CHECK = :card_security_code_status_check
+
+                # Delayed shipment.
+                DELAYED_SHIPMENT = :delayed_shipment
+
+                # Split payment.
+                SPLIT_PAYMENT = :split_payment
+
+                # FIDO credential deletion.
+                FIDO_CREDENTIAL_DELETION = :fido_credential_deletion
+
+                # FIDO credential registration.
+                FIDO_CREDENTIAL_REGISTRATION = :fido_credential_registration
+
+                # Decoupled authentication fallback.
+                DECOUPLED_AUTHENTICATION_FALLBACK = :decoupled_authentication_fallback
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
             end
           end
 
@@ -974,6 +1161,31 @@ module Increase
 
             # The authentication attempt exceeded the attempt threshold.
             EXCEEDED_ATTEMPT_THRESHOLD = :exceeded_attempt_threshold
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # The type of transaction being authenticated.
+          #
+          # @see Increase::Models::CardPayment::Element::CardAuthentication#transaction_type
+          module TransactionType
+            extend Increase::Internal::Type::Enum
+
+            # Purchase of goods or services.
+            GOODS_SERVICE_PURCHASE = :goods_service_purchase
+
+            # Check acceptance.
+            CHECK_ACCEPTANCE = :check_acceptance
+
+            # Account funding.
+            ACCOUNT_FUNDING = :account_funding
+
+            # Quasi-cash transaction.
+            QUASI_CASH_TRANSACTION = :quasi_cash_transaction
+
+            # Prepaid activation and load.
+            PREPAID_ACTIVATION_AND_LOAD = :prepaid_activation_and_load
 
             # @!method self.values
             #   @return [Array<Symbol>]
