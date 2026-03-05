@@ -756,6 +756,11 @@ module Increase
           sig { returns(String) }
           attr_accessor :merchant_name
 
+          # The ID of a prior Card Authentication that the requestor used to authenticate
+          # this cardholder for a previous transaction.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :prior_card_authentication_id
+
           # The purchase amount in minor units.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :purchase_amount
@@ -823,6 +828,7 @@ module Increase
               merchant_category_code: String,
               merchant_country: String,
               merchant_name: String,
+              prior_card_authentication_id: T.nilable(String),
               purchase_amount: T.nilable(Integer),
               purchase_currency: T.nilable(String),
               real_time_decision_id: T.nilable(String),
@@ -885,6 +891,9 @@ module Increase
             merchant_country:,
             # The name of the merchant.
             merchant_name:,
+            # The ID of a prior Card Authentication that the requestor used to authenticate
+            # this cardholder for a previous transaction.
+            prior_card_authentication_id:,
             # The purchase amount in minor units.
             purchase_amount:,
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
@@ -935,6 +944,7 @@ module Increase
                 merchant_category_code: String,
                 merchant_country: String,
                 merchant_name: String,
+                prior_card_authentication_id: T.nilable(String),
                 purchase_amount: T.nilable(Integer),
                 purchase_currency: T.nilable(String),
                 real_time_decision_id: T.nilable(String),
