@@ -73,34 +73,213 @@ module Increase
 
       type card_authentication =
         {
+          access_control_server_transaction_id: String,
           account_id: String,
+          billing_address_city: String?,
+          billing_address_country: String?,
+          :billing_address_line1 => String?,
+          :billing_address_line2 => String?,
+          :billing_address_line3 => String?,
+          billing_address_postal_code: String?,
+          billing_address_state: String?,
           card_id: String,
+          cardholder_email: String?,
+          cardholder_name: String?,
+          category: Increase::Models::RealTimeDecision::CardAuthentication::category?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
+          device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
+          directory_server_transaction_id: String,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_country: String,
+          merchant_name: String,
+          prior_card_authentication_id: String?,
+          purchase_amount: Integer?,
+          purchase_currency: String?,
+          requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
+          requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
+          requestor_name: String,
+          requestor_url: String,
+          shipping_address_city: String?,
+          shipping_address_country: String?,
+          :shipping_address_line1 => String?,
+          :shipping_address_line2 => String?,
+          :shipping_address_line3 => String?,
+          shipping_address_postal_code: String?,
+          shipping_address_state: String?,
+          three_d_secure_server_transaction_id: String,
+          transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?,
           upcoming_card_payment_id: String
         }
 
       class CardAuthentication < Increase::Internal::Type::BaseModel
+        attr_accessor access_control_server_transaction_id: String
+
         attr_accessor account_id: String
+
+        attr_accessor billing_address_city: String?
+
+        attr_accessor billing_address_country: String?
+
+        attr_accessor billing_address_line1: String?
+
+        attr_accessor billing_address_line2: String?
+
+        attr_accessor billing_address_line3: String?
+
+        attr_accessor billing_address_postal_code: String?
+
+        attr_accessor billing_address_state: String?
 
         attr_accessor card_id: String
 
+        attr_accessor cardholder_email: String?
+
+        attr_accessor cardholder_name: String?
+
+        attr_accessor category: Increase::Models::RealTimeDecision::CardAuthentication::category?
+
         attr_accessor decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?
+
+        attr_accessor device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel
+
+        attr_accessor directory_server_transaction_id: String
+
+        attr_accessor merchant_acceptor_id: String
+
+        attr_accessor merchant_category_code: String
+
+        attr_accessor merchant_country: String
+
+        attr_accessor merchant_name: String
+
+        attr_accessor prior_card_authentication_id: String?
+
+        attr_accessor purchase_amount: Integer?
+
+        attr_accessor purchase_currency: String?
+
+        attr_accessor requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?
+
+        attr_accessor requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?
+
+        attr_accessor requestor_name: String
+
+        attr_accessor requestor_url: String
+
+        attr_accessor shipping_address_city: String?
+
+        attr_accessor shipping_address_country: String?
+
+        attr_accessor shipping_address_line1: String?
+
+        attr_accessor shipping_address_line2: String?
+
+        attr_accessor shipping_address_line3: String?
+
+        attr_accessor shipping_address_postal_code: String?
+
+        attr_accessor shipping_address_state: String?
+
+        attr_accessor three_d_secure_server_transaction_id: String
+
+        attr_accessor transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?
 
         attr_accessor upcoming_card_payment_id: String
 
         def initialize: (
+          access_control_server_transaction_id: String,
           account_id: String,
+          billing_address_city: String?,
+          billing_address_country: String?,
+          billing_address_line1: String?,
+          billing_address_line2: String?,
+          billing_address_line3: String?,
+          billing_address_postal_code: String?,
+          billing_address_state: String?,
           card_id: String,
+          cardholder_email: String?,
+          cardholder_name: String?,
+          category: Increase::Models::RealTimeDecision::CardAuthentication::category?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
+          device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
+          directory_server_transaction_id: String,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_country: String,
+          merchant_name: String,
+          prior_card_authentication_id: String?,
+          purchase_amount: Integer?,
+          purchase_currency: String?,
+          requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
+          requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
+          requestor_name: String,
+          requestor_url: String,
+          shipping_address_city: String?,
+          shipping_address_country: String?,
+          shipping_address_line1: String?,
+          shipping_address_line2: String?,
+          shipping_address_line3: String?,
+          shipping_address_postal_code: String?,
+          shipping_address_state: String?,
+          three_d_secure_server_transaction_id: String,
+          transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?,
           upcoming_card_payment_id: String
         ) -> void
 
         def to_hash: -> {
+          access_control_server_transaction_id: String,
           account_id: String,
+          billing_address_city: String?,
+          billing_address_country: String?,
+          :billing_address_line1 => String?,
+          :billing_address_line2 => String?,
+          :billing_address_line3 => String?,
+          billing_address_postal_code: String?,
+          billing_address_state: String?,
           card_id: String,
+          cardholder_email: String?,
+          cardholder_name: String?,
+          category: Increase::Models::RealTimeDecision::CardAuthentication::category?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
+          device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
+          directory_server_transaction_id: String,
+          merchant_acceptor_id: String,
+          merchant_category_code: String,
+          merchant_country: String,
+          merchant_name: String,
+          prior_card_authentication_id: String?,
+          purchase_amount: Integer?,
+          purchase_currency: String?,
+          requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
+          requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
+          requestor_name: String,
+          requestor_url: String,
+          shipping_address_city: String?,
+          shipping_address_country: String?,
+          :shipping_address_line1 => String?,
+          :shipping_address_line2 => String?,
+          :shipping_address_line3 => String?,
+          shipping_address_postal_code: String?,
+          shipping_address_state: String?,
+          three_d_secure_server_transaction_id: String,
+          transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?,
           upcoming_card_payment_id: String
         }
+
+        type category = :payment_authentication | :non_payment_authentication
+
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The authentication attempt is for a payment.
+          PAYMENT_AUTHENTICATION: :payment_authentication
+
+          # The authentication attempt is not for a payment.
+          NON_PAYMENT_AUTHENTICATION: :non_payment_authentication
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::category]
+        end
 
         type decision = :approve | :challenge | :deny
 
@@ -117,6 +296,310 @@ module Increase
           DENY: :deny
 
           def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::decision]
+        end
+
+        type device_channel =
+          {
+            browser: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser?,
+            category: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::category,
+            merchant_initiated: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated?
+          }
+
+        class DeviceChannel < Increase::Internal::Type::BaseModel
+          attr_accessor browser: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser?
+
+          attr_accessor category: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::category
+
+          attr_accessor merchant_initiated: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated?
+
+          def initialize: (
+            browser: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser?,
+            category: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::category,
+            merchant_initiated: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated?
+          ) -> void
+
+          def to_hash: -> {
+            browser: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser?,
+            category: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::category,
+            merchant_initiated: Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated?
+          }
+
+          type browser =
+            {
+              accept_header: String?,
+              ip_address: String?,
+              javascript_enabled: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::javascript_enabled?,
+              language: String?,
+              user_agent: String?
+            }
+
+          class Browser < Increase::Internal::Type::BaseModel
+            attr_accessor accept_header: String?
+
+            attr_accessor ip_address: String?
+
+            attr_accessor javascript_enabled: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::javascript_enabled?
+
+            attr_accessor language: String?
+
+            attr_accessor user_agent: String?
+
+            def initialize: (
+              accept_header: String?,
+              ip_address: String?,
+              javascript_enabled: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::javascript_enabled?,
+              language: String?,
+              user_agent: String?
+            ) -> void
+
+            def to_hash: -> {
+              accept_header: String?,
+              ip_address: String?,
+              javascript_enabled: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::javascript_enabled?,
+              language: String?,
+              user_agent: String?
+            }
+
+            type javascript_enabled = :enabled | :disabled
+
+            module JavascriptEnabled
+              extend Increase::Internal::Type::Enum
+
+              # JavaScript is enabled in the cardholder's browser.
+              ENABLED: :enabled
+
+              # JavaScript is not enabled in the cardholder's browser.
+              DISABLED: :disabled
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::javascript_enabled]
+            end
+          end
+
+          type category = :app | :browser | :three_ds_requestor_initiated
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The authentication attempt was made from an app.
+            APP: :app
+
+            # The authentication attempt was made from a browser.
+            BROWSER: :browser
+
+            # The authentication attempt was initiated by the 3DS Requestor.
+            THREE_DS_REQUESTOR_INITIATED: :three_ds_requestor_initiated
+
+            def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::category]
+          end
+
+          type merchant_initiated =
+            {
+              indicator: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::indicator
+            }
+
+          class MerchantInitiated < Increase::Internal::Type::BaseModel
+            attr_accessor indicator: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::indicator
+
+            def initialize: (
+              indicator: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::indicator
+            ) -> void
+
+            def to_hash: -> {
+              indicator: Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::indicator
+            }
+
+            type indicator =
+              :recurring_transaction
+              | :installment_transaction
+              | :add_card
+              | :maintain_card_information
+              | :account_verification
+              | :split_delayed_shipment
+              | :top_up
+              | :mail_order
+              | :telephone_order
+              | :whitelist_status_check
+              | :other_payment
+              | :billing_agreement
+              | :device_binding_status_check
+              | :card_security_code_status_check
+              | :delayed_shipment
+              | :split_payment
+              | :fido_credential_deletion
+              | :fido_credential_registration
+              | :decoupled_authentication_fallback
+
+            module Indicator
+              extend Increase::Internal::Type::Enum
+
+              # Recurring transaction.
+              RECURRING_TRANSACTION: :recurring_transaction
+
+              # Installment transaction.
+              INSTALLMENT_TRANSACTION: :installment_transaction
+
+              # Add card.
+              ADD_CARD: :add_card
+
+              # Maintain card information.
+              MAINTAIN_CARD_INFORMATION: :maintain_card_information
+
+              # Account verification.
+              ACCOUNT_VERIFICATION: :account_verification
+
+              # Split or delayed shipment.
+              SPLIT_DELAYED_SHIPMENT: :split_delayed_shipment
+
+              # Top up.
+              TOP_UP: :top_up
+
+              # Mail order.
+              MAIL_ORDER: :mail_order
+
+              # Telephone order.
+              TELEPHONE_ORDER: :telephone_order
+
+              # Whitelist status check.
+              WHITELIST_STATUS_CHECK: :whitelist_status_check
+
+              # Other payment.
+              OTHER_PAYMENT: :other_payment
+
+              # Billing agreement.
+              BILLING_AGREEMENT: :billing_agreement
+
+              # Device binding status check.
+              DEVICE_BINDING_STATUS_CHECK: :device_binding_status_check
+
+              # Card security code status check.
+              CARD_SECURITY_CODE_STATUS_CHECK: :card_security_code_status_check
+
+              # Delayed shipment.
+              DELAYED_SHIPMENT: :delayed_shipment
+
+              # Split payment.
+              SPLIT_PAYMENT: :split_payment
+
+              # FIDO credential deletion.
+              FIDO_CREDENTIAL_DELETION: :fido_credential_deletion
+
+              # FIDO credential registration.
+              FIDO_CREDENTIAL_REGISTRATION: :fido_credential_registration
+
+              # Decoupled authentication fallback.
+              DECOUPLED_AUTHENTICATION_FALLBACK: :decoupled_authentication_fallback
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::indicator]
+            end
+          end
+        end
+
+        type requestor_authentication_indicator =
+          :payment_transaction
+          | :recurring_transaction
+          | :installment_transaction
+          | :add_card
+          | :maintain_card
+          | :emv_token_cardholder_verification
+          | :billing_agreement
+
+        module RequestorAuthenticationIndicator
+          extend Increase::Internal::Type::Enum
+
+          # The authentication is for a payment transaction.
+          PAYMENT_TRANSACTION: :payment_transaction
+
+          # The authentication is for a recurring transaction.
+          RECURRING_TRANSACTION: :recurring_transaction
+
+          # The authentication is for an installment transaction.
+          INSTALLMENT_TRANSACTION: :installment_transaction
+
+          # The authentication is for adding a card.
+          ADD_CARD: :add_card
+
+          # The authentication is for maintaining a card.
+          MAINTAIN_CARD: :maintain_card
+
+          # The authentication is for EMV token cardholder verification.
+          EMV_TOKEN_CARDHOLDER_VERIFICATION: :emv_token_cardholder_verification
+
+          # The authentication is for a billing agreement.
+          BILLING_AGREEMENT: :billing_agreement
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator]
+        end
+
+        type requestor_challenge_indicator =
+          :no_preference
+          | :no_challenge_requested
+          | :challenge_requested_3ds_requestor_preference
+          | :challenge_requested_mandate
+          | :no_challenge_requested_transactional_risk_analysis_already_performed
+          | :no_challenge_requested_data_share_only
+          | :no_challenge_requested_strong_consumer_authentication_already_performed
+          | :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required
+          | :challenge_requested_whitelist_prompt_requested_if_challenge_required
+
+        module RequestorChallengeIndicator
+          extend Increase::Internal::Type::Enum
+
+          # No preference.
+          NO_PREFERENCE: :no_preference
+
+          # No challenge requested.
+          NO_CHALLENGE_REQUESTED: :no_challenge_requested
+
+          # Challenge requested, 3DS Requestor preference.
+          CHALLENGE_REQUESTED_3DS_REQUESTOR_PREFERENCE: :challenge_requested_3ds_requestor_preference
+
+          # Challenge requested, mandate.
+          CHALLENGE_REQUESTED_MANDATE: :challenge_requested_mandate
+
+          # No challenge requested, transactional risk analysis already performed.
+          NO_CHALLENGE_REQUESTED_TRANSACTIONAL_RISK_ANALYSIS_ALREADY_PERFORMED: :no_challenge_requested_transactional_risk_analysis_already_performed
+
+          # No challenge requested, data share only.
+          NO_CHALLENGE_REQUESTED_DATA_SHARE_ONLY: :no_challenge_requested_data_share_only
+
+          # No challenge requested, strong consumer authentication already performed.
+          NO_CHALLENGE_REQUESTED_STRONG_CONSUMER_AUTHENTICATION_ALREADY_PERFORMED: :no_challenge_requested_strong_consumer_authentication_already_performed
+
+          # No challenge requested, utilize whitelist exemption if no challenge required.
+          NO_CHALLENGE_REQUESTED_UTILIZE_WHITELIST_EXEMPTION_IF_NO_CHALLENGE_REQUIRED: :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required
+
+          # Challenge requested, whitelist prompt requested if challenge required.
+          CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED: :challenge_requested_whitelist_prompt_requested_if_challenge_required
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator]
+        end
+
+        type transaction_type =
+          :goods_service_purchase
+          | :check_acceptance
+          | :account_funding
+          | :quasi_cash_transaction
+          | :prepaid_activation_and_load
+
+        module TransactionType
+          extend Increase::Internal::Type::Enum
+
+          # Purchase of goods or services.
+          GOODS_SERVICE_PURCHASE: :goods_service_purchase
+
+          # Check acceptance.
+          CHECK_ACCEPTANCE: :check_acceptance
+
+          # Account funding.
+          ACCOUNT_FUNDING: :account_funding
+
+          # Quasi-cash transaction.
+          QUASI_CASH_TRANSACTION: :quasi_cash_transaction
+
+          # Prepaid activation and load.
+          PREPAID_ACTIVATION_AND_LOAD: :prepaid_activation_and_load
+
+          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::transaction_type]
         end
       end
 

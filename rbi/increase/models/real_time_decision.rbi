@@ -220,13 +220,71 @@ module Increase
             )
           end
 
+        # A unique identifier assigned by the Access Control Server (us) for this
+        # transaction.
+        sig { returns(String) }
+        attr_accessor :access_control_server_transaction_id
+
         # The identifier of the Account the card belongs to.
         sig { returns(String) }
         attr_accessor :account_id
 
-        # The identifier of the Card that is being tokenized.
+        # The city of the cardholder billing address associated with the card used for
+        # this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_city
+
+        # The country of the cardholder billing address associated with the card used for
+        # this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_country
+
+        # The first line of the cardholder billing address associated with the card used
+        # for this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_line1
+
+        # The second line of the cardholder billing address associated with the card used
+        # for this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_line2
+
+        # The third line of the cardholder billing address associated with the card used
+        # for this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_line3
+
+        # The postal code of the cardholder billing address associated with the card used
+        # for this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_postal_code
+
+        # The US state of the cardholder billing address associated with the card used for
+        # this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :billing_address_state
+
+        # The identifier of the Card.
         sig { returns(String) }
         attr_accessor :card_id
+
+        # The email address of the cardholder.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :cardholder_email
+
+        # The name of the cardholder.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :cardholder_name
+
+        # The category of the card authentication attempt.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecision::CardAuthentication::Category::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :category
 
         # Whether or not the authentication attempt was approved.
         sig do
@@ -238,6 +296,129 @@ module Increase
         end
         attr_accessor :decision
 
+        # The device channel of the card authentication attempt.
+        sig do
+          returns(Increase::RealTimeDecision::CardAuthentication::DeviceChannel)
+        end
+        attr_reader :device_channel
+
+        sig do
+          params(
+            device_channel:
+              Increase::RealTimeDecision::CardAuthentication::DeviceChannel::OrHash
+          ).void
+        end
+        attr_writer :device_channel
+
+        # A unique identifier assigned by the Directory Server (the card network) for this
+        # transaction.
+        sig { returns(String) }
+        attr_accessor :directory_server_transaction_id
+
+        # The merchant identifier (commonly abbreviated as MID) of the merchant the card
+        # is transacting with.
+        sig { returns(String) }
+        attr_accessor :merchant_acceptor_id
+
+        # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+        # card is transacting with.
+        sig { returns(String) }
+        attr_accessor :merchant_category_code
+
+        # The country the merchant resides in.
+        sig { returns(String) }
+        attr_accessor :merchant_country
+
+        # The name of the merchant.
+        sig { returns(String) }
+        attr_accessor :merchant_name
+
+        # The ID of a prior Card Authentication that the requestor used to authenticate
+        # this cardholder for a previous transaction.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :prior_card_authentication_id
+
+        # The purchase amount in minor units.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :purchase_amount
+
+        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+        # authentication attempt's purchase currency.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :purchase_currency
+
+        # The 3DS requestor authentication indicator describes why the authentication
+        # attempt is performed, such as for a recurring transaction.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :requestor_authentication_indicator
+
+        # Indicates whether a challenge is requested for this transaction.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :requestor_challenge_indicator
+
+        # The name of the 3DS requestor.
+        sig { returns(String) }
+        attr_accessor :requestor_name
+
+        # The URL of the 3DS requestor.
+        sig { returns(String) }
+        attr_accessor :requestor_url
+
+        # The city of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_city
+
+        # The country of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_country
+
+        # The first line of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_line1
+
+        # The second line of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_line2
+
+        # The third line of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_line3
+
+        # The postal code of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_postal_code
+
+        # The US state of the shipping address associated with this purchase.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_address_state
+
+        # A unique identifier assigned by the 3DS Server initiating the authentication
+        # attempt for this transaction.
+        sig { returns(String) }
+        attr_accessor :three_d_secure_server_transaction_id
+
+        # The type of transaction being authenticated.
+        sig do
+          returns(
+            T.nilable(
+              Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :transaction_type
+
         # The identifier of the Card Payment this authentication attempt will belong to.
         # Available in the API once the card authentication has completed.
         sig { returns(String) }
@@ -246,22 +427,149 @@ module Increase
         # Fields related to a 3DS authentication attempt.
         sig do
           params(
+            access_control_server_transaction_id: String,
             account_id: String,
+            billing_address_city: T.nilable(String),
+            billing_address_country: T.nilable(String),
+            billing_address_line1: T.nilable(String),
+            billing_address_line2: T.nilable(String),
+            billing_address_line3: T.nilable(String),
+            billing_address_postal_code: T.nilable(String),
+            billing_address_state: T.nilable(String),
             card_id: String,
+            cardholder_email: T.nilable(String),
+            cardholder_name: T.nilable(String),
+            category:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthentication::Category::OrSymbol
+              ),
             decision:
               T.nilable(
                 Increase::RealTimeDecision::CardAuthentication::Decision::OrSymbol
+              ),
+            device_channel:
+              Increase::RealTimeDecision::CardAuthentication::DeviceChannel::OrHash,
+            directory_server_transaction_id: String,
+            merchant_acceptor_id: String,
+            merchant_category_code: String,
+            merchant_country: String,
+            merchant_name: String,
+            prior_card_authentication_id: T.nilable(String),
+            purchase_amount: T.nilable(Integer),
+            purchase_currency: T.nilable(String),
+            requestor_authentication_indicator:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::OrSymbol
+              ),
+            requestor_challenge_indicator:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::OrSymbol
+              ),
+            requestor_name: String,
+            requestor_url: String,
+            shipping_address_city: T.nilable(String),
+            shipping_address_country: T.nilable(String),
+            shipping_address_line1: T.nilable(String),
+            shipping_address_line2: T.nilable(String),
+            shipping_address_line3: T.nilable(String),
+            shipping_address_postal_code: T.nilable(String),
+            shipping_address_state: T.nilable(String),
+            three_d_secure_server_transaction_id: String,
+            transaction_type:
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthentication::TransactionType::OrSymbol
               ),
             upcoming_card_payment_id: String
           ).returns(T.attached_class)
         end
         def self.new(
+          # A unique identifier assigned by the Access Control Server (us) for this
+          # transaction.
+          access_control_server_transaction_id:,
           # The identifier of the Account the card belongs to.
           account_id:,
-          # The identifier of the Card that is being tokenized.
+          # The city of the cardholder billing address associated with the card used for
+          # this purchase.
+          billing_address_city:,
+          # The country of the cardholder billing address associated with the card used for
+          # this purchase.
+          billing_address_country:,
+          # The first line of the cardholder billing address associated with the card used
+          # for this purchase.
+          billing_address_line1:,
+          # The second line of the cardholder billing address associated with the card used
+          # for this purchase.
+          billing_address_line2:,
+          # The third line of the cardholder billing address associated with the card used
+          # for this purchase.
+          billing_address_line3:,
+          # The postal code of the cardholder billing address associated with the card used
+          # for this purchase.
+          billing_address_postal_code:,
+          # The US state of the cardholder billing address associated with the card used for
+          # this purchase.
+          billing_address_state:,
+          # The identifier of the Card.
           card_id:,
+          # The email address of the cardholder.
+          cardholder_email:,
+          # The name of the cardholder.
+          cardholder_name:,
+          # The category of the card authentication attempt.
+          category:,
           # Whether or not the authentication attempt was approved.
           decision:,
+          # The device channel of the card authentication attempt.
+          device_channel:,
+          # A unique identifier assigned by the Directory Server (the card network) for this
+          # transaction.
+          directory_server_transaction_id:,
+          # The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          # is transacting with.
+          merchant_acceptor_id:,
+          # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          # card is transacting with.
+          merchant_category_code:,
+          # The country the merchant resides in.
+          merchant_country:,
+          # The name of the merchant.
+          merchant_name:,
+          # The ID of a prior Card Authentication that the requestor used to authenticate
+          # this cardholder for a previous transaction.
+          prior_card_authentication_id:,
+          # The purchase amount in minor units.
+          purchase_amount:,
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          # authentication attempt's purchase currency.
+          purchase_currency:,
+          # The 3DS requestor authentication indicator describes why the authentication
+          # attempt is performed, such as for a recurring transaction.
+          requestor_authentication_indicator:,
+          # Indicates whether a challenge is requested for this transaction.
+          requestor_challenge_indicator:,
+          # The name of the 3DS requestor.
+          requestor_name:,
+          # The URL of the 3DS requestor.
+          requestor_url:,
+          # The city of the shipping address associated with this purchase.
+          shipping_address_city:,
+          # The country of the shipping address associated with this purchase.
+          shipping_address_country:,
+          # The first line of the shipping address associated with this purchase.
+          shipping_address_line1:,
+          # The second line of the shipping address associated with this purchase.
+          shipping_address_line2:,
+          # The third line of the shipping address associated with this purchase.
+          shipping_address_line3:,
+          # The postal code of the shipping address associated with this purchase.
+          shipping_address_postal_code:,
+          # The US state of the shipping address associated with this purchase.
+          shipping_address_state:,
+          # A unique identifier assigned by the 3DS Server initiating the authentication
+          # attempt for this transaction.
+          three_d_secure_server_transaction_id:,
+          # The type of transaction being authenticated.
+          transaction_type:,
           # The identifier of the Card Payment this authentication attempt will belong to.
           # Available in the API once the card authentication has completed.
           upcoming_card_payment_id:
@@ -271,17 +579,101 @@ module Increase
         sig do
           override.returns(
             {
+              access_control_server_transaction_id: String,
               account_id: String,
+              billing_address_city: T.nilable(String),
+              billing_address_country: T.nilable(String),
+              billing_address_line1: T.nilable(String),
+              billing_address_line2: T.nilable(String),
+              billing_address_line3: T.nilable(String),
+              billing_address_postal_code: T.nilable(String),
+              billing_address_state: T.nilable(String),
               card_id: String,
+              cardholder_email: T.nilable(String),
+              cardholder_name: T.nilable(String),
+              category:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::Category::TaggedSymbol
+                ),
               decision:
                 T.nilable(
                   Increase::RealTimeDecision::CardAuthentication::Decision::TaggedSymbol
+                ),
+              device_channel:
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
+              directory_server_transaction_id: String,
+              merchant_acceptor_id: String,
+              merchant_category_code: String,
+              merchant_country: String,
+              merchant_name: String,
+              prior_card_authentication_id: T.nilable(String),
+              purchase_amount: T.nilable(Integer),
+              purchase_currency: T.nilable(String),
+              requestor_authentication_indicator:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+                ),
+              requestor_challenge_indicator:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+                ),
+              requestor_name: String,
+              requestor_url: String,
+              shipping_address_city: T.nilable(String),
+              shipping_address_country: T.nilable(String),
+              shipping_address_line1: T.nilable(String),
+              shipping_address_line2: T.nilable(String),
+              shipping_address_line3: T.nilable(String),
+              shipping_address_postal_code: T.nilable(String),
+              shipping_address_state: T.nilable(String),
+              three_d_secure_server_transaction_id: String,
+              transaction_type:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
                 ),
               upcoming_card_payment_id: String
             }
           )
         end
         def to_hash
+        end
+
+        # The category of the card authentication attempt.
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecision::CardAuthentication::Category
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The authentication attempt is for a payment.
+          PAYMENT_AUTHENTICATION =
+            T.let(
+              :payment_authentication,
+              Increase::RealTimeDecision::CardAuthentication::Category::TaggedSymbol
+            )
+
+          # The authentication attempt is not for a payment.
+          NON_PAYMENT_AUTHENTICATION =
+            T.let(
+              :non_payment_authentication,
+              Increase::RealTimeDecision::CardAuthentication::Category::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecision::CardAuthentication::Category::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         # Whether or not the authentication attempt was approved.
@@ -322,6 +714,690 @@ module Increase
             override.returns(
               T::Array[
                 Increase::RealTimeDecision::CardAuthentication::Decision::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        class DeviceChannel < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Fields specific to the browser device channel.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser
+              )
+            )
+          end
+          attr_reader :browser
+
+          sig do
+            params(
+              browser:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::OrHash
+                )
+            ).void
+          end
+          attr_writer :browser
+
+          # The category of the device channel.
+          sig do
+            returns(
+              Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+            )
+          end
+          attr_accessor :category
+
+          # Fields specific to merchant initiated transactions.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated
+              )
+            )
+          end
+          attr_reader :merchant_initiated
+
+          sig do
+            params(
+              merchant_initiated:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::OrHash
+                )
+            ).void
+          end
+          attr_writer :merchant_initiated
+
+          # The device channel of the card authentication attempt.
+          sig do
+            params(
+              browser:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::OrHash
+                ),
+              category:
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::OrSymbol,
+              merchant_initiated:
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Fields specific to the browser device channel.
+            browser:,
+            # The category of the device channel.
+            category:,
+            # Fields specific to merchant initiated transactions.
+            merchant_initiated:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                browser:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser
+                  ),
+                category:
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::TaggedSymbol,
+                merchant_initiated:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Browser < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The accept header from the cardholder's browser.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :accept_header
+
+            # The IP address of the cardholder's browser.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ip_address
+
+            # Whether JavaScript is enabled in the cardholder's browser.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                )
+              )
+            end
+            attr_accessor :javascript_enabled
+
+            # The language of the cardholder's browser.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :language
+
+            # The user agent of the cardholder's browser.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :user_agent
+
+            # Fields specific to the browser device channel.
+            sig do
+              params(
+                accept_header: T.nilable(String),
+                ip_address: T.nilable(String),
+                javascript_enabled:
+                  T.nilable(
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::OrSymbol
+                  ),
+                language: T.nilable(String),
+                user_agent: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The accept header from the cardholder's browser.
+              accept_header:,
+              # The IP address of the cardholder's browser.
+              ip_address:,
+              # Whether JavaScript is enabled in the cardholder's browser.
+              javascript_enabled:,
+              # The language of the cardholder's browser.
+              language:,
+              # The user agent of the cardholder's browser.
+              user_agent:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  accept_header: T.nilable(String),
+                  ip_address: T.nilable(String),
+                  javascript_enabled:
+                    T.nilable(
+                      Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                    ),
+                  language: T.nilable(String),
+                  user_agent: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Whether JavaScript is enabled in the cardholder's browser.
+            module JavascriptEnabled
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # JavaScript is enabled in the cardholder's browser.
+              ENABLED =
+                T.let(
+                  :enabled,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                )
+
+              # JavaScript is not enabled in the cardholder's browser.
+              DISABLED =
+                T.let(
+                  :disabled,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          # The category of the device channel.
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The authentication attempt was made from an app.
+            APP =
+              T.let(
+                :app,
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+              )
+
+            # The authentication attempt was made from a browser.
+            BROWSER =
+              T.let(
+                :browser,
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+              )
+
+            # The authentication attempt was initiated by the 3DS Requestor.
+            THREE_DS_REQUESTOR_INITIATED =
+              T.let(
+                :three_ds_requestor_initiated,
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class MerchantInitiated < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The merchant initiated indicator for the transaction.
+            sig do
+              returns(
+                Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+              )
+            end
+            attr_accessor :indicator
+
+            # Fields specific to merchant initiated transactions.
+            sig do
+              params(
+                indicator:
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The merchant initiated indicator for the transaction.
+              indicator:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  indicator:
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The merchant initiated indicator for the transaction.
+            module Indicator
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Recurring transaction.
+              RECURRING_TRANSACTION =
+                T.let(
+                  :recurring_transaction,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Installment transaction.
+              INSTALLMENT_TRANSACTION =
+                T.let(
+                  :installment_transaction,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Add card.
+              ADD_CARD =
+                T.let(
+                  :add_card,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Maintain card information.
+              MAINTAIN_CARD_INFORMATION =
+                T.let(
+                  :maintain_card_information,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Account verification.
+              ACCOUNT_VERIFICATION =
+                T.let(
+                  :account_verification,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Split or delayed shipment.
+              SPLIT_DELAYED_SHIPMENT =
+                T.let(
+                  :split_delayed_shipment,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Top up.
+              TOP_UP =
+                T.let(
+                  :top_up,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Mail order.
+              MAIL_ORDER =
+                T.let(
+                  :mail_order,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Telephone order.
+              TELEPHONE_ORDER =
+                T.let(
+                  :telephone_order,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Whitelist status check.
+              WHITELIST_STATUS_CHECK =
+                T.let(
+                  :whitelist_status_check,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Other payment.
+              OTHER_PAYMENT =
+                T.let(
+                  :other_payment,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Billing agreement.
+              BILLING_AGREEMENT =
+                T.let(
+                  :billing_agreement,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Device binding status check.
+              DEVICE_BINDING_STATUS_CHECK =
+                T.let(
+                  :device_binding_status_check,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Card security code status check.
+              CARD_SECURITY_CODE_STATUS_CHECK =
+                T.let(
+                  :card_security_code_status_check,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Delayed shipment.
+              DELAYED_SHIPMENT =
+                T.let(
+                  :delayed_shipment,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Split payment.
+              SPLIT_PAYMENT =
+                T.let(
+                  :split_payment,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # FIDO credential deletion.
+              FIDO_CREDENTIAL_DELETION =
+                T.let(
+                  :fido_credential_deletion,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # FIDO credential registration.
+              FIDO_CREDENTIAL_REGISTRATION =
+                T.let(
+                  :fido_credential_registration,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              # Decoupled authentication fallback.
+              DECOUPLED_AUTHENTICATION_FALLBACK =
+                T.let(
+                  :decoupled_authentication_fallback,
+                  Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+
+        # The 3DS requestor authentication indicator describes why the authentication
+        # attempt is performed, such as for a recurring transaction.
+        module RequestorAuthenticationIndicator
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The authentication is for a payment transaction.
+          PAYMENT_TRANSACTION =
+            T.let(
+              :payment_transaction,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          # The authentication is for a recurring transaction.
+          RECURRING_TRANSACTION =
+            T.let(
+              :recurring_transaction,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          # The authentication is for an installment transaction.
+          INSTALLMENT_TRANSACTION =
+            T.let(
+              :installment_transaction,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          # The authentication is for adding a card.
+          ADD_CARD =
+            T.let(
+              :add_card,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          # The authentication is for maintaining a card.
+          MAINTAIN_CARD =
+            T.let(
+              :maintain_card,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          # The authentication is for EMV token cardholder verification.
+          EMV_TOKEN_CARDHOLDER_VERIFICATION =
+            T.let(
+              :emv_token_cardholder_verification,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          # The authentication is for a billing agreement.
+          BILLING_AGREEMENT =
+            T.let(
+              :billing_agreement,
+              Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # Indicates whether a challenge is requested for this transaction.
+        module RequestorChallengeIndicator
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # No preference.
+          NO_PREFERENCE =
+            T.let(
+              :no_preference,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # No challenge requested.
+          NO_CHALLENGE_REQUESTED =
+            T.let(
+              :no_challenge_requested,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # Challenge requested, 3DS Requestor preference.
+          CHALLENGE_REQUESTED_3DS_REQUESTOR_PREFERENCE =
+            T.let(
+              :challenge_requested_3ds_requestor_preference,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # Challenge requested, mandate.
+          CHALLENGE_REQUESTED_MANDATE =
+            T.let(
+              :challenge_requested_mandate,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # No challenge requested, transactional risk analysis already performed.
+          NO_CHALLENGE_REQUESTED_TRANSACTIONAL_RISK_ANALYSIS_ALREADY_PERFORMED =
+            T.let(
+              :no_challenge_requested_transactional_risk_analysis_already_performed,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # No challenge requested, data share only.
+          NO_CHALLENGE_REQUESTED_DATA_SHARE_ONLY =
+            T.let(
+              :no_challenge_requested_data_share_only,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # No challenge requested, strong consumer authentication already performed.
+          NO_CHALLENGE_REQUESTED_STRONG_CONSUMER_AUTHENTICATION_ALREADY_PERFORMED =
+            T.let(
+              :no_challenge_requested_strong_consumer_authentication_already_performed,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # No challenge requested, utilize whitelist exemption if no challenge required.
+          NO_CHALLENGE_REQUESTED_UTILIZE_WHITELIST_EXEMPTION_IF_NO_CHALLENGE_REQUIRED =
+            T.let(
+              :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          # Challenge requested, whitelist prompt requested if challenge required.
+          CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED =
+            T.let(
+              :challenge_requested_whitelist_prompt_requested_if_challenge_required,
+              Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The type of transaction being authenticated.
+        module TransactionType
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::RealTimeDecision::CardAuthentication::TransactionType
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Purchase of goods or services.
+          GOODS_SERVICE_PURCHASE =
+            T.let(
+              :goods_service_purchase,
+              Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
+            )
+
+          # Check acceptance.
+          CHECK_ACCEPTANCE =
+            T.let(
+              :check_acceptance,
+              Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
+            )
+
+          # Account funding.
+          ACCOUNT_FUNDING =
+            T.let(
+              :account_funding,
+              Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
+            )
+
+          # Quasi-cash transaction.
+          QUASI_CASH_TRANSACTION =
+            T.let(
+              :quasi_cash_transaction,
+              Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
+            )
+
+          # Prepaid activation and load.
+          PREPAID_ACTIVATION_AND_LOAD =
+            T.let(
+              :prepaid_activation_and_load,
+              Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::RealTimeDecision::CardAuthentication::TransactionType::TaggedSymbol
               ]
             )
           end
