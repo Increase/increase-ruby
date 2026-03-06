@@ -485,6 +485,13 @@ module Increase
           #   @return [Integer, nil]
           required :purchase_amount, Integer, nil?: true
 
+          # @!attribute purchase_amount_cardholder_estimated
+          #   The purchase amount in the cardholder's currency (i.e., USD) estimated using
+          #   daily conversion rates from the card network.
+          #
+          #   @return [Integer, nil]
+          required :purchase_amount_cardholder_estimated, Integer, nil?: true
+
           # @!attribute purchase_currency
           #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           #   authentication attempt's purchase currency.
@@ -602,7 +609,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, access_control_server_transaction_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_id:, transaction_type:, type:)
+          # @!method initialize(id:, access_control_server_transaction_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_amount_cardholder_estimated:, purchase_currency:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_id:, transaction_type:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -659,6 +666,8 @@ module Increase
           #   @param prior_card_authentication_id [String, nil] The ID of a prior Card Authentication that the requestor used to authenticate th
           #
           #   @param purchase_amount [Integer, nil] The purchase amount in minor units.
+          #
+          #   @param purchase_amount_cardholder_estimated [Integer, nil] The purchase amount in the cardholder's currency (i.e., USD) estimated using dai
           #
           #   @param purchase_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the authenticati
           #
