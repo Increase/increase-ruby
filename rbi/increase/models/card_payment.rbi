@@ -775,6 +775,11 @@ module Increase
           sig { returns(T.nilable(Integer)) }
           attr_accessor :purchase_amount
 
+          # The purchase amount in the cardholder's currency (i.e., USD) estimated using
+          # daily conversion rates from the card network.
+          sig { returns(T.nilable(Integer)) }
+          attr_accessor :purchase_amount_cardholder_estimated
+
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
           # authentication attempt's purchase currency.
           sig { returns(T.nilable(String)) }
@@ -914,6 +919,7 @@ module Increase
               merchant_name: String,
               prior_card_authentication_id: T.nilable(String),
               purchase_amount: T.nilable(Integer),
+              purchase_amount_cardholder_estimated: T.nilable(Integer),
               purchase_currency: T.nilable(String),
               real_time_decision_id: T.nilable(String),
               requestor_authentication_indicator:
@@ -1008,6 +1014,9 @@ module Increase
             prior_card_authentication_id:,
             # The purchase amount in minor units.
             purchase_amount:,
+            # The purchase amount in the cardholder's currency (i.e., USD) estimated using
+            # daily conversion rates from the card network.
+            purchase_amount_cardholder_estimated:,
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
             # authentication attempt's purchase currency.
             purchase_currency:,
@@ -1088,6 +1097,7 @@ module Increase
                 merchant_name: String,
                 prior_card_authentication_id: T.nilable(String),
                 purchase_amount: T.nilable(Integer),
+                purchase_amount_cardholder_estimated: T.nilable(Integer),
                 purchase_currency: T.nilable(String),
                 real_time_decision_id: T.nilable(String),
                 requestor_authentication_indicator:
