@@ -118,23 +118,244 @@ module Increase
 
       # @see Increase::Models::RealTimeDecision#card_authentication
       class CardAuthentication < Increase::Internal::Type::BaseModel
+        # @!attribute access_control_server_transaction_id
+        #   A unique identifier assigned by the Access Control Server (us) for this
+        #   transaction.
+        #
+        #   @return [String]
+        required :access_control_server_transaction_id, String
+
         # @!attribute account_id
         #   The identifier of the Account the card belongs to.
         #
         #   @return [String]
         required :account_id, String
 
+        # @!attribute billing_address_city
+        #   The city of the cardholder billing address associated with the card used for
+        #   this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_city, String, nil?: true
+
+        # @!attribute billing_address_country
+        #   The country of the cardholder billing address associated with the card used for
+        #   this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_country, String, nil?: true
+
+        # @!attribute billing_address_line1
+        #   The first line of the cardholder billing address associated with the card used
+        #   for this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_line1, String, nil?: true
+
+        # @!attribute billing_address_line2
+        #   The second line of the cardholder billing address associated with the card used
+        #   for this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_line2, String, nil?: true
+
+        # @!attribute billing_address_line3
+        #   The third line of the cardholder billing address associated with the card used
+        #   for this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_line3, String, nil?: true
+
+        # @!attribute billing_address_postal_code
+        #   The postal code of the cardholder billing address associated with the card used
+        #   for this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_postal_code, String, nil?: true
+
+        # @!attribute billing_address_state
+        #   The US state of the cardholder billing address associated with the card used for
+        #   this purchase.
+        #
+        #   @return [String, nil]
+        required :billing_address_state, String, nil?: true
+
         # @!attribute card_id
-        #   The identifier of the Card that is being tokenized.
+        #   The identifier of the Card.
         #
         #   @return [String]
         required :card_id, String
+
+        # @!attribute cardholder_email
+        #   The email address of the cardholder.
+        #
+        #   @return [String, nil]
+        required :cardholder_email, String, nil?: true
+
+        # @!attribute cardholder_name
+        #   The name of the cardholder.
+        #
+        #   @return [String, nil]
+        required :cardholder_name, String, nil?: true
+
+        # @!attribute category
+        #   The category of the card authentication attempt.
+        #
+        #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::Category, nil]
+        required :category, enum: -> { Increase::RealTimeDecision::CardAuthentication::Category }, nil?: true
 
         # @!attribute decision
         #   Whether or not the authentication attempt was approved.
         #
         #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::Decision, nil]
         required :decision, enum: -> { Increase::RealTimeDecision::CardAuthentication::Decision }, nil?: true
+
+        # @!attribute device_channel
+        #   The device channel of the card authentication attempt.
+        #
+        #   @return [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel]
+        required :device_channel, -> { Increase::RealTimeDecision::CardAuthentication::DeviceChannel }
+
+        # @!attribute directory_server_transaction_id
+        #   A unique identifier assigned by the Directory Server (the card network) for this
+        #   transaction.
+        #
+        #   @return [String]
+        required :directory_server_transaction_id, String
+
+        # @!attribute merchant_acceptor_id
+        #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
+        #   is transacting with.
+        #
+        #   @return [String]
+        required :merchant_acceptor_id, String
+
+        # @!attribute merchant_category_code
+        #   The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+        #   card is transacting with.
+        #
+        #   @return [String]
+        required :merchant_category_code, String
+
+        # @!attribute merchant_country
+        #   The country the merchant resides in.
+        #
+        #   @return [String]
+        required :merchant_country, String
+
+        # @!attribute merchant_name
+        #   The name of the merchant.
+        #
+        #   @return [String]
+        required :merchant_name, String
+
+        # @!attribute prior_card_authentication_id
+        #   The ID of a prior Card Authentication that the requestor used to authenticate
+        #   this cardholder for a previous transaction.
+        #
+        #   @return [String, nil]
+        required :prior_card_authentication_id, String, nil?: true
+
+        # @!attribute purchase_amount
+        #   The purchase amount in minor units.
+        #
+        #   @return [Integer, nil]
+        required :purchase_amount, Integer, nil?: true
+
+        # @!attribute purchase_currency
+        #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+        #   authentication attempt's purchase currency.
+        #
+        #   @return [String, nil]
+        required :purchase_currency, String, nil?: true
+
+        # @!attribute requestor_authentication_indicator
+        #   The 3DS requestor authentication indicator describes why the authentication
+        #   attempt is performed, such as for a recurring transaction.
+        #
+        #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator, nil]
+        required :requestor_authentication_indicator,
+                 enum: -> {
+                   Increase::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator
+                 },
+                 nil?: true
+
+        # @!attribute requestor_challenge_indicator
+        #   Indicates whether a challenge is requested for this transaction.
+        #
+        #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator, nil]
+        required :requestor_challenge_indicator,
+                 enum: -> { Increase::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator },
+                 nil?: true
+
+        # @!attribute requestor_name
+        #   The name of the 3DS requestor.
+        #
+        #   @return [String]
+        required :requestor_name, String
+
+        # @!attribute requestor_url
+        #   The URL of the 3DS requestor.
+        #
+        #   @return [String]
+        required :requestor_url, String
+
+        # @!attribute shipping_address_city
+        #   The city of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_city, String, nil?: true
+
+        # @!attribute shipping_address_country
+        #   The country of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_country, String, nil?: true
+
+        # @!attribute shipping_address_line1
+        #   The first line of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_line1, String, nil?: true
+
+        # @!attribute shipping_address_line2
+        #   The second line of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_line2, String, nil?: true
+
+        # @!attribute shipping_address_line3
+        #   The third line of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_line3, String, nil?: true
+
+        # @!attribute shipping_address_postal_code
+        #   The postal code of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_postal_code, String, nil?: true
+
+        # @!attribute shipping_address_state
+        #   The US state of the shipping address associated with this purchase.
+        #
+        #   @return [String, nil]
+        required :shipping_address_state, String, nil?: true
+
+        # @!attribute three_d_secure_server_transaction_id
+        #   A unique identifier assigned by the 3DS Server initiating the authentication
+        #   attempt for this transaction.
+        #
+        #   @return [String]
+        required :three_d_secure_server_transaction_id, String
+
+        # @!attribute transaction_type
+        #   The type of transaction being authenticated.
+        #
+        #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::TransactionType, nil]
+        required :transaction_type,
+                 enum: -> { Increase::RealTimeDecision::CardAuthentication::TransactionType },
+                 nil?: true
 
         # @!attribute upcoming_card_payment_id
         #   The identifier of the Card Payment this authentication attempt will belong to.
@@ -143,19 +364,101 @@ module Increase
         #   @return [String]
         required :upcoming_card_payment_id, String
 
-        # @!method initialize(account_id:, card_id:, decision:, upcoming_card_payment_id:)
+        # @!method initialize(access_control_server_transaction_id:, account_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, cardholder_email:, cardholder_name:, category:, decision:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_card_authentication_id:, purchase_amount:, purchase_currency:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, three_d_secure_server_transaction_id:, transaction_type:, upcoming_card_payment_id:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecision::CardAuthentication} for more details.
         #
         #   Fields related to a 3DS authentication attempt.
         #
+        #   @param access_control_server_transaction_id [String] A unique identifier assigned by the Access Control Server (us) for this transact
+        #
         #   @param account_id [String] The identifier of the Account the card belongs to.
         #
-        #   @param card_id [String] The identifier of the Card that is being tokenized.
+        #   @param billing_address_city [String, nil] The city of the cardholder billing address associated with the card used for thi
+        #
+        #   @param billing_address_country [String, nil] The country of the cardholder billing address associated with the card used for
+        #
+        #   @param billing_address_line1 [String, nil] The first line of the cardholder billing address associated with the card used f
+        #
+        #   @param billing_address_line2 [String, nil] The second line of the cardholder billing address associated with the card used
+        #
+        #   @param billing_address_line3 [String, nil] The third line of the cardholder billing address associated with the card used f
+        #
+        #   @param billing_address_postal_code [String, nil] The postal code of the cardholder billing address associated with the card used
+        #
+        #   @param billing_address_state [String, nil] The US state of the cardholder billing address associated with the card used for
+        #
+        #   @param card_id [String] The identifier of the Card.
+        #
+        #   @param cardholder_email [String, nil] The email address of the cardholder.
+        #
+        #   @param cardholder_name [String, nil] The name of the cardholder.
+        #
+        #   @param category [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::Category, nil] The category of the card authentication attempt.
         #
         #   @param decision [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::Decision, nil] Whether or not the authentication attempt was approved.
         #
+        #   @param device_channel [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel] The device channel of the card authentication attempt.
+        #
+        #   @param directory_server_transaction_id [String] A unique identifier assigned by the Directory Server (the card network) for this
+        #
+        #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+        #
+        #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+        #
+        #   @param merchant_country [String] The country the merchant resides in.
+        #
+        #   @param merchant_name [String] The name of the merchant.
+        #
+        #   @param prior_card_authentication_id [String, nil] The ID of a prior Card Authentication that the requestor used to authenticate th
+        #
+        #   @param purchase_amount [Integer, nil] The purchase amount in minor units.
+        #
+        #   @param purchase_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the authenticati
+        #
+        #   @param requestor_authentication_indicator [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::RequestorAuthenticationIndicator, nil] The 3DS requestor authentication indicator describes why the authentication atte
+        #
+        #   @param requestor_challenge_indicator [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::RequestorChallengeIndicator, nil] Indicates whether a challenge is requested for this transaction.
+        #
+        #   @param requestor_name [String] The name of the 3DS requestor.
+        #
+        #   @param requestor_url [String] The URL of the 3DS requestor.
+        #
+        #   @param shipping_address_city [String, nil] The city of the shipping address associated with this purchase.
+        #
+        #   @param shipping_address_country [String, nil] The country of the shipping address associated with this purchase.
+        #
+        #   @param shipping_address_line1 [String, nil] The first line of the shipping address associated with this purchase.
+        #
+        #   @param shipping_address_line2 [String, nil] The second line of the shipping address associated with this purchase.
+        #
+        #   @param shipping_address_line3 [String, nil] The third line of the shipping address associated with this purchase.
+        #
+        #   @param shipping_address_postal_code [String, nil] The postal code of the shipping address associated with this purchase.
+        #
+        #   @param shipping_address_state [String, nil] The US state of the shipping address associated with this purchase.
+        #
+        #   @param three_d_secure_server_transaction_id [String] A unique identifier assigned by the 3DS Server initiating the authentication att
+        #
+        #   @param transaction_type [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::TransactionType, nil] The type of transaction being authenticated.
+        #
         #   @param upcoming_card_payment_id [String] The identifier of the Card Payment this authentication attempt will belong to. A
+
+        # The category of the card authentication attempt.
+        #
+        # @see Increase::Models::RealTimeDecision::CardAuthentication#category
+        module Category
+          extend Increase::Internal::Type::Enum
+
+          # The authentication attempt is for a payment.
+          PAYMENT_AUTHENTICATION = :payment_authentication
+
+          # The authentication attempt is not for a payment.
+          NON_PAYMENT_AUTHENTICATION = :non_payment_authentication
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # Whether or not the authentication attempt was approved.
         #
@@ -171,6 +474,305 @@ module Increase
 
           # Deny the authentication attempt.
           DENY = :deny
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::RealTimeDecision::CardAuthentication#device_channel
+        class DeviceChannel < Increase::Internal::Type::BaseModel
+          # @!attribute browser
+          #   Fields specific to the browser device channel.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser, nil]
+          required :browser,
+                   -> { Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser },
+                   nil?: true
+
+          # @!attribute category
+          #   The category of the device channel.
+          #
+          #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Category]
+          required :category, enum: -> { Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Category }
+
+          # @!attribute merchant_initiated
+          #   Fields specific to merchant initiated transactions.
+          #
+          #   @return [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated, nil]
+          required :merchant_initiated,
+                   -> { Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated },
+                   nil?: true
+
+          # @!method initialize(browser:, category:, merchant_initiated:)
+          #   The device channel of the card authentication attempt.
+          #
+          #   @param browser [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser, nil] Fields specific to the browser device channel.
+          #
+          #   @param category [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Category] The category of the device channel.
+          #
+          #   @param merchant_initiated [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated, nil] Fields specific to merchant initiated transactions.
+
+          # @see Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel#browser
+          class Browser < Increase::Internal::Type::BaseModel
+            # @!attribute accept_header
+            #   The accept header from the cardholder's browser.
+            #
+            #   @return [String, nil]
+            required :accept_header, String, nil?: true
+
+            # @!attribute ip_address
+            #   The IP address of the cardholder's browser.
+            #
+            #   @return [String, nil]
+            required :ip_address, String, nil?: true
+
+            # @!attribute javascript_enabled
+            #   Whether JavaScript is enabled in the cardholder's browser.
+            #
+            #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled, nil]
+            required :javascript_enabled,
+                     enum: -> {
+                       Increase::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled
+                     },
+                     nil?: true
+
+            # @!attribute language
+            #   The language of the cardholder's browser.
+            #
+            #   @return [String, nil]
+            required :language, String, nil?: true
+
+            # @!attribute user_agent
+            #   The user agent of the cardholder's browser.
+            #
+            #   @return [String, nil]
+            required :user_agent, String, nil?: true
+
+            # @!method initialize(accept_header:, ip_address:, javascript_enabled:, language:, user_agent:)
+            #   Fields specific to the browser device channel.
+            #
+            #   @param accept_header [String, nil] The accept header from the cardholder's browser.
+            #
+            #   @param ip_address [String, nil] The IP address of the cardholder's browser.
+            #
+            #   @param javascript_enabled [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled, nil] Whether JavaScript is enabled in the cardholder's browser.
+            #
+            #   @param language [String, nil] The language of the cardholder's browser.
+            #
+            #   @param user_agent [String, nil] The user agent of the cardholder's browser.
+
+            # Whether JavaScript is enabled in the cardholder's browser.
+            #
+            # @see Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::Browser#javascript_enabled
+            module JavascriptEnabled
+              extend Increase::Internal::Type::Enum
+
+              # JavaScript is enabled in the cardholder's browser.
+              ENABLED = :enabled
+
+              # JavaScript is not enabled in the cardholder's browser.
+              DISABLED = :disabled
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          # The category of the device channel.
+          #
+          # @see Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel#category
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The authentication attempt was made from an app.
+            APP = :app
+
+            # The authentication attempt was made from a browser.
+            BROWSER = :browser
+
+            # The authentication attempt was initiated by the 3DS Requestor.
+            THREE_DS_REQUESTOR_INITIATED = :three_ds_requestor_initiated
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel#merchant_initiated
+          class MerchantInitiated < Increase::Internal::Type::BaseModel
+            # @!attribute indicator
+            #   The merchant initiated indicator for the transaction.
+            #
+            #   @return [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator]
+            required :indicator,
+                     enum: -> { Increase::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator }
+
+            # @!method initialize(indicator:)
+            #   Fields specific to merchant initiated transactions.
+            #
+            #   @param indicator [Symbol, Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator] The merchant initiated indicator for the transaction.
+
+            # The merchant initiated indicator for the transaction.
+            #
+            # @see Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel::MerchantInitiated#indicator
+            module Indicator
+              extend Increase::Internal::Type::Enum
+
+              # Recurring transaction.
+              RECURRING_TRANSACTION = :recurring_transaction
+
+              # Installment transaction.
+              INSTALLMENT_TRANSACTION = :installment_transaction
+
+              # Add card.
+              ADD_CARD = :add_card
+
+              # Maintain card information.
+              MAINTAIN_CARD_INFORMATION = :maintain_card_information
+
+              # Account verification.
+              ACCOUNT_VERIFICATION = :account_verification
+
+              # Split or delayed shipment.
+              SPLIT_DELAYED_SHIPMENT = :split_delayed_shipment
+
+              # Top up.
+              TOP_UP = :top_up
+
+              # Mail order.
+              MAIL_ORDER = :mail_order
+
+              # Telephone order.
+              TELEPHONE_ORDER = :telephone_order
+
+              # Whitelist status check.
+              WHITELIST_STATUS_CHECK = :whitelist_status_check
+
+              # Other payment.
+              OTHER_PAYMENT = :other_payment
+
+              # Billing agreement.
+              BILLING_AGREEMENT = :billing_agreement
+
+              # Device binding status check.
+              DEVICE_BINDING_STATUS_CHECK = :device_binding_status_check
+
+              # Card security code status check.
+              CARD_SECURITY_CODE_STATUS_CHECK = :card_security_code_status_check
+
+              # Delayed shipment.
+              DELAYED_SHIPMENT = :delayed_shipment
+
+              # Split payment.
+              SPLIT_PAYMENT = :split_payment
+
+              # FIDO credential deletion.
+              FIDO_CREDENTIAL_DELETION = :fido_credential_deletion
+
+              # FIDO credential registration.
+              FIDO_CREDENTIAL_REGISTRATION = :fido_credential_registration
+
+              # Decoupled authentication fallback.
+              DECOUPLED_AUTHENTICATION_FALLBACK = :decoupled_authentication_fallback
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+        end
+
+        # The 3DS requestor authentication indicator describes why the authentication
+        # attempt is performed, such as for a recurring transaction.
+        #
+        # @see Increase::Models::RealTimeDecision::CardAuthentication#requestor_authentication_indicator
+        module RequestorAuthenticationIndicator
+          extend Increase::Internal::Type::Enum
+
+          # The authentication is for a payment transaction.
+          PAYMENT_TRANSACTION = :payment_transaction
+
+          # The authentication is for a recurring transaction.
+          RECURRING_TRANSACTION = :recurring_transaction
+
+          # The authentication is for an installment transaction.
+          INSTALLMENT_TRANSACTION = :installment_transaction
+
+          # The authentication is for adding a card.
+          ADD_CARD = :add_card
+
+          # The authentication is for maintaining a card.
+          MAINTAIN_CARD = :maintain_card
+
+          # The authentication is for EMV token cardholder verification.
+          EMV_TOKEN_CARDHOLDER_VERIFICATION = :emv_token_cardholder_verification
+
+          # The authentication is for a billing agreement.
+          BILLING_AGREEMENT = :billing_agreement
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Indicates whether a challenge is requested for this transaction.
+        #
+        # @see Increase::Models::RealTimeDecision::CardAuthentication#requestor_challenge_indicator
+        module RequestorChallengeIndicator
+          extend Increase::Internal::Type::Enum
+
+          # No preference.
+          NO_PREFERENCE = :no_preference
+
+          # No challenge requested.
+          NO_CHALLENGE_REQUESTED = :no_challenge_requested
+
+          # Challenge requested, 3DS Requestor preference.
+          CHALLENGE_REQUESTED_3DS_REQUESTOR_PREFERENCE = :challenge_requested_3ds_requestor_preference
+
+          # Challenge requested, mandate.
+          CHALLENGE_REQUESTED_MANDATE = :challenge_requested_mandate
+
+          # No challenge requested, transactional risk analysis already performed.
+          NO_CHALLENGE_REQUESTED_TRANSACTIONAL_RISK_ANALYSIS_ALREADY_PERFORMED =
+            :no_challenge_requested_transactional_risk_analysis_already_performed
+
+          # No challenge requested, data share only.
+          NO_CHALLENGE_REQUESTED_DATA_SHARE_ONLY = :no_challenge_requested_data_share_only
+
+          # No challenge requested, strong consumer authentication already performed.
+          NO_CHALLENGE_REQUESTED_STRONG_CONSUMER_AUTHENTICATION_ALREADY_PERFORMED =
+            :no_challenge_requested_strong_consumer_authentication_already_performed
+
+          # No challenge requested, utilize whitelist exemption if no challenge required.
+          NO_CHALLENGE_REQUESTED_UTILIZE_WHITELIST_EXEMPTION_IF_NO_CHALLENGE_REQUIRED =
+            :no_challenge_requested_utilize_whitelist_exemption_if_no_challenge_required
+
+          # Challenge requested, whitelist prompt requested if challenge required.
+          CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED =
+            :challenge_requested_whitelist_prompt_requested_if_challenge_required
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The type of transaction being authenticated.
+        #
+        # @see Increase::Models::RealTimeDecision::CardAuthentication#transaction_type
+        module TransactionType
+          extend Increase::Internal::Type::Enum
+
+          # Purchase of goods or services.
+          GOODS_SERVICE_PURCHASE = :goods_service_purchase
+
+          # Check acceptance.
+          CHECK_ACCEPTANCE = :check_acceptance
+
+          # Account funding.
+          ACCOUNT_FUNDING = :account_funding
+
+          # Quasi-cash transaction.
+          QUASI_CASH_TRANSACTION = :quasi_cash_transaction
+
+          # Prepaid activation and load.
+          PREPAID_ACTIVATION_AND_LOAD = :prepaid_activation_and_load
 
           # @!method self.values
           #   @return [Array<Symbol>]
