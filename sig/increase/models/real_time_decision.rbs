@@ -95,6 +95,7 @@ module Increase
           merchant_name: String,
           prior_card_authentication_id: String?,
           purchase_amount: Integer?,
+          purchase_amount_cardholder_estimated: Integer?,
           purchase_currency: String?,
           requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
           requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
@@ -157,6 +158,8 @@ module Increase
 
         attr_accessor purchase_amount: Integer?
 
+        attr_accessor purchase_amount_cardholder_estimated: Integer?
+
         attr_accessor purchase_currency: String?
 
         attr_accessor requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?
@@ -210,6 +213,7 @@ module Increase
           merchant_name: String,
           prior_card_authentication_id: String?,
           purchase_amount: Integer?,
+          purchase_amount_cardholder_estimated: Integer?,
           purchase_currency: String?,
           requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
           requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
@@ -250,6 +254,7 @@ module Increase
           merchant_name: String,
           prior_card_authentication_id: String?,
           purchase_amount: Integer?,
+          purchase_amount_cardholder_estimated: Integer?,
           purchase_currency: String?,
           requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
           requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
