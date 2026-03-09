@@ -769,7 +769,7 @@ module Increase
           # The ID of a prior Card Authentication that the requestor used to authenticate
           # this cardholder for a previous transaction.
           sig { returns(T.nilable(String)) }
-          attr_accessor :prior_card_authentication_id
+          attr_accessor :prior_authenticated_card_payment_id
 
           # The purchase amount in minor units.
           sig { returns(T.nilable(Integer)) }
@@ -917,7 +917,7 @@ module Increase
               merchant_category_code: T.nilable(String),
               merchant_country: T.nilable(String),
               merchant_name: T.nilable(String),
-              prior_card_authentication_id: T.nilable(String),
+              prior_authenticated_card_payment_id: T.nilable(String),
               purchase_amount: T.nilable(Integer),
               purchase_amount_cardholder_estimated: T.nilable(Integer),
               purchase_currency: T.nilable(String),
@@ -1011,7 +1011,7 @@ module Increase
             merchant_name:,
             # The ID of a prior Card Authentication that the requestor used to authenticate
             # this cardholder for a previous transaction.
-            prior_card_authentication_id:,
+            prior_authenticated_card_payment_id:,
             # The purchase amount in minor units.
             purchase_amount:,
             # The purchase amount in the cardholder's currency (i.e., USD) estimated using
@@ -1095,7 +1095,7 @@ module Increase
                 merchant_category_code: T.nilable(String),
                 merchant_country: T.nilable(String),
                 merchant_name: T.nilable(String),
-                prior_card_authentication_id: T.nilable(String),
+                prior_authenticated_card_payment_id: T.nilable(String),
                 purchase_amount: T.nilable(Integer),
                 purchase_amount_cardholder_estimated: T.nilable(Integer),
                 purchase_currency: T.nilable(String),
