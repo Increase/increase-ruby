@@ -228,10 +228,10 @@ module Increase
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
             device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
             directory_server_transaction_id: String,
-            merchant_acceptor_id: String,
-            merchant_category_code: String,
-            merchant_country: String,
-            merchant_name: String,
+            merchant_acceptor_id: String?,
+            merchant_category_code: String?,
+            merchant_country: String?,
+            merchant_name: String?,
             prior_card_authentication_id: String?,
             purchase_amount: Integer?,
             purchase_amount_cardholder_estimated: Integer?,
@@ -293,13 +293,13 @@ module Increase
 
           attr_accessor directory_server_transaction_id: String
 
-          attr_accessor merchant_acceptor_id: String
+          attr_accessor merchant_acceptor_id: String?
 
-          attr_accessor merchant_category_code: String
+          attr_accessor merchant_category_code: String?
 
-          attr_accessor merchant_country: String
+          attr_accessor merchant_country: String?
 
-          attr_accessor merchant_name: String
+          attr_accessor merchant_name: String?
 
           attr_accessor prior_card_authentication_id: String?
 
@@ -361,10 +361,10 @@ module Increase
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
             device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
             directory_server_transaction_id: String,
-            merchant_acceptor_id: String,
-            merchant_category_code: String,
-            merchant_country: String,
-            merchant_name: String,
+            merchant_acceptor_id: String?,
+            merchant_category_code: String?,
+            merchant_country: String?,
+            merchant_name: String?,
             prior_card_authentication_id: String?,
             purchase_amount: Integer?,
             purchase_amount_cardholder_estimated: Integer?,
@@ -407,10 +407,10 @@ module Increase
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
             device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
             directory_server_transaction_id: String,
-            merchant_acceptor_id: String,
-            merchant_category_code: String,
-            merchant_country: String,
-            merchant_name: String,
+            merchant_acceptor_id: String?,
+            merchant_category_code: String?,
+            merchant_country: String?,
+            merchant_name: String?,
             prior_card_authentication_id: String?,
             purchase_amount: Integer?,
             purchase_amount_cardholder_estimated: Integer?,
