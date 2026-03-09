@@ -93,7 +93,7 @@ module Increase
           merchant_category_code: String?,
           merchant_country: String?,
           merchant_name: String?,
-          prior_card_authentication_id: String?,
+          prior_authenticated_card_payment_id: String?,
           purchase_amount: Integer?,
           purchase_amount_cardholder_estimated: Integer?,
           purchase_currency: String?,
@@ -154,7 +154,7 @@ module Increase
 
         attr_accessor merchant_name: String?
 
-        attr_accessor prior_card_authentication_id: String?
+        attr_accessor prior_authenticated_card_payment_id: String?
 
         attr_accessor purchase_amount: Integer?
 
@@ -211,7 +211,7 @@ module Increase
           merchant_category_code: String?,
           merchant_country: String?,
           merchant_name: String?,
-          prior_card_authentication_id: String?,
+          prior_authenticated_card_payment_id: String?,
           purchase_amount: Integer?,
           purchase_amount_cardholder_estimated: Integer?,
           purchase_currency: String?,
@@ -252,7 +252,7 @@ module Increase
           merchant_category_code: String?,
           merchant_country: String?,
           merchant_name: String?,
-          prior_card_authentication_id: String?,
+          prior_authenticated_card_payment_id: String?,
           purchase_amount: Integer?,
           purchase_amount_cardholder_estimated: Integer?,
           purchase_currency: String?,
