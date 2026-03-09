@@ -750,20 +750,20 @@ module Increase
 
           # The merchant identifier (commonly abbreviated as MID) of the merchant the card
           # is transacting with.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :merchant_acceptor_id
 
           # The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
           # card is transacting with.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :merchant_category_code
 
           # The country the merchant resides in.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :merchant_country
 
           # The name of the merchant.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :merchant_name
 
           # The ID of a prior Card Authentication that the requestor used to authenticate
@@ -913,10 +913,10 @@ module Increase
               device_channel:
                 Increase::CardPayment::Element::CardAuthentication::DeviceChannel::OrHash,
               directory_server_transaction_id: String,
-              merchant_acceptor_id: String,
-              merchant_category_code: String,
-              merchant_country: String,
-              merchant_name: String,
+              merchant_acceptor_id: T.nilable(String),
+              merchant_category_code: T.nilable(String),
+              merchant_country: T.nilable(String),
+              merchant_name: T.nilable(String),
               prior_card_authentication_id: T.nilable(String),
               purchase_amount: T.nilable(Integer),
               purchase_amount_cardholder_estimated: T.nilable(Integer),
@@ -1091,10 +1091,10 @@ module Increase
                 device_channel:
                   Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
                 directory_server_transaction_id: String,
-                merchant_acceptor_id: String,
-                merchant_category_code: String,
-                merchant_country: String,
-                merchant_name: String,
+                merchant_acceptor_id: T.nilable(String),
+                merchant_category_code: T.nilable(String),
+                merchant_country: T.nilable(String),
+                merchant_name: T.nilable(String),
                 prior_card_authentication_id: T.nilable(String),
                 purchase_amount: T.nilable(Integer),
                 purchase_amount_cardholder_estimated: T.nilable(Integer),
