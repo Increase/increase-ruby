@@ -398,16 +398,6 @@ module Increase
           #   @return [String, nil]
           required :cardholder_name, String, nil?: true
 
-          # @!attribute category
-          #   The category of the card authentication attempt.
-          #
-          #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Category, nil]
-          required :category,
-                   enum: -> {
-                     Increase::CardPayment::Element::CardAuthentication::Category
-                   },
-                   nil?: true
-
           # @!attribute challenge
           #   Details about the challenge, if one was requested.
           #
@@ -472,32 +462,18 @@ module Increase
           #   @return [String, nil]
           required :merchant_name, String, nil?: true
 
+          # @!attribute message_category
+          #   The message category of the card authentication attempt.
+          #
+          #   @return [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory]
+          required :message_category, -> { Increase::CardPayment::Element::CardAuthentication::MessageCategory }
+
           # @!attribute prior_authenticated_card_payment_id
           #   The ID of a prior Card Authentication that the requestor used to authenticate
           #   this cardholder for a previous transaction.
           #
           #   @return [String, nil]
           required :prior_authenticated_card_payment_id, String, nil?: true
-
-          # @!attribute purchase_amount
-          #   The purchase amount in minor units.
-          #
-          #   @return [Integer, nil]
-          required :purchase_amount, Integer, nil?: true
-
-          # @!attribute purchase_amount_cardholder_estimated
-          #   The purchase amount in the cardholder's currency (i.e., USD) estimated using
-          #   daily conversion rates from the card network.
-          #
-          #   @return [Integer, nil]
-          required :purchase_amount_cardholder_estimated, Integer, nil?: true
-
-          # @!attribute purchase_currency
-          #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
-          #   authentication attempt's purchase currency.
-          #
-          #   @return [String, nil]
-          required :purchase_currency, String, nil?: true
 
           # @!attribute real_time_decision_id
           #   The identifier of the Real-Time Decision sent to approve or decline this
@@ -594,14 +570,6 @@ module Increase
           #   @return [String]
           required :three_d_secure_server_transaction_id, String
 
-          # @!attribute transaction_type
-          #   The type of transaction being authenticated.
-          #
-          #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::TransactionType, nil]
-          required :transaction_type,
-                   enum: -> { Increase::CardPayment::Element::CardAuthentication::TransactionType },
-                   nil?: true
-
           # @!attribute type
           #   A constant representing the object's type. For this resource it will always be
           #   `card_authentication`.
@@ -609,7 +577,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, access_control_server_transaction_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, category:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, prior_authenticated_card_payment_id:, purchase_amount:, purchase_amount_cardholder_estimated:, purchase_currency:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_id:, transaction_type:, type:)
+          # @!method initialize(id:, access_control_server_transaction_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, message_category:, prior_authenticated_card_payment_id:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_id:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -643,8 +611,6 @@ module Increase
           #
           #   @param cardholder_name [String, nil] The name of the cardholder.
           #
-          #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Category, nil] The category of the card authentication attempt.
-          #
           #   @param challenge [Increase::Models::CardPayment::Element::CardAuthentication::Challenge, nil] Details about the challenge, if one was requested.
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card Au
@@ -663,13 +629,9 @@ module Increase
           #
           #   @param merchant_name [String, nil] The name of the merchant.
           #
+          #   @param message_category [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory] The message category of the card authentication attempt.
+          #
           #   @param prior_authenticated_card_payment_id [String, nil] The ID of a prior Card Authentication that the requestor used to authenticate th
-          #
-          #   @param purchase_amount [Integer, nil] The purchase amount in minor units.
-          #
-          #   @param purchase_amount_cardholder_estimated [Integer, nil] The purchase amount in the cardholder's currency (i.e., USD) estimated using dai
-          #
-          #   @param purchase_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the authenticati
           #
           #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this authent
           #
@@ -699,25 +661,7 @@ module Increase
           #
           #   @param three_d_secure_server_transaction_id [String] A unique identifier assigned by the 3DS Server initiating the authentication att
           #
-          #   @param transaction_type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::TransactionType, nil] The type of transaction being authenticated.
-          #
           #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type] A constant representing the object's type. For this resource it will always be `
-
-          # The category of the card authentication attempt.
-          #
-          # @see Increase::Models::CardPayment::Element::CardAuthentication#category
-          module Category
-            extend Increase::Internal::Type::Enum
-
-            # The authentication attempt is for a payment.
-            PAYMENT_AUTHENTICATION = :payment_authentication
-
-            # The authentication attempt is not for a payment.
-            NON_PAYMENT_AUTHENTICATION = :non_payment_authentication
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
 
           # @see Increase::Models::CardPayment::Element::CardAuthentication#challenge
           class Challenge < Increase::Internal::Type::BaseModel
@@ -1065,6 +1009,136 @@ module Increase
             end
           end
 
+          # @see Increase::Models::CardPayment::Element::CardAuthentication#message_category
+          class MessageCategory < Increase::Internal::Type::BaseModel
+            # @!attribute category
+            #   The category of the card authentication attempt.
+            #
+            #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Category]
+            required :category,
+                     enum: -> { Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category }
+
+            # @!attribute non_payment
+            #   Fields specific to non-payment authentication attempts.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment, nil]
+            required :non_payment,
+                     -> { Increase::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment },
+                     nil?: true
+
+            # @!attribute payment
+            #   Fields specific to payment authentication attempts.
+            #
+            #   @return [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment, nil]
+            required :payment,
+                     -> { Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment },
+                     nil?: true
+
+            # @!method initialize(category:, non_payment:, payment:)
+            #   The message category of the card authentication attempt.
+            #
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Category] The category of the card authentication attempt.
+            #
+            #   @param non_payment [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment, nil] Fields specific to non-payment authentication attempts.
+            #
+            #   @param payment [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment, nil] Fields specific to payment authentication attempts.
+
+            # The category of the card authentication attempt.
+            #
+            # @see Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory#category
+            module Category
+              extend Increase::Internal::Type::Enum
+
+              # The authentication attempt is for a payment.
+              PAYMENT_AUTHENTICATION = :payment_authentication
+
+              # The authentication attempt is not for a payment.
+              NON_PAYMENT_AUTHENTICATION = :non_payment_authentication
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory#non_payment
+            class NonPayment < Increase::Internal::Type::BaseModel
+              # @!method initialize
+              #   Fields specific to non-payment authentication attempts.
+            end
+
+            # @see Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory#payment
+            class Payment < Increase::Internal::Type::BaseModel
+              # @!attribute purchase_amount
+              #   The purchase amount in minor units.
+              #
+              #   @return [Integer]
+              required :purchase_amount, Integer
+
+              # @!attribute purchase_amount_cardholder_estimated
+              #   The purchase amount in the cardholder's currency (i.e., USD) estimated using
+              #   daily conversion rates from the card network.
+              #
+              #   @return [Integer, nil]
+              required :purchase_amount_cardholder_estimated, Integer, nil?: true
+
+              # @!attribute purchase_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+              #   authentication attempt's purchase currency.
+              #
+              #   @return [String]
+              required :purchase_currency, String
+
+              # @!attribute transaction_type
+              #   The type of transaction being authenticated.
+              #
+              #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType, nil]
+              required :transaction_type,
+                       enum: -> {
+                         Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType
+                       },
+                       nil?: true
+
+              # @!method initialize(purchase_amount:, purchase_amount_cardholder_estimated:, purchase_currency:, transaction_type:)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment}
+              #   for more details.
+              #
+              #   Fields specific to payment authentication attempts.
+              #
+              #   @param purchase_amount [Integer] The purchase amount in minor units.
+              #
+              #   @param purchase_amount_cardholder_estimated [Integer, nil] The purchase amount in the cardholder's currency (i.e., USD) estimated using dai
+              #
+              #   @param purchase_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the authenticati
+              #
+              #   @param transaction_type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType, nil] The type of transaction being authenticated.
+
+              # The type of transaction being authenticated.
+              #
+              # @see Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment#transaction_type
+              module TransactionType
+                extend Increase::Internal::Type::Enum
+
+                # Purchase of goods or services.
+                GOODS_SERVICE_PURCHASE = :goods_service_purchase
+
+                # Check acceptance.
+                CHECK_ACCEPTANCE = :check_acceptance
+
+                # Account funding.
+                ACCOUNT_FUNDING = :account_funding
+
+                # Quasi-cash transaction.
+                QUASI_CASH_TRANSACTION = :quasi_cash_transaction
+
+                # Prepaid activation and load.
+                PREPAID_ACTIVATION_AND_LOAD = :prepaid_activation_and_load
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+          end
+
           # The 3DS requestor authentication indicator describes why the authentication
           # attempt is performed, such as for a recurring transaction.
           #
@@ -1170,31 +1244,6 @@ module Increase
 
             # The authentication attempt exceeded the attempt threshold.
             EXCEEDED_ATTEMPT_THRESHOLD = :exceeded_attempt_threshold
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # The type of transaction being authenticated.
-          #
-          # @see Increase::Models::CardPayment::Element::CardAuthentication#transaction_type
-          module TransactionType
-            extend Increase::Internal::Type::Enum
-
-            # Purchase of goods or services.
-            GOODS_SERVICE_PURCHASE = :goods_service_purchase
-
-            # Check acceptance.
-            CHECK_ACCEPTANCE = :check_acceptance
-
-            # Account funding.
-            ACCOUNT_FUNDING = :account_funding
-
-            # Quasi-cash transaction.
-            QUASI_CASH_TRANSACTION = :quasi_cash_transaction
-
-            # Prepaid activation and load.
-            PREPAID_ACTIVATION_AND_LOAD = :prepaid_activation_and_load
 
             # @!method self.values
             #   @return [Array<Symbol>]

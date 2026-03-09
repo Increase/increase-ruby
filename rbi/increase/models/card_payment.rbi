@@ -682,16 +682,6 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :cardholder_name
 
-          # The category of the card authentication attempt.
-          sig do
-            returns(
-              T.nilable(
-                Increase::CardPayment::Element::CardAuthentication::Category::TaggedSymbol
-              )
-            )
-          end
-          attr_accessor :category
-
           # Details about the challenge, if one was requested.
           sig do
             returns(
@@ -766,24 +756,26 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :merchant_name
 
+          # The message category of the card authentication attempt.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardAuthentication::MessageCategory
+            )
+          end
+          attr_reader :message_category
+
+          sig do
+            params(
+              message_category:
+                Increase::CardPayment::Element::CardAuthentication::MessageCategory::OrHash
+            ).void
+          end
+          attr_writer :message_category
+
           # The ID of a prior Card Authentication that the requestor used to authenticate
           # this cardholder for a previous transaction.
           sig { returns(T.nilable(String)) }
           attr_accessor :prior_authenticated_card_payment_id
-
-          # The purchase amount in minor units.
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :purchase_amount
-
-          # The purchase amount in the cardholder's currency (i.e., USD) estimated using
-          # daily conversion rates from the card network.
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :purchase_amount_cardholder_estimated
-
-          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
-          # authentication attempt's purchase currency.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :purchase_currency
 
           # The identifier of the Real-Time Decision sent to approve or decline this
           # authentication attempt.
@@ -860,16 +852,6 @@ module Increase
           sig { returns(String) }
           attr_accessor :three_d_secure_server_transaction_id
 
-          # The type of transaction being authenticated.
-          sig do
-            returns(
-              T.nilable(
-                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-              )
-            )
-          end
-          attr_accessor :transaction_type
-
           # A constant representing the object's type. For this resource it will always be
           # `card_authentication`.
           sig do
@@ -897,10 +879,6 @@ module Increase
               card_payment_id: String,
               cardholder_email: T.nilable(String),
               cardholder_name: T.nilable(String),
-              category:
-                T.nilable(
-                  Increase::CardPayment::Element::CardAuthentication::Category::OrSymbol
-                ),
               challenge:
                 T.nilable(
                   Increase::CardPayment::Element::CardAuthentication::Challenge::OrHash
@@ -917,10 +895,9 @@ module Increase
               merchant_category_code: T.nilable(String),
               merchant_country: T.nilable(String),
               merchant_name: T.nilable(String),
+              message_category:
+                Increase::CardPayment::Element::CardAuthentication::MessageCategory::OrHash,
               prior_authenticated_card_payment_id: T.nilable(String),
-              purchase_amount: T.nilable(Integer),
-              purchase_amount_cardholder_estimated: T.nilable(Integer),
-              purchase_currency: T.nilable(String),
               real_time_decision_id: T.nilable(String),
               requestor_authentication_indicator:
                 T.nilable(
@@ -942,10 +919,6 @@ module Increase
               status:
                 Increase::CardPayment::Element::CardAuthentication::Status::OrSymbol,
               three_d_secure_server_transaction_id: String,
-              transaction_type:
-                T.nilable(
-                  Increase::CardPayment::Element::CardAuthentication::TransactionType::OrSymbol
-                ),
               type:
                 Increase::CardPayment::Element::CardAuthentication::Type::OrSymbol
             ).returns(T.attached_class)
@@ -985,8 +958,6 @@ module Increase
             cardholder_email:,
             # The name of the cardholder.
             cardholder_name:,
-            # The category of the card authentication attempt.
-            category:,
             # Details about the challenge, if one was requested.
             challenge:,
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card
@@ -1009,17 +980,11 @@ module Increase
             merchant_country:,
             # The name of the merchant.
             merchant_name:,
+            # The message category of the card authentication attempt.
+            message_category:,
             # The ID of a prior Card Authentication that the requestor used to authenticate
             # this cardholder for a previous transaction.
             prior_authenticated_card_payment_id:,
-            # The purchase amount in minor units.
-            purchase_amount:,
-            # The purchase amount in the cardholder's currency (i.e., USD) estimated using
-            # daily conversion rates from the card network.
-            purchase_amount_cardholder_estimated:,
-            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
-            # authentication attempt's purchase currency.
-            purchase_currency:,
             # The identifier of the Real-Time Decision sent to approve or decline this
             # authentication attempt.
             real_time_decision_id:,
@@ -1051,8 +1016,6 @@ module Increase
             # A unique identifier assigned by the 3DS Server initiating the authentication
             # attempt for this transaction.
             three_d_secure_server_transaction_id:,
-            # The type of transaction being authenticated.
-            transaction_type:,
             # A constant representing the object's type. For this resource it will always be
             # `card_authentication`.
             type:
@@ -1075,10 +1038,6 @@ module Increase
                 card_payment_id: String,
                 cardholder_email: T.nilable(String),
                 cardholder_name: T.nilable(String),
-                category:
-                  T.nilable(
-                    Increase::CardPayment::Element::CardAuthentication::Category::TaggedSymbol
-                  ),
                 challenge:
                   T.nilable(
                     Increase::CardPayment::Element::CardAuthentication::Challenge
@@ -1095,10 +1054,9 @@ module Increase
                 merchant_category_code: T.nilable(String),
                 merchant_country: T.nilable(String),
                 merchant_name: T.nilable(String),
+                message_category:
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory,
                 prior_authenticated_card_payment_id: T.nilable(String),
-                purchase_amount: T.nilable(Integer),
-                purchase_amount_cardholder_estimated: T.nilable(Integer),
-                purchase_currency: T.nilable(String),
                 real_time_decision_id: T.nilable(String),
                 requestor_authentication_indicator:
                   T.nilable(
@@ -1120,54 +1078,12 @@ module Increase
                 status:
                   Increase::CardPayment::Element::CardAuthentication::Status::TaggedSymbol,
                 three_d_secure_server_transaction_id: String,
-                transaction_type:
-                  T.nilable(
-                    Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-                  ),
                 type:
                   Increase::CardPayment::Element::CardAuthentication::Type::TaggedSymbol
               }
             )
           end
           def to_hash
-          end
-
-          # The category of the card authentication attempt.
-          module Category
-            extend Increase::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Increase::CardPayment::Element::CardAuthentication::Category
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # The authentication attempt is for a payment.
-            PAYMENT_AUTHENTICATION =
-              T.let(
-                :payment_authentication,
-                Increase::CardPayment::Element::CardAuthentication::Category::TaggedSymbol
-              )
-
-            # The authentication attempt is not for a payment.
-            NON_PAYMENT_AUTHENTICATION =
-              T.let(
-                :non_payment_authentication,
-                Increase::CardPayment::Element::CardAuthentication::Category::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Increase::CardPayment::Element::CardAuthentication::Category::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
 
           class Challenge < Increase::Internal::Type::BaseModel
@@ -1924,6 +1840,300 @@ module Increase
             end
           end
 
+          class MessageCategory < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The category of the card authentication attempt.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category::TaggedSymbol
+              )
+            end
+            attr_accessor :category
+
+            # Fields specific to non-payment authentication attempts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment
+                )
+              )
+            end
+            attr_reader :non_payment
+
+            sig do
+              params(
+                non_payment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :non_payment
+
+            # Fields specific to payment authentication attempts.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment
+                )
+              )
+            end
+            attr_reader :payment
+
+            sig do
+              params(
+                payment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :payment
+
+            # The message category of the card authentication attempt.
+            sig do
+              params(
+                category:
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category::OrSymbol,
+                non_payment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment::OrHash
+                  ),
+                payment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The category of the card authentication attempt.
+              category:,
+              # Fields specific to non-payment authentication attempts.
+              non_payment:,
+              # Fields specific to payment authentication attempts.
+              payment:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  category:
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category::TaggedSymbol,
+                  non_payment:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment
+                    ),
+                  payment:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The category of the card authentication attempt.
+            module Category
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The authentication attempt is for a payment.
+              PAYMENT_AUTHENTICATION =
+                T.let(
+                  :payment_authentication,
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category::TaggedSymbol
+                )
+
+              # The authentication attempt is not for a payment.
+              NON_PAYMENT_AUTHENTICATION =
+                T.let(
+                  :non_payment_authentication,
+                  Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Category::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class NonPayment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # Fields specific to non-payment authentication attempts.
+              sig { returns(T.attached_class) }
+              def self.new
+              end
+
+              sig { override.returns({}) }
+              def to_hash
+              end
+            end
+
+            class Payment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The purchase amount in minor units.
+              sig { returns(Integer) }
+              attr_accessor :purchase_amount
+
+              # The purchase amount in the cardholder's currency (i.e., USD) estimated using
+              # daily conversion rates from the card network.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :purchase_amount_cardholder_estimated
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+              # authentication attempt's purchase currency.
+              sig { returns(String) }
+              attr_accessor :purchase_currency
+
+              # The type of transaction being authenticated.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :transaction_type
+
+              # Fields specific to payment authentication attempts.
+              sig do
+                params(
+                  purchase_amount: Integer,
+                  purchase_amount_cardholder_estimated: T.nilable(Integer),
+                  purchase_currency: String,
+                  transaction_type:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::OrSymbol
+                    )
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The purchase amount in minor units.
+                purchase_amount:,
+                # The purchase amount in the cardholder's currency (i.e., USD) estimated using
+                # daily conversion rates from the card network.
+                purchase_amount_cardholder_estimated:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+                # authentication attempt's purchase currency.
+                purchase_currency:,
+                # The type of transaction being authenticated.
+                transaction_type:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    purchase_amount: Integer,
+                    purchase_amount_cardholder_estimated: T.nilable(Integer),
+                    purchase_currency: String,
+                    transaction_type:
+                      T.nilable(
+                        Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                      )
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The type of transaction being authenticated.
+              module TransactionType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Purchase of goods or services.
+                GOODS_SERVICE_PURCHASE =
+                  T.let(
+                    :goods_service_purchase,
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                  )
+
+                # Check acceptance.
+                CHECK_ACCEPTANCE =
+                  T.let(
+                    :check_acceptance,
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                  )
+
+                # Account funding.
+                ACCOUNT_FUNDING =
+                  T.let(
+                    :account_funding,
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                  )
+
+                # Quasi-cash transaction.
+                QUASI_CASH_TRANSACTION =
+                  T.let(
+                    :quasi_cash_transaction,
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                  )
+
+                # Prepaid activation and load.
+                PREPAID_ACTIVATION_AND_LOAD =
+                  T.let(
+                    :prepaid_activation_and_load,
+                    Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+          end
+
           # The 3DS requestor authentication indicator describes why the authentication
           # attempt is performed, such as for a recurring transaction.
           module RequestorAuthenticationIndicator
@@ -2165,65 +2375,6 @@ module Increase
               override.returns(
                 T::Array[
                   Increase::CardPayment::Element::CardAuthentication::Status::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
-          # The type of transaction being authenticated.
-          module TransactionType
-            extend Increase::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Increase::CardPayment::Element::CardAuthentication::TransactionType
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            # Purchase of goods or services.
-            GOODS_SERVICE_PURCHASE =
-              T.let(
-                :goods_service_purchase,
-                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-              )
-
-            # Check acceptance.
-            CHECK_ACCEPTANCE =
-              T.let(
-                :check_acceptance,
-                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-              )
-
-            # Account funding.
-            ACCOUNT_FUNDING =
-              T.let(
-                :account_funding,
-                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-              )
-
-            # Quasi-cash transaction.
-            QUASI_CASH_TRANSACTION =
-              T.let(
-                :quasi_cash_transaction,
-                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-              )
-
-            # Prepaid activation and load.
-            PREPAID_ACTIVATION_AND_LOAD =
-              T.let(
-                :prepaid_activation_and_load,
-                Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Increase::CardPayment::Element::CardAuthentication::TransactionType::TaggedSymbol
                 ]
               )
             end

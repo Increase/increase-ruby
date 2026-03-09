@@ -85,7 +85,6 @@ module Increase
           card_id: String,
           cardholder_email: String?,
           cardholder_name: String?,
-          category: Increase::Models::RealTimeDecision::CardAuthentication::category?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
           device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
           directory_server_transaction_id: String,
@@ -93,10 +92,8 @@ module Increase
           merchant_category_code: String?,
           merchant_country: String?,
           merchant_name: String?,
+          message_category: Increase::RealTimeDecision::CardAuthentication::MessageCategory,
           prior_authenticated_card_payment_id: String?,
-          purchase_amount: Integer?,
-          purchase_amount_cardholder_estimated: Integer?,
-          purchase_currency: String?,
           requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
           requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
           requestor_name: String,
@@ -109,7 +106,6 @@ module Increase
           shipping_address_postal_code: String?,
           shipping_address_state: String?,
           three_d_secure_server_transaction_id: String,
-          transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?,
           upcoming_card_payment_id: String
         }
 
@@ -138,8 +134,6 @@ module Increase
 
         attr_accessor cardholder_name: String?
 
-        attr_accessor category: Increase::Models::RealTimeDecision::CardAuthentication::category?
-
         attr_accessor decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?
 
         attr_accessor device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel
@@ -154,13 +148,9 @@ module Increase
 
         attr_accessor merchant_name: String?
 
+        attr_accessor message_category: Increase::RealTimeDecision::CardAuthentication::MessageCategory
+
         attr_accessor prior_authenticated_card_payment_id: String?
-
-        attr_accessor purchase_amount: Integer?
-
-        attr_accessor purchase_amount_cardholder_estimated: Integer?
-
-        attr_accessor purchase_currency: String?
 
         attr_accessor requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?
 
@@ -186,8 +176,6 @@ module Increase
 
         attr_accessor three_d_secure_server_transaction_id: String
 
-        attr_accessor transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?
-
         attr_accessor upcoming_card_payment_id: String
 
         def initialize: (
@@ -203,7 +191,6 @@ module Increase
           card_id: String,
           cardholder_email: String?,
           cardholder_name: String?,
-          category: Increase::Models::RealTimeDecision::CardAuthentication::category?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
           device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
           directory_server_transaction_id: String,
@@ -211,10 +198,8 @@ module Increase
           merchant_category_code: String?,
           merchant_country: String?,
           merchant_name: String?,
+          message_category: Increase::RealTimeDecision::CardAuthentication::MessageCategory,
           prior_authenticated_card_payment_id: String?,
-          purchase_amount: Integer?,
-          purchase_amount_cardholder_estimated: Integer?,
-          purchase_currency: String?,
           requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
           requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
           requestor_name: String,
@@ -227,7 +212,6 @@ module Increase
           shipping_address_postal_code: String?,
           shipping_address_state: String?,
           three_d_secure_server_transaction_id: String,
-          transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?,
           upcoming_card_payment_id: String
         ) -> void
 
@@ -244,7 +228,6 @@ module Increase
           card_id: String,
           cardholder_email: String?,
           cardholder_name: String?,
-          category: Increase::Models::RealTimeDecision::CardAuthentication::category?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
           device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
           directory_server_transaction_id: String,
@@ -252,10 +235,8 @@ module Increase
           merchant_category_code: String?,
           merchant_country: String?,
           merchant_name: String?,
+          message_category: Increase::RealTimeDecision::CardAuthentication::MessageCategory,
           prior_authenticated_card_payment_id: String?,
-          purchase_amount: Integer?,
-          purchase_amount_cardholder_estimated: Integer?,
-          purchase_currency: String?,
           requestor_authentication_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_authentication_indicator?,
           requestor_challenge_indicator: Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator?,
           requestor_name: String,
@@ -268,23 +249,8 @@ module Increase
           shipping_address_postal_code: String?,
           shipping_address_state: String?,
           three_d_secure_server_transaction_id: String,
-          transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::transaction_type?,
           upcoming_card_payment_id: String
         }
-
-        type category = :payment_authentication | :non_payment_authentication
-
-        module Category
-          extend Increase::Internal::Type::Enum
-
-          # The authentication attempt is for a payment.
-          PAYMENT_AUTHENTICATION: :payment_authentication
-
-          # The authentication attempt is not for a payment.
-          NON_PAYMENT_AUTHENTICATION: :non_payment_authentication
-
-          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::category]
-        end
 
         type decision = :approve | :challenge | :deny
 
@@ -499,6 +465,115 @@ module Increase
           end
         end
 
+        type message_category =
+          {
+            category: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::category,
+            non_payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::NonPayment?,
+            payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::Payment?
+          }
+
+        class MessageCategory < Increase::Internal::Type::BaseModel
+          attr_accessor category: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::category
+
+          attr_accessor non_payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::NonPayment?
+
+          attr_accessor payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::Payment?
+
+          def initialize: (
+            category: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::category,
+            non_payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::NonPayment?,
+            payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::Payment?
+          ) -> void
+
+          def to_hash: -> {
+            category: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::category,
+            non_payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::NonPayment?,
+            payment: Increase::RealTimeDecision::CardAuthentication::MessageCategory::Payment?
+          }
+
+          type category = :payment_authentication | :non_payment_authentication
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The authentication attempt is for a payment.
+            PAYMENT_AUTHENTICATION: :payment_authentication
+
+            # The authentication attempt is not for a payment.
+            NON_PAYMENT_AUTHENTICATION: :non_payment_authentication
+
+            def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::category]
+          end
+
+          type non_payment = {  }
+
+          class NonPayment < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type payment =
+            {
+              purchase_amount: Integer,
+              purchase_amount_cardholder_estimated: Integer?,
+              purchase_currency: String,
+              transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::Payment::transaction_type?
+            }
+
+          class Payment < Increase::Internal::Type::BaseModel
+            attr_accessor purchase_amount: Integer
+
+            attr_accessor purchase_amount_cardholder_estimated: Integer?
+
+            attr_accessor purchase_currency: String
+
+            attr_accessor transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::Payment::transaction_type?
+
+            def initialize: (
+              purchase_amount: Integer,
+              purchase_amount_cardholder_estimated: Integer?,
+              purchase_currency: String,
+              transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::Payment::transaction_type?
+            ) -> void
+
+            def to_hash: -> {
+              purchase_amount: Integer,
+              purchase_amount_cardholder_estimated: Integer?,
+              purchase_currency: String,
+              transaction_type: Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::Payment::transaction_type?
+            }
+
+            type transaction_type =
+              :goods_service_purchase
+              | :check_acceptance
+              | :account_funding
+              | :quasi_cash_transaction
+              | :prepaid_activation_and_load
+
+            module TransactionType
+              extend Increase::Internal::Type::Enum
+
+              # Purchase of goods or services.
+              GOODS_SERVICE_PURCHASE: :goods_service_purchase
+
+              # Check acceptance.
+              CHECK_ACCEPTANCE: :check_acceptance
+
+              # Account funding.
+              ACCOUNT_FUNDING: :account_funding
+
+              # Quasi-cash transaction.
+              QUASI_CASH_TRANSACTION: :quasi_cash_transaction
+
+              # Prepaid activation and load.
+              PREPAID_ACTIVATION_AND_LOAD: :prepaid_activation_and_load
+
+              def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::MessageCategory::Payment::transaction_type]
+            end
+          end
+        end
+
         type requestor_authentication_indicator =
           :payment_transaction
           | :recurring_transaction
@@ -577,34 +652,6 @@ module Increase
           CHALLENGE_REQUESTED_WHITELIST_PROMPT_REQUESTED_IF_CHALLENGE_REQUIRED: :challenge_requested_whitelist_prompt_requested_if_challenge_required
 
           def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::requestor_challenge_indicator]
-        end
-
-        type transaction_type =
-          :goods_service_purchase
-          | :check_acceptance
-          | :account_funding
-          | :quasi_cash_transaction
-          | :prepaid_activation_and_load
-
-        module TransactionType
-          extend Increase::Internal::Type::Enum
-
-          # Purchase of goods or services.
-          GOODS_SERVICE_PURCHASE: :goods_service_purchase
-
-          # Check acceptance.
-          CHECK_ACCEPTANCE: :check_acceptance
-
-          # Account funding.
-          ACCOUNT_FUNDING: :account_funding
-
-          # Quasi-cash transaction.
-          QUASI_CASH_TRANSACTION: :quasi_cash_transaction
-
-          # Prepaid activation and load.
-          PREPAID_ACTIVATION_AND_LOAD: :prepaid_activation_and_load
-
-          def self?.values: -> ::Array[Increase::Models::RealTimeDecision::CardAuthentication::transaction_type]
         end
       end
 
