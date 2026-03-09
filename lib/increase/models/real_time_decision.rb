@@ -227,27 +227,27 @@ module Increase
         #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
         #   is transacting with.
         #
-        #   @return [String]
-        required :merchant_acceptor_id, String
+        #   @return [String, nil]
+        required :merchant_acceptor_id, String, nil?: true
 
         # @!attribute merchant_category_code
         #   The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
         #   card is transacting with.
         #
-        #   @return [String]
-        required :merchant_category_code, String
+        #   @return [String, nil]
+        required :merchant_category_code, String, nil?: true
 
         # @!attribute merchant_country
         #   The country the merchant resides in.
         #
-        #   @return [String]
-        required :merchant_country, String
+        #   @return [String, nil]
+        required :merchant_country, String, nil?: true
 
         # @!attribute merchant_name
         #   The name of the merchant.
         #
-        #   @return [String]
-        required :merchant_name, String
+        #   @return [String, nil]
+        required :merchant_name, String, nil?: true
 
         # @!attribute prior_card_authentication_id
         #   The ID of a prior Card Authentication that the requestor used to authenticate
@@ -409,13 +409,13 @@ module Increase
         #
         #   @param directory_server_transaction_id [String] A unique identifier assigned by the Directory Server (the card network) for this
         #
-        #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+        #   @param merchant_acceptor_id [String, nil] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
         #
-        #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+        #   @param merchant_category_code [String, nil] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
         #
-        #   @param merchant_country [String] The country the merchant resides in.
+        #   @param merchant_country [String, nil] The country the merchant resides in.
         #
-        #   @param merchant_name [String] The name of the merchant.
+        #   @param merchant_name [String, nil] The name of the merchant.
         #
         #   @param prior_card_authentication_id [String, nil] The ID of a prior Card Authentication that the requestor used to authenticate th
         #
