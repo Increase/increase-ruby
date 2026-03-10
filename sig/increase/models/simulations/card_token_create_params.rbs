@@ -6,6 +6,7 @@ module Increase
           capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
           expiration: Date,
           :last4 => String,
+          outcome: Increase::Simulations::CardTokenCreateParams::Outcome,
           prefix: String,
           primary_account_number_length: Integer
         }
@@ -29,6 +30,12 @@ module Increase
 
         def last4=: (String) -> String
 
+        attr_reader outcome: Increase::Simulations::CardTokenCreateParams::Outcome?
+
+        def outcome=: (
+          Increase::Simulations::CardTokenCreateParams::Outcome
+        ) -> Increase::Simulations::CardTokenCreateParams::Outcome
+
         attr_reader prefix: String?
 
         def prefix=: (String) -> String
@@ -41,6 +48,7 @@ module Increase
           ?capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
           ?expiration: Date,
           ?last4: String,
+          ?outcome: Increase::Simulations::CardTokenCreateParams::Outcome,
           ?prefix: String,
           ?primary_account_number_length: Integer,
           ?request_options: Increase::request_opts
@@ -50,6 +58,7 @@ module Increase
           capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
           expiration: Date,
           :last4 => String,
+          outcome: Increase::Simulations::CardTokenCreateParams::Outcome,
           prefix: String,
           primary_account_number_length: Integer,
           request_options: Increase::RequestOptions
@@ -121,6 +130,243 @@ module Increase
             MASTERCARD: :mastercard
 
             def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Capability::route]
+          end
+        end
+
+        type outcome =
+          {
+            result: Increase::Models::Simulations::CardTokenCreateParams::Outcome::result,
+            decline: Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+          }
+
+        class Outcome < Increase::Internal::Type::BaseModel
+          attr_accessor result: Increase::Models::Simulations::CardTokenCreateParams::Outcome::result
+
+          attr_reader decline: Increase::Simulations::CardTokenCreateParams::Outcome::Decline?
+
+          def decline=: (
+            Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+          ) -> Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+
+          def initialize: (
+            result: Increase::Models::Simulations::CardTokenCreateParams::Outcome::result,
+            ?decline: Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+          ) -> void
+
+          def to_hash: -> {
+            result: Increase::Models::Simulations::CardTokenCreateParams::Outcome::result,
+            decline: Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+          }
+
+          type result = :approve | :decline
+
+          module Result
+            extend Increase::Internal::Type::Enum
+
+            # Any card push transfers or validations will be approved.
+            APPROVE: :approve
+
+            # Any card push transfers or validations will be declined.
+            DECLINE: :decline
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Outcome::result]
+          end
+
+          type decline =
+            {
+              reason: Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason
+            }
+
+          class Decline < Increase::Internal::Type::BaseModel
+            attr_reader reason: Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason?
+
+            def reason=: (
+              Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason
+            ) -> Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason
+
+            def initialize: (
+              ?reason: Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason
+            ) -> void
+
+            def to_hash: -> {
+              reason: Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason
+            }
+
+            type reason =
+              :do_not_honor
+              | :activity_count_limit_exceeded
+              | :refer_to_card_issuer
+              | :refer_to_card_issuer_special_condition
+              | :invalid_merchant
+              | :pick_up_card
+              | :error
+              | :pick_up_card_special
+              | :invalid_transaction
+              | :invalid_amount
+              | :invalid_account_number
+              | :no_such_issuer
+              | :re_enter_transaction
+              | :no_credit_account
+              | :pick_up_card_lost
+              | :pick_up_card_stolen
+              | :closed_account
+              | :insufficient_funds
+              | :no_checking_account
+              | :no_savings_account
+              | :expired_card
+              | :transaction_not_permitted_to_cardholder
+              | :transaction_not_allowed_at_terminal
+              | :suspected_fraud
+              | :activity_amount_limit_exceeded
+              | :restricted_card
+              | :security_violation
+              | :transaction_does_not_fulfill_anti_money_laundering_requirement
+              | :blocked_first_use
+              | :credit_issuer_unavailable
+              | :negative_card_verification_value_results
+              | :issuer_unavailable
+              | :financial_institution_cannot_be_found
+              | :transaction_cannot_be_completed
+              | :duplicate_transaction
+              | :system_malfunction
+              | :additional_customer_authentication_required
+              | :surcharge_amount_not_permitted
+              | :decline_for_cvv2_failure
+              | :stop_payment_order
+              | :revocation_of_authorization_order
+              | :revocation_of_all_authorizations_order
+
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              # The card issuer has declined the transaction without providing a specific reason.
+              DO_NOT_HONOR: :do_not_honor
+
+              # The number of transactions for the card has exceeded the limit set by the issuer.
+              ACTIVITY_COUNT_LIMIT_EXCEEDED: :activity_count_limit_exceeded
+
+              # The card issuer requires the cardholder to contact them for further information regarding the transaction.
+              REFER_TO_CARD_ISSUER: :refer_to_card_issuer
+
+              # The card issuer requires the cardholder to contact them due to a special condition related to the transaction.
+              REFER_TO_CARD_ISSUER_SPECIAL_CONDITION: :refer_to_card_issuer_special_condition
+
+              # The merchant is not valid for this transaction.
+              INVALID_MERCHANT: :invalid_merchant
+
+              # The card should be retained by the terminal.
+              PICK_UP_CARD: :pick_up_card
+
+              # An error occurred during processing of the transaction.
+              ERROR: :error
+
+              # The card should be retained by the terminal due to a special condition.
+              PICK_UP_CARD_SPECIAL: :pick_up_card_special
+
+              # The transaction is invalid and cannot be processed.
+              INVALID_TRANSACTION: :invalid_transaction
+
+              # The amount of the transaction is invalid.
+              INVALID_AMOUNT: :invalid_amount
+
+              # The account number provided is invalid.
+              INVALID_ACCOUNT_NUMBER: :invalid_account_number
+
+              # The issuer of the card could not be found.
+              NO_SUCH_ISSUER: :no_such_issuer
+
+              # The transaction should be re-entered for processing.
+              RE_ENTER_TRANSACTION: :re_enter_transaction
+
+              # There is no credit account associated with the card.
+              NO_CREDIT_ACCOUNT: :no_credit_account
+
+              # The card should be retained by the terminal because it has been reported lost.
+              PICK_UP_CARD_LOST: :pick_up_card_lost
+
+              # The card should be retained by the terminal because it has been reported stolen.
+              PICK_UP_CARD_STOLEN: :pick_up_card_stolen
+
+              # The account associated with the card has been closed.
+              CLOSED_ACCOUNT: :closed_account
+
+              # There are insufficient funds in the account to complete the transaction.
+              INSUFFICIENT_FUNDS: :insufficient_funds
+
+              # There is no checking account associated with the card.
+              NO_CHECKING_ACCOUNT: :no_checking_account
+
+              # There is no savings account associated with the card.
+              NO_SAVINGS_ACCOUNT: :no_savings_account
+
+              # The card has expired and cannot be used for transactions.
+              EXPIRED_CARD: :expired_card
+
+              # The transaction is not permitted for this cardholder.
+              TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER: :transaction_not_permitted_to_cardholder
+
+              # The transaction is not allowed at this terminal.
+              TRANSACTION_NOT_ALLOWED_AT_TERMINAL: :transaction_not_allowed_at_terminal
+
+              # The transaction has been flagged as suspected fraud and cannot be processed.
+              SUSPECTED_FRAUD: :suspected_fraud
+
+              # The amount of activity on the card has exceeded the limit set by the issuer.
+              ACTIVITY_AMOUNT_LIMIT_EXCEEDED: :activity_amount_limit_exceeded
+
+              # The card has restrictions that prevent it from being used for this transaction.
+              RESTRICTED_CARD: :restricted_card
+
+              # A security violation has occurred, preventing the transaction from being processed.
+              SECURITY_VIOLATION: :security_violation
+
+              # The transaction does not meet the anti-money laundering requirements set by the issuer.
+              TRANSACTION_DOES_NOT_FULFILL_ANTI_MONEY_LAUNDERING_REQUIREMENT: :transaction_does_not_fulfill_anti_money_laundering_requirement
+
+              # The first use of the card has been blocked by the issuer.
+              BLOCKED_FIRST_USE: :blocked_first_use
+
+              # The credit issuer is currently unavailable to process the transaction.
+              CREDIT_ISSUER_UNAVAILABLE: :credit_issuer_unavailable
+
+              # The card verification value (CVV) results were negative, indicating a potential issue with the card.
+              NEGATIVE_CARD_VERIFICATION_VALUE_RESULTS: :negative_card_verification_value_results
+
+              # The issuer of the card is currently unavailable to process the transaction.
+              ISSUER_UNAVAILABLE: :issuer_unavailable
+
+              # The financial institution associated with the card could not be found.
+              FINANCIAL_INSTITUTION_CANNOT_BE_FOUND: :financial_institution_cannot_be_found
+
+              # The transaction cannot be completed due to an unspecified reason.
+              TRANSACTION_CANNOT_BE_COMPLETED: :transaction_cannot_be_completed
+
+              # The transaction is a duplicate of a previous transaction and cannot be processed again.
+              DUPLICATE_TRANSACTION: :duplicate_transaction
+
+              # A system malfunction occurred, preventing the transaction from being processed.
+              SYSTEM_MALFUNCTION: :system_malfunction
+
+              # Additional customer authentication is required to complete the transaction.
+              ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED: :additional_customer_authentication_required
+
+              # The surcharge amount applied to the transaction is not permitted by the issuer.
+              SURCHARGE_AMOUNT_NOT_PERMITTED: :surcharge_amount_not_permitted
+
+              # The transaction was declined due to a failure in verifying the CVV2 code.
+              DECLINE_FOR_CVV2_FAILURE: :decline_for_cvv2_failure
+
+              # A stop payment order has been placed on this transaction.
+              STOP_PAYMENT_ORDER: :stop_payment_order
+
+              # An order has been placed to revoke authorization for this transaction.
+              REVOCATION_OF_AUTHORIZATION_ORDER: :revocation_of_authorization_order
+
+              # An order has been placed to revoke all authorizations for this cardholder.
+              REVOCATION_OF_ALL_AUTHORIZATIONS_ORDER: :revocation_of_all_authorizations_order
+
+              def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::reason]
+            end
           end
         end
       end

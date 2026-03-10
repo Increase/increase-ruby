@@ -6,13 +6,15 @@ module Increase
       class CardTokens
         # Simulates tokenizing a card in the sandbox environment.
         #
-        # @overload create(capabilities: nil, expiration: nil, last4: nil, prefix: nil, primary_account_number_length: nil, request_options: {})
+        # @overload create(capabilities: nil, expiration: nil, last4: nil, outcome: nil, prefix: nil, primary_account_number_length: nil, request_options: {})
         #
         # @param capabilities [Array<Increase::Models::Simulations::CardTokenCreateParams::Capability>] The capabilities of the outbound card token.
         #
         # @param expiration [Date] The expiration date of the card.
         #
         # @param last4 [String] The last 4 digits of the card number.
+        #
+        # @param outcome [Increase::Models::Simulations::CardTokenCreateParams::Outcome] The outcome to simulate for card push transfers using this token.
         #
         # @param prefix [String] The prefix of the card number, usually the first 8 digits.
         #

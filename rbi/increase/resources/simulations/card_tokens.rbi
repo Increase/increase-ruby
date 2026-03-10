@@ -13,6 +13,8 @@ module Increase
               ],
             expiration: Date,
             last4: String,
+            outcome:
+              Increase::Simulations::CardTokenCreateParams::Outcome::OrHash,
             prefix: String,
             primary_account_number_length: Integer,
             request_options: Increase::RequestOptions::OrHash
@@ -25,6 +27,8 @@ module Increase
           expiration: nil,
           # The last 4 digits of the card number.
           last4: nil,
+          # The outcome to simulate for card push transfers using this token.
+          outcome: nil,
           # The prefix of the card number, usually the first 8 digits.
           prefix: nil,
           # The total length of the card number, including prefix and last4.
