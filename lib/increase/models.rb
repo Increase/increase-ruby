@@ -103,6 +103,10 @@ module Increase
 
   BalanceLookup = Increase::Models::BalanceLookup
 
+  BeneficialOwnerListParams = Increase::Models::BeneficialOwnerListParams
+
+  BeneficialOwnerRetrieveParams = Increase::Models::BeneficialOwnerRetrieveParams
+
   BookkeepingAccount = Increase::Models::BookkeepingAccount
 
   BookkeepingAccountBalanceParams = Increase::Models::BookkeepingAccountBalanceParams
@@ -254,6 +258,8 @@ module Increase
   EntityArchiveBeneficialOwnerParams = Increase::Models::EntityArchiveBeneficialOwnerParams
 
   EntityArchiveParams = Increase::Models::EntityArchiveParams
+
+  EntityBeneficialOwner = Increase::Models::EntityBeneficialOwner
 
   EntityCreateBeneficialOwnerParams = Increase::Models::EntityCreateBeneficialOwnerParams
 

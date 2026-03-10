@@ -125,6 +125,9 @@ module Increase
     # @return [Increase::Resources::Entities]
     attr_reader :entities
 
+    # @return [Increase::Resources::BeneficialOwners]
+    attr_reader :beneficial_owners
+
     # @return [Increase::Resources::SupplementalDocuments]
     attr_reader :supplemental_documents
 
@@ -291,6 +294,7 @@ module Increase
       @routing_numbers = Increase::Resources::RoutingNumbers.new(client: self)
       @external_accounts = Increase::Resources::ExternalAccounts.new(client: self)
       @entities = Increase::Resources::Entities.new(client: self)
+      @beneficial_owners = Increase::Resources::BeneficialOwners.new(client: self)
       @supplemental_documents = Increase::Resources::SupplementalDocuments.new(client: self)
       @programs = Increase::Resources::Programs.new(client: self)
       @account_statements = Increase::Resources::AccountStatements.new(client: self)

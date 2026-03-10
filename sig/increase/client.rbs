@@ -83,6 +83,8 @@ module Increase
 
     attr_reader entities: Increase::Resources::Entities
 
+    attr_reader beneficial_owners: Increase::Resources::BeneficialOwners
+
     attr_reader supplemental_documents: Increase::Resources::SupplementalDocuments
 
     attr_reader programs: Increase::Resources::Programs
