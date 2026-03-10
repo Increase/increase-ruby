@@ -49,6 +49,22 @@ module Increase
         sig { params(last4: String).void }
         attr_writer :last4
 
+        # The outcome to simulate for card push transfers using this token.
+        sig do
+          returns(
+            T.nilable(Increase::Simulations::CardTokenCreateParams::Outcome)
+          )
+        end
+        attr_reader :outcome
+
+        sig do
+          params(
+            outcome:
+              Increase::Simulations::CardTokenCreateParams::Outcome::OrHash
+          ).void
+        end
+        attr_writer :outcome
+
         # The prefix of the card number, usually the first 8 digits.
         sig { returns(T.nilable(String)) }
         attr_reader :prefix
@@ -71,6 +87,8 @@ module Increase
               ],
             expiration: Date,
             last4: String,
+            outcome:
+              Increase::Simulations::CardTokenCreateParams::Outcome::OrHash,
             prefix: String,
             primary_account_number_length: Integer,
             request_options: Increase::RequestOptions::OrHash
@@ -83,6 +101,8 @@ module Increase
           expiration: nil,
           # The last 4 digits of the card number.
           last4: nil,
+          # The outcome to simulate for card push transfers using this token.
+          outcome: nil,
           # The prefix of the card number, usually the first 8 digits.
           prefix: nil,
           # The total length of the card number, including prefix and last4.
@@ -100,6 +120,7 @@ module Increase
                 ],
               expiration: Date,
               last4: String,
+              outcome: Increase::Simulations::CardTokenCreateParams::Outcome,
               prefix: String,
               primary_account_number_length: Integer,
               request_options: Increase::RequestOptions
@@ -288,6 +309,480 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+        end
+
+        class Outcome < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Simulations::CardTokenCreateParams::Outcome,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Whether card push transfers or validations will be approved or declined.
+          sig do
+            returns(
+              Increase::Simulations::CardTokenCreateParams::Outcome::Result::OrSymbol
+            )
+          end
+          attr_accessor :result
+
+          # If the result is declined, the details of the decline.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+              )
+            )
+          end
+          attr_reader :decline
+
+          sig do
+            params(
+              decline:
+                Increase::Simulations::CardTokenCreateParams::Outcome::Decline::OrHash
+            ).void
+          end
+          attr_writer :decline
+
+          # The outcome to simulate for card push transfers using this token.
+          sig do
+            params(
+              result:
+                Increase::Simulations::CardTokenCreateParams::Outcome::Result::OrSymbol,
+              decline:
+                Increase::Simulations::CardTokenCreateParams::Outcome::Decline::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Whether card push transfers or validations will be approved or declined.
+            result:,
+            # If the result is declined, the details of the decline.
+            decline: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                result:
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Result::OrSymbol,
+                decline:
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # Whether card push transfers or validations will be approved or declined.
+          module Result
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Result
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Any card push transfers or validations will be approved.
+            APPROVE =
+              T.let(
+                :approve,
+                Increase::Simulations::CardTokenCreateParams::Outcome::Result::TaggedSymbol
+              )
+
+            # Any card push transfers or validations will be declined.
+            DECLINE =
+              T.let(
+                :decline,
+                Increase::Simulations::CardTokenCreateParams::Outcome::Result::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Result::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class Decline < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The reason for the decline.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::OrSymbol
+                )
+              )
+            end
+            attr_reader :reason
+
+            sig do
+              params(
+                reason:
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::OrSymbol
+              ).void
+            end
+            attr_writer :reason
+
+            # If the result is declined, the details of the decline.
+            sig do
+              params(
+                reason:
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The reason for the decline.
+              reason: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  reason:
+                    Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The reason for the decline.
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The card issuer has declined the transaction without providing a specific reason.
+              DO_NOT_HONOR =
+                T.let(
+                  :do_not_honor,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The number of transactions for the card has exceeded the limit set by the issuer.
+              ACTIVITY_COUNT_LIMIT_EXCEEDED =
+                T.let(
+                  :activity_count_limit_exceeded,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card issuer requires the cardholder to contact them for further information regarding the transaction.
+              REFER_TO_CARD_ISSUER =
+                T.let(
+                  :refer_to_card_issuer,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card issuer requires the cardholder to contact them due to a special condition related to the transaction.
+              REFER_TO_CARD_ISSUER_SPECIAL_CONDITION =
+                T.let(
+                  :refer_to_card_issuer_special_condition,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The merchant is not valid for this transaction.
+              INVALID_MERCHANT =
+                T.let(
+                  :invalid_merchant,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card should be retained by the terminal.
+              PICK_UP_CARD =
+                T.let(
+                  :pick_up_card,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # An error occurred during processing of the transaction.
+              ERROR =
+                T.let(
+                  :error,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card should be retained by the terminal due to a special condition.
+              PICK_UP_CARD_SPECIAL =
+                T.let(
+                  :pick_up_card_special,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction is invalid and cannot be processed.
+              INVALID_TRANSACTION =
+                T.let(
+                  :invalid_transaction,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The amount of the transaction is invalid.
+              INVALID_AMOUNT =
+                T.let(
+                  :invalid_amount,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The account number provided is invalid.
+              INVALID_ACCOUNT_NUMBER =
+                T.let(
+                  :invalid_account_number,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The issuer of the card could not be found.
+              NO_SUCH_ISSUER =
+                T.let(
+                  :no_such_issuer,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction should be re-entered for processing.
+              RE_ENTER_TRANSACTION =
+                T.let(
+                  :re_enter_transaction,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # There is no credit account associated with the card.
+              NO_CREDIT_ACCOUNT =
+                T.let(
+                  :no_credit_account,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card should be retained by the terminal because it has been reported lost.
+              PICK_UP_CARD_LOST =
+                T.let(
+                  :pick_up_card_lost,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card should be retained by the terminal because it has been reported stolen.
+              PICK_UP_CARD_STOLEN =
+                T.let(
+                  :pick_up_card_stolen,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The account associated with the card has been closed.
+              CLOSED_ACCOUNT =
+                T.let(
+                  :closed_account,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # There are insufficient funds in the account to complete the transaction.
+              INSUFFICIENT_FUNDS =
+                T.let(
+                  :insufficient_funds,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # There is no checking account associated with the card.
+              NO_CHECKING_ACCOUNT =
+                T.let(
+                  :no_checking_account,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # There is no savings account associated with the card.
+              NO_SAVINGS_ACCOUNT =
+                T.let(
+                  :no_savings_account,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card has expired and cannot be used for transactions.
+              EXPIRED_CARD =
+                T.let(
+                  :expired_card,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction is not permitted for this cardholder.
+              TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER =
+                T.let(
+                  :transaction_not_permitted_to_cardholder,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction is not allowed at this terminal.
+              TRANSACTION_NOT_ALLOWED_AT_TERMINAL =
+                T.let(
+                  :transaction_not_allowed_at_terminal,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction has been flagged as suspected fraud and cannot be processed.
+              SUSPECTED_FRAUD =
+                T.let(
+                  :suspected_fraud,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The amount of activity on the card has exceeded the limit set by the issuer.
+              ACTIVITY_AMOUNT_LIMIT_EXCEEDED =
+                T.let(
+                  :activity_amount_limit_exceeded,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card has restrictions that prevent it from being used for this transaction.
+              RESTRICTED_CARD =
+                T.let(
+                  :restricted_card,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # A security violation has occurred, preventing the transaction from being processed.
+              SECURITY_VIOLATION =
+                T.let(
+                  :security_violation,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction does not meet the anti-money laundering requirements set by the issuer.
+              TRANSACTION_DOES_NOT_FULFILL_ANTI_MONEY_LAUNDERING_REQUIREMENT =
+                T.let(
+                  :transaction_does_not_fulfill_anti_money_laundering_requirement,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The first use of the card has been blocked by the issuer.
+              BLOCKED_FIRST_USE =
+                T.let(
+                  :blocked_first_use,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The credit issuer is currently unavailable to process the transaction.
+              CREDIT_ISSUER_UNAVAILABLE =
+                T.let(
+                  :credit_issuer_unavailable,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The card verification value (CVV) results were negative, indicating a potential issue with the card.
+              NEGATIVE_CARD_VERIFICATION_VALUE_RESULTS =
+                T.let(
+                  :negative_card_verification_value_results,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The issuer of the card is currently unavailable to process the transaction.
+              ISSUER_UNAVAILABLE =
+                T.let(
+                  :issuer_unavailable,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The financial institution associated with the card could not be found.
+              FINANCIAL_INSTITUTION_CANNOT_BE_FOUND =
+                T.let(
+                  :financial_institution_cannot_be_found,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction cannot be completed due to an unspecified reason.
+              TRANSACTION_CANNOT_BE_COMPLETED =
+                T.let(
+                  :transaction_cannot_be_completed,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction is a duplicate of a previous transaction and cannot be processed again.
+              DUPLICATE_TRANSACTION =
+                T.let(
+                  :duplicate_transaction,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # A system malfunction occurred, preventing the transaction from being processed.
+              SYSTEM_MALFUNCTION =
+                T.let(
+                  :system_malfunction,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # Additional customer authentication is required to complete the transaction.
+              ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED =
+                T.let(
+                  :additional_customer_authentication_required,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The surcharge amount applied to the transaction is not permitted by the issuer.
+              SURCHARGE_AMOUNT_NOT_PERMITTED =
+                T.let(
+                  :surcharge_amount_not_permitted,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # The transaction was declined due to a failure in verifying the CVV2 code.
+              DECLINE_FOR_CVV2_FAILURE =
+                T.let(
+                  :decline_for_cvv2_failure,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # A stop payment order has been placed on this transaction.
+              STOP_PAYMENT_ORDER =
+                T.let(
+                  :stop_payment_order,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # An order has been placed to revoke authorization for this transaction.
+              REVOCATION_OF_AUTHORIZATION_ORDER =
+                T.let(
+                  :revocation_of_authorization_order,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              # An order has been placed to revoke all authorizations for this cardholder.
+              REVOCATION_OF_ALL_AUTHORIZATIONS_ORDER =
+                T.let(
+                  :revocation_of_all_authorizations_order,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
           end
         end

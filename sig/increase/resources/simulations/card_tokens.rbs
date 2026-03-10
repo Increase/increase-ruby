@@ -6,6 +6,7 @@ module Increase
           ?capabilities: ::Array[Increase::Simulations::CardTokenCreateParams::Capability],
           ?expiration: Date,
           ?last4: String,
+          ?outcome: Increase::Simulations::CardTokenCreateParams::Outcome,
           ?prefix: String,
           ?primary_account_number_length: Integer,
           ?request_options: Increase::request_opts
