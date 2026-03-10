@@ -1,0 +1,193 @@
+module Increase
+  module Models
+    type entity_beneficial_owner =
+      {
+        id: String,
+        company_title: String?,
+        created_at: Time,
+        individual: Increase::EntityBeneficialOwner::Individual,
+        prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong],
+        type: Increase::Models::EntityBeneficialOwner::type_
+      }
+
+    class EntityBeneficialOwner < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor company_title: String?
+
+      attr_accessor created_at: Time
+
+      attr_accessor individual: Increase::EntityBeneficialOwner::Individual
+
+      attr_accessor prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong]
+
+      attr_accessor type: Increase::Models::EntityBeneficialOwner::type_
+
+      def initialize: (
+        id: String,
+        company_title: String?,
+        created_at: Time,
+        individual: Increase::EntityBeneficialOwner::Individual,
+        prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong],
+        type: Increase::Models::EntityBeneficialOwner::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        company_title: String?,
+        created_at: Time,
+        individual: Increase::EntityBeneficialOwner::Individual,
+        prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong],
+        type: Increase::Models::EntityBeneficialOwner::type_
+      }
+
+      type individual =
+        {
+          address: Increase::EntityBeneficialOwner::Individual::Address,
+          date_of_birth: Date,
+          identification: Increase::EntityBeneficialOwner::Individual::Identification,
+          name: String
+        }
+
+      class Individual < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::EntityBeneficialOwner::Individual::Address
+
+        attr_accessor date_of_birth: Date
+
+        attr_accessor identification: Increase::EntityBeneficialOwner::Individual::Identification
+
+        attr_accessor name: String
+
+        def initialize: (
+          address: Increase::EntityBeneficialOwner::Individual::Address,
+          date_of_birth: Date,
+          identification: Increase::EntityBeneficialOwner::Individual::Identification,
+          name: String
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::EntityBeneficialOwner::Individual::Address,
+          date_of_birth: Date,
+          identification: Increase::EntityBeneficialOwner::Individual::Identification,
+          name: String
+        }
+
+        type address =
+          {
+            city: String?,
+            country: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String?,
+            zip: String?
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country: String
+
+          attr_accessor line1: String
+
+          attr_accessor line2: String?
+
+          attr_accessor state: String?
+
+          attr_accessor zip: String?
+
+          def initialize: (
+            city: String?,
+            country: String,
+            line1: String,
+            line2: String?,
+            state: String?,
+            zip: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String?,
+            zip: String?
+          }
+        end
+
+        type identification =
+          {
+            method_: Increase::Models::EntityBeneficialOwner::Individual::Identification::method_,
+            :number_last4 => String
+          }
+
+        class Identification < Increase::Internal::Type::BaseModel
+          attr_accessor method_: Increase::Models::EntityBeneficialOwner::Individual::Identification::method_
+
+          attr_accessor number_last4: String
+
+          def initialize: (
+            method_: Increase::Models::EntityBeneficialOwner::Individual::Identification::method_,
+            number_last4: String
+          ) -> void
+
+          def to_hash: -> {
+            method_: Increase::Models::EntityBeneficialOwner::Individual::Identification::method_,
+            :number_last4 => String
+          }
+
+          type method_ =
+            :social_security_number
+            | :individual_taxpayer_identification_number
+            | :passport
+            | :drivers_license
+            | :other
+
+          module Method
+            extend Increase::Internal::Type::Enum
+
+            # A social security number.
+            SOCIAL_SECURITY_NUMBER: :social_security_number
+
+            # An individual taxpayer identification number (ITIN).
+            INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+            # A passport number.
+            PASSPORT: :passport
+
+            # A driver's license number.
+            DRIVERS_LICENSE: :drivers_license
+
+            # Another identifying document.
+            OTHER: :other
+
+            def self?.values: -> ::Array[Increase::Models::EntityBeneficialOwner::Individual::Identification::method_]
+          end
+        end
+      end
+
+      type prong = :ownership | :control
+
+      module Prong
+        extend Increase::Internal::Type::Enum
+
+        # A person with 25% or greater direct or indirect ownership of the entity.
+        OWNERSHIP: :ownership
+
+        # A person who manages, directs, or has significant control of the entity.
+        CONTROL: :control
+
+        def self?.values: -> ::Array[Increase::Models::EntityBeneficialOwner::prong]
+      end
+
+      type type_ = :entity_beneficial_owner
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        ENTITY_BENEFICIAL_OWNER: :entity_beneficial_owner
+
+        def self?.values: -> ::Array[Increase::Models::EntityBeneficialOwner::type_]
+      end
+    end
+  end
+end

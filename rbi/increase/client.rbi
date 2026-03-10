@@ -124,6 +124,9 @@ module Increase
     sig { returns(Increase::Resources::Entities) }
     attr_reader :entities
 
+    sig { returns(Increase::Resources::BeneficialOwners) }
+    attr_reader :beneficial_owners
+
     sig { returns(Increase::Resources::SupplementalDocuments) }
     attr_reader :supplemental_documents
 
