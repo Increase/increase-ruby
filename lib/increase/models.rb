@@ -107,6 +107,8 @@ module Increase
 
   BeneficialOwnerRetrieveParams = Increase::Models::BeneficialOwnerRetrieveParams
 
+  BeneficialOwnerUpdateParams = Increase::Models::BeneficialOwnerUpdateParams
+
   BookkeepingAccount = Increase::Models::BookkeepingAccount
 
   BookkeepingAccountBalanceParams = Increase::Models::BookkeepingAccountBalanceParams

@@ -67,6 +67,8 @@ module Increase
 
   class BeneficialOwnerRetrieveParams = Increase::Models::BeneficialOwnerRetrieveParams
 
+  class BeneficialOwnerUpdateParams = Increase::Models::BeneficialOwnerUpdateParams
+
   class BookkeepingAccount = Increase::Models::BookkeepingAccount
 
   class BookkeepingAccountBalanceParams = Increase::Models::BookkeepingAccountBalanceParams
