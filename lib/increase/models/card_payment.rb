@@ -685,6 +685,12 @@ module Increase
             #   @return [String]
             required :one_time_code, String
 
+            # @!attribute real_time_decision_id
+            #   The identifier of the Real-Time Decision used to deliver this challenge.
+            #
+            #   @return [String, nil]
+            required :real_time_decision_id, String, nil?: true
+
             # @!attribute verification_method
             #   The method used to verify the Card Authentication Challenge.
             #
@@ -699,7 +705,7 @@ module Increase
             #   @return [String, nil]
             required :verification_value, String, nil?: true
 
-            # @!method initialize(attempts:, created_at:, one_time_code:, verification_method:, verification_value:)
+            # @!method initialize(attempts:, created_at:, one_time_code:, real_time_decision_id:, verification_method:, verification_value:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::CardPayment::Element::CardAuthentication::Challenge} for more
             #   details.
@@ -711,6 +717,8 @@ module Increase
             #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card Au
             #
             #   @param one_time_code [String] The one-time code used for the Card Authentication Challenge.
+            #
+            #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision used to deliver this challenge.
             #
             #   @param verification_method [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod] The method used to verify the Card Authentication Challenge.
             #
