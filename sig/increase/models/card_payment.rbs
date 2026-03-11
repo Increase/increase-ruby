@@ -418,6 +418,7 @@ module Increase
               attempts: ::Array[Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt],
               created_at: Time,
               one_time_code: String,
+              real_time_decision_id: String?,
               verification_method: Increase::Models::CardPayment::Element::CardAuthentication::Challenge::verification_method,
               verification_value: String?
             }
@@ -429,6 +430,8 @@ module Increase
 
             attr_accessor one_time_code: String
 
+            attr_accessor real_time_decision_id: String?
+
             attr_accessor verification_method: Increase::Models::CardPayment::Element::CardAuthentication::Challenge::verification_method
 
             attr_accessor verification_value: String?
@@ -437,6 +440,7 @@ module Increase
               attempts: ::Array[Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt],
               created_at: Time,
               one_time_code: String,
+              real_time_decision_id: String?,
               verification_method: Increase::Models::CardPayment::Element::CardAuthentication::Challenge::verification_method,
               verification_value: String?
             ) -> void
@@ -445,6 +449,7 @@ module Increase
               attempts: ::Array[Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt],
               created_at: Time,
               one_time_code: String,
+              real_time_decision_id: String?,
               verification_method: Increase::Models::CardPayment::Element::CardAuthentication::Challenge::verification_method,
               verification_value: String?
             }
