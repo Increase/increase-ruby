@@ -28,11 +28,15 @@ module Increase
       #
       # Update a Beneficial Owner
       #
-      # @overload update(entity_beneficial_owner_id, address: nil, request_options: {})
+      # @overload update(entity_beneficial_owner_id, address: nil, confirmed_no_us_tax_id: nil, identification: nil, request_options: {})
       #
       # @param entity_beneficial_owner_id [String] The identifier of the Beneficial Owner to update.
       #
       # @param address [Increase::Models::BeneficialOwnerUpdateParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
+      #
+      # @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
+      #
+      # @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification] A means of verifying the person's identity.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
