@@ -3,7 +3,9 @@ module Increase
     type beneficial_owner_update_params =
       {
         entity_beneficial_owner_id: String,
-        address: Increase::BeneficialOwnerUpdateParams::Address
+        address: Increase::BeneficialOwnerUpdateParams::Address,
+        confirmed_no_us_tax_id: bool,
+        identification: Increase::BeneficialOwnerUpdateParams::Identification
       }
       & Increase::Internal::Type::request_parameters
 
@@ -19,15 +21,29 @@ module Increase
         Increase::BeneficialOwnerUpdateParams::Address
       ) -> Increase::BeneficialOwnerUpdateParams::Address
 
+      attr_reader confirmed_no_us_tax_id: bool?
+
+      def confirmed_no_us_tax_id=: (bool) -> bool
+
+      attr_reader identification: Increase::BeneficialOwnerUpdateParams::Identification?
+
+      def identification=: (
+        Increase::BeneficialOwnerUpdateParams::Identification
+      ) -> Increase::BeneficialOwnerUpdateParams::Identification
+
       def initialize: (
         entity_beneficial_owner_id: String,
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
+        ?confirmed_no_us_tax_id: bool,
+        ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
         entity_beneficial_owner_id: String,
         address: Increase::BeneficialOwnerUpdateParams::Address,
+        confirmed_no_us_tax_id: bool,
+        identification: Increase::BeneficialOwnerUpdateParams::Identification,
         request_options: Increase::RequestOptions
       }
 
@@ -77,6 +93,181 @@ module Increase
           state: String,
           zip: String
         }
+      end
+
+      type identification =
+        {
+          method_: Increase::Models::BeneficialOwnerUpdateParams::Identification::method_,
+          number: String,
+          drivers_license: Increase::BeneficialOwnerUpdateParams::Identification::DriversLicense,
+          other: Increase::BeneficialOwnerUpdateParams::Identification::Other,
+          passport: Increase::BeneficialOwnerUpdateParams::Identification::Passport
+        }
+
+      class Identification < Increase::Internal::Type::BaseModel
+        attr_accessor method_: Increase::Models::BeneficialOwnerUpdateParams::Identification::method_
+
+        attr_accessor number: String
+
+        attr_reader drivers_license: Increase::BeneficialOwnerUpdateParams::Identification::DriversLicense?
+
+        def drivers_license=: (
+          Increase::BeneficialOwnerUpdateParams::Identification::DriversLicense
+        ) -> Increase::BeneficialOwnerUpdateParams::Identification::DriversLicense
+
+        attr_reader other: Increase::BeneficialOwnerUpdateParams::Identification::Other?
+
+        def other=: (
+          Increase::BeneficialOwnerUpdateParams::Identification::Other
+        ) -> Increase::BeneficialOwnerUpdateParams::Identification::Other
+
+        attr_reader passport: Increase::BeneficialOwnerUpdateParams::Identification::Passport?
+
+        def passport=: (
+          Increase::BeneficialOwnerUpdateParams::Identification::Passport
+        ) -> Increase::BeneficialOwnerUpdateParams::Identification::Passport
+
+        def initialize: (
+          method_: Increase::Models::BeneficialOwnerUpdateParams::Identification::method_,
+          number: String,
+          ?drivers_license: Increase::BeneficialOwnerUpdateParams::Identification::DriversLicense,
+          ?other: Increase::BeneficialOwnerUpdateParams::Identification::Other,
+          ?passport: Increase::BeneficialOwnerUpdateParams::Identification::Passport
+        ) -> void
+
+        def to_hash: -> {
+          method_: Increase::Models::BeneficialOwnerUpdateParams::Identification::method_,
+          number: String,
+          drivers_license: Increase::BeneficialOwnerUpdateParams::Identification::DriversLicense,
+          other: Increase::BeneficialOwnerUpdateParams::Identification::Other,
+          passport: Increase::BeneficialOwnerUpdateParams::Identification::Passport
+        }
+
+        type method_ =
+          :social_security_number
+          | :individual_taxpayer_identification_number
+          | :passport
+          | :drivers_license
+          | :other
+
+        module Method
+          extend Increase::Internal::Type::Enum
+
+          # A social security number.
+          SOCIAL_SECURITY_NUMBER: :social_security_number
+
+          # An individual taxpayer identification number (ITIN).
+          INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+          # A passport number.
+          PASSPORT: :passport
+
+          # A driver's license number.
+          DRIVERS_LICENSE: :drivers_license
+
+          # Another identifying document.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::BeneficialOwnerUpdateParams::Identification::method_]
+        end
+
+        type drivers_license =
+          {
+            expiration_date: Date,
+            file_id: String,
+            state: String,
+            back_file_id: String
+          }
+
+        class DriversLicense < Increase::Internal::Type::BaseModel
+          attr_accessor expiration_date: Date
+
+          attr_accessor file_id: String
+
+          attr_accessor state: String
+
+          attr_reader back_file_id: String?
+
+          def back_file_id=: (String) -> String
+
+          def initialize: (
+            expiration_date: Date,
+            file_id: String,
+            state: String,
+            ?back_file_id: String
+          ) -> void
+
+          def to_hash: -> {
+            expiration_date: Date,
+            file_id: String,
+            state: String,
+            back_file_id: String
+          }
+        end
+
+        type other =
+          {
+            country: String,
+            description: String,
+            file_id: String,
+            back_file_id: String,
+            expiration_date: Date
+          }
+
+        class Other < Increase::Internal::Type::BaseModel
+          attr_accessor country: String
+
+          attr_accessor description: String
+
+          attr_accessor file_id: String
+
+          attr_reader back_file_id: String?
+
+          def back_file_id=: (String) -> String
+
+          attr_reader expiration_date: Date?
+
+          def expiration_date=: (Date) -> Date
+
+          def initialize: (
+            country: String,
+            description: String,
+            file_id: String,
+            ?back_file_id: String,
+            ?expiration_date: Date
+          ) -> void
+
+          def to_hash: -> {
+            country: String,
+            description: String,
+            file_id: String,
+            back_file_id: String,
+            expiration_date: Date
+          }
+        end
+
+        type passport =
+          { country: String, expiration_date: Date, file_id: String }
+
+        class Passport < Increase::Internal::Type::BaseModel
+          attr_accessor country: String
+
+          attr_accessor expiration_date: Date
+
+          attr_accessor file_id: String
+
+          def initialize: (
+            country: String,
+            expiration_date: Date,
+            file_id: String
+          ) -> void
+
+          def to_hash: -> {
+            country: String,
+            expiration_date: Date,
+            file_id: String
+          }
+        end
       end
     end
   end
