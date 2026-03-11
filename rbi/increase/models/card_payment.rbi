@@ -1114,6 +1114,10 @@ module Increase
             sig { returns(String) }
             attr_accessor :one_time_code
 
+            # The identifier of the Real-Time Decision used to deliver this challenge.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :real_time_decision_id
+
             # The method used to verify the Card Authentication Challenge.
             sig do
               returns(
@@ -1136,6 +1140,7 @@ module Increase
                   ],
                 created_at: Time,
                 one_time_code: String,
+                real_time_decision_id: T.nilable(String),
                 verification_method:
                   Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::OrSymbol,
                 verification_value: T.nilable(String)
@@ -1149,6 +1154,8 @@ module Increase
               created_at:,
               # The one-time code used for the Card Authentication Challenge.
               one_time_code:,
+              # The identifier of the Real-Time Decision used to deliver this challenge.
+              real_time_decision_id:,
               # The method used to verify the Card Authentication Challenge.
               verification_method:,
               # E.g., the email address or phone number used for the Card Authentication
@@ -1166,6 +1173,7 @@ module Increase
                     ],
                   created_at: Time,
                   one_time_code: String,
+                  real_time_decision_id: T.nilable(String),
                   verification_method:
                     Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::TaggedSymbol,
                   verification_value: T.nilable(String)
