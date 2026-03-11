@@ -42,10 +42,20 @@ module Increase
       )
       end
 
-      sig { params(payload: String).returns(Increase::UnwrapWebhookEvent) }
+      sig do
+        params(
+          payload: String,
+          headers: T::Hash[String, String],
+          key: T.nilable(String)
+        ).returns(Increase::UnwrapWebhookEvent)
+      end
       def unwrap(
         # The raw webhook payload as a string
-        payload
+        payload,
+        # The raw HTTP headers that came with the payload
+        headers:,
+        # The webhook signing key
+        key: @client.webhook_secret
       )
       end
 
