@@ -9,6 +9,8 @@ module Increase
       def update: (
         String entity_beneficial_owner_id,
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
+        ?confirmed_no_us_tax_id: bool,
+        ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
         ?request_options: Increase::request_opts
       ) -> Increase::EntityBeneficialOwner
 

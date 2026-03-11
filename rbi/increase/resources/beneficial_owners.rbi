@@ -22,6 +22,9 @@ module Increase
         params(
           entity_beneficial_owner_id: String,
           address: Increase::BeneficialOwnerUpdateParams::Address::OrHash,
+          confirmed_no_us_tax_id: T::Boolean,
+          identification:
+            Increase::BeneficialOwnerUpdateParams::Identification::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::EntityBeneficialOwner)
       end
@@ -31,6 +34,13 @@ module Increase
         # The individual's physical address. Mail receiving locations like PO Boxes and
         # PMB's are disallowed.
         address: nil,
+        # The identification method for an individual can only be a passport, driver's
+        # license, or other document if you've confirmed the individual does not have a US
+        # tax id (either a Social Security Number or Individual Taxpayer Identification
+        # Number).
+        confirmed_no_us_tax_id: nil,
+        # A means of verifying the person's identity.
+        identification: nil,
         request_options: {}
       )
       end
