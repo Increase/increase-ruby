@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.242.0 (2026-03-11)
+
+Full Changelog: [v1.241.0...v1.242.0](https://github.com/Increase/increase-ruby/compare/v1.241.0...v1.242.0)
+
+### Features
+
+* **client:** add webhook support ([227d6ab](https://github.com/Increase/increase-ruby/commit/227d6ab8bec444b348c61ae7b85969cd38dcd764))
+
 ## 1.241.0 (2026-03-11)
 
 Full Changelog: [v1.240.0...v1.241.0](https://github.com/Increase/increase-ruby/compare/v1.240.0...v1.241.0)
