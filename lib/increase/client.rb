@@ -23,6 +23,9 @@ module Increase
     # @return [String]
     attr_reader :api_key
 
+    # @return [String, nil]
+    attr_reader :webhook_secret
+
     # @return [Increase::Resources::Accounts]
     attr_reader :accounts
 
@@ -210,6 +213,8 @@ module Increase
     #
     # @param api_key [String, nil] Defaults to `ENV["INCREASE_API_KEY"]`
     #
+    # @param webhook_secret [String, nil] Defaults to `ENV["INCREASE_WEBHOOK_SECRET"]`
+    #
     # @param environment [:production, :sandbox, nil] Specifies the environment to use for the API.
     #
     # Each environment maps to a different base URL:
@@ -231,6 +236,7 @@ module Increase
     # @param idempotency_header [String]
     def initialize(
       api_key: ENV["INCREASE_API_KEY"],
+      webhook_secret: ENV["INCREASE_WEBHOOK_SECRET"],
       environment: nil,
       base_url: ENV["INCREASE_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
@@ -249,6 +255,7 @@ module Increase
       end
 
       @api_key = api_key.to_s
+      @webhook_secret = webhook_secret&.to_s
 
       super(
         base_url: base_url,
