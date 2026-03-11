@@ -17,6 +17,24 @@ module Increase
       )
       end
 
+      # Update a Beneficial Owner
+      sig do
+        params(
+          entity_beneficial_owner_id: String,
+          address: Increase::BeneficialOwnerUpdateParams::Address::OrHash,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::EntityBeneficialOwner)
+      end
+      def update(
+        # The identifier of the Beneficial Owner to update.
+        entity_beneficial_owner_id,
+        # The individual's physical address. Mail receiving locations like PO Boxes and
+        # PMB's are disallowed.
+        address: nil,
+        request_options: {}
+      )
+      end
+
       # List Beneficial Owners
       sig do
         params(
