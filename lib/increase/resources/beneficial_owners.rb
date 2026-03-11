@@ -24,6 +24,33 @@ module Increase
       end
 
       # Some parameter documentations has been truncated, see
+      # {Increase::Models::BeneficialOwnerUpdateParams} for more details.
+      #
+      # Update a Beneficial Owner
+      #
+      # @overload update(entity_beneficial_owner_id, address: nil, request_options: {})
+      #
+      # @param entity_beneficial_owner_id [String] The identifier of the Beneficial Owner to update.
+      #
+      # @param address [Increase::Models::BeneficialOwnerUpdateParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::EntityBeneficialOwner]
+      #
+      # @see Increase::Models::BeneficialOwnerUpdateParams
+      def update(entity_beneficial_owner_id, params = {})
+        parsed, options = Increase::BeneficialOwnerUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["entity_beneficial_owners/%1$s", entity_beneficial_owner_id],
+          body: parsed,
+          model: Increase::EntityBeneficialOwner,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {Increase::Models::BeneficialOwnerListParams} for more details.
       #
       # List Beneficial Owners

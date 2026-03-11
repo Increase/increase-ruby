@@ -6,6 +6,12 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::EntityBeneficialOwner
 
+      def update: (
+        String entity_beneficial_owner_id,
+        ?address: Increase::BeneficialOwnerUpdateParams::Address,
+        ?request_options: Increase::request_opts
+      ) -> Increase::EntityBeneficialOwner
+
       def list: (
         entity_id: String,
         ?cursor: String,

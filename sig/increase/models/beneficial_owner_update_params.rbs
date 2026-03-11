@@ -1,0 +1,83 @@
+module Increase
+  module Models
+    type beneficial_owner_update_params =
+      {
+        entity_beneficial_owner_id: String,
+        address: Increase::BeneficialOwnerUpdateParams::Address
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class BeneficialOwnerUpdateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor entity_beneficial_owner_id: String
+
+      attr_reader address: Increase::BeneficialOwnerUpdateParams::Address?
+
+      def address=: (
+        Increase::BeneficialOwnerUpdateParams::Address
+      ) -> Increase::BeneficialOwnerUpdateParams::Address
+
+      def initialize: (
+        entity_beneficial_owner_id: String,
+        ?address: Increase::BeneficialOwnerUpdateParams::Address,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        entity_beneficial_owner_id: String,
+        address: Increase::BeneficialOwnerUpdateParams::Address,
+        request_options: Increase::RequestOptions
+      }
+
+      type address =
+        {
+          city: String,
+          country: String,
+          :line1 => String,
+          :line2 => String,
+          state: String,
+          zip: String
+        }
+
+      class Address < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor country: String
+
+        attr_accessor line1: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        attr_reader state: String?
+
+        def state=: (String) -> String
+
+        attr_reader zip: String?
+
+        def zip=: (String) -> String
+
+        def initialize: (
+          city: String,
+          country: String,
+          line1: String,
+          ?line2: String,
+          ?state: String,
+          ?zip: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          country: String,
+          :line1 => String,
+          :line2 => String,
+          state: String,
+          zip: String
+        }
+      end
+    end
+  end
+end
