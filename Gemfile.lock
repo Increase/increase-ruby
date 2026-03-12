@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    increase (1.244.0)
+    increase (1.245.0)
       cgi
       connection_pool
       standardwebhooks
