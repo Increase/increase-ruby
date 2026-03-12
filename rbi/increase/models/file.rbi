@@ -178,6 +178,10 @@ module Increase
         CHECK_VOUCHER_IMAGE =
           T.let(:check_voucher_image, Increase::File::Purpose::TaggedSymbol)
 
+        # A signature image to be printed on a check. This must be a 1320x120 pixel PNG.
+        CHECK_SIGNATURE =
+          T.let(:check_signature, Increase::File::Purpose::TaggedSymbol)
+
         # A scanned mail item sent to Increase.
         INBOUND_MAIL_ITEM =
           T.let(:inbound_mail_item, Increase::File::Purpose::TaggedSymbol)

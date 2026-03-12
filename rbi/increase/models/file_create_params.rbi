@@ -112,6 +112,13 @@ module Increase
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
+        # A signature image to be printed on a check. This must be a 1320x120 pixel PNG.
+        CHECK_SIGNATURE =
+          T.let(
+            :check_signature,
+            Increase::FileCreateParams::Purpose::TaggedSymbol
+          )
+
         # IRS Form SS-4.
         FORM_SS_4 =
           T.let(:form_ss_4, Increase::FileCreateParams::Purpose::TaggedSymbol)

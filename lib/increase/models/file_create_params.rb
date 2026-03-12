@@ -61,6 +61,9 @@ module Increase
         # An image to be used as the check voucher image, which is printed in the middle of the trifold area of a check. This must be a 2550x1100 pixel PNG.
         CHECK_VOUCHER_IMAGE = :check_voucher_image
 
+        # A signature image to be printed on a check. This must be a 1320x120 pixel PNG.
+        CHECK_SIGNATURE = :check_signature
+
         # IRS Form SS-4.
         FORM_SS_4 = :form_ss_4
 

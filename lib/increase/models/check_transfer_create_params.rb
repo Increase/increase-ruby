@@ -198,14 +198,15 @@ module Increase
         #   @return [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod, nil]
         optional :shipping_method, enum: -> { Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod }
 
-        # @!attribute signature_text
-        #   The text that will appear as the signature on the check in cursive font. If not
-        #   provided, the check will be printed with 'No signature required'.
+        # @!attribute signature
+        #   The signature that will appear on the check. If not provided, the check will be
+        #   printed with 'No Signature Required'. At most one of `text` and `image_file_id`
+        #   may be provided.
         #
-        #   @return [String, nil]
-        optional :signature_text, String
+        #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature, nil]
+        optional :signature, -> { Increase::CheckTransferCreateParams::PhysicalCheck::Signature }
 
-        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, payer: nil, return_address: nil, shipping_method: nil, signature_text: nil)
+        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, payer: nil, return_address: nil, shipping_method: nil, signature: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
         #
@@ -231,7 +232,7 @@ module Increase
         #
         #   @param shipping_method [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod] How to ship the check. For details on pricing, timing, and restrictions, see htt
         #
-        #   @param signature_text [String] The text that will appear as the signature on the check in cursive font. If not
+        #   @param signature [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature] The signature that will appear on the check. If not provided, the check will be
 
         # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#mailing_address
         class MailingAddress < Increase::Internal::Type::BaseModel
@@ -398,6 +399,35 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#signature
+        class Signature < Increase::Internal::Type::BaseModel
+          # @!attribute image_file_id
+          #   The ID of a File containing a PNG of the signature. This must have
+          #   `purpose: check_signature` and be a 1320x120 pixel PNG.
+          #
+          #   @return [String, nil]
+          optional :image_file_id, String
+
+          # @!attribute text
+          #   The text that will appear as the signature on the check in cursive font.
+          #
+          #   @return [String, nil]
+          optional :text, String
+
+          # @!method initialize(image_file_id: nil, text: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature} for more
+          #   details.
+          #
+          #   The signature that will appear on the check. If not provided, the check will be
+          #   printed with 'No Signature Required'. At most one of `text` and `image_file_id`
+          #   may be provided.
+          #
+          #   @param image_file_id [String] The ID of a File containing a PNG of the signature. This must have `purpose: che
+          #
+          #   @param text [String] The text that will appear as the signature on the check in cursive font.
         end
       end
 
