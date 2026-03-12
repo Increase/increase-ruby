@@ -65,6 +65,8 @@ module Increase
 
   class BeneficialOwnerArchiveParams = Increase::Models::BeneficialOwnerArchiveParams
 
+  class BeneficialOwnerCreateParams = Increase::Models::BeneficialOwnerCreateParams
+
   class BeneficialOwnerListParams = Increase::Models::BeneficialOwnerListParams
 
   class BeneficialOwnerRetrieveParams = Increase::Models::BeneficialOwnerRetrieveParams

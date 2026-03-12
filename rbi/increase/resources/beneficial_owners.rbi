@@ -3,6 +3,32 @@
 module Increase
   module Resources
     class BeneficialOwners
+      # Create a beneficial owner
+      sig do
+        params(
+          entity_id: String,
+          individual: Increase::BeneficialOwnerCreateParams::Individual::OrHash,
+          prongs:
+            T::Array[Increase::BeneficialOwnerCreateParams::Prong::OrSymbol],
+          company_title: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::EntityBeneficialOwner)
+      end
+      def create(
+        # The identifier of the Entity to associate with the new Beneficial Owner.
+        entity_id:,
+        # Personal details for the beneficial owner.
+        individual:,
+        # Why this person is considered a beneficial owner of the entity. At least one
+        # option is required, if a person is both a control person and owner, submit an
+        # array containing both.
+        prongs:,
+        # This person's role or title within the entity.
+        company_title: nil,
+        request_options: {}
+      )
+      end
+
       # Retrieve a Beneficial Owner
       sig do
         params(

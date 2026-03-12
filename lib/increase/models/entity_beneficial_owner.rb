@@ -2,7 +2,7 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::BeneficialOwners#retrieve
+    # @see Increase::Resources::BeneficialOwners#create
     class EntityBeneficialOwner < Increase::Internal::Type::BaseModel
       # @!attribute id
       #   The identifier of this beneficial owner.
@@ -23,6 +23,14 @@ module Increase
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute idempotency_key
+      #   The idempotency key you chose for this object. This value is unique across
+      #   Increase and is used to ensure that a request is only processed once. Learn more
+      #   about [idempotency](https://increase.com/documentation/idempotency-keys).
+      #
+      #   @return [String, nil]
+      required :idempotency_key, String, nil?: true
+
       # @!attribute individual
       #   Personal details for the beneficial owner.
       #
@@ -42,7 +50,7 @@ module Increase
       #   @return [Symbol, Increase::Models::EntityBeneficialOwner::Type]
       required :type, enum: -> { Increase::EntityBeneficialOwner::Type }
 
-      # @!method initialize(id:, company_title:, created_at:, individual:, prongs:, type:)
+      # @!method initialize(id:, company_title:, created_at:, idempotency_key:, individual:, prongs:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityBeneficialOwner} for more details.
       #
@@ -57,6 +65,8 @@ module Increase
       #   @param company_title [String, nil] This person's role or title within the entity.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Benefic
+      #
+      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param individual [Increase::Models::EntityBeneficialOwner::Individual] Personal details for the beneficial owner.
       #
