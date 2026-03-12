@@ -1,6 +1,14 @@
 module Increase
   module Resources
     class BeneficialOwners
+      def create: (
+        entity_id: String,
+        individual: Increase::BeneficialOwnerCreateParams::Individual,
+        prongs: ::Array[Increase::Models::BeneficialOwnerCreateParams::prong],
+        ?company_title: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::EntityBeneficialOwner
+
       def retrieve: (
         String entity_beneficial_owner_id,
         ?request_options: Increase::request_opts

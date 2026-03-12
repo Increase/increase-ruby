@@ -21,6 +21,12 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # The idempotency key you chose for this object. This value is unique across
+      # Increase and is used to ensure that a request is only processed once. Learn more
+      # about [idempotency](https://increase.com/documentation/idempotency-keys).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :idempotency_key
+
       # Personal details for the beneficial owner.
       sig { returns(Increase::EntityBeneficialOwner::Individual) }
       attr_reader :individual
@@ -53,6 +59,7 @@ module Increase
           id: String,
           company_title: T.nilable(String),
           created_at: Time,
+          idempotency_key: T.nilable(String),
           individual: Increase::EntityBeneficialOwner::Individual::OrHash,
           prongs: T::Array[Increase::EntityBeneficialOwner::Prong::OrSymbol],
           type: Increase::EntityBeneficialOwner::Type::OrSymbol
@@ -66,6 +73,10 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
         # Beneficial Owner was created.
         created_at:,
+        # The idempotency key you chose for this object. This value is unique across
+        # Increase and is used to ensure that a request is only processed once. Learn more
+        # about [idempotency](https://increase.com/documentation/idempotency-keys).
+        idempotency_key:,
         # Personal details for the beneficial owner.
         individual:,
         # Why this person is considered a beneficial owner of the entity.
@@ -82,6 +93,7 @@ module Increase
             id: String,
             company_title: T.nilable(String),
             created_at: Time,
+            idempotency_key: T.nilable(String),
             individual: Increase::EntityBeneficialOwner::Individual,
             prongs:
               T::Array[Increase::EntityBeneficialOwner::Prong::TaggedSymbol],

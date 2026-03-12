@@ -3,6 +3,37 @@
 module Increase
   module Resources
     class BeneficialOwners
+      # Some parameter documentations has been truncated, see
+      # {Increase::Models::BeneficialOwnerCreateParams} for more details.
+      #
+      # Create a beneficial owner
+      #
+      # @overload create(entity_id:, individual:, prongs:, company_title: nil, request_options: {})
+      #
+      # @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner.
+      #
+      # @param individual [Increase::Models::BeneficialOwnerCreateParams::Individual] Personal details for the beneficial owner.
+      #
+      # @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerCreateParams::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
+      #
+      # @param company_title [String] This person's role or title within the entity.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::EntityBeneficialOwner]
+      #
+      # @see Increase::Models::BeneficialOwnerCreateParams
+      def create(params)
+        parsed, options = Increase::BeneficialOwnerCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "entity_beneficial_owners",
+          body: parsed,
+          model: Increase::EntityBeneficialOwner,
+          options: options
+        )
+      end
+
       # Retrieve a Beneficial Owner
       #
       # @overload retrieve(entity_beneficial_owner_id, request_options: {})
