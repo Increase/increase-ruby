@@ -167,25 +167,6 @@ module Increase
       )
       end
 
-      # Create a beneficial owner for a corporate Entity
-      sig do
-        params(
-          entity_id: String,
-          beneficial_owner:
-            Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner::OrHash,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Entity)
-      end
-      def create_beneficial_owner(
-        # The identifier of the Entity to associate with the new Beneficial Owner.
-        entity_id,
-        # The identifying details of anyone controlling or owning 25% or more of the
-        # corporation.
-        beneficial_owner:,
-        request_options: {}
-      )
-      end
-
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)
