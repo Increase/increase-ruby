@@ -124,7 +124,7 @@ module Increase
           payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
-          signature_text: String
+          signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature
         }
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
@@ -164,9 +164,11 @@ module Increase
           Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method
         ) -> Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method
 
-        attr_reader signature_text: String?
+        attr_reader signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature?
 
-        def signature_text=: (String) -> String
+        def signature=: (
+          Increase::CheckTransferCreateParams::PhysicalCheck::Signature
+        ) -> Increase::CheckTransferCreateParams::PhysicalCheck::Signature
 
         def initialize: (
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
@@ -178,7 +180,7 @@ module Increase
           ?payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           ?return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           ?shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
-          ?signature_text: String
+          ?signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature
         ) -> void
 
         def to_hash: -> {
@@ -191,7 +193,7 @@ module Increase
           payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
-          signature_text: String
+          signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature
         }
 
         type mailing_address =
@@ -320,6 +322,22 @@ module Increase
           FEDEX_OVERNIGHT: :fedex_overnight
 
           def self?.values: -> ::Array[Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method]
+        end
+
+        type signature = { image_file_id: String, text: String }
+
+        class Signature < Increase::Internal::Type::BaseModel
+          attr_reader image_file_id: String?
+
+          def image_file_id=: (String) -> String
+
+          attr_reader text: String?
+
+          def text=: (String) -> String
+
+          def initialize: (?image_file_id: String, ?text: String) -> void
+
+          def to_hash: -> { image_file_id: String, text: String }
         end
       end
 

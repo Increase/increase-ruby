@@ -819,10 +819,16 @@ module Increase
         end
         attr_accessor :shipping_method
 
-        # The text that will appear as the signature on the check in cursive font. If
-        # blank, the check will be printed with 'No signature required'.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :signature_text
+        # The signature that will appear on the check.
+        sig { returns(Increase::CheckTransfer::PhysicalCheck::Signature) }
+        attr_reader :signature
+
+        sig do
+          params(
+            signature: Increase::CheckTransfer::PhysicalCheck::Signature::OrHash
+          ).void
+        end
+        attr_writer :signature
 
         # Tracking updates relating to the physical check's delivery.
         sig do
@@ -853,7 +859,8 @@ module Increase
               T.nilable(
                 Increase::CheckTransfer::PhysicalCheck::ShippingMethod::OrSymbol
               ),
-            signature_text: T.nilable(String),
+            signature:
+              Increase::CheckTransfer::PhysicalCheck::Signature::OrHash,
             tracking_updates:
               T::Array[
                 Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::OrHash
@@ -880,9 +887,8 @@ module Increase
           return_address:,
           # The shipping method for the check.
           shipping_method:,
-          # The text that will appear as the signature on the check in cursive font. If
-          # blank, the check will be printed with 'No signature required'.
-          signature_text:,
+          # The signature that will appear on the check.
+          signature:,
           # Tracking updates relating to the physical check's delivery.
           tracking_updates:
         )
@@ -907,7 +913,7 @@ module Increase
                 T.nilable(
                   Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol
                 ),
-              signature_text: T.nilable(String),
+              signature: Increase::CheckTransfer::PhysicalCheck::Signature,
               tracking_updates:
                 T::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
             }
@@ -1148,6 +1154,47 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+
+        class Signature < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::Signature,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The ID of a File containing a PNG of the signature.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :image_file_id
+
+          # The text that will appear as the signature on the check in cursive font.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :text
+
+          # The signature that will appear on the check.
+          sig do
+            params(
+              image_file_id: T.nilable(String),
+              text: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The ID of a File containing a PNG of the signature.
+            image_file_id:,
+            # The text that will appear as the signature on the check in cursive font.
+            text:
+          )
+          end
+
+          sig do
+            override.returns(
+              { image_file_id: T.nilable(String), text: T.nilable(String) }
+            )
+          end
+          def to_hash
           end
         end
 
