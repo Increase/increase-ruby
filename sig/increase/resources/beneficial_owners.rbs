@@ -23,6 +23,11 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::EntityBeneficialOwner]
 
+      def archive: (
+        String entity_beneficial_owner_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::EntityBeneficialOwner
+
       def initialize: (client: Increase::Client) -> void
     end
   end
