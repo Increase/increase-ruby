@@ -167,25 +167,6 @@ module Increase
       )
       end
 
-      # Archive a beneficial owner for a corporate Entity
-      sig do
-        params(
-          entity_id: String,
-          beneficial_owner_id: String,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Entity)
-      end
-      def archive_beneficial_owner(
-        # The identifier of the Entity associated with the Beneficial Owner that is being
-        # archived.
-        entity_id,
-        # The identifying details of anyone controlling or owning 25% or more of the
-        # corporation.
-        beneficial_owner_id:,
-        request_options: {}
-      )
-      end
-
       # Create a beneficial owner for a corporate Entity
       sig do
         params(
@@ -201,30 +182,6 @@ module Increase
         # The identifying details of anyone controlling or owning 25% or more of the
         # corporation.
         beneficial_owner:,
-        request_options: {}
-      )
-      end
-
-      # Update the address for a beneficial owner belonging to a corporate Entity
-      sig do
-        params(
-          entity_id: String,
-          address:
-            Increase::EntityUpdateBeneficialOwnerAddressParams::Address::OrHash,
-          beneficial_owner_id: String,
-          request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Entity)
-      end
-      def update_beneficial_owner_address(
-        # The identifier of the Entity associated with the Beneficial Owner whose address
-        # is being updated.
-        entity_id,
-        # The individual's physical address. Mail receiving locations like PO Boxes and
-        # PMB's are disallowed.
-        address:,
-        # The identifying details of anyone controlling or owning 25% or more of the
-        # corporation.
-        beneficial_owner_id:,
         request_options: {}
       )
       end

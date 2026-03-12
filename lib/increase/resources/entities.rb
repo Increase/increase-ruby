@@ -166,33 +166,6 @@ module Increase
       end
 
       # Some parameter documentations has been truncated, see
-      # {Increase::Models::EntityArchiveBeneficialOwnerParams} for more details.
-      #
-      # Archive a beneficial owner for a corporate Entity
-      #
-      # @overload archive_beneficial_owner(entity_id, beneficial_owner_id:, request_options: {})
-      #
-      # @param entity_id [String] The identifier of the Entity associated with the Beneficial Owner that is being
-      #
-      # @param beneficial_owner_id [String] The identifying details of anyone controlling or owning 25% or more of the corpo
-      #
-      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Increase::Models::Entity]
-      #
-      # @see Increase::Models::EntityArchiveBeneficialOwnerParams
-      def archive_beneficial_owner(entity_id, params)
-        parsed, options = Increase::EntityArchiveBeneficialOwnerParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: ["entities/%1$s/archive_beneficial_owner", entity_id],
-          body: parsed,
-          model: Increase::Entity,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
       # {Increase::Models::EntityCreateBeneficialOwnerParams} for more details.
       #
       # Create a beneficial owner for a corporate Entity
@@ -213,35 +186,6 @@ module Increase
         @client.request(
           method: :post,
           path: ["entities/%1$s/create_beneficial_owner", entity_id],
-          body: parsed,
-          model: Increase::Entity,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::EntityUpdateBeneficialOwnerAddressParams} for more details.
-      #
-      # Update the address for a beneficial owner belonging to a corporate Entity
-      #
-      # @overload update_beneficial_owner_address(entity_id, address:, beneficial_owner_id:, request_options: {})
-      #
-      # @param entity_id [String] The identifier of the Entity associated with the Beneficial Owner whose address
-      #
-      # @param address [Increase::Models::EntityUpdateBeneficialOwnerAddressParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
-      #
-      # @param beneficial_owner_id [String] The identifying details of anyone controlling or owning 25% or more of the corpo
-      #
-      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Increase::Models::Entity]
-      #
-      # @see Increase::Models::EntityUpdateBeneficialOwnerAddressParams
-      def update_beneficial_owner_address(entity_id, params)
-        parsed, options = Increase::EntityUpdateBeneficialOwnerAddressParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: ["entities/%1$s/update_beneficial_owner_address", entity_id],
           body: parsed,
           model: Increase::Entity,
           options: options

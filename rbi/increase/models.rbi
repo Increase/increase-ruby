@@ -247,9 +247,6 @@ module Increase
 
   Entity = Increase::Models::Entity
 
-  EntityArchiveBeneficialOwnerParams =
-    Increase::Models::EntityArchiveBeneficialOwnerParams
-
   EntityArchiveParams = Increase::Models::EntityArchiveParams
 
   EntityBeneficialOwner = Increase::Models::EntityBeneficialOwner
@@ -264,9 +261,6 @@ module Increase
   EntityRetrieveParams = Increase::Models::EntityRetrieveParams
 
   EntitySupplementalDocument = Increase::Models::EntitySupplementalDocument
-
-  EntityUpdateBeneficialOwnerAddressParams =
-    Increase::Models::EntityUpdateBeneficialOwnerAddressParams
 
   EntityUpdateParams = Increase::Models::EntityUpdateParams
 

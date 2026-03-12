@@ -47,22 +47,9 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
-      def archive_beneficial_owner: (
-        String entity_id,
-        beneficial_owner_id: String,
-        ?request_options: Increase::request_opts
-      ) -> Increase::Entity
-
       def create_beneficial_owner: (
         String entity_id,
         beneficial_owner: Increase::EntityCreateBeneficialOwnerParams::BeneficialOwner,
-        ?request_options: Increase::request_opts
-      ) -> Increase::Entity
-
-      def update_beneficial_owner_address: (
-        String entity_id,
-        address: Increase::EntityUpdateBeneficialOwnerAddressParams::Address,
-        beneficial_owner_id: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Entity
 
