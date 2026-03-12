@@ -11,6 +11,7 @@ module Increase
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
         ?confirmed_no_us_tax_id: bool,
         ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
+        ?name: String,
         ?request_options: Increase::request_opts
       ) -> Increase::EntityBeneficialOwner
 
