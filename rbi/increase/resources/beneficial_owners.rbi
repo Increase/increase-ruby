@@ -76,6 +76,20 @@ module Increase
       )
       end
 
+      # Archive a Beneficial Owner
+      sig do
+        params(
+          entity_beneficial_owner_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::EntityBeneficialOwner)
+      end
+      def archive(
+        # The identifier of the Beneficial Owner to archive.
+        entity_beneficial_owner_id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)
