@@ -25,6 +25,7 @@ module Increase
           confirmed_no_us_tax_id: T::Boolean,
           identification:
             Increase::BeneficialOwnerUpdateParams::Identification::OrHash,
+          name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::EntityBeneficialOwner)
       end
@@ -41,6 +42,8 @@ module Increase
         confirmed_no_us_tax_id: nil,
         # A means of verifying the person's identity.
         identification: nil,
+        # The individual's legal name.
+        name: nil,
         request_options: {}
       )
       end

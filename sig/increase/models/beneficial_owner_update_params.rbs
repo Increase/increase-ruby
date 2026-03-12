@@ -5,7 +5,8 @@ module Increase
         entity_beneficial_owner_id: String,
         address: Increase::BeneficialOwnerUpdateParams::Address,
         confirmed_no_us_tax_id: bool,
-        identification: Increase::BeneficialOwnerUpdateParams::Identification
+        identification: Increase::BeneficialOwnerUpdateParams::Identification,
+        name: String
       }
       & Increase::Internal::Type::request_parameters
 
@@ -31,11 +32,16 @@ module Increase
         Increase::BeneficialOwnerUpdateParams::Identification
       ) -> Increase::BeneficialOwnerUpdateParams::Identification
 
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
       def initialize: (
         entity_beneficial_owner_id: String,
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
         ?confirmed_no_us_tax_id: bool,
         ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
+        ?name: String,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -44,6 +50,7 @@ module Increase
         address: Increase::BeneficialOwnerUpdateParams::Address,
         confirmed_no_us_tax_id: bool,
         identification: Increase::BeneficialOwnerUpdateParams::Identification,
+        name: String,
         request_options: Increase::RequestOptions
       }
 
