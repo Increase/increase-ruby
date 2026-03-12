@@ -276,6 +276,13 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
+          # A signature image to be printed on a check. This must be a 1320x120 pixel PNG.
+          CHECK_SIGNATURE =
+            T.let(
+              :check_signature,
+              Increase::FileListParams::Purpose::In::TaggedSymbol
+            )
+
           # A scanned mail item sent to Increase.
           INBOUND_MAIL_ITEM =
             T.let(

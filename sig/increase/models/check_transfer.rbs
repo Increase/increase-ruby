@@ -299,7 +299,7 @@ module Increase
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
-          signature_text: String?,
+          signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         }
 
@@ -322,7 +322,7 @@ module Increase
 
         attr_accessor shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?
 
-        attr_accessor signature_text: String?
+        attr_accessor signature: Increase::CheckTransfer::PhysicalCheck::Signature
 
         attr_accessor tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
 
@@ -336,7 +336,7 @@ module Increase
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
-          signature_text: String?,
+          signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         ) -> void
 
@@ -350,7 +350,7 @@ module Increase
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
-          signature_text: String?,
+          signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         }
 
@@ -470,6 +470,18 @@ module Increase
           FEDEX_OVERNIGHT: :fedex_overnight
 
           def self?.values: -> ::Array[Increase::Models::CheckTransfer::PhysicalCheck::shipping_method]
+        end
+
+        type signature = { image_file_id: String?, text: String? }
+
+        class Signature < Increase::Internal::Type::BaseModel
+          attr_accessor image_file_id: String?
+
+          attr_accessor text: String?
+
+          def initialize: (image_file_id: String?, text: String?) -> void
+
+          def to_hash: -> { image_file_id: String?, text: String? }
         end
 
         type tracking_update =

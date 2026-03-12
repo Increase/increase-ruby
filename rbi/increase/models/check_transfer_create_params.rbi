@@ -380,13 +380,25 @@ module Increase
         end
         attr_writer :shipping_method
 
-        # The text that will appear as the signature on the check in cursive font. If not
-        # provided, the check will be printed with 'No signature required'.
-        sig { returns(T.nilable(String)) }
-        attr_reader :signature_text
+        # The signature that will appear on the check. If not provided, the check will be
+        # printed with 'No Signature Required'. At most one of `text` and `image_file_id`
+        # may be provided.
+        sig do
+          returns(
+            T.nilable(
+              Increase::CheckTransferCreateParams::PhysicalCheck::Signature
+            )
+          )
+        end
+        attr_reader :signature
 
-        sig { params(signature_text: String).void }
-        attr_writer :signature_text
+        sig do
+          params(
+            signature:
+              Increase::CheckTransferCreateParams::PhysicalCheck::Signature::OrHash
+          ).void
+        end
+        attr_writer :signature
 
         # Details relating to the physical check that Increase will print and mail. This
         # is required if `fulfillment_method` is equal to `physical_check`. It must not be
@@ -408,7 +420,8 @@ module Increase
               Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress::OrHash,
             shipping_method:
               Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol,
-            signature_text: String
+            signature:
+              Increase::CheckTransferCreateParams::PhysicalCheck::Signature::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -439,9 +452,10 @@ module Increase
           # How to ship the check. For details on pricing, timing, and restrictions, see
           # https://increase.com/documentation/originating-checks#printing-checks .
           shipping_method: nil,
-          # The text that will appear as the signature on the check in cursive font. If not
-          # provided, the check will be printed with 'No signature required'.
-          signature_text: nil
+          # The signature that will appear on the check. If not provided, the check will be
+          # printed with 'No Signature Required'. At most one of `text` and `image_file_id`
+          # may be provided.
+          signature: nil
         )
         end
 
@@ -463,7 +477,8 @@ module Increase
                 Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
               shipping_method:
                 Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::OrSymbol,
-              signature_text: String
+              signature:
+                Increase::CheckTransferCreateParams::PhysicalCheck::Signature
             }
           )
         end
@@ -726,6 +741,52 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+
+        class Signature < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransferCreateParams::PhysicalCheck::Signature,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The ID of a File containing a PNG of the signature. This must have
+          # `purpose: check_signature` and be a 1320x120 pixel PNG.
+          sig { returns(T.nilable(String)) }
+          attr_reader :image_file_id
+
+          sig { params(image_file_id: String).void }
+          attr_writer :image_file_id
+
+          # The text that will appear as the signature on the check in cursive font.
+          sig { returns(T.nilable(String)) }
+          attr_reader :text
+
+          sig { params(text: String).void }
+          attr_writer :text
+
+          # The signature that will appear on the check. If not provided, the check will be
+          # printed with 'No Signature Required'. At most one of `text` and `image_file_id`
+          # may be provided.
+          sig do
+            params(image_file_id: String, text: String).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # The ID of a File containing a PNG of the signature. This must have
+            # `purpose: check_signature` and be a 1320x120 pixel PNG.
+            image_file_id: nil,
+            # The text that will appear as the signature on the check in cursive font.
+            text: nil
+          )
+          end
+
+          sig { override.returns({ image_file_id: String, text: String }) }
+          def to_hash
           end
         end
       end

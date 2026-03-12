@@ -511,12 +511,11 @@ module Increase
                  },
                  nil?: true
 
-        # @!attribute signature_text
-        #   The text that will appear as the signature on the check in cursive font. If
-        #   blank, the check will be printed with 'No signature required'.
+        # @!attribute signature
+        #   The signature that will appear on the check.
         #
-        #   @return [String, nil]
-        required :signature_text, String, nil?: true
+        #   @return [Increase::Models::CheckTransfer::PhysicalCheck::Signature]
+        required :signature, -> { Increase::CheckTransfer::PhysicalCheck::Signature }
 
         # @!attribute tracking_updates
         #   Tracking updates relating to the physical check's delivery.
@@ -525,7 +524,7 @@ module Increase
         required :tracking_updates,
                  -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate] }
 
-        # @!method initialize(attachment_file_id:, check_voucher_image_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, shipping_method:, signature_text:, tracking_updates:)
+        # @!method initialize(attachment_file_id:, check_voucher_image_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, shipping_method:, signature:, tracking_updates:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CheckTransfer::PhysicalCheck} for more details.
         #
@@ -550,7 +549,7 @@ module Increase
         #
         #   @param shipping_method [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod, nil] The shipping method for the check.
         #
-        #   @param signature_text [String, nil] The text that will appear as the signature on the check in cursive font. If blan
+        #   @param signature [Increase::Models::CheckTransfer::PhysicalCheck::Signature] The signature that will appear on the check.
         #
         #   @param tracking_updates [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>] Tracking updates relating to the physical check's delivery.
 
@@ -713,6 +712,28 @@ module Increase
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Increase::Models::CheckTransfer::PhysicalCheck#signature
+        class Signature < Increase::Internal::Type::BaseModel
+          # @!attribute image_file_id
+          #   The ID of a File containing a PNG of the signature.
+          #
+          #   @return [String, nil]
+          required :image_file_id, String, nil?: true
+
+          # @!attribute text
+          #   The text that will appear as the signature on the check in cursive font.
+          #
+          #   @return [String, nil]
+          required :text, String, nil?: true
+
+          # @!method initialize(image_file_id:, text:)
+          #   The signature that will appear on the check.
+          #
+          #   @param image_file_id [String, nil] The ID of a File containing a PNG of the signature.
+          #
+          #   @param text [String, nil] The text that will appear as the signature on the check in cursive font.
         end
 
         class TrackingUpdate < Increase::Internal::Type::BaseModel
