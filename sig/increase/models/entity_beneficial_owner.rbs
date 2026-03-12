@@ -5,6 +5,7 @@ module Increase
         id: String,
         company_title: String?,
         created_at: Time,
+        idempotency_key: String?,
         individual: Increase::EntityBeneficialOwner::Individual,
         prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong],
         type: Increase::Models::EntityBeneficialOwner::type_
@@ -17,6 +18,8 @@ module Increase
 
       attr_accessor created_at: Time
 
+      attr_accessor idempotency_key: String?
+
       attr_accessor individual: Increase::EntityBeneficialOwner::Individual
 
       attr_accessor prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong]
@@ -27,6 +30,7 @@ module Increase
         id: String,
         company_title: String?,
         created_at: Time,
+        idempotency_key: String?,
         individual: Increase::EntityBeneficialOwner::Individual,
         prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong],
         type: Increase::Models::EntityBeneficialOwner::type_
@@ -36,6 +40,7 @@ module Increase
         id: String,
         company_title: String?,
         created_at: Time,
+        idempotency_key: String?,
         individual: Increase::EntityBeneficialOwner::Individual,
         prongs: ::Array[Increase::Models::EntityBeneficialOwner::prong],
         type: Increase::Models::EntityBeneficialOwner::type_
