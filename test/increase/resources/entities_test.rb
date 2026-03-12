@@ -159,46 +159,4 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
       }
     end
   end
-
-  def test_create_beneficial_owner_required_params
-    response =
-      @increase.entities.create_beneficial_owner(
-        "entity_n8y8tnk2p9339ti393yi",
-        beneficial_owner: {
-          individual: {
-            address: {city: "New York", country: "US", line1: "33 Liberty Street"},
-            date_of_birth: "1970-01-31",
-            identification: {method: :social_security_number, number: "078051120"},
-            name: "Ian Crease"
-          },
-          prongs: [:control]
-        }
-      )
-
-    assert_pattern do
-      response => Increase::Entity
-    end
-
-    assert_pattern do
-      response => {
-        id: String,
-        corporation: Increase::Entity::Corporation | nil,
-        created_at: Time,
-        description: String | nil,
-        details_confirmed_at: Time | nil,
-        government_authority: Increase::Entity::GovernmentAuthority | nil,
-        idempotency_key: String | nil,
-        joint: Increase::Entity::Joint | nil,
-        natural_person: Increase::Entity::NaturalPerson | nil,
-        risk_rating: Increase::Entity::RiskRating | nil,
-        status: Increase::Entity::Status,
-        structure: Increase::Entity::Structure,
-        supplemental_documents: ^(Increase::Internal::Type::ArrayOf[Increase::EntitySupplementalDocument]),
-        terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
-        third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
-        trust: Increase::Entity::Trust | nil,
-        type: Increase::Entity::Type
-      }
-    end
-  end
 end
