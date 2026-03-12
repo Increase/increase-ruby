@@ -219,8 +219,6 @@ module Increase
 
   class Entity = Increase::Models::Entity
 
-  class EntityArchiveBeneficialOwnerParams = Increase::Models::EntityArchiveBeneficialOwnerParams
-
   class EntityArchiveParams = Increase::Models::EntityArchiveParams
 
   class EntityBeneficialOwner = Increase::Models::EntityBeneficialOwner
@@ -234,8 +232,6 @@ module Increase
   class EntityRetrieveParams = Increase::Models::EntityRetrieveParams
 
   class EntitySupplementalDocument = Increase::Models::EntitySupplementalDocument
-
-  class EntityUpdateBeneficialOwnerAddressParams = Increase::Models::EntityUpdateBeneficialOwnerAddressParams
 
   class EntityUpdateParams = Increase::Models::EntityUpdateParams
 
