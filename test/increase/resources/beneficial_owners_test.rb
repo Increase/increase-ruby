@@ -68,4 +68,24 @@ class Increase::Test::Resources::BeneficialOwnersTest < Increase::Test::Resource
       }
     end
   end
+
+  def test_archive
+    response =
+      @increase.beneficial_owners.archive("entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7")
+
+    assert_pattern do
+      response => Increase::EntityBeneficialOwner
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        company_title: String | nil,
+        created_at: Time,
+        individual: Increase::EntityBeneficialOwner::Individual,
+        prongs: ^(Increase::Internal::Type::ArrayOf[enum: Increase::EntityBeneficialOwner::Prong]),
+        type: Increase::EntityBeneficialOwner::Type
+      }
+    end
+  end
 end

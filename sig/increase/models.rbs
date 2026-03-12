@@ -63,6 +63,8 @@ module Increase
 
   class BalanceLookup = Increase::Models::BalanceLookup
 
+  class BeneficialOwnerArchiveParams = Increase::Models::BeneficialOwnerArchiveParams
+
   class BeneficialOwnerListParams = Increase::Models::BeneficialOwnerListParams
 
   class BeneficialOwnerRetrieveParams = Increase::Models::BeneficialOwnerRetrieveParams

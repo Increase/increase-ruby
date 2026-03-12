@@ -89,6 +89,26 @@ module Increase
         )
       end
 
+      # Archive a Beneficial Owner
+      #
+      # @overload archive(entity_beneficial_owner_id, request_options: {})
+      #
+      # @param entity_beneficial_owner_id [String] The identifier of the Beneficial Owner to archive.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::EntityBeneficialOwner]
+      #
+      # @see Increase::Models::BeneficialOwnerArchiveParams
+      def archive(entity_beneficial_owner_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["entity_beneficial_owners/%1$s/archive", entity_beneficial_owner_id],
+          model: Increase::EntityBeneficialOwner,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Increase::Client]
