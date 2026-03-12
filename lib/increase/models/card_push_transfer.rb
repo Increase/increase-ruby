@@ -46,6 +46,12 @@ module Increase
       #   @return [Increase::Models::CardPushTransfer::Cancellation, nil]
       required :cancellation, -> { Increase::CardPushTransfer::Cancellation }, nil?: true
 
+      # @!attribute card_token_id
+      #   The ID of the Card Token that was used to validate the card.
+      #
+      #   @return [String]
+      required :card_token_id, String
+
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       #   the transfer was created.
@@ -186,7 +192,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPushTransfer::Type]
       required :type, enum: -> { Increase::CardPushTransfer::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, card_token_id:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardPushTransfer} for more details.
       #
@@ -203,6 +209,8 @@ module Increase
       #   @param business_application_identifier [Symbol, Increase::Models::CardPushTransfer::BusinessApplicationIdentifier] The Business Application Identifier describes the type of transaction being perf
       #
       #   @param cancellation [Increase::Models::CardPushTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
+      #
+      #   @param card_token_id [String] The ID of the Card Token that was used to validate the card.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
