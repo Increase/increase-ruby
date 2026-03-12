@@ -56,6 +56,13 @@ module Increase
       end
       attr_writer :identification
 
+      # The individual's legal name.
+      sig { returns(T.nilable(String)) }
+      attr_reader :name
+
+      sig { params(name: String).void }
+      attr_writer :name
+
       sig do
         params(
           entity_beneficial_owner_id: String,
@@ -63,6 +70,7 @@ module Increase
           confirmed_no_us_tax_id: T::Boolean,
           identification:
             Increase::BeneficialOwnerUpdateParams::Identification::OrHash,
+          name: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -79,6 +87,8 @@ module Increase
         confirmed_no_us_tax_id: nil,
         # A means of verifying the person's identity.
         identification: nil,
+        # The individual's legal name.
+        name: nil,
         request_options: {}
       )
       end
@@ -91,6 +101,7 @@ module Increase
             confirmed_no_us_tax_id: T::Boolean,
             identification:
               Increase::BeneficialOwnerUpdateParams::Identification,
+            name: String,
             request_options: Increase::RequestOptions
           }
         )

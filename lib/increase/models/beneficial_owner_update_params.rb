@@ -35,7 +35,13 @@ module Increase
       #   @return [Increase::Models::BeneficialOwnerUpdateParams::Identification, nil]
       optional :identification, -> { Increase::BeneficialOwnerUpdateParams::Identification }
 
-      # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, identification: nil, request_options: {})
+      # @!attribute name
+      #   The individual's legal name.
+      #
+      #   @return [String, nil]
+      optional :name, String
+
+      # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::BeneficialOwnerUpdateParams} for more details.
       #
@@ -46,6 +52,8 @@ module Increase
       #   @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
       #
       #   @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification] A means of verifying the person's identity.
+      #
+      #   @param name [String] The individual's legal name.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
