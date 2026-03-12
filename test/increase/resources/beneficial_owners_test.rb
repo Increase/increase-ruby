@@ -35,8 +35,7 @@ class Increase::Test::Resources::BeneficialOwnersTest < Increase::Test::Resource
   end
 
   def test_retrieve
-    response =
-      @increase.beneficial_owners.retrieve("entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7")
+    response = @increase.beneficial_owners.retrieve("entity_beneficial_owner_vozma8szzu1sxezp5zq6")
 
     assert_pattern do
       response => Increase::EntityBeneficialOwner
@@ -57,8 +56,7 @@ class Increase::Test::Resources::BeneficialOwnersTest < Increase::Test::Resource
   end
 
   def test_update
-    response =
-      @increase.beneficial_owners.update("entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7")
+    response = @increase.beneficial_owners.update("entity_beneficial_owner_vozma8szzu1sxezp5zq6")
 
     assert_pattern do
       response => Increase::EntityBeneficialOwner
@@ -107,8 +105,7 @@ class Increase::Test::Resources::BeneficialOwnersTest < Increase::Test::Resource
   end
 
   def test_archive
-    response =
-      @increase.beneficial_owners.archive("entity_setup_beneficial_owner_submission_vgkyk7dj5eb4sfhdbkx7")
+    response = @increase.beneficial_owners.archive("entity_beneficial_owner_vozma8szzu1sxezp5zq6")
 
     assert_pattern do
       response => Increase::EntityBeneficialOwner
