@@ -265,8 +265,6 @@ module Increase
 
   EntityBeneficialOwner = Increase::Models::EntityBeneficialOwner
 
-  EntityCreateBeneficialOwnerParams = Increase::Models::EntityCreateBeneficialOwnerParams
-
   EntityCreateParams = Increase::Models::EntityCreateParams
 
   EntityListParams = Increase::Models::EntityListParams
