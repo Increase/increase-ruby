@@ -63,6 +63,10 @@ module Increase
       end
       attr_writer :cancellation
 
+      # The ID of the Card Token that was used to validate the card.
+      sig { returns(String) }
+      attr_accessor :card_token_id
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the transfer was created.
       sig { returns(Time) }
@@ -201,6 +205,7 @@ module Increase
             Increase::CardPushTransfer::BusinessApplicationIdentifier::OrSymbol,
           cancellation:
             T.nilable(Increase::CardPushTransfer::Cancellation::OrHash),
+          card_token_id: String,
           created_at: Time,
           created_by: T.nilable(Increase::CardPushTransfer::CreatedBy::OrHash),
           decline: T.nilable(Increase::CardPushTransfer::Decline::OrHash),
@@ -243,6 +248,8 @@ module Increase
         # If your account requires approvals for transfers and the transfer was not
         # approved, this will contain details of the cancellation.
         cancellation:,
+        # The ID of the Card Token that was used to validate the card.
+        card_token_id:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the transfer was created.
         created_at:,
@@ -312,6 +319,7 @@ module Increase
             business_application_identifier:
               Increase::CardPushTransfer::BusinessApplicationIdentifier::TaggedSymbol,
             cancellation: T.nilable(Increase::CardPushTransfer::Cancellation),
+            card_token_id: String,
             created_at: Time,
             created_by: T.nilable(Increase::CardPushTransfer::CreatedBy),
             decline: T.nilable(Increase::CardPushTransfer::Decline),

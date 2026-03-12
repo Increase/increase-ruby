@@ -8,6 +8,7 @@ module Increase
         approval: Increase::CardPushTransfer::Approval?,
         business_application_identifier: Increase::Models::CardPushTransfer::business_application_identifier,
         cancellation: Increase::CardPushTransfer::Cancellation?,
+        card_token_id: String,
         created_at: Time,
         created_by: Increase::CardPushTransfer::CreatedBy?,
         decline: Increase::CardPushTransfer::Decline?,
@@ -43,6 +44,8 @@ module Increase
       attr_accessor business_application_identifier: Increase::Models::CardPushTransfer::business_application_identifier
 
       attr_accessor cancellation: Increase::CardPushTransfer::Cancellation?
+
+      attr_accessor card_token_id: String
 
       attr_accessor created_at: Time
 
@@ -93,6 +96,7 @@ module Increase
         approval: Increase::CardPushTransfer::Approval?,
         business_application_identifier: Increase::Models::CardPushTransfer::business_application_identifier,
         cancellation: Increase::CardPushTransfer::Cancellation?,
+        card_token_id: String,
         created_at: Time,
         created_by: Increase::CardPushTransfer::CreatedBy?,
         decline: Increase::CardPushTransfer::Decline?,
@@ -123,6 +127,7 @@ module Increase
         approval: Increase::CardPushTransfer::Approval?,
         business_application_identifier: Increase::Models::CardPushTransfer::business_application_identifier,
         cancellation: Increase::CardPushTransfer::Cancellation?,
+        card_token_id: String,
         created_at: Time,
         created_by: Increase::CardPushTransfer::CreatedBy?,
         decline: Increase::CardPushTransfer::Decline?,
