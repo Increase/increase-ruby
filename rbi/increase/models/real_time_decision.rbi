@@ -223,7 +223,7 @@ module Increase
         # A unique identifier assigned by the Access Control Server (us) for this
         # transaction.
         sig { returns(String) }
-        attr_accessor :access_control_server_transaction_id
+        attr_accessor :access_control_server_transaction_identifier
 
         # The identifier of the Account the card belongs to.
         sig { returns(String) }
@@ -303,7 +303,7 @@ module Increase
         # A unique identifier assigned by the Directory Server (the card network) for this
         # transaction.
         sig { returns(String) }
-        attr_accessor :directory_server_transaction_id
+        attr_accessor :directory_server_transaction_identifier
 
         # The merchant identifier (commonly abbreviated as MID) of the merchant the card
         # is transacting with.
@@ -404,7 +404,7 @@ module Increase
         # A unique identifier assigned by the 3DS Server initiating the authentication
         # attempt for this transaction.
         sig { returns(String) }
-        attr_accessor :three_d_secure_server_transaction_id
+        attr_accessor :three_d_secure_server_transaction_identifier
 
         # The identifier of the Card Payment this authentication attempt will belong to.
         # Available in the API once the card authentication has completed.
@@ -414,7 +414,7 @@ module Increase
         # Fields related to a 3DS authentication attempt.
         sig do
           params(
-            access_control_server_transaction_id: String,
+            access_control_server_transaction_identifier: String,
             account_id: String,
             billing_address_city: T.nilable(String),
             billing_address_country: T.nilable(String),
@@ -432,7 +432,7 @@ module Increase
               ),
             device_channel:
               Increase::RealTimeDecision::CardAuthentication::DeviceChannel::OrHash,
-            directory_server_transaction_id: String,
+            directory_server_transaction_identifier: String,
             merchant_acceptor_id: T.nilable(String),
             merchant_category_code: T.nilable(String),
             merchant_country: T.nilable(String),
@@ -457,14 +457,14 @@ module Increase
             shipping_address_line3: T.nilable(String),
             shipping_address_postal_code: T.nilable(String),
             shipping_address_state: T.nilable(String),
-            three_d_secure_server_transaction_id: String,
+            three_d_secure_server_transaction_identifier: String,
             upcoming_card_payment_id: String
           ).returns(T.attached_class)
         end
         def self.new(
           # A unique identifier assigned by the Access Control Server (us) for this
           # transaction.
-          access_control_server_transaction_id:,
+          access_control_server_transaction_identifier:,
           # The identifier of the Account the card belongs to.
           account_id:,
           # The city of the cardholder billing address associated with the card used for
@@ -500,7 +500,7 @@ module Increase
           device_channel:,
           # A unique identifier assigned by the Directory Server (the card network) for this
           # transaction.
-          directory_server_transaction_id:,
+          directory_server_transaction_identifier:,
           # The merchant identifier (commonly abbreviated as MID) of the merchant the card
           # is transacting with.
           merchant_acceptor_id:,
@@ -541,7 +541,7 @@ module Increase
           shipping_address_state:,
           # A unique identifier assigned by the 3DS Server initiating the authentication
           # attempt for this transaction.
-          three_d_secure_server_transaction_id:,
+          three_d_secure_server_transaction_identifier:,
           # The identifier of the Card Payment this authentication attempt will belong to.
           # Available in the API once the card authentication has completed.
           upcoming_card_payment_id:
@@ -551,7 +551,7 @@ module Increase
         sig do
           override.returns(
             {
-              access_control_server_transaction_id: String,
+              access_control_server_transaction_identifier: String,
               account_id: String,
               billing_address_city: T.nilable(String),
               billing_address_country: T.nilable(String),
@@ -569,7 +569,7 @@ module Increase
                 ),
               device_channel:
                 Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
-              directory_server_transaction_id: String,
+              directory_server_transaction_identifier: String,
               merchant_acceptor_id: T.nilable(String),
               merchant_category_code: T.nilable(String),
               merchant_country: T.nilable(String),
@@ -594,7 +594,7 @@ module Increase
               shipping_address_line3: T.nilable(String),
               shipping_address_postal_code: T.nilable(String),
               shipping_address_state: T.nilable(String),
-              three_d_secure_server_transaction_id: String,
+              three_d_secure_server_transaction_identifier: String,
               upcoming_card_payment_id: String
             }
           )
