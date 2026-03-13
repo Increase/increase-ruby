@@ -28,7 +28,8 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
-        type: Increase::Entity::Type
+        type: Increase::Entity::Type,
+        validation: Increase::Entity::Validation | nil
       }
     end
   end
@@ -58,7 +59,8 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
-        type: Increase::Entity::Type
+        type: Increase::Entity::Type,
+        validation: Increase::Entity::Validation | nil
       }
     end
   end
@@ -88,7 +90,8 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
-        type: Increase::Entity::Type
+        type: Increase::Entity::Type,
+        validation: Increase::Entity::Validation | nil
       }
     end
   end
@@ -125,7 +128,8 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
-        type: Increase::Entity::Type
+        type: Increase::Entity::Type,
+        validation: Increase::Entity::Validation | nil
       }
     end
   end
@@ -155,7 +159,8 @@ class Increase::Test::Resources::EntitiesTest < Increase::Test::ResourceTest
         terms_agreements: ^(Increase::Internal::Type::ArrayOf[Increase::Entity::TermsAgreement]),
         third_party_verification: Increase::Entity::ThirdPartyVerification | nil,
         trust: Increase::Entity::Trust | nil,
-        type: Increase::Entity::Type
+        type: Increase::Entity::Type,
+        validation: Increase::Entity::Validation | nil
       }
     end
   end

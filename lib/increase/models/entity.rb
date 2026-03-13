@@ -121,12 +121,19 @@ module Increase
       #   @return [Symbol, Increase::Models::Entity::Type]
       required :type, enum: -> { Increase::Entity::Type }
 
-      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:)
+      # @!attribute validation
+      #   The validation results for the entity.
+      #
+      #   @return [Increase::Models::Entity::Validation, nil]
+      required :validation, -> { Increase::Entity::Validation }, nil?: true
+
+      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Entity}
       #   for more details.
       #
       #   Entities are the legal entities that own accounts. They can be people,
-      #   corporations, partnerships, government authorities, or trusts.
+      #   corporations, partnerships, government authorities, or trusts. To learn more,
+      #   see [Entities](/documentation/entities).
       #
       #   @param id [String] The entity's identifier.
       #
@@ -161,6 +168,8 @@ module Increase
       #   @param trust [Increase::Models::Entity::Trust, nil] Details of the trust entity. Will be present if `structure` is equal to `trust`.
       #
       #   @param type [Symbol, Increase::Models::Entity::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param validation [Increase::Models::Entity::Validation, nil] The validation results for the entity.
 
       # @see Increase::Models::Entity#corporation
       class Corporation < Increase::Internal::Type::BaseModel
@@ -1585,6 +1594,210 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::Entity#validation
+      class Validation < Increase::Internal::Type::BaseModel
+        # @!attribute issues
+        #   The list of issues that need to be addressed.
+        #
+        #   @return [Array<Increase::Models::Entity::Validation::Issue>]
+        required :issues, -> { Increase::Internal::Type::ArrayOf[Increase::Entity::Validation::Issue] }
+
+        # @!attribute status
+        #   The validation status for the entity. If the status is `invalid`, the `issues`
+        #   array will be populated.
+        #
+        #   @return [Symbol, Increase::Models::Entity::Validation::Status]
+        required :status, enum: -> { Increase::Entity::Validation::Status }
+
+        # @!method initialize(issues:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Entity::Validation} for more details.
+        #
+        #   The validation results for the entity.
+        #
+        #   @param issues [Array<Increase::Models::Entity::Validation::Issue>] The list of issues that need to be addressed.
+        #
+        #   @param status [Symbol, Increase::Models::Entity::Validation::Status] The validation status for the entity. If the status is `invalid`, the `issues` a
+
+        class Issue < Increase::Internal::Type::BaseModel
+          # @!attribute beneficial_owner_address
+          #   Details when the issue is with a beneficial owner's address.
+          #
+          #   @return [Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress, nil]
+          required :beneficial_owner_address,
+                   -> { Increase::Entity::Validation::Issue::BeneficialOwnerAddress },
+                   nil?: true
+
+          # @!attribute beneficial_owner_identity
+          #   Details when the issue is with a beneficial owner's identity verification.
+          #
+          #   @return [Increase::Models::Entity::Validation::Issue::BeneficialOwnerIdentity, nil]
+          required :beneficial_owner_identity,
+                   -> { Increase::Entity::Validation::Issue::BeneficialOwnerIdentity },
+                   nil?: true
+
+          # @!attribute category
+          #   The type of issue. We may add additional possible values for this enum over
+          #   time; your application should be able to handle such additions gracefully.
+          #
+          #   @return [Symbol, Increase::Models::Entity::Validation::Issue::Category]
+          required :category, enum: -> { Increase::Entity::Validation::Issue::Category }
+
+          # @!attribute entity_address
+          #   Details when the issue is with the entity's address.
+          #
+          #   @return [Increase::Models::Entity::Validation::Issue::EntityAddress, nil]
+          required :entity_address, -> { Increase::Entity::Validation::Issue::EntityAddress }, nil?: true
+
+          # @!attribute entity_tax_identifier
+          #   Details when the issue is with the entity's tax ID.
+          #
+          #   @return [Increase::Models::Entity::Validation::Issue::EntityTaxIdentifier, nil]
+          required :entity_tax_identifier,
+                   -> { Increase::Entity::Validation::Issue::EntityTaxIdentifier },
+                   nil?: true
+
+          # @!method initialize(beneficial_owner_address:, beneficial_owner_identity:, category:, entity_address:, entity_tax_identifier:)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::Entity::Validation::Issue} for more details.
+          #
+          #   @param beneficial_owner_address [Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress, nil] Details when the issue is with a beneficial owner's address.
+          #
+          #   @param beneficial_owner_identity [Increase::Models::Entity::Validation::Issue::BeneficialOwnerIdentity, nil] Details when the issue is with a beneficial owner's identity verification.
+          #
+          #   @param category [Symbol, Increase::Models::Entity::Validation::Issue::Category] The type of issue. We may add additional possible values for this enum over time
+          #
+          #   @param entity_address [Increase::Models::Entity::Validation::Issue::EntityAddress, nil] Details when the issue is with the entity's address.
+          #
+          #   @param entity_tax_identifier [Increase::Models::Entity::Validation::Issue::EntityTaxIdentifier, nil] Details when the issue is with the entity's tax ID.
+
+          # @see Increase::Models::Entity::Validation::Issue#beneficial_owner_address
+          class BeneficialOwnerAddress < Increase::Internal::Type::BaseModel
+            # @!attribute beneficial_owner_id
+            #   The ID of the beneficial owner.
+            #
+            #   @return [String]
+            required :beneficial_owner_id, String
+
+            # @!attribute reason
+            #   The reason the address is invalid.
+            #
+            #   @return [Symbol, Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::Reason]
+            required :reason, enum: -> { Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason }
+
+            # @!method initialize(beneficial_owner_id:, reason:)
+            #   Details when the issue is with a beneficial owner's address.
+            #
+            #   @param beneficial_owner_id [String] The ID of the beneficial owner.
+            #
+            #   @param reason [Symbol, Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::Reason] The reason the address is invalid.
+
+            # The reason the address is invalid.
+            #
+            # @see Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress#reason
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              # The address is a mailbox or other non-physical address.
+              MAILBOX_ADDRESS = :mailbox_address
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          # @see Increase::Models::Entity::Validation::Issue#beneficial_owner_identity
+          class BeneficialOwnerIdentity < Increase::Internal::Type::BaseModel
+            # @!attribute beneficial_owner_id
+            #   The ID of the beneficial owner.
+            #
+            #   @return [String]
+            required :beneficial_owner_id, String
+
+            # @!method initialize(beneficial_owner_id:)
+            #   Details when the issue is with a beneficial owner's identity verification.
+            #
+            #   @param beneficial_owner_id [String] The ID of the beneficial owner.
+          end
+
+          # The type of issue. We may add additional possible values for this enum over
+          # time; your application should be able to handle such additions gracefully.
+          #
+          # @see Increase::Models::Entity::Validation::Issue#category
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The entity's tax identifier could not be validated. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.tax_identifier).
+            ENTITY_TAX_IDENTIFIER = :entity_tax_identifier
+
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            ENTITY_ADDRESS = :entity_address
+
+            # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_IDENTITY = :beneficial_owner_identity
+
+            # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_ADDRESS = :beneficial_owner_address
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::Entity::Validation::Issue#entity_address
+          class EntityAddress < Increase::Internal::Type::BaseModel
+            # @!attribute reason
+            #   The reason the address is invalid.
+            #
+            #   @return [Symbol, Increase::Models::Entity::Validation::Issue::EntityAddress::Reason]
+            required :reason, enum: -> { Increase::Entity::Validation::Issue::EntityAddress::Reason }
+
+            # @!method initialize(reason:)
+            #   Details when the issue is with the entity's address.
+            #
+            #   @param reason [Symbol, Increase::Models::Entity::Validation::Issue::EntityAddress::Reason] The reason the address is invalid.
+
+            # The reason the address is invalid.
+            #
+            # @see Increase::Models::Entity::Validation::Issue::EntityAddress#reason
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              # The address is a mailbox or other non-physical address.
+              MAILBOX_ADDRESS = :mailbox_address
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          # @see Increase::Models::Entity::Validation::Issue#entity_tax_identifier
+          class EntityTaxIdentifier < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   Details when the issue is with the entity's tax ID.
+          end
+        end
+
+        # The validation status for the entity. If the status is `invalid`, the `issues`
+        # array will be populated.
+        #
+        # @see Increase::Models::Entity::Validation#status
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          # The submitted data is being validated.
+          PENDING = :pending
+
+          # The submitted data is valid.
+          VALID = :valid
+
+          # Additional information is required to validate the data.
+          INVALID = :invalid
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end
