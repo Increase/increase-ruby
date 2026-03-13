@@ -8,10 +8,6 @@ module Increase
           T.any(Increase::IntrafiBalance, Increase::Internal::AnyHash)
         end
 
-      # The identifier of this balance.
-      sig { returns(String) }
-      attr_accessor :id
-
       # Each entry represents a balance held at a different bank. IntraFi separates the
       # total balance across many participating banks in the network.
       sig { returns(T::Array[Increase::IntrafiBalance::Balance]) }
@@ -41,7 +37,6 @@ module Increase
       # as needed once per business day.
       sig do
         params(
-          id: String,
           balances: T::Array[Increase::IntrafiBalance::Balance::OrHash],
           currency: Increase::IntrafiBalance::Currency::OrSymbol,
           effective_date: Date,
@@ -50,8 +45,6 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The identifier of this balance.
-        id:,
         # Each entry represents a balance held at a different bank. IntraFi separates the
         # total balance across many participating banks in the network.
         balances:,
@@ -72,7 +65,6 @@ module Increase
       sig do
         override.returns(
           {
-            id: String,
             balances: T::Array[Increase::IntrafiBalance::Balance],
             currency: Increase::IntrafiBalance::Currency::TaggedSymbol,
             effective_date: Date,
@@ -92,10 +84,6 @@ module Increase
               Increase::Internal::AnyHash
             )
           end
-
-        # The identifier of this balance.
-        sig { returns(String) }
-        attr_accessor :id
 
         # The balance, in minor units of `currency`, held with this bank.
         sig { returns(Integer) }
@@ -127,7 +115,6 @@ module Increase
 
         sig do
           params(
-            id: String,
             balance: Integer,
             bank: String,
             bank_location:
@@ -138,8 +125,6 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # The identifier of this balance.
-          id:,
           # The balance, in minor units of `currency`, held with this bank.
           balance:,
           # The name of the bank holding these funds.
@@ -156,7 +141,6 @@ module Increase
         sig do
           override.returns(
             {
-              id: String,
               balance: Integer,
               bank: String,
               bank_location:

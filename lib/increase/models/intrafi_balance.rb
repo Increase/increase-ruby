@@ -4,12 +4,6 @@ module Increase
   module Models
     # @see Increase::Resources::IntrafiBalances#intrafi_balance
     class IntrafiBalance < Increase::Internal::Type::BaseModel
-      # @!attribute id
-      #   The identifier of this balance.
-      #
-      #   @return [String]
-      required :id, String
-
       # @!attribute balances
       #   Each entry represents a balance held at a different bank. IntraFi separates the
       #   total balance across many participating banks in the network.
@@ -44,15 +38,13 @@ module Increase
       #   @return [Symbol, Increase::Models::IntrafiBalance::Type]
       required :type, enum: -> { Increase::IntrafiBalance::Type }
 
-      # @!method initialize(id:, balances:, currency:, effective_date:, total_balance:, type:)
+      # @!method initialize(balances:, currency:, effective_date:, total_balance:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::IntrafiBalance} for more details.
       #
       #   When using IntraFi, each account's balance over the standard FDIC insurance
       #   amount is swept to various other institutions. Funds are rebalanced across banks
       #   as needed once per business day.
-      #
-      #   @param id [String] The identifier of this balance.
       #
       #   @param balances [Array<Increase::Models::IntrafiBalance::Balance>] Each entry represents a balance held at a different bank. IntraFi separates the
       #
@@ -65,12 +57,6 @@ module Increase
       #   @param type [Symbol, Increase::Models::IntrafiBalance::Type] A constant representing the object's type. For this resource it will always be `
 
       class Balance < Increase::Internal::Type::BaseModel
-        # @!attribute id
-        #   The identifier of this balance.
-        #
-        #   @return [String]
-        required :id, String
-
         # @!attribute balance
         #   The balance, in minor units of `currency`, held with this bank.
         #
@@ -97,11 +83,9 @@ module Increase
         #   @return [String]
         required :fdic_certificate_number, String
 
-        # @!method initialize(id:, balance:, bank:, bank_location:, fdic_certificate_number:)
+        # @!method initialize(balance:, bank:, bank_location:, fdic_certificate_number:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::IntrafiBalance::Balance} for more details.
-        #
-        #   @param id [String] The identifier of this balance.
         #
         #   @param balance [Integer] The balance, in minor units of `currency`, held with this bank.
         #
