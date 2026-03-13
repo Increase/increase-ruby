@@ -2,7 +2,6 @@ module Increase
   module Models
     type intrafi_balance =
       {
-        id: String,
         balances: ::Array[Increase::IntrafiBalance::Balance],
         currency: Increase::Models::IntrafiBalance::currency,
         effective_date: Date,
@@ -11,8 +10,6 @@ module Increase
       }
 
     class IntrafiBalance < Increase::Internal::Type::BaseModel
-      attr_accessor id: String
-
       attr_accessor balances: ::Array[Increase::IntrafiBalance::Balance]
 
       attr_accessor currency: Increase::Models::IntrafiBalance::currency
@@ -24,7 +21,6 @@ module Increase
       attr_accessor type: Increase::Models::IntrafiBalance::type_
 
       def initialize: (
-        id: String,
         balances: ::Array[Increase::IntrafiBalance::Balance],
         currency: Increase::Models::IntrafiBalance::currency,
         effective_date: Date,
@@ -33,7 +29,6 @@ module Increase
       ) -> void
 
       def to_hash: -> {
-        id: String,
         balances: ::Array[Increase::IntrafiBalance::Balance],
         currency: Increase::Models::IntrafiBalance::currency,
         effective_date: Date,
@@ -43,7 +38,6 @@ module Increase
 
       type balance =
         {
-          id: String,
           balance: Integer,
           bank: String,
           bank_location: Increase::IntrafiBalance::Balance::BankLocation?,
@@ -51,8 +45,6 @@ module Increase
         }
 
       class Balance < Increase::Internal::Type::BaseModel
-        attr_accessor id: String
-
         attr_accessor balance: Integer
 
         attr_accessor bank: String
@@ -62,7 +54,6 @@ module Increase
         attr_accessor fdic_certificate_number: String
 
         def initialize: (
-          id: String,
           balance: Integer,
           bank: String,
           bank_location: Increase::IntrafiBalance::Balance::BankLocation?,
@@ -70,7 +61,6 @@ module Increase
         ) -> void
 
         def to_hash: -> {
-          id: String,
           balance: Integer,
           bank: String,
           bank_location: Increase::IntrafiBalance::Balance::BankLocation?,
