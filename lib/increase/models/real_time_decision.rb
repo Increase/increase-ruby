@@ -118,12 +118,12 @@ module Increase
 
       # @see Increase::Models::RealTimeDecision#card_authentication
       class CardAuthentication < Increase::Internal::Type::BaseModel
-        # @!attribute access_control_server_transaction_id
+        # @!attribute access_control_server_transaction_identifier
         #   A unique identifier assigned by the Access Control Server (us) for this
         #   transaction.
         #
         #   @return [String]
-        required :access_control_server_transaction_id, String
+        required :access_control_server_transaction_identifier, String
 
         # @!attribute account_id
         #   The identifier of the Account the card belongs to.
@@ -210,12 +210,12 @@ module Increase
         #   @return [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel]
         required :device_channel, -> { Increase::RealTimeDecision::CardAuthentication::DeviceChannel }
 
-        # @!attribute directory_server_transaction_id
+        # @!attribute directory_server_transaction_identifier
         #   A unique identifier assigned by the Directory Server (the card network) for this
         #   transaction.
         #
         #   @return [String]
-        required :directory_server_transaction_id, String
+        required :directory_server_transaction_identifier, String
 
         # @!attribute merchant_acceptor_id
         #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
@@ -329,12 +329,12 @@ module Increase
         #   @return [String, nil]
         required :shipping_address_state, String, nil?: true
 
-        # @!attribute three_d_secure_server_transaction_id
+        # @!attribute three_d_secure_server_transaction_identifier
         #   A unique identifier assigned by the 3DS Server initiating the authentication
         #   attempt for this transaction.
         #
         #   @return [String]
-        required :three_d_secure_server_transaction_id, String
+        required :three_d_secure_server_transaction_identifier, String
 
         # @!attribute upcoming_card_payment_id
         #   The identifier of the Card Payment this authentication attempt will belong to.
@@ -343,13 +343,13 @@ module Increase
         #   @return [String]
         required :upcoming_card_payment_id, String
 
-        # @!method initialize(access_control_server_transaction_id:, account_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, cardholder_email:, cardholder_name:, decision:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, message_category:, prior_authenticated_card_payment_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, three_d_secure_server_transaction_id:, upcoming_card_payment_id:)
+        # @!method initialize(access_control_server_transaction_identifier:, account_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, cardholder_email:, cardholder_name:, decision:, device_channel:, directory_server_transaction_identifier:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, message_category:, prior_authenticated_card_payment_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, three_d_secure_server_transaction_identifier:, upcoming_card_payment_id:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::RealTimeDecision::CardAuthentication} for more details.
         #
         #   Fields related to a 3DS authentication attempt.
         #
-        #   @param access_control_server_transaction_id [String] A unique identifier assigned by the Access Control Server (us) for this transact
+        #   @param access_control_server_transaction_identifier [String] A unique identifier assigned by the Access Control Server (us) for this transact
         #
         #   @param account_id [String] The identifier of the Account the card belongs to.
         #
@@ -377,7 +377,7 @@ module Increase
         #
         #   @param device_channel [Increase::Models::RealTimeDecision::CardAuthentication::DeviceChannel] The device channel of the card authentication attempt.
         #
-        #   @param directory_server_transaction_id [String] A unique identifier assigned by the Directory Server (the card network) for this
+        #   @param directory_server_transaction_identifier [String] A unique identifier assigned by the Directory Server (the card network) for this
         #
         #   @param merchant_acceptor_id [String, nil] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
         #
@@ -413,7 +413,7 @@ module Increase
         #
         #   @param shipping_address_state [String, nil] The US state of the shipping address associated with this purchase.
         #
-        #   @param three_d_secure_server_transaction_id [String] A unique identifier assigned by the 3DS Server initiating the authentication att
+        #   @param three_d_secure_server_transaction_identifier [String] A unique identifier assigned by the 3DS Server initiating the authentication att
         #
         #   @param upcoming_card_payment_id [String] The identifier of the Card Payment this authentication attempt will belong to. A
 

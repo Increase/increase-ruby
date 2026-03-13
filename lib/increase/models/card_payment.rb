@@ -318,12 +318,12 @@ module Increase
           #   @return [String]
           required :id, String
 
-          # @!attribute access_control_server_transaction_id
+          # @!attribute access_control_server_transaction_identifier
           #   A unique identifier assigned by the Access Control Server (us) for this
           #   transaction.
           #
           #   @return [String]
-          required :access_control_server_transaction_id, String
+          required :access_control_server_transaction_identifier, String
 
           # @!attribute billing_address_city
           #   The city of the cardholder billing address associated with the card used for
@@ -429,12 +429,12 @@ module Increase
           #   @return [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel]
           required :device_channel, -> { Increase::CardPayment::Element::CardAuthentication::DeviceChannel }
 
-          # @!attribute directory_server_transaction_id
+          # @!attribute directory_server_transaction_identifier
           #   A unique identifier assigned by the Directory Server (the card network) for this
           #   transaction.
           #
           #   @return [String]
-          required :directory_server_transaction_id, String
+          required :directory_server_transaction_identifier, String
 
           # @!attribute merchant_acceptor_id
           #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
@@ -563,12 +563,12 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status]
           required :status, enum: -> { Increase::CardPayment::Element::CardAuthentication::Status }
 
-          # @!attribute three_d_secure_server_transaction_id
+          # @!attribute three_d_secure_server_transaction_identifier
           #   A unique identifier assigned by the 3DS Server initiating the authentication
           #   attempt for this transaction.
           #
           #   @return [String]
-          required :three_d_secure_server_transaction_id, String
+          required :three_d_secure_server_transaction_identifier, String
 
           # @!attribute type
           #   A constant representing the object's type. For this resource it will always be
@@ -577,7 +577,7 @@ module Increase
           #   @return [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
-          # @!method initialize(id:, access_control_server_transaction_id:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_id:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, message_category:, prior_authenticated_card_payment_id:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_id:, type:)
+          # @!method initialize(id:, access_control_server_transaction_identifier:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_identifier:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, message_category:, prior_authenticated_card_payment_id:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_identifier:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
           #
@@ -587,7 +587,7 @@ module Increase
           #
           #   @param id [String] The Card Authentication identifier.
           #
-          #   @param access_control_server_transaction_id [String] A unique identifier assigned by the Access Control Server (us) for this transact
+          #   @param access_control_server_transaction_identifier [String] A unique identifier assigned by the Access Control Server (us) for this transact
           #
           #   @param billing_address_city [String, nil] The city of the cardholder billing address associated with the card used for thi
           #
@@ -619,7 +619,7 @@ module Increase
           #
           #   @param device_channel [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel] The device channel of the card authentication attempt.
           #
-          #   @param directory_server_transaction_id [String] A unique identifier assigned by the Directory Server (the card network) for this
+          #   @param directory_server_transaction_identifier [String] A unique identifier assigned by the Directory Server (the card network) for this
           #
           #   @param merchant_acceptor_id [String, nil] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
           #
@@ -659,7 +659,7 @@ module Increase
           #
           #   @param status [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status] The status of the card authentication.
           #
-          #   @param three_d_secure_server_transaction_id [String] A unique identifier assigned by the 3DS Server initiating the authentication att
+          #   @param three_d_secure_server_transaction_identifier [String] A unique identifier assigned by the 3DS Server initiating the authentication att
           #
           #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type] A constant representing the object's type. For this resource it will always be `
 
