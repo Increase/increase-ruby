@@ -73,7 +73,7 @@ module Increase
 
       type card_authentication =
         {
-          access_control_server_transaction_id: String,
+          access_control_server_transaction_identifier: String,
           account_id: String,
           billing_address_city: String?,
           billing_address_country: String?,
@@ -87,7 +87,7 @@ module Increase
           cardholder_name: String?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
           device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
-          directory_server_transaction_id: String,
+          directory_server_transaction_identifier: String,
           merchant_acceptor_id: String?,
           merchant_category_code: String?,
           merchant_country: String?,
@@ -105,12 +105,12 @@ module Increase
           :shipping_address_line3 => String?,
           shipping_address_postal_code: String?,
           shipping_address_state: String?,
-          three_d_secure_server_transaction_id: String,
+          three_d_secure_server_transaction_identifier: String,
           upcoming_card_payment_id: String
         }
 
       class CardAuthentication < Increase::Internal::Type::BaseModel
-        attr_accessor access_control_server_transaction_id: String
+        attr_accessor access_control_server_transaction_identifier: String
 
         attr_accessor account_id: String
 
@@ -138,7 +138,7 @@ module Increase
 
         attr_accessor device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel
 
-        attr_accessor directory_server_transaction_id: String
+        attr_accessor directory_server_transaction_identifier: String
 
         attr_accessor merchant_acceptor_id: String?
 
@@ -174,12 +174,12 @@ module Increase
 
         attr_accessor shipping_address_state: String?
 
-        attr_accessor three_d_secure_server_transaction_id: String
+        attr_accessor three_d_secure_server_transaction_identifier: String
 
         attr_accessor upcoming_card_payment_id: String
 
         def initialize: (
-          access_control_server_transaction_id: String,
+          access_control_server_transaction_identifier: String,
           account_id: String,
           billing_address_city: String?,
           billing_address_country: String?,
@@ -193,7 +193,7 @@ module Increase
           cardholder_name: String?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
           device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
-          directory_server_transaction_id: String,
+          directory_server_transaction_identifier: String,
           merchant_acceptor_id: String?,
           merchant_category_code: String?,
           merchant_country: String?,
@@ -211,12 +211,12 @@ module Increase
           shipping_address_line3: String?,
           shipping_address_postal_code: String?,
           shipping_address_state: String?,
-          three_d_secure_server_transaction_id: String,
+          three_d_secure_server_transaction_identifier: String,
           upcoming_card_payment_id: String
         ) -> void
 
         def to_hash: -> {
-          access_control_server_transaction_id: String,
+          access_control_server_transaction_identifier: String,
           account_id: String,
           billing_address_city: String?,
           billing_address_country: String?,
@@ -230,7 +230,7 @@ module Increase
           cardholder_name: String?,
           decision: Increase::Models::RealTimeDecision::CardAuthentication::decision?,
           device_channel: Increase::RealTimeDecision::CardAuthentication::DeviceChannel,
-          directory_server_transaction_id: String,
+          directory_server_transaction_identifier: String,
           merchant_acceptor_id: String?,
           merchant_category_code: String?,
           merchant_country: String?,
@@ -248,7 +248,7 @@ module Increase
           :shipping_address_line3 => String?,
           shipping_address_postal_code: String?,
           shipping_address_state: String?,
-          three_d_secure_server_transaction_id: String,
+          three_d_secure_server_transaction_identifier: String,
           upcoming_card_payment_id: String
         }
 

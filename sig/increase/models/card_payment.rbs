@@ -210,7 +210,7 @@ module Increase
         type card_authentication =
           {
             id: String,
-            access_control_server_transaction_id: String,
+            access_control_server_transaction_identifier: String,
             billing_address_city: String?,
             billing_address_country: String?,
             :billing_address_line1 => String?,
@@ -226,7 +226,7 @@ module Increase
             created_at: Time,
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
             device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
-            directory_server_transaction_id: String,
+            directory_server_transaction_identifier: String,
             merchant_acceptor_id: String?,
             merchant_category_code: String?,
             merchant_country: String?,
@@ -246,14 +246,14 @@ module Increase
             shipping_address_postal_code: String?,
             shipping_address_state: String?,
             status: Increase::Models::CardPayment::Element::CardAuthentication::status,
-            three_d_secure_server_transaction_id: String,
+            three_d_secure_server_transaction_identifier: String,
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           }
 
         class CardAuthentication < Increase::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor access_control_server_transaction_id: String
+          attr_accessor access_control_server_transaction_identifier: String
 
           attr_accessor billing_address_city: String?
 
@@ -285,7 +285,7 @@ module Increase
 
           attr_accessor device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel
 
-          attr_accessor directory_server_transaction_id: String
+          attr_accessor directory_server_transaction_identifier: String
 
           attr_accessor merchant_acceptor_id: String?
 
@@ -325,13 +325,13 @@ module Increase
 
           attr_accessor status: Increase::Models::CardPayment::Element::CardAuthentication::status
 
-          attr_accessor three_d_secure_server_transaction_id: String
+          attr_accessor three_d_secure_server_transaction_identifier: String
 
           attr_accessor type: Increase::Models::CardPayment::Element::CardAuthentication::type_
 
           def initialize: (
             id: String,
-            access_control_server_transaction_id: String,
+            access_control_server_transaction_identifier: String,
             billing_address_city: String?,
             billing_address_country: String?,
             billing_address_line1: String?,
@@ -347,7 +347,7 @@ module Increase
             created_at: Time,
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
             device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
-            directory_server_transaction_id: String,
+            directory_server_transaction_identifier: String,
             merchant_acceptor_id: String?,
             merchant_category_code: String?,
             merchant_country: String?,
@@ -367,13 +367,13 @@ module Increase
             shipping_address_postal_code: String?,
             shipping_address_state: String?,
             status: Increase::Models::CardPayment::Element::CardAuthentication::status,
-            three_d_secure_server_transaction_id: String,
+            three_d_secure_server_transaction_identifier: String,
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           ) -> void
 
           def to_hash: -> {
             id: String,
-            access_control_server_transaction_id: String,
+            access_control_server_transaction_identifier: String,
             billing_address_city: String?,
             billing_address_country: String?,
             :billing_address_line1 => String?,
@@ -389,7 +389,7 @@ module Increase
             created_at: Time,
             deny_reason: Increase::Models::CardPayment::Element::CardAuthentication::deny_reason?,
             device_channel: Increase::CardPayment::Element::CardAuthentication::DeviceChannel,
-            directory_server_transaction_id: String,
+            directory_server_transaction_identifier: String,
             merchant_acceptor_id: String?,
             merchant_category_code: String?,
             merchant_country: String?,
@@ -409,7 +409,7 @@ module Increase
             shipping_address_postal_code: String?,
             shipping_address_state: String?,
             status: Increase::Models::CardPayment::Element::CardAuthentication::status,
-            three_d_secure_server_transaction_id: String,
+            three_d_secure_server_transaction_identifier: String,
             type: Increase::Models::CardPayment::Element::CardAuthentication::type_
           }
 
