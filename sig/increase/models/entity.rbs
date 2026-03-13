@@ -18,7 +18,8 @@ module Increase
         terms_agreements: ::Array[Increase::Entity::TermsAgreement],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
-        type: Increase::Models::Entity::type_
+        type: Increase::Models::Entity::type_,
+        validation: Increase::Entity::Validation?
       }
 
     class Entity < Increase::Internal::Type::BaseModel
@@ -56,6 +57,8 @@ module Increase
 
       attr_accessor type: Increase::Models::Entity::type_
 
+      attr_accessor validation: Increase::Entity::Validation?
+
       def initialize: (
         id: String,
         corporation: Increase::Entity::Corporation?,
@@ -73,7 +76,8 @@ module Increase
         terms_agreements: ::Array[Increase::Entity::TermsAgreement],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
-        type: Increase::Models::Entity::type_
+        type: Increase::Models::Entity::type_,
+        validation: Increase::Entity::Validation?
       ) -> void
 
       def to_hash: -> {
@@ -93,7 +97,8 @@ module Increase
         terms_agreements: ::Array[Increase::Entity::TermsAgreement],
         third_party_verification: Increase::Entity::ThirdPartyVerification?,
         trust: Increase::Entity::Trust?,
-        type: Increase::Models::Entity::type_
+        type: Increase::Models::Entity::type_,
+        validation: Increase::Entity::Validation?
       }
 
       type corporation =
@@ -1254,6 +1259,185 @@ module Increase
         ENTITY: :entity
 
         def self?.values: -> ::Array[Increase::Models::Entity::type_]
+      end
+
+      type validation =
+        {
+          issues: ::Array[Increase::Entity::Validation::Issue],
+          status: Increase::Models::Entity::Validation::status
+        }
+
+      class Validation < Increase::Internal::Type::BaseModel
+        attr_accessor issues: ::Array[Increase::Entity::Validation::Issue]
+
+        attr_accessor status: Increase::Models::Entity::Validation::status
+
+        def initialize: (
+          issues: ::Array[Increase::Entity::Validation::Issue],
+          status: Increase::Models::Entity::Validation::status
+        ) -> void
+
+        def to_hash: -> {
+          issues: ::Array[Increase::Entity::Validation::Issue],
+          status: Increase::Models::Entity::Validation::status
+        }
+
+        type issue =
+          {
+            beneficial_owner_address: Increase::Entity::Validation::Issue::BeneficialOwnerAddress?,
+            beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?,
+            category: Increase::Models::Entity::Validation::Issue::category,
+            entity_address: Increase::Entity::Validation::Issue::EntityAddress?,
+            entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
+          }
+
+        class Issue < Increase::Internal::Type::BaseModel
+          attr_accessor beneficial_owner_address: Increase::Entity::Validation::Issue::BeneficialOwnerAddress?
+
+          attr_accessor beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?
+
+          attr_accessor category: Increase::Models::Entity::Validation::Issue::category
+
+          attr_accessor entity_address: Increase::Entity::Validation::Issue::EntityAddress?
+
+          attr_accessor entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
+
+          def initialize: (
+            beneficial_owner_address: Increase::Entity::Validation::Issue::BeneficialOwnerAddress?,
+            beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?,
+            category: Increase::Models::Entity::Validation::Issue::category,
+            entity_address: Increase::Entity::Validation::Issue::EntityAddress?,
+            entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
+          ) -> void
+
+          def to_hash: -> {
+            beneficial_owner_address: Increase::Entity::Validation::Issue::BeneficialOwnerAddress?,
+            beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?,
+            category: Increase::Models::Entity::Validation::Issue::category,
+            entity_address: Increase::Entity::Validation::Issue::EntityAddress?,
+            entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
+          }
+
+          type beneficial_owner_address =
+            {
+              beneficial_owner_id: String,
+              reason: Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::reason
+            }
+
+          class BeneficialOwnerAddress < Increase::Internal::Type::BaseModel
+            attr_accessor beneficial_owner_id: String
+
+            attr_accessor reason: Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::reason
+
+            def initialize: (
+              beneficial_owner_id: String,
+              reason: Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::reason
+            ) -> void
+
+            def to_hash: -> {
+              beneficial_owner_id: String,
+              reason: Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::reason
+            }
+
+            type reason = :mailbox_address
+
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              # The address is a mailbox or other non-physical address.
+              MAILBOX_ADDRESS: :mailbox_address
+
+              def self?.values: -> ::Array[Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress::reason]
+            end
+          end
+
+          type beneficial_owner_identity = { beneficial_owner_id: String }
+
+          class BeneficialOwnerIdentity < Increase::Internal::Type::BaseModel
+            attr_accessor beneficial_owner_id: String
+
+            def initialize: (beneficial_owner_id: String) -> void
+
+            def to_hash: -> { beneficial_owner_id: String }
+          end
+
+          type category =
+            :entity_tax_identifier
+            | :entity_address
+            | :beneficial_owner_identity
+            | :beneficial_owner_address
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The entity's tax identifier could not be validated. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.tax_identifier).
+            ENTITY_TAX_IDENTIFIER: :entity_tax_identifier
+
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            ENTITY_ADDRESS: :entity_address
+
+            # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_IDENTITY: :beneficial_owner_identity
+
+            # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_ADDRESS: :beneficial_owner_address
+
+            def self?.values: -> ::Array[Increase::Models::Entity::Validation::Issue::category]
+          end
+
+          type entity_address =
+            {
+              reason: Increase::Models::Entity::Validation::Issue::EntityAddress::reason
+            }
+
+          class EntityAddress < Increase::Internal::Type::BaseModel
+            attr_accessor reason: Increase::Models::Entity::Validation::Issue::EntityAddress::reason
+
+            def initialize: (
+              reason: Increase::Models::Entity::Validation::Issue::EntityAddress::reason
+            ) -> void
+
+            def to_hash: -> {
+              reason: Increase::Models::Entity::Validation::Issue::EntityAddress::reason
+            }
+
+            type reason = :mailbox_address
+
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              # The address is a mailbox or other non-physical address.
+              MAILBOX_ADDRESS: :mailbox_address
+
+              def self?.values: -> ::Array[Increase::Models::Entity::Validation::Issue::EntityAddress::reason]
+            end
+          end
+
+          type entity_tax_identifier = {  }
+
+          class EntityTaxIdentifier < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+        end
+
+        type status = :pending | :valid | :invalid
+
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          # The submitted data is being validated.
+          PENDING: :pending
+
+          # The submitted data is valid.
+          VALID: :valid
+
+          # Additional information is required to validate the data.
+          INVALID: :invalid
+
+          def self?.values: -> ::Array[Increase::Models::Entity::Validation::status]
+        end
       end
     end
   end

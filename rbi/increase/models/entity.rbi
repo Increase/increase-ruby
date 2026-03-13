@@ -131,8 +131,18 @@ module Increase
       sig { returns(Increase::Entity::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The validation results for the entity.
+      sig { returns(T.nilable(Increase::Entity::Validation)) }
+      attr_reader :validation
+
+      sig do
+        params(validation: T.nilable(Increase::Entity::Validation::OrHash)).void
+      end
+      attr_writer :validation
+
       # Entities are the legal entities that own accounts. They can be people,
-      # corporations, partnerships, government authorities, or trusts.
+      # corporations, partnerships, government authorities, or trusts. To learn more,
+      # see [Entities](/documentation/entities).
       sig do
         params(
           id: String,
@@ -154,7 +164,8 @@ module Increase
           third_party_verification:
             T.nilable(Increase::Entity::ThirdPartyVerification::OrHash),
           trust: T.nilable(Increase::Entity::Trust::OrHash),
-          type: Increase::Entity::Type::OrSymbol
+          type: Increase::Entity::Type::OrSymbol,
+          validation: T.nilable(Increase::Entity::Validation::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -205,7 +216,9 @@ module Increase
         trust:,
         # A constant representing the object's type. For this resource it will always be
         # `entity`.
-        type:
+        type:,
+        # The validation results for the entity.
+        validation:
       )
       end
 
@@ -231,7 +244,8 @@ module Increase
             third_party_verification:
               T.nilable(Increase::Entity::ThirdPartyVerification),
             trust: T.nilable(Increase::Entity::Trust),
-            type: Increase::Entity::Type::TaggedSymbol
+            type: Increase::Entity::Type::TaggedSymbol,
+            validation: T.nilable(Increase::Entity::Validation)
           }
         )
       end
@@ -2718,6 +2732,486 @@ module Increase
 
         sig { override.returns(T::Array[Increase::Entity::Type::TaggedSymbol]) }
         def self.values
+        end
+      end
+
+      class Validation < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Entity::Validation, Increase::Internal::AnyHash)
+          end
+
+        # The list of issues that need to be addressed.
+        sig { returns(T::Array[Increase::Entity::Validation::Issue]) }
+        attr_accessor :issues
+
+        # The validation status for the entity. If the status is `invalid`, the `issues`
+        # array will be populated.
+        sig { returns(Increase::Entity::Validation::Status::TaggedSymbol) }
+        attr_accessor :status
+
+        # The validation results for the entity.
+        sig do
+          params(
+            issues: T::Array[Increase::Entity::Validation::Issue::OrHash],
+            status: Increase::Entity::Validation::Status::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The list of issues that need to be addressed.
+          issues:,
+          # The validation status for the entity. If the status is `invalid`, the `issues`
+          # array will be populated.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              issues: T::Array[Increase::Entity::Validation::Issue],
+              status: Increase::Entity::Validation::Status::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Issue < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Entity::Validation::Issue,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Details when the issue is with a beneficial owner's address.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Entity::Validation::Issue::BeneficialOwnerAddress
+              )
+            )
+          end
+          attr_reader :beneficial_owner_address
+
+          sig do
+            params(
+              beneficial_owner_address:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerAddress::OrHash
+                )
+            ).void
+          end
+          attr_writer :beneficial_owner_address
+
+          # Details when the issue is with a beneficial owner's identity verification.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Entity::Validation::Issue::BeneficialOwnerIdentity
+              )
+            )
+          end
+          attr_reader :beneficial_owner_identity
+
+          sig do
+            params(
+              beneficial_owner_identity:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerIdentity::OrHash
+                )
+            ).void
+          end
+          attr_writer :beneficial_owner_identity
+
+          # The type of issue. We may add additional possible values for this enum over
+          # time; your application should be able to handle such additions gracefully.
+          sig do
+            returns(Increase::Entity::Validation::Issue::Category::TaggedSymbol)
+          end
+          attr_accessor :category
+
+          # Details when the issue is with the entity's address.
+          sig do
+            returns(
+              T.nilable(Increase::Entity::Validation::Issue::EntityAddress)
+            )
+          end
+          attr_reader :entity_address
+
+          sig do
+            params(
+              entity_address:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::EntityAddress::OrHash
+                )
+            ).void
+          end
+          attr_writer :entity_address
+
+          # Details when the issue is with the entity's tax ID.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Entity::Validation::Issue::EntityTaxIdentifier
+              )
+            )
+          end
+          attr_reader :entity_tax_identifier
+
+          sig do
+            params(
+              entity_tax_identifier:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::EntityTaxIdentifier::OrHash
+                )
+            ).void
+          end
+          attr_writer :entity_tax_identifier
+
+          sig do
+            params(
+              beneficial_owner_address:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerAddress::OrHash
+                ),
+              beneficial_owner_identity:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerIdentity::OrHash
+                ),
+              category: Increase::Entity::Validation::Issue::Category::OrSymbol,
+              entity_address:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::EntityAddress::OrHash
+                ),
+              entity_tax_identifier:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::EntityTaxIdentifier::OrHash
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Details when the issue is with a beneficial owner's address.
+            beneficial_owner_address:,
+            # Details when the issue is with a beneficial owner's identity verification.
+            beneficial_owner_identity:,
+            # The type of issue. We may add additional possible values for this enum over
+            # time; your application should be able to handle such additions gracefully.
+            category:,
+            # Details when the issue is with the entity's address.
+            entity_address:,
+            # Details when the issue is with the entity's tax ID.
+            entity_tax_identifier:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                beneficial_owner_address:
+                  T.nilable(
+                    Increase::Entity::Validation::Issue::BeneficialOwnerAddress
+                  ),
+                beneficial_owner_identity:
+                  T.nilable(
+                    Increase::Entity::Validation::Issue::BeneficialOwnerIdentity
+                  ),
+                category:
+                  Increase::Entity::Validation::Issue::Category::TaggedSymbol,
+                entity_address:
+                  T.nilable(Increase::Entity::Validation::Issue::EntityAddress),
+                entity_tax_identifier:
+                  T.nilable(
+                    Increase::Entity::Validation::Issue::EntityTaxIdentifier
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class BeneficialOwnerAddress < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerAddress,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The ID of the beneficial owner.
+            sig { returns(String) }
+            attr_accessor :beneficial_owner_id
+
+            # The reason the address is invalid.
+            sig do
+              returns(
+                Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason::TaggedSymbol
+              )
+            end
+            attr_accessor :reason
+
+            # Details when the issue is with a beneficial owner's address.
+            sig do
+              params(
+                beneficial_owner_id: String,
+                reason:
+                  Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The ID of the beneficial owner.
+              beneficial_owner_id:,
+              # The reason the address is invalid.
+              reason:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  beneficial_owner_id: String,
+                  reason:
+                    Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The reason the address is invalid.
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The address is a mailbox or other non-physical address.
+              MAILBOX_ADDRESS =
+                T.let(
+                  :mailbox_address,
+                  Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Entity::Validation::Issue::BeneficialOwnerAddress::Reason::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class BeneficialOwnerIdentity < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerIdentity,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The ID of the beneficial owner.
+            sig { returns(String) }
+            attr_accessor :beneficial_owner_id
+
+            # Details when the issue is with a beneficial owner's identity verification.
+            sig do
+              params(beneficial_owner_id: String).returns(T.attached_class)
+            end
+            def self.new(
+              # The ID of the beneficial owner.
+              beneficial_owner_id:
+            )
+            end
+
+            sig { override.returns({ beneficial_owner_id: String }) }
+            def to_hash
+            end
+          end
+
+          # The type of issue. We may add additional possible values for this enum over
+          # time; your application should be able to handle such additions gracefully.
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, Increase::Entity::Validation::Issue::Category)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The entity's tax identifier could not be validated. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.tax_identifier).
+            ENTITY_TAX_IDENTIFIER =
+              T.let(
+                :entity_tax_identifier,
+                Increase::Entity::Validation::Issue::Category::TaggedSymbol
+              )
+
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            ENTITY_ADDRESS =
+              T.let(
+                :entity_address,
+                Increase::Entity::Validation::Issue::Category::TaggedSymbol
+              )
+
+            # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_IDENTITY =
+              T.let(
+                :beneficial_owner_identity,
+                Increase::Entity::Validation::Issue::Category::TaggedSymbol
+              )
+
+            # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_ADDRESS =
+              T.let(
+                :beneficial_owner_address,
+                Increase::Entity::Validation::Issue::Category::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Entity::Validation::Issue::Category::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class EntityAddress < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Validation::Issue::EntityAddress,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The reason the address is invalid.
+            sig do
+              returns(
+                Increase::Entity::Validation::Issue::EntityAddress::Reason::TaggedSymbol
+              )
+            end
+            attr_accessor :reason
+
+            # Details when the issue is with the entity's address.
+            sig do
+              params(
+                reason:
+                  Increase::Entity::Validation::Issue::EntityAddress::Reason::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The reason the address is invalid.
+              reason:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  reason:
+                    Increase::Entity::Validation::Issue::EntityAddress::Reason::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The reason the address is invalid.
+            module Reason
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Entity::Validation::Issue::EntityAddress::Reason
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The address is a mailbox or other non-physical address.
+              MAILBOX_ADDRESS =
+                T.let(
+                  :mailbox_address,
+                  Increase::Entity::Validation::Issue::EntityAddress::Reason::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Entity::Validation::Issue::EntityAddress::Reason::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class EntityTaxIdentifier < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Validation::Issue::EntityTaxIdentifier,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Details when the issue is with the entity's tax ID.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+        end
+
+        # The validation status for the entity. If the status is `invalid`, the `issues`
+        # array will be populated.
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Increase::Entity::Validation::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The submitted data is being validated.
+          PENDING =
+            T.let(:pending, Increase::Entity::Validation::Status::TaggedSymbol)
+
+          # The submitted data is valid.
+          VALID =
+            T.let(:valid, Increase::Entity::Validation::Status::TaggedSymbol)
+
+          # Additional information is required to validate the data.
+          INVALID =
+            T.let(:invalid, Increase::Entity::Validation::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Increase::Entity::Validation::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
     end
