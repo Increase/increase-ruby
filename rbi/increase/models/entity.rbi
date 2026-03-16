@@ -131,7 +131,8 @@ module Increase
       sig { returns(Increase::Entity::Type::TaggedSymbol) }
       attr_accessor :type
 
-      # The validation results for the entity.
+      # The validation results for the entity. Learn more about
+      # [validations](/documentation/entity-validation).
       sig { returns(T.nilable(Increase::Entity::Validation)) }
       attr_reader :validation
 
@@ -217,7 +218,8 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `entity`.
         type:,
-        # The validation results for the entity.
+        # The validation results for the entity. Learn more about
+        # [validations](/documentation/entity-validation).
         validation:
       )
       end
@@ -2750,7 +2752,8 @@ module Increase
         sig { returns(Increase::Entity::Validation::Status::TaggedSymbol) }
         attr_accessor :status
 
-        # The validation results for the entity.
+        # The validation results for the entity. Learn more about
+        # [validations](/documentation/entity-validation).
         sig do
           params(
             issues: T::Array[Increase::Entity::Validation::Issue::OrHash],

@@ -122,7 +122,8 @@ module Increase
       required :type, enum: -> { Increase::Entity::Type }
 
       # @!attribute validation
-      #   The validation results for the entity.
+      #   The validation results for the entity. Learn more about
+      #   [validations](/documentation/entity-validation).
       #
       #   @return [Increase::Models::Entity::Validation, nil]
       required :validation, -> { Increase::Entity::Validation }, nil?: true
@@ -169,7 +170,7 @@ module Increase
       #
       #   @param type [Symbol, Increase::Models::Entity::Type] A constant representing the object's type. For this resource it will always be `
       #
-      #   @param validation [Increase::Models::Entity::Validation, nil] The validation results for the entity.
+      #   @param validation [Increase::Models::Entity::Validation, nil] The validation results for the entity. Learn more about [validations](/documenta
 
       # @see Increase::Models::Entity#corporation
       class Corporation < Increase::Internal::Type::BaseModel
@@ -1615,7 +1616,8 @@ module Increase
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Entity::Validation} for more details.
         #
-        #   The validation results for the entity.
+        #   The validation results for the entity. Learn more about
+        #   [validations](/documentation/entity-validation).
         #
         #   @param issues [Array<Increase::Models::Entity::Validation::Issue>] The list of issues that need to be addressed.
         #
