@@ -653,6 +653,9 @@ module Increase
           # The transaction is not allowed at this terminal.
           TRANSACTION_NOT_ALLOWED_AT_TERMINAL = :transaction_not_allowed_at_terminal
 
+          # The transaction is not supported or has been blocked by the issuer.
+          TRANSACTION_NOT_SUPPORTED_OR_BLOCKED_BY_ISSUER = :transaction_not_supported_or_blocked_by_issuer
+
           # The transaction has been flagged as suspected fraud and cannot be processed.
           SUSPECTED_FRAUD = :suspected_fraud
 

@@ -641,6 +641,13 @@ module Increase
                   Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
                 )
 
+              # The transaction is not supported or has been blocked by the issuer.
+              TRANSACTION_NOT_SUPPORTED_OR_BLOCKED_BY_ISSUER =
+                T.let(
+                  :transaction_not_supported_or_blocked_by_issuer,
+                  Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason::TaggedSymbol
+                )
+
               # The transaction has been flagged as suspected fraud and cannot be processed.
               SUSPECTED_FRAUD =
                 T.let(
