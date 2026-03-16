@@ -20,6 +20,7 @@ module Increase
         merchant_name: String,
         merchant_postal_code: String,
         merchant_state: String,
+        route: Increase::Models::CardValidation::route,
         status: Increase::Models::CardValidation::status,
         submission: Increase::CardValidation::Submission?,
         type: Increase::Models::CardValidation::type_
@@ -62,6 +63,8 @@ module Increase
 
       attr_accessor merchant_state: String
 
+      attr_accessor route: Increase::Models::CardValidation::route
+
       attr_accessor status: Increase::Models::CardValidation::status
 
       attr_accessor submission: Increase::CardValidation::Submission?
@@ -87,6 +90,7 @@ module Increase
         merchant_name: String,
         merchant_postal_code: String,
         merchant_state: String,
+        route: Increase::Models::CardValidation::route,
         status: Increase::Models::CardValidation::status,
         submission: Increase::CardValidation::Submission?,
         type: Increase::Models::CardValidation::type_
@@ -111,6 +115,7 @@ module Increase
         merchant_name: String,
         merchant_postal_code: String,
         merchant_state: String,
+        route: Increase::Models::CardValidation::route,
         status: Increase::Models::CardValidation::status,
         submission: Increase::CardValidation::Submission?,
         type: Increase::Models::CardValidation::type_
@@ -568,6 +573,20 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::CardValidation::Decline::reason]
         end
+      end
+
+      type route = :visa | :mastercard
+
+      module Route
+        extend Increase::Internal::Type::Enum
+
+        # Visa and Interlink
+        VISA: :visa
+
+        # Mastercard and Maestro
+        MASTERCARD: :mastercard
+
+        def self?.values: -> ::Array[Increase::Models::CardValidation::route]
       end
 
       type status =

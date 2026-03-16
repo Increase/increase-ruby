@@ -136,6 +136,12 @@ module Increase
       #   @return [String]
       required :recipient_name, String
 
+      # @!attribute route
+      #   The card network route used for the transfer.
+      #
+      #   @return [Symbol, Increase::Models::CardPushTransfer::Route]
+      required :route, enum: -> { Increase::CardPushTransfer::Route }
+
       # @!attribute sender_address_city
       #   The city of the sender.
       #
@@ -192,7 +198,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPushTransfer::Type]
       required :type, enum: -> { Increase::CardPushTransfer::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, card_token_id:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, card_token_id:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, route:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardPushTransfer} for more details.
       #
@@ -235,6 +241,8 @@ module Increase
       #   @param presentment_amount [Increase::Models::CardPushTransfer::PresentmentAmount] The amount that was transferred. The receiving bank will have converted this to
       #
       #   @param recipient_name [String] The name of the funds recipient.
+      #
+      #   @param route [Symbol, Increase::Models::CardPushTransfer::Route] The card network route used for the transfer.
       #
       #   @param sender_address_city [String] The city of the sender.
       #
@@ -1224,6 +1232,22 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # The card network route used for the transfer.
+      #
+      # @see Increase::Models::CardPushTransfer#route
+      module Route
+        extend Increase::Internal::Type::Enum
+
+        # Visa and Interlink
+        VISA = :visa
+
+        # Mastercard and Maestro
+        MASTERCARD = :mastercard
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The lifecycle status of the transfer.

@@ -149,6 +149,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :recipient_name
 
+      # The card network route used for the transfer.
+      sig { returns(Increase::CardPushTransfer::Route::TaggedSymbol) }
+      attr_accessor :route
+
       # The city of the sender.
       sig { returns(String) }
       attr_accessor :sender_address_city
@@ -219,6 +223,7 @@ module Increase
           presentment_amount:
             Increase::CardPushTransfer::PresentmentAmount::OrHash,
           recipient_name: String,
+          route: Increase::CardPushTransfer::Route::OrSymbol,
           sender_address_city: String,
           sender_address_line1: String,
           sender_address_postal_code: String,
@@ -286,6 +291,8 @@ module Increase
         presentment_amount:,
         # The name of the funds recipient.
         recipient_name:,
+        # The card network route used for the transfer.
+        route:,
         # The city of the sender.
         sender_address_city:,
         # The address line 1 of the sender.
@@ -332,6 +339,7 @@ module Increase
             merchant_state: String,
             presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
             recipient_name: String,
+            route: Increase::CardPushTransfer::Route::TaggedSymbol,
             sender_address_city: String,
             sender_address_line1: String,
             sender_address_postal_code: String,
@@ -2472,6 +2480,30 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      # The card network route used for the transfer.
+      module Route
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::CardPushTransfer::Route) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Visa and Interlink
+        VISA = T.let(:visa, Increase::CardPushTransfer::Route::TaggedSymbol)
+
+        # Mastercard and Maestro
+        MASTERCARD =
+          T.let(:mastercard, Increase::CardPushTransfer::Route::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[Increase::CardPushTransfer::Route::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 

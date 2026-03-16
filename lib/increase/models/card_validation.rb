@@ -119,6 +119,12 @@ module Increase
       #   @return [String]
       required :merchant_state, String
 
+      # @!attribute route
+      #   The card network route used for the validation.
+      #
+      #   @return [Symbol, Increase::Models::CardValidation::Route]
+      required :route, enum: -> { Increase::CardValidation::Route }
+
       # @!attribute status
       #   The lifecycle status of the validation.
       #
@@ -139,7 +145,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardValidation::Type]
       required :type, enum: -> { Increase::CardValidation::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, card_token_id:, cardholder_first_name:, cardholder_last_name:, cardholder_middle_name:, cardholder_postal_code:, cardholder_street_address:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_postal_code:, merchant_state:, status:, submission:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, card_token_id:, cardholder_first_name:, cardholder_last_name:, cardholder_middle_name:, cardholder_postal_code:, cardholder_street_address:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_postal_code:, merchant_state:, route:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardValidation} for more details.
       #
@@ -181,6 +187,8 @@ module Increase
       #   @param merchant_postal_code [String] The postal code for the merchant’s (typically your business’s) location.
       #
       #   @param merchant_state [String] The U.S. state where the merchant (typically your business) is located.
+      #
+      #   @param route [Symbol, Increase::Models::CardValidation::Route] The card network route used for the validation.
       #
       #   @param status [Symbol, Increase::Models::CardValidation::Status] The lifecycle status of the validation.
       #
@@ -686,6 +694,22 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # The card network route used for the validation.
+      #
+      # @see Increase::Models::CardValidation#route
+      module Route
+        extend Increase::Internal::Type::Enum
+
+        # Visa and Interlink
+        VISA = :visa
+
+        # Mastercard and Maestro
+        MASTERCARD = :mastercard
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # The lifecycle status of the validation.
