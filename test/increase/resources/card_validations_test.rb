@@ -39,6 +39,7 @@ class Increase::Test::Resources::CardValidationsTest < Increase::Test::ResourceT
         merchant_name: String,
         merchant_postal_code: String,
         merchant_state: String,
+        route: Increase::CardValidation::Route,
         status: Increase::CardValidation::Status,
         submission: Increase::CardValidation::Submission | nil,
         type: Increase::CardValidation::Type
@@ -73,6 +74,7 @@ class Increase::Test::Resources::CardValidationsTest < Increase::Test::ResourceT
         merchant_name: String,
         merchant_postal_code: String,
         merchant_state: String,
+        route: Increase::CardValidation::Route,
         status: Increase::CardValidation::Status,
         submission: Increase::CardValidation::Submission | nil,
         type: Increase::CardValidation::Type
@@ -114,6 +116,7 @@ class Increase::Test::Resources::CardValidationsTest < Increase::Test::ResourceT
         merchant_name: String,
         merchant_postal_code: String,
         merchant_state: String,
+        route: Increase::CardValidation::Route,
         status: Increase::CardValidation::Status,
         submission: Increase::CardValidation::Submission | nil,
         type: Increase::CardValidation::Type

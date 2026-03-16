@@ -21,6 +21,7 @@ module Increase
         merchant_state: String,
         presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
         recipient_name: String,
+        route: Increase::Models::CardPushTransfer::route,
         sender_address_city: String,
         :sender_address_line1 => String,
         sender_address_postal_code: String,
@@ -71,6 +72,8 @@ module Increase
 
       attr_accessor recipient_name: String
 
+      attr_accessor route: Increase::Models::CardPushTransfer::route
+
       attr_accessor sender_address_city: String
 
       attr_accessor sender_address_line1: String
@@ -109,6 +112,7 @@ module Increase
         merchant_state: String,
         presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
         recipient_name: String,
+        route: Increase::Models::CardPushTransfer::route,
         sender_address_city: String,
         sender_address_line1: String,
         sender_address_postal_code: String,
@@ -140,6 +144,7 @@ module Increase
         merchant_state: String,
         presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
         recipient_name: String,
+        route: Increase::Models::CardPushTransfer::route,
         sender_address_city: String,
         :sender_address_line1 => String,
         sender_address_postal_code: String,
@@ -1240,6 +1245,20 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::CardPushTransfer::PresentmentAmount::currency]
         end
+      end
+
+      type route = :visa | :mastercard
+
+      module Route
+        extend Increase::Internal::Type::Enum
+
+        # Visa and Interlink
+        VISA: :visa
+
+        # Mastercard and Maestro
+        MASTERCARD: :mastercard
+
+        def self?.values: -> ::Array[Increase::Models::CardPushTransfer::route]
       end
 
       type status =
