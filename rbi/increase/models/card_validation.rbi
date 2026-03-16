@@ -108,6 +108,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :merchant_state
 
+      # The card network route used for the validation.
+      sig { returns(Increase::CardValidation::Route::TaggedSymbol) }
+      attr_accessor :route
+
       # The lifecycle status of the validation.
       sig { returns(Increase::CardValidation::Status::TaggedSymbol) }
       attr_accessor :status
@@ -151,6 +155,7 @@ module Increase
           merchant_name: String,
           merchant_postal_code: String,
           merchant_state: String,
+          route: Increase::CardValidation::Route::OrSymbol,
           status: Increase::CardValidation::Status::OrSymbol,
           submission: T.nilable(Increase::CardValidation::Submission::OrHash),
           type: Increase::CardValidation::Type::OrSymbol
@@ -200,6 +205,8 @@ module Increase
         merchant_postal_code:,
         # The U.S. state where the merchant (typically your business) is located.
         merchant_state:,
+        # The card network route used for the validation.
+        route:,
         # The lifecycle status of the validation.
         status:,
         # After the validation is submitted to the card network, this will contain
@@ -232,6 +239,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String,
             merchant_state: String,
+            route: Increase::CardValidation::Route::TaggedSymbol,
             status: Increase::CardValidation::Status::TaggedSymbol,
             submission: T.nilable(Increase::CardValidation::Submission),
             type: Increase::CardValidation::Type::TaggedSymbol
@@ -1316,6 +1324,30 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      # The card network route used for the validation.
+      module Route
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::CardValidation::Route) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Visa and Interlink
+        VISA = T.let(:visa, Increase::CardValidation::Route::TaggedSymbol)
+
+        # Mastercard and Maestro
+        MASTERCARD =
+          T.let(:mastercard, Increase::CardValidation::Route::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[Increase::CardValidation::Route::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 
