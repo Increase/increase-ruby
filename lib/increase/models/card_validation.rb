@@ -712,9 +712,6 @@ module Increase
           # The previous message associated with the transaction could not be located.
           UNABLE_TO_LOCATE_PREVIOUS_MESSAGE = :unable_to_locate_previous_message
 
-          # The data in the transaction is inconsistent with the original message.
-          DATA_INCONSISTENT_WITH_ORIGINAL_MESSAGE = :data_inconsistent_with_original_message
-
           # An error was found with the PIN associated with the transaction.
           PIN_ERROR_FOUND = :pin_error_found
 
@@ -738,15 +735,6 @@ module Increase
           TRANSACTION_AMOUNT_EXCEEDS_PRE_AUTHORIZED_APPROVAL_AMOUNT =
             :transaction_amount_exceeds_pre_authorized_approval_amount
 
-          # The biller information provided is invalid.
-          INVALID_BILLER_INFORMATION = :invalid_biller_information
-
-          # The PIN change request has been declined.
-          PIN_CHANGE_REQUEST_DECLINED = :pin_change_request_declined
-
-          # The PIN provided is considered unsafe.
-          UNSAFE_PIN = :unsafe_pin
-
           # The transaction does not qualify for Visa PIN processing.
           TRANSACTION_DOES_NOT_QUALIFY_FOR_VISA_PIN = :transaction_does_not_qualify_for_visa_pin
 
@@ -762,9 +750,6 @@ module Increase
           # The merchant category code was used incorrectly; correct it and reattempt the transaction.
           INVALID_USE_OF_MERCHANT_CATEGORY_CODE_CORRECT_AND_REATTEMPT =
             :invalid_use_of_merchant_category_code_correct_and_reattempt
-
-          # The transaction should be forwarded to the issuer for processing.
-          FORWARD_TO_ISSUER = :forward_to_issuer
 
           # The card authentication process has failed.
           CARD_AUTHENTICATION_FAILED = :card_authentication_failed
