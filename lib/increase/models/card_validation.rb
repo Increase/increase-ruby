@@ -652,6 +652,9 @@ module Increase
           TRANSACTION_DOES_NOT_FULFILL_ANTI_MONEY_LAUNDERING_REQUIREMENT =
             :transaction_does_not_fulfill_anti_money_laundering_requirement
 
+          # The transaction was blocked by the cardholder.
+          BLOCKED_BY_CARDHOLDER = :blocked_by_cardholder
+
           # The first use of the card has been blocked by the issuer.
           BLOCKED_FIRST_USE = :blocked_first_use
 
