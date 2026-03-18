@@ -1226,6 +1226,13 @@ module Increase
               Increase::CardValidation::Decline::Reason::TaggedSymbol
             )
 
+          # The transaction was blocked by the cardholder.
+          BLOCKED_BY_CARDHOLDER =
+            T.let(
+              :blocked_by_cardholder,
+              Increase::CardValidation::Decline::Reason::TaggedSymbol
+            )
+
           # The first use of the card has been blocked by the issuer.
           BLOCKED_FIRST_USE =
             T.let(
