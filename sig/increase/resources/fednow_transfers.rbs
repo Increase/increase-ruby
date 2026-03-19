@@ -2,7 +2,6 @@ module Increase
   module Resources
     class FednowTransfers
       def create: (
-        account_id: String,
         amount: Integer,
         creditor_name: String,
         debtor_name: String,

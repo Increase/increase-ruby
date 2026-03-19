@@ -8,9 +8,7 @@ module Increase
       #
       # Create a FedNow Transfer
       #
-      # @overload create(account_id:, amount:, creditor_name:, debtor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, creditor_address: nil, debtor_address: nil, external_account_id: nil, require_approval: nil, routing_number: nil, request_options: {})
-      #
-      # @param account_id [String] The identifier for the account that will send the transfer.
+      # @overload create(amount:, creditor_name:, debtor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, creditor_address: nil, debtor_address: nil, external_account_id: nil, require_approval: nil, routing_number: nil, request_options: {})
       #
       # @param amount [Integer] The amount, in minor units, to send to the creditor.
       #
