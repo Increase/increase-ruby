@@ -9,6 +9,7 @@ module Increase
         debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
         debtor_name: String,
         unstructured_remittance_information: String,
+        charge_bearer: Increase::Models::WireDrawdownRequestCreateParams::charge_bearer,
         debtor_account_number: String,
         debtor_external_account_id: String,
         debtor_routing_number: String,
@@ -34,6 +35,12 @@ module Increase
 
       attr_accessor unstructured_remittance_information: String
 
+      attr_reader charge_bearer: Increase::Models::WireDrawdownRequestCreateParams::charge_bearer?
+
+      def charge_bearer=: (
+        Increase::Models::WireDrawdownRequestCreateParams::charge_bearer
+      ) -> Increase::Models::WireDrawdownRequestCreateParams::charge_bearer
+
       attr_reader debtor_account_number: String?
 
       def debtor_account_number=: (String) -> String
@@ -58,6 +65,7 @@ module Increase
         debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
         debtor_name: String,
         unstructured_remittance_information: String,
+        ?charge_bearer: Increase::Models::WireDrawdownRequestCreateParams::charge_bearer,
         ?debtor_account_number: String,
         ?debtor_external_account_id: String,
         ?debtor_routing_number: String,
@@ -73,6 +81,7 @@ module Increase
         debtor_address: Increase::WireDrawdownRequestCreateParams::DebtorAddress,
         debtor_name: String,
         unstructured_remittance_information: String,
+        charge_bearer: Increase::Models::WireDrawdownRequestCreateParams::charge_bearer,
         debtor_account_number: String,
         debtor_external_account_id: String,
         debtor_routing_number: String,
@@ -174,6 +183,26 @@ module Increase
           postal_code: String,
           state: String
         }
+      end
+
+      type charge_bearer = :shared | :debtor | :creditor | :service_level
+
+      module ChargeBearer
+        extend Increase::Internal::Type::Enum
+
+        # Charges are shared between the debtor and creditor.
+        SHARED: :shared
+
+        # Charges are borne by the debtor.
+        DEBTOR: :debtor
+
+        # Charges are borne by the creditor.
+        CREDITOR: :creditor
+
+        # Charges are determined by the service level.
+        SERVICE_LEVEL: :service_level
+
+        def self?.values: -> ::Array[Increase::Models::WireDrawdownRequestCreateParams::charge_bearer]
       end
     end
   end
