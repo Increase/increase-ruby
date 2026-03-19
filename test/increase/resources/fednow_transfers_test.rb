@@ -6,7 +6,6 @@ class Increase::Test::Resources::FednowTransfersTest < Increase::Test::ResourceT
   def test_create_required_params
     response =
       @increase.fednow_transfers.create(
-        account_id: "account_in71c4amph0vgo2qllky",
         amount: 100,
         creditor_name: "Ian Crease",
         debtor_name: "National Phonograph Company",
