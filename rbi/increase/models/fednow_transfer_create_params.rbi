@@ -14,10 +14,6 @@ module Increase
           )
         end
 
-      # The identifier for the account that will send the transfer.
-      sig { returns(String) }
-      attr_accessor :account_id
-
       # The amount, in minor units, to send to the creditor.
       sig { returns(Integer) }
       attr_accessor :amount
@@ -99,7 +95,6 @@ module Increase
 
       sig do
         params(
-          account_id: String,
           amount: Integer,
           creditor_name: String,
           debtor_name: String,
@@ -117,8 +112,6 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The identifier for the account that will send the transfer.
-        account_id:,
         # The amount, in minor units, to send to the creditor.
         amount:,
         # The creditor's name.
@@ -149,7 +142,6 @@ module Increase
       sig do
         override.returns(
           {
-            account_id: String,
             amount: Integer,
             creditor_name: String,
             debtor_name: String,

@@ -2,7 +2,6 @@ module Increase
   module Models
     type fednow_transfer_create_params =
       {
-        account_id: String,
         amount: Integer,
         creditor_name: String,
         debtor_name: String,
@@ -20,8 +19,6 @@ module Increase
     class FednowTransferCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
-
-      attr_accessor account_id: String
 
       attr_accessor amount: Integer
 
@@ -62,7 +59,6 @@ module Increase
       def routing_number=: (String) -> String
 
       def initialize: (
-        account_id: String,
         amount: Integer,
         creditor_name: String,
         debtor_name: String,
@@ -78,7 +74,6 @@ module Increase
       ) -> void
 
       def to_hash: -> {
-        account_id: String,
         amount: Integer,
         creditor_name: String,
         debtor_name: String,

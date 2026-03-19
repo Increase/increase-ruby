@@ -6,7 +6,6 @@ module Increase
       # Create a FedNow Transfer
       sig do
         params(
-          account_id: String,
           amount: Integer,
           creditor_name: String,
           debtor_name: String,
@@ -24,8 +23,6 @@ module Increase
         ).returns(Increase::FednowTransfer)
       end
       def create(
-        # The identifier for the account that will send the transfer.
-        account_id:,
         # The amount, in minor units, to send to the creditor.
         amount:,
         # The creditor's name.
