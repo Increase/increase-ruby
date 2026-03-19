@@ -49,6 +49,13 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
+      # @!attribute charge_bearer
+      #   Determines who bears the cost of the drawdown request. Defaults to `shared` if
+      #   not specified.
+      #
+      #   @return [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer, nil]
+      optional :charge_bearer, enum: -> { Increase::WireDrawdownRequestCreateParams::ChargeBearer }
+
       # @!attribute debtor_account_number
       #   The debtor's account number.
       #
@@ -75,7 +82,7 @@ module Increase
       #   @return [String, nil]
       optional :end_to_end_identification, String
 
-      # @!method initialize(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
+      # @!method initialize(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, charge_bearer: nil, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireDrawdownRequestCreateParams} for more details.
       #
@@ -92,6 +99,8 @@ module Increase
       #   @param debtor_name [String] The debtor's name.
       #
       #   @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
+      #
+      #   @param charge_bearer [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer] Determines who bears the cost of the drawdown request. Defaults to `shared` if n
       #
       #   @param debtor_account_number [String] The debtor's account number.
       #
@@ -219,6 +228,27 @@ module Increase
         #   @param postal_code [String] The ZIP code of the address.
         #
         #   @param state [String] The address state.
+      end
+
+      # Determines who bears the cost of the drawdown request. Defaults to `shared` if
+      # not specified.
+      module ChargeBearer
+        extend Increase::Internal::Type::Enum
+
+        # Charges are shared between the debtor and creditor.
+        SHARED = :shared
+
+        # Charges are borne by the debtor.
+        DEBTOR = :debtor
+
+        # Charges are borne by the creditor.
+        CREDITOR = :creditor
+
+        # Charges are determined by the service level.
+        SERVICE_LEVEL = :service_level
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

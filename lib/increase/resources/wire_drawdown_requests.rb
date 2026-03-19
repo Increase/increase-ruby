@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Wire Drawdown Request
       #
-      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
+      # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, charge_bearer: nil, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
       #
       # @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
@@ -23,6 +23,8 @@ module Increase
       # @param debtor_name [String] The debtor's name.
       #
       # @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
+      #
+      # @param charge_bearer [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer] Determines who bears the cost of the drawdown request. Defaults to `shared` if n
       #
       # @param debtor_account_number [String] The debtor's account number.
       #
