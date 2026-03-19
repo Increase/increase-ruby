@@ -15,6 +15,8 @@ module Increase
             Increase::WireDrawdownRequestCreateParams::DebtorAddress::OrHash,
           debtor_name: String,
           unstructured_remittance_information: String,
+          charge_bearer:
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::OrSymbol,
           debtor_account_number: String,
           debtor_external_account_id: String,
           debtor_routing_number: String,
@@ -37,6 +39,9 @@ module Increase
         debtor_name:,
         # Remittance information the debtor will see as part of the request.
         unstructured_remittance_information:,
+        # Determines who bears the cost of the drawdown request. Defaults to `shared` if
+        # not specified.
+        charge_bearer: nil,
         # The debtor's account number.
         debtor_account_number: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is

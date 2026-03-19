@@ -60,6 +60,25 @@ module Increase
       sig { returns(String) }
       attr_accessor :unstructured_remittance_information
 
+      # Determines who bears the cost of the drawdown request. Defaults to `shared` if
+      # not specified.
+      sig do
+        returns(
+          T.nilable(
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::OrSymbol
+          )
+        )
+      end
+      attr_reader :charge_bearer
+
+      sig do
+        params(
+          charge_bearer:
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::OrSymbol
+        ).void
+      end
+      attr_writer :charge_bearer
+
       # The debtor's account number.
       sig { returns(T.nilable(String)) }
       attr_reader :debtor_account_number
@@ -101,6 +120,8 @@ module Increase
             Increase::WireDrawdownRequestCreateParams::DebtorAddress::OrHash,
           debtor_name: String,
           unstructured_remittance_information: String,
+          charge_bearer:
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::OrSymbol,
           debtor_account_number: String,
           debtor_external_account_id: String,
           debtor_routing_number: String,
@@ -123,6 +144,9 @@ module Increase
         debtor_name:,
         # Remittance information the debtor will see as part of the request.
         unstructured_remittance_information:,
+        # Determines who bears the cost of the drawdown request. Defaults to `shared` if
+        # not specified.
+        charge_bearer: nil,
         # The debtor's account number.
         debtor_account_number: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is
@@ -149,6 +173,8 @@ module Increase
               Increase::WireDrawdownRequestCreateParams::DebtorAddress,
             debtor_name: String,
             unstructured_remittance_information: String,
+            charge_bearer:
+              Increase::WireDrawdownRequestCreateParams::ChargeBearer::OrSymbol,
             debtor_account_number: String,
             debtor_external_account_id: String,
             debtor_routing_number: String,
@@ -335,6 +361,59 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      # Determines who bears the cost of the drawdown request. Defaults to `shared` if
+      # not specified.
+      module ChargeBearer
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              Increase::WireDrawdownRequestCreateParams::ChargeBearer
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Charges are shared between the debtor and creditor.
+        SHARED =
+          T.let(
+            :shared,
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::TaggedSymbol
+          )
+
+        # Charges are borne by the debtor.
+        DEBTOR =
+          T.let(
+            :debtor,
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::TaggedSymbol
+          )
+
+        # Charges are borne by the creditor.
+        CREDITOR =
+          T.let(
+            :creditor,
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::TaggedSymbol
+          )
+
+        # Charges are determined by the service level.
+        SERVICE_LEVEL =
+          T.let(
+            :service_level,
+            Increase::WireDrawdownRequestCreateParams::ChargeBearer::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::WireDrawdownRequestCreateParams::ChargeBearer::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
     end
