@@ -45,19 +45,19 @@ module Increase
         sig { params(debtor_routing_number: String).void }
         attr_writer :debtor_routing_number
 
-        # Additional information included with the transfer.
-        sig { returns(T.nilable(String)) }
-        attr_reader :remittance_information
-
-        sig { params(remittance_information: String).void }
-        attr_writer :remittance_information
-
         # The identifier of a pending Request for Payment that this transfer will fulfill.
         sig { returns(T.nilable(String)) }
         attr_reader :request_for_payment_id
 
         sig { params(request_for_payment_id: String).void }
         attr_writer :request_for_payment_id
+
+        # Additional information included with the transfer.
+        sig { returns(T.nilable(String)) }
+        attr_reader :unstructured_remittance_information
+
+        sig { params(unstructured_remittance_information: String).void }
+        attr_writer :unstructured_remittance_information
 
         sig do
           params(
@@ -66,8 +66,8 @@ module Increase
             debtor_account_number: String,
             debtor_name: String,
             debtor_routing_number: String,
-            remittance_information: String,
             request_for_payment_id: String,
+            unstructured_remittance_information: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -83,10 +83,10 @@ module Increase
           debtor_name: nil,
           # The routing number of the account that sent the transfer.
           debtor_routing_number: nil,
-          # Additional information included with the transfer.
-          remittance_information: nil,
           # The identifier of a pending Request for Payment that this transfer will fulfill.
           request_for_payment_id: nil,
+          # Additional information included with the transfer.
+          unstructured_remittance_information: nil,
           request_options: {}
         )
         end
@@ -99,8 +99,8 @@ module Increase
               debtor_account_number: String,
               debtor_name: String,
               debtor_routing_number: String,
-              remittance_information: String,
               request_for_payment_id: String,
+              unstructured_remittance_information: String,
               request_options: Increase::RequestOptions
             }
           )

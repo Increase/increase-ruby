@@ -2188,12 +2188,6 @@ module Increase
           required :reason,
                    enum: -> { Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason }
 
-          # @!attribute remittance_information
-          #   Additional information included with the transfer.
-          #
-          #   @return [String, nil]
-          required :remittance_information, String, nil?: true
-
           # @!attribute transaction_identification
           #   The Real-Time Payments network identification of the declined transfer.
           #
@@ -2206,7 +2200,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, reason:, remittance_information:, transaction_identification:, transfer_id:)
+          # @!attribute unstructured_remittance_information
+          #   Additional information included with the transfer.
+          #
+          #   @return [String, nil]
+          required :unstructured_remittance_information, String, nil?: true
+
+          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, reason:, transaction_identification:, transfer_id:, unstructured_remittance_information:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline}
           #   for more details.
@@ -2229,11 +2229,11 @@ module Increase
           #
           #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason] Why the transfer was declined.
           #
-          #   @param remittance_information [String, nil] Additional information included with the transfer.
-          #
           #   @param transaction_identification [String] The Real-Time Payments network identification of the declined transfer.
           #
           #   @param transfer_id [String] The identifier of the Real-Time Payments Transfer that led to this Transaction.
+          #
+          #   @param unstructured_remittance_information [String, nil] Additional information included with the transfer.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
           # transfer's currency. This will always be "USD" for a Real-Time Payments

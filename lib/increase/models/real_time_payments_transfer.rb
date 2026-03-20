@@ -16,6 +16,12 @@ module Increase
       #   @return [String]
       required :account_id, String
 
+      # @!attribute account_number
+      #   The destination account number.
+      #
+      #   @return [String]
+      required :account_number, String
+
       # @!attribute acknowledgement
       #   If the transfer is acknowledged by the recipient bank, this will contain
       #   supplemental details.
@@ -77,19 +83,6 @@ module Increase
       #   @return [String, nil]
       required :debtor_name, String, nil?: true
 
-      # @!attribute destination_account_number
-      #   The destination account number.
-      #
-      #   @return [String]
-      required :destination_account_number, String
-
-      # @!attribute destination_routing_number
-      #   The destination American Bankers' Association (ABA) Routing Transit Number
-      #   (RTN).
-      #
-      #   @return [String]
-      required :destination_routing_number, String
-
       # @!attribute external_account_id
       #   The identifier of the External Account the transfer was made to, if any.
       #
@@ -120,11 +113,12 @@ module Increase
       #   @return [Increase::Models::RealTimePaymentsTransfer::Rejection, nil]
       required :rejection, -> { Increase::RealTimePaymentsTransfer::Rejection }, nil?: true
 
-      # @!attribute remittance_information
-      #   Unstructured information that will show on the recipient's bank statement.
+      # @!attribute routing_number
+      #   The destination American Bankers' Association (ABA) Routing Transit Number
+      #   (RTN).
       #
       #   @return [String]
-      required :remittance_information, String
+      required :routing_number, String
 
       # @!attribute source_account_number_id
       #   The Account Number the recipient will see as having sent the transfer.
@@ -172,7 +166,13 @@ module Increase
       #   @return [String, nil]
       required :ultimate_debtor_name, String, nil?: true
 
-      # @!method initialize(id:, account_id:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, destination_account_number:, destination_routing_number:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, remittance_information:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:)
+      # @!attribute unstructured_remittance_information
+      #   Unstructured information that will show on the recipient's bank statement.
+      #
+      #   @return [String]
+      required :unstructured_remittance_information, String
+
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::RealTimePaymentsTransfer} for more details.
       #
@@ -182,6 +182,8 @@ module Increase
       #   @param id [String] The Real-Time Payments Transfer's identifier.
       #
       #   @param account_id [String] The Account from which the transfer was sent.
+      #
+      #   @param account_number [String] The destination account number.
       #
       #   @param acknowledgement [Increase::Models::RealTimePaymentsTransfer::Acknowledgement, nil] If the transfer is acknowledged by the recipient bank, this will contain supplem
       #
@@ -201,10 +203,6 @@ module Increase
       #
       #   @param debtor_name [String, nil] The name of the transfer's sender. If not provided, defaults to the name of the
       #
-      #   @param destination_account_number [String] The destination account number.
-      #
-      #   @param destination_routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
-      #
       #   @param external_account_id [String, nil] The identifier of the External Account the transfer was made to, if any.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
@@ -213,7 +211,7 @@ module Increase
       #
       #   @param rejection [Increase::Models::RealTimePaymentsTransfer::Rejection, nil] If the transfer is rejected by Real-Time Payments or the destination financial i
       #
-      #   @param remittance_information [String] Unstructured information that will show on the recipient's bank statement.
+      #   @param routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
       #
       #   @param source_account_number_id [String] The Account Number the recipient will see as having sent the transfer.
       #
@@ -228,6 +226,8 @@ module Increase
       #   @param ultimate_creditor_name [String, nil] The name of the ultimate recipient of the transfer. Set this if the creditor is
       #
       #   @param ultimate_debtor_name [String, nil] The name of the ultimate sender of the transfer. Set this if the funds are being
+      #
+      #   @param unstructured_remittance_information [String] Unstructured information that will show on the recipient's bank statement.
 
       # @see Increase::Models::RealTimePaymentsTransfer#acknowledgement
       class Acknowledgement < Increase::Internal::Type::BaseModel

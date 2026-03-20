@@ -17,6 +17,7 @@ class Increase::Test::Resources::Simulations::RealTimePaymentsTransfersTest < In
       response => {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval | nil,
@@ -26,20 +27,19 @@ class Increase::Test::Resources::Simulations::RealTimePaymentsTransfersTest < In
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
         submission: Increase::RealTimePaymentsTransfer::Submission | nil,
         transaction_id: String | nil,
         type: Increase::RealTimePaymentsTransfer::Type,
         ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+        ultimate_debtor_name: String | nil,
+        unstructured_remittance_information: String
       }
     end
   end

@@ -8,8 +8,8 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
       @increase.real_time_payments_transfers.create(
         amount: 100,
         creditor_name: "Ian Crease",
-        remittance_information: "Invoice 29582",
-        source_account_number_id: "account_number_v18nkfqm6afpsrvy82b2"
+        source_account_number_id: "account_number_v18nkfqm6afpsrvy82b2",
+        unstructured_remittance_information: "Invoice 29582"
       )
 
     assert_pattern do
@@ -20,6 +20,7 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
       response => {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval | nil,
@@ -29,20 +30,19 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
         submission: Increase::RealTimePaymentsTransfer::Submission | nil,
         transaction_id: String | nil,
         type: Increase::RealTimePaymentsTransfer::Type,
         ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+        ultimate_debtor_name: String | nil,
+        unstructured_remittance_information: String
       }
     end
   end
@@ -59,6 +59,7 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
       response => {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval | nil,
@@ -68,20 +69,19 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
         submission: Increase::RealTimePaymentsTransfer::Submission | nil,
         transaction_id: String | nil,
         type: Increase::RealTimePaymentsTransfer::Type,
         ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+        ultimate_debtor_name: String | nil,
+        unstructured_remittance_information: String
       }
     end
   end
@@ -104,6 +104,7 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
       row => {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval | nil,
@@ -113,20 +114,19 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
         submission: Increase::RealTimePaymentsTransfer::Submission | nil,
         transaction_id: String | nil,
         type: Increase::RealTimePaymentsTransfer::Type,
         ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+        ultimate_debtor_name: String | nil,
+        unstructured_remittance_information: String
       }
     end
   end
@@ -143,6 +143,7 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
       response => {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval | nil,
@@ -152,20 +153,19 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
         submission: Increase::RealTimePaymentsTransfer::Submission | nil,
         transaction_id: String | nil,
         type: Increase::RealTimePaymentsTransfer::Type,
         ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+        ultimate_debtor_name: String | nil,
+        unstructured_remittance_information: String
       }
     end
   end
@@ -182,6 +182,7 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
       response => {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement | nil,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval | nil,
@@ -191,20 +192,19 @@ class Increase::Test::Resources::RealTimePaymentsTransfersTest < Increase::Test:
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
         submission: Increase::RealTimePaymentsTransfer::Submission | nil,
         transaction_id: String | nil,
         type: Increase::RealTimePaymentsTransfer::Type,
         ultimate_creditor_name: String | nil,
-        ultimate_debtor_name: String | nil
+        ultimate_debtor_name: String | nil,
+        unstructured_remittance_information: String
       }
     end
   end

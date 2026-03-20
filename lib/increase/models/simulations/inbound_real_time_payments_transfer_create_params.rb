@@ -39,19 +39,19 @@ module Increase
         #   @return [String, nil]
         optional :debtor_routing_number, String
 
-        # @!attribute remittance_information
-        #   Additional information included with the transfer.
-        #
-        #   @return [String, nil]
-        optional :remittance_information, String
-
         # @!attribute request_for_payment_id
         #   The identifier of a pending Request for Payment that this transfer will fulfill.
         #
         #   @return [String, nil]
         optional :request_for_payment_id, String
 
-        # @!method initialize(account_number_id:, amount:, debtor_account_number: nil, debtor_name: nil, debtor_routing_number: nil, remittance_information: nil, request_for_payment_id: nil, request_options: {})
+        # @!attribute unstructured_remittance_information
+        #   Additional information included with the transfer.
+        #
+        #   @return [String, nil]
+        optional :unstructured_remittance_information, String
+
+        # @!method initialize(account_number_id:, amount:, debtor_account_number: nil, debtor_name: nil, debtor_routing_number: nil, request_for_payment_id: nil, unstructured_remittance_information: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::InboundRealTimePaymentsTransferCreateParams} for
         #   more details.
@@ -66,9 +66,9 @@ module Increase
         #
         #   @param debtor_routing_number [String] The routing number of the account that sent the transfer.
         #
-        #   @param remittance_information [String] Additional information included with the transfer.
-        #
         #   @param request_for_payment_id [String] The identifier of a pending Request for Payment that this transfer will fulfill.
+        #
+        #   @param unstructured_remittance_information [String] Additional information included with the transfer.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

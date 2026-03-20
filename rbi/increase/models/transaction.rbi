@@ -11880,10 +11880,6 @@ module Increase
           sig { returns(String) }
           attr_accessor :debtor_routing_number
 
-          # Additional information included with the transfer.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :remittance_information
-
           # The Real-Time Payments network identification of the transfer.
           sig { returns(String) }
           attr_accessor :transaction_identification
@@ -11891,6 +11887,10 @@ module Increase
           # The identifier of the Real-Time Payments Transfer that led to this Transaction.
           sig { returns(String) }
           attr_accessor :transfer_id
+
+          # Additional information included with the transfer.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :unstructured_remittance_information
 
           # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
           # present in the JSON response if and only if `category` is equal to
@@ -11906,9 +11906,9 @@ module Increase
               debtor_account_number: String,
               debtor_name: String,
               debtor_routing_number: String,
-              remittance_information: T.nilable(String),
               transaction_identification: String,
-              transfer_id: String
+              transfer_id: String,
+              unstructured_remittance_information: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -11926,12 +11926,12 @@ module Increase
             debtor_name:,
             # The routing number of the account that sent the transfer.
             debtor_routing_number:,
-            # Additional information included with the transfer.
-            remittance_information:,
             # The Real-Time Payments network identification of the transfer.
             transaction_identification:,
             # The identifier of the Real-Time Payments Transfer that led to this Transaction.
-            transfer_id:
+            transfer_id:,
+            # Additional information included with the transfer.
+            unstructured_remittance_information:
           )
           end
 
@@ -11945,9 +11945,9 @@ module Increase
                 debtor_account_number: String,
                 debtor_name: String,
                 debtor_routing_number: String,
-                remittance_information: T.nilable(String),
                 transaction_identification: String,
-                transfer_id: String
+                transfer_id: String,
+                unstructured_remittance_information: T.nilable(String)
               }
             )
           end
@@ -12745,25 +12745,25 @@ module Increase
               )
             end
 
+          # The destination account number.
+          sig { returns(String) }
+          attr_accessor :account_number
+
           # The transfer amount in USD cents.
           sig { returns(Integer) }
           attr_accessor :amount
 
-          # The destination account number.
-          sig { returns(String) }
-          attr_accessor :destination_account_number
-
           # The American Bankers' Association (ABA) Routing Transit Number (RTN).
           sig { returns(String) }
-          attr_accessor :destination_routing_number
-
-          # Unstructured information that will show on the recipient's bank statement.
-          sig { returns(String) }
-          attr_accessor :remittance_information
+          attr_accessor :routing_number
 
           # The identifier of the Real-Time Payments Transfer that led to this Transaction.
           sig { returns(String) }
           attr_accessor :transfer_id
+
+          # Unstructured information that will show on the recipient's bank statement.
+          sig { returns(String) }
+          attr_accessor :unstructured_remittance_information
 
           # A Real-Time Payments Transfer Acknowledgement object. This field will be present
           # in the JSON response if and only if `category` is equal to
@@ -12772,35 +12772,35 @@ module Increase
           # is acknowledged by the receiving bank.
           sig do
             params(
+              account_number: String,
               amount: Integer,
-              destination_account_number: String,
-              destination_routing_number: String,
-              remittance_information: String,
-              transfer_id: String
+              routing_number: String,
+              transfer_id: String,
+              unstructured_remittance_information: String
             ).returns(T.attached_class)
           end
           def self.new(
+            # The destination account number.
+            account_number:,
             # The transfer amount in USD cents.
             amount:,
-            # The destination account number.
-            destination_account_number:,
             # The American Bankers' Association (ABA) Routing Transit Number (RTN).
-            destination_routing_number:,
-            # Unstructured information that will show on the recipient's bank statement.
-            remittance_information:,
+            routing_number:,
             # The identifier of the Real-Time Payments Transfer that led to this Transaction.
-            transfer_id:
+            transfer_id:,
+            # Unstructured information that will show on the recipient's bank statement.
+            unstructured_remittance_information:
           )
           end
 
           sig do
             override.returns(
               {
+                account_number: String,
                 amount: Integer,
-                destination_account_number: String,
-                destination_routing_number: String,
-                remittance_information: String,
-                transfer_id: String
+                routing_number: String,
+                transfer_id: String,
+                unstructured_remittance_information: String
               }
             )
           end
