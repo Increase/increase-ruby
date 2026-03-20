@@ -78,12 +78,6 @@ module Increase
       #   @return [Increase::Models::InboundRealTimePaymentsTransfer::Decline, nil]
       required :decline, -> { Increase::InboundRealTimePaymentsTransfer::Decline }, nil?: true
 
-      # @!attribute remittance_information
-      #   Additional information included with the transfer.
-      #
-      #   @return [String, nil]
-      required :remittance_information, String, nil?: true
-
       # @!attribute status
       #   The lifecycle status of the transfer.
       #
@@ -103,7 +97,13 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Type]
       required :type, enum: -> { Increase::InboundRealTimePaymentsTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, remittance_information:, status:, transaction_identification:, type:)
+      # @!attribute unstructured_remittance_information
+      #   Additional information included with the transfer.
+      #
+      #   @return [String, nil]
+      required :unstructured_remittance_information, String, nil?: true
+
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, status:, transaction_identification:, type:, unstructured_remittance_information:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundRealTimePaymentsTransfer} for more details.
       #
@@ -134,13 +134,13 @@ module Increase
       #
       #   @param decline [Increase::Models::InboundRealTimePaymentsTransfer::Decline, nil] If your transfer is declined, this will contain details of the decline.
       #
-      #   @param remittance_information [String, nil] Additional information included with the transfer.
-      #
       #   @param status [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Status] The lifecycle status of the transfer.
       #
       #   @param transaction_identification [String] The Real-Time Payments network identification of the transfer.
       #
       #   @param type [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param unstructured_remittance_information [String, nil] Additional information included with the transfer.
 
       # @see Increase::Models::InboundRealTimePaymentsTransfer#confirmation
       class Confirmation < Increase::Internal::Type::BaseModel

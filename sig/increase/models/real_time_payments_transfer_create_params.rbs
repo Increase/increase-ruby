@@ -4,13 +4,15 @@ module Increase
       {
         amount: Integer,
         creditor_name: String,
-        remittance_information: String,
         source_account_number_id: String,
+        unstructured_remittance_information: String,
+        account_number: String,
         debtor_name: String,
         destination_account_number: String,
         destination_routing_number: String,
         external_account_id: String,
         require_approval: bool,
+        routing_number: String,
         ultimate_creditor_name: String,
         ultimate_debtor_name: String
       }
@@ -24,9 +26,13 @@ module Increase
 
       attr_accessor creditor_name: String
 
-      attr_accessor remittance_information: String
-
       attr_accessor source_account_number_id: String
+
+      attr_accessor unstructured_remittance_information: String
+
+      attr_reader account_number: String?
+
+      def account_number=: (String) -> String
 
       attr_reader debtor_name: String?
 
@@ -48,6 +54,10 @@ module Increase
 
       def require_approval=: (bool) -> bool
 
+      attr_reader routing_number: String?
+
+      def routing_number=: (String) -> String
+
       attr_reader ultimate_creditor_name: String?
 
       def ultimate_creditor_name=: (String) -> String
@@ -59,13 +69,15 @@ module Increase
       def initialize: (
         amount: Integer,
         creditor_name: String,
-        remittance_information: String,
         source_account_number_id: String,
+        unstructured_remittance_information: String,
+        ?account_number: String,
         ?debtor_name: String,
         ?destination_account_number: String,
         ?destination_routing_number: String,
         ?external_account_id: String,
         ?require_approval: bool,
+        ?routing_number: String,
         ?ultimate_creditor_name: String,
         ?ultimate_debtor_name: String,
         ?request_options: Increase::request_opts
@@ -74,13 +86,15 @@ module Increase
       def to_hash: -> {
         amount: Integer,
         creditor_name: String,
-        remittance_information: String,
         source_account_number_id: String,
+        unstructured_remittance_information: String,
+        account_number: String,
         debtor_name: String,
         destination_account_number: String,
         destination_routing_number: String,
         external_account_id: String,
         require_approval: bool,
+        routing_number: String,
         ultimate_creditor_name: String,
         ultimate_debtor_name: String,
         request_options: Increase::RequestOptions

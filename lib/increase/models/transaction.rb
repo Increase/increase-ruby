@@ -6353,12 +6353,6 @@ module Increase
           #   @return [String]
           required :debtor_routing_number, String
 
-          # @!attribute remittance_information
-          #   Additional information included with the transfer.
-          #
-          #   @return [String, nil]
-          required :remittance_information, String, nil?: true
-
           # @!attribute transaction_identification
           #   The Real-Time Payments network identification of the transfer.
           #
@@ -6371,7 +6365,13 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, remittance_information:, transaction_identification:, transfer_id:)
+          # @!attribute unstructured_remittance_information
+          #   Additional information included with the transfer.
+          #
+          #   @return [String, nil]
+          required :unstructured_remittance_information, String, nil?: true
+
+          # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, transaction_identification:, transfer_id:, unstructured_remittance_information:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation}
           #   for more details.
@@ -6394,11 +6394,11 @@ module Increase
           #
           #   @param debtor_routing_number [String] The routing number of the account that sent the transfer.
           #
-          #   @param remittance_information [String, nil] Additional information included with the transfer.
-          #
           #   @param transaction_identification [String] The Real-Time Payments network identification of the transfer.
           #
           #   @param transfer_id [String] The identifier of the Real-Time Payments Transfer that led to this Transaction.
+          #
+          #   @param unstructured_remittance_information [String, nil] Additional information included with the transfer.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the transfer's
           # currency. This will always be "USD" for a Real-Time Payments transfer.
@@ -6909,29 +6909,23 @@ module Increase
 
         # @see Increase::Models::Transaction::Source#real_time_payments_transfer_acknowledgement
         class RealTimePaymentsTransferAcknowledgement < Increase::Internal::Type::BaseModel
+          # @!attribute account_number
+          #   The destination account number.
+          #
+          #   @return [String]
+          required :account_number, String
+
           # @!attribute amount
           #   The transfer amount in USD cents.
           #
           #   @return [Integer]
           required :amount, Integer
 
-          # @!attribute destination_account_number
-          #   The destination account number.
-          #
-          #   @return [String]
-          required :destination_account_number, String
-
-          # @!attribute destination_routing_number
+          # @!attribute routing_number
           #   The American Bankers' Association (ABA) Routing Transit Number (RTN).
           #
           #   @return [String]
-          required :destination_routing_number, String
-
-          # @!attribute remittance_information
-          #   Unstructured information that will show on the recipient's bank statement.
-          #
-          #   @return [String]
-          required :remittance_information, String
+          required :routing_number, String
 
           # @!attribute transfer_id
           #   The identifier of the Real-Time Payments Transfer that led to this Transaction.
@@ -6939,22 +6933,28 @@ module Increase
           #   @return [String]
           required :transfer_id, String
 
-          # @!method initialize(amount:, destination_account_number:, destination_routing_number:, remittance_information:, transfer_id:)
+          # @!attribute unstructured_remittance_information
+          #   Unstructured information that will show on the recipient's bank statement.
+          #
+          #   @return [String]
+          required :unstructured_remittance_information, String
+
+          # @!method initialize(account_number:, amount:, routing_number:, transfer_id:, unstructured_remittance_information:)
           #   A Real-Time Payments Transfer Acknowledgement object. This field will be present
           #   in the JSON response if and only if `category` is equal to
           #   `real_time_payments_transfer_acknowledgement`. A Real-Time Payments Transfer
           #   Acknowledgement is created when a Real-Time Payments Transfer sent from Increase
           #   is acknowledged by the receiving bank.
           #
+          #   @param account_number [String] The destination account number.
+          #
           #   @param amount [Integer] The transfer amount in USD cents.
           #
-          #   @param destination_account_number [String] The destination account number.
-          #
-          #   @param destination_routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
-          #
-          #   @param remittance_information [String] Unstructured information that will show on the recipient's bank statement.
+          #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
           #
           #   @param transfer_id [String] The identifier of the Real-Time Payments Transfer that led to this Transaction.
+          #
+          #   @param unstructured_remittance_information [String] Unstructured information that will show on the recipient's bank statement.
         end
 
         # @see Increase::Models::Transaction::Source#sample_funds
