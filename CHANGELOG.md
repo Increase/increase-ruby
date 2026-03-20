@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.264.0 (2026-03-20)
+
+Full Changelog: [v1.263.0...v1.264.0](https://github.com/Increase/increase-ruby/compare/v1.263.0...v1.264.0)
+
+### Features
+
+* **api:** api update ([1b0b973](https://github.com/Increase/increase-ruby/commit/1b0b973d66f33f39fbec9b2962eddb1be5ccb116))
+
+
+### Chores
+
+* **tests:** bump steady to v0.19.4 ([46fcc3d](https://github.com/Increase/increase-ruby/commit/46fcc3d0fcb5d3b38169562440048df229c5d28c))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([6e7cad0](https://github.com/Increase/increase-ruby/commit/6e7cad0a92bb8b02d632b0a9afe4439ca4c9fa82))
+
 ## 1.263.0 (2026-03-19)
 
 Full Changelog: [v1.262.0...v1.263.0](https://github.com/Increase/increase-ruby/compare/v1.262.0...v1.263.0)
