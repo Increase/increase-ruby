@@ -91,10 +91,6 @@ module Increase
       end
       attr_writer :decline
 
-      # Additional information included with the transfer.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :remittance_information
-
       # The lifecycle status of the transfer.
       sig do
         returns(Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol)
@@ -111,6 +107,10 @@ module Increase
         returns(Increase::InboundRealTimePaymentsTransfer::Type::TaggedSymbol)
       end
       attr_accessor :type
+
+      # Additional information included with the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unstructured_remittance_information
 
       # An Inbound Real-Time Payments Transfer is a Real-Time Payments transfer
       # initiated outside of Increase to your account.
@@ -135,10 +135,10 @@ module Increase
             T.nilable(
               Increase::InboundRealTimePaymentsTransfer::Decline::OrHash
             ),
-          remittance_information: T.nilable(String),
           status: Increase::InboundRealTimePaymentsTransfer::Status::OrSymbol,
           transaction_identification: String,
-          type: Increase::InboundRealTimePaymentsTransfer::Type::OrSymbol
+          type: Increase::InboundRealTimePaymentsTransfer::Type::OrSymbol,
+          unstructured_remittance_information: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -168,15 +168,15 @@ module Increase
         debtor_routing_number:,
         # If your transfer is declined, this will contain details of the decline.
         decline:,
-        # Additional information included with the transfer.
-        remittance_information:,
         # The lifecycle status of the transfer.
         status:,
         # The Real-Time Payments network identification of the transfer.
         transaction_identification:,
         # A constant representing the object's type. For this resource it will always be
         # `inbound_real_time_payments_transfer`.
-        type:
+        type:,
+        # Additional information included with the transfer.
+        unstructured_remittance_information:
       )
       end
 
@@ -200,11 +200,11 @@ module Increase
             debtor_routing_number: String,
             decline:
               T.nilable(Increase::InboundRealTimePaymentsTransfer::Decline),
-            remittance_information: T.nilable(String),
             status:
               Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol,
             transaction_identification: String,
-            type: Increase::InboundRealTimePaymentsTransfer::Type::TaggedSymbol
+            type: Increase::InboundRealTimePaymentsTransfer::Type::TaggedSymbol,
+            unstructured_remittance_information: T.nilable(String)
           }
         )
       end

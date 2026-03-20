@@ -4189,10 +4189,6 @@ module Increase
           end
           attr_accessor :reason
 
-          # Additional information included with the transfer.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :remittance_information
-
           # The Real-Time Payments network identification of the declined transfer.
           sig { returns(String) }
           attr_accessor :transaction_identification
@@ -4200,6 +4196,10 @@ module Increase
           # The identifier of the Real-Time Payments Transfer that led to this Transaction.
           sig { returns(String) }
           attr_accessor :transfer_id
+
+          # Additional information included with the transfer.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :unstructured_remittance_information
 
           # An Inbound Real-Time Payments Transfer Decline object. This field will be
           # present in the JSON response if and only if `category` is equal to
@@ -4215,9 +4215,9 @@ module Increase
               debtor_routing_number: String,
               reason:
                 Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason::OrSymbol,
-              remittance_information: T.nilable(String),
               transaction_identification: String,
-              transfer_id: String
+              transfer_id: String,
+              unstructured_remittance_information: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -4238,12 +4238,12 @@ module Increase
             debtor_routing_number:,
             # Why the transfer was declined.
             reason:,
-            # Additional information included with the transfer.
-            remittance_information:,
             # The Real-Time Payments network identification of the declined transfer.
             transaction_identification:,
             # The identifier of the Real-Time Payments Transfer that led to this Transaction.
-            transfer_id:
+            transfer_id:,
+            # Additional information included with the transfer.
+            unstructured_remittance_information:
           )
           end
 
@@ -4259,9 +4259,9 @@ module Increase
                 debtor_routing_number: String,
                 reason:
                   Increase::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason::TaggedSymbol,
-                remittance_information: T.nilable(String),
                 transaction_identification: String,
-                transfer_id: String
+                transfer_id: String,
+                unstructured_remittance_information: T.nilable(String)
               }
             )
           end

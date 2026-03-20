@@ -14,8 +14,8 @@ module Increase
             debtor_account_number: String,
             debtor_name: String,
             debtor_routing_number: String,
-            remittance_information: String,
             request_for_payment_id: String,
+            unstructured_remittance_information: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::InboundRealTimePaymentsTransfer)
         end
@@ -31,10 +31,10 @@ module Increase
           debtor_name: nil,
           # The routing number of the account that sent the transfer.
           debtor_routing_number: nil,
-          # Additional information included with the transfer.
-          remittance_information: nil,
           # The identifier of a pending Request for Payment that this transfer will fulfill.
           request_for_payment_id: nil,
+          # Additional information included with the transfer.
+          unstructured_remittance_information: nil,
           request_options: {}
         )
         end

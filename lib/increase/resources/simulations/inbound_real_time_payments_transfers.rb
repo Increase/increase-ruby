@@ -12,7 +12,7 @@ module Increase
         # [Inbound Real-Time Payments Transfer](#inbound-real-time-payments-transfers) to
         # your account. Real-Time Payments are a beta feature.
         #
-        # @overload create(account_number_id:, amount:, debtor_account_number: nil, debtor_name: nil, debtor_routing_number: nil, remittance_information: nil, request_for_payment_id: nil, request_options: {})
+        # @overload create(account_number_id:, amount:, debtor_account_number: nil, debtor_name: nil, debtor_routing_number: nil, request_for_payment_id: nil, unstructured_remittance_information: nil, request_options: {})
         #
         # @param account_number_id [String] The identifier of the Account Number the inbound Real-Time Payments Transfer is
         #
@@ -24,9 +24,9 @@ module Increase
         #
         # @param debtor_routing_number [String] The routing number of the account that sent the transfer.
         #
-        # @param remittance_information [String] Additional information included with the transfer.
-        #
         # @param request_for_payment_id [String] The identifier of a pending Request for Payment that this transfer will fulfill.
+        #
+        # @param unstructured_remittance_information [String] Additional information included with the transfer.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

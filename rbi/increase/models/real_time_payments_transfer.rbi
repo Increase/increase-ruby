@@ -16,6 +16,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :account_id
 
+      # The destination account number.
+      sig { returns(String) }
+      attr_accessor :account_number
+
       # If the transfer is acknowledged by the recipient bank, this will contain
       # supplemental details.
       sig do
@@ -99,15 +103,6 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :debtor_name
 
-      # The destination account number.
-      sig { returns(String) }
-      attr_accessor :destination_account_number
-
-      # The destination American Bankers' Association (ABA) Routing Transit Number
-      # (RTN).
-      sig { returns(String) }
-      attr_accessor :destination_routing_number
-
       # The identifier of the External Account the transfer was made to, if any.
       sig { returns(T.nilable(String)) }
       attr_accessor :external_account_id
@@ -138,9 +133,10 @@ module Increase
       end
       attr_writer :rejection
 
-      # Unstructured information that will show on the recipient's bank statement.
+      # The destination American Bankers' Association (ABA) Routing Transit Number
+      # (RTN).
       sig { returns(String) }
-      attr_accessor :remittance_information
+      attr_accessor :routing_number
 
       # The Account Number the recipient will see as having sent the transfer.
       sig { returns(String) }
@@ -182,12 +178,17 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :ultimate_debtor_name
 
+      # Unstructured information that will show on the recipient's bank statement.
+      sig { returns(String) }
+      attr_accessor :unstructured_remittance_information
+
       # Real-Time Payments transfers move funds, within seconds, between your Increase
       # account and any other account on the Real-Time Payments network.
       sig do
         params(
           id: String,
           account_id: String,
+          account_number: String,
           acknowledgement:
             T.nilable(
               Increase::RealTimePaymentsTransfer::Acknowledgement::OrHash
@@ -203,14 +204,12 @@ module Increase
           creditor_name: String,
           currency: Increase::RealTimePaymentsTransfer::Currency::OrSymbol,
           debtor_name: T.nilable(String),
-          destination_account_number: String,
-          destination_routing_number: String,
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           pending_transaction_id: T.nilable(String),
           rejection:
             T.nilable(Increase::RealTimePaymentsTransfer::Rejection::OrHash),
-          remittance_information: String,
+          routing_number: String,
           source_account_number_id: String,
           status: Increase::RealTimePaymentsTransfer::Status::OrSymbol,
           submission:
@@ -218,7 +217,8 @@ module Increase
           transaction_id: T.nilable(String),
           type: Increase::RealTimePaymentsTransfer::Type::OrSymbol,
           ultimate_creditor_name: T.nilable(String),
-          ultimate_debtor_name: T.nilable(String)
+          ultimate_debtor_name: T.nilable(String),
+          unstructured_remittance_information: String
         ).returns(T.attached_class)
       end
       def self.new(
@@ -226,6 +226,8 @@ module Increase
         id:,
         # The Account from which the transfer was sent.
         account_id:,
+        # The destination account number.
+        account_number:,
         # If the transfer is acknowledged by the recipient bank, this will contain
         # supplemental details.
         acknowledgement:,
@@ -251,11 +253,6 @@ module Increase
         # The name of the transfer's sender. If not provided, defaults to the name of the
         # account's entity.
         debtor_name:,
-        # The destination account number.
-        destination_account_number:,
-        # The destination American Bankers' Association (ABA) Routing Transit Number
-        # (RTN).
-        destination_routing_number:,
         # The identifier of the External Account the transfer was made to, if any.
         external_account_id:,
         # The idempotency key you chose for this object. This value is unique across
@@ -270,8 +267,9 @@ module Increase
         # If the transfer is rejected by Real-Time Payments or the destination financial
         # institution, this will contain supplemental details.
         rejection:,
-        # Unstructured information that will show on the recipient's bank statement.
-        remittance_information:,
+        # The destination American Bankers' Association (ABA) Routing Transit Number
+        # (RTN).
+        routing_number:,
         # The Account Number the recipient will see as having sent the transfer.
         source_account_number_id:,
         # The lifecycle status of the transfer.
@@ -289,7 +287,9 @@ module Increase
         ultimate_creditor_name:,
         # The name of the ultimate sender of the transfer. Set this if the funds are being
         # sent on behalf of someone who is not the account holder at Increase.
-        ultimate_debtor_name:
+        ultimate_debtor_name:,
+        # Unstructured information that will show on the recipient's bank statement.
+        unstructured_remittance_information:
       )
       end
 
@@ -298,6 +298,7 @@ module Increase
           {
             id: String,
             account_id: String,
+            account_number: String,
             acknowledgement:
               T.nilable(Increase::RealTimePaymentsTransfer::Acknowledgement),
             amount: Integer,
@@ -311,13 +312,11 @@ module Increase
             currency:
               Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol,
             debtor_name: T.nilable(String),
-            destination_account_number: String,
-            destination_routing_number: String,
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
             pending_transaction_id: T.nilable(String),
             rejection: T.nilable(Increase::RealTimePaymentsTransfer::Rejection),
-            remittance_information: String,
+            routing_number: String,
             source_account_number_id: String,
             status: Increase::RealTimePaymentsTransfer::Status::TaggedSymbol,
             submission:
@@ -325,7 +324,8 @@ module Increase
             transaction_id: T.nilable(String),
             type: Increase::RealTimePaymentsTransfer::Type::TaggedSymbol,
             ultimate_creditor_name: T.nilable(String),
-            ultimate_debtor_name: T.nilable(String)
+            ultimate_debtor_name: T.nilable(String),
+            unstructured_remittance_information: String
           }
         )
       end

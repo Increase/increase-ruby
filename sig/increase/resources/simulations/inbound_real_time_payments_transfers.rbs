@@ -8,8 +8,8 @@ module Increase
           ?debtor_account_number: String,
           ?debtor_name: String,
           ?debtor_routing_number: String,
-          ?remittance_information: String,
           ?request_for_payment_id: String,
+          ?unstructured_remittance_information: String,
           ?request_options: Increase::request_opts
         ) -> Increase::InboundRealTimePaymentsTransfer
 

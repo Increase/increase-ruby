@@ -4653,9 +4653,9 @@ module Increase
             debtor_account_number: String,
             debtor_name: String,
             debtor_routing_number: String,
-            remittance_information: String?,
             transaction_identification: String,
-            transfer_id: String
+            transfer_id: String,
+            unstructured_remittance_information: String?
           }
 
         class InboundRealTimePaymentsTransferConfirmation < Increase::Internal::Type::BaseModel
@@ -4671,11 +4671,11 @@ module Increase
 
           attr_accessor debtor_routing_number: String
 
-          attr_accessor remittance_information: String?
-
           attr_accessor transaction_identification: String
 
           attr_accessor transfer_id: String
+
+          attr_accessor unstructured_remittance_information: String?
 
           def initialize: (
             amount: Integer,
@@ -4684,9 +4684,9 @@ module Increase
             debtor_account_number: String,
             debtor_name: String,
             debtor_routing_number: String,
-            remittance_information: String?,
             transaction_identification: String,
-            transfer_id: String
+            transfer_id: String,
+            unstructured_remittance_information: String?
           ) -> void
 
           def to_hash: -> {
@@ -4696,9 +4696,9 @@ module Increase
             debtor_account_number: String,
             debtor_name: String,
             debtor_routing_number: String,
-            remittance_information: String?,
             transaction_identification: String,
-            transfer_id: String
+            transfer_id: String,
+            unstructured_remittance_information: String?
           }
 
           type currency = :USD
@@ -5079,38 +5079,38 @@ module Increase
 
         type real_time_payments_transfer_acknowledgement =
           {
+            account_number: String,
             amount: Integer,
-            destination_account_number: String,
-            destination_routing_number: String,
-            remittance_information: String,
-            transfer_id: String
+            routing_number: String,
+            transfer_id: String,
+            unstructured_remittance_information: String
           }
 
         class RealTimePaymentsTransferAcknowledgement < Increase::Internal::Type::BaseModel
+          attr_accessor account_number: String
+
           attr_accessor amount: Integer
 
-          attr_accessor destination_account_number: String
-
-          attr_accessor destination_routing_number: String
-
-          attr_accessor remittance_information: String
+          attr_accessor routing_number: String
 
           attr_accessor transfer_id: String
 
+          attr_accessor unstructured_remittance_information: String
+
           def initialize: (
+            account_number: String,
             amount: Integer,
-            destination_account_number: String,
-            destination_routing_number: String,
-            remittance_information: String,
-            transfer_id: String
+            routing_number: String,
+            transfer_id: String,
+            unstructured_remittance_information: String
           ) -> void
 
           def to_hash: -> {
+            account_number: String,
             amount: Integer,
-            destination_account_number: String,
-            destination_routing_number: String,
-            remittance_information: String,
-            transfer_id: String
+            routing_number: String,
+            transfer_id: String,
+            unstructured_remittance_information: String
           }
         end
 

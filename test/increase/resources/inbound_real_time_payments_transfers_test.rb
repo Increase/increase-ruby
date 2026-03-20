@@ -27,10 +27,10 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline | nil,
-        remittance_information: String | nil,
         status: Increase::InboundRealTimePaymentsTransfer::Status,
         transaction_identification: String,
-        type: Increase::InboundRealTimePaymentsTransfer::Type
+        type: Increase::InboundRealTimePaymentsTransfer::Type,
+        unstructured_remittance_information: String | nil
       }
     end
   end
@@ -63,10 +63,10 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline | nil,
-        remittance_information: String | nil,
         status: Increase::InboundRealTimePaymentsTransfer::Status,
         transaction_identification: String,
-        type: Increase::InboundRealTimePaymentsTransfer::Type
+        type: Increase::InboundRealTimePaymentsTransfer::Type,
+        unstructured_remittance_information: String | nil
       }
     end
   end

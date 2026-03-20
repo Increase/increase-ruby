@@ -4,6 +4,7 @@ module Increase
       {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval?,
@@ -13,26 +14,27 @@ module Increase
         creditor_name: String,
         currency: Increase::Models::RealTimePaymentsTransfer::currency,
         debtor_name: String?,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
         rejection: Increase::RealTimePaymentsTransfer::Rejection?,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::RealTimePaymentsTransfer::status,
         submission: Increase::RealTimePaymentsTransfer::Submission?,
         transaction_id: String?,
         type: Increase::Models::RealTimePaymentsTransfer::type_,
         ultimate_creditor_name: String?,
-        ultimate_debtor_name: String?
+        ultimate_debtor_name: String?,
+        unstructured_remittance_information: String
       }
 
     class RealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor account_id: String
+
+      attr_accessor account_number: String
 
       attr_accessor acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?
 
@@ -52,10 +54,6 @@ module Increase
 
       attr_accessor debtor_name: String?
 
-      attr_accessor destination_account_number: String
-
-      attr_accessor destination_routing_number: String
-
       attr_accessor external_account_id: String?
 
       attr_accessor idempotency_key: String?
@@ -64,7 +62,7 @@ module Increase
 
       attr_accessor rejection: Increase::RealTimePaymentsTransfer::Rejection?
 
-      attr_accessor remittance_information: String
+      attr_accessor routing_number: String
 
       attr_accessor source_account_number_id: String
 
@@ -80,9 +78,12 @@ module Increase
 
       attr_accessor ultimate_debtor_name: String?
 
+      attr_accessor unstructured_remittance_information: String
+
       def initialize: (
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval?,
@@ -92,25 +93,25 @@ module Increase
         creditor_name: String,
         currency: Increase::Models::RealTimePaymentsTransfer::currency,
         debtor_name: String?,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
         rejection: Increase::RealTimePaymentsTransfer::Rejection?,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::RealTimePaymentsTransfer::status,
         submission: Increase::RealTimePaymentsTransfer::Submission?,
         transaction_id: String?,
         type: Increase::Models::RealTimePaymentsTransfer::type_,
         ultimate_creditor_name: String?,
-        ultimate_debtor_name: String?
+        ultimate_debtor_name: String?,
+        unstructured_remittance_information: String
       ) -> void
 
       def to_hash: -> {
         id: String,
         account_id: String,
+        account_number: String,
         acknowledgement: Increase::RealTimePaymentsTransfer::Acknowledgement?,
         amount: Integer,
         approval: Increase::RealTimePaymentsTransfer::Approval?,
@@ -120,20 +121,19 @@ module Increase
         creditor_name: String,
         currency: Increase::Models::RealTimePaymentsTransfer::currency,
         debtor_name: String?,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
         rejection: Increase::RealTimePaymentsTransfer::Rejection?,
-        remittance_information: String,
+        routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::RealTimePaymentsTransfer::status,
         submission: Increase::RealTimePaymentsTransfer::Submission?,
         transaction_id: String?,
         type: Increase::Models::RealTimePaymentsTransfer::type_,
         ultimate_creditor_name: String?,
-        ultimate_debtor_name: String?
+        ultimate_debtor_name: String?,
+        unstructured_remittance_information: String
       }
 
       type acknowledgement = { acknowledged_at: Time }

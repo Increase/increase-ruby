@@ -20,17 +20,23 @@ module Increase
       #   @return [String]
       required :creditor_name, String
 
-      # @!attribute remittance_information
-      #   Unstructured information that will show on the recipient's bank statement.
-      #
-      #   @return [String]
-      required :remittance_information, String
-
       # @!attribute source_account_number_id
       #   The identifier of the Account Number from which to send the transfer.
       #
       #   @return [String]
       required :source_account_number_id, String
+
+      # @!attribute unstructured_remittance_information
+      #   Unstructured information that will show on the recipient's bank statement.
+      #
+      #   @return [String]
+      required :unstructured_remittance_information, String
+
+      # @!attribute account_number
+      #   The destination account number.
+      #
+      #   @return [String, nil]
+      optional :account_number, String
 
       # @!attribute debtor_name
       #   The name of the transfer's sender. If not provided, defaults to the name of the
@@ -40,22 +46,18 @@ module Increase
       optional :debtor_name, String
 
       # @!attribute destination_account_number
-      #   The destination account number.
       #
       #   @return [String, nil]
       optional :destination_account_number, String
 
       # @!attribute destination_routing_number
-      #   The destination American Bankers' Association (ABA) Routing Transit Number
-      #   (RTN).
       #
       #   @return [String, nil]
       optional :destination_routing_number, String
 
       # @!attribute external_account_id
       #   The ID of an External Account to initiate a transfer to. If this parameter is
-      #   provided, `destination_account_number` and `destination_routing_number` must be
-      #   absent.
+      #   provided, `account_number` and `routing_number` must be absent.
       #
       #   @return [String, nil]
       optional :external_account_id, String
@@ -65,6 +67,13 @@ module Increase
       #
       #   @return [Boolean, nil]
       optional :require_approval, Increase::Internal::Type::Boolean
+
+      # @!attribute routing_number
+      #   The destination American Bankers' Association (ABA) Routing Transit Number
+      #   (RTN).
+      #
+      #   @return [String, nil]
+      optional :routing_number, String
 
       # @!attribute ultimate_creditor_name
       #   The name of the ultimate recipient of the transfer. Set this if the creditor is
@@ -80,7 +89,7 @@ module Increase
       #   @return [String, nil]
       optional :ultimate_debtor_name, String
 
-      # @!method initialize(amount:, creditor_name:, remittance_information:, source_account_number_id:, debtor_name: nil, destination_account_number: nil, destination_routing_number: nil, external_account_id: nil, require_approval: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
+      # @!method initialize(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, destination_account_number: nil, destination_routing_number: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::RealTimePaymentsTransferCreateParams} for more details.
       #
@@ -88,19 +97,23 @@ module Increase
       #
       #   @param creditor_name [String] The name of the transfer's recipient.
       #
-      #   @param remittance_information [String] Unstructured information that will show on the recipient's bank statement.
-      #
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer.
+      #
+      #   @param unstructured_remittance_information [String] Unstructured information that will show on the recipient's bank statement.
+      #
+      #   @param account_number [String] The destination account number.
       #
       #   @param debtor_name [String] The name of the transfer's sender. If not provided, defaults to the name of the
       #
-      #   @param destination_account_number [String] The destination account number.
+      #   @param destination_account_number [String]
       #
-      #   @param destination_routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
+      #   @param destination_routing_number [String]
       #
       #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #
+      #   @param routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
       #
       #   @param ultimate_creditor_name [String] The name of the ultimate recipient of the transfer. Set this if the creditor is
       #

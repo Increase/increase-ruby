@@ -8,25 +8,29 @@ module Increase
       #
       # Create a Real-Time Payments Transfer
       #
-      # @overload create(amount:, creditor_name:, remittance_information:, source_account_number_id:, debtor_name: nil, destination_account_number: nil, destination_routing_number: nil, external_account_id: nil, require_approval: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
+      # @overload create(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, destination_account_number: nil, destination_routing_number: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
       #
       # @param amount [Integer] The transfer amount in USD cents. For Real-Time Payments transfers, must be posi
       #
       # @param creditor_name [String] The name of the transfer's recipient.
       #
-      # @param remittance_information [String] Unstructured information that will show on the recipient's bank statement.
-      #
       # @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer.
+      #
+      # @param unstructured_remittance_information [String] Unstructured information that will show on the recipient's bank statement.
+      #
+      # @param account_number [String] The destination account number.
       #
       # @param debtor_name [String] The name of the transfer's sender. If not provided, defaults to the name of the
       #
-      # @param destination_account_number [String] The destination account number.
+      # @param destination_account_number [String]
       #
-      # @param destination_routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
+      # @param destination_routing_number [String]
       #
       # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
       # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #
+      # @param routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
       #
       # @param ultimate_creditor_name [String] The name of the ultimate recipient of the transfer. Set this if the creditor is
       #

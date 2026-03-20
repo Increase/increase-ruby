@@ -14,10 +14,10 @@ module Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
-        remittance_information: String?,
         status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
-        type: Increase::Models::InboundRealTimePaymentsTransfer::type_
+        type: Increase::Models::InboundRealTimePaymentsTransfer::type_,
+        unstructured_remittance_information: String?
       }
 
     class InboundRealTimePaymentsTransfer < Increase::Internal::Type::BaseModel
@@ -45,13 +45,13 @@ module Increase
 
       attr_accessor decline: Increase::InboundRealTimePaymentsTransfer::Decline?
 
-      attr_accessor remittance_information: String?
-
       attr_accessor status: Increase::Models::InboundRealTimePaymentsTransfer::status
 
       attr_accessor transaction_identification: String
 
       attr_accessor type: Increase::Models::InboundRealTimePaymentsTransfer::type_
+
+      attr_accessor unstructured_remittance_information: String?
 
       def initialize: (
         id: String,
@@ -66,10 +66,10 @@ module Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
-        remittance_information: String?,
         status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
-        type: Increase::Models::InboundRealTimePaymentsTransfer::type_
+        type: Increase::Models::InboundRealTimePaymentsTransfer::type_,
+        unstructured_remittance_information: String?
       ) -> void
 
       def to_hash: -> {
@@ -85,10 +85,10 @@ module Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
-        remittance_information: String?,
         status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
-        type: Increase::Models::InboundRealTimePaymentsTransfer::type_
+        type: Increase::Models::InboundRealTimePaymentsTransfer::type_,
+        unstructured_remittance_information: String?
       }
 
       type confirmation = { confirmed_at: Time, transaction_id: String }

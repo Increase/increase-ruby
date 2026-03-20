@@ -1633,9 +1633,9 @@ module Increase
             debtor_name: String,
             debtor_routing_number: String,
             reason: Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::reason,
-            remittance_information: String?,
             transaction_identification: String,
-            transfer_id: String
+            transfer_id: String,
+            unstructured_remittance_information: String?
           }
 
         class InboundRealTimePaymentsTransferDecline < Increase::Internal::Type::BaseModel
@@ -1653,11 +1653,11 @@ module Increase
 
           attr_accessor reason: Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::reason
 
-          attr_accessor remittance_information: String?
-
           attr_accessor transaction_identification: String
 
           attr_accessor transfer_id: String
+
+          attr_accessor unstructured_remittance_information: String?
 
           def initialize: (
             amount: Integer,
@@ -1667,9 +1667,9 @@ module Increase
             debtor_name: String,
             debtor_routing_number: String,
             reason: Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::reason,
-            remittance_information: String?,
             transaction_identification: String,
-            transfer_id: String
+            transfer_id: String,
+            unstructured_remittance_information: String?
           ) -> void
 
           def to_hash: -> {
@@ -1680,9 +1680,9 @@ module Increase
             debtor_name: String,
             debtor_routing_number: String,
             reason: Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::reason,
-            remittance_information: String?,
             transaction_identification: String,
-            transfer_id: String
+            transfer_id: String,
+            unstructured_remittance_information: String?
           }
 
           type currency = :USD
