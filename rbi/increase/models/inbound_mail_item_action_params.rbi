@@ -71,16 +71,16 @@ module Increase
         # The identifier of the Account to deposit the check into. If not provided, the
         # check will be deposited into the Account associated with the Lockbox.
         sig { returns(T.nilable(String)) }
-        attr_reader :account
+        attr_reader :account_id
 
-        sig { params(account: String).void }
-        attr_writer :account
+        sig { params(account_id: String).void }
+        attr_writer :account_id
 
         sig do
           params(
             action:
               Increase::InboundMailItemActionParams::Check::Action::OrSymbol,
-            account: String
+            account_id: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -88,7 +88,7 @@ module Increase
           action:,
           # The identifier of the Account to deposit the check into. If not provided, the
           # check will be deposited into the Account associated with the Lockbox.
-          account: nil
+          account_id: nil
         )
         end
 
@@ -97,7 +97,7 @@ module Increase
             {
               action:
                 Increase::InboundMailItemActionParams::Check::Action::OrSymbol,
-              account: String
+              account_id: String
             }
           )
         end
