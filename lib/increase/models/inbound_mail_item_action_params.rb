@@ -33,20 +33,20 @@ module Increase
         #   @return [Symbol, Increase::Models::InboundMailItemActionParams::Check::Action]
         required :action, enum: -> { Increase::InboundMailItemActionParams::Check::Action }
 
-        # @!attribute account
+        # @!attribute account_id
         #   The identifier of the Account to deposit the check into. If not provided, the
         #   check will be deposited into the Account associated with the Lockbox.
         #
         #   @return [String, nil]
-        optional :account, String
+        optional :account_id, String
 
-        # @!method initialize(action:, account: nil)
+        # @!method initialize(action:, account_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::InboundMailItemActionParams::Check} for more details.
         #
         #   @param action [Symbol, Increase::Models::InboundMailItemActionParams::Check::Action] The action to perform on the Inbound Mail Item.
         #
-        #   @param account [String] The identifier of the Account to deposit the check into. If not provided, the ch
+        #   @param account_id [String] The identifier of the Account to deposit the check into. If not provided, the ch
 
         # The action to perform on the Inbound Mail Item.
         #
