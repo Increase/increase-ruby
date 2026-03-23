@@ -71,6 +71,10 @@ module Increase
         end
         attr_accessor :domestic_push_transfers
 
+        # The ISO-3166-1 alpha-2 country code of the card's issuing bank.
+        sig { returns(String) }
+        attr_accessor :issuer_country
+
         # The card network route the capabilities apply to.
         sig do
           returns(Increase::CardTokenCapabilities::Route::Route::TaggedSymbol)
@@ -83,6 +87,7 @@ module Increase
               Increase::CardTokenCapabilities::Route::CrossBorderPushTransfers::OrSymbol,
             domestic_push_transfers:
               Increase::CardTokenCapabilities::Route::DomesticPushTransfers::OrSymbol,
+            issuer_country: String,
             route: Increase::CardTokenCapabilities::Route::Route::OrSymbol
           ).returns(T.attached_class)
         end
@@ -91,6 +96,8 @@ module Increase
           cross_border_push_transfers:,
           # Whether you can push funds to the card using domestic Card Push Transfers.
           domestic_push_transfers:,
+          # The ISO-3166-1 alpha-2 country code of the card's issuing bank.
+          issuer_country:,
           # The card network route the capabilities apply to.
           route:
         )
@@ -103,6 +110,7 @@ module Increase
                 Increase::CardTokenCapabilities::Route::CrossBorderPushTransfers::TaggedSymbol,
               domestic_push_transfers:
                 Increase::CardTokenCapabilities::Route::DomesticPushTransfers::TaggedSymbol,
+              issuer_country: String,
               route: Increase::CardTokenCapabilities::Route::Route::TaggedSymbol
             }
           )

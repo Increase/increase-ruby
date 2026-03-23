@@ -25,6 +25,7 @@ module Increase
         {
           cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers,
           domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers,
+          issuer_country: String,
           route: Increase::Models::CardTokenCapabilities::Route::route
         }
 
@@ -33,17 +34,21 @@ module Increase
 
         attr_accessor domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers
 
+        attr_accessor issuer_country: String
+
         attr_accessor route: Increase::Models::CardTokenCapabilities::Route::route
 
         def initialize: (
           cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers,
           domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers,
+          issuer_country: String,
           route: Increase::Models::CardTokenCapabilities::Route::route
         ) -> void
 
         def to_hash: -> {
           cross_border_push_transfers: Increase::Models::CardTokenCapabilities::Route::cross_border_push_transfers,
           domestic_push_transfers: Increase::Models::CardTokenCapabilities::Route::domestic_push_transfers,
+          issuer_country: String,
           route: Increase::Models::CardTokenCapabilities::Route::route
         }
 
