@@ -44,16 +44,24 @@ module Increase
         required :domestic_push_transfers,
                  enum: -> { Increase::CardTokenCapabilities::Route::DomesticPushTransfers }
 
+        # @!attribute issuer_country
+        #   The ISO-3166-1 alpha-2 country code of the card's issuing bank.
+        #
+        #   @return [String]
+        required :issuer_country, String
+
         # @!attribute route
         #   The card network route the capabilities apply to.
         #
         #   @return [Symbol, Increase::Models::CardTokenCapabilities::Route::Route]
         required :route, enum: -> { Increase::CardTokenCapabilities::Route::Route }
 
-        # @!method initialize(cross_border_push_transfers:, domestic_push_transfers:, route:)
+        # @!method initialize(cross_border_push_transfers:, domestic_push_transfers:, issuer_country:, route:)
         #   @param cross_border_push_transfers [Symbol, Increase::Models::CardTokenCapabilities::Route::CrossBorderPushTransfers] Whether you can push funds to the card using cross-border Card Push Transfers.
         #
         #   @param domestic_push_transfers [Symbol, Increase::Models::CardTokenCapabilities::Route::DomesticPushTransfers] Whether you can push funds to the card using domestic Card Push Transfers.
+        #
+        #   @param issuer_country [String] The ISO-3166-1 alpha-2 country code of the card's issuing bank.
         #
         #   @param route [Symbol, Increase::Models::CardTokenCapabilities::Route::Route] The card network route the capabilities apply to.
 
