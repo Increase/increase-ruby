@@ -8,7 +8,7 @@ module Increase
       #
       # Create a Real-Time Payments Transfer
       #
-      # @overload create(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, destination_account_number: nil, destination_routing_number: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
+      # @overload create(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
       #
       # @param amount [Integer] The transfer amount in USD cents. For Real-Time Payments transfers, must be posi
       #
@@ -21,10 +21,6 @@ module Increase
       # @param account_number [String] The destination account number.
       #
       # @param debtor_name [String] The name of the transfer's sender. If not provided, defaults to the name of the
-      #
-      # @param destination_account_number [String]
-      #
-      # @param destination_routing_number [String]
       #
       # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
