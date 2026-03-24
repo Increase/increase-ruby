@@ -2089,7 +2089,7 @@ module Increase
                 end
 
               # The two-character ISO 3166-1 code representing the country that issued the
-              # passport (e.g., `US`).
+              # document (e.g., `US`).
               sig { returns(String) }
               attr_accessor :country
 
@@ -2112,7 +2112,7 @@ module Increase
               end
               def self.new(
                 # The two-character ISO 3166-1 code representing the country that issued the
-                # passport (e.g., `US`).
+                # document (e.g., `US`).
                 country:,
                 # The passport's expiration date in YYYY-MM-DD format.
                 expiration_date:,
@@ -2650,7 +2650,7 @@ module Increase
               end
 
             # The two-character ISO 3166-1 code representing the country that issued the
-            # passport (e.g., `US`).
+            # document (e.g., `US`).
             sig { returns(String) }
             attr_accessor :country
 
@@ -2673,7 +2673,7 @@ module Increase
             end
             def self.new(
               # The two-character ISO 3166-1 code representing the country that issued the
-              # passport (e.g., `US`).
+              # document (e.g., `US`).
               country:,
               # The passport's expiration date in YYYY-MM-DD format.
               expiration_date:,
@@ -3823,7 +3823,7 @@ module Increase
                   end
 
                 # The two-character ISO 3166-1 code representing the country that issued the
-                # passport (e.g., `US`).
+                # document (e.g., `US`).
                 sig { returns(String) }
                 attr_accessor :country
 
@@ -3846,7 +3846,7 @@ module Increase
                 end
                 def self.new(
                   # The two-character ISO 3166-1 code representing the country that issued the
-                  # passport (e.g., `US`).
+                  # document (e.g., `US`).
                   country:,
                   # The passport's expiration date in YYYY-MM-DD format.
                   expiration_date:,
@@ -4383,7 +4383,7 @@ module Increase
                 end
 
               # The two-character ISO 3166-1 code representing the country that issued the
-              # passport (e.g., `US`).
+              # document (e.g., `US`).
               sig { returns(String) }
               attr_accessor :country
 
@@ -4406,7 +4406,7 @@ module Increase
               end
               def self.new(
                 # The two-character ISO 3166-1 code representing the country that issued the
-                # passport (e.g., `US`).
+                # document (e.g., `US`).
                 country:,
                 # The passport's expiration date in YYYY-MM-DD format.
                 expiration_date:,

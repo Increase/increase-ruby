@@ -1117,7 +1117,7 @@ module Increase
             class Passport < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The two-character ISO 3166-1 code representing the country that issued the
-              #   passport (e.g., `US`).
+              #   document (e.g., `US`).
               #
               #   @return [String]
               required :country, String
@@ -1142,7 +1142,7 @@ module Increase
               #   Information about the passport used for identification. Required if `method` is
               #   equal to `passport`.
               #
-              #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
+              #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
               #
               #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
               #
@@ -1434,7 +1434,7 @@ module Increase
           class Passport < Increase::Internal::Type::BaseModel
             # @!attribute country
             #   The two-character ISO 3166-1 code representing the country that issued the
-            #   passport (e.g., `US`).
+            #   document (e.g., `US`).
             #
             #   @return [String]
             required :country, String
@@ -1459,7 +1459,7 @@ module Increase
             #   Information about the passport used for identification. Required if `method` is
             #   equal to `passport`.
             #
-            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
+            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
             #
             #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
             #
@@ -2069,7 +2069,7 @@ module Increase
               class Passport < Increase::Internal::Type::BaseModel
                 # @!attribute country
                 #   The two-character ISO 3166-1 code representing the country that issued the
-                #   passport (e.g., `US`).
+                #   document (e.g., `US`).
                 #
                 #   @return [String]
                 required :country, String
@@ -2094,7 +2094,7 @@ module Increase
                 #   Information about the passport used for identification. Required if `method` is
                 #   equal to `passport`.
                 #
-                #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
+                #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
                 #
                 #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
                 #
@@ -2385,7 +2385,7 @@ module Increase
             class Passport < Increase::Internal::Type::BaseModel
               # @!attribute country
               #   The two-character ISO 3166-1 code representing the country that issued the
-              #   passport (e.g., `US`).
+              #   document (e.g., `US`).
               #
               #   @return [String]
               required :country, String
@@ -2410,7 +2410,7 @@ module Increase
               #   Information about the passport used for identification. Required if `method` is
               #   equal to `passport`.
               #
-              #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the passp
+              #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
               #
               #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
               #
