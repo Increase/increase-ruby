@@ -458,20 +458,6 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # The return was initiated too late and the receiving institution has responded with a Late Return Claim.
-          LATE_RETURN =
-            T.let(
-              :late_return,
-              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
-            )
-
-          # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
-          WRONG_PAYEE_CREDIT =
-            T.let(
-              :wrong_payee_credit,
-              Increase::CheckDeposit::DepositAdjustment::Reason::TaggedSymbol
-            )
-
           # The check was deposited with a different amount than what was written on the check.
           ADJUSTED_AMOUNT =
             T.let(
