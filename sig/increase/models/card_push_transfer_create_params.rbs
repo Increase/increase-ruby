@@ -18,6 +18,12 @@ module Increase
         sender_address_state: String,
         sender_name: String,
         source_account_number_id: String,
+        merchant_legal_business_name: String,
+        merchant_street_address: String,
+        recipient_address_city: String,
+        :recipient_address_line1 => String,
+        recipient_address_postal_code: String,
+        recipient_address_state: String,
         require_approval: bool
       }
       & Increase::Internal::Type::request_parameters
@@ -58,6 +64,30 @@ module Increase
 
       attr_accessor source_account_number_id: String
 
+      attr_reader merchant_legal_business_name: String?
+
+      def merchant_legal_business_name=: (String) -> String
+
+      attr_reader merchant_street_address: String?
+
+      def merchant_street_address=: (String) -> String
+
+      attr_reader recipient_address_city: String?
+
+      def recipient_address_city=: (String) -> String
+
+      attr_reader recipient_address_line1: String?
+
+      def recipient_address_line1=: (String) -> String
+
+      attr_reader recipient_address_postal_code: String?
+
+      def recipient_address_postal_code=: (String) -> String
+
+      attr_reader recipient_address_state: String?
+
+      def recipient_address_state=: (String) -> String
+
       attr_reader require_approval: bool?
 
       def require_approval=: (bool) -> bool
@@ -79,6 +109,12 @@ module Increase
         sender_address_state: String,
         sender_name: String,
         source_account_number_id: String,
+        ?merchant_legal_business_name: String,
+        ?merchant_street_address: String,
+        ?recipient_address_city: String,
+        ?recipient_address_line1: String,
+        ?recipient_address_postal_code: String,
+        ?recipient_address_state: String,
         ?require_approval: bool,
         ?request_options: Increase::request_opts
       ) -> void
@@ -100,6 +136,12 @@ module Increase
         sender_address_state: String,
         sender_name: String,
         source_account_number_id: String,
+        merchant_legal_business_name: String,
+        merchant_street_address: String,
+        recipient_address_city: String,
+        :recipient_address_line1 => String,
+        recipient_address_postal_code: String,
+        recipient_address_state: String,
         require_approval: bool,
         request_options: Increase::RequestOptions
       }

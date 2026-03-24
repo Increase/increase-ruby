@@ -18,6 +18,12 @@ module Increase
         sender_address_state: String,
         sender_name: String,
         source_account_number_id: String,
+        ?merchant_legal_business_name: String,
+        ?merchant_street_address: String,
+        ?recipient_address_city: String,
+        ?recipient_address_line1: String,
+        ?recipient_address_postal_code: String,
+        ?recipient_address_state: String,
         ?require_approval: bool,
         ?request_options: Increase::request_opts
       ) -> Increase::CardPushTransfer
