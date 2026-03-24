@@ -317,27 +317,6 @@ module Increase
               Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
             )
 
-          # The check was deposited with a different amount than what was written on the check.
-          ADJUSTED_AMOUNT =
-            T.let(
-              :adjusted_amount,
-              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
-            )
-
-          # The recipient was not able to process the check. This usually happens for e.g., low quality images.
-          NON_CONFORMING_ITEM =
-            T.let(
-              :non_conforming_item,
-              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
-            )
-
-          # The check has already been deposited elsewhere and so this is a duplicate.
-          PAID =
-            T.let(
-              :paid,
-              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
-            )
-
           sig do
             override.returns(
               T::Array[
