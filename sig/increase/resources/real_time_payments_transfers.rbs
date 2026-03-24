@@ -8,8 +8,6 @@ module Increase
         unstructured_remittance_information: String,
         ?account_number: String,
         ?debtor_name: String,
-        ?destination_account_number: String,
-        ?destination_routing_number: String,
         ?external_account_id: String,
         ?require_approval: bool,
         ?routing_number: String,

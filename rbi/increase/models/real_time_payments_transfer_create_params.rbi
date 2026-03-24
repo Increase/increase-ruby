@@ -46,18 +46,6 @@ module Increase
       sig { params(debtor_name: String).void }
       attr_writer :debtor_name
 
-      sig { returns(T.nilable(String)) }
-      attr_reader :destination_account_number
-
-      sig { params(destination_account_number: String).void }
-      attr_writer :destination_account_number
-
-      sig { returns(T.nilable(String)) }
-      attr_reader :destination_routing_number
-
-      sig { params(destination_routing_number: String).void }
-      attr_writer :destination_routing_number
-
       # The ID of an External Account to initiate a transfer to. If this parameter is
       # provided, `account_number` and `routing_number` must be absent.
       sig { returns(T.nilable(String)) }
@@ -105,8 +93,6 @@ module Increase
           unstructured_remittance_information: String,
           account_number: String,
           debtor_name: String,
-          destination_account_number: String,
-          destination_routing_number: String,
           external_account_id: String,
           require_approval: T::Boolean,
           routing_number: String,
@@ -130,8 +116,6 @@ module Increase
         # The name of the transfer's sender. If not provided, defaults to the name of the
         # account's entity.
         debtor_name: nil,
-        destination_account_number: nil,
-        destination_routing_number: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is
         # provided, `account_number` and `routing_number` must be absent.
         external_account_id: nil,
@@ -159,8 +143,6 @@ module Increase
             unstructured_remittance_information: String,
             account_number: String,
             debtor_name: String,
-            destination_account_number: String,
-            destination_routing_number: String,
             external_account_id: String,
             require_approval: T::Boolean,
             routing_number: String,

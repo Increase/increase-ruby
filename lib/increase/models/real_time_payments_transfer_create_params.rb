@@ -45,16 +45,6 @@ module Increase
       #   @return [String, nil]
       optional :debtor_name, String
 
-      # @!attribute destination_account_number
-      #
-      #   @return [String, nil]
-      optional :destination_account_number, String
-
-      # @!attribute destination_routing_number
-      #
-      #   @return [String, nil]
-      optional :destination_routing_number, String
-
       # @!attribute external_account_id
       #   The ID of an External Account to initiate a transfer to. If this parameter is
       #   provided, `account_number` and `routing_number` must be absent.
@@ -89,7 +79,7 @@ module Increase
       #   @return [String, nil]
       optional :ultimate_debtor_name, String
 
-      # @!method initialize(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, destination_account_number: nil, destination_routing_number: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
+      # @!method initialize(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::RealTimePaymentsTransferCreateParams} for more details.
       #
@@ -104,10 +94,6 @@ module Increase
       #   @param account_number [String] The destination account number.
       #
       #   @param debtor_name [String] The name of the transfer's sender. If not provided, defaults to the name of the
-      #
-      #   @param destination_account_number [String]
-      #
-      #   @param destination_routing_number [String]
       #
       #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #

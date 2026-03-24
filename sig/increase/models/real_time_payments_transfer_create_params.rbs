@@ -8,8 +8,6 @@ module Increase
         unstructured_remittance_information: String,
         account_number: String,
         debtor_name: String,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String,
         require_approval: bool,
         routing_number: String,
@@ -38,14 +36,6 @@ module Increase
 
       def debtor_name=: (String) -> String
 
-      attr_reader destination_account_number: String?
-
-      def destination_account_number=: (String) -> String
-
-      attr_reader destination_routing_number: String?
-
-      def destination_routing_number=: (String) -> String
-
       attr_reader external_account_id: String?
 
       def external_account_id=: (String) -> String
@@ -73,8 +63,6 @@ module Increase
         unstructured_remittance_information: String,
         ?account_number: String,
         ?debtor_name: String,
-        ?destination_account_number: String,
-        ?destination_routing_number: String,
         ?external_account_id: String,
         ?require_approval: bool,
         ?routing_number: String,
@@ -90,8 +78,6 @@ module Increase
         unstructured_remittance_information: String,
         account_number: String,
         debtor_name: String,
-        destination_account_number: String,
-        destination_routing_number: String,
         external_account_id: String,
         require_approval: bool,
         routing_number: String,
