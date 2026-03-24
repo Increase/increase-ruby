@@ -115,13 +115,53 @@ module Increase
       #   @return [String]
       required :source_account_number_id, String
 
+      # @!attribute merchant_legal_business_name
+      #   The legal business name of the merchant (generally your business) sending the
+      #   transfer. Required if the card is issued in Canada.
+      #
+      #   @return [String, nil]
+      optional :merchant_legal_business_name, String
+
+      # @!attribute merchant_street_address
+      #   The street address of the merchant (generally your business) sending the
+      #   transfer. Required if the card is issued in Canada.
+      #
+      #   @return [String, nil]
+      optional :merchant_street_address, String
+
+      # @!attribute recipient_address_city
+      #   The city of the recipient. Required if the card is issued in Canada.
+      #
+      #   @return [String, nil]
+      optional :recipient_address_city, String
+
+      # @!attribute recipient_address_line1
+      #   The first line of the recipient's address. Required if the card is issued in
+      #   Canada.
+      #
+      #   @return [String, nil]
+      optional :recipient_address_line1, String
+
+      # @!attribute recipient_address_postal_code
+      #   The postal code of the recipient. Required if the card is issued in Canada.
+      #
+      #   @return [String, nil]
+      optional :recipient_address_postal_code, String
+
+      # @!attribute recipient_address_state
+      #   The state or province of the recipient. Required if the card is issued in
+      #   Canada.
+      #
+      #   @return [String, nil]
+      optional :recipient_address_state, String
+
       # @!attribute require_approval
       #   Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @return [Boolean, nil]
       optional :require_approval, Increase::Internal::Type::Boolean
 
-      # @!method initialize(business_application_identifier:, card_token_id:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, require_approval: nil, request_options: {})
+      # @!method initialize(business_application_identifier:, card_token_id:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, merchant_legal_business_name: nil, merchant_street_address: nil, recipient_address_city: nil, recipient_address_line1: nil, recipient_address_postal_code: nil, recipient_address_state: nil, require_approval: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardPushTransferCreateParams} for more details.
       #
@@ -156,6 +196,18 @@ module Increase
       #   @param sender_name [String] The name of the funds originator.
       #
       #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer.
+      #
+      #   @param merchant_legal_business_name [String] The legal business name of the merchant (generally your business) sending the tr
+      #
+      #   @param merchant_street_address [String] The street address of the merchant (generally your business) sending the transfe
+      #
+      #   @param recipient_address_city [String] The city of the recipient. Required if the card is issued in Canada.
+      #
+      #   @param recipient_address_line1 [String] The first line of the recipient's address. Required if the card is issued in Can
+      #
+      #   @param recipient_address_postal_code [String] The postal code of the recipient. Required if the card is issued in Canada.
+      #
+      #   @param recipient_address_state [String] The state or province of the recipient. Required if the card is issued in Canada
       #
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #

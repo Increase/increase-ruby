@@ -101,6 +101,52 @@ module Increase
       sig { returns(String) }
       attr_accessor :source_account_number_id
 
+      # The legal business name of the merchant (generally your business) sending the
+      # transfer. Required if the card is issued in Canada.
+      sig { returns(T.nilable(String)) }
+      attr_reader :merchant_legal_business_name
+
+      sig { params(merchant_legal_business_name: String).void }
+      attr_writer :merchant_legal_business_name
+
+      # The street address of the merchant (generally your business) sending the
+      # transfer. Required if the card is issued in Canada.
+      sig { returns(T.nilable(String)) }
+      attr_reader :merchant_street_address
+
+      sig { params(merchant_street_address: String).void }
+      attr_writer :merchant_street_address
+
+      # The city of the recipient. Required if the card is issued in Canada.
+      sig { returns(T.nilable(String)) }
+      attr_reader :recipient_address_city
+
+      sig { params(recipient_address_city: String).void }
+      attr_writer :recipient_address_city
+
+      # The first line of the recipient's address. Required if the card is issued in
+      # Canada.
+      sig { returns(T.nilable(String)) }
+      attr_reader :recipient_address_line1
+
+      sig { params(recipient_address_line1: String).void }
+      attr_writer :recipient_address_line1
+
+      # The postal code of the recipient. Required if the card is issued in Canada.
+      sig { returns(T.nilable(String)) }
+      attr_reader :recipient_address_postal_code
+
+      sig { params(recipient_address_postal_code: String).void }
+      attr_writer :recipient_address_postal_code
+
+      # The state or province of the recipient. Required if the card is issued in
+      # Canada.
+      sig { returns(T.nilable(String)) }
+      attr_reader :recipient_address_state
+
+      sig { params(recipient_address_state: String).void }
+      attr_writer :recipient_address_state
+
       # Whether the transfer requires explicit approval via the dashboard or API.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :require_approval
@@ -128,6 +174,12 @@ module Increase
           sender_address_state: String,
           sender_name: String,
           source_account_number_id: String,
+          merchant_legal_business_name: String,
+          merchant_street_address: String,
+          recipient_address_city: String,
+          recipient_address_line1: String,
+          recipient_address_postal_code: String,
+          recipient_address_state: String,
           require_approval: T::Boolean,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -176,6 +228,22 @@ module Increase
         sender_name:,
         # The identifier of the Account Number from which to send the transfer.
         source_account_number_id:,
+        # The legal business name of the merchant (generally your business) sending the
+        # transfer. Required if the card is issued in Canada.
+        merchant_legal_business_name: nil,
+        # The street address of the merchant (generally your business) sending the
+        # transfer. Required if the card is issued in Canada.
+        merchant_street_address: nil,
+        # The city of the recipient. Required if the card is issued in Canada.
+        recipient_address_city: nil,
+        # The first line of the recipient's address. Required if the card is issued in
+        # Canada.
+        recipient_address_line1: nil,
+        # The postal code of the recipient. Required if the card is issued in Canada.
+        recipient_address_postal_code: nil,
+        # The state or province of the recipient. Required if the card is issued in
+        # Canada.
+        recipient_address_state: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
         request_options: {}
@@ -203,6 +271,12 @@ module Increase
             sender_address_state: String,
             sender_name: String,
             source_account_number_id: String,
+            merchant_legal_business_name: String,
+            merchant_street_address: String,
+            recipient_address_city: String,
+            recipient_address_line1: String,
+            recipient_address_postal_code: String,
+            recipient_address_state: String,
             require_approval: T::Boolean,
             request_options: Increase::RequestOptions
           }
