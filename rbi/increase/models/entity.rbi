@@ -379,9 +379,13 @@ module Increase
               )
             end
 
-          # The city of the address.
-          sig { returns(String) }
+          # The city, district, town, or village of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :city
+
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
 
           # The first line of the address.
           sig { returns(String) }
@@ -391,36 +395,39 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :line2
 
-          # The two-letter United States Postal Service (USPS) abbreviation for the state of
-          # the address.
-          sig { returns(String) }
+          # The two-letter United States Postal Service (USPS) abbreviation for the US
+          # state, province, or region of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :state
 
-          # The ZIP code of the address.
-          sig { returns(String) }
+          # The ZIP or postal code of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :zip
 
           # The corporation's address.
           sig do
             params(
-              city: String,
+              city: T.nilable(String),
+              country: String,
               line1: String,
               line2: T.nilable(String),
-              state: String,
-              zip: String
+              state: T.nilable(String),
+              zip: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
-            # The city of the address.
+            # The city, district, town, or village of the address.
             city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
             # The first line of the address.
             line1:,
             # The second line of the address.
             line2:,
-            # The two-letter United States Postal Service (USPS) abbreviation for the state of
-            # the address.
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
             state:,
-            # The ZIP code of the address.
+            # The ZIP or postal code of the address.
             zip:
           )
           end
@@ -428,11 +435,12 @@ module Increase
           sig do
             override.returns(
               {
-                city: String,
+                city: T.nilable(String),
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
-                state: String,
-                zip: String
+                state: T.nilable(String),
+                zip: T.nilable(String)
               }
             )
           end
@@ -1031,9 +1039,13 @@ module Increase
               )
             end
 
-          # The city of the address.
-          sig { returns(String) }
+          # The city, district, town, or village of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :city
+
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
 
           # The first line of the address.
           sig { returns(String) }
@@ -1043,36 +1055,39 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :line2
 
-          # The two-letter United States Postal Service (USPS) abbreviation for the state of
-          # the address.
-          sig { returns(String) }
+          # The two-letter United States Postal Service (USPS) abbreviation for the US
+          # state, province, or region of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :state
 
-          # The ZIP code of the address.
-          sig { returns(String) }
+          # The ZIP or postal code of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :zip
 
           # The government authority's address.
           sig do
             params(
-              city: String,
+              city: T.nilable(String),
+              country: String,
               line1: String,
               line2: T.nilable(String),
-              state: String,
-              zip: String
+              state: T.nilable(String),
+              zip: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
-            # The city of the address.
+            # The city, district, town, or village of the address.
             city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
             # The first line of the address.
             line1:,
             # The second line of the address.
             line2:,
-            # The two-letter United States Postal Service (USPS) abbreviation for the state of
-            # the address.
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
             state:,
-            # The ZIP code of the address.
+            # The ZIP or postal code of the address.
             zip:
           )
           end
@@ -1080,11 +1095,12 @@ module Increase
           sig do
             override.returns(
               {
-                city: String,
+                city: T.nilable(String),
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
-                state: String,
-                zip: String
+                state: T.nilable(String),
+                zip: T.nilable(String)
               }
             )
           end
@@ -1303,9 +1319,13 @@ module Increase
                 )
               end
 
-            # The city of the address.
-            sig { returns(String) }
+            # The city, district, town, or village of the address.
+            sig { returns(T.nilable(String)) }
             attr_accessor :city
+
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
 
             # The first line of the address.
             sig { returns(String) }
@@ -1315,36 +1335,39 @@ module Increase
             sig { returns(T.nilable(String)) }
             attr_accessor :line2
 
-            # The two-letter United States Postal Service (USPS) abbreviation for the state of
-            # the address.
-            sig { returns(String) }
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
+            sig { returns(T.nilable(String)) }
             attr_accessor :state
 
-            # The ZIP code of the address.
-            sig { returns(String) }
+            # The ZIP or postal code of the address.
+            sig { returns(T.nilable(String)) }
             attr_accessor :zip
 
             # The person's address.
             sig do
               params(
-                city: String,
+                city: T.nilable(String),
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
-                state: String,
-                zip: String
+                state: T.nilable(String),
+                zip: T.nilable(String)
               ).returns(T.attached_class)
             end
             def self.new(
-              # The city of the address.
+              # The city, district, town, or village of the address.
               city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              country:,
               # The first line of the address.
               line1:,
               # The second line of the address.
               line2:,
-              # The two-letter United States Postal Service (USPS) abbreviation for the state of
-              # the address.
+              # The two-letter United States Postal Service (USPS) abbreviation for the US
+              # state, province, or region of the address.
               state:,
-              # The ZIP code of the address.
+              # The ZIP or postal code of the address.
               zip:
             )
             end
@@ -1352,11 +1375,12 @@ module Increase
             sig do
               override.returns(
                 {
-                  city: String,
+                  city: T.nilable(String),
+                  country: String,
                   line1: String,
                   line2: T.nilable(String),
-                  state: String,
-                  zip: String
+                  state: T.nilable(String),
+                  zip: T.nilable(String)
                 }
               )
             end
@@ -1557,9 +1581,13 @@ module Increase
               )
             end
 
-          # The city of the address.
-          sig { returns(String) }
+          # The city, district, town, or village of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :city
+
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
 
           # The first line of the address.
           sig { returns(String) }
@@ -1569,36 +1597,39 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :line2
 
-          # The two-letter United States Postal Service (USPS) abbreviation for the state of
-          # the address.
-          sig { returns(String) }
+          # The two-letter United States Postal Service (USPS) abbreviation for the US
+          # state, province, or region of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :state
 
-          # The ZIP code of the address.
-          sig { returns(String) }
+          # The ZIP or postal code of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :zip
 
           # The person's address.
           sig do
             params(
-              city: String,
+              city: T.nilable(String),
+              country: String,
               line1: String,
               line2: T.nilable(String),
-              state: String,
-              zip: String
+              state: T.nilable(String),
+              zip: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
-            # The city of the address.
+            # The city, district, town, or village of the address.
             city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
             # The first line of the address.
             line1:,
             # The second line of the address.
             line2:,
-            # The two-letter United States Postal Service (USPS) abbreviation for the state of
-            # the address.
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
             state:,
-            # The ZIP code of the address.
+            # The ZIP or postal code of the address.
             zip:
           )
           end
@@ -1606,11 +1637,12 @@ module Increase
           sig do
             override.returns(
               {
-                city: String,
+                city: T.nilable(String),
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
-                state: String,
-                zip: String
+                state: T.nilable(String),
+                zip: T.nilable(String)
               }
             )
           end
@@ -2121,9 +2153,13 @@ module Increase
               )
             end
 
-          # The city of the address.
-          sig { returns(String) }
+          # The city, district, town, or village of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :city
+
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
 
           # The first line of the address.
           sig { returns(String) }
@@ -2133,36 +2169,39 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :line2
 
-          # The two-letter United States Postal Service (USPS) abbreviation for the state of
-          # the address.
-          sig { returns(String) }
+          # The two-letter United States Postal Service (USPS) abbreviation for the US
+          # state, province, or region of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :state
 
-          # The ZIP code of the address.
-          sig { returns(String) }
+          # The ZIP or postal code of the address.
+          sig { returns(T.nilable(String)) }
           attr_accessor :zip
 
           # The trust's address.
           sig do
             params(
-              city: String,
+              city: T.nilable(String),
+              country: String,
               line1: String,
               line2: T.nilable(String),
-              state: String,
-              zip: String
+              state: T.nilable(String),
+              zip: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
-            # The city of the address.
+            # The city, district, town, or village of the address.
             city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
             # The first line of the address.
             line1:,
             # The second line of the address.
             line2:,
-            # The two-letter United States Postal Service (USPS) abbreviation for the state of
-            # the address.
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
             state:,
-            # The ZIP code of the address.
+            # The ZIP or postal code of the address.
             zip:
           )
           end
@@ -2170,11 +2209,12 @@ module Increase
           sig do
             override.returns(
               {
-                city: String,
+                city: T.nilable(String),
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
-                state: String,
-                zip: String
+                state: T.nilable(String),
+                zip: T.nilable(String)
               }
             )
           end
@@ -2292,9 +2332,13 @@ module Increase
                 )
               end
 
-            # The city of the address.
-            sig { returns(String) }
+            # The city, district, town, or village of the address.
+            sig { returns(T.nilable(String)) }
             attr_accessor :city
+
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
 
             # The first line of the address.
             sig { returns(String) }
@@ -2304,36 +2348,39 @@ module Increase
             sig { returns(T.nilable(String)) }
             attr_accessor :line2
 
-            # The two-letter United States Postal Service (USPS) abbreviation for the state of
-            # the address.
-            sig { returns(String) }
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
+            sig { returns(T.nilable(String)) }
             attr_accessor :state
 
-            # The ZIP code of the address.
-            sig { returns(String) }
+            # The ZIP or postal code of the address.
+            sig { returns(T.nilable(String)) }
             attr_accessor :zip
 
             # The person's address.
             sig do
               params(
-                city: String,
+                city: T.nilable(String),
+                country: String,
                 line1: String,
                 line2: T.nilable(String),
-                state: String,
-                zip: String
+                state: T.nilable(String),
+                zip: T.nilable(String)
               ).returns(T.attached_class)
             end
             def self.new(
-              # The city of the address.
+              # The city, district, town, or village of the address.
               city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              country:,
               # The first line of the address.
               line1:,
               # The second line of the address.
               line2:,
-              # The two-letter United States Postal Service (USPS) abbreviation for the state of
-              # the address.
+              # The two-letter United States Postal Service (USPS) abbreviation for the US
+              # state, province, or region of the address.
               state:,
-              # The ZIP code of the address.
+              # The ZIP or postal code of the address.
               zip:
             )
             end
@@ -2341,11 +2388,12 @@ module Increase
             sig do
               override.returns(
                 {
-                  city: String,
+                  city: T.nilable(String),
+                  country: String,
                   line1: String,
                   line2: T.nilable(String),
-                  state: String,
-                  zip: String
+                  state: T.nilable(String),
+                  zip: T.nilable(String)
                 }
               )
             end
@@ -2619,9 +2667,13 @@ module Increase
                   )
                 end
 
-              # The city of the address.
-              sig { returns(String) }
+              # The city, district, town, or village of the address.
+              sig { returns(T.nilable(String)) }
               attr_accessor :city
+
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              sig { returns(String) }
+              attr_accessor :country
 
               # The first line of the address.
               sig { returns(String) }
@@ -2631,36 +2683,39 @@ module Increase
               sig { returns(T.nilable(String)) }
               attr_accessor :line2
 
-              # The two-letter United States Postal Service (USPS) abbreviation for the state of
-              # the address.
-              sig { returns(String) }
+              # The two-letter United States Postal Service (USPS) abbreviation for the US
+              # state, province, or region of the address.
+              sig { returns(T.nilable(String)) }
               attr_accessor :state
 
-              # The ZIP code of the address.
-              sig { returns(String) }
+              # The ZIP or postal code of the address.
+              sig { returns(T.nilable(String)) }
               attr_accessor :zip
 
               # The person's address.
               sig do
                 params(
-                  city: String,
+                  city: T.nilable(String),
+                  country: String,
                   line1: String,
                   line2: T.nilable(String),
-                  state: String,
-                  zip: String
+                  state: T.nilable(String),
+                  zip: T.nilable(String)
                 ).returns(T.attached_class)
               end
               def self.new(
-                # The city of the address.
+                # The city, district, town, or village of the address.
                 city:,
+                # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+                country:,
                 # The first line of the address.
                 line1:,
                 # The second line of the address.
                 line2:,
-                # The two-letter United States Postal Service (USPS) abbreviation for the state of
-                # the address.
+                # The two-letter United States Postal Service (USPS) abbreviation for the US
+                # state, province, or region of the address.
                 state:,
-                # The ZIP code of the address.
+                # The ZIP or postal code of the address.
                 zip:
               )
               end
@@ -2668,11 +2723,12 @@ module Increase
               sig do
                 override.returns(
                   {
-                    city: String,
+                    city: T.nilable(String),
+                    country: String,
                     line1: String,
                     line2: T.nilable(String),
-                    state: String,
-                    zip: String
+                    state: T.nilable(String),
+                    zip: T.nilable(String)
                   }
                 )
               end

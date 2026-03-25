@@ -252,10 +252,16 @@ module Increase
         # @see Increase::Models::Entity::Corporation#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
-          #   The city of the address.
+          #   The city, district, town, or village of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @return [String]
-          required :city, String
+          required :country, String
 
           # @!attribute line1
           #   The first line of the address.
@@ -270,33 +276,35 @@ module Increase
           required :line2, String, nil?: true
 
           # @!attribute state
-          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-          #   the address.
+          #   The two-letter United States Postal Service (USPS) abbreviation for the US
+          #   state, province, or region of the address.
           #
-          #   @return [String]
-          required :state, String
+          #   @return [String, nil]
+          required :state, String, nil?: true
 
           # @!attribute zip
-          #   The ZIP code of the address.
+          #   The ZIP or postal code of the address.
           #
-          #   @return [String]
-          required :zip, String
+          #   @return [String, nil]
+          required :zip, String, nil?: true
 
-          # @!method initialize(city:, line1:, line2:, state:, zip:)
+          # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Entity::Corporation::Address} for more details.
           #
           #   The corporation's address.
           #
-          #   @param city [String] The city of the address.
+          #   @param city [String, nil] The city, district, town, or village of the address.
+          #
+          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @param line1 [String] The first line of the address.
           #
           #   @param line2 [String, nil] The second line of the address.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
           #
-          #   @param zip [String] The ZIP code of the address.
+          #   @param zip [String, nil] The ZIP or postal code of the address.
         end
 
         class BeneficialOwner < Increase::Internal::Type::BaseModel
@@ -599,10 +607,16 @@ module Increase
         # @see Increase::Models::Entity::GovernmentAuthority#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
-          #   The city of the address.
+          #   The city, district, town, or village of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @return [String]
-          required :city, String
+          required :country, String
 
           # @!attribute line1
           #   The first line of the address.
@@ -617,33 +631,35 @@ module Increase
           required :line2, String, nil?: true
 
           # @!attribute state
-          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-          #   the address.
+          #   The two-letter United States Postal Service (USPS) abbreviation for the US
+          #   state, province, or region of the address.
           #
-          #   @return [String]
-          required :state, String
+          #   @return [String, nil]
+          required :state, String, nil?: true
 
           # @!attribute zip
-          #   The ZIP code of the address.
+          #   The ZIP or postal code of the address.
           #
-          #   @return [String]
-          required :zip, String
+          #   @return [String, nil]
+          required :zip, String, nil?: true
 
-          # @!method initialize(city:, line1:, line2:, state:, zip:)
+          # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Entity::GovernmentAuthority::Address} for more details.
           #
           #   The government authority's address.
           #
-          #   @param city [String] The city of the address.
+          #   @param city [String, nil] The city, district, town, or village of the address.
+          #
+          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @param line1 [String] The first line of the address.
           #
           #   @param line2 [String, nil] The second line of the address.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
           #
-          #   @param zip [String] The ZIP code of the address.
+          #   @param zip [String, nil] The ZIP or postal code of the address.
         end
 
         class AuthorizedPerson < Increase::Internal::Type::BaseModel
@@ -746,10 +762,16 @@ module Increase
           # @see Increase::Models::Entity::Joint::Individual#address
           class Address < Increase::Internal::Type::BaseModel
             # @!attribute city
-            #   The city of the address.
+            #   The city, district, town, or village of the address.
+            #
+            #   @return [String, nil]
+            required :city, String, nil?: true
+
+            # @!attribute country
+            #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
             #   @return [String]
-            required :city, String
+            required :country, String
 
             # @!attribute line1
             #   The first line of the address.
@@ -764,33 +786,35 @@ module Increase
             required :line2, String, nil?: true
 
             # @!attribute state
-            #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-            #   the address.
+            #   The two-letter United States Postal Service (USPS) abbreviation for the US
+            #   state, province, or region of the address.
             #
-            #   @return [String]
-            required :state, String
+            #   @return [String, nil]
+            required :state, String, nil?: true
 
             # @!attribute zip
-            #   The ZIP code of the address.
+            #   The ZIP or postal code of the address.
             #
-            #   @return [String]
-            required :zip, String
+            #   @return [String, nil]
+            required :zip, String, nil?: true
 
-            # @!method initialize(city:, line1:, line2:, state:, zip:)
+            # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::Entity::Joint::Individual::Address} for more details.
             #
             #   The person's address.
             #
-            #   @param city [String] The city of the address.
+            #   @param city [String, nil] The city, district, town, or village of the address.
+            #
+            #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
             #   @param line1 [String] The first line of the address.
             #
             #   @param line2 [String, nil] The second line of the address.
             #
-            #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+            #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
             #
-            #   @param zip [String] The ZIP code of the address.
+            #   @param zip [String, nil] The ZIP or postal code of the address.
           end
 
           # @see Increase::Models::Entity::Joint::Individual#identification
@@ -889,10 +913,16 @@ module Increase
         # @see Increase::Models::Entity::NaturalPerson#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
-          #   The city of the address.
+          #   The city, district, town, or village of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @return [String]
-          required :city, String
+          required :country, String
 
           # @!attribute line1
           #   The first line of the address.
@@ -907,33 +937,35 @@ module Increase
           required :line2, String, nil?: true
 
           # @!attribute state
-          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-          #   the address.
+          #   The two-letter United States Postal Service (USPS) abbreviation for the US
+          #   state, province, or region of the address.
           #
-          #   @return [String]
-          required :state, String
+          #   @return [String, nil]
+          required :state, String, nil?: true
 
           # @!attribute zip
-          #   The ZIP code of the address.
+          #   The ZIP or postal code of the address.
           #
-          #   @return [String]
-          required :zip, String
+          #   @return [String, nil]
+          required :zip, String, nil?: true
 
-          # @!method initialize(city:, line1:, line2:, state:, zip:)
+          # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Entity::NaturalPerson::Address} for more details.
           #
           #   The person's address.
           #
-          #   @param city [String] The city of the address.
+          #   @param city [String, nil] The city, district, town, or village of the address.
+          #
+          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @param line1 [String] The first line of the address.
           #
           #   @param line2 [String, nil] The second line of the address.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
           #
-          #   @param zip [String] The ZIP code of the address.
+          #   @param zip [String, nil] The ZIP or postal code of the address.
         end
 
         # @see Increase::Models::Entity::NaturalPerson#identification
@@ -1237,10 +1269,16 @@ module Increase
         # @see Increase::Models::Entity::Trust#address
         class Address < Increase::Internal::Type::BaseModel
           # @!attribute city
-          #   The city of the address.
+          #   The city, district, town, or village of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @return [String]
-          required :city, String
+          required :country, String
 
           # @!attribute line1
           #   The first line of the address.
@@ -1255,33 +1293,35 @@ module Increase
           required :line2, String, nil?: true
 
           # @!attribute state
-          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-          #   the address.
+          #   The two-letter United States Postal Service (USPS) abbreviation for the US
+          #   state, province, or region of the address.
           #
-          #   @return [String]
-          required :state, String
+          #   @return [String, nil]
+          required :state, String, nil?: true
 
           # @!attribute zip
-          #   The ZIP code of the address.
+          #   The ZIP or postal code of the address.
           #
-          #   @return [String]
-          required :zip, String
+          #   @return [String, nil]
+          required :zip, String, nil?: true
 
-          # @!method initialize(city:, line1:, line2:, state:, zip:)
+          # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Entity::Trust::Address} for more details.
           #
           #   The trust's address.
           #
-          #   @param city [String] The city of the address.
+          #   @param city [String, nil] The city, district, town, or village of the address.
+          #
+          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
           #   @param line1 [String] The first line of the address.
           #
           #   @param line2 [String, nil] The second line of the address.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
           #
-          #   @param zip [String] The ZIP code of the address.
+          #   @param zip [String, nil] The ZIP or postal code of the address.
         end
 
         # Whether the trust is `revocable` or `irrevocable`.
@@ -1340,10 +1380,16 @@ module Increase
           # @see Increase::Models::Entity::Trust::Grantor#address
           class Address < Increase::Internal::Type::BaseModel
             # @!attribute city
-            #   The city of the address.
+            #   The city, district, town, or village of the address.
+            #
+            #   @return [String, nil]
+            required :city, String, nil?: true
+
+            # @!attribute country
+            #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
             #   @return [String]
-            required :city, String
+            required :country, String
 
             # @!attribute line1
             #   The first line of the address.
@@ -1358,33 +1404,35 @@ module Increase
             required :line2, String, nil?: true
 
             # @!attribute state
-            #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-            #   the address.
+            #   The two-letter United States Postal Service (USPS) abbreviation for the US
+            #   state, province, or region of the address.
             #
-            #   @return [String]
-            required :state, String
+            #   @return [String, nil]
+            required :state, String, nil?: true
 
             # @!attribute zip
-            #   The ZIP code of the address.
+            #   The ZIP or postal code of the address.
             #
-            #   @return [String]
-            required :zip, String
+            #   @return [String, nil]
+            required :zip, String, nil?: true
 
-            # @!method initialize(city:, line1:, line2:, state:, zip:)
+            # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
             #   Some parameter documentations has been truncated, see
             #   {Increase::Models::Entity::Trust::Grantor::Address} for more details.
             #
             #   The person's address.
             #
-            #   @param city [String] The city of the address.
+            #   @param city [String, nil] The city, district, town, or village of the address.
+            #
+            #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
             #   @param line1 [String] The first line of the address.
             #
             #   @param line2 [String, nil] The second line of the address.
             #
-            #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+            #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
             #
-            #   @param zip [String] The ZIP code of the address.
+            #   @param zip [String, nil] The ZIP or postal code of the address.
           end
 
           # @see Increase::Models::Entity::Trust::Grantor#identification
@@ -1504,10 +1552,16 @@ module Increase
             # @see Increase::Models::Entity::Trust::Trustee::Individual#address
             class Address < Increase::Internal::Type::BaseModel
               # @!attribute city
-              #   The city of the address.
+              #   The city, district, town, or village of the address.
+              #
+              #   @return [String, nil]
+              required :city, String, nil?: true
+
+              # @!attribute country
+              #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
               #
               #   @return [String]
-              required :city, String
+              required :country, String
 
               # @!attribute line1
               #   The first line of the address.
@@ -1522,34 +1576,36 @@ module Increase
               required :line2, String, nil?: true
 
               # @!attribute state
-              #   The two-letter United States Postal Service (USPS) abbreviation for the state of
-              #   the address.
+              #   The two-letter United States Postal Service (USPS) abbreviation for the US
+              #   state, province, or region of the address.
               #
-              #   @return [String]
-              required :state, String
+              #   @return [String, nil]
+              required :state, String, nil?: true
 
               # @!attribute zip
-              #   The ZIP code of the address.
+              #   The ZIP or postal code of the address.
               #
-              #   @return [String]
-              required :zip, String
+              #   @return [String, nil]
+              required :zip, String, nil?: true
 
-              # @!method initialize(city:, line1:, line2:, state:, zip:)
+              # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
               #   Some parameter documentations has been truncated, see
               #   {Increase::Models::Entity::Trust::Trustee::Individual::Address} for more
               #   details.
               #
               #   The person's address.
               #
-              #   @param city [String] The city of the address.
+              #   @param city [String, nil] The city, district, town, or village of the address.
+              #
+              #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
               #
               #   @param line1 [String] The first line of the address.
               #
               #   @param line2 [String, nil] The second line of the address.
               #
-              #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+              #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
               #
-              #   @param zip [String] The ZIP code of the address.
+              #   @param zip [String, nil] The ZIP or postal code of the address.
             end
 
             # @see Increase::Models::Entity::Trust::Trustee::Individual#identification
