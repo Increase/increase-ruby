@@ -154,17 +154,18 @@ module Increase
         required :beneficial_owners,
                  -> { Increase::Internal::Type::ArrayOf[Increase::EntityCreateParams::Corporation::BeneficialOwner] }
 
+        # @!attribute legal_identifier
+        #   The legal identifier of the corporation. This is usually the Employer
+        #   Identification Number (EIN).
+        #
+        #   @return [Increase::Models::EntityCreateParams::Corporation::LegalIdentifier]
+        required :legal_identifier, -> { Increase::EntityCreateParams::Corporation::LegalIdentifier }
+
         # @!attribute name
         #   The legal name of the corporation.
         #
         #   @return [String]
         required :name, String
-
-        # @!attribute tax_identifier
-        #   The Employer Identification Number (EIN) for the corporation.
-        #
-        #   @return [String]
-        required :tax_identifier, String
 
         # @!attribute beneficial_ownership_exemption_reason
         #   If the entity is exempt from the requirement to submit beneficial owners,
@@ -204,7 +205,7 @@ module Increase
         #   @return [String, nil]
         optional :website, String
 
-        # @!method initialize(address:, beneficial_owners:, name:, tax_identifier:, beneficial_ownership_exemption_reason: nil, email: nil, incorporation_state: nil, industry_code: nil, website: nil)
+        # @!method initialize(address:, beneficial_owners:, legal_identifier:, name:, beneficial_ownership_exemption_reason: nil, email: nil, incorporation_state: nil, industry_code: nil, website: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityCreateParams::Corporation} for more details.
         #
@@ -215,9 +216,9 @@ module Increase
         #
         #   @param beneficial_owners [Array<Increase::Models::EntityCreateParams::Corporation::BeneficialOwner>] The identifying details of each person who owns 25% or more of the business and
         #
-        #   @param name [String] The legal name of the corporation.
+        #   @param legal_identifier [Increase::Models::EntityCreateParams::Corporation::LegalIdentifier] The legal identifier of the corporation. This is usually the Employer Identifica
         #
-        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the corporation.
+        #   @param name [String] The legal name of the corporation.
         #
         #   @param beneficial_ownership_exemption_reason [Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason] If the entity is exempt from the requirement to submit beneficial owners, provid
         #
@@ -650,6 +651,51 @@ module Increase
 
             # A person who manages, directs, or has significant control of the entity.
             CONTROL = :control
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
+        # @see Increase::Models::EntityCreateParams::Corporation#legal_identifier
+        class LegalIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute value
+          #   The legal identifier.
+          #
+          #   @return [String]
+          required :value, String
+
+          # @!attribute category
+          #   The category of the legal identifier. If not provided, the default is
+          #   `us_employer_identification_number`.
+          #
+          #   @return [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category, nil]
+          optional :category, enum: -> { Increase::EntityCreateParams::Corporation::LegalIdentifier::Category }
+
+          # @!method initialize(value:, category: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityCreateParams::Corporation::LegalIdentifier} for more
+          #   details.
+          #
+          #   The legal identifier of the corporation. This is usually the Employer
+          #   Identification Number (EIN).
+          #
+          #   @param value [String] The legal identifier.
+          #
+          #   @param category [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier. If not provided, the default is `us_employ
+
+          # The category of the legal identifier. If not provided, the default is
+          # `us_employer_identification_number`.
+          #
+          # @see Increase::Models::EntityCreateParams::Corporation::LegalIdentifier#category
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            US_EMPLOYER_IDENTIFICATION_NUMBER = :us_employer_identification_number
+
+            # A legal identifier issued by a foreign government, like a tax identification number or registration number.
+            OTHER = :other
 
             # @!method self.values
             #   @return [Array<Symbol>]
