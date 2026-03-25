@@ -208,17 +208,17 @@ module Increase
         #   @return [String, nil]
         required :industry_code, String, nil?: true
 
+        # @!attribute legal_identifier
+        #   The legal identifier of the corporation.
+        #
+        #   @return [Increase::Models::Entity::Corporation::LegalIdentifier, nil]
+        required :legal_identifier, -> { Increase::Entity::Corporation::LegalIdentifier }, nil?: true
+
         # @!attribute name
         #   The legal name of the corporation.
         #
         #   @return [String]
         required :name, String
-
-        # @!attribute tax_identifier
-        #   The Employer Identification Number (EIN) for the corporation.
-        #
-        #   @return [String, nil]
-        required :tax_identifier, String, nil?: true
 
         # @!attribute website
         #   The website of the corporation.
@@ -226,7 +226,7 @@ module Increase
         #   @return [String, nil]
         required :website, String, nil?: true
 
-        # @!method initialize(address:, beneficial_owners:, email:, incorporation_state:, industry_code:, name:, tax_identifier:, website:)
+        # @!method initialize(address:, beneficial_owners:, email:, incorporation_state:, industry_code:, legal_identifier:, name:, website:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Entity::Corporation} for more details.
         #
@@ -243,9 +243,9 @@ module Increase
         #
         #   @param industry_code [String, nil] The numeric North American Industry Classification System (NAICS) code submitted
         #
-        #   @param name [String] The legal name of the corporation.
+        #   @param legal_identifier [Increase::Models::Entity::Corporation::LegalIdentifier, nil] The legal identifier of the corporation.
         #
-        #   @param tax_identifier [String, nil] The Employer Identification Number (EIN) for the corporation.
+        #   @param name [String] The legal name of the corporation.
         #
         #   @param website [String, nil] The website of the corporation.
 
@@ -496,6 +496,44 @@ module Increase
 
             # A person who manages, directs, or has significant control of the entity.
             CONTROL = :control
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
+        # @see Increase::Models::Entity::Corporation#legal_identifier
+        class LegalIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute category
+          #   The category of the legal identifier.
+          #
+          #   @return [Symbol, Increase::Models::Entity::Corporation::LegalIdentifier::Category]
+          required :category, enum: -> { Increase::Entity::Corporation::LegalIdentifier::Category }
+
+          # @!attribute value
+          #   The identifier of the legal identifier.
+          #
+          #   @return [String]
+          required :value, String
+
+          # @!method initialize(category:, value:)
+          #   The legal identifier of the corporation.
+          #
+          #   @param category [Symbol, Increase::Models::Entity::Corporation::LegalIdentifier::Category] The category of the legal identifier.
+          #
+          #   @param value [String] The identifier of the legal identifier.
+
+          # The category of the legal identifier.
+          #
+          # @see Increase::Models::Entity::Corporation::LegalIdentifier#category
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            US_EMPLOYER_IDENTIFICATION_NUMBER = :us_employer_identification_number
+
+            # A legal identifier issued by a foreign government, like a tax identification number or registration number.
+            OTHER = :other
 
             # @!method self.values
             #   @return [Array<Symbol>]

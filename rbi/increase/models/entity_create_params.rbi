@@ -306,13 +306,24 @@ module Increase
         end
         attr_accessor :beneficial_owners
 
+        # The legal identifier of the corporation. This is usually the Employer
+        # Identification Number (EIN).
+        sig do
+          returns(Increase::EntityCreateParams::Corporation::LegalIdentifier)
+        end
+        attr_reader :legal_identifier
+
+        sig do
+          params(
+            legal_identifier:
+              Increase::EntityCreateParams::Corporation::LegalIdentifier::OrHash
+          ).void
+        end
+        attr_writer :legal_identifier
+
         # The legal name of the corporation.
         sig { returns(String) }
         attr_accessor :name
-
-        # The Employer Identification Number (EIN) for the corporation.
-        sig { returns(String) }
-        attr_accessor :tax_identifier
 
         # If the entity is exempt from the requirement to submit beneficial owners,
         # provide the justification. If a reason is provided, you do not need to submit a
@@ -376,8 +387,9 @@ module Increase
               T::Array[
                 Increase::EntityCreateParams::Corporation::BeneficialOwner::OrHash
               ],
+            legal_identifier:
+              Increase::EntityCreateParams::Corporation::LegalIdentifier::OrHash,
             name: String,
-            tax_identifier: String,
             beneficial_ownership_exemption_reason:
               Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol,
             email: String,
@@ -394,10 +406,11 @@ module Increase
           # one control person, like the CEO, CFO, or other executive. You can submit
           # between 1 and 5 people to this list.
           beneficial_owners:,
+          # The legal identifier of the corporation. This is usually the Employer
+          # Identification Number (EIN).
+          legal_identifier:,
           # The legal name of the corporation.
           name:,
-          # The Employer Identification Number (EIN) for the corporation.
-          tax_identifier:,
           # If the entity is exempt from the requirement to submit beneficial owners,
           # provide the justification. If a reason is provided, you do not need to submit a
           # list of beneficial owners.
@@ -426,8 +439,9 @@ module Increase
                 T::Array[
                   Increase::EntityCreateParams::Corporation::BeneficialOwner
                 ],
+              legal_identifier:
+                Increase::EntityCreateParams::Corporation::LegalIdentifier,
               name: String,
-              tax_identifier: String,
               beneficial_ownership_exemption_reason:
                 Increase::EntityCreateParams::Corporation::BeneficialOwnershipExemptionReason::OrSymbol,
               email: String,
@@ -1205,6 +1219,108 @@ module Increase
               override.returns(
                 T::Array[
                   Increase::EntityCreateParams::Corporation::BeneficialOwner::Prong::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class LegalIdentifier < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::Corporation::LegalIdentifier,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The legal identifier.
+          sig { returns(String) }
+          attr_accessor :value
+
+          # The category of the legal identifier. If not provided, the default is
+          # `us_employer_identification_number`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::OrSymbol
+              )
+            )
+          end
+          attr_reader :category
+
+          sig do
+            params(
+              category:
+                Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::OrSymbol
+            ).void
+          end
+          attr_writer :category
+
+          # The legal identifier of the corporation. This is usually the Employer
+          # Identification Number (EIN).
+          sig do
+            params(
+              value: String,
+              category:
+                Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The legal identifier.
+            value:,
+            # The category of the legal identifier. If not provided, the default is
+            # `us_employer_identification_number`.
+            category: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                value: String,
+                category:
+                  Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The category of the legal identifier. If not provided, the default is
+          # `us_employer_identification_number`.
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::EntityCreateParams::Corporation::LegalIdentifier::Category
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            US_EMPLOYER_IDENTIFICATION_NUMBER =
+              T.let(
+                :us_employer_identification_number,
+                Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::TaggedSymbol
+              )
+
+            # A legal identifier issued by a foreign government, like a tax identification number or registration number.
+            OTHER =
+              T.let(
+                :other,
+                Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::EntityCreateParams::Corporation::LegalIdentifier::Category::TaggedSymbol
                 ]
               )
             end
