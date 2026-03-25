@@ -290,13 +290,23 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :industry_code
 
+        # The legal identifier of the corporation.
+        sig do
+          returns(T.nilable(Increase::Entity::Corporation::LegalIdentifier))
+        end
+        attr_reader :legal_identifier
+
+        sig do
+          params(
+            legal_identifier:
+              T.nilable(Increase::Entity::Corporation::LegalIdentifier::OrHash)
+          ).void
+        end
+        attr_writer :legal_identifier
+
         # The legal name of the corporation.
         sig { returns(String) }
         attr_accessor :name
-
-        # The Employer Identification Number (EIN) for the corporation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :tax_identifier
 
         # The website of the corporation.
         sig { returns(T.nilable(String)) }
@@ -312,8 +322,9 @@ module Increase
             email: T.nilable(String),
             incorporation_state: T.nilable(String),
             industry_code: T.nilable(String),
+            legal_identifier:
+              T.nilable(Increase::Entity::Corporation::LegalIdentifier::OrHash),
             name: String,
-            tax_identifier: T.nilable(String),
             website: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -331,10 +342,10 @@ module Increase
           # The numeric North American Industry Classification System (NAICS) code submitted
           # for the corporation.
           industry_code:,
+          # The legal identifier of the corporation.
+          legal_identifier:,
           # The legal name of the corporation.
           name:,
-          # The Employer Identification Number (EIN) for the corporation.
-          tax_identifier:,
           # The website of the corporation.
           website:
         )
@@ -349,8 +360,9 @@ module Increase
               email: T.nilable(String),
               incorporation_state: T.nilable(String),
               industry_code: T.nilable(String),
+              legal_identifier:
+                T.nilable(Increase::Entity::Corporation::LegalIdentifier),
               name: String,
-              tax_identifier: T.nilable(String),
               website: T.nilable(String)
             }
           )
@@ -817,6 +829,94 @@ module Increase
               override.returns(
                 T::Array[
                   Increase::Entity::Corporation::BeneficialOwner::Prong::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class LegalIdentifier < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Entity::Corporation::LegalIdentifier,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The category of the legal identifier.
+          sig do
+            returns(
+              Increase::Entity::Corporation::LegalIdentifier::Category::TaggedSymbol
+            )
+          end
+          attr_accessor :category
+
+          # The identifier of the legal identifier.
+          sig { returns(String) }
+          attr_accessor :value
+
+          # The legal identifier of the corporation.
+          sig do
+            params(
+              category:
+                Increase::Entity::Corporation::LegalIdentifier::Category::OrSymbol,
+              value: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The category of the legal identifier.
+            category:,
+            # The identifier of the legal identifier.
+            value:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                category:
+                  Increase::Entity::Corporation::LegalIdentifier::Category::TaggedSymbol,
+                value: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The category of the legal identifier.
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::Entity::Corporation::LegalIdentifier::Category
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            US_EMPLOYER_IDENTIFICATION_NUMBER =
+              T.let(
+                :us_employer_identification_number,
+                Increase::Entity::Corporation::LegalIdentifier::Category::TaggedSymbol
+              )
+
+            # A legal identifier issued by a foreign government, like a tax identification number or registration number.
+            OTHER =
+              T.let(
+                :other,
+                Increase::Entity::Corporation::LegalIdentifier::Category::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Entity::Corporation::LegalIdentifier::Category::TaggedSymbol
                 ]
               )
             end

@@ -138,8 +138,8 @@ module Increase
         {
           address: Increase::EntityCreateParams::Corporation::Address,
           beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner],
+          legal_identifier: Increase::EntityCreateParams::Corporation::LegalIdentifier,
           name: String,
-          tax_identifier: String,
           beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           email: String,
           incorporation_state: String,
@@ -152,9 +152,9 @@ module Increase
 
         attr_accessor beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner]
 
-        attr_accessor name: String
+        attr_accessor legal_identifier: Increase::EntityCreateParams::Corporation::LegalIdentifier
 
-        attr_accessor tax_identifier: String
+        attr_accessor name: String
 
         attr_reader beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason?
 
@@ -181,8 +181,8 @@ module Increase
         def initialize: (
           address: Increase::EntityCreateParams::Corporation::Address,
           beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner],
+          legal_identifier: Increase::EntityCreateParams::Corporation::LegalIdentifier,
           name: String,
-          tax_identifier: String,
           ?beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           ?email: String,
           ?incorporation_state: String,
@@ -193,8 +193,8 @@ module Increase
         def to_hash: -> {
           address: Increase::EntityCreateParams::Corporation::Address,
           beneficial_owners: ::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner],
+          legal_identifier: Increase::EntityCreateParams::Corporation::LegalIdentifier,
           name: String,
-          tax_identifier: String,
           beneficial_ownership_exemption_reason: Increase::Models::EntityCreateParams::Corporation::beneficial_ownership_exemption_reason,
           email: String,
           incorporation_state: String,
@@ -543,6 +543,46 @@ module Increase
             CONTROL: :control
 
             def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::prong]
+          end
+        end
+
+        type legal_identifier =
+          {
+            value: String,
+            category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+          }
+
+        class LegalIdentifier < Increase::Internal::Type::BaseModel
+          attr_accessor value: String
+
+          attr_reader category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category?
+
+          def category=: (
+            Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+          ) -> Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+
+          def initialize: (
+            value: String,
+            ?category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+          ) -> void
+
+          def to_hash: -> {
+            value: String,
+            category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+          }
+
+          type category = :us_employer_identification_number | :other
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            US_EMPLOYER_IDENTIFICATION_NUMBER: :us_employer_identification_number
+
+            # A legal identifier issued by a foreign government, like a tax identification number or registration number.
+            OTHER: :other
+
+            def self?.values: -> ::Array[Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category]
           end
         end
 
