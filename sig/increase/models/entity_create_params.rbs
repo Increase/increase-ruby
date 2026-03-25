@@ -205,39 +205,48 @@ module Increase
         type address =
           {
             city: String,
+            country: String,
             :line1 => String,
+            :line2 => String,
             state: String,
-            zip: String,
-            :line2 => String
+            zip: String
           }
 
         class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
+          attr_accessor country: String
+
           attr_accessor line1: String
-
-          attr_accessor state: String
-
-          attr_accessor zip: String
 
           attr_reader line2: String?
 
           def line2=: (String) -> String
 
+          attr_reader state: String?
+
+          def state=: (String) -> String
+
+          attr_reader zip: String?
+
+          def zip=: (String) -> String
+
           def initialize: (
             city: String,
+            country: String,
             line1: String,
-            state: String,
-            zip: String,
-            ?line2: String
+            ?line2: String,
+            ?state: String,
+            ?zip: String
           ) -> void
 
           def to_hash: -> {
             city: String,
+            country: String,
             :line1 => String,
+            :line2 => String,
             state: String,
-            zip: String,
-            :line2 => String
+            zip: String
           }
         end
 
@@ -782,39 +791,48 @@ module Increase
           type address =
             {
               city: String,
+              country: String,
               :line1 => String,
+              :line2 => String,
               state: String,
-              zip: String,
-              :line2 => String
+              zip: String
             }
 
           class Address < Increase::Internal::Type::BaseModel
             attr_accessor city: String
 
+            attr_accessor country: String
+
             attr_accessor line1: String
-
-            attr_accessor state: String
-
-            attr_accessor zip: String
 
             attr_reader line2: String?
 
             def line2=: (String) -> String
 
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            attr_reader zip: String?
+
+            def zip=: (String) -> String
+
             def initialize: (
               city: String,
+              country: String,
               line1: String,
-              state: String,
-              zip: String,
-              ?line2: String
+              ?line2: String,
+              ?state: String,
+              ?zip: String
             ) -> void
 
             def to_hash: -> {
               city: String,
+              country: String,
               :line1 => String,
+              :line2 => String,
               state: String,
-              zip: String,
-              :line2 => String
+              zip: String
             }
           end
 
@@ -1036,39 +1054,48 @@ module Increase
         type address =
           {
             city: String,
+            country: String,
             :line1 => String,
+            :line2 => String,
             state: String,
-            zip: String,
-            :line2 => String
+            zip: String
           }
 
         class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
+          attr_accessor country: String
+
           attr_accessor line1: String
-
-          attr_accessor state: String
-
-          attr_accessor zip: String
 
           attr_reader line2: String?
 
           def line2=: (String) -> String
 
+          attr_reader state: String?
+
+          def state=: (String) -> String
+
+          attr_reader zip: String?
+
+          def zip=: (String) -> String
+
           def initialize: (
             city: String,
+            country: String,
             line1: String,
-            state: String,
-            zip: String,
-            ?line2: String
+            ?line2: String,
+            ?state: String,
+            ?zip: String
           ) -> void
 
           def to_hash: -> {
             city: String,
+            country: String,
             :line1 => String,
+            :line2 => String,
             state: String,
-            zip: String,
-            :line2 => String
+            zip: String
           }
         end
 
@@ -1556,39 +1583,48 @@ module Increase
             type address =
               {
                 city: String,
+                country: String,
                 :line1 => String,
+                :line2 => String,
                 state: String,
-                zip: String,
-                :line2 => String
+                zip: String
               }
 
             class Address < Increase::Internal::Type::BaseModel
               attr_accessor city: String
 
+              attr_accessor country: String
+
               attr_accessor line1: String
-
-              attr_accessor state: String
-
-              attr_accessor zip: String
 
               attr_reader line2: String?
 
               def line2=: (String) -> String
 
+              attr_reader state: String?
+
+              def state=: (String) -> String
+
+              attr_reader zip: String?
+
+              def zip=: (String) -> String
+
               def initialize: (
                 city: String,
+                country: String,
                 line1: String,
-                state: String,
-                zip: String,
-                ?line2: String
+                ?line2: String,
+                ?state: String,
+                ?zip: String
               ) -> void
 
               def to_hash: -> {
                 city: String,
+                country: String,
                 :line1 => String,
+                :line2 => String,
                 state: String,
-                zip: String,
-                :line2 => String
+                zip: String
               }
             end
 
@@ -1810,39 +1846,48 @@ module Increase
           type address =
             {
               city: String,
+              country: String,
               :line1 => String,
+              :line2 => String,
               state: String,
-              zip: String,
-              :line2 => String
+              zip: String
             }
 
           class Address < Increase::Internal::Type::BaseModel
             attr_accessor city: String
 
+            attr_accessor country: String
+
             attr_accessor line1: String
-
-            attr_accessor state: String
-
-            attr_accessor zip: String
 
             attr_reader line2: String?
 
             def line2=: (String) -> String
 
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            attr_reader zip: String?
+
+            def zip=: (String) -> String
+
             def initialize: (
               city: String,
+              country: String,
               line1: String,
-              state: String,
-              zip: String,
-              ?line2: String
+              ?line2: String,
+              ?state: String,
+              ?zip: String
             ) -> void
 
             def to_hash: -> {
               city: String,
+              country: String,
               :line1 => String,
+              :line2 => String,
               state: String,
-              zip: String,
-              :line2 => String
+              zip: String
             }
           end
 
