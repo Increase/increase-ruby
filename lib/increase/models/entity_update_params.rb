@@ -117,19 +117,20 @@ module Increase
         #   @return [String, nil]
         optional :industry_code, String
 
+        # @!attribute legal_identifier
+        #   The legal identifier of the corporation. This is usually the Employer
+        #   Identification Number (EIN).
+        #
+        #   @return [Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier, nil]
+        optional :legal_identifier, -> { Increase::EntityUpdateParams::Corporation::LegalIdentifier }
+
         # @!attribute name
         #   The legal name of the corporation.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!attribute tax_identifier
-        #   The Employer Identification Number (EIN) for the corporation.
-        #
-        #   @return [String, nil]
-        optional :tax_identifier, String
-
-        # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, name: nil, tax_identifier: nil)
+        # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, legal_identifier: nil, name: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
         #
@@ -144,9 +145,9 @@ module Increase
         #
         #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
         #
-        #   @param name [String] The legal name of the corporation.
+        #   @param legal_identifier [Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier] The legal identifier of the corporation. This is usually the Employer Identifica
         #
-        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the corporation.
+        #   @param name [String] The legal name of the corporation.
 
         # @see Increase::Models::EntityUpdateParams::Corporation#address
         class Address < Increase::Internal::Type::BaseModel
@@ -205,6 +206,45 @@ module Increase
           #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the US state
           #
           #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
+        end
+
+        # @see Increase::Models::EntityUpdateParams::Corporation#legal_identifier
+        class LegalIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute value
+          #   The identifier of the legal identifier.
+          #
+          #   @return [String]
+          required :value, String
+
+          # @!attribute category
+          #   The category of the legal identifier.
+          #
+          #   @return [Symbol, Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier::Category, nil]
+          optional :category, enum: -> { Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category }
+
+          # @!method initialize(value:, category: nil)
+          #   The legal identifier of the corporation. This is usually the Employer
+          #   Identification Number (EIN).
+          #
+          #   @param value [String] The identifier of the legal identifier.
+          #
+          #   @param category [Symbol, Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier.
+
+          # The category of the legal identifier.
+          #
+          # @see Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier#category
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            US_EMPLOYER_IDENTIFICATION_NUMBER = :us_employer_identification_number
+
+            # A legal identifier issued by a foreign government, like a tax identification number or registration number.
+            OTHER = :other
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
       end
 
