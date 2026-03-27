@@ -1825,7 +1825,7 @@ module Increase
           module Category
             extend Increase::Internal::Type::Enum
 
-            # The entity's tax identifier could not be validated. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.tax_identifier).
+            # The entity's tax identifier could not be validated. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.legal_identifier).
             ENTITY_TAX_IDENTIFIER = :entity_tax_identifier
 
             # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
