@@ -1612,6 +1612,13 @@ module Increase
           #   @return [String, nil]
           required :real_time_decision_id, String, nil?: true
 
+          # @!attribute scheme_fees
+          #   The scheme fees associated with this card financial.
+          #
+          #   @return [Array<Increase::Models::Transaction::Source::CardFinancial::SchemeFee>]
+          required :scheme_fees,
+                   -> { Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardFinancial::SchemeFee] }
+
           # @!attribute terminal_id
           #   The terminal identifier (commonly abbreviated as TID) of the terminal the card
           #   is transacting with.
@@ -1638,7 +1645,7 @@ module Increase
           #   @return [Increase::Models::Transaction::Source::CardFinancial::Verification]
           required :verification, -> { Increase::Transaction::Source::CardFinancial::Verification }
 
-          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, terminal_id:, transaction_id:, type:, verification:)
+          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, scheme_fees:, terminal_id:, transaction_id:, type:, verification:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardFinancial} for more details.
           #
@@ -1691,6 +1698,8 @@ module Increase
           #   @param processing_category [Symbol, Increase::Models::Transaction::Source::CardFinancial::ProcessingCategory] The processing category describes the intent behind the financial, such as wheth
           #
           #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #
+          #   @param scheme_fees [Array<Increase::Models::Transaction::Source::CardFinancial::SchemeFee>] The scheme fees associated with this card financial.
           #
           #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
           #
@@ -2520,6 +2529,179 @@ module Increase
             #   @return [Array<Symbol>]
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The fee amount given as a string containing a decimal number.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute created_at
+            #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   created.
+            #
+            #   @return [Time]
+            required :created_at, Time
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #   reimbursement.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardFinancial::SchemeFee::Currency]
+            required :currency, enum: -> { Increase::Transaction::Source::CardFinancial::SchemeFee::Currency }
+
+            # @!attribute fee_type
+            #   The type of fee being assessed.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardFinancial::SchemeFee::FeeType]
+            required :fee_type, enum: -> { Increase::Transaction::Source::CardFinancial::SchemeFee::FeeType }
+
+            # @!attribute fixed_component
+            #   The fixed component of the fee, if applicable, given in major units of the fee
+            #   amount.
+            #
+            #   @return [String, nil]
+            required :fixed_component, String, nil?: true
+
+            # @!attribute variable_rate
+            #   The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   0.015 for 1.5%).
+            #
+            #   @return [String, nil]
+            required :variable_rate, String, nil?: true
+
+            # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::Transaction::Source::CardFinancial::SchemeFee} for more
+            #   details.
+            #
+            #   @param amount [String] The fee amount given as a string containing a decimal number.
+            #
+            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardFinancial::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #
+            #   @param fee_type [Symbol, Increase::Models::Transaction::Source::CardFinancial::SchemeFee::FeeType] The type of fee being assessed.
+            #
+            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #
+            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            #
+            # @see Increase::Models::Transaction::Source::CardFinancial::SchemeFee#currency
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              # US Dollar (USD)
+              USD = :USD
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The type of fee being assessed.
+            #
+            # @see Increase::Models::Transaction::Source::CardFinancial::SchemeFee#fee_type
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                :visa_international_service_assessment_single_currency
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                :visa_international_service_assessment_cross_currency
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE = :visa_authorization_domestic_point_of_sale
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE = :visa_authorization_international_point_of_sale
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE = :visa_authorization_canada_point_of_sale
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE = :visa_authorization_reversal_point_of_sale
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                :visa_authorization_reversal_international_point_of_sale
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE = :visa_authorization_address_verification_service
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION = :visa_advanced_authorization
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION = :visa_message_transmission
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC = :visa_account_verification_domestic
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL = :visa_account_verification_international
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA = :visa_account_verification_canada
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE = :visa_corporate_acceptance_fee
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE = :visa_consumer_debit_acceptance_fee
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE = :visa_business_debit_acceptance_fee
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE = :visa_purchasing_acceptance_fee
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC = :visa_purchase_domestic
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL = :visa_purchase_international
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN = :visa_credit_purchase_token
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN = :visa_debit_purchase_token
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION = :visa_clearing_transmission
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION = :visa_direct_authorization
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC = :visa_direct_transaction_domestic
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT = :visa_service_commercial_credit
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT = :visa_advertising_service_commercial_credit
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM = :visa_community_growth_acceleration_program
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT = :visa_processing_guarantee_commercial_credit
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_financial`.
           #
@@ -2859,6 +3041,13 @@ module Increase
                    },
                    nil?: true
 
+          # @!attribute scheme_fees
+          #   The scheme fees associated with this card refund.
+          #
+          #   @return [Array<Increase::Models::Transaction::Source::CardRefund::SchemeFee>]
+          required :scheme_fees,
+                   -> { Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardRefund::SchemeFee] }
+
           # @!attribute transaction_id
           #   The identifier of the Transaction associated with this Transaction.
           #
@@ -2872,7 +3061,7 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::Type]
           required :type, enum: -> { Increase::Transaction::Source::CardRefund::Type }
 
-          # @!method initialize(id:, amount:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network_identifiers:, presentment_amount:, presentment_currency:, purchase_details:, transaction_id:, type:)
+          # @!method initialize(id:, amount:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network_identifiers:, presentment_amount:, presentment_currency:, purchase_details:, scheme_fees:, transaction_id:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardRefund} for more details.
           #
@@ -2915,6 +3104,8 @@ module Increase
           #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
           #
           #   @param purchase_details [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails, nil] Additional details about the card purchase, such as tax and industry-specific fi
+          #
+          #   @param scheme_fees [Array<Increase::Models::Transaction::Source::CardRefund::SchemeFee>] The scheme fees associated with this card refund.
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this Transaction.
           #
@@ -4049,6 +4240,178 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The fee amount given as a string containing a decimal number.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute created_at
+            #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   created.
+            #
+            #   @return [Time]
+            required :created_at, Time
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #   reimbursement.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::SchemeFee::Currency]
+            required :currency, enum: -> { Increase::Transaction::Source::CardRefund::SchemeFee::Currency }
+
+            # @!attribute fee_type
+            #   The type of fee being assessed.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::SchemeFee::FeeType]
+            required :fee_type, enum: -> { Increase::Transaction::Source::CardRefund::SchemeFee::FeeType }
+
+            # @!attribute fixed_component
+            #   The fixed component of the fee, if applicable, given in major units of the fee
+            #   amount.
+            #
+            #   @return [String, nil]
+            required :fixed_component, String, nil?: true
+
+            # @!attribute variable_rate
+            #   The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   0.015 for 1.5%).
+            #
+            #   @return [String, nil]
+            required :variable_rate, String, nil?: true
+
+            # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::Transaction::Source::CardRefund::SchemeFee} for more details.
+            #
+            #   @param amount [String] The fee amount given as a string containing a decimal number.
+            #
+            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #
+            #   @param fee_type [Symbol, Increase::Models::Transaction::Source::CardRefund::SchemeFee::FeeType] The type of fee being assessed.
+            #
+            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #
+            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            #
+            # @see Increase::Models::Transaction::Source::CardRefund::SchemeFee#currency
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              # US Dollar (USD)
+              USD = :USD
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The type of fee being assessed.
+            #
+            # @see Increase::Models::Transaction::Source::CardRefund::SchemeFee#fee_type
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                :visa_international_service_assessment_single_currency
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                :visa_international_service_assessment_cross_currency
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE = :visa_authorization_domestic_point_of_sale
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE = :visa_authorization_international_point_of_sale
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE = :visa_authorization_canada_point_of_sale
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE = :visa_authorization_reversal_point_of_sale
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                :visa_authorization_reversal_international_point_of_sale
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE = :visa_authorization_address_verification_service
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION = :visa_advanced_authorization
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION = :visa_message_transmission
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC = :visa_account_verification_domestic
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL = :visa_account_verification_international
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA = :visa_account_verification_canada
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE = :visa_corporate_acceptance_fee
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE = :visa_consumer_debit_acceptance_fee
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE = :visa_business_debit_acceptance_fee
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE = :visa_purchasing_acceptance_fee
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC = :visa_purchase_domestic
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL = :visa_purchase_international
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN = :visa_credit_purchase_token
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN = :visa_debit_purchase_token
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION = :visa_clearing_transmission
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION = :visa_direct_authorization
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC = :visa_direct_transaction_domestic
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT = :visa_service_commercial_credit
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT = :visa_advertising_service_commercial_credit
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM = :visa_community_growth_acceleration_program
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT = :visa_processing_guarantee_commercial_credit
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_refund`.
           #
@@ -4261,6 +4624,13 @@ module Increase
                    -> { Increase::Transaction::Source::CardSettlement::PurchaseDetails },
                    nil?: true
 
+          # @!attribute scheme_fees
+          #   The scheme fees associated with this card settlement.
+          #
+          #   @return [Array<Increase::Models::Transaction::Source::CardSettlement::SchemeFee>]
+          required :scheme_fees,
+                   -> { Increase::Internal::Type::ArrayOf[Increase::Transaction::Source::CardSettlement::SchemeFee] }
+
           # @!attribute surcharge
           #   Surcharge amount details, if applicable. The amount is positive if the surcharge
           #   is added to the overall transaction amount (surcharge), and negative if the
@@ -4282,7 +4652,7 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Type]
           required :type, enum: -> { Increase::Transaction::Source::CardSettlement::Type }
 
-          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, surcharge:, transaction_id:, type:)
+          # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, scheme_fees:, surcharge:, transaction_id:, type:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::CardSettlement} for more details.
           #
@@ -4331,6 +4701,8 @@ module Increase
           #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
           #
           #   @param purchase_details [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails, nil] Additional details about the card purchase, such as tax and industry-specific fi
+          #
+          #   @param scheme_fees [Array<Increase::Models::Transaction::Source::CardSettlement::SchemeFee>] The scheme fees associated with this card settlement.
           #
           #   @param surcharge [Increase::Models::Transaction::Source::CardSettlement::Surcharge, nil] Surcharge amount details, if applicable. The amount is positive if the surcharge
           #
@@ -5479,6 +5851,179 @@ module Increase
                   #   @return [Array<Symbol>]
                 end
               end
+            end
+          end
+
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The fee amount given as a string containing a decimal number.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute created_at
+            #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   created.
+            #
+            #   @return [Time]
+            required :created_at, Time
+
+            # @!attribute currency
+            #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #   reimbursement.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::SchemeFee::Currency]
+            required :currency, enum: -> { Increase::Transaction::Source::CardSettlement::SchemeFee::Currency }
+
+            # @!attribute fee_type
+            #   The type of fee being assessed.
+            #
+            #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::SchemeFee::FeeType]
+            required :fee_type, enum: -> { Increase::Transaction::Source::CardSettlement::SchemeFee::FeeType }
+
+            # @!attribute fixed_component
+            #   The fixed component of the fee, if applicable, given in major units of the fee
+            #   amount.
+            #
+            #   @return [String, nil]
+            required :fixed_component, String, nil?: true
+
+            # @!attribute variable_rate
+            #   The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   0.015 for 1.5%).
+            #
+            #   @return [String, nil]
+            required :variable_rate, String, nil?: true
+
+            # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::Transaction::Source::CardSettlement::SchemeFee} for more
+            #   details.
+            #
+            #   @param amount [String] The fee amount given as a string containing a decimal number.
+            #
+            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #
+            #   @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #
+            #   @param fee_type [Symbol, Increase::Models::Transaction::Source::CardSettlement::SchemeFee::FeeType] The type of fee being assessed.
+            #
+            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #
+            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            #
+            # @see Increase::Models::Transaction::Source::CardSettlement::SchemeFee#currency
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              # US Dollar (USD)
+              USD = :USD
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The type of fee being assessed.
+            #
+            # @see Increase::Models::Transaction::Source::CardSettlement::SchemeFee#fee_type
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                :visa_international_service_assessment_single_currency
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                :visa_international_service_assessment_cross_currency
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE = :visa_authorization_domestic_point_of_sale
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE = :visa_authorization_international_point_of_sale
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE = :visa_authorization_canada_point_of_sale
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE = :visa_authorization_reversal_point_of_sale
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                :visa_authorization_reversal_international_point_of_sale
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE = :visa_authorization_address_verification_service
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION = :visa_advanced_authorization
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION = :visa_message_transmission
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC = :visa_account_verification_domestic
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL = :visa_account_verification_international
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA = :visa_account_verification_canada
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE = :visa_corporate_acceptance_fee
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE = :visa_consumer_debit_acceptance_fee
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE = :visa_business_debit_acceptance_fee
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE = :visa_purchasing_acceptance_fee
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC = :visa_purchase_domestic
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL = :visa_purchase_international
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN = :visa_credit_purchase_token
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN = :visa_debit_purchase_token
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION = :visa_clearing_transmission
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION = :visa_direct_authorization
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC = :visa_direct_transaction_domestic
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT = :visa_service_commercial_credit
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT = :visa_advertising_service_commercial_credit
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM = :visa_community_growth_acceleration_program
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT = :visa_processing_guarantee_commercial_credit
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
           end
 

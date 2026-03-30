@@ -37,10 +37,6 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :physical_card_id
 
-      # The scheme fees associated with this card payment.
-      sig { returns(T::Array[Increase::CardPayment::SchemeFee]) }
-      attr_accessor :scheme_fees
-
       # The summarized state of this card payment.
       sig { returns(Increase::CardPayment::State) }
       attr_reader :state
@@ -64,7 +60,6 @@ module Increase
           digital_wallet_token_id: T.nilable(String),
           elements: T::Array[Increase::CardPayment::Element::OrHash],
           physical_card_id: T.nilable(String),
-          scheme_fees: T::Array[Increase::CardPayment::SchemeFee::OrHash],
           state: Increase::CardPayment::State::OrHash,
           type: Increase::CardPayment::Type::OrSymbol
         ).returns(T.attached_class)
@@ -85,8 +80,6 @@ module Increase
         elements:,
         # The Physical Card identifier for this payment.
         physical_card_id:,
-        # The scheme fees associated with this card payment.
-        scheme_fees:,
         # The summarized state of this card payment.
         state:,
         # A constant representing the object's type. For this resource it will always be
@@ -105,7 +98,6 @@ module Increase
             digital_wallet_token_id: T.nilable(String),
             elements: T::Array[Increase::CardPayment::Element],
             physical_card_id: T.nilable(String),
-            scheme_fees: T::Array[Increase::CardPayment::SchemeFee],
             state: Increase::CardPayment::State,
             type: Increase::CardPayment::Type::TaggedSymbol
           }
@@ -2600,6 +2592,16 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :real_time_decision_id
 
+          # The scheme fees associated with this card authorization.
+          sig do
+            returns(
+              T::Array[
+                Increase::CardPayment::Element::CardAuthorization::SchemeFee
+              ]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           sig { returns(T.nilable(String)) }
@@ -2668,6 +2670,10 @@ module Increase
               processing_category:
                 Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::OrSymbol,
               real_time_decision_id: T.nilable(String),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::OrHash
+                ],
               terminal_id: T.nilable(String),
               type:
                 Increase::CardPayment::Element::CardAuthorization::Type::OrSymbol,
@@ -2743,6 +2749,8 @@ module Increase
             # The identifier of the Real-Time Decision sent to approve or decline this
             # transaction.
             real_time_decision_id:,
+            # The scheme fees associated with this card authorization.
+            scheme_fees:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
             # is transacting with.
             terminal_id:,
@@ -2789,6 +2797,10 @@ module Increase
                 processing_category:
                   Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol,
                 real_time_decision_id: T.nilable(String),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee
+                  ],
                 terminal_id: T.nilable(String),
                 type:
                   Increase::CardPayment::Element::CardAuthorization::Type::TaggedSymbol,
@@ -4457,6 +4469,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardAuthorization::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_authorization`.
           module Type
@@ -5215,6 +5581,16 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :real_time_decision_id
 
+          # The scheme fees associated with this card balance inquiry.
+          sig do
+            returns(
+              T::Array[
+                Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee
+              ]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           sig { returns(T.nilable(String)) }
@@ -5274,6 +5650,10 @@ module Increase
               network_risk_score: T.nilable(Integer),
               physical_card_id: T.nilable(String),
               real_time_decision_id: T.nilable(String),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::OrHash
+                ],
               terminal_id: T.nilable(String),
               type:
                 Increase::CardPayment::Element::CardBalanceInquiry::Type::OrSymbol,
@@ -5330,6 +5710,8 @@ module Increase
             # The identifier of the Real-Time Decision sent to approve or decline this
             # transaction.
             real_time_decision_id:,
+            # The scheme fees associated with this card balance inquiry.
+            scheme_fees:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
             # is transacting with.
             terminal_id:,
@@ -5366,6 +5748,10 @@ module Increase
                 network_risk_score: T.nilable(Integer),
                 physical_card_id: T.nilable(String),
                 real_time_decision_id: T.nilable(String),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee
+                  ],
                 terminal_id: T.nilable(String),
                 type:
                   Increase::CardPayment::Element::CardBalanceInquiry::Type::TaggedSymbol,
@@ -6854,6 +7240,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_balance_inquiry`.
           module Type
@@ -7470,6 +8210,14 @@ module Increase
           end
           attr_accessor :reason
 
+          # The scheme fees associated with this card decline.
+          sig do
+            returns(
+              T::Array[Increase::CardPayment::Element::CardDecline::SchemeFee]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           sig { returns(T.nilable(String)) }
@@ -7531,6 +8279,10 @@ module Increase
                 ),
               reason:
                 Increase::CardPayment::Element::CardDecline::Reason::OrSymbol,
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::OrHash
+                ],
               terminal_id: T.nilable(String),
               verification:
                 Increase::CardPayment::Element::CardDecline::Verification::OrHash
@@ -7609,6 +8361,8 @@ module Increase
             real_time_decision_reason:,
             # Why the transaction was declined.
             reason:,
+            # The scheme fees associated with this card decline.
+            scheme_fees:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
             # is transacting with.
             terminal_id:,
@@ -7658,6 +8412,10 @@ module Increase
                   ),
                 reason:
                   Increase::CardPayment::Element::CardDecline::Reason::TaggedSymbol,
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardDecline::SchemeFee
+                  ],
                 terminal_id: T.nilable(String),
                 verification:
                   Increase::CardPayment::Element::CardDecline::Verification
@@ -9562,6 +10320,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardDecline::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardDecline::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardDecline::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardDecline::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardDecline::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           class Verification < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
@@ -10121,6 +11233,14 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :real_time_decision_id
 
+          # The scheme fees associated with this card financial.
+          sig do
+            returns(
+              T::Array[Increase::CardPayment::Element::CardFinancial::SchemeFee]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           sig { returns(T.nilable(String)) }
@@ -10188,6 +11308,10 @@ module Increase
               processing_category:
                 Increase::CardPayment::Element::CardFinancial::ProcessingCategory::OrSymbol,
               real_time_decision_id: T.nilable(String),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::OrHash
+                ],
               terminal_id: T.nilable(String),
               transaction_id: String,
               type:
@@ -10259,6 +11383,8 @@ module Increase
             # The identifier of the Real-Time Decision sent to approve or decline this
             # transaction.
             real_time_decision_id:,
+            # The scheme fees associated with this card financial.
+            scheme_fees:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
             # is transacting with.
             terminal_id:,
@@ -10305,6 +11431,10 @@ module Increase
                 processing_category:
                   Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol,
                 real_time_decision_id: T.nilable(String),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee
+                  ],
                 terminal_id: T.nilable(String),
                 transaction_id: String,
                 type:
@@ -11974,6 +13104,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFinancial::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_financial`.
           module Type
@@ -12450,6 +13934,16 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :pending_transaction_id
 
+          # The scheme fees associated with this card fuel confirmation.
+          sig do
+            returns(
+              T::Array[
+                Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee
+              ]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # A constant representing the object's type. For this resource it will always be
           # `card_fuel_confirmation`.
           sig do
@@ -12479,6 +13973,10 @@ module Increase
               network_identifiers:
                 Increase::CardPayment::Element::CardFuelConfirmation::NetworkIdentifiers::OrHash,
               pending_transaction_id: T.nilable(String),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::OrHash
+                ],
               type:
                 Increase::CardPayment::Element::CardFuelConfirmation::Type::OrSymbol,
               updated_authorization_amount: Integer
@@ -12499,6 +13997,8 @@ module Increase
             # The identifier of the Pending Transaction associated with this Card Fuel
             # Confirmation.
             pending_transaction_id:,
+            # The scheme fees associated with this card fuel confirmation.
+            scheme_fees:,
             # A constant representing the object's type. For this resource it will always be
             # `card_fuel_confirmation`.
             type:,
@@ -12520,6 +14020,10 @@ module Increase
                 network_identifiers:
                   Increase::CardPayment::Element::CardFuelConfirmation::NetworkIdentifiers,
                 pending_transaction_id: T.nilable(String),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee
+                  ],
                 type:
                   Increase::CardPayment::Element::CardFuelConfirmation::Type::TaggedSymbol,
                 updated_authorization_amount: Integer
@@ -12669,6 +14173,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_fuel_confirmation`.
           module Type
@@ -12807,6 +14665,14 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :real_time_decision_id
 
+          # The scheme fees associated with this card increment.
+          sig do
+            returns(
+              T::Array[Increase::CardPayment::Element::CardIncrement::SchemeFee]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # A constant representing the object's type. For this resource it will always be
           # `card_increment`.
           sig do
@@ -12844,6 +14710,10 @@ module Increase
               presentment_amount: Integer,
               presentment_currency: String,
               real_time_decision_id: T.nilable(String),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::OrHash
+                ],
               type:
                 Increase::CardPayment::Element::CardIncrement::Type::OrSymbol,
               updated_authorization_amount: Integer
@@ -12885,6 +14755,8 @@ module Increase
             # The identifier of the Real-Time Decision sent to approve or decline this
             # incremental authorization.
             real_time_decision_id:,
+            # The scheme fees associated with this card increment.
+            scheme_fees:,
             # A constant representing the object's type. For this resource it will always be
             # `card_increment`.
             type:,
@@ -12915,6 +14787,10 @@ module Increase
                 presentment_amount: Integer,
                 presentment_currency: String,
                 real_time_decision_id: T.nilable(String),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee
+                  ],
                 type:
                   Increase::CardPayment::Element::CardIncrement::Type::TaggedSymbol,
                 updated_authorization_amount: Integer
@@ -13860,6 +15736,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardIncrement::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_increment`.
           module Type
@@ -14035,6 +16265,14 @@ module Increase
           end
           attr_writer :purchase_details
 
+          # The scheme fees associated with this card refund.
+          sig do
+            returns(
+              T::Array[Increase::CardPayment::Element::CardRefund::SchemeFee]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The identifier of the Transaction associated with this Transaction.
           sig { returns(String) }
           attr_accessor :transaction_id
@@ -14083,6 +16321,10 @@ module Increase
                 T.nilable(
                   Increase::CardPayment::Element::CardRefund::PurchaseDetails::OrHash
                 ),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::OrHash
+                ],
               transaction_id: String,
               type: Increase::CardPayment::Element::CardRefund::Type::OrSymbol
             ).returns(T.attached_class)
@@ -14128,6 +16370,8 @@ module Increase
             # Additional details about the card purchase, such as tax and industry-specific
             # fields.
             purchase_details:,
+            # The scheme fees associated with this card refund.
+            scheme_fees:,
             # The identifier of the Transaction associated with this Transaction.
             transaction_id:,
             # A constant representing the object's type. For this resource it will always be
@@ -14167,6 +16411,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardRefund::PurchaseDetails
                   ),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardRefund::SchemeFee
+                  ],
                 transaction_id: String,
                 type:
                   Increase::CardPayment::Element::CardRefund::Type::TaggedSymbol
@@ -16191,6 +18439,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardRefund::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardRefund::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardRefund::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardRefund::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardRefund::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_refund`.
           module Type
@@ -16330,6 +18932,14 @@ module Increase
           end
           attr_accessor :reversal_reason
 
+          # The scheme fees associated with this card reversal.
+          sig do
+            returns(
+              T::Array[Increase::CardPayment::Element::CardReversal::SchemeFee]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           sig { returns(T.nilable(String)) }
@@ -16382,6 +18992,10 @@ module Increase
                 T.nilable(
                   Increase::CardPayment::Element::CardReversal::ReversalReason::OrSymbol
                 ),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::OrHash
+                ],
               terminal_id: T.nilable(String),
               type:
                 Increase::CardPayment::Element::CardReversal::Type::OrSymbol,
@@ -16431,6 +19045,8 @@ module Increase
             reversal_presentment_amount:,
             # Why this reversal was initiated.
             reversal_reason:,
+            # The scheme fees associated with this card reversal.
+            scheme_fees:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
             # is transacting with.
             terminal_id:,
@@ -16472,6 +19088,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardReversal::ReversalReason::TaggedSymbol
                   ),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardReversal::SchemeFee
+                  ],
                 terminal_id: T.nilable(String),
                 type:
                   Increase::CardPayment::Element::CardReversal::Type::TaggedSymbol,
@@ -16675,6 +19295,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardReversal::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardReversal::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardReversal::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardReversal::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardReversal::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `card_reversal`.
           module Type
@@ -16871,6 +19845,16 @@ module Increase
           end
           attr_writer :purchase_details
 
+          # The scheme fees associated with this card settlement.
+          sig do
+            returns(
+              T::Array[
+                Increase::CardPayment::Element::CardSettlement::SchemeFee
+              ]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # Surcharge amount details, if applicable. The amount is positive if the surcharge
           # is added to the overall transaction amount (surcharge), and negative if the
           # surcharge is deducted from the overall transaction amount (discount).
@@ -16945,6 +19929,10 @@ module Increase
                 T.nilable(
                   Increase::CardPayment::Element::CardSettlement::PurchaseDetails::OrHash
                 ),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::OrHash
+                ],
               surcharge:
                 T.nilable(
                   Increase::CardPayment::Element::CardSettlement::Surcharge::OrHash
@@ -17002,6 +19990,8 @@ module Increase
             # Additional details about the card purchase, such as tax and industry-specific
             # fields.
             purchase_details:,
+            # The scheme fees associated with this card settlement.
+            scheme_fees:,
             # Surcharge amount details, if applicable. The amount is positive if the surcharge
             # is added to the overall transaction amount (surcharge), and negative if the
             # surcharge is deducted from the overall transaction amount (discount).
@@ -17049,6 +20039,10 @@ module Increase
                   T.nilable(
                     Increase::CardPayment::Element::CardSettlement::PurchaseDetails
                   ),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee
+                  ],
                 surcharge:
                   T.nilable(
                     Increase::CardPayment::Element::CardSettlement::Surcharge
@@ -19115,6 +22109,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardSettlement::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           class Surcharge < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
@@ -19326,6 +22674,16 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :real_time_decision_id
 
+          # The scheme fees associated with this card validation.
+          sig do
+            returns(
+              T::Array[
+                Increase::CardPayment::Element::CardValidation::SchemeFee
+              ]
+            )
+          end
+          attr_accessor :scheme_fees
+
           # The terminal identifier (commonly abbreviated as TID) of the terminal the card
           # is transacting with.
           sig { returns(T.nilable(String)) }
@@ -19385,6 +22743,10 @@ module Increase
               network_risk_score: T.nilable(Integer),
               physical_card_id: T.nilable(String),
               real_time_decision_id: T.nilable(String),
+              scheme_fees:
+                T::Array[
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::OrHash
+                ],
               terminal_id: T.nilable(String),
               type:
                 Increase::CardPayment::Element::CardValidation::Type::OrSymbol,
@@ -19441,6 +22803,8 @@ module Increase
             # The identifier of the Real-Time Decision sent to approve or decline this
             # transaction.
             real_time_decision_id:,
+            # The scheme fees associated with this card validation.
+            scheme_fees:,
             # The terminal identifier (commonly abbreviated as TID) of the terminal the card
             # is transacting with.
             terminal_id:,
@@ -19478,6 +22842,10 @@ module Increase
                 network_risk_score: T.nilable(Integer),
                 physical_card_id: T.nilable(String),
                 real_time_decision_id: T.nilable(String),
+                scheme_fees:
+                  T::Array[
+                    Increase::CardPayment::Element::CardValidation::SchemeFee
+                  ],
                 terminal_id: T.nilable(String),
                 type:
                   Increase::CardPayment::Element::CardValidation::Type::TaggedSymbol,
@@ -21012,6 +24380,360 @@ module Increase
             end
           end
 
+          class SchemeFee < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::CardPayment::Element::CardValidation::SchemeFee,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The fee amount given as a string containing a decimal number.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            # created.
+            sig { returns(Time) }
+            attr_accessor :created_at
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardValidation::SchemeFee::Currency::TaggedSymbol
+              )
+            end
+            attr_accessor :currency
+
+            # The type of fee being assessed.
+            sig do
+              returns(
+                Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+              )
+            end
+            attr_accessor :fee_type
+
+            # The fixed component of the fee, if applicable, given in major units of the fee
+            # amount.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :fixed_component
+
+            # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            # 0.015 for 1.5%).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :variable_rate
+
+            sig do
+              params(
+                amount: String,
+                created_at: Time,
+                currency:
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::Currency::OrSymbol,
+                fee_type:
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::OrSymbol,
+                fixed_component: T.nilable(String),
+                variable_rate: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The fee amount given as a string containing a decimal number.
+              amount:,
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+              # created.
+              created_at:,
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+              # reimbursement.
+              currency:,
+              # The type of fee being assessed.
+              fee_type:,
+              # The fixed component of the fee, if applicable, given in major units of the fee
+              # amount.
+              fixed_component:,
+              # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+              # 0.015 for 1.5%).
+              variable_rate:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  created_at: Time,
+                  currency:
+                    Increase::CardPayment::Element::CardValidation::SchemeFee::Currency::TaggedSymbol,
+                  fee_type:
+                    Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol,
+                  fixed_component: T.nilable(String),
+                  variable_rate: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            # reimbursement.
+            module Currency
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardValidation::SchemeFee::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # US Dollar (USD)
+              USD =
+                T.let(
+                  :USD,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardValidation::SchemeFee::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The type of fee being assessed.
+            module FeeType
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_single_currency,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
+              VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
+                T.let(
+                  :visa_international_service_assessment_cross_currency,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_domestic_point_of_sale,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
+              VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_international_point_of_sale,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
+              VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_canada_point_of_sale,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_point_of_sale,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
+              VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
+                T.let(
+                  :visa_authorization_reversal_international_point_of_sale,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
+              VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
+                T.let(
+                  :visa_authorization_address_verification_service,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              VISA_ADVANCED_AUTHORIZATION =
+                T.let(
+                  :visa_advanced_authorization,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
+              VISA_MESSAGE_TRANSMISSION =
+                T.let(
+                  :visa_message_transmission,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_DOMESTIC =
+                T.let(
+                  :visa_account_verification_domestic,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the international Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
+                T.let(
+                  :visa_account_verification_international,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
+              VISA_ACCOUNT_VERIFICATION_CANADA =
+                T.let(
+                  :visa_account_verification_canada,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_CORPORATE_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_corporate_acceptance_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
+              VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_consumer_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
+              VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_business_debit_acceptance_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
+              VISA_PURCHASING_ACCEPTANCE_FEE =
+                T.let(
+                  :visa_purchasing_acceptance_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of a sales draft original for a purchase transaction.
+              VISA_PURCHASE_DOMESTIC =
+                T.let(
+                  :visa_purchase_domestic,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an international sales draft original for a purchase transaction.
+              VISA_PURCHASE_INTERNATIONAL =
+                T.let(
+                  :visa_purchase_international,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_CREDIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_credit_purchase_token,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
+              VISA_DEBIT_PURCHASE_TOKEN =
+                T.let(
+                  :visa_debit_purchase_token,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # A per transaction fee assessed for Base II financial draft - Issuer.
+              VISA_CLEARING_TRANSMISSION =
+                T.let(
+                  :visa_clearing_transmission,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
+              VISA_DIRECT_AUTHORIZATION =
+                T.let(
+                  :visa_direct_authorization,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
+              VISA_DIRECT_TRANSACTION_DOMESTIC =
+                T.let(
+                  :visa_direct_transaction_domestic,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer card service fee for Commercial Credit cards.
+              VISA_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_service_commercial_credit,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Advertising Service Fee for Commercial Credit cards.
+              VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_advertising_service_commercial_credit,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Community Growth Acceleration Program Fee.
+              VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
+                T.let(
+                  :visa_community_growth_acceleration_program,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Issuer Processing Guarantee for Commercial Credit cards.
+              VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
+                T.let(
+                  :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
+              PULSE_SWITCH_FEE =
+                T.let(
+                  :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           # A constant representing the object's type. For this resource it will always be
           # `inbound_card_validation`.
           module Type
@@ -21450,338 +25172,6 @@ module Increase
 
           sig { override.returns({}) }
           def to_hash
-          end
-        end
-      end
-
-      class SchemeFee < Increase::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(Increase::CardPayment::SchemeFee, Increase::Internal::AnyHash)
-          end
-
-        # The fee amount given as a string containing a decimal number.
-        sig { returns(String) }
-        attr_accessor :amount
-
-        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
-        # created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
-        # reimbursement.
-        sig do
-          returns(Increase::CardPayment::SchemeFee::Currency::TaggedSymbol)
-        end
-        attr_accessor :currency
-
-        # The type of fee being assessed.
-        sig { returns(Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol) }
-        attr_accessor :fee_type
-
-        # The fixed component of the fee, if applicable, given in major units of the fee
-        # amount.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :fixed_component
-
-        # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
-        # 0.015 for 1.5%).
-        sig { returns(T.nilable(String)) }
-        attr_accessor :variable_rate
-
-        sig do
-          params(
-            amount: String,
-            created_at: Time,
-            currency: Increase::CardPayment::SchemeFee::Currency::OrSymbol,
-            fee_type: Increase::CardPayment::SchemeFee::FeeType::OrSymbol,
-            fixed_component: T.nilable(String),
-            variable_rate: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The fee amount given as a string containing a decimal number.
-          amount:,
-          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
-          # created.
-          created_at:,
-          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
-          # reimbursement.
-          currency:,
-          # The type of fee being assessed.
-          fee_type:,
-          # The fixed component of the fee, if applicable, given in major units of the fee
-          # amount.
-          fixed_component:,
-          # The variable rate component of the fee, if applicable, given as a decimal (e.g.,
-          # 0.015 for 1.5%).
-          variable_rate:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              amount: String,
-              created_at: Time,
-              currency:
-                Increase::CardPayment::SchemeFee::Currency::TaggedSymbol,
-              fee_type: Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol,
-              fixed_component: T.nilable(String),
-              variable_rate: T.nilable(String)
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
-        # reimbursement.
-        module Currency
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Increase::CardPayment::SchemeFee::Currency)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # US Dollar (USD)
-          USD =
-            T.let(
-              :USD,
-              Increase::CardPayment::SchemeFee::Currency::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[Increase::CardPayment::SchemeFee::Currency::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The type of fee being assessed.
-        module FeeType
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Increase::CardPayment::SchemeFee::FeeType)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # International Service Assessment (ISA) single-currency is a fee assessed by the card network for cross-border transactions presented and settled in the same currency.
-          VISA_INTERNATIONAL_SERVICE_ASSESSMENT_SINGLE_CURRENCY =
-            T.let(
-              :visa_international_service_assessment_single_currency,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # International Service Assessment (ISA) cross-currency is a fee assessed by the card network for cross-border transactions presented and settled in different currencies.
-          VISA_INTERNATIONAL_SERVICE_ASSESSMENT_CROSS_CURRENCY =
-            T.let(
-              :visa_international_service_assessment_cross_currency,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
-          VISA_AUTHORIZATION_DOMESTIC_POINT_OF_SALE =
-            T.let(
-              :visa_authorization_domestic_point_of_sale,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity and charges for Visa Settlement System processing for POS (Point-Of-Sale) International authorization transactions. Authorization is the process of approving or declining the transaction amount specified. The fee is assessed to the Issuer.
-          VISA_AUTHORIZATION_INTERNATIONAL_POINT_OF_SALE =
-            T.let(
-              :visa_authorization_international_point_of_sale,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity and charges for Visa Settlement System processing for Canada Region POS (Point-of-Sale) authorization transactions. Authorization is the process of approving or declining the transaction amount specified.
-          VISA_AUTHORIZATION_CANADA_POINT_OF_SALE =
-            T.let(
-              :visa_authorization_canada_point_of_sale,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
-          VISA_AUTHORIZATION_REVERSAL_POINT_OF_SALE =
-            T.let(
-              :visa_authorization_reversal_point_of_sale,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity only for Visa Settlement System authorization processing of POS (Point-Of-Sale) International reversal transactions. Authorization reversal represents a VSS message that undoes the complete or partial actions of a previous authorization request.
-          VISA_AUTHORIZATION_REVERSAL_INTERNATIONAL_POINT_OF_SALE =
-            T.let(
-              :visa_authorization_reversal_international_point_of_sale,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
-          VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE =
-            T.let(
-              :visa_authorization_address_verification_service,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
-          VISA_ADVANCED_AUTHORIZATION =
-            T.let(
-              :visa_advanced_authorization,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
-          VISA_MESSAGE_TRANSMISSION =
-            T.let(
-              :visa_message_transmission,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity, per inquiry, related to the domestic Issuer for Account Number Verification.
-          VISA_ACCOUNT_VERIFICATION_DOMESTIC =
-            T.let(
-              :visa_account_verification_domestic,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity, per inquiry, related to the international Issuer for Account Number Verification.
-          VISA_ACCOUNT_VERIFICATION_INTERNATIONAL =
-            T.let(
-              :visa_account_verification_international,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity, per inquiry, related to the US-Canada Issuer for Account Number Verification.
-          VISA_ACCOUNT_VERIFICATION_CANADA =
-            T.let(
-              :visa_account_verification_canada,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # The Corporate Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
-          VISA_CORPORATE_ACCEPTANCE_FEE =
-            T.let(
-              :visa_corporate_acceptance_fee,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # The Consumer Debit Acceptance Fee is charged to issuers and is based on the monthly sales volume of Consumer Debit or Prepaid card transactions. The cashback portion of a Debit and Prepaid card transaction is excluded from the sales volume calculation.
-          VISA_CONSUMER_DEBIT_ACCEPTANCE_FEE =
-            T.let(
-              :visa_consumer_debit_acceptance_fee,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # The Business Acceptance Fee is charged to issuers and is based on the monthly sales volume on Business Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions. The cashback portion is included in the sales volume calculation with the exception of a Debit and Prepaid card transactions.
-          VISA_BUSINESS_DEBIT_ACCEPTANCE_FEE =
-            T.let(
-              :visa_business_debit_acceptance_fee,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # The Purchasing Card Acceptance Fee is charged to issuers and is based on the monthly sales volume on Commercial and Government Debit, Prepaid, Credit, Charge, or Deferred Debit card transactions.
-          VISA_PURCHASING_ACCEPTANCE_FEE =
-            T.let(
-              :visa_purchasing_acceptance_fee,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity and fees for the processing of a sales draft original for a purchase transaction.
-          VISA_PURCHASE_DOMESTIC =
-            T.let(
-              :visa_purchase_domestic,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Activity and fees for the processing of an international sales draft original for a purchase transaction.
-          VISA_PURCHASE_INTERNATIONAL =
-            T.let(
-              :visa_purchase_international,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Apple Pay Credit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
-          VISA_CREDIT_PURCHASE_TOKEN =
-            T.let(
-              :visa_credit_purchase_token,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Apple Pay Debit Product Token Purchase Original Transactions. This fee is billed by Visa on behalf of Apple Inc. for Apple Pay transactions.
-          VISA_DEBIT_PURCHASE_TOKEN =
-            T.let(
-              :visa_debit_purchase_token,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # A per transaction fee assessed for Base II financial draft - Issuer.
-          VISA_CLEARING_TRANSMISSION =
-            T.let(
-              :visa_clearing_transmission,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Issuer charge for Non-Financial OCT/AFT Authorization 0100 and Declined Financial OCT/AFT 0200 transactions.
-          VISA_DIRECT_AUTHORIZATION =
-            T.let(
-              :visa_direct_authorization,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Data processing charge for Visa Direct OCTs for all business application identifiers (BAIs) other than money transfer-bank initiated (BI). BASE II transactions.
-          VISA_DIRECT_TRANSACTION_DOMESTIC =
-            T.let(
-              :visa_direct_transaction_domestic,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Issuer card service fee for Commercial Credit cards.
-          VISA_SERVICE_COMMERCIAL_CREDIT =
-            T.let(
-              :visa_service_commercial_credit,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Issuer Advertising Service Fee for Commercial Credit cards.
-          VISA_ADVERTISING_SERVICE_COMMERCIAL_CREDIT =
-            T.let(
-              :visa_advertising_service_commercial_credit,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Issuer Community Growth Acceleration Program Fee.
-          VISA_COMMUNITY_GROWTH_ACCELERATION_PROGRAM =
-            T.let(
-              :visa_community_growth_acceleration_program,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Issuer Processing Guarantee for Commercial Credit cards.
-          VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
-            T.let(
-              :visa_processing_guarantee_commercial_credit,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
-          PULSE_SWITCH_FEE =
-            T.let(
-              :pulse_switch_fee,
-              Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[Increase::CardPayment::SchemeFee::FeeType::TaggedSymbol]
-            )
-          end
-          def self.values
           end
         end
       end
