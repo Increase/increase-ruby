@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.275.0 (2026-03-30)
+
+Full Changelog: [v1.274.0...v1.275.0](https://github.com/Increase/increase-ruby/compare/v1.274.0...v1.275.0)
+
+### Features
+
+* **api:** api update ([c769270](https://github.com/Increase/increase-ruby/commit/c7692700df1ae0074c9614d093243a17e38f6759))
+
+
+### Chores
+
+* **ci:** support opting out of skipping builds on metadata-only commits ([d9466e7](https://github.com/Increase/increase-ruby/commit/d9466e7eada22b9afc155324bb0674eef61bfdc7))
+
 ## 1.274.0 (2026-03-27)
 
 Full Changelog: [v1.273.0...v1.274.0](https://github.com/Increase/increase-ruby/compare/v1.273.0...v1.274.0)
