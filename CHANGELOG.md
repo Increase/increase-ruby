@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.278.2 (2026-03-31)
+
+Full Changelog: [v1.278.1...v1.278.2](https://github.com/Increase/increase-ruby/compare/v1.278.1...v1.278.2)
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([d78df6c](https://github.com/Increase/increase-ruby/commit/d78df6ce7d11866bc5f8ad6f8ba80813fd63bd79))
+
 ## 1.278.1 (2026-03-31)
 
 Full Changelog: [v1.278.0...v1.278.1](https://github.com/Increase/increase-ruby/compare/v1.278.0...v1.278.1)
