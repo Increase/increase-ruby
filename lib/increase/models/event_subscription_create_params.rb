@@ -291,12 +291,6 @@ module Increase
           # Occurs whenever a Legacy Card Dispute is updated.
           LEGACY_CARD_DISPUTE_UPDATED = :"legacy_card_dispute.updated"
 
-          # Occurs whenever a Lockbox Address is created.
-          LOCKBOX_ADDRESS_CREATED = :"lockbox_address.created"
-
-          # Occurs whenever a Lockbox Address is updated.
-          LOCKBOX_ADDRESS_UPDATED = :"lockbox_address.updated"
-
           # Occurs whenever a Lockbox is created.
           LOCKBOX_CREATED = :"lockbox.created"
 
