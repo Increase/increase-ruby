@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.278.1 (2026-03-31)
+
+Full Changelog: [v1.278.0...v1.278.1](https://github.com/Increase/increase-ruby/compare/v1.278.0...v1.278.1)
+
+### Bug Fixes
+
+* variable name typo ([3056f69](https://github.com/Increase/increase-ruby/commit/3056f6930db8441a753ada05a68a9cb42ecd1548))
+
+
+### Chores
+
+* **tests:** bump steady to v0.20.2 ([0402af0](https://github.com/Increase/increase-ruby/commit/0402af054445dcc599fad30510d25bbe1c0c7b1b))
+
 ## 1.278.0 (2026-03-31)
 
 Full Changelog: [v1.277.0...v1.278.0](https://github.com/Increase/increase-ruby/compare/v1.277.0...v1.278.0)
