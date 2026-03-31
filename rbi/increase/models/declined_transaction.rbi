@@ -738,6 +738,13 @@ module Increase
                 Increase::DeclinedTransaction::Source::ACHDecline::Reason::TaggedSymbol
               )
 
+            # The originating financial institution asked for this transfer to be returned. The receiving bank is complying with the request.
+            RETURNED_PER_ODFI_REQUEST =
+              T.let(
+                :returned_per_odfi_request,
+                Increase::DeclinedTransaction::Source::ACHDecline::Reason::TaggedSymbol
+              )
+
             # Your integration declined this transfer via the API.
             USER_INITIATED =
               T.let(
@@ -749,13 +756,6 @@ module Increase
             INSUFFICIENT_FUNDS =
               T.let(
                 :insufficient_funds,
-                Increase::DeclinedTransaction::Source::ACHDecline::Reason::TaggedSymbol
-              )
-
-            # The originating financial institution asked for this transfer to be returned. The receiving bank is complying with the request.
-            RETURNED_PER_ODFI_REQUEST =
-              T.let(
-                :returned_per_odfi_request,
                 Increase::DeclinedTransaction::Source::ACHDecline::Reason::TaggedSymbol
               )
 

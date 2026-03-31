@@ -373,14 +373,14 @@ module Increase
           # The transaction is not allowed per Increase's terms.
           TRANSACTION_NOT_ALLOWED = :transaction_not_allowed
 
+          # The originating financial institution asked for this transfer to be returned. The receiving bank is complying with the request.
+          RETURNED_PER_ODFI_REQUEST = :returned_per_odfi_request
+
           # Your integration declined this transfer via the API.
           USER_INITIATED = :user_initiated
 
           # Your account contains insufficient funds.
           INSUFFICIENT_FUNDS = :insufficient_funds
-
-          # The originating financial institution asked for this transfer to be returned. The receiving bank is complying with the request.
-          RETURNED_PER_ODFI_REQUEST = :returned_per_odfi_request
 
           # The customer no longer authorizes this transaction.
           AUTHORIZATION_REVOKED_BY_CUSTOMER = :authorization_revoked_by_customer
