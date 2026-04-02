@@ -1,20 +1,10 @@
 module Increase
   module Models
     type group =
-      {
-        id: String,
-        ach_debit_status: Increase::Models::Group::ach_debit_status,
-        activation_status: Increase::Models::Group::activation_status,
-        created_at: Time,
-        type: Increase::Models::Group::type_
-      }
+      { id: String, created_at: Time, type: Increase::Models::Group::type_ }
 
     class Group < Increase::Internal::Type::BaseModel
       attr_accessor id: String
-
-      attr_accessor ach_debit_status: Increase::Models::Group::ach_debit_status
-
-      attr_accessor activation_status: Increase::Models::Group::activation_status
 
       attr_accessor created_at: Time
 
@@ -22,47 +12,15 @@ module Increase
 
       def initialize: (
         id: String,
-        ach_debit_status: Increase::Models::Group::ach_debit_status,
-        activation_status: Increase::Models::Group::activation_status,
         created_at: Time,
         type: Increase::Models::Group::type_
       ) -> void
 
       def to_hash: -> {
         id: String,
-        ach_debit_status: Increase::Models::Group::ach_debit_status,
-        activation_status: Increase::Models::Group::activation_status,
         created_at: Time,
         type: Increase::Models::Group::type_
       }
-
-      type ach_debit_status = :disabled | :enabled
-
-      module ACHDebitStatus
-        extend Increase::Internal::Type::Enum
-
-        # The Group cannot make ACH debits.
-        DISABLED: :disabled
-
-        # The Group can make ACH debits.
-        ENABLED: :enabled
-
-        def self?.values: -> ::Array[Increase::Models::Group::ach_debit_status]
-      end
-
-      type activation_status = :unactivated | :activated
-
-      module ActivationStatus
-        extend Increase::Internal::Type::Enum
-
-        # The Group is not activated.
-        UNACTIVATED: :unactivated
-
-        # The Group is activated.
-        ACTIVATED: :activated
-
-        def self?.values: -> ::Array[Increase::Models::Group::activation_status]
-      end
 
       type type_ = :group
 
