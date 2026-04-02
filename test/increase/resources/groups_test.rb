@@ -13,8 +13,6 @@ class Increase::Test::Resources::GroupsTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        ach_debit_status: Increase::Group::ACHDebitStatus,
-        activation_status: Increase::Group::ActivationStatus,
         created_at: Time,
         type: Increase::Group::Type
       }
