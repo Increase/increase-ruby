@@ -4,6 +4,7 @@ module Increase
       {
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String?,
@@ -21,6 +22,8 @@ module Increase
       attr_accessor id: String
 
       attr_accessor account_id: String
+
+      attr_accessor authorization_controls: Increase::Card::AuthorizationControls?
 
       attr_accessor billing_address: Increase::Card::BillingAddress
 
@@ -47,6 +50,7 @@ module Increase
       def initialize: (
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String?,
@@ -63,6 +67,7 @@ module Increase
       def to_hash: -> {
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String?,
@@ -75,6 +80,240 @@ module Increase
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       }
+
+      type authorization_controls =
+        {
+          maximum_authorization_count: Increase::Card::AuthorizationControls::MaximumAuthorizationCount?,
+          merchant_acceptor_identifier: Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier?,
+          merchant_category_code: Increase::Card::AuthorizationControls::MerchantCategoryCode?,
+          merchant_country: Increase::Card::AuthorizationControls::MerchantCountry?,
+          spending_limits: ::Array[Increase::Card::AuthorizationControls::SpendingLimit]?
+        }
+
+      class AuthorizationControls < Increase::Internal::Type::BaseModel
+        attr_accessor maximum_authorization_count: Increase::Card::AuthorizationControls::MaximumAuthorizationCount?
+
+        attr_accessor merchant_acceptor_identifier: Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier?
+
+        attr_accessor merchant_category_code: Increase::Card::AuthorizationControls::MerchantCategoryCode?
+
+        attr_accessor merchant_country: Increase::Card::AuthorizationControls::MerchantCountry?
+
+        attr_accessor spending_limits: ::Array[Increase::Card::AuthorizationControls::SpendingLimit]?
+
+        def initialize: (
+          maximum_authorization_count: Increase::Card::AuthorizationControls::MaximumAuthorizationCount?,
+          merchant_acceptor_identifier: Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier?,
+          merchant_category_code: Increase::Card::AuthorizationControls::MerchantCategoryCode?,
+          merchant_country: Increase::Card::AuthorizationControls::MerchantCountry?,
+          spending_limits: ::Array[Increase::Card::AuthorizationControls::SpendingLimit]?
+        ) -> void
+
+        def to_hash: -> {
+          maximum_authorization_count: Increase::Card::AuthorizationControls::MaximumAuthorizationCount?,
+          merchant_acceptor_identifier: Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier?,
+          merchant_category_code: Increase::Card::AuthorizationControls::MerchantCategoryCode?,
+          merchant_country: Increase::Card::AuthorizationControls::MerchantCountry?,
+          spending_limits: ::Array[Increase::Card::AuthorizationControls::SpendingLimit]?
+        }
+
+        type maximum_authorization_count = { all_time: Integer? }
+
+        class MaximumAuthorizationCount < Increase::Internal::Type::BaseModel
+          attr_accessor all_time: Integer?
+
+          def initialize: (all_time: Integer?) -> void
+
+          def to_hash: -> { all_time: Integer? }
+        end
+
+        type merchant_acceptor_identifier =
+          {
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Blocked]?
+          }
+
+        class MerchantAcceptorIdentifier < Increase::Internal::Type::BaseModel
+          attr_accessor allowed: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Allowed]?
+
+          attr_accessor blocked: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Blocked]?
+
+          def initialize: (
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Blocked]?
+          ) -> void
+
+          def to_hash: -> {
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::Blocked]?
+          }
+
+          type allowed = { identifier: String }
+
+          class Allowed < Increase::Internal::Type::BaseModel
+            attr_accessor identifier: String
+
+            def initialize: (identifier: String) -> void
+
+            def to_hash: -> { identifier: String }
+          end
+
+          type blocked = { identifier: String }
+
+          class Blocked < Increase::Internal::Type::BaseModel
+            attr_accessor identifier: String
+
+            def initialize: (identifier: String) -> void
+
+            def to_hash: -> { identifier: String }
+          end
+        end
+
+        type merchant_category_code =
+          {
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Blocked]?
+          }
+
+        class MerchantCategoryCode < Increase::Internal::Type::BaseModel
+          attr_accessor allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Allowed]?
+
+          attr_accessor blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Blocked]?
+
+          def initialize: (
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Blocked]?
+          ) -> void
+
+          def to_hash: -> {
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCategoryCode::Blocked]?
+          }
+
+          type allowed = { code: String }
+
+          class Allowed < Increase::Internal::Type::BaseModel
+            attr_accessor code: String
+
+            def initialize: (code: String) -> void
+
+            def to_hash: -> { code: String }
+          end
+
+          type blocked = { code: String }
+
+          class Blocked < Increase::Internal::Type::BaseModel
+            attr_accessor code: String
+
+            def initialize: (code: String) -> void
+
+            def to_hash: -> { code: String }
+          end
+        end
+
+        type merchant_country =
+          {
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Blocked]?
+          }
+
+        class MerchantCountry < Increase::Internal::Type::BaseModel
+          attr_accessor allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Allowed]?
+
+          attr_accessor blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Blocked]?
+
+          def initialize: (
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Blocked]?
+          ) -> void
+
+          def to_hash: -> {
+            allowed: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Allowed]?,
+            blocked: ::Array[Increase::Card::AuthorizationControls::MerchantCountry::Blocked]?
+          }
+
+          type allowed = { country: String }
+
+          class Allowed < Increase::Internal::Type::BaseModel
+            attr_accessor country: String
+
+            def initialize: (country: String) -> void
+
+            def to_hash: -> { country: String }
+          end
+
+          type blocked = { country: String }
+
+          class Blocked < Increase::Internal::Type::BaseModel
+            attr_accessor country: String
+
+            def initialize: (country: String) -> void
+
+            def to_hash: -> { country: String }
+          end
+        end
+
+        type spending_limit =
+          {
+            interval: Increase::Models::Card::AuthorizationControls::SpendingLimit::interval,
+            merchant_category_codes: ::Array[Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode]?,
+            settlement_amount: Integer
+          }
+
+        class SpendingLimit < Increase::Internal::Type::BaseModel
+          attr_accessor interval: Increase::Models::Card::AuthorizationControls::SpendingLimit::interval
+
+          attr_accessor merchant_category_codes: ::Array[Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode]?
+
+          attr_accessor settlement_amount: Integer
+
+          def initialize: (
+            interval: Increase::Models::Card::AuthorizationControls::SpendingLimit::interval,
+            merchant_category_codes: ::Array[Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode]?,
+            settlement_amount: Integer
+          ) -> void
+
+          def to_hash: -> {
+            interval: Increase::Models::Card::AuthorizationControls::SpendingLimit::interval,
+            merchant_category_codes: ::Array[Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode]?,
+            settlement_amount: Integer
+          }
+
+          type interval =
+            :all_time | :per_transaction | :per_day | :per_week | :per_month
+
+          module Interval
+            extend Increase::Internal::Type::Enum
+
+            # The spending limit applies over the lifetime of the card.
+            ALL_TIME: :all_time
+
+            # The spending limit applies per transaction.
+            PER_TRANSACTION: :per_transaction
+
+            # The spending limit applies per day. Resets nightly at midnight UTC.
+            PER_DAY: :per_day
+
+            # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
+            PER_WEEK: :per_week
+
+            # The spending limit applies per month. Resets on the first of the month, midnight UTC.
+            PER_MONTH: :per_month
+
+            def self?.values: -> ::Array[Increase::Models::Card::AuthorizationControls::SpendingLimit::interval]
+          end
+
+          type merchant_category_code = { code: String }
+
+          class MerchantCategoryCode < Increase::Internal::Type::BaseModel
+            attr_accessor code: String
+
+            def initialize: (code: String) -> void
+
+            def to_hash: -> { code: String }
+          end
+        end
+      end
 
       type billing_address =
         {

@@ -3,6 +3,7 @@ module Increase
     class Cards
       def create: (
         account_id: String,
+        ?authorization_controls: Increase::CardCreateParams::AuthorizationControls,
         ?billing_address: Increase::CardCreateParams::BillingAddress,
         ?description: String,
         ?digital_wallet: Increase::CardCreateParams::DigitalWallet,
@@ -17,6 +18,7 @@ module Increase
 
       def update: (
         String card_id,
+        ?authorization_controls: Increase::CardUpdateParams::AuthorizationControls,
         ?billing_address: Increase::CardUpdateParams::BillingAddress,
         ?description: String,
         ?digital_wallet: Increase::CardUpdateParams::DigitalWallet,
