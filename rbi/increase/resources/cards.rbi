@@ -7,6 +7,8 @@ module Increase
       sig do
         params(
           account_id: String,
+          authorization_controls:
+            Increase::CardCreateParams::AuthorizationControls::OrHash,
           billing_address: Increase::CardCreateParams::BillingAddress::OrHash,
           description: String,
           digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash,
@@ -17,6 +19,8 @@ module Increase
       def create(
         # The Account the card should belong to.
         account_id:,
+        # Controls that restrict how this card can be used.
+        authorization_controls: nil,
         # The card's billing address.
         billing_address: nil,
         # The description you choose to give the card.
@@ -52,6 +56,8 @@ module Increase
       sig do
         params(
           card_id: String,
+          authorization_controls:
+            Increase::CardUpdateParams::AuthorizationControls::OrHash,
           billing_address: Increase::CardUpdateParams::BillingAddress::OrHash,
           description: String,
           digital_wallet: Increase::CardUpdateParams::DigitalWallet::OrHash,
@@ -63,6 +69,8 @@ module Increase
       def update(
         # The card identifier.
         card_id,
+        # Controls that restrict how this card can be used.
+        authorization_controls: nil,
         # The card's updated billing address.
         billing_address: nil,
         # The description you choose to give the card.

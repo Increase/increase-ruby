@@ -14,6 +14,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
       response => {
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls | nil,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String | nil,
@@ -40,6 +41,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
       response => {
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls | nil,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String | nil,
@@ -66,6 +68,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
       response => {
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls | nil,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String | nil,
@@ -99,6 +102,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
       row => {
         id: String,
         account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls | nil,
         billing_address: Increase::Card::BillingAddress,
         created_at: Time,
         description: String | nil,
