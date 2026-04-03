@@ -8,9 +8,11 @@ module Increase
       #
       # Create a Card
       #
-      # @overload create(account_id:, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
+      # @overload create(account_id:, authorization_controls: nil, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
       #
       # @param account_id [String] The Account the card should belong to.
+      #
+      # @param authorization_controls [Increase::Models::CardCreateParams::AuthorizationControls] Controls that restrict how this card can be used.
       #
       # @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
       #
@@ -55,9 +57,11 @@ module Increase
       #
       # Update a Card
       #
-      # @overload update(card_id, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
+      # @overload update(card_id, authorization_controls: nil, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
       #
       # @param card_id [String] The card identifier.
+      #
+      # @param authorization_controls [Increase::Models::CardUpdateParams::AuthorizationControls] Controls that restrict how this card can be used.
       #
       # @param billing_address [Increase::Models::CardUpdateParams::BillingAddress] The card's updated billing address.
       #
