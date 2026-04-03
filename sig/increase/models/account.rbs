@@ -12,8 +12,6 @@ module Increase
         funding: Increase::Models::Account::funding,
         idempotency_key: String?,
         informational_entity_id: String?,
-        interest_accrued: String,
-        interest_accrued_at: Date?,
         interest_rate: String,
         loan: Increase::Account::Loan?,
         name: String,
@@ -43,10 +41,6 @@ module Increase
 
       attr_accessor informational_entity_id: String?
 
-      attr_accessor interest_accrued: String
-
-      attr_accessor interest_accrued_at: Date?
-
       attr_accessor interest_rate: String
 
       attr_accessor loan: Increase::Account::Loan?
@@ -70,8 +64,6 @@ module Increase
         funding: Increase::Models::Account::funding,
         idempotency_key: String?,
         informational_entity_id: String?,
-        interest_accrued: String,
-        interest_accrued_at: Date?,
         interest_rate: String,
         loan: Increase::Account::Loan?,
         name: String,
@@ -91,8 +83,6 @@ module Increase
         funding: Increase::Models::Account::funding,
         idempotency_key: String?,
         informational_entity_id: String?,
-        interest_accrued: String,
-        interest_accrued_at: Date?,
         interest_rate: String,
         loan: Increase::Account::Loan?,
         name: String,
