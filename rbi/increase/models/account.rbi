@@ -55,16 +55,6 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :informational_entity_id
 
-      # The interest accrued but not yet paid, expressed as a string containing a
-      # floating-point value.
-      sig { returns(String) }
-      attr_accessor :interest_accrued
-
-      # The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which
-      # interest was accrued.
-      sig { returns(T.nilable(Date)) }
-      attr_accessor :interest_accrued_at
-
       # The interest rate currently being earned on the account, as a string containing
       # a decimal number. For example, a 1% interest rate would be represented as
       # "0.01".
@@ -110,8 +100,6 @@ module Increase
           funding: Increase::Account::Funding::OrSymbol,
           idempotency_key: T.nilable(String),
           informational_entity_id: T.nilable(String),
-          interest_accrued: String,
-          interest_accrued_at: T.nilable(Date),
           interest_rate: String,
           loan: T.nilable(Increase::Account::Loan::OrHash),
           name: String,
@@ -150,12 +138,6 @@ module Increase
         # The identifier of an Entity that, while not owning the Account, is associated
         # with its activity.
         informational_entity_id:,
-        # The interest accrued but not yet paid, expressed as a string containing a
-        # floating-point value.
-        interest_accrued:,
-        # The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which
-        # interest was accrued.
-        interest_accrued_at:,
         # The interest rate currently being earned on the account, as a string containing
         # a decimal number. For example, a 1% interest rate would be represented as
         # "0.01".
@@ -188,8 +170,6 @@ module Increase
             funding: Increase::Account::Funding::TaggedSymbol,
             idempotency_key: T.nilable(String),
             informational_entity_id: T.nilable(String),
-            interest_accrued: String,
-            interest_accrued_at: T.nilable(Date),
             interest_rate: String,
             loan: T.nilable(Increase::Account::Loan),
             name: String,

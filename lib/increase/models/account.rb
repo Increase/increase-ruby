@@ -73,20 +73,6 @@ module Increase
       #   @return [String, nil]
       required :informational_entity_id, String, nil?: true
 
-      # @!attribute interest_accrued
-      #   The interest accrued but not yet paid, expressed as a string containing a
-      #   floating-point value.
-      #
-      #   @return [String]
-      required :interest_accrued, String
-
-      # @!attribute interest_accrued_at
-      #   The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which
-      #   interest was accrued.
-      #
-      #   @return [Date, nil]
-      required :interest_accrued_at, Date, nil?: true
-
       # @!attribute interest_rate
       #   The interest rate currently being earned on the account, as a string containing
       #   a decimal number. For example, a 1% interest rate would be represented as
@@ -127,7 +113,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Account::Type]
       required :type, enum: -> { Increase::Account::Type }
 
-      # @!method initialize(id:, account_revenue_rate:, bank:, closed_at:, created_at:, currency:, entity_id:, funding:, idempotency_key:, informational_entity_id:, interest_accrued:, interest_accrued_at:, interest_rate:, loan:, name:, program_id:, status:, type:)
+      # @!method initialize(id:, account_revenue_rate:, bank:, closed_at:, created_at:, currency:, entity_id:, funding:, idempotency_key:, informational_entity_id:, interest_rate:, loan:, name:, program_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::Account} for more details.
       #
@@ -153,10 +139,6 @@ module Increase
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param informational_entity_id [String, nil] The identifier of an Entity that, while not owning the Account, is associated wi
-      #
-      #   @param interest_accrued [String] The interest accrued but not yet paid, expressed as a string containing a floati
-      #
-      #   @param interest_accrued_at [Date, nil] The latest [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which inte
       #
       #   @param interest_rate [String] The interest rate currently being earned on the account, as a string containing
       #
