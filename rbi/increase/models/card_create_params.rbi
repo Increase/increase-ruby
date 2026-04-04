@@ -205,7 +205,7 @@ module Increase
         end
         attr_writer :merchant_country
 
-        # Spending limits for this card. The most restrictive limit is applied if multiple
+        # Spending limits for this card. The most restrictive limit applies if multiple
         # limits match.
         sig do
           returns(
@@ -257,7 +257,7 @@ module Increase
           # Restricts which merchant countries are allowed or blocked for authorizations on
           # this card.
           merchant_country: nil,
-          # Spending limits for this card. The most restrictive limit is applied if multiple
+          # Spending limits for this card. The most restrictive limit applies if multiple
           # limits match.
           spending_limits: nil
         )
