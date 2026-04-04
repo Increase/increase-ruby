@@ -98,7 +98,7 @@ module Increase
         optional :merchant_country, -> { Increase::CardCreateParams::AuthorizationControls::MerchantCountry }
 
         # @!attribute spending_limits
-        #   Spending limits for this card. The most restrictive limit is applied if multiple
+        #   Spending limits for this card. The most restrictive limit applies if multiple
         #   limits match.
         #
         #   @return [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit>, nil]
@@ -119,7 +119,7 @@ module Increase
         #
         #   @param merchant_country [Increase::Models::CardCreateParams::AuthorizationControls::MerchantCountry] Restricts which merchant countries are allowed or blocked for authorizations on
         #
-        #   @param spending_limits [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit>] Spending limits for this card. The most restrictive limit is applied if multiple
+        #   @param spending_limits [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit>] Spending limits for this card. The most restrictive limit applies if multiple li
 
         # @see Increase::Models::CardCreateParams::AuthorizationControls#maximum_authorization_count
         class MaximumAuthorizationCount < Increase::Internal::Type::BaseModel
