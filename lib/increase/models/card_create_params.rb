@@ -67,13 +67,6 @@ module Increase
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       class AuthorizationControls < Increase::Internal::Type::BaseModel
-        # @!attribute maximum_authorization_count
-        #   Limits the number of authorizations that can be approved on this card.
-        #
-        #   @return [Increase::Models::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount, nil]
-        optional :maximum_authorization_count,
-                 -> { Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount }
-
         # @!attribute merchant_acceptor_identifier
         #   Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
         #   on this card.
@@ -97,21 +90,17 @@ module Increase
         #   @return [Increase::Models::CardCreateParams::AuthorizationControls::MerchantCountry, nil]
         optional :merchant_country, -> { Increase::CardCreateParams::AuthorizationControls::MerchantCountry }
 
-        # @!attribute spending_limits
-        #   Spending limits for this card. The most restrictive limit applies if multiple
-        #   limits match.
+        # @!attribute usage
+        #   Controls how many times this card can be used.
         #
-        #   @return [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit>, nil]
-        optional :spending_limits,
-                 -> { Increase::Internal::Type::ArrayOf[Increase::CardCreateParams::AuthorizationControls::SpendingLimit] }
+        #   @return [Increase::Models::CardCreateParams::AuthorizationControls::Usage, nil]
+        optional :usage, -> { Increase::CardCreateParams::AuthorizationControls::Usage }
 
-        # @!method initialize(maximum_authorization_count: nil, merchant_acceptor_identifier: nil, merchant_category_code: nil, merchant_country: nil, spending_limits: nil)
+        # @!method initialize(merchant_acceptor_identifier: nil, merchant_category_code: nil, merchant_country: nil, usage: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::CardCreateParams::AuthorizationControls} for more details.
         #
         #   Controls that restrict how this card can be used.
-        #
-        #   @param maximum_authorization_count [Increase::Models::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount] Limits the number of authorizations that can be approved on this card.
         #
         #   @param merchant_acceptor_identifier [Increase::Models::CardCreateParams::AuthorizationControls::MerchantAcceptorIdentifier] Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
         #
@@ -119,26 +108,7 @@ module Increase
         #
         #   @param merchant_country [Increase::Models::CardCreateParams::AuthorizationControls::MerchantCountry] Restricts which merchant countries are allowed or blocked for authorizations on
         #
-        #   @param spending_limits [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit>] Spending limits for this card. The most restrictive limit applies if multiple li
-
-        # @see Increase::Models::CardCreateParams::AuthorizationControls#maximum_authorization_count
-        class MaximumAuthorizationCount < Increase::Internal::Type::BaseModel
-          # @!attribute all_time
-          #   The maximum number of authorizations that can be approved on this card over its
-          #   lifetime.
-          #
-          #   @return [Integer]
-          required :all_time, Integer
-
-          # @!method initialize(all_time:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount}
-          #   for more details.
-          #
-          #   Limits the number of authorizations that can be approved on this card.
-          #
-          #   @param all_time [Integer] The maximum number of authorizations that can be approved on this card over its
-        end
+        #   @param usage [Increase::Models::CardCreateParams::AuthorizationControls::Usage] Controls how many times this card can be used.
 
         # @see Increase::Models::CardCreateParams::AuthorizationControls#merchant_acceptor_identifier
         class MerchantAcceptorIdentifier < Increase::Internal::Type::BaseModel
@@ -299,73 +269,199 @@ module Increase
           end
         end
 
-        class SpendingLimit < Increase::Internal::Type::BaseModel
-          # @!attribute interval
-          #   The interval at which the spending limit is enforced.
+        # @see Increase::Models::CardCreateParams::AuthorizationControls#usage
+        class Usage < Increase::Internal::Type::BaseModel
+          # @!attribute category
+          #   Whether the card is for a single use or multiple uses.
           #
-          #   @return [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::Interval]
-          required :interval,
-                   enum: -> { Increase::CardCreateParams::AuthorizationControls::SpendingLimit::Interval }
+          #   @return [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::Usage::Category]
+          required :category, enum: -> { Increase::CardCreateParams::AuthorizationControls::Usage::Category }
 
-          # @!attribute settlement_amount
-          #   The maximum settlement amount permitted in the given interval.
+          # @!attribute multi_use
+          #   Controls for multi-use cards. Required if and only if `category` is `multi_use`.
           #
-          #   @return [Integer]
-          required :settlement_amount, Integer
+          #   @return [Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse, nil]
+          optional :multi_use, -> { Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse }
 
-          # @!attribute merchant_category_codes
-          #   The Merchant Category Codes this spending limit applies to. If not set, the
-          #   limit applies to all transactions.
+          # @!attribute single_use
+          #   Controls for single-use cards. Required if and only if `category` is
+          #   `single_use`.
           #
-          #   @return [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode>, nil]
-          optional :merchant_category_codes,
-                   -> { Increase::Internal::Type::ArrayOf[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode] }
+          #   @return [Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse, nil]
+          optional :single_use, -> { Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse }
 
-          # @!method initialize(interval:, settlement_amount:, merchant_category_codes: nil)
+          # @!method initialize(category:, multi_use: nil, single_use: nil)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit} for
-          #   more details.
+          #   {Increase::Models::CardCreateParams::AuthorizationControls::Usage} for more
+          #   details.
           #
-          #   @param interval [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::Interval] The interval at which the spending limit is enforced.
+          #   Controls how many times this card can be used.
           #
-          #   @param settlement_amount [Integer] The maximum settlement amount permitted in the given interval.
+          #   @param category [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::Usage::Category] Whether the card is for a single use or multiple uses.
           #
-          #   @param merchant_category_codes [Array<Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode>] The Merchant Category Codes this spending limit applies to. If not set, the limi
+          #   @param multi_use [Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse] Controls for multi-use cards. Required if and only if `category` is `multi_use`.
+          #
+          #   @param single_use [Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse] Controls for single-use cards. Required if and only if `category` is `single_use
 
-          # The interval at which the spending limit is enforced.
+          # Whether the card is for a single use or multiple uses.
           #
-          # @see Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit#interval
-          module Interval
+          # @see Increase::Models::CardCreateParams::AuthorizationControls::Usage#category
+          module Category
             extend Increase::Internal::Type::Enum
 
-            # The spending limit applies over the lifetime of the card.
-            ALL_TIME = :all_time
+            # The card can only be used for a single authorization.
+            SINGLE_USE = :single_use
 
-            # The spending limit applies per transaction.
-            PER_TRANSACTION = :per_transaction
-
-            # The spending limit applies per day. Resets nightly at midnight UTC.
-            PER_DAY = :per_day
-
-            # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
-            PER_WEEK = :per_week
-
-            # The spending limit applies per month. Resets on the first of the month, midnight UTC.
-            PER_MONTH = :per_month
+            # The card can be used for multiple authorizations.
+            MULTI_USE = :multi_use
 
             # @!method self.values
             #   @return [Array<Symbol>]
           end
 
-          class MerchantCategoryCode < Increase::Internal::Type::BaseModel
-            # @!attribute code
-            #   The Merchant Category Code.
+          # @see Increase::Models::CardCreateParams::AuthorizationControls::Usage#multi_use
+          class MultiUse < Increase::Internal::Type::BaseModel
+            # @!attribute spending_limits
+            #   Spending limits for this card. The most restrictive limit applies if multiple
+            #   limits match.
             #
-            #   @return [String]
-            required :code, String
+            #   @return [Array<Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit>, nil]
+            optional :spending_limits,
+                     -> { Increase::Internal::Type::ArrayOf[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit] }
 
-            # @!method initialize(code:)
-            #   @param code [String] The Merchant Category Code.
+            # @!method initialize(spending_limits: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse} for
+            #   more details.
+            #
+            #   Controls for multi-use cards. Required if and only if `category` is `multi_use`.
+            #
+            #   @param spending_limits [Array<Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit>] Spending limits for this card. The most restrictive limit applies if multiple li
+
+            class SpendingLimit < Increase::Internal::Type::BaseModel
+              # @!attribute interval
+              #   The interval at which the spending limit is enforced.
+              #
+              #   @return [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval]
+              required :interval,
+                       enum: -> { Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval }
+
+              # @!attribute settlement_amount
+              #   The maximum settlement amount permitted in the given interval.
+              #
+              #   @return [Integer]
+              required :settlement_amount, Integer
+
+              # @!attribute merchant_category_codes
+              #   The Merchant Category Codes this spending limit applies to. If not set, the
+              #   limit applies to all transactions.
+              #
+              #   @return [Array<Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode>, nil]
+              optional :merchant_category_codes,
+                       -> { Increase::Internal::Type::ArrayOf[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode] }
+
+              # @!method initialize(interval:, settlement_amount:, merchant_category_codes: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit}
+              #   for more details.
+              #
+              #   @param interval [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval] The interval at which the spending limit is enforced.
+              #
+              #   @param settlement_amount [Integer] The maximum settlement amount permitted in the given interval.
+              #
+              #   @param merchant_category_codes [Array<Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode>] The Merchant Category Codes this spending limit applies to. If not set, the limi
+
+              # The interval at which the spending limit is enforced.
+              #
+              # @see Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit#interval
+              module Interval
+                extend Increase::Internal::Type::Enum
+
+                # The spending limit applies over the lifetime of the card.
+                ALL_TIME = :all_time
+
+                # The spending limit applies per transaction.
+                PER_TRANSACTION = :per_transaction
+
+                # The spending limit applies per day. Resets nightly at midnight UTC.
+                PER_DAY = :per_day
+
+                # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
+                PER_WEEK = :per_week
+
+                # The spending limit applies per month. Resets on the first of the month, midnight UTC.
+                PER_MONTH = :per_month
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              class MerchantCategoryCode < Increase::Internal::Type::BaseModel
+                # @!attribute code
+                #   The Merchant Category Code.
+                #
+                #   @return [String]
+                required :code, String
+
+                # @!method initialize(code:)
+                #   @param code [String] The Merchant Category Code.
+              end
+            end
+          end
+
+          # @see Increase::Models::CardCreateParams::AuthorizationControls::Usage#single_use
+          class SingleUse < Increase::Internal::Type::BaseModel
+            # @!attribute settlement_amount
+            #   The settlement amount constraint for this single-use card.
+            #
+            #   @return [Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount]
+            required :settlement_amount,
+                     -> { Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount }
+
+            # @!method initialize(settlement_amount:)
+            #   Controls for single-use cards. Required if and only if `category` is
+            #   `single_use`.
+            #
+            #   @param settlement_amount [Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount] The settlement amount constraint for this single-use card.
+
+            # @see Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse#settlement_amount
+            class SettlementAmount < Increase::Internal::Type::BaseModel
+              # @!attribute comparison
+              #   The operator used to compare the settlement amount.
+              #
+              #   @return [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison]
+              required :comparison,
+                       enum: -> { Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison }
+
+              # @!attribute value
+              #   The settlement amount value.
+              #
+              #   @return [Integer]
+              required :value, Integer
+
+              # @!method initialize(comparison:, value:)
+              #   The settlement amount constraint for this single-use card.
+              #
+              #   @param comparison [Symbol, Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison] The operator used to compare the settlement amount.
+              #
+              #   @param value [Integer] The settlement amount value.
+
+              # The operator used to compare the settlement amount.
+              #
+              # @see Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount#comparison
+              module Comparison
+                extend Increase::Internal::Type::Enum
+
+                # The settlement amount must be exactly the specified value.
+                EQUALS = :equals
+
+                # The settlement amount must be less than or equal to the specified value.
+                LESS_THAN_OR_EQUALS = :less_than_or_equals
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
           end
         end
       end
