@@ -182,26 +182,6 @@ module Increase
             )
           end
 
-        # Limits the number of authorizations that can be approved on this card.
-        sig do
-          returns(
-            T.nilable(
-              Increase::Card::AuthorizationControls::MaximumAuthorizationCount
-            )
-          )
-        end
-        attr_reader :maximum_authorization_count
-
-        sig do
-          params(
-            maximum_authorization_count:
-              T.nilable(
-                Increase::Card::AuthorizationControls::MaximumAuthorizationCount::OrHash
-              )
-          ).void
-        end
-        attr_writer :maximum_authorization_count
-
         # Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
         # on this card.
         sig do
@@ -263,24 +243,21 @@ module Increase
         end
         attr_writer :merchant_country
 
-        # Spending limits for this card. The most restrictive limit applies if multiple
-        # limits match.
+        # Controls how many times this card can be used.
+        sig { returns(T.nilable(Increase::Card::AuthorizationControls::Usage)) }
+        attr_reader :usage
+
         sig do
-          returns(
-            T.nilable(
-              T::Array[Increase::Card::AuthorizationControls::SpendingLimit]
-            )
-          )
+          params(
+            usage:
+              T.nilable(Increase::Card::AuthorizationControls::Usage::OrHash)
+          ).void
         end
-        attr_accessor :spending_limits
+        attr_writer :usage
 
         # Controls that restrict how this card can be used.
         sig do
           params(
-            maximum_authorization_count:
-              T.nilable(
-                Increase::Card::AuthorizationControls::MaximumAuthorizationCount::OrHash
-              ),
             merchant_acceptor_identifier:
               T.nilable(
                 Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier::OrHash
@@ -293,17 +270,11 @@ module Increase
               T.nilable(
                 Increase::Card::AuthorizationControls::MerchantCountry::OrHash
               ),
-            spending_limits:
-              T.nilable(
-                T::Array[
-                  Increase::Card::AuthorizationControls::SpendingLimit::OrHash
-                ]
-              )
+            usage:
+              T.nilable(Increase::Card::AuthorizationControls::Usage::OrHash)
           ).returns(T.attached_class)
         end
         def self.new(
-          # Limits the number of authorizations that can be approved on this card.
-          maximum_authorization_count:,
           # Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
           # on this card.
           merchant_acceptor_identifier:,
@@ -313,19 +284,14 @@ module Increase
           # Restricts which merchant countries are allowed or blocked for authorizations on
           # this card.
           merchant_country:,
-          # Spending limits for this card. The most restrictive limit applies if multiple
-          # limits match.
-          spending_limits:
+          # Controls how many times this card can be used.
+          usage:
         )
         end
 
         sig do
           override.returns(
             {
-              maximum_authorization_count:
-                T.nilable(
-                  Increase::Card::AuthorizationControls::MaximumAuthorizationCount
-                ),
               merchant_acceptor_identifier:
                 T.nilable(
                   Increase::Card::AuthorizationControls::MerchantAcceptorIdentifier
@@ -338,42 +304,11 @@ module Increase
                 T.nilable(
                   Increase::Card::AuthorizationControls::MerchantCountry
                 ),
-              spending_limits:
-                T.nilable(
-                  T::Array[Increase::Card::AuthorizationControls::SpendingLimit]
-                )
+              usage: T.nilable(Increase::Card::AuthorizationControls::Usage)
             }
           )
         end
         def to_hash
-        end
-
-        class MaximumAuthorizationCount < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::Card::AuthorizationControls::MaximumAuthorizationCount,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # The maximum number of authorizations that can be approved on this card over its
-          # lifetime.
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :all_time
-
-          # Limits the number of authorizations that can be approved on this card.
-          sig { params(all_time: T.nilable(Integer)).returns(T.attached_class) }
-          def self.new(
-            # The maximum number of authorizations that can be approved on this card over its
-            # lifetime.
-            all_time:
-          )
-          end
-
-          sig { override.returns({ all_time: T.nilable(Integer) }) }
-          def to_hash
-          end
         end
 
         class MerchantAcceptorIdentifier < Increase::Internal::Type::BaseModel
@@ -769,134 +704,136 @@ module Increase
           end
         end
 
-        class SpendingLimit < Increase::Internal::Type::BaseModel
+        class Usage < Increase::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Increase::Card::AuthorizationControls::SpendingLimit,
+                Increase::Card::AuthorizationControls::Usage,
                 Increase::Internal::AnyHash
               )
             end
 
-          # The interval at which the spending limit is enforced.
+          # Whether the card is for a single use or multiple uses.
           sig do
             returns(
-              Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
+              Increase::Card::AuthorizationControls::Usage::Category::TaggedSymbol
             )
           end
-          attr_accessor :interval
+          attr_accessor :category
 
-          # The Merchant Category Codes (MCCs) this spending limit applies to. If not set,
-          # the limit applies to all transactions.
+          # Controls for multi-use cards. Required if and only if `category` is `multi_use`.
           sig do
             returns(
-              T.nilable(
-                T::Array[
-                  Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode
-                ]
-              )
+              T.nilable(Increase::Card::AuthorizationControls::Usage::MultiUse)
             )
           end
-          attr_accessor :merchant_category_codes
-
-          # The maximum settlement amount permitted in the given interval.
-          sig { returns(Integer) }
-          attr_accessor :settlement_amount
+          attr_reader :multi_use
 
           sig do
             params(
-              interval:
-                Increase::Card::AuthorizationControls::SpendingLimit::Interval::OrSymbol,
-              merchant_category_codes:
+              multi_use:
                 T.nilable(
-                  T::Array[
-                    Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode::OrHash
-                  ]
+                  Increase::Card::AuthorizationControls::Usage::MultiUse::OrHash
+                )
+            ).void
+          end
+          attr_writer :multi_use
+
+          # Controls for single-use cards. Required if and only if `category` is
+          # `single_use`.
+          sig do
+            returns(
+              T.nilable(Increase::Card::AuthorizationControls::Usage::SingleUse)
+            )
+          end
+          attr_reader :single_use
+
+          sig do
+            params(
+              single_use:
+                T.nilable(
+                  Increase::Card::AuthorizationControls::Usage::SingleUse::OrHash
+                )
+            ).void
+          end
+          attr_writer :single_use
+
+          # Controls how many times this card can be used.
+          sig do
+            params(
+              category:
+                Increase::Card::AuthorizationControls::Usage::Category::OrSymbol,
+              multi_use:
+                T.nilable(
+                  Increase::Card::AuthorizationControls::Usage::MultiUse::OrHash
                 ),
-              settlement_amount: Integer
+              single_use:
+                T.nilable(
+                  Increase::Card::AuthorizationControls::Usage::SingleUse::OrHash
+                )
             ).returns(T.attached_class)
           end
           def self.new(
-            # The interval at which the spending limit is enforced.
-            interval:,
-            # The Merchant Category Codes (MCCs) this spending limit applies to. If not set,
-            # the limit applies to all transactions.
-            merchant_category_codes:,
-            # The maximum settlement amount permitted in the given interval.
-            settlement_amount:
+            # Whether the card is for a single use or multiple uses.
+            category:,
+            # Controls for multi-use cards. Required if and only if `category` is `multi_use`.
+            multi_use:,
+            # Controls for single-use cards. Required if and only if `category` is
+            # `single_use`.
+            single_use:
           )
           end
 
           sig do
             override.returns(
               {
-                interval:
-                  Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol,
-                merchant_category_codes:
+                category:
+                  Increase::Card::AuthorizationControls::Usage::Category::TaggedSymbol,
+                multi_use:
                   T.nilable(
-                    T::Array[
-                      Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode
-                    ]
+                    Increase::Card::AuthorizationControls::Usage::MultiUse
                   ),
-                settlement_amount: Integer
+                single_use:
+                  T.nilable(
+                    Increase::Card::AuthorizationControls::Usage::SingleUse
+                  )
               }
             )
           end
           def to_hash
           end
 
-          # The interval at which the spending limit is enforced.
-          module Interval
+          # Whether the card is for a single use or multiple uses.
+          module Category
             extend Increase::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Increase::Card::AuthorizationControls::SpendingLimit::Interval
+                  Increase::Card::AuthorizationControls::Usage::Category
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # The spending limit applies over the lifetime of the card.
-            ALL_TIME =
+            # The card can only be used for a single authorization.
+            SINGLE_USE =
               T.let(
-                :all_time,
-                Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
+                :single_use,
+                Increase::Card::AuthorizationControls::Usage::Category::TaggedSymbol
               )
 
-            # The spending limit applies per transaction.
-            PER_TRANSACTION =
+            # The card can be used for multiple authorizations.
+            MULTI_USE =
               T.let(
-                :per_transaction,
-                Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
-              )
-
-            # The spending limit applies per day. Resets nightly at midnight UTC.
-            PER_DAY =
-              T.let(
-                :per_day,
-                Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
-              )
-
-            # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
-            PER_WEEK =
-              T.let(
-                :per_week,
-                Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
-              )
-
-            # The spending limit applies per month. Resets on the first of the month, midnight UTC.
-            PER_MONTH =
-              T.let(
-                :per_month,
-                Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
+                :multi_use,
+                Increase::Card::AuthorizationControls::Usage::Category::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Increase::Card::AuthorizationControls::SpendingLimit::Interval::TaggedSymbol
+                  Increase::Card::AuthorizationControls::Usage::Category::TaggedSymbol
                 ]
               )
             end
@@ -904,28 +841,359 @@ module Increase
             end
           end
 
-          class MerchantCategoryCode < Increase::Internal::Type::BaseModel
+          class MultiUse < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Increase::Card::AuthorizationControls::SpendingLimit::MerchantCategoryCode,
+                  Increase::Card::AuthorizationControls::Usage::MultiUse,
                   Increase::Internal::AnyHash
                 )
               end
 
-            # The Merchant Category Code (MCC).
-            sig { returns(String) }
-            attr_accessor :code
+            # Spending limits for this card. The most restrictive limit applies if multiple
+            # limits match.
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit
+                  ]
+                )
+              )
+            end
+            attr_accessor :spending_limits
 
-            sig { params(code: String).returns(T.attached_class) }
+            # Controls for multi-use cards. Required if and only if `category` is `multi_use`.
+            sig do
+              params(
+                spending_limits:
+                  T.nilable(
+                    T::Array[
+                      Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::OrHash
+                    ]
+                  )
+              ).returns(T.attached_class)
+            end
             def self.new(
-              # The Merchant Category Code (MCC).
-              code:
+              # Spending limits for this card. The most restrictive limit applies if multiple
+              # limits match.
+              spending_limits:
             )
             end
 
-            sig { override.returns({ code: String }) }
+            sig do
+              override.returns(
+                {
+                  spending_limits:
+                    T.nilable(
+                      T::Array[
+                        Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit
+                      ]
+                    )
+                }
+              )
+            end
             def to_hash
+            end
+
+            class SpendingLimit < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The interval at which the spending limit is enforced.
+              sig do
+                returns(
+                  Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                )
+              end
+              attr_accessor :interval
+
+              # The Merchant Category Codes (MCCs) this spending limit applies to. If not set,
+              # the limit applies to all transactions.
+              sig do
+                returns(
+                  T.nilable(
+                    T::Array[
+                      Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode
+                    ]
+                  )
+                )
+              end
+              attr_accessor :merchant_category_codes
+
+              # The maximum settlement amount permitted in the given interval.
+              sig { returns(Integer) }
+              attr_accessor :settlement_amount
+
+              sig do
+                params(
+                  interval:
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::OrSymbol,
+                  merchant_category_codes:
+                    T.nilable(
+                      T::Array[
+                        Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode::OrHash
+                      ]
+                    ),
+                  settlement_amount: Integer
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The interval at which the spending limit is enforced.
+                interval:,
+                # The Merchant Category Codes (MCCs) this spending limit applies to. If not set,
+                # the limit applies to all transactions.
+                merchant_category_codes:,
+                # The maximum settlement amount permitted in the given interval.
+                settlement_amount:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    interval:
+                      Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol,
+                    merchant_category_codes:
+                      T.nilable(
+                        T::Array[
+                          Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode
+                        ]
+                      ),
+                    settlement_amount: Integer
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The interval at which the spending limit is enforced.
+              module Interval
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # The spending limit applies over the lifetime of the card.
+                ALL_TIME =
+                  T.let(
+                    :all_time,
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                  )
+
+                # The spending limit applies per transaction.
+                PER_TRANSACTION =
+                  T.let(
+                    :per_transaction,
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                  )
+
+                # The spending limit applies per day. Resets nightly at midnight UTC.
+                PER_DAY =
+                  T.let(
+                    :per_day,
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                  )
+
+                # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
+                PER_WEEK =
+                  T.let(
+                    :per_week,
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                  )
+
+                # The spending limit applies per month. Resets on the first of the month, midnight UTC.
+                PER_MONTH =
+                  T.let(
+                    :per_month,
+                    Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              class MerchantCategoryCode < Increase::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Increase::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode,
+                      Increase::Internal::AnyHash
+                    )
+                  end
+
+                # The Merchant Category Code (MCC).
+                sig { returns(String) }
+                attr_accessor :code
+
+                sig { params(code: String).returns(T.attached_class) }
+                def self.new(
+                  # The Merchant Category Code (MCC).
+                  code:
+                )
+                end
+
+                sig { override.returns({ code: String }) }
+                def to_hash
+                end
+              end
+            end
+          end
+
+          class SingleUse < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Card::AuthorizationControls::Usage::SingleUse,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The settlement amount constraint for this single-use card.
+            sig do
+              returns(
+                Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount
+              )
+            end
+            attr_reader :settlement_amount
+
+            sig do
+              params(
+                settlement_amount:
+                  Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::OrHash
+              ).void
+            end
+            attr_writer :settlement_amount
+
+            # Controls for single-use cards. Required if and only if `category` is
+            # `single_use`.
+            sig do
+              params(
+                settlement_amount:
+                  Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The settlement amount constraint for this single-use card.
+              settlement_amount:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  settlement_amount:
+                    Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class SettlementAmount < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The operator used to compare the settlement amount.
+              sig do
+                returns(
+                  Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison::TaggedSymbol
+                )
+              end
+              attr_accessor :comparison
+
+              # The settlement amount value.
+              sig { returns(Integer) }
+              attr_accessor :value
+
+              # The settlement amount constraint for this single-use card.
+              sig do
+                params(
+                  comparison:
+                    Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison::OrSymbol,
+                  value: Integer
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The operator used to compare the settlement amount.
+                comparison:,
+                # The settlement amount value.
+                value:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    comparison:
+                      Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison::TaggedSymbol,
+                    value: Integer
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The operator used to compare the settlement amount.
+              module Comparison
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # The settlement amount must be exactly the specified value.
+                EQUALS =
+                  T.let(
+                    :equals,
+                    Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison::TaggedSymbol
+                  )
+
+                # The settlement amount must be less than or equal to the specified value.
+                LESS_THAN_OR_EQUALS =
+                  T.let(
+                    :less_than_or_equals,
+                    Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
             end
           end
         end
