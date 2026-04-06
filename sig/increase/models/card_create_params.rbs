@@ -65,20 +65,13 @@ module Increase
 
       type authorization_controls =
         {
-          maximum_authorization_count: Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount,
           merchant_acceptor_identifier: Increase::CardCreateParams::AuthorizationControls::MerchantAcceptorIdentifier,
           merchant_category_code: Increase::CardCreateParams::AuthorizationControls::MerchantCategoryCode,
           merchant_country: Increase::CardCreateParams::AuthorizationControls::MerchantCountry,
-          spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit]
+          usage: Increase::CardCreateParams::AuthorizationControls::Usage
         }
 
       class AuthorizationControls < Increase::Internal::Type::BaseModel
-        attr_reader maximum_authorization_count: Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount?
-
-        def maximum_authorization_count=: (
-          Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount
-        ) -> Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount
-
         attr_reader merchant_acceptor_identifier: Increase::CardCreateParams::AuthorizationControls::MerchantAcceptorIdentifier?
 
         def merchant_acceptor_identifier=: (
@@ -97,37 +90,25 @@ module Increase
           Increase::CardCreateParams::AuthorizationControls::MerchantCountry
         ) -> Increase::CardCreateParams::AuthorizationControls::MerchantCountry
 
-        attr_reader spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit]?
+        attr_reader usage: Increase::CardCreateParams::AuthorizationControls::Usage?
 
-        def spending_limits=: (
-          ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit]
-        ) -> ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit]
+        def usage=: (
+          Increase::CardCreateParams::AuthorizationControls::Usage
+        ) -> Increase::CardCreateParams::AuthorizationControls::Usage
 
         def initialize: (
-          ?maximum_authorization_count: Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount,
           ?merchant_acceptor_identifier: Increase::CardCreateParams::AuthorizationControls::MerchantAcceptorIdentifier,
           ?merchant_category_code: Increase::CardCreateParams::AuthorizationControls::MerchantCategoryCode,
           ?merchant_country: Increase::CardCreateParams::AuthorizationControls::MerchantCountry,
-          ?spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit]
+          ?usage: Increase::CardCreateParams::AuthorizationControls::Usage
         ) -> void
 
         def to_hash: -> {
-          maximum_authorization_count: Increase::CardCreateParams::AuthorizationControls::MaximumAuthorizationCount,
           merchant_acceptor_identifier: Increase::CardCreateParams::AuthorizationControls::MerchantAcceptorIdentifier,
           merchant_category_code: Increase::CardCreateParams::AuthorizationControls::MerchantCategoryCode,
           merchant_country: Increase::CardCreateParams::AuthorizationControls::MerchantCountry,
-          spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit]
+          usage: Increase::CardCreateParams::AuthorizationControls::Usage
         }
-
-        type maximum_authorization_count = { all_time: Integer }
-
-        class MaximumAuthorizationCount < Increase::Internal::Type::BaseModel
-          attr_accessor all_time: Integer
-
-          def initialize: (all_time: Integer) -> void
-
-          def to_hash: -> { all_time: Integer }
-        end
 
         type merchant_acceptor_identifier =
           {
@@ -279,68 +260,191 @@ module Increase
           end
         end
 
-        type spending_limit =
+        type usage =
           {
-            interval: Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::interval,
-            settlement_amount: Integer,
-            merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode]
+            category: Increase::Models::CardCreateParams::AuthorizationControls::Usage::category,
+            multi_use: Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse,
+            single_use: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse
           }
 
-        class SpendingLimit < Increase::Internal::Type::BaseModel
-          attr_accessor interval: Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::interval
+        class Usage < Increase::Internal::Type::BaseModel
+          attr_accessor category: Increase::Models::CardCreateParams::AuthorizationControls::Usage::category
 
-          attr_accessor settlement_amount: Integer
+          attr_reader multi_use: Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse?
 
-          attr_reader merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode]?
+          def multi_use=: (
+            Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse
+          ) -> Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse
 
-          def merchant_category_codes=: (
-            ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode]
-          ) -> ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode]
+          attr_reader single_use: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse?
+
+          def single_use=: (
+            Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse
+          ) -> Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse
 
           def initialize: (
-            interval: Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::interval,
-            settlement_amount: Integer,
-            ?merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode]
+            category: Increase::Models::CardCreateParams::AuthorizationControls::Usage::category,
+            ?multi_use: Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse,
+            ?single_use: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse
           ) -> void
 
           def to_hash: -> {
-            interval: Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::interval,
-            settlement_amount: Integer,
-            merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::SpendingLimit::MerchantCategoryCode]
+            category: Increase::Models::CardCreateParams::AuthorizationControls::Usage::category,
+            multi_use: Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse,
+            single_use: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse
           }
 
-          type interval =
-            :all_time | :per_transaction | :per_day | :per_week | :per_month
+          type category = :single_use | :multi_use
 
-          module Interval
+          module Category
             extend Increase::Internal::Type::Enum
 
-            # The spending limit applies over the lifetime of the card.
-            ALL_TIME: :all_time
+            # The card can only be used for a single authorization.
+            SINGLE_USE: :single_use
 
-            # The spending limit applies per transaction.
-            PER_TRANSACTION: :per_transaction
+            # The card can be used for multiple authorizations.
+            MULTI_USE: :multi_use
 
-            # The spending limit applies per day. Resets nightly at midnight UTC.
-            PER_DAY: :per_day
-
-            # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
-            PER_WEEK: :per_week
-
-            # The spending limit applies per month. Resets on the first of the month, midnight UTC.
-            PER_MONTH: :per_month
-
-            def self?.values: -> ::Array[Increase::Models::CardCreateParams::AuthorizationControls::SpendingLimit::interval]
+            def self?.values: -> ::Array[Increase::Models::CardCreateParams::AuthorizationControls::Usage::category]
           end
 
-          type merchant_category_code = { code: String }
+          type multi_use =
+            {
+              spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit]
+            }
 
-          class MerchantCategoryCode < Increase::Internal::Type::BaseModel
-            attr_accessor code: String
+          class MultiUse < Increase::Internal::Type::BaseModel
+            attr_reader spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit]?
 
-            def initialize: (code: String) -> void
+            def spending_limits=: (
+              ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit]
+            ) -> ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit]
 
-            def to_hash: -> { code: String }
+            def initialize: (
+              ?spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit]
+            ) -> void
+
+            def to_hash: -> {
+              spending_limits: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit]
+            }
+
+            type spending_limit =
+              {
+                interval: Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::interval,
+                settlement_amount: Integer,
+                merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode]
+              }
+
+            class SpendingLimit < Increase::Internal::Type::BaseModel
+              attr_accessor interval: Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::interval
+
+              attr_accessor settlement_amount: Integer
+
+              attr_reader merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode]?
+
+              def merchant_category_codes=: (
+                ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode]
+              ) -> ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode]
+
+              def initialize: (
+                interval: Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::interval,
+                settlement_amount: Integer,
+                ?merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode]
+              ) -> void
+
+              def to_hash: -> {
+                interval: Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::interval,
+                settlement_amount: Integer,
+                merchant_category_codes: ::Array[Increase::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode]
+              }
+
+              type interval =
+                :all_time | :per_transaction | :per_day | :per_week | :per_month
+
+              module Interval
+                extend Increase::Internal::Type::Enum
+
+                # The spending limit applies over the lifetime of the card.
+                ALL_TIME: :all_time
+
+                # The spending limit applies per transaction.
+                PER_TRANSACTION: :per_transaction
+
+                # The spending limit applies per day. Resets nightly at midnight UTC.
+                PER_DAY: :per_day
+
+                # The spending limit applies per week. Resets weekly on Mondays at midnight UTC.
+                PER_WEEK: :per_week
+
+                # The spending limit applies per month. Resets on the first of the month, midnight UTC.
+                PER_MONTH: :per_month
+
+                def self?.values: -> ::Array[Increase::Models::CardCreateParams::AuthorizationControls::Usage::MultiUse::SpendingLimit::interval]
+              end
+
+              type merchant_category_code = { code: String }
+
+              class MerchantCategoryCode < Increase::Internal::Type::BaseModel
+                attr_accessor code: String
+
+                def initialize: (code: String) -> void
+
+                def to_hash: -> { code: String }
+              end
+            end
+          end
+
+          type single_use =
+            {
+              settlement_amount: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount
+            }
+
+          class SingleUse < Increase::Internal::Type::BaseModel
+            attr_accessor settlement_amount: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount
+
+            def initialize: (
+              settlement_amount: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount
+            ) -> void
+
+            def to_hash: -> {
+              settlement_amount: Increase::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount
+            }
+
+            type settlement_amount =
+              {
+                comparison: Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::comparison,
+                value: Integer
+              }
+
+            class SettlementAmount < Increase::Internal::Type::BaseModel
+              attr_accessor comparison: Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::comparison
+
+              attr_accessor value: Integer
+
+              def initialize: (
+                comparison: Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::comparison,
+                value: Integer
+              ) -> void
+
+              def to_hash: -> {
+                comparison: Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::comparison,
+                value: Integer
+              }
+
+              type comparison = :equals | :less_than_or_equals
+
+              module Comparison
+                extend Increase::Internal::Type::Enum
+
+                # The settlement amount must be exactly the specified value.
+                EQUALS: :equals
+
+                # The settlement amount must be less than or equal to the specified value.
+                LESS_THAN_OR_EQUALS: :less_than_or_equals
+
+                def self?.values: -> ::Array[Increase::Models::CardCreateParams::AuthorizationControls::Usage::SingleUse::SettlementAmount::comparison]
+              end
+            end
           end
         end
       end
