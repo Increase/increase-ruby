@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "increase", "~> 1.283.0"
+gem "increase", "~> 1.284.0"
 ```
 
 <!-- x-release-please-end -->
