@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.284.1 (2026-04-08)
+
+Full Changelog: [v1.284.0...v1.284.1](https://github.com/Increase/increase-ruby/compare/v1.284.0...v1.284.1)
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([a6cc497](https://github.com/Increase/increase-ruby/commit/a6cc4975f1859c10d3435a3749b5bb228479671b))
+
 ## 1.284.0 (2026-04-07)
 
 Full Changelog: [v1.283.0...v1.284.0](https://github.com/Increase/increase-ruby/compare/v1.283.0...v1.284.0)
