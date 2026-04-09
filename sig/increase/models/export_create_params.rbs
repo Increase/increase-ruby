@@ -8,6 +8,7 @@ module Increase
         account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
         balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
+        daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
         funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
@@ -52,6 +53,12 @@ module Increase
         Increase::ExportCreateParams::BookkeepingAccountBalanceCsv
       ) -> Increase::ExportCreateParams::BookkeepingAccountBalanceCsv
 
+      attr_reader daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv?
+
+      def daily_account_balance_csv=: (
+        Increase::ExportCreateParams::DailyAccountBalanceCsv
+      ) -> Increase::ExportCreateParams::DailyAccountBalanceCsv
+
       attr_reader entity_csv: Increase::ExportCreateParams::EntityCsv?
 
       def entity_csv=: (
@@ -89,6 +96,7 @@ module Increase
         ?account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
         ?balance_csv: Increase::ExportCreateParams::BalanceCsv,
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
+        ?daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
         ?funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         ?transaction_csv: Increase::ExportCreateParams::TransactionCsv,
@@ -104,6 +112,7 @@ module Increase
         account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
         balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
+        daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
         funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
@@ -123,6 +132,7 @@ module Increase
         | :account_verification_letter
         | :funding_instructions
         | :voided_check
+        | :daily_account_balance_csv
 
       module Category
         extend Increase::Internal::Type::Enum
@@ -156,6 +166,9 @@ module Increase
 
         # A PDF of a voided check.
         VOIDED_CHECK: :voided_check
+
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV: :daily_account_balance_csv
 
         def self?.values: -> ::Array[Increase::Models::ExportCreateParams::category]
       end
@@ -389,6 +402,35 @@ module Increase
             on_or_before: Time
           }
         end
+      end
+
+      type daily_account_balance_csv =
+        { account_id: String, on_or_after_date: Date, on_or_before_date: Date }
+
+      class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel
+        attr_reader account_id: String?
+
+        def account_id=: (String) -> String
+
+        attr_reader on_or_after_date: Date?
+
+        def on_or_after_date=: (Date) -> Date
+
+        attr_reader on_or_before_date: Date?
+
+        def on_or_before_date=: (Date) -> Date
+
+        def initialize: (
+          ?account_id: String,
+          ?on_or_after_date: Date,
+          ?on_or_before_date: Date
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String,
+          on_or_after_date: Date,
+          on_or_before_date: Date
+        }
       end
 
       type entity_csv = {  }

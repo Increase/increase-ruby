@@ -83,6 +83,19 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # Details of the daily account balance CSV export. This field will be present when
+      # the `category` is equal to `daily_account_balance_csv`.
+      sig { returns(T.nilable(Increase::Export::DailyAccountBalanceCsv)) }
+      attr_reader :daily_account_balance_csv
+
+      sig do
+        params(
+          daily_account_balance_csv:
+            T.nilable(Increase::Export::DailyAccountBalanceCsv::OrHash)
+        ).void
+      end
+      attr_writer :daily_account_balance_csv
+
       # Details of the dashboard table CSV export. This field will be present when the
       # `category` is equal to `dashboard_table_csv`.
       sig { returns(T.nilable(Increase::Export::DashboardTableCsv)) }
@@ -227,6 +240,8 @@ module Increase
             T.nilable(Increase::Export::BookkeepingAccountBalanceCsv::OrHash),
           category: Increase::Export::Category::OrSymbol,
           created_at: Time,
+          daily_account_balance_csv:
+            T.nilable(Increase::Export::DailyAccountBalanceCsv::OrHash),
           dashboard_table_csv:
             T.nilable(Increase::Export::DashboardTableCsv::OrHash),
           entity_csv: T.nilable(Increase::Export::EntityCsv::OrHash),
@@ -267,6 +282,9 @@ module Increase
         category:,
         # The time the Export was created.
         created_at:,
+        # Details of the daily account balance CSV export. This field will be present when
+        # the `category` is equal to `daily_account_balance_csv`.
+        daily_account_balance_csv:,
         # Details of the dashboard table CSV export. This field will be present when the
         # `category` is equal to `dashboard_table_csv`.
         dashboard_table_csv:,
@@ -324,6 +342,8 @@ module Increase
               T.nilable(Increase::Export::BookkeepingAccountBalanceCsv),
             category: Increase::Export::Category::TaggedSymbol,
             created_at: Time,
+            daily_account_balance_csv:
+              T.nilable(Increase::Export::DailyAccountBalanceCsv),
             dashboard_table_csv: T.nilable(Increase::Export::DashboardTableCsv),
             entity_csv: T.nilable(Increase::Export::EntityCsv),
             fee_csv: T.nilable(Increase::Export::FeeCsv),
@@ -812,10 +832,70 @@ module Increase
         VOIDED_CHECK =
           T.let(:voided_check, Increase::Export::Category::TaggedSymbol)
 
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV =
+          T.let(
+            :daily_account_balance_csv,
+            Increase::Export::Category::TaggedSymbol
+          )
+
         sig do
           override.returns(T::Array[Increase::Export::Category::TaggedSymbol])
         end
         def self.values
+        end
+      end
+
+      class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::Export::DailyAccountBalanceCsv,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Filter results by Account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :account_id
+
+        # Filter balances on or after this date.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :on_or_after_date
+
+        # Filter balances on or before this date.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :on_or_before_date
+
+        # Details of the daily account balance CSV export. This field will be present when
+        # the `category` is equal to `daily_account_balance_csv`.
+        sig do
+          params(
+            account_id: T.nilable(String),
+            on_or_after_date: T.nilable(Date),
+            on_or_before_date: T.nilable(Date)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Filter results by Account.
+          account_id:,
+          # Filter balances on or after this date.
+          on_or_after_date:,
+          # Filter balances on or before this date.
+          on_or_before_date:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              account_id: T.nilable(String),
+              on_or_after_date: T.nilable(Date),
+              on_or_before_date: T.nilable(Date)
+            }
+          )
+        end
+        def to_hash
         end
       end
 
