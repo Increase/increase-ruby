@@ -134,6 +134,9 @@ module Increase
     # @return [Increase::Resources::SupplementalDocuments]
     attr_reader :supplemental_documents
 
+    # @return [Increase::Resources::EntityOnboardingSessions]
+    attr_reader :entity_onboarding_sessions
+
     # @return [Increase::Resources::Programs]
     attr_reader :programs
 
@@ -303,6 +306,7 @@ module Increase
       @entities = Increase::Resources::Entities.new(client: self)
       @beneficial_owners = Increase::Resources::BeneficialOwners.new(client: self)
       @supplemental_documents = Increase::Resources::SupplementalDocuments.new(client: self)
+      @entity_onboarding_sessions = Increase::Resources::EntityOnboardingSessions.new(client: self)
       @programs = Increase::Resources::Programs.new(client: self)
       @account_statements = Increase::Resources::AccountStatements.new(client: self)
       @files = Increase::Resources::Files.new(client: self)

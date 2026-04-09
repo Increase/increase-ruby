@@ -99,6 +99,11 @@ module Increase
       sig { returns(Increase::Resources::Simulations::InboundMailItems) }
       attr_reader :inbound_mail_items
 
+      sig do
+        returns(Increase::Resources::Simulations::EntityOnboardingSessions)
+      end
+      attr_reader :entity_onboarding_sessions
+
       sig { returns(Increase::Resources::Simulations::Programs) }
       attr_reader :programs
 

@@ -1,0 +1,14 @@
+module Increase
+  module Resources
+    class Simulations
+      class EntityOnboardingSessions
+        def submit: (
+          String entity_onboarding_session_id,
+          ?request_options: Increase::request_opts
+        ) -> Increase::EntityOnboardingSession
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end
