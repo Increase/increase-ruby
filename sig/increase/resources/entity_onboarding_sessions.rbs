@@ -1,0 +1,32 @@
+module Increase
+  module Resources
+    class EntityOnboardingSessions
+      def create: (
+        program_id: String,
+        redirect_url: String,
+        ?entity_id: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::EntityOnboardingSession
+
+      def retrieve: (
+        String entity_onboarding_session_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::EntityOnboardingSession
+
+      def list: (
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::EntityOnboardingSessionListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::EntityOnboardingSession]
+
+      def expire: (
+        String entity_onboarding_session_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::EntityOnboardingSession
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

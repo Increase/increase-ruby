@@ -1,0 +1,89 @@
+module Increase
+  module Models
+    type entity_onboarding_session =
+      {
+        id: String,
+        created_at: Time,
+        entity_id: String?,
+        expires_at: Time,
+        idempotency_key: String?,
+        program_id: String,
+        redirect_url: String,
+        session_url: String?,
+        status: Increase::Models::EntityOnboardingSession::status,
+        type: Increase::Models::EntityOnboardingSession::type_
+      }
+
+    class EntityOnboardingSession < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor entity_id: String?
+
+      attr_accessor expires_at: Time
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor program_id: String
+
+      attr_accessor redirect_url: String
+
+      attr_accessor session_url: String?
+
+      attr_accessor status: Increase::Models::EntityOnboardingSession::status
+
+      attr_accessor type: Increase::Models::EntityOnboardingSession::type_
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        entity_id: String?,
+        expires_at: Time,
+        idempotency_key: String?,
+        program_id: String,
+        redirect_url: String,
+        session_url: String?,
+        status: Increase::Models::EntityOnboardingSession::status,
+        type: Increase::Models::EntityOnboardingSession::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        entity_id: String?,
+        expires_at: Time,
+        idempotency_key: String?,
+        program_id: String,
+        redirect_url: String,
+        session_url: String?,
+        status: Increase::Models::EntityOnboardingSession::status,
+        type: Increase::Models::EntityOnboardingSession::type_
+      }
+
+      type status = :active | :expired
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The Entity Onboarding Session is active.
+        ACTIVE: :active
+
+        # The Entity Onboarding Session has expired.
+        EXPIRED: :expired
+
+        def self?.values: -> ::Array[Increase::Models::EntityOnboardingSession::status]
+      end
+
+      type type_ = :entity_onboarding_session
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        ENTITY_ONBOARDING_SESSION: :entity_onboarding_session
+
+        def self?.values: -> ::Array[Increase::Models::EntityOnboardingSession::type_]
+      end
+    end
+  end
+end
