@@ -49,6 +49,13 @@ module Increase
       optional :bookkeeping_account_balance_csv,
                -> { Increase::ExportCreateParams::BookkeepingAccountBalanceCsv }
 
+      # @!attribute daily_account_balance_csv
+      #   Options for the created export. Required if `category` is equal to
+      #   `daily_account_balance_csv`.
+      #
+      #   @return [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv, nil]
+      optional :daily_account_balance_csv, -> { Increase::ExportCreateParams::DailyAccountBalanceCsv }
+
       # @!attribute entity_csv
       #   Options for the created export. Required if `category` is equal to `entity_csv`.
       #
@@ -82,7 +89,7 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::VoidedCheck, nil]
       optional :voided_check, -> { Increase::ExportCreateParams::VoidedCheck }
 
-      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
+      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, daily_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportCreateParams} for more details.
       #
@@ -98,6 +105,8 @@ module Increase
       #
       #   @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv] Options for the created export. Required if `category` is equal to
       #   `bookkeeping\_
+      #
+      #   @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv] Options for the created export. Required if `category` is equal to `daily_accoun
       #
       #   @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv] Options for the created export. Required if `category` is equal to `entity_csv`.
       #
@@ -145,6 +154,9 @@ module Increase
 
         # A PDF of a voided check.
         VOIDED_CHECK = :voided_check
+
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV = :daily_account_balance_csv
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -416,6 +428,36 @@ module Increase
           #
           #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
         end
+      end
+
+      class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel
+        # @!attribute account_id
+        #   Filter exported Balances to the specified Account.
+        #
+        #   @return [String, nil]
+        optional :account_id, String
+
+        # @!attribute on_or_after_date
+        #   Filter exported Balances to those on or after this date.
+        #
+        #   @return [Date, nil]
+        optional :on_or_after_date, Date
+
+        # @!attribute on_or_before_date
+        #   Filter exported Balances to those on or before this date.
+        #
+        #   @return [Date, nil]
+        optional :on_or_before_date, Date
+
+        # @!method initialize(account_id: nil, on_or_after_date: nil, on_or_before_date: nil)
+        #   Options for the created export. Required if `category` is equal to
+        #   `daily_account_balance_csv`.
+        #
+        #   @param account_id [String] Filter exported Balances to the specified Account.
+        #
+        #   @param on_or_after_date [Date] Filter exported Balances to those on or after this date.
+        #
+        #   @param on_or_before_date [Date] Filter exported Balances to those on or before this date.
       end
 
       class EntityCsv < Increase::Internal::Type::BaseModel

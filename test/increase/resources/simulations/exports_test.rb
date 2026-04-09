@@ -20,6 +20,7 @@ class Increase::Test::Resources::Simulations::ExportsTest < Increase::Test::Reso
         bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv | nil,
         category: Increase::Export::Category,
         created_at: Time,
+        daily_account_balance_csv: Increase::Export::DailyAccountBalanceCsv | nil,
         dashboard_table_csv: Increase::Export::DashboardTableCsv | nil,
         entity_csv: Increase::Export::EntityCsv | nil,
         fee_csv: Increase::Export::FeeCsv | nil,

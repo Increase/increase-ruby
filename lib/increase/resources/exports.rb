@@ -8,7 +8,7 @@ module Increase
       #
       # Create an Export
       #
-      # @overload create(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
+      # @overload create(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, balance_csv: nil, bookkeeping_account_balance_csv: nil, daily_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
       #
       # @param category [Symbol, Increase::Models::ExportCreateParams::Category] The type of Export to create.
       #
@@ -22,6 +22,8 @@ module Increase
       #
       # @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv] Options for the created export. Required if `category` is equal to
       # `bookkeeping\_
+      #
+      # @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv] Options for the created export. Required if `category` is equal to `daily_accoun
       #
       # @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv] Options for the created export. Required if `category` is equal to `entity_csv`.
       #

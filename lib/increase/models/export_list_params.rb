@@ -123,6 +123,9 @@ module Increase
         # A PDF of a voided check.
         VOIDED_CHECK = :voided_check
 
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV = :daily_account_balance_csv
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

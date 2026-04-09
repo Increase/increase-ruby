@@ -228,6 +228,13 @@ module Increase
             Increase::ExportListParams::Category::TaggedSymbol
           )
 
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV =
+          T.let(
+            :daily_account_balance_csv,
+            Increase::ExportListParams::Category::TaggedSymbol
+          )
+
         sig do
           override.returns(
             T::Array[Increase::ExportListParams::Category::TaggedSymbol]
