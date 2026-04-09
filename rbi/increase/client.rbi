@@ -133,6 +133,9 @@ module Increase
     sig { returns(Increase::Resources::SupplementalDocuments) }
     attr_reader :supplemental_documents
 
+    sig { returns(Increase::Resources::EntityOnboardingSessions) }
+    attr_reader :entity_onboarding_sessions
+
     sig { returns(Increase::Resources::Programs) }
     attr_reader :programs
 

@@ -1,0 +1,24 @@
+module Increase
+  module Models
+    type entity_onboarding_session_retrieve_params =
+      { entity_onboarding_session_id: String }
+      & Increase::Internal::Type::request_parameters
+
+    class EntityOnboardingSessionRetrieveParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor entity_onboarding_session_id: String
+
+      def initialize: (
+        entity_onboarding_session_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        entity_onboarding_session_id: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

@@ -269,6 +269,16 @@ module Increase
 
   EntityListParams = Increase::Models::EntityListParams
 
+  EntityOnboardingSession = Increase::Models::EntityOnboardingSession
+
+  EntityOnboardingSessionCreateParams = Increase::Models::EntityOnboardingSessionCreateParams
+
+  EntityOnboardingSessionExpireParams = Increase::Models::EntityOnboardingSessionExpireParams
+
+  EntityOnboardingSessionListParams = Increase::Models::EntityOnboardingSessionListParams
+
+  EntityOnboardingSessionRetrieveParams = Increase::Models::EntityOnboardingSessionRetrieveParams
+
   EntityRetrieveParams = Increase::Models::EntityRetrieveParams
 
   EntitySupplementalDocument = Increase::Models::EntitySupplementalDocument

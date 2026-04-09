@@ -57,6 +57,8 @@ module Increase
 
       attr_reader inbound_mail_items: Increase::Resources::Simulations::InboundMailItems
 
+      attr_reader entity_onboarding_sessions: Increase::Resources::Simulations::EntityOnboardingSessions
+
       attr_reader programs: Increase::Resources::Simulations::Programs
 
       attr_reader account_statements: Increase::Resources::Simulations::AccountStatements

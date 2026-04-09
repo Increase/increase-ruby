@@ -1,0 +1,86 @@
+module Increase
+  module Models
+    type entity_onboarding_session_list_params =
+      {
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::EntityOnboardingSessionListParams::Status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class EntityOnboardingSessionListParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Increase::EntityOnboardingSessionListParams::Status?
+
+      def status=: (
+        Increase::EntityOnboardingSessionListParams::Status
+      ) -> Increase::EntityOnboardingSessionListParams::Status
+
+      def initialize: (
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::EntityOnboardingSessionListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        idempotency_key: String,
+        limit: Integer,
+        status: Increase::EntityOnboardingSessionListParams::Status,
+        request_options: Increase::RequestOptions
+      }
+
+      type status =
+        {
+          in_: ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]
+        }
+
+      class Status < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]
+        ) -> ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]
+        }
+
+        type in_ = :active | :expired
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # The Entity Onboarding Session is active.
+          ACTIVE: :active
+
+          # The Entity Onboarding Session has expired.
+          EXPIRED: :expired
+
+          def self?.values: -> ::Array[Increase::Models::EntityOnboardingSessionListParams::Status::in_]
+        end
+      end
+    end
+  end
+end
