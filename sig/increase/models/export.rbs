@@ -10,6 +10,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?,
         category: Increase::Models::Export::category,
         created_at: Time,
+        daily_account_balance_csv: Increase::Export::DailyAccountBalanceCsv?,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
         fee_csv: Increase::Export::FeeCsv?,
@@ -41,6 +42,8 @@ module Increase
       attr_accessor category: Increase::Models::Export::category
 
       attr_accessor created_at: Time
+
+      attr_accessor daily_account_balance_csv: Increase::Export::DailyAccountBalanceCsv?
 
       attr_accessor dashboard_table_csv: Increase::Export::DashboardTableCsv?
 
@@ -77,6 +80,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?,
         category: Increase::Models::Export::category,
         created_at: Time,
+        daily_account_balance_csv: Increase::Export::DailyAccountBalanceCsv?,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
         fee_csv: Increase::Export::FeeCsv?,
@@ -101,6 +105,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::Export::BookkeepingAccountBalanceCsv?,
         category: Increase::Models::Export::category,
         created_at: Time,
+        daily_account_balance_csv: Increase::Export::DailyAccountBalanceCsv?,
         dashboard_table_csv: Increase::Export::DashboardTableCsv?,
         entity_csv: Increase::Export::EntityCsv?,
         fee_csv: Increase::Export::FeeCsv?,
@@ -269,6 +274,7 @@ module Increase
         | :form_1099_misc
         | :fee_csv
         | :voided_check
+        | :daily_account_balance_csv
 
       module Category
         extend Increase::Internal::Type::Enum
@@ -315,7 +321,37 @@ module Increase
         # A PDF of a voided check.
         VOIDED_CHECK: :voided_check
 
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV: :daily_account_balance_csv
+
         def self?.values: -> ::Array[Increase::Models::Export::category]
+      end
+
+      type daily_account_balance_csv =
+        {
+          account_id: String?,
+          on_or_after_date: Date?,
+          on_or_before_date: Date?
+        }
+
+      class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel
+        attr_accessor account_id: String?
+
+        attr_accessor on_or_after_date: Date?
+
+        attr_accessor on_or_before_date: Date?
+
+        def initialize: (
+          account_id: String?,
+          on_or_after_date: Date?,
+          on_or_before_date: Date?
+        ) -> void
+
+        def to_hash: -> {
+          account_id: String?,
+          on_or_after_date: Date?,
+          on_or_before_date: Date?
+        }
       end
 
       type dashboard_table_csv = {  }

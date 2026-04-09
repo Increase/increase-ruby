@@ -60,6 +60,13 @@ module Increase
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute daily_account_balance_csv
+      #   Details of the daily account balance CSV export. This field will be present when
+      #   the `category` is equal to `daily_account_balance_csv`.
+      #
+      #   @return [Increase::Models::Export::DailyAccountBalanceCsv, nil]
+      required :daily_account_balance_csv, -> { Increase::Export::DailyAccountBalanceCsv }, nil?: true
+
       # @!attribute dashboard_table_csv
       #   Details of the dashboard table CSV export. This field will be present when the
       #   `category` is equal to `dashboard_table_csv`.
@@ -151,7 +158,7 @@ module Increase
       #   @return [Increase::Models::Export::VoidedCheck, nil]
       required :voided_check, -> { Increase::Export::VoidedCheck }, nil?: true
 
-      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, dashboard_table_csv:, entity_csv:, fee_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:, voided_check:)
+      # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, daily_account_balance_csv:, dashboard_table_csv:, entity_csv:, fee_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:, voided_check:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Export}
       #   for more details.
       #
@@ -176,6 +183,8 @@ module Increase
       #   @param category [Symbol, Increase::Models::Export::Category] The category of the Export. We may add additional possible values for this enum
       #
       #   @param created_at [Time] The time the Export was created.
+      #
+      #   @param daily_account_balance_csv [Increase::Models::Export::DailyAccountBalanceCsv, nil] Details of the daily account balance CSV export. This field will be present when
       #
       #   @param dashboard_table_csv [Increase::Models::Export::DashboardTableCsv, nil] Details of the dashboard table CSV export. This field will be present when the `
       #
@@ -441,8 +450,42 @@ module Increase
         # A PDF of a voided check.
         VOIDED_CHECK = :voided_check
 
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV = :daily_account_balance_csv
+
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::Export#daily_account_balance_csv
+      class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel
+        # @!attribute account_id
+        #   Filter results by Account.
+        #
+        #   @return [String, nil]
+        required :account_id, String, nil?: true
+
+        # @!attribute on_or_after_date
+        #   Filter balances on or after this date.
+        #
+        #   @return [Date, nil]
+        required :on_or_after_date, Date, nil?: true
+
+        # @!attribute on_or_before_date
+        #   Filter balances on or before this date.
+        #
+        #   @return [Date, nil]
+        required :on_or_before_date, Date, nil?: true
+
+        # @!method initialize(account_id:, on_or_after_date:, on_or_before_date:)
+        #   Details of the daily account balance CSV export. This field will be present when
+        #   the `category` is equal to `daily_account_balance_csv`.
+        #
+        #   @param account_id [String, nil] Filter results by Account.
+        #
+        #   @param on_or_after_date [Date, nil] Filter balances on or after this date.
+        #
+        #   @param on_or_before_date [Date, nil] Filter balances on or before this date.
       end
 
       # @see Increase::Models::Export#dashboard_table_csv

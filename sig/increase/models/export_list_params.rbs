@@ -98,6 +98,7 @@ module Increase
         | :form_1099_misc
         | :fee_csv
         | :voided_check
+        | :daily_account_balance_csv
 
       module Category
         extend Increase::Internal::Type::Enum
@@ -143,6 +144,9 @@ module Increase
 
         # A PDF of a voided check.
         VOIDED_CHECK: :voided_check
+
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV: :daily_account_balance_csv
 
         def self?.values: -> ::Array[Increase::Models::ExportListParams::category]
       end
