@@ -665,40 +665,30 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :bookkeeping_account_id
 
-        # Filter balances by their created date.
-        sig do
-          returns(
-            T.nilable(Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt)
-          )
-        end
-        attr_reader :created_at
+        # Filter balances to those on or after this date.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :on_or_after_date
 
-        sig do
-          params(
-            created_at:
-              T.nilable(
-                Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt::OrHash
-              )
-          ).void
-        end
-        attr_writer :created_at
+        # Filter balances to those on or before this date.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :on_or_before_date
 
         # Details of the bookkeeping account balance CSV export. This field will be
         # present when the `category` is equal to `bookkeeping_account_balance_csv`.
         sig do
           params(
             bookkeeping_account_id: T.nilable(String),
-            created_at:
-              T.nilable(
-                Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt::OrHash
-              )
+            on_or_after_date: T.nilable(Date),
+            on_or_before_date: T.nilable(Date)
           ).returns(T.attached_class)
         end
         def self.new(
           # Filter results by Bookkeeping Account.
           bookkeeping_account_id:,
-          # Filter balances by their created date.
-          created_at:
+          # Filter balances to those on or after this date.
+          on_or_after_date:,
+          # Filter balances to those on or before this date.
+          on_or_before_date:
         )
         end
 
@@ -706,54 +696,12 @@ module Increase
           override.returns(
             {
               bookkeeping_account_id: T.nilable(String),
-              created_at:
-                T.nilable(
-                  Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt
-                )
+              on_or_after_date: T.nilable(Date),
+              on_or_before_date: T.nilable(Date)
             }
           )
         end
         def to_hash
-        end
-
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # Filter balances created after this time.
-          sig { returns(T.nilable(Time)) }
-          attr_accessor :after
-
-          # Filter balances created before this time.
-          sig { returns(T.nilable(Time)) }
-          attr_accessor :before
-
-          # Filter balances by their created date.
-          sig do
-            params(after: T.nilable(Time), before: T.nilable(Time)).returns(
-              T.attached_class
-            )
-          end
-          def self.new(
-            # Filter balances created after this time.
-            after:,
-            # Filter balances created before this time.
-            before:
-          )
-          end
-
-          sig do
-            override.returns(
-              { after: T.nilable(Time), before: T.nilable(Time) }
-            )
-          end
-          def to_hash
-          end
         end
       end
 

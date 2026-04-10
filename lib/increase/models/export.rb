@@ -364,41 +364,27 @@ module Increase
         #   @return [String, nil]
         required :bookkeeping_account_id, String, nil?: true
 
-        # @!attribute created_at
-        #   Filter balances by their created date.
+        # @!attribute on_or_after_date
+        #   Filter balances to those on or after this date.
         #
-        #   @return [Increase::Models::Export::BookkeepingAccountBalanceCsv::CreatedAt, nil]
-        required :created_at, -> { Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt }, nil?: true
+        #   @return [Date, nil]
+        required :on_or_after_date, Date, nil?: true
 
-        # @!method initialize(bookkeeping_account_id:, created_at:)
+        # @!attribute on_or_before_date
+        #   Filter balances to those on or before this date.
+        #
+        #   @return [Date, nil]
+        required :on_or_before_date, Date, nil?: true
+
+        # @!method initialize(bookkeeping_account_id:, on_or_after_date:, on_or_before_date:)
         #   Details of the bookkeeping account balance CSV export. This field will be
         #   present when the `category` is equal to `bookkeeping_account_balance_csv`.
         #
         #   @param bookkeeping_account_id [String, nil] Filter results by Bookkeeping Account.
         #
-        #   @param created_at [Increase::Models::Export::BookkeepingAccountBalanceCsv::CreatedAt, nil] Filter balances by their created date.
-
-        # @see Increase::Models::Export::BookkeepingAccountBalanceCsv#created_at
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          # @!attribute after
-          #   Filter balances created after this time.
-          #
-          #   @return [Time, nil]
-          required :after, Time, nil?: true
-
-          # @!attribute before
-          #   Filter balances created before this time.
-          #
-          #   @return [Time, nil]
-          required :before, Time, nil?: true
-
-          # @!method initialize(after:, before:)
-          #   Filter balances by their created date.
-          #
-          #   @param after [Time, nil] Filter balances created after this time.
-          #
-          #   @param before [Time, nil] Filter balances created before this time.
-        end
+        #   @param on_or_after_date [Date, nil] Filter balances to those on or after this date.
+        #
+        #   @param on_or_before_date [Date, nil] Filter balances to those on or before this date.
       end
 
       # The category of the Export. We may add additional possible values for this enum
