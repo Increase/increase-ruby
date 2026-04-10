@@ -715,39 +715,37 @@ module Increase
         sig { params(bookkeeping_account_id: String).void }
         attr_writer :bookkeeping_account_id
 
-        # Filter results by time range on the `created_at` attribute.
-        sig do
-          returns(
-            T.nilable(
-              Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt
-            )
-          )
-        end
-        attr_reader :created_at
+        # Filter exported Balances to those on or after this date.
+        sig { returns(T.nilable(Date)) }
+        attr_reader :on_or_after_date
 
-        sig do
-          params(
-            created_at:
-              Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt::OrHash
-          ).void
-        end
-        attr_writer :created_at
+        sig { params(on_or_after_date: Date).void }
+        attr_writer :on_or_after_date
+
+        # Filter exported Balances to those on or before this date.
+        sig { returns(T.nilable(Date)) }
+        attr_reader :on_or_before_date
+
+        sig { params(on_or_before_date: Date).void }
+        attr_writer :on_or_before_date
 
         # Options for the created export. Required if `category` is equal to
         # `bookkeeping_account_balance_csv`.
         sig do
           params(
             bookkeeping_account_id: String,
-            created_at:
-              Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt::OrHash
+            on_or_after_date: Date,
+            on_or_before_date: Date
           ).returns(T.attached_class)
         end
         def self.new(
           # Filter exported Bookkeeping Account Balances to the specified Bookkeeping
           # Account.
           bookkeeping_account_id: nil,
-          # Filter results by time range on the `created_at` attribute.
-          created_at: nil
+          # Filter exported Balances to those on or after this date.
+          on_or_after_date: nil,
+          # Filter exported Balances to those on or before this date.
+          on_or_before_date: nil
         )
         end
 
@@ -755,92 +753,12 @@ module Increase
           override.returns(
             {
               bookkeeping_account_id: String,
-              created_at:
-                Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt
+              on_or_after_date: Date,
+              on_or_before_date: Date
             }
           )
         end
         def to_hash
-        end
-
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          # timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :after
-
-          sig { params(after: Time).void }
-          attr_writer :after
-
-          # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          # timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :before
-
-          sig { params(before: Time).void }
-          attr_writer :before
-
-          # Return results on or after this
-          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :on_or_after
-
-          sig { params(on_or_after: Time).void }
-          attr_writer :on_or_after
-
-          # Return results on or before this
-          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :on_or_before
-
-          sig { params(on_or_before: Time).void }
-          attr_writer :on_or_before
-
-          # Filter results by time range on the `created_at` attribute.
-          sig do
-            params(
-              after: Time,
-              before: Time,
-              on_or_after: Time,
-              on_or_before: Time
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-            # timestamp.
-            after: nil,
-            # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-            # timestamp.
-            before: nil,
-            # Return results on or after this
-            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-            on_or_after: nil,
-            # Return results on or before this
-            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-            on_or_before: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                after: Time,
-                before: Time,
-                on_or_after: Time,
-                on_or_before: Time
-              }
-            )
-          end
-          def to_hash
-          end
         end
       end
 
