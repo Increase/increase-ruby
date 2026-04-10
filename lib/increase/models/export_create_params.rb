@@ -341,13 +341,19 @@ module Increase
         #   @return [String, nil]
         optional :bookkeeping_account_id, String
 
-        # @!attribute created_at
-        #   Filter results by time range on the `created_at` attribute.
+        # @!attribute on_or_after_date
+        #   Filter exported Balances to those on or after this date.
         #
-        #   @return [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt, nil]
-        optional :created_at, -> { Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt }
+        #   @return [Date, nil]
+        optional :on_or_after_date, Date
 
-        # @!method initialize(bookkeeping_account_id: nil, created_at: nil)
+        # @!attribute on_or_before_date
+        #   Filter exported Balances to those on or before this date.
+        #
+        #   @return [Date, nil]
+        optional :on_or_before_date, Date
+
+        # @!method initialize(bookkeeping_account_id: nil, on_or_after_date: nil, on_or_before_date: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv} for more
         #   details.
@@ -357,53 +363,9 @@ module Increase
         #
         #   @param bookkeeping_account_id [String] Filter exported Bookkeeping Account Balances to the specified Bookkeeping Accoun
         #
-        #   @param created_at [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
-
-        # @see Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv#created_at
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          # @!attribute after
-          #   Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          #   timestamp.
-          #
-          #   @return [Time, nil]
-          optional :after, Time
-
-          # @!attribute before
-          #   Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          #   timestamp.
-          #
-          #   @return [Time, nil]
-          optional :before, Time
-
-          # @!attribute on_or_after
-          #   Return results on or after this
-          #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          #
-          #   @return [Time, nil]
-          optional :on_or_after, Time
-
-          # @!attribute on_or_before
-          #   Return results on or before this
-          #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          #
-          #   @return [Time, nil]
-          optional :on_or_before, Time
-
-          # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv::CreatedAt}
-          #   for more details.
-          #
-          #   Filter results by time range on the `created_at` attribute.
-          #
-          #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
-          #
-          #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
-          #
-          #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-          #
-          #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
-        end
+        #   @param on_or_after_date [Date] Filter exported Balances to those on or after this date.
+        #
+        #   @param on_or_before_date [Date] Filter exported Balances to those on or before this date.
       end
 
       class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel

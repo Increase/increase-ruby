@@ -228,35 +228,28 @@ module Increase
       type bookkeeping_account_balance_csv =
         {
           bookkeeping_account_id: String?,
-          created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+          on_or_after_date: Date?,
+          on_or_before_date: Date?
         }
 
       class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
         attr_accessor bookkeeping_account_id: String?
 
-        attr_accessor created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+        attr_accessor on_or_after_date: Date?
+
+        attr_accessor on_or_before_date: Date?
 
         def initialize: (
           bookkeeping_account_id: String?,
-          created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+          on_or_after_date: Date?,
+          on_or_before_date: Date?
         ) -> void
 
         def to_hash: -> {
           bookkeeping_account_id: String?,
-          created_at: Increase::Export::BookkeepingAccountBalanceCsv::CreatedAt?
+          on_or_after_date: Date?,
+          on_or_before_date: Date?
         }
-
-        type created_at = { after: Time?, before: Time? }
-
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          attr_accessor after: Time?
-
-          attr_accessor before: Time?
-
-          def initialize: (after: Time?, before: Time?) -> void
-
-          def to_hash: -> { after: Time?, before: Time? }
-        end
       end
 
       type category =
