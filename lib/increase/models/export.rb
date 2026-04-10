@@ -267,24 +267,24 @@ module Increase
 
         # @see Increase::Models::Export::AccountStatementOfx#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
-          # @!attribute after
-          #   Filter results to transactions created after this time.
-          #
-          #   @return [Time, nil]
-          required :after, Time, nil?: true
-
           # @!attribute before
           #   Filter results to transactions created before this time.
           #
           #   @return [Time, nil]
           required :before, Time, nil?: true
 
-          # @!method initialize(after:, before:)
+          # @!attribute on_or_after
+          #   Filter results to transactions created on or after this time.
+          #
+          #   @return [Time, nil]
+          required :on_or_after, Time, nil?: true
+
+          # @!method initialize(before:, on_or_after:)
           #   Filter transactions by their created date.
           #
-          #   @param after [Time, nil] Filter results to transactions created after this time.
-          #
           #   @param before [Time, nil] Filter results to transactions created before this time.
+          #
+          #   @param on_or_after [Time, nil] Filter results to transactions created on or after this time.
         end
       end
 

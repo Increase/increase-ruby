@@ -227,14 +227,9 @@ module Increase
           created_at: Increase::ExportCreateParams::AccountStatementOfx::CreatedAt
         }
 
-        type created_at =
-          { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+        type created_at = { before: Time, on_or_after: Time }
 
         class CreatedAt < Increase::Internal::Type::BaseModel
-          attr_reader after: Time?
-
-          def after=: (Time) -> Time
-
           attr_reader before: Time?
 
           def before=: (Time) -> Time
@@ -243,23 +238,9 @@ module Increase
 
           def on_or_after=: (Time) -> Time
 
-          attr_reader on_or_before: Time?
+          def initialize: (?before: Time, ?on_or_after: Time) -> void
 
-          def on_or_before=: (Time) -> Time
-
-          def initialize: (
-            ?after: Time,
-            ?before: Time,
-            ?on_or_after: Time,
-            ?on_or_before: Time
-          ) -> void
-
-          def to_hash: -> {
-            after: Time,
-            before: Time,
-            on_or_after: Time,
-            on_or_before: Time
-          }
+          def to_hash: -> { before: Time, on_or_after: Time }
         end
       end
 
