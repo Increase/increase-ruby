@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Increase
-  VERSION = "1.286.0"
+  VERSION = "1.287.0"
 end
