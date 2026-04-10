@@ -427,7 +427,7 @@ module Increase
         sig { returns(String) }
         attr_accessor :account_id
 
-        # Filter results by time range on the `created_at` attribute.
+        # Filter transactions by their created date.
         sig do
           returns(
             T.nilable(
@@ -457,7 +457,7 @@ module Increase
         def self.new(
           # The Account to create a statement for.
           account_id:,
-          # Filter results by time range on the `created_at` attribute.
+          # Filter transactions by their created date.
           created_at: nil
         )
         end
@@ -483,73 +483,33 @@ module Increase
               )
             end
 
-          # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          # timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :after
-
-          sig { params(after: Time).void }
-          attr_writer :after
-
-          # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          # timestamp.
+          # Filter results to transactions created before this time.
           sig { returns(T.nilable(Time)) }
           attr_reader :before
 
           sig { params(before: Time).void }
           attr_writer :before
 
-          # Return results on or after this
-          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          # Filter results to transactions created on or after this time.
           sig { returns(T.nilable(Time)) }
           attr_reader :on_or_after
 
           sig { params(on_or_after: Time).void }
           attr_writer :on_or_after
 
-          # Return results on or before this
-          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :on_or_before
-
-          sig { params(on_or_before: Time).void }
-          attr_writer :on_or_before
-
-          # Filter results by time range on the `created_at` attribute.
+          # Filter transactions by their created date.
           sig do
-            params(
-              after: Time,
-              before: Time,
-              on_or_after: Time,
-              on_or_before: Time
-            ).returns(T.attached_class)
+            params(before: Time, on_or_after: Time).returns(T.attached_class)
           end
           def self.new(
-            # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-            # timestamp.
-            after: nil,
-            # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-            # timestamp.
+            # Filter results to transactions created before this time.
             before: nil,
-            # Return results on or after this
-            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-            on_or_after: nil,
-            # Return results on or before this
-            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-            on_or_before: nil
+            # Filter results to transactions created on or after this time.
+            on_or_after: nil
           )
           end
 
-          sig do
-            override.returns(
-              {
-                after: Time,
-                before: Time,
-                on_or_after: Time,
-                on_or_before: Time
-              }
-            )
-          end
+          sig { override.returns({ before: Time, on_or_after: Time }) }
           def to_hash
           end
         end

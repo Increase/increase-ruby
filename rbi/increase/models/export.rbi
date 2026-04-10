@@ -486,31 +486,32 @@ module Increase
               )
             end
 
-          # Filter results to transactions created after this time.
-          sig { returns(T.nilable(Time)) }
-          attr_accessor :after
-
           # Filter results to transactions created before this time.
           sig { returns(T.nilable(Time)) }
           attr_accessor :before
 
+          # Filter results to transactions created on or after this time.
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :on_or_after
+
           # Filter transactions by their created date.
           sig do
-            params(after: T.nilable(Time), before: T.nilable(Time)).returns(
-              T.attached_class
-            )
+            params(
+              before: T.nilable(Time),
+              on_or_after: T.nilable(Time)
+            ).returns(T.attached_class)
           end
           def self.new(
-            # Filter results to transactions created after this time.
-            after:,
             # Filter results to transactions created before this time.
-            before:
+            before:,
+            # Filter results to transactions created on or after this time.
+            on_or_after:
           )
           end
 
           sig do
             override.returns(
-              { after: T.nilable(Time), before: T.nilable(Time) }
+              { before: T.nilable(Time), on_or_after: T.nilable(Time) }
             )
           end
           def to_hash

@@ -208,7 +208,7 @@ module Increase
         required :account_id, String
 
         # @!attribute created_at
-        #   Filter results by time range on the `created_at` attribute.
+        #   Filter transactions by their created date.
         #
         #   @return [Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt, nil]
         optional :created_at, -> { Increase::ExportCreateParams::AccountStatementOfx::CreatedAt }
@@ -219,52 +219,28 @@ module Increase
         #
         #   @param account_id [String] The Account to create a statement for.
         #
-        #   @param created_at [Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt] Filter results by time range on the `created_at` attribute.
+        #   @param created_at [Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt] Filter transactions by their created date.
 
         # @see Increase::Models::ExportCreateParams::AccountStatementOfx#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
-          # @!attribute after
-          #   Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          #   timestamp.
-          #
-          #   @return [Time, nil]
-          optional :after, Time
-
           # @!attribute before
-          #   Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          #   timestamp.
+          #   Filter results to transactions created before this time.
           #
           #   @return [Time, nil]
           optional :before, Time
 
           # @!attribute on_or_after
-          #   Return results on or after this
-          #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          #   Filter results to transactions created on or after this time.
           #
           #   @return [Time, nil]
           optional :on_or_after, Time
 
-          # @!attribute on_or_before
-          #   Return results on or before this
-          #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          # @!method initialize(before: nil, on_or_after: nil)
+          #   Filter transactions by their created date.
           #
-          #   @return [Time, nil]
-          optional :on_or_before, Time
-
-          # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt} for more
-          #   details.
+          #   @param before [Time] Filter results to transactions created before this time.
           #
-          #   Filter results by time range on the `created_at` attribute.
-          #
-          #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
-          #
-          #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
-          #
-          #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-          #
-          #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+          #   @param on_or_after [Time] Filter results to transactions created on or after this time.
         end
       end
 
