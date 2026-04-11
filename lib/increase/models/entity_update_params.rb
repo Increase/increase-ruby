@@ -334,13 +334,28 @@ module Increase
         #   @return [Increase::Models::EntityUpdateParams::NaturalPerson::Address, nil]
         optional :address, -> { Increase::EntityUpdateParams::NaturalPerson::Address }
 
+        # @!attribute confirmed_no_us_tax_id
+        #   The identification method for an individual can only be a passport, driver's
+        #   license, or other document if you've confirmed the individual does not have a US
+        #   tax id (either a Social Security Number or Individual Taxpayer Identification
+        #   Number).
+        #
+        #   @return [Boolean, nil]
+        optional :confirmed_no_us_tax_id, Increase::Internal::Type::Boolean
+
+        # @!attribute identification
+        #   A means of verifying the person's identity.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::NaturalPerson::Identification, nil]
+        optional :identification, -> { Increase::EntityUpdateParams::NaturalPerson::Identification }
+
         # @!attribute name
         #   The legal name of the natural person.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(address: nil, name: nil)
+        # @!method initialize(address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityUpdateParams::NaturalPerson} for more details.
         #
@@ -348,6 +363,10 @@ module Increase
         #   and the entity is not a natural person, the request will fail.
         #
         #   @param address [Increase::Models::EntityUpdateParams::NaturalPerson::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #
+        #   @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
+        #
+        #   @param identification [Increase::Models::EntityUpdateParams::NaturalPerson::Identification] A means of verifying the person's identity.
         #
         #   @param name [String] The legal name of the natural person.
 
@@ -408,6 +427,216 @@ module Increase
           #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the US state
           #
           #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
+        end
+
+        # @see Increase::Models::EntityUpdateParams::NaturalPerson#identification
+        class Identification < Increase::Internal::Type::BaseModel
+          # @!attribute method_
+          #   A method that can be used to verify the individual's identity.
+          #
+          #   @return [Symbol, Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Method]
+          required :method_,
+                   enum: -> { Increase::EntityUpdateParams::NaturalPerson::Identification::Method },
+                   api_name: :method
+
+          # @!attribute number
+          #   An identification number that can be used to verify the individual's identity,
+          #   such as a social security number.
+          #
+          #   @return [String]
+          required :number, String
+
+          # @!attribute drivers_license
+          #   Information about the United States driver's license used for identification.
+          #   Required if `method` is equal to `drivers_license`.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense, nil]
+          optional :drivers_license,
+                   -> { Increase::EntityUpdateParams::NaturalPerson::Identification::DriversLicense }
+
+          # @!attribute other
+          #   Information about the identification document provided. Required if `method` is
+          #   equal to `other`.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Other, nil]
+          optional :other, -> { Increase::EntityUpdateParams::NaturalPerson::Identification::Other }
+
+          # @!attribute passport
+          #   Information about the passport used for identification. Required if `method` is
+          #   equal to `passport`.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Passport, nil]
+          optional :passport, -> { Increase::EntityUpdateParams::NaturalPerson::Identification::Passport }
+
+          # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityUpdateParams::NaturalPerson::Identification} for more
+          #   details.
+          #
+          #   A means of verifying the person's identity.
+          #
+          #   @param method_ [Symbol, Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Method] A method that can be used to verify the individual's identity.
+          #
+          #   @param number [String] An identification number that can be used to verify the individual's identity, s
+          #
+          #   @param drivers_license [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense] Information about the United States driver's license used for identification. Re
+          #
+          #   @param other [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Other] Information about the identification document provided. Required if `method` is
+          #
+          #   @param passport [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Passport] Information about the passport used for identification. Required if `method` is
+
+          # A method that can be used to verify the individual's identity.
+          #
+          # @see Increase::Models::EntityUpdateParams::NaturalPerson::Identification#method_
+          module Method
+            extend Increase::Internal::Type::Enum
+
+            # A social security number.
+            SOCIAL_SECURITY_NUMBER = :social_security_number
+
+            # An individual taxpayer identification number (ITIN).
+            INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
+
+            # A passport number.
+            PASSPORT = :passport
+
+            # A driver's license number.
+            DRIVERS_LICENSE = :drivers_license
+
+            # Another identifying document.
+            OTHER = :other
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::EntityUpdateParams::NaturalPerson::Identification#drivers_license
+          class DriversLicense < Increase::Internal::Type::BaseModel
+            # @!attribute expiration_date
+            #   The driver's license's expiration date in YYYY-MM-DD format.
+            #
+            #   @return [Date]
+            required :expiration_date, Date
+
+            # @!attribute file_id
+            #   The identifier of the File containing the front of the driver's license.
+            #
+            #   @return [String]
+            required :file_id, String
+
+            # @!attribute state
+            #   The state that issued the provided driver's license.
+            #
+            #   @return [String]
+            required :state, String
+
+            # @!attribute back_file_id
+            #   The identifier of the File containing the back of the driver's license.
+            #
+            #   @return [String, nil]
+            optional :back_file_id, String
+
+            # @!method initialize(expiration_date:, file_id:, state:, back_file_id: nil)
+            #   Information about the United States driver's license used for identification.
+            #   Required if `method` is equal to `drivers_license`.
+            #
+            #   @param expiration_date [Date] The driver's license's expiration date in YYYY-MM-DD format.
+            #
+            #   @param file_id [String] The identifier of the File containing the front of the driver's license.
+            #
+            #   @param state [String] The state that issued the provided driver's license.
+            #
+            #   @param back_file_id [String] The identifier of the File containing the back of the driver's license.
+          end
+
+          # @see Increase::Models::EntityUpdateParams::NaturalPerson::Identification#other
+          class Other < Increase::Internal::Type::BaseModel
+            # @!attribute country
+            #   The two-character ISO 3166-1 code representing the country that issued the
+            #   document (e.g., `US`).
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute description
+            #   A description of the document submitted.
+            #
+            #   @return [String]
+            required :description, String
+
+            # @!attribute file_id
+            #   The identifier of the File containing the front of the document.
+            #
+            #   @return [String]
+            required :file_id, String
+
+            # @!attribute back_file_id
+            #   The identifier of the File containing the back of the document. Not every
+            #   document has a reverse side.
+            #
+            #   @return [String, nil]
+            optional :back_file_id, String
+
+            # @!attribute expiration_date
+            #   The document's expiration date in YYYY-MM-DD format.
+            #
+            #   @return [Date, nil]
+            optional :expiration_date, Date
+
+            # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Other} for
+            #   more details.
+            #
+            #   Information about the identification document provided. Required if `method` is
+            #   equal to `other`.
+            #
+            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+            #
+            #   @param description [String] A description of the document submitted.
+            #
+            #   @param file_id [String] The identifier of the File containing the front of the document.
+            #
+            #   @param back_file_id [String] The identifier of the File containing the back of the document. Not every docume
+            #
+            #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
+          end
+
+          # @see Increase::Models::EntityUpdateParams::NaturalPerson::Identification#passport
+          class Passport < Increase::Internal::Type::BaseModel
+            # @!attribute country
+            #   The two-character ISO 3166-1 code representing the country that issued the
+            #   document (e.g., `US`).
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute expiration_date
+            #   The passport's expiration date in YYYY-MM-DD format.
+            #
+            #   @return [Date]
+            required :expiration_date, Date
+
+            # @!attribute file_id
+            #   The identifier of the File containing the passport.
+            #
+            #   @return [String]
+            required :file_id, String
+
+            # @!method initialize(country:, expiration_date:, file_id:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Passport}
+            #   for more details.
+            #
+            #   Information about the passport used for identification. Required if `method` is
+            #   equal to `passport`.
+            #
+            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+            #
+            #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
+            #
+            #   @param file_id [String] The identifier of the File containing the passport.
+          end
         end
       end
 
