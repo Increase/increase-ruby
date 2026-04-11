@@ -13,7 +13,6 @@ module Increase
             Increase::ExportCreateParams::AccountStatementOfx::OrHash,
           account_verification_letter:
             Increase::ExportCreateParams::AccountVerificationLetter::OrHash,
-          balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash,
           bookkeeping_account_balance_csv:
             Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::OrHash,
           daily_account_balance_csv:
@@ -39,9 +38,6 @@ module Increase
         # Options for the created export. Required if `category` is equal to
         # `account_verification_letter`.
         account_verification_letter: nil,
-        # Options for the created export. Required if `category` is equal to
-        # `balance_csv`.
-        balance_csv: nil,
         # Options for the created export. Required if `category` is equal to
         # `bookkeeping_account_balance_csv`.
         bookkeeping_account_balance_csv: nil,

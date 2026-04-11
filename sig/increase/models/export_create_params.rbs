@@ -6,7 +6,6 @@ module Increase
         :account_statement_bai2 => Increase::ExportCreateParams::AccountStatementBai2,
         account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
-        balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
@@ -40,12 +39,6 @@ module Increase
       def account_verification_letter=: (
         Increase::ExportCreateParams::AccountVerificationLetter
       ) -> Increase::ExportCreateParams::AccountVerificationLetter
-
-      attr_reader balance_csv: Increase::ExportCreateParams::BalanceCsv?
-
-      def balance_csv=: (
-        Increase::ExportCreateParams::BalanceCsv
-      ) -> Increase::ExportCreateParams::BalanceCsv
 
       attr_reader bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv?
 
@@ -94,7 +87,6 @@ module Increase
         ?account_statement_bai2: Increase::ExportCreateParams::AccountStatementBai2,
         ?account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         ?account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
-        ?balance_csv: Increase::ExportCreateParams::BalanceCsv,
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         ?daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
@@ -110,7 +102,6 @@ module Increase
         :account_statement_bai2 => Increase::ExportCreateParams::AccountStatementBai2,
         account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
-        balance_csv: Increase::ExportCreateParams::BalanceCsv,
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
@@ -257,69 +248,6 @@ module Increase
         def initialize: (account_number_id: String, ?balance_date: Date) -> void
 
         def to_hash: -> { account_number_id: String, balance_date: Date }
-      end
-
-      type balance_csv =
-        {
-          account_id: String,
-          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
-        }
-
-      class BalanceCsv < Increase::Internal::Type::BaseModel
-        attr_reader account_id: String?
-
-        def account_id=: (String) -> String
-
-        attr_reader created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt?
-
-        def created_at=: (
-          Increase::ExportCreateParams::BalanceCsv::CreatedAt
-        ) -> Increase::ExportCreateParams::BalanceCsv::CreatedAt
-
-        def initialize: (
-          ?account_id: String,
-          ?created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
-        ) -> void
-
-        def to_hash: -> {
-          account_id: String,
-          created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
-        }
-
-        type created_at =
-          { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
-
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          attr_reader after: Time?
-
-          def after=: (Time) -> Time
-
-          attr_reader before: Time?
-
-          def before=: (Time) -> Time
-
-          attr_reader on_or_after: Time?
-
-          def on_or_after=: (Time) -> Time
-
-          attr_reader on_or_before: Time?
-
-          def on_or_before=: (Time) -> Time
-
-          def initialize: (
-            ?after: Time,
-            ?before: Time,
-            ?on_or_after: Time,
-            ?on_or_before: Time
-          ) -> void
-
-          def to_hash: -> {
-            after: Time,
-            before: Time,
-            on_or_after: Time,
-            on_or_before: Time
-          }
-        end
       end
 
       type bookkeeping_account_balance_csv =

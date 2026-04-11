@@ -63,18 +63,6 @@ module Increase
       attr_writer :account_verification_letter
 
       # Options for the created export. Required if `category` is equal to
-      # `balance_csv`.
-      sig { returns(T.nilable(Increase::ExportCreateParams::BalanceCsv)) }
-      attr_reader :balance_csv
-
-      sig do
-        params(
-          balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash
-        ).void
-      end
-      attr_writer :balance_csv
-
-      # Options for the created export. Required if `category` is equal to
       # `bookkeeping_account_balance_csv`.
       sig do
         returns(
@@ -172,7 +160,6 @@ module Increase
             Increase::ExportCreateParams::AccountStatementOfx::OrHash,
           account_verification_letter:
             Increase::ExportCreateParams::AccountVerificationLetter::OrHash,
-          balance_csv: Increase::ExportCreateParams::BalanceCsv::OrHash,
           bookkeeping_account_balance_csv:
             Increase::ExportCreateParams::BookkeepingAccountBalanceCsv::OrHash,
           daily_account_balance_csv:
@@ -198,9 +185,6 @@ module Increase
         # Options for the created export. Required if `category` is equal to
         # `account_verification_letter`.
         account_verification_letter: nil,
-        # Options for the created export. Required if `category` is equal to
-        # `balance_csv`.
-        balance_csv: nil,
         # Options for the created export. Required if `category` is equal to
         # `bookkeeping_account_balance_csv`.
         bookkeeping_account_balance_csv: nil,
@@ -234,7 +218,6 @@ module Increase
               Increase::ExportCreateParams::AccountStatementOfx,
             account_verification_letter:
               Increase::ExportCreateParams::AccountVerificationLetter,
-            balance_csv: Increase::ExportCreateParams::BalanceCsv,
             bookkeeping_account_balance_csv:
               Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
             daily_account_balance_csv:
@@ -554,147 +537,6 @@ module Increase
           override.returns({ account_number_id: String, balance_date: Date })
         end
         def to_hash
-        end
-      end
-
-      class BalanceCsv < Increase::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              Increase::ExportCreateParams::BalanceCsv,
-              Increase::Internal::AnyHash
-            )
-          end
-
-        # Filter exported Balances to the specified Account.
-        sig { returns(T.nilable(String)) }
-        attr_reader :account_id
-
-        sig { params(account_id: String).void }
-        attr_writer :account_id
-
-        # Filter results by time range on the `created_at` attribute.
-        sig do
-          returns(
-            T.nilable(Increase::ExportCreateParams::BalanceCsv::CreatedAt)
-          )
-        end
-        attr_reader :created_at
-
-        sig do
-          params(
-            created_at:
-              Increase::ExportCreateParams::BalanceCsv::CreatedAt::OrHash
-          ).void
-        end
-        attr_writer :created_at
-
-        # Options for the created export. Required if `category` is equal to
-        # `balance_csv`.
-        sig do
-          params(
-            account_id: String,
-            created_at:
-              Increase::ExportCreateParams::BalanceCsv::CreatedAt::OrHash
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Filter exported Balances to the specified Account.
-          account_id: nil,
-          # Filter results by time range on the `created_at` attribute.
-          created_at: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              account_id: String,
-              created_at: Increase::ExportCreateParams::BalanceCsv::CreatedAt
-            }
-          )
-        end
-        def to_hash
-        end
-
-        class CreatedAt < Increase::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Increase::ExportCreateParams::BalanceCsv::CreatedAt,
-                Increase::Internal::AnyHash
-              )
-            end
-
-          # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          # timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :after
-
-          sig { params(after: Time).void }
-          attr_writer :after
-
-          # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-          # timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :before
-
-          sig { params(before: Time).void }
-          attr_writer :before
-
-          # Return results on or after this
-          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :on_or_after
-
-          sig { params(on_or_after: Time).void }
-          attr_writer :on_or_after
-
-          # Return results on or before this
-          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-          sig { returns(T.nilable(Time)) }
-          attr_reader :on_or_before
-
-          sig { params(on_or_before: Time).void }
-          attr_writer :on_or_before
-
-          # Filter results by time range on the `created_at` attribute.
-          sig do
-            params(
-              after: Time,
-              before: Time,
-              on_or_after: Time,
-              on_or_before: Time
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-            # timestamp.
-            after: nil,
-            # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-            # timestamp.
-            before: nil,
-            # Return results on or after this
-            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-            on_or_after: nil,
-            # Return results on or before this
-            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
-            on_or_before: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                after: Time,
-                before: Time,
-                on_or_after: Time,
-                on_or_before: Time
-              }
-            )
-          end
-          def to_hash
-          end
         end
       end
 
