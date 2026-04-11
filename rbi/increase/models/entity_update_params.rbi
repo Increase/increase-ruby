@@ -645,6 +645,34 @@ module Increase
         end
         attr_writer :address
 
+        # The identification method for an individual can only be a passport, driver's
+        # license, or other document if you've confirmed the individual does not have a US
+        # tax id (either a Social Security Number or Individual Taxpayer Identification
+        # Number).
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :confirmed_no_us_tax_id
+
+        sig { params(confirmed_no_us_tax_id: T::Boolean).void }
+        attr_writer :confirmed_no_us_tax_id
+
+        # A means of verifying the person's identity.
+        sig do
+          returns(
+            T.nilable(
+              Increase::EntityUpdateParams::NaturalPerson::Identification
+            )
+          )
+        end
+        attr_reader :identification
+
+        sig do
+          params(
+            identification:
+              Increase::EntityUpdateParams::NaturalPerson::Identification::OrHash
+          ).void
+        end
+        attr_writer :identification
+
         # The legal name of the natural person.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -658,6 +686,9 @@ module Increase
           params(
             address:
               Increase::EntityUpdateParams::NaturalPerson::Address::OrHash,
+            confirmed_no_us_tax_id: T::Boolean,
+            identification:
+              Increase::EntityUpdateParams::NaturalPerson::Identification::OrHash,
             name: String
           ).returns(T.attached_class)
         end
@@ -665,6 +696,13 @@ module Increase
           # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           # are disallowed.
           address: nil,
+          # The identification method for an individual can only be a passport, driver's
+          # license, or other document if you've confirmed the individual does not have a US
+          # tax id (either a Social Security Number or Individual Taxpayer Identification
+          # Number).
+          confirmed_no_us_tax_id: nil,
+          # A means of verifying the person's identity.
+          identification: nil,
           # The legal name of the natural person.
           name: nil
         )
@@ -674,6 +712,9 @@ module Increase
           override.returns(
             {
               address: Increase::EntityUpdateParams::NaturalPerson::Address,
+              confirmed_no_us_tax_id: T::Boolean,
+              identification:
+                Increase::EntityUpdateParams::NaturalPerson::Identification,
               name: String
             }
           )
@@ -766,6 +807,389 @@ module Increase
             )
           end
           def to_hash
+          end
+        end
+
+        class Identification < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::NaturalPerson::Identification,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # A method that can be used to verify the individual's identity.
+          sig do
+            returns(
+              Increase::EntityUpdateParams::NaturalPerson::Identification::Method::OrSymbol
+            )
+          end
+          attr_accessor :method_
+
+          # An identification number that can be used to verify the individual's identity,
+          # such as a social security number.
+          sig { returns(String) }
+          attr_accessor :number
+
+          # Information about the United States driver's license used for identification.
+          # Required if `method` is equal to `drivers_license`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::EntityUpdateParams::NaturalPerson::Identification::DriversLicense
+              )
+            )
+          end
+          attr_reader :drivers_license
+
+          sig do
+            params(
+              drivers_license:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::DriversLicense::OrHash
+            ).void
+          end
+          attr_writer :drivers_license
+
+          # Information about the identification document provided. Required if `method` is
+          # equal to `other`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Other
+              )
+            )
+          end
+          attr_reader :other
+
+          sig do
+            params(
+              other:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Other::OrHash
+            ).void
+          end
+          attr_writer :other
+
+          # Information about the passport used for identification. Required if `method` is
+          # equal to `passport`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Passport
+              )
+            )
+          end
+          attr_reader :passport
+
+          sig do
+            params(
+              passport:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Passport::OrHash
+            ).void
+          end
+          attr_writer :passport
+
+          # A means of verifying the person's identity.
+          sig do
+            params(
+              method_:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Method::OrSymbol,
+              number: String,
+              drivers_license:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::DriversLicense::OrHash,
+              other:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Other::OrHash,
+              passport:
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Passport::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # A method that can be used to verify the individual's identity.
+            method_:,
+            # An identification number that can be used to verify the individual's identity,
+            # such as a social security number.
+            number:,
+            # Information about the United States driver's license used for identification.
+            # Required if `method` is equal to `drivers_license`.
+            drivers_license: nil,
+            # Information about the identification document provided. Required if `method` is
+            # equal to `other`.
+            other: nil,
+            # Information about the passport used for identification. Required if `method` is
+            # equal to `passport`.
+            passport: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                method_:
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Method::OrSymbol,
+                number: String,
+                drivers_license:
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::DriversLicense,
+                other:
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Other,
+                passport:
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Passport
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # A method that can be used to verify the individual's identity.
+          module Method
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Method
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # A social security number.
+            SOCIAL_SECURITY_NUMBER =
+              T.let(
+                :social_security_number,
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Method::TaggedSymbol
+              )
+
+            # An individual taxpayer identification number (ITIN).
+            INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
+              T.let(
+                :individual_taxpayer_identification_number,
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Method::TaggedSymbol
+              )
+
+            # A passport number.
+            PASSPORT =
+              T.let(
+                :passport,
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Method::TaggedSymbol
+              )
+
+            # A driver's license number.
+            DRIVERS_LICENSE =
+              T.let(
+                :drivers_license,
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Method::TaggedSymbol
+              )
+
+            # Another identifying document.
+            OTHER =
+              T.let(
+                :other,
+                Increase::EntityUpdateParams::NaturalPerson::Identification::Method::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Method::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class DriversLicense < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::DriversLicense,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The driver's license's expiration date in YYYY-MM-DD format.
+            sig { returns(Date) }
+            attr_accessor :expiration_date
+
+            # The identifier of the File containing the front of the driver's license.
+            sig { returns(String) }
+            attr_accessor :file_id
+
+            # The state that issued the provided driver's license.
+            sig { returns(String) }
+            attr_accessor :state
+
+            # The identifier of the File containing the back of the driver's license.
+            sig { returns(T.nilable(String)) }
+            attr_reader :back_file_id
+
+            sig { params(back_file_id: String).void }
+            attr_writer :back_file_id
+
+            # Information about the United States driver's license used for identification.
+            # Required if `method` is equal to `drivers_license`.
+            sig do
+              params(
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                back_file_id: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The driver's license's expiration date in YYYY-MM-DD format.
+              expiration_date:,
+              # The identifier of the File containing the front of the driver's license.
+              file_id:,
+              # The state that issued the provided driver's license.
+              state:,
+              # The identifier of the File containing the back of the driver's license.
+              back_file_id: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  expiration_date: Date,
+                  file_id: String,
+                  state: String,
+                  back_file_id: String
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Other < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Other,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The two-character ISO 3166-1 code representing the country that issued the
+            # document (e.g., `US`).
+            sig { returns(String) }
+            attr_accessor :country
+
+            # A description of the document submitted.
+            sig { returns(String) }
+            attr_accessor :description
+
+            # The identifier of the File containing the front of the document.
+            sig { returns(String) }
+            attr_accessor :file_id
+
+            # The identifier of the File containing the back of the document. Not every
+            # document has a reverse side.
+            sig { returns(T.nilable(String)) }
+            attr_reader :back_file_id
+
+            sig { params(back_file_id: String).void }
+            attr_writer :back_file_id
+
+            # The document's expiration date in YYYY-MM-DD format.
+            sig { returns(T.nilable(Date)) }
+            attr_reader :expiration_date
+
+            sig { params(expiration_date: Date).void }
+            attr_writer :expiration_date
+
+            # Information about the identification document provided. Required if `method` is
+            # equal to `other`.
+            sig do
+              params(
+                country: String,
+                description: String,
+                file_id: String,
+                back_file_id: String,
+                expiration_date: Date
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The two-character ISO 3166-1 code representing the country that issued the
+              # document (e.g., `US`).
+              country:,
+              # A description of the document submitted.
+              description:,
+              # The identifier of the File containing the front of the document.
+              file_id:,
+              # The identifier of the File containing the back of the document. Not every
+              # document has a reverse side.
+              back_file_id: nil,
+              # The document's expiration date in YYYY-MM-DD format.
+              expiration_date: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  country: String,
+                  description: String,
+                  file_id: String,
+                  back_file_id: String,
+                  expiration_date: Date
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Passport < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityUpdateParams::NaturalPerson::Identification::Passport,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The two-character ISO 3166-1 code representing the country that issued the
+            # document (e.g., `US`).
+            sig { returns(String) }
+            attr_accessor :country
+
+            # The passport's expiration date in YYYY-MM-DD format.
+            sig { returns(Date) }
+            attr_accessor :expiration_date
+
+            # The identifier of the File containing the passport.
+            sig { returns(String) }
+            attr_accessor :file_id
+
+            # Information about the passport used for identification. Required if `method` is
+            # equal to `passport`.
+            sig do
+              params(
+                country: String,
+                expiration_date: Date,
+                file_id: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The two-character ISO 3166-1 code representing the country that issued the
+              # document (e.g., `US`).
+              country:,
+              # The passport's expiration date in YYYY-MM-DD format.
+              expiration_date:,
+              # The identifier of the File containing the passport.
+              file_id:
+            )
+            end
+
+            sig do
+              override.returns(
+                { country: String, expiration_date: Date, file_id: String }
+              )
+            end
+            def to_hash
+            end
           end
         end
       end
