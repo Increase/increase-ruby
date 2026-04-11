@@ -6,7 +6,6 @@ module Increase
         ?account_statement_bai2: Increase::ExportCreateParams::AccountStatementBai2,
         ?account_statement_ofx: Increase::ExportCreateParams::AccountStatementOfx,
         ?account_verification_letter: Increase::ExportCreateParams::AccountVerificationLetter,
-        ?balance_csv: Increase::ExportCreateParams::BalanceCsv,
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         ?daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
