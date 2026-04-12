@@ -99,8 +99,12 @@ module Increase
         # @!attribute identification
         #   A means of verifying the person's identity.
         #
-        #   @return [Increase::Models::EntityBeneficialOwner::Individual::Identification]
-        required :identification, -> { Increase::EntityBeneficialOwner::Individual::Identification }
+        #   @return [Increase::Models::EntityBeneficialOwner::Individual::Identification, nil]
+        required :identification,
+                 -> {
+                   Increase::EntityBeneficialOwner::Individual::Identification
+                 },
+                 nil?: true
 
         # @!attribute name
         #   The person's legal name.
@@ -115,7 +119,7 @@ module Increase
         #
         #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
         #
-        #   @param identification [Increase::Models::EntityBeneficialOwner::Individual::Identification] A means of verifying the person's identity.
+        #   @param identification [Increase::Models::EntityBeneficialOwner::Individual::Identification, nil] A means of verifying the person's identity.
         #
         #   @param name [String] The person's legal name.
 

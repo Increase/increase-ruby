@@ -55,7 +55,7 @@ module Increase
         {
           address: Increase::EntityBeneficialOwner::Individual::Address,
           date_of_birth: Date,
-          identification: Increase::EntityBeneficialOwner::Individual::Identification,
+          identification: Increase::EntityBeneficialOwner::Individual::Identification?,
           name: String
         }
 
@@ -64,21 +64,21 @@ module Increase
 
         attr_accessor date_of_birth: Date
 
-        attr_accessor identification: Increase::EntityBeneficialOwner::Individual::Identification
+        attr_accessor identification: Increase::EntityBeneficialOwner::Individual::Identification?
 
         attr_accessor name: String
 
         def initialize: (
           address: Increase::EntityBeneficialOwner::Individual::Address,
           date_of_birth: Date,
-          identification: Increase::EntityBeneficialOwner::Individual::Identification,
+          identification: Increase::EntityBeneficialOwner::Individual::Identification?,
           name: String
         ) -> void
 
         def to_hash: -> {
           address: Increase::EntityBeneficialOwner::Individual::Address,
           date_of_birth: Date,
-          identification: Increase::EntityBeneficialOwner::Individual::Identification,
+          identification: Increase::EntityBeneficialOwner::Individual::Identification?,
           name: String
         }
 
