@@ -229,7 +229,7 @@ module Increase
             {
               address: Increase::Entity::Corporation::BeneficialOwner::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
+              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification?,
               name: String
             }
 
@@ -238,21 +238,21 @@ module Increase
 
             attr_accessor date_of_birth: Date
 
-            attr_accessor identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification
+            attr_accessor identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification?
 
             attr_accessor name: String
 
             def initialize: (
               address: Increase::Entity::Corporation::BeneficialOwner::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
+              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification?,
               name: String
             ) -> void
 
             def to_hash: -> {
               address: Increase::Entity::Corporation::BeneficialOwner::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
+              identification: Increase::Entity::Corporation::BeneficialOwner::Individual::Identification?,
               name: String
             }
 
@@ -543,7 +543,7 @@ module Increase
           {
             address: Increase::Entity::Joint::Individual::Address,
             date_of_birth: Date,
-            identification: Increase::Entity::Joint::Individual::Identification,
+            identification: Increase::Entity::Joint::Individual::Identification?,
             name: String
           }
 
@@ -552,21 +552,21 @@ module Increase
 
           attr_accessor date_of_birth: Date
 
-          attr_accessor identification: Increase::Entity::Joint::Individual::Identification
+          attr_accessor identification: Increase::Entity::Joint::Individual::Identification?
 
           attr_accessor name: String
 
           def initialize: (
             address: Increase::Entity::Joint::Individual::Address,
             date_of_birth: Date,
-            identification: Increase::Entity::Joint::Individual::Identification,
+            identification: Increase::Entity::Joint::Individual::Identification?,
             name: String
           ) -> void
 
           def to_hash: -> {
             address: Increase::Entity::Joint::Individual::Address,
             date_of_birth: Date,
-            identification: Increase::Entity::Joint::Individual::Identification,
+            identification: Increase::Entity::Joint::Individual::Identification?,
             name: String
           }
 
@@ -668,7 +668,7 @@ module Increase
         {
           address: Increase::Entity::NaturalPerson::Address,
           date_of_birth: Date,
-          identification: Increase::Entity::NaturalPerson::Identification,
+          identification: Increase::Entity::NaturalPerson::Identification?,
           name: String
         }
 
@@ -677,21 +677,21 @@ module Increase
 
         attr_accessor date_of_birth: Date
 
-        attr_accessor identification: Increase::Entity::NaturalPerson::Identification
+        attr_accessor identification: Increase::Entity::NaturalPerson::Identification?
 
         attr_accessor name: String
 
         def initialize: (
           address: Increase::Entity::NaturalPerson::Address,
           date_of_birth: Date,
-          identification: Increase::Entity::NaturalPerson::Identification,
+          identification: Increase::Entity::NaturalPerson::Identification?,
           name: String
         ) -> void
 
         def to_hash: -> {
           address: Increase::Entity::NaturalPerson::Address,
           date_of_birth: Date,
-          identification: Increase::Entity::NaturalPerson::Identification,
+          identification: Increase::Entity::NaturalPerson::Identification?,
           name: String
         }
 
@@ -1044,7 +1044,7 @@ module Increase
           {
             address: Increase::Entity::Trust::Grantor::Address,
             date_of_birth: Date,
-            identification: Increase::Entity::Trust::Grantor::Identification,
+            identification: Increase::Entity::Trust::Grantor::Identification?,
             name: String
           }
 
@@ -1053,21 +1053,21 @@ module Increase
 
           attr_accessor date_of_birth: Date
 
-          attr_accessor identification: Increase::Entity::Trust::Grantor::Identification
+          attr_accessor identification: Increase::Entity::Trust::Grantor::Identification?
 
           attr_accessor name: String
 
           def initialize: (
             address: Increase::Entity::Trust::Grantor::Address,
             date_of_birth: Date,
-            identification: Increase::Entity::Trust::Grantor::Identification,
+            identification: Increase::Entity::Trust::Grantor::Identification?,
             name: String
           ) -> void
 
           def to_hash: -> {
             address: Increase::Entity::Trust::Grantor::Address,
             date_of_birth: Date,
-            identification: Increase::Entity::Trust::Grantor::Identification,
+            identification: Increase::Entity::Trust::Grantor::Identification?,
             name: String
           }
 
@@ -1189,7 +1189,7 @@ module Increase
             {
               address: Increase::Entity::Trust::Trustee::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::Trust::Trustee::Individual::Identification,
+              identification: Increase::Entity::Trust::Trustee::Individual::Identification?,
               name: String
             }
 
@@ -1198,21 +1198,21 @@ module Increase
 
             attr_accessor date_of_birth: Date
 
-            attr_accessor identification: Increase::Entity::Trust::Trustee::Individual::Identification
+            attr_accessor identification: Increase::Entity::Trust::Trustee::Individual::Identification?
 
             attr_accessor name: String
 
             def initialize: (
               address: Increase::Entity::Trust::Trustee::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::Trust::Trustee::Individual::Identification,
+              identification: Increase::Entity::Trust::Trustee::Individual::Identification?,
               name: String
             ) -> void
 
             def to_hash: -> {
               address: Increase::Entity::Trust::Trustee::Individual::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::Trust::Trustee::Individual::Identification,
+              identification: Increase::Entity::Trust::Trustee::Individual::Identification?,
               name: String
             }
 

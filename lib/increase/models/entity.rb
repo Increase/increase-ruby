@@ -359,9 +359,10 @@ module Increase
             # @!attribute identification
             #   A means of verifying the person's identity.
             #
-            #   @return [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification]
+            #   @return [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification, nil]
             required :identification,
-                     -> { Increase::Entity::Corporation::BeneficialOwner::Individual::Identification }
+                     -> { Increase::Entity::Corporation::BeneficialOwner::Individual::Identification },
+                     nil?: true
 
             # @!attribute name
             #   The person's legal name.
@@ -376,7 +377,7 @@ module Increase
             #
             #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
             #
-            #   @param identification [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification] A means of verifying the person's identity.
+            #   @param identification [Increase::Models::Entity::Corporation::BeneficialOwner::Individual::Identification, nil] A means of verifying the person's identity.
             #
             #   @param name [String] The person's legal name.
 
@@ -741,8 +742,8 @@ module Increase
           # @!attribute identification
           #   A means of verifying the person's identity.
           #
-          #   @return [Increase::Models::Entity::Joint::Individual::Identification]
-          required :identification, -> { Increase::Entity::Joint::Individual::Identification }
+          #   @return [Increase::Models::Entity::Joint::Individual::Identification, nil]
+          required :identification, -> { Increase::Entity::Joint::Individual::Identification }, nil?: true
 
           # @!attribute name
           #   The person's legal name.
@@ -755,7 +756,7 @@ module Increase
           #
           #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
           #
-          #   @param identification [Increase::Models::Entity::Joint::Individual::Identification] A means of verifying the person's identity.
+          #   @param identification [Increase::Models::Entity::Joint::Individual::Identification, nil] A means of verifying the person's identity.
           #
           #   @param name [String] The person's legal name.
 
@@ -889,8 +890,8 @@ module Increase
         # @!attribute identification
         #   A means of verifying the person's identity.
         #
-        #   @return [Increase::Models::Entity::NaturalPerson::Identification]
-        required :identification, -> { Increase::Entity::NaturalPerson::Identification }
+        #   @return [Increase::Models::Entity::NaturalPerson::Identification, nil]
+        required :identification, -> { Increase::Entity::NaturalPerson::Identification }, nil?: true
 
         # @!attribute name
         #   The person's legal name.
@@ -906,7 +907,7 @@ module Increase
         #
         #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
         #
-        #   @param identification [Increase::Models::Entity::NaturalPerson::Identification] A means of verifying the person's identity.
+        #   @param identification [Increase::Models::Entity::NaturalPerson::Identification, nil] A means of verifying the person's identity.
         #
         #   @param name [String] The person's legal name.
 
@@ -1357,8 +1358,8 @@ module Increase
           # @!attribute identification
           #   A means of verifying the person's identity.
           #
-          #   @return [Increase::Models::Entity::Trust::Grantor::Identification]
-          required :identification, -> { Increase::Entity::Trust::Grantor::Identification }
+          #   @return [Increase::Models::Entity::Trust::Grantor::Identification, nil]
+          required :identification, -> { Increase::Entity::Trust::Grantor::Identification }, nil?: true
 
           # @!attribute name
           #   The person's legal name.
@@ -1373,7 +1374,7 @@ module Increase
           #
           #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
           #
-          #   @param identification [Increase::Models::Entity::Trust::Grantor::Identification] A means of verifying the person's identity.
+          #   @param identification [Increase::Models::Entity::Trust::Grantor::Identification, nil] A means of verifying the person's identity.
           #
           #   @param name [String] The person's legal name.
 
@@ -1528,8 +1529,12 @@ module Increase
             # @!attribute identification
             #   A means of verifying the person's identity.
             #
-            #   @return [Increase::Models::Entity::Trust::Trustee::Individual::Identification]
-            required :identification, -> { Increase::Entity::Trust::Trustee::Individual::Identification }
+            #   @return [Increase::Models::Entity::Trust::Trustee::Individual::Identification, nil]
+            required :identification,
+                     -> {
+                       Increase::Entity::Trust::Trustee::Individual::Identification
+                     },
+                     nil?: true
 
             # @!attribute name
             #   The person's legal name.
@@ -1545,7 +1550,7 @@ module Increase
             #
             #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
             #
-            #   @param identification [Increase::Models::Entity::Trust::Trustee::Individual::Identification] A means of verifying the person's identity.
+            #   @param identification [Increase::Models::Entity::Trust::Trustee::Individual::Identification, nil] A means of verifying the person's identity.
             #
             #   @param name [String] The person's legal name.
 
