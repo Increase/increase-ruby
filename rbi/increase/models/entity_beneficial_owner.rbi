@@ -139,14 +139,20 @@ module Increase
 
         # A means of verifying the person's identity.
         sig do
-          returns(Increase::EntityBeneficialOwner::Individual::Identification)
+          returns(
+            T.nilable(
+              Increase::EntityBeneficialOwner::Individual::Identification
+            )
+          )
         end
         attr_reader :identification
 
         sig do
           params(
             identification:
-              Increase::EntityBeneficialOwner::Individual::Identification::OrHash
+              T.nilable(
+                Increase::EntityBeneficialOwner::Individual::Identification::OrHash
+              )
           ).void
         end
         attr_writer :identification
@@ -162,7 +168,9 @@ module Increase
               Increase::EntityBeneficialOwner::Individual::Address::OrHash,
             date_of_birth: Date,
             identification:
-              Increase::EntityBeneficialOwner::Individual::Identification::OrHash,
+              T.nilable(
+                Increase::EntityBeneficialOwner::Individual::Identification::OrHash
+              ),
             name: String
           ).returns(T.attached_class)
         end
@@ -184,7 +192,9 @@ module Increase
               address: Increase::EntityBeneficialOwner::Individual::Address,
               date_of_birth: Date,
               identification:
-                Increase::EntityBeneficialOwner::Individual::Identification,
+                T.nilable(
+                  Increase::EntityBeneficialOwner::Individual::Identification
+                ),
               name: String
             }
           )

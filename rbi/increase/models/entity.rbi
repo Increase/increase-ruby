@@ -562,7 +562,9 @@ module Increase
             # A means of verifying the person's identity.
             sig do
               returns(
-                Increase::Entity::Corporation::BeneficialOwner::Individual::Identification
+                T.nilable(
+                  Increase::Entity::Corporation::BeneficialOwner::Individual::Identification
+                )
               )
             end
             attr_reader :identification
@@ -570,7 +572,9 @@ module Increase
             sig do
               params(
                 identification:
-                  Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::OrHash
+                  T.nilable(
+                    Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::OrHash
+                  )
               ).void
             end
             attr_writer :identification
@@ -586,7 +590,9 @@ module Increase
                   Increase::Entity::Corporation::BeneficialOwner::Individual::Address::OrHash,
                 date_of_birth: Date,
                 identification:
-                  Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::OrHash,
+                  T.nilable(
+                    Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::OrHash
+                  ),
                 name: String
               ).returns(T.attached_class)
             end
@@ -609,7 +615,9 @@ module Increase
                     Increase::Entity::Corporation::BeneficialOwner::Individual::Address,
                   date_of_birth: Date,
                   identification:
-                    Increase::Entity::Corporation::BeneficialOwner::Individual::Identification,
+                    T.nilable(
+                      Increase::Entity::Corporation::BeneficialOwner::Individual::Identification
+                    ),
                   name: String
                 }
               )
@@ -1260,13 +1268,19 @@ module Increase
           attr_accessor :date_of_birth
 
           # A means of verifying the person's identity.
-          sig { returns(Increase::Entity::Joint::Individual::Identification) }
+          sig do
+            returns(
+              T.nilable(Increase::Entity::Joint::Individual::Identification)
+            )
+          end
           attr_reader :identification
 
           sig do
             params(
               identification:
-                Increase::Entity::Joint::Individual::Identification::OrHash
+                T.nilable(
+                  Increase::Entity::Joint::Individual::Identification::OrHash
+                )
             ).void
           end
           attr_writer :identification
@@ -1280,7 +1294,9 @@ module Increase
               address: Increase::Entity::Joint::Individual::Address::OrHash,
               date_of_birth: Date,
               identification:
-                Increase::Entity::Joint::Individual::Identification::OrHash,
+                T.nilable(
+                  Increase::Entity::Joint::Individual::Identification::OrHash
+                ),
               name: String
             ).returns(T.attached_class)
           end
@@ -1302,7 +1318,9 @@ module Increase
                 address: Increase::Entity::Joint::Individual::Address,
                 date_of_birth: Date,
                 identification:
-                  Increase::Entity::Joint::Individual::Identification,
+                  T.nilable(
+                    Increase::Entity::Joint::Individual::Identification
+                  ),
                 name: String
               }
             )
@@ -1521,13 +1539,15 @@ module Increase
         attr_accessor :date_of_birth
 
         # A means of verifying the person's identity.
-        sig { returns(Increase::Entity::NaturalPerson::Identification) }
+        sig do
+          returns(T.nilable(Increase::Entity::NaturalPerson::Identification))
+        end
         attr_reader :identification
 
         sig do
           params(
             identification:
-              Increase::Entity::NaturalPerson::Identification::OrHash
+              T.nilable(Increase::Entity::NaturalPerson::Identification::OrHash)
           ).void
         end
         attr_writer :identification
@@ -1543,7 +1563,9 @@ module Increase
             address: Increase::Entity::NaturalPerson::Address::OrHash,
             date_of_birth: Date,
             identification:
-              Increase::Entity::NaturalPerson::Identification::OrHash,
+              T.nilable(
+                Increase::Entity::NaturalPerson::Identification::OrHash
+              ),
             name: String
           ).returns(T.attached_class)
         end
@@ -1564,7 +1586,8 @@ module Increase
             {
               address: Increase::Entity::NaturalPerson::Address,
               date_of_birth: Date,
-              identification: Increase::Entity::NaturalPerson::Identification,
+              identification:
+                T.nilable(Increase::Entity::NaturalPerson::Identification),
               name: String
             }
           )
@@ -2272,13 +2295,17 @@ module Increase
           attr_accessor :date_of_birth
 
           # A means of verifying the person's identity.
-          sig { returns(Increase::Entity::Trust::Grantor::Identification) }
+          sig do
+            returns(T.nilable(Increase::Entity::Trust::Grantor::Identification))
+          end
           attr_reader :identification
 
           sig do
             params(
               identification:
-                Increase::Entity::Trust::Grantor::Identification::OrHash
+                T.nilable(
+                  Increase::Entity::Trust::Grantor::Identification::OrHash
+                )
             ).void
           end
           attr_writer :identification
@@ -2293,7 +2320,9 @@ module Increase
               address: Increase::Entity::Trust::Grantor::Address::OrHash,
               date_of_birth: Date,
               identification:
-                Increase::Entity::Trust::Grantor::Identification::OrHash,
+                T.nilable(
+                  Increase::Entity::Trust::Grantor::Identification::OrHash
+                ),
               name: String
             ).returns(T.attached_class)
           end
@@ -2315,7 +2344,7 @@ module Increase
                 address: Increase::Entity::Trust::Grantor::Address,
                 date_of_birth: Date,
                 identification:
-                  Increase::Entity::Trust::Grantor::Identification,
+                  T.nilable(Increase::Entity::Trust::Grantor::Identification),
                 name: String
               }
             )
@@ -2602,7 +2631,9 @@ module Increase
             # A means of verifying the person's identity.
             sig do
               returns(
-                Increase::Entity::Trust::Trustee::Individual::Identification
+                T.nilable(
+                  Increase::Entity::Trust::Trustee::Individual::Identification
+                )
               )
             end
             attr_reader :identification
@@ -2610,7 +2641,9 @@ module Increase
             sig do
               params(
                 identification:
-                  Increase::Entity::Trust::Trustee::Individual::Identification::OrHash
+                  T.nilable(
+                    Increase::Entity::Trust::Trustee::Individual::Identification::OrHash
+                  )
               ).void
             end
             attr_writer :identification
@@ -2627,7 +2660,9 @@ module Increase
                   Increase::Entity::Trust::Trustee::Individual::Address::OrHash,
                 date_of_birth: Date,
                 identification:
-                  Increase::Entity::Trust::Trustee::Individual::Identification::OrHash,
+                  T.nilable(
+                    Increase::Entity::Trust::Trustee::Individual::Identification::OrHash
+                  ),
                 name: String
               ).returns(T.attached_class)
             end
@@ -2650,7 +2685,9 @@ module Increase
                     Increase::Entity::Trust::Trustee::Individual::Address,
                   date_of_birth: Date,
                   identification:
-                    Increase::Entity::Trust::Trustee::Individual::Identification,
+                    T.nilable(
+                      Increase::Entity::Trust::Trustee::Individual::Identification
+                    ),
                   name: String
                 }
               )
