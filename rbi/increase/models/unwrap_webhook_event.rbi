@@ -258,6 +258,13 @@ module Increase
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 
+        # Occurs whenever a Card Purchase Supplement is created.
+        CARD_PURCHASE_SUPPLEMENT_CREATED =
+          T.let(
+            :"card_purchase_supplement.created",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
         # Occurs whenever a Card Profile is created.
         CARD_PROFILE_CREATED =
           T.let(

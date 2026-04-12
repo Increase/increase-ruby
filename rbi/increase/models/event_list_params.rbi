@@ -312,6 +312,13 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Card Purchase Supplement is created.
+          CARD_PURCHASE_SUPPLEMENT_CREATED =
+            T.let(
+              :"card_purchase_supplement.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Card Profile is created.
           CARD_PROFILE_CREATED =
             T.let(
