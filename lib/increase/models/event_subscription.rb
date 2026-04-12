@@ -176,6 +176,9 @@ module Increase
           # Occurs whenever a Card Payment is updated.
           CARD_PAYMENT_UPDATED = :"card_payment.updated"
 
+          # Occurs whenever a Card Purchase Supplement is created.
+          CARD_PURCHASE_SUPPLEMENT_CREATED = :"card_purchase_supplement.created"
+
           # Occurs whenever a Card Profile is created.
           CARD_PROFILE_CREATED = :"card_profile.created"
 
