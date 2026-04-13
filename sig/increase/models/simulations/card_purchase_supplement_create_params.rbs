@@ -1,0 +1,210 @@
+module Increase
+  module Models
+    module Simulations
+      type card_purchase_supplement_create_params =
+        {
+          transaction_id: String,
+          invoice: Increase::Simulations::CardPurchaseSupplementCreateParams::Invoice,
+          line_items: ::Array[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem]
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class CardPurchaseSupplementCreateParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor transaction_id: String
+
+        attr_reader invoice: Increase::Simulations::CardPurchaseSupplementCreateParams::Invoice?
+
+        def invoice=: (
+          Increase::Simulations::CardPurchaseSupplementCreateParams::Invoice
+        ) -> Increase::Simulations::CardPurchaseSupplementCreateParams::Invoice
+
+        attr_reader line_items: ::Array[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem]?
+
+        def line_items=: (
+          ::Array[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem]
+        ) -> ::Array[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem]
+
+        def initialize: (
+          transaction_id: String,
+          ?invoice: Increase::Simulations::CardPurchaseSupplementCreateParams::Invoice,
+          ?line_items: ::Array[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem],
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          transaction_id: String,
+          invoice: Increase::Simulations::CardPurchaseSupplementCreateParams::Invoice,
+          line_items: ::Array[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem],
+          request_options: Increase::RequestOptions
+        }
+
+        type invoice =
+          {
+            discount_amount: Integer,
+            duty_tax_amount: Integer,
+            order_date: Date,
+            shipping_amount: Integer,
+            shipping_destination_country_code: String,
+            shipping_destination_postal_code: String,
+            shipping_source_postal_code: String,
+            shipping_tax_amount: Integer,
+            shipping_tax_rate: String,
+            unique_value_added_tax_invoice_reference: String
+          }
+
+        class Invoice < Increase::Internal::Type::BaseModel
+          attr_reader discount_amount: Integer?
+
+          def discount_amount=: (Integer) -> Integer
+
+          attr_reader duty_tax_amount: Integer?
+
+          def duty_tax_amount=: (Integer) -> Integer
+
+          attr_reader order_date: Date?
+
+          def order_date=: (Date) -> Date
+
+          attr_reader shipping_amount: Integer?
+
+          def shipping_amount=: (Integer) -> Integer
+
+          attr_reader shipping_destination_country_code: String?
+
+          def shipping_destination_country_code=: (String) -> String
+
+          attr_reader shipping_destination_postal_code: String?
+
+          def shipping_destination_postal_code=: (String) -> String
+
+          attr_reader shipping_source_postal_code: String?
+
+          def shipping_source_postal_code=: (String) -> String
+
+          attr_reader shipping_tax_amount: Integer?
+
+          def shipping_tax_amount=: (Integer) -> Integer
+
+          attr_reader shipping_tax_rate: String?
+
+          def shipping_tax_rate=: (String) -> String
+
+          attr_reader unique_value_added_tax_invoice_reference: String?
+
+          def unique_value_added_tax_invoice_reference=: (String) -> String
+
+          def initialize: (
+            ?discount_amount: Integer,
+            ?duty_tax_amount: Integer,
+            ?order_date: Date,
+            ?shipping_amount: Integer,
+            ?shipping_destination_country_code: String,
+            ?shipping_destination_postal_code: String,
+            ?shipping_source_postal_code: String,
+            ?shipping_tax_amount: Integer,
+            ?shipping_tax_rate: String,
+            ?unique_value_added_tax_invoice_reference: String
+          ) -> void
+
+          def to_hash: -> {
+            discount_amount: Integer,
+            duty_tax_amount: Integer,
+            order_date: Date,
+            shipping_amount: Integer,
+            shipping_destination_country_code: String,
+            shipping_destination_postal_code: String,
+            shipping_source_postal_code: String,
+            shipping_tax_amount: Integer,
+            shipping_tax_rate: String,
+            unique_value_added_tax_invoice_reference: String
+          }
+        end
+
+        type line_item =
+          {
+            discount_amount: Integer,
+            item_commodity_code: String,
+            item_descriptor: String,
+            item_quantity: String,
+            product_code: String,
+            sales_tax_amount: Integer,
+            sales_tax_rate: String,
+            total_amount: Integer,
+            unit_cost: String,
+            unit_of_measure_code: String
+          }
+
+        class LineItem < Increase::Internal::Type::BaseModel
+          attr_reader discount_amount: Integer?
+
+          def discount_amount=: (Integer) -> Integer
+
+          attr_reader item_commodity_code: String?
+
+          def item_commodity_code=: (String) -> String
+
+          attr_reader item_descriptor: String?
+
+          def item_descriptor=: (String) -> String
+
+          attr_reader item_quantity: String?
+
+          def item_quantity=: (String) -> String
+
+          attr_reader product_code: String?
+
+          def product_code=: (String) -> String
+
+          attr_reader sales_tax_amount: Integer?
+
+          def sales_tax_amount=: (Integer) -> Integer
+
+          attr_reader sales_tax_rate: String?
+
+          def sales_tax_rate=: (String) -> String
+
+          attr_reader total_amount: Integer?
+
+          def total_amount=: (Integer) -> Integer
+
+          attr_reader unit_cost: String?
+
+          def unit_cost=: (String) -> String
+
+          attr_reader unit_of_measure_code: String?
+
+          def unit_of_measure_code=: (String) -> String
+
+          def initialize: (
+            ?discount_amount: Integer,
+            ?item_commodity_code: String,
+            ?item_descriptor: String,
+            ?item_quantity: String,
+            ?product_code: String,
+            ?sales_tax_amount: Integer,
+            ?sales_tax_rate: String,
+            ?total_amount: Integer,
+            ?unit_cost: String,
+            ?unit_of_measure_code: String
+          ) -> void
+
+          def to_hash: -> {
+            discount_amount: Integer,
+            item_commodity_code: String,
+            item_descriptor: String,
+            item_quantity: String,
+            product_code: String,
+            sales_tax_amount: Integer,
+            sales_tax_rate: String,
+            total_amount: Integer,
+            unit_cost: String,
+            unit_of_measure_code: String
+          }
+        end
+      end
+    end
+  end
+end
