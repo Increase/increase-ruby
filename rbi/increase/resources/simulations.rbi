@@ -35,6 +35,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::CardAuthentications) }
       attr_reader :card_authentications
 
+      sig { returns(Increase::Resources::Simulations::CardPurchaseSupplements) }
+      attr_reader :card_purchase_supplements
+
       sig { returns(Increase::Resources::Simulations::CardDisputes) }
       attr_reader :card_disputes
 
