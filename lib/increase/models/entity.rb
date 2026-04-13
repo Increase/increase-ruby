@@ -24,6 +24,13 @@ module Increase
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute creating_entity_onboarding_session_id
+      #   The identifier of the Entity Onboarding Session that was used to create this
+      #   Entity, if any.
+      #
+      #   @return [String, nil]
+      required :creating_entity_onboarding_session_id, String, nil?: true
+
       # @!attribute description
       #   The entity's description for display purposes.
       #
@@ -128,7 +135,7 @@ module Increase
       #   @return [Increase::Models::Entity::Validation, nil]
       required :validation, -> { Increase::Entity::Validation }, nil?: true
 
-      # @!method initialize(id:, corporation:, created_at:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
+      # @!method initialize(id:, corporation:, created_at:, creating_entity_onboarding_session_id:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Entity}
       #   for more details.
       #
@@ -141,6 +148,8 @@ module Increase
       #   @param corporation [Increase::Models::Entity::Corporation, nil] Details of the corporation entity. Will be present if `structure` is equal to `c
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Entity
+      #
+      #   @param creating_entity_onboarding_session_id [String, nil] The identifier of the Entity Onboarding Session that was used to create this Ent
       #
       #   @param description [String, nil] The entity's description for display purposes.
       #

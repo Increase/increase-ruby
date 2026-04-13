@@ -27,6 +27,11 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # The identifier of the Entity Onboarding Session that was used to create this
+      # Entity, if any.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :creating_entity_onboarding_session_id
+
       # The entity's description for display purposes.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -149,6 +154,7 @@ module Increase
           id: String,
           corporation: T.nilable(Increase::Entity::Corporation::OrHash),
           created_at: Time,
+          creating_entity_onboarding_session_id: T.nilable(String),
           description: T.nilable(String),
           details_confirmed_at: T.nilable(Time),
           government_authority:
@@ -178,6 +184,9 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Entity
         # was created.
         created_at:,
+        # The identifier of the Entity Onboarding Session that was used to create this
+        # Entity, if any.
+        creating_entity_onboarding_session_id:,
         # The entity's description for display purposes.
         description:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
@@ -230,6 +239,7 @@ module Increase
             id: String,
             corporation: T.nilable(Increase::Entity::Corporation),
             created_at: Time,
+            creating_entity_onboarding_session_id: T.nilable(String),
             description: T.nilable(String),
             details_confirmed_at: T.nilable(Time),
             government_authority:
