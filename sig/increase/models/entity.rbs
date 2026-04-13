@@ -5,6 +5,7 @@ module Increase
         id: String,
         corporation: Increase::Entity::Corporation?,
         created_at: Time,
+        creating_entity_onboarding_session_id: String?,
         description: String?,
         details_confirmed_at: Time?,
         government_authority: Increase::Entity::GovernmentAuthority?,
@@ -28,6 +29,8 @@ module Increase
       attr_accessor corporation: Increase::Entity::Corporation?
 
       attr_accessor created_at: Time
+
+      attr_accessor creating_entity_onboarding_session_id: String?
 
       attr_accessor description: String?
 
@@ -63,6 +66,7 @@ module Increase
         id: String,
         corporation: Increase::Entity::Corporation?,
         created_at: Time,
+        creating_entity_onboarding_session_id: String?,
         description: String?,
         details_confirmed_at: Time?,
         government_authority: Increase::Entity::GovernmentAuthority?,
@@ -84,6 +88,7 @@ module Increase
         id: String,
         corporation: Increase::Entity::Corporation?,
         created_at: Time,
+        creating_entity_onboarding_session_id: String?,
         description: String?,
         details_confirmed_at: Time?,
         government_authority: Increase::Entity::GovernmentAuthority?,
