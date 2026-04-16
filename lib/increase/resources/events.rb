@@ -28,7 +28,7 @@ module Increase
       #
       # List Events
       #
-      # @overload list(associated_object_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
+      # @overload list(associated_object_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, order_by: nil, request_options: {})
       #
       # @param associated_object_id [String] Filter Events to those belonging to the object with the provided identifier.
       #
@@ -39,6 +39,8 @@ module Increase
       # @param cursor [String] Return the page of entries after this one.
       #
       # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #
+      # @param order_by [Increase::Models::EventListParams::OrderBy]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -47,6 +47,12 @@ module Increase
       sig { params(limit: Integer).void }
       attr_writer :limit
 
+      sig { returns(T.nilable(Increase::EventListParams::OrderBy)) }
+      attr_reader :order_by
+
+      sig { params(order_by: Increase::EventListParams::OrderBy::OrHash).void }
+      attr_writer :order_by
+
       sig do
         params(
           associated_object_id: String,
@@ -54,6 +60,7 @@ module Increase
           created_at: Increase::EventListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
+          order_by: Increase::EventListParams::OrderBy::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -67,6 +74,7 @@ module Increase
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
+        order_by: nil,
         request_options: {}
       )
       end
@@ -79,6 +87,7 @@ module Increase
             created_at: Increase::EventListParams::CreatedAt,
             cursor: String,
             limit: Integer,
+            order_by: Increase::EventListParams::OrderBy,
             request_options: Increase::RequestOptions
           }
         )
@@ -995,6 +1004,133 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class OrderBy < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EventListParams::OrderBy,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The direction to order in.
+        sig do
+          returns(
+            T.nilable(Increase::EventListParams::OrderBy::Direction::OrSymbol)
+          )
+        end
+        attr_reader :direction
+
+        sig do
+          params(
+            direction: Increase::EventListParams::OrderBy::Direction::OrSymbol
+          ).void
+        end
+        attr_writer :direction
+
+        # The field to order by.
+        sig do
+          returns(
+            T.nilable(Increase::EventListParams::OrderBy::Field::OrSymbol)
+          )
+        end
+        attr_reader :field
+
+        sig do
+          params(
+            field: Increase::EventListParams::OrderBy::Field::OrSymbol
+          ).void
+        end
+        attr_writer :field
+
+        sig do
+          params(
+            direction: Increase::EventListParams::OrderBy::Direction::OrSymbol,
+            field: Increase::EventListParams::OrderBy::Field::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The direction to order in.
+          direction: nil,
+          # The field to order by.
+          field: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              direction:
+                Increase::EventListParams::OrderBy::Direction::OrSymbol,
+              field: Increase::EventListParams::OrderBy::Field::OrSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The direction to order in.
+        module Direction
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::EventListParams::OrderBy::Direction)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # Ascending in value.
+          ASCENDING =
+            T.let(
+              :ascending,
+              Increase::EventListParams::OrderBy::Direction::TaggedSymbol
+            )
+
+          # Descending in value.
+          DESCENDING =
+            T.let(
+              :descending,
+              Increase::EventListParams::OrderBy::Direction::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::EventListParams::OrderBy::Direction::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The field to order by.
+        module Field
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::EventListParams::OrderBy::Field)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The time the Event was created.
+          CREATED_AT =
+            T.let(
+              :created_at,
+              Increase::EventListParams::OrderBy::Field::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[Increase::EventListParams::OrderBy::Field::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

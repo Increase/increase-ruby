@@ -25,6 +25,7 @@ module Increase
           created_at: Increase::EventListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
+          order_by: Increase::EventListParams::OrderBy::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Internal::Page[Increase::Event])
       end
@@ -38,6 +39,7 @@ module Increase
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
+        order_by: nil,
         request_options: {}
       )
       end
