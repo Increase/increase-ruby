@@ -160,7 +160,15 @@ module Increase
       #   @return [Symbol, Increase::Models::WireTransfer::Type]
       required :type, enum: -> { Increase::WireTransfer::Type }
 
-      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, cancellation:, created_at:, created_by:, creditor:, currency:, debtor:, external_account_id:, idempotency_key:, inbound_wire_drawdown_request_id:, network:, pending_transaction_id:, remittance:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:)
+      # @!attribute unique_end_to_end_transaction_reference
+      #   The unique end-to-end transaction reference
+      #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #   of the transfer.
+      #
+      #   @return [String, nil]
+      required :unique_end_to_end_transaction_reference, String, nil?: true
+
+      # @!method initialize(id:, account_id:, account_number:, amount:, approval:, cancellation:, created_at:, created_by:, creditor:, currency:, debtor:, external_account_id:, idempotency_key:, inbound_wire_drawdown_request_id:, network:, pending_transaction_id:, remittance:, reversal:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireTransfer} for more details.
       #
@@ -214,6 +222,8 @@ module Increase
       #   @param transaction_id [String, nil] The ID for the transaction funding the transfer.
       #
       #   @param type [Symbol, Increase::Models::WireTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param unique_end_to_end_transaction_reference [String, nil] The unique end-to-end transaction reference ([UETR](https://www.swift.com/paymen
 
       # @see Increase::Models::WireTransfer#approval
       class Approval < Increase::Internal::Type::BaseModel

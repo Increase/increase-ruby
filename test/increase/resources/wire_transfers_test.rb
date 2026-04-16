@@ -41,7 +41,8 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
         status: Increase::WireTransfer::Status,
         submission: Increase::WireTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::WireTransfer::Type
+        type: Increase::WireTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil
       }
     end
   end
@@ -78,7 +79,8 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
         status: Increase::WireTransfer::Status,
         submission: Increase::WireTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::WireTransfer::Type
+        type: Increase::WireTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil
       }
     end
   end
@@ -122,7 +124,8 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
         status: Increase::WireTransfer::Status,
         submission: Increase::WireTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::WireTransfer::Type
+        type: Increase::WireTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil
       }
     end
   end
@@ -159,7 +162,8 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
         status: Increase::WireTransfer::Status,
         submission: Increase::WireTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::WireTransfer::Type
+        type: Increase::WireTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil
       }
     end
   end
@@ -196,7 +200,8 @@ class Increase::Test::Resources::WireTransfersTest < Increase::Test::ResourceTes
         status: Increase::WireTransfer::Status,
         submission: Increase::WireTransfer::Submission | nil,
         transaction_id: String | nil,
-        type: Increase::WireTransfer::Type
+        type: Increase::WireTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil
       }
     end
   end

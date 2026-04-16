@@ -25,7 +25,8 @@ module Increase
         status: Increase::Models::WireTransfer::status,
         submission: Increase::WireTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::Models::WireTransfer::type_
+        type: Increase::Models::WireTransfer::type_,
+        unique_end_to_end_transaction_reference: String?
       }
 
     class WireTransfer < Increase::Internal::Type::BaseModel
@@ -77,6 +78,8 @@ module Increase
 
       attr_accessor type: Increase::Models::WireTransfer::type_
 
+      attr_accessor unique_end_to_end_transaction_reference: String?
+
       def initialize: (
         id: String,
         account_id: String,
@@ -101,7 +104,8 @@ module Increase
         status: Increase::Models::WireTransfer::status,
         submission: Increase::WireTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::Models::WireTransfer::type_
+        type: Increase::Models::WireTransfer::type_,
+        unique_end_to_end_transaction_reference: String?
       ) -> void
 
       def to_hash: -> {
@@ -128,7 +132,8 @@ module Increase
         status: Increase::Models::WireTransfer::status,
         submission: Increase::WireTransfer::Submission?,
         transaction_id: String?,
-        type: Increase::Models::WireTransfer::type_
+        type: Increase::Models::WireTransfer::type_,
+        unique_end_to_end_transaction_reference: String?
       }
 
       type approval = { approved_at: Time, approved_by: String? }
