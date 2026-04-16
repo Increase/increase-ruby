@@ -170,6 +170,12 @@ module Increase
       sig { returns(Increase::WireTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The unique end-to-end transaction reference
+      # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      # of the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unique_end_to_end_transaction_reference
+
       # Wire transfers move funds between your Increase account and any other account
       # accessible by Fedwire.
       sig do
@@ -197,7 +203,8 @@ module Increase
           status: Increase::WireTransfer::Status::OrSymbol,
           submission: T.nilable(Increase::WireTransfer::Submission::OrHash),
           transaction_id: T.nilable(String),
-          type: Increase::WireTransfer::Type::OrSymbol
+          type: Increase::WireTransfer::Type::OrSymbol,
+          unique_end_to_end_transaction_reference: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -260,7 +267,11 @@ module Increase
         transaction_id:,
         # A constant representing the object's type. For this resource it will always be
         # `wire_transfer`.
-        type:
+        type:,
+        # The unique end-to-end transaction reference
+        # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        # of the transfer.
+        unique_end_to_end_transaction_reference:
       )
       end
 
@@ -290,7 +301,8 @@ module Increase
             status: Increase::WireTransfer::Status::TaggedSymbol,
             submission: T.nilable(Increase::WireTransfer::Submission),
             transaction_id: T.nilable(String),
-            type: Increase::WireTransfer::Type::TaggedSymbol
+            type: Increase::WireTransfer::Type::TaggedSymbol,
+            unique_end_to_end_transaction_reference: T.nilable(String)
           }
         )
       end
