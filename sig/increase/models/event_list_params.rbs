@@ -6,7 +6,8 @@ module Increase
         category: Increase::EventListParams::Category,
         created_at: Increase::EventListParams::CreatedAt,
         cursor: String,
-        limit: Integer
+        limit: Integer,
+        order_by: Increase::EventListParams::OrderBy
       }
       & Increase::Internal::Type::request_parameters
 
@@ -38,12 +39,19 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
+      attr_reader order_by: Increase::EventListParams::OrderBy?
+
+      def order_by=: (
+        Increase::EventListParams::OrderBy
+      ) -> Increase::EventListParams::OrderBy
+
       def initialize: (
         ?associated_object_id: String,
         ?category: Increase::EventListParams::Category,
         ?created_at: Increase::EventListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
+        ?order_by: Increase::EventListParams::OrderBy,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -53,6 +61,7 @@ module Increase
         created_at: Increase::EventListParams::CreatedAt,
         cursor: String,
         limit: Integer,
+        order_by: Increase::EventListParams::OrderBy,
         request_options: Increase::RequestOptions
       }
 
@@ -556,6 +565,61 @@ module Increase
           on_or_after: Time,
           on_or_before: Time
         }
+      end
+
+      type order_by =
+        {
+          direction: Increase::Models::EventListParams::OrderBy::direction,
+          field: Increase::Models::EventListParams::OrderBy::field
+        }
+
+      class OrderBy < Increase::Internal::Type::BaseModel
+        attr_reader direction: Increase::Models::EventListParams::OrderBy::direction?
+
+        def direction=: (
+          Increase::Models::EventListParams::OrderBy::direction
+        ) -> Increase::Models::EventListParams::OrderBy::direction
+
+        attr_reader field: Increase::Models::EventListParams::OrderBy::field?
+
+        def field=: (
+          Increase::Models::EventListParams::OrderBy::field
+        ) -> Increase::Models::EventListParams::OrderBy::field
+
+        def initialize: (
+          ?direction: Increase::Models::EventListParams::OrderBy::direction,
+          ?field: Increase::Models::EventListParams::OrderBy::field
+        ) -> void
+
+        def to_hash: -> {
+          direction: Increase::Models::EventListParams::OrderBy::direction,
+          field: Increase::Models::EventListParams::OrderBy::field
+        }
+
+        type direction = :ascending | :descending
+
+        module Direction
+          extend Increase::Internal::Type::Enum
+
+          # Ascending in value.
+          ASCENDING: :ascending
+
+          # Descending in value.
+          DESCENDING: :descending
+
+          def self?.values: -> ::Array[Increase::Models::EventListParams::OrderBy::direction]
+        end
+
+        type field = :created_at
+
+        module Field
+          extend Increase::Internal::Type::Enum
+
+          # The time the Event was created.
+          CREATED_AT: :created_at
+
+          def self?.values: -> ::Array[Increase::Models::EventListParams::OrderBy::field]
+        end
       end
     end
   end

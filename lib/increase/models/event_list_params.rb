@@ -36,7 +36,12 @@ module Increase
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!method initialize(associated_object_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
+      # @!attribute order_by
+      #
+      #   @return [Increase::Models::EventListParams::OrderBy, nil]
+      optional :order_by, -> { Increase::EventListParams::OrderBy }
+
+      # @!method initialize(associated_object_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, order_by: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EventListParams} for more details.
       #
@@ -49,6 +54,8 @@ module Increase
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #
+      #   @param order_by [Increase::Models::EventListParams::OrderBy]
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -449,6 +456,54 @@ module Increase
         #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
         #
         #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+      end
+
+      class OrderBy < Increase::Internal::Type::BaseModel
+        # @!attribute direction
+        #   The direction to order in.
+        #
+        #   @return [Symbol, Increase::Models::EventListParams::OrderBy::Direction, nil]
+        optional :direction, enum: -> { Increase::EventListParams::OrderBy::Direction }
+
+        # @!attribute field
+        #   The field to order by.
+        #
+        #   @return [Symbol, Increase::Models::EventListParams::OrderBy::Field, nil]
+        optional :field, enum: -> { Increase::EventListParams::OrderBy::Field }
+
+        # @!method initialize(direction: nil, field: nil)
+        #   @param direction [Symbol, Increase::Models::EventListParams::OrderBy::Direction] The direction to order in.
+        #
+        #   @param field [Symbol, Increase::Models::EventListParams::OrderBy::Field] The field to order by.
+
+        # The direction to order in.
+        #
+        # @see Increase::Models::EventListParams::OrderBy#direction
+        module Direction
+          extend Increase::Internal::Type::Enum
+
+          # Ascending in value.
+          ASCENDING = :ascending
+
+          # Descending in value.
+          DESCENDING = :descending
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The field to order by.
+        #
+        # @see Increase::Models::EventListParams::OrderBy#field
+        module Field
+          extend Increase::Internal::Type::Enum
+
+          # The time the Event was created.
+          CREATED_AT = :created_at
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

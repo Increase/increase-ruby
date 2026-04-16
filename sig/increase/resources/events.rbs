@@ -12,6 +12,7 @@ module Increase
         ?created_at: Increase::EventListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
+        ?order_by: Increase::EventListParams::OrderBy,
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::Event]
 
