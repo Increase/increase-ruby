@@ -98,10 +98,10 @@ module Increase
       #   Some parameter documentations has been truncated, see {Increase::Models::Card}
       #   for more details.
       #
-      #   Cards may operate on credit, debit or prepaid BINs. They’ll immediately work for
-      #   online purchases after you create them. All cards work on a good funds model,
-      #   and maintain a maximum limit of 100% of the Account’s available balance at the
-      #   time of transaction. Funds are deducted from the Account upon transaction
+      #   Cards may operate on credit, debit, or prepaid BINs. They’ll immediately work
+      #   for online purchases after you create them. All cards work on a good funds
+      #   model, and maintain a maximum limit of 100% of the Account’s available balance
+      #   at the time of transaction. Funds are deducted from the Account upon transaction
       #   settlement.
       #
       #   @param id [String] The card identifier.
