@@ -743,6 +743,12 @@ module Increase
           #   @return [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category]
           required :category, enum: -> { Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category }
 
+          # @!attribute country
+          #   The ISO 3166-1 alpha-2 country code for the country where the event took place.
+          #
+          #   @return [String]
+          required :country, String
+
           # @!attribute created_at
           #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           #   the tracking event took place.
@@ -756,12 +762,14 @@ module Increase
           #   @return [String]
           required :postal_code, String
 
-          # @!method initialize(category:, created_at:, postal_code:)
+          # @!method initialize(category:, country:, created_at:, postal_code:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate} for more
           #   details.
           #
           #   @param category [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category] The type of tracking event.
+          #
+          #   @param country [String] The ISO 3166-1 alpha-2 country code for the country where the event took place.
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
           #
