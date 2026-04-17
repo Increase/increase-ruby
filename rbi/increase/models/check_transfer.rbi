@@ -1215,6 +1215,10 @@ module Increase
           end
           attr_accessor :category
 
+          # The ISO 3166-1 alpha-2 country code for the country where the event took place.
+          sig { returns(String) }
+          attr_accessor :country
+
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the tracking event took place.
           sig { returns(Time) }
@@ -1228,6 +1232,7 @@ module Increase
             params(
               category:
                 Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::OrSymbol,
+              country: String,
               created_at: Time,
               postal_code: String
             ).returns(T.attached_class)
@@ -1235,6 +1240,8 @@ module Increase
           def self.new(
             # The type of tracking event.
             category:,
+            # The ISO 3166-1 alpha-2 country code for the country where the event took place.
+            country:,
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             # the tracking event took place.
             created_at:,
@@ -1248,6 +1255,7 @@ module Increase
               {
                 category:
                   Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol,
+                country: String,
                 created_at: Time,
                 postal_code: String
               }
