@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class BeneficialOwners
-      # Create a beneficial owner
+      # Create a Beneficial Owner
       sig do
         params(
           entity_id: String,

@@ -6,7 +6,7 @@ module Increase
       # Some parameter documentations has been truncated, see
       # {Increase::Models::BeneficialOwnerCreateParams} for more details.
       #
-      # Create a beneficial owner
+      # Create a Beneficial Owner
       #
       # @overload create(entity_id:, individual:, prongs:, company_title: nil, request_options: {})
       #
