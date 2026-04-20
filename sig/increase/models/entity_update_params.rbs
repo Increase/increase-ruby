@@ -8,6 +8,7 @@ module Increase
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
+        terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         trust: Increase::EntityUpdateParams::Trust
       }
@@ -47,6 +48,12 @@ module Increase
         Increase::EntityUpdateParams::RiskRating
       ) -> Increase::EntityUpdateParams::RiskRating
 
+      attr_reader terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement]?
+
+      def terms_agreements=: (
+        ::Array[Increase::EntityUpdateParams::TermsAgreement]
+      ) -> ::Array[Increase::EntityUpdateParams::TermsAgreement]
+
       attr_reader third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification?
 
       def third_party_verification=: (
@@ -66,6 +73,7 @@ module Increase
         ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
         ?risk_rating: Increase::EntityUpdateParams::RiskRating,
+        ?terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         ?trust: Increase::EntityUpdateParams::Trust,
         ?request_options: Increase::request_opts
@@ -78,6 +86,7 @@ module Increase
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
+        terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         trust: Increase::EntityUpdateParams::Trust,
         request_options: Increase::RequestOptions
@@ -600,6 +609,29 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::RiskRating::rating]
         end
+      end
+
+      type terms_agreement =
+        { agreed_at: Time, ip_address: String, terms_url: String }
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        attr_accessor agreed_at: Time
+
+        attr_accessor ip_address: String
+
+        attr_accessor terms_url: String
+
+        def initialize: (
+          agreed_at: Time,
+          ip_address: String,
+          terms_url: String
+        ) -> void
+
+        def to_hash: -> {
+          agreed_at: Time,
+          ip_address: String,
+          terms_url: String
+        }
       end
 
       type third_party_verification =

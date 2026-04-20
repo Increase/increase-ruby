@@ -73,7 +73,7 @@ module Increase
       #
       # Update an Entity
       #
-      # @overload update(entity_id, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload update(entity_id, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param entity_id [String] The entity identifier.
       #
@@ -86,6 +86,8 @@ module Increase
       # @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update. If you specify this parameter an
       #
       # @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
+      #
+      # @param terms_agreements [Array<Increase::Models::EntityUpdateParams::TermsAgreement>] New terms that the Entity agreed to. Not all programs are required to submit thi
       #
       # @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
       #
