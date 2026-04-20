@@ -68,8 +68,7 @@ module Increase
         end
         attr_accessor :action
 
-        # The identifier of the Account to deposit the check into. If not provided, the
-        # check will be deposited into the Account associated with the Lockbox.
+        # The identifier of the Account to deposit the check into.
         sig { returns(T.nilable(String)) }
         attr_reader :account_id
 
@@ -86,8 +85,7 @@ module Increase
         def self.new(
           # The action to perform on the Inbound Mail Item.
           action:,
-          # The identifier of the Account to deposit the check into. If not provided, the
-          # check will be deposited into the Account associated with the Lockbox.
+          # The identifier of the Account to deposit the check into.
           account_id: nil
         )
         end
