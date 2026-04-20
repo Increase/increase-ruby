@@ -75,6 +75,23 @@ module Increase
       end
       attr_writer :risk_rating
 
+      # New terms that the Entity agreed to. Not all programs are required to submit
+      # this data. This will not archive previously submitted terms.
+      sig do
+        returns(
+          T.nilable(T::Array[Increase::EntityUpdateParams::TermsAgreement])
+        )
+      end
+      attr_reader :terms_agreements
+
+      sig do
+        params(
+          terms_agreements:
+            T::Array[Increase::EntityUpdateParams::TermsAgreement::OrHash]
+        ).void
+      end
+      attr_writer :terms_agreements
+
       # If you are using a third-party service for identity verification, you can use
       # this field to associate this Entity with the identifier that represents them in
       # that service.
@@ -108,6 +125,8 @@ module Increase
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
+          terms_agreements:
+            T::Array[Increase::EntityUpdateParams::TermsAgreement::OrHash],
           third_party_verification:
             Increase::EntityUpdateParams::ThirdPartyVerification::OrHash,
           trust: Increase::EntityUpdateParams::Trust::OrHash,
@@ -133,6 +152,9 @@ module Increase
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
+        # New terms that the Entity agreed to. Not all programs are required to submit
+        # this data. This will not archive previously submitted terms.
+        terms_agreements: nil,
         # If you are using a third-party service for identity verification, you can use
         # this field to associate this Entity with the identifier that represents them in
         # that service.
@@ -154,6 +176,8 @@ module Increase
               Increase::EntityUpdateParams::GovernmentAuthority,
             natural_person: Increase::EntityUpdateParams::NaturalPerson,
             risk_rating: Increase::EntityUpdateParams::RiskRating,
+            terms_agreements:
+              T::Array[Increase::EntityUpdateParams::TermsAgreement],
             third_party_verification:
               Increase::EntityUpdateParams::ThirdPartyVerification,
             trust: Increase::EntityUpdateParams::Trust,
@@ -1282,6 +1306,53 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateParams::TermsAgreement,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The timestamp of when the Entity agreed to the terms.
+        sig { returns(Time) }
+        attr_accessor :agreed_at
+
+        # The IP address the Entity accessed reviewed the terms from.
+        sig { returns(String) }
+        attr_accessor :ip_address
+
+        # The URL of the terms agreement. This link will be provided by your bank partner.
+        sig { returns(String) }
+        attr_accessor :terms_url
+
+        sig do
+          params(
+            agreed_at: Time,
+            ip_address: String,
+            terms_url: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The timestamp of when the Entity agreed to the terms.
+          agreed_at:,
+          # The IP address the Entity accessed reviewed the terms from.
+          ip_address:,
+          # The URL of the terms agreement. This link will be provided by your bank partner.
+          terms_url:
+        )
+        end
+
+        sig do
+          override.returns(
+            { agreed_at: Time, ip_address: String, terms_url: String }
+          )
+        end
+        def to_hash
         end
       end
 

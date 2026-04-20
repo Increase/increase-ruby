@@ -49,6 +49,14 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::RiskRating, nil]
       optional :risk_rating, -> { Increase::EntityUpdateParams::RiskRating }
 
+      # @!attribute terms_agreements
+      #   New terms that the Entity agreed to. Not all programs are required to submit
+      #   this data. This will not archive previously submitted terms.
+      #
+      #   @return [Array<Increase::Models::EntityUpdateParams::TermsAgreement>, nil]
+      optional :terms_agreements,
+               -> { Increase::Internal::Type::ArrayOf[Increase::EntityUpdateParams::TermsAgreement] }
+
       # @!attribute third_party_verification
       #   If you are using a third-party service for identity verification, you can use
       #   this field to associate this Entity with the identifier that represents them in
@@ -64,7 +72,7 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::Trust, nil]
       optional :trust, -> { Increase::EntityUpdateParams::Trust }
 
-      # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::EntityUpdateParams} for more details.
       #
@@ -79,6 +87,8 @@ module Increase
       #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update. If you specify this parameter an
       #
       #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
+      #
+      #   @param terms_agreements [Array<Increase::Models::EntityUpdateParams::TermsAgreement>] New terms that the Entity agreed to. Not all programs are required to submit thi
       #
       #   @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
       #
@@ -683,6 +693,36 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      class TermsAgreement < Increase::Internal::Type::BaseModel
+        # @!attribute agreed_at
+        #   The timestamp of when the Entity agreed to the terms.
+        #
+        #   @return [Time]
+        required :agreed_at, Time
+
+        # @!attribute ip_address
+        #   The IP address the Entity accessed reviewed the terms from.
+        #
+        #   @return [String]
+        required :ip_address, String
+
+        # @!attribute terms_url
+        #   The URL of the terms agreement. This link will be provided by your bank partner.
+        #
+        #   @return [String]
+        required :terms_url, String
+
+        # @!method initialize(agreed_at:, ip_address:, terms_url:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::EntityUpdateParams::TermsAgreement} for more details.
+        #
+        #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
+        #
+        #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
+        #
+        #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
 
       class ThirdPartyVerification < Increase::Internal::Type::BaseModel
