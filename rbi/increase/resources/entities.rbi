@@ -88,6 +88,8 @@ module Increase
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
+          terms_agreements:
+            T::Array[Increase::EntityUpdateParams::TermsAgreement::OrHash],
           third_party_verification:
             Increase::EntityUpdateParams::ThirdPartyVerification::OrHash,
           trust: Increase::EntityUpdateParams::Trust::OrHash,
@@ -113,6 +115,9 @@ module Increase
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
+        # New terms that the Entity agreed to. Not all programs are required to submit
+        # this data. This will not archive previously submitted terms.
+        terms_agreements: nil,
         # If you are using a third-party service for identity verification, you can use
         # this field to associate this Entity with the identifier that represents them in
         # that service.
