@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.304.0 (2026-04-22)
+
+Full Changelog: [v1.303.0...v1.304.0](https://github.com/Increase/increase-ruby/compare/v1.303.0...v1.304.0)
+
+### Features
+
+* **api:** api update ([ee95745](https://github.com/Increase/increase-ruby/commit/ee95745eb726ad7c3c6d41acaf08e31eef7797cd))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([38fcf79](https://github.com/Increase/increase-ruby/commit/38fcf79f3af96bc20825171972ab1868bbce8948))
+
 ## 1.303.0 (2026-04-20)
 
 Full Changelog: [v1.302.0...v1.303.0](https://github.com/Increase/increase-ruby/compare/v1.302.0...v1.303.0)
