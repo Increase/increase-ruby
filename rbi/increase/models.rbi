@@ -80,39 +80,6 @@ module Increase
 
   BeneficialOwnerUpdateParams = Increase::Models::BeneficialOwnerUpdateParams
 
-  BookkeepingAccount = Increase::Models::BookkeepingAccount
-
-  BookkeepingAccountBalanceParams =
-    Increase::Models::BookkeepingAccountBalanceParams
-
-  BookkeepingAccountCreateParams =
-    Increase::Models::BookkeepingAccountCreateParams
-
-  BookkeepingAccountListParams = Increase::Models::BookkeepingAccountListParams
-
-  BookkeepingAccountUpdateParams =
-    Increase::Models::BookkeepingAccountUpdateParams
-
-  BookkeepingBalanceLookup = Increase::Models::BookkeepingBalanceLookup
-
-  BookkeepingEntry = Increase::Models::BookkeepingEntry
-
-  BookkeepingEntryListParams = Increase::Models::BookkeepingEntryListParams
-
-  BookkeepingEntryRetrieveParams =
-    Increase::Models::BookkeepingEntryRetrieveParams
-
-  BookkeepingEntrySet = Increase::Models::BookkeepingEntrySet
-
-  BookkeepingEntrySetCreateParams =
-    Increase::Models::BookkeepingEntrySetCreateParams
-
-  BookkeepingEntrySetListParams =
-    Increase::Models::BookkeepingEntrySetListParams
-
-  BookkeepingEntrySetRetrieveParams =
-    Increase::Models::BookkeepingEntrySetRetrieveParams
-
   Card = Increase::Models::Card
 
   CardCreateDetailsIframeParams =

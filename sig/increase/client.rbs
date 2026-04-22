@@ -107,12 +107,6 @@ module Increase
 
     attr_reader real_time_decisions: Increase::Resources::RealTimeDecisions
 
-    attr_reader bookkeeping_accounts: Increase::Resources::BookkeepingAccounts
-
-    attr_reader bookkeeping_entry_sets: Increase::Resources::BookkeepingEntrySets
-
-    attr_reader bookkeeping_entries: Increase::Resources::BookkeepingEntries
-
     attr_reader groups: Increase::Resources::Groups
 
     attr_reader oauth_applications: Increase::Resources::OAuthApplications
