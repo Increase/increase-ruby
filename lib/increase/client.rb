@@ -161,15 +161,6 @@ module Increase
     # @return [Increase::Resources::RealTimeDecisions]
     attr_reader :real_time_decisions
 
-    # @return [Increase::Resources::BookkeepingAccounts]
-    attr_reader :bookkeeping_accounts
-
-    # @return [Increase::Resources::BookkeepingEntrySets]
-    attr_reader :bookkeeping_entry_sets
-
-    # @return [Increase::Resources::BookkeepingEntries]
-    attr_reader :bookkeeping_entries
-
     # @return [Increase::Resources::Groups]
     attr_reader :groups
 
@@ -315,9 +306,6 @@ module Increase
       @events = Increase::Resources::Events.new(client: self)
       @event_subscriptions = Increase::Resources::EventSubscriptions.new(client: self)
       @real_time_decisions = Increase::Resources::RealTimeDecisions.new(client: self)
-      @bookkeeping_accounts = Increase::Resources::BookkeepingAccounts.new(client: self)
-      @bookkeeping_entry_sets = Increase::Resources::BookkeepingEntrySets.new(client: self)
-      @bookkeeping_entries = Increase::Resources::BookkeepingEntries.new(client: self)
       @groups = Increase::Resources::Groups.new(client: self)
       @oauth_applications = Increase::Resources::OAuthApplications.new(client: self)
       @oauth_connections = Increase::Resources::OAuthConnections.new(client: self)

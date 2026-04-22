@@ -160,15 +160,6 @@ module Increase
     sig { returns(Increase::Resources::RealTimeDecisions) }
     attr_reader :real_time_decisions
 
-    sig { returns(Increase::Resources::BookkeepingAccounts) }
-    attr_reader :bookkeeping_accounts
-
-    sig { returns(Increase::Resources::BookkeepingEntrySets) }
-    attr_reader :bookkeeping_entry_sets
-
-    sig { returns(Increase::Resources::BookkeepingEntries) }
-    attr_reader :bookkeeping_entries
-
     sig { returns(Increase::Resources::Groups) }
     attr_reader :groups
 
