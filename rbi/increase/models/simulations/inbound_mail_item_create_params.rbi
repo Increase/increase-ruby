@@ -19,10 +19,6 @@ module Increase
         sig { returns(Integer) }
         attr_accessor :amount
 
-        # The identifier of the Lockbox to simulate inbound mail to.
-        sig { returns(String) }
-        attr_accessor :lockbox_id
-
         # The file containing the PDF contents. If not present, a default check image file
         # will be used.
         sig { returns(T.nilable(String)) }
@@ -31,22 +27,39 @@ module Increase
         sig { params(contents_file_id: String).void }
         attr_writer :contents_file_id
 
+        # The identifier of the Lockbox Address to simulate inbound mail to.
+        sig { returns(T.nilable(String)) }
+        attr_reader :lockbox_address_id
+
+        sig { params(lockbox_address_id: String).void }
+        attr_writer :lockbox_address_id
+
+        # The identifier of the Lockbox Recipient to simulate inbound mail to.
+        sig { returns(T.nilable(String)) }
+        attr_reader :lockbox_recipient_id
+
+        sig { params(lockbox_recipient_id: String).void }
+        attr_writer :lockbox_recipient_id
+
         sig do
           params(
             amount: Integer,
-            lockbox_id: String,
             contents_file_id: String,
+            lockbox_address_id: String,
+            lockbox_recipient_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           # The amount of the check to be simulated, in cents.
           amount:,
-          # The identifier of the Lockbox to simulate inbound mail to.
-          lockbox_id:,
           # The file containing the PDF contents. If not present, a default check image file
           # will be used.
           contents_file_id: nil,
+          # The identifier of the Lockbox Address to simulate inbound mail to.
+          lockbox_address_id: nil,
+          # The identifier of the Lockbox Recipient to simulate inbound mail to.
+          lockbox_recipient_id: nil,
           request_options: {}
         )
         end
@@ -55,8 +68,9 @@ module Increase
           override.returns(
             {
               amount: Integer,
-              lockbox_id: String,
               contents_file_id: String,
+              lockbox_address_id: String,
+              lockbox_recipient_id: String,
               request_options: Increase::RequestOptions
             }
           )

@@ -33,7 +33,7 @@ class Increase::Test::Resources::CheckDepositsTest < Increase::Test::ResourceTes
         idempotency_key: String | nil,
         inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold | nil,
         inbound_mail_item_id: String | nil,
-        lockbox_id: String | nil,
+        lockbox_recipient_id: String | nil,
         status: Increase::CheckDeposit::Status,
         transaction_id: String | nil,
         type: Increase::CheckDeposit::Type
@@ -65,7 +65,7 @@ class Increase::Test::Resources::CheckDepositsTest < Increase::Test::ResourceTes
         idempotency_key: String | nil,
         inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold | nil,
         inbound_mail_item_id: String | nil,
-        lockbox_id: String | nil,
+        lockbox_recipient_id: String | nil,
         status: Increase::CheckDeposit::Status,
         transaction_id: String | nil,
         type: Increase::CheckDeposit::Type
@@ -104,7 +104,7 @@ class Increase::Test::Resources::CheckDepositsTest < Increase::Test::ResourceTes
         idempotency_key: String | nil,
         inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold | nil,
         inbound_mail_item_id: String | nil,
-        lockbox_id: String | nil,
+        lockbox_recipient_id: String | nil,
         status: Increase::CheckDeposit::Status,
         transaction_id: String | nil,
         type: Increase::CheckDeposit::Type

@@ -1,0 +1,66 @@
+module Increase
+  module Models
+    type lockbox_recipient_update_params =
+      {
+        lockbox_recipient_id: String,
+        description: String,
+        recipient_name: String,
+        status: Increase::Models::LockboxRecipientUpdateParams::status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class LockboxRecipientUpdateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor lockbox_recipient_id: String
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader recipient_name: String?
+
+      def recipient_name=: (String) -> String
+
+      attr_reader status: Increase::Models::LockboxRecipientUpdateParams::status?
+
+      def status=: (
+        Increase::Models::LockboxRecipientUpdateParams::status
+      ) -> Increase::Models::LockboxRecipientUpdateParams::status
+
+      def initialize: (
+        lockbox_recipient_id: String,
+        ?description: String,
+        ?recipient_name: String,
+        ?status: Increase::Models::LockboxRecipientUpdateParams::status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        lockbox_recipient_id: String,
+        description: String,
+        recipient_name: String,
+        status: Increase::Models::LockboxRecipientUpdateParams::status,
+        request_options: Increase::RequestOptions
+      }
+
+      type status = :active | :disabled | :canceled
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # This Lockbox Recipient is active.
+        ACTIVE: :active
+
+        # This Lockbox Recipient is disabled. Checks mailed to this Lockbox Recipient will be rejected.
+        DISABLED: :disabled
+
+        # This Lockbox Recipient is canceled and cannot be modified. Checks mailed to this Lockbox Recipient will be rejected.
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Increase::Models::LockboxRecipientUpdateParams::status]
+      end
+    end
+  end
+end

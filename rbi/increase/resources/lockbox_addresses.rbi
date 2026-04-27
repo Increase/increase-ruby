@@ -2,79 +2,66 @@
 
 module Increase
   module Resources
-    class Lockboxes
-      # Create a Lockbox
+    class LockboxAddresses
+      # Create a Lockbox Address
       sig do
         params(
-          account_id: String,
           description: String,
-          recipient_name: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Lockbox)
+        ).returns(Increase::LockboxAddress)
       end
       def create(
-        # The Account checks sent to this Lockbox should be deposited into.
-        account_id:,
-        # The description you choose for the Lockbox, for display purposes.
+        # The description you choose for the Lockbox Address.
         description: nil,
-        # The name of the recipient that will receive mail at this location.
-        recipient_name: nil,
         request_options: {}
       )
       end
 
-      # Retrieve a Lockbox
+      # Retrieve a Lockbox Address
       sig do
         params(
-          lockbox_id: String,
+          lockbox_address_id: String,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Lockbox)
+        ).returns(Increase::LockboxAddress)
       end
       def retrieve(
-        # The identifier of the Lockbox to retrieve.
-        lockbox_id,
+        # The identifier of the Lockbox Address to retrieve.
+        lockbox_address_id,
         request_options: {}
       )
       end
 
-      # Update a Lockbox
+      # Update a Lockbox Address
       sig do
         params(
-          lockbox_id: String,
-          check_deposit_behavior:
-            Increase::LockboxUpdateParams::CheckDepositBehavior::OrSymbol,
+          lockbox_address_id: String,
           description: String,
-          recipient_name: String,
+          status: Increase::LockboxAddressUpdateParams::Status::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Lockbox)
+        ).returns(Increase::LockboxAddress)
       end
       def update(
-        # The identifier of the Lockbox.
-        lockbox_id,
-        # This indicates if checks mailed to this lockbox will be deposited.
-        check_deposit_behavior: nil,
-        # The description you choose for the Lockbox.
+        # The identifier of the Lockbox Address.
+        lockbox_address_id,
+        # The description you choose for the Lockbox Address.
         description: nil,
-        # The recipient name you choose for the Lockbox.
-        recipient_name: nil,
+        # The status of the Lockbox Address.
+        status: nil,
         request_options: {}
       )
       end
 
-      # List Lockboxes
+      # List Lockbox Addresses
       sig do
         params(
-          account_id: String,
-          created_at: Increase::LockboxListParams::CreatedAt::OrHash,
+          created_at: Increase::LockboxAddressListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
           limit: Integer,
           request_options: Increase::RequestOptions::OrHash
-        ).returns(Increase::Internal::Page[Increase::Lockbox])
+        ).returns(Increase::Internal::Page[Increase::LockboxAddress])
       end
       def list(
-        # Filter Lockboxes to those associated with the provided Account.
-        account_id: nil,
         created_at: nil,
         # Return the page of entries after this one.
         cursor: nil,

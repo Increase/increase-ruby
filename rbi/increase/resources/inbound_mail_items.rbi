@@ -23,7 +23,8 @@ module Increase
           created_at: Increase::InboundMailItemListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
-          lockbox_id: String,
+          lockbox_address_id: String,
+          lockbox_recipient_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Internal::Page[Increase::InboundMailItem])
       end
@@ -34,8 +35,10 @@ module Increase
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
-        # Filter Inbound Mail Items to ones sent to the provided Lockbox.
-        lockbox_id: nil,
+        # Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
+        lockbox_address_id: nil,
+        # Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
+        lockbox_recipient_id: nil,
         request_options: {}
       )
       end

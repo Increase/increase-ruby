@@ -2,24 +2,21 @@
 
 module Increase
   module Models
-    class InboundMailItemListParams < Increase::Internal::Type::BaseModel
+    class LockboxAddressListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(
-            Increase::InboundMailItemListParams,
-            Increase::Internal::AnyHash
-          )
+          T.any(Increase::LockboxAddressListParams, Increase::Internal::AnyHash)
         end
 
-      sig { returns(T.nilable(Increase::InboundMailItemListParams::CreatedAt)) }
+      sig { returns(T.nilable(Increase::LockboxAddressListParams::CreatedAt)) }
       attr_reader :created_at
 
       sig do
         params(
-          created_at: Increase::InboundMailItemListParams::CreatedAt::OrHash
+          created_at: Increase::LockboxAddressListParams::CreatedAt::OrHash
         ).void
       end
       attr_writer :created_at
@@ -31,6 +28,16 @@ module Increase
       sig { params(cursor: String).void }
       attr_writer :cursor
 
+      # Filter records to the one with the specified `idempotency_key` you chose for
+      # that object. This value is unique across Increase and is used to ensure that a
+      # request is only processed once. Learn more about
+      # [idempotency](https://increase.com/documentation/idempotency-keys).
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
+
       # Limit the size of the list that is returned. The default (and maximum) is 100
       # objects.
       sig { returns(T.nilable(Integer)) }
@@ -39,27 +46,12 @@ module Increase
       sig { params(limit: Integer).void }
       attr_writer :limit
 
-      # Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
-      sig { returns(T.nilable(String)) }
-      attr_reader :lockbox_address_id
-
-      sig { params(lockbox_address_id: String).void }
-      attr_writer :lockbox_address_id
-
-      # Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
-      sig { returns(T.nilable(String)) }
-      attr_reader :lockbox_recipient_id
-
-      sig { params(lockbox_recipient_id: String).void }
-      attr_writer :lockbox_recipient_id
-
       sig do
         params(
-          created_at: Increase::InboundMailItemListParams::CreatedAt::OrHash,
+          created_at: Increase::LockboxAddressListParams::CreatedAt::OrHash,
           cursor: String,
+          idempotency_key: String,
           limit: Integer,
-          lockbox_address_id: String,
-          lockbox_recipient_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -67,13 +59,14 @@ module Increase
         created_at: nil,
         # Return the page of entries after this one.
         cursor: nil,
+        # Filter records to the one with the specified `idempotency_key` you chose for
+        # that object. This value is unique across Increase and is used to ensure that a
+        # request is only processed once. Learn more about
+        # [idempotency](https://increase.com/documentation/idempotency-keys).
+        idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
-        # Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
-        lockbox_address_id: nil,
-        # Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
-        lockbox_recipient_id: nil,
         request_options: {}
       )
       end
@@ -81,11 +74,10 @@ module Increase
       sig do
         override.returns(
           {
-            created_at: Increase::InboundMailItemListParams::CreatedAt,
+            created_at: Increase::LockboxAddressListParams::CreatedAt,
             cursor: String,
+            idempotency_key: String,
             limit: Integer,
-            lockbox_address_id: String,
-            lockbox_recipient_id: String,
             request_options: Increase::RequestOptions
           }
         )
@@ -97,7 +89,7 @@ module Increase
         OrHash =
           T.type_alias do
             T.any(
-              Increase::InboundMailItemListParams::CreatedAt,
+              Increase::LockboxAddressListParams::CreatedAt,
               Increase::Internal::AnyHash
             )
           end

@@ -112,8 +112,11 @@ module Increase
     sig { returns(Increase::Resources::CheckDeposits) }
     attr_reader :check_deposits
 
-    sig { returns(Increase::Resources::Lockboxes) }
-    attr_reader :lockboxes
+    sig { returns(Increase::Resources::LockboxAddresses) }
+    attr_reader :lockbox_addresses
+
+    sig { returns(Increase::Resources::LockboxRecipients) }
+    attr_reader :lockbox_recipients
 
     sig { returns(Increase::Resources::InboundMailItems) }
     attr_reader :inbound_mail_items

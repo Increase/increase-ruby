@@ -17,7 +17,7 @@ module Increase
         idempotency_key: String?,
         inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold?,
         inbound_mail_item_id: String?,
-        lockbox_id: String?,
+        lockbox_recipient_id: String?,
         status: Increase::Models::CheckDeposit::status,
         transaction_id: String?,
         type: Increase::Models::CheckDeposit::type_
@@ -54,7 +54,7 @@ module Increase
 
       attr_accessor inbound_mail_item_id: String?
 
-      attr_accessor lockbox_id: String?
+      attr_accessor lockbox_recipient_id: String?
 
       attr_accessor status: Increase::Models::CheckDeposit::status
 
@@ -78,7 +78,7 @@ module Increase
         idempotency_key: String?,
         inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold?,
         inbound_mail_item_id: String?,
-        lockbox_id: String?,
+        lockbox_recipient_id: String?,
         status: Increase::Models::CheckDeposit::status,
         transaction_id: String?,
         type: Increase::Models::CheckDeposit::type_
@@ -100,7 +100,7 @@ module Increase
         idempotency_key: String?,
         inbound_funds_hold: Increase::CheckDeposit::InboundFundsHold?,
         inbound_mail_item_id: String?,
-        lockbox_id: String?,
+        lockbox_recipient_id: String?,
         status: Increase::Models::CheckDeposit::status,
         transaction_id: String?,
         type: Increase::Models::CheckDeposit::type_
