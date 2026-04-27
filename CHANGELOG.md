@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.306.0 (2026-04-27)
+
+Full Changelog: [v1.305.0...v1.306.0](https://github.com/Increase/increase-ruby/compare/v1.305.0...v1.306.0)
+
+### Features
+
+* support setting headers via env ([eddd2c7](https://github.com/Increase/increase-ruby/commit/eddd2c71aea09fa892b0c2e4c2a49c8033bb8871))
+
 ## 1.305.0 (2026-04-27)
 
 Full Changelog: [v1.304.0...v1.305.0](https://github.com/Increase/increase-ruby/compare/v1.304.0...v1.305.0)
