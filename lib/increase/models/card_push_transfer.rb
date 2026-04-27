@@ -1309,6 +1309,9 @@ module Increase
         # Mastercard and Maestro
         MASTERCARD = :mastercard
 
+        # Pulse
+        PULSE = :pulse
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

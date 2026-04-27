@@ -1482,6 +1482,9 @@ module Increase
         MASTERCARD =
           T.let(:mastercard, Increase::CardValidation::Route::TaggedSymbol)
 
+        # Pulse
+        PULSE = T.let(:pulse, Increase::CardValidation::Route::TaggedSymbol)
+
         sig do
           override.returns(
             T::Array[Increase::CardValidation::Route::TaggedSymbol]

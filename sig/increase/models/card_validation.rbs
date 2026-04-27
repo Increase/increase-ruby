@@ -655,7 +655,7 @@ module Increase
         end
       end
 
-      type route = :visa | :mastercard
+      type route = :visa | :mastercard | :pulse
 
       module Route
         extend Increase::Internal::Type::Enum
@@ -665,6 +665,9 @@ module Increase
 
         # Mastercard and Maestro
         MASTERCARD: :mastercard
+
+        # Pulse
+        PULSE: :pulse
 
         def self?.values: -> ::Array[Increase::Models::CardValidation::route]
       end

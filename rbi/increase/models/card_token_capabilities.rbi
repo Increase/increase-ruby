@@ -218,6 +218,13 @@ module Increase
               Increase::CardTokenCapabilities::Route::Route::TaggedSymbol
             )
 
+          # Pulse
+          PULSE =
+            T.let(
+              :pulse,
+              Increase::CardTokenCapabilities::Route::Route::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

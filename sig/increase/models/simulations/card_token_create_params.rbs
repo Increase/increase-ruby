@@ -118,7 +118,7 @@ module Increase
             def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Capability::domestic_push_transfers]
           end
 
-          type route = :visa | :mastercard
+          type route = :visa | :mastercard | :pulse
 
           module Route
             extend Increase::Internal::Type::Enum
@@ -128,6 +128,9 @@ module Increase
 
             # Mastercard and Maestro
             MASTERCARD: :mastercard
+
+            # Pulse
+            PULSE: :pulse
 
             def self?.values: -> ::Array[Increase::Models::Simulations::CardTokenCreateParams::Capability::route]
           end
