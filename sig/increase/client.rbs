@@ -75,7 +75,9 @@ module Increase
 
     attr_reader check_deposits: Increase::Resources::CheckDeposits
 
-    attr_reader lockboxes: Increase::Resources::Lockboxes
+    attr_reader lockbox_addresses: Increase::Resources::LockboxAddresses
+
+    attr_reader lockbox_recipients: Increase::Resources::LockboxRecipients
 
     attr_reader inbound_mail_items: Increase::Resources::InboundMailItems
 

@@ -1,0 +1,59 @@
+module Increase
+  module Models
+    type lockbox_address_update_params =
+      {
+        lockbox_address_id: String,
+        description: String,
+        status: Increase::Models::LockboxAddressUpdateParams::status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class LockboxAddressUpdateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor lockbox_address_id: String
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader status: Increase::Models::LockboxAddressUpdateParams::status?
+
+      def status=: (
+        Increase::Models::LockboxAddressUpdateParams::status
+      ) -> Increase::Models::LockboxAddressUpdateParams::status
+
+      def initialize: (
+        lockbox_address_id: String,
+        ?description: String,
+        ?status: Increase::Models::LockboxAddressUpdateParams::status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        lockbox_address_id: String,
+        description: String,
+        status: Increase::Models::LockboxAddressUpdateParams::status,
+        request_options: Increase::RequestOptions
+      }
+
+      type status = :active | :disabled | :canceled
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # This Lockbox Address is active.
+        ACTIVE: :active
+
+        # This Lockbox Address is disabled.
+        DISABLED: :disabled
+
+        # This Lockbox Address is permanently disabled.
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Increase::Models::LockboxAddressUpdateParams::status]
+      end
+    end
+  end
+end

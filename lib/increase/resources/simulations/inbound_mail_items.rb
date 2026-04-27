@@ -10,13 +10,15 @@ module Increase
         # Simulates an inbound mail item to your account, as if someone had mailed a
         # physical check to one of your account's Lockboxes.
         #
-        # @overload create(amount:, lockbox_id:, contents_file_id: nil, request_options: {})
+        # @overload create(amount:, contents_file_id: nil, lockbox_address_id: nil, lockbox_recipient_id: nil, request_options: {})
         #
         # @param amount [Integer] The amount of the check to be simulated, in cents.
         #
-        # @param lockbox_id [String] The identifier of the Lockbox to simulate inbound mail to.
-        #
         # @param contents_file_id [String] The file containing the PDF contents. If not present, a default check image file
+        #
+        # @param lockbox_address_id [String] The identifier of the Lockbox Address to simulate inbound mail to.
+        #
+        # @param lockbox_recipient_id [String] The identifier of the Lockbox Recipient to simulate inbound mail to.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

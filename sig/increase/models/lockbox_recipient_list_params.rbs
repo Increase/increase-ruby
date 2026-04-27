@@ -1,16 +1,17 @@
 module Increase
   module Models
-    type lockbox_list_params =
+    type lockbox_recipient_list_params =
       {
         account_id: String,
-        created_at: Increase::LockboxListParams::CreatedAt,
+        created_at: Increase::LockboxRecipientListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
-        limit: Integer
+        limit: Integer,
+        lockbox_address_id: String
       }
       & Increase::Internal::Type::request_parameters
 
-    class LockboxListParams < Increase::Internal::Type::BaseModel
+    class LockboxRecipientListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
@@ -18,11 +19,11 @@ module Increase
 
       def account_id=: (String) -> String
 
-      attr_reader created_at: Increase::LockboxListParams::CreatedAt?
+      attr_reader created_at: Increase::LockboxRecipientListParams::CreatedAt?
 
       def created_at=: (
-        Increase::LockboxListParams::CreatedAt
-      ) -> Increase::LockboxListParams::CreatedAt
+        Increase::LockboxRecipientListParams::CreatedAt
+      ) -> Increase::LockboxRecipientListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -36,21 +37,27 @@ module Increase
 
       def limit=: (Integer) -> Integer
 
+      attr_reader lockbox_address_id: String?
+
+      def lockbox_address_id=: (String) -> String
+
       def initialize: (
         ?account_id: String,
-        ?created_at: Increase::LockboxListParams::CreatedAt,
+        ?created_at: Increase::LockboxRecipientListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
+        ?lockbox_address_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
         account_id: String,
-        created_at: Increase::LockboxListParams::CreatedAt,
+        created_at: Increase::LockboxRecipientListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
         limit: Integer,
+        lockbox_address_id: String,
         request_options: Increase::RequestOptions
       }
 

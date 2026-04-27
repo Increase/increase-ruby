@@ -4,8 +4,9 @@ module Increase
       class InboundMailItems
         def create: (
           amount: Integer,
-          lockbox_id: String,
           ?contents_file_id: String,
+          ?lockbox_address_id: String,
+          ?lockbox_recipient_id: String,
           ?request_options: Increase::request_opts
         ) -> Increase::InboundMailItem
 

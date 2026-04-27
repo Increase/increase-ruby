@@ -29,12 +29,18 @@ module Increase
       #   @return [String]
       required :file_id, String
 
-      # @!attribute lockbox_id
-      #   The identifier for the Lockbox that received this mail item. For mail items that
-      #   could not be processed due to an invalid address, this will be null.
+      # @!attribute lockbox_address_id
+      #   The identifier for the Lockbox Address that received this mail item.
       #
       #   @return [String, nil]
-      required :lockbox_id, String, nil?: true
+      required :lockbox_address_id, String, nil?: true
+
+      # @!attribute lockbox_recipient_id
+      #   The identifier for the Lockbox Recipient that received this mail item. For mail
+      #   items that could not be routed to a Lockbox Recipient, this will be null.
+      #
+      #   @return [String, nil]
+      required :lockbox_recipient_id, String, nil?: true
 
       # @!attribute recipient_name
       #   The recipient name as written on the mail item.
@@ -61,11 +67,12 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundMailItem::Type]
       required :type, enum: -> { Increase::InboundMailItem::Type }
 
-      # @!method initialize(id:, checks:, created_at:, file_id:, lockbox_id:, recipient_name:, rejection_reason:, status:, type:)
+      # @!method initialize(id:, checks:, created_at:, file_id:, lockbox_address_id:, lockbox_recipient_id:, recipient_name:, rejection_reason:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundMailItem} for more details.
       #
-      #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox.
+      #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox
+      #   Address.
       #
       #   @param id [String] The Inbound Mail Item identifier.
       #
@@ -75,7 +82,9 @@ module Increase
       #
       #   @param file_id [String] The identifier for the File containing the scanned contents of the mail item.
       #
-      #   @param lockbox_id [String, nil] The identifier for the Lockbox that received this mail item. For mail items that
+      #   @param lockbox_address_id [String, nil] The identifier for the Lockbox Address that received this mail item.
+      #
+      #   @param lockbox_recipient_id [String, nil] The identifier for the Lockbox Recipient that received this mail item. For mail
       #
       #   @param recipient_name [String, nil] The recipient name as written on the mail item.
       #
@@ -163,6 +172,12 @@ module Increase
 
         # The Lockbox or its associated Account is not active.
         LOCKBOX_NOT_ACTIVE = :lockbox_not_active
+
+        # The Lockbox Address is not active.
+        LOCKBOX_ADDRESS_NOT_ACTIVE = :lockbox_address_not_active
+
+        # The Lockbox Recipient or its associated Account is not active.
+        LOCKBOX_RECIPIENT_NOT_ACTIVE = :lockbox_recipient_not_active
 
         # @!method self.values
         #   @return [Array<Symbol>]

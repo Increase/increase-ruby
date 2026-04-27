@@ -1,0 +1,24 @@
+module Increase
+  module Models
+    type lockbox_recipient_retrieve_params =
+      { lockbox_recipient_id: String }
+      & Increase::Internal::Type::request_parameters
+
+    class LockboxRecipientRetrieveParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor lockbox_recipient_id: String
+
+      def initialize: (
+        lockbox_recipient_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        lockbox_recipient_id: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

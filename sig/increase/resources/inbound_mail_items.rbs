@@ -10,7 +10,8 @@ module Increase
         ?created_at: Increase::InboundMailItemListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
-        ?lockbox_id: String,
+        ?lockbox_address_id: String,
+        ?lockbox_recipient_id: String,
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::InboundMailItem]
 

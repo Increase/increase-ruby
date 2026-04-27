@@ -1,56 +1,49 @@
 module Increase
   module Models
-    type inbound_mail_item_list_params =
+    type lockbox_address_list_params =
       {
-        created_at: Increase::InboundMailItemListParams::CreatedAt,
+        created_at: Increase::LockboxAddressListParams::CreatedAt,
         cursor: String,
-        limit: Integer,
-        lockbox_address_id: String,
-        lockbox_recipient_id: String
+        idempotency_key: String,
+        limit: Integer
       }
       & Increase::Internal::Type::request_parameters
 
-    class InboundMailItemListParams < Increase::Internal::Type::BaseModel
+    class LockboxAddressListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_reader created_at: Increase::InboundMailItemListParams::CreatedAt?
+      attr_reader created_at: Increase::LockboxAddressListParams::CreatedAt?
 
       def created_at=: (
-        Increase::InboundMailItemListParams::CreatedAt
-      ) -> Increase::InboundMailItemListParams::CreatedAt
+        Increase::LockboxAddressListParams::CreatedAt
+      ) -> Increase::LockboxAddressListParams::CreatedAt
 
       attr_reader cursor: String?
 
       def cursor=: (String) -> String
 
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
       attr_reader limit: Integer?
 
       def limit=: (Integer) -> Integer
 
-      attr_reader lockbox_address_id: String?
-
-      def lockbox_address_id=: (String) -> String
-
-      attr_reader lockbox_recipient_id: String?
-
-      def lockbox_recipient_id=: (String) -> String
-
       def initialize: (
-        ?created_at: Increase::InboundMailItemListParams::CreatedAt,
+        ?created_at: Increase::LockboxAddressListParams::CreatedAt,
         ?cursor: String,
+        ?idempotency_key: String,
         ?limit: Integer,
-        ?lockbox_address_id: String,
-        ?lockbox_recipient_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
-        created_at: Increase::InboundMailItemListParams::CreatedAt,
+        created_at: Increase::LockboxAddressListParams::CreatedAt,
         cursor: String,
+        idempotency_key: String,
         limit: Integer,
-        lockbox_address_id: String,
-        lockbox_recipient_id: String,
         request_options: Increase::RequestOptions
       }
 

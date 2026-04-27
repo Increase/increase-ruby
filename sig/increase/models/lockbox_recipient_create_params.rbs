@@ -1,14 +1,21 @@
 module Increase
   module Models
-    type lockbox_create_params =
-      { account_id: String, description: String, recipient_name: String }
+    type lockbox_recipient_create_params =
+      {
+        account_id: String,
+        lockbox_address_id: String,
+        description: String,
+        recipient_name: String
+      }
       & Increase::Internal::Type::request_parameters
 
-    class LockboxCreateParams < Increase::Internal::Type::BaseModel
+    class LockboxRecipientCreateParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       attr_accessor account_id: String
+
+      attr_accessor lockbox_address_id: String
 
       attr_reader description: String?
 
@@ -20,6 +27,7 @@ module Increase
 
       def initialize: (
         account_id: String,
+        lockbox_address_id: String,
         ?description: String,
         ?recipient_name: String,
         ?request_options: Increase::request_opts
@@ -27,6 +35,7 @@ module Increase
 
       def to_hash: -> {
         account_id: String,
+        lockbox_address_id: String,
         description: String,
         recipient_name: String,
         request_options: Increase::RequestOptions

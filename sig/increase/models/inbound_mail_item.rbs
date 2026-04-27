@@ -6,7 +6,8 @@ module Increase
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
-        lockbox_id: String?,
+        lockbox_address_id: String?,
+        lockbox_recipient_id: String?,
         recipient_name: String?,
         rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
         status: Increase::Models::InboundMailItem::status,
@@ -22,7 +23,9 @@ module Increase
 
       attr_accessor file_id: String
 
-      attr_accessor lockbox_id: String?
+      attr_accessor lockbox_address_id: String?
+
+      attr_accessor lockbox_recipient_id: String?
 
       attr_accessor recipient_name: String?
 
@@ -37,7 +40,8 @@ module Increase
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
-        lockbox_id: String?,
+        lockbox_address_id: String?,
+        lockbox_recipient_id: String?,
         recipient_name: String?,
         rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
         status: Increase::Models::InboundMailItem::status,
@@ -49,7 +53,8 @@ module Increase
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
-        lockbox_id: String?,
+        lockbox_address_id: String?,
+        lockbox_recipient_id: String?,
         recipient_name: String?,
         rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
         status: Increase::Models::InboundMailItem::status,
@@ -111,7 +116,11 @@ module Increase
       end
 
       type rejection_reason =
-        :no_matching_lockbox | :no_check | :lockbox_not_active
+        :no_matching_lockbox
+        | :no_check
+        | :lockbox_not_active
+        | :lockbox_address_not_active
+        | :lockbox_recipient_not_active
 
       module RejectionReason
         extend Increase::Internal::Type::Enum
@@ -124,6 +133,12 @@ module Increase
 
         # The Lockbox or its associated Account is not active.
         LOCKBOX_NOT_ACTIVE: :lockbox_not_active
+
+        # The Lockbox Address is not active.
+        LOCKBOX_ADDRESS_NOT_ACTIVE: :lockbox_address_not_active
+
+        # The Lockbox Recipient or its associated Account is not active.
+        LOCKBOX_RECIPIENT_NOT_ACTIVE: :lockbox_recipient_not_active
 
         def self?.values: -> ::Array[Increase::Models::InboundMailItem::rejection_reason]
       end

@@ -2,7 +2,12 @@ module Increase
   module Models
     module Simulations
       type inbound_mail_item_create_params =
-        { amount: Integer, lockbox_id: String, contents_file_id: String }
+        {
+          amount: Integer,
+          contents_file_id: String,
+          lockbox_address_id: String,
+          lockbox_recipient_id: String
+        }
         & Increase::Internal::Type::request_parameters
 
       class InboundMailItemCreateParams < Increase::Internal::Type::BaseModel
@@ -11,23 +16,31 @@ module Increase
 
         attr_accessor amount: Integer
 
-        attr_accessor lockbox_id: String
-
         attr_reader contents_file_id: String?
 
         def contents_file_id=: (String) -> String
 
+        attr_reader lockbox_address_id: String?
+
+        def lockbox_address_id=: (String) -> String
+
+        attr_reader lockbox_recipient_id: String?
+
+        def lockbox_recipient_id=: (String) -> String
+
         def initialize: (
           amount: Integer,
-          lockbox_id: String,
           ?contents_file_id: String,
+          ?lockbox_address_id: String,
+          ?lockbox_recipient_id: String,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
           amount: Integer,
-          lockbox_id: String,
           contents_file_id: String,
+          lockbox_address_id: String,
+          lockbox_recipient_id: String,
           request_options: Increase::RequestOptions
         }
       end

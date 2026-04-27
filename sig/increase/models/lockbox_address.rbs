@@ -1,0 +1,117 @@
+module Increase
+  module Models
+    type lockbox_address =
+      {
+        id: String,
+        address: Increase::LockboxAddress::Address?,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        status: Increase::Models::LockboxAddress::status,
+        type: Increase::Models::LockboxAddress::type_
+      }
+
+    class LockboxAddress < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor address: Increase::LockboxAddress::Address?
+
+      attr_accessor created_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor status: Increase::Models::LockboxAddress::status
+
+      attr_accessor type: Increase::Models::LockboxAddress::type_
+
+      def initialize: (
+        id: String,
+        address: Increase::LockboxAddress::Address?,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        status: Increase::Models::LockboxAddress::status,
+        type: Increase::Models::LockboxAddress::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        address: Increase::LockboxAddress::Address?,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        status: Increase::Models::LockboxAddress::status,
+        type: Increase::Models::LockboxAddress::type_
+      }
+
+      type address =
+        {
+          city: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          state: String
+        }
+
+      class Address < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor line1: String
+
+        attr_accessor line2: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        def initialize: (
+          city: String,
+          line1: String,
+          line2: String,
+          postal_code: String,
+          state: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          :line2 => String,
+          postal_code: String,
+          state: String
+        }
+      end
+
+      type status = :pending | :active | :disabled | :canceled
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # Increase is generating this Lockbox Address.
+        PENDING: :pending
+
+        # This Lockbox Address is active.
+        ACTIVE: :active
+
+        # This Lockbox Address is disabled.
+        DISABLED: :disabled
+
+        # This Lockbox Address is permanently disabled.
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Increase::Models::LockboxAddress::status]
+      end
+
+      type type_ = :lockbox_address
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        LOCKBOX_ADDRESS: :lockbox_address
+
+        def self?.values: -> ::Array[Increase::Models::LockboxAddress::type_]
+      end
+    end
+  end
+end

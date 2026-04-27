@@ -1,0 +1,92 @@
+module Increase
+  module Models
+    type lockbox_recipient =
+      {
+        id: String,
+        account_id: String,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        lockbox_address_id: String,
+        mail_stop_code: String,
+        recipient_name: String?,
+        status: Increase::Models::LockboxRecipient::status?,
+        type: Increase::Models::LockboxRecipient::type_
+      }
+
+    class LockboxRecipient < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor lockbox_address_id: String
+
+      attr_accessor mail_stop_code: String
+
+      attr_accessor recipient_name: String?
+
+      attr_accessor status: Increase::Models::LockboxRecipient::status?
+
+      attr_accessor type: Increase::Models::LockboxRecipient::type_
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        lockbox_address_id: String,
+        mail_stop_code: String,
+        recipient_name: String?,
+        status: Increase::Models::LockboxRecipient::status?,
+        type: Increase::Models::LockboxRecipient::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        lockbox_address_id: String,
+        mail_stop_code: String,
+        recipient_name: String?,
+        status: Increase::Models::LockboxRecipient::status?,
+        type: Increase::Models::LockboxRecipient::type_
+      }
+
+      type status = :active | :disabled | :canceled
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # This Lockbox Recipient is active.
+        ACTIVE: :active
+
+        # This Lockbox Recipient is disabled. Checks mailed to this Lockbox Recipient will be rejected.
+        DISABLED: :disabled
+
+        # This Lockbox Recipient is canceled and cannot be modified. Checks mailed to this Lockbox Recipient will be rejected.
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Increase::Models::LockboxRecipient::status]
+      end
+
+      type type_ = :lockbox_recipient
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        LOCKBOX_RECIPIENT: :lockbox_recipient
+
+        def self?.values: -> ::Array[Increase::Models::LockboxRecipient::type_]
+      end
+    end
+  end
+end

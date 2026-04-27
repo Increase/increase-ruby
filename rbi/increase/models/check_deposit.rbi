@@ -118,10 +118,11 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :inbound_mail_item_id
 
-      # If the Check Deposit was the result of an Inbound Mail Item, this will contain
-      # the identifier of the Lockbox that received it.
+      # If the Check Deposit was the result of an Inbound Mail Item routed to a Lockbox
+      # Recipient, this will contain the identifier of the Lockbox Recipient that
+      # received it.
       sig { returns(T.nilable(String)) }
-      attr_accessor :lockbox_id
+      attr_accessor :lockbox_recipient_id
 
       # The status of the Check Deposit.
       sig { returns(Increase::CheckDeposit::Status::TaggedSymbol) }
@@ -160,7 +161,7 @@ module Increase
           inbound_funds_hold:
             T.nilable(Increase::CheckDeposit::InboundFundsHold::OrHash),
           inbound_mail_item_id: T.nilable(String),
-          lockbox_id: T.nilable(String),
+          lockbox_recipient_id: T.nilable(String),
           status: Increase::CheckDeposit::Status::OrSymbol,
           transaction_id: T.nilable(String),
           type: Increase::CheckDeposit::Type::OrSymbol
@@ -207,9 +208,10 @@ module Increase
         # If the Check Deposit was the result of an Inbound Mail Item, this will contain
         # the identifier of the Inbound Mail Item.
         inbound_mail_item_id:,
-        # If the Check Deposit was the result of an Inbound Mail Item, this will contain
-        # the identifier of the Lockbox that received it.
-        lockbox_id:,
+        # If the Check Deposit was the result of an Inbound Mail Item routed to a Lockbox
+        # Recipient, this will contain the identifier of the Lockbox Recipient that
+        # received it.
+        lockbox_recipient_id:,
         # The status of the Check Deposit.
         status:,
         # The ID for the Transaction created by the deposit.
@@ -243,7 +245,7 @@ module Increase
             inbound_funds_hold:
               T.nilable(Increase::CheckDeposit::InboundFundsHold),
             inbound_mail_item_id: T.nilable(String),
-            lockbox_id: T.nilable(String),
+            lockbox_recipient_id: T.nilable(String),
             status: Increase::CheckDeposit::Status::TaggedSymbol,
             transaction_id: T.nilable(String),
             type: Increase::CheckDeposit::Type::TaggedSymbol

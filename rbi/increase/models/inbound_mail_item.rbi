@@ -25,10 +25,14 @@ module Increase
       sig { returns(String) }
       attr_accessor :file_id
 
-      # The identifier for the Lockbox that received this mail item. For mail items that
-      # could not be processed due to an invalid address, this will be null.
+      # The identifier for the Lockbox Address that received this mail item.
       sig { returns(T.nilable(String)) }
-      attr_accessor :lockbox_id
+      attr_accessor :lockbox_address_id
+
+      # The identifier for the Lockbox Recipient that received this mail item. For mail
+      # items that could not be routed to a Lockbox Recipient, this will be null.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :lockbox_recipient_id
 
       # The recipient name as written on the mail item.
       sig { returns(T.nilable(String)) }
@@ -51,14 +55,16 @@ module Increase
       sig { returns(Increase::InboundMailItem::Type::TaggedSymbol) }
       attr_accessor :type
 
-      # Inbound Mail Items represent pieces of physical mail delivered to a Lockbox.
+      # Inbound Mail Items represent pieces of physical mail delivered to a Lockbox
+      # Address.
       sig do
         params(
           id: String,
           checks: T::Array[Increase::InboundMailItem::Check::OrHash],
           created_at: Time,
           file_id: String,
-          lockbox_id: T.nilable(String),
+          lockbox_address_id: T.nilable(String),
+          lockbox_recipient_id: T.nilable(String),
           recipient_name: T.nilable(String),
           rejection_reason:
             T.nilable(Increase::InboundMailItem::RejectionReason::OrSymbol),
@@ -76,9 +82,11 @@ module Increase
         created_at:,
         # The identifier for the File containing the scanned contents of the mail item.
         file_id:,
-        # The identifier for the Lockbox that received this mail item. For mail items that
-        # could not be processed due to an invalid address, this will be null.
-        lockbox_id:,
+        # The identifier for the Lockbox Address that received this mail item.
+        lockbox_address_id:,
+        # The identifier for the Lockbox Recipient that received this mail item. For mail
+        # items that could not be routed to a Lockbox Recipient, this will be null.
+        lockbox_recipient_id:,
         # The recipient name as written on the mail item.
         recipient_name:,
         # If the mail item has been rejected, why it was rejected.
@@ -98,7 +106,8 @@ module Increase
             checks: T::Array[Increase::InboundMailItem::Check],
             created_at: Time,
             file_id: String,
-            lockbox_id: T.nilable(String),
+            lockbox_address_id: T.nilable(String),
+            lockbox_recipient_id: T.nilable(String),
             recipient_name: T.nilable(String),
             rejection_reason:
               T.nilable(
@@ -253,6 +262,20 @@ module Increase
         LOCKBOX_NOT_ACTIVE =
           T.let(
             :lockbox_not_active,
+            Increase::InboundMailItem::RejectionReason::TaggedSymbol
+          )
+
+        # The Lockbox Address is not active.
+        LOCKBOX_ADDRESS_NOT_ACTIVE =
+          T.let(
+            :lockbox_address_not_active,
+            Increase::InboundMailItem::RejectionReason::TaggedSymbol
+          )
+
+        # The Lockbox Recipient or its associated Account is not active.
+        LOCKBOX_RECIPIENT_NOT_ACTIVE =
+          T.let(
+            :lockbox_recipient_not_active,
             Increase::InboundMailItem::RejectionReason::TaggedSymbol
           )
 

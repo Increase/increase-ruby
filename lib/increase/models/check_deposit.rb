@@ -105,12 +105,13 @@ module Increase
       #   @return [String, nil]
       required :inbound_mail_item_id, String, nil?: true
 
-      # @!attribute lockbox_id
-      #   If the Check Deposit was the result of an Inbound Mail Item, this will contain
-      #   the identifier of the Lockbox that received it.
+      # @!attribute lockbox_recipient_id
+      #   If the Check Deposit was the result of an Inbound Mail Item routed to a Lockbox
+      #   Recipient, this will contain the identifier of the Lockbox Recipient that
+      #   received it.
       #
       #   @return [String, nil]
-      required :lockbox_id, String, nil?: true
+      required :lockbox_recipient_id, String, nil?: true
 
       # @!attribute status
       #   The status of the Check Deposit.
@@ -131,7 +132,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CheckDeposit::Type]
       required :type, enum: -> { Increase::CheckDeposit::Type }
 
-      # @!method initialize(id:, account_id:, amount:, back_image_file_id:, created_at:, deposit_acceptance:, deposit_adjustments:, deposit_rejection:, deposit_return:, deposit_submission:, description:, front_image_file_id:, idempotency_key:, inbound_funds_hold:, inbound_mail_item_id:, lockbox_id:, status:, transaction_id:, type:)
+      # @!method initialize(id:, account_id:, amount:, back_image_file_id:, created_at:, deposit_acceptance:, deposit_adjustments:, deposit_rejection:, deposit_return:, deposit_submission:, description:, front_image_file_id:, idempotency_key:, inbound_funds_hold:, inbound_mail_item_id:, lockbox_recipient_id:, status:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CheckDeposit} for more details.
       #
@@ -167,7 +168,7 @@ module Increase
       #
       #   @param inbound_mail_item_id [String, nil] If the Check Deposit was the result of an Inbound Mail Item, this will contain t
       #
-      #   @param lockbox_id [String, nil] If the Check Deposit was the result of an Inbound Mail Item, this will contain t
+      #   @param lockbox_recipient_id [String, nil] If the Check Deposit was the result of an Inbound Mail Item routed to a Lockbox
       #
       #   @param status [Symbol, Increase::Models::CheckDeposit::Status] The status of the Check Deposit.
       #

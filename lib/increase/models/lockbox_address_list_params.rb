@@ -2,21 +2,30 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::InboundMailItems#list
-    class InboundMailItemListParams < Increase::Internal::Type::BaseModel
+    # @see Increase::Resources::LockboxAddresses#list
+    class LockboxAddressListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute created_at
       #
-      #   @return [Increase::Models::InboundMailItemListParams::CreatedAt, nil]
-      optional :created_at, -> { Increase::InboundMailItemListParams::CreatedAt }
+      #   @return [Increase::Models::LockboxAddressListParams::CreatedAt, nil]
+      optional :created_at, -> { Increase::LockboxAddressListParams::CreatedAt }
 
       # @!attribute cursor
       #   Return the page of entries after this one.
       #
       #   @return [String, nil]
       optional :cursor, String
+
+      # @!attribute idempotency_key
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
 
       # @!attribute limit
       #   Limit the size of the list that is returned. The default (and maximum) is 100
@@ -25,31 +34,17 @@ module Increase
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!attribute lockbox_address_id
-      #   Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
-      #
-      #   @return [String, nil]
-      optional :lockbox_address_id, String
-
-      # @!attribute lockbox_recipient_id
-      #   Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
-      #
-      #   @return [String, nil]
-      optional :lockbox_recipient_id, String
-
-      # @!method initialize(created_at: nil, cursor: nil, limit: nil, lockbox_address_id: nil, lockbox_recipient_id: nil, request_options: {})
+      # @!method initialize(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundMailItemListParams} for more details.
+      #   {Increase::Models::LockboxAddressListParams} for more details.
       #
-      #   @param created_at [Increase::Models::InboundMailItemListParams::CreatedAt]
+      #   @param created_at [Increase::Models::LockboxAddressListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
+      #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
-      #
-      #   @param lockbox_address_id [String] Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
-      #
-      #   @param lockbox_recipient_id [String] Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -84,7 +79,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::InboundMailItemListParams::CreatedAt} for more details.
+        #   {Increase::Models::LockboxAddressListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #
