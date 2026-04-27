@@ -301,6 +301,13 @@ module Increase
                 Increase::Simulations::CardTokenCreateParams::Capability::Route::TaggedSymbol
               )
 
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
+                Increase::Simulations::CardTokenCreateParams::Capability::Route::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[
