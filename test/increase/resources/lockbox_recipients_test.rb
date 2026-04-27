@@ -2,75 +2,82 @@
 
 require_relative "../test_helper"
 
-class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
+class Increase::Test::Resources::LockboxRecipientsTest < Increase::Test::ResourceTest
   def test_create_required_params
-    response = @increase.lockboxes.create(account_id: "account_in71c4amph0vgo2qllky")
+    response =
+      @increase.lockbox_recipients.create(
+        account_id: "account_in71c4amph0vgo2qllky",
+        lockbox_address_id: "lockbox_address_lw6sbzl9ol5dfd8hdml6"
+      )
 
     assert_pattern do
-      response => Increase::Lockbox
+      response => Increase::LockboxRecipient
     end
 
     assert_pattern do
       response => {
         id: String,
         account_id: String,
-        address: Increase::Lockbox::Address,
-        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
+        lockbox_address_id: String,
+        mail_stop_code: String,
         recipient_name: String | nil,
-        type: Increase::Lockbox::Type
+        status: Increase::LockboxRecipient::Status | nil,
+        type: Increase::LockboxRecipient::Type
       }
     end
   end
 
   def test_retrieve
-    response = @increase.lockboxes.retrieve("lockbox_3xt21ok13q19advds4t5")
+    response = @increase.lockbox_recipients.retrieve("lockbox_3xt21ok13q19advds4t5")
 
     assert_pattern do
-      response => Increase::Lockbox
+      response => Increase::LockboxRecipient
     end
 
     assert_pattern do
       response => {
         id: String,
         account_id: String,
-        address: Increase::Lockbox::Address,
-        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
+        lockbox_address_id: String,
+        mail_stop_code: String,
         recipient_name: String | nil,
-        type: Increase::Lockbox::Type
+        status: Increase::LockboxRecipient::Status | nil,
+        type: Increase::LockboxRecipient::Type
       }
     end
   end
 
   def test_update
-    response = @increase.lockboxes.update("lockbox_3xt21ok13q19advds4t5")
+    response = @increase.lockbox_recipients.update("lockbox_3xt21ok13q19advds4t5")
 
     assert_pattern do
-      response => Increase::Lockbox
+      response => Increase::LockboxRecipient
     end
 
     assert_pattern do
       response => {
         id: String,
         account_id: String,
-        address: Increase::Lockbox::Address,
-        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
+        lockbox_address_id: String,
+        mail_stop_code: String,
         recipient_name: String | nil,
-        type: Increase::Lockbox::Type
+        status: Increase::LockboxRecipient::Status | nil,
+        type: Increase::LockboxRecipient::Type
       }
     end
   end
 
   def test_list
-    response = @increase.lockboxes.list
+    response = @increase.lockbox_recipients.list
 
     assert_pattern do
       response => Increase::Internal::Page
@@ -80,20 +87,21 @@ class Increase::Test::Resources::LockboxesTest < Increase::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Increase::Lockbox
+      row => Increase::LockboxRecipient
     end
 
     assert_pattern do
       row => {
         id: String,
         account_id: String,
-        address: Increase::Lockbox::Address,
-        check_deposit_behavior: Increase::Lockbox::CheckDepositBehavior,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
+        lockbox_address_id: String,
+        mail_stop_code: String,
         recipient_name: String | nil,
-        type: Increase::Lockbox::Type
+        status: Increase::LockboxRecipient::Status | nil,
+        type: Increase::LockboxRecipient::Type
       }
     end
   end

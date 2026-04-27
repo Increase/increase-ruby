@@ -2,27 +2,34 @@
 
 module Increase
   module Models
-    class LockboxListParams < Increase::Internal::Type::BaseModel
+    class LockboxRecipientListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Increase::LockboxListParams, Increase::Internal::AnyHash)
+          T.any(
+            Increase::LockboxRecipientListParams,
+            Increase::Internal::AnyHash
+          )
         end
 
-      # Filter Lockboxes to those associated with the provided Account.
+      # Filter Lockbox Recipients to those associated with the provided Account.
       sig { returns(T.nilable(String)) }
       attr_reader :account_id
 
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      sig { returns(T.nilable(Increase::LockboxListParams::CreatedAt)) }
+      sig do
+        returns(T.nilable(Increase::LockboxRecipientListParams::CreatedAt))
+      end
       attr_reader :created_at
 
       sig do
-        params(created_at: Increase::LockboxListParams::CreatedAt::OrHash).void
+        params(
+          created_at: Increase::LockboxRecipientListParams::CreatedAt::OrHash
+        ).void
       end
       attr_writer :created_at
 
@@ -51,18 +58,26 @@ module Increase
       sig { params(limit: Integer).void }
       attr_writer :limit
 
+      # Filter Lockbox Recipients to those associated with the provided Lockbox Address.
+      sig { returns(T.nilable(String)) }
+      attr_reader :lockbox_address_id
+
+      sig { params(lockbox_address_id: String).void }
+      attr_writer :lockbox_address_id
+
       sig do
         params(
           account_id: String,
-          created_at: Increase::LockboxListParams::CreatedAt::OrHash,
+          created_at: Increase::LockboxRecipientListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
           limit: Integer,
+          lockbox_address_id: String,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Filter Lockboxes to those associated with the provided Account.
+        # Filter Lockbox Recipients to those associated with the provided Account.
         account_id: nil,
         created_at: nil,
         # Return the page of entries after this one.
@@ -75,6 +90,8 @@ module Increase
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         limit: nil,
+        # Filter Lockbox Recipients to those associated with the provided Lockbox Address.
+        lockbox_address_id: nil,
         request_options: {}
       )
       end
@@ -83,10 +100,11 @@ module Increase
         override.returns(
           {
             account_id: String,
-            created_at: Increase::LockboxListParams::CreatedAt,
+            created_at: Increase::LockboxRecipientListParams::CreatedAt,
             cursor: String,
             idempotency_key: String,
             limit: Integer,
+            lockbox_address_id: String,
             request_options: Increase::RequestOptions
           }
         )
@@ -98,7 +116,7 @@ module Increase
         OrHash =
           T.type_alias do
             T.any(
-              Increase::LockboxListParams::CreatedAt,
+              Increase::LockboxRecipientListParams::CreatedAt,
               Increase::Internal::AnyHash
             )
           end

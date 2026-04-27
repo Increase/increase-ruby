@@ -363,15 +363,25 @@ module Increase
 
   class IntrafiExclusionRetrieveParams = Increase::Models::IntrafiExclusionRetrieveParams
 
-  class Lockbox = Increase::Models::Lockbox
+  class LockboxAddress = Increase::Models::LockboxAddress
 
-  class LockboxCreateParams = Increase::Models::LockboxCreateParams
+  class LockboxAddressCreateParams = Increase::Models::LockboxAddressCreateParams
 
-  class LockboxListParams = Increase::Models::LockboxListParams
+  class LockboxAddressListParams = Increase::Models::LockboxAddressListParams
 
-  class LockboxRetrieveParams = Increase::Models::LockboxRetrieveParams
+  class LockboxAddressRetrieveParams = Increase::Models::LockboxAddressRetrieveParams
 
-  class LockboxUpdateParams = Increase::Models::LockboxUpdateParams
+  class LockboxAddressUpdateParams = Increase::Models::LockboxAddressUpdateParams
+
+  class LockboxRecipient = Increase::Models::LockboxRecipient
+
+  class LockboxRecipientCreateParams = Increase::Models::LockboxRecipientCreateParams
+
+  class LockboxRecipientListParams = Increase::Models::LockboxRecipientListParams
+
+  class LockboxRecipientRetrieveParams = Increase::Models::LockboxRecipientRetrieveParams
+
+  class LockboxRecipientUpdateParams = Increase::Models::LockboxRecipientUpdateParams
 
   class OAuthApplication = Increase::Models::OAuthApplication
 

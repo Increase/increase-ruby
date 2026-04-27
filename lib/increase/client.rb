@@ -113,8 +113,11 @@ module Increase
     # @return [Increase::Resources::CheckDeposits]
     attr_reader :check_deposits
 
-    # @return [Increase::Resources::Lockboxes]
-    attr_reader :lockboxes
+    # @return [Increase::Resources::LockboxAddresses]
+    attr_reader :lockbox_addresses
+
+    # @return [Increase::Resources::LockboxRecipients]
+    attr_reader :lockbox_recipients
 
     # @return [Increase::Resources::InboundMailItems]
     attr_reader :inbound_mail_items
@@ -290,7 +293,8 @@ module Increase
       @inbound_fednow_transfers = Increase::Resources::InboundFednowTransfers.new(client: self)
       @swift_transfers = Increase::Resources::SwiftTransfers.new(client: self)
       @check_deposits = Increase::Resources::CheckDeposits.new(client: self)
-      @lockboxes = Increase::Resources::Lockboxes.new(client: self)
+      @lockbox_addresses = Increase::Resources::LockboxAddresses.new(client: self)
+      @lockbox_recipients = Increase::Resources::LockboxRecipients.new(client: self)
       @inbound_mail_items = Increase::Resources::InboundMailItems.new(client: self)
       @routing_numbers = Increase::Resources::RoutingNumbers.new(client: self)
       @external_accounts = Increase::Resources::ExternalAccounts.new(client: self)

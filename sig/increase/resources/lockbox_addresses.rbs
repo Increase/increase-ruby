@@ -1,34 +1,30 @@
 module Increase
   module Resources
-    class Lockboxes
+    class LockboxAddresses
       def create: (
-        account_id: String,
         ?description: String,
-        ?recipient_name: String,
         ?request_options: Increase::request_opts
-      ) -> Increase::Lockbox
+      ) -> Increase::LockboxAddress
 
       def retrieve: (
-        String lockbox_id,
+        String lockbox_address_id,
         ?request_options: Increase::request_opts
-      ) -> Increase::Lockbox
+      ) -> Increase::LockboxAddress
 
       def update: (
-        String lockbox_id,
-        ?check_deposit_behavior: Increase::Models::LockboxUpdateParams::check_deposit_behavior,
+        String lockbox_address_id,
         ?description: String,
-        ?recipient_name: String,
+        ?status: Increase::Models::LockboxAddressUpdateParams::status,
         ?request_options: Increase::request_opts
-      ) -> Increase::Lockbox
+      ) -> Increase::LockboxAddress
 
       def list: (
-        ?account_id: String,
-        ?created_at: Increase::LockboxListParams::CreatedAt,
+        ?created_at: Increase::LockboxAddressListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?request_options: Increase::request_opts
-      ) -> Increase::Internal::Page[Increase::Lockbox]
+      ) -> Increase::Internal::Page[Increase::LockboxAddress]
 
       def initialize: (client: Increase::Client) -> void
     end

@@ -2,21 +2,21 @@
 
 module Increase
   module Models
-    # @see Increase::Resources::Lockboxes#list
-    class LockboxListParams < Increase::Internal::Type::BaseModel
+    # @see Increase::Resources::LockboxRecipients#list
+    class LockboxRecipientListParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   Filter Lockboxes to those associated with the provided Account.
+      #   Filter Lockbox Recipients to those associated with the provided Account.
       #
       #   @return [String, nil]
       optional :account_id, String
 
       # @!attribute created_at
       #
-      #   @return [Increase::Models::LockboxListParams::CreatedAt, nil]
-      optional :created_at, -> { Increase::LockboxListParams::CreatedAt }
+      #   @return [Increase::Models::LockboxRecipientListParams::CreatedAt, nil]
+      optional :created_at, -> { Increase::LockboxRecipientListParams::CreatedAt }
 
       # @!attribute cursor
       #   Return the page of entries after this one.
@@ -40,19 +40,27 @@ module Increase
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!method initialize(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
+      # @!attribute lockbox_address_id
+      #   Filter Lockbox Recipients to those associated with the provided Lockbox Address.
+      #
+      #   @return [String, nil]
+      optional :lockbox_address_id, String
+
+      # @!method initialize(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, lockbox_address_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::LockboxListParams} for more details.
+      #   {Increase::Models::LockboxRecipientListParams} for more details.
       #
-      #   @param account_id [String] Filter Lockboxes to those associated with the provided Account.
+      #   @param account_id [String] Filter Lockbox Recipients to those associated with the provided Account.
       #
-      #   @param created_at [Increase::Models::LockboxListParams::CreatedAt]
+      #   @param created_at [Increase::Models::LockboxRecipientListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
       #
       #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #
+      #   @param lockbox_address_id [String] Filter Lockbox Recipients to those associated with the provided Lockbox Address.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -87,7 +95,7 @@ module Increase
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::LockboxListParams::CreatedAt} for more details.
+        #   {Increase::Models::LockboxRecipientListParams::CreatedAt} for more details.
         #
         #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
         #

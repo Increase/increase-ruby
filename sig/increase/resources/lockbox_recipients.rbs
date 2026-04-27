@@ -1,0 +1,38 @@
+module Increase
+  module Resources
+    class LockboxRecipients
+      def create: (
+        account_id: String,
+        lockbox_address_id: String,
+        ?description: String,
+        ?recipient_name: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::LockboxRecipient
+
+      def retrieve: (
+        String lockbox_recipient_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::LockboxRecipient
+
+      def update: (
+        String lockbox_recipient_id,
+        ?description: String,
+        ?recipient_name: String,
+        ?status: Increase::Models::LockboxRecipientUpdateParams::status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::LockboxRecipient
+
+      def list: (
+        ?account_id: String,
+        ?created_at: Increase::LockboxRecipientListParams::CreatedAt,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?lockbox_address_id: String,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::LockboxRecipient]
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

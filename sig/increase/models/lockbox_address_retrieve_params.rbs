@@ -1,21 +1,22 @@
 module Increase
   module Models
-    type lockbox_retrieve_params =
-      { lockbox_id: String } & Increase::Internal::Type::request_parameters
+    type lockbox_address_retrieve_params =
+      { lockbox_address_id: String }
+      & Increase::Internal::Type::request_parameters
 
-    class LockboxRetrieveParams < Increase::Internal::Type::BaseModel
+    class LockboxAddressRetrieveParams < Increase::Internal::Type::BaseModel
       extend Increase::Internal::Type::RequestParameters::Converter
       include Increase::Internal::Type::RequestParameters
 
-      attr_accessor lockbox_id: String
+      attr_accessor lockbox_address_id: String
 
       def initialize: (
-        lockbox_id: String,
+        lockbox_address_id: String,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
-        lockbox_id: String,
+        lockbox_address_id: String,
         request_options: Increase::RequestOptions
       }
     end

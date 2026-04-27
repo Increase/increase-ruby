@@ -4,11 +4,7 @@ require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::InboundMailItemsTest < Increase::Test::ResourceTest
   def test_create_required_params
-    response =
-      @increase.simulations.inbound_mail_items.create(
-        amount: 1000,
-        lockbox_id: "lockbox_3xt21ok13q19advds4t5"
-      )
+    response = @increase.simulations.inbound_mail_items.create(amount: 1000)
 
     assert_pattern do
       response => Increase::InboundMailItem
@@ -20,7 +16,8 @@ class Increase::Test::Resources::Simulations::InboundMailItemsTest < Increase::T
         checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
         created_at: Time,
         file_id: String,
-        lockbox_id: String | nil,
+        lockbox_address_id: String | nil,
+        lockbox_recipient_id: String | nil,
         recipient_name: String | nil,
         rejection_reason: Increase::InboundMailItem::RejectionReason | nil,
         status: Increase::InboundMailItem::Status,
