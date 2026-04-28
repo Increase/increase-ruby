@@ -32,8 +32,8 @@ module Increase
       # @!attribute lockbox_address_id
       #   The identifier for the Lockbox Address that received this mail item.
       #
-      #   @return [String, nil]
-      required :lockbox_address_id, String, nil?: true
+      #   @return [String]
+      required :lockbox_address_id, String
 
       # @!attribute lockbox_recipient_id
       #   The identifier for the Lockbox Recipient that received this mail item. For mail
@@ -82,7 +82,7 @@ module Increase
       #
       #   @param file_id [String] The identifier for the File containing the scanned contents of the mail item.
       #
-      #   @param lockbox_address_id [String, nil] The identifier for the Lockbox Address that received this mail item.
+      #   @param lockbox_address_id [String] The identifier for the Lockbox Address that received this mail item.
       #
       #   @param lockbox_recipient_id [String, nil] The identifier for the Lockbox Recipient that received this mail item. For mail
       #

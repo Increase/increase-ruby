@@ -6,7 +6,7 @@ module Increase
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
-        lockbox_address_id: String?,
+        lockbox_address_id: String,
         lockbox_recipient_id: String?,
         recipient_name: String?,
         rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
@@ -23,7 +23,7 @@ module Increase
 
       attr_accessor file_id: String
 
-      attr_accessor lockbox_address_id: String?
+      attr_accessor lockbox_address_id: String
 
       attr_accessor lockbox_recipient_id: String?
 
@@ -40,7 +40,7 @@ module Increase
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
-        lockbox_address_id: String?,
+        lockbox_address_id: String,
         lockbox_recipient_id: String?,
         recipient_name: String?,
         rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,
@@ -53,7 +53,7 @@ module Increase
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
-        lockbox_address_id: String?,
+        lockbox_address_id: String,
         lockbox_recipient_id: String?,
         recipient_name: String?,
         rejection_reason: Increase::Models::InboundMailItem::rejection_reason?,

@@ -26,7 +26,7 @@ module Increase
       attr_accessor :file_id
 
       # The identifier for the Lockbox Address that received this mail item.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :lockbox_address_id
 
       # The identifier for the Lockbox Recipient that received this mail item. For mail
@@ -63,7 +63,7 @@ module Increase
           checks: T::Array[Increase::InboundMailItem::Check::OrHash],
           created_at: Time,
           file_id: String,
-          lockbox_address_id: T.nilable(String),
+          lockbox_address_id: String,
           lockbox_recipient_id: T.nilable(String),
           recipient_name: T.nilable(String),
           rejection_reason:
@@ -106,7 +106,7 @@ module Increase
             checks: T::Array[Increase::InboundMailItem::Check],
             created_at: Time,
             file_id: String,
-            lockbox_address_id: T.nilable(String),
+            lockbox_address_id: String,
             lockbox_recipient_id: T.nilable(String),
             recipient_name: T.nilable(String),
             rejection_reason:
