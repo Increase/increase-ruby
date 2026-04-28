@@ -1,0 +1,44 @@
+# typed: strong
+
+module Increase
+  module Resources
+    class Simulations
+      class AccountRevenuePayments
+        # Simulates an account revenue payment to your account. In production, this
+        # happens automatically on the first of each month.
+        sig do
+          params(
+            account_id: String,
+            amount: Integer,
+            accrued_on_account_id: String,
+            period_end: Time,
+            period_start: Time,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::Transaction)
+        end
+        def create(
+          # The identifier of the Account the Account Revenue Payment should be paid to.
+          account_id:,
+          # The account revenue amount in cents. Must be positive.
+          amount:,
+          # The identifier of the Account the account revenue accrued on. Defaults to
+          # `account_id`.
+          accrued_on_account_id: nil,
+          # The end of the account revenue period. If not provided, defaults to the current
+          # time.
+          period_end: nil,
+          # The start of the account revenue period. If not provided, defaults to the
+          # current time.
+          period_start: nil,
+          request_options: {}
+        )
+        end
+
+        # @api private
+        sig { params(client: Increase::Client).returns(T.attached_class) }
+        def self.new(client:)
+        end
+      end
+    end
+  end
+end

@@ -6,6 +6,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::InterestPayments) }
       attr_reader :interest_payments
 
+      sig { returns(Increase::Resources::Simulations::AccountRevenuePayments) }
+      attr_reader :account_revenue_payments
+
       sig { returns(Increase::Resources::Simulations::CardAuthorizations) }
       attr_reader :card_authorizations
 

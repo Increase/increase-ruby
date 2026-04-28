@@ -3,6 +3,8 @@ module Increase
     class Simulations
       attr_reader interest_payments: Increase::Resources::Simulations::InterestPayments
 
+      attr_reader account_revenue_payments: Increase::Resources::Simulations::AccountRevenuePayments
+
       attr_reader card_authorizations: Increase::Resources::Simulations::CardAuthorizations
 
       attr_reader card_balance_inquiries: Increase::Resources::Simulations::CardBalanceInquiries
