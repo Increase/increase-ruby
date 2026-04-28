@@ -16,7 +16,7 @@ class Increase::Test::Resources::Simulations::InboundMailItemsTest < Increase::T
         checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
         created_at: Time,
         file_id: String,
-        lockbox_address_id: String | nil,
+        lockbox_address_id: String,
         lockbox_recipient_id: String | nil,
         recipient_name: String | nil,
         rejection_reason: Increase::InboundMailItem::RejectionReason | nil,
