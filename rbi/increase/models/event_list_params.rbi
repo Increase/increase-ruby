@@ -419,13 +419,6 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
-          # Occurs whenever a Document is created.
-          DOCUMENT_CREATED =
-            T.let(
-              :"document.created",
-              Increase::EventListParams::Category::In::TaggedSymbol
-            )
-
           # Occurs whenever an Entity is created.
           ENTITY_CREATED =
             T.let(

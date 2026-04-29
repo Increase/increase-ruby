@@ -444,13 +444,6 @@ module Increase
               Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
-          # Occurs whenever a Document is created.
-          DOCUMENT_CREATED =
-            T.let(
-              :"document.created",
-              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
-            )
-
           # Occurs whenever an Entity is created.
           ENTITY_CREATED =
             T.let(

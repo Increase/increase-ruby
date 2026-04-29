@@ -356,13 +356,6 @@ module Increase
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 
-        # Occurs whenever a Document is created.
-        DOCUMENT_CREATED =
-          T.let(
-            :"document.created",
-            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
-          )
-
         # Occurs whenever an Entity is created.
         ENTITY_CREATED =
           T.let(
