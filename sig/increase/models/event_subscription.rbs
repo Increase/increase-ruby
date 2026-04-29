@@ -106,7 +106,6 @@ module Increase
           | :"digital_card_profile.updated"
           | :"digital_wallet_token.created"
           | :"digital_wallet_token.updated"
-          | :"document.created"
           | :"entity.created"
           | :"entity.updated"
           | :"event_subscription.created"
@@ -293,9 +292,6 @@ module Increase
 
           # Occurs whenever a Digital Wallet Token is updated.
           DIGITAL_WALLET_TOKEN_UPDATED: :"digital_wallet_token.updated"
-
-          # Occurs whenever a Document is created.
-          DOCUMENT_CREATED: :"document.created"
 
           # Occurs whenever an Entity is created.
           ENTITY_CREATED: :"entity.created"

@@ -193,9 +193,6 @@ module Increase
           # Occurs whenever a Digital Wallet Token is updated.
           DIGITAL_WALLET_TOKEN_UPDATED = :"digital_wallet_token.updated"
 
-          # Occurs whenever a Document is created.
-          DOCUMENT_CREATED = :"document.created"
-
           # Occurs whenever an Entity is created.
           ENTITY_CREATED = :"entity.created"
 
