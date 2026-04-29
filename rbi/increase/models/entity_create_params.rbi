@@ -837,7 +837,9 @@ module Increase
               attr_accessor :method_
 
               # An identification number that can be used to verify the individual's identity,
-              # such as a social security number.
+              # such as a social security number. For Social Security Numbers and Individual
+              # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              # separators.
               sig { returns(String) }
               attr_accessor :number
 
@@ -916,7 +918,9 @@ module Increase
                 # A method that can be used to verify the individual's identity.
                 method_:,
                 # An identification number that can be used to verify the individual's identity,
-                # such as a social security number.
+                # such as a social security number. For Social Security Numbers and Individual
+                # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+                # separators.
                 number:,
                 # Information about the United States driver's license used for identification.
                 # Required if `method` is equal to `drivers_license`.
@@ -1250,7 +1254,8 @@ module Increase
               )
             end
 
-          # The legal identifier.
+          # The legal identifier. For US Employer Identification Numbers, submit nine digits
+          # with no dashes or other separators.
           sig { returns(String) }
           attr_accessor :value
 
@@ -1283,7 +1288,8 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The legal identifier.
+            # The legal identifier. For US Employer Identification Numbers, submit nine digits
+            # with no dashes or other separators.
             value:,
             # The category of the legal identifier. If not provided, the default is
             # `us_employer_identification_number`.
@@ -1317,7 +1323,7 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS; submit it as nine digits with no dashes or other separators.
             US_EMPLOYER_IDENTIFICATION_NUMBER =
               T.let(
                 :us_employer_identification_number,
@@ -1444,7 +1450,8 @@ module Increase
         sig { returns(String) }
         attr_accessor :name
 
-        # The Employer Identification Number (EIN) for the government authority.
+        # The Employer Identification Number (EIN) for the government authority. Submit
+        # nine digits with no dashes or other separators.
         sig { returns(String) }
         attr_accessor :tax_identifier
 
@@ -1482,7 +1489,8 @@ module Increase
           category:,
           # The legal name of the government authority.
           name:,
-          # The Employer Identification Number (EIN) for the government authority.
+          # The Employer Identification Number (EIN) for the government authority. Submit
+          # nine digits with no dashes or other separators.
           tax_identifier:,
           # The website of the government authority.
           website: nil
@@ -1910,7 +1918,9 @@ module Increase
             attr_accessor :method_
 
             # An identification number that can be used to verify the individual's identity,
-            # such as a social security number.
+            # such as a social security number. For Social Security Numbers and Individual
+            # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            # separators.
             sig { returns(String) }
             attr_accessor :number
 
@@ -1989,7 +1999,9 @@ module Increase
               # A method that can be used to verify the individual's identity.
               method_:,
               # An identification number that can be used to verify the individual's identity,
-              # such as a social security number.
+              # such as a social security number. For Social Security Numbers and Individual
+              # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              # separators.
               number:,
               # Information about the United States driver's license used for identification.
               # Required if `method` is equal to `drivers_license`.
@@ -2485,7 +2497,9 @@ module Increase
           attr_accessor :method_
 
           # An identification number that can be used to verify the individual's identity,
-          # such as a social security number.
+          # such as a social security number. For Social Security Numbers and Individual
+          # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          # separators.
           sig { returns(String) }
           attr_accessor :number
 
@@ -2564,7 +2578,9 @@ module Increase
             # A method that can be used to verify the individual's identity.
             method_:,
             # An identification number that can be used to verify the individual's identity,
-            # such as a social security number.
+            # such as a social security number. For Social Security Numbers and Individual
+            # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            # separators.
             number:,
             # Information about the United States driver's license used for identification.
             # Required if `method` is equal to `drivers_license`.
@@ -3186,8 +3202,8 @@ module Increase
         end
         attr_writer :grantor
 
-        # The Employer Identification Number (EIN) for the trust. Required if `category`
-        # is equal to `irrevocable`.
+        # The Employer Identification Number (EIN) for the trust. Submit nine digits with
+        # no dashes or other separators. Required if `category` is equal to `irrevocable`.
         sig { returns(T.nilable(String)) }
         attr_reader :tax_identifier
 
@@ -3228,8 +3244,8 @@ module Increase
           formation_state: nil,
           # The grantor of the trust. Required if `category` is equal to `revocable`.
           grantor: nil,
-          # The Employer Identification Number (EIN) for the trust. Required if `category`
-          # is equal to `irrevocable`.
+          # The Employer Identification Number (EIN) for the trust. Submit nine digits with
+          # no dashes or other separators. Required if `category` is equal to `irrevocable`.
           tax_identifier: nil
         )
         end
@@ -3672,7 +3688,9 @@ module Increase
               attr_accessor :method_
 
               # An identification number that can be used to verify the individual's identity,
-              # such as a social security number.
+              # such as a social security number. For Social Security Numbers and Individual
+              # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              # separators.
               sig { returns(String) }
               attr_accessor :number
 
@@ -3751,7 +3769,9 @@ module Increase
                 # A method that can be used to verify the individual's identity.
                 method_:,
                 # An identification number that can be used to verify the individual's identity,
-                # such as a social security number.
+                # such as a social security number. For Social Security Numbers and Individual
+                # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+                # separators.
                 number:,
                 # Information about the United States driver's license used for identification.
                 # Required if `method` is equal to `drivers_license`.
@@ -4246,7 +4266,9 @@ module Increase
             attr_accessor :method_
 
             # An identification number that can be used to verify the individual's identity,
-            # such as a social security number.
+            # such as a social security number. For Social Security Numbers and Individual
+            # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            # separators.
             sig { returns(String) }
             attr_accessor :number
 
@@ -4325,7 +4347,9 @@ module Increase
               # A method that can be used to verify the individual's identity.
               method_:,
               # An identification number that can be used to verify the individual's identity,
-              # such as a social security number.
+              # such as a social security number. For Social Security Numbers and Individual
+              # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              # separators.
               number:,
               # Information about the United States driver's license used for identification.
               # Required if `method` is equal to `drivers_license`.

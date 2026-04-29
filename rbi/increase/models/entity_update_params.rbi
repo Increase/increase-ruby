@@ -412,7 +412,8 @@ module Increase
               )
             end
 
-          # The identifier of the legal identifier.
+          # The identifier of the legal identifier. For US Employer Identification Numbers,
+          # submit nine digits with no dashes or other separators.
           sig { returns(String) }
           attr_accessor :value
 
@@ -444,7 +445,8 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The identifier of the legal identifier.
+            # The identifier of the legal identifier. For US Employer Identification Numbers,
+            # submit nine digits with no dashes or other separators.
             value:,
             # The category of the legal identifier.
             category: nil
@@ -476,7 +478,7 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS; submit it as nine digits with no dashes or other separators.
             US_EMPLOYER_IDENTIFICATION_NUMBER =
               T.let(
                 :us_employer_identification_number,
@@ -852,7 +854,9 @@ module Increase
           attr_accessor :method_
 
           # An identification number that can be used to verify the individual's identity,
-          # such as a social security number.
+          # such as a social security number. For Social Security Numbers and Individual
+          # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          # separators.
           sig { returns(String) }
           attr_accessor :number
 
@@ -931,7 +935,9 @@ module Increase
             # A method that can be used to verify the individual's identity.
             method_:,
             # An identification number that can be used to verify the individual's identity,
-            # such as a social security number.
+            # such as a social security number. For Social Security Numbers and Individual
+            # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            # separators.
             number:,
             # Information about the United States driver's license used for identification.
             # Required if `method` is equal to `drivers_license`.

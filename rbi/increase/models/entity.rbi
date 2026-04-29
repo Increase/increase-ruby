@@ -925,7 +925,7 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS; submit it as nine digits with no dashes or other separators.
             US_EMPLOYER_IDENTIFICATION_NUMBER =
               T.let(
                 :us_employer_identification_number,

@@ -221,7 +221,8 @@ module Increase
         # @see Increase::Models::EntityUpdateParams::Corporation#legal_identifier
         class LegalIdentifier < Increase::Internal::Type::BaseModel
           # @!attribute value
-          #   The identifier of the legal identifier.
+          #   The identifier of the legal identifier. For US Employer Identification Numbers,
+          #   submit nine digits with no dashes or other separators.
           #
           #   @return [String]
           required :value, String
@@ -233,10 +234,14 @@ module Increase
           optional :category, enum: -> { Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category }
 
           # @!method initialize(value:, category: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier} for more
+          #   details.
+          #
           #   The legal identifier of the corporation. This is usually the Employer
           #   Identification Number (EIN).
           #
-          #   @param value [String] The identifier of the legal identifier.
+          #   @param value [String] The identifier of the legal identifier. For US Employer Identification Numbers,
           #
           #   @param category [Symbol, Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier.
 
@@ -246,7 +251,7 @@ module Increase
           module Category
             extend Increase::Internal::Type::Enum
 
-            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS; submit it as nine digits with no dashes or other separators.
             US_EMPLOYER_IDENTIFICATION_NUMBER = :us_employer_identification_number
 
             # A legal identifier issued by a foreign government, like a tax identification number or registration number.
@@ -451,7 +456,9 @@ module Increase
 
           # @!attribute number
           #   An identification number that can be used to verify the individual's identity,
-          #   such as a social security number.
+          #   such as a social security number. For Social Security Numbers and Individual
+          #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          #   separators.
           #
           #   @return [String]
           required :number, String
