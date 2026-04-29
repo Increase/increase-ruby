@@ -547,7 +547,7 @@ module Increase
           module Category
             extend Increase::Internal::Type::Enum
 
-            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS; submit it as nine digits with no dashes or other separators.
             US_EMPLOYER_IDENTIFICATION_NUMBER = :us_employer_identification_number
 
             # A legal identifier issued by a foreign government, like a tax identification number or registration number.

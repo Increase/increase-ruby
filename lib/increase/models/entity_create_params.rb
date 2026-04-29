@@ -450,7 +450,9 @@ module Increase
 
               # @!attribute number
               #   An identification number that can be used to verify the individual's identity,
-              #   such as a social security number.
+              #   such as a social security number. For Social Security Numbers and Individual
+              #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              #   separators.
               #
               #   @return [String]
               required :number, String
@@ -668,7 +670,8 @@ module Increase
         # @see Increase::Models::EntityCreateParams::Corporation#legal_identifier
         class LegalIdentifier < Increase::Internal::Type::BaseModel
           # @!attribute value
-          #   The legal identifier.
+          #   The legal identifier. For US Employer Identification Numbers, submit nine digits
+          #   with no dashes or other separators.
           #
           #   @return [String]
           required :value, String
@@ -688,7 +691,7 @@ module Increase
           #   The legal identifier of the corporation. This is usually the Employer
           #   Identification Number (EIN).
           #
-          #   @param value [String] The legal identifier.
+          #   @param value [String] The legal identifier. For US Employer Identification Numbers, submit nine digits
           #
           #   @param category [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier. If not provided, the default is `us_employ
 
@@ -699,7 +702,7 @@ module Increase
           module Category
             extend Increase::Internal::Type::Enum
 
-            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS.
+            # The Employer Identification Number (EIN) for the company. The EIN is a 9-digit number assigned by the IRS; submit it as nine digits with no dashes or other separators.
             US_EMPLOYER_IDENTIFICATION_NUMBER = :us_employer_identification_number
 
             # A legal identifier issued by a foreign government, like a tax identification number or registration number.
@@ -763,7 +766,8 @@ module Increase
         required :name, String
 
         # @!attribute tax_identifier
-        #   The Employer Identification Number (EIN) for the government authority.
+        #   The Employer Identification Number (EIN) for the government authority. Submit
+        #   nine digits with no dashes or other separators.
         #
         #   @return [String]
         required :tax_identifier, String
@@ -789,7 +793,7 @@ module Increase
         #
         #   @param name [String] The legal name of the government authority.
         #
-        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the government authority.
+        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the government authority. Submit ni
         #
         #   @param website [String] The website of the government authority.
 
@@ -1014,7 +1018,9 @@ module Increase
 
             # @!attribute number
             #   An identification number that can be used to verify the individual's identity,
-            #   such as a social security number.
+            #   such as a social security number. For Social Security Numbers and Individual
+            #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            #   separators.
             #
             #   @return [String]
             required :number, String
@@ -1339,7 +1345,9 @@ module Increase
 
           # @!attribute number
           #   An identification number that can be used to verify the individual's identity,
-          #   such as a social security number.
+          #   such as a social security number. For Social Security Numbers and Individual
+          #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          #   separators.
           #
           #   @return [String]
           required :number, String
@@ -1720,8 +1728,8 @@ module Increase
         optional :grantor, -> { Increase::EntityCreateParams::Trust::Grantor }
 
         # @!attribute tax_identifier
-        #   The Employer Identification Number (EIN) for the trust. Required if `category`
-        #   is equal to `irrevocable`.
+        #   The Employer Identification Number (EIN) for the trust. Submit nine digits with
+        #   no dashes or other separators. Required if `category` is equal to `irrevocable`.
         #
         #   @return [String, nil]
         optional :tax_identifier, String
@@ -1747,7 +1755,7 @@ module Increase
         #
         #   @param grantor [Increase::Models::EntityCreateParams::Trust::Grantor] The grantor of the trust. Required if `category` is equal to `revocable`.
         #
-        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the trust. Required if `category` i
+        #   @param tax_identifier [String] The Employer Identification Number (EIN) for the trust. Submit nine digits with
 
         # @see Increase::Models::EntityCreateParams::Trust#address
         class Address < Increase::Internal::Type::BaseModel
@@ -1981,7 +1989,9 @@ module Increase
 
               # @!attribute number
               #   An identification number that can be used to verify the individual's identity,
-              #   such as a social security number.
+              #   such as a social security number. For Social Security Numbers and Individual
+              #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              #   separators.
               #
               #   @return [String]
               required :number, String
@@ -2306,7 +2316,9 @@ module Increase
 
             # @!attribute number
             #   An identification number that can be used to verify the individual's identity,
-            #   such as a social security number.
+            #   such as a social security number. For Social Security Numbers and Individual
+            #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            #   separators.
             #
             #   @return [String]
             required :number, String

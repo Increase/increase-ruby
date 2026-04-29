@@ -215,7 +215,9 @@ module Increase
         attr_accessor :method_
 
         # An identification number that can be used to verify the individual's identity,
-        # such as a social security number.
+        # such as a social security number. For Social Security Numbers and Individual
+        # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+        # separators.
         sig { returns(String) }
         attr_accessor :number
 
@@ -294,7 +296,9 @@ module Increase
           # A method that can be used to verify the individual's identity.
           method_:,
           # An identification number that can be used to verify the individual's identity,
-          # such as a social security number.
+          # such as a social security number. For Social Security Numbers and Individual
+          # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          # separators.
           number:,
           # Information about the United States driver's license used for identification.
           # Required if `method` is equal to `drivers_license`.
