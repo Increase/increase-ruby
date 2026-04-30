@@ -70,11 +70,11 @@ module Increase
     sig { returns(Increase::Resources::ACHTransfers) }
     attr_reader :ach_transfers
 
-    sig { returns(Increase::Resources::ACHPrenotifications) }
-    attr_reader :ach_prenotifications
-
     sig { returns(Increase::Resources::InboundACHTransfers) }
     attr_reader :inbound_ach_transfers
+
+    sig { returns(Increase::Resources::ACHPrenotifications) }
+    attr_reader :ach_prenotifications
 
     sig { returns(Increase::Resources::WireTransfers) }
     attr_reader :wire_transfers

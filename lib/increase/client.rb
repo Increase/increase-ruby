@@ -71,11 +71,11 @@ module Increase
     # @return [Increase::Resources::ACHTransfers]
     attr_reader :ach_transfers
 
-    # @return [Increase::Resources::ACHPrenotifications]
-    attr_reader :ach_prenotifications
-
     # @return [Increase::Resources::InboundACHTransfers]
     attr_reader :inbound_ach_transfers
+
+    # @return [Increase::Resources::ACHPrenotifications]
+    attr_reader :ach_prenotifications
 
     # @return [Increase::Resources::WireTransfers]
     attr_reader :wire_transfers
@@ -292,8 +292,8 @@ module Increase
       @pending_transactions = Increase::Resources::PendingTransactions.new(client: self)
       @declined_transactions = Increase::Resources::DeclinedTransactions.new(client: self)
       @ach_transfers = Increase::Resources::ACHTransfers.new(client: self)
-      @ach_prenotifications = Increase::Resources::ACHPrenotifications.new(client: self)
       @inbound_ach_transfers = Increase::Resources::InboundACHTransfers.new(client: self)
+      @ach_prenotifications = Increase::Resources::ACHPrenotifications.new(client: self)
       @wire_transfers = Increase::Resources::WireTransfers.new(client: self)
       @inbound_wire_transfers = Increase::Resources::InboundWireTransfers.new(client: self)
       @wire_drawdown_requests = Increase::Resources::WireDrawdownRequests.new(client: self)
