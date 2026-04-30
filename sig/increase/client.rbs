@@ -47,9 +47,9 @@ module Increase
 
     attr_reader ach_transfers: Increase::Resources::ACHTransfers
 
-    attr_reader ach_prenotifications: Increase::Resources::ACHPrenotifications
-
     attr_reader inbound_ach_transfers: Increase::Resources::InboundACHTransfers
+
+    attr_reader ach_prenotifications: Increase::Resources::ACHPrenotifications
 
     attr_reader wire_transfers: Increase::Resources::WireTransfers
 
