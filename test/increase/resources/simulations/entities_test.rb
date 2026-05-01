@@ -3,12 +3,11 @@
 require_relative "../../test_helper"
 
 class Increase::Test::Resources::Simulations::EntitiesTest < Increase::Test::ResourceTest
-  def test_validation_required_params
+  def test_update_validation_required_params
     response =
-      @increase.simulations.entities.validation(
+      @increase.simulations.entities.update_validation(
         "entity_n8y8tnk2p9339ti393yi",
-        issues: [{category: :entity_tax_identifier}],
-        status: :invalid
+        issues: [{category: :entity_tax_identifier}]
       )
 
     assert_pattern do

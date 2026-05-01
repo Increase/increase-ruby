@@ -1,52 +1,47 @@
 module Increase
   module Models
     module Simulations
-      type entity_validation_params =
+      type entity_update_validation_params =
         {
           entity_id: String,
-          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
-          status: Increase::Models::Simulations::EntityValidationParams::status
+          issues: ::Array[Increase::Simulations::EntityUpdateValidationParams::Issue]
         }
         & Increase::Internal::Type::request_parameters
 
-      class EntityValidationParams < Increase::Internal::Type::BaseModel
+      class EntityUpdateValidationParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         attr_accessor entity_id: String
 
-        attr_accessor issues: ::Array[Increase::Simulations::EntityValidationParams::Issue]
-
-        attr_accessor status: Increase::Models::Simulations::EntityValidationParams::status
+        attr_accessor issues: ::Array[Increase::Simulations::EntityUpdateValidationParams::Issue]
 
         def initialize: (
           entity_id: String,
-          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
-          status: Increase::Models::Simulations::EntityValidationParams::status,
+          issues: ::Array[Increase::Simulations::EntityUpdateValidationParams::Issue],
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
           entity_id: String,
-          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
-          status: Increase::Models::Simulations::EntityValidationParams::status,
+          issues: ::Array[Increase::Simulations::EntityUpdateValidationParams::Issue],
           request_options: Increase::RequestOptions
         }
 
         type issue =
           {
-            category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+            category: Increase::Models::Simulations::EntityUpdateValidationParams::Issue::category
           }
 
         class Issue < Increase::Internal::Type::BaseModel
-          attr_accessor category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+          attr_accessor category: Increase::Models::Simulations::EntityUpdateValidationParams::Issue::category
 
           def initialize: (
-            category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+            category: Increase::Models::Simulations::EntityUpdateValidationParams::Issue::category
           ) -> void
 
           def to_hash: -> {
-            category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+            category: Increase::Models::Simulations::EntityUpdateValidationParams::Issue::category
           }
 
           type category =
@@ -70,25 +65,8 @@ module Increase
             # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_ADDRESS: :beneficial_owner_address
 
-            def self?.values: -> ::Array[Increase::Models::Simulations::EntityValidationParams::Issue::category]
+            def self?.values: -> ::Array[Increase::Models::Simulations::EntityUpdateValidationParams::Issue::category]
           end
-        end
-
-        type status = :valid | :invalid | :pending
-
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          # The submitted data is valid.
-          VALID: :valid
-
-          # Additional information is required to validate the data.
-          INVALID: :invalid
-
-          # The submitted data is being validated.
-          PENDING: :pending
-
-          def self?.values: -> ::Array[Increase::Models::Simulations::EntityValidationParams::status]
         end
       end
     end
