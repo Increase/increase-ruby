@@ -2,10 +2,9 @@ module Increase
   module Resources
     class Simulations
       class Entities
-        def validation: (
+        def update_validation: (
           String entity_id,
-          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
-          status: Increase::Models::Simulations::EntityValidationParams::status,
+          issues: ::Array[Increase::Simulations::EntityUpdateValidationParams::Issue],
           ?request_options: Increase::request_opts
         ) -> Increase::Entity
 

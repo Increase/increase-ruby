@@ -3,8 +3,8 @@
 module Increase
   module Models
     module Simulations
-      # @see Increase::Resources::Simulations::Entities#validation
-      class EntityValidationParams < Increase::Internal::Type::BaseModel
+      # @see Increase::Resources::Simulations::Entities#update_validation
+      class EntityUpdateValidationParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
@@ -15,24 +15,20 @@ module Increase
         required :entity_id, String
 
         # @!attribute issues
-        #   The validation issues to attach. Only allowed when `status` is `invalid`.
+        #   The validation issues to attach. If no issues are provided, the validation
+        #   status will be set to `valid`.
         #
-        #   @return [Array<Increase::Models::Simulations::EntityValidationParams::Issue>]
+        #   @return [Array<Increase::Models::Simulations::EntityUpdateValidationParams::Issue>]
         required :issues,
-                 -> { Increase::Internal::Type::ArrayOf[Increase::Simulations::EntityValidationParams::Issue] }
+                 -> { Increase::Internal::Type::ArrayOf[Increase::Simulations::EntityUpdateValidationParams::Issue] }
 
-        # @!attribute status
-        #   The validation status to set on the Entity.
+        # @!method initialize(entity_id:, issues:, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::Simulations::EntityUpdateValidationParams} for more details.
         #
-        #   @return [Symbol, Increase::Models::Simulations::EntityValidationParams::Status]
-        required :status, enum: -> { Increase::Simulations::EntityValidationParams::Status }
-
-        # @!method initialize(entity_id:, issues:, status:, request_options: {})
         #   @param entity_id [String] The identifier of the Entity whose validation status to update.
         #
-        #   @param issues [Array<Increase::Models::Simulations::EntityValidationParams::Issue>] The validation issues to attach. Only allowed when `status` is `invalid`.
-        #
-        #   @param status [Symbol, Increase::Models::Simulations::EntityValidationParams::Status] The validation status to set on the Entity.
+        #   @param issues [Array<Increase::Models::Simulations::EntityUpdateValidationParams::Issue>] The validation issues to attach. If no issues are provided, the validation statu
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -40,15 +36,15 @@ module Increase
           # @!attribute category
           #   The type of issue.
           #
-          #   @return [Symbol, Increase::Models::Simulations::EntityValidationParams::Issue::Category]
-          required :category, enum: -> { Increase::Simulations::EntityValidationParams::Issue::Category }
+          #   @return [Symbol, Increase::Models::Simulations::EntityUpdateValidationParams::Issue::Category]
+          required :category, enum: -> { Increase::Simulations::EntityUpdateValidationParams::Issue::Category }
 
           # @!method initialize(category:)
-          #   @param category [Symbol, Increase::Models::Simulations::EntityValidationParams::Issue::Category] The type of issue.
+          #   @param category [Symbol, Increase::Models::Simulations::EntityUpdateValidationParams::Issue::Category] The type of issue.
 
           # The type of issue.
           #
-          # @see Increase::Models::Simulations::EntityValidationParams::Issue#category
+          # @see Increase::Models::Simulations::EntityUpdateValidationParams::Issue#category
           module Category
             extend Increase::Internal::Type::Enum
 
@@ -67,23 +63,6 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
-        end
-
-        # The validation status to set on the Entity.
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          # The submitted data is valid.
-          VALID = :valid
-
-          # Additional information is required to validate the data.
-          INVALID = :invalid
-
-          # The submitted data is being validated.
-          PENDING = :pending
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
     end
