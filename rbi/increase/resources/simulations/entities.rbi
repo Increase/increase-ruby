@@ -22,11 +22,11 @@ module Increase
           ).returns(Increase::Entity)
         end
         def validation(
-          # The identifier of the Entity to set the validation on.
+          # The identifier of the Entity whose validation status to update.
           entity_id,
-          # The issues to attach to the new managed compliance validation.
+          # The validation issues to attach. Only allowed when `status` is `invalid`.
           issues:,
-          # The status to set on the new managed compliance validation.
+          # The validation status to set on the Entity.
           status:,
           request_options: {}
         )
