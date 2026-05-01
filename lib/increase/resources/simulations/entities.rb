@@ -12,11 +12,11 @@ module Increase
         #
         # @overload validation(entity_id, issues:, status:, request_options: {})
         #
-        # @param entity_id [String] The identifier of the Entity to set the validation on.
+        # @param entity_id [String] The identifier of the Entity whose validation status to update.
         #
-        # @param issues [Array<Increase::Models::Simulations::EntityValidationParams::Issue>] The issues to attach to the new managed compliance validation.
+        # @param issues [Array<Increase::Models::Simulations::EntityValidationParams::Issue>] The validation issues to attach. Only allowed when `status` is `invalid`.
         #
-        # @param status [Symbol, Increase::Models::Simulations::EntityValidationParams::Status] The status to set on the new managed compliance validation.
+        # @param status [Symbol, Increase::Models::Simulations::EntityValidationParams::Status] The validation status to set on the Entity.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
