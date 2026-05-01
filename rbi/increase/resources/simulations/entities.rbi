@@ -4,30 +4,28 @@ module Increase
   module Resources
     class Simulations
       class Entities
-        # Set the status for an
+        # Simulate updates to an
         # [Entity's validation](/documentation/api/entities#entity-object.validation). In
         # production, Know Your Customer validations
-        # [run automatically](/documentation/entity-validation#entity-validation). While
-        # developing, it can be helpful to override the behavior in Sandbox.
+        # [run automatically](/documentation/entity-validation#entity-validation) for
+        # eligible programs. While developing, use this API to simulate issues with
+        # information submissions.
         sig do
           params(
             entity_id: String,
             issues:
               T::Array[
-                Increase::Simulations::EntityValidationParams::Issue::OrHash
+                Increase::Simulations::EntityUpdateValidationParams::Issue::OrHash
               ],
-            status:
-              Increase::Simulations::EntityValidationParams::Status::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::Entity)
         end
-        def validation(
+        def update_validation(
           # The identifier of the Entity whose validation status to update.
           entity_id,
-          # The validation issues to attach. Only allowed when `status` is `invalid`.
+          # The validation issues to attach. If no issues are provided, the validation
+          # status will be set to `valid`.
           issues:,
-          # The validation status to set on the Entity.
-          status:,
           request_options: {}
         )
         end

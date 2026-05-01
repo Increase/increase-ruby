@@ -3,14 +3,14 @@
 module Increase
   module Models
     module Simulations
-      class EntityValidationParams < Increase::Internal::Type::BaseModel
+      class EntityUpdateValidationParams < Increase::Internal::Type::BaseModel
         extend Increase::Internal::Type::RequestParameters::Converter
         include Increase::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Increase::Simulations::EntityValidationParams,
+              Increase::Simulations::EntityUpdateValidationParams,
               Increase::Internal::AnyHash
             )
           end
@@ -19,41 +19,31 @@ module Increase
         sig { returns(String) }
         attr_accessor :entity_id
 
-        # The validation issues to attach. Only allowed when `status` is `invalid`.
+        # The validation issues to attach. If no issues are provided, the validation
+        # status will be set to `valid`.
         sig do
           returns(
-            T::Array[Increase::Simulations::EntityValidationParams::Issue]
+            T::Array[Increase::Simulations::EntityUpdateValidationParams::Issue]
           )
         end
         attr_accessor :issues
-
-        # The validation status to set on the Entity.
-        sig do
-          returns(
-            Increase::Simulations::EntityValidationParams::Status::OrSymbol
-          )
-        end
-        attr_accessor :status
 
         sig do
           params(
             entity_id: String,
             issues:
               T::Array[
-                Increase::Simulations::EntityValidationParams::Issue::OrHash
+                Increase::Simulations::EntityUpdateValidationParams::Issue::OrHash
               ],
-            status:
-              Increase::Simulations::EntityValidationParams::Status::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           # The identifier of the Entity whose validation status to update.
           entity_id:,
-          # The validation issues to attach. Only allowed when `status` is `invalid`.
+          # The validation issues to attach. If no issues are provided, the validation
+          # status will be set to `valid`.
           issues:,
-          # The validation status to set on the Entity.
-          status:,
           request_options: {}
         )
         end
@@ -63,9 +53,9 @@ module Increase
             {
               entity_id: String,
               issues:
-                T::Array[Increase::Simulations::EntityValidationParams::Issue],
-              status:
-                Increase::Simulations::EntityValidationParams::Status::OrSymbol,
+                T::Array[
+                  Increase::Simulations::EntityUpdateValidationParams::Issue
+                ],
               request_options: Increase::RequestOptions
             }
           )
@@ -77,7 +67,7 @@ module Increase
           OrHash =
             T.type_alias do
               T.any(
-                Increase::Simulations::EntityValidationParams::Issue,
+                Increase::Simulations::EntityUpdateValidationParams::Issue,
                 Increase::Internal::AnyHash
               )
             end
@@ -85,7 +75,7 @@ module Increase
           # The type of issue.
           sig do
             returns(
-              Increase::Simulations::EntityValidationParams::Issue::Category::OrSymbol
+              Increase::Simulations::EntityUpdateValidationParams::Issue::Category::OrSymbol
             )
           end
           attr_accessor :category
@@ -93,7 +83,7 @@ module Increase
           sig do
             params(
               category:
-                Increase::Simulations::EntityValidationParams::Issue::Category::OrSymbol
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -106,7 +96,7 @@ module Increase
             override.returns(
               {
                 category:
-                  Increase::Simulations::EntityValidationParams::Issue::Category::OrSymbol
+                  Increase::Simulations::EntityUpdateValidationParams::Issue::Category::OrSymbol
               }
             )
           end
@@ -121,7 +111,7 @@ module Increase
               T.type_alias do
                 T.all(
                   Symbol,
-                  Increase::Simulations::EntityValidationParams::Issue::Category
+                  Increase::Simulations::EntityUpdateValidationParams::Issue::Category
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -130,84 +120,39 @@ module Increase
             ENTITY_TAX_IDENTIFIER =
               T.let(
                 :entity_tax_identifier,
-                Increase::Simulations::EntityValidationParams::Issue::Category::TaggedSymbol
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
             # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
             ENTITY_ADDRESS =
               T.let(
                 :entity_address,
-                Increase::Simulations::EntityValidationParams::Issue::Category::TaggedSymbol
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_IDENTITY =
               T.let(
                 :beneficial_owner_identity,
-                Increase::Simulations::EntityValidationParams::Issue::Category::TaggedSymbol
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
             # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_ADDRESS =
               T.let(
                 :beneficial_owner_address,
-                Increase::Simulations::EntityValidationParams::Issue::Category::TaggedSymbol
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Increase::Simulations::EntityValidationParams::Issue::Category::TaggedSymbol
+                  Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
                 ]
               )
             end
             def self.values
             end
-          end
-        end
-
-        # The validation status to set on the Entity.
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::Simulations::EntityValidationParams::Status
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # The submitted data is valid.
-          VALID =
-            T.let(
-              :valid,
-              Increase::Simulations::EntityValidationParams::Status::TaggedSymbol
-            )
-
-          # Additional information is required to validate the data.
-          INVALID =
-            T.let(
-              :invalid,
-              Increase::Simulations::EntityValidationParams::Status::TaggedSymbol
-            )
-
-          # The submitted data is being validated.
-          PENDING =
-            T.let(
-              :pending,
-              Increase::Simulations::EntityValidationParams::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::Simulations::EntityValidationParams::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end
