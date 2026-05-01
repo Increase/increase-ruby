@@ -9,44 +9,44 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute entity_id
-        #   The identifier of the Entity to set the validation on.
+        #   The identifier of the Entity whose validation status to update.
         #
         #   @return [String]
         required :entity_id, String
 
         # @!attribute issues
-        #   The issues to attach to the new managed compliance validation.
+        #   The validation issues to attach. Only allowed when `status` is `invalid`.
         #
         #   @return [Array<Increase::Models::Simulations::EntityValidationParams::Issue>]
         required :issues,
                  -> { Increase::Internal::Type::ArrayOf[Increase::Simulations::EntityValidationParams::Issue] }
 
         # @!attribute status
-        #   The status to set on the new managed compliance validation.
+        #   The validation status to set on the Entity.
         #
         #   @return [Symbol, Increase::Models::Simulations::EntityValidationParams::Status]
         required :status, enum: -> { Increase::Simulations::EntityValidationParams::Status }
 
         # @!method initialize(entity_id:, issues:, status:, request_options: {})
-        #   @param entity_id [String] The identifier of the Entity to set the validation on.
+        #   @param entity_id [String] The identifier of the Entity whose validation status to update.
         #
-        #   @param issues [Array<Increase::Models::Simulations::EntityValidationParams::Issue>] The issues to attach to the new managed compliance validation.
+        #   @param issues [Array<Increase::Models::Simulations::EntityValidationParams::Issue>] The validation issues to attach. Only allowed when `status` is `invalid`.
         #
-        #   @param status [Symbol, Increase::Models::Simulations::EntityValidationParams::Status] The status to set on the new managed compliance validation.
+        #   @param status [Symbol, Increase::Models::Simulations::EntityValidationParams::Status] The validation status to set on the Entity.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
         class Issue < Increase::Internal::Type::BaseModel
           # @!attribute category
-          #   The category of the issue.
+          #   The type of issue.
           #
           #   @return [Symbol, Increase::Models::Simulations::EntityValidationParams::Issue::Category]
           required :category, enum: -> { Increase::Simulations::EntityValidationParams::Issue::Category }
 
           # @!method initialize(category:)
-          #   @param category [Symbol, Increase::Models::Simulations::EntityValidationParams::Issue::Category] The category of the issue.
+          #   @param category [Symbol, Increase::Models::Simulations::EntityValidationParams::Issue::Category] The type of issue.
 
-          # The category of the issue.
+          # The type of issue.
           #
           # @see Increase::Models::Simulations::EntityValidationParams::Issue#category
           module Category
@@ -69,7 +69,7 @@ module Increase
           end
         end
 
-        # The status to set on the new managed compliance validation.
+        # The validation status to set on the Entity.
         module Status
           extend Increase::Internal::Type::Enum
 

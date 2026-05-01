@@ -15,11 +15,11 @@ module Increase
             )
           end
 
-        # The identifier of the Entity to set the validation on.
+        # The identifier of the Entity whose validation status to update.
         sig { returns(String) }
         attr_accessor :entity_id
 
-        # The issues to attach to the new managed compliance validation.
+        # The validation issues to attach. Only allowed when `status` is `invalid`.
         sig do
           returns(
             T::Array[Increase::Simulations::EntityValidationParams::Issue]
@@ -27,7 +27,7 @@ module Increase
         end
         attr_accessor :issues
 
-        # The status to set on the new managed compliance validation.
+        # The validation status to set on the Entity.
         sig do
           returns(
             Increase::Simulations::EntityValidationParams::Status::OrSymbol
@@ -48,11 +48,11 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # The identifier of the Entity to set the validation on.
+          # The identifier of the Entity whose validation status to update.
           entity_id:,
-          # The issues to attach to the new managed compliance validation.
+          # The validation issues to attach. Only allowed when `status` is `invalid`.
           issues:,
-          # The status to set on the new managed compliance validation.
+          # The validation status to set on the Entity.
           status:,
           request_options: {}
         )
@@ -82,7 +82,7 @@ module Increase
               )
             end
 
-          # The category of the issue.
+          # The type of issue.
           sig do
             returns(
               Increase::Simulations::EntityValidationParams::Issue::Category::OrSymbol
@@ -97,7 +97,7 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The category of the issue.
+            # The type of issue.
             category:
           )
           end
@@ -113,7 +113,7 @@ module Increase
           def to_hash
           end
 
-          # The category of the issue.
+          # The type of issue.
           module Category
             extend Increase::Internal::Type::Enum
 
@@ -166,7 +166,7 @@ module Increase
           end
         end
 
-        # The status to set on the new managed compliance validation.
+        # The validation status to set on the Entity.
         module Status
           extend Increase::Internal::Type::Enum
 
