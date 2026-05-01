@@ -1,0 +1,96 @@
+module Increase
+  module Models
+    module Simulations
+      type entity_validation_params =
+        {
+          entity_id: String,
+          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
+          status: Increase::Models::Simulations::EntityValidationParams::status
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class EntityValidationParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor entity_id: String
+
+        attr_accessor issues: ::Array[Increase::Simulations::EntityValidationParams::Issue]
+
+        attr_accessor status: Increase::Models::Simulations::EntityValidationParams::status
+
+        def initialize: (
+          entity_id: String,
+          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
+          status: Increase::Models::Simulations::EntityValidationParams::status,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          entity_id: String,
+          issues: ::Array[Increase::Simulations::EntityValidationParams::Issue],
+          status: Increase::Models::Simulations::EntityValidationParams::status,
+          request_options: Increase::RequestOptions
+        }
+
+        type issue =
+          {
+            category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+          }
+
+        class Issue < Increase::Internal::Type::BaseModel
+          attr_accessor category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+
+          def initialize: (
+            category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+          ) -> void
+
+          def to_hash: -> {
+            category: Increase::Models::Simulations::EntityValidationParams::Issue::category
+          }
+
+          type category =
+            :entity_tax_identifier
+            | :entity_address
+            | :beneficial_owner_identity
+            | :beneficial_owner_address
+
+          module Category
+            extend Increase::Internal::Type::Enum
+
+            # The entity's tax identifier could not be validated. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.legal_identifier).
+            ENTITY_TAX_IDENTIFIER: :entity_tax_identifier
+
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            ENTITY_ADDRESS: :entity_address
+
+            # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_IDENTITY: :beneficial_owner_identity
+
+            # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_ADDRESS: :beneficial_owner_address
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::EntityValidationParams::Issue::category]
+          end
+        end
+
+        type status = :valid | :invalid | :pending
+
+        module Status
+          extend Increase::Internal::Type::Enum
+
+          # The submitted data is valid.
+          VALID: :valid
+
+          # Additional information is required to validate the data.
+          INVALID: :invalid
+
+          # The submitted data is being validated.
+          PENDING: :pending
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::EntityValidationParams::status]
+        end
+      end
+    end
+  end
+end
