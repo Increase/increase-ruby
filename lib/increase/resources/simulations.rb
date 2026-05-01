@@ -90,6 +90,9 @@ module Increase
       # @return [Increase::Resources::Simulations::InboundMailItems]
       attr_reader :inbound_mail_items
 
+      # @return [Increase::Resources::Simulations::Entities]
+      attr_reader :entities
+
       # @return [Increase::Resources::Simulations::EntityOnboardingSessions]
       attr_reader :entity_onboarding_sessions
 
@@ -145,6 +148,7 @@ module Increase
         @inbound_fednow_transfers = Increase::Resources::Simulations::InboundFednowTransfers.new(client: client)
         @check_deposits = Increase::Resources::Simulations::CheckDeposits.new(client: client)
         @inbound_mail_items = Increase::Resources::Simulations::InboundMailItems.new(client: client)
+        @entities = Increase::Resources::Simulations::Entities.new(client: client)
         @entity_onboarding_sessions =
           Increase::Resources::Simulations::EntityOnboardingSessions.new(client: client)
         @programs = Increase::Resources::Simulations::Programs.new(client: client)
