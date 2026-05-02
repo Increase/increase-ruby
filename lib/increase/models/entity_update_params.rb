@@ -140,7 +140,14 @@ module Increase
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, legal_identifier: nil, name: nil)
+        # @!attribute website
+        #   A website for the business. Not every program requires a website for submitted
+        #   Entities.
+        #
+        #   @return [String, nil]
+        optional :website, String
+
+        # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, legal_identifier: nil, name: nil, website: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
         #
@@ -158,6 +165,8 @@ module Increase
         #   @param legal_identifier [Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier] The legal identifier of the corporation. This is usually the Employer Identifica
         #
         #   @param name [String] The legal name of the corporation.
+        #
+        #   @param website [String] A website for the business. Not every program requires a website for submitted E
 
         # @see Increase::Models::EntityUpdateParams::Corporation#address
         class Address < Increase::Internal::Type::BaseModel

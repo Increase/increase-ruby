@@ -200,7 +200,8 @@ module Increase
         optional :industry_code, String
 
         # @!attribute website
-        #   The website of the corporation.
+        #   A website for the business. Not every program requires a website for submitted
+        #   Entities.
         #
         #   @return [String, nil]
         optional :website, String
@@ -228,7 +229,7 @@ module Increase
         #
         #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
         #
-        #   @param website [String] The website of the corporation.
+        #   @param website [String] A website for the business. Not every program requires a website for submitted E
 
         # @see Increase::Models::EntityCreateParams::Corporation#address
         class Address < Increase::Internal::Type::BaseModel
@@ -773,7 +774,8 @@ module Increase
         required :tax_identifier, String
 
         # @!attribute website
-        #   The website of the government authority.
+        #   A website for the government authority. Not every program requires a website for
+        #   submitted Entities.
         #
         #   @return [String, nil]
         optional :website, String
@@ -795,7 +797,7 @@ module Increase
         #
         #   @param tax_identifier [String] The Employer Identification Number (EIN) for the government authority. Submit ni
         #
-        #   @param website [String] The website of the government authority.
+        #   @param website [String] A website for the government authority. Not every program requires a website for
 
         # @see Increase::Models::EntityCreateParams::GovernmentAuthority#address
         class Address < Increase::Internal::Type::BaseModel
