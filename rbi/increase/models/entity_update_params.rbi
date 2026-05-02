@@ -263,6 +263,14 @@ module Increase
         sig { params(name: String).void }
         attr_writer :name
 
+        # A website for the business. Not every program requires a website for submitted
+        # Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :website
+
+        sig { params(website: String).void }
+        attr_writer :website
+
         # Details of the corporation entity to update. If you specify this parameter and
         # the entity is not a corporation, the request will fail.
         sig do
@@ -273,7 +281,8 @@ module Increase
             industry_code: String,
             legal_identifier:
               Increase::EntityUpdateParams::Corporation::LegalIdentifier::OrHash,
-            name: String
+            name: String,
+            website: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -295,7 +304,10 @@ module Increase
           # Identification Number (EIN).
           legal_identifier: nil,
           # The legal name of the corporation.
-          name: nil
+          name: nil,
+          # A website for the business. Not every program requires a website for submitted
+          # Entities.
+          website: nil
         )
         end
 
@@ -308,7 +320,8 @@ module Increase
               industry_code: String,
               legal_identifier:
                 Increase::EntityUpdateParams::Corporation::LegalIdentifier,
-              name: String
+              name: String,
+              website: String
             }
           )
         end
