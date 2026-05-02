@@ -371,7 +371,8 @@ module Increase
         sig { params(industry_code: String).void }
         attr_writer :industry_code
 
-        # The website of the corporation.
+        # A website for the business. Not every program requires a website for submitted
+        # Entities.
         sig { returns(T.nilable(String)) }
         attr_reader :website
 
@@ -426,7 +427,8 @@ module Increase
           # `Software Publishers`. A full list of classification codes is available
           # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
           industry_code: nil,
-          # The website of the corporation.
+          # A website for the business. Not every program requires a website for submitted
+          # Entities.
           website: nil
         )
         end
@@ -1455,7 +1457,8 @@ module Increase
         sig { returns(String) }
         attr_accessor :tax_identifier
 
-        # The website of the government authority.
+        # A website for the government authority. Not every program requires a website for
+        # submitted Entities.
         sig { returns(T.nilable(String)) }
         attr_reader :website
 
@@ -1492,7 +1495,8 @@ module Increase
           # The Employer Identification Number (EIN) for the government authority. Submit
           # nine digits with no dashes or other separators.
           tax_identifier:,
-          # The website of the government authority.
+          # A website for the government authority. Not every program requires a website for
+          # submitted Entities.
           website: nil
         )
         end

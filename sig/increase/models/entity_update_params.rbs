@@ -99,7 +99,8 @@ module Increase
           incorporation_state: String,
           industry_code: String,
           legal_identifier: Increase::EntityUpdateParams::Corporation::LegalIdentifier,
-          name: String
+          name: String,
+          website: String
         }
 
       class Corporation < Increase::Internal::Type::BaseModel
@@ -131,13 +132,18 @@ module Increase
 
         def name=: (String) -> String
 
+        attr_reader website: String?
+
+        def website=: (String) -> String
+
         def initialize: (
           ?address: Increase::EntityUpdateParams::Corporation::Address,
           ?email: String,
           ?incorporation_state: String,
           ?industry_code: String,
           ?legal_identifier: Increase::EntityUpdateParams::Corporation::LegalIdentifier,
-          ?name: String
+          ?name: String,
+          ?website: String
         ) -> void
 
         def to_hash: -> {
@@ -146,7 +152,8 @@ module Increase
           incorporation_state: String,
           industry_code: String,
           legal_identifier: Increase::EntityUpdateParams::Corporation::LegalIdentifier,
-          name: String
+          name: String,
+          website: String
         }
 
         type address =
