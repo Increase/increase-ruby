@@ -96,7 +96,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  account = increase.accounts.create(name: "New Account!")
+  account = increase.accounts.create(name: "Oops")
 rescue Increase::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
