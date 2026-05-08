@@ -125,7 +125,7 @@ module Increase
         # Export a CSV of all transactions for a given time range.
         TRANSACTION_CSV = :transaction_csv
 
-        # Export a CSV of account balances for the dates in a given range.
+        # Export a CSV of account balances for the dates in a given range. (deprecated, use `daily_account_balance_csv` instead)
         BALANCE_CSV = :balance_csv
 
         # Export a CSV of bookkeeping account balances for the dates in a given range.
