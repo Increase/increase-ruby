@@ -192,14 +192,15 @@ module Increase
                  -> { Increase::PendingTransaction::Source::ACHTransferInstruction },
                  nil?: true
 
-        # @!attribute blockchain_offramp_transfer_instruction
-        #   A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
-        #   the JSON response if and only if `category` is equal to
-        #   `blockchain_offramp_transfer_instruction`.
+        # @!attribute blockchain_offramp_transfer
+        #   A Blockchain Off-Ramp Transfer object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `blockchain_offramp_transfer`.
+        #   Blockchain Off-Ramp Transfers move funds from a Blockchain Address to an
+        #   Account. They're automatically created when funds land in a Blockchain Address.
         #
-        #   @return [Increase::Models::PendingTransaction::Source::BlockchainOfframpTransferInstruction, nil]
-        optional :blockchain_offramp_transfer_instruction,
-                 -> { Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction },
+        #   @return [Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer, nil]
+        optional :blockchain_offramp_transfer,
+                 -> { Increase::PendingTransaction::Source::BlockchainOfframpTransfer },
                  nil?: true
 
         # @!attribute blockchain_onramp_transfer_instruction
@@ -330,7 +331,7 @@ module Increase
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer_instruction: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, swift_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
+        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, swift_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::PendingTransaction::Source} for more details.
         #
@@ -344,7 +345,7 @@ module Increase
         #
         #   @param ach_transfer_instruction [Increase::Models::PendingTransaction::Source::ACHTransferInstruction, nil] An ACH Transfer Instruction object. This field will be present in the JSON respo
         #
-        #   @param blockchain_offramp_transfer_instruction [Increase::Models::PendingTransaction::Source::BlockchainOfframpTransferInstruction, nil] A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
+        #   @param blockchain_offramp_transfer [Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer, nil] A Blockchain Off-Ramp Transfer object. This field will be present in the JSON re
         #
         #   @param blockchain_onramp_transfer_instruction [Increase::Models::PendingTransaction::Source::BlockchainOnrampTransferInstruction, nil] A Blockchain On-Ramp Transfer Instruction object. This field will be present in
         #
@@ -421,8 +422,8 @@ module Increase
           # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
           BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION = :blockchain_onramp_transfer_instruction
 
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION = :blockchain_offramp_transfer_instruction
+          # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER = :blockchain_offramp_transfer
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
@@ -506,32 +507,141 @@ module Increase
           #   @param transfer_id [String] The identifier of the ACH Transfer that led to this Pending Transaction.
         end
 
-        # @see Increase::Models::PendingTransaction::Source#blockchain_offramp_transfer_instruction
-        class BlockchainOfframpTransferInstruction < Increase::Internal::Type::BaseModel
+        # @see Increase::Models::PendingTransaction::Source#blockchain_offramp_transfer
+        class BlockchainOfframpTransfer < Increase::Internal::Type::BaseModel
+          # @!attribute id
+          #   The Blockchain Off-Ramp Transfer's identifier.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute token
+          #   The token that was received.
+          #
+          #   @return [Symbol, Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::Token]
+          required :token, enum: -> { Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token }
+
+          # @!attribute amount
+          #   The transfer amount in USD cents.
+          #
+          #   @return [Integer]
+          required :amount, Integer
+
+          # @!attribute created_at
+          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #   the transfer was created.
+          #
+          #   @return [Time]
+          required :created_at, Time
+
+          # @!attribute destination_account_id
+          #   The Account the funds were transferred into.
+          #
+          #   @return [String]
+          required :destination_account_id, String
+
+          # @!attribute initiating_transaction_hash
+          #   The transaction hash of the blockchain transaction that initiated this transfer.
+          #
+          #   @return [String]
+          required :initiating_transaction_hash, String
+
           # @!attribute source_blockchain_address_id
-          #   The identifier of the Blockchain Address the funds were received at.
+          #   The Blockchain Address from which the transfer originated.
           #
           #   @return [String]
           required :source_blockchain_address_id, String
 
-          # @!attribute transfer_id
-          #   The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+          # @!attribute status
+          #   The lifecycle status of the transfer.
           #
-          #   @return [String]
-          required :transfer_id, String
+          #   @return [Symbol, Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::Status]
+          required :status, enum: -> { Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status }
 
-          # @!method initialize(source_blockchain_address_id:, transfer_id:)
+          # @!attribute transaction_id
+          #   The Transaction crediting the Account once the transfer is settled.
+          #
+          #   @return [String, nil]
+          required :transaction_id, String, nil?: true
+
+          # @!attribute type
+          #   A constant representing the object's type. For this resource it will always be
+          #   `blockchain_offramp_transfer`.
+          #
+          #   @return [Symbol, Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::Type]
+          required :type, enum: -> { Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type }
+
+          # @!method initialize(id:, token:, amount:, created_at:, destination_account_id:, initiating_transaction_hash:, source_blockchain_address_id:, status:, transaction_id:, type:)
           #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::PendingTransaction::Source::BlockchainOfframpTransferInstruction}
-          #   for more details.
+          #   {Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer} for
+          #   more details.
           #
-          #   A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
-          #   the JSON response if and only if `category` is equal to
-          #   `blockchain_offramp_transfer_instruction`.
+          #   A Blockchain Off-Ramp Transfer object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `blockchain_offramp_transfer`.
+          #   Blockchain Off-Ramp Transfers move funds from a Blockchain Address to an
+          #   Account. They're automatically created when funds land in a Blockchain Address.
           #
-          #   @param source_blockchain_address_id [String] The identifier of the Blockchain Address the funds were received at.
+          #   @param id [String] The Blockchain Off-Ramp Transfer's identifier.
           #
-          #   @param transfer_id [String] The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
+          #   @param token [Symbol, Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::Token] The token that was received.
+          #
+          #   @param amount [Integer] The transfer amount in USD cents.
+          #
+          #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+          #
+          #   @param destination_account_id [String] The Account the funds were transferred into.
+          #
+          #   @param initiating_transaction_hash [String] The transaction hash of the blockchain transaction that initiated this transfer.
+          #
+          #   @param source_blockchain_address_id [String] The Blockchain Address from which the transfer originated.
+          #
+          #   @param status [Symbol, Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::Status] The lifecycle status of the transfer.
+          #
+          #   @param transaction_id [String, nil] The Transaction crediting the Account once the transfer is settled.
+          #
+          #   @param type [Symbol, Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::Type] A constant representing the object's type. For this resource it will always be `
+
+          # The token that was received.
+          #
+          # @see Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer#token
+          module Token
+            extend Increase::Internal::Type::Enum
+
+            # A USD stablecoin issued by Circle.
+            USDC = :usdc
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # The lifecycle status of the transfer.
+          #
+          # @see Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer#status
+          module Status
+            extend Increase::Internal::Type::Enum
+
+            # The transfer is pending settlement at Increase.
+            PENDING_SETTLEMENT = :pending_settlement
+
+            # The transfer has been settled and funds have been credited.
+            SETTLED = :settled
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # A constant representing the object's type. For this resource it will always be
+          # `blockchain_offramp_transfer`.
+          #
+          # @see Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer#type
+          module Type
+            extend Increase::Internal::Type::Enum
+
+            BLOCKCHAIN_OFFRAMP_TRANSFER = :blockchain_offramp_transfer
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see Increase::Models::PendingTransaction::Source#blockchain_onramp_transfer_instruction

@@ -284,27 +284,28 @@ module Increase
         end
         attr_writer :ach_transfer_instruction
 
-        # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
-        # the JSON response if and only if `category` is equal to
-        # `blockchain_offramp_transfer_instruction`.
+        # A Blockchain Off-Ramp Transfer object. This field will be present in the JSON
+        # response if and only if `category` is equal to `blockchain_offramp_transfer`.
+        # Blockchain Off-Ramp Transfers move funds from a Blockchain Address to an
+        # Account. They're automatically created when funds land in a Blockchain Address.
         sig do
           returns(
             T.nilable(
-              Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction
+              Increase::PendingTransaction::Source::BlockchainOfframpTransfer
             )
           )
         end
-        attr_reader :blockchain_offramp_transfer_instruction
+        attr_reader :blockchain_offramp_transfer
 
         sig do
           params(
-            blockchain_offramp_transfer_instruction:
+            blockchain_offramp_transfer:
               T.nilable(
-                Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction::OrHash
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::OrHash
               )
           ).void
         end
-        attr_writer :blockchain_offramp_transfer_instruction
+        attr_writer :blockchain_offramp_transfer
 
         # A Blockchain On-Ramp Transfer Instruction object. This field will be present in
         # the JSON response if and only if `category` is equal to
@@ -574,9 +575,9 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::ACHTransferInstruction::OrHash
               ),
-            blockchain_offramp_transfer_instruction:
+            blockchain_offramp_transfer:
               T.nilable(
-                Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction::OrHash
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::OrHash
               ),
             blockchain_onramp_transfer_instruction:
               T.nilable(
@@ -637,10 +638,11 @@ module Increase
           # An ACH Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `ach_transfer_instruction`.
           ach_transfer_instruction: nil,
-          # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
-          # the JSON response if and only if `category` is equal to
-          # `blockchain_offramp_transfer_instruction`.
-          blockchain_offramp_transfer_instruction: nil,
+          # A Blockchain Off-Ramp Transfer object. This field will be present in the JSON
+          # response if and only if `category` is equal to `blockchain_offramp_transfer`.
+          # Blockchain Off-Ramp Transfers move funds from a Blockchain Address to an
+          # Account. They're automatically created when funds land in a Blockchain Address.
+          blockchain_offramp_transfer: nil,
           # A Blockchain On-Ramp Transfer Instruction object. This field will be present in
           # the JSON response if and only if `category` is equal to
           # `blockchain_onramp_transfer_instruction`.
@@ -705,9 +707,9 @@ module Increase
                 T.nilable(
                   Increase::PendingTransaction::Source::ACHTransferInstruction
                 ),
-              blockchain_offramp_transfer_instruction:
+              blockchain_offramp_transfer:
                 T.nilable(
-                  Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer
                 ),
               blockchain_onramp_transfer_instruction:
                 T.nilable(
@@ -870,10 +872,10 @@ module Increase
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION =
+          # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER =
             T.let(
-              :blockchain_offramp_transfer_instruction,
+              :blockchain_offramp_transfer,
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
@@ -1027,46 +1029,236 @@ module Increase
           end
         end
 
-        class BlockchainOfframpTransferInstruction < Increase::Internal::Type::BaseModel
+        class BlockchainOfframpTransfer < Increase::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction,
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer,
                 Increase::Internal::AnyHash
               )
             end
 
-          # The identifier of the Blockchain Address the funds were received at.
+          # The Blockchain Off-Ramp Transfer's identifier.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The token that was received.
+          sig do
+            returns(
+              Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token::TaggedSymbol
+            )
+          end
+          attr_accessor :token
+
+          # The transfer amount in USD cents.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the transfer was created.
+          sig { returns(Time) }
+          attr_accessor :created_at
+
+          # The Account the funds were transferred into.
+          sig { returns(String) }
+          attr_accessor :destination_account_id
+
+          # The transaction hash of the blockchain transaction that initiated this transfer.
+          sig { returns(String) }
+          attr_accessor :initiating_transaction_hash
+
+          # The Blockchain Address from which the transfer originated.
           sig { returns(String) }
           attr_accessor :source_blockchain_address_id
 
-          # The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
-          sig { returns(String) }
-          attr_accessor :transfer_id
+          # The lifecycle status of the transfer.
+          sig do
+            returns(
+              Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::TaggedSymbol
+            )
+          end
+          attr_accessor :status
 
-          # A Blockchain Off-Ramp Transfer Instruction object. This field will be present in
-          # the JSON response if and only if `category` is equal to
-          # `blockchain_offramp_transfer_instruction`.
+          # The Transaction crediting the Account once the transfer is settled.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :transaction_id
+
+          # A constant representing the object's type. For this resource it will always be
+          # `blockchain_offramp_transfer`.
+          sig do
+            returns(
+              Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type::TaggedSymbol
+            )
+          end
+          attr_accessor :type
+
+          # A Blockchain Off-Ramp Transfer object. This field will be present in the JSON
+          # response if and only if `category` is equal to `blockchain_offramp_transfer`.
+          # Blockchain Off-Ramp Transfers move funds from a Blockchain Address to an
+          # Account. They're automatically created when funds land in a Blockchain Address.
           sig do
             params(
+              id: String,
+              token:
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token::OrSymbol,
+              amount: Integer,
+              created_at: Time,
+              destination_account_id: String,
+              initiating_transaction_hash: String,
               source_blockchain_address_id: String,
-              transfer_id: String
+              status:
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::OrSymbol,
+              transaction_id: T.nilable(String),
+              type:
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
-            # The identifier of the Blockchain Address the funds were received at.
+            # The Blockchain Off-Ramp Transfer's identifier.
+            id:,
+            # The token that was received.
+            token:,
+            # The transfer amount in USD cents.
+            amount:,
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+            # the transfer was created.
+            created_at:,
+            # The Account the funds were transferred into.
+            destination_account_id:,
+            # The transaction hash of the blockchain transaction that initiated this transfer.
+            initiating_transaction_hash:,
+            # The Blockchain Address from which the transfer originated.
             source_blockchain_address_id:,
-            # The identifier of the Blockchain Off-Ramp Transfer that led to this Transaction.
-            transfer_id:
+            # The lifecycle status of the transfer.
+            status:,
+            # The Transaction crediting the Account once the transfer is settled.
+            transaction_id:,
+            # A constant representing the object's type. For this resource it will always be
+            # `blockchain_offramp_transfer`.
+            type:
           )
           end
 
           sig do
             override.returns(
-              { source_blockchain_address_id: String, transfer_id: String }
+              {
+                id: String,
+                token:
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token::TaggedSymbol,
+                amount: Integer,
+                created_at: Time,
+                destination_account_id: String,
+                initiating_transaction_hash: String,
+                source_blockchain_address_id: String,
+                status:
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::TaggedSymbol,
+                transaction_id: T.nilable(String),
+                type:
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type::TaggedSymbol
+              }
             )
           end
           def to_hash
+          end
+
+          # The token that was received.
+          module Token
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # A USD stablecoin issued by Circle.
+            USDC =
+              T.let(
+                :usdc,
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Token::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # The lifecycle status of the transfer.
+          module Status
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The transfer is pending settlement at Increase.
+            PENDING_SETTLEMENT =
+              T.let(
+                :pending_settlement,
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::TaggedSymbol
+              )
+
+            # The transfer has been settled and funds have been credited.
+            SETTLED =
+              T.let(
+                :settled,
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # A constant representing the object's type. For this resource it will always be
+          # `blockchain_offramp_transfer`.
+          module Type
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            BLOCKCHAIN_OFFRAMP_TRANSFER =
+              T.let(
+                :blockchain_offramp_transfer,
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
