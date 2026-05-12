@@ -130,8 +130,8 @@ module Increase
           # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
           BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION = :blockchain_onramp_transfer_instruction
 
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION = :blockchain_offramp_transfer_instruction
+          # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER = :blockchain_offramp_transfer
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
