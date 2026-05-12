@@ -109,7 +109,7 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
-          blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
+          blockchain_offramp_transfer: Increase::PendingTransaction::Source::BlockchainOfframpTransfer?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
@@ -132,7 +132,7 @@ module Increase
 
         attr_accessor ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?
 
-        attr_accessor blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?
+        attr_accessor blockchain_offramp_transfer: Increase::PendingTransaction::Source::BlockchainOfframpTransfer?
 
         attr_accessor blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?
 
@@ -164,7 +164,7 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           ?account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ?ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
-          ?blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
+          ?blockchain_offramp_transfer: Increase::PendingTransaction::Source::BlockchainOfframpTransfer?,
           ?blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           ?card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           ?card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
@@ -184,7 +184,7 @@ module Increase
           category: Increase::Models::PendingTransaction::Source::category,
           account_transfer_instruction: Increase::PendingTransaction::Source::AccountTransferInstruction?,
           ach_transfer_instruction: Increase::PendingTransaction::Source::ACHTransferInstruction?,
-          blockchain_offramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOfframpTransferInstruction?,
+          blockchain_offramp_transfer: Increase::PendingTransaction::Source::BlockchainOfframpTransfer?,
           blockchain_onramp_transfer_instruction: Increase::PendingTransaction::Source::BlockchainOnrampTransferInstruction?,
           card_authorization: Increase::PendingTransaction::Source::CardAuthorization?,
           card_push_transfer_instruction: Increase::PendingTransaction::Source::CardPushTransferInstruction?,
@@ -215,7 +215,7 @@ module Increase
           | :swift_transfer_instruction
           | :card_push_transfer_instruction
           | :blockchain_onramp_transfer_instruction
-          | :blockchain_offramp_transfer_instruction
+          | :blockchain_offramp_transfer
           | :other
 
         module Category
@@ -263,8 +263,8 @@ module Increase
           # Blockchain On-Ramp Transfer Instruction: details will be under the `blockchain_onramp_transfer_instruction` object.
           BLOCKCHAIN_ONRAMP_TRANSFER_INSTRUCTION: :blockchain_onramp_transfer_instruction
 
-          # Blockchain Off-Ramp Transfer Instruction: details will be under the `blockchain_offramp_transfer_instruction` object.
-          BLOCKCHAIN_OFFRAMP_TRANSFER_INSTRUCTION: :blockchain_offramp_transfer_instruction
+          # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
+          BLOCKCHAIN_OFFRAMP_TRANSFER: :blockchain_offramp_transfer
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
@@ -322,23 +322,101 @@ module Increase
           def to_hash: -> { amount: Integer, transfer_id: String }
         end
 
-        type blockchain_offramp_transfer_instruction =
-          { source_blockchain_address_id: String, transfer_id: String }
+        type blockchain_offramp_transfer =
+          {
+            id: String,
+            token: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::token,
+            amount: Integer,
+            created_at: Time,
+            destination_account_id: String,
+            initiating_transaction_hash: String,
+            source_blockchain_address_id: String,
+            status: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::status,
+            transaction_id: String?,
+            type: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::type_
+          }
 
-        class BlockchainOfframpTransferInstruction < Increase::Internal::Type::BaseModel
+        class BlockchainOfframpTransfer < Increase::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor token: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::token
+
+          attr_accessor amount: Integer
+
+          attr_accessor created_at: Time
+
+          attr_accessor destination_account_id: String
+
+          attr_accessor initiating_transaction_hash: String
+
           attr_accessor source_blockchain_address_id: String
 
-          attr_accessor transfer_id: String
+          attr_accessor status: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::status
+
+          attr_accessor transaction_id: String?
+
+          attr_accessor type: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::type_
 
           def initialize: (
+            id: String,
+            token: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::token,
+            amount: Integer,
+            created_at: Time,
+            destination_account_id: String,
+            initiating_transaction_hash: String,
             source_blockchain_address_id: String,
-            transfer_id: String
+            status: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::status,
+            transaction_id: String?,
+            type: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::type_
           ) -> void
 
           def to_hash: -> {
+            id: String,
+            token: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::token,
+            amount: Integer,
+            created_at: Time,
+            destination_account_id: String,
+            initiating_transaction_hash: String,
             source_blockchain_address_id: String,
-            transfer_id: String
+            status: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::status,
+            transaction_id: String?,
+            type: Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::type_
           }
+
+          type token = :usdc
+
+          module Token
+            extend Increase::Internal::Type::Enum
+
+            # A USD stablecoin issued by Circle.
+            USDC: :usdc
+
+            def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::token]
+          end
+
+          type status = :pending_settlement | :settled
+
+          module Status
+            extend Increase::Internal::Type::Enum
+
+            # The transfer is pending settlement at Increase.
+            PENDING_SETTLEMENT: :pending_settlement
+
+            # The transfer has been settled and funds have been credited.
+            SETTLED: :settled
+
+            def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::status]
+          end
+
+          type type_ = :blockchain_offramp_transfer
+
+          module Type
+            extend Increase::Internal::Type::Enum
+
+            BLOCKCHAIN_OFFRAMP_TRANSFER: :blockchain_offramp_transfer
+
+            def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::BlockchainOfframpTransfer::type_]
+          end
         end
 
         type blockchain_onramp_transfer_instruction =
