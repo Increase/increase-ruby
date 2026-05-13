@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.325.1 (2026-05-13)
+
+Full Changelog: [v1.325.0...v1.325.1](https://github.com/Increase/increase-ruby/compare/v1.325.0...v1.325.1)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([2f0cb6d](https://github.com/Increase/increase-ruby/commit/2f0cb6dcb86978fc9c6a621b19d91e8fdfc4b72d))
+
 ## 1.325.0 (2026-05-12)
 
 Full Changelog: [v1.324.0...v1.325.0](https://github.com/Increase/increase-ruby/compare/v1.324.0...v1.325.0)
