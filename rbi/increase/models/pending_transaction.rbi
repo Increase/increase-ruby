@@ -1205,6 +1205,13 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+            # The transfer has been canceled.
+            CANCELED =
+              T.let(
+                :canceled,
+                Increase::PendingTransaction::Source::BlockchainOfframpTransfer::Status::TaggedSymbol
+              )
+
             # The transfer is pending settlement at Increase.
             PENDING_SETTLEMENT =
               T.let(
