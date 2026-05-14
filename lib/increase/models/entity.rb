@@ -197,6 +197,15 @@ module Increase
         required :beneficial_owners,
                  -> { Increase::Internal::Type::ArrayOf[Increase::Entity::Corporation::BeneficialOwner] }
 
+        # @!attribute beneficial_ownership_exemption_reason
+        #   If the entity is exempt from the requirement to submit beneficial owners, the
+        #   justification for the exemption.
+        #
+        #   @return [Symbol, Increase::Models::Entity::Corporation::BeneficialOwnershipExemptionReason, nil]
+        required :beneficial_ownership_exemption_reason,
+                 enum: -> { Increase::Entity::Corporation::BeneficialOwnershipExemptionReason },
+                 nil?: true
+
         # @!attribute email
         #   An email address for the business.
         #
@@ -235,7 +244,7 @@ module Increase
         #   @return [String, nil]
         required :website, String, nil?: true
 
-        # @!method initialize(address:, beneficial_owners:, email:, incorporation_state:, industry_code:, legal_identifier:, name:, website:)
+        # @!method initialize(address:, beneficial_owners:, beneficial_ownership_exemption_reason:, email:, incorporation_state:, industry_code:, legal_identifier:, name:, website:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Entity::Corporation} for more details.
         #
@@ -245,6 +254,8 @@ module Increase
         #   @param address [Increase::Models::Entity::Corporation::Address] The corporation's address.
         #
         #   @param beneficial_owners [Array<Increase::Models::Entity::Corporation::BeneficialOwner>] The identifying details of anyone controlling or owning 25% or more of the corpo
+        #
+        #   @param beneficial_ownership_exemption_reason [Symbol, Increase::Models::Entity::Corporation::BeneficialOwnershipExemptionReason, nil] If the entity is exempt from the requirement to submit beneficial owners, the ju
         #
         #   @param email [String, nil] An email address for the business.
         #
@@ -518,6 +529,29 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # If the entity is exempt from the requirement to submit beneficial owners, the
+        # justification for the exemption.
+        #
+        # @see Increase::Models::Entity::Corporation#beneficial_ownership_exemption_reason
+        module BeneficialOwnershipExemptionReason
+          extend Increase::Internal::Type::Enum
+
+          # A regulated financial institution.
+          REGULATED_FINANCIAL_INSTITUTION = :regulated_financial_institution
+
+          # A publicly traded company.
+          PUBLICLY_TRADED_COMPANY = :publicly_traded_company
+
+          # A public entity acting on behalf of the federal or a state government.
+          PUBLIC_ENTITY = :public_entity
+
+          # Any other reason why this entity is exempt from the requirement to submit beneficial owners. You can only use this exemption after approval from your bank partner.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Increase::Models::Entity::Corporation#legal_identifier

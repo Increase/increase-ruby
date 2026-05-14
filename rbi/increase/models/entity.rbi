@@ -286,6 +286,17 @@ module Increase
         end
         attr_accessor :beneficial_owners
 
+        # If the entity is exempt from the requirement to submit beneficial owners, the
+        # justification for the exemption.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :beneficial_ownership_exemption_reason
+
         # An email address for the business.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
@@ -329,6 +340,10 @@ module Increase
             address: Increase::Entity::Corporation::Address::OrHash,
             beneficial_owners:
               T::Array[Increase::Entity::Corporation::BeneficialOwner::OrHash],
+            beneficial_ownership_exemption_reason:
+              T.nilable(
+                Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::OrSymbol
+              ),
             email: T.nilable(String),
             incorporation_state: T.nilable(String),
             industry_code: T.nilable(String),
@@ -344,6 +359,9 @@ module Increase
           # The identifying details of anyone controlling or owning 25% or more of the
           # corporation.
           beneficial_owners:,
+          # If the entity is exempt from the requirement to submit beneficial owners, the
+          # justification for the exemption.
+          beneficial_ownership_exemption_reason:,
           # An email address for the business.
           email:,
           # The two-letter United States Postal Service (USPS) abbreviation for the
@@ -367,6 +385,10 @@ module Increase
               address: Increase::Entity::Corporation::Address,
               beneficial_owners:
                 T::Array[Increase::Entity::Corporation::BeneficialOwner],
+              beneficial_ownership_exemption_reason:
+                T.nilable(
+                  Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+                ),
               email: T.nilable(String),
               incorporation_state: T.nilable(String),
               industry_code: T.nilable(String),
@@ -860,6 +882,59 @@ module Increase
             end
             def self.values
             end
+          end
+        end
+
+        # If the entity is exempt from the requirement to submit beneficial owners, the
+        # justification for the exemption.
+        module BeneficialOwnershipExemptionReason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::Entity::Corporation::BeneficialOwnershipExemptionReason
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # A regulated financial institution.
+          REGULATED_FINANCIAL_INSTITUTION =
+            T.let(
+              :regulated_financial_institution,
+              Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          # A publicly traded company.
+          PUBLICLY_TRADED_COMPANY =
+            T.let(
+              :publicly_traded_company,
+              Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          # A public entity acting on behalf of the federal or a state government.
+          PUBLIC_ENTITY =
+            T.let(
+              :public_entity,
+              Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          # Any other reason why this entity is exempt from the requirement to submit beneficial owners. You can only use this exemption after approval from your bank partner.
+          OTHER =
+            T.let(
+              :other,
+              Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::Entity::Corporation::BeneficialOwnershipExemptionReason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 
