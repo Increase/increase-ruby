@@ -620,9 +620,6 @@ module Increase
           module Status
             extend Increase::Internal::Type::Enum
 
-            # The transfer has been canceled.
-            CANCELED = :canceled
-
             # The transfer is pending settlement at Increase.
             PENDING_SETTLEMENT = :pending_settlement
 
