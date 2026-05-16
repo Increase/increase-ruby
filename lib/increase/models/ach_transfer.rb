@@ -829,15 +829,32 @@ module Increase
         #   @return [Symbol, Increase::Models::ACHTransfer::NotificationsOfChange::ChangeCode]
         required :change_code, enum: -> { Increase::ACHTransfer::NotificationsOfChange::ChangeCode }
 
-        # @!attribute corrected_data
-        #   The corrected data that should be used in future ACHs to this account. This may
-        #   contain the suggested new account number or routing number. When the
-        #   `change_code` is `incorrect_transaction_code`, this field contains an integer.
-        #   Numbers starting with a 2 encourage changing the `funding` parameter to
-        #   checking; numbers starting with a 3 encourage changing to savings.
+        # @!attribute corrected_account_funding
+        #   The corrected account funding type that should be used in future ACHs to this
+        #   account. This is derived from the corrected transaction code.
         #
-        #   @return [String]
-        required :corrected_data, String
+        #   @return [Symbol, Increase::Models::ACHTransfer::NotificationsOfChange::CorrectedAccountFunding, nil]
+        required :corrected_account_funding,
+                 enum: -> { Increase::ACHTransfer::NotificationsOfChange::CorrectedAccountFunding },
+                 nil?: true
+
+        # @!attribute corrected_account_number
+        #   The corrected account number that should be used in future ACHs to this account.
+        #
+        #   @return [String, nil]
+        required :corrected_account_number, String, nil?: true
+
+        # @!attribute corrected_individual_id
+        #   The corrected individual identifier that should be used in future ACHs.
+        #
+        #   @return [String, nil]
+        required :corrected_individual_id, String, nil?: true
+
+        # @!attribute corrected_routing_number
+        #   The corrected routing number that should be used in future ACHs to this account.
+        #
+        #   @return [String, nil]
+        required :corrected_routing_number, String, nil?: true
 
         # @!attribute created_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -846,13 +863,19 @@ module Increase
         #   @return [Time]
         required :created_at, Time
 
-        # @!method initialize(change_code:, corrected_data:, created_at:)
+        # @!method initialize(change_code:, corrected_account_funding:, corrected_account_number:, corrected_individual_id:, corrected_routing_number:, created_at:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::ACHTransfer::NotificationsOfChange} for more details.
         #
         #   @param change_code [Symbol, Increase::Models::ACHTransfer::NotificationsOfChange::ChangeCode] The required type of change that is being signaled by the receiving financial in
         #
-        #   @param corrected_data [String] The corrected data that should be used in future ACHs to this account. This may
+        #   @param corrected_account_funding [Symbol, Increase::Models::ACHTransfer::NotificationsOfChange::CorrectedAccountFunding, nil] The corrected account funding type that should be used in future ACHs to this ac
+        #
+        #   @param corrected_account_number [String, nil] The corrected account number that should be used in future ACHs to this account.
+        #
+        #   @param corrected_individual_id [String, nil] The corrected individual identifier that should be used in future ACHs.
+        #
+        #   @param corrected_routing_number [String, nil] The corrected routing number that should be used in future ACHs to this account.
         #
         #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
 
@@ -925,6 +948,26 @@ module Increase
           # The transaction code was incorrect, initiated by the originating depository financial institution.
           INCORRECT_TRANSACTION_CODE_BY_ORIGINATING_DEPOSITORY_FINANCIAL_INSTITUTION =
             :incorrect_transaction_code_by_originating_depository_financial_institution
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The corrected account funding type that should be used in future ACHs to this
+        # account. This is derived from the corrected transaction code.
+        #
+        # @see Increase::Models::ACHTransfer::NotificationsOfChange#corrected_account_funding
+        module CorrectedAccountFunding
+          extend Increase::Internal::Type::Enum
+
+          # A checking account.
+          CHECKING = :checking
+
+          # A savings account.
+          SAVINGS = :savings
+
+          # A bank's general ledger. Uncommon.
+          GENERAL_LEDGER = :general_ledger
 
           # @!method self.values
           #   @return [Array<Symbol>]

@@ -302,13 +302,28 @@ module Increase
         end
         attr_accessor :change_code
 
-        # The corrected data that should be used in future ACHs to this account. This may
-        # contain the suggested new account number or routing number. When the
-        # `change_code` is `incorrect_transaction_code`, this field contains an integer.
-        # Numbers starting with a 2 encourage changing the `funding` parameter to
-        # checking; numbers starting with a 3 encourage changing to savings.
-        sig { returns(String) }
-        attr_accessor :corrected_data
+        # The corrected account funding type that should be used in future ACHs to this
+        # account. This is derived from the corrected transaction code.
+        sig do
+          returns(
+            T.nilable(
+              Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :corrected_account_funding
+
+        # The corrected account number that should be used in future ACHs to this account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :corrected_account_number
+
+        # The corrected individual identifier that should be used in future ACHs.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :corrected_individual_id
+
+        # The corrected routing number that should be used in future ACHs to this account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :corrected_routing_number
 
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the notification occurred.
@@ -319,7 +334,13 @@ module Increase
           params(
             change_code:
               Increase::ACHPrenotification::NotificationsOfChange::ChangeCode::OrSymbol,
-            corrected_data: String,
+            corrected_account_funding:
+              T.nilable(
+                Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::OrSymbol
+              ),
+            corrected_account_number: T.nilable(String),
+            corrected_individual_id: T.nilable(String),
+            corrected_routing_number: T.nilable(String),
             created_at: Time
           ).returns(T.attached_class)
         end
@@ -327,12 +348,15 @@ module Increase
           # The required type of change that is being signaled by the receiving financial
           # institution.
           change_code:,
-          # The corrected data that should be used in future ACHs to this account. This may
-          # contain the suggested new account number or routing number. When the
-          # `change_code` is `incorrect_transaction_code`, this field contains an integer.
-          # Numbers starting with a 2 encourage changing the `funding` parameter to
-          # checking; numbers starting with a 3 encourage changing to savings.
-          corrected_data:,
+          # The corrected account funding type that should be used in future ACHs to this
+          # account. This is derived from the corrected transaction code.
+          corrected_account_funding:,
+          # The corrected account number that should be used in future ACHs to this account.
+          corrected_account_number:,
+          # The corrected individual identifier that should be used in future ACHs.
+          corrected_individual_id:,
+          # The corrected routing number that should be used in future ACHs to this account.
+          corrected_routing_number:,
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the notification occurred.
           created_at:
@@ -344,7 +368,13 @@ module Increase
             {
               change_code:
                 Increase::ACHPrenotification::NotificationsOfChange::ChangeCode::TaggedSymbol,
-              corrected_data: String,
+              corrected_account_funding:
+                T.nilable(
+                  Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
+                ),
+              corrected_account_number: T.nilable(String),
+              corrected_individual_id: T.nilable(String),
+              corrected_routing_number: T.nilable(String),
               created_at: Time
             }
           )
@@ -503,6 +533,52 @@ module Increase
             override.returns(
               T::Array[
                 Increase::ACHPrenotification::NotificationsOfChange::ChangeCode::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The corrected account funding type that should be used in future ACHs to this
+        # account. This is derived from the corrected transaction code.
+        module CorrectedAccountFunding
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # A checking account.
+          CHECKING =
+            T.let(
+              :checking,
+              Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
+            )
+
+          # A savings account.
+          SAVINGS =
+            T.let(
+              :savings,
+              Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
+            )
+
+          # A bank's general ledger. Uncommon.
+          GENERAL_LEDGER =
+            T.let(
+              :general_ledger,
+              Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
               ]
             )
           end

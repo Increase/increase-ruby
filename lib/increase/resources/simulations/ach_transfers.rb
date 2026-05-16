@@ -36,20 +36,24 @@ module Increase
         # Simulates receiving a Notification of Change for an
         # [ACH Transfer](#ach-transfers).
         #
-        # @overload create_notification_of_change(ach_transfer_id, change_code:, corrected_data:, request_options: {})
+        # @overload create_notification_of_change(ach_transfer_id, corrected_account_funding: nil, corrected_account_number: nil, corrected_individual_id: nil, corrected_routing_number: nil, request_options: {})
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to create a notification of change f
         #
-        # @param change_code [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode] The reason for the notification of change.
+        # @param corrected_account_funding [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding] The corrected account funding type.
         #
-        # @param corrected_data [String] The corrected data for the notification of change (e.g., a new routing number).
+        # @param corrected_account_number [String] The corrected account number.
+        #
+        # @param corrected_individual_id [String] The corrected individual identifier.
+        #
+        # @param corrected_routing_number [String] The corrected routing number.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Increase::Models::ACHTransfer]
         #
         # @see Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams
-        def create_notification_of_change(ach_transfer_id, params)
+        def create_notification_of_change(ach_transfer_id, params = {})
           parsed, options = Increase::Simulations::ACHTransferCreateNotificationOfChangeParams.dump_request(params)
           @client.request(
             method: :post,
