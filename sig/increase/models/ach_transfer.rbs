@@ -555,26 +555,41 @@ module Increase
       type notifications_of_change =
         {
           change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code,
-          corrected_data: String,
+          corrected_account_funding: Increase::Models::ACHTransfer::NotificationsOfChange::corrected_account_funding?,
+          corrected_account_number: String?,
+          corrected_individual_id: String?,
+          corrected_routing_number: String?,
           created_at: Time
         }
 
       class NotificationsOfChange < Increase::Internal::Type::BaseModel
         attr_accessor change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code
 
-        attr_accessor corrected_data: String
+        attr_accessor corrected_account_funding: Increase::Models::ACHTransfer::NotificationsOfChange::corrected_account_funding?
+
+        attr_accessor corrected_account_number: String?
+
+        attr_accessor corrected_individual_id: String?
+
+        attr_accessor corrected_routing_number: String?
 
         attr_accessor created_at: Time
 
         def initialize: (
           change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code,
-          corrected_data: String,
+          corrected_account_funding: Increase::Models::ACHTransfer::NotificationsOfChange::corrected_account_funding?,
+          corrected_account_number: String?,
+          corrected_individual_id: String?,
+          corrected_routing_number: String?,
           created_at: Time
         ) -> void
 
         def to_hash: -> {
           change_code: Increase::Models::ACHTransfer::NotificationsOfChange::change_code,
-          corrected_data: String,
+          corrected_account_funding: Increase::Models::ACHTransfer::NotificationsOfChange::corrected_account_funding?,
+          corrected_account_number: String?,
+          corrected_individual_id: String?,
+          corrected_routing_number: String?,
           created_at: Time
         }
 
@@ -660,6 +675,23 @@ module Increase
           INCORRECT_TRANSACTION_CODE_BY_ORIGINATING_DEPOSITORY_FINANCIAL_INSTITUTION: :incorrect_transaction_code_by_originating_depository_financial_institution
 
           def self?.values: -> ::Array[Increase::Models::ACHTransfer::NotificationsOfChange::change_code]
+        end
+
+        type corrected_account_funding = :checking | :savings | :general_ledger
+
+        module CorrectedAccountFunding
+          extend Increase::Internal::Type::Enum
+
+          # A checking account.
+          CHECKING: :checking
+
+          # A savings account.
+          SAVINGS: :savings
+
+          # A bank's general ledger. Uncommon.
+          GENERAL_LEDGER: :general_ledger
+
+          def self?.values: -> ::Array[Increase::Models::ACHTransfer::NotificationsOfChange::corrected_account_funding]
         end
       end
 

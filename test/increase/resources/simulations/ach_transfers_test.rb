@@ -52,13 +52,9 @@ class Increase::Test::Resources::Simulations::ACHTransfersTest < Increase::Test:
     end
   end
 
-  def test_create_notification_of_change_required_params
+  def test_create_notification_of_change
     response =
-      @increase.simulations.ach_transfers.create_notification_of_change(
-        "ach_transfer_uoxatyh3lt5evrsdvo7q",
-        change_code: :incorrect_routing_number,
-        corrected_data: "123456789"
-      )
+      @increase.simulations.ach_transfers.create_notification_of_change("ach_transfer_uoxatyh3lt5evrsdvo7q")
 
     assert_pattern do
       response => Increase::ACHTransfer

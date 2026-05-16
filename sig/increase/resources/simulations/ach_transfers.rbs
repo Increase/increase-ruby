@@ -9,8 +9,10 @@ module Increase
 
         def create_notification_of_change: (
           String ach_transfer_id,
-          change_code: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::change_code,
-          corrected_data: String,
+          ?corrected_account_funding: Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::corrected_account_funding,
+          ?corrected_account_number: String,
+          ?corrected_individual_id: String,
+          ?corrected_routing_number: String,
           ?request_options: Increase::request_opts
         ) -> Increase::ACHTransfer
 

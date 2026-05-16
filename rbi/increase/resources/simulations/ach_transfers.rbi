@@ -28,9 +28,11 @@ module Increase
         sig do
           params(
             ach_transfer_id: String,
-            change_code:
-              Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::ChangeCode::OrSymbol,
-            corrected_data: String,
+            corrected_account_funding:
+              Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding::OrSymbol,
+            corrected_account_number: String,
+            corrected_individual_id: String,
+            corrected_routing_number: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::ACHTransfer)
         end
@@ -38,10 +40,14 @@ module Increase
           # The identifier of the ACH Transfer you wish to create a notification of change
           # for.
           ach_transfer_id,
-          # The reason for the notification of change.
-          change_code:,
-          # The corrected data for the notification of change (e.g., a new routing number).
-          corrected_data:,
+          # The corrected account funding type.
+          corrected_account_funding: nil,
+          # The corrected account number.
+          corrected_account_number: nil,
+          # The corrected individual identifier.
+          corrected_individual_id: nil,
+          # The corrected routing number.
+          corrected_routing_number: nil,
           request_options: {}
         )
         end
