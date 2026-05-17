@@ -41,7 +41,17 @@ module Increase
       #   @return [String, nil]
       optional :name, String
 
-      # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, request_options: {})
+      # @!attribute prongs
+      #   Why this person is considered a beneficial owner of the entity. At least one
+      #   option is required, if a person is both a control person and owner, submit an
+      #   array containing both. Providing this replaces the beneficial owner's current
+      #   prongs.
+      #
+      #   @return [Array<Symbol, Increase::Models::BeneficialOwnerUpdateParams::Prong>, nil]
+      optional :prongs,
+               -> { Increase::Internal::Type::ArrayOf[enum: Increase::BeneficialOwnerUpdateParams::Prong] }
+
+      # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, prongs: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::BeneficialOwnerUpdateParams} for more details.
       #
@@ -54,6 +64,8 @@ module Increase
       #   @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification] A means of verifying the person's identity.
       #
       #   @param name [String] The individual's legal name.
+      #
+      #   @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerUpdateParams::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -323,6 +335,19 @@ module Increase
           #
           #   @param file_id [String] The identifier of the File containing the passport.
         end
+      end
+
+      module Prong
+        extend Increase::Internal::Type::Enum
+
+        # A person with 25% or greater direct or indirect ownership of the entity.
+        OWNERSHIP = :ownership
+
+        # A person who manages, directs, or has significant control of the entity.
+        CONTROL = :control
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

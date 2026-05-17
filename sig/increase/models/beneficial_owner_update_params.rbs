@@ -6,7 +6,8 @@ module Increase
         address: Increase::BeneficialOwnerUpdateParams::Address,
         confirmed_no_us_tax_id: bool,
         identification: Increase::BeneficialOwnerUpdateParams::Identification,
-        name: String
+        name: String,
+        prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong]
       }
       & Increase::Internal::Type::request_parameters
 
@@ -36,12 +37,19 @@ module Increase
 
       def name=: (String) -> String
 
+      attr_reader prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong]?
+
+      def prongs=: (
+        ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong]
+      ) -> ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong]
+
       def initialize: (
         entity_beneficial_owner_id: String,
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
         ?confirmed_no_us_tax_id: bool,
         ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
         ?name: String,
+        ?prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong],
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -51,6 +59,7 @@ module Increase
         confirmed_no_us_tax_id: bool,
         identification: Increase::BeneficialOwnerUpdateParams::Identification,
         name: String,
+        prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong],
         request_options: Increase::RequestOptions
       }
 
@@ -275,6 +284,20 @@ module Increase
             file_id: String
           }
         end
+      end
+
+      type prong = :ownership | :control
+
+      module Prong
+        extend Increase::Internal::Type::Enum
+
+        # A person with 25% or greater direct or indirect ownership of the entity.
+        OWNERSHIP: :ownership
+
+        # A person who manages, directs, or has significant control of the entity.
+        CONTROL: :control
+
+        def self?.values: -> ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong]
       end
     end
   end
