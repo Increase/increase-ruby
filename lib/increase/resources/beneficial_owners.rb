@@ -59,7 +59,7 @@ module Increase
       #
       # Update a Beneficial Owner
       #
-      # @overload update(entity_beneficial_owner_id, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, request_options: {})
+      # @overload update(entity_beneficial_owner_id, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, prongs: nil, request_options: {})
       #
       # @param entity_beneficial_owner_id [String] The identifier of the Beneficial Owner to update.
       #
@@ -70,6 +70,8 @@ module Increase
       # @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification] A means of verifying the person's identity.
       #
       # @param name [String] The individual's legal name.
+      #
+      # @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerUpdateParams::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
