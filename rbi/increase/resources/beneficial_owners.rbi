@@ -52,6 +52,8 @@ module Increase
           identification:
             Increase::BeneficialOwnerUpdateParams::Identification::OrHash,
           name: String,
+          prongs:
+            T::Array[Increase::BeneficialOwnerUpdateParams::Prong::OrSymbol],
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::EntityBeneficialOwner)
       end
@@ -70,6 +72,11 @@ module Increase
         identification: nil,
         # The individual's legal name.
         name: nil,
+        # Why this person is considered a beneficial owner of the entity. At least one
+        # option is required, if a person is both a control person and owner, submit an
+        # array containing both. Providing this replaces the beneficial owner's current
+        # prongs.
+        prongs: nil,
         request_options: {}
       )
       end

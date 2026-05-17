@@ -20,6 +20,7 @@ module Increase
         ?confirmed_no_us_tax_id: bool,
         ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
         ?name: String,
+        ?prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong],
         ?request_options: Increase::request_opts
       ) -> Increase::EntityBeneficialOwner
 

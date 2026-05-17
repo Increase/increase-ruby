@@ -63,6 +63,27 @@ module Increase
       sig { params(name: String).void }
       attr_writer :name
 
+      # Why this person is considered a beneficial owner of the entity. At least one
+      # option is required, if a person is both a control person and owner, submit an
+      # array containing both. Providing this replaces the beneficial owner's current
+      # prongs.
+      sig do
+        returns(
+          T.nilable(
+            T::Array[Increase::BeneficialOwnerUpdateParams::Prong::OrSymbol]
+          )
+        )
+      end
+      attr_reader :prongs
+
+      sig do
+        params(
+          prongs:
+            T::Array[Increase::BeneficialOwnerUpdateParams::Prong::OrSymbol]
+        ).void
+      end
+      attr_writer :prongs
+
       sig do
         params(
           entity_beneficial_owner_id: String,
@@ -71,6 +92,8 @@ module Increase
           identification:
             Increase::BeneficialOwnerUpdateParams::Identification::OrHash,
           name: String,
+          prongs:
+            T::Array[Increase::BeneficialOwnerUpdateParams::Prong::OrSymbol],
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -89,6 +112,11 @@ module Increase
         identification: nil,
         # The individual's legal name.
         name: nil,
+        # Why this person is considered a beneficial owner of the entity. At least one
+        # option is required, if a person is both a control person and owner, submit an
+        # array containing both. Providing this replaces the beneficial owner's current
+        # prongs.
+        prongs: nil,
         request_options: {}
       )
       end
@@ -102,6 +130,8 @@ module Increase
             identification:
               Increase::BeneficialOwnerUpdateParams::Identification,
             name: String,
+            prongs:
+              T::Array[Increase::BeneficialOwnerUpdateParams::Prong::OrSymbol],
             request_options: Increase::RequestOptions
           }
         )
@@ -581,6 +611,38 @@ module Increase
           end
           def to_hash
           end
+        end
+      end
+
+      module Prong
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::BeneficialOwnerUpdateParams::Prong)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # A person with 25% or greater direct or indirect ownership of the entity.
+        OWNERSHIP =
+          T.let(
+            :ownership,
+            Increase::BeneficialOwnerUpdateParams::Prong::TaggedSymbol
+          )
+
+        # A person who manages, directs, or has significant control of the entity.
+        CONTROL =
+          T.let(
+            :control,
+            Increase::BeneficialOwnerUpdateParams::Prong::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Increase::BeneficialOwnerUpdateParams::Prong::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end
