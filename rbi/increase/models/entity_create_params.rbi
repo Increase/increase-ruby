@@ -296,9 +296,12 @@ module Increase
         end
         attr_writer :address
 
-        # The identifying details of each person who owns 25% or more of the business and
-        # one control person, like the CEO, CFO, or other executive. You can submit
-        # between 1 and 5 people to this list.
+        # The identifying details of one control person (`control`), like the CEO, CFO, or
+        # other executive, plus each person who owns 25% or more of the business
+        # (`ownership`). At least one control person is required, and frequently, the
+        # `control` person is also `ownership`. In some cases, there are no individuals
+        # who own 25% or more of the business. In that case, you should submit a single
+        # `control` person.
         sig do
           returns(
             T::Array[Increase::EntityCreateParams::Corporation::BeneficialOwner]
@@ -403,9 +406,12 @@ module Increase
           # The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           # are disallowed.
           address:,
-          # The identifying details of each person who owns 25% or more of the business and
-          # one control person, like the CEO, CFO, or other executive. You can submit
-          # between 1 and 5 people to this list.
+          # The identifying details of one control person (`control`), like the CEO, CFO, or
+          # other executive, plus each person who owns 25% or more of the business
+          # (`ownership`). At least one control person is required, and frequently, the
+          # `control` person is also `ownership`. In some cases, there are no individuals
+          # who own 25% or more of the business. In that case, you should submit a single
+          # `control` person.
           beneficial_owners:,
           # The legal identifier of the corporation. This is usually the Employer
           # Identification Number (EIN).
