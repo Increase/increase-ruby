@@ -146,9 +146,12 @@ module Increase
         required :address, -> { Increase::EntityCreateParams::Corporation::Address }
 
         # @!attribute beneficial_owners
-        #   The identifying details of each person who owns 25% or more of the business and
-        #   one control person, like the CEO, CFO, or other executive. You can submit
-        #   between 1 and 5 people to this list.
+        #   The identifying details of one control person (`control`), like the CEO, CFO, or
+        #   other executive, plus each person who owns 25% or more of the business
+        #   (`ownership`). At least one control person is required, and frequently, the
+        #   `control` person is also `ownership`. In some cases, there are no individuals
+        #   who own 25% or more of the business. In that case, you should submit a single
+        #   `control` person.
         #
         #   @return [Array<Increase::Models::EntityCreateParams::Corporation::BeneficialOwner>]
         required :beneficial_owners,
@@ -215,7 +218,7 @@ module Increase
         #
         #   @param address [Increase::Models::EntityCreateParams::Corporation::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
         #
-        #   @param beneficial_owners [Array<Increase::Models::EntityCreateParams::Corporation::BeneficialOwner>] The identifying details of each person who owns 25% or more of the business and
+        #   @param beneficial_owners [Array<Increase::Models::EntityCreateParams::Corporation::BeneficialOwner>] The identifying details of one control person (`control`), like the CEO, CFO, or
         #
         #   @param legal_identifier [Increase::Models::EntityCreateParams::Corporation::LegalIdentifier] The legal identifier of the corporation. This is usually the Employer Identifica
         #
