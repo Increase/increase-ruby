@@ -33,6 +33,18 @@ module Increase
       end
       attr_accessor :line_items
 
+      # Shipping information for the purchase.
+      sig { returns(T.nilable(Increase::CardPurchaseSupplement::Shipping)) }
+      attr_reader :shipping
+
+      sig do
+        params(
+          shipping:
+            T.nilable(Increase::CardPurchaseSupplement::Shipping::OrHash)
+        ).void
+      end
+      attr_writer :shipping
+
       # The ID of the transaction.
       sig { returns(String) }
       attr_accessor :transaction_id
@@ -53,6 +65,8 @@ module Increase
             T.nilable(
               T::Array[Increase::CardPurchaseSupplement::LineItem::OrHash]
             ),
+          shipping:
+            T.nilable(Increase::CardPurchaseSupplement::Shipping::OrHash),
           transaction_id: String,
           type: Increase::CardPurchaseSupplement::Type::OrSymbol
         ).returns(T.attached_class)
@@ -66,6 +80,8 @@ module Increase
         invoice:,
         # Line item information, such as individual products purchased.
         line_items:,
+        # Shipping information for the purchase.
+        shipping:,
         # The ID of the transaction.
         transaction_id:,
         # A constant representing the object's type. For this resource it will always be
@@ -82,6 +98,7 @@ module Increase
             invoice: T.nilable(Increase::CardPurchaseSupplement::Invoice),
             line_items:
               T.nilable(T::Array[Increase::CardPurchaseSupplement::LineItem]),
+            shipping: T.nilable(Increase::CardPurchaseSupplement::Shipping),
             transaction_id: String,
             type: Increase::CardPurchaseSupplement::Type::TaggedSymbol
           }
@@ -656,6 +673,194 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      class Shipping < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CardPurchaseSupplement::Shipping,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The customer reference number.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :customer_reference_number
+
+        # Address of the destination.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :destination_address
+
+        # Country code of the destination.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :destination_country_code
+
+        # Postal code of the destination.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :destination_postal_code
+
+        # Name of the receiver at the destination.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :destination_receiver_name
+
+        # Discount amount for the shipment.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :discount_amount
+
+        # Net shipping amount.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :net_amount
+
+        # Number of packages shipped.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :number_of_packages
+
+        # Address of the origin.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :origin_address
+
+        # Country code of the origin.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :origin_country_code
+
+        # Postal code of the origin.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :origin_postal_code
+
+        # Name of the sender at the origin.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :origin_sender_name
+
+        # Date the shipment should be picked up.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :pick_up_date
+
+        # Description of the shipping service.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :service_description
+
+        # Service level code for the shipment.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :service_level_code
+
+        # Name of the shipping courier.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :shipping_courier_name
+
+        # Tax amount for the shipment.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :tax_amount
+
+        # Tracking number for the shipment.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :tracking_number
+
+        # Unit of measure for the shipment weight.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :unit_of_measure
+
+        # Weight of the shipment.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :weight
+
+        # Shipping information for the purchase.
+        sig do
+          params(
+            customer_reference_number: T.nilable(String),
+            destination_address: T.nilable(String),
+            destination_country_code: T.nilable(String),
+            destination_postal_code: T.nilable(String),
+            destination_receiver_name: T.nilable(String),
+            discount_amount: T.nilable(Integer),
+            net_amount: T.nilable(Integer),
+            number_of_packages: T.nilable(Integer),
+            origin_address: T.nilable(String),
+            origin_country_code: T.nilable(String),
+            origin_postal_code: T.nilable(String),
+            origin_sender_name: T.nilable(String),
+            pick_up_date: T.nilable(Date),
+            service_description: T.nilable(String),
+            service_level_code: T.nilable(String),
+            shipping_courier_name: T.nilable(String),
+            tax_amount: T.nilable(Integer),
+            tracking_number: T.nilable(String),
+            unit_of_measure: T.nilable(String),
+            weight: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The customer reference number.
+          customer_reference_number:,
+          # Address of the destination.
+          destination_address:,
+          # Country code of the destination.
+          destination_country_code:,
+          # Postal code of the destination.
+          destination_postal_code:,
+          # Name of the receiver at the destination.
+          destination_receiver_name:,
+          # Discount amount for the shipment.
+          discount_amount:,
+          # Net shipping amount.
+          net_amount:,
+          # Number of packages shipped.
+          number_of_packages:,
+          # Address of the origin.
+          origin_address:,
+          # Country code of the origin.
+          origin_country_code:,
+          # Postal code of the origin.
+          origin_postal_code:,
+          # Name of the sender at the origin.
+          origin_sender_name:,
+          # Date the shipment should be picked up.
+          pick_up_date:,
+          # Description of the shipping service.
+          service_description:,
+          # Service level code for the shipment.
+          service_level_code:,
+          # Name of the shipping courier.
+          shipping_courier_name:,
+          # Tax amount for the shipment.
+          tax_amount:,
+          # Tracking number for the shipment.
+          tracking_number:,
+          # Unit of measure for the shipment weight.
+          unit_of_measure:,
+          # Weight of the shipment.
+          weight:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              customer_reference_number: T.nilable(String),
+              destination_address: T.nilable(String),
+              destination_country_code: T.nilable(String),
+              destination_postal_code: T.nilable(String),
+              destination_receiver_name: T.nilable(String),
+              discount_amount: T.nilable(Integer),
+              net_amount: T.nilable(Integer),
+              number_of_packages: T.nilable(Integer),
+              origin_address: T.nilable(String),
+              origin_country_code: T.nilable(String),
+              origin_postal_code: T.nilable(String),
+              origin_sender_name: T.nilable(String),
+              pick_up_date: T.nilable(Date),
+              service_description: T.nilable(String),
+              service_level_code: T.nilable(String),
+              shipping_courier_name: T.nilable(String),
+              tax_amount: T.nilable(Integer),
+              tracking_number: T.nilable(String),
+              unit_of_measure: T.nilable(String),
+              weight: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
 
