@@ -6,6 +6,7 @@ module Increase
         card_payment_id: String?,
         invoice: Increase::CardPurchaseSupplement::Invoice?,
         line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
+        shipping: Increase::CardPurchaseSupplement::Shipping?,
         transaction_id: String,
         type: Increase::Models::CardPurchaseSupplement::type_
       }
@@ -19,6 +20,8 @@ module Increase
 
       attr_accessor line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?
 
+      attr_accessor shipping: Increase::CardPurchaseSupplement::Shipping?
+
       attr_accessor transaction_id: String
 
       attr_accessor type: Increase::Models::CardPurchaseSupplement::type_
@@ -28,6 +31,7 @@ module Increase
         card_payment_id: String?,
         invoice: Increase::CardPurchaseSupplement::Invoice?,
         line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
+        shipping: Increase::CardPurchaseSupplement::Shipping?,
         transaction_id: String,
         type: Increase::Models::CardPurchaseSupplement::type_
       ) -> void
@@ -37,6 +41,7 @@ module Increase
         card_payment_id: String?,
         invoice: Increase::CardPurchaseSupplement::Invoice?,
         line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
+        shipping: Increase::CardPurchaseSupplement::Shipping?,
         transaction_id: String,
         type: Increase::Models::CardPurchaseSupplement::type_
       }
@@ -313,6 +318,118 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::CardPurchaseSupplement::LineItem::discount_treatment_code]
         end
+      end
+
+      type shipping =
+        {
+          customer_reference_number: String?,
+          destination_address: String?,
+          destination_country_code: String?,
+          destination_postal_code: String?,
+          destination_receiver_name: String?,
+          discount_amount: Integer?,
+          net_amount: Integer?,
+          number_of_packages: Integer?,
+          origin_address: String?,
+          origin_country_code: String?,
+          origin_postal_code: String?,
+          origin_sender_name: String?,
+          pick_up_date: Date?,
+          service_description: String?,
+          service_level_code: String?,
+          shipping_courier_name: String?,
+          tax_amount: Integer?,
+          tracking_number: String?,
+          unit_of_measure: String?,
+          weight: String?
+        }
+
+      class Shipping < Increase::Internal::Type::BaseModel
+        attr_accessor customer_reference_number: String?
+
+        attr_accessor destination_address: String?
+
+        attr_accessor destination_country_code: String?
+
+        attr_accessor destination_postal_code: String?
+
+        attr_accessor destination_receiver_name: String?
+
+        attr_accessor discount_amount: Integer?
+
+        attr_accessor net_amount: Integer?
+
+        attr_accessor number_of_packages: Integer?
+
+        attr_accessor origin_address: String?
+
+        attr_accessor origin_country_code: String?
+
+        attr_accessor origin_postal_code: String?
+
+        attr_accessor origin_sender_name: String?
+
+        attr_accessor pick_up_date: Date?
+
+        attr_accessor service_description: String?
+
+        attr_accessor service_level_code: String?
+
+        attr_accessor shipping_courier_name: String?
+
+        attr_accessor tax_amount: Integer?
+
+        attr_accessor tracking_number: String?
+
+        attr_accessor unit_of_measure: String?
+
+        attr_accessor weight: String?
+
+        def initialize: (
+          customer_reference_number: String?,
+          destination_address: String?,
+          destination_country_code: String?,
+          destination_postal_code: String?,
+          destination_receiver_name: String?,
+          discount_amount: Integer?,
+          net_amount: Integer?,
+          number_of_packages: Integer?,
+          origin_address: String?,
+          origin_country_code: String?,
+          origin_postal_code: String?,
+          origin_sender_name: String?,
+          pick_up_date: Date?,
+          service_description: String?,
+          service_level_code: String?,
+          shipping_courier_name: String?,
+          tax_amount: Integer?,
+          tracking_number: String?,
+          unit_of_measure: String?,
+          weight: String?
+        ) -> void
+
+        def to_hash: -> {
+          customer_reference_number: String?,
+          destination_address: String?,
+          destination_country_code: String?,
+          destination_postal_code: String?,
+          destination_receiver_name: String?,
+          discount_amount: Integer?,
+          net_amount: Integer?,
+          number_of_packages: Integer?,
+          origin_address: String?,
+          origin_country_code: String?,
+          origin_postal_code: String?,
+          origin_sender_name: String?,
+          pick_up_date: Date?,
+          service_description: String?,
+          service_level_code: String?,
+          shipping_courier_name: String?,
+          tax_amount: Integer?,
+          tracking_number: String?,
+          unit_of_measure: String?,
+          weight: String?
+        }
       end
 
       type type_ = :card_purchase_supplement

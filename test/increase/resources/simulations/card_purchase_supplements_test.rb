@@ -17,6 +17,7 @@ class Increase::Test::Resources::Simulations::CardPurchaseSupplementsTest < Incr
         card_payment_id: String | nil,
         invoice: Increase::CardPurchaseSupplement::Invoice | nil,
         line_items: ^(Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement::LineItem]) | nil,
+        shipping: Increase::CardPurchaseSupplement::Shipping | nil,
         transaction_id: String,
         type: Increase::CardPurchaseSupplement::Type
       }

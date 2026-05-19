@@ -30,6 +30,12 @@ module Increase
                -> { Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement::LineItem] },
                nil?: true
 
+      # @!attribute shipping
+      #   Shipping information for the purchase.
+      #
+      #   @return [Increase::Models::CardPurchaseSupplement::Shipping, nil]
+      required :shipping, -> { Increase::CardPurchaseSupplement::Shipping }, nil?: true
+
       # @!attribute transaction_id
       #   The ID of the transaction.
       #
@@ -43,7 +49,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPurchaseSupplement::Type]
       required :type, enum: -> { Increase::CardPurchaseSupplement::Type }
 
-      # @!method initialize(id:, card_payment_id:, invoice:, line_items:, transaction_id:, type:)
+      # @!method initialize(id:, card_payment_id:, invoice:, line_items:, shipping:, transaction_id:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardPurchaseSupplement} for more details.
       #
@@ -57,6 +63,8 @@ module Increase
       #   @param invoice [Increase::Models::CardPurchaseSupplement::Invoice, nil] Invoice-level information about the payment.
       #
       #   @param line_items [Array<Increase::Models::CardPurchaseSupplement::LineItem>, nil] Line item information, such as individual products purchased.
+      #
+      #   @param shipping [Increase::Models::CardPurchaseSupplement::Shipping, nil] Shipping information for the purchase.
       #
       #   @param transaction_id [String] The ID of the transaction.
       #
@@ -433,6 +441,172 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # @see Increase::Models::CardPurchaseSupplement#shipping
+      class Shipping < Increase::Internal::Type::BaseModel
+        # @!attribute customer_reference_number
+        #   The customer reference number.
+        #
+        #   @return [String, nil]
+        required :customer_reference_number, String, nil?: true
+
+        # @!attribute destination_address
+        #   Address of the destination.
+        #
+        #   @return [String, nil]
+        required :destination_address, String, nil?: true
+
+        # @!attribute destination_country_code
+        #   Country code of the destination.
+        #
+        #   @return [String, nil]
+        required :destination_country_code, String, nil?: true
+
+        # @!attribute destination_postal_code
+        #   Postal code of the destination.
+        #
+        #   @return [String, nil]
+        required :destination_postal_code, String, nil?: true
+
+        # @!attribute destination_receiver_name
+        #   Name of the receiver at the destination.
+        #
+        #   @return [String, nil]
+        required :destination_receiver_name, String, nil?: true
+
+        # @!attribute discount_amount
+        #   Discount amount for the shipment.
+        #
+        #   @return [Integer, nil]
+        required :discount_amount, Integer, nil?: true
+
+        # @!attribute net_amount
+        #   Net shipping amount.
+        #
+        #   @return [Integer, nil]
+        required :net_amount, Integer, nil?: true
+
+        # @!attribute number_of_packages
+        #   Number of packages shipped.
+        #
+        #   @return [Integer, nil]
+        required :number_of_packages, Integer, nil?: true
+
+        # @!attribute origin_address
+        #   Address of the origin.
+        #
+        #   @return [String, nil]
+        required :origin_address, String, nil?: true
+
+        # @!attribute origin_country_code
+        #   Country code of the origin.
+        #
+        #   @return [String, nil]
+        required :origin_country_code, String, nil?: true
+
+        # @!attribute origin_postal_code
+        #   Postal code of the origin.
+        #
+        #   @return [String, nil]
+        required :origin_postal_code, String, nil?: true
+
+        # @!attribute origin_sender_name
+        #   Name of the sender at the origin.
+        #
+        #   @return [String, nil]
+        required :origin_sender_name, String, nil?: true
+
+        # @!attribute pick_up_date
+        #   Date the shipment should be picked up.
+        #
+        #   @return [Date, nil]
+        required :pick_up_date, Date, nil?: true
+
+        # @!attribute service_description
+        #   Description of the shipping service.
+        #
+        #   @return [String, nil]
+        required :service_description, String, nil?: true
+
+        # @!attribute service_level_code
+        #   Service level code for the shipment.
+        #
+        #   @return [String, nil]
+        required :service_level_code, String, nil?: true
+
+        # @!attribute shipping_courier_name
+        #   Name of the shipping courier.
+        #
+        #   @return [String, nil]
+        required :shipping_courier_name, String, nil?: true
+
+        # @!attribute tax_amount
+        #   Tax amount for the shipment.
+        #
+        #   @return [Integer, nil]
+        required :tax_amount, Integer, nil?: true
+
+        # @!attribute tracking_number
+        #   Tracking number for the shipment.
+        #
+        #   @return [String, nil]
+        required :tracking_number, String, nil?: true
+
+        # @!attribute unit_of_measure
+        #   Unit of measure for the shipment weight.
+        #
+        #   @return [String, nil]
+        required :unit_of_measure, String, nil?: true
+
+        # @!attribute weight
+        #   Weight of the shipment.
+        #
+        #   @return [String, nil]
+        required :weight, String, nil?: true
+
+        # @!method initialize(customer_reference_number:, destination_address:, destination_country_code:, destination_postal_code:, destination_receiver_name:, discount_amount:, net_amount:, number_of_packages:, origin_address:, origin_country_code:, origin_postal_code:, origin_sender_name:, pick_up_date:, service_description:, service_level_code:, shipping_courier_name:, tax_amount:, tracking_number:, unit_of_measure:, weight:)
+        #   Shipping information for the purchase.
+        #
+        #   @param customer_reference_number [String, nil] The customer reference number.
+        #
+        #   @param destination_address [String, nil] Address of the destination.
+        #
+        #   @param destination_country_code [String, nil] Country code of the destination.
+        #
+        #   @param destination_postal_code [String, nil] Postal code of the destination.
+        #
+        #   @param destination_receiver_name [String, nil] Name of the receiver at the destination.
+        #
+        #   @param discount_amount [Integer, nil] Discount amount for the shipment.
+        #
+        #   @param net_amount [Integer, nil] Net shipping amount.
+        #
+        #   @param number_of_packages [Integer, nil] Number of packages shipped.
+        #
+        #   @param origin_address [String, nil] Address of the origin.
+        #
+        #   @param origin_country_code [String, nil] Country code of the origin.
+        #
+        #   @param origin_postal_code [String, nil] Postal code of the origin.
+        #
+        #   @param origin_sender_name [String, nil] Name of the sender at the origin.
+        #
+        #   @param pick_up_date [Date, nil] Date the shipment should be picked up.
+        #
+        #   @param service_description [String, nil] Description of the shipping service.
+        #
+        #   @param service_level_code [String, nil] Service level code for the shipment.
+        #
+        #   @param shipping_courier_name [String, nil] Name of the shipping courier.
+        #
+        #   @param tax_amount [Integer, nil] Tax amount for the shipment.
+        #
+        #   @param tracking_number [String, nil] Tracking number for the shipment.
+        #
+        #   @param unit_of_measure [String, nil] Unit of measure for the shipment weight.
+        #
+        #   @param weight [String, nil] Weight of the shipment.
       end
 
       # A constant representing the object's type. For this resource it will always be
