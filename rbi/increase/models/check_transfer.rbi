@@ -37,7 +37,9 @@ module Increase
       attr_writer :approval
 
       # If the Check Transfer was successfully deposited, this will contain the
-      # identifier of the Inbound Check Deposit object with details of the deposit.
+      # identifier of the Inbound Check Deposit object with details of the deposit. The
+      # Inbound Check Deposit object will have information about any associated
+      # Transactions for this Check Transfer.
       sig { returns(T.nilable(String)) }
       attr_accessor :approved_inbound_check_deposit_id
 
@@ -236,7 +238,9 @@ module Increase
         # this will contain details of the approval.
         approval:,
         # If the Check Transfer was successfully deposited, this will contain the
-        # identifier of the Inbound Check Deposit object with details of the deposit.
+        # identifier of the Inbound Check Deposit object with details of the deposit. The
+        # Inbound Check Deposit object will have information about any associated
+        # Transactions for this Check Transfer.
         approved_inbound_check_deposit_id:,
         # How the account's available balance should be checked.
         balance_check:,
