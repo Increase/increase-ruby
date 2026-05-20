@@ -5,50 +5,21 @@ on:
   pull_request:
 
 jobs:
-  lint:
+  ci:
     timeout-minutes: 10
-    name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
-        with:
-          bundler-cache: false
-      - run: |-
-          bundle install
+      - uses: actions/checkout@v6
 
-      - name: Run lints
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Lint
         run: ./scripts/lint
 
-  build:
-    timeout-minutes: 10
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
-        with:
-          bundler-cache: false
-      - run: |-
-          bundle install
-
-      - name: Run build
+      - name: Build
         run: bundle exec rake build:gem
 
-  test:
-    timeout-minutes: 10
-    name: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
-        with:
-          bundler-cache: false
-      - run: |-
-          bundle install
-
-      - name: Run tests
+      - name: Test
         run: ./scripts/test
