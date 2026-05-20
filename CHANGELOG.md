@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.333.1](https://github.com/Increase/increase-ruby/compare/v1.333.0...v1.333.1) (2026-05-20)
+
+
+### Chores
+
+* add release workflow and migrate config to Increase/release-please fork ([#435](https://github.com/Increase/increase-ruby/issues/435)) ([01ecfeb](https://github.com/Increase/increase-ruby/commit/01ecfebebbd03c5e8c4f0cdf205aa4c0c9936104))
+* collapse CI into a single job ([#438](https://github.com/Increase/increase-ruby/issues/438)) ([a2c7ba0](https://github.com/Increase/increase-ruby/commit/a2c7ba0a799e3afe6ae7038345d787b449451e87))
+* cut over to Increase/release-please and prune Stainless CI cruft ([#436](https://github.com/Increase/increase-ruby/issues/436)) ([c8ba110](https://github.com/Increase/increase-ruby/commit/c8ba11081ae1ec1b37016b98861d063fdd41b309))
+
 ## 1.333.0 (2026-05-20)
 
 Full Changelog: [v1.332.0...v1.333.0](https://github.com/Increase/increase-ruby/compare/v1.332.0...v1.333.0)
