@@ -12,13 +12,9 @@ The REST API documentation can be found on [increase.com](https://increase.com/d
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
-<!-- x-release-please-start-version -->
-
 ```ruby
-gem "increase", "~> 1.333.1"
+gem "increase", "~> 0.0.1"
 ```
-
-<!-- x-release-please-end -->
 
 ## Usage
 

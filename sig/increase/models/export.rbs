@@ -374,16 +374,36 @@ module Increase
 
         def to_hash: -> { created_at: Increase::Export::FeeCsv::CreatedAt? }
 
-        type created_at = { after: Time?, before: Time? }
+        type created_at =
+          {
+            after: Time?,
+            before: Time?,
+            on_or_after: Time?,
+            on_or_before: Time?
+          }
 
         class CreatedAt < Increase::Internal::Type::BaseModel
           attr_accessor after: Time?
 
           attr_accessor before: Time?
 
-          def initialize: (after: Time?, before: Time?) -> void
+          attr_accessor on_or_after: Time?
 
-          def to_hash: -> { after: Time?, before: Time? }
+          attr_accessor on_or_before: Time?
+
+          def initialize: (
+            after: Time?,
+            before: Time?,
+            on_or_after: Time?,
+            on_or_before: Time?
+          ) -> void
+
+          def to_hash: -> {
+            after: Time?,
+            before: Time?,
+            on_or_after: Time?,
+            on_or_before: Time?
+          }
         end
       end
 

@@ -44,6 +44,19 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :front_image_file_id
 
+      # Text printed on the front of the card. Reach out to
+      # [support@increase.com](mailto:support@increase.com) for more information.
+      sig { returns(T.nilable(Increase::PhysicalCardProfile::FrontText)) }
+      attr_reader :front_text
+
+      sig do
+        params(
+          front_text:
+            T.nilable(Increase::PhysicalCardProfile::FrontText::OrHash)
+        ).void
+      end
+      attr_writer :front_text
+
       # The idempotency key you chose for this object. This value is unique across
       # Increase and is used to ensure that a request is only processed once. Learn more
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -81,6 +94,8 @@ module Increase
           creator: Increase::PhysicalCardProfile::Creator::OrSymbol,
           description: String,
           front_image_file_id: T.nilable(String),
+          front_text:
+            T.nilable(Increase::PhysicalCardProfile::FrontText::OrHash),
           idempotency_key: T.nilable(String),
           is_default: T::Boolean,
           program_id: String,
@@ -109,6 +124,9 @@ module Increase
         # The identifier of the File containing the physical card's front image. This will
         # be missing until the image has been post-processed.
         front_image_file_id:,
+        # Text printed on the front of the card. Reach out to
+        # [support@increase.com](mailto:support@increase.com) for more information.
+        front_text:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -137,6 +155,7 @@ module Increase
             creator: Increase::PhysicalCardProfile::Creator::TaggedSymbol,
             description: String,
             front_image_file_id: T.nilable(String),
+            front_text: T.nilable(Increase::PhysicalCardProfile::FrontText),
             idempotency_key: T.nilable(String),
             is_default: T::Boolean,
             program_id: String,
@@ -170,6 +189,47 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class FrontText < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::PhysicalCardProfile::FrontText,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The first line of text on the front of the card.
+        sig { returns(String) }
+        attr_accessor :line1
+
+        # The second line of text on the front of the card. Providing a second line moves
+        # the first line slightly higher and prints the second line in the spot where the
+        # first line would have otherwise been printed.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # Text printed on the front of the card. Reach out to
+        # [support@increase.com](mailto:support@increase.com) for more information.
+        sig do
+          params(line1: String, line2: T.nilable(String)).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The first line of text on the front of the card.
+          line1:,
+          # The second line of text on the front of the card. Providing a second line moves
+          # the first line slightly higher and prints the second line in the spot where the
+          # first line would have otherwise been printed.
+          line2:
+        )
+        end
+
+        sig { override.returns({ line1: String, line2: T.nilable(String) }) }
+        def to_hash
         end
       end
 

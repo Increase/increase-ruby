@@ -217,14 +217,14 @@ module Increase
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The Prenotification is for an anticipated credit.
+        # Credit
         CREDIT =
           T.let(
             :credit,
             Increase::ACHPrenotificationCreateParams::CreditDebitIndicator::TaggedSymbol
           )
 
-        # The Prenotification is for an anticipated debit.
+        # Debit
         DEBIT =
           T.let(
             :debit,

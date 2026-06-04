@@ -9,6 +9,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
+        fee_csv: Increase::ExportCreateParams::FeeCsv,
         funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         vendor_csv: Increase::ExportCreateParams::VendorCsv,
@@ -58,6 +59,12 @@ module Increase
         Increase::ExportCreateParams::EntityCsv
       ) -> Increase::ExportCreateParams::EntityCsv
 
+      attr_reader fee_csv: Increase::ExportCreateParams::FeeCsv?
+
+      def fee_csv=: (
+        Increase::ExportCreateParams::FeeCsv
+      ) -> Increase::ExportCreateParams::FeeCsv
+
       attr_reader funding_instructions: Increase::ExportCreateParams::FundingInstructions?
 
       def funding_instructions=: (
@@ -90,6 +97,7 @@ module Increase
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         ?daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
+        ?fee_csv: Increase::ExportCreateParams::FeeCsv,
         ?funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         ?transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         ?vendor_csv: Increase::ExportCreateParams::VendorCsv,
@@ -105,6 +113,7 @@ module Increase
         bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         entity_csv: Increase::ExportCreateParams::EntityCsv,
+        fee_csv: Increase::ExportCreateParams::FeeCsv,
         funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         vendor_csv: Increase::ExportCreateParams::VendorCsv,
@@ -122,6 +131,7 @@ module Increase
         | :vendor_csv
         | :account_verification_letter
         | :funding_instructions
+        | :fee_csv
         | :voided_check
         | :daily_account_balance_csv
 
@@ -154,6 +164,9 @@ module Increase
 
         # A PDF of funding instructions.
         FUNDING_INSTRUCTIONS: :funding_instructions
+
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV: :fee_csv
 
         # A PDF of a voided check.
         VOIDED_CHECK: :voided_check
@@ -318,6 +331,69 @@ module Increase
         def initialize: -> void
 
         def to_hash: -> {  }
+      end
+
+      type fee_csv =
+        {
+          created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+          program_id: String
+        }
+
+      class FeeCsv < Increase::Internal::Type::BaseModel
+        attr_reader created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt?
+
+        def created_at=: (
+          Increase::ExportCreateParams::FeeCsv::CreatedAt
+        ) -> Increase::ExportCreateParams::FeeCsv::CreatedAt
+
+        attr_reader program_id: String?
+
+        def program_id=: (String) -> String
+
+        def initialize: (
+          ?created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+          ?program_id: String
+        ) -> void
+
+        def to_hash: -> {
+          created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+          program_id: String
+        }
+
+        type created_at =
+          { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          attr_reader after: Time?
+
+          def after=: (Time) -> Time
+
+          attr_reader before: Time?
+
+          def before=: (Time) -> Time
+
+          attr_reader on_or_after: Time?
+
+          def on_or_after=: (Time) -> Time
+
+          attr_reader on_or_before: Time?
+
+          def on_or_before=: (Time) -> Time
+
+          def initialize: (
+            ?after: Time,
+            ?before: Time,
+            ?on_or_after: Time,
+            ?on_or_before: Time
+          ) -> void
+
+          def to_hash: -> {
+            after: Time,
+            before: Time,
+            on_or_after: Time,
+            on_or_before: Time
+          }
+        end
       end
 
       type funding_instructions = { account_number_id: String }

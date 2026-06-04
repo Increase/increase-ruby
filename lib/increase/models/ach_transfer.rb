@@ -162,8 +162,8 @@ module Increase
       required :network, enum: -> { Increase::ACHTransfer::Network }
 
       # @!attribute notifications_of_change
-      #   If the receiving bank accepts the transfer but notifies that future transfers
-      #   should use different details, this will contain those details.
+      #   If the receiving bank notifies that future transfers should use different
+      #   details, this will contain those details.
       #
       #   @return [Array<Increase::Models::ACHTransfer::NotificationsOfChange>]
       required :notifications_of_change,
@@ -304,7 +304,7 @@ module Increase
       #
       #   @param network [Symbol, Increase::Models::ACHTransfer::Network] The transfer's network.
       #
-      #   @param notifications_of_change [Array<Increase::Models::ACHTransfer::NotificationsOfChange>] If the receiving bank accepts the transfer but notifies that future transfers sh
+      #   @param notifications_of_change [Array<Increase::Models::ACHTransfer::NotificationsOfChange>] If the receiving bank notifies that future transfers should use different detail
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer. A pending transact
       #
@@ -965,6 +965,9 @@ module Increase
 
           # A savings account.
           SAVINGS = :savings
+
+          # A loan account used in a lender-borrower relationship. Uncommon.
+          LOAN = :loan
 
           # A bank's general ledger. Uncommon.
           GENERAL_LEDGER = :general_ledger

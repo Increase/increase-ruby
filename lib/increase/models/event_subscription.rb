@@ -314,6 +314,18 @@ module Increase
           # Occurs whenever an IntraFi Exclusion is updated.
           INTRAFI_EXCLUSION_UPDATED = :"intrafi_exclusion.updated"
 
+          # Occurs whenever a Loan Application is created.
+          LOAN_APPLICATION_CREATED = :"loan_application.created"
+
+          # Occurs whenever a Loan Application is updated.
+          LOAN_APPLICATION_UPDATED = :"loan_application.updated"
+
+          # Occurs whenever a Loan Offer is created.
+          LOAN_OFFER_CREATED = :"loan_offer.created"
+
+          # Occurs whenever a Loan Offer is updated.
+          LOAN_OFFER_UPDATED = :"loan_offer.updated"
+
           # Occurs whenever a Lockbox is created.
           LOCKBOX_CREATED = :"lockbox.created"
 

@@ -16,6 +16,7 @@ module Increase
           end_to_end_identification: String,
           instructing_agent_routing_number: String,
           instruction_identification: String,
+          purpose: String,
           unique_end_to_end_transaction_reference: String,
           unstructured_remittance_information: String,
           wire_drawdown_request_id: String
@@ -74,6 +75,10 @@ module Increase
 
         def instruction_identification=: (String) -> String
 
+        attr_reader purpose: String?
+
+        def purpose=: (String) -> String
+
         attr_reader unique_end_to_end_transaction_reference: String?
 
         def unique_end_to_end_transaction_reference=: (String) -> String
@@ -100,6 +105,7 @@ module Increase
           ?end_to_end_identification: String,
           ?instructing_agent_routing_number: String,
           ?instruction_identification: String,
+          ?purpose: String,
           ?unique_end_to_end_transaction_reference: String,
           ?unstructured_remittance_information: String,
           ?wire_drawdown_request_id: String,
@@ -120,6 +126,7 @@ module Increase
           end_to_end_identification: String,
           instructing_agent_routing_number: String,
           instruction_identification: String,
+          purpose: String,
           unique_end_to_end_transaction_reference: String,
           unstructured_remittance_information: String,
           wire_drawdown_request_id: String,
