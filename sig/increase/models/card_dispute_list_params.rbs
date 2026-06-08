@@ -117,6 +117,7 @@ module Increase
           | :pending_response
           | :lost
           | :won
+          | :rejected
 
         module In
           extend Increase::Internal::Type::Enum
@@ -141,6 +142,9 @@ module Increase
 
           # The Card Dispute has been won and no further action can be taken.
           WON: :won
+
+          # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+          REJECTED: :rejected
 
           def self?.values: -> ::Array[Increase::Models::CardDisputeListParams::Status::in_]
         end

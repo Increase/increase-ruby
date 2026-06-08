@@ -138,6 +138,9 @@ module Increase
           # The Card Dispute has been won and no further action can be taken.
           WON = :won
 
+          # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+          REJECTED = :rejected
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

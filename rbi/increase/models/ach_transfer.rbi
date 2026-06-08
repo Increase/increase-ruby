@@ -161,8 +161,8 @@ module Increase
       sig { returns(Increase::ACHTransfer::Network::TaggedSymbol) }
       attr_accessor :network
 
-      # If the receiving bank accepts the transfer but notifies that future transfers
-      # should use different details, this will contain those details.
+      # If the receiving bank notifies that future transfers should use different
+      # details, this will contain those details.
       sig { returns(T::Array[Increase::ACHTransfer::NotificationsOfChange]) }
       attr_accessor :notifications_of_change
 
@@ -363,8 +363,8 @@ module Increase
         individual_name:,
         # The transfer's network.
         network:,
-        # If the receiving bank accepts the transfer but notifies that future transfers
-        # should use different details, this will contain those details.
+        # If the receiving bank notifies that future transfers should use different
+        # details, this will contain those details.
         notifications_of_change:,
         # The ID for the pending transaction representing the transfer. A pending
         # transaction is created when the transfer
@@ -1673,6 +1673,13 @@ module Increase
           SAVINGS =
             T.let(
               :savings,
+              Increase::ACHTransfer::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
+            )
+
+          # A loan account used in a lender-borrower relationship. Uncommon.
+          LOAN =
+            T.let(
+              :loan,
               Increase::ACHTransfer::NotificationsOfChange::CorrectedAccountFunding::TaggedSymbol
             )
 

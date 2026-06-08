@@ -32,6 +32,8 @@ module Increase
           | :no_verification_method
           | :webhook_timed_out
           | :webhook_declined
+          | :incorrect_card_verification_code
+          | :declined_by_token_requestor
 
         module DeclineReason
           extend Increase::Internal::Type::Enum
@@ -47,6 +49,12 @@ module Increase
 
           # Your webhook declined the token provisioning attempt.
           WEBHOOK_DECLINED: :webhook_declined
+
+          # The tokenization attempt failed because the Card Verification Code (CVC) was incorrect.
+          INCORRECT_CARD_VERIFICATION_CODE: :incorrect_card_verification_code
+
+          # The tokenization attempt was declined by the token requestor.
+          DECLINED_BY_TOKEN_REQUESTOR: :declined_by_token_requestor
 
           def self?.values: -> ::Array[Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::decline_reason]
         end

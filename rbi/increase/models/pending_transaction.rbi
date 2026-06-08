@@ -1395,6 +1395,27 @@ module Increase
           sig { returns(Time) }
           attr_accessor :expires_at
 
+          # The healthcare-related fields for this authorization. Only present for specific
+          # programs.
+          sig do
+            returns(
+              T.nilable(
+                Increase::PendingTransaction::Source::CardAuthorization::Healthcare
+              )
+            )
+          end
+          attr_reader :healthcare
+
+          sig do
+            params(
+              healthcare:
+                T.nilable(
+                  Increase::PendingTransaction::Source::CardAuthorization::Healthcare::OrHash
+                )
+            ).void
+          end
+          attr_writer :healthcare
+
           # The merchant identifier (commonly abbreviated as MID) of the merchant the card
           # is transacting with.
           sig { returns(String) }
@@ -1555,6 +1576,10 @@ module Increase
               direction:
                 Increase::PendingTransaction::Source::CardAuthorization::Direction::OrSymbol,
               expires_at: Time,
+              healthcare:
+                T.nilable(
+                  Increase::PendingTransaction::Source::CardAuthorization::Healthcare::OrHash
+                ),
               merchant_acceptor_id: String,
               merchant_category_code: String,
               merchant_city: T.nilable(String),
@@ -1612,6 +1637,9 @@ module Increase
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization
             # will expire and the pending transaction will be released.
             expires_at:,
+            # The healthcare-related fields for this authorization. Only present for specific
+            # programs.
+            healthcare:,
             # The merchant identifier (commonly abbreviated as MID) of the merchant the card
             # is transacting with.
             merchant_acceptor_id:,
@@ -1682,6 +1710,10 @@ module Increase
                 direction:
                   Increase::PendingTransaction::Source::CardAuthorization::Direction::TaggedSymbol,
                 expires_at: Time,
+                healthcare:
+                  T.nilable(
+                    Increase::PendingTransaction::Source::CardAuthorization::Healthcare
+                  ),
                 merchant_acceptor_id: String,
                 merchant_category_code: String,
                 merchant_city: T.nilable(String),
@@ -2580,6 +2612,96 @@ module Increase
               )
             end
             def self.values
+            end
+          end
+
+          class Healthcare < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::PendingTransaction::Source::CardAuthorization::Healthcare,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The merchant's eligibility under the Internal Revenue Service's 90% Rule for
+            # Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
+            # products. The eligibility is determined based on the list of merchants
+            # maintained by the Special Interest Group for IIAS Standards (SIGIS).
+            sig do
+              returns(
+                Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility::TaggedSymbol
+              )
+            end
+            attr_accessor :merchant_ninety_percent_eligibility
+
+            # The healthcare-related fields for this authorization. Only present for specific
+            # programs.
+            sig do
+              params(
+                merchant_ninety_percent_eligibility:
+                  Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The merchant's eligibility under the Internal Revenue Service's 90% Rule for
+              # Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
+              # products. The eligibility is determined based on the list of merchants
+              # maintained by the Special Interest Group for IIAS Standards (SIGIS).
+              merchant_ninety_percent_eligibility:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  merchant_ninety_percent_eligibility:
+                    Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The merchant's eligibility under the Internal Revenue Service's 90% Rule for
+            # Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
+            # products. The eligibility is determined based on the list of merchants
+            # maintained by the Special Interest Group for IIAS Standards (SIGIS).
+            module MerchantNinetyPercentEligibility
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # The merchant is eligible for treatment under the 90% rule.
+              ELIGIBLE =
+                T.let(
+                  :eligible,
+                  Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility::TaggedSymbol
+                )
+
+              # The merchant is not eligible for treatment under the 90% rule.
+              NOT_ELIGIBLE =
+                T.let(
+                  :not_eligible,
+                  Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
           end
 

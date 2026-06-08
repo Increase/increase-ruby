@@ -29,6 +29,13 @@ module Increase
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute decline
+      #   If the Digital Wallet Token was declined during provisioning, details about the
+      #   decline.
+      #
+      #   @return [Increase::Models::DigitalWalletToken::Decline, nil]
+      required :decline, -> { Increase::DigitalWalletToken::Decline }, nil?: true
+
       # @!attribute device
       #   The device that was used to create the Digital Wallet Token.
       #
@@ -68,7 +75,7 @@ module Increase
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
-      # @!method initialize(id:, card_id:, cardholder:, created_at:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
+      # @!method initialize(id:, card_id:, cardholder:, created_at:, decline:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::DigitalWalletToken} for more details.
       #
@@ -83,6 +90,8 @@ module Increase
       #   @param cardholder [Increase::Models::DigitalWalletToken::Cardholder] The cardholder information given when the Digital Wallet Token was created.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #
+      #   @param decline [Increase::Models::DigitalWalletToken::Decline, nil] If the Digital Wallet Token was declined during provisioning, details about the
       #
       #   @param device [Increase::Models::DigitalWalletToken::Device] The device that was used to create the Digital Wallet Token.
       #
@@ -108,6 +117,49 @@ module Increase
         #   The cardholder information given when the Digital Wallet Token was created.
         #
         #   @param name [String, nil] Name of the cardholder, for example "John Smith".
+      end
+
+      # @see Increase::Models::DigitalWalletToken#decline
+      class Decline < Increase::Internal::Type::BaseModel
+        # @!attribute reason
+        #   The reason the token provisioning was declined.
+        #
+        #   @return [Symbol, Increase::Models::DigitalWalletToken::Decline::Reason]
+        required :reason, enum: -> { Increase::DigitalWalletToken::Decline::Reason }
+
+        # @!method initialize(reason:)
+        #   If the Digital Wallet Token was declined during provisioning, details about the
+        #   decline.
+        #
+        #   @param reason [Symbol, Increase::Models::DigitalWalletToken::Decline::Reason] The reason the token provisioning was declined.
+
+        # The reason the token provisioning was declined.
+        #
+        # @see Increase::Models::DigitalWalletToken::Decline#reason
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The card is not active.
+          CARD_NOT_ACTIVE = :card_not_active
+
+          # The card does not have a two-factor authentication method.
+          NO_VERIFICATION_METHOD = :no_verification_method
+
+          # Your webhook timed out when evaluating the token provisioning attempt.
+          WEBHOOK_TIMED_OUT = :webhook_timed_out
+
+          # Your webhook declined the token provisioning attempt.
+          WEBHOOK_DECLINED = :webhook_declined
+
+          # The tokenization attempt failed because the Card Verification Code (CVC) was incorrect.
+          INCORRECT_CARD_VERIFICATION_CODE = :incorrect_card_verification_code
+
+          # The tokenization attempt was declined by the token requestor.
+          DECLINED_BY_TOKEN_REQUESTOR = :declined_by_token_requestor
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # @see Increase::Models::DigitalWalletToken#device
@@ -225,6 +277,9 @@ module Increase
         # The digital wallet token has been permanently canceled.
         DEACTIVATED = :deactivated
 
+        # The digital wallet token was declined during provisioning.
+        DECLINED = :declined
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end
@@ -303,6 +358,9 @@ module Increase
 
           # The digital wallet token has been permanently canceled.
           DEACTIVATED = :deactivated
+
+          # The digital wallet token was declined during provisioning.
+          DECLINED = :declined
 
           # @!method self.values
           #   @return [Array<Symbol>]

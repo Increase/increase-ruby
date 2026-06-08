@@ -35,6 +35,10 @@ module Increase
       end
       attr_writer :billing_address
 
+      # The Bank Identification Number (BIN) of the Card.
+      sig { returns(String) }
+      attr_accessor :bin
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the Card was created.
       sig { returns(Time) }
@@ -100,6 +104,7 @@ module Increase
           authorization_controls:
             T.nilable(Increase::Card::AuthorizationControls::OrHash),
           billing_address: Increase::Card::BillingAddress::OrHash,
+          bin: String,
           created_at: Time,
           description: T.nilable(String),
           digital_wallet: T.nilable(Increase::Card::DigitalWallet::OrHash),
@@ -121,6 +126,8 @@ module Increase
         authorization_controls:,
         # The Card's billing address.
         billing_address:,
+        # The Bank Identification Number (BIN) of the Card.
+        bin:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Card was created.
         created_at:,
@@ -158,6 +165,7 @@ module Increase
             authorization_controls:
               T.nilable(Increase::Card::AuthorizationControls),
             billing_address: Increase::Card::BillingAddress,
+            bin: String,
             created_at: Time,
             description: T.nilable(String),
             digital_wallet: T.nilable(Increase::Card::DigitalWallet),

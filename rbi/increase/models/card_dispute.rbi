@@ -47,6 +47,18 @@ module Increase
       sig { returns(Increase::CardDispute::Network::TaggedSymbol) }
       attr_accessor :network
 
+      # If the Card Dispute has been rejected, this will contain details of the
+      # rejection.
+      sig { returns(T.nilable(Increase::CardDispute::Rejection)) }
+      attr_reader :rejection
+
+      sig do
+        params(
+          rejection: T.nilable(Increase::CardDispute::Rejection::OrHash)
+        ).void
+      end
+      attr_writer :rejection
+
       # The status of the Card Dispute.
       sig { returns(Increase::CardDispute::Status::TaggedSymbol) }
       attr_accessor :status
@@ -104,6 +116,7 @@ module Increase
           idempotency_key: T.nilable(String),
           loss: T.nilable(Increase::CardDispute::Loss::OrHash),
           network: Increase::CardDispute::Network::OrSymbol,
+          rejection: T.nilable(Increase::CardDispute::Rejection::OrHash),
           status: Increase::CardDispute::Status::OrSymbol,
           type: Increase::CardDispute::Type::OrSymbol,
           user_submission_required_by: T.nilable(Time),
@@ -133,6 +146,9 @@ module Increase
         loss:,
         # The network that the Card Dispute is associated with.
         network:,
+        # If the Card Dispute has been rejected, this will contain details of the
+        # rejection.
+        rejection:,
         # The status of the Card Dispute.
         status:,
         # A constant representing the object's type. For this resource it will always be
@@ -167,6 +183,7 @@ module Increase
             idempotency_key: T.nilable(String),
             loss: T.nilable(Increase::CardDispute::Loss),
             network: Increase::CardDispute::Network::TaggedSymbol,
+            rejection: T.nilable(Increase::CardDispute::Rejection),
             status: Increase::CardDispute::Status::TaggedSymbol,
             type: Increase::CardDispute::Type::TaggedSymbol,
             user_submission_required_by: T.nilable(Time),
@@ -273,6 +290,42 @@ module Increase
         end
       end
 
+      class Rejection < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::CardDispute::Rejection, Increase::Internal::AnyHash)
+          end
+
+        # Why the Card Dispute was rejected.
+        sig { returns(String) }
+        attr_accessor :explanation
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the Card Dispute was rejected.
+        sig { returns(Time) }
+        attr_accessor :rejected_at
+
+        # If the Card Dispute has been rejected, this will contain details of the
+        # rejection.
+        sig do
+          params(explanation: String, rejected_at: Time).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # Why the Card Dispute was rejected.
+          explanation:,
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the Card Dispute was rejected.
+          rejected_at:
+        )
+        end
+
+        sig { override.returns({ explanation: String, rejected_at: Time }) }
+        def to_hash
+        end
+      end
+
       # The status of the Card Dispute.
       module Status
         extend Increase::Internal::Type::Enum
@@ -318,6 +371,9 @@ module Increase
 
         # The Card Dispute has been won and no further action can be taken.
         WON = T.let(:won, Increase::CardDispute::Status::TaggedSymbol)
+
+        # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+        REJECTED = T.let(:rejected, Increase::CardDispute::Status::TaggedSymbol)
 
         sig do
           override.returns(

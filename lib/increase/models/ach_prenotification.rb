@@ -190,10 +190,10 @@ module Increase
       module CreditDebitIndicator
         extend Increase::Internal::Type::Enum
 
-        # The Prenotification is for an anticipated credit.
+        # Credit
         CREDIT = :credit
 
-        # The Prenotification is for an anticipated debit.
+        # Debit
         DEBIT = :debit
 
         # @!method self.values
@@ -344,6 +344,9 @@ module Increase
 
           # A savings account.
           SAVINGS = :savings
+
+          # A loan account used in a lender-borrower relationship. Uncommon.
+          LOAN = :loan
 
           # A bank's general ledger. Uncommon.
           GENERAL_LEDGER = :general_ledger
