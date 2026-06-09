@@ -14,11 +14,13 @@ module Increase
         debtor_external_account_id: String?,
         debtor_name: String,
         debtor_routing_number: String,
+        end_to_end_identification: String?,
         fulfillment_inbound_wire_transfer_id: String?,
         idempotency_key: String?,
         status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
         type: Increase::Models::WireDrawdownRequest::type_,
+        unique_end_to_end_transaction_reference: String?,
         unstructured_remittance_information: String
       }
 
@@ -47,6 +49,8 @@ module Increase
 
       attr_accessor debtor_routing_number: String
 
+      attr_accessor end_to_end_identification: String?
+
       attr_accessor fulfillment_inbound_wire_transfer_id: String?
 
       attr_accessor idempotency_key: String?
@@ -56,6 +60,8 @@ module Increase
       attr_accessor submission: Increase::WireDrawdownRequest::Submission?
 
       attr_accessor type: Increase::Models::WireDrawdownRequest::type_
+
+      attr_accessor unique_end_to_end_transaction_reference: String?
 
       attr_accessor unstructured_remittance_information: String
 
@@ -72,11 +78,13 @@ module Increase
         debtor_external_account_id: String?,
         debtor_name: String,
         debtor_routing_number: String,
+        end_to_end_identification: String?,
         fulfillment_inbound_wire_transfer_id: String?,
         idempotency_key: String?,
         status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
         type: Increase::Models::WireDrawdownRequest::type_,
+        unique_end_to_end_transaction_reference: String?,
         unstructured_remittance_information: String
       ) -> void
 
@@ -93,11 +101,13 @@ module Increase
         debtor_external_account_id: String?,
         debtor_name: String,
         debtor_routing_number: String,
+        end_to_end_identification: String?,
         fulfillment_inbound_wire_transfer_id: String?,
         idempotency_key: String?,
         status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
         type: Increase::Models::WireDrawdownRequest::type_,
+        unique_end_to_end_transaction_reference: String?,
         unstructured_remittance_information: String
       }
 

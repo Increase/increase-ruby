@@ -401,8 +401,10 @@ module Increase
         attr_writer :card_dispute_loss
 
         # A Card Financial object. This field will be present in the JSON response if and
-        # only if `category` is equal to `card_financial`. Card Financials are temporary
-        # holds placed on a customer's funds with the intent to later clear a transaction.
+        # only if `category` is equal to `card_financial`. Card Financials are card
+        # transactions that have cleared and settled. Unlike a Card Settlement, which
+        # clears a previous authorization, a Card Financial is authorized and cleared in a
+        # single message.
         sig { returns(T.nilable(Increase::Transaction::Source::CardFinancial)) }
         attr_reader :card_financial
 
@@ -1137,8 +1139,10 @@ module Increase
           # details of a lost Card Dispute.
           card_dispute_loss: nil,
           # A Card Financial object. This field will be present in the JSON response if and
-          # only if `category` is equal to `card_financial`. Card Financials are temporary
-          # holds placed on a customer's funds with the intent to later clear a transaction.
+          # only if `category` is equal to `card_financial`. Card Financials are card
+          # transactions that have cleared and settled. Unlike a Card Settlement, which
+          # clears a previous authorization, a Card Financial is authorized and cleared in a
+          # single message.
           card_financial: nil,
           # A Card Push Transfer Acceptance object. This field will be present in the JSON
           # response if and only if `category` is equal to `card_push_transfer_acceptance`.
@@ -3212,8 +3216,10 @@ module Increase
           attr_writer :verification
 
           # A Card Financial object. This field will be present in the JSON response if and
-          # only if `category` is equal to `card_financial`. Card Financials are temporary
-          # holds placed on a customer's funds with the intent to later clear a transaction.
+          # only if `category` is equal to `card_financial`. Card Financials are card
+          # transactions that have cleared and settled. Unlike a Card Settlement, which
+          # clears a previous authorization, a Card Financial is authorized and cleared in a
+          # single message.
           sig do
             params(
               id: String,
@@ -13323,6 +13329,10 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :instruction_identification
 
+          # The reason for the wire transfer, as set by the sender.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :purpose
+
           # The ID of the Inbound Wire Transfer object that resulted in this Transaction.
           sig { returns(String) }
           attr_accessor :transfer_id
@@ -13357,6 +13367,7 @@ module Increase
               input_message_accountability_data: T.nilable(String),
               instructing_agent_routing_number: T.nilable(String),
               instruction_identification: T.nilable(String),
+              purpose: T.nilable(String),
               transfer_id: String,
               unique_end_to_end_transaction_reference: T.nilable(String),
               unstructured_remittance_information: T.nilable(String)
@@ -13394,6 +13405,8 @@ module Increase
             instructing_agent_routing_number:,
             # The sending bank's identifier for the wire transfer.
             instruction_identification:,
+            # The reason for the wire transfer, as set by the sender.
+            purpose:,
             # The ID of the Inbound Wire Transfer object that resulted in this Transaction.
             transfer_id:,
             # The Unique End-to-end Transaction Reference
@@ -13422,6 +13435,7 @@ module Increase
                 input_message_accountability_data: T.nilable(String),
                 instructing_agent_routing_number: T.nilable(String),
                 instruction_identification: T.nilable(String),
+                purpose: T.nilable(String),
                 transfer_id: String,
                 unique_end_to_end_transaction_reference: T.nilable(String),
                 unstructured_remittance_information: T.nilable(String)

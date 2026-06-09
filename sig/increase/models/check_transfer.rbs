@@ -298,7 +298,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
-          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
+          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         }
@@ -320,7 +320,7 @@ module Increase
 
         attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?
 
-        attr_accessor shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?
+        attr_accessor shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method
 
         attr_accessor signature: Increase::CheckTransfer::PhysicalCheck::Signature
 
@@ -335,7 +335,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
-          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
+          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         ) -> void
@@ -349,7 +349,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
-          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method?,
+          shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
         }
@@ -531,7 +531,7 @@ module Increase
             # The check has been processed for delivery.
             PROCESSED_FOR_DELIVERY: :processed_for_delivery
 
-            # The check has been delivered.
+            # The check has been delivered. Note that some couriers track delivery status based on driver location data rather than an explicit scan. While uncommon, a single check may have more than one delivered event.
             DELIVERED: :delivered
 
             # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the check will be returned to sender.

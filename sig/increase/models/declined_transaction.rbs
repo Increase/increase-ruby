@@ -1148,7 +1148,7 @@ module Increase
             # The attempted card transaction is not allowed per Increase's terms.
             TRANSACTION_NOT_ALLOWED: :transaction_not_allowed
 
-            # The transaction was blocked by a Limit.
+            # The transaction was blocked by a limit or an authorization control.
             BREACHES_LIMIT: :breaches_limit
 
             # Your application declined the transaction via webhook.

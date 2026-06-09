@@ -942,24 +942,44 @@ module Increase
           sig { returns(T.nilable(Time)) }
           attr_accessor :before
 
+          # Filter fees created on or after this time.
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :on_or_after
+
+          # Filter fees created on or before this time.
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :on_or_before
+
           # Filter fees by their created date. The time range must not include any fees that
           # are part of an open fee statement.
           sig do
-            params(after: T.nilable(Time), before: T.nilable(Time)).returns(
-              T.attached_class
-            )
+            params(
+              after: T.nilable(Time),
+              before: T.nilable(Time),
+              on_or_after: T.nilable(Time),
+              on_or_before: T.nilable(Time)
+            ).returns(T.attached_class)
           end
           def self.new(
             # Filter fees created after this time.
             after:,
             # Filter fees created before this time.
-            before:
+            before:,
+            # Filter fees created on or after this time.
+            on_or_after:,
+            # Filter fees created on or before this time.
+            on_or_before:
           )
           end
 
           sig do
             override.returns(
-              { after: T.nilable(Time), before: T.nilable(Time) }
+              {
+                after: T.nilable(Time),
+                before: T.nilable(Time),
+                on_or_after: T.nilable(Time),
+                on_or_before: T.nilable(Time)
+              }
             )
           end
           def to_hash

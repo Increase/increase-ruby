@@ -18,6 +18,7 @@ module Increase
           daily_account_balance_csv:
             Increase::ExportCreateParams::DailyAccountBalanceCsv::OrHash,
           entity_csv: Increase::ExportCreateParams::EntityCsv::OrHash,
+          fee_csv: Increase::ExportCreateParams::FeeCsv::OrHash,
           funding_instructions:
             Increase::ExportCreateParams::FundingInstructions::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
@@ -46,6 +47,8 @@ module Increase
         daily_account_balance_csv: nil,
         # Options for the created export. Required if `category` is equal to `entity_csv`.
         entity_csv: nil,
+        # Options for the created export. Required if `category` is equal to `fee_csv`.
+        fee_csv: nil,
         # Options for the created export. Required if `category` is equal to
         # `funding_instructions`.
         funding_instructions: nil,

@@ -103,6 +103,13 @@ module Increase
       end
       attr_writer :entity_csv
 
+      # Options for the created export. Required if `category` is equal to `fee_csv`.
+      sig { returns(T.nilable(Increase::ExportCreateParams::FeeCsv)) }
+      attr_reader :fee_csv
+
+      sig { params(fee_csv: Increase::ExportCreateParams::FeeCsv::OrHash).void }
+      attr_writer :fee_csv
+
       # Options for the created export. Required if `category` is equal to
       # `funding_instructions`.
       sig do
@@ -165,6 +172,7 @@ module Increase
           daily_account_balance_csv:
             Increase::ExportCreateParams::DailyAccountBalanceCsv::OrHash,
           entity_csv: Increase::ExportCreateParams::EntityCsv::OrHash,
+          fee_csv: Increase::ExportCreateParams::FeeCsv::OrHash,
           funding_instructions:
             Increase::ExportCreateParams::FundingInstructions::OrHash,
           transaction_csv: Increase::ExportCreateParams::TransactionCsv::OrHash,
@@ -193,6 +201,8 @@ module Increase
         daily_account_balance_csv: nil,
         # Options for the created export. Required if `category` is equal to `entity_csv`.
         entity_csv: nil,
+        # Options for the created export. Required if `category` is equal to `fee_csv`.
+        fee_csv: nil,
         # Options for the created export. Required if `category` is equal to
         # `funding_instructions`.
         funding_instructions: nil,
@@ -223,6 +233,7 @@ module Increase
             daily_account_balance_csv:
               Increase::ExportCreateParams::DailyAccountBalanceCsv,
             entity_csv: Increase::ExportCreateParams::EntityCsv,
+            fee_csv: Increase::ExportCreateParams::FeeCsv,
             funding_instructions:
               Increase::ExportCreateParams::FundingInstructions,
             transaction_csv: Increase::ExportCreateParams::TransactionCsv,
@@ -305,6 +316,10 @@ module Increase
             :funding_instructions,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
+
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV =
+          T.let(:fee_csv, Increase::ExportCreateParams::Category::TaggedSymbol)
 
         # A PDF of a voided check.
         VOIDED_CHECK =
@@ -682,6 +697,142 @@ module Increase
 
         sig { override.returns({}) }
         def to_hash
+        end
+      end
+
+      class FeeCsv < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::ExportCreateParams::FeeCsv,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Filter results by time range on the `created_at` attribute.
+        sig do
+          returns(T.nilable(Increase::ExportCreateParams::FeeCsv::CreatedAt))
+        end
+        attr_reader :created_at
+
+        sig do
+          params(
+            created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt::OrHash
+          ).void
+        end
+        attr_writer :created_at
+
+        # Filter exported Fees to the specified Program.
+        sig { returns(T.nilable(String)) }
+        attr_reader :program_id
+
+        sig { params(program_id: String).void }
+        attr_writer :program_id
+
+        # Options for the created export. Required if `category` is equal to `fee_csv`.
+        sig do
+          params(
+            created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt::OrHash,
+            program_id: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Filter results by time range on the `created_at` attribute.
+          created_at: nil,
+          # Filter exported Fees to the specified Program.
+          program_id: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+              program_id: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::ExportCreateParams::FeeCsv::CreatedAt,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          # timestamp.
+          sig { returns(T.nilable(Time)) }
+          attr_reader :after
+
+          sig { params(after: Time).void }
+          attr_writer :after
+
+          # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          # timestamp.
+          sig { returns(T.nilable(Time)) }
+          attr_reader :before
+
+          sig { params(before: Time).void }
+          attr_writer :before
+
+          # Return results on or after this
+          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          sig { returns(T.nilable(Time)) }
+          attr_reader :on_or_after
+
+          sig { params(on_or_after: Time).void }
+          attr_writer :on_or_after
+
+          # Return results on or before this
+          # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          sig { returns(T.nilable(Time)) }
+          attr_reader :on_or_before
+
+          sig { params(on_or_before: Time).void }
+          attr_writer :on_or_before
+
+          # Filter results by time range on the `created_at` attribute.
+          sig do
+            params(
+              after: Time,
+              before: Time,
+              on_or_after: Time,
+              on_or_before: Time
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+            # timestamp.
+            after: nil,
+            # Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+            # timestamp.
+            before: nil,
+            # Return results on or after this
+            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+            on_or_after: nil,
+            # Return results on or before this
+            # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+            on_or_before: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                after: Time,
+                before: Time,
+                on_or_after: Time,
+                on_or_before: Time
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 

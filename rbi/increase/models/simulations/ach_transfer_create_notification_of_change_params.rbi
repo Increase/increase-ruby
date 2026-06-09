@@ -129,6 +129,13 @@ module Increase
               Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding::TaggedSymbol
             )
 
+          # A loan account used in a lender-borrower relationship. Uncommon.
+          LOAN =
+            T.let(
+              :loan,
+              Increase::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding::TaggedSymbol
+            )
+
           # A bank's general ledger. Uncommon.
           GENERAL_LEDGER =
             T.let(

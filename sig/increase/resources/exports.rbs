@@ -9,6 +9,7 @@ module Increase
         ?bookkeeping_account_balance_csv: Increase::ExportCreateParams::BookkeepingAccountBalanceCsv,
         ?daily_account_balance_csv: Increase::ExportCreateParams::DailyAccountBalanceCsv,
         ?entity_csv: Increase::ExportCreateParams::EntityCsv,
+        ?fee_csv: Increase::ExportCreateParams::FeeCsv,
         ?funding_instructions: Increase::ExportCreateParams::FundingInstructions,
         ?transaction_csv: Increase::ExportCreateParams::TransactionCsv,
         ?vendor_csv: Increase::ExportCreateParams::VendorCsv,

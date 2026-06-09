@@ -369,7 +369,7 @@ module Increase
               Increase::Simulations::CardAuthorizationCreateParams::DeclineReason::TaggedSymbol
             )
 
-          # The transaction was blocked by a Limit.
+          # The transaction was blocked by a limit or an authorization control.
           BREACHES_LIMIT =
             T.let(
               :breaches_limit,

@@ -60,6 +60,12 @@ module Increase
           # Your webhook declined the token provisioning attempt.
           WEBHOOK_DECLINED = :webhook_declined
 
+          # The tokenization attempt failed because the Card Verification Code (CVC) was incorrect.
+          INCORRECT_CARD_VERIFICATION_CODE = :incorrect_card_verification_code
+
+          # The tokenization attempt was declined by the token requestor.
+          DECLINED_BY_TOKEN_REQUESTOR = :declined_by_token_requestor
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end

@@ -35,6 +35,7 @@ class Increase::Test::Resources::Simulations::InboundWireTransfersTest < Increas
         input_message_accountability_data: String | nil,
         instructing_agent_routing_number: String | nil,
         instruction_identification: String | nil,
+        purpose: String | nil,
         reversal: Increase::InboundWireTransfer::Reversal | nil,
         status: Increase::InboundWireTransfer::Status,
         type: Increase::InboundWireTransfer::Type,
