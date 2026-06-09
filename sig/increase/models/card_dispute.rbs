@@ -10,6 +10,7 @@ module Increase
         idempotency_key: String?,
         loss: Increase::CardDispute::Loss?,
         network: Increase::Models::CardDispute::network,
+        rejection: Increase::CardDispute::Rejection?,
         status: Increase::Models::CardDispute::status,
         type: Increase::Models::CardDispute::type_,
         user_submission_required_by: Time?,
@@ -35,6 +36,8 @@ module Increase
 
       attr_accessor network: Increase::Models::CardDispute::network
 
+      attr_accessor rejection: Increase::CardDispute::Rejection?
+
       attr_accessor status: Increase::Models::CardDispute::status
 
       attr_accessor type: Increase::Models::CardDispute::type_
@@ -56,6 +59,7 @@ module Increase
         idempotency_key: String?,
         loss: Increase::CardDispute::Loss?,
         network: Increase::Models::CardDispute::network,
+        rejection: Increase::CardDispute::Rejection?,
         status: Increase::Models::CardDispute::status,
         type: Increase::Models::CardDispute::type_,
         user_submission_required_by: Time?,
@@ -73,6 +77,7 @@ module Increase
         idempotency_key: String?,
         loss: Increase::CardDispute::Loss?,
         network: Increase::Models::CardDispute::network,
+        rejection: Increase::CardDispute::Rejection?,
         status: Increase::Models::CardDispute::status,
         type: Increase::Models::CardDispute::type_,
         user_submission_required_by: Time?,
@@ -128,6 +133,18 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::CardDispute::network]
       end
 
+      type rejection = { explanation: String, rejected_at: Time }
+
+      class Rejection < Increase::Internal::Type::BaseModel
+        attr_accessor explanation: String
+
+        attr_accessor rejected_at: Time
+
+        def initialize: (explanation: String, rejected_at: Time) -> void
+
+        def to_hash: -> { explanation: String, rejected_at: Time }
+      end
+
       type status =
         :user_submission_required
         | :pending_user_submission_reviewing
@@ -136,6 +153,7 @@ module Increase
         | :pending_response
         | :lost
         | :won
+        | :rejected
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -160,6 +178,9 @@ module Increase
 
         # The Card Dispute has been won and no further action can be taken.
         WON: :won
+
+        # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+        REJECTED: :rejected
 
         def self?.values: -> ::Array[Increase::Models::CardDispute::status]
       end

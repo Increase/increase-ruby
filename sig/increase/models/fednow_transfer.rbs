@@ -12,6 +12,7 @@ module Increase
         creditor_address: Increase::FednowTransfer::CreditorAddress?,
         creditor_name: String,
         currency: Increase::Models::FednowTransfer::currency,
+        debtor_address: Increase::FednowTransfer::DebtorAddress?,
         debtor_name: String,
         external_account_id: String?,
         idempotency_key: String?,
@@ -47,6 +48,8 @@ module Increase
       attr_accessor creditor_name: String
 
       attr_accessor currency: Increase::Models::FednowTransfer::currency
+
+      attr_accessor debtor_address: Increase::FednowTransfer::DebtorAddress?
 
       attr_accessor debtor_name: String
 
@@ -85,6 +88,7 @@ module Increase
         creditor_address: Increase::FednowTransfer::CreditorAddress?,
         creditor_name: String,
         currency: Increase::Models::FednowTransfer::currency,
+        debtor_address: Increase::FednowTransfer::DebtorAddress?,
         debtor_name: String,
         external_account_id: String?,
         idempotency_key: String?,
@@ -111,6 +115,7 @@ module Increase
         creditor_address: Increase::FednowTransfer::CreditorAddress?,
         creditor_name: String,
         currency: Increase::Models::FednowTransfer::currency,
+        debtor_address: Increase::FednowTransfer::DebtorAddress?,
         debtor_name: String,
         external_account_id: String?,
         idempotency_key: String?,
@@ -256,6 +261,38 @@ module Increase
         USD: :USD
 
         def self?.values: -> ::Array[Increase::Models::FednowTransfer::currency]
+      end
+
+      type debtor_address =
+        {
+          city: String?,
+          :line1 => String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          line1: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          :line1 => String?,
+          postal_code: String?,
+          state: String?
+        }
       end
 
       type rejection =

@@ -5357,6 +5357,7 @@ module Increase
             input_message_accountability_data: String?,
             instructing_agent_routing_number: String?,
             instruction_identification: String?,
+            purpose: String?,
             transfer_id: String,
             unique_end_to_end_transaction_reference: String?,
             unstructured_remittance_information: String?
@@ -5391,6 +5392,8 @@ module Increase
 
           attr_accessor instruction_identification: String?
 
+          attr_accessor purpose: String?
+
           attr_accessor transfer_id: String
 
           attr_accessor unique_end_to_end_transaction_reference: String?
@@ -5412,6 +5415,7 @@ module Increase
             input_message_accountability_data: String?,
             instructing_agent_routing_number: String?,
             instruction_identification: String?,
+            purpose: String?,
             transfer_id: String,
             unique_end_to_end_transaction_reference: String?,
             unstructured_remittance_information: String?
@@ -5432,6 +5436,7 @@ module Increase
             input_message_accountability_data: String?,
             instructing_agent_routing_number: String?,
             instruction_identification: String?,
+            purpose: String?,
             transfer_id: String,
             unique_end_to_end_transaction_reference: String?,
             unstructured_remittance_information: String?

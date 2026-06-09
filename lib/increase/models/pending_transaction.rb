@@ -746,6 +746,15 @@ module Increase
           #   @return [Time]
           required :expires_at, Time
 
+          # @!attribute healthcare
+          #   The healthcare-related fields for this authorization. Only present for specific
+          #   programs.
+          #
+          #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare, nil]
+          required :healthcare,
+                   -> { Increase::PendingTransaction::Source::CardAuthorization::Healthcare },
+                   nil?: true
+
           # @!attribute merchant_acceptor_id
           #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
           #   is transacting with.
@@ -880,7 +889,7 @@ module Increase
           #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::Verification]
           required :verification, -> { Increase::PendingTransaction::Source::CardAuthorization::Verification }
 
-          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, expires_at:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, pending_transaction_id:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, scheme_fees:, terminal_id:, type:, verification:)
+          # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, expires_at:, healthcare:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, pending_transaction_id:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, scheme_fees:, terminal_id:, type:, verification:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::PendingTransaction::Source::CardAuthorization} for more
           #   details.
@@ -907,6 +916,8 @@ module Increase
           #   @param direction [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Direction] The direction describes the direction the funds will move, either from the cardh
           #
           #   @param expires_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization w
+          #
+          #   @param healthcare [Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare, nil] The healthcare-related fields for this authorization. Only present for specific
           #
           #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
           #
@@ -1419,6 +1430,48 @@ module Increase
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::PendingTransaction::Source::CardAuthorization#healthcare
+          class Healthcare < Increase::Internal::Type::BaseModel
+            # @!attribute merchant_ninety_percent_eligibility
+            #   The merchant's eligibility under the Internal Revenue Service's 90% Rule for
+            #   Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
+            #   products. The eligibility is determined based on the list of merchants
+            #   maintained by the Special Interest Group for IIAS Standards (SIGIS).
+            #
+            #   @return [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility]
+            required :merchant_ninety_percent_eligibility,
+                     enum: -> { Increase::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility }
+
+            # @!method initialize(merchant_ninety_percent_eligibility:)
+            #   Some parameter documentations has been truncated, see
+            #   {Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare}
+            #   for more details.
+            #
+            #   The healthcare-related fields for this authorization. Only present for specific
+            #   programs.
+            #
+            #   @param merchant_ninety_percent_eligibility [Symbol, Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility] The merchant's eligibility under the Internal Revenue Service's 90% Rule for Fle
+
+            # The merchant's eligibility under the Internal Revenue Service's 90% Rule for
+            # Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
+            # products. The eligibility is determined based on the list of merchants
+            # maintained by the Special Interest Group for IIAS Standards (SIGIS).
+            #
+            # @see Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare#merchant_ninety_percent_eligibility
+            module MerchantNinetyPercentEligibility
+              extend Increase::Internal::Type::Enum
+
+              # The merchant is eligible for treatment under the 90% rule.
+              ELIGIBLE = :eligible
+
+              # The merchant is not eligible for treatment under the 90% rule.
+              NOT_ELIGIBLE = :not_eligible
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
           end
 
           # @see Increase::Models::PendingTransaction::Source::CardAuthorization#network_details

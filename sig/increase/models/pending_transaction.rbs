@@ -457,6 +457,7 @@ module Increase
             digital_wallet_token_id: String?,
             direction: Increase::Models::PendingTransaction::Source::CardAuthorization::direction,
             expires_at: Time,
+            healthcare: Increase::PendingTransaction::Source::CardAuthorization::Healthcare?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -497,6 +498,8 @@ module Increase
           attr_accessor direction: Increase::Models::PendingTransaction::Source::CardAuthorization::direction
 
           attr_accessor expires_at: Time
+
+          attr_accessor healthcare: Increase::PendingTransaction::Source::CardAuthorization::Healthcare?
 
           attr_accessor merchant_acceptor_id: String
 
@@ -548,6 +551,7 @@ module Increase
             digital_wallet_token_id: String?,
             direction: Increase::Models::PendingTransaction::Source::CardAuthorization::direction,
             expires_at: Time,
+            healthcare: Increase::PendingTransaction::Source::CardAuthorization::Healthcare?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -580,6 +584,7 @@ module Increase
             digital_wallet_token_id: String?,
             direction: Increase::Models::PendingTransaction::Source::CardAuthorization::direction,
             expires_at: Time,
+            healthcare: Increase::PendingTransaction::Source::CardAuthorization::Healthcare?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -824,6 +829,37 @@ module Increase
             REFUND: :refund
 
             def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::CardAuthorization::direction]
+          end
+
+          type healthcare =
+            {
+              merchant_ninety_percent_eligibility: Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+            }
+
+          class Healthcare < Increase::Internal::Type::BaseModel
+            attr_accessor merchant_ninety_percent_eligibility: Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+
+            def initialize: (
+              merchant_ninety_percent_eligibility: Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+            ) -> void
+
+            def to_hash: -> {
+              merchant_ninety_percent_eligibility: Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+            }
+
+            type merchant_ninety_percent_eligibility = :eligible | :not_eligible
+
+            module MerchantNinetyPercentEligibility
+              extend Increase::Internal::Type::Enum
+
+              # The merchant is eligible for treatment under the 90% rule.
+              ELIGIBLE: :eligible
+
+              # The merchant is not eligible for treatment under the 90% rule.
+              NOT_ELIGIBLE: :not_eligible
+
+              def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility]
+            end
           end
 
           type network_details =

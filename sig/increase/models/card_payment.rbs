@@ -987,6 +987,7 @@ module Increase
             digital_wallet_token_id: String?,
             direction: Increase::Models::CardPayment::Element::CardAuthorization::direction,
             expires_at: Time,
+            healthcare: Increase::CardPayment::Element::CardAuthorization::Healthcare?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -1027,6 +1028,8 @@ module Increase
           attr_accessor direction: Increase::Models::CardPayment::Element::CardAuthorization::direction
 
           attr_accessor expires_at: Time
+
+          attr_accessor healthcare: Increase::CardPayment::Element::CardAuthorization::Healthcare?
 
           attr_accessor merchant_acceptor_id: String
 
@@ -1078,6 +1081,7 @@ module Increase
             digital_wallet_token_id: String?,
             direction: Increase::Models::CardPayment::Element::CardAuthorization::direction,
             expires_at: Time,
+            healthcare: Increase::CardPayment::Element::CardAuthorization::Healthcare?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -1110,6 +1114,7 @@ module Increase
             digital_wallet_token_id: String?,
             direction: Increase::Models::CardPayment::Element::CardAuthorization::direction,
             expires_at: Time,
+            healthcare: Increase::CardPayment::Element::CardAuthorization::Healthcare?,
             merchant_acceptor_id: String,
             merchant_category_code: String,
             merchant_city: String?,
@@ -1354,6 +1359,37 @@ module Increase
             REFUND: :refund
 
             def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthorization::direction]
+          end
+
+          type healthcare =
+            {
+              merchant_ninety_percent_eligibility: Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+            }
+
+          class Healthcare < Increase::Internal::Type::BaseModel
+            attr_accessor merchant_ninety_percent_eligibility: Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+
+            def initialize: (
+              merchant_ninety_percent_eligibility: Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+            ) -> void
+
+            def to_hash: -> {
+              merchant_ninety_percent_eligibility: Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility
+            }
+
+            type merchant_ninety_percent_eligibility = :eligible | :not_eligible
+
+            module MerchantNinetyPercentEligibility
+              extend Increase::Internal::Type::Enum
+
+              # The merchant is eligible for treatment under the 90% rule.
+              ELIGIBLE: :eligible
+
+              # The merchant is not eligible for treatment under the 90% rule.
+              NOT_ELIGIBLE: :not_eligible
+
+              def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::merchant_ninety_percent_eligibility]
+            end
           end
 
           type network_details =
@@ -3852,7 +3888,7 @@ module Increase
             # The attempted card transaction is not allowed per Increase's terms.
             TRANSACTION_NOT_ALLOWED: :transaction_not_allowed
 
-            # The transaction was blocked by a Limit.
+            # The transaction was blocked by a limit or an authorization control.
             BREACHES_LIMIT: :breaches_limit
 
             # Your application declined the transaction via webhook.

@@ -683,7 +683,7 @@ module Increase
                   Increase::PhysicalCard::Shipment::Tracking::Update::Category::TaggedSymbol
                 )
 
-              # The physical card has been delivered.
+              # The physical card has been delivered. Note that some couriers track delivery status based on driver location data rather than an explicit scan. While uncommon, a single physical card may have more than one delivered event.
               DELIVERED =
                 T.let(
                   :delivered,

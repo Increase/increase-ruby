@@ -97,6 +97,13 @@ module Increase
         #   @return [String, nil]
         optional :instruction_identification, String
 
+        # @!attribute purpose
+        #   The sending bank will set purpose in production. You can simulate any value
+        #   here.
+        #
+        #   @return [String, nil]
+        optional :purpose, String
+
         # @!attribute unique_end_to_end_transaction_reference
         #   The sending bank will set unique_end_to_end_transaction_reference in production.
         #   You can simulate any value here.
@@ -118,7 +125,7 @@ module Increase
         #   @return [String, nil]
         optional :wire_drawdown_request_id, String
 
-        # @!method initialize(account_number_id:, amount:, creditor_address_line1: nil, creditor_address_line2: nil, creditor_address_line3: nil, creditor_name: nil, debtor_address_line1: nil, debtor_address_line2: nil, debtor_address_line3: nil, debtor_name: nil, end_to_end_identification: nil, instructing_agent_routing_number: nil, instruction_identification: nil, unique_end_to_end_transaction_reference: nil, unstructured_remittance_information: nil, wire_drawdown_request_id: nil, request_options: {})
+        # @!method initialize(account_number_id:, amount:, creditor_address_line1: nil, creditor_address_line2: nil, creditor_address_line3: nil, creditor_name: nil, debtor_address_line1: nil, debtor_address_line2: nil, debtor_address_line3: nil, debtor_name: nil, end_to_end_identification: nil, instructing_agent_routing_number: nil, instruction_identification: nil, purpose: nil, unique_end_to_end_transaction_reference: nil, unstructured_remittance_information: nil, wire_drawdown_request_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::Simulations::InboundWireTransferCreateParams} for more
         #   details.
@@ -148,6 +155,8 @@ module Increase
         #   @param instructing_agent_routing_number [String] The sending bank will set instructing_agent_routing_number in production. You ca
         #
         #   @param instruction_identification [String] The sending bank will set instruction_identification in production. You can simu
+        #
+        #   @param purpose [String] The sending bank will set purpose in production. You can simulate any value here
         #
         #   @param unique_end_to_end_transaction_reference [String] The sending bank will set unique_end_to_end_transaction_reference in production.
         #
