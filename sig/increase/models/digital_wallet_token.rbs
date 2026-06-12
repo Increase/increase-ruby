@@ -6,6 +6,7 @@ module Increase
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
+        decline: Increase::DigitalWalletToken::Decline?,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
         status: Increase::Models::DigitalWalletToken::status,
@@ -22,6 +23,8 @@ module Increase
       attr_accessor cardholder: Increase::DigitalWalletToken::Cardholder
 
       attr_accessor created_at: Time
+
+      attr_accessor decline: Increase::DigitalWalletToken::Decline?
 
       attr_accessor device: Increase::DigitalWalletToken::Device
 
@@ -40,6 +43,7 @@ module Increase
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
+        decline: Increase::DigitalWalletToken::Decline?,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
         status: Increase::Models::DigitalWalletToken::status,
@@ -53,6 +57,7 @@ module Increase
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
+        decline: Increase::DigitalWalletToken::Decline?,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
         status: Increase::Models::DigitalWalletToken::status,
@@ -69,6 +74,53 @@ module Increase
         def initialize: (name: String?) -> void
 
         def to_hash: -> { name: String? }
+      end
+
+      type decline =
+        { reason: Increase::Models::DigitalWalletToken::Decline::reason }
+
+      class Decline < Increase::Internal::Type::BaseModel
+        attr_accessor reason: Increase::Models::DigitalWalletToken::Decline::reason
+
+        def initialize: (
+          reason: Increase::Models::DigitalWalletToken::Decline::reason
+        ) -> void
+
+        def to_hash: -> {
+          reason: Increase::Models::DigitalWalletToken::Decline::reason
+        }
+
+        type reason =
+          :card_not_active
+          | :no_verification_method
+          | :webhook_timed_out
+          | :webhook_declined
+          | :incorrect_card_verification_code
+          | :declined_by_token_requestor
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The card is not active.
+          CARD_NOT_ACTIVE: :card_not_active
+
+          # The card does not have a two-factor authentication method.
+          NO_VERIFICATION_METHOD: :no_verification_method
+
+          # Your webhook timed out when evaluating the token provisioning attempt.
+          WEBHOOK_TIMED_OUT: :webhook_timed_out
+
+          # Your webhook declined the token provisioning attempt.
+          WEBHOOK_DECLINED: :webhook_declined
+
+          # The tokenization attempt failed because the Card Verification Code (CVC) was incorrect.
+          INCORRECT_CARD_VERIFICATION_CODE: :incorrect_card_verification_code
+
+          # The tokenization attempt was declined by the token requestor.
+          DECLINED_BY_TOKEN_REQUESTOR: :declined_by_token_requestor
+
+          def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Decline::reason]
+        end
       end
 
       type device =
@@ -160,7 +212,7 @@ module Increase
         def to_hash: -> { :first6 => String, :last4 => String }
       end
 
-      type status = :active | :inactive | :suspended | :deactivated
+      type status = :active | :inactive | :suspended | :deactivated | :declined
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -176,6 +228,9 @@ module Increase
 
         # The digital wallet token has been permanently canceled.
         DEACTIVATED: :deactivated
+
+        # The digital wallet token was declined during provisioning.
+        DECLINED: :declined
 
         def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::status]
       end
@@ -231,7 +286,8 @@ module Increase
           timestamp: Time
         }
 
-        type status = :active | :inactive | :suspended | :deactivated
+        type status =
+          :active | :inactive | :suspended | :deactivated | :declined
 
         module Status
           extend Increase::Internal::Type::Enum
@@ -247,6 +303,9 @@ module Increase
 
           # The digital wallet token has been permanently canceled.
           DEACTIVATED: :deactivated
+
+          # The digital wallet token was declined during provisioning.
+          DECLINED: :declined
 
           def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Update::status]
         end

@@ -79,6 +79,13 @@ module Increase
       #   @return [String]
       required :debtor_routing_number, String
 
+      # @!attribute end_to_end_identification
+      #   A free-form reference string set by the sender, to be mirrored back in the
+      #   subsequent wire transfer.
+      #
+      #   @return [String, nil]
+      required :end_to_end_identification, String, nil?: true
+
       # @!attribute fulfillment_inbound_wire_transfer_id
       #   If the recipient fulfills the drawdown request by sending funds, then this will
       #   be the identifier of the corresponding Transaction.
@@ -114,13 +121,21 @@ module Increase
       #   @return [Symbol, Increase::Models::WireDrawdownRequest::Type]
       required :type, enum: -> { Increase::WireDrawdownRequest::Type }
 
+      # @!attribute unique_end_to_end_transaction_reference
+      #   The unique end-to-end transaction reference
+      #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #   of the drawdown request.
+      #
+      #   @return [String, nil]
+      required :unique_end_to_end_transaction_reference, String, nil?: true
+
       # @!attribute unstructured_remittance_information
       #   Remittance information the debtor will see as part of the drawdown request.
       #
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, end_to_end_identification:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::WireDrawdownRequest} for more details.
       #
@@ -155,6 +170,8 @@ module Increase
       #
       #   @param debtor_routing_number [String] The debtor's routing number.
       #
+      #   @param end_to_end_identification [String, nil] A free-form reference string set by the sender, to be mirrored back in the subse
+      #
       #   @param fulfillment_inbound_wire_transfer_id [String, nil] If the recipient fulfills the drawdown request by sending funds, then this will
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
@@ -164,6 +181,8 @@ module Increase
       #   @param submission [Increase::Models::WireDrawdownRequest::Submission, nil] After the drawdown request is submitted to Fedwire, this will contain supplement
       #
       #   @param type [Symbol, Increase::Models::WireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param unique_end_to_end_transaction_reference [String, nil] The unique end-to-end transaction reference ([UETR](https://www.swift.com/paymen
       #
       #   @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the drawdown request.
 

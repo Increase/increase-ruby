@@ -6,6 +6,7 @@ module Increase
         account_id: String,
         authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
+        bin: String,
         created_at: Time,
         description: String?,
         digital_wallet: Increase::Card::DigitalWallet?,
@@ -26,6 +27,8 @@ module Increase
       attr_accessor authorization_controls: Increase::Card::AuthorizationControls?
 
       attr_accessor billing_address: Increase::Card::BillingAddress
+
+      attr_accessor bin: String
 
       attr_accessor created_at: Time
 
@@ -52,6 +55,7 @@ module Increase
         account_id: String,
         authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
+        bin: String,
         created_at: Time,
         description: String?,
         digital_wallet: Increase::Card::DigitalWallet?,
@@ -69,6 +73,7 @@ module Increase
         account_id: String,
         authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
+        bin: String,
         created_at: Time,
         description: String?,
         digital_wallet: Increase::Card::DigitalWallet?,

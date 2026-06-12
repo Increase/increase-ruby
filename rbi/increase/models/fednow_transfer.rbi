@@ -75,6 +75,18 @@ module Increase
       sig { returns(Increase::FednowTransfer::Currency::TaggedSymbol) }
       attr_accessor :currency
 
+      # The debtor's address.
+      sig { returns(T.nilable(Increase::FednowTransfer::DebtorAddress)) }
+      attr_reader :debtor_address
+
+      sig do
+        params(
+          debtor_address:
+            T.nilable(Increase::FednowTransfer::DebtorAddress::OrHash)
+        ).void
+      end
+      attr_writer :debtor_address
+
       # The name of the transfer's sender. If not provided, defaults to the name of the
       # account's entity.
       sig { returns(String) }
@@ -166,6 +178,8 @@ module Increase
             T.nilable(Increase::FednowTransfer::CreditorAddress::OrHash),
           creditor_name: String,
           currency: Increase::FednowTransfer::Currency::OrSymbol,
+          debtor_address:
+            T.nilable(Increase::FednowTransfer::DebtorAddress::OrHash),
           debtor_name: String,
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
@@ -206,6 +220,8 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
         # currency. For FedNow transfers this is always equal to `USD`.
         currency:,
+        # The debtor's address.
+        debtor_address:,
         # The name of the transfer's sender. If not provided, defaults to the name of the
         # account's entity.
         debtor_name:,
@@ -259,6 +275,7 @@ module Increase
               T.nilable(Increase::FednowTransfer::CreditorAddress),
             creditor_name: String,
             currency: Increase::FednowTransfer::Currency::TaggedSymbol,
+            debtor_address: T.nilable(Increase::FednowTransfer::DebtorAddress),
             debtor_name: String,
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
@@ -604,6 +621,66 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::FednowTransfer::DebtorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The city, district, town, or village of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # The first line of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line1
+
+        # The ZIP code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The address state.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The debtor's address.
+        sig do
+          params(
+            city: T.nilable(String),
+            line1: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city, district, town, or village of the address.
+          city:,
+          # The first line of the address.
+          line1:,
+          # The ZIP code of the address.
+          postal_code:,
+          # The address state.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: T.nilable(String),
+              line1: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
 

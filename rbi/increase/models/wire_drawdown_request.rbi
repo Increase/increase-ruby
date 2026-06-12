@@ -74,6 +74,11 @@ module Increase
       sig { returns(String) }
       attr_accessor :debtor_routing_number
 
+      # A free-form reference string set by the sender, to be mirrored back in the
+      # subsequent wire transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :end_to_end_identification
+
       # If the recipient fulfills the drawdown request by sending funds, then this will
       # be the identifier of the corresponding Transaction.
       sig { returns(T.nilable(String)) }
@@ -107,6 +112,12 @@ module Increase
       sig { returns(Increase::WireDrawdownRequest::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The unique end-to-end transaction reference
+      # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      # of the drawdown request.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unique_end_to_end_transaction_reference
+
       # Remittance information the debtor will see as part of the drawdown request.
       sig { returns(String) }
       attr_accessor :unstructured_remittance_information
@@ -132,12 +143,14 @@ module Increase
           debtor_external_account_id: T.nilable(String),
           debtor_name: String,
           debtor_routing_number: String,
+          end_to_end_identification: T.nilable(String),
           fulfillment_inbound_wire_transfer_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           status: Increase::WireDrawdownRequest::Status::OrSymbol,
           submission:
             T.nilable(Increase::WireDrawdownRequest::Submission::OrHash),
           type: Increase::WireDrawdownRequest::Type::OrSymbol,
+          unique_end_to_end_transaction_reference: T.nilable(String),
           unstructured_remittance_information: String
         ).returns(T.attached_class)
       end
@@ -169,6 +182,9 @@ module Increase
         debtor_name:,
         # The debtor's routing number.
         debtor_routing_number:,
+        # A free-form reference string set by the sender, to be mirrored back in the
+        # subsequent wire transfer.
+        end_to_end_identification:,
         # If the recipient fulfills the drawdown request by sending funds, then this will
         # be the identifier of the corresponding Transaction.
         fulfillment_inbound_wire_transfer_id:,
@@ -184,6 +200,10 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `wire_drawdown_request`.
         type:,
+        # The unique end-to-end transaction reference
+        # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        # of the drawdown request.
+        unique_end_to_end_transaction_reference:,
         # Remittance information the debtor will see as part of the drawdown request.
         unstructured_remittance_information:
       )
@@ -204,11 +224,13 @@ module Increase
             debtor_external_account_id: T.nilable(String),
             debtor_name: String,
             debtor_routing_number: String,
+            end_to_end_identification: T.nilable(String),
             fulfillment_inbound_wire_transfer_id: T.nilable(String),
             idempotency_key: T.nilable(String),
             status: Increase::WireDrawdownRequest::Status::TaggedSymbol,
             submission: T.nilable(Increase::WireDrawdownRequest::Submission),
             type: Increase::WireDrawdownRequest::Type::TaggedSymbol,
+            unique_end_to_end_transaction_reference: T.nilable(String),
             unstructured_remittance_information: String
           }
         )

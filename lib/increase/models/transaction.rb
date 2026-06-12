@@ -261,8 +261,10 @@ module Increase
 
         # @!attribute card_financial
         #   A Card Financial object. This field will be present in the JSON response if and
-        #   only if `category` is equal to `card_financial`. Card Financials are temporary
-        #   holds placed on a customer's funds with the intent to later clear a transaction.
+        #   only if `category` is equal to `card_financial`. Card Financials are card
+        #   transactions that have cleared and settled. Unlike a Card Settlement, which
+        #   clears a previous authorization, a Card Financial is authorized and cleared in a
+        #   single message.
         #
         #   @return [Increase::Models::Transaction::Source::CardFinancial, nil]
         optional :card_financial, -> { Increase::Transaction::Source::CardFinancial }, nil?: true
@@ -1650,8 +1652,10 @@ module Increase
           #   {Increase::Models::Transaction::Source::CardFinancial} for more details.
           #
           #   A Card Financial object. This field will be present in the JSON response if and
-          #   only if `category` is equal to `card_financial`. Card Financials are temporary
-          #   holds placed on a customer's funds with the intent to later clear a transaction.
+          #   only if `category` is equal to `card_financial`. Card Financials are card
+          #   transactions that have cleared and settled. Unlike a Card Settlement, which
+          #   clears a previous authorization, a Card Financial is authorized and cleared in a
+          #   single message.
           #
           #   @param id [String] The Card Financial identifier.
           #
@@ -7178,6 +7182,12 @@ module Increase
           #   @return [String, nil]
           required :instruction_identification, String, nil?: true
 
+          # @!attribute purpose
+          #   The reason for the wire transfer, as set by the sender.
+          #
+          #   @return [String, nil]
+          required :purpose, String, nil?: true
+
           # @!attribute transfer_id
           #   The ID of the Inbound Wire Transfer object that resulted in this Transaction.
           #
@@ -7198,7 +7208,7 @@ module Increase
           #   @return [String, nil]
           required :unstructured_remittance_information, String, nil?: true
 
-          # @!method initialize(amount:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, transfer_id:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+          # @!method initialize(amount:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, purpose:, transfer_id:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
           #   Some parameter documentations has been truncated, see
           #   {Increase::Models::Transaction::Source::InboundWireTransfer} for more details.
           #
@@ -7234,6 +7244,8 @@ module Increase
           #   @param instructing_agent_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank that sent the
           #
           #   @param instruction_identification [String, nil] The sending bank's identifier for the wire transfer.
+          #
+          #   @param purpose [String, nil] The reason for the wire transfer, as set by the sender.
           #
           #   @param transfer_id [String] The ID of the Inbound Wire Transfer object that resulted in this Transaction.
           #

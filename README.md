@@ -1,6 +1,6 @@
 # Increase Ruby API library
 
-The Increase Ruby library provides convenient access to the Increase REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Increase/increase-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Increase Ruby library provides convenient access to the Increase REST API from any Ruby 3.3.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Increase/increase-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 ## Documentation
 
@@ -27,8 +27,7 @@ require "bundler/setup"
 require "increase"
 
 increase = Increase::Client.new(
-  api_key: ENV["INCREASE_API_KEY"], # This is the default and can be omitted
-  environment: "sandbox" # defaults to "production"
+  api_key: ENV["INCREASE_API_KEY"] # This is the default and can be omitted
 )
 
 account = increase.accounts.create(
@@ -304,7 +303,7 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 
 ## Requirements
 
-Ruby 3.2.0 or higher.
+Ruby 3.3.0 or higher.
 
 ## Contributing
 

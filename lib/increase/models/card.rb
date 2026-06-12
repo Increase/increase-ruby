@@ -28,6 +28,12 @@ module Increase
       #   @return [Increase::Models::Card::BillingAddress]
       required :billing_address, -> { Increase::Card::BillingAddress }
 
+      # @!attribute bin
+      #   The Bank Identification Number (BIN) of the Card.
+      #
+      #   @return [String]
+      required :bin, String
+
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       #   the Card was created.
@@ -94,7 +100,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Card::Type]
       required :type, enum: -> { Increase::Card::Type }
 
-      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
+      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
       #   Some parameter documentations has been truncated, see {Increase::Models::Card}
       #   for more details.
       #
@@ -111,6 +117,8 @@ module Increase
       #   @param authorization_controls [Increase::Models::Card::AuthorizationControls, nil] Controls that restrict how this card can be used.
       #
       #   @param billing_address [Increase::Models::Card::BillingAddress] The Card's billing address.
+      #
+      #   @param bin [String] The Bank Identification Number (BIN) of the Card.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #

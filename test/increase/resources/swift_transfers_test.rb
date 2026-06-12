@@ -8,7 +8,7 @@ class Increase::Test::Resources::SwiftTransfersTest < Increase::Test::ResourceTe
       @increase.swift_transfers.create(
         account_id: "account_in71c4amph0vgo2qllky",
         account_number: "987654321",
-        bank_identification_code: "ECBFDEFFTPP",
+        bank_identification_code: "FRNYUS33XXX",
         creditor_address: {city: "Frankfurt", country: "DE", line1: "Sonnemannstrasse 20"},
         creditor_name: "Ian Crease",
         debtor_address: {city: "New York", country: "US", line1: "33 Liberty Street"},

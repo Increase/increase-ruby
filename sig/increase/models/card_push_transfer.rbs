@@ -15,11 +15,17 @@ module Increase
         idempotency_key: String?,
         merchant_category_code: String,
         merchant_city_name: String,
+        merchant_legal_business_name: String?,
         merchant_name: String,
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        merchant_street_address: String?,
         presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
+        recipient_address_city: String?,
+        :recipient_address_line1 => String?,
+        recipient_address_postal_code: String?,
+        recipient_address_state: String?,
         recipient_name: String,
         route: Increase::Models::CardPushTransfer::route,
         sender_address_city: String,
@@ -60,6 +66,8 @@ module Increase
 
       attr_accessor merchant_city_name: String
 
+      attr_accessor merchant_legal_business_name: String?
+
       attr_accessor merchant_name: String
 
       attr_accessor merchant_name_prefix: String
@@ -68,7 +76,17 @@ module Increase
 
       attr_accessor merchant_state: String
 
+      attr_accessor merchant_street_address: String?
+
       attr_accessor presentment_amount: Increase::CardPushTransfer::PresentmentAmount
+
+      attr_accessor recipient_address_city: String?
+
+      attr_accessor recipient_address_line1: String?
+
+      attr_accessor recipient_address_postal_code: String?
+
+      attr_accessor recipient_address_state: String?
 
       attr_accessor recipient_name: String
 
@@ -106,11 +124,17 @@ module Increase
         idempotency_key: String?,
         merchant_category_code: String,
         merchant_city_name: String,
+        merchant_legal_business_name: String?,
         merchant_name: String,
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        merchant_street_address: String?,
         presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
+        recipient_address_city: String?,
+        recipient_address_line1: String?,
+        recipient_address_postal_code: String?,
+        recipient_address_state: String?,
         recipient_name: String,
         route: Increase::Models::CardPushTransfer::route,
         sender_address_city: String,
@@ -138,11 +162,17 @@ module Increase
         idempotency_key: String?,
         merchant_category_code: String,
         merchant_city_name: String,
+        merchant_legal_business_name: String?,
         merchant_name: String,
         merchant_name_prefix: String,
         merchant_postal_code: String,
         merchant_state: String,
+        merchant_street_address: String?,
         presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
+        recipient_address_city: String?,
+        :recipient_address_line1 => String?,
+        recipient_address_postal_code: String?,
+        recipient_address_state: String?,
         recipient_name: String,
         route: Increase::Models::CardPushTransfer::route,
         sender_address_city: String,

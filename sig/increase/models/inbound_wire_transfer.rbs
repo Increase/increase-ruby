@@ -21,6 +21,7 @@ module Increase
         input_message_accountability_data: String?,
         instructing_agent_routing_number: String?,
         instruction_identification: String?,
+        purpose: String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
@@ -68,6 +69,8 @@ module Increase
 
       attr_accessor instruction_identification: String?
 
+      attr_accessor purpose: String?
+
       attr_accessor reversal: Increase::InboundWireTransfer::Reversal?
 
       attr_accessor status: Increase::Models::InboundWireTransfer::status
@@ -100,6 +103,7 @@ module Increase
         input_message_accountability_data: String?,
         instructing_agent_routing_number: String?,
         instruction_identification: String?,
+        purpose: String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
@@ -128,6 +132,7 @@ module Increase
         input_message_accountability_data: String?,
         instructing_agent_routing_number: String?,
         instruction_identification: String?,
+        purpose: String?,
         reversal: Increase::InboundWireTransfer::Reversal?,
         status: Increase::Models::InboundWireTransfer::status,
         type: Increase::Models::InboundWireTransfer::type_,
