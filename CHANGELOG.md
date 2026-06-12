@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.334.1](https://github.com/Increase/increase-ruby/compare/v1.334.0...v1.334.1) (2026-06-12)
+
+
+### Chores
+
+* pin rubygems credentials action to v2.0.0 ([#447](https://github.com/Increase/increase-ruby/issues/447)) ([bd6f9d6](https://github.com/Increase/increase-ruby/commit/bd6f9d6171a43bd4405f8f936ee7c04f231ab338))
+
 ## [1.334.0](https://github.com/Increase/increase-ruby/compare/v1.333.1...v1.334.0) (2026-06-12)
 
 
