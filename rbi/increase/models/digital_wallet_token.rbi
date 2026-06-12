@@ -32,6 +32,18 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # If the Digital Wallet Token was declined during provisioning, details about the
+      # decline.
+      sig { returns(T.nilable(Increase::DigitalWalletToken::Decline)) }
+      attr_reader :decline
+
+      sig do
+        params(
+          decline: T.nilable(Increase::DigitalWalletToken::Decline::OrHash)
+        ).void
+      end
+      attr_writer :decline
+
       # The device that was used to create the Digital Wallet Token.
       sig { returns(Increase::DigitalWalletToken::Device) }
       attr_reader :device
@@ -85,6 +97,7 @@ module Increase
           card_id: String,
           cardholder: Increase::DigitalWalletToken::Cardholder::OrHash,
           created_at: Time,
+          decline: T.nilable(Increase::DigitalWalletToken::Decline::OrHash),
           device: Increase::DigitalWalletToken::Device::OrHash,
           dynamic_primary_account_number:
             T.nilable(
@@ -107,6 +120,9 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Digital Wallet Token was created.
         created_at:,
+        # If the Digital Wallet Token was declined during provisioning, details about the
+        # decline.
+        decline:,
         # The device that was used to create the Digital Wallet Token.
         device:,
         # The redacted Dynamic Primary Account Number.
@@ -130,6 +146,7 @@ module Increase
             card_id: String,
             cardholder: Increase::DigitalWalletToken::Cardholder,
             created_at: Time,
+            decline: T.nilable(Increase::DigitalWalletToken::Decline),
             device: Increase::DigitalWalletToken::Device,
             dynamic_primary_account_number:
               T.nilable(
@@ -169,6 +186,109 @@ module Increase
 
         sig { override.returns({ name: T.nilable(String) }) }
         def to_hash
+        end
+      end
+
+      class Decline < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletToken::Decline,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The reason the token provisioning was declined.
+        sig do
+          returns(Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol)
+        end
+        attr_accessor :reason
+
+        # If the Digital Wallet Token was declined during provisioning, details about the
+        # decline.
+        sig do
+          params(
+            reason: Increase::DigitalWalletToken::Decline::Reason::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The reason the token provisioning was declined.
+          reason:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              reason:
+                Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The reason the token provisioning was declined.
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::DigitalWalletToken::Decline::Reason)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The card is not active.
+          CARD_NOT_ACTIVE =
+            T.let(
+              :card_not_active,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The card does not have a two-factor authentication method.
+          NO_VERIFICATION_METHOD =
+            T.let(
+              :no_verification_method,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # Your webhook timed out when evaluating the token provisioning attempt.
+          WEBHOOK_TIMED_OUT =
+            T.let(
+              :webhook_timed_out,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # Your webhook declined the token provisioning attempt.
+          WEBHOOK_DECLINED =
+            T.let(
+              :webhook_declined,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The tokenization attempt failed because the Card Verification Code (CVC) was incorrect.
+          INCORRECT_CARD_VERIFICATION_CODE =
+            T.let(
+              :incorrect_card_verification_code,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The tokenization attempt was declined by the token requestor.
+          DECLINED_BY_TOKEN_REQUESTOR =
+            T.let(
+              :declined_by_token_requestor,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 
@@ -387,6 +507,10 @@ module Increase
             Increase::DigitalWalletToken::Status::TaggedSymbol
           )
 
+        # The digital wallet token was declined during provisioning.
+        DECLINED =
+          T.let(:declined, Increase::DigitalWalletToken::Status::TaggedSymbol)
+
         sig do
           override.returns(
             T::Array[Increase::DigitalWalletToken::Status::TaggedSymbol]
@@ -549,6 +673,13 @@ module Increase
           DEACTIVATED =
             T.let(
               :deactivated,
+              Increase::DigitalWalletToken::Update::Status::TaggedSymbol
+            )
+
+          # The digital wallet token was declined during provisioning.
+          DECLINED =
+            T.let(
+              :declined,
               Increase::DigitalWalletToken::Update::Status::TaggedSymbol
             )
 

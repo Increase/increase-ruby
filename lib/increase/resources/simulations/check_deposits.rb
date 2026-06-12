@@ -79,6 +79,9 @@ module Increase
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Increase::Models::Simulations::CheckDepositSubmitParams} for more details.
+        #
         # Simulates the submission of a [Check Deposit](#check-deposits) to the Federal
         # Reserve. This Check Deposit must first have a `status` of `pending`.
         #

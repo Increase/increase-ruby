@@ -53,7 +53,8 @@ module Increase
           request_options: Increase::RequestOptions
         }
 
-        type corrected_account_funding = :checking | :savings | :general_ledger
+        type corrected_account_funding =
+          :checking | :savings | :loan | :general_ledger
 
         module CorrectedAccountFunding
           extend Increase::Internal::Type::Enum
@@ -63,6 +64,9 @@ module Increase
 
           # A savings account.
           SAVINGS: :savings
+
+          # A loan account used in a lender-borrower relationship. Uncommon.
+          LOAN: :loan
 
           # A bank's general ledger. Uncommon.
           GENERAL_LEDGER: :general_ledger

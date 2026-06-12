@@ -56,6 +56,13 @@ module Increase
       #   @return [Symbol, Increase::Models::CardDispute::Network]
       required :network, enum: -> { Increase::CardDispute::Network }
 
+      # @!attribute rejection
+      #   If the Card Dispute has been rejected, this will contain details of the
+      #   rejection.
+      #
+      #   @return [Increase::Models::CardDispute::Rejection, nil]
+      required :rejection, -> { Increase::CardDispute::Rejection }, nil?: true
+
       # @!attribute status
       #   The status of the Card Dispute.
       #
@@ -100,7 +107,7 @@ module Increase
       #   @return [Increase::Models::CardDispute::Withdrawal, nil]
       required :withdrawal, -> { Increase::CardDispute::Withdrawal }, nil?: true
 
-      # @!method initialize(id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
+      # @!method initialize(id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, rejection:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardDispute} for more details.
       #
@@ -122,6 +129,8 @@ module Increase
       #   @param loss [Increase::Models::CardDispute::Loss, nil] If the Card Dispute's status is `lost`, this will contain details of the lost di
       #
       #   @param network [Symbol, Increase::Models::CardDispute::Network] The network that the Card Dispute is associated with.
+      #
+      #   @param rejection [Increase::Models::CardDispute::Rejection, nil] If the Card Dispute has been rejected, this will contain details of the rejectio
       #
       #   @param status [Symbol, Increase::Models::CardDispute::Status] The status of the Card Dispute.
       #
@@ -194,6 +203,33 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
+      # @see Increase::Models::CardDispute#rejection
+      class Rejection < Increase::Internal::Type::BaseModel
+        # @!attribute explanation
+        #   Why the Card Dispute was rejected.
+        #
+        #   @return [String]
+        required :explanation, String
+
+        # @!attribute rejected_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the Card Dispute was rejected.
+        #
+        #   @return [Time]
+        required :rejected_at, Time
+
+        # @!method initialize(explanation:, rejected_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::CardDispute::Rejection} for more details.
+        #
+        #   If the Card Dispute has been rejected, this will contain details of the
+        #   rejection.
+        #
+        #   @param explanation [String] Why the Card Dispute was rejected.
+        #
+        #   @param rejected_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      end
+
       # The status of the Card Dispute.
       #
       # @see Increase::Models::CardDispute#status
@@ -220,6 +256,9 @@ module Increase
 
         # The Card Dispute has been won and no further action can be taken.
         WON = :won
+
+        # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+        REJECTED = :rejected
 
         # @!method self.values
         #   @return [Array<Symbol>]

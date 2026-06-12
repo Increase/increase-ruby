@@ -520,13 +520,29 @@ module Increase
           #   @return [Time, nil]
           required :before, Time, nil?: true
 
-          # @!method initialize(after:, before:)
+          # @!attribute on_or_after
+          #   Filter fees created on or after this time.
+          #
+          #   @return [Time, nil]
+          required :on_or_after, Time, nil?: true
+
+          # @!attribute on_or_before
+          #   Filter fees created on or before this time.
+          #
+          #   @return [Time, nil]
+          required :on_or_before, Time, nil?: true
+
+          # @!method initialize(after:, before:, on_or_after:, on_or_before:)
           #   Filter fees by their created date. The time range must not include any fees that
           #   are part of an open fee statement.
           #
           #   @param after [Time, nil] Filter fees created after this time.
           #
           #   @param before [Time, nil] Filter fees created before this time.
+          #
+          #   @param on_or_after [Time, nil] Filter fees created on or after this time.
+          #
+          #   @param on_or_before [Time, nil] Filter fees created on or before this time.
         end
       end
 

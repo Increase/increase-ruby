@@ -36,7 +36,8 @@ module Increase
           {
             account_number: String,
             routing_number: String,
-            auxiliary_on_us: String
+            auxiliary_on_us: String,
+            serial_number: String
           }
 
         class Scan < Increase::Internal::Type::BaseModel
@@ -48,16 +49,22 @@ module Increase
 
           def auxiliary_on_us=: (String) -> String
 
+          attr_reader serial_number: String?
+
+          def serial_number=: (String) -> String
+
           def initialize: (
             account_number: String,
             routing_number: String,
-            ?auxiliary_on_us: String
+            ?auxiliary_on_us: String,
+            ?serial_number: String
           ) -> void
 
           def to_hash: -> {
             account_number: String,
             routing_number: String,
-            auxiliary_on_us: String
+            auxiliary_on_us: String,
+            serial_number: String
           }
         end
       end

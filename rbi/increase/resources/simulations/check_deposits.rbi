@@ -76,6 +76,7 @@ module Increase
           # The identifier of the Check Deposit you wish to submit.
           check_deposit_id,
           # If set, the simulation will use these values for the check's scanned MICR data.
+          # If not set, the simulation will use random values.
           scan: nil,
           request_options: {}
         )

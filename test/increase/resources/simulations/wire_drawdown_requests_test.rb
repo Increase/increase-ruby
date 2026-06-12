@@ -25,11 +25,13 @@ class Increase::Test::Resources::Simulations::WireDrawdownRequestsTest < Increas
         debtor_external_account_id: String | nil,
         debtor_name: String,
         debtor_routing_number: String,
+        end_to_end_identification: String | nil,
         fulfillment_inbound_wire_transfer_id: String | nil,
         idempotency_key: String | nil,
         status: Increase::WireDrawdownRequest::Status,
         submission: Increase::WireDrawdownRequest::Submission | nil,
         type: Increase::WireDrawdownRequest::Type,
+        unique_end_to_end_transaction_reference: String | nil,
         unstructured_remittance_information: String
       }
     end
@@ -57,11 +59,13 @@ class Increase::Test::Resources::Simulations::WireDrawdownRequestsTest < Increas
         debtor_external_account_id: String | nil,
         debtor_name: String,
         debtor_routing_number: String,
+        end_to_end_identification: String | nil,
         fulfillment_inbound_wire_transfer_id: String | nil,
         idempotency_key: String | nil,
         status: Increase::WireDrawdownRequest::Status,
         submission: Increase::WireDrawdownRequest::Submission | nil,
         type: Increase::WireDrawdownRequest::Type,
+        unique_end_to_end_transaction_reference: String | nil,
         unstructured_remittance_information: String
       }
     end

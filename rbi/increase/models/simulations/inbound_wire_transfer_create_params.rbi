@@ -111,6 +111,14 @@ module Increase
         sig { params(instruction_identification: String).void }
         attr_writer :instruction_identification
 
+        # The sending bank will set purpose in production. You can simulate any value
+        # here.
+        sig { returns(T.nilable(String)) }
+        attr_reader :purpose
+
+        sig { params(purpose: String).void }
+        attr_writer :purpose
+
         # The sending bank will set unique_end_to_end_transaction_reference in production.
         # You can simulate any value here.
         sig { returns(T.nilable(String)) }
@@ -150,6 +158,7 @@ module Increase
             end_to_end_identification: String,
             instructing_agent_routing_number: String,
             instruction_identification: String,
+            purpose: String,
             unique_end_to_end_transaction_reference: String,
             unstructured_remittance_information: String,
             wire_drawdown_request_id: String,
@@ -194,6 +203,9 @@ module Increase
           # The sending bank will set instruction_identification in production. You can
           # simulate any value here.
           instruction_identification: nil,
+          # The sending bank will set purpose in production. You can simulate any value
+          # here.
+          purpose: nil,
           # The sending bank will set unique_end_to_end_transaction_reference in production.
           # You can simulate any value here.
           unique_end_to_end_transaction_reference: nil,
@@ -223,6 +235,7 @@ module Increase
               end_to_end_identification: String,
               instructing_agent_routing_number: String,
               instruction_identification: String,
+              purpose: String,
               unique_end_to_end_transaction_reference: String,
               unstructured_remittance_information: String,
               wire_drawdown_request_id: String,

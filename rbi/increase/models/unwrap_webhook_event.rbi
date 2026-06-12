@@ -580,6 +580,34 @@ module Increase
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 
+        # Occurs whenever a Loan Application is created.
+        LOAN_APPLICATION_CREATED =
+          T.let(
+            :"loan_application.created",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a Loan Application is updated.
+        LOAN_APPLICATION_UPDATED =
+          T.let(
+            :"loan_application.updated",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a Loan Offer is created.
+        LOAN_OFFER_CREATED =
+          T.let(
+            :"loan_offer.created",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a Loan Offer is updated.
+        LOAN_OFFER_UPDATED =
+          T.let(
+            :"loan_offer.updated",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
         # Occurs whenever a Lockbox is created.
         LOCKBOX_CREATED =
           T.let(

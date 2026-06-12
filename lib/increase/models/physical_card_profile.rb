@@ -56,6 +56,13 @@ module Increase
       #   @return [String, nil]
       required :front_image_file_id, String, nil?: true
 
+      # @!attribute front_text
+      #   Text printed on the front of the card. Reach out to
+      #   [support@increase.com](mailto:support@increase.com) for more information.
+      #
+      #   @return [Increase::Models::PhysicalCardProfile::FrontText, nil]
+      required :front_text, -> { Increase::PhysicalCardProfile::FrontText }, nil?: true
+
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
       #   Increase and is used to ensure that a request is only processed once. Learn more
@@ -90,7 +97,7 @@ module Increase
       #   @return [Symbol, Increase::Models::PhysicalCardProfile::Type]
       required :type, enum: -> { Increase::PhysicalCardProfile::Type }
 
-      # @!method initialize(id:, back_image_file_id:, carrier_image_file_id:, contact_phone:, created_at:, creator:, description:, front_image_file_id:, idempotency_key:, is_default:, program_id:, status:, type:)
+      # @!method initialize(id:, back_image_file_id:, carrier_image_file_id:, contact_phone:, created_at:, creator:, description:, front_image_file_id:, front_text:, idempotency_key:, is_default:, program_id:, status:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::PhysicalCardProfile} for more details.
       #
@@ -113,6 +120,8 @@ module Increase
       #   @param description [String] A description you can use to identify the Physical Card Profile.
       #
       #   @param front_image_file_id [String, nil] The identifier of the File containing the physical card's front image. This will
+      #
+      #   @param front_text [Increase::Models::PhysicalCardProfile::FrontText, nil] Text printed on the front of the card. Reach out to [support@increase.com](mailt
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
@@ -138,6 +147,34 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::PhysicalCardProfile#front_text
+      class FrontText < Increase::Internal::Type::BaseModel
+        # @!attribute line1
+        #   The first line of text on the front of the card.
+        #
+        #   @return [String]
+        required :line1, String
+
+        # @!attribute line2
+        #   The second line of text on the front of the card. Providing a second line moves
+        #   the first line slightly higher and prints the second line in the spot where the
+        #   first line would have otherwise been printed.
+        #
+        #   @return [String, nil]
+        required :line2, String, nil?: true
+
+        # @!method initialize(line1:, line2:)
+        #   Some parameter documentations has been truncated, see
+        #   {Increase::Models::PhysicalCardProfile::FrontText} for more details.
+        #
+        #   Text printed on the front of the card. Reach out to
+        #   [support@increase.com](mailto:support@increase.com) for more information.
+        #
+        #   @param line1 [String] The first line of text on the front of the card.
+        #
+        #   @param line2 [String, nil] The second line of text on the front of the card. Providing a second line moves
       end
 
       # The status of the Physical Card Profile.

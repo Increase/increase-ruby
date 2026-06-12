@@ -95,6 +95,13 @@ module Increase
       #   @return [String]
       required :merchant_city_name, String
 
+      # @!attribute merchant_legal_business_name
+      #   The legal business name of the merchant (generally your business) sending the
+      #   transfer.
+      #
+      #   @return [String, nil]
+      required :merchant_legal_business_name, String, nil?: true
+
       # @!attribute merchant_name
       #   The merchant name shows up as the statement descriptor for the transfer. This is
       #   typically the name of your business or organization.
@@ -122,6 +129,13 @@ module Increase
       #   @return [String]
       required :merchant_state, String
 
+      # @!attribute merchant_street_address
+      #   The street address of the merchant (generally your business) sending the
+      #   transfer.
+      #
+      #   @return [String, nil]
+      required :merchant_street_address, String, nil?: true
+
       # @!attribute presentment_amount
       #   The amount that was transferred. The receiving bank will have converted this to
       #   the cardholder's currency. The amount that is applied to your Increase account
@@ -129,6 +143,32 @@ module Increase
       #
       #   @return [Increase::Models::CardPushTransfer::PresentmentAmount]
       required :presentment_amount, -> { Increase::CardPushTransfer::PresentmentAmount }
+
+      # @!attribute recipient_address_city
+      #   The city of the recipient. Required if the card is issued in Canada.
+      #
+      #   @return [String, nil]
+      required :recipient_address_city, String, nil?: true
+
+      # @!attribute recipient_address_line1
+      #   The first line of the recipient's address. Required if the card is issued in
+      #   Canada.
+      #
+      #   @return [String, nil]
+      required :recipient_address_line1, String, nil?: true
+
+      # @!attribute recipient_address_postal_code
+      #   The postal code of the recipient. Required if the card is issued in Canada.
+      #
+      #   @return [String, nil]
+      required :recipient_address_postal_code, String, nil?: true
+
+      # @!attribute recipient_address_state
+      #   The state or province of the recipient. Required if the card is issued in
+      #   Canada.
+      #
+      #   @return [String, nil]
+      required :recipient_address_state, String, nil?: true
 
       # @!attribute recipient_name
       #   The name of the funds recipient.
@@ -198,7 +238,7 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPushTransfer::Type]
       required :type, enum: -> { Increase::CardPushTransfer::Type }
 
-      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, card_token_id:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, route:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
+      # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, card_token_id:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_legal_business_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, merchant_street_address:, presentment_amount:, recipient_address_city:, recipient_address_line1:, recipient_address_postal_code:, recipient_address_state:, recipient_name:, route:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::CardPushTransfer} for more details.
       #
@@ -230,6 +270,8 @@ module Increase
       #
       #   @param merchant_city_name [String] The city name of the merchant (generally your business) sending the transfer.
       #
+      #   @param merchant_legal_business_name [String, nil] The legal business name of the merchant (generally your business) sending the tr
+      #
       #   @param merchant_name [String] The merchant name shows up as the statement descriptor for the transfer. This is
       #
       #   @param merchant_name_prefix [String] For certain Business Application Identifiers, the statement descriptor is `merch
@@ -238,7 +280,17 @@ module Increase
       #
       #   @param merchant_state [String] The state of the merchant (generally your business) sending the transfer.
       #
+      #   @param merchant_street_address [String, nil] The street address of the merchant (generally your business) sending the transfe
+      #
       #   @param presentment_amount [Increase::Models::CardPushTransfer::PresentmentAmount] The amount that was transferred. The receiving bank will have converted this to
+      #
+      #   @param recipient_address_city [String, nil] The city of the recipient. Required if the card is issued in Canada.
+      #
+      #   @param recipient_address_line1 [String, nil] The first line of the recipient's address. Required if the card is issued in Can
+      #
+      #   @param recipient_address_postal_code [String, nil] The postal code of the recipient. Required if the card is issued in Canada.
+      #
+      #   @param recipient_address_state [String, nil] The state or province of the recipient. Required if the card is issued in Canada
       #
       #   @param recipient_name [String] The name of the funds recipient.
       #

@@ -506,12 +506,8 @@ module Increase
         # @!attribute shipping_method
         #   The shipping method for the check.
         #
-        #   @return [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod, nil]
-        required :shipping_method,
-                 enum: -> {
-                   Increase::CheckTransfer::PhysicalCheck::ShippingMethod
-                 },
-                 nil?: true
+        #   @return [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod]
+        required :shipping_method, enum: -> { Increase::CheckTransfer::PhysicalCheck::ShippingMethod }
 
         # @!attribute signature
         #   The signature that will appear on the check.
@@ -549,7 +545,7 @@ module Increase
         #
         #   @param return_address [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress, nil] The return address to be printed on the check.
         #
-        #   @param shipping_method [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod, nil] The shipping method for the check.
+        #   @param shipping_method [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::ShippingMethod] The shipping method for the check.
         #
         #   @param signature [Increase::Models::CheckTransfer::PhysicalCheck::Signature] The signature that will appear on the check.
         #
@@ -789,7 +785,7 @@ module Increase
             # The check has been processed for delivery.
             PROCESSED_FOR_DELIVERY = :processed_for_delivery
 
-            # The check has been delivered.
+            # The check has been delivered. Note that some couriers track delivery status based on driver location data rather than an explicit scan. While uncommon, a single check may have more than one delivered event.
             DELIVERED = :delivered
 
             # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the check will be returned to sender.

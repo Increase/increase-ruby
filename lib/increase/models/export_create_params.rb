@@ -55,6 +55,12 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::EntityCsv, nil]
       optional :entity_csv, -> { Increase::ExportCreateParams::EntityCsv }
 
+      # @!attribute fee_csv
+      #   Options for the created export. Required if `category` is equal to `fee_csv`.
+      #
+      #   @return [Increase::Models::ExportCreateParams::FeeCsv, nil]
+      optional :fee_csv, -> { Increase::ExportCreateParams::FeeCsv }
+
       # @!attribute funding_instructions
       #   Options for the created export. Required if `category` is equal to
       #   `funding_instructions`.
@@ -82,7 +88,7 @@ module Increase
       #   @return [Increase::Models::ExportCreateParams::VoidedCheck, nil]
       optional :voided_check, -> { Increase::ExportCreateParams::VoidedCheck }
 
-      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, bookkeeping_account_balance_csv: nil, daily_account_balance_csv: nil, entity_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
+      # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, bookkeeping_account_balance_csv: nil, daily_account_balance_csv: nil, entity_csv: nil, fee_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::ExportCreateParams} for more details.
       #
@@ -100,6 +106,8 @@ module Increase
       #   @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv] Options for the created export. Required if `category` is equal to `daily_accoun
       #
       #   @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv] Options for the created export. Required if `category` is equal to `entity_csv`.
+      #
+      #   @param fee_csv [Increase::Models::ExportCreateParams::FeeCsv] Options for the created export. Required if `category` is equal to `fee_csv`.
       #
       #   @param funding_instructions [Increase::Models::ExportCreateParams::FundingInstructions] Options for the created export. Required if `category` is equal to `funding_inst
       #
@@ -142,6 +150,9 @@ module Increase
 
         # A PDF of funding instructions.
         FUNDING_INSTRUCTIONS = :funding_instructions
+
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV = :fee_csv
 
         # A PDF of a voided check.
         VOIDED_CHECK = :voided_check
@@ -325,6 +336,72 @@ module Increase
       class EntityCsv < Increase::Internal::Type::BaseModel
         # @!method initialize
         #   Options for the created export. Required if `category` is equal to `entity_csv`.
+      end
+
+      class FeeCsv < Increase::Internal::Type::BaseModel
+        # @!attribute created_at
+        #   Filter results by time range on the `created_at` attribute.
+        #
+        #   @return [Increase::Models::ExportCreateParams::FeeCsv::CreatedAt, nil]
+        optional :created_at, -> { Increase::ExportCreateParams::FeeCsv::CreatedAt }
+
+        # @!attribute program_id
+        #   Filter exported Fees to the specified Program.
+        #
+        #   @return [String, nil]
+        optional :program_id, String
+
+        # @!method initialize(created_at: nil, program_id: nil)
+        #   Options for the created export. Required if `category` is equal to `fee_csv`.
+        #
+        #   @param created_at [Increase::Models::ExportCreateParams::FeeCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
+        #
+        #   @param program_id [String] Filter exported Fees to the specified Program.
+
+        # @see Increase::Models::ExportCreateParams::FeeCsv#created_at
+        class CreatedAt < Increase::Internal::Type::BaseModel
+          # @!attribute after
+          #   Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          #   timestamp.
+          #
+          #   @return [Time, nil]
+          optional :after, Time
+
+          # @!attribute before
+          #   Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          #   timestamp.
+          #
+          #   @return [Time, nil]
+          optional :before, Time
+
+          # @!attribute on_or_after
+          #   Return results on or after this
+          #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          #
+          #   @return [Time, nil]
+          optional :on_or_after, Time
+
+          # @!attribute on_or_before
+          #   Return results on or before this
+          #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
+          #
+          #   @return [Time, nil]
+          optional :on_or_before, Time
+
+          # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Increase::Models::ExportCreateParams::FeeCsv::CreatedAt} for more details.
+          #
+          #   Filter results by time range on the `created_at` attribute.
+          #
+          #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
+          #
+          #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
+          #
+          #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
+          #
+          #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+        end
       end
 
       class FundingInstructions < Increase::Internal::Type::BaseModel

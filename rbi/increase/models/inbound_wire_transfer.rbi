@@ -96,6 +96,10 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :instruction_identification
 
+      # The reason for the wire transfer, as set by the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :purpose
+
       # If the transfer is reversed, this will contain details of the reversal.
       sig { returns(T.nilable(Increase::InboundWireTransfer::Reversal)) }
       attr_reader :reversal
@@ -154,6 +158,7 @@ module Increase
           input_message_accountability_data: T.nilable(String),
           instructing_agent_routing_number: T.nilable(String),
           instruction_identification: T.nilable(String),
+          purpose: T.nilable(String),
           reversal: T.nilable(Increase::InboundWireTransfer::Reversal::OrHash),
           status: Increase::InboundWireTransfer::Status::OrSymbol,
           type: Increase::InboundWireTransfer::Type::OrSymbol,
@@ -205,6 +210,8 @@ module Increase
         instructing_agent_routing_number:,
         # The sending bank's identifier for the wire transfer.
         instruction_identification:,
+        # The reason for the wire transfer, as set by the sender.
+        purpose:,
         # If the transfer is reversed, this will contain details of the reversal.
         reversal:,
         # The status of the transfer.
@@ -245,6 +252,7 @@ module Increase
             input_message_accountability_data: T.nilable(String),
             instructing_agent_routing_number: T.nilable(String),
             instruction_identification: T.nilable(String),
+            purpose: T.nilable(String),
             reversal: T.nilable(Increase::InboundWireTransfer::Reversal),
             status: Increase::InboundWireTransfer::Status::TaggedSymbol,
             type: Increase::InboundWireTransfer::Type::TaggedSymbol,

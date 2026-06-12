@@ -10,6 +10,7 @@ module Increase
         creator: Increase::Models::PhysicalCardProfile::creator,
         description: String,
         front_image_file_id: String?,
+        front_text: Increase::PhysicalCardProfile::FrontText?,
         idempotency_key: String?,
         is_default: bool,
         program_id: String,
@@ -34,6 +35,8 @@ module Increase
 
       attr_accessor front_image_file_id: String?
 
+      attr_accessor front_text: Increase::PhysicalCardProfile::FrontText?
+
       attr_accessor idempotency_key: String?
 
       attr_accessor is_default: bool
@@ -53,6 +56,7 @@ module Increase
         creator: Increase::Models::PhysicalCardProfile::creator,
         description: String,
         front_image_file_id: String?,
+        front_text: Increase::PhysicalCardProfile::FrontText?,
         idempotency_key: String?,
         is_default: bool,
         program_id: String,
@@ -69,6 +73,7 @@ module Increase
         creator: Increase::Models::PhysicalCardProfile::creator,
         description: String,
         front_image_file_id: String?,
+        front_text: Increase::PhysicalCardProfile::FrontText?,
         idempotency_key: String?,
         is_default: bool,
         program_id: String,
@@ -88,6 +93,18 @@ module Increase
         USER: :user
 
         def self?.values: -> ::Array[Increase::Models::PhysicalCardProfile::creator]
+      end
+
+      type front_text = { :line1 => String, :line2 => String? }
+
+      class FrontText < Increase::Internal::Type::BaseModel
+        attr_accessor line1: String
+
+        attr_accessor line2: String?
+
+        def initialize: (line1: String, line2: String?) -> void
+
+        def to_hash: -> { :line1 => String, :line2 => String? }
       end
 
       type status =

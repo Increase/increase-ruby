@@ -677,7 +677,8 @@ module Increase
           def self?.values: -> ::Array[Increase::Models::ACHTransfer::NotificationsOfChange::change_code]
         end
 
-        type corrected_account_funding = :checking | :savings | :general_ledger
+        type corrected_account_funding =
+          :checking | :savings | :loan | :general_ledger
 
         module CorrectedAccountFunding
           extend Increase::Internal::Type::Enum
@@ -687,6 +688,9 @@ module Increase
 
           # A savings account.
           SAVINGS: :savings
+
+          # A loan account used in a lender-borrower relationship. Uncommon.
+          LOAN: :loan
 
           # A bank's general ledger. Uncommon.
           GENERAL_LEDGER: :general_ledger

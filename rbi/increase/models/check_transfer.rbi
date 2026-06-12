@@ -816,9 +816,7 @@ module Increase
         # The shipping method for the check.
         sig do
           returns(
-            T.nilable(
-              Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol
-            )
+            Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol
           )
         end
         attr_accessor :shipping_method
@@ -860,9 +858,7 @@ module Increase
                 Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash
               ),
             shipping_method:
-              T.nilable(
-                Increase::CheckTransfer::PhysicalCheck::ShippingMethod::OrSymbol
-              ),
+              Increase::CheckTransfer::PhysicalCheck::ShippingMethod::OrSymbol,
             signature:
               Increase::CheckTransfer::PhysicalCheck::Signature::OrHash,
             tracking_updates:
@@ -914,9 +910,7 @@ module Increase
                   Increase::CheckTransfer::PhysicalCheck::ReturnAddress
                 ),
               shipping_method:
-                T.nilable(
-                  Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol
-                ),
+                Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol,
               signature: Increase::CheckTransfer::PhysicalCheck::Signature,
               tracking_updates:
                 T::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
@@ -1295,7 +1289,7 @@ module Increase
                 Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol
               )
 
-            # The check has been delivered.
+            # The check has been delivered. Note that some couriers track delivery status based on driver location data rather than an explicit scan. While uncommon, a single check may have more than one delivered event.
             DELIVERED =
               T.let(
                 :delivered,

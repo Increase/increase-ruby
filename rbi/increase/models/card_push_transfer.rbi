@@ -112,6 +112,11 @@ module Increase
       sig { returns(String) }
       attr_accessor :merchant_city_name
 
+      # The legal business name of the merchant (generally your business) sending the
+      # transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :merchant_legal_business_name
+
       # The merchant name shows up as the statement descriptor for the transfer. This is
       # typically the name of your business or organization.
       sig { returns(String) }
@@ -131,6 +136,11 @@ module Increase
       sig { returns(String) }
       attr_accessor :merchant_state
 
+      # The street address of the merchant (generally your business) sending the
+      # transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :merchant_street_address
+
       # The amount that was transferred. The receiving bank will have converted this to
       # the cardholder's currency. The amount that is applied to your Increase account
       # matches the currency of your account.
@@ -144,6 +154,24 @@ module Increase
         ).void
       end
       attr_writer :presentment_amount
+
+      # The city of the recipient. Required if the card is issued in Canada.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :recipient_address_city
+
+      # The first line of the recipient's address. Required if the card is issued in
+      # Canada.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :recipient_address_line1
+
+      # The postal code of the recipient. Required if the card is issued in Canada.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :recipient_address_postal_code
+
+      # The state or province of the recipient. Required if the card is issued in
+      # Canada.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :recipient_address_state
 
       # The name of the funds recipient.
       sig { returns(String) }
@@ -216,12 +244,18 @@ module Increase
           idempotency_key: T.nilable(String),
           merchant_category_code: String,
           merchant_city_name: String,
+          merchant_legal_business_name: T.nilable(String),
           merchant_name: String,
           merchant_name_prefix: String,
           merchant_postal_code: String,
           merchant_state: String,
+          merchant_street_address: T.nilable(String),
           presentment_amount:
             Increase::CardPushTransfer::PresentmentAmount::OrHash,
+          recipient_address_city: T.nilable(String),
+          recipient_address_line1: T.nilable(String),
+          recipient_address_postal_code: T.nilable(String),
+          recipient_address_state: T.nilable(String),
           recipient_name: String,
           route: Increase::CardPushTransfer::Route::OrSymbol,
           sender_address_city: String,
@@ -274,6 +308,9 @@ module Increase
         merchant_category_code:,
         # The city name of the merchant (generally your business) sending the transfer.
         merchant_city_name:,
+        # The legal business name of the merchant (generally your business) sending the
+        # transfer.
+        merchant_legal_business_name:,
         # The merchant name shows up as the statement descriptor for the transfer. This is
         # typically the name of your business or organization.
         merchant_name:,
@@ -285,10 +322,23 @@ module Increase
         merchant_postal_code:,
         # The state of the merchant (generally your business) sending the transfer.
         merchant_state:,
+        # The street address of the merchant (generally your business) sending the
+        # transfer.
+        merchant_street_address:,
         # The amount that was transferred. The receiving bank will have converted this to
         # the cardholder's currency. The amount that is applied to your Increase account
         # matches the currency of your account.
         presentment_amount:,
+        # The city of the recipient. Required if the card is issued in Canada.
+        recipient_address_city:,
+        # The first line of the recipient's address. Required if the card is issued in
+        # Canada.
+        recipient_address_line1:,
+        # The postal code of the recipient. Required if the card is issued in Canada.
+        recipient_address_postal_code:,
+        # The state or province of the recipient. Required if the card is issued in
+        # Canada.
+        recipient_address_state:,
         # The name of the funds recipient.
         recipient_name:,
         # The card network route used for the transfer.
@@ -333,11 +383,17 @@ module Increase
             idempotency_key: T.nilable(String),
             merchant_category_code: String,
             merchant_city_name: String,
+            merchant_legal_business_name: T.nilable(String),
             merchant_name: String,
             merchant_name_prefix: String,
             merchant_postal_code: String,
             merchant_state: String,
+            merchant_street_address: T.nilable(String),
             presentment_amount: Increase::CardPushTransfer::PresentmentAmount,
+            recipient_address_city: T.nilable(String),
+            recipient_address_line1: T.nilable(String),
+            recipient_address_postal_code: T.nilable(String),
+            recipient_address_state: T.nilable(String),
             recipient_name: String,
             route: Increase::CardPushTransfer::Route::TaggedSymbol,
             sender_address_city: String,
