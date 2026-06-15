@@ -1,34 +1,27 @@
 name: CI
 on:
   push:
-    branches:
-      - '**'
-      - '!integrated/**'
-      - '!stl-preview-head/**'
-      - '!stl-preview-base/**'
-      - '!generated'
-      - '!codegen/**'
-      - 'codegen/stl/**'
+    branches: [main]
   pull_request:
-    branches-ignore:
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
 
 jobs:
-  lint:
+  ci:
     timeout-minutes: 10
-    name: lint
+    name: ci
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@v6
       - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
+        uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: false
-      - run: |-
-          bundle install
+          bundler-cache: true
 
       - name: Run lints
         run: ./scripts/lint
+
+      - name: Build gem
+        run: bundle exec rake build:gem
+
+      - name: Run tests
+        run: ./scripts/test

@@ -1146,6 +1146,9 @@ module Increase
         # A savings account.
         SAVINGS = T.let(:savings, Increase::ACHTransfer::Funding::TaggedSymbol)
 
+        # A loan account used in a lender-borrower relationship. Uncommon.
+        LOAN = T.let(:loan, Increase::ACHTransfer::Funding::TaggedSymbol)
+
         # A bank's general ledger. Uncommon.
         GENERAL_LEDGER =
           T.let(:general_ledger, Increase::ACHTransfer::Funding::TaggedSymbol)
