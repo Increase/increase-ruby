@@ -24,8 +24,8 @@ module Increase
       required :amount, Integer
 
       # @!attribute created_at
-      #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the
-      #   Transaction occurred.
+      #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #   the Transaction occurred.
       #
       #   @return [Time]
       required :created_at, Time
@@ -89,7 +89,7 @@ module Increase
       #
       #   @param amount [Integer] The Transaction amount in the minor unit of its currency. For dollars, for examp
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Transac
+      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
       #
       #   @param currency [Symbol, Increase::Models::Transaction::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Transaction'
       #

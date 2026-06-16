@@ -672,6 +672,9 @@ module Increase
         # A savings account.
         SAVINGS = :savings
 
+        # A loan account used in a lender-borrower relationship. Uncommon.
+        LOAN = :loan
+
         # A bank's general ledger. Uncommon.
         GENERAL_LEDGER = :general_ledger
 

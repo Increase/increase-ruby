@@ -21,8 +21,8 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the
-      # Transaction occurred.
+      # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      # the Transaction occurred.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -87,8 +87,8 @@ module Increase
         # The Transaction amount in the minor unit of its currency. For dollars, for
         # example, this is cents.
         amount:,
-        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the
-        # Transaction occurred.
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the Transaction occurred.
         created_at:,
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
         # Transaction's currency. This will match the currency on the Transaction's

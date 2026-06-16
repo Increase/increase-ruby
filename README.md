@@ -39,6 +39,9 @@ account = increase.accounts.create(
 puts(account.id)
 ```
 
+> [!IMPORTANT]
+> Fields whose names collide with Ruby keywords are suffixed with an underscore. For example, the `return` field on an ACH Transfer is exposed as `transfer.return_`, and the return simulation is `client.simulations.ach_transfers.return_`.
+
 ### Pagination
 
 List methods in the Increase API are paginated.
@@ -67,6 +70,8 @@ if page.next_page?
 end
 ```
 
+Note that page objects are not `Enumerable` — access the current page's items with `#data`, or iterate across pages with `#auto_paging_each` as above.
+
 ### File uploads
 
 Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
@@ -88,6 +93,21 @@ puts(file.id)
 ```
 
 Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
+
+### Webhook verification
+
+This library includes a helper for verifying webhook signatures. Construct the client with your `webhook_secret` (read from `ENV["INCREASE_WEBHOOK_SECRET"]` by default), then pass the raw request body and headers to `events.unwrap`, which verifies the signature and parses the payload:
+
+```ruby
+increase = Increase::Client.new(
+  webhook_secret: ENV["INCREASE_WEBHOOK_SECRET"] # This is the default and can be omitted
+)
+
+# In your webhook handler, e.g. a Rails controller action:
+event = increase.events.unwrap(request.body.read, headers: request.headers.to_h)
+```
+
+`StandardWebhooks::WebhookVerificationError` is raised if the signature is invalid, so a webhook that unwraps without raising is guaranteed authentic. Note that the secret is Base64-encoded before being passed to `StandardWebhooks::Webhook` — to sign a synthetic payload in tests, construct the signer the same way: `StandardWebhooks::Webhook.new(Base64.strict_encode64(secret))`.
 
 ### Handling errors
 
@@ -121,6 +141,8 @@ Error codes are as follows:
 | Other HTTP error | `APIStatusError`           |
 | Timeout          | `APITimeoutError`          |
 | Network error    | `APIConnectionError`       |
+
+All errors raised by this gem, including `Increase::Errors::APIError` and response-parsing errors like `Increase::Errors::ConversionError`, inherit from `Increase::Errors::Error`, which you can rescue to catch anything the gem raises.
 
 ### Retries
 
