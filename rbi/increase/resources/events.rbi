@@ -56,7 +56,10 @@ module Increase
         payload,
         # The raw HTTP headers that came with the payload
         headers:,
-        # The webhook signing key
+        # The webhook signing key, as the raw secret string. It is Base64-encoded before
+        # being passed to StandardWebhooks, so to sign a synthetic payload in tests,
+        # construct the signer the same way:
+        # StandardWebhooks::Webhook.new(Base64.strict_encode64(key))
         key: @client.webhook_secret
       )
       end

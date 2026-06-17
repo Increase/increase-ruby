@@ -4570,6 +4570,13 @@ module Increase
                 Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
               )
 
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT =
+              T.let(
+                :cash_deposit,
+                Increase::CardPayment::Element::CardAuthorization::ProcessingCategory::TaggedSymbol
+              )
+
             # A balance inquiry transaction is used to check the balance of an account associated with a card.
             BALANCE_INQUIRY =
               T.let(
@@ -10183,6 +10190,13 @@ module Increase
                 Increase::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
               )
 
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT =
+              T.let(
+                :cash_deposit,
+                Increase::CardPayment::Element::CardDecline::ProcessingCategory::TaggedSymbol
+              )
+
             # A balance inquiry transaction is used to check the balance of an account associated with a card.
             BALANCE_INQUIRY =
               T.let(
@@ -13204,6 +13218,13 @@ module Increase
             CASH_DISBURSEMENT =
               T.let(
                 :cash_disbursement,
+                Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
+              )
+
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT =
+              T.let(
+                :cash_deposit,
                 Increase::CardPayment::Element::CardFinancial::ProcessingCategory::TaggedSymbol
               )
 
