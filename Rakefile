@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "etc"
 require "pathname"
 require "securerandom"
 require "shellwords"
@@ -127,7 +128,10 @@ multitask(format: [:"format:rb", :"format:rbi", :"format:rbs"])
 
 desc("Typecheck `*.rbs`")
 multitask(:"typecheck:steep") do
-  sh(*%w[steep check])
+  # steep silently caps itself at 2 jobs under CI "to avoid hitting memory
+  # limit"; pass `--jobs` explicitly so it uses every available core.
+  jobs = ENV.fetch("STEEP_JOBS") { Etc.nprocessors }
+  sh(*%w[steep check --jobs], jobs.to_s)
 end
 
 directory(examples)

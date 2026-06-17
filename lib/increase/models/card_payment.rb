@@ -2400,6 +2400,9 @@ module Increase
             # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
             CASH_DISBURSEMENT = :cash_disbursement
 
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT = :cash_deposit
+
             # A balance inquiry transaction is used to check the balance of an account associated with a card.
             BALANCE_INQUIRY = :balance_inquiry
 
@@ -5294,6 +5297,9 @@ module Increase
             # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
             CASH_DISBURSEMENT = :cash_disbursement
 
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT = :cash_deposit
+
             # A balance inquiry transaction is used to check the balance of an account associated with a card.
             BALANCE_INQUIRY = :balance_inquiry
 
@@ -6831,6 +6837,9 @@ module Increase
 
             # Cash disbursement transactions are used to withdraw cash from an ATM or a point of sale.
             CASH_DISBURSEMENT = :cash_disbursement
+
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT = :cash_deposit
 
             # A balance inquiry transaction is used to check the balance of an account associated with a card.
             BALANCE_INQUIRY = :balance_inquiry

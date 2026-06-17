@@ -64,7 +64,10 @@ module Increase
       #
       # @param headers [Hash{String=>String}] The raw HTTP headers that came with the payload
       #
-      # @param key [String, nil] The webhook signing key
+      # @param key [String, nil] The webhook signing key, as the raw secret string. It is Base64-encoded before
+      # being passed to StandardWebhooks, so to sign a synthetic payload in tests,
+      # construct the signer the same way:
+      # StandardWebhooks::Webhook.new(Base64.strict_encode64(key))
       #
       # @return [Increase::Models::UnwrapWebhookEvent]
       def unwrap(payload, headers:, key: @client.webhook_secret)

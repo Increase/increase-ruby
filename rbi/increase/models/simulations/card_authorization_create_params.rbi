@@ -770,6 +770,13 @@ module Increase
                 Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
               )
 
+            # Cash deposit transactions are used to deposit cash at an ATM or a point of sale.
+            CASH_DEPOSIT =
+              T.let(
+                :cash_deposit,
+                Increase::Simulations::CardAuthorizationCreateParams::ProcessingCategory::Category::TaggedSymbol
+              )
+
             # A balance inquiry transaction is used to check the balance of an account associated with a card.
             BALANCE_INQUIRY =
               T.let(
