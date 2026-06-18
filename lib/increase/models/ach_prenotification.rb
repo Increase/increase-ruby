@@ -639,14 +639,14 @@ module Increase
         # The Prenotification is pending submission.
         PENDING_SUBMITTING = :pending_submitting
 
-        # The Prenotification requires attention.
-        REQUIRES_ATTENTION = :requires_attention
-
         # The Prenotification has been returned.
         RETURNED = :returned
 
         # The Prenotification is complete.
         SUBMITTED = :submitted
+
+        # The Prenotification requires attention.
+        REQUIRES_ATTENTION = :requires_attention
 
         # @!method self.values
         #   @return [Array<Symbol>]
