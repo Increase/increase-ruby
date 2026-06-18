@@ -520,7 +520,7 @@ module Increase
         end
       end
 
-      type status = :active | :disabled | :deleted | :requires_attention
+      type status = :active | :disabled | :deleted
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -533,9 +533,6 @@ module Increase
 
         # The subscription is permanently disabled and Events will not be delivered.
         DELETED: :deleted
-
-        # The subscription is temporarily disabled due to delivery errors and Events will not be delivered.
-        REQUIRES_ATTENTION: :requires_attention
 
         def self?.values: -> ::Array[Increase::Models::EventSubscription::status]
       end

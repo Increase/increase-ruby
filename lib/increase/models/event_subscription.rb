@@ -459,9 +459,6 @@ module Increase
         # The subscription is permanently disabled and Events will not be delivered.
         DELETED = :deleted
 
-        # The subscription is temporarily disabled due to delivery errors and Events will not be delivered.
-        REQUIRES_ATTENTION = :requires_attention
-
         # @!method self.values
         #   @return [Array<Symbol>]
       end

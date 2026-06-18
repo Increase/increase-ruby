@@ -987,13 +987,6 @@ module Increase
         DELETED =
           T.let(:deleted, Increase::EventSubscription::Status::TaggedSymbol)
 
-        # The subscription is temporarily disabled due to delivery errors and Events will not be delivered.
-        REQUIRES_ATTENTION =
-          T.let(
-            :requires_attention,
-            Increase::EventSubscription::Status::TaggedSymbol
-          )
-
         sig do
           override.returns(
             T::Array[Increase::EventSubscription::Status::TaggedSymbol]
