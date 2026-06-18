@@ -657,6 +657,13 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Loan Distribution is created.
+          LOAN_DISTRIBUTION_CREATED =
+            T.let(
+              :"loan_distribution.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Loan Offer is created.
           LOAN_OFFER_CREATED =
             T.let(
@@ -668,6 +675,13 @@ module Increase
           LOAN_OFFER_UPDATED =
             T.let(
               :"loan_offer.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Loan Purchase is created.
+          LOAN_PURCHASE_CREATED =
+            T.let(
+              :"loan_purchase.created",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 

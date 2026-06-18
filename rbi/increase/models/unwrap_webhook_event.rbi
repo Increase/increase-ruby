@@ -594,6 +594,13 @@ module Increase
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 
+        # Occurs whenever a Loan Distribution is created.
+        LOAN_DISTRIBUTION_CREATED =
+          T.let(
+            :"loan_distribution.created",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
         # Occurs whenever a Loan Offer is created.
         LOAN_OFFER_CREATED =
           T.let(
@@ -605,6 +612,13 @@ module Increase
         LOAN_OFFER_UPDATED =
           T.let(
             :"loan_offer.updated",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a Loan Purchase is created.
+        LOAN_PURCHASE_CREATED =
+          T.let(
+            :"loan_purchase.created",
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 

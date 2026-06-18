@@ -1226,13 +1226,6 @@ module Increase
             Increase::ACHPrenotification::Status::TaggedSymbol
           )
 
-        # The Prenotification requires attention.
-        REQUIRES_ATTENTION =
-          T.let(
-            :requires_attention,
-            Increase::ACHPrenotification::Status::TaggedSymbol
-          )
-
         # The Prenotification has been returned.
         RETURNED =
           T.let(:returned, Increase::ACHPrenotification::Status::TaggedSymbol)
@@ -1240,6 +1233,13 @@ module Increase
         # The Prenotification is complete.
         SUBMITTED =
           T.let(:submitted, Increase::ACHPrenotification::Status::TaggedSymbol)
+
+        # The Prenotification requires attention.
+        REQUIRES_ATTENTION =
+          T.let(
+            :requires_attention,
+            Increase::ACHPrenotification::Status::TaggedSymbol
+          )
 
         sig do
           override.returns(

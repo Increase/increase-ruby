@@ -37,7 +37,12 @@ module Increase
       }
 
       type loan =
-        { due_at: Time?, due_balance: Integer, past_due_balance: Integer }
+        {
+          due_at: Time?,
+          due_balance: Integer,
+          past_due_balance: Integer,
+          receivables: Increase::BalanceLookup::Loan::Receivables?
+        }
 
       class Loan < Increase::Internal::Type::BaseModel
         attr_accessor due_at: Time?
@@ -46,17 +51,40 @@ module Increase
 
         attr_accessor past_due_balance: Integer
 
+        attr_accessor receivables: Increase::BalanceLookup::Loan::Receivables?
+
         def initialize: (
           due_at: Time?,
           due_balance: Integer,
-          past_due_balance: Integer
+          past_due_balance: Integer,
+          receivables: Increase::BalanceLookup::Loan::Receivables?
         ) -> void
 
         def to_hash: -> {
           due_at: Time?,
           due_balance: Integer,
-          past_due_balance: Integer
+          past_due_balance: Integer,
+          receivables: Increase::BalanceLookup::Loan::Receivables?
         }
+
+        type receivables =
+          { purchasable_balance: Integer, purchased_balance: Integer }
+
+        class Receivables < Increase::Internal::Type::BaseModel
+          attr_accessor purchasable_balance: Integer
+
+          attr_accessor purchased_balance: Integer
+
+          def initialize: (
+            purchasable_balance: Integer,
+            purchased_balance: Integer
+          ) -> void
+
+          def to_hash: -> {
+            purchasable_balance: Integer,
+            purchased_balance: Integer
+          }
+        end
       end
 
       type type_ = :balance_lookup

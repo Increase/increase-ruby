@@ -607,7 +607,7 @@ module Increase
       end
 
       type status =
-        :pending_submitting | :requires_attention | :returned | :submitted
+        :pending_submitting | :returned | :submitted | :requires_attention
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -615,14 +615,14 @@ module Increase
         # The Prenotification is pending submission.
         PENDING_SUBMITTING: :pending_submitting
 
-        # The Prenotification requires attention.
-        REQUIRES_ATTENTION: :requires_attention
-
         # The Prenotification has been returned.
         RETURNED: :returned
 
         # The Prenotification is complete.
         SUBMITTED: :submitted
+
+        # The Prenotification requires attention.
+        REQUIRES_ATTENTION: :requires_attention
 
         def self?.values: -> ::Array[Increase::Models::ACHPrenotification::status]
       end
