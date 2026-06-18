@@ -682,6 +682,13 @@ module Increase
               Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever a Loan Distribution is created.
+          LOAN_DISTRIBUTION_CREATED =
+            T.let(
+              :"loan_distribution.created",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever a Loan Offer is created.
           LOAN_OFFER_CREATED =
             T.let(
@@ -693,6 +700,13 @@ module Increase
           LOAN_OFFER_UPDATED =
             T.let(
               :"loan_offer.updated",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever a Loan Purchase is created.
+          LOAN_PURCHASE_CREATED =
+            T.let(
+              :"loan_purchase.created",
               Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
@@ -986,13 +1000,6 @@ module Increase
         # The subscription is permanently disabled and Events will not be delivered.
         DELETED =
           T.let(:deleted, Increase::EventSubscription::Status::TaggedSymbol)
-
-        # The subscription is temporarily disabled due to delivery errors and Events will not be delivered.
-        REQUIRES_ATTENTION =
-          T.let(
-            :requires_attention,
-            Increase::EventSubscription::Status::TaggedSymbol
-          )
 
         sig do
           override.returns(

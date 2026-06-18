@@ -295,11 +295,17 @@ module Increase
           # Occurs whenever a Loan Application is updated.
           LOAN_APPLICATION_UPDATED = :"loan_application.updated"
 
+          # Occurs whenever a Loan Distribution is created.
+          LOAN_DISTRIBUTION_CREATED = :"loan_distribution.created"
+
           # Occurs whenever a Loan Offer is created.
           LOAN_OFFER_CREATED = :"loan_offer.created"
 
           # Occurs whenever a Loan Offer is updated.
           LOAN_OFFER_UPDATED = :"loan_offer.updated"
+
+          # Occurs whenever a Loan Purchase is created.
+          LOAN_PURCHASE_CREATED = :"loan_purchase.created"
 
           # Occurs whenever a Lockbox is created.
           LOCKBOX_CREATED = :"lockbox.created"

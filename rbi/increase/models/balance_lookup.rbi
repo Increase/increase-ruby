@@ -97,12 +97,26 @@ module Increase
         sig { returns(Integer) }
         attr_accessor :past_due_balance
 
+        # The receivables balances for the loan.
+        sig { returns(T.nilable(Increase::BalanceLookup::Loan::Receivables)) }
+        attr_reader :receivables
+
+        sig do
+          params(
+            receivables:
+              T.nilable(Increase::BalanceLookup::Loan::Receivables::OrHash)
+          ).void
+        end
+        attr_writer :receivables
+
         # The loan balances for the Account.
         sig do
           params(
             due_at: T.nilable(Time),
             due_balance: Integer,
-            past_due_balance: Integer
+            past_due_balance: Integer,
+            receivables:
+              T.nilable(Increase::BalanceLookup::Loan::Receivables::OrHash)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -112,7 +126,9 @@ module Increase
           # The total amount due on the loan.
           due_balance:,
           # The amount past due on the loan.
-          past_due_balance:
+          past_due_balance:,
+          # The receivables balances for the loan.
+          receivables:
         )
         end
 
@@ -121,11 +137,53 @@ module Increase
             {
               due_at: T.nilable(Time),
               due_balance: Integer,
-              past_due_balance: Integer
+              past_due_balance: Integer,
+              receivables: T.nilable(Increase::BalanceLookup::Loan::Receivables)
             }
           )
         end
         def to_hash
+        end
+
+        class Receivables < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::BalanceLookup::Loan::Receivables,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The balance of seasoned receivables available to be purchased.
+          sig { returns(Integer) }
+          attr_accessor :purchasable_balance
+
+          # The balance of receivables that have been purchased.
+          sig { returns(Integer) }
+          attr_accessor :purchased_balance
+
+          # The receivables balances for the loan.
+          sig do
+            params(
+              purchasable_balance: Integer,
+              purchased_balance: Integer
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The balance of seasoned receivables available to be purchased.
+            purchasable_balance:,
+            # The balance of receivables that have been purchased.
+            purchased_balance:
+          )
+          end
+
+          sig do
+            override.returns(
+              { purchasable_balance: Integer, purchased_balance: Integer }
+            )
+          end
+          def to_hash
+          end
         end
       end
 

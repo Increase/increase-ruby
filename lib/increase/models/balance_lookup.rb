@@ -75,7 +75,13 @@ module Increase
         #   @return [Integer]
         required :past_due_balance, Integer
 
-        # @!method initialize(due_at:, due_balance:, past_due_balance:)
+        # @!attribute receivables
+        #   The receivables balances for the loan.
+        #
+        #   @return [Increase::Models::BalanceLookup::Loan::Receivables, nil]
+        required :receivables, -> { Increase::BalanceLookup::Loan::Receivables }, nil?: true
+
+        # @!method initialize(due_at:, due_balance:, past_due_balance:, receivables:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::BalanceLookup::Loan} for more details.
         #
@@ -86,6 +92,30 @@ module Increase
         #   @param due_balance [Integer] The total amount due on the loan.
         #
         #   @param past_due_balance [Integer] The amount past due on the loan.
+        #
+        #   @param receivables [Increase::Models::BalanceLookup::Loan::Receivables, nil] The receivables balances for the loan.
+
+        # @see Increase::Models::BalanceLookup::Loan#receivables
+        class Receivables < Increase::Internal::Type::BaseModel
+          # @!attribute purchasable_balance
+          #   The balance of seasoned receivables available to be purchased.
+          #
+          #   @return [Integer]
+          required :purchasable_balance, Integer
+
+          # @!attribute purchased_balance
+          #   The balance of receivables that have been purchased.
+          #
+          #   @return [Integer]
+          required :purchased_balance, Integer
+
+          # @!method initialize(purchasable_balance:, purchased_balance:)
+          #   The receivables balances for the loan.
+          #
+          #   @param purchasable_balance [Integer] The balance of seasoned receivables available to be purchased.
+          #
+          #   @param purchased_balance [Integer] The balance of receivables that have been purchased.
+        end
       end
 
       # A constant representing the object's type. For this resource it will always be
