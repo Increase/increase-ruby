@@ -434,19 +434,31 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::FednowTransfer::status]
       end
 
-      type submission = { message_identification: String, submitted_at: Time? }
+      type submission =
+        {
+          message_identification: String,
+          submitted_at: Time?,
+          unique_end_to_end_transaction_reference: String
+        }
 
       class Submission < Increase::Internal::Type::BaseModel
         attr_accessor message_identification: String
 
         attr_accessor submitted_at: Time?
 
+        attr_accessor unique_end_to_end_transaction_reference: String
+
         def initialize: (
           message_identification: String,
-          submitted_at: Time?
+          submitted_at: Time?,
+          unique_end_to_end_transaction_reference: String
         ) -> void
 
-        def to_hash: -> { message_identification: String, submitted_at: Time? }
+        def to_hash: -> {
+          message_identification: String,
+          submitted_at: Time?,
+          unique_end_to_end_transaction_reference: String
+        }
       end
 
       type type_ = :fednow_transfer

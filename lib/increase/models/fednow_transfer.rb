@@ -564,7 +564,15 @@ module Increase
         #   @return [Time, nil]
         required :submitted_at, Time, nil?: true
 
-        # @!method initialize(message_identification:, submitted_at:)
+        # @!attribute unique_end_to_end_transaction_reference
+        #   The Unique End-to-end Transaction Reference
+        #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        #   of the transfer.
+        #
+        #   @return [String]
+        required :unique_end_to_end_transaction_reference, String
+
+        # @!method initialize(message_identification:, submitted_at:, unique_end_to_end_transaction_reference:)
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::FednowTransfer::Submission} for more details.
         #
@@ -574,6 +582,8 @@ module Increase
         #   @param message_identification [String] The FedNow network identification of the message submitted.
         #
         #   @param submitted_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #
+        #   @param unique_end_to_end_transaction_reference [String] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
       end
 
       # A constant representing the object's type. For this resource it will always be

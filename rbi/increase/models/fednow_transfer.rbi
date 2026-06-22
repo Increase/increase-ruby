@@ -966,12 +966,19 @@ module Increase
         sig { returns(T.nilable(Time)) }
         attr_accessor :submitted_at
 
+        # The Unique End-to-end Transaction Reference
+        # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        # of the transfer.
+        sig { returns(String) }
+        attr_accessor :unique_end_to_end_transaction_reference
+
         # After the transfer is submitted to FedNow, this will contain supplemental
         # details.
         sig do
           params(
             message_identification: String,
-            submitted_at: T.nilable(Time)
+            submitted_at: T.nilable(Time),
+            unique_end_to_end_transaction_reference: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -979,13 +986,21 @@ module Increase
           message_identification:,
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the transfer was submitted to FedNow.
-          submitted_at:
+          submitted_at:,
+          # The Unique End-to-end Transaction Reference
+          # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+          # of the transfer.
+          unique_end_to_end_transaction_reference:
         )
         end
 
         sig do
           override.returns(
-            { message_identification: String, submitted_at: T.nilable(Time) }
+            {
+              message_identification: String,
+              submitted_at: T.nilable(Time),
+              unique_end_to_end_transaction_reference: String
+            }
           )
         end
         def to_hash
