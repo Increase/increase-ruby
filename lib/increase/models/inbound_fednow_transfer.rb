@@ -98,13 +98,21 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundFednowTransfer::Type]
       required :type, enum: -> { Increase::InboundFednowTransfer::Type }
 
+      # @!attribute unique_end_to_end_transaction_reference
+      #   The Unique End-to-end Transaction Reference
+      #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #   of the transfer.
+      #
+      #   @return [String, nil]
+      required :unique_end_to_end_transaction_reference, String, nil?: true
+
       # @!attribute unstructured_remittance_information
       #   Additional information included with the transfer.
       #
       #   @return [String, nil]
       required :unstructured_remittance_information, String, nil?: true
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, status:, transaction_id:, type:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, status:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::InboundFednowTransfer} for more details.
       #
@@ -140,6 +148,8 @@ module Increase
       #   @param transaction_id [String, nil] The identifier of the Transaction object created when the transfer was confirmed
       #
       #   @param type [Symbol, Increase::Models::InboundFednowTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #
+      #   @param unique_end_to_end_transaction_reference [String, nil] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
       #
       #   @param unstructured_remittance_information [String, nil] Additional information included with the transfer.
 

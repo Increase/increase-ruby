@@ -27,6 +27,7 @@ class Increase::Test::Resources::InboundFednowTransfersTest < Increase::Test::Re
         status: Increase::InboundFednowTransfer::Status,
         transaction_id: String | nil,
         type: Increase::InboundFednowTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil,
         unstructured_remittance_information: String | nil
       }
     end
@@ -63,6 +64,7 @@ class Increase::Test::Resources::InboundFednowTransfersTest < Increase::Test::Re
         status: Increase::InboundFednowTransfer::Status,
         transaction_id: String | nil,
         type: Increase::InboundFednowTransfer::Type,
+        unique_end_to_end_transaction_reference: String | nil,
         unstructured_remittance_information: String | nil
       }
     end

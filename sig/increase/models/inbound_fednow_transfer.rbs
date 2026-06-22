@@ -17,6 +17,7 @@ module Increase
         status: Increase::Models::InboundFednowTransfer::status,
         transaction_id: String?,
         type: Increase::Models::InboundFednowTransfer::type_,
+        unique_end_to_end_transaction_reference: String?,
         unstructured_remittance_information: String?
       }
 
@@ -51,6 +52,8 @@ module Increase
 
       attr_accessor type: Increase::Models::InboundFednowTransfer::type_
 
+      attr_accessor unique_end_to_end_transaction_reference: String?
+
       attr_accessor unstructured_remittance_information: String?
 
       def initialize: (
@@ -69,6 +72,7 @@ module Increase
         status: Increase::Models::InboundFednowTransfer::status,
         transaction_id: String?,
         type: Increase::Models::InboundFednowTransfer::type_,
+        unique_end_to_end_transaction_reference: String?,
         unstructured_remittance_information: String?
       ) -> void
 
@@ -88,6 +92,7 @@ module Increase
         status: Increase::Models::InboundFednowTransfer::status,
         transaction_id: String?,
         type: Increase::Models::InboundFednowTransfer::type_,
+        unique_end_to_end_transaction_reference: String?,
         unstructured_remittance_information: String?
       }
 
