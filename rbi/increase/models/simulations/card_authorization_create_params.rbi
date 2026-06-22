@@ -508,6 +508,45 @@ module Increase
                 )
               end
 
+            # For electronic commerce transactions, this identifies the level of security used
+            # in obtaining the customer's payment credential. For mail or telephone order
+            # transactions, identifies the type of mail or telephone order.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::OrSymbol
+                )
+              )
+            end
+            attr_reader :electronic_commerce_indicator
+
+            sig do
+              params(
+                electronic_commerce_indicator:
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::OrSymbol
+              ).void
+            end
+            attr_writer :electronic_commerce_indicator
+
+            # The method used to enter the cardholder's primary account number and card
+            # expiration date.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::OrSymbol
+                )
+              )
+            end
+            attr_reader :point_of_service_entry_mode
+
+            sig do
+              params(
+                point_of_service_entry_mode:
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::OrSymbol
+              ).void
+            end
+            attr_writer :point_of_service_entry_mode
+
             # The reason code for the stand-in processing.
             sig do
               returns(
@@ -526,28 +565,252 @@ module Increase
             end
             attr_writer :stand_in_processing_reason
 
+            # The capability of the terminal being used to read the card. Shows whether a
+            # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+            # reads. This reflects the highest capability of the terminal — for example, a
+            # terminal that supports both chip and magnetic stripe will be identified as
+            # chip-capable.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
+                )
+              )
+            end
+            attr_reader :terminal_entry_capability
+
+            sig do
+              params(
+                terminal_entry_capability:
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
+              ).void
+            end
+            attr_writer :terminal_entry_capability
+
             # Fields specific to the Visa network.
             sig do
               params(
+                electronic_commerce_indicator:
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::OrSymbol,
+                point_of_service_entry_mode:
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::OrSymbol,
                 stand_in_processing_reason:
-                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::StandInProcessingReason::OrSymbol,
+                terminal_entry_capability:
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
               ).returns(T.attached_class)
             end
             def self.new(
+              # For electronic commerce transactions, this identifies the level of security used
+              # in obtaining the customer's payment credential. For mail or telephone order
+              # transactions, identifies the type of mail or telephone order.
+              electronic_commerce_indicator: nil,
+              # The method used to enter the cardholder's primary account number and card
+              # expiration date.
+              point_of_service_entry_mode: nil,
               # The reason code for the stand-in processing.
-              stand_in_processing_reason: nil
+              stand_in_processing_reason: nil,
+              # The capability of the terminal being used to read the card. Shows whether a
+              # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              # reads. This reflects the highest capability of the terminal — for example, a
+              # terminal that supports both chip and magnetic stripe will be identified as
+              # chip-capable.
+              terminal_entry_capability: nil
             )
             end
 
             sig do
               override.returns(
                 {
+                  electronic_commerce_indicator:
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::OrSymbol,
+                  point_of_service_entry_mode:
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::OrSymbol,
                   stand_in_processing_reason:
-                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::StandInProcessingReason::OrSymbol
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::StandInProcessingReason::OrSymbol,
+                  terminal_entry_capability:
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::OrSymbol
                 }
               )
             end
             def to_hash
+            end
+
+            # For electronic commerce transactions, this identifies the level of security used
+            # in obtaining the customer's payment credential. For mail or telephone order
+            # transactions, identifies the type of mail or telephone order.
+            module ElectronicCommerceIndicator
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Single transaction of a mail/phone order: Use to indicate that the transaction is a mail/phone order purchase, not a recurring transaction or installment payment. For domestic transactions in the US region, this value may also indicate one bill payment transaction in the card-present or card-absent environments.
+              MAIL_PHONE_ORDER =
+                T.let(
+                  :mail_phone_order,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Recurring transaction: Payment indicator used to indicate a recurring transaction that originates from an acquirer in the US region.
+              RECURRING =
+                T.let(
+                  :recurring,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Installment payment: Payment indicator used to indicate one purchase of goods or services that is billed to the account in multiple charges over a period of time agreed upon by the cardholder and merchant from transactions that originate from an acquirer in the US region.
+              INSTALLMENT =
+                T.let(
+                  :installment,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Unknown classification: other mail order: Use to indicate that the type of mail/telephone order is unknown.
+              UNKNOWN_MAIL_PHONE_ORDER =
+                T.let(
+                  :unknown_mail_phone_order,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Secure electronic commerce transaction: Use to indicate that the electronic commerce transaction has been authenticated using e.g., 3-D Secure
+              SECURE_ELECTRONIC_COMMERCE =
+                T.let(
+                  :secure_electronic_commerce,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Non-authenticated security transaction at a 3-D Secure-capable merchant, and merchant attempted to authenticate the cardholder using 3-D Secure: Use to identify an electronic commerce transaction where the merchant attempted to authenticate the cardholder using 3-D Secure, but was unable to complete the authentication because the issuer or cardholder does not participate in the 3-D Secure program.
+              NON_AUTHENTICATED_SECURITY_TRANSACTION_AT_3DS_CAPABLE_MERCHANT =
+                T.let(
+                  :non_authenticated_security_transaction_at_3ds_capable_merchant,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Non-authenticated security transaction: Use to identify an electronic commerce transaction that uses data encryption for security however, cardholder authentication is not performed using 3-D Secure.
+              NON_AUTHENTICATED_SECURITY_TRANSACTION =
+                T.let(
+                  :non_authenticated_security_transaction,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              # Non-secure transaction: Use to identify an electronic commerce transaction that has no data protection.
+              NON_SECURE_TRANSACTION =
+                T.let(
+                  :non_secure_transaction,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::ElectronicCommerceIndicator::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The method used to enter the cardholder's primary account number and card
+            # expiration date.
+            module PointOfServiceEntryMode
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Unknown
+              UNKNOWN =
+                T.let(
+                  :unknown,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Manual key entry
+              MANUAL =
+                T.let(
+                  :manual,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Magnetic stripe read, without card verification value
+              MAGNETIC_STRIPE_NO_CVV =
+                T.let(
+                  :magnetic_stripe_no_cvv,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Optical code
+              OPTICAL_CODE =
+                T.let(
+                  :optical_code,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contact chip card
+              INTEGRATED_CIRCUIT_CARD =
+                T.let(
+                  :integrated_circuit_card,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contactless read of chip card
+              CONTACTLESS =
+                T.let(
+                  :contactless,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Transaction initiated using a credential that has previously been stored on file
+              CREDENTIAL_ON_FILE =
+                T.let(
+                  :credential_on_file,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Magnetic stripe read
+              MAGNETIC_STRIPE =
+                T.let(
+                  :magnetic_stripe,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contactless read of magnetic stripe data
+              CONTACTLESS_MAGNETIC_STRIPE =
+                T.let(
+                  :contactless_magnetic_stripe,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              # Contact chip card, without card verification value
+              INTEGRATED_CIRCUIT_CARD_NO_CVV =
+                T.let(
+                  :integrated_circuit_card_no_cvv,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::PointOfServiceEntryMode::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
 
             # The reason code for the stand-in processing.
@@ -623,6 +886,90 @@ module Increase
                 override.returns(
                   T::Array[
                     Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::StandInProcessingReason::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The capability of the terminal being used to read the card. Shows whether a
+            # terminal can e.g., accept chip cards or if it only supports magnetic stripe
+            # reads. This reflects the highest capability of the terminal — for example, a
+            # terminal that supports both chip and magnetic stripe will be identified as
+            # chip-capable.
+            module TerminalEntryCapability
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # Unknown
+              UNKNOWN =
+                T.let(
+                  :unknown,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # No terminal was used for this transaction.
+              TERMINAL_NOT_USED =
+                T.let(
+                  :terminal_not_used,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # The terminal can only read magnetic stripes and does not have chip or contactless reading capability.
+              MAGNETIC_STRIPE =
+                T.let(
+                  :magnetic_stripe,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # The terminal can only read barcodes.
+              BARCODE =
+                T.let(
+                  :barcode,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # The terminal can only read cards via Optical Character Recognition.
+              OPTICAL_CHARACTER_RECOGNITION =
+                T.let(
+                  :optical_character_recognition,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # The terminal supports contact chip cards and can also read the magnetic stripe. If contact chip is supported, this value is used regardless of whether contactless is also supported.
+              CHIP_OR_CONTACTLESS =
+                T.let(
+                  :chip_or_contactless,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # The terminal supports contactless reads but does not support contact chip. Only used when the terminal lacks contact chip capability.
+              CONTACTLESS_ONLY =
+                T.let(
+                  :contactless_only,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              # The terminal has no card reading capability.
+              NO_CAPABILITY =
+                T.let(
+                  :no_capability,
+                  Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Simulations::CardAuthorizationCreateParams::NetworkDetails::Visa::TerminalEntryCapability::TaggedSymbol
                   ]
                 )
               end
