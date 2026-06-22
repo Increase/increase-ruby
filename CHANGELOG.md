@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.337.0](https://github.com/Increase/increase-ruby/compare/v1.336.0...v1.337.0) (2026-06-22)
+
+
+### Features
+
+* **api:** add Visa network fields to card authorization simulations ([135a241](https://github.com/Increase/increase-ruby/commit/135a2418a47ae155ae2fa143331aab3fc7237148))
+
 ## [1.336.0](https://github.com/Increase/increase-ruby/compare/v1.335.0...v1.336.0) (2026-06-18)
 
 
