@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.338.0](https://github.com/Increase/increase-ruby/compare/v1.337.0...v1.338.0) (2026-06-23)
+
+
+### Features
+
+* **api:** add UETR field to inbound FedNow transfers ([5bdc7d0](https://github.com/Increase/increase-ruby/commit/5bdc7d0c5a2afbec6b4eb41974a15e92180def50))
+
 ## [1.337.0](https://github.com/Increase/increase-ruby/compare/v1.336.0...v1.337.0) (2026-06-22)
 
 
