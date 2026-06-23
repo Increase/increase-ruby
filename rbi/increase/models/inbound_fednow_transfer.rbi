@@ -87,6 +87,12 @@ module Increase
       sig { returns(Increase::InboundFednowTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
+      # The Unique End-to-end Transaction Reference
+      # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      # of the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :unique_end_to_end_transaction_reference
+
       # Additional information included with the transfer.
       sig { returns(T.nilable(String)) }
       attr_accessor :unstructured_remittance_information
@@ -111,6 +117,7 @@ module Increase
           status: Increase::InboundFednowTransfer::Status::OrSymbol,
           transaction_id: T.nilable(String),
           type: Increase::InboundFednowTransfer::Type::OrSymbol,
+          unique_end_to_end_transaction_reference: T.nilable(String),
           unstructured_remittance_information: T.nilable(String)
         ).returns(T.attached_class)
       end
@@ -149,6 +156,10 @@ module Increase
         # A constant representing the object's type. For this resource it will always be
         # `inbound_fednow_transfer`.
         type:,
+        # The Unique End-to-end Transaction Reference
+        # ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        # of the transfer.
+        unique_end_to_end_transaction_reference:,
         # Additional information included with the transfer.
         unstructured_remittance_information:
       )
@@ -173,6 +184,7 @@ module Increase
             status: Increase::InboundFednowTransfer::Status::TaggedSymbol,
             transaction_id: T.nilable(String),
             type: Increase::InboundFednowTransfer::Type::TaggedSymbol,
+            unique_end_to_end_transaction_reference: T.nilable(String),
             unstructured_remittance_information: T.nilable(String)
           }
         )
