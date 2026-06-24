@@ -267,6 +267,13 @@ module Increase
               Increase::WireTransferListParams::Status::In::TaggedSymbol
             )
 
+          # The transfer is pending creation.
+          PENDING_CREATING =
+            T.let(
+              :pending_creating,
+              Increase::WireTransferListParams::Status::In::TaggedSymbol
+            )
+
           # The transfer is pending review by Increase.
           PENDING_REVIEWING =
             T.let(
@@ -285,13 +292,6 @@ module Increase
           REQUIRES_ATTENTION =
             T.let(
               :requires_attention,
-              Increase::WireTransferListParams::Status::In::TaggedSymbol
-            )
-
-          # The transfer is pending creation.
-          PENDING_CREATING =
-            T.let(
-              :pending_creating,
               Increase::WireTransferListParams::Status::In::TaggedSymbol
             )
 

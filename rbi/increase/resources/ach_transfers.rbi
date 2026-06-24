@@ -89,7 +89,8 @@ module Increase
         routing_number: nil,
         # The
         # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-        # to use for the transfer.
+        # to use for the transfer. If not provided, the default is
+        # `corporate_credit_or_debit`.
         standard_entry_class_code: nil,
         # The timing of the transaction.
         transaction_timing: nil,

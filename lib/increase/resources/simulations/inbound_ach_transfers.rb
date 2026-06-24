@@ -35,7 +35,7 @@ module Increase
         #
         # @param company_id [String] The sender's company ID.
         #
-        # @param company_name [String] The name of the sender.
+        # @param company_name [String] The name of the sender. This corresponds to the `originator_company_name` field
         #
         # @param receiver_id_number [String] The ID of the receiver of the transfer.
         #

@@ -1840,7 +1840,8 @@ module Increase
         sig { returns(String) }
         attr_accessor :transaction_id
 
-        # The identifier of the ACH Transfer associated with this return.
+        # The identifier of the ACH Transfer associated with this return. This matches the
+        # original Transaction's `source.ach_transfer_intention.transfer_id`.
         sig { returns(String) }
         attr_accessor :transfer_id
 
@@ -1872,7 +1873,8 @@ module Increase
           trace_number:,
           # The identifier of the Transaction associated with this return.
           transaction_id:,
-          # The identifier of the ACH Transfer associated with this return.
+          # The identifier of the ACH Transfer associated with this return. This matches the
+          # original Transaction's `source.ach_transfer_intention.transfer_id`.
           transfer_id:
         )
         end
@@ -2529,7 +2531,7 @@ module Increase
         # The transfer has been rejected.
         REJECTED = T.let(:rejected, Increase::ACHTransfer::Status::TaggedSymbol)
 
-        # The transfer is complete.
+        # The transfer has been submitted to the Federal Reserve. When the transfer settles, the status remains `submitted` and the `settlement` sub-object is populated.
         SUBMITTED =
           T.let(:submitted, Increase::ACHTransfer::Status::TaggedSymbol)
 

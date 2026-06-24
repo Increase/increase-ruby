@@ -258,6 +258,13 @@ module Increase
               Increase::SwiftTransferListParams::Status::In::TaggedSymbol
             )
 
+          # The transfer is pending initiation.
+          PENDING_INITIATING =
+            T.let(
+              :pending_initiating,
+              Increase::SwiftTransferListParams::Status::In::TaggedSymbol
+            )
+
           # The transfer is pending review by Increase.
           PENDING_REVIEWING =
             T.let(
@@ -269,13 +276,6 @@ module Increase
           REQUIRES_ATTENTION =
             T.let(
               :requires_attention,
-              Increase::SwiftTransferListParams::Status::In::TaggedSymbol
-            )
-
-          # The transfer is pending initiation.
-          PENDING_INITIATING =
-            T.let(
-              :pending_initiating,
               Increase::SwiftTransferListParams::Status::In::TaggedSymbol
             )
 

@@ -1068,7 +1068,8 @@ module Increase
         required :transaction_id, String
 
         # @!attribute transfer_id
-        #   The identifier of the ACH Transfer associated with this return.
+        #   The identifier of the ACH Transfer associated with this return. This matches the
+        #   original Transaction's `source.ach_transfer_intention.transfer_id`.
         #
         #   @return [String]
         required :transfer_id, String
@@ -1089,7 +1090,7 @@ module Increase
         #
         #   @param transaction_id [String] The identifier of the Transaction associated with this return.
         #
-        #   @param transfer_id [String] The identifier of the ACH Transfer associated with this return.
+        #   @param transfer_id [String] The identifier of the ACH Transfer associated with this return. This matches the
 
         # Why the ACH Transfer was returned. This reason code is sent by the receiving
         # bank back to Increase.
@@ -1386,7 +1387,7 @@ module Increase
         # The transfer has been rejected.
         REJECTED = :rejected
 
-        # The transfer is complete.
+        # The transfer has been submitted to the Federal Reserve. When the transfer settles, the status remains `submitted` and the `settlement` sub-object is populated.
         SUBMITTED = :submitted
 
         # The transfer has been returned.

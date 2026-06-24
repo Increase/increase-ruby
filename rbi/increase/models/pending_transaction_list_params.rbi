@@ -473,7 +473,7 @@ module Increase
               Increase::PendingTransactionListParams::Status::In::TaggedSymbol
             )
 
-          # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc.
+          # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc. The Pending Transaction's `amount` is not updated if the associated Transaction settles for a different amount.
           COMPLETE =
             T.let(
               :complete,

@@ -56,7 +56,11 @@ module Increase
       #   {Increase::Models::LockboxAddress} for more details.
       #
       #   Lockbox Addresses are physical locations that can receive mail containing paper
-      #   checks.
+      #   checks. A Lockbox Address is not itself linked to an Account; Lockbox Recipients
+      #   determine where checks received at the address are deposited. Lockbox Addresses
+      #   are created with a `pending` status and a null `address`. Increase generates the
+      #   mailing address shortly after creation, at which point the status becomes
+      #   `active`.
       #
       #   @param id [String] The Lockbox Address identifier.
       #

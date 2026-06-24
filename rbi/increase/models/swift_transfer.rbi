@@ -665,6 +665,13 @@ module Increase
         CANCELED =
           T.let(:canceled, Increase::SwiftTransfer::Status::TaggedSymbol)
 
+        # The transfer is pending initiation.
+        PENDING_INITIATING =
+          T.let(
+            :pending_initiating,
+            Increase::SwiftTransfer::Status::TaggedSymbol
+          )
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING =
           T.let(
@@ -676,13 +683,6 @@ module Increase
         REQUIRES_ATTENTION =
           T.let(
             :requires_attention,
-            Increase::SwiftTransfer::Status::TaggedSymbol
-          )
-
-        # The transfer is pending initiation.
-        PENDING_INITIATING =
-          T.let(
-            :pending_initiating,
             Increase::SwiftTransfer::Status::TaggedSymbol
           )
 
