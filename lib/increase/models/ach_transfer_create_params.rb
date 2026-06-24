@@ -133,7 +133,8 @@ module Increase
       # @!attribute standard_entry_class_code
       #   The
       #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-      #   to use for the transfer.
+      #   to use for the transfer. If not provided, the default is
+      #   `corporate_credit_or_debit`.
       #
       #   @return [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode, nil]
       optional :standard_entry_class_code,
@@ -401,7 +402,8 @@ module Increase
 
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-      # to use for the transfer.
+      # to use for the transfer. If not provided, the default is
+      # `corporate_credit_or_debit`.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
