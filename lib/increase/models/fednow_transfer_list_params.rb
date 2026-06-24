@@ -134,6 +134,9 @@ module Increase
         module In
           extend Increase::Internal::Type::Enum
 
+          # The transfer is queued to be submitted to FedNow.
+          PENDING_SUBMITTING = :pending_submitting
+
           # The transfer is pending review by Increase.
           PENDING_REVIEWING = :pending_reviewing
 
@@ -148,9 +151,6 @@ module Increase
 
           # The transfer is pending approval.
           PENDING_APPROVAL = :pending_approval
-
-          # The transfer is queued to be submitted to FedNow.
-          PENDING_SUBMITTING = :pending_submitting
 
           # The transfer has been submitted and is pending a response from FedNow.
           PENDING_RESPONSE = :pending_response

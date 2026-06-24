@@ -293,6 +293,13 @@ module Increase
               Increase::RealTimePaymentsTransferListParams::Status::In::TaggedSymbol
             )
 
+          # The transfer is queued to be submitted to Real-Time Payments.
+          PENDING_SUBMISSION =
+            T.let(
+              :pending_submission,
+              Increase::RealTimePaymentsTransferListParams::Status::In::TaggedSymbol
+            )
+
           # The transfer is pending review by Increase.
           PENDING_REVIEWING =
             T.let(
@@ -311,13 +318,6 @@ module Increase
           REJECTED =
             T.let(
               :rejected,
-              Increase::RealTimePaymentsTransferListParams::Status::In::TaggedSymbol
-            )
-
-          # The transfer is queued to be submitted to Real-Time Payments.
-          PENDING_SUBMISSION =
-            T.let(
-              :pending_submission,
               Increase::RealTimePaymentsTransferListParams::Status::In::TaggedSymbol
             )
 

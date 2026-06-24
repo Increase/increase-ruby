@@ -885,6 +885,13 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::FednowTransfer::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        # The transfer is queued to be submitted to FedNow.
+        PENDING_SUBMITTING =
+          T.let(
+            :pending_submitting,
+            Increase::FednowTransfer::Status::TaggedSymbol
+          )
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING =
           T.let(
@@ -914,13 +921,6 @@ module Increase
         PENDING_APPROVAL =
           T.let(
             :pending_approval,
-            Increase::FednowTransfer::Status::TaggedSymbol
-          )
-
-        # The transfer is queued to be submitted to FedNow.
-        PENDING_SUBMITTING =
-          T.let(
-            :pending_submitting,
             Increase::FednowTransfer::Status::TaggedSymbol
           )
 

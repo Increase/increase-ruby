@@ -777,6 +777,9 @@ module Increase
         # The transfer has been canceled.
         CANCELED = :canceled
 
+        # The transfer is pending creation.
+        PENDING_CREATING = :pending_creating
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING = :pending_reviewing
 
@@ -785,9 +788,6 @@ module Increase
 
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
-
-        # The transfer is pending creation.
-        PENDING_CREATING = :pending_creating
 
         # The transfer has been reversed.
         REVERSED = :reversed
