@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
     "sig/**/*.rbs",
     "manifest.yaml",
     "SECURITY.md",
-    "CHANGELOG.md",
     ".ignore"
   ]
   s.extra_rdoc_files = ["README.md"]

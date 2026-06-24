@@ -538,6 +538,9 @@ module Increase
         # The transfer has been canceled.
         CANCELED = :canceled
 
+        # The transfer is queued to be submitted to Real-Time Payments.
+        PENDING_SUBMISSION = :pending_submission
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING = :pending_reviewing
 
@@ -546,9 +549,6 @@ module Increase
 
         # The transfer was rejected by the network or the recipient's bank.
         REJECTED = :rejected
-
-        # The transfer is queued to be submitted to Real-Time Payments.
-        PENDING_SUBMISSION = :pending_submission
 
         # The transfer has been submitted and is pending a response from Real-Time Payments.
         SUBMITTED = :submitted

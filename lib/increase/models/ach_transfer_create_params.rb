@@ -33,50 +33,58 @@ module Increase
       required :statement_descriptor, String
 
       # @!attribute account_number
-      #   The account number for the destination account.
+      #   The receiver's account number. For credit transfers (positive `amount`) this is
+      #   the account that funds will be sent to. For debit transfers (negative `amount`)
+      #   this is the account that funds will be pulled from.
       #
       #   @return [String, nil]
       optional :account_number, String
 
       # @!attribute addenda
-      #   Additional information that will be sent to the recipient. This is included in
-      #   the transfer data sent to the receiving bank.
+      #   Additional information passed through to the receiving bank with the transfer.
+      #   Most ACH transfers do not need this. Only set this if your recipient has asked
+      #   for addendum data, typically unstructured remittance information. Corporate
+      #   Trade Exchange (CTX) flows can carry structured X12 remittance advice instead.
       #
       #   @return [Increase::Models::ACHTransferCreateParams::Addenda, nil]
       optional :addenda, -> { Increase::ACHTransferCreateParams::Addenda }
 
       # @!attribute company_descriptive_date
-      #   The description of the date of the transfer, usually in the format `YYMMDD`.
-      #   This is included in the transfer data sent to the receiving bank.
+      #   A description of the transfer date (typically `YYMMDD`), sent in the company
+      #   batch header. This value is informational and does not affect funds movement,
+      #   settlement timing, or returns. Only set this if your recipient has asked for it.
       #
       #   @return [String, nil]
       optional :company_descriptive_date, String
 
       # @!attribute company_discretionary_data
-      #   The data you choose to associate with the transfer. This is included in the
-      #   transfer data sent to the receiving bank.
+      #   Custom data sent in the company batch header. This value is informational and
+      #   does not affect funds movement, settlement timing, or returns. Most ACH
+      #   transfers do not need this. Only set this if your recipient has asked for it.
       #
       #   @return [String, nil]
       optional :company_discretionary_data, String
 
       # @!attribute company_entry_description
-      #   A description of the transfer, included in the transfer data sent to the
-      #   receiving bank. Standardized formatting may be required, for example `PAYROLL`
-      #   for payroll-related Prearranged Payments and Deposits (PPD) credit transfers.
+      #   A short description sent in the company batch header. Most receivers do not
+      #   surface this. Only set this if your recipient has asked for a specific value or
+      #   if Nacha mandates one for your Standard Entry Class (SEC) code and use case. For
+      #   example, Prearranged Payment and Deposit (PPD) payroll credits must use
+      #   `PAYROLL`, and reversals must use `REVERSAL`.
       #
       #   @return [String, nil]
       optional :company_entry_description, String
 
       # @!attribute company_name
-      #   The name by which the recipient knows you. This is included in the transfer data
-      #   sent to the receiving bank.
+      #   The name by which the recipient knows you, sent in the company batch header. We
+      #   recommend setting this on every transfer; if you do not, we fall back to the ACH
+      #   company name configured on your account.
       #
       #   @return [String, nil]
       optional :company_name, String
 
       # @!attribute destination_account_holder
-      #   The type of entity that owns the account to which the ACH Transfer is being
-      #   sent.
+      #   The type of entity that owns the receiver's account.
       #
       #   @return [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder, nil]
       optional :destination_account_holder,
@@ -90,13 +98,14 @@ module Increase
       optional :external_account_id, String
 
       # @!attribute funding
-      #   The type of the account to which the transfer will be sent.
+      #   The type of the receiver's bank account.
       #
       #   @return [Symbol, Increase::Models::ACHTransferCreateParams::Funding, nil]
       optional :funding, enum: -> { Increase::ACHTransferCreateParams::Funding }
 
       # @!attribute individual_id
-      #   Your identifier for the transfer recipient.
+      #   Your internal identifier for the transfer recipient. This value is informational
+      #   and not verified by the recipient's bank. Most callers can leave this unset.
       #
       #   @return [String, nil]
       optional :individual_id, String
@@ -124,8 +133,8 @@ module Increase
       optional :require_approval, Increase::Internal::Type::Boolean
 
       # @!attribute routing_number
-      #   The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
-      #   destination account.
+      #   The American Bankers' Association (ABA) Routing Transit Number (RTN) of the
+      #   receiver's bank.
       #
       #   @return [String, nil]
       optional :routing_number, String
@@ -133,7 +142,8 @@ module Increase
       # @!attribute standard_entry_class_code
       #   The
       #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-      #   to use for the transfer.
+      #   to use for the transfer. If not provided, the default is
+      #   `corporate_credit_or_debit`.
       #
       #   @return [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode, nil]
       optional :standard_entry_class_code,
@@ -155,25 +165,25 @@ module Increase
       #
       #   @param statement_descriptor [String] A description you choose to give the transfer. This will be saved with the trans
       #
-      #   @param account_number [String] The account number for the destination account.
+      #   @param account_number [String] The receiver's account number. For credit transfers (positive `amount`) this is
       #
-      #   @param addenda [Increase::Models::ACHTransferCreateParams::Addenda] Additional information that will be sent to the recipient. This is included in t
+      #   @param addenda [Increase::Models::ACHTransferCreateParams::Addenda] Additional information passed through to the receiving bank with the transfer. M
       #
-      #   @param company_descriptive_date [String] The description of the date of the transfer, usually in the format `YYMMDD`. Thi
+      #   @param company_descriptive_date [String] A description of the transfer date (typically `YYMMDD`), sent in the company bat
       #
-      #   @param company_discretionary_data [String] The data you choose to associate with the transfer. This is included in the tran
+      #   @param company_discretionary_data [String] Custom data sent in the company batch header. This value is informational and do
       #
-      #   @param company_entry_description [String] A description of the transfer, included in the transfer data sent to the receivi
+      #   @param company_entry_description [String] A short description sent in the company batch header. Most receivers do not surf
       #
-      #   @param company_name [String] The name by which the recipient knows you. This is included in the transfer data
+      #   @param company_name [String] The name by which the recipient knows you, sent in the company batch header. We
       #
-      #   @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder] The type of entity that owns the account to which the ACH Transfer is being sent
+      #   @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder] The type of entity that owns the receiver's account.
       #
       #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
-      #   @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding] The type of the account to which the transfer will be sent.
+      #   @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding] The type of the receiver's bank account.
       #
-      #   @param individual_id [String] Your identifier for the transfer recipient.
+      #   @param individual_id [String] Your internal identifier for the transfer recipient. This value is informational
       #
       #   @param individual_name [String] The name of the transfer recipient. This value is informational and not verified
       #
@@ -181,7 +191,7 @@ module Increase
       #
       #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
-      #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) of the rece
       #
       #   @param standard_entry_class_code [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
       #
@@ -216,8 +226,10 @@ module Increase
         #   Some parameter documentations has been truncated, see
         #   {Increase::Models::ACHTransferCreateParams::Addenda} for more details.
         #
-        #   Additional information that will be sent to the recipient. This is included in
-        #   the transfer data sent to the receiving bank.
+        #   Additional information passed through to the receiving bank with the transfer.
+        #   Most ACH transfers do not need this. Only set this if your recipient has asked
+        #   for addendum data, typically unstructured remittance information. Corporate
+        #   Trade Exchange (CTX) flows can carry structured X12 remittance advice instead.
         #
         #   @param category [Symbol, Increase::Models::ACHTransferCreateParams::Addenda::Category] The type of addenda to pass with the transfer.
         #
@@ -315,8 +327,7 @@ module Increase
         end
       end
 
-      # The type of entity that owns the account to which the ACH Transfer is being
-      # sent.
+      # The type of entity that owns the receiver's account.
       module DestinationAccountHolder
         extend Increase::Internal::Type::Enum
 
@@ -333,7 +344,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # The type of the account to which the transfer will be sent.
+      # The type of the receiver's bank account.
       module Funding
         extend Increase::Internal::Type::Enum
 
@@ -388,7 +399,7 @@ module Increase
         module SettlementSchedule
           extend Increase::Internal::Type::Enum
 
-          # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted. This is necessary, but not sufficient for the transfer to be settled same-day: it must also be submitted before the last same-day cutoff and be less than or equal to $1,000.000.00.
+          # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted. This is necessary, but not sufficient for the transfer to be settled same-day: it must also be submitted before the last same-day cutoff and be less than or equal to $1,000,000.00.
           SAME_DAY = :same_day
 
           # The chosen effective date will be the business day following the ACH processing date on which the transfer is submitted. The transfer will be settled on that future day.
@@ -401,7 +412,8 @@ module Increase
 
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-      # to use for the transfer.
+      # to use for the transfer. If not provided, the default is
+      # `corporate_credit_or_debit`.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 

@@ -13,7 +13,10 @@ module Increase
         # `card_authorization` or a [Declined Transaction](#declined-transactions) of type
         # `card_decline`. You can pass either a Card id or a
         # [Digital Wallet Token](#digital-wallet-tokens) id to simulate the two different
-        # ways purchases can be made.
+        # ways purchases can be made. The response will contain either a
+        # `pending_transaction` or a `declined_transaction`; the other attribute will be
+        # null. If the authorization is declined, the reason is available on the Declined
+        # Transaction at `source.card_decline.reason`.
         #
         # @overload create(amount:, authenticated_card_payment_id: nil, card_id: nil, decline_reason: nil, digital_wallet_token_id: nil, event_subscription_id: nil, merchant_acceptor_id: nil, merchant_category_code: nil, merchant_city: nil, merchant_country: nil, merchant_descriptor: nil, merchant_state: nil, network_details: nil, network_risk_score: nil, physical_card_id: nil, processing_category: nil, terminal_id: nil, request_options: {})
         #

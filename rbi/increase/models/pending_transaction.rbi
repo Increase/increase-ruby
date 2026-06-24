@@ -17,7 +17,10 @@ module Increase
       attr_accessor :account_id
 
       # The Pending Transaction amount in the minor unit of its currency. For dollars,
-      # for example, this is cents.
+      # for example, this is cents. This amount does not change after the Pending
+      # Transaction is created. If a card authorization settles for a different amount,
+      # the settled amount is available on the resulting Transaction and on the Card
+      # Payment's `state.settled_amount`.
       sig { returns(Integer) }
       attr_accessor :amount
 
@@ -109,7 +112,10 @@ module Increase
         # The identifier for the account this Pending Transaction belongs to.
         account_id:,
         # The Pending Transaction amount in the minor unit of its currency. For dollars,
-        # for example, this is cents.
+        # for example, this is cents. This amount does not change after the Pending
+        # Transaction is created. If a card authorization settles for a different amount,
+        # the settled amount is available on the resulting Transaction and on the Card
+        # Payment's `state.settled_amount`.
         amount:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
         # Transaction was completed.
@@ -4982,7 +4988,7 @@ module Increase
         PENDING =
           T.let(:pending, Increase::PendingTransaction::Status::TaggedSymbol)
 
-        # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc.
+        # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc. The Pending Transaction's `amount` is not updated if the associated Transaction settles for a different amount.
         COMPLETE =
           T.let(:complete, Increase::PendingTransaction::Status::TaggedSymbol)
 
