@@ -245,7 +245,7 @@ module Increase
         # The transfer is pending confirmation.
         PENDING_CONFIRMING = :pending_confirming
 
-        # The transfer was not responded to in time.
+        # The transfer was not responded to in time. This is rare and represents an error at Increase.
         TIMED_OUT = :timed_out
 
         # The transfer has been received successfully and is confirmed.

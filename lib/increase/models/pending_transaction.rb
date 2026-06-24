@@ -18,7 +18,10 @@ module Increase
 
       # @!attribute amount
       #   The Pending Transaction amount in the minor unit of its currency. For dollars,
-      #   for example, this is cents.
+      #   for example, this is cents. This amount does not change after the Pending
+      #   Transaction is created. If a card authorization settles for a different amount,
+      #   the settled amount is available on the resulting Transaction and on the Card
+      #   Payment's `state.settled_amount`.
       #
       #   @return [Integer]
       required :amount, Integer
@@ -2638,7 +2641,7 @@ module Increase
         # The Pending Transaction is still awaiting confirmation.
         PENDING = :pending
 
-        # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc.
+        # The Pending Transaction is confirmed. An associated Transaction exists for this object. The Pending Transaction will no longer count against your balance and can generally be hidden from UIs, etc. The Pending Transaction's `amount` is not updated if the associated Transaction settles for a different amount.
         COMPLETE = :complete
 
         # @!method self.values

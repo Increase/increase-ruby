@@ -20,7 +20,7 @@ module Increase
       #
       # @param loan [Increase::Models::AccountCreateParams::Loan] The loan details for the account.
       #
-      # @param program_id [String] The identifier for the Program that this Account falls under. Required if you op
+      # @param program_id [String] The identifier for the Program that this Account falls under. Required if your G
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

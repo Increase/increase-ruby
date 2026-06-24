@@ -202,7 +202,8 @@ module Increase
         #   Return is created when an ACH Transfer is returned by the receiving bank. It
         #   offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
         #   the first two business days after the transfer is initiated, but can occur much
-        #   later.
+        #   later. The return appears as a new posted Transaction; no Pending Transaction is
+        #   created.
         #
         #   @return [Increase::Models::Transaction::Source::ACHTransferReturn, nil]
         optional :ach_transfer_return, -> { Increase::Transaction::Source::ACHTransferReturn }, nil?: true
@@ -977,7 +978,8 @@ module Increase
           required :transaction_id, String
 
           # @!attribute transfer_id
-          #   The identifier of the ACH Transfer associated with this return.
+          #   The identifier of the ACH Transfer associated with this return. This matches the
+          #   original Transaction's `source.ach_transfer_intention.transfer_id`.
           #
           #   @return [String]
           required :transfer_id, String
@@ -991,7 +993,8 @@ module Increase
           #   Return is created when an ACH Transfer is returned by the receiving bank. It
           #   offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
           #   the first two business days after the transfer is initiated, but can occur much
-          #   later.
+          #   later. The return appears as a new posted Transaction; no Pending Transaction is
+          #   created.
           #
           #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
           #
@@ -1003,7 +1006,7 @@ module Increase
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this return.
           #
-          #   @param transfer_id [String] The identifier of the ACH Transfer associated with this return.
+          #   @param transfer_id [String] The identifier of the ACH Transfer associated with this return. This matches the
 
           # Why the ACH Transfer was returned. This reason code is sent by the receiving
           # bank back to Increase.

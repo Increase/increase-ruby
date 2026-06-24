@@ -1327,6 +1327,10 @@ module Increase
         CANCELED =
           T.let(:canceled, Increase::WireTransfer::Status::TaggedSymbol)
 
+        # The transfer is pending creation.
+        PENDING_CREATING =
+          T.let(:pending_creating, Increase::WireTransfer::Status::TaggedSymbol)
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING =
           T.let(
@@ -1344,10 +1348,6 @@ module Increase
             :requires_attention,
             Increase::WireTransfer::Status::TaggedSymbol
           )
-
-        # The transfer is pending creation.
-        PENDING_CREATING =
-          T.let(:pending_creating, Increase::WireTransfer::Status::TaggedSymbol)
 
         # The transfer has been reversed.
         REVERSED =

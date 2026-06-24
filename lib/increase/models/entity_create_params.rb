@@ -159,7 +159,8 @@ module Increase
 
         # @!attribute legal_identifier
         #   The legal identifier of the corporation. This is usually the Employer
-        #   Identification Number (EIN).
+        #   Identification Number (EIN). This replaces the deprecated `tax_identifier`
+        #   field.
         #
         #   @return [Increase::Models::EntityCreateParams::Corporation::LegalIdentifier]
         required :legal_identifier, -> { Increase::EntityCreateParams::Corporation::LegalIdentifier }
@@ -456,7 +457,8 @@ module Increase
               #   An identification number that can be used to verify the individual's identity,
               #   such as a social security number. For Social Security Numbers and Individual
               #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #   separators.
+              #   separators. When testing in sandbox, use one of our
+              #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
               #
               #   @return [String]
               required :number, String
@@ -675,7 +677,8 @@ module Increase
         class LegalIdentifier < Increase::Internal::Type::BaseModel
           # @!attribute value
           #   The legal identifier. For US Employer Identification Numbers, submit nine digits
-          #   with no dashes or other separators.
+          #   with no dashes or other separators. When testing in sandbox, use one of our
+          #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
           #   @return [String]
           required :value, String
@@ -693,7 +696,8 @@ module Increase
           #   details.
           #
           #   The legal identifier of the corporation. This is usually the Employer
-          #   Identification Number (EIN).
+          #   Identification Number (EIN). This replaces the deprecated `tax_identifier`
+          #   field.
           #
           #   @param value [String] The legal identifier. For US Employer Identification Numbers, submit nine digits
           #
@@ -1025,7 +1029,8 @@ module Increase
             #   An identification number that can be used to verify the individual's identity,
             #   such as a social security number. For Social Security Numbers and Individual
             #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #   separators.
+            #   separators. When testing in sandbox, use one of our
+            #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
             #
             #   @return [String]
             required :number, String
@@ -1352,7 +1357,8 @@ module Increase
           #   An identification number that can be used to verify the individual's identity,
           #   such as a social security number. For Social Security Numbers and Individual
           #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #   separators.
+          #   separators. When testing in sandbox, use one of our
+          #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
           #   @return [String]
           required :number, String
@@ -1996,7 +2002,8 @@ module Increase
               #   An identification number that can be used to verify the individual's identity,
               #   such as a social security number. For Social Security Numbers and Individual
               #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #   separators.
+              #   separators. When testing in sandbox, use one of our
+              #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
               #
               #   @return [String]
               required :number, String
@@ -2323,7 +2330,8 @@ module Increase
             #   An identification number that can be used to verify the individual's identity,
             #   such as a social security number. For Social Security Numbers and Individual
             #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #   separators.
+            #   separators. When testing in sandbox, use one of our
+            #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
             #
             #   @return [String]
             required :number, String

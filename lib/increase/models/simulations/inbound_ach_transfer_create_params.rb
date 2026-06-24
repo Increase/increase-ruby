@@ -53,7 +53,8 @@ module Increase
         optional :company_id, String
 
         # @!attribute company_name
-        #   The name of the sender.
+        #   The name of the sender. This corresponds to the `originator_company_name` field
+        #   on the resulting Inbound ACH Transfer.
         #
         #   @return [String, nil]
         optional :company_name, String
@@ -103,7 +104,7 @@ module Increase
         #
         #   @param company_id [String] The sender's company ID.
         #
-        #   @param company_name [String] The name of the sender.
+        #   @param company_name [String] The name of the sender. This corresponds to the `originator_company_name` field
         #
         #   @param receiver_id_number [String] The ID of the receiver of the transfer.
         #

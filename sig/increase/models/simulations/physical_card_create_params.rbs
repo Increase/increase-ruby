@@ -61,6 +61,7 @@ module Increase
           | :processed_for_delivery
           | :delivered
           | :delivery_issue
+          | :returning_to_sender
           | :returned_to_sender
 
         module Category
@@ -75,10 +76,13 @@ module Increase
           # The physical card has been delivered. Note that some couriers track delivery status based on driver location data rather than an explicit scan. While uncommon, a single physical card may have more than one delivered event.
           DELIVERED: :delivered
 
-          # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the physical card will be returned to sender.
+          # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the physical card will be rerouted to the return address.
           DELIVERY_ISSUE: :delivery_issue
 
-          # Delivery failed and the physical card was returned to sender.
+          # The physical card has been rerouted to the return address.
+          RETURNING_TO_SENDER: :returning_to_sender
+
+          # The physical card has been delivered to the return address.
           RETURNED_TO_SENDER: :returned_to_sender
 
           def self?.values: -> ::Array[Increase::Models::Simulations::PhysicalCardCreateParams::category]

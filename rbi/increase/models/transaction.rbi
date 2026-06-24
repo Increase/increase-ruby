@@ -284,7 +284,8 @@ module Increase
         # Return is created when an ACH Transfer is returned by the receiving bank. It
         # offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
         # the first two business days after the transfer is initiated, but can occur much
-        # later.
+        # later. The return appears as a new posted Transaction; no Pending Transaction is
+        # created.
         sig do
           returns(T.nilable(Increase::Transaction::Source::ACHTransferReturn))
         end
@@ -1116,7 +1117,8 @@ module Increase
           # Return is created when an ACH Transfer is returned by the receiving bank. It
           # offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
           # the first two business days after the transfer is initiated, but can occur much
-          # later.
+          # later. The return appears as a new posted Transaction; no Pending Transaction is
+          # created.
           ach_transfer_return: nil,
           # A Blockchain Off-Ramp Transfer Settlement object. This field will be present in
           # the JSON response if and only if `category` is equal to
@@ -1997,7 +1999,8 @@ module Increase
           sig { returns(String) }
           attr_accessor :transaction_id
 
-          # The identifier of the ACH Transfer associated with this return.
+          # The identifier of the ACH Transfer associated with this return. This matches the
+          # original Transaction's `source.ach_transfer_intention.transfer_id`.
           sig { returns(String) }
           attr_accessor :transfer_id
 
@@ -2006,7 +2009,8 @@ module Increase
           # Return is created when an ACH Transfer is returned by the receiving bank. It
           # offsets the ACH Transfer Intention. ACH Transfer Returns usually occur within
           # the first two business days after the transfer is initiated, but can occur much
-          # later.
+          # later. The return appears as a new posted Transaction; no Pending Transaction is
+          # created.
           sig do
             params(
               created_at: Time,
@@ -2034,7 +2038,8 @@ module Increase
             trace_number:,
             # The identifier of the Transaction associated with this return.
             transaction_id:,
-            # The identifier of the ACH Transfer associated with this return.
+            # The identifier of the ACH Transfer associated with this return. This matches the
+            # original Transaction's `source.ach_transfer_intention.transfer_id`.
             transfer_id:
           )
           end

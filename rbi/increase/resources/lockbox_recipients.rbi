@@ -16,7 +16,8 @@ module Increase
       def create(
         # The Account that checks sent to this Lockbox Recipient should be deposited into.
         account_id:,
-        # The Lockbox Address where this Lockbox Recipient may receive mail.
+        # The Lockbox Address where this Lockbox Recipient may receive mail. The Lockbox
+        # Address must have a `status` of `active`.
         lockbox_address_id:,
         # The description you choose for the Lockbox Recipient.
         description: nil,
