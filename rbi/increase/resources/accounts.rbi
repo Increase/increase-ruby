@@ -27,8 +27,9 @@ module Increase
         informational_entity_id: nil,
         # The loan details for the account.
         loan: nil,
-        # The identifier for the Program that this Account falls under. Required if you
-        # operate more than one Program.
+        # The identifier for the Program that this Account falls under. Required if your
+        # Group operates more than one Program. List your [Programs](#programs) to find
+        # their identifiers.
         program_id: nil,
         request_options: {}
       )

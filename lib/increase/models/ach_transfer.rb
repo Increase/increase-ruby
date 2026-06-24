@@ -17,7 +17,7 @@ module Increase
       required :account_id, String
 
       # @!attribute account_number
-      #   The destination account number.
+      #   The receiver's account number.
       #
       #   @return [String]
       required :account_number, String
@@ -109,8 +109,7 @@ module Increase
       required :currency, enum: -> { Increase::ACHTransfer::Currency }
 
       # @!attribute destination_account_holder
-      #   The type of entity that owns the account to which the ACH Transfer is being
-      #   sent.
+      #   The type of entity that owns the receiver's account.
       #
       #   @return [Symbol, Increase::Models::ACHTransfer::DestinationAccountHolder]
       required :destination_account_holder, enum: -> { Increase::ACHTransfer::DestinationAccountHolder }
@@ -122,7 +121,7 @@ module Increase
       required :external_account_id, String, nil?: true
 
       # @!attribute funding
-      #   The type of the account to which the transfer will be sent.
+      #   The type of the receiver's bank account.
       #
       #   @return [Symbol, Increase::Models::ACHTransfer::Funding]
       required :funding, enum: -> { Increase::ACHTransfer::Funding }
@@ -143,7 +142,8 @@ module Increase
       required :inbound_funds_hold, -> { Increase::ACHTransfer::InboundFundsHold }, nil?: true
 
       # @!attribute individual_id
-      #   Your identifier for the transfer recipient.
+      #   Your internal identifier for the transfer recipient. This value is informational
+      #   and not verified by the recipient's bank.
       #
       #   @return [String, nil]
       required :individual_id, String, nil?: true
@@ -194,7 +194,8 @@ module Increase
       required :return_, -> { Increase::ACHTransfer::Return }, api_name: :return, nil?: true
 
       # @!attribute routing_number
-      #   The American Bankers' Association (ABA) Routing Transit Number (RTN).
+      #   The American Bankers' Association (ABA) Routing Transit Number (RTN) of the
+      #   receiver's bank.
       #
       #   @return [String]
       required :routing_number, String
@@ -260,7 +261,7 @@ module Increase
       #
       #   @param account_id [String] The Account to which the transfer belongs.
       #
-      #   @param account_number [String] The destination account number.
+      #   @param account_number [String] The receiver's account number.
       #
       #   @param acknowledgement [Increase::Models::ACHTransfer::Acknowledgement, nil] After the transfer is acknowledged by FedACH, this will contain supplemental det
       #
@@ -288,17 +289,17 @@ module Increase
       #
       #   @param currency [Symbol, Increase::Models::ACHTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's c
       #
-      #   @param destination_account_holder [Symbol, Increase::Models::ACHTransfer::DestinationAccountHolder] The type of entity that owns the account to which the ACH Transfer is being sent
+      #   @param destination_account_holder [Symbol, Increase::Models::ACHTransfer::DestinationAccountHolder] The type of entity that owns the receiver's account.
       #
       #   @param external_account_id [String, nil] The identifier of the External Account the transfer was made to, if any.
       #
-      #   @param funding [Symbol, Increase::Models::ACHTransfer::Funding] The type of the account to which the transfer will be sent.
+      #   @param funding [Symbol, Increase::Models::ACHTransfer::Funding] The type of the receiver's bank account.
       #
       #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
       #
       #   @param inbound_funds_hold [Increase::Models::ACHTransfer::InboundFundsHold, nil] Increase will sometimes hold the funds for ACH debit transfers. If funds are hel
       #
-      #   @param individual_id [String, nil] Your identifier for the transfer recipient.
+      #   @param individual_id [String, nil] Your internal identifier for the transfer recipient. This value is informational
       #
       #   @param individual_name [String, nil] The name of the transfer recipient. This value is informational and not verified
       #
@@ -312,7 +313,7 @@ module Increase
       #
       #   @param return_ [Increase::Models::ACHTransfer::Return, nil] If your transfer is returned, this will contain details of the return.
       #
-      #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
+      #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) of the rece
       #
       #   @param settlement [Increase::Models::ACHTransfer::Settlement, nil] A subhash containing information about when and how the transfer settled at the
       #
@@ -640,8 +641,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # The type of entity that owns the account to which the ACH Transfer is being
-      # sent.
+      # The type of entity that owns the receiver's account.
       #
       # @see Increase::Models::ACHTransfer#destination_account_holder
       module DestinationAccountHolder
@@ -660,7 +660,7 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # The type of the account to which the transfer will be sent.
+      # The type of the receiver's bank account.
       #
       # @see Increase::Models::ACHTransfer#funding
       module Funding
@@ -1019,7 +1019,7 @@ module Increase
           # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted.
           # This is necessary, but not sufficient for the transfer to be settled same-day:
           # it must also be submitted before the last same-day cutoff
-          # and be less than or equal to $1,000.000.00.
+          # and be less than or equal to $1,000,000.00.
           SAME_DAY = :same_day
 
           # The chosen effective date will be the business day following the ACH processing date on which the transfer is submitted. The transfer will be settled on that future day.
@@ -1068,7 +1068,8 @@ module Increase
         required :transaction_id, String
 
         # @!attribute transfer_id
-        #   The identifier of the ACH Transfer associated with this return.
+        #   The identifier of the ACH Transfer associated with this return. This matches the
+        #   original Transaction's `source.ach_transfer_intention.transfer_id`.
         #
         #   @return [String]
         required :transfer_id, String
@@ -1089,7 +1090,7 @@ module Increase
         #
         #   @param transaction_id [String] The identifier of the Transaction associated with this return.
         #
-        #   @param transfer_id [String] The identifier of the ACH Transfer associated with this return.
+        #   @param transfer_id [String] The identifier of the ACH Transfer associated with this return. This matches the
 
         # Why the ACH Transfer was returned. This reason code is sent by the receiving
         # bank back to Increase.
@@ -1386,7 +1387,7 @@ module Increase
         # The transfer has been rejected.
         REJECTED = :rejected
 
-        # The transfer is complete.
+        # The transfer has been submitted to the Federal Reserve. When the transfer settles, the status remains `submitted` and the `settlement` sub-object is populated.
         SUBMITTED = :submitted
 
         # The transfer has been returned.

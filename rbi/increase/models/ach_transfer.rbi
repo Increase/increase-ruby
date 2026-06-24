@@ -16,7 +16,7 @@ module Increase
       sig { returns(String) }
       attr_accessor :account_id
 
-      # The destination account number.
+      # The receiver's account number.
       sig { returns(String) }
       attr_accessor :account_number
 
@@ -114,8 +114,7 @@ module Increase
       sig { returns(Increase::ACHTransfer::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # The type of entity that owns the account to which the ACH Transfer is being
-      # sent.
+      # The type of entity that owns the receiver's account.
       sig do
         returns(Increase::ACHTransfer::DestinationAccountHolder::TaggedSymbol)
       end
@@ -125,7 +124,7 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :external_account_id
 
-      # The type of the account to which the transfer will be sent.
+      # The type of the receiver's bank account.
       sig { returns(Increase::ACHTransfer::Funding::TaggedSymbol) }
       attr_accessor :funding
 
@@ -148,7 +147,8 @@ module Increase
       end
       attr_writer :inbound_funds_hold
 
-      # Your identifier for the transfer recipient.
+      # Your internal identifier for the transfer recipient. This value is informational
+      # and not verified by the recipient's bank.
       sig { returns(T.nilable(String)) }
       attr_accessor :individual_id
 
@@ -197,7 +197,8 @@ module Increase
       end
       attr_writer :return_
 
-      # The American Bankers' Association (ABA) Routing Transit Number (RTN).
+      # The American Bankers' Association (ABA) Routing Transit Number (RTN) of the
+      # receiver's bank.
       sig { returns(String) }
       attr_accessor :routing_number
 
@@ -306,7 +307,7 @@ module Increase
         id:,
         # The Account to which the transfer belongs.
         account_id:,
-        # The destination account number.
+        # The receiver's account number.
         account_number:,
         # After the transfer is acknowledged by FedACH, this will contain supplemental
         # details. The Federal Reserve sends an acknowledgement message for each file that
@@ -342,12 +343,11 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
         # currency. For ACH transfers this is always equal to `usd`.
         currency:,
-        # The type of entity that owns the account to which the ACH Transfer is being
-        # sent.
+        # The type of entity that owns the receiver's account.
         destination_account_holder:,
         # The identifier of the External Account the transfer was made to, if any.
         external_account_id:,
-        # The type of the account to which the transfer will be sent.
+        # The type of the receiver's bank account.
         funding:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
@@ -356,7 +356,8 @@ module Increase
         # Increase will sometimes hold the funds for ACH debit transfers. If funds are
         # held, this sub-object will contain details of the hold.
         inbound_funds_hold:,
-        # Your identifier for the transfer recipient.
+        # Your internal identifier for the transfer recipient. This value is informational
+        # and not verified by the recipient's bank.
         individual_id:,
         # The name of the transfer recipient. This value is informational and not verified
         # by the recipient's bank.
@@ -378,7 +379,8 @@ module Increase
         preferred_effective_date:,
         # If your transfer is returned, this will contain details of the return.
         return_:,
-        # The American Bankers' Association (ABA) Routing Transit Number (RTN).
+        # The American Bankers' Association (ABA) Routing Transit Number (RTN) of the
+        # receiver's bank.
         routing_number:,
         # A subhash containing information about when and how the transfer settled at the
         # Federal Reserve.
@@ -1088,8 +1090,7 @@ module Increase
         end
       end
 
-      # The type of entity that owns the account to which the ACH Transfer is being
-      # sent.
+      # The type of entity that owns the receiver's account.
       module DestinationAccountHolder
         extend Increase::Internal::Type::Enum
 
@@ -1131,7 +1132,7 @@ module Increase
         end
       end
 
-      # The type of the account to which the transfer will be sent.
+      # The type of the receiver's bank account.
       module Funding
         extend Increase::Internal::Type::Enum
 
@@ -1781,7 +1782,7 @@ module Increase
           # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted.
           # This is necessary, but not sufficient for the transfer to be settled same-day:
           # it must also be submitted before the last same-day cutoff
-          # and be less than or equal to $1,000.000.00.
+          # and be less than or equal to $1,000,000.00.
           SAME_DAY =
             T.let(
               :same_day,
@@ -1840,7 +1841,8 @@ module Increase
         sig { returns(String) }
         attr_accessor :transaction_id
 
-        # The identifier of the ACH Transfer associated with this return.
+        # The identifier of the ACH Transfer associated with this return. This matches the
+        # original Transaction's `source.ach_transfer_intention.transfer_id`.
         sig { returns(String) }
         attr_accessor :transfer_id
 
@@ -1872,7 +1874,8 @@ module Increase
           trace_number:,
           # The identifier of the Transaction associated with this return.
           transaction_id:,
-          # The identifier of the ACH Transfer associated with this return.
+          # The identifier of the ACH Transfer associated with this return. This matches the
+          # original Transaction's `source.ach_transfer_intention.transfer_id`.
           transfer_id:
         )
         end
@@ -2529,7 +2532,7 @@ module Increase
         # The transfer has been rejected.
         REJECTED = T.let(:rejected, Increase::ACHTransfer::Status::TaggedSymbol)
 
-        # The transfer is complete.
+        # The transfer has been submitted to the Federal Reserve. When the transfer settles, the status remains `submitted` and the `settlement` sub-object is populated.
         SUBMITTED =
           T.let(:submitted, Increase::ACHTransfer::Status::TaggedSymbol)
 

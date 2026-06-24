@@ -271,6 +271,13 @@ module Increase
               Increase::CardPushTransferListParams::Status::In::TaggedSymbol
             )
 
+          # The transfer is queued to be submitted to the card network.
+          PENDING_SUBMISSION =
+            T.let(
+              :pending_submission,
+              Increase::CardPushTransferListParams::Status::In::TaggedSymbol
+            )
+
           # The transfer is pending review by Increase.
           PENDING_REVIEWING =
             T.let(
@@ -282,13 +289,6 @@ module Increase
           REQUIRES_ATTENTION =
             T.let(
               :requires_attention,
-              Increase::CardPushTransferListParams::Status::In::TaggedSymbol
-            )
-
-          # The transfer is queued to be submitted to the card network.
-          PENDING_SUBMISSION =
-            T.let(
-              :pending_submission,
               Increase::CardPushTransferListParams::Status::In::TaggedSymbol
             )
 

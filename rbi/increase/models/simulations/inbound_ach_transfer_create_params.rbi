@@ -71,7 +71,8 @@ module Increase
         sig { params(company_id: String).void }
         attr_writer :company_id
 
-        # The name of the sender.
+        # The name of the sender. This corresponds to the `originator_company_name` field
+        # on the resulting Inbound ACH Transfer.
         sig { returns(T.nilable(String)) }
         attr_reader :company_name
 
@@ -154,7 +155,8 @@ module Increase
           company_entry_description: nil,
           # The sender's company ID.
           company_id: nil,
-          # The name of the sender.
+          # The name of the sender. This corresponds to the `originator_company_name` field
+          # on the resulting Inbound ACH Transfer.
           company_name: nil,
           # The ID of the receiver of the transfer.
           receiver_id_number: nil,

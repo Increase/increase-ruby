@@ -30,15 +30,19 @@ module Increase
       sig { returns(String) }
       attr_accessor :statement_descriptor
 
-      # The account number for the destination account.
+      # The receiver's account number. For credit transfers (positive `amount`) this is
+      # the account that funds will be sent to. For debit transfers (negative `amount`)
+      # this is the account that funds will be pulled from.
       sig { returns(T.nilable(String)) }
       attr_reader :account_number
 
       sig { params(account_number: String).void }
       attr_writer :account_number
 
-      # Additional information that will be sent to the recipient. This is included in
-      # the transfer data sent to the receiving bank.
+      # Additional information passed through to the receiving bank with the transfer.
+      # Most ACH transfers do not need this. Only set this if your recipient has asked
+      # for addendum data, typically unstructured remittance information. Corporate
+      # Trade Exchange (CTX) flows can carry structured X12 remittance advice instead.
       sig { returns(T.nilable(Increase::ACHTransferCreateParams::Addenda)) }
       attr_reader :addenda
 
@@ -47,41 +51,45 @@ module Increase
       end
       attr_writer :addenda
 
-      # The description of the date of the transfer, usually in the format `YYMMDD`.
-      # This is included in the transfer data sent to the receiving bank.
+      # A description of the transfer date (typically `YYMMDD`), sent in the company
+      # batch header. This value is informational and does not affect funds movement,
+      # settlement timing, or returns. Only set this if your recipient has asked for it.
       sig { returns(T.nilable(String)) }
       attr_reader :company_descriptive_date
 
       sig { params(company_descriptive_date: String).void }
       attr_writer :company_descriptive_date
 
-      # The data you choose to associate with the transfer. This is included in the
-      # transfer data sent to the receiving bank.
+      # Custom data sent in the company batch header. This value is informational and
+      # does not affect funds movement, settlement timing, or returns. Most ACH
+      # transfers do not need this. Only set this if your recipient has asked for it.
       sig { returns(T.nilable(String)) }
       attr_reader :company_discretionary_data
 
       sig { params(company_discretionary_data: String).void }
       attr_writer :company_discretionary_data
 
-      # A description of the transfer, included in the transfer data sent to the
-      # receiving bank. Standardized formatting may be required, for example `PAYROLL`
-      # for payroll-related Prearranged Payments and Deposits (PPD) credit transfers.
+      # A short description sent in the company batch header. Most receivers do not
+      # surface this. Only set this if your recipient has asked for a specific value or
+      # if Nacha mandates one for your Standard Entry Class (SEC) code and use case. For
+      # example, Prearranged Payment and Deposit (PPD) payroll credits must use
+      # `PAYROLL`, and reversals must use `REVERSAL`.
       sig { returns(T.nilable(String)) }
       attr_reader :company_entry_description
 
       sig { params(company_entry_description: String).void }
       attr_writer :company_entry_description
 
-      # The name by which the recipient knows you. This is included in the transfer data
-      # sent to the receiving bank.
+      # The name by which the recipient knows you, sent in the company batch header. We
+      # recommend setting this on every transfer; if you do not, we fall back to the ACH
+      # company name configured on your account.
       sig { returns(T.nilable(String)) }
       attr_reader :company_name
 
       sig { params(company_name: String).void }
       attr_writer :company_name
 
-      # The type of entity that owns the account to which the ACH Transfer is being
-      # sent.
+      # The type of entity that owns the receiver's account.
       sig do
         returns(
           T.nilable(
@@ -107,7 +115,7 @@ module Increase
       sig { params(external_account_id: String).void }
       attr_writer :external_account_id
 
-      # The type of the account to which the transfer will be sent.
+      # The type of the receiver's bank account.
       sig do
         returns(T.nilable(Increase::ACHTransferCreateParams::Funding::OrSymbol))
       end
@@ -120,7 +128,8 @@ module Increase
       end
       attr_writer :funding
 
-      # Your identifier for the transfer recipient.
+      # Your internal identifier for the transfer recipient. This value is informational
+      # and not verified by the recipient's bank. Most callers can leave this unset.
       sig { returns(T.nilable(String)) }
       attr_reader :individual_id
 
@@ -161,8 +170,8 @@ module Increase
       sig { params(require_approval: T::Boolean).void }
       attr_writer :require_approval
 
-      # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
-      # destination account.
+      # The American Bankers' Association (ABA) Routing Transit Number (RTN) of the
+      # receiver's bank.
       sig { returns(T.nilable(String)) }
       attr_reader :routing_number
 
@@ -171,7 +180,8 @@ module Increase
 
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-      # to use for the transfer.
+      # to use for the transfer. If not provided, the default is
+      # `corporate_credit_or_debit`.
       sig do
         returns(
           T.nilable(
@@ -249,33 +259,42 @@ module Increase
         # help the customer recognize the transfer. You are highly encouraged to pass
         # `individual_name` and `company_name` instead of relying on this fallback.
         statement_descriptor:,
-        # The account number for the destination account.
+        # The receiver's account number. For credit transfers (positive `amount`) this is
+        # the account that funds will be sent to. For debit transfers (negative `amount`)
+        # this is the account that funds will be pulled from.
         account_number: nil,
-        # Additional information that will be sent to the recipient. This is included in
-        # the transfer data sent to the receiving bank.
+        # Additional information passed through to the receiving bank with the transfer.
+        # Most ACH transfers do not need this. Only set this if your recipient has asked
+        # for addendum data, typically unstructured remittance information. Corporate
+        # Trade Exchange (CTX) flows can carry structured X12 remittance advice instead.
         addenda: nil,
-        # The description of the date of the transfer, usually in the format `YYMMDD`.
-        # This is included in the transfer data sent to the receiving bank.
+        # A description of the transfer date (typically `YYMMDD`), sent in the company
+        # batch header. This value is informational and does not affect funds movement,
+        # settlement timing, or returns. Only set this if your recipient has asked for it.
         company_descriptive_date: nil,
-        # The data you choose to associate with the transfer. This is included in the
-        # transfer data sent to the receiving bank.
+        # Custom data sent in the company batch header. This value is informational and
+        # does not affect funds movement, settlement timing, or returns. Most ACH
+        # transfers do not need this. Only set this if your recipient has asked for it.
         company_discretionary_data: nil,
-        # A description of the transfer, included in the transfer data sent to the
-        # receiving bank. Standardized formatting may be required, for example `PAYROLL`
-        # for payroll-related Prearranged Payments and Deposits (PPD) credit transfers.
+        # A short description sent in the company batch header. Most receivers do not
+        # surface this. Only set this if your recipient has asked for a specific value or
+        # if Nacha mandates one for your Standard Entry Class (SEC) code and use case. For
+        # example, Prearranged Payment and Deposit (PPD) payroll credits must use
+        # `PAYROLL`, and reversals must use `REVERSAL`.
         company_entry_description: nil,
-        # The name by which the recipient knows you. This is included in the transfer data
-        # sent to the receiving bank.
+        # The name by which the recipient knows you, sent in the company batch header. We
+        # recommend setting this on every transfer; if you do not, we fall back to the ACH
+        # company name configured on your account.
         company_name: nil,
-        # The type of entity that owns the account to which the ACH Transfer is being
-        # sent.
+        # The type of entity that owns the receiver's account.
         destination_account_holder: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is
         # provided, `account_number`, `routing_number`, and `funding` must be absent.
         external_account_id: nil,
-        # The type of the account to which the transfer will be sent.
+        # The type of the receiver's bank account.
         funding: nil,
-        # Your identifier for the transfer recipient.
+        # Your internal identifier for the transfer recipient. This value is informational
+        # and not verified by the recipient's bank. Most callers can leave this unset.
         individual_id: nil,
         # The name of the transfer recipient. This value is informational and not verified
         # by the recipient's bank.
@@ -287,12 +306,13 @@ module Increase
         preferred_effective_date: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
-        # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
-        # destination account.
+        # The American Bankers' Association (ABA) Routing Transit Number (RTN) of the
+        # receiver's bank.
         routing_number: nil,
         # The
         # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-        # to use for the transfer.
+        # to use for the transfer. If not provided, the default is
+        # `corporate_credit_or_debit`.
         standard_entry_class_code: nil,
         # The timing of the transaction.
         transaction_timing: nil,
@@ -387,8 +407,10 @@ module Increase
         end
         attr_writer :payment_order_remittance_advice
 
-        # Additional information that will be sent to the recipient. This is included in
-        # the transfer data sent to the receiving bank.
+        # Additional information passed through to the receiving bank with the transfer.
+        # Most ACH transfers do not need this. Only set this if your recipient has asked
+        # for addendum data, typically unstructured remittance information. Corporate
+        # Trade Exchange (CTX) flows can carry structured X12 remittance advice instead.
         sig do
           params(
             category:
@@ -636,8 +658,7 @@ module Increase
         end
       end
 
-      # The type of entity that owns the account to which the ACH Transfer is being
-      # sent.
+      # The type of entity that owns the receiver's account.
       module DestinationAccountHolder
         extend Increase::Internal::Type::Enum
 
@@ -682,7 +703,7 @@ module Increase
         end
       end
 
-      # The type of the account to which the transfer will be sent.
+      # The type of the receiver's bank account.
       module Funding
         extend Increase::Internal::Type::Enum
 
@@ -806,7 +827,7 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted. This is necessary, but not sufficient for the transfer to be settled same-day: it must also be submitted before the last same-day cutoff and be less than or equal to $1,000.000.00.
+          # The chosen effective date will be the same as the ACH processing date on which the transfer is submitted. This is necessary, but not sufficient for the transfer to be settled same-day: it must also be submitted before the last same-day cutoff and be less than or equal to $1,000,000.00.
           SAME_DAY =
             T.let(
               :same_day,
@@ -834,7 +855,8 @@ module Increase
 
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
-      # to use for the transfer.
+      # to use for the transfer. If not provided, the default is
+      # `corporate_credit_or_debit`.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 

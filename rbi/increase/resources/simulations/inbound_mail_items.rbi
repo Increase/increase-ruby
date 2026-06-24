@@ -5,7 +5,10 @@ module Increase
     class Simulations
       class InboundMailItems
         # Simulates an Inbound Mail Item to one of your Lockbox Addresses or Lockbox
-        # Recipients, as if someone had mailed a physical check.
+        # Recipients, as if someone had mailed a physical check. Increase automatically
+        # deposits a check mailed to a Lockbox Recipient into the recipient's Account. A
+        # check mailed to a Lockbox Address must be deposited or ignored with the
+        # [Action an Inbound Mail Item](#inbound-mail-items) endpoint.
         sig do
           params(
             amount: Integer,
@@ -21,9 +24,11 @@ module Increase
           # The file containing the PDF contents. If not present, a default check image file
           # will be used.
           contents_file_id: nil,
-          # The identifier of the Lockbox Address to simulate inbound mail to.
+          # The identifier of the Lockbox Address to simulate inbound mail to. Exactly one
+          # lockbox identifier parameter must be provided.
           lockbox_address_id: nil,
-          # The identifier of the Lockbox Recipient to simulate inbound mail to.
+          # The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
+          # lockbox identifier parameter must be provided.
           lockbox_recipient_id: nil,
           request_options: {}
         )

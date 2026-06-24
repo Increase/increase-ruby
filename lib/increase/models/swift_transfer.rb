@@ -439,14 +439,14 @@ module Increase
         # The transfer has been canceled.
         CANCELED = :canceled
 
+        # The transfer is pending initiation.
+        PENDING_INITIATING = :pending_initiating
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING = :pending_reviewing
 
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
-
-        # The transfer is pending initiation.
-        PENDING_INITIATING = :pending_initiating
 
         # The transfer has been initiated.
         INITIATED = :initiated

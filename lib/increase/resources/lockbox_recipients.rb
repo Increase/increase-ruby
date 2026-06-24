@@ -12,7 +12,7 @@ module Increase
       #
       # @param account_id [String] The Account that checks sent to this Lockbox Recipient should be deposited into.
       #
-      # @param lockbox_address_id [String] The Lockbox Address where this Lockbox Recipient may receive mail.
+      # @param lockbox_address_id [String] The Lockbox Address where this Lockbox Recipient may receive mail. The Lockbox A
       #
       # @param description [String] The description you choose for the Lockbox Recipient.
       #
