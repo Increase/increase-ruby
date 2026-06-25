@@ -1356,6 +1356,13 @@ module Increase
             Increase::CheckTransfer::Status::TaggedSymbol
           )
 
+        # The transfer is pending submission.
+        PENDING_REVIEWING =
+          T.let(
+            :pending_reviewing,
+            Increase::CheckTransfer::Status::TaggedSymbol
+          )
+
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION =
           T.let(
