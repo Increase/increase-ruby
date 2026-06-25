@@ -72,7 +72,9 @@ module Increase
       #   {Increase::Models::InboundMailItem} for more details.
       #
       #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox
-      #   Address.
+      #   Address. Increase automatically deposits checks mailed to a Lockbox Recipient
+      #   into the recipient's Account. Checks that are not matched to a Lockbox Recipient
+      #   must be deposited or ignored using the Action an Inbound Mail Item endpoint.
       #
       #   @param id [String] The Inbound Mail Item identifier.
       #

@@ -1296,14 +1296,21 @@ module Increase
                 Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol
               )
 
-            # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the check will be returned to sender.
+            # There is an issue preventing delivery. The delivery will be attempted again if possible. If the issue cannot be resolved, the check will be rerouted to the return address.
             DELIVERY_ISSUE =
               T.let(
                 :delivery_issue,
                 Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol
               )
 
-            # Delivery failed and the check was returned to sender.
+            # The check has been rerouted to the return address.
+            RETURNING_TO_SENDER =
+              T.let(
+                :returning_to_sender,
+                Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol
+              )
+
+            # The check has been delivered to the return address.
             RETURNED_TO_SENDER =
               T.let(
                 :returned_to_sender,

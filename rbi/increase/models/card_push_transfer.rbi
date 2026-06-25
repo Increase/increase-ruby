@@ -2725,6 +2725,13 @@ module Increase
         CANCELED =
           T.let(:canceled, Increase::CardPushTransfer::Status::TaggedSymbol)
 
+        # The transfer is queued to be submitted to the card network.
+        PENDING_SUBMISSION =
+          T.let(
+            :pending_submission,
+            Increase::CardPushTransfer::Status::TaggedSymbol
+          )
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING =
           T.let(
@@ -2736,13 +2743,6 @@ module Increase
         REQUIRES_ATTENTION =
           T.let(
             :requires_attention,
-            Increase::CardPushTransfer::Status::TaggedSymbol
-          )
-
-        # The transfer is queued to be submitted to the card network.
-        PENDING_SUBMISSION =
-          T.let(
-            :pending_submission,
             Increase::CardPushTransfer::Status::TaggedSymbol
           )
 

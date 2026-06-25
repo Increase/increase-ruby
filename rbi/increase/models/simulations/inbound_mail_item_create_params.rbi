@@ -27,14 +27,16 @@ module Increase
         sig { params(contents_file_id: String).void }
         attr_writer :contents_file_id
 
-        # The identifier of the Lockbox Address to simulate inbound mail to.
+        # The identifier of the Lockbox Address to simulate inbound mail to. Exactly one
+        # lockbox identifier parameter must be provided.
         sig { returns(T.nilable(String)) }
         attr_reader :lockbox_address_id
 
         sig { params(lockbox_address_id: String).void }
         attr_writer :lockbox_address_id
 
-        # The identifier of the Lockbox Recipient to simulate inbound mail to.
+        # The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
+        # lockbox identifier parameter must be provided.
         sig { returns(T.nilable(String)) }
         attr_reader :lockbox_recipient_id
 
@@ -56,9 +58,11 @@ module Increase
           # The file containing the PDF contents. If not present, a default check image file
           # will be used.
           contents_file_id: nil,
-          # The identifier of the Lockbox Address to simulate inbound mail to.
+          # The identifier of the Lockbox Address to simulate inbound mail to. Exactly one
+          # lockbox identifier parameter must be provided.
           lockbox_address_id: nil,
-          # The identifier of the Lockbox Recipient to simulate inbound mail to.
+          # The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
+          # lockbox identifier parameter must be provided.
           lockbox_recipient_id: nil,
           request_options: {}
         )

@@ -1380,14 +1380,14 @@ module Increase
         # The transfer has been canceled.
         CANCELED = :canceled
 
+        # The transfer is queued to be submitted to the card network.
+        PENDING_SUBMISSION = :pending_submission
+
         # The transfer is pending review by Increase.
         PENDING_REVIEWING = :pending_reviewing
 
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
-
-        # The transfer is queued to be submitted to the card network.
-        PENDING_SUBMISSION = :pending_submission
 
         # The transfer has been submitted and is pending a response from the card network.
         SUBMITTED = :submitted

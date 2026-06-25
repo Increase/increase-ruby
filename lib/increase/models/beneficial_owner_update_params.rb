@@ -140,7 +140,8 @@ module Increase
         #   An identification number that can be used to verify the individual's identity,
         #   such as a social security number. For Social Security Numbers and Individual
         #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-        #   separators.
+        #   separators. When testing in sandbox, use one of our
+        #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
         #
         #   @return [String]
         required :number, String

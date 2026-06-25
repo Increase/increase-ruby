@@ -22,13 +22,15 @@ module Increase
         optional :contents_file_id, String
 
         # @!attribute lockbox_address_id
-        #   The identifier of the Lockbox Address to simulate inbound mail to.
+        #   The identifier of the Lockbox Address to simulate inbound mail to. Exactly one
+        #   lockbox identifier parameter must be provided.
         #
         #   @return [String, nil]
         optional :lockbox_address_id, String
 
         # @!attribute lockbox_recipient_id
-        #   The identifier of the Lockbox Recipient to simulate inbound mail to.
+        #   The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
+        #   lockbox identifier parameter must be provided.
         #
         #   @return [String, nil]
         optional :lockbox_recipient_id, String
@@ -41,9 +43,9 @@ module Increase
         #
         #   @param contents_file_id [String] The file containing the PDF contents. If not present, a default check image file
         #
-        #   @param lockbox_address_id [String] The identifier of the Lockbox Address to simulate inbound mail to.
+        #   @param lockbox_address_id [String] The identifier of the Lockbox Address to simulate inbound mail to. Exactly one l
         #
-        #   @param lockbox_recipient_id [String] The identifier of the Lockbox Recipient to simulate inbound mail to.
+        #   @param lockbox_recipient_id [String] The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

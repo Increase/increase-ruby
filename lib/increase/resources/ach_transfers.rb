@@ -16,25 +16,25 @@ module Increase
       #
       # @param statement_descriptor [String] A description you choose to give the transfer. This will be saved with the trans
       #
-      # @param account_number [String] The account number for the destination account.
+      # @param account_number [String] The receiver's account number. For credit transfers (positive `amount`) this is
       #
-      # @param addenda [Increase::Models::ACHTransferCreateParams::Addenda] Additional information that will be sent to the recipient. This is included in t
+      # @param addenda [Increase::Models::ACHTransferCreateParams::Addenda] Additional information passed through to the receiving bank with the transfer. M
       #
-      # @param company_descriptive_date [String] The description of the date of the transfer, usually in the format `YYMMDD`. Thi
+      # @param company_descriptive_date [String] A description of the transfer date (typically `YYMMDD`), sent in the company bat
       #
-      # @param company_discretionary_data [String] The data you choose to associate with the transfer. This is included in the tran
+      # @param company_discretionary_data [String] Custom data sent in the company batch header. This value is informational and do
       #
-      # @param company_entry_description [String] A description of the transfer, included in the transfer data sent to the receivi
+      # @param company_entry_description [String] A short description sent in the company batch header. Most receivers do not surf
       #
-      # @param company_name [String] The name by which the recipient knows you. This is included in the transfer data
+      # @param company_name [String] The name by which the recipient knows you, sent in the company batch header. We
       #
-      # @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder] The type of entity that owns the account to which the ACH Transfer is being sent
+      # @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder] The type of entity that owns the receiver's account.
       #
       # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
       #
-      # @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding] The type of the account to which the transfer will be sent.
+      # @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding] The type of the receiver's bank account.
       #
-      # @param individual_id [String] Your identifier for the transfer recipient.
+      # @param individual_id [String] Your internal identifier for the transfer recipient. This value is informational
       #
       # @param individual_name [String] The name of the transfer recipient. This value is informational and not verified
       #
@@ -42,7 +42,7 @@ module Increase
       #
       # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
       #
-      # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) of the rece
       #
       # @param standard_entry_class_code [Symbol, Increase::Models::ACHTransferCreateParams::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
       #

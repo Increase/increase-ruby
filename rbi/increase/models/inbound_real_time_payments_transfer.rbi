@@ -417,7 +417,7 @@ module Increase
             Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol
           )
 
-        # The transfer was not responded to in time.
+        # The transfer was not responded to in time. This is rare and represents an error at Increase.
         TIMED_OUT =
           T.let(
             :timed_out,
