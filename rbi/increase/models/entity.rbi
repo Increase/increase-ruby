@@ -147,7 +147,7 @@ module Increase
       attr_writer :validation
 
       # Entities are the legal entities that own accounts. They can be people,
-      # corporations, partnerships, government authorities, or trusts. To learn more,
+      # corporations, joint accounts, trusts, or government authorities. To learn more,
       # see [Entities](/documentation/entities).
       sig do
         params(
@@ -311,7 +311,8 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :industry_code
 
-        # The legal identifier of the corporation.
+        # The legal identifier of the corporation, like an Employer Identification Number
+        # (EIN).
         sig do
           returns(T.nilable(Increase::Entity::Corporation::LegalIdentifier))
         end
@@ -370,7 +371,8 @@ module Increase
           # The numeric North American Industry Classification System (NAICS) code submitted
           # for the corporation.
           industry_code:,
-          # The legal identifier of the corporation.
+          # The legal identifier of the corporation, like an Employer Identification Number
+          # (EIN).
           legal_identifier:,
           # The legal name of the corporation.
           name:,
@@ -955,11 +957,12 @@ module Increase
           end
           attr_accessor :category
 
-          # The identifier of the legal identifier.
+          # The legal identifier itself.
           sig { returns(String) }
           attr_accessor :value
 
-          # The legal identifier of the corporation.
+          # The legal identifier of the corporation, like an Employer Identification Number
+          # (EIN).
           sig do
             params(
               category:
@@ -970,7 +973,7 @@ module Increase
           def self.new(
             # The category of the legal identifier.
             category:,
-            # The identifier of the legal identifier.
+            # The legal identifier itself.
             value:
           )
           end

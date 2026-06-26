@@ -676,8 +676,9 @@ module Increase
         # @see Increase::Models::EntityCreateParams::Corporation#legal_identifier
         class LegalIdentifier < Increase::Internal::Type::BaseModel
           # @!attribute value
-          #   The legal identifier. For US Employer Identification Numbers, submit nine digits
-          #   with no dashes or other separators. When testing in sandbox, use one of our
+          #   The legal identifier itself. For US Employer Identification Numbers, submit nine
+          #   digits with no dashes or other separators. When testing in sandbox, use one of
+          #   our
           #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
           #   @return [String]
@@ -699,7 +700,7 @@ module Increase
           #   Identification Number (EIN). This replaces the deprecated `tax_identifier`
           #   field.
           #
-          #   @param value [String] The legal identifier. For US Employer Identification Numbers, submit nine digits
+          #   @param value [String] The legal identifier itself. For US Employer Identification Numbers, submit nine
           #
           #   @param category [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier. If not provided, the default is `us_employ
 
