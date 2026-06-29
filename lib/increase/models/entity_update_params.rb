@@ -230,8 +230,8 @@ module Increase
         # @see Increase::Models::EntityUpdateParams::Corporation#legal_identifier
         class LegalIdentifier < Increase::Internal::Type::BaseModel
           # @!attribute value
-          #   The identifier of the legal identifier. For US Employer Identification Numbers,
-          #   submit nine digits with no dashes or other separators.
+          #   The legal identifier itself. For US Employer Identification Numbers, submit nine
+          #   digits with no dashes or other separators.
           #
           #   @return [String]
           required :value, String
@@ -250,7 +250,7 @@ module Increase
           #   The legal identifier of the corporation. This is usually the Employer
           #   Identification Number (EIN).
           #
-          #   @param value [String] The identifier of the legal identifier. For US Employer Identification Numbers,
+          #   @param value [String] The legal identifier itself. For US Employer Identification Numbers, submit nine
           #
           #   @param category [Symbol, Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier.
 

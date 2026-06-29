@@ -425,8 +425,8 @@ module Increase
               )
             end
 
-          # The identifier of the legal identifier. For US Employer Identification Numbers,
-          # submit nine digits with no dashes or other separators.
+          # The legal identifier itself. For US Employer Identification Numbers, submit nine
+          # digits with no dashes or other separators.
           sig { returns(String) }
           attr_accessor :value
 
@@ -458,8 +458,8 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The identifier of the legal identifier. For US Employer Identification Numbers,
-            # submit nine digits with no dashes or other separators.
+            # The legal identifier itself. For US Employer Identification Numbers, submit nine
+            # digits with no dashes or other separators.
             value:,
             # The category of the legal identifier.
             category: nil

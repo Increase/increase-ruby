@@ -1266,8 +1266,9 @@ module Increase
               )
             end
 
-          # The legal identifier. For US Employer Identification Numbers, submit nine digits
-          # with no dashes or other separators. When testing in sandbox, use one of our
+          # The legal identifier itself. For US Employer Identification Numbers, submit nine
+          # digits with no dashes or other separators. When testing in sandbox, use one of
+          # our
           # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           sig { returns(String) }
           attr_accessor :value
@@ -1302,8 +1303,9 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The legal identifier. For US Employer Identification Numbers, submit nine digits
-            # with no dashes or other separators. When testing in sandbox, use one of our
+            # The legal identifier itself. For US Employer Identification Numbers, submit nine
+            # digits with no dashes or other separators. When testing in sandbox, use one of
+            # our
             # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
             value:,
             # The category of the legal identifier. If not provided, the default is

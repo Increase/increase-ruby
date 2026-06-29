@@ -15,7 +15,8 @@ module Increase
         ).returns(Increase::EntityBeneficialOwner)
       end
       def create(
-        # The identifier of the Entity to associate with the new Beneficial Owner.
+        # The identifier of the Entity to associate with the new Beneficial Owner. Only
+        # `corporation` entities have beneficial owners.
         entity_id:,
         # Personal details for the beneficial owner.
         individual:,

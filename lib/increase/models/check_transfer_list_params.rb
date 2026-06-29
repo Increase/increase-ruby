@@ -136,6 +136,9 @@ module Increase
           # The transfer is pending submission.
           PENDING_SUBMISSION = :pending_submission
 
+          # The transfer is pending review by Increase.
+          PENDING_REVIEWING = :pending_reviewing
+
           # The transfer requires attention from an Increase operator.
           REQUIRES_ATTENTION = :requires_attention
 

@@ -14,7 +14,8 @@ module Increase
           )
         end
 
-      # The identifier of the Entity to associate with the new Beneficial Owner.
+      # The identifier of the Entity to associate with the new Beneficial Owner. Only
+      # `corporation` entities have beneficial owners.
       sig { returns(String) }
       attr_accessor :entity_id
 
@@ -57,7 +58,8 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # The identifier of the Entity to associate with the new Beneficial Owner.
+        # The identifier of the Entity to associate with the new Beneficial Owner. Only
+        # `corporation` entities have beneficial owners.
         entity_id:,
         # Personal details for the beneficial owner.
         individual:,

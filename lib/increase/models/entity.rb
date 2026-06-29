@@ -140,7 +140,7 @@ module Increase
       #   for more details.
       #
       #   Entities are the legal entities that own accounts. They can be people,
-      #   corporations, partnerships, government authorities, or trusts. To learn more,
+      #   corporations, joint accounts, trusts, or government authorities. To learn more,
       #   see [Entities](/documentation/entities).
       #
       #   @param id [String] The entity's identifier.
@@ -227,7 +227,8 @@ module Increase
         required :industry_code, String, nil?: true
 
         # @!attribute legal_identifier
-        #   The legal identifier of the corporation.
+        #   The legal identifier of the corporation, like an Employer Identification Number
+        #   (EIN).
         #
         #   @return [Increase::Models::Entity::Corporation::LegalIdentifier, nil]
         required :legal_identifier, -> { Increase::Entity::Corporation::LegalIdentifier }, nil?: true
@@ -263,7 +264,7 @@ module Increase
         #
         #   @param industry_code [String, nil] The numeric North American Industry Classification System (NAICS) code submitted
         #
-        #   @param legal_identifier [Increase::Models::Entity::Corporation::LegalIdentifier, nil] The legal identifier of the corporation.
+        #   @param legal_identifier [Increase::Models::Entity::Corporation::LegalIdentifier, nil] The legal identifier of the corporation, like an Employer Identification Number
         #
         #   @param name [String] The legal name of the corporation.
         #
@@ -563,17 +564,18 @@ module Increase
           required :category, enum: -> { Increase::Entity::Corporation::LegalIdentifier::Category }
 
           # @!attribute value
-          #   The identifier of the legal identifier.
+          #   The legal identifier itself.
           #
           #   @return [String]
           required :value, String
 
           # @!method initialize(category:, value:)
-          #   The legal identifier of the corporation.
+          #   The legal identifier of the corporation, like an Employer Identification Number
+          #   (EIN).
           #
           #   @param category [Symbol, Increase::Models::Entity::Corporation::LegalIdentifier::Category] The category of the legal identifier.
           #
-          #   @param value [String] The identifier of the legal identifier.
+          #   @param value [String] The legal identifier itself.
 
           # The category of the legal identifier.
           #

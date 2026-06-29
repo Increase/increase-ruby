@@ -36,7 +36,7 @@ module Increase
       attr_accessor :type
 
       # Supplemental Documents are uploaded files connected to an Entity during
-      # onboarding.
+      # onboarding. Not all programs require supplemental documents.
       sig do
         params(
           created_at: Time,

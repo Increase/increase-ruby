@@ -10,7 +10,7 @@ module Increase
       #
       # @overload create(entity_id:, individual:, prongs:, company_title: nil, request_options: {})
       #
-      # @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner.
+      # @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner. Only `c
       #
       # @param individual [Increase::Models::BeneficialOwnerCreateParams::Individual] Personal details for the beneficial owner.
       #

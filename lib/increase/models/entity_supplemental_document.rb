@@ -43,7 +43,7 @@ module Increase
       #   {Increase::Models::EntitySupplementalDocument} for more details.
       #
       #   Supplemental Documents are uploaded files connected to an Entity during
-      #   onboarding.
+      #   onboarding. Not all programs require supplemental documents.
       #
       #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Supplem
       #

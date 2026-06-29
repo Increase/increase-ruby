@@ -8,7 +8,8 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute entity_id
-      #   The identifier of the Entity to associate with the new Beneficial Owner.
+      #   The identifier of the Entity to associate with the new Beneficial Owner. Only
+      #   `corporation` entities have beneficial owners.
       #
       #   @return [String]
       required :entity_id, String
@@ -38,7 +39,7 @@ module Increase
       #   Some parameter documentations has been truncated, see
       #   {Increase::Models::BeneficialOwnerCreateParams} for more details.
       #
-      #   @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner.
+      #   @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner. Only `c
       #
       #   @param individual [Increase::Models::BeneficialOwnerCreateParams::Individual] Personal details for the beneficial owner.
       #
