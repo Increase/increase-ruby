@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.340.0](https://github.com/Increase/increase-ruby/compare/v1.339.0...v1.340.0) (2026-06-29)
+
+
+### Features
+
+* **api:** add pending_reviewing check transfer status ([0e61cdc](https://github.com/Increase/increase-ruby/commit/0e61cdce405836e4c4531b90495811862e8a538a))
+
 ## [1.339.0](https://github.com/Increase/increase-ruby/compare/v1.338.0...v1.339.0) (2026-06-25)
 
 
