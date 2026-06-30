@@ -40,18 +40,21 @@ module Increase
       optional :limit, Integer
 
       # @!method initialize(account_id: nil, account_number_id: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundRealTimePaymentsTransferListParams} for more details.
+      #   @param account_id [String]
+      #     Filter Inbound Real-Time Payments Transfers to those belonging to the specified
+      #     Account.
       #
-      #   @param account_id [String] Filter Inbound Real-Time Payments Transfers to those belonging to the specified
-      #
-      #   @param account_number_id [String] Filter Inbound Real-Time Payments Transfers to ones belonging to the specified A
+      #   @param account_number_id [String]
+      #     Filter Inbound Real-Time Payments Transfers to ones belonging to the specified
+      #     Account Number.
       #
       #   @param created_at [Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
-      #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #   @param limit [Integer]
+      #     Limit the size of the list that is returned. The default (and maximum) is 100
+      #     objects.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -85,17 +88,21 @@ module Increase
         optional :on_or_before, Time
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt} for
-        #   more details.
+        #   @param after [Time]
+        #     Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+        #     timestamp.
         #
-        #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
+        #   @param before [Time]
+        #     Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+        #     timestamp.
         #
-        #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
+        #   @param on_or_after [Time]
+        #     Return results on or after this
+        #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         #
-        #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #
-        #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+        #   @param on_or_before [Time]
+        #     Return results on or before this
+        #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
       end
     end
   end

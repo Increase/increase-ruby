@@ -14,7 +14,8 @@ module Increase
       required :inbound_real_time_payments_transfer_id, String
 
       # @!method initialize(inbound_real_time_payments_transfer_id:, request_options: {})
-      #   @param inbound_real_time_payments_transfer_id [String] The identifier of the Inbound Real-Time Payments Transfer to get details for.
+      #   @param inbound_real_time_payments_transfer_id [String]
+      #     The identifier of the Inbound Real-Time Payments Transfer to get details for.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

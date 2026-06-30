@@ -4,19 +4,23 @@ module Increase
   module Resources
     class Simulations
       class CardRefunds
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::CardRefundCreateParams} for more details.
-        #
         # Simulates refunding a card transaction. The full value of the original sandbox
         # transaction is refunded.
         #
         # @overload create(amount: nil, pending_transaction_id: nil, transaction_id: nil, request_options: {})
         #
-        # @param amount [Integer] The refund amount in cents. Pulled off the `pending_transaction` or the `transac
+        # @param amount [Integer]
+        #   The refund amount in cents. Pulled off the `pending_transaction` or the
+        #   `transaction` if not provided.
         #
-        # @param pending_transaction_id [String] The identifier of the Pending Transaction for the refund authorization. If this
+        # @param pending_transaction_id [String]
+        #   The identifier of the Pending Transaction for the refund authorization. If this
+        #   is provided, `transaction` must not be provided as a refund with a refund
+        #   authorized can not be linked to a regular transaction.
         #
-        # @param transaction_id [String] The identifier for the Transaction to refund. The Transaction's source must have
+        # @param transaction_id [String]
+        #   The identifier for the Transaction to refund. The Transaction's source must have
+        #   a category of card_settlement.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

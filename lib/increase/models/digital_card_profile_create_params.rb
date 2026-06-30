@@ -78,7 +78,8 @@ module Increase
       #
       #   @param contact_website [String] A website the user can visit to view and receive support for their card.
       #
-      #   @param text_color [Increase::Models::DigitalCardProfileCreateParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      #   @param text_color [Increase::Models::DigitalCardProfileCreateParams::TextColor]
+      #     The Card's text color, specified as an RGB triple. The default is white.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -162,9 +162,6 @@ module Increase
       required :unstructured_remittance_information, String
 
       # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_address:, creditor_name:, currency:, debtor_address:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::FednowTransfer} for more details.
-      #
       #   FedNow transfers move funds, within seconds, between your Increase account and
       #   any other account supporting FedNow.
       #
@@ -174,47 +171,75 @@ module Increase
       #
       #   @param account_number [String] The destination account number.
       #
-      #   @param acknowledgement [Increase::Models::FednowTransfer::Acknowledgement, nil] If the transfer is acknowledged by the recipient bank, this will contain supplem
+      #   @param acknowledgement [Increase::Models::FednowTransfer::Acknowledgement, nil]
+      #     If the transfer is acknowledged by the recipient bank, this will contain
+      #     supplemental details.
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the transfer was created.
       #
-      #   @param created_by [Increase::Models::FednowTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
+      #   @param created_by [Increase::Models::FednowTransfer::CreatedBy, nil]
+      #     What object created the transfer, either via the API or the dashboard.
       #
       #   @param creditor_address [Increase::Models::FednowTransfer::CreditorAddress, nil] The creditor's address.
       #
-      #   @param creditor_name [String] The name of the transfer's recipient. This is set by the sender when creating th
+      #   @param creditor_name [String]
+      #     The name of the transfer's recipient. This is set by the sender when creating
+      #     the transfer.
       #
-      #   @param currency [Symbol, Increase::Models::FednowTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's c
+      #   @param currency [Symbol, Increase::Models::FednowTransfer::Currency]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
+      #     currency. For FedNow transfers this is always equal to `USD`.
       #
       #   @param debtor_address [Increase::Models::FednowTransfer::DebtorAddress, nil] The debtor's address.
       #
-      #   @param debtor_name [String] The name of the transfer's sender. If not provided, defaults to the name of the
+      #   @param debtor_name [String]
+      #     The name of the transfer's sender. If not provided, defaults to the name of the
+      #     account's entity.
       #
-      #   @param external_account_id [String, nil] The identifier of the External Account the transfer was made to, if any.
+      #   @param external_account_id [String, nil]
+      #     The identifier of the External Account the transfer was made to, if any.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer.
       #
-      #   @param rejection [Increase::Models::FednowTransfer::Rejection, nil] If the transfer is rejected by FedNow or the destination financial institution,
+      #   @param rejection [Increase::Models::FednowTransfer::Rejection, nil]
+      #     If the transfer is rejected by FedNow or the destination financial institution,
+      #     this will contain supplemental details.
       #
-      #   @param routing_number [String] The destination American Bankers' Association (ABA) Routing Transit Number (RTN)
+      #   @param routing_number [String]
+      #     The destination American Bankers' Association (ABA) Routing Transit Number
+      #     (RTN).
       #
-      #   @param source_account_number_id [String] The Account Number the recipient will see as having sent the transfer.
+      #   @param source_account_number_id [String]
+      #     The Account Number the recipient will see as having sent the transfer.
       #
       #   @param status [Symbol, Increase::Models::FednowTransfer::Status] The lifecycle status of the transfer.
       #
-      #   @param submission [Increase::Models::FednowTransfer::Submission, nil] After the transfer is submitted to FedNow, this will contain supplemental detail
+      #   @param submission [Increase::Models::FednowTransfer::Submission, nil]
+      #     After the transfer is submitted to FedNow, this will contain supplemental
+      #     details.
       #
       #   @param transaction_id [String, nil] The Transaction funding the transfer once it is complete.
       #
-      #   @param type [Symbol, Increase::Models::FednowTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::FednowTransfer::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `fednow_transfer`.
       #
-      #   @param unique_end_to_end_transaction_reference [String] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+      #   @param unique_end_to_end_transaction_reference [String]
+      #     The Unique End-to-end Transaction Reference
+      #     ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #     of the transfer.
       #
-      #   @param unstructured_remittance_information [String] Unstructured information that will show on the recipient's bank statement.
+      #   @param unstructured_remittance_information [String]
+      #     Unstructured information that will show on the recipient's bank statement.
 
       # @see Increase::Models::FednowTransfer#acknowledgement
       class Acknowledgement < Increase::Internal::Type::BaseModel
@@ -260,13 +285,17 @@ module Increase
         # @!method initialize(category:, api_key: nil, oauth_application: nil, user: nil)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param category [Symbol, Increase::Models::FednowTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #   @param category [Symbol, Increase::Models::FednowTransfer::CreatedBy::Category]
+        #     The type of object that created this transfer.
         #
-        #   @param api_key [Increase::Models::FednowTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
+        #   @param api_key [Increase::Models::FednowTransfer::CreatedBy::APIKey, nil]
+        #     If present, details about the API key that created the transfer.
         #
-        #   @param oauth_application [Increase::Models::FednowTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
+        #   @param oauth_application [Increase::Models::FednowTransfer::CreatedBy::OAuthApplication, nil]
+        #     If present, details about the OAuth Application that created the transfer.
         #
-        #   @param user [Increase::Models::FednowTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
+        #   @param user [Increase::Models::FednowTransfer::CreatedBy::User, nil]
+        #     If present, details about the User that created the transfer.
 
         # The type of object that created this transfer.
         #
@@ -443,17 +472,19 @@ module Increase
         required :rejected_at, Time, nil?: true
 
         # @!method initialize(reject_reason_additional_information:, reject_reason_code:, rejected_at:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::FednowTransfer::Rejection} for more details.
-        #
         #   If the transfer is rejected by FedNow or the destination financial institution,
         #   this will contain supplemental details.
         #
-        #   @param reject_reason_additional_information [String, nil] Additional information about the rejection provided by the recipient bank.
+        #   @param reject_reason_additional_information [String, nil]
+        #     Additional information about the rejection provided by the recipient bank.
         #
-        #   @param reject_reason_code [Symbol, Increase::Models::FednowTransfer::Rejection::RejectReasonCode] The reason the transfer was rejected as provided by the recipient bank or the Fe
+        #   @param reject_reason_code [Symbol, Increase::Models::FednowTransfer::Rejection::RejectReasonCode]
+        #     The reason the transfer was rejected as provided by the recipient bank or the
+        #     FedNow network.
         #
-        #   @param rejected_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param rejected_at [Time, nil]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was rejected.
 
         # The reason the transfer was rejected as provided by the recipient bank or the
         # FedNow network.
@@ -565,15 +596,14 @@ module Increase
         required :submitted_at, Time, nil?: true
 
         # @!method initialize(message_identification:, submitted_at:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::FednowTransfer::Submission} for more details.
-        #
         #   After the transfer is submitted to FedNow, this will contain supplemental
         #   details.
         #
         #   @param message_identification [String] The FedNow network identification of the message submitted.
         #
-        #   @param submitted_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param submitted_at [Time, nil]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was submitted to FedNow.
       end
 
       # A constant representing the object's type. For this resource it will always be

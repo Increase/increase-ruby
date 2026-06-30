@@ -22,12 +22,11 @@ module Increase
         optional :amount, Integer
 
         # @!method initialize(card_payment_id:, amount: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::CardReversalCreateParams} for more details.
-        #
         #   @param card_payment_id [String] The identifier of the Card Payment to create a reversal on.
         #
-        #   @param amount [Integer] The amount of the reversal in minor units in the card authorization's currency.
+        #   @param amount [Integer]
+        #     The amount of the reversal in minor units in the card authorization's currency.
+        #     This defaults to the authorization amount.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -162,26 +162,42 @@ module Increase
       optional :require_approval, Increase::Internal::Type::Boolean
 
       # @!method initialize(business_application_identifier:, card_token_id:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, presentment_amount:, recipient_name:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, merchant_legal_business_name: nil, merchant_street_address: nil, recipient_address_city: nil, recipient_address_line1: nil, recipient_address_postal_code: nil, recipient_address_state: nil, require_approval: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardPushTransferCreateParams} for more details.
+      #   @param business_application_identifier [Symbol, Increase::Models::CardPushTransferCreateParams::BusinessApplicationIdentifier]
+      #     The Business Application Identifier describes the type of transaction being
+      #     performed. Your program must be approved for the specified Business Application
+      #     Identifier in order to use it.
       #
-      #   @param business_application_identifier [Symbol, Increase::Models::CardPushTransferCreateParams::BusinessApplicationIdentifier] The Business Application Identifier describes the type of transaction being perf
+      #   @param card_token_id [String]
+      #     The Increase identifier for the Card Token that represents the card number
+      #     you're pushing funds to.
       #
-      #   @param card_token_id [String] The Increase identifier for the Card Token that represents the card number you'r
+      #   @param merchant_category_code [String]
+      #     The merchant category code (MCC) of the merchant (generally your business)
+      #     sending the transfer. This is a four-digit code that describes the type of
+      #     business or service provided by the merchant. Your program must be approved for
+      #     the specified MCC in order to use it.
       #
-      #   @param merchant_category_code [String] The merchant category code (MCC) of the merchant (generally your business) sendi
+      #   @param merchant_city_name [String]
+      #     The city name of the merchant (generally your business) sending the transfer.
       #
-      #   @param merchant_city_name [String] The city name of the merchant (generally your business) sending the transfer.
+      #   @param merchant_name [String]
+      #     The merchant name shows up as the statement descriptor for the transfer. This is
+      #     typically the name of your business or organization.
       #
-      #   @param merchant_name [String] The merchant name shows up as the statement descriptor for the transfer. This is
+      #   @param merchant_name_prefix [String]
+      #     For certain Business Application Identifiers, the statement descriptor is
+      #     `merchant_name_prefix*sender_name`, where the `merchant_name_prefix` is a one to
+      #     four character prefix that identifies the merchant.
       #
-      #   @param merchant_name_prefix [String] For certain Business Application Identifiers, the statement descriptor is `merch
-      #
-      #   @param merchant_postal_code [String] The postal code of the merchant (generally your business) sending the transfer.
+      #   @param merchant_postal_code [String]
+      #     The postal code of the merchant (generally your business) sending the transfer.
       #
       #   @param merchant_state [String] The state of the merchant (generally your business) sending the transfer.
       #
-      #   @param presentment_amount [Increase::Models::CardPushTransferCreateParams::PresentmentAmount] The amount to transfer. The receiving bank will convert this to the cardholder's
+      #   @param presentment_amount [Increase::Models::CardPushTransferCreateParams::PresentmentAmount]
+      #     The amount to transfer. The receiving bank will convert this to the cardholder's
+      #     currency. The amount that is applied to your Increase account matches the
+      #     currency of your account.
       #
       #   @param recipient_name [String] The name of the funds recipient.
       #
@@ -195,21 +211,33 @@ module Increase
       #
       #   @param sender_name [String] The name of the funds originator.
       #
-      #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer.
+      #   @param source_account_number_id [String]
+      #     The identifier of the Account Number from which to send the transfer.
       #
-      #   @param merchant_legal_business_name [String] The legal business name of the merchant (generally your business) sending the tr
+      #   @param merchant_legal_business_name [String]
+      #     The legal business name of the merchant (generally your business) sending the
+      #     transfer. Required if the card is issued in Canada.
       #
-      #   @param merchant_street_address [String] The street address of the merchant (generally your business) sending the transfe
+      #   @param merchant_street_address [String]
+      #     The street address of the merchant (generally your business) sending the
+      #     transfer. Required if the card is issued in Canada.
       #
-      #   @param recipient_address_city [String] The city of the recipient. Required if the card is issued in Canada.
+      #   @param recipient_address_city [String]
+      #     The city of the recipient. Required if the card is issued in Canada.
       #
-      #   @param recipient_address_line1 [String] The first line of the recipient's address. Required if the card is issued in Can
+      #   @param recipient_address_line1 [String]
+      #     The first line of the recipient's address. Required if the card is issued in
+      #     Canada.
       #
-      #   @param recipient_address_postal_code [String] The postal code of the recipient. Required if the card is issued in Canada.
+      #   @param recipient_address_postal_code [String]
+      #     The postal code of the recipient. Required if the card is issued in Canada.
       #
-      #   @param recipient_address_state [String] The state or province of the recipient. Required if the card is issued in Canada
+      #   @param recipient_address_state [String]
+      #     The state or province of the recipient. Required if the card is issued in
+      #     Canada.
       #
-      #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #   @param require_approval [Boolean]
+      #     Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -283,17 +311,19 @@ module Increase
         required :value, String
 
         # @!method initialize(currency:, value:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransferCreateParams::PresentmentAmount} for more
-        #   details.
-        #
         #   The amount to transfer. The receiving bank will convert this to the cardholder's
         #   currency. The amount that is applied to your Increase account matches the
         #   currency of your account.
         #
-        #   @param currency [Symbol, Increase::Models::CardPushTransferCreateParams::PresentmentAmount::Currency] The ISO 4217 currency code representing the currency of the amount.
+        #   @param currency [Symbol, Increase::Models::CardPushTransferCreateParams::PresentmentAmount::Currency]
+        #     The ISO 4217 currency code representing the currency of the amount.
         #
-        #   @param value [String] The amount value as a decimal string in the currency's major unit. For example,
+        #   @param value [String]
+        #     The amount value as a decimal string in the currency's major unit. For example,
+        #     for USD, '1234.56' represents 1234 dollars and 56 cents. For JPY, '1234'
+        #     represents 1234 yen. A currency with minor units requires at least one decimal
+        #     place and supports up to the number of decimal places defined by the currency's
+        #     minor units. A currency without minor units does not support any decimal places.
 
         # The ISO 4217 currency code representing the currency of the amount.
         #

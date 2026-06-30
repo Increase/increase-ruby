@@ -98,40 +98,56 @@ module Increase
       required :type, enum: -> { Increase::PhysicalCardProfile::Type }
 
       # @!method initialize(id:, back_image_file_id:, carrier_image_file_id:, contact_phone:, created_at:, creator:, description:, front_image_file_id:, front_text:, idempotency_key:, is_default:, program_id:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::PhysicalCardProfile} for more details.
-      #
       #   This contains artwork and metadata relating to a Physical Card's appearance. For
       #   more information, see our guide on
       #   [physical card artwork](https://increase.com/documentation/card-art-physical-cards).
       #
       #   @param id [String] The Card Profile identifier.
       #
-      #   @param back_image_file_id [String, nil] The identifier of the File containing the physical card's back image. This will
+      #   @param back_image_file_id [String, nil]
+      #     The identifier of the File containing the physical card's back image. This will
+      #     be missing until the image has been post-processed.
       #
-      #   @param carrier_image_file_id [String, nil] The identifier of the File containing the physical card's carrier image. This wi
+      #   @param carrier_image_file_id [String, nil]
+      #     The identifier of the File containing the physical card's carrier image. This
+      #     will be missing until the image has been post-processed.
       #
       #   @param contact_phone [String, nil] A phone number the user can contact to receive support for their card.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Physical Card Profile was created.
       #
-      #   @param creator [Symbol, Increase::Models::PhysicalCardProfile::Creator] The creator of this Physical Card Profile.
+      #   @param creator [Symbol, Increase::Models::PhysicalCardProfile::Creator]
+      #     The creator of this Physical Card Profile.
       #
       #   @param description [String] A description you can use to identify the Physical Card Profile.
       #
-      #   @param front_image_file_id [String, nil] The identifier of the File containing the physical card's front image. This will
+      #   @param front_image_file_id [String, nil]
+      #     The identifier of the File containing the physical card's front image. This will
+      #     be missing until the image has been post-processed.
       #
-      #   @param front_text [Increase::Models::PhysicalCardProfile::FrontText, nil] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      #   @param front_text [Increase::Models::PhysicalCardProfile::FrontText, nil]
+      #     Text printed on the front of the card. Reach out to
+      #     [support@increase.com](mailto:support@increase.com) for more information.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param is_default [Boolean] Whether this Physical Card Profile is the default for all cards in its Increase
+      #   @param is_default [Boolean]
+      #     Whether this Physical Card Profile is the default for all cards in its Increase
+      #     group.
       #
       #   @param program_id [String] The identifier for the Program this Physical Card Profile belongs to.
       #
-      #   @param status [Symbol, Increase::Models::PhysicalCardProfile::Status] The status of the Physical Card Profile.
+      #   @param status [Symbol, Increase::Models::PhysicalCardProfile::Status]
+      #     The status of the Physical Card Profile.
       #
-      #   @param type [Symbol, Increase::Models::PhysicalCardProfile::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::PhysicalCardProfile::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `physical_card_profile`.
 
       # The creator of this Physical Card Profile.
       #
@@ -166,15 +182,15 @@ module Increase
         required :line2, String, nil?: true
 
         # @!method initialize(line1:, line2:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::PhysicalCardProfile::FrontText} for more details.
-        #
         #   Text printed on the front of the card. Reach out to
         #   [support@increase.com](mailto:support@increase.com) for more information.
         #
         #   @param line1 [String] The first line of text on the front of the card.
         #
-        #   @param line2 [String, nil] The second line of text on the front of the card. Providing a second line moves
+        #   @param line2 [String, nil]
+        #     The second line of text on the front of the card. Providing a second line moves
+        #     the first line slightly higher and prints the second line in the spot where the
+        #     first line would have otherwise been printed.
       end
 
       # The status of the Physical Card Profile.

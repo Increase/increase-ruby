@@ -30,7 +30,8 @@ module Increase
       #
       #   @param description [String] The description you choose for the Lockbox Address.
       #
-      #   @param status [Symbol, Increase::Models::LockboxAddressUpdateParams::Status] The status of the Lockbox Address.
+      #   @param status [Symbol, Increase::Models::LockboxAddressUpdateParams::Status]
+      #     The status of the Lockbox Address.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

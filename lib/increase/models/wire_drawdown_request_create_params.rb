@@ -83,32 +83,38 @@ module Increase
       optional :end_to_end_identification, String
 
       # @!method initialize(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, charge_bearer: nil, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::WireDrawdownRequestCreateParams} for more details.
-      #
       #   @param account_number_id [String] The Account Number to which the debtor should send funds.
       #
       #   @param amount [Integer] The amount requested from the debtor, in USD cents.
       #
-      #   @param creditor_address [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress] The creditor's address.
+      #   @param creditor_address [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress]
+      #     The creditor's address.
       #
       #   @param creditor_name [String] The creditor's name.
       #
-      #   @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress] The debtor's address.
+      #   @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress]
+      #     The debtor's address.
       #
       #   @param debtor_name [String] The debtor's name.
       #
-      #   @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
+      #   @param unstructured_remittance_information [String]
+      #     Remittance information the debtor will see as part of the request.
       #
-      #   @param charge_bearer [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer] Determines who bears the cost of the drawdown request. Defaults to `shared` if n
+      #   @param charge_bearer [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer]
+      #     Determines who bears the cost of the drawdown request. Defaults to `shared` if
+      #     not specified.
       #
       #   @param debtor_account_number [String] The debtor's account number.
       #
-      #   @param debtor_external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      #   @param debtor_external_account_id [String]
+      #     The ID of an External Account to initiate a transfer to. If this parameter is
+      #     provided, `debtor_account_number` and `debtor_routing_number` must be absent.
       #
       #   @param debtor_routing_number [String] The debtor's routing number.
       #
-      #   @param end_to_end_identification [String] A free-form reference string set by the sender mirrored back in the subsequent w
+      #   @param end_to_end_identification [String]
+      #     A free-form reference string set by the sender mirrored back in the subsequent
+      #     wire transfer.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -152,15 +158,14 @@ module Increase
         optional :state, String
 
         # @!method initialize(city:, country:, line1:, line2: nil, postal_code: nil, state: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress} for more
-        #   details.
-        #
         #   The creditor's address.
         #
         #   @param city [String] The city, district, town, or village of the address.
         #
-        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #   @param country [String]
+        #     The two-letter
+        #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #     the country of the address.
         #
         #   @param line1 [String] The first line of the address. This is usually the street number and street.
         #
@@ -211,15 +216,14 @@ module Increase
         optional :state, String
 
         # @!method initialize(city:, country:, line1:, line2: nil, postal_code: nil, state: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress} for more
-        #   details.
-        #
         #   The debtor's address.
         #
         #   @param city [String] The city, district, town, or village of the address.
         #
-        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #   @param country [String]
+        #     The two-letter
+        #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #     the country of the address.
         #
         #   @param line1 [String] The first line of the address. This is usually the street number and street.
         #

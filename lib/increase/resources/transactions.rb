@@ -23,9 +23,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::TransactionListParams} for more details.
-      #
       # List Transactions
       #
       # @overload list(account_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, route_id: nil, request_options: {})
@@ -38,9 +35,13 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
-      # @param route_id [String] Filter Transactions for those belonging to the specified route. This could be a
+      # @param route_id [String]
+      #   Filter Transactions for those belonging to the specified route. This could be a
+      #   Card ID or an Account Number ID.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

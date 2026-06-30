@@ -104,9 +104,6 @@ module Increase
       required :unstructured_remittance_information, String, nil?: true
 
       # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, status:, transaction_identification:, type:, unstructured_remittance_information:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundRealTimePaymentsTransfer} for more details.
-      #
       #   An Inbound Real-Time Payments Transfer is a Real-Time Payments transfer
       #   initiated outside of Increase to your account.
       #
@@ -118,13 +115,19 @@ module Increase
       #
       #   @param amount [Integer] The amount in USD cents.
       #
-      #   @param confirmation [Increase::Models::InboundRealTimePaymentsTransfer::Confirmation, nil] If your transfer is confirmed, this will contain details of the confirmation.
+      #   @param confirmation [Increase::Models::InboundRealTimePaymentsTransfer::Confirmation, nil]
+      #     If your transfer is confirmed, this will contain details of the confirmation.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the transfer was created.
       #
-      #   @param creditor_name [String] The name the sender of the transfer specified as the recipient of the transfer.
+      #   @param creditor_name [String]
+      #     The name the sender of the transfer specified as the recipient of the transfer.
       #
-      #   @param currency [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the transfer's cu
+      #   @param currency [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Currency]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the transfer's
+      #     currency. This will always be "USD" for a Real-Time Payments transfer.
       #
       #   @param debtor_account_number [String] The account number of the account that sent the transfer.
       #
@@ -132,15 +135,20 @@ module Increase
       #
       #   @param debtor_routing_number [String] The routing number of the account that sent the transfer.
       #
-      #   @param decline [Increase::Models::InboundRealTimePaymentsTransfer::Decline, nil] If your transfer is declined, this will contain details of the decline.
+      #   @param decline [Increase::Models::InboundRealTimePaymentsTransfer::Decline, nil]
+      #     If your transfer is declined, this will contain details of the decline.
       #
-      #   @param status [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Status] The lifecycle status of the transfer.
+      #   @param status [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Status]
+      #     The lifecycle status of the transfer.
       #
       #   @param transaction_identification [String] The Real-Time Payments network identification of the transfer.
       #
-      #   @param type [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `inbound_real_time_payments_transfer`.
       #
-      #   @param unstructured_remittance_information [String, nil] Additional information included with the transfer.
+      #   @param unstructured_remittance_information [String, nil]
+      #     Additional information included with the transfer.
 
       # @see Increase::Models::InboundRealTimePaymentsTransfer#confirmation
       class Confirmation < Increase::Internal::Type::BaseModel
@@ -205,7 +213,8 @@ module Increase
         #
         #   @param declined_transaction_id [String] The id of the transaction for the declined transfer.
         #
-        #   @param reason [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Decline::Reason] The reason for the transfer decline.
+        #   @param reason [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Decline::Reason]
+        #     The reason for the transfer decline.
 
         # The reason for the transfer decline.
         #

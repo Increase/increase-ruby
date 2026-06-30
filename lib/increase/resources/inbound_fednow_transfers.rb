@@ -7,7 +7,8 @@ module Increase
       #
       # @overload retrieve(inbound_fednow_transfer_id, request_options: {})
       #
-      # @param inbound_fednow_transfer_id [String] The identifier of the Inbound FedNow Transfer to get details for.
+      # @param inbound_fednow_transfer_id [String]
+      #   The identifier of the Inbound FedNow Transfer to get details for.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -23,22 +24,23 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::InboundFednowTransferListParams} for more details.
-      #
       # List Inbound FedNow Transfers
       #
       # @overload list(account_id: nil, account_number_id: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
       #
       # @param account_id [String] Filter Inbound FedNow Transfers to those belonging to the specified Account.
       #
-      # @param account_number_id [String] Filter Inbound FedNow Transfers to ones belonging to the specified Account Numbe
+      # @param account_number_id [String]
+      #   Filter Inbound FedNow Transfers to ones belonging to the specified Account
+      #   Number.
       #
       # @param created_at [Increase::Models::InboundFednowTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

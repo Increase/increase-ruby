@@ -50,17 +50,18 @@ module Increase
       required :type, enum: -> { Increase::CardToken::Type }
 
       # @!method initialize(id:, created_at:, expiration_date:, last4:, length:, prefix:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardToken} for more details.
-      #
       #   Card Tokens represent a tokenized card number that can be used for Card Push
       #   Transfers and Card Validations.
       #
       #   @param id [String] The Card Token's identifier.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the card token was created.
       #
-      #   @param expiration_date [Date] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date when the card expire
+      #   @param expiration_date [Date]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date when the card
+      #     expires.
       #
       #   @param last4 [String] The last 4 digits of the card number.
       #
@@ -68,7 +69,9 @@ module Increase
       #
       #   @param prefix [String] The prefix of the card number, usually 8 digits.
       #
-      #   @param type [Symbol, Increase::Models::CardToken::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardToken::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_token`.
 
       # A constant representing the object's type. For this resource it will always be
       # `card_token`.

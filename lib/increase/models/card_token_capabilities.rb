@@ -18,16 +18,16 @@ module Increase
       required :type, enum: -> { Increase::CardTokenCapabilities::Type }
 
       # @!method initialize(routes:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardTokenCapabilities} for more details.
-      #
       #   The capabilities of a Card Token describe whether the card can be used for
       #   specific operations, such as Card Push Transfers. The capabilities can change
       #   over time based on the issuing bank's configuration of the card range.
       #
-      #   @param routes [Array<Increase::Models::CardTokenCapabilities::Route>] Each route represent a path e.g., a push transfer can take.
+      #   @param routes [Array<Increase::Models::CardTokenCapabilities::Route>]
+      #     Each route represent a path e.g., a push transfer can take.
       #
-      #   @param type [Symbol, Increase::Models::CardTokenCapabilities::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardTokenCapabilities::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_token_capabilities`.
 
       class Route < Increase::Internal::Type::BaseModel
         # @!attribute cross_border_push_transfers
@@ -57,13 +57,16 @@ module Increase
         required :route, enum: -> { Increase::CardTokenCapabilities::Route::Route }
 
         # @!method initialize(cross_border_push_transfers:, domestic_push_transfers:, issuer_country:, route:)
-        #   @param cross_border_push_transfers [Symbol, Increase::Models::CardTokenCapabilities::Route::CrossBorderPushTransfers] Whether you can push funds to the card using cross-border Card Push Transfers.
+        #   @param cross_border_push_transfers [Symbol, Increase::Models::CardTokenCapabilities::Route::CrossBorderPushTransfers]
+        #     Whether you can push funds to the card using cross-border Card Push Transfers.
         #
-        #   @param domestic_push_transfers [Symbol, Increase::Models::CardTokenCapabilities::Route::DomesticPushTransfers] Whether you can push funds to the card using domestic Card Push Transfers.
+        #   @param domestic_push_transfers [Symbol, Increase::Models::CardTokenCapabilities::Route::DomesticPushTransfers]
+        #     Whether you can push funds to the card using domestic Card Push Transfers.
         #
         #   @param issuer_country [String] The ISO-3166-1 alpha-2 country code of the card's issuing bank.
         #
-        #   @param route [Symbol, Increase::Models::CardTokenCapabilities::Route::Route] The card network route the capabilities apply to.
+        #   @param route [Symbol, Increase::Models::CardTokenCapabilities::Route::Route]
+        #     The card network route the capabilities apply to.
 
         # Whether you can push funds to the card using cross-border Card Push Transfers.
         #

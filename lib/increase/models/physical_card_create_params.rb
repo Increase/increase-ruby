@@ -33,16 +33,17 @@ module Increase
       optional :physical_card_profile_id, String
 
       # @!method initialize(card_id:, cardholder:, shipment:, physical_card_profile_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::PhysicalCardCreateParams} for more details.
-      #
       #   @param card_id [String] The underlying card representing this physical card.
       #
-      #   @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder] Details about the cardholder, as it will appear on the physical card.
+      #   @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder]
+      #     Details about the cardholder, as it will appear on the physical card.
       #
-      #   @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment] The details used to ship this physical card.
+      #   @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment]
+      #     The details used to ship this physical card.
       #
-      #   @param physical_card_profile_id [String] The physical card profile to use for this physical card. The latest default phys
+      #   @param physical_card_profile_id [String]
+      #     The physical card profile to use for this physical card. The latest default
+      #     physical card profile will be used if not provided.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -95,16 +96,20 @@ module Increase
         optional :schedule, enum: -> { Increase::PhysicalCardCreateParams::Shipment::Schedule }
 
         # @!method initialize(address:, method_:, schedule: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::PhysicalCardCreateParams::Shipment} for more details.
-        #
         #   The details used to ship this physical card.
         #
-        #   @param address [Increase::Models::PhysicalCardCreateParams::Shipment::Address] The address to where the card should be shipped.
+        #   @param address [Increase::Models::PhysicalCardCreateParams::Shipment::Address]
+        #     The address to where the card should be shipped.
         #
-        #   @param method_ [Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Method] The shipping method to use.
+        #   @param method_ [Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Method]
+        #     The shipping method to use.
         #
-        #   @param schedule [Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Schedule] When this physical card should be produced by the card printer. The default time
+        #   @param schedule [Symbol, Increase::Models::PhysicalCardCreateParams::Shipment::Schedule]
+        #     When this physical card should be produced by the card printer. The default
+        #     timeline is the day after the card printer receives the order, except for
+        #     `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+        #     production methods, please reach out to
+        #     [support@increase.com](mailto:support@increase.com).
 
         # @see Increase::Models::PhysicalCardCreateParams::Shipment#address
         class Address < Increase::Internal::Type::BaseModel
@@ -166,10 +171,6 @@ module Increase
           optional :phone_number, String
 
           # @!method initialize(city:, line1:, name:, postal_code:, state:, country: nil, line2: nil, line3: nil, phone_number: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::PhysicalCardCreateParams::Shipment::Address} for more
-          #   details.
-          #
           #   The address to where the card should be shipped.
           #
           #   @param city [String] The city of the shipping address.
@@ -182,7 +183,11 @@ module Increase
           #
           #   @param state [String] The state of the shipping address.
           #
-          #   @param country [String] The two-character ISO 3166-1 code of the country where the card should be shippe
+          #   @param country [String]
+          #     The two-character ISO 3166-1 code of the country where the card should be
+          #     shipped (e.g., `US`). Please reach out to
+          #     [support@increase.com](mailto:support@increase.com) to ship cards
+          #     internationally.
           #
           #   @param line2 [String] The second line of the shipping address.
           #

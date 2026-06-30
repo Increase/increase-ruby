@@ -49,24 +49,27 @@ module Increase
       required :wire_transfers, enum: -> { Increase::Models::RoutingNumberListResponse::WireTransfers }
 
       # @!method initialize(ach_transfers:, fednow_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::RoutingNumberListResponse} for more details.
-      #
       #   Routing numbers are used to identify your bank in a financial transaction.
       #
-      #   @param ach_transfers [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers] This routing number's support for ACH Transfers.
+      #   @param ach_transfers [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers]
+      #     This routing number's support for ACH Transfers.
       #
-      #   @param fednow_transfers [Symbol, Increase::Models::RoutingNumberListResponse::FednowTransfers] This routing number's support for FedNow Transfers.
+      #   @param fednow_transfers [Symbol, Increase::Models::RoutingNumberListResponse::FednowTransfers]
+      #     This routing number's support for FedNow Transfers.
       #
       #   @param name [String] The name of the financial institution belonging to a routing number.
       #
-      #   @param real_time_payments_transfers [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers] This routing number's support for Real-Time Payments Transfers.
+      #   @param real_time_payments_transfers [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers]
+      #     This routing number's support for Real-Time Payments Transfers.
       #
       #   @param routing_number [String] The nine digit routing number identifier.
       #
-      #   @param type [Symbol, Increase::Models::RoutingNumberListResponse::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::RoutingNumberListResponse::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `routing_number`.
       #
-      #   @param wire_transfers [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers] This routing number's support for Wire Transfers.
+      #   @param wire_transfers [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers]
+      #     This routing number's support for Wire Transfers.
 
       # This routing number's support for ACH Transfers.
       #

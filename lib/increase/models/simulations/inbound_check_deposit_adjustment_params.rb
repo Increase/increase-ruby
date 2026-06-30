@@ -28,15 +28,14 @@ module Increase
         optional :reason, enum: -> { Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason }
 
         # @!method initialize(inbound_check_deposit_id:, amount: nil, reason: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::InboundCheckDepositAdjustmentParams} for more
-        #   details.
-        #
         #   @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to adjust.
         #
-        #   @param amount [Integer] The adjustment amount in cents. Defaults to the amount of the Inbound Check Depo
+        #   @param amount [Integer]
+        #     The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        #     Deposit.
         #
-        #   @param reason [Symbol, Increase::Models::Simulations::InboundCheckDepositAdjustmentParams::Reason] The reason for the adjustment. Defaults to `wrong_payee_credit`.
+        #   @param reason [Symbol, Increase::Models::Simulations::InboundCheckDepositAdjustmentParams::Reason]
+        #     The reason for the adjustment. Defaults to `wrong_payee_credit`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

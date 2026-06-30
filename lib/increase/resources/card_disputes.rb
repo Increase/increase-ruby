@@ -3,24 +3,34 @@
 module Increase
   module Resources
     class CardDisputes
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardDisputeCreateParams} for more details.
-      #
       # Create a Card Dispute
       #
       # @overload create(disputed_transaction_id:, network:, amount: nil, attachment_files: nil, explanation: nil, visa: nil, request_options: {})
       #
-      # @param disputed_transaction_id [String] The Transaction you wish to dispute. This Transaction must have a `source_type`
+      # @param disputed_transaction_id [String]
+      #   The Transaction you wish to dispute. This Transaction must have a `source_type`
+      #   of `card_settlement`.
       #
-      # @param network [Symbol, Increase::Models::CardDisputeCreateParams::Network] The network of the disputed transaction. Details specific to the network are req
+      # @param network [Symbol, Increase::Models::CardDisputeCreateParams::Network]
+      #   The network of the disputed transaction. Details specific to the network are
+      #   required under the sub-object with the same identifier as the network.
       #
-      # @param amount [Integer] The monetary amount of the part of the transaction that is being disputed. This
+      # @param amount [Integer]
+      #   The monetary amount of the part of the transaction that is being disputed. This
+      #   is optional and will default to the full amount of the transaction if not
+      #   provided. If provided, the amount must be less than or equal to the amount of
+      #   the transaction.
       #
-      # @param attachment_files [Array<Increase::Models::CardDisputeCreateParams::AttachmentFile>] The files to be attached to the initial dispute submission.
+      # @param attachment_files [Array<Increase::Models::CardDisputeCreateParams::AttachmentFile>]
+      #   The files to be attached to the initial dispute submission.
       #
-      # @param explanation [String] The free-form explanation provided to Increase to provide more context for the u
+      # @param explanation [String]
+      #   The free-form explanation provided to Increase to provide more context for the
+      #   user submission. This field is not sent directly to the card networks.
       #
-      # @param visa [Increase::Models::CardDisputeCreateParams::Visa] The Visa-specific parameters for the dispute. Required if and only if `network`
+      # @param visa [Increase::Models::CardDisputeCreateParams::Visa]
+      #   The Visa-specific parameters for the dispute. Required if and only if `network`
+      #   is `visa`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -58,9 +68,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardDisputeListParams} for more details.
-      #
       # List Card Disputes
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -69,9 +76,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::CardDisputeListParams::Status]
       #
@@ -93,24 +106,32 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardDisputeSubmitUserSubmissionParams} for more details.
-      #
       # Submit a User Submission for a Card Dispute
       #
       # @overload submit_user_submission(card_dispute_id, network:, amount: nil, attachment_files: nil, explanation: nil, visa: nil, request_options: {})
       #
       # @param card_dispute_id [String] The identifier of the Card Dispute to submit a user submission for.
       #
-      # @param network [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Network] The network of the Card Dispute. Details specific to the network are required un
+      # @param network [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Network]
+      #   The network of the Card Dispute. Details specific to the network are required
+      #   under the sub-object with the same identifier as the network.
       #
-      # @param amount [Integer] The adjusted monetary amount of the part of the transaction that is being disput
+      # @param amount [Integer]
+      #   The adjusted monetary amount of the part of the transaction that is being
+      #   disputed. This is optional and will default to the most recent amount provided.
+      #   If provided, the amount must be less than or equal to the amount of the
+      #   transaction.
       #
-      # @param attachment_files [Array<Increase::Models::CardDisputeSubmitUserSubmissionParams::AttachmentFile>] The files to be attached to the user submission.
+      # @param attachment_files [Array<Increase::Models::CardDisputeSubmitUserSubmissionParams::AttachmentFile>]
+      #   The files to be attached to the user submission.
       #
-      # @param explanation [String] The free-form explanation provided to Increase to provide more context for the u
+      # @param explanation [String]
+      #   The free-form explanation provided to Increase to provide more context for the
+      #   user submission. This field is not sent directly to the card networks.
       #
-      # @param visa [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa] The Visa-specific parameters for the dispute. Required if and only if `network`
+      # @param visa [Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa]
+      #   The Visa-specific parameters for the dispute. Required if and only if `network`
+      #   is `visa`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

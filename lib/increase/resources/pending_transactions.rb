@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class PendingTransactions
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PendingTransactionCreateParams} for more details.
-      #
       # Creates a pending transaction on an account. This can be useful to hold funds
       # for an external payment or known future transaction outside of Increase (only
       # negative amounts are supported). The resulting Pending Transaction will have a
@@ -16,7 +13,10 @@ module Increase
       #
       # @param account_id [String] The Account to place the hold on.
       #
-      # @param amount [Integer] The amount to hold in the minor unit of the account's currency. For dollars, for
+      # @param amount [Integer]
+      #   The amount to hold in the minor unit of the account's currency. For dollars, for
+      #   example, this is cents. This should be a negative amount - to hold $1.00 from
+      #   the account, you would pass -100.
       #
       # @param description [String] The description you choose to give the hold.
       #
@@ -56,9 +56,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PendingTransactionListParams} for more details.
-      #
       # List Pending Transactions
       #
       # @overload list(account_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, route_id: nil, status: nil, request_options: {})
@@ -71,7 +68,9 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param route_id [String] Filter pending transactions to those belonging to the specified Route.
       #
